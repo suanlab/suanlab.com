@@ -26,6 +26,7 @@ interface Book {
   image: string;
   url: string;
   chapters: BookChapter[];
+  sourceCodeUrl?: string;
 }
 
 const books: Book[] = [
@@ -142,9 +143,9 @@ const books: Book[] = [
       {
         title: '12. 마무리',
         items: ['참고문헌'],
-        downloadUrl: 'https://drive.google.com/file/d/1OSGDgeqd0jgQh-NtXvPzNtvYfMLN8SwW/view?usp=sharing',
       },
     ],
+    sourceCodeUrl: 'https://drive.google.com/file/d/1OSGDgeqd0jgQh-NtXvPzNtvYfMLN8SwW/view?usp=sharing',
   },
 ];
 
@@ -252,12 +253,22 @@ export default function PublishedBookPage() {
                       </div>
                     )}
 
-                    <Button size="lg" asChild>
-                      <a href={book.url} target="_blank" rel="noopener noreferrer">
-                        <ShoppingCart className="mr-2 h-4 w-4" />
-                        Purchase Book
-                      </a>
-                    </Button>
+                    <div className="flex flex-wrap gap-3">
+                      <Button size="lg" asChild>
+                        <a href={book.url} target="_blank" rel="noopener noreferrer">
+                          <ShoppingCart className="mr-2 h-4 w-4" />
+                          Purchase Book
+                        </a>
+                      </Button>
+                      {book.sourceCodeUrl && (
+                        <Button size="lg" variant="outline" asChild>
+                          <a href={book.sourceCodeUrl} target="_blank" rel="noopener noreferrer">
+                            <Download className="mr-2 h-4 w-4" />
+                            Download Source Code
+                          </a>
+                        </Button>
+                      )}
+                    </div>
                   </CardContent>
                 </div>
               </Card>
