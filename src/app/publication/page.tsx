@@ -102,6 +102,26 @@ export default function PublicationPage() {
                       DBLP
                     </a>
                   </Button>
+                  <Button variant="secondary" className="w-full justify-start" asChild>
+                    <a
+                      href="https://orcid.org/0000-0002-3047-1167"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      ORCID
+                    </a>
+                  </Button>
+                  <Button variant="secondary" className="w-full justify-start" asChild>
+                    <a
+                      href="https://www.scopus.com/authid/detail.uri?authorId=56023436400"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Scopus
+                    </a>
+                  </Button>
                 </div>
 
                 <div className="mb-6">
