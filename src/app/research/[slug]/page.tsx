@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Database, Brain, BookOpen, Eye, Network, MapPin, ArrowRight, Check, Lightbulb, Award, GraduationCap, FolderOpen, Mic, FileText, ExternalLink } from 'lucide-react';
+import { Database, Brain, BookOpen, Eye, Network, MapPin, ArrowRight, Check, Lightbulb, Award, GraduationCap, FolderOpen, Mic, FileText } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
