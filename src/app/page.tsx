@@ -172,7 +172,7 @@ export default function Home() {
             <div className="aspect-video overflow-hidden rounded-xl shadow-2xl">
               <iframe
                 className="h-full w-full"
-                src="https://www.youtube.com/embed/vgIc4ctNFbc"
+                src="https://www.youtube.com/embed/k60oT_8lyFw"
                 title="SuanLab YouTube"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
