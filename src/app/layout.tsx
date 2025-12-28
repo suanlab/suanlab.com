@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   description: 'Professor Suan Lee\'s Research Lab - Data Science, Deep Learning, Machine Learning, Big Data, NLP, Computer Vision',
   keywords: 'Suan Lee, SuanLab, Data Science, Deep Learning, Machine Learning, Big Data, NLP, Computer Vision, AI Research',
   authors: [{ name: 'Suan Lee' }],
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({

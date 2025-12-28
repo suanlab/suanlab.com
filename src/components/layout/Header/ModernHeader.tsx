@@ -81,7 +81,7 @@ export default function ModernHeader() {
             alt="SuanLab"
             width={305}
             height={80}
-            className="h-8 w-auto"
+            className="h-10 w-auto"
             priority
           />
         </Link>

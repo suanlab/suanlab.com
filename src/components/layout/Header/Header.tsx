@@ -60,8 +60,8 @@ export default function Header() {
             <Image
               src="/assets/images/logo.png"
               alt="SuanLab"
-              width={180}
-              height={50}
+              width={240}
+              height={63}
               priority
             />
           </Link>
