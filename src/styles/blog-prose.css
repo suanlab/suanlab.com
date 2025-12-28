@@ -1,0 +1,353 @@
+/* Blog Prose Styles */
+
+/* Code Block Styles */
+.blog-content pre {
+  @apply rounded-lg overflow-x-auto my-6 p-0;
+  background: linear-gradient(145deg, #1e1e2e, #2d2d3f);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.blog-content pre code {
+  @apply block p-4 text-sm leading-relaxed;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', Menlo, Monaco, Consolas, monospace;
+}
+
+.blog-content :not(pre) > code {
+  @apply px-1.5 py-0.5 rounded text-sm font-medium;
+  background: rgba(136, 136, 136, 0.15);
+  color: #e879f9;
+}
+
+/* Highlight.js Theme - GitHub Dark Dimmed */
+.hljs {
+  color: #adbac7;
+  background: transparent;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  color: #f47067;
+}
+
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  color: #dcbdfb;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id,
+.hljs-variable {
+  color: #6cb6ff;
+}
+
+.hljs-meta .hljs-string,
+.hljs-regexp,
+.hljs-string {
+  color: #96d0ff;
+}
+
+.hljs-built_in,
+.hljs-symbol {
+  color: #f69d50;
+}
+
+.hljs-code,
+.hljs-comment,
+.hljs-formula {
+  color: #768390;
+}
+
+.hljs-name,
+.hljs-quote,
+.hljs-selector-pseudo,
+.hljs-selector-tag {
+  color: #8ddb8c;
+}
+
+.hljs-subst {
+  color: #adbac7;
+}
+
+.hljs-section {
+  color: #316dca;
+  font-weight: bold;
+}
+
+.hljs-bullet {
+  color: #eac55f;
+}
+
+.hljs-emphasis {
+  color: #adbac7;
+  font-style: italic;
+}
+
+.hljs-strong {
+  color: #adbac7;
+  font-weight: bold;
+}
+
+.hljs-addition {
+  color: #b4f1b4;
+  background-color: #1b4721;
+}
+
+.hljs-deletion {
+  color: #ffd8d3;
+  background-color: #78191b;
+}
+
+/* Headings */
+.blog-content h1 {
+  @apply text-3xl font-bold mt-10 mb-6 pb-3 border-b;
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blog-content h2 {
+  @apply text-2xl font-bold mt-10 mb-4 flex items-center gap-2;
+}
+
+.blog-content h2::before {
+  content: '';
+  @apply w-1 h-6 rounded-full bg-primary;
+}
+
+.blog-content h3 {
+  @apply text-xl font-semibold mt-8 mb-3;
+}
+
+.blog-content h4 {
+  @apply text-lg font-semibold mt-6 mb-2;
+}
+
+/* Heading anchor links */
+.blog-content h1 a,
+.blog-content h2 a,
+.blog-content h3 a,
+.blog-content h4 a {
+  @apply text-inherit no-underline hover:text-primary transition-colors;
+}
+
+/* Paragraphs */
+.blog-content p {
+  @apply my-4 leading-7;
+}
+
+/* Lists */
+.blog-content ul {
+  @apply my-4 pl-6 space-y-2;
+  list-style: none;
+}
+
+.blog-content ul li {
+  @apply relative pl-2;
+}
+
+.blog-content ul li::before {
+  content: '▸';
+  @apply absolute -left-4 text-primary font-bold;
+}
+
+.blog-content ol {
+  @apply my-4 pl-6 space-y-2;
+  list-style: none;
+  counter-reset: item;
+}
+
+.blog-content ol li {
+  @apply relative pl-2;
+  counter-increment: item;
+}
+
+.blog-content ol li::before {
+  content: counter(item) '.';
+  @apply absolute -left-5 font-bold text-primary;
+}
+
+/* Nested lists */
+.blog-content ul ul,
+.blog-content ol ol,
+.blog-content ul ol,
+.blog-content ol ul {
+  @apply mt-2 mb-0;
+}
+
+/* Blockquotes */
+.blog-content blockquote {
+  @apply my-6 pl-6 py-4 border-l-4 border-primary/50 bg-muted/50 rounded-r-lg italic;
+}
+
+.blog-content blockquote p {
+  @apply my-0;
+}
+
+/* Tables */
+.blog-content table {
+  @apply w-full my-6 border-collapse overflow-hidden rounded-lg;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.blog-content thead {
+  @apply bg-muted;
+}
+
+.blog-content th {
+  @apply px-4 py-3 text-left font-semibold border-b border-border;
+}
+
+.blog-content td {
+  @apply px-4 py-3 border-b border-border;
+}
+
+.blog-content tbody tr:hover {
+  @apply bg-muted/50;
+}
+
+.blog-content tbody tr:last-child td {
+  @apply border-b-0;
+}
+
+/* Links */
+.blog-content a:not(h1 a):not(h2 a):not(h3 a):not(h4 a) {
+  @apply text-primary underline underline-offset-2 decoration-primary/30 hover:decoration-primary transition-all;
+}
+
+/* Horizontal Rule */
+.blog-content hr {
+  @apply my-8 border-t border-border;
+}
+
+/* Images */
+.blog-content img {
+  @apply rounded-lg my-6 mx-auto max-w-full shadow-lg;
+}
+
+/* Strong and Em */
+.blog-content strong {
+  @apply font-bold text-foreground;
+}
+
+.blog-content em {
+  @apply italic;
+}
+
+/* Task Lists (GFM) */
+.blog-content input[type="checkbox"] {
+  @apply mr-2 accent-primary;
+}
+
+/* Definition Lists */
+.blog-content dl {
+  @apply my-4;
+}
+
+.blog-content dt {
+  @apply font-bold mt-4;
+}
+
+.blog-content dd {
+  @apply pl-4 text-muted-foreground;
+}
+
+/* Footnotes */
+.blog-content .footnotes {
+  @apply mt-12 pt-6 border-t text-sm text-muted-foreground;
+}
+
+/* Copy button animation for code blocks (if added later) */
+.blog-content pre:hover {
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.3), 0 4px 8px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Language label for code blocks */
+.blog-content pre[class*="language-"]::before {
+  @apply absolute top-2 right-2 text-xs px-2 py-1 rounded bg-white/10 text-white/70;
+}
+
+/* KaTeX Math Styles */
+
+/* Block equations - centered with nice styling */
+.blog-content .math-block {
+  @apply my-8 py-6 px-4 text-center overflow-x-auto;
+  background: linear-gradient(135deg, hsl(var(--muted) / 0.3), hsl(var(--muted) / 0.1));
+  border-radius: 0.75rem;
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+.blog-content .math-block p {
+  @apply my-0;
+}
+
+.blog-content .math-block .katex {
+  font-size: 1.15em;
+}
+
+/* Inline math styling */
+.blog-content .katex {
+  font-size: 1.05em;
+}
+
+/* Math in dark mode - ensure visibility */
+.dark .blog-content .katex {
+  color: hsl(var(--foreground));
+}
+
+.dark .blog-content .katex .mord,
+.dark .blog-content .katex .mopen,
+.dark .blog-content .katex .mclose,
+.dark .blog-content .katex .mpunct,
+.dark .blog-content .katex .mrel,
+.dark .blog-content .katex .mbin,
+.dark .blog-content .katex .minner {
+  color: hsl(var(--foreground));
+}
+
+/* Dark mode math-block styling */
+.dark .blog-content .math-block {
+  background: linear-gradient(135deg, hsl(var(--muted) / 0.5), hsl(var(--muted) / 0.2));
+  border-color: hsl(var(--border) / 0.7);
+}
+
+/* Large equations scrollable on mobile */
+.blog-content .math-block {
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .blog-content .math-block {
+    @apply px-2 py-4;
+  }
+
+  .blog-content .math-block .katex {
+    font-size: 0.95em;
+  }
+}
+
+/* Print styles */
+@media print {
+  .blog-content pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .blog-content pre code {
+    @apply text-black bg-gray-100;
+  }
+}

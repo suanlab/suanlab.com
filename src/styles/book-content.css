@@ -1,0 +1,61 @@
+/* Book Content Styles */
+
+/* Headings */
+.book-content h2 {
+  @apply text-xl font-bold mt-6 mb-3 text-primary border-b pb-2;
+}
+
+.book-content h3 {
+  @apply text-lg font-semibold mt-5 mb-2;
+}
+
+/* Paragraphs */
+.book-content p {
+  @apply my-3 leading-relaxed;
+}
+
+/* Lists */
+.book-content ul {
+  @apply my-3 pl-5 space-y-1;
+  list-style: disc;
+}
+
+.book-content ul li {
+  @apply text-sm text-muted-foreground;
+}
+
+.book-content ol {
+  @apply my-3 pl-5 space-y-1;
+  list-style: decimal;
+}
+
+.book-content ol li {
+  @apply text-sm text-muted-foreground;
+}
+
+/* Links */
+.book-content a {
+  @apply text-primary underline hover:no-underline;
+}
+
+/* Strong text */
+.book-content strong {
+  @apply font-semibold text-foreground;
+}
+
+/* Code */
+.book-content code {
+  @apply px-1.5 py-0.5 rounded text-sm bg-muted;
+}
+
+/* Blockquotes */
+.book-content blockquote {
+  @apply border-l-4 border-primary/50 pl-4 my-4 italic text-muted-foreground;
+}
+
+/* Dark mode */
+.dark .book-content p,
+.dark .book-content ul li,
+.dark .book-content ol li {
+  @apply text-muted-foreground;
+}
