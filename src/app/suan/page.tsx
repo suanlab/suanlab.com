@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import { GraduationCap, Building, Mail, Phone, MapPin, Check, Globe, Instagram, Facebook, Linkedin, Youtube, Calendar, Award, BookOpen, Plane } from 'lucide-react';
+import { GraduationCap, Building, Mail, Phone, MapPin, Check, Globe, Instagram, Facebook, Linkedin, Youtube, Calendar, Award, BookOpen, Plane, Users, Briefcase, Heart, Scale } from 'lucide-react';
 import { academicActivities, journalMemberships, journalReviews, journalReviewStats, advisoryActivities, activityCategories } from '@/data/academic-activities';
 import { visitedCountries, overseasExperiences, overseasStats, continentColors } from '@/data/overseas-experiences';
+import { networkCategories, networkStats } from '@/data/networks';
 
 // X (formerly Twitter) icon
 const XIcon = ({ className }: { className?: string }) => (
@@ -131,6 +132,62 @@ export default function SuanPage() {
                       </div>
                     </div>
                   ))}
+                </CardContent>
+              </Card>
+
+              {/* Networks */}
+              <Card className="mt-6">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Users className="h-5 w-5 text-primary" />
+                    Networks
+                  </CardTitle>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {networkStats.totalConnections}+ Professional Connections
+                  </p>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="space-y-4">
+                    {networkCategories.map((category) => {
+                      const IconComponent = category.icon === 'GraduationCap' ? GraduationCap
+                        : category.icon === 'Building' ? Building
+                        : category.icon === 'Briefcase' ? Briefcase
+                        : category.icon === 'Scale' ? Scale
+                        : category.icon === 'Heart' ? Heart
+                        : Users;
+                      return (
+                        <details key={category.name} className="group">
+                          <summary className="flex items-center justify-between cursor-pointer list-none py-2 hover:bg-muted/50 rounded-md px-2 -mx-2">
+                            <div className="flex items-center gap-2">
+                              <IconComponent className="h-4 w-4 text-muted-foreground" />
+                              <span className="font-medium text-sm">{category.nameKo}</span>
+                              <span className="text-xs text-muted-foreground">({category.items.length})</span>
+                            </div>
+                            <svg className="h-4 w-4 text-muted-foreground transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </summary>
+                          <div className="mt-2 pl-6 max-h-48 overflow-y-auto">
+                            <div className="flex flex-wrap gap-1">
+                              {category.items.slice(0, 30).map((item, idx) => (
+                                <span
+                                  key={idx}
+                                  className={`inline-block px-2 py-0.5 rounded text-xs ${category.color}`}
+                                >
+                                  {item}
+                                </span>
+                              ))}
+                              {category.items.length > 30 && (
+                                <span className="inline-block px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+                                  +{category.items.length - 30} more
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </details>
+                      );
+                    })}
+                  </div>
                 </CardContent>
               </Card>
 
