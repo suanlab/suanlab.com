@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { lectures, getLectureBySlug } from '@/data/lectures';
+import { getPlaylistBySlug } from '@/data/youtube';
 
 export async function generateStaticParams() {
   return lectures.map((lecture) => ({
@@ -171,16 +172,21 @@ export default function LectureDetailPage({ params }: { params: { slug: string }
                         이 강의와 관련된 무료 YouTube 강좌를 확인하세요.
                       </p>
                       <div className="space-y-2">
-                        {lecture.relatedYoutube.map((url) => (
-                          <Link
-                            key={url}
-                            href={url}
-                            className="flex items-center justify-between p-2 rounded-lg hover:bg-muted transition-colors"
-                          >
-                            <span className="text-sm text-primary">{url.replace('/youtube/', '').toUpperCase()}</span>
-                            <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                          </Link>
-                        ))}
+                        {lecture.relatedYoutube.map((url) => {
+                          const slug = url.replace('/youtube/', '');
+                          const playlist = getPlaylistBySlug(slug);
+                          const displayName = playlist?.titleKo || slug.toUpperCase();
+                          return (
+                            <Link
+                              key={url}
+                              href={url}
+                              className="flex items-center justify-between p-2 rounded-lg hover:bg-muted transition-colors"
+                            >
+                              <span className="text-sm text-primary">{displayName}</span>
+                              <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                            </Link>
+                          );
+                        })}
                       </div>
                     </CardContent>
                   </Card>
