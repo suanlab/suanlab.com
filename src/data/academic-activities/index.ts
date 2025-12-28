@@ -71,22 +71,81 @@ export const academicActivities: AcademicActivity[] = [
   { id: 45, period: '2019.07.25-26', organization: 'THE AI KOREA 2019 컨퍼런스', role: 'Member', category: 'conference' },
 ];
 
-// 저널 리뷰어 및 학회 멤버십
+// 저널 리뷰어 인터페이스
+export interface JournalReview {
+  id: number;
+  journal: string;
+  publisher: string;
+  reviewCount: number;
+  role: string;
+}
+
+// 저널 리뷰어 활동 (총 204건, 50개 저널)
+export const journalReviews: JournalReview[] = [
+  { id: 1, journal: 'Applied Sciences', publisher: 'MDPI', reviewCount: 31, role: 'Reviewer' },
+  { id: 2, journal: 'Electronics', publisher: 'MDPI', reviewCount: 19, role: 'Topical Advisory Panel, Guest Editor, Reviewer' },
+  { id: 3, journal: 'The Journal of Supercomputing', publisher: 'Springer', reviewCount: 13, role: 'Reviewer' },
+  { id: 4, journal: 'IEEE Access', publisher: 'IEEE', reviewCount: 12, role: 'Reviewer' },
+  { id: 5, journal: 'PLoS ONE', publisher: 'PLOS', reviewCount: 12, role: 'Reviewer' },
+  { id: 6, journal: 'Sensors', publisher: 'MDPI', reviewCount: 12, role: 'Reviewer' },
+  { id: 7, journal: 'ACM Transactions on Multimedia Computing, Communications and Applications', publisher: 'ACM', reviewCount: 8, role: 'Reviewer' },
+  { id: 8, journal: 'Mathematics', publisher: 'MDPI', reviewCount: 7, role: 'Reviewer' },
+  { id: 9, journal: 'Advanced Intelligent Systems', publisher: 'Wiley', reviewCount: 6, role: 'Reviewer' },
+  { id: 10, journal: 'Information', publisher: 'MDPI', reviewCount: 6, role: 'Reviewer' },
+  { id: 11, journal: 'IEEE Sensors Journal', publisher: 'IEEE', reviewCount: 4, role: 'Reviewer' },
+  { id: 12, journal: 'Remote Sensing', publisher: 'MDPI', reviewCount: 4, role: 'Reviewer' },
+  { id: 13, journal: 'Symmetry', publisher: 'MDPI', reviewCount: 4, role: 'Reviewer' },
+  { id: 14, journal: 'ACM Computing Surveys', publisher: 'ACM', reviewCount: 3, role: 'Reviewer' },
+  { id: 15, journal: 'AI', publisher: 'MDPI', reviewCount: 3, role: 'Reviewer' },
+  { id: 16, journal: 'Algorithms', publisher: 'MDPI', reviewCount: 3, role: 'Reviewer' },
+  { id: 17, journal: 'Big Data and Cognitive Computing', publisher: 'MDPI', reviewCount: 3, role: 'Reviewer' },
+  { id: 18, journal: 'Brain Sciences', publisher: 'MDPI', reviewCount: 3, role: 'Reviewer' },
+  { id: 19, journal: 'Data', publisher: 'MDPI', reviewCount: 3, role: 'Reviewer' },
+  { id: 20, journal: 'Expert Systems with Applications', publisher: 'Elsevier', reviewCount: 3, role: 'Reviewer' },
+  { id: 21, journal: 'Future Internet', publisher: 'MDPI', reviewCount: 3, role: 'Reviewer' },
+  { id: 22, journal: 'IEEE Transactions on Image Processing', publisher: 'IEEE', reviewCount: 3, role: 'Reviewer' },
+  { id: 23, journal: 'Journal of Imaging', publisher: 'MDPI', reviewCount: 3, role: 'Reviewer' },
+  { id: 24, journal: 'Aerospace', publisher: 'MDPI', reviewCount: 2, role: 'Reviewer' },
+  { id: 25, journal: 'Cluster Computing', publisher: 'Springer', reviewCount: 2, role: 'Reviewer' },
+  { id: 26, journal: 'Computers & Electrical Engineering', publisher: 'Elsevier', reviewCount: 2, role: 'Reviewer' },
+  { id: 27, journal: 'Diagnostics', publisher: 'MDPI', reviewCount: 2, role: 'Reviewer' },
+  { id: 28, journal: 'Education Sciences', publisher: 'MDPI', reviewCount: 2, role: 'Reviewer' },
+  { id: 29, journal: 'IEEE Transactions on Computational Social Systems', publisher: 'IEEE', reviewCount: 2, role: 'Reviewer' },
+  { id: 30, journal: 'IEEE Transactions on Industrial Informatics', publisher: 'IEEE', reviewCount: 2, role: 'Reviewer' },
+  { id: 31, journal: 'Machine Learning and Knowledge Extraction', publisher: 'MDPI', reviewCount: 2, role: 'Reviewer' },
+  { id: 32, journal: 'Pattern Recognition', publisher: 'Elsevier', reviewCount: 2, role: 'Reviewer' },
+  { id: 33, journal: 'Technologies', publisher: 'MDPI', reviewCount: 2, role: 'Reviewer' },
+  { id: 34, journal: 'Artificial Intelligence Review', publisher: 'Springer', reviewCount: 2, role: 'Reviewer' },
+  { id: 35, journal: 'Big Data Research', publisher: 'Elsevier', reviewCount: 1, role: 'Reviewer' },
+  { id: 36, journal: 'Computers', publisher: 'MDPI', reviewCount: 1, role: 'Reviewer' },
+  { id: 37, journal: 'Concurrency and Computation', publisher: 'Wiley', reviewCount: 1, role: 'Reviewer' },
+  { id: 38, journal: 'Connection Science', publisher: 'Taylor & Francis', reviewCount: 1, role: 'Reviewer' },
+  { id: 39, journal: 'Engineering Applications of Artificial Intelligence', publisher: 'Elsevier', reviewCount: 1, role: 'Reviewer' },
+  { id: 40, journal: 'IEEE Transactions on Engineering Management', publisher: 'IEEE', reviewCount: 1, role: 'Reviewer' },
+  { id: 41, journal: 'IEEE Transactions on Services Computing', publisher: 'IEEE', reviewCount: 1, role: 'Reviewer' },
+  { id: 42, journal: 'IET Generation, Transmission & Distribution', publisher: 'IET', reviewCount: 1, role: 'Reviewer' },
+  { id: 43, journal: 'IET Image Processing', publisher: 'IET', reviewCount: 1, role: 'Reviewer' },
+  { id: 44, journal: 'Information Sciences', publisher: 'Elsevier', reviewCount: 1, role: 'Reviewer' },
+  { id: 45, journal: 'International Journal for Numerical Methods in Engineering', publisher: 'Wiley', reviewCount: 1, role: 'Reviewer' },
+  { id: 46, journal: 'Journal of Experimental & Theoretical Artificial Intelligence', publisher: 'Taylor & Francis', reviewCount: 1, role: 'Reviewer' },
+  { id: 47, journal: 'Knowledge', publisher: 'MDPI', reviewCount: 1, role: 'Reviewer' },
+  { id: 48, journal: 'Proceedings of the Institution of Mechanical Engineers', publisher: 'SAGE', reviewCount: 1, role: 'Reviewer' },
+];
+
+// 저널 리뷰 통계
+export const journalReviewStats = {
+  totalReviews: 204,
+  totalJournals: 48,
+};
+
+// 학회 멤버십
 export const journalMemberships: AcademicActivity[] = [
-  { id: 100, period: '2022 ~ 현재', organization: '한국정보과학회 데이터베이스소사이어티', role: '이사', category: 'membership' },
-  { id: 101, period: '2021 ~ 현재', organization: 'Electronics (MDPI)', role: 'Topical Advisory Panel Member, Guest Editor, Reviewer', category: 'journal' },
-  { id: 102, period: '2021 ~ 현재', organization: 'Symmetry, Mathematics, Information, Future Internet, Big Data and Cognitive Computing, Data, Brain Sciences, MAKE (MDPI)', role: 'Reviewer', category: 'journal' },
-  { id: 103, period: '2021 ~ 현재', organization: 'ACM Transactions on Multimedia Computing, Communications and Applications', role: 'Reviewer', category: 'journal' },
-  { id: 104, period: '2021 ~ 현재', organization: 'ACM Computing Surveys', role: 'Reviewer', category: 'journal' },
-  { id: 105, period: '2020 ~ 현재', organization: 'World Wide Web Journal (Springer)', role: 'Reviewer', category: 'journal' },
-  { id: 106, period: '2020 ~ 현재', organization: 'Sensors, Remote Sensing, Applied Sciences, Education Sciences (MDPI)', role: 'Reviewer', category: 'journal' },
-  { id: 107, period: '2020 ~ 현재', organization: 'IEEE Transactions on Industrial Informatics', role: 'Reviewer', category: 'journal' },
-  { id: 108, period: '2019 ~ 현재', organization: 'IEEE Access', role: 'Reviewer', category: 'journal' },
-  { id: 109, period: '2019 ~ 현재', organization: '한국컴퓨터교육학회', role: '정회원', category: 'membership' },
-  { id: 110, period: '2018 ~ 현재', organization: 'Cluster Computing (Springer)', role: 'Reviewer', category: 'journal' },
-  { id: 111, period: '2016 ~ 현재', organization: 'The Journal of Supercomputing (Springer)', role: 'Reviewer', category: 'journal' },
-  { id: 112, period: '2010 ~ 현재', organization: '한국정보과학회', role: '정회원', category: 'membership' },
-  { id: 113, period: '2009 ~ 현재', organization: '대한전자공학회', role: '정회원', category: 'membership' },
+  { id: 100, period: '2024 ~ 현재', organization: 'ACM', role: 'Member', category: 'membership' },
+  { id: 101, period: '2022 ~ 현재', organization: 'IEEE', role: 'Member', category: 'membership' },
+  { id: 102, period: '2022 ~ 현재', organization: '한국정보과학회 데이터소사이어티', role: '이사', category: 'membership' },
+  { id: 103, period: '2020 ~ 현재', organization: '한국인공지능학회', role: '정회원', category: 'membership' },
+  { id: 104, period: '2010 ~ 현재', organization: '한국정보과학회', role: '정회원', category: 'membership' },
+  { id: 105, period: '2009 ~ 현재', organization: '대한전자공학회', role: '정회원', category: 'membership' },
 ];
 
 // 자문, 심사, 평가위원 활동

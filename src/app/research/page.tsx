@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Database, Brain, BookOpen, Eye, Network, MapPin } from 'lucide-react';
+import { Database, Brain, BookOpen, Eye, Network, MapPin, Mic } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { researchAreas } from '@/data/research';
@@ -12,6 +12,7 @@ const iconMap: Record<string, React.ElementType> = {
   'et-pictures': Eye,
   'et-linegraph': Network,
   'et-map': MapPin,
+  'et-music': Mic,
 };
 
 const colorMap: Record<string, string> = {
@@ -21,6 +22,7 @@ const colorMap: Record<string, string> = {
   cv: 'from-orange-500 to-red-500',
   graphs: 'from-indigo-500 to-violet-500',
   st: 'from-teal-500 to-cyan-500',
+  asp: 'from-rose-500 to-pink-500',
 };
 
 export const metadata = {

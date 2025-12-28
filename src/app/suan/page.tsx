@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { GraduationCap, Building, Mail, Phone, MapPin, Check, Globe, Instagram, Facebook, Linkedin, Youtube, Calendar, Award, BookOpen, Plane } from 'lucide-react';
-import { academicActivities, journalMemberships, advisoryActivities, activityCategories } from '@/data/academic-activities';
+import { academicActivities, journalMemberships, journalReviews, journalReviewStats, advisoryActivities, activityCategories } from '@/data/academic-activities';
 import { visitedCountries, overseasExperiences, overseasStats, continentColors } from '@/data/overseas-experiences';
 
 // X (formerly Twitter) icon
@@ -61,12 +61,12 @@ export default function SuanPage() {
             <div className="lg:col-span-1">
               {/* Profile Card */}
               <Card className="mb-6 overflow-hidden">
-                <div className="relative aspect-square">
+                <div className="relative aspect-square bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-700">
                   <Image
                     src="/assets/images/suan/profile.jpg"
                     alt="Suan Lee"
                     fill
-                    className="object-cover"
+                    className="object-cover object-top"
                   />
                 </div>
                 <CardContent className="p-6 text-center">
@@ -205,7 +205,7 @@ export default function SuanPage() {
                 <p className="text-muted-foreground leading-relaxed">
                   새로운 연구와 기술에 흥미를 가지며, 인공지능, 머신러닝, 딥러닝, 자연어처리, 컴퓨터비전,
                   오디오음성처리, 빅데이터에 관심이 많습니다. 머신러닝, 딥러닝, 데이터마이닝, 데이터웨어하우스,
-                  데이터베이스 분야에서 17년간 연구하였고, 인메모리 데이터베이스와 실시간 스트림 데이터 처리 엔진,
+                  데이터베이스 분야에서 19년간 연구하였고, 인메모리 데이터베이스와 실시간 스트림 데이터 처리 엔진,
                   빅데이터 플랫폼과 관련해 3년 이상의 개발 경력을 쌓았습니다.
                 </p>
               </div>
@@ -302,7 +302,7 @@ export default function SuanPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3">
+                    <div className="max-h-80 overflow-y-auto pr-2 space-y-3">
                       {academicActivities.map((activity) => (
                         <div key={activity.id} className="flex items-start gap-3 pb-3 border-b border-muted last:border-0">
                           <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium shrink-0
@@ -325,27 +325,79 @@ export default function SuanPage() {
                   </CardContent>
                 </Card>
 
-                {/* Journal & Membership */}
+                {/* Journal Reviewer */}
                 <Card className="mb-6">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      저널 리뷰어 & 학회 멤버십
+                      국제 저널 Reviewer
+                    </CardTitle>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {journalReviewStats.totalJournals}개 저널, 총 {journalReviewStats.totalReviews}건 리뷰
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="max-h-96 overflow-y-auto pr-2 space-y-4">
+                      {(() => {
+                        // Group by publisher
+                        const grouped = journalReviews.reduce((acc, item) => {
+                          if (!acc[item.publisher]) {
+                            acc[item.publisher] = { journals: [], totalReviews: 0 };
+                          }
+                          acc[item.publisher].journals.push(item);
+                          acc[item.publisher].totalReviews += item.reviewCount;
+                          return acc;
+                        }, {} as Record<string, { journals: typeof journalReviews; totalReviews: number }>);
+
+                        // Sort publishers by total review count
+                        const sortedPublishers = Object.entries(grouped)
+                          .sort(([, a], [, b]) => b.totalReviews - a.totalReviews);
+
+                        return sortedPublishers.map(([publisher, data]) => (
+                          <div key={publisher} className="pb-3 border-b border-muted last:border-0">
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="font-semibold text-sm">{publisher}</span>
+                              <span className="text-xs text-muted-foreground">
+                                {data.journals.length}개 저널 · {data.totalReviews}건
+                              </span>
+                            </div>
+                            <div className="flex flex-wrap gap-1.5">
+                              {data.journals.map((item) => (
+                                <span
+                                  key={item.id}
+                                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-muted text-xs"
+                                  title={`${item.journal} - ${item.reviewCount}건 리뷰`}
+                                >
+                                  <span className="font-bold text-primary">{item.reviewCount}</span>
+                                  <span className="truncate max-w-[180px]">{item.journal}</span>
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        ));
+                      })()}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Membership */}
+                <Card className="mb-6">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Award className="h-5 w-5 text-primary" />
+                      학회 멤버십
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid gap-2">
+                    <div className="space-y-2">
                       {journalMemberships.map((item) => (
                         <div key={item.id} className="flex items-start gap-3 py-2 border-b border-muted last:border-0">
-                          <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium shrink-0
-                            ${item.category === 'journal' ? 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300' : ''}
-                            ${item.category === 'membership' ? 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300' : ''}
-                          `}>
-                            {activityCategories[item.category].label}
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium shrink-0 bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300">
+                            {item.role}
                           </span>
                           <div className="flex-1 min-w-0">
                             <p className="font-medium text-sm">{item.organization}</p>
-                            <p className="text-xs text-muted-foreground">{item.period} · {item.role}</p>
+                            <p className="text-xs text-muted-foreground">{item.period}</p>
                           </div>
                         </div>
                       ))}
@@ -362,7 +414,7 @@ export default function SuanPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3">
+                    <div className="max-h-80 overflow-y-auto pr-2 space-y-3">
                       {advisoryActivities.map((activity) => (
                         <div key={activity.id} className="flex items-start gap-3 pb-3 border-b border-muted last:border-0">
                           <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium shrink-0

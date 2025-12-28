@@ -17,6 +17,7 @@ export const navigation: NavItem[] = [
       { label: 'Computer Vision', href: '/research/cv', icon: 'et-pictures' },
       { label: 'Graphs and Tensors', href: '/research/graphs', icon: 'et-linegraph' },
       { label: 'Spatio-Temporal', href: '/research/st', icon: 'et-map' },
+      { label: 'Audio & Speech Processing', href: '/research/asp', icon: 'et-music' },
     ],
   },
   {
