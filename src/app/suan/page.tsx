@@ -167,9 +167,9 @@ export default function SuanPage() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                           </summary>
-                          <div className="mt-2 pl-6 max-h-48 overflow-y-auto">
+                          <div className="mt-2 pl-6 max-h-60 overflow-y-auto">
                             <div className="flex flex-wrap gap-1">
-                              {category.items.slice(0, 30).map((item, idx) => (
+                              {category.items.map((item, idx) => (
                                 <span
                                   key={idx}
                                   className={`inline-block px-2 py-0.5 rounded text-xs ${category.color}`}
@@ -177,11 +177,6 @@ export default function SuanPage() {
                                   {item}
                                 </span>
                               ))}
-                              {category.items.length > 30 && (
-                                <span className="inline-block px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
-                                  +{category.items.length - 30} more
-                                </span>
-                              )}
                             </div>
                           </div>
                         </details>
