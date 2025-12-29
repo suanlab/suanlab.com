@@ -229,7 +229,7 @@ export const lectures: Lecture[] = [
     slug: 'web',
     titleKo: '웹프로그래밍',
     titleEn: 'Web Programming',
-    image: '/assets/images/lecture/web.jpg',
+    image: '/assets/images/lecture/webprogramming.jpg',
     description: 'Web programming course covering HTML, CSS, JavaScript fundamentals, and practical web application development.',
     descriptionKo: '웹 프로그래밍의 기초와 실습을 다루는 과목입니다. HTML, CSS, JavaScript 기초와 웹 애플리케이션 개발을 학습합니다.',
     icon: 'fa fa-globe',
@@ -327,9 +327,15 @@ export const teachingHistory = {
   },
   kangwonUniv: {
     name: '강원대학교',
-    period: '2016 - 2019',
-    role: '연구교수/객원교수',
-    department: 'SW중심대학, 정보과학대학원',
+    period: '2010 - 2019',
+    role: '연구교수/객원교수/시간강사',
+    department: 'IT대학, SW중심대학, 정보과학대학원',
+  },
+  koreatech: {
+    name: '한국공학대학교',
+    period: '2016 - 2017',
+    role: '시간강사',
+    department: '컴퓨터공학과',
   },
   inhaUniv: {
     name: '인하대학교',
