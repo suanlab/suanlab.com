@@ -27,6 +27,7 @@ const navigation = [
   },
   { name: 'PROJECT', href: '/project', icon: FolderKanban },
   { name: 'PUBLICATION', href: '/publication', icon: Newspaper },
+  { name: 'BLOG', href: '/blog', icon: PenLine },
   {
     name: 'BOOK',
     href: '/book',
@@ -36,7 +37,6 @@ const navigation = [
       { name: 'Published Book', href: '/book/published' },
     ],
   },
-  { name: 'BLOG', href: '/blog', icon: PenLine },
   {
     name: 'LECTURE',
     href: '/lecture',
