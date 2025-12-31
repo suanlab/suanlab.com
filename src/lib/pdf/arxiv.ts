@@ -34,16 +34,44 @@ export function extractArxivId(input: string): string {
 /**
  * Fetch metadata from arXiv API
  */
-export async function getArxivMetadata(arxivId: string): Promise<PaperMetadata> {
+export async function getArxivMetadata(arxivId: string, retries = 3): Promise<PaperMetadata> {
   const apiUrl = `https://export.arxiv.org/api/query?id_list=${arxivId}`;
 
-  const response = await fetch(apiUrl);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch arXiv metadata: ${response.statusText}`);
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const response = await fetch(apiUrl, {
+        headers: {
+          'User-Agent': 'SuanLab-BlogGenerator/1.0',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const xml = await response.text();
+
+      // Check for rate limit
+      if (xml.includes('Rate exceeded') || xml.trim().length < 100) {
+        if (attempt < retries) {
+          console.log(`Rate limited, waiting 30s before retry ${attempt + 1}/${retries}...`);
+          await new Promise(r => setTimeout(r, 30000));
+          continue;
+        }
+        throw new Error('arXiv API rate limit exceeded. Please try again later.');
+      }
+
+      return parseArxivXml(xml, arxivId);
+    } catch (error) {
+      if (attempt === retries) {
+        throw new Error(`Failed to fetch arXiv metadata after ${retries} attempts: ${error instanceof Error ? error.message : 'Unknown Error'}`);
+      }
+      console.log(`Attempt ${attempt} failed, retrying in 10s...`);
+      await new Promise(r => setTimeout(r, 10000));
+    }
   }
 
-  const xml = await response.text();
-  return parseArxivXml(xml, arxivId);
+  throw new Error('Failed to fetch arXiv metadata');
 }
 
 /**
