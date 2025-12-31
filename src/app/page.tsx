@@ -83,65 +83,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Research Areas */}
-      <section className="py-20 md:py-28">
-        <div className="container">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Research Areas</h2>
-            <p className="mt-4 text-muted-foreground">
-              Exploring cutting-edge technologies in data science and artificial intelligence
-            </p>
-          </div>
-
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {researchAreas.map((area) => (
-              <Link key={area.href} href={area.href}>
-                <Card className="group h-full transition-all hover:shadow-lg hover:-translate-y-1">
-                  <CardHeader>
-                    <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br ${area.color}`}>
-                      <area.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <CardTitle className="group-hover:text-primary transition-colors">
-                      {area.title}
-                    </CardTitle>
-                    <CardDescription>{area.titleKo}</CardDescription>
-                  </CardHeader>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Links */}
-      <section className="bg-muted/50 py-20 md:py-28">
-        <div className="container">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Explore SuanLab</h2>
-            <p className="mt-4 text-muted-foreground">
-              Discover publications, projects, lectures, and video tutorials
-            </p>
-          </div>
-
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {quickLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                <Card className="group h-full transition-all hover:shadow-lg hover:border-primary/50">
-                  <CardContent className="flex flex-col items-center p-6 text-center">
-                    <div className="mb-4 rounded-full bg-primary/10 p-4 group-hover:bg-primary/20 transition-colors">
-                      <link.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold">{link.title}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{link.description}</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Media Section */}
+      {/* Media Section - In the News */}
       <section className="py-20 md:py-28">
         <div className="container">
           <div className="mx-auto max-w-2xl text-center">
@@ -195,7 +137,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* YouTube Section */}
+      {/* Quick Links - Explore SuanLab */}
+      <section className="bg-muted/50 py-20 md:py-28">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Explore SuanLab</h2>
+            <p className="mt-4 text-muted-foreground">
+              Discover publications, projects, lectures, and video tutorials
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {quickLinks.map((link) => (
+              <Link key={link.href} href={link.href}>
+                <Card className="group h-full transition-all hover:shadow-lg hover:border-primary/50">
+                  <CardContent className="flex flex-col items-center p-6 text-center">
+                    <div className="mb-4 rounded-full bg-primary/10 p-4 group-hover:bg-primary/20 transition-colors">
+                      <link.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold">{link.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{link.description}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* YouTube Section - Learn Through Video Tutorials */}
       <section className="bg-muted/30 py-20 md:py-28">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -233,6 +203,36 @@ export default function Home() {
                 allowFullScreen
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Research Areas */}
+      <section className="py-20 md:py-28">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Research Areas</h2>
+            <p className="mt-4 text-muted-foreground">
+              Exploring cutting-edge technologies in data science and artificial intelligence
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {researchAreas.map((area) => (
+              <Link key={area.href} href={area.href}>
+                <Card className="group h-full transition-all hover:shadow-lg hover:-translate-y-1">
+                  <CardHeader>
+                    <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br ${area.color}`}>
+                      <area.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <CardTitle className="group-hover:text-primary transition-colors">
+                      {area.title}
+                    </CardTitle>
+                    <CardDescription>{area.titleKo}</CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
