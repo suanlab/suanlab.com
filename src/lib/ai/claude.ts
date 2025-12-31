@@ -202,12 +202,20 @@ export interface BlogGenerationResult {
 }
 
 export function parseGeneratedContent(rawContent: string): BlogGenerationResult {
+  // Remove markdown code block wrappers if present
+  let content = rawContent.trim();
+  if (content.startsWith('```markdown')) {
+    content = content.replace(/^```markdown\s*\n?/, '').replace(/\n?```\s*$/, '');
+  } else if (content.startsWith('```')) {
+    content = content.replace(/^```\s*\n?/, '').replace(/\n?```\s*$/, '');
+  }
+
   // Extract title from first heading
-  const titleMatch = rawContent.match(/^#\s+(.+)$/m);
+  const titleMatch = content.match(/^#\s+(.+)$/m);
   const title = titleMatch ? titleMatch[1].trim() : 'Untitled';
 
   // Extract first paragraph as excerpt
-  const paragraphs = rawContent
+  const paragraphs = content
     .split('\n\n')
     .filter((p) => p.trim() && !p.startsWith('#'));
   const excerpt =
@@ -215,14 +223,14 @@ export function parseGeneratedContent(rawContent: string): BlogGenerationResult 
     'No excerpt available';
 
   // Try to extract tags from content
-  const tagMatch = rawContent.match(/태그[:：]\s*(.+)/i);
+  const tagMatch = content.match(/태그[:：]\s*(.+)/i);
   const suggestedTags = tagMatch
     ? tagMatch[1].split(/[,，、]/).map((t) => t.trim())
     : [];
 
   return {
     title,
-    content: rawContent,
+    content,
     excerpt,
     suggestedTags,
   };
