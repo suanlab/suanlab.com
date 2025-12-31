@@ -4,7 +4,7 @@ date: "2025-12-30"
 excerpt: "최근 몇 년간 자연어 처리(Natural Language Processing, NLP) 분야에서는 혁신적인 변화가 일어났습니다. 그 중심에는 단연 트랜스포머(Transformer) 모델이 자리 잡고 있습니다. 트랜스포머는 다양한 NLP 작업에서 뛰어난 성능을 보이며, 언어 모델, 번역, 요약, 질의응답 등 여러 응용 분야에서 사용됩니다. 이러한 트랜스포머의..."
 category: "Deep Learning"
 tags: ["Transformer", "Attention", "Deep Learning", "NLP", "Self-Attention"]
-thumbnail: "/assets/images/blog/20251230-transformer-attention.png"
+thumbnail: "/assets/images/blog/20251230-transformer-attention.jpg"
 ---
 
 # 트랜스포머 Attention 메커니즘의 이해

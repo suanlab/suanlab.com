@@ -1,35 +1,25 @@
-import OpenAI from 'openai';
 import fs from 'fs/promises';
 import path from 'path';
 
 const IMAGES_DIR = 'public/assets/images/blog';
 
-let client: OpenAI | null = null;
-
-function getClient(): OpenAI {
-  if (!client) {
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-      throw new Error('OPENAI_API_KEY is not set');
-    }
-    client = new OpenAI({ apiKey });
-  }
-  return client;
-}
-
 export interface ImageGenerationOptions {
   topic: string;
   style?: 'technical' | 'abstract' | 'realistic';
-  size?: '1024x1024' | '1792x1024' | '1024x1792';
 }
 
 /**
- * Generate a blog thumbnail image using DALL-E 3
+ * Generate a blog thumbnail image using Nano Banana Pro (Gemini 3 Pro Image)
  */
 export async function generateBlogImage(
   options: ImageGenerationOptions
-): Promise<string> {
-  const { topic, style = 'technical', size = '1792x1024' } = options;
+): Promise<Buffer> {
+  const { topic, style = 'technical' } = options;
+
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    throw new Error('GEMINI_API_KEY is not set');
+  }
 
   const stylePrompts: Record<string, string> = {
     technical: 'Clean technical illustration with simple geometric shapes, circuit-like patterns, modern flat design, subtle gradients, professional color palette (blues, teals, purples), minimal and elegant, suitable for a tech blog header',
@@ -37,47 +27,60 @@ export async function generateBlogImage(
     realistic: 'Photorealistic professional image, high quality, detailed, modern lighting, clean composition',
   };
 
-  const prompt = `Create a wide banner image for a blog post about "${topic}". ${stylePrompts[style]}. No text or letters in the image.`;
+  const prompt = `Generate an image: Create a wide banner image (16:9 aspect ratio) for a blog post about "${topic}". ${stylePrompts[style]}. No text or letters in the image.`;
 
-  console.log('Generating thumbnail image with DALL-E 3...');
+  console.log('Generating thumbnail image with Nano Banana Pro...');
 
-  const openai = getClient();
-  const response = await openai.images.generate({
-    model: 'dall-e-3',
-    prompt,
-    n: 1,
-    size,
-    quality: 'standard',
-  });
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent?key=${apiKey}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{ text: prompt }]
+        }],
+        generationConfig: {
+          responseModalities: ['IMAGE', 'TEXT']
+        }
+      })
+    }
+  );
 
-  const imageUrl = response.data?.[0]?.url;
-  if (!imageUrl) {
-    throw new Error('Failed to generate image');
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Nano Banana Pro API error: ${response.status} - ${errorText}`);
   }
 
-  return imageUrl;
+  const data = await response.json();
+
+  // Extract image from response
+  const parts = data.candidates?.[0]?.content?.parts || [];
+  for (const part of parts) {
+    if (part.inlineData?.data) {
+      const imageBuffer = Buffer.from(part.inlineData.data, 'base64');
+      return imageBuffer;
+    }
+  }
+
+  throw new Error('No image data in response');
 }
 
 /**
- * Download image from URL and save to local filesystem
+ * Save image buffer to local filesystem
  */
-export async function saveImageFromUrl(
-  imageUrl: string,
-  filename: string
+export async function saveImageBuffer(
+  buffer: Buffer,
+  filename: string,
+  mimeType: string = 'image/jpeg'
 ): Promise<string> {
-  const response = await fetch(imageUrl);
-  if (!response.ok) {
-    throw new Error(`Failed to download image: ${response.statusText}`);
-  }
-
-  const buffer = Buffer.from(await response.arrayBuffer());
-
   // Ensure directory exists
   const fullDir = path.join(process.cwd(), IMAGES_DIR);
   await fs.mkdir(fullDir, { recursive: true });
 
-  // Save with .png extension
-  const finalFilename = filename.endsWith('.png') ? filename : `${filename}.png`;
+  // Determine extension based on mime type
+  const ext = mimeType.includes('png') ? '.png' : '.jpg';
+  const finalFilename = filename.endsWith(ext) ? filename : `${filename}${ext}`;
   const filepath = path.join(fullDir, finalFilename);
 
   await fs.writeFile(filepath, buffer);
@@ -95,8 +98,8 @@ export async function generateAndSaveThumbnail(
   style: 'technical' | 'abstract' | 'realistic' = 'technical'
 ): Promise<string> {
   try {
-    const imageUrl = await generateBlogImage({ topic, style });
-    const savedPath = await saveImageFromUrl(imageUrl, slug);
+    const imageBuffer = await generateBlogImage({ topic, style });
+    const savedPath = await saveImageBuffer(imageBuffer, slug);
     console.log(`Thumbnail saved: ${savedPath}`);
     return savedPath;
   } catch (error) {

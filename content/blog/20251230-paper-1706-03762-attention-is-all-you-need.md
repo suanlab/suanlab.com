@@ -4,7 +4,7 @@ date: "2025-12-30"
 excerpt: "Transformer 아키텍처를 최초로 제안한 획기적인 논문. RNN과 CNN을 완전히 배제하고 Attention 메커니즘만으로 시퀀스 모델링의 새로운 패러다임을 제시하여, BERT, GPT 등 현대 자연어처리의 기반을 마련했습니다."
 category: "Paper Review"
 tags: ["Paper Review", "Transformer", "Attention", "NLP", "Deep Learning"]
-thumbnail: "/assets/images/blog/20251230-paper-1706-03762-attention-is-all-you-need.png"
+thumbnail: "/assets/images/blog/20251230-paper-1706-03762-attention-is-all-you-need.jpg"
 ---
 
 # [논문 리뷰] Attention Is All You Need

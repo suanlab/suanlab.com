@@ -4,7 +4,7 @@ date: "2025-12-30"
 excerpt: "자연어처리(NLP, Natural Language Processing) 분야에서 Word Embedding은 필수적인 개념 중 하나입니다. 이는 컴퓨터가 인간의 언어를 이해하고 처리할 수 있도록 돕는 중요한 기술입니다. 이번 블로그 포스트에서는 Word Embedding의 기본 개념과 주요 기법들을 살펴보고, Python 코드를 통해 이를 실습해보는 시간을..."
 category: "NLP"
 tags: []
-thumbnail: "/assets/images/blog/20251230-word-embedding.png"
+thumbnail: "/assets/images/blog/20251230-word-embedding.jpg"
 ---
 
 # 자연어처리에서의 Word Embedding

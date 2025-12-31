@@ -4,7 +4,7 @@ date: "2025-12-30"
 excerpt: "최근 들어 인공지능(AI)과 머신러닝(ML)이 다양한 분야에서 혁신을 이루고 있습니다. 그중에서도 그래프 뉴럴 네트워크(Graph Neural Networks, GNN)는 복잡한 구조적 데이터를 효율적으로 처리할 수 있는 강력한 도구로 주목받고 있습니다. 그래프 데이터는 소셜 네트워크, 추천 시스템, 분자 구조 등 다양한 실세계 문제에서 자연스럽게 발생하며..."
 category: "Deep Learning"
 tags: []
-thumbnail: "/assets/images/blog/20251230-graph-neural-networks.png"
+thumbnail: "/assets/images/blog/20251230-graph-neural-networks.jpg"
 ---
 
 # Graph Neural Networks 기초
