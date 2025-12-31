@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import { ArrowRight, Brain, Database, Eye, BarChart3, Network, MapPin, Youtube, BookOpen, Newspaper, FolderKanban, AudioLines } from 'lucide-react';
+import { ArrowRight, Brain, Database, Eye, BarChart3, Network, MapPin, Youtube, BookOpen, Newspaper, FolderKanban, AudioLines, ExternalLink, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { mediaArticles } from '@/data/media';
 
 const researchAreas = [
   { title: 'Data Science & Big Data', titleKo: '데이터과학 및 빅데이터', icon: Database, href: '/research/ds', color: 'from-blue-500 to-cyan-500' },
@@ -140,8 +141,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* YouTube Section */}
+      {/* Media Section */}
       <section className="py-20 md:py-28">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center">
+            <Badge variant="outline" className="mb-4">
+              <Newspaper className="mr-2 h-3 w-3" />
+              Media Coverage
+            </Badge>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">In the News</h2>
+            <p className="mt-4 text-muted-foreground">
+              SuanLab과 이수안 교수의 연구 및 활동에 관한 미디어 기사
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {mediaArticles.slice(0, 4).map((article) => (
+              <a
+                key={article.id}
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <Card className="h-full transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/50">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
+                      <Badge variant="secondary" className="text-xs font-normal">
+                        {article.source}
+                      </Badge>
+                      <span className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        {article.date}
+                      </span>
+                    </div>
+                    <CardTitle className="text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">
+                      {article.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-sm text-muted-foreground line-clamp-3">
+                      {article.excerpt}
+                    </p>
+                    <div className="mt-4 flex items-center text-xs text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                      Read more
+                      <ExternalLink className="ml-1 h-3 w-3" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* YouTube Section */}
+      <section className="bg-muted/30 py-20 md:py-28">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
