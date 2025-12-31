@@ -135,10 +135,18 @@ export async function generateWithDualAI(
   // Step 1: Generate initial draft with OpenAI
   const initialDraft = await generateWithOpenAI(prompt, options);
 
+  // Validate initial draft
+  if (!initialDraft || initialDraft.length < 100) {
+    console.log('⚠️ OpenAI 초안이 너무 짧습니다. 재시도...');
+    return generateWithOpenAI(prompt, options);
+  }
+
+  console.log(`✅ OpenAI 초안 생성 완료 (${initialDraft.length} chars)`);
   console.log('🔄 Step 2: Gemini로 콘텐츠 보강 중...');
 
-  // Step 2: Enhance with Gemini
-  const enhancementPrompt = `당신은 기술 블로그 편집자입니다. 다음 블로그 포스트 초안을 검토하고 보강해주세요.
+  try {
+    // Step 2: Enhance with Gemini
+    const enhancementPrompt = `당신은 기술 블로그 편집자입니다. 다음 블로그 포스트 초안을 검토하고 보강해주세요.
 
 ## 보강 지침:
 1. **정확성 검증**: 기술적 내용이 정확한지 확인하고, 필요시 수정
@@ -160,13 +168,27 @@ ${initialDraft}
 
 ## 보강된 버전:`;
 
-  const enhancedContent = await generateWithGemini(enhancementPrompt, {
-    ...options,
-    maxTokens: 8192,
-    temperature: 0.5, // Lower temperature for more focused enhancement
-  });
+    const enhancedContent = await generateWithGemini(enhancementPrompt, {
+      ...options,
+      maxTokens: 16384,
+      temperature: 0.5,
+    });
 
-  return enhancedContent;
+    // Validate enhanced content - check if Gemini actually enhanced it
+    if (!enhancedContent ||
+        enhancedContent.length < 100 ||
+        enhancedContent.includes('초안이 제공되지 않았') ||
+        enhancedContent.includes('초안을 제공해주시면')) {
+      console.log('⚠️ Gemini 보강 실패, OpenAI 초안 사용');
+      return initialDraft;
+    }
+
+    console.log(`✅ Gemini 보강 완료 (${enhancedContent.length} chars)`);
+    return enhancedContent;
+  } catch (error) {
+    console.log('⚠️ Gemini 보강 중 오류 발생, OpenAI 초안 사용:', error);
+    return initialDraft;
+  }
 }
 
 // Backward compatibility alias
