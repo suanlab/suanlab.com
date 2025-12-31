@@ -129,7 +129,7 @@ async function summarizePaper(
   metadata: PaperMetadata,
   options: PaperSummarizerOptions
 ): Promise<string> {
-  const maxCharsPerChunk = 80000; // ~20k tokens per chunk
+  const maxCharsPerChunk = 40000; // ~10k tokens per chunk (reduced for stability)
   const chunks = chunkText(pdfText, maxCharsPerChunk);
 
   console.log(`Paper split into ${chunks.length} chunks`);
