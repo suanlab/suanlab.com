@@ -155,8 +155,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {mediaArticles.slice(0, 4).map((article) => (
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {mediaArticles.map((article) => (
               <a
                 key={article.id}
                 href={article.url}
