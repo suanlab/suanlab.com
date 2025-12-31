@@ -57,7 +57,7 @@ bot.onText(/\/start/, (msg) => {
 
 📝 *블로그 생성*
 \`/topic <주제>\` - 주제 기반 블로그 생성
-\`/paper <arXiv ID>\` - 논문 리뷰 생성
+\`/paper <arXiv ID 또는 PDF URL>\` - 논문 리뷰 생성
 
 📋 *기타*
 \`/status\` - 현재 블로그 상태
@@ -212,46 +212,94 @@ bot.onText(/\/paper (.+)/, async (msg, match) => {
 
   const input = match?.[1]?.trim();
   if (!input) {
-    bot.sendMessage(chatId, '❌ arXiv ID를 입력해주세요.\n예: `/paper 2312.00752`', { parse_mode: 'Markdown' });
+    bot.sendMessage(chatId, '❌ arXiv ID 또는 PDF URL을 입력해주세요.\n예:\n• `/paper 2312.00752`\n• `/paper https://example.com/paper.pdf`', { parse_mode: 'Markdown' });
     return;
   }
 
-  // Extract arXiv ID from URL if needed
+  // Check if it's a PDF URL (not arXiv)
+  const isPdfUrl = input.match(/^https?:\/\/.+\.pdf$/i) && !input.includes('arxiv.org');
+
+  // Extract arXiv ID from arXiv URL if needed
   let arxivId = input;
-  const urlMatch = input.match(/arxiv\.org\/(?:abs|pdf)\/(\d+\.\d+)/);
-  if (urlMatch) {
-    arxivId = urlMatch[1];
+  const arxivUrlMatch = input.match(/arxiv\.org\/(?:abs|pdf)\/(\d+\.\d+)/);
+  if (arxivUrlMatch) {
+    arxivId = arxivUrlMatch[1];
   }
 
-  bot.sendMessage(chatId, `
+  if (isPdfUrl) {
+    // Handle PDF URL
+    bot.sendMessage(chatId, `
 🔄 *논문 리뷰 생성 중...*
 
-arXiv ID: ${arxivId}
+📎 PDF URL: ${input}
 
 ⏳ 약 3-5분 소요됩니다.
 `, { parse_mode: 'Markdown' });
 
-  try {
-    // Generate paper review
-    const output = runCommand(`npm run blog:paper -- -a "${arxivId}" -i -y 2>&1`);
+    try {
+      // Generate paper review from PDF URL
+      const output = runCommand(`npm run blog:paper -- --url "${input}" -i -y 2>&1`);
 
-    // Extract title and saved path
-    const titleMatch = output.match(/제목: (.+)/);
-    const title = titleMatch ? titleMatch[1] : 'Unknown';
+      // Extract title and saved path
+      const titleMatch = output.match(/제목: (.+)/);
+      const title = titleMatch ? titleMatch[1] : 'Unknown';
 
-    const savedMatch = output.match(/저장 완료: (.+\.md)/);
-    const savedPath = savedMatch ? savedMatch[1] : 'unknown';
+      const savedMatch = output.match(/저장 완료: (.+\.md)/);
+      const savedPath = savedMatch ? savedMatch[1] : 'unknown';
 
-    // Git commit and push
-    const gitOutput = runCommand(`
-      git add -A && \
-      git commit -m "Add paper review: ${arxivId}" && \
-      git push origin master 2>&1
-    `);
+      // Git commit and push
+      const gitOutput = runCommand(`
+        git add -A && \
+        git commit -m "Add paper review from PDF" && \
+        git push origin master 2>&1
+      `);
 
-    const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
+      const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
 
+      bot.sendMessage(chatId, `
+✅ *논문 리뷰 생성 완료!*
+
+📄 제목: ${title}
+📁 파일: \`${path.basename(savedPath)}\`
+🌐 GitHub: ${isGitSuccess ? '푸시 완료' : '푸시 실패'}
+
+배포까지 약 1-2분 소요됩니다.
+`, { parse_mode: 'Markdown' });
+
+    } catch (error: any) {
+      bot.sendMessage(chatId, `❌ 오류 발생: ${error.message}`);
+    }
+  } else {
+    // Handle arXiv ID
     bot.sendMessage(chatId, `
+🔄 *논문 리뷰 생성 중...*
+
+🆔 arXiv ID: ${arxivId}
+
+⏳ 약 3-5분 소요됩니다.
+`, { parse_mode: 'Markdown' });
+
+    try {
+      // Generate paper review from arXiv
+      const output = runCommand(`npm run blog:paper -- -a "${arxivId}" -i -y 2>&1`);
+
+      // Extract title and saved path
+      const titleMatch = output.match(/제목: (.+)/);
+      const title = titleMatch ? titleMatch[1] : 'Unknown';
+
+      const savedMatch = output.match(/저장 완료: (.+\.md)/);
+      const savedPath = savedMatch ? savedMatch[1] : 'unknown';
+
+      // Git commit and push
+      const gitOutput = runCommand(`
+        git add -A && \
+        git commit -m "Add paper review: ${arxivId}" && \
+        git push origin master 2>&1
+      `);
+
+      const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
+
+      bot.sendMessage(chatId, `
 ✅ *논문 리뷰 생성 완료!*
 
 📄 제목: ${title}
@@ -262,8 +310,9 @@ arXiv ID: ${arxivId}
 배포까지 약 1-2분 소요됩니다.
 `, { parse_mode: 'Markdown' });
 
-  } catch (error: any) {
-    bot.sendMessage(chatId, `❌ 오류 발생: ${error.message}`);
+    } catch (error: any) {
+      bot.sendMessage(chatId, `❌ 오류 발생: ${error.message}`);
+    }
   }
 });
 
