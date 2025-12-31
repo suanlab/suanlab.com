@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import { ThemeProvider } from '@/components/theme-provider';
 import ModernHeader from '@/components/layout/Header/ModernHeader';
 import ModernFooter from '@/components/layout/Footer/ModernFooter';
@@ -9,6 +10,8 @@ import {
   WebSiteJsonLd,
 } from '@/components/seo/JsonLd';
 import './globals.css';
+
+const GA_MEASUREMENT_ID = 'G-PYEC6PCW0P';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -111,6 +114,20 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+        {/* JSON-LD Structured Data */}
         <OrganizationJsonLd />
         <PersonJsonLd />
         <WebSiteJsonLd />
