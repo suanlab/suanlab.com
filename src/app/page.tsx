@@ -83,6 +83,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* YouTube Section - Learn Through Video Tutorials */}
+      <section className="bg-muted/30 py-20 md:py-28">
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div>
+              <Badge className="mb-4">YouTube Channel</Badge>
+              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+                Learn Through Video Tutorials
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                150개 이상의 교육용 비디오를 통해 데이터 과학, 머신러닝, 딥러닝, 파이썬 프로그래밍을 배워보세요.
+              </p>
+              <ul className="mt-8 space-y-3">
+                {['Python Programming', 'Data Science', 'Machine Learning', 'Deep Learning', 'Computer Vision', 'NLP'].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
+                      <ArrowRight className="h-3 w-3 text-primary" />
+                    </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Button className="mt-8" size="lg" asChild>
+                <Link href="/youtube">
+                  Watch Videos
+                  <Youtube className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+            <div className="aspect-video overflow-hidden rounded-xl shadow-2xl">
+              <iframe
+                className="h-full w-full"
+                src="https://www.youtube.com/embed/k60oT_8lyFw"
+                title="SuanLab YouTube"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Media Section - In the News */}
       <section className="py-20 md:py-28">
         <div className="container">
@@ -161,48 +203,6 @@ export default function Home() {
                 </Card>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* YouTube Section - Learn Through Video Tutorials */}
-      <section className="bg-muted/30 py-20 md:py-28">
-        <div className="container">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <div>
-              <Badge className="mb-4">YouTube Channel</Badge>
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                Learn Through Video Tutorials
-              </h2>
-              <p className="mt-4 text-muted-foreground">
-                150개 이상의 교육용 비디오를 통해 데이터 과학, 머신러닝, 딥러닝, 파이썬 프로그래밍을 배워보세요.
-              </p>
-              <ul className="mt-8 space-y-3">
-                {['Python Programming', 'Data Science', 'Machine Learning', 'Deep Learning', 'Computer Vision', 'NLP'].map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
-                      <ArrowRight className="h-3 w-3 text-primary" />
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Button className="mt-8" size="lg" asChild>
-                <Link href="/youtube">
-                  Watch Videos
-                  <Youtube className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-            <div className="aspect-video overflow-hidden rounded-xl shadow-2xl">
-              <iframe
-                className="h-full w-full"
-                src="https://www.youtube.com/embed/k60oT_8lyFw"
-                title="SuanLab YouTube"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
           </div>
         </div>
       </section>
