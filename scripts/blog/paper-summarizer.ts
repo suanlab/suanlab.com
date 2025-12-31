@@ -136,7 +136,7 @@ async function summarizePaper(
 
   if (chunks.length === 1) {
     // Small paper - direct summarization
-    console.log('Generating summary...');
+    console.log('Generating detailed summary...');
     const prompt = buildPaperPrompt({
       title: metadata.title,
       authors: metadata.authors.join(', '),
@@ -146,7 +146,7 @@ async function summarizePaper(
     });
 
     return generateWithAI(prompt, {
-      maxTokens: 4096,
+      maxTokens: 16000,
       temperature: 0.5,
     });
   }
@@ -158,19 +158,19 @@ async function summarizePaper(
   for (let i = 0; i < chunks.length; i++) {
     console.log(`  Processing chunk ${i + 1}/${chunks.length}...`);
     const summary = await generateWithAI(buildChunkPrompt(chunks[i]), {
-      maxTokens: 2000,
+      maxTokens: 4000,
       temperature: 0.3,
     });
     chunkSummaries.push(summary);
   }
 
   // Synthesize all summaries
-  console.log('Synthesizing final summary...');
+  console.log('Synthesizing detailed final summary...');
   const metadataStr = formatMetadata(metadata);
   const synthesisPrompt = buildSynthesisPrompt(metadataStr, chunkSummaries);
 
   return generateWithAI(synthesisPrompt, {
-    maxTokens: 4096,
+    maxTokens: 16000,
     temperature: 0.5,
   });
 }
