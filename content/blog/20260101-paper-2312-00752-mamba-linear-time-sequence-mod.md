@@ -7,7 +7,6 @@ tags: ["Paper Review","cs.LG","cs.AI","cs.LG"]
 thumbnail: "/assets/images/blog/20260101-paper-2312-00752-mamba-linear-time-sequence-mod.jpg"
 ---
 
-```markdown
 # [논문 리뷰] Mamba: Linear-Time Sequence Modeling with Selective State Spaces
 
 ## TL;DR
@@ -238,4 +237,3 @@ Mamba는 선택적 상태 공간 모델을 통해 Transformer의 한계를 극�
 - 추가 자료:
     - FlashAttention: [https://arxiv.org/abs/2205.14135](https://arxiv.org/abs/2205.14135) (Mamba의 하드웨어 최적화에 영감을 준 기술)
     - S4: [https://arxiv.org/abs/2111.00396](https://arxiv.org/abs/2111.00396) (Mamba의 기반이 되는 SSM)
-```

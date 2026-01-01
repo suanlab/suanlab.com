@@ -137,7 +137,7 @@ export async function generateFromPaper(
     excerpt: metadata.abstract.slice(0, 200) + '...',
     category: 'Paper Review',
     tags: ['Paper Review', ...metadata.categories.slice(0, 3)],
-    content: rawContent,
+    content: parsed.content,  // Use parsed content to remove markdown code block wrappers
     thumbnail,
   };
 }
