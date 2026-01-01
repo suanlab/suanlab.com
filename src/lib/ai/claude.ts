@@ -122,9 +122,29 @@ export async function generateWithGemini(
 }
 
 /**
+ * Check if content is a refusal message
+ */
+function isRefusalMessage(content: string): boolean {
+  const refusalPatterns = [
+    "I'm sorry, but I can't assist",
+    "I cannot assist",
+    "I'm unable to",
+    "I can't help with",
+    "I cannot help with",
+    "I'm not able to",
+    "sorry, but I cannot",
+    "I apologize, but I cannot"
+  ];
+  return refusalPatterns.some(pattern =>
+    content.toLowerCase().includes(pattern.toLowerCase())
+  );
+}
+
+/**
  * Generate content with dual-AI enhancement
  * Step 1: OpenAI generates initial draft
  * Step 2: Gemini reviews and enhances the content
+ * Fallback: If OpenAI refuses, use Gemini only
  */
 export async function generateWithDualAI(
   prompt: string,
@@ -133,12 +153,18 @@ export async function generateWithDualAI(
   console.log('🤖 Step 1: OpenAI GPT-4o로 초안 생성 중...');
 
   // Step 1: Generate initial draft with OpenAI
-  const initialDraft = await generateWithOpenAI(prompt, options);
+  let initialDraft: string;
+  try {
+    initialDraft = await generateWithOpenAI(prompt, options);
+  } catch (error) {
+    console.log('⚠️ OpenAI 오류 발생, Gemini로 대체합니다...');
+    return generateWithGemini(prompt, options);
+  }
 
-  // Validate initial draft
-  if (!initialDraft || initialDraft.length < 100) {
-    console.log('⚠️ OpenAI 초안이 너무 짧습니다. 재시도...');
-    return generateWithOpenAI(prompt, options);
+  // Check for refusal or too short content
+  if (!initialDraft || initialDraft.length < 100 || isRefusalMessage(initialDraft)) {
+    console.log('⚠️ OpenAI 거부 또는 응답 부족, Gemini로 대체합니다...');
+    return generateWithGemini(prompt, { ...options, maxTokens: 16384 });
   }
 
   console.log(`✅ OpenAI 초안 생성 완료 (${initialDraft.length} chars)`);
