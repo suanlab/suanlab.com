@@ -5,6 +5,7 @@ import {
   buildSynthesisPrompt,
 } from '../../src/lib/ai/prompts';
 import { generateAndSaveThumbnail } from '../../src/lib/ai/image';
+import { extractFirstFigure } from '../../src/lib/pdf/figure-extractor';
 import type { PaperSummarizerOptions, GeneratedPost, PaperMetadata } from '../../src/lib/ai/types';
 import {
   parsePdfFromBuffer,
@@ -31,6 +32,7 @@ export async function generateFromPaper(
   options: PaperSummarizerOptions & { generateImage?: boolean }
 ): Promise<GeneratedPost> {
   let pdfText: string;
+  let pdfBuffer: Buffer | null = null;
   let metadata: PaperMetadata;
 
   // Get PDF content and metadata based on source
@@ -40,14 +42,16 @@ export async function generateFromPaper(
     metadata = await getArxivMetadata(arxivId);
 
     console.log(`Downloading PDF...`);
-    const pdfBuffer = await fetchArxivPdf(arxivId);
+    pdfBuffer = await fetchArxivPdf(arxivId);
 
     console.log(`Parsing PDF (${metadata.title})...`);
     const parsed = await parsePdfFromBuffer(pdfBuffer);
     pdfText = parsed.text;
   } else if (options.pdfUrl) {
     console.log(`Fetching PDF from URL...`);
-    const parsed = await parsePdfFromUrl(options.pdfUrl);
+    const response = await fetch(options.pdfUrl);
+    pdfBuffer = Buffer.from(await response.arrayBuffer());
+    const parsed = await parsePdfFromBuffer(pdfBuffer);
     pdfText = parsed.text;
 
     // Extract metadata from PDF content
@@ -63,7 +67,8 @@ export async function generateFromPaper(
     };
   } else if (options.pdfBuffer) {
     console.log(`Parsing PDF buffer...`);
-    const parsed = await parsePdfFromBuffer(options.pdfBuffer);
+    pdfBuffer = options.pdfBuffer;
+    const parsed = await parsePdfFromBuffer(pdfBuffer);
     pdfText = parsed.text;
 
     const extracted = extractMetadataFromText(pdfText);
@@ -78,7 +83,8 @@ export async function generateFromPaper(
     };
   } else if (options.localPath) {
     console.log(`Parsing local PDF: ${options.localPath}`);
-    const parsed = await parsePdfFromFile(options.localPath);
+    pdfBuffer = await fs.readFile(options.localPath);
+    const parsed = await parsePdfFromBuffer(pdfBuffer);
     pdfText = parsed.text;
 
     const extracted = extractMetadataFromText(pdfText);
@@ -105,7 +111,22 @@ export async function generateFromPaper(
 
   // Generate thumbnail image if requested
   let thumbnail = '/assets/images/blog/paper-review.jpg';
-  if (options.generateImage) {
+  if (options.generateImage && pdfBuffer) {
+    // First try to extract a figure from the PDF
+    console.log('Extracting figure from PDF...');
+    const extractResult = await extractFirstFigure(pdfBuffer, slug);
+
+    if (extractResult.success && extractResult.imagePath) {
+      console.log(`Figure extracted: ${extractResult.imagePath}`);
+      thumbnail = extractResult.imagePath;
+    } else {
+      // Fall back to AI-generated thumbnail
+      console.log(`Figure extraction failed: ${extractResult.error}`);
+      console.log('Generating thumbnail with AI...');
+      thumbnail = await generateAndSaveThumbnail(metadata.title, slug, 'technical');
+    }
+  } else if (options.generateImage) {
+    // No PDF buffer available, use AI generation
     thumbnail = await generateAndSaveThumbnail(metadata.title, slug, 'technical');
   }
 
