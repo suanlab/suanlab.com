@@ -152,11 +152,11 @@ export async function extractFigureFromPdf(
     await cleanupTempFiles(tempPdfPath, tempImageBase, pagesToTry);
     return { success: true, imagePath: `/assets/images/blog/${slug}.jpg` };
 
-  } catch (error: any) {
+  } catch (error) {
     await cleanupTempFiles(tempPdfPath, tempImageBase, [1, 2, 3, 4]).catch(() => {});
     return {
       success: false,
-      error: error.message || 'Unknown error during figure extraction'
+      error: error instanceof Error ? error.message : 'Unknown error during figure extraction'
     };
   }
 }
