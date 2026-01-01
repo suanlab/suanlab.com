@@ -427,7 +427,7 @@ app.command('/suanblog-help', async ({ command, ack, respond }) => {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: '*예시:*\n• `/blog 2312.00752`\n• `/blog https://arxiv.org/abs/2312.00752`\n• `/blog 트랜스포머 아키텍처`\n• `/blog RAG 시스템 NLP`'
+          text: '*예시:*\n• `/suanblog 2312.00752`\n• `/suanblog https://arxiv.org/abs/2312.00752`\n• `/suanblog 트랜스포머 아키텍처`\n• `/suanblog RAG 시스템 NLP`'
         }
       }
     ]
