@@ -156,7 +156,7 @@ export async function generateWithDualAI(
   let initialDraft: string;
   try {
     initialDraft = await generateWithOpenAI(prompt, options);
-  } catch (error) {
+  } catch {
     console.log('⚠️ OpenAI 오류 발생, Gemini로 대체합니다...');
     return generateWithGemini(prompt, options);
   }
