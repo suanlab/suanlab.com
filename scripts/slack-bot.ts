@@ -49,8 +49,33 @@ function runCommand(command: string): string {
   }
 }
 
-// /paper slash command
-app.command('/paper', async ({ command, ack, respond }) => {
+// Detect input type
+function detectInputType(input: string): 'arxiv' | 'pdf' | 'topic' {
+  // Check for arXiv ID pattern (e.g., 2312.00752)
+  if (/^\d{4}\.\d{4,5}(v\d+)?$/.test(input)) {
+    return 'arxiv';
+  }
+  // Check for arXiv URL
+  if (input.includes('arxiv.org')) {
+    return 'arxiv';
+  }
+  // Check for PDF URL
+  if (/^https?:\/\/.+\.pdf$/i.test(input)) {
+    return 'pdf';
+  }
+  // Default to topic
+  return 'topic';
+}
+
+// Extract arXiv ID from URL or return as-is
+function extractArxivId(input: string): string {
+  const match = input.match(/arxiv\.org\/(?:abs|pdf)\/(\d{4}\.\d{4,5})/);
+  return match ? match[1] : input;
+}
+
+// /suanblog slash command - unified command
+app.command('/suanblog', async ({ command, ack, respond }) => {
+  console.log('Received /suanblog command:', command.text);
   await ack();
 
   if (!isAllowedChannel(command.channel_id)) {
@@ -65,209 +90,252 @@ app.command('/paper', async ({ command, ack, respond }) => {
   if (!input) {
     await respond({
       response_type: 'ephemeral',
-      text: ':warning: arXiv ID 또는 PDF URL을 입력해주세요.\n예: `/paper 2312.00752`'
+      text: ':warning: 입력을 해주세요.\n예: `/blog 2312.00752` 또는 `/blog 트랜스포머 아키텍처`'
     });
     return;
   }
 
-  // Check if it's a PDF URL (not arXiv)
-  const isPdfUrl = input.match(/^https?:\/\/.+\.pdf$/i) && !input.includes('arxiv.org');
+  const inputType = detectInputType(input);
 
-  // Extract arXiv ID from arXiv URL if needed
-  let arxivId = input;
-  const arxivUrlMatch = input.match(/arxiv\.org\/(?:abs|pdf)\/(\d+\.\d+)/);
-  if (arxivUrlMatch) {
-    arxivId = arxivUrlMatch[1];
-  }
+  if (inputType === 'arxiv') {
+    // Handle arXiv paper
+    const arxivId = extractArxivId(input);
 
-  await respond({
-    response_type: 'in_channel',
-    blocks: [
-      {
-        type: 'section',
-        text: {
-          type: 'mrkdwn',
-          text: `:hourglass_flowing_sand: *논문 리뷰 생성 중...*\n${isPdfUrl ? `:link: PDF URL: ${input}` : `:page_facing_up: arXiv ID: ${arxivId}`}\n\n약 3-5분 소요됩니다.`
+    await respond({
+      response_type: 'in_channel',
+      blocks: [
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: `:hourglass_flowing_sand: *논문 리뷰 생성 중...*\n:page_facing_up: arXiv ID: ${arxivId}\n\n약 3-5분 소요됩니다.`
+          }
         }
-      }
-    ]
-  });
+      ]
+    });
 
-  try {
-    let output: string;
-    if (isPdfUrl) {
-      output = runCommand(`npm run blog:paper -- --url "${input}" -i -y 2>&1`);
-    } else {
-      output = runCommand(`npm run blog:paper -- -a "${arxivId}" -i -y 2>&1`);
+    try {
+      const output = runCommand(`npm run blog:paper -- -a "${arxivId}" -i -y 2>&1`);
+
+      const titleMatch = output.match(/제목: (.+)/);
+      const title = titleMatch ? titleMatch[1] : 'Unknown';
+
+      const savedMatch = output.match(/저장 완료: (.+\.md)/);
+      const savedPath = savedMatch ? savedMatch[1] : 'unknown';
+
+      const gitOutput = runCommand(`
+        git add -A && \
+        git commit -m "Add paper review: ${arxivId}" && \
+        git push origin master 2>&1
+      `);
+
+      const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
+
+      await app.client.chat.postMessage({
+        token: SLACK_BOT_TOKEN,
+        channel: command.channel_id,
+        blocks: [
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: `:white_check_mark: *논문 리뷰 생성 완료!*`
+            }
+          },
+          {
+            type: 'section',
+            fields: [
+              {
+                type: 'mrkdwn',
+                text: `*제목:*\n${title}`
+              },
+              {
+                type: 'mrkdwn',
+                text: `*arXiv:*\n${arxivId}`
+              },
+              {
+                type: 'mrkdwn',
+                text: `*파일:*\n\`${path.basename(savedPath)}\``
+              },
+              {
+                type: 'mrkdwn',
+                text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : ':x: 푸시 실패'}`
+              }
+            ]
+          }
+        ]
+      });
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      await app.client.chat.postMessage({
+        token: SLACK_BOT_TOKEN,
+        channel: command.channel_id,
+        text: `:x: 오류 발생: ${errorMessage}`
+      });
     }
 
-    // Extract title and saved path
-    const titleMatch = output.match(/제목: (.+)/);
-    const title = titleMatch ? titleMatch[1] : 'Unknown';
-
-    const savedMatch = output.match(/저장 완료: (.+\.md)/);
-    const savedPath = savedMatch ? savedMatch[1] : 'unknown';
-
-    // Git commit and push
-    const gitOutput = runCommand(`
-      git add -A && \
-      git commit -m "Add paper review: ${isPdfUrl ? 'PDF' : arxivId}" && \
-      git push origin master 2>&1
-    `);
-
-    const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
-
-    await app.client.chat.postMessage({
-      token: SLACK_BOT_TOKEN,
-      channel: command.channel_id,
+  } else if (inputType === 'pdf') {
+    // Handle PDF URL
+    await respond({
+      response_type: 'in_channel',
       blocks: [
         {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `:white_check_mark: *논문 리뷰 생성 완료!*`
+            text: `:hourglass_flowing_sand: *논문 리뷰 생성 중...*\n:link: PDF URL: ${input}\n\n약 3-5분 소요됩니다.`
           }
-        },
-        {
-          type: 'section',
-          fields: [
-            {
-              type: 'mrkdwn',
-              text: `*제목:*\n${title}`
-            },
-            {
-              type: 'mrkdwn',
-              text: `*파일:*\n\`${path.basename(savedPath)}\``
-            },
-            {
-              type: 'mrkdwn',
-              text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : ':x: 푸시 실패'}`
-            },
-            {
-              type: 'mrkdwn',
-              text: `*배포:*\n약 1-2분 후 반영`
-            }
-          ]
         }
       ]
     });
-  } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    await app.client.chat.postMessage({
-      token: SLACK_BOT_TOKEN,
-      channel: command.channel_id,
-      text: `:x: 오류 발생: ${errorMessage}`
-    });
-  }
-});
 
-// /topic slash command
-app.command('/topic', async ({ command, ack, respond }) => {
-  await ack();
+    try {
+      const output = runCommand(`npm run blog:paper -- --url "${input}" -i -y 2>&1`);
 
-  if (!isAllowedChannel(command.channel_id)) {
+      const titleMatch = output.match(/제목: (.+)/);
+      const title = titleMatch ? titleMatch[1] : 'Unknown';
+
+      const savedMatch = output.match(/저장 완료: (.+\.md)/);
+      const savedPath = savedMatch ? savedMatch[1] : 'unknown';
+
+      const gitOutput = runCommand(`
+        git add -A && \
+        git commit -m "Add paper review from PDF" && \
+        git push origin master 2>&1
+      `);
+
+      const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
+
+      await app.client.chat.postMessage({
+        token: SLACK_BOT_TOKEN,
+        channel: command.channel_id,
+        blocks: [
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: `:white_check_mark: *논문 리뷰 생성 완료!*`
+            }
+          },
+          {
+            type: 'section',
+            fields: [
+              {
+                type: 'mrkdwn',
+                text: `*제목:*\n${title}`
+              },
+              {
+                type: 'mrkdwn',
+                text: `*파일:*\n\`${path.basename(savedPath)}\``
+              },
+              {
+                type: 'mrkdwn',
+                text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : ':x: 푸시 실패'}`
+              },
+              {
+                type: 'mrkdwn',
+                text: `*배포:*\n약 1-2분 후 반영`
+              }
+            ]
+          }
+        ]
+      });
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      await app.client.chat.postMessage({
+        token: SLACK_BOT_TOKEN,
+        channel: command.channel_id,
+        text: `:x: 오류 발생: ${errorMessage}`
+      });
+    }
+
+  } else {
+    // Handle topic
+    const parts = input.split(/\s+/);
+    let topic = input;
+    let category = 'General';
+
+    const knownCategories = ['NLP', 'Deep Learning', 'MLOps', 'Computer Vision', 'General'];
+    const lastWord = parts[parts.length - 1];
+    if (knownCategories.some(c => c.toLowerCase() === lastWord.toLowerCase())) {
+      category = lastWord;
+      topic = parts.slice(0, -1).join(' ');
+    }
+
     await respond({
-      response_type: 'ephemeral',
-      text: ':no_entry: 이 채널에서는 사용할 수 없습니다.'
-    });
-    return;
-  }
-
-  const input = command.text?.trim();
-  if (!input) {
-    await respond({
-      response_type: 'ephemeral',
-      text: ':warning: 주제를 입력해주세요.\n예: `/topic PyTorch 기초`'
-    });
-    return;
-  }
-
-  // Parse topic and optional category
-  const parts = input.split(/\s+/);
-  let topic = input;
-  let category = 'General';
-
-  const knownCategories = ['NLP', 'Deep Learning', 'MLOps', 'Computer Vision', 'General'];
-  const lastWord = parts[parts.length - 1];
-  if (knownCategories.some(c => c.toLowerCase() === lastWord.toLowerCase())) {
-    category = lastWord;
-    topic = parts.slice(0, -1).join(' ');
-  }
-
-  await respond({
-    response_type: 'in_channel',
-    blocks: [
-      {
-        type: 'section',
-        text: {
-          type: 'mrkdwn',
-          text: `:hourglass_flowing_sand: *블로그 생성 중...*\n:memo: 주제: ${topic}\n:label: 카테고리: ${category}\n\n약 2-3분 소요됩니다.`
-        }
-      }
-    ]
-  });
-
-  try {
-    const output = runCommand(`npm run blog:topic -- -t "${topic}" -c "${category}" -i -y 2>&1`);
-
-    const savedMatch = output.match(/저장 완료: (.+\.md)/);
-    const savedPath = savedMatch ? savedMatch[1] : 'unknown';
-
-    // Git commit and push
-    const gitOutput = runCommand(`
-      git add -A && \
-      git commit -m "Add blog: ${topic}" && \
-      git push origin master 2>&1
-    `);
-
-    const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
-
-    await app.client.chat.postMessage({
-      token: SLACK_BOT_TOKEN,
-      channel: command.channel_id,
+      response_type: 'in_channel',
       blocks: [
         {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `:white_check_mark: *블로그 생성 완료!*`
+            text: `:hourglass_flowing_sand: *블로그 생성 중...*\n:memo: 주제: ${topic}\n:label: 카테고리: ${category}\n\n약 2-3분 소요됩니다.`
           }
-        },
-        {
-          type: 'section',
-          fields: [
-            {
-              type: 'mrkdwn',
-              text: `*주제:*\n${topic}`
-            },
-            {
-              type: 'mrkdwn',
-              text: `*파일:*\n\`${path.basename(savedPath)}\``
-            },
-            {
-              type: 'mrkdwn',
-              text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : ':x: 푸시 실패'}`
-            },
-            {
-              type: 'mrkdwn',
-              text: `*배포:*\n약 1-2분 후 반영`
-            }
-          ]
         }
       ]
     });
-  } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    await app.client.chat.postMessage({
-      token: SLACK_BOT_TOKEN,
-      channel: command.channel_id,
-      text: `:x: 오류 발생: ${errorMessage}`
-    });
+
+    try {
+      const output = runCommand(`npm run blog:topic -- -t "${topic}" -c "${category}" -i -y 2>&1`);
+
+      const savedMatch = output.match(/저장 완료: (.+\.md)/);
+      const savedPath = savedMatch ? savedMatch[1] : 'unknown';
+
+      const gitOutput = runCommand(`
+        git add -A && \
+        git commit -m "Add blog: ${topic}" && \
+        git push origin master 2>&1
+      `);
+
+      const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
+
+      await app.client.chat.postMessage({
+        token: SLACK_BOT_TOKEN,
+        channel: command.channel_id,
+        blocks: [
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: `:white_check_mark: *블로그 생성 완료!*`
+            }
+          },
+          {
+            type: 'section',
+            fields: [
+              {
+                type: 'mrkdwn',
+                text: `*주제:*\n${topic}`
+              },
+              {
+                type: 'mrkdwn',
+                text: `*파일:*\n\`${path.basename(savedPath)}\``
+              },
+              {
+                type: 'mrkdwn',
+                text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : ':x: 푸시 실패'}`
+              },
+              {
+                type: 'mrkdwn',
+                text: `*배포:*\n약 1-2분 후 반영`
+              }
+            ]
+          }
+        ]
+      });
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      await app.client.chat.postMessage({
+        token: SLACK_BOT_TOKEN,
+        channel: command.channel_id,
+        text: `:x: 오류 발생: ${errorMessage}`
+      });
+    }
   }
 });
 
-// /blog-status slash command
-app.command('/blog-status', async ({ command, ack, respond }) => {
+// /suanblog-status slash command
+app.command('/suanblog-status', async ({ command, ack, respond }) => {
   await ack();
 
   if (!isAllowedChannel(command.channel_id)) {
@@ -314,8 +382,8 @@ app.command('/blog-status', async ({ command, ack, respond }) => {
   }
 });
 
-// /blog-help slash command
-app.command('/blog-help', async ({ command, ack, respond }) => {
+// /suanblog-help slash command
+app.command('/suanblog-help', async ({ command, ack, respond }) => {
   await ack();
 
   await respond({
@@ -339,7 +407,7 @@ app.command('/blog-help', async ({ command, ack, respond }) => {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: '`/paper <arXiv ID 또는 URL>` - 논문 리뷰 생성\n`/topic <주제> [카테고리]` - 주제 기반 블로그 생성\n`/blog-status` - 블로그 상태 확인\n`/blog-help` - 도움말'
+          text: '`/suanblog <입력>` - 자동 감지하여 블로그 생성\n`/suanblog-status` - 블로그 상태 확인\n`/suanblog-help` - 도움말'
         }
       },
       {
@@ -349,7 +417,17 @@ app.command('/blog-help', async ({ command, ack, respond }) => {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: '*예시:*\n• `/paper 2312.00752`\n• `/paper https://arxiv.org/abs/2312.00752`\n• `/topic 트랜스포머 아키텍처`\n• `/topic RAG 시스템 NLP`'
+          text: '*입력 유형 자동 감지:*\n• arXiv ID (예: `2312.00752`) → 논문 리뷰\n• arXiv URL → 논문 리뷰\n• PDF URL (`.pdf`로 끝남) → 논문 리뷰\n• 그 외 텍스트 → 주제 기반 블로그'
+        }
+      },
+      {
+        type: 'divider'
+      },
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: '*예시:*\n• `/blog 2312.00752`\n• `/blog https://arxiv.org/abs/2312.00752`\n• `/blog 트랜스포머 아키텍처`\n• `/blog RAG 시스템 NLP`'
         }
       }
     ]
