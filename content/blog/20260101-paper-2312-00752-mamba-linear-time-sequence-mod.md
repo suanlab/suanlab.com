@@ -84,64 +84,6 @@ Mamba는 주의 메커니즘이나 MLP 블록 없이 선택적 SSM을 통합한 
 
    병렬 스캔 알고리즘을 통해 GPU 메모리 접근을 최적화합니다. Mamba는 CUDA 커널을 사용하여 병렬 스캔 연산을 효율적으로 수행합니다.
 
-### Python/PyTorch 구현 코드
-
-```python
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
-class MambaBlock(nn.Module):
-    def __init__(self, dim, expansion_factor=2):
-        super().__init__()
-        self.in_proj = nn.Linear(dim, dim * expansion_factor * 3)  # A, B, C projection
-        self.delta_proj = nn.Linear(dim, dim * expansion_factor) # Delta projection
-        self.out_proj = nn.Linear(dim * expansion_factor, dim)
-        self.act = nn.SiLU()
-        self.expansion_factor = expansion_factor
-        self.d_state = dim * expansion_factor
-
-    def forward(self, x):
-        B, L, D = x.shape
-        x_proj = self.in_proj(x)
-        A, B, C = torch.split(x_proj, self.d_state, dim=-1)
-
-        delta = F.softplus(self.delta_proj(x))
-
-        h = torch.zeros(B, self.d_state, device=x.device) # Initialize hidden state
-
-        ys = []
-        for l in range(L):
-            h = A[:, l] * h + B[:, l] * x[:, l]
-            y = C[:, l] * h
-            ys.append(y)
-
-        y = torch.stack(ys, dim=1)
-        y = self.act(y)
-
-        return self.out_proj(y)
-
-class MambaModel(nn.Module):
-    def __init__(self, input_dim, hidden_dim, output_dim, num_layers=2):
-        super().__init__()
-        self.embedding = nn.Linear(input_dim, hidden_dim)
-        self.mamba_layers = nn.ModuleList([MambaBlock(hidden_dim) for _ in range(num_layers)])
-        self.fc = nn.Linear(hidden_dim, output_dim)
-
-    def forward(self, x):
-        x = self.embedding(x)
-        for layer in self.mamba_layers:
-            x = layer(x)
-        x = self.fc(x)
-        return x
-
-# Mamba 모델 사용 예제
-model = MambaModel(input_dim=128, hidden_dim=256, output_dim=10, num_layers=2)
-input_data = torch.randn(32, 100, 128)  # 배치 크기 32, 시퀀스 길이 100, 입력 차원 128
-output = model(input_data)
-print(output.shape)  # 출력 형태 (32, 100, 10)
-```
-
 **주의:** 위 코드는 단순화된 Mamba 블록의 예시이며, 실제 구현은 CUDA 커널을 사용하여 병렬 스캔 연산을 최적화해야 합니다.  또한, 상태 공간 모델의 이산화 과정이 생략되어 있습니다.
 
 ## 실험 설정

@@ -125,104 +125,15 @@ thumbnail: "/assets/images/blog/20260101-paper-2509-25140-reasoningbank-scaling-
 
     여기서 $s_0$는 초기 상태, $\pi$는 에이전트의 정책, $M$은 ReasoningBank, $N$은 확장된 경험의 수를 나타낸다. MaTTS 함수는 초기 상태 $s_0$에서 에이전트의 정책 $\pi$와 ReasoningBank $M$을 사용하여 다양한 시나리오를 탐색하고, 새로운 경험 $\{s_i, a_i, r_i\}_{i=1}^{N}$을 생성한다.
 
-**Python/PyTorch 구현 코드**:
 
-```python
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import random
+## 실험 결과
 
-# ReasoningBank 클래스 정의
-class ReasoningBank:
-    def __init__(self, capacity):
-        self.capacity = capacity  # 메모리 용량
-        self.memory = []  # 메모리 저장소
+저자들은 WebArena와 SWE-bench 벤치마크에서 ReasoningBank의 성능을 평가했다. 실험 결과, ReasoningBank는 기존 메모리 메커니즘 대비 일관된 성능 향상을 보였으며, MaTTS와 결합 시 더욱 큰 폭의 성능 개선이 관찰되었다.
 
-    # 경험 추가 함수
-    def add_experience(self, state, action, reward):
-        # 메모리가 가득 찼을 경우 가장 오래된 경험 삭제
-        if len(self.memory) >= self.capacity:
-            self.memory.pop(0)
-        self.memory.append((state, action, reward))
+## 결론
 
-    # 메모리 검색 함수 (간단한 예시로 랜덤 샘플링)
-    def retrieve_memory(self, state, num_samples=5):
-        if len(self.memory) == 0:
-            return []
-        # 메모리에서 랜덤하게 샘플링
-        samples = random.sample(self.memory, min(num_samples, len(self.memory)))
-        return samples
+ReasoningBank는 LLM 에이전트가 과거 경험으로부터 학습하여 지속적으로 발전할 수 있는 새로운 메모리 프레임워크이다. 성공 및 실패 경험 모두로부터 일반화 가능한 추론 전략을 추출하여 저장하고, 테스트 시점에 이를 활용함으로써 에이전트의 성능을 향상시킨다. MaTTS를 통한 경험 확장은 학습 과정을 가속화하며, 메모리 기반 경험 확장이 에이전트 자가 진화의 새로운 확장 차원임을 입증한다.
 
-# 간단한 상태-행동 가치 함수 (Q-function) 모델 정의
-class QNetwork(nn.Module):
-    def __init__(self, state_size, action_size):
-        super(QNetwork, self).__init__()
-        self.fc1 = nn.Linear(state_size, 64)
-        self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(64, 64)
-        self.fc3 = nn.Linear(64, action_size)
+## 참고 자료
 
-    def forward(self, state):
-        x = self.fc1(state)
-        x = self.relu(x)
-        x = self.fc2(x)
-        x = self.relu(x)
-        return self.fc3(x)
-
-# MaTTS (Memory-aware Test-Time Scaling) 함수
-def matts(env, agent, reasoning_bank, num_rollouts=3, max_steps=100):
-    initial_state = env.reset()
-    expanded_experiences = []
-
-    for _ in range(num_rollouts):
-        state = initial_state
-        episode_experiences = []
-        for step in range(max_steps):
-            # ReasoningBank에서 메모리 검색
-            relevant_memories = reasoning_bank.retrieve_memory(state)
-
-            # Q-value 예측 (메모리 정보를 활용)
-            state_tensor = torch.FloatTensor(state).unsqueeze(0)
-            with torch.no_grad():
-                q_values = agent(state_tensor)
-
-            # 행동 선택 (epsilon-greedy)
-            epsilon = 0.1
-            if random.random() < epsilon:
-                action = env.action_space.sample()
-            else:
-                action = torch.argmax(q_values).item()
-
-            # 환경과 상호 작용
-            next_state, reward, done, _ = env.step(action)
-            episode_experiences.append((state, action, reward))
-
-            # 상태 업데이트
-            state = next_state
-
-            if done:
-                break
-
-        # 에피소드 경험을 expanded_experiences에 추가
-        expanded_experiences.extend(episode_experiences)
-
-    return expanded_experiences
-
-# 간단한 환경 (예: OpenAI Gym의 CartPole-v1)
-import gym
-env = gym.make('CartPole-v1')
-state_size = env.observation_space.shape[0]
-action_size = env.action_space.n
-
-# 모델, ReasoningBank, Optimizer 초기화
-q_network = QNetwork(state_size, action_size)
-reasoning_bank = ReasoningBank(capacity=1000)
-optimizer = optim.Adam(q_network.parameters(), lr=0.001)
-criterion = nn.MSELoss()
-
-# 학습 루프
-num_episodes = 100
-for episode in range(num_episodes):
-    # MaTTS를 사용하여 경험 확장
-    expanded_experiences =
+- [arXiv 논문](https://arxiv.org/abs/2509.25140)

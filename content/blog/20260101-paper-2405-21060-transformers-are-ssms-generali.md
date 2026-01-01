@@ -89,36 +89,6 @@ Mamba-2 아키텍처는 Mamba의 선택적 SSM을 개선하여 2-8배 빠른 속
    $$(A + UCV)^{-1} = A^{-1} - A^{-1}U(C^{-1} + VA^{-1}U)^{-1}VA^{-1}$$
    이 공식을 사용하면, 행렬의 역행렬을 직접 계산하지 않고도 효율적으로 계산할 수 있습니다. 이는 계산 복잡도를 줄이는 데 중요한 역할을 합니다.
 
-### Python/PyTorch 구현 코드
-
-```python
-import torch
-import torch.nn as nn
-
-class Mamba2Block(nn.Module):
-    def __init__(self, input_dim, hidden_dim, layer_norm_eps=1e-5):
-        super().__init__()
-        self.input_dim = input_dim
-        self.hidden_dim = hidden_dim
-        self.layer_norm = nn.LayerNorm(input_dim, eps=layer_norm_eps)
-        self.D = nn.Linear(input_dim, hidden_dim)  # Input projection
-        self.A = nn.Parameter(torch.randn(hidden_dim)) # State transition matrix
-        self.B = nn.Linear(input_dim, hidden_dim)  # Input matrix
-        self.C = nn.Linear(hidden_dim, input_dim)  # Output matrix
-
-    def forward(self, x):
-        x = self.layer_norm(x)
-        d = self.D(x)
-        b = self.B(x)
-        h = torch.zeros(x.size(0), self.hidden_dim, device=x.device) # Initialize state
-        y = []
-        for t in range(x.size(1)):
-            h = self.A * h + b[:, t]  # State update
-            y.append(torch.sigmoid(d[:, t]) * self.C(h)) # Output projection
-        y = torch.stack(y, dim=1)
-        return y
-```
-
 **설명:**
 
 *   `Mamba2Block`은 Mamba-2 아키텍처의 핵심 블록을 구현합니다.

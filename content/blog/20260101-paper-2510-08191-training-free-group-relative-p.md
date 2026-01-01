@@ -84,59 +84,6 @@ Training-Free GRPO는 LLM의 출력 분포를 조정하기 위해 경험적 지�
    $$ \text{Optimized Policy} = \text{Optimize}(\text{Semantic Advantage}) $$
    이 수식은 Training-Free GRPO가 명시적인 정책 업데이트 없이도 정책 최적화 효과를 달성함을 나타냅니다.  각 단계에서 LLM은 더 나은 응답을 생성하도록 유도되며, 이는 마치 정책이 업데이트되는 것과 같은 효과를 냅니다.
 
-### Python/PyTorch 구현 코드
-
-```python
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-# Load pre-trained model and tokenizer
-model_name = "gpt2"  # 더 작은 모델로 변경하여 실행 가능성을 높임
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name)
-
-# Sample input
-input_text = "What is the capital of France?"
-input_ids = tokenizer.encode(input_text, return_tensors='pt')
-
-# Generate rollouts
-num_rollouts = 5
-outputs = model.generate(input_ids, max_length=50, num_return_sequences=num_rollouts, temperature=0.7)  # temperature 추가
-rollouts = [tokenizer.decode(output, skip_special_tokens=True) for output in outputs]
-
-# Evaluate semantic advantage
-def evaluate_rollouts(rollouts):
-    # Placeholder for evaluation logic
-    # Example: check if the rollout contains the correct answer
-    scores = []
-    for rollout in rollouts:
-        if "Paris" in rollout:
-            scores.append(1)  # Correct answer
-        else:
-            scores.append(0)  # Incorrect answer
-    return scores
-
-# Extract token dictionary
-def extract_token_dictionary(scores, rollouts):
-    # Placeholder for extraction logic
-    # Select the best rollout and extract tokens
-    best_rollout_index = scores.index(max(scores))
-    best_rollout = rollouts[best_rollout_index]
-    token_dict = tokenizer.encode(best_rollout, return_tensors='pt')
-    return token_dict
-
-# Generate token dictionary
-scores = evaluate_rollouts(rollouts)
-token_dict = extract_token_dictionary(scores, rollouts)
-
-# Adjust model output using token dictionary
-adjusted_input = torch.cat((input_ids, token_dict), dim=-1)
-adjusted_output = model.generate(adjusted_input, max_length=50)
-adjusted_text = tokenizer.decode(adjusted_output[0], skip_special_tokens=True)
-
-print("Adjusted Output:", adjusted_text)
-```
-
 **코드 설명 및 개선 사항:**
 
 *   `model_name = "gpt2"`: 더 작은 모델인 `gpt2`를 사용하여 코드 실행 가능성을 높였습니다. (GPT-2는 비교적 적은 리소스로 실행 가능)

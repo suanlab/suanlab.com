@@ -97,40 +97,6 @@ BERT는 Transformer 인코더를 기반으로 하며, 여러 층의 self-attenti
 
    여기서 $W_1$, $W_2$, $b_1$, $b_2$는 학습 가능한 가중치와 편향입니다.  Feed-Forward Network는 각 단어의 표현을 변환하고, 비선형성을 추가합니다.
 
-### Python/PyTorch 구현 코드
-
-```python
-from transformers import BertTokenizer, BertForMaskedLM
-import torch
-
-# BERT tokenizer와 모델 로드
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertForMaskedLM.from_pretrained('bert-base-uncased')
-
-# 입력 문장
-text = "The quick brown [MASK] jumps over the lazy dog."
-tokenized_text = tokenizer.tokenize(text)
-indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
-tokens_tensor = torch.tensor([indexed_tokens])
-
-# [MASK] 토큰의 위치 찾기
-mask_token_index = tokenized_text.index('[MASK]')
-
-# 모델 평가 모드로 설정
-model.eval()
-
-# 예측 수행
-with torch.no_grad():
-    outputs = model(tokens_tensor)
-    predictions = outputs[0, mask_token_index]
-
-# 예측된 토큰 찾기
-predicted_index = torch.argmax(predictions).item()
-predicted_token = tokenizer.convert_ids_to_tokens([predicted_index])[0]
-
-print(f"Predicted token: {predicted_token}") # 출력: fox
-```
-
 **코드 설명:**
 
 1.  **라이브러리 임포트**: `transformers` 라이브러리에서 `BertTokenizer`와 `BertForMaskedLM`을 임포트합니다. `torch`는 PyTorch 텐서 연산을 위해 임포트합니다.

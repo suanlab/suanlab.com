@@ -93,62 +93,6 @@ QLoRA는 기존의 사전 학습된 모델에 양자화 및 저랭크 어댑터�
    $$ M_{\text{load}} = \min(M_{\text{total}}, M_{\text{available}}) $$
    여기서 $M_{\text{load}}$는 로드할 메모리, $M_{\text{total}}$은 전체 메모리, $M_{\text{available}}$은 사용 가능한 메모리입니다. Paged Optimizers는 메모리 사용량을 실시간으로 모니터링하고, 필요한 데이터만 로드합니다.
 
-### Python/PyTorch 구현 코드
-
-```python
-import torch
-import torch.nn as nn
-import torch.optim as optim
-
-class NF4Quantizer:
-    def __init__(self, mu, sigma):
-        self.mu = mu
-        self.sigma = sigma
-
-    def quantize(self, x):
-        q = torch.round((x - self.mu) / self.sigma)
-        return q * self.sigma + self.mu
-
-class LoRAModule(nn.Module):
-    def __init__(self, input_dim, output_dim, rank):
-        super(LoRAModule, self).__init__()
-        self.W = nn.Parameter(torch.randn(input_dim, output_dim))
-        self.L_r = nn.Parameter(nn.Parameter(torch.randn(input_dim, rank))) # nn.Parameter로 감싸기
-        self.L_o = nn.Parameter(nn.Parameter(torch.randn(rank, output_dim))) # nn.Parameter로 감싸기
-        nn.init.kaiming_uniform_(self.L_r) # 초기화 추가
-        nn.init.zeros_(self.L_o) # 초기화 추가
-
-    def forward(self, x):
-        return x @ self.W + x @ self.L_r @ self.L_o
-
-class QLoRAModel(nn.Module):
-    def __init__(self, input_dim, output_dim, rank, mu, sigma):
-        super(QLoRAModel, self).__init__()
-        self.quantizer = NF4Quantizer(mu, sigma)
-        self.lora = LoRAModule(input_dim, output_dim, rank)
-
-    def forward(self, x):
-        x = self.quantizer.quantize(x)
-        return self.lora(x)
-
-# Example usage
-input_dim = 1024
-output_dim = 512
-rank = 16
-mu = 0.0
-sigma = 1.0
-
-model = QLoRAModel(input_dim, output_dim, rank, mu, sigma)
-optimizer = optim.Adam(model.parameters(), lr=1e-4, weight_decay=0.01)
-
-# Dummy data
-x = torch.randn(64, input_dim)
-y = model(x)
-loss = y.sum()
-loss.backward()
-optimizer.step()
-```
-
 **코드 설명:**
 
 *   `NF4Quantizer`: NF4 양자화를 수행하는 클래스입니다. 평균(`mu`)과 표준편차(`sigma`)를 사용하여 입력 텐서를 양자화합니다.
