@@ -33,7 +33,11 @@ function runCommand(command: string): string {
     return execSync(command, {
       encoding: 'utf-8',
       cwd: process.cwd(),
-      timeout: 300000 // 5 minutes
+      timeout: 300000, // 5 minutes
+      env: {
+        ...process.env,
+        GIT_SSH_COMMAND: 'ssh -i /home/suanlab/.ssh/id_ed25519_bot -o StrictHostKeyChecking=no'
+      }
     });
   } catch (error: unknown) {
     if (error instanceof Error && 'stdout' in error) {
