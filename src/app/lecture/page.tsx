@@ -67,29 +67,6 @@ export default function LecturePage() {
             </div>
           </div>
 
-          {/* Teaching Summary */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Teaching Experience</h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {Object.values(teachingHistory).map((univ) => (
-                <Card key={univ.name}>
-                  <CardContent className="p-4">
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 shrink-0">
-                        <Building className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold">{univ.name}</h3>
-                        <p className="text-sm text-muted-foreground">{univ.role}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{univ.period}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
           {/* Graduate Courses */}
           <div className="mb-12">
             <div className="flex items-center gap-2 mb-6">
@@ -115,6 +92,29 @@ export default function LecturePage() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+
+          {/* Teaching Summary */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold mb-6">Teaching Experience</h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {Object.values(teachingHistory).map((univ) => (
+                <Card key={univ.name}>
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 shrink-0">
+                        <Building className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold">{univ.name}</h3>
+                        <p className="text-sm text-muted-foreground">{univ.role}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{univ.period}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
 
           {/* Related YouTube */}
