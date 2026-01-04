@@ -23,6 +23,18 @@ export async function generateStaticParams() {
 
 const BASE_URL = 'https://suanlab.com';
 
+// OG description을 위한 텍스트 정리 (160자 제한, 줄바꿈 제거)
+function sanitizeDescription(text: string, maxLength: number = 160): string {
+  if (!text) return '';
+  // 줄바꿈을 공백으로 변환하고 연속 공백 제거
+  const cleaned = text.replace(/[\r\n]+/g, ' ').replace(/\s+/g, ' ').trim();
+  if (cleaned.length <= maxLength) return cleaned;
+  // 단어 중간에서 자르지 않도록 처리
+  const truncated = cleaned.slice(0, maxLength);
+  const lastSpace = truncated.lastIndexOf(' ');
+  return (lastSpace > maxLength - 30 ? truncated.slice(0, lastSpace) : truncated) + '...';
+}
+
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const post = await getPostBySlugWithHtml(slug);
@@ -36,17 +48,18 @@ export async function generateMetadata({ params }: Props) {
   const postUrl = `${BASE_URL}/blog/${slug}`;
   const ogImage = post.thumbnail || '/assets/images/og-image.jpg';
   const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${BASE_URL}${ogImage}`;
+  const ogDescription = sanitizeDescription(post.excerpt);
 
   return {
     title: `${post.title} | SuanLab Blog`,
-    description: post.excerpt,
+    description: ogDescription,
     openGraph: {
       type: 'article',
       locale: 'ko_KR',
       url: postUrl,
       siteName: 'SuanLab',
       title: post.title,
-      description: post.excerpt,
+      description: ogDescription,
       images: [
         {
           url: ogImageUrl,
@@ -62,7 +75,7 @@ export async function generateMetadata({ params }: Props) {
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.excerpt,
+      description: ogDescription,
       images: [ogImageUrl],
       creator: '@suanlab',
     },
