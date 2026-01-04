@@ -6,6 +6,7 @@ import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { getPostBySlugWithHtml, getAllPosts, getPostSlugs } from '@/lib/blog';
 import '@/styles/blog-prose.css';
 import 'katex/dist/katex.min.css';
@@ -82,6 +83,7 @@ export async function generateMetadata({ params }: Props) {
     alternates: {
       canonical: postUrl,
     },
+    keywords: [post.category, ...post.tags, 'SuanLab', '이수안', 'AI', 'Deep Learning'].join(', '),
   };
 }
 
@@ -99,8 +101,29 @@ export default async function BlogPostPage({ params }: Props) {
   const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
   const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
 
+  const postUrl = `${BASE_URL}/blog/${slug}`;
+  const ogImageUrl = post.thumbnail
+    ? (post.thumbnail.startsWith('http') ? post.thumbnail : `${BASE_URL}${post.thumbnail}`)
+    : `${BASE_URL}/assets/images/og-image.jpg`;
+
   return (
     <>
+      {/* SEO: Structured Data */}
+      <ArticleJsonLd
+        title={post.title}
+        description={post.excerpt}
+        url={postUrl}
+        datePublished={post.date}
+        image={ogImageUrl}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: BASE_URL },
+          { name: 'Blog', url: `${BASE_URL}/blog` },
+          { name: post.title, url: postUrl },
+        ]}
+      />
+
       <PageHeader
         title={post.title}
         subtitle={post.excerpt}
