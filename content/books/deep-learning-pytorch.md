@@ -1,5 +1,5 @@
 ---
-title: "딥러닝과 PyTorch"
+title: "딥러닝 한번에 끝내기 with PyTorch"
 subtitle: "Deep Learning with PyTorch"
 author: "이수안"
 date: "2024-04-01"

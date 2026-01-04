@@ -1,5 +1,5 @@
 ---
-title: "머신러닝 기초"
+title: "머신러닝 한번에 끝내기"
 subtitle: "Machine Learning Fundamentals"
 author: "이수안"
 date: "2024-03-01"

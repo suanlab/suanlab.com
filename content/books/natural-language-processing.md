@@ -1,5 +1,5 @@
 ---
-title: "자연어 처리 입문"
+title: "자연어 처리부터 언어 모델까지 한번에 끝내기"
 subtitle: "Introduction to Natural Language Processing"
 author: "이수안"
 date: "2024-05-01"
