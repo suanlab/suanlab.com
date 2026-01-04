@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { GraduationCap, Building, Mail, Phone, MapPin, Check, Globe, Instagram, Facebook, Linkedin, Youtube, Calendar, Award, BookOpen, Plane, Users, Briefcase, Heart, Scale } from 'lucide-react';
-import { academicActivities, journalMemberships, journalReviews, journalReviewStats, advisoryActivities, activityCategories } from '@/data/academic-activities';
+import { academicActivities, journalMemberships, journalReviews, journalReviewStats, conferenceReviews, advisoryActivities, activityCategories } from '@/data/academic-activities';
 import { awards, awardStats, awardCategories } from '@/data/awards';
 import { Trophy } from 'lucide-react';
 import { visitedCountries, overseasExperiences, overseasStats, continentColors } from '@/data/overseas-experiences';
@@ -449,57 +449,77 @@ export default function SuanPage() {
                   </CardContent>
                 </Card>
 
-                {/* Journal Reviewer */}
+                {/* Paper Review Activities */}
                 <Card className="mb-6">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      국제 저널 Reviewer
+                      논문 리뷰 활동
                     </CardTitle>
                     <p className="text-sm text-muted-foreground mt-1">
-                      {journalReviewStats.totalJournals}개 저널, 총 {journalReviewStats.totalReviews}건 리뷰
+                      {conferenceReviews.length}개 학회, {journalReviewStats.totalJournals}개 저널, 총 {journalReviewStats.totalReviews}건+ 리뷰
                     </p>
                   </CardHeader>
                   <CardContent>
-                    <div className="max-h-96 overflow-y-auto pr-2 space-y-4">
-                      {(() => {
-                        // Group by publisher
-                        const grouped = journalReviews.reduce((acc, item) => {
-                          if (!acc[item.publisher]) {
-                            acc[item.publisher] = { journals: [], totalReviews: 0 };
-                          }
-                          acc[item.publisher].journals.push(item);
-                          acc[item.publisher].totalReviews += item.reviewCount;
-                          return acc;
-                        }, {} as Record<string, { journals: typeof journalReviews; totalReviews: number }>);
+                    {/* Conference Reviews */}
+                    <div className="mb-4">
+                      <p className="text-xs font-medium text-muted-foreground mb-2">Conference</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {conferenceReviews.map((item) => (
+                          <span
+                            key={item.id}
+                            className="inline-flex items-center px-2.5 py-1 rounded-md bg-primary/10 text-primary text-xs font-medium"
+                            title={item.fullName}
+                          >
+                            {item.conference}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
 
-                        // Sort publishers by total review count
-                        const sortedPublishers = Object.entries(grouped)
-                          .sort(([, a], [, b]) => b.totalReviews - a.totalReviews);
+                    {/* Journal Reviews */}
+                    <div className="pt-4 border-t">
+                      <p className="text-xs font-medium text-muted-foreground mb-2">Journal</p>
+                      <div className="max-h-72 overflow-y-auto pr-2 space-y-4">
+                        {(() => {
+                          // Group by publisher
+                          const grouped = journalReviews.reduce((acc, item) => {
+                            if (!acc[item.publisher]) {
+                              acc[item.publisher] = { journals: [], totalReviews: 0 };
+                            }
+                            acc[item.publisher].journals.push(item);
+                            acc[item.publisher].totalReviews += item.reviewCount;
+                            return acc;
+                          }, {} as Record<string, { journals: typeof journalReviews; totalReviews: number }>);
 
-                        return sortedPublishers.map(([publisher, data]) => (
-                          <div key={publisher} className="pb-3 border-b border-muted last:border-0">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="font-semibold text-sm">{publisher}</span>
-                              <span className="text-xs text-muted-foreground">
-                                {data.journals.length}개 저널 · {data.totalReviews}건
-                              </span>
-                            </div>
-                            <div className="flex flex-wrap gap-1.5">
-                              {data.journals.map((item) => (
-                                <span
-                                  key={item.id}
-                                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-muted text-xs"
-                                  title={`${item.journal} - ${item.reviewCount}건 리뷰`}
-                                >
-                                  <span className="font-bold text-primary">{item.reviewCount}</span>
-                                  <span className="truncate max-w-[180px]">{item.journal}</span>
+                          // Sort publishers by total review count
+                          const sortedPublishers = Object.entries(grouped)
+                            .sort(([, a], [, b]) => b.totalReviews - a.totalReviews);
+
+                          return sortedPublishers.map(([publisher, data]) => (
+                            <div key={publisher} className="pb-3 border-b border-muted last:border-0">
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="font-semibold text-sm">{publisher}</span>
+                                <span className="text-xs text-muted-foreground">
+                                  {data.journals.length}개 저널 · {data.totalReviews}건
                                 </span>
-                              ))}
+                              </div>
+                              <div className="flex flex-wrap gap-1.5">
+                                {data.journals.map((item) => (
+                                  <span
+                                    key={item.id}
+                                    className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-muted text-xs"
+                                    title={`${item.journal} - ${item.reviewCount}건 리뷰`}
+                                  >
+                                    <span className="font-bold text-primary">{item.reviewCount}</span>
+                                    <span className="truncate max-w-[180px]">{item.journal}</span>
+                                  </span>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        ));
-                      })()}
+                          ));
+                        })()}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>

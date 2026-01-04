@@ -138,6 +138,29 @@ export const journalReviewStats = {
   totalJournals: 48,
 };
 
+// Conference 리뷰어 인터페이스
+export interface ConferenceReview {
+  id: number;
+  conference: string;
+  fullName: string;
+  role: string;
+}
+
+// Conference 리뷰어 활동
+export const conferenceReviews: ConferenceReview[] = [
+  { id: 1, conference: 'NeurIPS', fullName: 'Conference on Neural Information Processing Systems', role: 'Reviewer' },
+  { id: 2, conference: 'ICML', fullName: 'International Conference on Machine Learning', role: 'Reviewer' },
+  { id: 3, conference: 'ICLR', fullName: 'International Conference on Learning Representations', role: 'Reviewer' },
+  { id: 4, conference: 'AAAI', fullName: 'AAAI Conference on Artificial Intelligence', role: 'Reviewer' },
+  { id: 5, conference: 'ACL', fullName: 'Annual Meeting of the Association for Computational Linguistics', role: 'Reviewer' },
+  { id: 6, conference: 'EMNLP', fullName: 'Conference on Empirical Methods in Natural Language Processing', role: 'Reviewer' },
+  { id: 7, conference: 'NAACL', fullName: 'Annual Conference of the North American Chapter of the ACL', role: 'Reviewer' },
+  { id: 8, conference: 'CVPR', fullName: 'IEEE/CVF Conference on Computer Vision and Pattern Recognition', role: 'Reviewer' },
+  { id: 9, conference: 'KDD', fullName: 'ACM SIGKDD Conference on Knowledge Discovery and Data Mining', role: 'Reviewer' },
+  { id: 10, conference: 'AISTATS', fullName: 'International Conference on Artificial Intelligence and Statistics', role: 'Reviewer' },
+  { id: 11, conference: 'DASFAA', fullName: 'Database Systems for Advanced Applications', role: 'Reviewer' },
+];
+
 // 학회 멤버십
 export const journalMemberships: AcademicActivity[] = [
   { id: 100, period: '2024 ~ 현재', organization: 'ACM', role: 'Member', category: 'membership' },
