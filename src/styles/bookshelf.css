@@ -1,17 +1,49 @@
-/* Modern Bookshelf Container */
+/* Modern Bookshelf Container with Wood Background */
 .bookshelf {
   position: relative;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 30px 20px;
+  background: linear-gradient(
+    to bottom,
+    hsl(25, 30%, 92%) 0%,
+    hsl(25, 25%, 88%) 100%
+  );
+  border-radius: 12px;
+  box-shadow:
+    inset 0 2px 10px rgba(0, 0, 0, 0.1),
+    0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Bookshelf Row - Masonry-like grid */
+/* Wood texture overlay */
+.bookshelf::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 50px,
+      rgba(139, 90, 43, 0.03) 50px,
+      rgba(139, 90, 43, 0.03) 51px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      rgba(139, 90, 43, 0.02) 2px,
+      transparent 4px
+    );
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+/* Bookshelf Row */
 .bookshelf-row {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 40px 30px;
-  padding: 20px 0 40px;
+  padding: 20px 0 30px;
   position: relative;
   z-index: 2;
 }
@@ -47,8 +79,8 @@
   border-radius: 4px 16px 16px 4px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.15),
-    0 5px 15px rgba(0, 0, 0, 0.08),
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    0 5px 15px rgba(0, 0, 0, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-style: preserve-3d;
@@ -59,9 +91,9 @@
 .book-item:hover .book-cover {
   transform: perspective(1000px) rotateY(-15deg) translateY(-10px);
   box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.2),
-    0 15px 30px rgba(0, 0, 0, 0.15),
-    20px 20px 40px rgba(0, 0, 0, 0.1);
+    0 30px 60px rgba(0, 0, 0, 0.25),
+    0 15px 30px rgba(0, 0, 0, 0.2),
+    20px 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* Book Image */
@@ -127,14 +159,14 @@
   opacity: 0.8;
 }
 
-/* Book Overlay - Glassmorphism effect */
+/* Book Overlay - Simple hover effect */
 .book-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.3) 40%,
     transparent 70%
   );
   opacity: 0;
@@ -145,7 +177,6 @@
   padding-bottom: 25px;
   border-radius: 4px 16px 16px 4px;
   z-index: 3;
-  backdrop-filter: blur(2px);
 }
 
 .book-item:hover .book-overlay {
@@ -180,7 +211,7 @@
 .book-title {
   font-size: 15px;
   font-weight: 600;
-  color: hsl(var(--foreground));
+  color: hsl(30, 20%, 25%);
   line-height: 1.5;
   margin: 0;
   display: -webkit-box;
@@ -196,56 +227,102 @@
 
 .book-author {
   font-size: 13px;
-  color: hsl(var(--muted-foreground));
+  color: hsl(30, 15%, 45%);
   margin-top: 6px;
   font-weight: 400;
 }
 
-/* Modern Shelf - Floating glass effect */
+/* Wooden Shelf */
 .shelf {
   position: relative;
-  height: 8px;
+  height: 24px;
   background: linear-gradient(
     to bottom,
-    hsl(var(--foreground) / 0.08) 0%,
-    hsl(var(--foreground) / 0.03) 100%
+    hsl(25, 40%, 45%) 0%,
+    hsl(25, 45%, 35%) 40%,
+    hsl(25, 50%, 28%) 100%
   );
-  border-radius: 4px;
-  margin-top: 10px;
+  border-radius: 0 0 6px 6px;
+  margin-top: 0;
   z-index: 1;
-  backdrop-filter: blur(10px);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
 }
 
+/* Shelf top edge */
 .shelf::before {
   content: '';
   position: absolute;
-  top: 0;
+  top: -10px;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 10px;
   background: linear-gradient(
-    90deg,
-    transparent 0%,
-    hsl(var(--foreground) / 0.1) 20%,
-    hsl(var(--foreground) / 0.15) 50%,
-    hsl(var(--foreground) / 0.1) 80%,
-    transparent 100%
+    to bottom,
+    hsl(25, 35%, 55%) 0%,
+    hsl(25, 40%, 48%) 100%
   );
-  border-radius: 2px;
+  border-radius: 4px 4px 0 0;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.15);
 }
 
-/* Shelf Shadow - Subtle glow */
+/* Wood grain on shelf */
+.shelf::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 80px,
+    rgba(0, 0, 0, 0.05) 80px,
+    rgba(0, 0, 0, 0.05) 82px
+  );
+  border-radius: 0 0 6px 6px;
+  pointer-events: none;
+}
+
+/* Shelf Shadow */
 .shelf-shadow {
-  height: 40px;
-  background: radial-gradient(
-    ellipse at center top,
-    hsl(var(--foreground) / 0.06) 0%,
-    transparent 70%
+  height: 30px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    transparent 100%
   );
   margin-top: 0;
 }
 
-/* Dark Mode - Enhanced */
+/* Dark Mode */
+.dark .bookshelf {
+  background: linear-gradient(
+    to bottom,
+    hsl(25, 20%, 18%) 0%,
+    hsl(25, 25%, 14%) 100%
+  );
+  box-shadow:
+    inset 0 2px 10px rgba(0, 0, 0, 0.3),
+    0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .bookshelf::before {
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 50px,
+      rgba(139, 90, 43, 0.08) 50px,
+      rgba(139, 90, 43, 0.08) 51px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      rgba(139, 90, 43, 0.05) 2px,
+      transparent 4px
+    );
+}
+
 .dark .book-cover {
   box-shadow:
     0 15px 35px rgba(0, 0, 0, 0.4),
@@ -270,16 +347,38 @@
   opacity: 0.6;
 }
 
+.dark .book-title {
+  color: hsl(30, 15%, 85%);
+}
+
+.dark .book-author {
+  color: hsl(30, 10%, 60%);
+}
+
 .dark .shelf {
   background: linear-gradient(
     to bottom,
-    hsl(var(--foreground) / 0.06) 0%,
-    hsl(var(--foreground) / 0.02) 100%
+    hsl(25, 30%, 28%) 0%,
+    hsl(25, 35%, 22%) 40%,
+    hsl(25, 40%, 16%) 100%
+  );
+}
+
+.dark .shelf::before {
+  background: linear-gradient(
+    to bottom,
+    hsl(25, 25%, 35%) 0%,
+    hsl(25, 30%, 30%) 100%
   );
 }
 
 /* Responsive - Tablet */
 @media (max-width: 1024px) {
+  .bookshelf {
+    padding: 30px 20px 15px;
+    margin: 0 10px;
+  }
+
   .bookshelf-row {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 35px 25px;
@@ -297,6 +396,11 @@
 
 /* Responsive - Mobile */
 @media (max-width: 768px) {
+  .bookshelf {
+    padding: 25px 15px 10px;
+    border-radius: 8px;
+  }
+
   .bookshelf-row {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 30px 20px;
@@ -328,12 +432,22 @@
   .book-spine {
     width: 12px;
   }
+
+  .shelf {
+    height: 20px;
+  }
+
+  .shelf::before {
+    height: 8px;
+    top: -8px;
+  }
 }
 
 /* Responsive - Small Mobile */
 @media (max-width: 480px) {
   .bookshelf {
-    padding: 10px;
+    padding: 20px 12px 8px;
+    margin: 0 5px;
   }
 
   .bookshelf-row {
@@ -358,5 +472,14 @@
   .book-read-text {
     font-size: 12px;
     padding: 8px 20px;
+  }
+
+  .shelf {
+    height: 16px;
+  }
+
+  .shelf::before {
+    height: 6px;
+    top: -6px;
   }
 }
