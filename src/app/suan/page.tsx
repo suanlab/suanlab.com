@@ -358,20 +358,20 @@ export default function SuanPage() {
                   </Card>
                   <Card className="text-center">
                     <CardContent className="p-4">
-                      <p className="text-3xl font-bold text-blue-600">{awardStats.bestPaper}</p>
-                      <p className="text-sm text-muted-foreground">우수논문</p>
+                      <p className="text-3xl font-bold text-blue-600">{awardStats.paper}</p>
+                      <p className="text-sm text-muted-foreground">논문상</p>
                     </CardContent>
                   </Card>
                   <Card className="text-center">
                     <CardContent className="p-4">
-                      <p className="text-3xl font-bold text-amber-600">{awardStats.excellence}</p>
-                      <p className="text-sm text-muted-foreground">우수/최우수</p>
+                      <p className="text-3xl font-bold text-green-600">{awardStats.contribution}</p>
+                      <p className="text-sm text-muted-foreground">공로상</p>
                     </CardContent>
                   </Card>
                   <Card className="text-center">
                     <CardContent className="p-4">
-                      <p className="text-3xl font-bold text-green-600">{awardStats.contribution + awardStats.teaching}</p>
-                      <p className="text-sm text-muted-foreground">공로/교육</p>
+                      <p className="text-3xl font-bold text-purple-600">{awardStats.teaching}</p>
+                      <p className="text-sm text-muted-foreground">우수교원</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -395,6 +395,9 @@ export default function SuanPage() {
                             <p className="font-medium text-sm">{award.award}</p>
                             {award.title && (
                               <p className="text-xs text-muted-foreground mt-0.5">&quot;{award.title}&quot;</p>
+                            )}
+                            {award.authors && (
+                              <p className="text-xs text-primary mt-0.5">{award.authors}</p>
                             )}
                             <p className="text-xs text-muted-foreground">{award.date} · {award.organization}</p>
                           </div>
