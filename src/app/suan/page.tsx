@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { GraduationCap, Building, Mail, Phone, MapPin, Check, Globe, Instagram, Facebook, Linkedin, Youtube, Calendar, Award, BookOpen, Plane, Users, Briefcase, Heart, Scale } from 'lucide-react';
 import { academicActivities, journalMemberships, journalReviews, journalReviewStats, advisoryActivities, activityCategories } from '@/data/academic-activities';
+import { awards, awardStats, awardCategories } from '@/data/awards';
+import { Trophy } from 'lucide-react';
 import { visitedCountries, overseasExperiences, overseasStats, continentColors } from '@/data/overseas-experiences';
 import { networkCategories, networkStats } from '@/data/networks';
 
@@ -335,6 +337,73 @@ export default function SuanPage() {
                         </li>
                       ))}
                     </ul>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Awards */}
+              <div className="mb-12">
+                <h2 className="text-2xl font-bold mb-6">
+                  <Trophy className="inline h-6 w-6 text-primary mr-2" />
+                  Awards & <span className="text-primary">Honors</span>
+                </h2>
+
+                {/* Award Statistics */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                  <Card className="text-center">
+                    <CardContent className="p-4">
+                      <p className="text-3xl font-bold text-primary">{awardStats.total}</p>
+                      <p className="text-sm text-muted-foreground">총 수상</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="text-center">
+                    <CardContent className="p-4">
+                      <p className="text-3xl font-bold text-blue-600">{awardStats.bestPaper}</p>
+                      <p className="text-sm text-muted-foreground">우수논문</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="text-center">
+                    <CardContent className="p-4">
+                      <p className="text-3xl font-bold text-amber-600">{awardStats.excellence}</p>
+                      <p className="text-sm text-muted-foreground">우수/최우수</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="text-center">
+                    <CardContent className="p-4">
+                      <p className="text-3xl font-bold text-green-600">{awardStats.contribution + awardStats.teaching}</p>
+                      <p className="text-sm text-muted-foreground">공로/교육</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Awards List */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Award className="h-5 w-5 text-primary" />
+                      수상 내역
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="max-h-96 overflow-y-auto pr-2 space-y-3">
+                      {awards.map((award) => (
+                        <div key={award.id} className="flex items-start gap-3 pb-3 border-b border-muted last:border-0">
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium shrink-0 ${awardCategories[award.category].color}`}>
+                            {awardCategories[award.category].label}
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium text-sm">{award.award}</p>
+                            {award.title && (
+                              <p className="text-xs text-muted-foreground mt-0.5">&quot;{award.title}&quot;</p>
+                            )}
+                            <p className="text-xs text-muted-foreground">{award.date} · {award.organization}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-4 text-center">
+                      총 {awards.length}건 (2017 - 2025)
+                    </p>
                   </CardContent>
                 </Card>
               </div>
