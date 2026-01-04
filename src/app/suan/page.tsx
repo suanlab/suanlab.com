@@ -3,7 +3,7 @@ import { GraduationCap, Building, Mail, Phone, MapPin, Check, Globe, Instagram, 
 import { academicActivities, journalMemberships, journalReviews, journalReviewStats, conferenceReviews, advisoryActivities, activityCategories } from '@/data/academic-activities';
 import { awards, awardStats, awardCategories } from '@/data/awards';
 import { Trophy } from 'lucide-react';
-import { visitedCountries, overseasExperiences, overseasStats, continentColors } from '@/data/overseas-experiences';
+import { visitedCountries, overseasExperiences, overseasStats } from '@/data/overseas-experiences';
 import { networkCategories, networkStats } from '@/data/networks';
 
 // X (formerly Twitter) icon
@@ -216,7 +216,7 @@ export default function SuanPage() {
                             {countries.map((country) => (
                               <span
                                 key={country.code}
-                                className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs ${continentColors[continent]}`}
+                                className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs bg-muted text-foreground"
                                 title={country.name}
                               >
                                 <span>{country.flag}</span>
