@@ -3,7 +3,7 @@ title: "딥러닝 한번에 끝내기 with PyTorch"
 subtitle: "Deep Learning with PyTorch"
 author: "이수안"
 date: "2024-04-01"
-image: "/assets/images/lecture/ai.jpg"
+image: "/assets/images/books/deep-learning-pytorch.jpg"
 ---
 
 ## 소개

@@ -3,7 +3,7 @@ title: "데이터 처리 및 시각화 한번에 끝내기"
 subtitle: "Data Science with Python"
 author: "이수안"
 date: "2024-02-01"
-image: "/assets/images/lecture/datascience.jpg"
+image: "/assets/images/books/data-science-python.jpg"
 ---
 
 ## 소개

@@ -3,7 +3,7 @@ title: "오디오 신호 처리부터 음성 인식 생성까지 한번에 끝�
 subtitle: "Audio Signal Processing to Speech Recognition and Generation"
 author: "이수안"
 date: "2024-07-01"
-image: "/assets/images/lecture/audio.jpg"
+image: "/assets/images/books/audio-speech-processing.jpg"
 ---
 
 ## 소개

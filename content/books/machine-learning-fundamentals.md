@@ -3,7 +3,7 @@ title: "머신러닝 한번에 끝내기"
 subtitle: "Machine Learning Fundamentals"
 author: "이수안"
 date: "2024-03-01"
-image: "/assets/images/lecture/deeplearning.jpg"
+image: "/assets/images/books/machine-learning-fundamentals.jpg"
 ---
 
 ## 소개

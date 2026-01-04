@@ -3,7 +3,7 @@ title: "Agentic AI 한번에 끝내기"
 subtitle: "Building AI Agents from Scratch"
 author: "이수안"
 date: "2024-08-01"
-image: "/assets/images/lecture/ai.jpg"
+image: "/assets/images/books/agentic-ai.jpg"
 ---
 
 ## 소개

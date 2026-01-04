@@ -3,7 +3,7 @@ title: "이미지 처리부터 컴퓨터 비전까지 한번에 끝내기"
 subtitle: "Image Processing to Computer Vision"
 author: "이수안"
 date: "2024-06-01"
-image: "/assets/images/lecture/cv.jpg"
+image: "/assets/images/books/computer-vision.jpg"
 ---
 
 ## 소개

@@ -3,7 +3,7 @@ title: "파이썬 프로그래밍 한번에 끝내기"
 subtitle: "Python Programming Basics"
 author: "이수안"
 date: "2024-01-01"
-image: "/assets/images/lecture/python.jpg"
+image: "/assets/images/books/python-programming-basics.jpg"
 ---
 
 ## 소개
