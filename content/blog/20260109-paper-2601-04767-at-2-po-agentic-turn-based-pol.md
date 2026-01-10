@@ -1,5 +1,5 @@
 ---
-title: "[논문 리뷰] AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search"
+title: "[논문 리뷰] AT²PO: Agentic Turn-based Policy Optimization via Tree Search"
 date: "2026-01-09"
 excerpt: "LLM agents have emerged as powerful systems for tackling multi-turn tasks by interleaving internal reasoning and external tool interactions. Agentic Reinforcement Learning has recently drawn significa..."
 category: "Paper Review"
@@ -7,17 +7,17 @@ tags: ["Paper Review","cs.AI","cs.CL","cs.AI"]
 thumbnail: "/assets/images/blog/20260109-paper-2601-04767-at-2-po-agentic-turn-based-pol.jpg"
 ---
 
-# [논문 리뷰] AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search
+# [논문 리뷰] AT²PO: Agentic Turn-based Policy Optimization via Tree Search
 
 ## TL;DR
 
-다중 턴 기반의 에이전트 강화 학습(Agentic Reinforcement Learning, RL)에서 탐색 효율성과 정책 최적화를 개선하기 위해 제안된 **AT$^2$PO**는 전략적 탐색을 위한 **Entropy-Guided Tree Expansion**과 세밀한 보상 전파를 위한 **Turn-wise Credit Assignment**를 도입합니다. 이 방법론은 턴 수준의 정책 최적화를 통해 에이전트 상호작용의 자연스러운 결정 단위에 맞춘 **Agentic Turn-based Policy Optimization (ATPO)**를 제안하며, 실험 결과 기존의 강력한 기준선을 초과하는 성능을 보였습니다. 특히, 다중 홉 QA에서 뛰어난 성능 향상을 보여주며, 언어 모델의 구성성(compositionality) 격차를 줄이는 데 기여합니다.
+다중 턴 기반의 에이전트 강화 학습(Agentic Reinforcement Learning, RL)에서 탐색 효율성과 정책 최적화를 개선하기 위해 제안된 **AT²PO**는 전략적 탐색을 위한 **Entropy-Guided Tree Expansion**과 세밀한 보상 전파를 위한 **Turn-wise Credit Assignment**를 도입합니다. 이 방법론은 턴 수준의 정책 최적화를 통해 에이전트 상호작용의 자연스러운 결정 단위에 맞춘 **Agentic Turn-based Policy Optimization (ATPO)**를 제안하며, 실험 결과 기존의 강력한 기준선을 초과하는 성능을 보였습니다. 특히, 다중 홉 QA에서 뛰어난 성능 향상을 보여주며, 언어 모델의 구성성(compositionality) 격차를 줄이는 데 기여합니다.
 
 ## 연구 배경 및 동기
 
 최근 인공지능 분야에서는 다중 턴 기반의 작업을 처리할 수 있는 에이전트의 중요성이 부각되고 있습니다. 이러한 에이전트는 내부적으로 복잡한 추론을 수행하고 외부 도구와 상호작용하여 문제를 해결합니다. 그러나 기존의 강화 학습 방법론은 탐색의 다양성이 제한적이며, 보상이 희소하게 분포되어 있어 효과적인 학습을 방해합니다. 특히, 정책 최적화가 에이전트의 자연스러운 결정 단위와 잘 맞지 않는 경우가 많아 성능 저하를 초래할 수 있습니다.
 
-본 연구는 이러한 한계를 극복하기 위해 **AT$^2$PO**라는 새로운 프레임워크를 제안합니다. 이 프레임워크는 다중 턴 에이전트 강화 학습에서 발생하는 탐색의 비효율성과 정책 최적화의 불안정성을 해결하는 데 초점을 맞추고 있습니다. 특히, 언어 모델의 구성성 격차를 줄이기 위한 강화 학습 기반의 최적화 기법을 도입하여, 복잡한 언어 구조를 이해하고 생성하는 능력을 향상시키고자 합니다.
+본 연구는 이러한 한계를 극복하기 위해 **AT²PO**라는 새로운 프레임워크를 제안합니다. 이 프레임워크는 다중 턴 에이전트 강화 학습에서 발생하는 탐색의 비효율성과 정책 최적화의 불안정성을 해결하는 데 초점을 맞추고 있습니다. 특히, 언어 모델의 구성성 격차를 줄이기 위한 강화 학습 기반의 최적화 기법을 도입하여, 복잡한 언어 구조를 이해하고 생성하는 능력을 향상시키고자 합니다.
 
 ## 관련 연구
 
@@ -33,7 +33,7 @@ thumbnail: "/assets/images/blog/20260109-paper-2601-04767-at-2-po-agentic-turn-b
 
 5. **Multi-hop QA Models**: 복잡한 질문에 대한 답변을 도출하기 위해 여러 단계를 거쳐 추론하는 모델로, 다중 턴 상호작용에서의 성능을 개선하는 데 기여하였습니다.
 
-본 논문은 이러한 선행 연구들과 차별화된 접근법으로, 다중 턴 기반의 에이전트 강화 학습에서의 탐색 효율성과 정책 최적화를 동시에 개선하는 **AT$^2$PO**를 제안합니다. 이는 기존 방법론의 한계를 극복하고, 새로운 가능성을 제시합니다.
+본 논문은 이러한 선행 연구들과 차별화된 접근법으로, 다중 턴 기반의 에이전트 강화 학습에서의 탐색 효율성과 정책 최적화를 동시에 개선하는 **AT²PO**를 제안합니다. 이는 기존 방법론의 한계를 극복하고, 새로운 가능성을 제시합니다.
 
 | 연구 | 주요 기여 | 한계점 | 본 논문과의 차별점 |
 |------|----------|--------|-------------------|
@@ -55,7 +55,7 @@ thumbnail: "/assets/images/blog/20260109-paper-2601-04767-at-2-po-agentic-turn-b
 
 ## 제안 방법론
 
-**AT$^2$PO**는 다중 턴 에이전트 강화 학습에서의 탐색 효율성과 정책 최적화를 개선하기 위한 통합 프레임워크입니다. 이 방법론의 핵심 아이디어는 불확실성이 높은 턴에서의 전략적 탐색과 세밀한 보상 전파를 통해 에이전트의 성능을 극대화하는 것입니다.
+**AT²PO**는 다중 턴 에이전트 강화 학습에서의 탐색 효율성과 정책 최적화를 개선하기 위한 통합 프레임워크입니다. 이 방법론의 핵심 아이디어는 불확실성이 높은 턴에서의 전략적 탐색과 세밀한 보상 전파를 통해 에이전트의 성능을 극대화하는 것입니다.
 
 ### 모델 아키텍처
 
@@ -141,7 +141,7 @@ Ablation study를 통해 각 구성 요소의 기여도를 분석하였습니다
 
 ## 결론
 
-본 논문은 다중 턴 에이전트 강화 학습에서의 탐색 효율성과 정책 최적화를 개선하기 위한 **AT$^2$PO** 프레임워크를 제안하였습니다. Entropy-Guided Tree Expansion과 Turn-wise Credit Assignment를 통해 불확실성이 높은 영역을 효과적으로 탐색하고, 보상 신호의 희소성을 극복하여 정책 최적화의 안정성을 높였습니다. 다양한 벤치마크에서의 실험을 통해 제안된 방법론의 효과를 입증하였으며, 이는 언어 모델의 구성성 격차를 줄이는 데 기여합니다.
+본 논문은 다중 턴 에이전트 강화 학습에서의 탐색 효율성과 정책 최적화를 개선하기 위한 **AT²PO** 프레임워크를 제안하였습니다. Entropy-Guided Tree Expansion과 Turn-wise Credit Assignment를 통해 불확실성이 높은 영역을 효과적으로 탐색하고, 보상 신호의 희소성을 극복하여 정책 최적화의 안정성을 높였습니다. 다양한 벤치마크에서의 실험을 통해 제안된 방법론의 효과를 입증하였으며, 이는 언어 모델의 구성성 격차를 줄이는 데 기여합니다.
 
 ## 참고 자료
 
