@@ -62,21 +62,24 @@ RelayLLM은 두 단계의 훈련 프레임워크를 통해 모델이 독립성�
 ### 핵심 수식
 
 1. **토큰 생성 및 호출 수식**:
-   $$ T_{\text{next}} = \begin{cases} 
-   \text{SLM}(T_{\text{prev}}) & \text{if } \text{confidence} > \theta \\
-   \text{LLM}(T_{\text{prev}}) & \text{otherwise}
-   \end{cases} $$
+
+$$T_{\text{next}} = \begin{cases} \text{SLM}(T_{\text{prev}}) & \text{if } \text{confidence} > \theta \\ \text{LLM}(T_{\text{prev}}) & \text{otherwise} \end{cases}$$
+
    - $T_{\text{next}}$: 다음 생성할 토큰
    - $T_{\text{prev}}$: 이전까지 생성된 토큰 시퀀스
    - $\theta$: SLM이 독립적으로 추론 가능한 임계값
 
 2. **GRPO 알고리즘**:
-   $$ \text{Policy}_{\text{new}} = \text{Policy}_{\text{old}} + \alpha \cdot \nabla \text{Reward} $$
+
+$$\text{Policy}_{\text{new}} = \text{Policy}_{\text{old}} + \alpha \cdot \nabla \text{Reward}$$
+
    - $\alpha$: 학습률
    - $\nabla \text{Reward}$: 그룹 평균과 비교한 정책의 보상 변화
 
 3. **비용 절감 수식**:
-   $$ \text{Cost Reduction} = 1 - \frac{\text{Tokens called by LLM}}{\text{Total Tokens Generated}} $$
+
+$$\text{Cost Reduction} = 1 - \frac{\text{Tokens called by LLM}}{\text{Total Tokens Generated}}$$
+
    - LLM 호출 토큰 비율을 최소화하여 비용 절감을 극대화
 
 RelayLLM은 이러한 수식을 통해 LLM과 SLM 간의 협력을 최적화하고, 효율적인 추론을 가능하게 합니다.
