@@ -236,25 +236,7 @@
 
 /* Images */
 .blog-content img {
-  @apply rounded-lg my-6 mx-auto shadow-lg;
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Ensure figures and image containers stay within bounds */
-.blog-content figure {
-  @apply my-6 mx-0;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.blog-content figure img {
-  @apply my-0;
-}
-
-.blog-content figcaption {
-  @apply text-center text-sm text-muted-foreground mt-2;
+  @apply rounded-lg my-6 mx-auto max-w-full shadow-lg;
 }
 
 /* Strong and Em */
@@ -303,13 +285,10 @@
 
 /* Block equations - centered with nice styling */
 .blog-content .math-block {
-  @apply my-8 py-6 px-4 text-center;
+  @apply my-8 py-6 px-4 text-center overflow-x-auto;
   background: linear-gradient(135deg, hsl(var(--muted) / 0.3), hsl(var(--muted) / 0.1));
   border-radius: 0.75rem;
   border: 1px solid hsl(var(--border) / 0.5);
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
 }
 
 .blog-content .math-block p {
@@ -317,33 +296,12 @@
 }
 
 .blog-content .math-block .katex {
-  font-size: 1.1em;
+  font-size: 1.15em;
 }
 
 /* Inline math styling */
 .blog-content .katex {
-  font-size: 1em;
-}
-
-/* KaTeX display equations - ensure they fit within column */
-.blog-content .katex-display {
-  @apply my-6;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-.blog-content .katex-display > .katex {
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  text-align: center;
-}
-
-/* Scale down large equations */
-.blog-content .katex-display > .katex > .katex-html {
-  max-width: 100%;
+  font-size: 1.05em;
 }
 
 /* Math in dark mode - ensure visibility */
@@ -378,75 +336,8 @@
   }
 
   .blog-content .math-block .katex {
-    font-size: 0.9em;
+    font-size: 0.95em;
   }
-
-  .blog-content .katex-display > .katex {
-    font-size: 0.85em;
-  }
-}
-
-/* Algorithm Styling (LaTeX algorithm2e / algorithmic style) */
-.blog-content .algorithm {
-  @apply my-8 p-6 rounded-lg border;
-  background: linear-gradient(135deg, hsl(var(--muted) / 0.2), hsl(var(--background)));
-  border-color: hsl(var(--border));
-}
-
-.blog-content .algorithm-header {
-  @apply font-bold text-lg mb-4 pb-2 border-b border-border flex items-center gap-2;
-}
-
-.blog-content .algorithm-header::before {
-  content: 'Algorithm';
-  @apply text-primary font-semibold;
-}
-
-.blog-content .algorithm-body {
-  @apply font-mono text-sm leading-relaxed;
-}
-
-.blog-content .algorithm-line {
-  @apply py-1 pl-4 relative;
-}
-
-.blog-content .algorithm-line-number {
-  @apply absolute left-0 text-muted-foreground text-xs w-4 text-right;
-}
-
-.blog-content .algorithm-keyword {
-  @apply font-bold text-primary;
-}
-
-.blog-content .algorithm-comment {
-  @apply text-muted-foreground italic;
-}
-
-.blog-content .algorithm-indent-1 { @apply pl-8; }
-.blog-content .algorithm-indent-2 { @apply pl-12; }
-.blog-content .algorithm-indent-3 { @apply pl-16; }
-.blog-content .algorithm-indent-4 { @apply pl-20; }
-
-/* Pseudocode block styling */
-.blog-content pre.algorithm,
-.blog-content pre[class*="language-algorithm"],
-.blog-content pre[class*="language-pseudo"] {
-  @apply my-8 p-6 rounded-lg;
-  background: linear-gradient(135deg, hsl(var(--muted) / 0.3), hsl(var(--background)));
-  border: 1px solid hsl(var(--border));
-  font-family: 'Fira Code', 'JetBrains Mono', monospace;
-  font-size: 0.9em;
-  line-height: 1.8;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-/* Dark mode algorithm styling */
-.dark .blog-content .algorithm,
-.dark .blog-content pre.algorithm,
-.dark .blog-content pre[class*="language-algorithm"],
-.dark .blog-content pre[class*="language-pseudo"] {
-  background: linear-gradient(135deg, hsl(var(--muted) / 0.4), hsl(var(--background)));
 }
 
 /* Print styles */
