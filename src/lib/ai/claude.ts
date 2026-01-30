@@ -71,7 +71,7 @@ export async function generateWithGemini(
   }
 
   const {
-    model = 'gemini-2.0-flash',
+    model = 'gemini-2.5-pro',
     maxTokens = 4096,
     temperature = 0.7,
     systemPrompt,
