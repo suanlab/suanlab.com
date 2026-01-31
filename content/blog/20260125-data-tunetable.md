@@ -4,7 +4,7 @@ date: "2026-01-25"
 excerpt: "데이터 과학과 인공지능(AI) 프로젝트를 진행하다 보면 모델의 성능을 최적화하는 것이 가장 큰 도전 중 하나입니다. 어떤 알고리즘을 사용하든, 적절한 하이퍼파라미터(hyperparameter)를 찾는 과정은 모델의 성패를 좌우할 수 있습니다. 이 글에서는 그러한 최적화 문제를 해결하는 데 도움을 줄 수 있는 도구인 tuneTable에 대해 소개하고자 합니다..."
 category: "General"
 tags: []
-thumbnail: "/assets/images/blog/default.jpg"
+thumbnail: "/assets/images/blog/20260125-data-tunetable.jpg"
 ---
 
 # 데이터 과학 프로젝트의 성능을 높이는 방법: tuneTable

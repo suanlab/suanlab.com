@@ -4,7 +4,7 @@ date: "2026-01-25"
 excerpt: "Reasoning is a fundamental cognitive process underlying inference, problem-solving, and decision-making. While large language models (LLMs) demonstrate strong reasoning capabilities in closed-world se..."
 category: "Paper Review"
 tags: ["Paper Review","cs.AI","cs.CL","cs.AI"]
-thumbnail: "/assets/images/blog/default.jpg"
+thumbnail: "/assets/images/blog/20260125-paper-2601-12538-agentic-reasoning.jpg"
 ---
 
 # [논문 리뷰] Agentic Reasoning for Large Language Models

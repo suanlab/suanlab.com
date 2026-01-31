@@ -4,7 +4,7 @@ date: "2026-01-25"
 excerpt: "오늘날 데이터 과학과 인공지능(AI)은 다양한 산업과 학문 분야에서 혁신을 주도하고 있습니다. 이러한 변화 속에서 데이터 모델링과 예측은 매우 중요한 역할을 하고 있으며, 특히 테이블 형식의 데이터를 다루는 기술은 많은 주목을 받고 있습니다. 이번 글에서는 TabPFN이라는 혁신적인 접근 방식을 소개하고, 이 기술이 데이터 과학의 미래에 어떻게 기여할 수 ..."
 category: "General"
 tags: []
-thumbnail: "/assets/images/blog/default.jpg"
+thumbnail: "/assets/images/blog/20260125-tabpfn-data.jpg"
 ---
 
 # TabPFN: 데이터 과학의 새로운 패러다임
