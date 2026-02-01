@@ -96,6 +96,20 @@ export interface QTByBook {
 }
 
 /**
+ * Sanitize filename to create URL-safe slug
+ */
+function sanitizeSlug(filename: string): string {
+  return filename
+    .replace(/\.md$/, '')
+    .replace(/\s+/g, '-')
+    .replace(/[()[\]{}]/g, '') // Remove brackets and parentheses
+    .replace(/[^\w가-힣-]/g, '') // Keep only alphanumeric, Korean, hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single
+    .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
+    .toLowerCase();
+}
+
+/**
  * Parse QT file content
  */
 function parseQTContent(filename: string, content: string): QTEntry {
@@ -106,8 +120,8 @@ function parseQTContent(filename: string, content: string): QTEntry {
   const date = filenameMatch?.[1] || '';
   const title = filenameMatch?.[2] || lines[0]?.trim() || 'Untitled';
 
-  // Generate slug
-  const slug = filename.replace(/\.md$/, '').replace(/\s+/g, '-').toLowerCase();
+  // Generate URL-safe slug
+  const slug = sanitizeSlug(filename);
 
   // Find Bible reference (e.g., "(창세기 1장 1~5절)")
   let bibleBook: BibleBook | undefined;
@@ -241,7 +255,7 @@ export function getQTBySlug(slug: string): QTEntry | null {
   const files = fs.readdirSync(QT_DIR).filter(f => f.endsWith('.md'));
 
   for (const filename of files) {
-    const testSlug = filename.replace(/\.md$/, '').replace(/\s+/g, '-').toLowerCase();
+    const testSlug = sanitizeSlug(filename);
     if (testSlug === slug) {
       const content = fs.readFileSync(path.join(QT_DIR, filename), 'utf-8');
       return parseQTContent(filename, content);
@@ -256,7 +270,7 @@ export function getQTBySlug(slug: string): QTEntry | null {
  */
 export function getQTSlugs(): string[] {
   const files = fs.readdirSync(QT_DIR).filter(f => f.endsWith('.md'));
-  return files.map(f => f.replace(/\.md$/, '').replace(/\s+/g, '-').toLowerCase());
+  return files.map(f => sanitizeSlug(f));
 }
 
 /**
