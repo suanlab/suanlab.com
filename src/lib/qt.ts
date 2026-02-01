@@ -95,18 +95,62 @@ export interface QTByBook {
   entries: QTEntry[];
 }
 
+// Cache for filename to slug mapping
+let slugCache: Map<string, string> | null = null;
+
 /**
- * Sanitize filename to create URL-safe slug
+ * Build slug cache for all files (handles duplicates with indices)
  */
-function sanitizeSlug(filename: string): string {
-  return filename
-    .replace(/\.md$/, '')
-    .replace(/\s+/g, '-')
-    .replace(/[()[\]{}]/g, '') // Remove brackets and parentheses
-    .replace(/[^\w가-힣-]/g, '') // Keep only alphanumeric, Korean, hyphens
-    .replace(/-+/g, '-') // Replace multiple hyphens with single
-    .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
-    .toLowerCase();
+function buildSlugCache(): Map<string, string> {
+  if (slugCache) return slugCache;
+
+  const files = fs.readdirSync(QT_DIR).filter(f => f.endsWith('.md'));
+  const dateCount: Map<string, number> = new Map();
+  const cache: Map<string, string> = new Map();
+
+  // Sort files to ensure consistent ordering
+  files.sort();
+
+  for (const filename of files) {
+    const match = filename.match(/^(\d{4}-\d{2}-\d{2})/);
+    if (match) {
+      const date = match[1];
+      const count = dateCount.get(date) || 0;
+
+      // Generate slug: date only for first entry, date-N for duplicates
+      const slug = count === 0 ? date : `${date}-${count + 1}`;
+      cache.set(filename, slug);
+      dateCount.set(date, count + 1);
+    } else {
+      // Fallback for files without date prefix
+      const slug = filename.replace(/\.md$/, '').replace(/[^a-zA-Z0-9-]/g, '-').toLowerCase();
+      cache.set(filename, slug);
+    }
+  }
+
+  slugCache = cache;
+  return cache;
+}
+
+/**
+ * Get slug for a filename
+ */
+function getSlugForFilename(filename: string): string {
+  const cache = buildSlugCache();
+  return cache.get(filename) || filename.replace(/\.md$/, '');
+}
+
+/**
+ * Get filename for a slug
+ */
+function getFilenameForSlug(slug: string): string | null {
+  const cache = buildSlugCache();
+  for (const [filename, cachedSlug] of cache) {
+    if (cachedSlug === slug) {
+      return filename;
+    }
+  }
+  return null;
 }
 
 /**
@@ -120,8 +164,8 @@ function parseQTContent(filename: string, content: string): QTEntry {
   const date = filenameMatch?.[1] || '';
   const title = filenameMatch?.[2] || lines[0]?.trim() || 'Untitled';
 
-  // Generate URL-safe slug
-  const slug = sanitizeSlug(filename);
+  // Generate URL-safe ASCII slug
+  const slug = getSlugForFilename(filename);
 
   // Find Bible reference (e.g., "(창세기 1장 1~5절)")
   let bibleBook: BibleBook | undefined;
@@ -252,25 +296,19 @@ export function getQTByBibleBook(): QTByBook[] {
  * Get a single QT entry by slug
  */
 export function getQTBySlug(slug: string): QTEntry | null {
-  const files = fs.readdirSync(QT_DIR).filter(f => f.endsWith('.md'));
+  const filename = getFilenameForSlug(slug);
+  if (!filename) return null;
 
-  for (const filename of files) {
-    const testSlug = sanitizeSlug(filename);
-    if (testSlug === slug) {
-      const content = fs.readFileSync(path.join(QT_DIR, filename), 'utf-8');
-      return parseQTContent(filename, content);
-    }
-  }
-
-  return null;
+  const content = fs.readFileSync(path.join(QT_DIR, filename), 'utf-8');
+  return parseQTContent(filename, content);
 }
 
 /**
  * Get QT slugs for static generation
  */
 export function getQTSlugs(): string[] {
-  const files = fs.readdirSync(QT_DIR).filter(f => f.endsWith('.md'));
-  return files.map(f => sanitizeSlug(f));
+  const cache = buildSlugCache();
+  return Array.from(cache.values());
 }
 
 /**
