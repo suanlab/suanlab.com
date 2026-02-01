@@ -167,13 +167,17 @@ function parseQTContent(filename: string, content: string): QTEntry {
   // Generate URL-safe ASCII slug
   const slug = getSlugForFilename(filename);
 
-  // Find Bible reference (e.g., "(창세기 1장 1~5절)")
+  // Find Bible reference (e.g., "(창세기 1장 1~5절)" or "(시편 23편)" or "(마태복음 1:23)")
   let bibleBook: BibleBook | undefined;
   let chapter: number | undefined;
   let verses: string | undefined;
   let bibleReference: string | undefined;
 
-  const refPattern = /\(([가-힣]+)\s*(\d+)장\s*([\d~\-,절]+)?\)/;
+  // Match patterns:
+  // - "(창세기 1장 1~5절)" - Korean chapter format
+  // - "(시편 23편 1절)" - Psalms with "편"
+  // - "(마태복음 1:23)" - Colon format
+  const refPattern = /\(([가-힣]+)\s*(\d+)(?:[장편:])\s*([\d~\-,:절]+)?\)?/;
   for (const line of lines) {
     const match = line.match(refPattern);
     if (match) {
@@ -182,11 +186,20 @@ function parseQTContent(filename: string, content: string): QTEntry {
       chapter = parseInt(match[2]);
       verses = match[3]?.replace(/절/g, '');
 
-      // Find matching Bible book
+      // Find matching Bible book (exact match first, then prefix match)
       for (const [name] of Object.entries(BIBLE_BOOKS)) {
-        if (bookName === name || bookName.startsWith(name.slice(0, 2))) {
+        if (bookName === name) {
           bibleBook = name as BibleBook;
           break;
+        }
+      }
+      // If no exact match, try prefix matching
+      if (!bibleBook) {
+        for (const [name] of Object.entries(BIBLE_BOOKS)) {
+          if (name.startsWith(bookName) || bookName.startsWith(name)) {
+            bibleBook = name as BibleBook;
+            break;
+          }
         }
       }
       break;
