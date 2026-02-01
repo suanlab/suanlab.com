@@ -1,7 +1,25 @@
 import fs from 'fs';
 import path from 'path';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
 
 const QT_DIR = path.join(process.cwd(), 'content/qt');
+
+/**
+ * Process markdown content to HTML
+ */
+async function processMarkdown(content: string): Promise<string> {
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .process(content);
+  return result.toString();
+}
 
 // 성경 책 순서 (구약 39권 + 신약 27권)
 export const BIBLE_BOOKS = {
@@ -87,6 +105,11 @@ export interface QTEntry {
   bibleReference?: string;
   content: string;
   reflection: string;
+}
+
+export interface QTEntryWithHtml extends QTEntry {
+  contentHtml: string;
+  reflectionHtml: string;
 }
 
 export interface QTByBook {
@@ -314,6 +337,25 @@ export function getQTBySlug(slug: string): QTEntry | null {
 
   const content = fs.readFileSync(path.join(QT_DIR, filename), 'utf-8');
   return parseQTContent(filename, content);
+}
+
+/**
+ * Get a single QT entry by slug with HTML content
+ */
+export async function getQTBySlugWithHtml(slug: string): Promise<QTEntryWithHtml | null> {
+  const entry = getQTBySlug(slug);
+  if (!entry) return null;
+
+  const [contentHtml, reflectionHtml] = await Promise.all([
+    processMarkdown(entry.content),
+    processMarkdown(entry.reflection),
+  ]);
+
+  return {
+    ...entry,
+    contentHtml,
+    reflectionHtml,
+  };
 }
 
 /**

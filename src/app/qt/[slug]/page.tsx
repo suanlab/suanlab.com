@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, Book, BookOpen, Calendar, Home } from 'lucide-re
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { getQTBySlug, getQTSlugs, getAllQTEntries, BIBLE_BOOKS, type BibleBook } from '@/lib/qt';
+import { getQTBySlug, getQTBySlugWithHtml, getQTSlugs, getAllQTEntries, BIBLE_BOOKS, type BibleBook } from '@/lib/qt';
 import type { Metadata } from 'next';
 
 interface Props {
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function QTEntryPage({ params }: Props) {
   const { slug } = await params;
-  const entry = getQTBySlug(slug);
+  const entry = await getQTBySlugWithHtml(slug);
 
   if (!entry) {
     notFound();
@@ -103,16 +103,17 @@ export default async function QTEntryPage({ params }: Props) {
         </div>
 
         {/* Bible Verses */}
-        {entry.content && (
+        {entry.contentHtml && (
           <Card className="mb-8 bg-amber-50/50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800">
             <CardContent className="p-6">
               <div className="flex items-center gap-2 mb-4 text-amber-700 dark:text-amber-400">
                 <BookOpen className="h-5 w-5" />
                 <span className="font-semibold">본문 말씀</span>
               </div>
-              <div className="space-y-2 text-foreground/90 leading-relaxed whitespace-pre-line font-serif">
-                {entry.content}
-              </div>
+              <div
+                className="prose prose-amber dark:prose-invert max-w-none leading-relaxed font-serif"
+                dangerouslySetInnerHTML={{ __html: entry.contentHtml }}
+              />
             </CardContent>
           </Card>
         )}
@@ -124,9 +125,10 @@ export default async function QTEntryPage({ params }: Props) {
               <span className="text-lg">✍️</span>
               <span className="font-semibold">묵상</span>
             </div>
-            <div className="prose prose-lg dark:prose-invert max-w-none leading-relaxed whitespace-pre-line">
-              {entry.reflection}
-            </div>
+            <div
+              className="prose prose-lg dark:prose-invert max-w-none leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: entry.reflectionHtml }}
+            />
           </CardContent>
         </Card>
 
