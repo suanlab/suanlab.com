@@ -60,6 +60,9 @@ export async function generateWithOpenAI(
 
 /**
  * Generate text using Gemini API
+ * Note: Gemini 2.5 Pro is a "thinking" model where internal reasoning tokens
+ * are counted against maxOutputTokens. We need to set maxOutputTokens much higher
+ * than the desired output length to accommodate thinking overhead.
  */
 export async function generateWithGemini(
   prompt: string,
@@ -77,6 +80,8 @@ export async function generateWithGemini(
     systemPrompt,
   } = options;
 
+  const isThinkingModel = model.includes('2.5');
+
   const contents = [];
 
   if (systemPrompt) {
@@ -91,20 +96,45 @@ export async function generateWithGemini(
     });
   }
 
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents,
-        generationConfig: {
-          maxOutputTokens: maxTokens,
-          temperature,
-        }
-      })
-    }
-  );
+  // For thinking models, maxOutputTokens includes both thinking and output tokens.
+  // Set it to 65536 (max) to ensure sufficient room for both.
+  const effectiveMaxTokens = isThinkingModel
+    ? Math.max(maxTokens * 3, 65536)
+    : maxTokens;
+
+  const generationConfig: Record<string, unknown> = {
+    maxOutputTokens: effectiveMaxTokens,
+    temperature,
+  };
+
+  // For thinking models, set a thinking budget to control reasoning overhead
+  if (isThinkingModel) {
+    generationConfig.thinkingConfig = {
+      thinkingBudget: 8192,
+    };
+  }
+
+  // Set a 5-minute timeout for thinking models (they take longer)
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), isThinkingModel ? 300000 : 120000);
+
+  let response: Response;
+  try {
+    response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents,
+          generationConfig,
+        }),
+        signal: controller.signal,
+      }
+    );
+  } finally {
+    clearTimeout(timeout);
+  }
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -112,10 +142,20 @@ export async function generateWithGemini(
   }
 
   const data = await response.json();
-  const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+  // Extract text content from parts (skip thinking parts if present)
+  const parts = data.candidates?.[0]?.content?.parts || [];
+  const textParts = parts.filter((p: { text?: string; thought?: boolean }) => p.text && !p.thought);
+  const content = textParts.length > 0
+    ? textParts.map((p: { text: string }) => p.text).join('')
+    : parts[0]?.text;
 
   if (!content) {
-    throw new Error('No content in Gemini response');
+    const finishReason = data.candidates?.[0]?.finishReason;
+    const thoughtTokens = data.usageMetadata?.thoughtsTokenCount || 0;
+    throw new Error(
+      `No content in Gemini response (finishReason: ${finishReason}, thoughtTokens: ${thoughtTokens})`
+    );
   }
 
   return content;
@@ -161,9 +201,9 @@ export async function generateWithDualAI(
     return generateWithGemini(prompt, options);
   }
 
-  // Check for refusal or too short content
-  if (!initialDraft || initialDraft.length < 100 || isRefusalMessage(initialDraft)) {
-    console.log('⚠️ OpenAI 거부 또는 응답 부족, Gemini로 대체합니다...');
+  // Check for refusal or too short content (paper reviews should be 3000+ words)
+  if (!initialDraft || initialDraft.length < 1000 || isRefusalMessage(initialDraft)) {
+    console.log(`⚠️ OpenAI 거부 또는 응답 부족 (${initialDraft?.length || 0} chars), Gemini로 대체합니다...`);
     return generateWithGemini(prompt, { ...options, maxTokens: 16384 });
   }
 
