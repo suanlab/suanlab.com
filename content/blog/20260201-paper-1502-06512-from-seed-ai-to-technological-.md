@@ -7,10 +7,6 @@ tags: ["Paper Review","cs.AI","cs.AI"]
 thumbnail: "/assets/images/blog/20260201-paper-1502-06512-from-seed-ai-to-technological-.jpg"
 ---
 
-네, 기술 블로그 편집자로서 제공해주신 초안을 검토하고 보강하겠습니다. 지침에 따라 정확성, 예제, 명확성, 최신 정보, 구조를 개선하여 품질을 높이는 데 집중하겠습니다.
-
----
-
 # [논문 리뷰] From Seed AI to Technological Singularity via Recursively Self-Improving Software
 
 ## TL;DR

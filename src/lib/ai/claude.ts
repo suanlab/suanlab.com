@@ -161,6 +161,45 @@ export async function generateWithGemini(
   return content;
 }
 
+function stripAIPreamble(content: string): string {
+  let cleaned = content.trim();
+
+  if (cleaned.startsWith('```markdown')) {
+    cleaned = cleaned.replace(/^```markdown\s*\n?/, '').replace(/\n?```\s*$/, '');
+  } else if (cleaned.startsWith('```')) {
+    cleaned = cleaned.replace(/^```\s*\n?/, '').replace(/\n?```\s*$/, '');
+  }
+
+  const headingIndex = cleaned.search(/^#\s+/m);
+  if (headingIndex > 0) {
+    const before = cleaned.slice(0, headingIndex).trim();
+    const preamblePatterns = [
+      '하겠습니다',
+      '검토하고',
+      '보강하',
+      '편집자',
+      '작성하겠',
+      '알겠습니다',
+      '집중하겠',
+      '네,',
+    ];
+    const looksLikePreamble = before.length < 500 &&
+      preamblePatterns.some(p => before.includes(p));
+    if (looksLikePreamble) {
+      cleaned = cleaned.slice(headingIndex);
+    }
+  }
+
+  cleaned = cleaned.replace(/^(\s*---\s*\n)+/, '');
+
+  const promptWordCountGuide = /\s*\(\d+[-~]?\d*단어[^\)]*\)/g;
+  const promptSentenceCountGuide = /\s*\(\d+[-~]?\d*문장[^\)]*\)/g;
+  cleaned = cleaned.replace(promptWordCountGuide, '');
+  cleaned = cleaned.replace(promptSentenceCountGuide, '');
+
+  return cleaned.trim();
+}
+
 /**
  * Check if content is a refusal message
  */
@@ -212,7 +251,7 @@ export async function generateWithDualAI(
 
   try {
     // Step 2: Enhance with Gemini
-    const enhancementPrompt = `당신은 기술 블로그 편집자입니다. 다음 블로그 포스트 초안을 검토하고 보강해주세요.
+    const enhancementPrompt = `다음 블로그 포스트 초안을 검토하고 보강해주세요.
 
 ## 보강 지침:
 1. **정확성 검증**: 기술적 내용이 정확한지 확인하고, 필요시 수정
@@ -227,7 +266,9 @@ export async function generateWithDualAI(
 - 불필요하게 내용을 늘리지 말고, 품질 향상에 집중
 - 수식은 반드시 \`$수식$\` (인라인) 또는 \`$$수식$$\` (블록) 형식 사용
 - \`( ... )\` 또는 \`\\( ... \\)\` 형식의 수식은 \`$...$\` 형식으로 변환
-- 결과물은 마크다운 형식의 블로그 포스트만 출력 (메타 설명 없이)
+- **반드시 보강된 마크다운 본문만 바로 출력할 것** (인사말, 설명, 메타 코멘트 등 일체 금지)
+- "네, ~하겠습니다", "알겠습니다" 등의 응답 메시지를 절대 포함하지 말 것
+- 첫 줄은 반드시 \`#\` 제목으로 시작할 것
 
 ## 원본 초안:
 ${initialDraft}
@@ -240,7 +281,6 @@ ${initialDraft}
       temperature: 0.5,
     });
 
-    // Validate enhanced content - check if Gemini actually enhanced it
     if (!enhancedContent ||
         enhancedContent.length < 100 ||
         enhancedContent.includes('초안이 제공되지 않았') ||
@@ -249,8 +289,9 @@ ${initialDraft}
       return initialDraft;
     }
 
-    console.log(`✅ Gemini 보강 완료 (${enhancedContent.length} chars)`);
-    return enhancedContent;
+    const finalContent = stripAIPreamble(enhancedContent);
+    console.log(`✅ Gemini 보강 완료 (${finalContent.length} chars)`);
+    return finalContent;
   } catch (error) {
     console.log('⚠️ Gemini 보강 중 오류 발생, OpenAI 초안 사용:', error);
     return initialDraft;

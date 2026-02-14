@@ -7,10 +7,6 @@ tags: ["Paper Review","cs.LG","cs.AI","stat.ML"]
 thumbnail: "/assets/images/blog/20260213-paper-2602-07488-deriving-neural-scaling-laws-f.jpg"
 ---
 
-네, 기술 블로그 편집자로서 제공해주신 초안을 검토하고 보강하겠습니다. 지침에 따라 정확성, 예제, 명확성, 최신 정보, 구조를 개선하여 품질을 높이는 데 집중하겠습니다.
-
----
-
 # [논문 리뷰] 언어의 통계에서 신경망 스케일링 법칙 유도하기 (Deriving Neural Scaling Laws from the statistics of natural language)
 
 ## TL;DR
