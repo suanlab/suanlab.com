@@ -7,6 +7,8 @@ config({ path: path.join(process.cwd(), '.env.local') });
 
 import { App, LogLevel } from '@slack/bolt';
 import { execSync } from 'child_process';
+import { generateFromPaper, savePost as savePaperPost } from './blog/paper-summarizer';
+import { generateFromTopic, savePost as saveTopicPost } from './blog/topic-generator';
 
 const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 const SLACK_SIGNING_SECRET = process.env.SLACK_SIGNING_SECRET;
@@ -119,20 +121,15 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
     });
 
     try {
-      const output = runCommand(`npm run blog:paper -- -a "${arxivId}" -i -y 2>&1`);
+      console.log(`Generating paper review for arXiv: ${arxivId}`);
+      const post = await generateFromPaper({ arxivId, generateImage: true });
+      const filepath = await savePaperPost(post);
 
-      const titleMatch = output.match(/제목: (.+)/);
-      const title = titleMatch ? titleMatch[1] : 'Unknown';
+      console.log(`Saved: ${filepath}`);
 
-      const savedMatch = output.match(/저장 완료: (.+\.md)/);
-      const savedPath = savedMatch ? savedMatch[1] : 'unknown';
-
-      const gitOutput = runCommand(`
-        git add -A && \
-        git commit -m "Add paper review: ${arxivId}" && \
-        git push origin master 2>&1
-      `);
-
+      const gitOutput = runCommand(
+        `git add -A && git commit -m "Add paper review: ${arxivId}" && git push origin master 2>&1`
+      );
       const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
 
       await app.client.chat.postMessage({
@@ -151,7 +148,7 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
             fields: [
               {
                 type: 'mrkdwn',
-                text: `*제목:*\n${title}`
+                text: `*제목:*\n${post.title}`
               },
               {
                 type: 'mrkdwn',
@@ -159,7 +156,7 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
               },
               {
                 type: 'mrkdwn',
-                text: `*파일:*\n\`${path.basename(savedPath)}\``
+                text: `*파일:*\n\`${path.basename(filepath)}\``
               },
               {
                 type: 'mrkdwn',
@@ -170,11 +167,12 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
         ]
       });
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('arXiv paper generation failed:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
       await app.client.chat.postMessage({
         token: SLACK_BOT_TOKEN,
         channel: command.channel_id,
-        text: `:x: 오류 발생: ${errorMessage}`
+        text: `:x: 논문 리뷰 생성 실패\n*오류:* ${errorMessage}`
       });
     }
 
@@ -194,20 +192,15 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
     });
 
     try {
-      const output = runCommand(`npm run blog:paper -- --url "${input}" -i -y 2>&1`);
+      console.log(`Generating paper review from PDF URL: ${input}`);
+      const post = await generateFromPaper({ pdfUrl: input, generateImage: true });
+      const filepath = await savePaperPost(post);
 
-      const titleMatch = output.match(/제목: (.+)/);
-      const title = titleMatch ? titleMatch[1] : 'Unknown';
+      console.log(`Saved: ${filepath}`);
 
-      const savedMatch = output.match(/저장 완료: (.+\.md)/);
-      const savedPath = savedMatch ? savedMatch[1] : 'unknown';
-
-      const gitOutput = runCommand(`
-        git add -A && \
-        git commit -m "Add paper review from PDF" && \
-        git push origin master 2>&1
-      `);
-
+      const gitOutput = runCommand(
+        `git add -A && git commit -m "Add paper review from PDF" && git push origin master 2>&1`
+      );
       const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
 
       await app.client.chat.postMessage({
@@ -226,11 +219,11 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
             fields: [
               {
                 type: 'mrkdwn',
-                text: `*제목:*\n${title}`
+                text: `*제목:*\n${post.title}`
               },
               {
                 type: 'mrkdwn',
-                text: `*파일:*\n\`${path.basename(savedPath)}\``
+                text: `*파일:*\n\`${path.basename(filepath)}\``
               },
               {
                 type: 'mrkdwn',
@@ -245,11 +238,12 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
         ]
       });
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('PDF paper generation failed:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
       await app.client.chat.postMessage({
         token: SLACK_BOT_TOKEN,
         channel: command.channel_id,
-        text: `:x: 오류 발생: ${errorMessage}`
+        text: `:x: 논문 리뷰 생성 실패\n*오류:* ${errorMessage}`
       });
     }
 
@@ -280,17 +274,15 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
     });
 
     try {
-      const output = runCommand(`npm run blog:topic -- -t "${topic}" -c "${category}" -i -y 2>&1`);
+      console.log(`Generating blog post for topic: ${topic} (${category})`);
+      const post = await generateFromTopic({ topic, category, generateImage: true });
+      const filepath = await saveTopicPost(post);
 
-      const savedMatch = output.match(/저장 완료: (.+\.md)/);
-      const savedPath = savedMatch ? savedMatch[1] : 'unknown';
+      console.log(`Saved: ${filepath}`);
 
-      const gitOutput = runCommand(`
-        git add -A && \
-        git commit -m "Add blog: ${topic}" && \
-        git push origin master 2>&1
-      `);
-
+      const gitOutput = runCommand(
+        `git add -A && git commit -m "Add blog: ${topic}" && git push origin master 2>&1`
+      );
       const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
 
       await app.client.chat.postMessage({
@@ -313,26 +305,27 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
               },
               {
                 type: 'mrkdwn',
-                text: `*파일:*\n\`${path.basename(savedPath)}\``
+                text: `*제목:*\n${post.title}`
+              },
+              {
+                type: 'mrkdwn',
+                text: `*파일:*\n\`${path.basename(filepath)}\``
               },
               {
                 type: 'mrkdwn',
                 text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : ':x: 푸시 실패'}`
-              },
-              {
-                type: 'mrkdwn',
-                text: `*배포:*\n약 1-2분 후 반영`
               }
             ]
           }
         ]
       });
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('Topic blog generation failed:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
       await app.client.chat.postMessage({
         token: SLACK_BOT_TOKEN,
         channel: command.channel_id,
-        text: `:x: 오류 발생: ${errorMessage}`
+        text: `:x: 블로그 생성 실패\n*오류:* ${errorMessage}`
       });
     }
   }
