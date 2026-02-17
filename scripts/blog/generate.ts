@@ -84,7 +84,7 @@ program
 program
   .command('paper')
   .description('논문 기반 블로그 포스트 생성')
-  .option('-a, --arxiv <id>', 'arXiv 논문 ID 또는 URL')
+  .option('-a, --arxiv <id>', 'arXiv 논문 ID (쉼표로 여러 개 가능)')
   .option('-u, --url <url>', 'PDF URL')
   .option('-f, --file <path>', '로컬 PDF 파일 경로')
   .option('-o, --output <filename>', '출력 파일명 (slug)')
@@ -96,6 +96,46 @@ program
       // Interactive mode if no source provided
       if (!options.arxiv && !options.url && !options.file) {
         options = await interactivePaperMode(options);
+      }
+
+      if (options.arxiv && options.arxiv.includes(',')) {
+        const arxivIds = options.arxiv.split(',').map((id: string) => id.trim()).filter(Boolean);
+        console.log(`\n🤖 ${arxivIds.length}개 논문 일괄 처리 중...\n`);
+
+        let successCount = 0;
+        let failCount = 0;
+
+        for (const arxivId of arxivIds) {
+          try {
+            console.log(`\n--- [${arxivId}] 처리 시작 ---`);
+            const post = await generateFromPaper({
+              arxivId,
+              generateImage: options.image,
+            });
+
+            console.log(`제목: ${post.title}`);
+
+            if (!options.preview) {
+              let shouldSave = options.yes;
+              if (!shouldSave) {
+                shouldSave = await confirm(`[${arxivId}] 저장하시겠습니까?`);
+              }
+              if (shouldSave) {
+                const filepath = await savePaperPost(post);
+                console.log(`✅ 저장 완료: ${filepath}`);
+                successCount++;
+              } else {
+                console.log('❌ 저장 취소됨');
+              }
+            }
+          } catch (error) {
+            console.error(`❌ [${arxivId}] 오류:`, error instanceof Error ? error.message : error);
+            failCount++;
+          }
+        }
+
+        console.log(`\n📊 결과: 성공 ${successCount}개, 실패 ${failCount}개`);
+        return;
       }
 
       console.log('\n🤖 논문 처리 및 요약 생성 중...\n');

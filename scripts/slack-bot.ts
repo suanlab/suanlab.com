@@ -79,6 +79,39 @@ function extractArxivId(input: string): string {
   return match ? match[1] : input;
 }
 
+// Parse multiple arXiv IDs from input (space, comma, or newline separated)
+function parseMultipleArxivIds(input: string): string[] | null {
+  const parts = input.split(/[\s,]+/).filter(Boolean);
+  if (parts.length < 2) return null;
+
+  const arxivIds: string[] = [];
+  for (const part of parts) {
+    if (/^\d{4}\.\d{4,5}(v\d+)?$/.test(part)) {
+      arxivIds.push(part);
+    } else if (part.includes('arxiv.org')) {
+      arxivIds.push(extractArxivId(part));
+    } else {
+      return null; // Not all parts are arXiv IDs — fall through to normal logic
+    }
+  }
+  return arxivIds;
+}
+
+// Process items in parallel with concurrency limit
+async function processBatch<T, R>(
+  items: T[],
+  fn: (item: T) => Promise<R>,
+  concurrency: number = 3
+): Promise<PromiseSettledResult<R>[]> {
+  const results: PromiseSettledResult<R>[] = [];
+  for (let i = 0; i < items.length; i += concurrency) {
+    const batch = items.slice(i, i + concurrency);
+    const batchResults = await Promise.allSettled(batch.map(fn));
+    results.push(...batchResults);
+  }
+  return results;
+}
+
 // /suanblog slash command - unified command
 app.command('/suanblog', async ({ command, ack, respond }) => {
   console.log('Received /suanblog command:', command.text);
@@ -98,6 +131,109 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
       response_type: 'ephemeral',
       text: ':warning: 입력을 해주세요.\n예: `/blog 2312.00752` 또는 `/blog 트랜스포머 아키텍처`'
     });
+    return;
+  }
+
+  // Check for multiple arXiv IDs (batch mode)
+  const multipleIds = parseMultipleArxivIds(input);
+  if (multipleIds && multipleIds.length > 1) {
+    await respond({
+      response_type: 'in_channel',
+      blocks: [
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: `:hourglass_flowing_sand: *${multipleIds.length}개 논문 리뷰 일괄 생성 중...*\n:page_facing_up: arXiv IDs: ${multipleIds.join(', ')}\n\n약 ${multipleIds.length * 3}-${multipleIds.length * 5}분 소요됩니다.`
+          }
+        }
+      ]
+    });
+
+    try {
+      const results = await processBatch(multipleIds, async (arxivId) => {
+        console.log(`[Batch] Generating paper review for arXiv: ${arxivId}`);
+        const post = await generateFromPaper({ arxivId, generateImage: true });
+        const filepath = await savePaperPost(post);
+        console.log(`[Batch] Saved: ${filepath}`);
+        return { arxivId, title: post.title, filepath };
+      }, 3);
+
+      const succeeded: { arxivId: string; title: string; filepath: string }[] = [];
+      const failed: { arxivId: string; reason: string }[] = [];
+
+      results.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+          succeeded.push(result.value);
+        } else {
+          failed.push({
+            arxivId: multipleIds[index],
+            reason: result.reason instanceof Error ? result.reason.message : String(result.reason),
+          });
+        }
+      });
+
+      let isGitSuccess = false;
+      if (succeeded.length > 0) {
+        const gitOutput = runCommand(
+          `git add -A && git commit -m "Add ${succeeded.length} paper reviews (batch)" && git push origin master 2>&1`
+        );
+        isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
+      }
+
+      const resultLines = succeeded.map(
+        s => `:white_check_mark: *${s.title}*\n\`${path.basename(s.filepath)}\``
+      );
+      const failedLines = failed.map(
+        f => `:x: ${f.arxivId}: ${f.reason}`
+      );
+
+      const blocks: Array<{ type: string; text: { type: string; text: string } }> = [
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: `:clipboard: *일괄 논문 리뷰 생성 결과*\n성공: ${succeeded.length}개 | 실패: ${failed.length}개`
+          }
+        }
+      ];
+
+      if (resultLines.length > 0) {
+        blocks.push({
+          type: 'section',
+          text: { type: 'mrkdwn', text: resultLines.join('\n\n') }
+        });
+      }
+
+      if (failedLines.length > 0) {
+        blocks.push({
+          type: 'section',
+          text: { type: 'mrkdwn', text: failedLines.join('\n') }
+        });
+      }
+
+      blocks.push({
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: `*GitHub:* ${isGitSuccess ? ':white_check_mark: 푸시 완료' : (succeeded.length === 0 ? ':warning: 생성된 포스트 없음' : ':x: 푸시 실패')}`
+        }
+      });
+
+      await app.client.chat.postMessage({
+        token: SLACK_BOT_TOKEN,
+        channel: command.channel_id,
+        blocks,
+      });
+    } catch (error: unknown) {
+      console.error('Batch paper generation failed:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      await app.client.chat.postMessage({
+        token: SLACK_BOT_TOKEN,
+        channel: command.channel_id,
+        text: `:x: 일괄 생성 실패\n*오류:* ${errorMessage}`
+      });
+    }
     return;
   }
 
@@ -424,7 +560,7 @@ app.command('/suanblog-help', async ({ command, ack, respond }) => {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: '*예시:*\n• `/suanblog 2312.00752`\n• `/suanblog https://arxiv.org/abs/2312.00752`\n• `/suanblog 트랜스포머 아키텍처`\n• `/suanblog RAG 시스템 NLP`'
+          text: '*예시:*\n• `/suanblog 2312.00752`\n• `/suanblog https://arxiv.org/abs/2312.00752`\n• `/suanblog 2312.00752 2401.12345 2402.67890` (일괄 생성)\n• `/suanblog 트랜스포머 아키텍처`\n• `/suanblog RAG 시스템 NLP`'
         }
       }
     ]
