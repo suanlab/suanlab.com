@@ -97,12 +97,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: BASE_URL,
     types: {
-      'application/rss+xml': `${BASE_URL}/blog/feed.xml`,
+      'application/rss+xml': `${BASE_URL}/feed.xml`,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
+  verification: {},
   category: 'technology',
 };
 

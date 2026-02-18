@@ -4,6 +4,10 @@ import { Home, PenLine } from 'lucide-react';
 export const metadata = {
   title: 'Admin | SuanLab',
   description: 'SuanLab Blog Admin Dashboard',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function AdminLayout({

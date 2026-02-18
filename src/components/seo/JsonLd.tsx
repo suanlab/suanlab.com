@@ -79,7 +79,7 @@ export function PersonJsonLd() {
     sameAs: [
       'https://www.youtube.com/@suloopy',
       'https://github.com/suanlab',
-      'https://scholar.google.com/citations?user=YOUR_ID',
+      'https://scholar.google.com/citations?user=mK5U7hgAAAAJ',
     ],
   };
 
@@ -154,6 +154,7 @@ export function ArticleJsonLd({
     url: url,
     datePublished: datePublished,
     dateModified: dateModified || datePublished,
+    inLanguage: 'ko',
     author: {
       '@type': 'Person',
       name: author,
