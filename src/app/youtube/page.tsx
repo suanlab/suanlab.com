@@ -10,22 +10,24 @@ import { Badge } from '@/components/ui/badge';
 import { playlists } from '@/data/youtube';
 
 const tabs = [
-  { id: 'roadmap', label: 'Roadmap', icon: Map },
-  { id: 'popular', label: 'Popular', icon: TrendingUp },
-  { id: 'recent', label: 'Recent', icon: Clock },
+  { id: 'roadmap', label: '로드맵', icon: Map },
+  { id: 'popular', label: '인기 영상', icon: TrendingUp },
+  { id: 'recent', label: '최근 영상', icon: Clock },
 ];
 
-const popularVideos = [
-  { id: 'vgIc4ctNFbc', title: 'Popular Video 1' },
-  { id: 'rtwtOcfYKqc', title: 'Popular Video 2' },
-  { id: '37a7cBmCvB8', title: 'Popular Video 3' },
-];
+// Dynamic: first video from each playlist (intro/overview = most viewed)
+const popularVideos = playlists.slice(0, 6).map(p => ({
+  youtubeId: p.videos[0]?.youtubeId,
+  title: p.videos[0]?.titleKo || p.titleKo,
+  playlistTitle: p.titleKo,
+})).filter(v => v.youtubeId);
 
-const recentVideos = [
-  { id: 'kZBousGA0xg', title: 'Recent Video 1' },
-  { id: 'pYN1tCmn4V0', title: 'Recent Video 2' },
-  { id: 'l_jk13ChzP4', title: 'Recent Video 3' },
-];
+// Dynamic: last video from each playlist (most recently added)
+const recentVideos = playlists.slice(0, 6).map(p => ({
+  youtubeId: p.videos[p.videos.length - 1]?.youtubeId,
+  title: p.videos[p.videos.length - 1]?.titleKo || p.titleKo,
+  playlistTitle: p.titleKo,
+})).filter(v => v.youtubeId);
 
 export default function YouTubePage() {
   const [activeTab, setActiveTab] = useState('roadmap');
@@ -34,7 +36,7 @@ export default function YouTubePage() {
     <>
       <PageHeader
         title="YouTube"
-        subtitle="Learn data science and AI through video tutorials"
+        subtitle="영상으로 데이터 사이언스와 AI를 배워보세요"
         breadcrumbs={[{ label: 'YouTube' }]}
       />
 
@@ -46,7 +48,7 @@ export default function YouTubePage() {
               <div className="sticky top-24">
                 <div className="mb-4 flex items-center gap-2">
                   <Youtube className="h-5 w-5 text-red-500" />
-                  <h2 className="font-semibold">Playlists</h2>
+                  <h2 className="font-semibold">재생목록</h2>
                 </div>
                 <nav className="space-y-1">
                   {playlists.map((playlist) => (
@@ -92,7 +94,7 @@ export default function YouTubePage() {
 
               {/* Tab Content */}
               {activeTab === 'roadmap' && (
-                <div className="overflow-hidden rounded-xl border bg-white shadow-lg">
+                <div className="overflow-hidden rounded-xl border bg-white dark:bg-gray-900 shadow-lg">
                   <Image
                     src="/assets/youtubes/roadmap.png"
                     alt="YouTube Roadmap"
@@ -105,14 +107,14 @@ export default function YouTubePage() {
 
               {activeTab === 'popular' && (
                 <div className="space-y-6">
-                  <h3 className="text-lg font-semibold">Most Popular Videos</h3>
+                  <h3 className="text-lg font-semibold">인기 영상</h3>
                   <div className="grid gap-6 md:grid-cols-2">
                     {popularVideos.map((video, index) => (
-                      <Card key={video.id} className="overflow-hidden">
+                      <Card key={video.youtubeId} className="overflow-hidden">
                         <div className="aspect-video">
                           <iframe
                             className="h-full w-full"
-                            src={`https://www.youtube.com/embed/${video.id}`}
+                            src={`https://www.youtube.com/embed/${video.youtubeId}`}
                             title={video.title}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
@@ -121,8 +123,10 @@ export default function YouTubePage() {
                         <CardContent className="p-4">
                           <Badge variant="outline" className="mb-2">
                             <TrendingUp className="mr-1 h-3 w-3" />
-                            #{index + 1} Popular
+                            인기 #{index + 1}
                           </Badge>
+                          <p className="text-sm font-medium mt-1">{video.title}</p>
+                          <p className="text-xs text-muted-foreground">{video.playlistTitle}</p>
                         </CardContent>
                       </Card>
                     ))}
@@ -132,14 +136,14 @@ export default function YouTubePage() {
 
               {activeTab === 'recent' && (
                 <div className="space-y-6">
-                  <h3 className="text-lg font-semibold">Recently Uploaded</h3>
+                  <h3 className="text-lg font-semibold">최근 업로드</h3>
                   <div className="grid gap-6 md:grid-cols-2">
                     {recentVideos.map((video) => (
-                      <Card key={video.id} className="overflow-hidden">
+                      <Card key={video.youtubeId} className="overflow-hidden">
                         <div className="aspect-video">
                           <iframe
                             className="h-full w-full"
-                            src={`https://www.youtube.com/embed/${video.id}`}
+                            src={`https://www.youtube.com/embed/${video.youtubeId}`}
                             title={video.title}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
@@ -148,8 +152,10 @@ export default function YouTubePage() {
                         <CardContent className="p-4">
                           <Badge variant="outline" className="mb-2">
                             <Clock className="mr-1 h-3 w-3" />
-                            Recent
+                            최근
                           </Badge>
+                          <p className="text-sm font-medium mt-1">{video.title}</p>
+                          <p className="text-xs text-muted-foreground">{video.playlistTitle}</p>
                         </CardContent>
                       </Card>
                     ))}
@@ -159,7 +165,7 @@ export default function YouTubePage() {
 
               {/* All Playlists Grid (for mobile and desktop) */}
               <div className="mt-12">
-                <h3 className="text-lg font-semibold mb-6">All Playlists</h3>
+                <h3 className="text-lg font-semibold mb-6">전체 재생목록</h3>
                 <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                   {playlists.map((playlist) => (
                     <Link key={playlist.slug} href={`/youtube/${playlist.slug}`}>
@@ -174,7 +180,7 @@ export default function YouTubePage() {
                                 {playlist.titleKo}
                               </p>
                               <p className="text-xs text-muted-foreground">
-                                {playlist.videoCount} videos
+                                {playlist.videoCount}개 영상
                               </p>
                             </div>
                           </div>

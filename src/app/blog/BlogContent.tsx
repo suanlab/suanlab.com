@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, Fragment } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, Folder, Rss, Search, Tag, X } from 'lucide-react';
+import { Calendar, Folder, Rss, Search, Tag, X, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import type { BlogPostMeta } from '@/lib/blog';
 
@@ -19,6 +20,10 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const POSTS_PER_PAGE = 12;
 
   const filteredPosts = useMemo(() => {
     let result = posts;
@@ -51,6 +56,21 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
 
     return result;
   }, [posts, searchQuery, selectedCategory, selectedTag]);
+
+
+  // 페이지네이션 계산
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const paginatedPosts = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+  const startItem = (currentPage - 1) * POSTS_PER_PAGE + 1;
+  const endItem = Math.min(currentPage * POSTS_PER_PAGE, filteredPosts.length);
+
+  // 필터 변경 시 페이지 리셋
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory, selectedTag]);
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(selectedCategory === category ? null : category);
@@ -156,7 +176,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                   구독
                 </h3>
                 <a
-                  href="/blog/feed.xml"
+                  href="/feed.xml"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-3 py-2 rounded-md text-sm bg-orange-500 text-white hover:bg-orange-600 transition-colors"
@@ -175,12 +195,14 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
               {searchQuery && `"${searchQuery}" 검색 결과: `}
               {selectedCategory && `카테고리 "${selectedCategory}": `}
               {selectedTag && `태그 "${selectedTag}": `}
-              {filteredPosts.length}개의 포스트
+              {filteredPosts.length > POSTS_PER_PAGE
+                ? `${filteredPosts.length}개 중 ${startItem}-${endItem}번째 포스트`
+                : `${filteredPosts.length}개의 포스트`}
             </p>
 
             {/* 포스트 카드 */}
             <div className="grid gap-6 md:grid-cols-2">
-              {filteredPosts.map((post) => (
+              {paginatedPosts.map((post) => (
                 <Link key={post.slug} href={`/blog/${post.slug}`}>
                   <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
                     {post.thumbnail && (
@@ -194,9 +216,12 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                       </div>
                     )}
                     <CardContent className="p-5">
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+                      <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mb-2">
                         <Calendar className="h-3 w-3" />
                         <span>{post.date}</span>
+                        <span className="mx-1">•</span>
+                        <Clock className="h-3 w-3" />
+                        <span>{post.readingTime}분</span>
                         <span className="mx-1">•</span>
                         <Folder className="h-3 w-3" />
                         <span>{post.category}</span>
@@ -224,6 +249,50 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                 </Link>
               ))}
             </div>
+
+
+            {/* 페이지네이션 */}
+            {totalPages > 1 && (
+              <div className="mt-8 flex items-center justify-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                >
+                  이전
+                </Button>
+                {Array.from({ length: totalPages }, (_, i) => i + 1)
+                  .filter(
+                    (page) =>
+                      page === 1 ||
+                      page === totalPages ||
+                      Math.abs(page - currentPage) <= 2
+                  )
+                  .map((page, idx, arr) => (
+                    <Fragment key={page}>
+                      {idx > 0 && arr[idx - 1] !== page - 1 && (
+                        <span className="text-muted-foreground">...</span>
+                      )}
+                      <Button
+                        variant={page === currentPage ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setCurrentPage(page)}
+                      >
+                        {page}
+                      </Button>
+                    </Fragment>
+                  ))}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                >
+                  다음
+                </Button>
+              </div>
+            )}
 
             {filteredPosts.length === 0 && (
               <div className="text-center py-12">

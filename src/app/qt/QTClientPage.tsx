@@ -74,25 +74,25 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
             <Card>
               <CardContent className="p-4 text-center">
-                <p className="text-2xl font-bold text-amber-600">{stats.total}</p>
+                <p className="text-2xl font-bold text-amber-600 dark:text-amber-400">{stats.total}</p>
                 <p className="text-xs text-muted-foreground">총 묵상</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-4 text-center">
-                <p className="text-2xl font-bold text-blue-600">{stats.booksCount}</p>
+                <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">{stats.booksCount}</p>
                 <p className="text-xs text-muted-foreground">성경 책</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-4 text-center">
-                <p className="text-2xl font-bold text-green-600">{stats.oldTestamentEntries}</p>
+                <p className="text-2xl font-bold text-green-600 dark:text-green-400">{stats.oldTestamentEntries}</p>
                 <p className="text-xs text-muted-foreground">구약</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-4 text-center">
-                <p className="text-2xl font-bold text-purple-600">{stats.newTestamentEntries}</p>
+                <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">{stats.newTestamentEntries}</p>
                 <p className="text-xs text-muted-foreground">신약</p>
               </CardContent>
             </Card>

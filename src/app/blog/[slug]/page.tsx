@@ -8,6 +8,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { getPostBySlugWithHtml, getAllPosts, getPostSlugs } from '@/lib/blog';
+import ShareButtons from './ShareButtons';
+import GiscusComments from './GiscusComments';
 import '@/styles/blog-prose.css';
 import 'katex/dist/katex.min.css';
 
@@ -167,6 +169,11 @@ export default async function BlogPostPage({ params }: Props) {
               </CardContent>
             </Card>
 
+            {/* 공유 버튼 */}
+            <div className="mb-8">
+              <ShareButtons title={post.title} slug={slug} />
+            </div>
+
             {/* 썸네일 이미지 */}
             {post.thumbnail && (
               <div className="relative aspect-video mb-8 rounded-lg overflow-hidden">
@@ -185,6 +192,10 @@ export default async function BlogPostPage({ params }: Props) {
               className="blog-content prose prose-lg dark:prose-invert max-w-none mb-12"
               dangerouslySetInnerHTML={{ __html: post.contentHtml }}
             />
+
+            {/* TODO: Configure Giscus at https://giscus.app with repo: suanlab/suanlab-next */}
+            <GiscusComments />
+
 
             {/* 이전/다음 포스트 네비게이션 */}
             <div className="border-t pt-8">

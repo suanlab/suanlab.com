@@ -131,6 +131,7 @@ export default function RootLayout({
         <WebSiteJsonLd />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md">본문으로 건너뛰기</a>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -139,7 +140,7 @@ export default function RootLayout({
         >
           <div className="relative flex min-h-screen flex-col">
             <ModernHeader />
-            <main className="flex-1">{children}</main>
+            <main id="main-content" className="flex-1">{children}</main>
             <ModernFooter />
           </div>
         </ThemeProvider>

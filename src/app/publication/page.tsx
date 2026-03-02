@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FileText, Users, Building, Calendar, ExternalLink, ChevronDown, Search, GraduationCap, BookOpen } from 'lucide-react';
+import { FileText, Users, Building, Calendar, ExternalLink, ChevronDown, Search, GraduationCap, BookOpen, Copy, Check } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -57,9 +57,34 @@ function sortByDate(a: Publication, b: Publication): number {
   return monthB - monthA; // 최신 월이 먼저
 }
 
+// BibTeX 생성 함수
+function generateBibTeX(pub: Publication): string {
+  const year = extractYear(pub.date);
+  const key = `${pub.authors.split(',')[0].trim().toLowerCase().replace(/\s+/g, '_')}_${year}`;
+  return `@article{${key},
+  title = {${pub.title}},
+  author = {${pub.authors}},
+  journal = {${pub.venue}},
+  year = {${year}}
+}`;
+}
+
+// BibTeX 복사 함수
+async function copyBibTeX(pub: Publication, copiedId: number | null, setCopiedId: (id: number | null) => void) {
+  const bibtex = generateBibTeX(pub);
+  try {
+    await navigator.clipboard.writeText(bibtex);
+    setCopiedId(pub.id);
+    setTimeout(() => setCopiedId(null), 2000);
+  } catch (err) {
+    console.error('Failed to copy BibTeX:', err);
+  }
+}
+
 export default function PublicationPage() {
   const [activeFilter, setActiveFilter] = useState<PublicationType | 'all'>('all');
   const [openToggle, setOpenToggle] = useState<number | null>(null);
+  const [copiedId, setCopiedId] = useState<number | null>(null);
 
   const filteredPublications = (activeFilter === 'all'
     ? publications
@@ -251,11 +276,49 @@ export default function PublicationPage() {
                           )}
 
                           {pub.url && (
-                            <Button variant="outline" size="sm" asChild>
-                              <a href={pub.url} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="mr-2 h-4 w-4" />
-                                Read More
-                              </a>
+                            <div className="flex gap-2">
+                              <Button variant="outline" size="sm" asChild>
+                                <a href={pub.url} target="_blank" rel="noopener noreferrer">
+                                  <ExternalLink className="mr-2 h-4 w-4" />
+                                  Read More
+                                </a>
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => copyBibTeX(pub, copiedId, setCopiedId)}
+                              >
+                                {copiedId === pub.id ? (
+                                  <>
+                                    <Check className="mr-2 h-4 w-4" />
+                                    복사됨!
+                                  </>
+                                ) : (
+                                  <>
+                                    <Copy className="mr-2 h-4 w-4" />
+                                    BibTeX 복사
+                                  </>
+                                )}
+                              </Button>
+                            </div>
+                          )}
+                          {!pub.url && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => copyBibTeX(pub, copiedId, setCopiedId)}
+                            >
+                              {copiedId === pub.id ? (
+                                <>
+                                  <Check className="mr-2 h-4 w-4" />
+                                  복사됨!
+                                </>
+                              ) : (
+                                <>
+                                  <Copy className="mr-2 h-4 w-4" />
+                                  BibTeX 복사
+                                </>
+                              )}
                             </Button>
                           )}
                         </div>

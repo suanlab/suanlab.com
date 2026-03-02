@@ -1,9 +1,15 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Brain, Database, Eye, BarChart3, Network, MapPin, Youtube, BookOpen, Newspaper, FolderKanban, AudioLines, ExternalLink, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { mediaArticles } from '@/data/media';
+import { publications } from '@/data/publications';
+import { projects } from '@/data/projects';
+import { lectures } from '@/data/lectures';
+import { playlists } from '@/data/youtube';
+import { getAllPosts } from '@/lib/blog';
 
 const researchAreas = [
   { title: 'Data Science & Big Data', titleKo: '데이터과학 및 빅데이터', icon: Database, href: '/research/ds', color: 'from-blue-500 to-cyan-500' },
@@ -15,21 +21,26 @@ const researchAreas = [
   { title: 'Audio & Speech Processing', titleKo: '오디오 음성 처리', icon: AudioLines, href: '/research/asp', color: 'from-rose-500 to-pink-500' },
 ];
 
+// Calculate stats from data
+const totalVideos = playlists.reduce((acc, playlist) => acc + playlist.videos.length, 0);
+
 const stats = [
-  { label: 'Publications', value: '209+' },
-  { label: 'YouTube Videos', value: '167+' },
-  { label: 'Projects', value: '46' },
-  { label: 'Lectures', value: '16' },
+  { label: '논문', value: `${publications.length}+` },
+  { label: 'YouTube 영상', value: `${totalVideos}+` },
+  { label: '프로젝트', value: `${projects.length}+` },
+  { label: '강의', value: `${lectures.length}+` },
 ];
 
 const quickLinks = [
-  { title: 'Research', description: 'Explore our research areas', icon: BarChart3, href: '/research' },
-  { title: 'YouTube', description: 'Watch tutorial videos', icon: Youtube, href: '/youtube' },
-  { title: 'Publications', description: 'Browse our papers', icon: Newspaper, href: '/publication' },
-  { title: 'Projects', description: 'View our projects', icon: FolderKanban, href: '/project' },
+  { title: 'Research', description: '연구 분야 탐색', icon: BarChart3, href: '/research' },
+  { title: 'YouTube', description: '교육 영상 보기', icon: Youtube, href: '/youtube' },
+  { title: 'Publications', description: '논문 목록', icon: Newspaper, href: '/publication' },
+  { title: 'Projects', description: '프로젝트 목록', icon: FolderKanban, href: '/project' },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const recentPosts = getAllPosts().slice(0, 6);
+
   return (
     <>
       {/* Hero Section */}
@@ -40,28 +51,26 @@ export default function Home() {
         <div className="container relative py-24 md:py-32 lg:py-40">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              Data Science & Artificial Intelligence
+              데이터 사이언스 & 인공지능 연구실
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-              Welcome to{' '}
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 SuanLab
-              </span>
+              </span>에 오신 것을 환영합니다
             </h1>
             <p className="mt-6 text-lg text-slate-300 md:text-xl">
-              Research lab focused on Data Science, Deep Learning, Machine Learning, and Big Data.
-              Sharing knowledge through publications, lectures, and YouTube content.
+              데이터 사이언스, 딥러닝, 머신러닝, 빅데이터 연구실입니다. 논문, 강의, YouTube 콘텐츠를 통해 지식을 공유합니다.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button size="lg" asChild>
                 <Link href="/suan">
-                  About Professor Suan
+                  이수안 교수 소개
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20" asChild>
                 <Link href="/research">
-                  Explore Research
+                  연구 분야 보기
                 </Link>
               </Button>
             </div>
@@ -83,6 +92,65 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Recent Blog Posts Section */}
+      <section className="py-20 md:py-28">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center">
+            <Badge variant="outline" className="mb-4">Blog</Badge>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">최근 블로그 포스트</h2>
+            <p className="mt-4 text-muted-foreground">
+              최신 논문 리뷰와 AI 관련 글을 확인하세요
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {recentPosts.map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`}>
+                <Card className="group h-full transition-all hover:shadow-lg hover:-translate-y-1">
+                  {post.thumbnail && (
+                    <div className="aspect-video overflow-hidden">
+                      <Image
+                        src={post.thumbnail}
+                        alt={post.title}
+                        width={400}
+                        height={225}
+                        className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <CardHeader>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+                      <Calendar className="h-3 w-3" />
+                      <span>{post.date}</span>
+                      <span className="text-muted-foreground/50">•</span>
+                      <Badge variant="secondary" className="text-xs font-normal">
+                        {post.category}
+                      </Badge>
+                    </div>
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                      {post.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Button variant="outline" size="lg" asChild>
+              <Link href="/blog">
+                더 많은 글 보기 <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* YouTube Section - Learn Through Video Tutorials */}
       <section className="bg-muted/30 py-20 md:py-28">
         <div className="container">
@@ -90,7 +158,7 @@ export default function Home() {
             <div>
               <Badge className="mb-4">YouTube Channel</Badge>
               <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                Learn Through Video Tutorials
+                영상으로 배우기
               </h2>
               <p className="mt-4 text-muted-foreground">
                 150개 이상의 교육용 비디오를 통해 데이터 과학, 머신러닝, 딥러닝, 파이썬 프로그래밍을 배워보세요.
@@ -107,7 +175,7 @@ export default function Home() {
               </ul>
               <Button className="mt-8" size="lg" asChild>
                 <Link href="/youtube">
-                  Watch Videos
+                  영상 보기
                   <Youtube className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -131,9 +199,9 @@ export default function Home() {
           <div className="mx-auto max-w-2xl text-center">
             <Badge variant="outline" className="mb-4">
               <Newspaper className="mr-2 h-3 w-3" />
-              Media Coverage
+              미디어 보도
             </Badge>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">In the News</h2>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">미디어 보도</h2>
             <p className="mt-4 text-muted-foreground">
               SuanLab과 이수안 교수의 연구 및 활동에 관한 미디어 기사
             </p>
@@ -183,9 +251,9 @@ export default function Home() {
       <section className="bg-muted/50 py-20 md:py-28">
         <div className="container">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Explore SuanLab</h2>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">SuanLab 둘러보기</h2>
             <p className="mt-4 text-muted-foreground">
-              Discover publications, projects, lectures, and video tutorials
+              논문, 프로젝트, 강의, 영상 튜토리얼을 살펴보세요
             </p>
           </div>
 
@@ -211,9 +279,9 @@ export default function Home() {
       <section className="py-20 md:py-28">
         <div className="container">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Research Areas</h2>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">연구 분야</h2>
             <p className="mt-4 text-muted-foreground">
-              Exploring cutting-edge technologies in data science and artificial intelligence
+              데이터 사이언스와 인공지능 분야의 최신 기술을 연구합니다
             </p>
           </div>
 
@@ -241,17 +309,17 @@ export default function Home() {
       <section className="bg-gradient-to-r from-primary to-blue-600 py-20 text-white">
         <div className="container text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Interested in Collaboration?
+            협업에 관심이 있으신가요?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
-            Contact us if you want to join or collaborate on data science and artificial intelligence research.
+            데이터 사이언스와 인공지능 연구에 참여하거나 협업하고 싶으시면 연락 주세요.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/suan">Contact Professor Suan</Link>
+              <Link href="/suan">이수안 교수에게 연락하기</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10" asChild>
-              <Link href="/publication">View Publications</Link>
+              <Link href="/publication">논문 보기</Link>
             </Button>
           </div>
         </div>

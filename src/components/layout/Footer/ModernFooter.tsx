@@ -34,8 +34,9 @@ export default function ModernFooter() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">SuanLab</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Professor Suan&apos;s research lab focused on Data Science and Artificial Intelligence.
-              Sharing knowledge through lectures, publications, and YouTube content.
+              이수안 교수의 데이터 사이언스 &amp; 인공지능 연구실입니다.
+              <br />
+              강의, 논문, YouTube 콘텐츠를 통해 지식을 공유합니다.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((social) => (
@@ -95,11 +96,13 @@ export default function ModernFooter() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Research Areas</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Data Science & Big Data</li>
-              <li>Deep Learning & Machine Learning</li>
-              <li>Natural Language Processing</li>
-              <li>Computer Vision</li>
-              <li>Graphs and Tensors</li>
+              <li><Link href="/research/ds" className="hover:text-primary transition-colors">Data Science &amp; Big Data</Link></li>
+              <li><Link href="/research/dl" className="hover:text-primary transition-colors">Deep Learning &amp; Machine Learning</Link></li>
+              <li><Link href="/research/nlp" className="hover:text-primary transition-colors">Natural Language Processing</Link></li>
+              <li><Link href="/research/cv" className="hover:text-primary transition-colors">Computer Vision</Link></li>
+              <li><Link href="/research/graphs" className="hover:text-primary transition-colors">Graphs and Tensors</Link></li>
+              <li><Link href="/research/st" className="hover:text-primary transition-colors">Spatio-Temporal</Link></li>
+              <li><Link href="/research/asp" className="hover:text-primary transition-colors">Audio &amp; Speech Processing</Link></li>
             </ul>
           </div>
         </div>
@@ -112,8 +115,9 @@ export default function ModernFooter() {
             © {new Date().getFullYear()} SuanLab. All rights reserved.
           </p>
           <div className="flex gap-4 text-sm text-muted-foreground">
-            <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <Link href="/sitemap.xml" className="hover:text-primary transition-colors">Sitemap</Link>
           </div>
         </div>
       </div>

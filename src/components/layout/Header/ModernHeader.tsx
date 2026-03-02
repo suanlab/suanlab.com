@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Menu, ChevronDown, User, Search, Youtube, Newspaper, FolderKanban, GraduationCap, Presentation, BookMarked, PenLine } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -73,7 +74,23 @@ const navigation = [
 
 export default function ModernHeader() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const pathname = usePathname();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const isActive = useCallback((href: string) => {
+    return pathname === href || (href !== '/' && pathname.startsWith(href));
+  }, [pathname]);
+
+  // Close dropdown on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpenDropdown(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -95,6 +112,7 @@ export default function ModernHeader() {
             <div
               key={item.name}
               className="relative group"
+              ref={item.children ? dropdownRef : undefined}
               onMouseEnter={() => item.children && setOpenDropdown(item.name)}
               onMouseLeave={() => setOpenDropdown(null)}
             >
@@ -102,8 +120,26 @@ export default function ModernHeader() {
                 href={item.href}
                 className={cn(
                   "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                  "hover:bg-accent hover:text-accent-foreground"
+                  "hover:bg-accent hover:text-accent-foreground",
+                  isActive(item.href) && "text-primary font-semibold"
                 )}
+                aria-expanded={item.children ? openDropdown === item.name : undefined}
+                aria-haspopup={item.children ? "true" : undefined}
+                onKeyDown={(e) => {
+                  if (!item.children) return;
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setOpenDropdown(openDropdown === item.name ? null : item.name);
+                  } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    setOpenDropdown(item.name);
+                    // Focus first dropdown item after render
+                    setTimeout(() => {
+                      const firstItem = e.currentTarget.parentElement?.querySelector('[role="menuitem"]');
+                      if (firstItem instanceof HTMLElement) firstItem.focus();
+                    }, 0);
+                  }
+                }}
               >
                 <item.icon className="h-4 w-4" />
                 {item.name}
@@ -112,13 +148,18 @@ export default function ModernHeader() {
 
               {/* Dropdown Menu */}
               {item.children && openDropdown === item.name && (
-                <div className="absolute top-full left-0 pt-2 w-56">
+                <div className="absolute top-full left-0 pt-2 w-56" role="menu">
                   <div className="rounded-md border bg-popover p-1 shadow-lg">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-3 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+                        role="menuitem"
+                        tabIndex={0}
+                        className={cn(
+                          "block px-3 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground transition-colors",
+                          isActive(child.href) && "text-primary font-semibold"
+                        )}
                       >
                         {child.name}
                       </Link>
@@ -132,6 +173,12 @@ export default function ModernHeader() {
 
         {/* Dark Mode Toggle & Mobile Menu */}
         <div className="flex items-center gap-2">
+          {/* Search */}
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="/search" aria-label="검색">
+              <Search className="h-5 w-5" />
+            </Link>
+          </Button>
           {/* Theme Toggle */}
           <ThemeToggle />
 
@@ -150,7 +197,10 @@ export default function ModernHeader() {
                   <div key={item.name}>
                     <Link
                       href={item.href}
-                      className="flex items-center gap-2 px-2 py-2 text-lg font-medium hover:text-primary transition-colors"
+                      className={cn(
+                        "flex items-center gap-2 px-2 py-2 text-lg font-medium hover:text-primary transition-colors",
+                        isActive(item.href) && "text-primary font-semibold"
+                      )}
                     >
                       <item.icon className="h-5 w-5" />
                       {item.name}
@@ -161,7 +211,10 @@ export default function ModernHeader() {
                           <Link
                             key={child.href}
                             href={child.href}
-                            className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                            className={cn(
+                              "block text-sm text-muted-foreground hover:text-primary transition-colors",
+                              isActive(child.href) && "text-primary font-semibold"
+                            )}
                           >
                             {child.name}
                           </Link>

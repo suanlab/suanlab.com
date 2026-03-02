@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { GraduationCap, Building, Mail, Phone, MapPin, Check, Globe, Instagram, Facebook, Linkedin, Youtube, Calendar, Award, BookOpen, Plane, Users, Briefcase, Heart, Scale } from 'lucide-react';
+import { GraduationCap, Building, Mail, Phone, MapPin, Check, Globe, Instagram, Facebook, Linkedin, Youtube, Calendar, Award, BookOpen, Plane, Users, Briefcase, Heart, Scale, Download } from 'lucide-react';
 import { academicActivities, journalMemberships, journalReviews, journalReviewStats, conferenceReviews, advisoryActivities, activityCategories } from '@/data/academic-activities';
 import { awards, awardStats, awardCategories } from '@/data/awards';
 import { Trophy } from 'lucide-react';
@@ -14,6 +14,7 @@ const XIcon = ({ className }: { className?: string }) => (
 );
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 export const metadata = {
   title: 'Suan | SuanLab',
@@ -92,6 +93,14 @@ export default function SuanPage() {
                       </a>
                     ))}
                   </div>
+                  {/* CV Download Button */}
+                  <Button variant="outline" className="w-full mt-4" asChild>
+                    <a href="/assets/documents/cv-suan-lee.pdf" download>
+                      <Download className="mr-2 h-4 w-4" />
+                      이력서 다운로드 (CV)
+                    </a>
+                  </Button>
+                  {/* TODO: Upload actual CV PDF to public/assets/documents/ */}
                 </CardContent>
               </Card>
 

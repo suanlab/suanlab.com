@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Home, PenLine } from 'lucide-react';
+import AdminAuthGate from './AdminAuthGate';
 
 export const metadata = {
   title: 'Admin | SuanLab',
@@ -16,8 +17,8 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-muted/30">
-      {/* Admin Header */}
+    <AdminAuthGate>
+      <div className="min-h-screen bg-muted/30">
       <header className="sticky top-0 z-50 border-b bg-background">
         <div className="container flex h-14 items-center justify-between">
           <div className="flex items-center gap-6">
@@ -52,6 +53,7 @@ export default function AdminLayout({
 
       {/* Main Content */}
       <main>{children}</main>
-    </div>
+      </div>
+    </AdminAuthGate>
   );
 }
