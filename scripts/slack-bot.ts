@@ -97,17 +97,20 @@ function parseMultipleArxivIds(input: string): string[] | null {
   return arxivIds;
 }
 
-// Process items in parallel with concurrency limit
+// Process items sequentially with delay to avoid rate limiting
 async function processBatch<T, R>(
   items: T[],
   fn: (item: T) => Promise<R>,
-  concurrency: number = 3
+  delayMs: number = 5000
 ): Promise<PromiseSettledResult<R>[]> {
   const results: PromiseSettledResult<R>[] = [];
-  for (let i = 0; i < items.length; i += concurrency) {
-    const batch = items.slice(i, i + concurrency);
-    const batchResults = await Promise.allSettled(batch.map(fn));
-    results.push(...batchResults);
+  for (let i = 0; i < items.length; i++) {
+    if (i > 0) {
+      console.log(`[Batch] Waiting ${delayMs / 1000}s before next item to avoid rate limiting...`);
+      await new Promise(r => setTimeout(r, delayMs));
+    }
+    const result = await Promise.allSettled([fn(items[i])]);
+    results.push(...result);
   }
   return results;
 }
@@ -157,7 +160,7 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
         const filepath = await savePaperPost(post);
         console.log(`[Batch] Saved: ${filepath}`);
         return { arxivId, title: post.title, filepath };
-      }, 3);
+      }, 5000);  // 5s delay between each paper to respect arXiv rate limits
 
       const succeeded: { arxivId: string; title: string; filepath: string }[] = [];
       const failed: { arxivId: string; reason: string }[] = [];

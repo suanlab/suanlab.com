@@ -32,9 +32,26 @@ export function extractArxivId(input: string): string {
 }
 
 /**
+ * Helper: wait with exponential backoff
+ */
+async function waitWithBackoff(attempt: number, baseMs: number, retryAfter?: string): Promise<void> {
+  if (retryAfter) {
+    const seconds = parseInt(retryAfter, 10);
+    if (!isNaN(seconds) && seconds > 0) {
+      console.log(`  Retry-After header: waiting ${seconds}s...`);
+      await new Promise(r => setTimeout(r, seconds * 1000));
+      return;
+    }
+  }
+  const waitMs = baseMs * Math.pow(2, attempt - 1); // 30s, 60s, 120s, ...
+  console.log(`  Backing off ${waitMs / 1000}s before retry...`);
+  await new Promise(r => setTimeout(r, waitMs));
+}
+
+/**
  * Fetch metadata from arXiv API
  */
-export async function getArxivMetadata(arxivId: string, retries = 3): Promise<PaperMetadata> {
+export async function getArxivMetadata(arxivId: string, retries = 5): Promise<PaperMetadata> {
   const apiUrl = `https://export.arxiv.org/api/query?id_list=${arxivId}`;
 
   for (let attempt = 1; attempt <= retries; attempt++) {
@@ -45,17 +62,28 @@ export async function getArxivMetadata(arxivId: string, retries = 3): Promise<Pa
         },
       });
 
+      // Handle HTTP 429 (Too Many Requests) explicitly
+      if (response.status === 429) {
+        const retryAfter = response.headers.get('Retry-After') ?? undefined;
+        if (attempt < retries) {
+          console.log(`Rate limited (HTTP 429), attempt ${attempt}/${retries}`);
+          await waitWithBackoff(attempt, 30000, retryAfter);
+          continue;
+        }
+        throw new Error('arXiv API rate limit exceeded (HTTP 429). Please try again later.');
+      }
+
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 
       const xml = await response.text();
 
-      // Check for rate limit
+      // Check for rate limit in response body (arXiv sometimes returns 200 with rate limit message)
       if (xml.includes('Rate exceeded') || xml.trim().length < 100) {
         if (attempt < retries) {
-          console.log(`Rate limited, waiting 30s before retry ${attempt + 1}/${retries}...`);
-          await new Promise(r => setTimeout(r, 30000));
+          console.log(`Rate limited (body), waiting before retry ${attempt + 1}/${retries}...`);
+          await waitWithBackoff(attempt, 30000);
           continue;
         }
         throw new Error('arXiv API rate limit exceeded. Please try again later.');
@@ -66,8 +94,10 @@ export async function getArxivMetadata(arxivId: string, retries = 3): Promise<Pa
       if (attempt === retries) {
         throw new Error(`Failed to fetch arXiv metadata after ${retries} attempts: ${error instanceof Error ? error.message : 'Unknown Error'}`);
       }
-      console.log(`Attempt ${attempt} failed, retrying in 10s...`);
-      await new Promise(r => setTimeout(r, 10000));
+      // For non-429 errors, use shorter backoff
+      const waitMs = 10000 * attempt; // 10s, 20s, 30s, ...
+      console.log(`Attempt ${attempt} failed: ${error instanceof Error ? error.message : 'Unknown'}. Retrying in ${waitMs / 1000}s...`);
+      await new Promise(r => setTimeout(r, waitMs));
     }
   }
 
@@ -117,22 +147,41 @@ function parseArxivXml(xml: string, arxivId: string): PaperMetadata {
 }
 
 /**
- * Fetch PDF from arXiv
+ * Fetch PDF from arXiv (with retry for rate limiting)
  */
-export async function fetchArxivPdf(arxivId: string): Promise<Buffer> {
+export async function fetchArxivPdf(arxivId: string, retries = 3): Promise<Buffer> {
   const pdfUrl = `https://arxiv.org/pdf/${arxivId}.pdf`;
 
-  const response = await fetch(pdfUrl, {
-    headers: {
-      'User-Agent': 'SuanLab-BlogGenerator/1.0',
-    },
-  });
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const response = await fetch(pdfUrl, {
+      headers: {
+        'User-Agent': 'SuanLab-BlogGenerator/1.0',
+      },
+    });
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch arXiv PDF: ${response.statusText}`);
+    if (response.status === 429) {
+      if (attempt < retries) {
+        const retryAfter = response.headers.get('Retry-After') ?? undefined;
+        console.log(`PDF fetch rate limited (429), attempt ${attempt}/${retries}`);
+        await waitWithBackoff(attempt, 30000, retryAfter);
+        continue;
+      }
+      throw new Error('arXiv PDF rate limit exceeded (HTTP 429). Please try again later.');
+    }
+
+    if (!response.ok) {
+      if (attempt < retries) {
+        console.log(`PDF fetch failed (${response.status}), retrying in ${10 * attempt}s...`);
+        await new Promise(r => setTimeout(r, 10000 * attempt));
+        continue;
+      }
+      throw new Error(`Failed to fetch arXiv PDF: ${response.status} ${response.statusText}`);
+    }
+
+    return Buffer.from(await response.arrayBuffer());
   }
 
-  return Buffer.from(await response.arrayBuffer());
+  throw new Error('Failed to fetch arXiv PDF');
 }
 
 /**
