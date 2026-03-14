@@ -204,6 +204,6 @@ print(f"추천 적합성 평가 결과: {result}")
 ## 참고 자료
 
 - 논문 링크: [arXiv:2511.03051](https://arxiv.org/abs/2511.03051)
-- 코드 저장소: [GitHub Repository](https://github.com/your-repo-link)
+- 코드 저장소: GitHub Repository
 - 관련 자료: [ScalingEval Dataset](https://dataset-link.com)
 - OpenAI API: [https://openai.com/api/](https://openai.com/api/)

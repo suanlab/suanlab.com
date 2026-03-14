@@ -159,4 +159,4 @@ Helios는 품질, 속도, 생성 길이의 '트릴레마'를 극복하고 실시
 
 -   논문 링크: [arXiv:2405.04379](https://arxiv.org/abs/2405.04379)
 -   Helios 코드 저장소 (공개 예정): [GitHub 링크](https://github.com/helios-research)
--   관련 자료 및 추가 읽을거리: [관련 논문 및 자료 모음](https://www.example.com/helios-resources)
+-   관련 자료 및 추가 읽을거리: 관련 논문 및 자료 모음

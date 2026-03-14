@@ -131,5 +131,5 @@ STEM은 Transformer 모델의 파라미터 용량을 확장하는 새로운 방�
 ## 참고 자료
 
 - 논문 링크: [arXiv:2601.10639](https://arxiv.org/abs/2601.10639)
-- 코드 저장소: [GitHub Repository](https://github.com/your-repo/STEM)
+- 코드 저장소: GitHub Repository
 - 관련 자료: [Transformer Models](https://paperswithcode.com/methods/category/transformers)

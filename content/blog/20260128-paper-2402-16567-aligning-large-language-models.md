@@ -178,5 +178,5 @@ Ablation study를 통해 각 구성 요소의 기여도를 분석하였습니다
 ## 참고 자료
 
 - 논문 링크: [arXiv:2402.16567](https://arxiv.org/abs/2402.16567)
-- 코드 저장소: [GitHub Repository](https://github.com/your-repo)
-- 관련 자료: [FinGQL Dataset](https://example.com/fingql), [MediGQL Dataset](https://example.com/medigql)
+- 코드 저장소: GitHub Repository
+- 관련 자료: FinGQL Dataset, MediGQL Dataset

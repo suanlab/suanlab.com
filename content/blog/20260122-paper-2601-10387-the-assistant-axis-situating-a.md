@@ -156,5 +156,5 @@ Ablation Study를 통해 각 요소의 기여도를 평가했습니다. 'Activat
 ## 참고 자료
 
 - [논문 링크](https://arxiv.org/abs/2601.10387)
-- [코드 저장소](https://github.com/your-repo)
+- 코드 저장소
 - [관련 자료](https://related-resources.com)

@@ -160,7 +160,7 @@ VDBMS를 실무에 적용할 때는 데이터의 특성과 사용 사례에 맞�
 
 - 논문 링크: [arXiv:2309.11322](https://arxiv.org/abs/2309.11322)
 - 코드 저장소: [GitHub Repository](https://github.com/example/vdbms)
-- 관련 자료: [VDBMS 관련 자료](https://www.example.com/vdbms-resources)
+- 관련 자료: VDBMS 관련 자료
 - Faiss: [https://github.com/facebookresearch/faiss](https://github.com/facebookresearch/faiss)
 - Annoy: [https://github.com/spotify/annoy](https://github.com/spotify/annoy)
 - Milvus: [https://milvus.io/](https://milvus.io/)

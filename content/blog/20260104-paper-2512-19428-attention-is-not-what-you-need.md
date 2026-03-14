@@ -147,5 +147,5 @@ Ablation study를 통해 Grassmann 흐름의 각 구성 요소가 모델 성능�
 ## 참고 자료
 
 - [논문 링크](https://arxiv.org/abs/2512.19428)
-- [코드 저장소](https://github.com/your-repo)
+- 코드 저장소
 - 관련 자료: Transformer, BERT, Grassmann 다양체, Plücker 좌표, Lie Group, Riemannian Optimization

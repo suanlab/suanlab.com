@@ -135,7 +135,7 @@ UAE를 실무에 적용할 때는 주파수 변환과 대역 조절기의 구현
 ## 참고 자료
 
 - [논문 링크](https://arxiv.org/abs/2512.19693)
-- [코드 저장소](https://github.com/your-repo/UAE)
+- 코드 저장소
 - [관련 자료](https://your-related-resources.com)
 - [FFT 알고리즘 설명](https://www.dspguide.com/ch12/1.htm)
 - [DCT 알고리즘 설명](https://www.tutorialspoint.com/dip/dct.htm)

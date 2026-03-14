@@ -154,4 +154,4 @@ Ablation Study를 통해 각 메모리 관리 도구의 기여도를 평가했�
 
 - 논문 링크: [arXiv:2601.01885](https://arxiv.org/abs/2601.01885)
 - 코드 저장소: [GitHub Repository](https://github.com/anonymous/agemem)
-- 관련 자료: [Supplementary Materials](https://example.com/supplementary)
+- 관련 자료: Supplementary Materials

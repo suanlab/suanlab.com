@@ -132,4 +132,4 @@ SDPO를 실무에 적용할 때는 다음 사항을 고려해야 합니다.
 
 - [논문 링크](https://arxiv.org/abs/2601.20802)
 - [코드 저장소](https://github.com/author/SDPO)
-- [관련 자료](https://www.example.com)
+- 관련 자료

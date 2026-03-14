@@ -151,4 +151,4 @@ NFD를 실무에 도입하기 위한 단계별 가이드는 다음과 같습니�
 
 - 논문 링크: [arXiv:2603.10808](https://arxiv.org/abs/2603.10808)
 - 코드 저장소: [GitHub Repository](https://github.com/example/nfd)
-- 관련 자료: [Additional Resources](https://example.com/resources)
+- 관련 자료: Additional Resources

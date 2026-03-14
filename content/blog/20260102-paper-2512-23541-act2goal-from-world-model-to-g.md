@@ -215,4 +215,4 @@ MSTH 메커니즘의 효과를 검증하기 위해, MSTH를 제거한 모델과�
 - 논문 링크: [Act2Goal: From World Model To General Goal-conditioned Policy](https://act2goal.github.io/)
 - 코드 저장소: [GitHub Repository](https://github.com/act2goal)
 - 관련 자료: [Project Page](https://act2goal.github.io/)
-- 추가 자료: [관련 연구 논문](https://example.com/related_papers)
+- 추가 자료: 관련 연구 논문

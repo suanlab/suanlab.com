@@ -168,6 +168,6 @@ Ablation study를 통해 각 구성 요소의 영향을 분석하였습니다. `
 
 - [논문 링크](https://arxiv.org/abs/2510.26658)
 - [코드 저장소](https://github.com/async-think/async-think)
-- 관련 자료: [강화 학습 튜토리얼](https://www.example.com/reinforcement-learning-tutorial)
+- 관련 자료: 강화 학습 튜토리얼
 - LLM API: [OpenAI API](https://openai.com/api/)
 - 하이퍼파라미터 최적화: [Ray Tune](https://www.ray.io/tune), [Optuna](https://optuna.org/)

@@ -192,4 +192,4 @@ FusionRoute는 대형 언어 모델의 효율성과 성능을 향상시키기 �
 
 - 논문 링크: [arXiv:2601.05106](https://arxiv.org/abs/2601.05106)
 - 코드 저장소: [GitHub Repository](https://github.com/author/FusionRoute)
-- 관련 자료: [FusionRoute Presentation](https://example.com/FusionRoute-presentation)
+- 관련 자료: FusionRoute Presentation

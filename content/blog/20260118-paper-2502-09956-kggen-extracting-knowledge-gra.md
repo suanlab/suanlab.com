@@ -186,5 +186,5 @@ KGGen은 언어 모델을 활용하여 평문 텍스트에서 고품질의 지�
 ## 참고 자료
 
 - 논문 링크: [arXiv:2502.09956](https://arxiv.org/abs/2502.09956)
-- 코드 저장소: [GitHub Repository](https://github.com/your-repo/kg-gen)
+- 코드 저장소: GitHub Repository
 - 관련 자료: [MINE Benchmark](https://mine-benchmark.org)

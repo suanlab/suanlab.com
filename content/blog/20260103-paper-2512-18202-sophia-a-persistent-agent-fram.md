@@ -125,5 +125,5 @@ Sophia는 AI 에이전트의 지속적인 학습과 적응을 가능하게 하�
 ## 참고 자료
 - 논문 링크: [arXiv:2512.18202](https://arxiv.org/abs/2512.18202)
 - 코드 저장소: [GitHub Repository](https://github.com)
-- 관련 자료: [Additional Resources](https://example.com)
-- 관련 연구: [Meta-Learning](https://example.com/meta-learning), [Continual Learning](https://example.com/continual-learning)
+- 관련 자료: Additional Resources
+- 관련 연구: Meta-Learning, Continual Learning

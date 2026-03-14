@@ -146,5 +146,5 @@ Ablation Study를 통해 잘못된 CoT 데이터의 일부를 제거하거나, �
 ## 참고 자료
 
 - [논문 링크](https://arxiv.org/abs/2512.22255)
-- [코드 저장소](https://github.com/your-repo)
+- 코드 저장소
 - [Google Gemma 모델 관련 링크](https://ai.googleblog.com/2023/10/introducing-gemma.html)

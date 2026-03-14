@@ -166,7 +166,7 @@ Training-Free GRPO는 매개변수 업데이트 없이도 LLM의 성능을 향�
 
 - [논문 링크](https://arxiv.org/abs/2510.08191)
 - [코드 저장소](https://github.com/example-repo/Training-Free-GRPO)
-- 관련 자료: [DeepSeek-V3.1-Terminus 모델](https://example.com/deepseek-v3.1-terminus)
+- 관련 자료: DeepSeek-V3.1-Terminus 모델
 - [LoRA(Low-Rank Adaptation) 논문](https://arxiv.org/abs/2106.09698)
 - [DPO(Direct Preference Optimization) 논문](https://arxiv.org/abs/2305.18290)
 - [AutoPrompt 논문](https://arxiv.org/abs/2003.10581)

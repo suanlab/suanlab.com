@@ -158,5 +158,5 @@ Ablation study를 통해 각 구성 요소의 기여도를 평가하였습니다
 ## 참고 자료
 
 - [논문 링크](https://arxiv.org/abs/2601.05437)
-- [코드 저장소](https://github.com/your-repo/moral-foundations-llm)
+- 코드 저장소
 - 관련 자료: MFT, SAE, LLM 관련 연구 문헌

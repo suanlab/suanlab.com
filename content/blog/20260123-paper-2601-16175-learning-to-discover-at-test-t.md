@@ -150,5 +150,5 @@ TTT-Discover는 테스트 시간에 강화 학습을 수행하여 특정 문제�
 ## 참고 자료
 
 - 논문 링크: [arXiv:2601.16175](https://arxiv.org/abs/2601.16175)
-- 코드 저장소: [GitHub Repository](https://github.com/your-repo/ttt-discover)
+- 코드 저장소: GitHub Repository
 - 관련 자료: [OpenAI gpt-oss-120b](https://openai.com)

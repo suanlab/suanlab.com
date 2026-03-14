@@ -106,5 +106,5 @@ Generative Adversarial Distillation (GAD)는 블랙박스 LLM 증류에 효과�
 
 ## 참고 자료
 - [논문 링크](https://arxiv.org/abs/2511.10643)
-- [코드 저장소](https://github.com/your-repo-url)
+- 코드 저장소
 - 관련 자료: Hinton et al. (2015), Kim et al. (2016), Goodfellow et al. (2014)

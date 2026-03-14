@@ -102,7 +102,7 @@ tuneTable은 하이퍼파라미터 최적화를 자동화하여 데이터 과학
 
 추가 학습 자료로는 tuneTable의 공식 문서와 다양한 튜토리얼을 참고하시기 바랍니다. 이러한 자료를 통해 tuneTable의 다양한 기능과 활용 방법을 더욱 깊이 있게 이해할 수 있을 것입니다.
 
-- [tuneTable 공식 문서](https://example.com/tunetable-docs)
-- [하이퍼파라미터 최적화 튜토리얼](https://example.com/hyperparameter-tuning-tutorial)
+- tuneTable 공식 문서
+- 하이퍼파라미터 최적화 튜토리얼
 
 tuneTable을 통해 더 나은 모델 성능을 달성하고, 데이터 과학 프로젝트에서 성공을 거두시길 바랍니다.

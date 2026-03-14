@@ -162,5 +162,5 @@ Ablation Study를 통해 각 컴포넌트의 중요성을 평가했습니다. �
 ## 참고 자료
 
 - 논문 링크: [arXiv:2601.09750](https://arxiv.org/abs/2601.09750)
-- 코드 저장소: [GitHub](https://github.com/your-repo)
+- 코드 저장소: GitHub
 - 관련 자료: OPACA 프레임워크 문서, SAGE 시스템 사용자 가이드

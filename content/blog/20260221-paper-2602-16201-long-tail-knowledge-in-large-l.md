@@ -163,4 +163,4 @@ Ablation Study를 통해 각 개입 방법의 기여도를 분석할 수 있습�
 
 *   **논문 링크**: [arXiv:2405.XXXXX](https://arxiv.org/) (본 리뷰는 가상의 논문을 기반으로 작성되었습니다)
 *   **관련 코드 저장소**: [github.com/example/rag-implementation](https://github.com/example/rag-implementation)
-*   **보충 자료**: [example.com/supplementary-materials](https://example.com/supplementary-materials)
+*   **보충 자료**: example.com/supplementary-materials

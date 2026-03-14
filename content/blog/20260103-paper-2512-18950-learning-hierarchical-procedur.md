@@ -198,4 +198,4 @@ MACLA는 대형 언어 모델(LLM)의 학습과 추론을 분리하여 외부 �
 
 - [논문 링크](https://arxiv.org/abs/2512.18950)
 - [코드 저장소](https://github.com/MACLA-Framework)
-- [관련 자료](https://example.com/related-resources)
+- 관련 자료

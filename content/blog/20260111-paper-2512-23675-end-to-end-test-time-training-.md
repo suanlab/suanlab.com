@@ -121,5 +121,5 @@ Ablation Study를 통해 **메타 학습**과 **슬라이딩 윈도우 메커니
 
 ## 참고 자료
 - [논문 링크](https://arxiv.org/abs/2512.23675)
-- [코드 저장소](https://github.com/your-repo/TTT-E2E)
+- 코드 저장소
 - 관련 자료: Transformer-XL, Longformer, Reformer, Linformer, Performer

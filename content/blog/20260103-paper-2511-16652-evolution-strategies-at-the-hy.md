@@ -154,5 +154,5 @@ print(output_tensor.shape)  # 출력 크기: torch.Size([64, 256])
 ## 참고 자료
 - 논문 링크: [arXiv:2511.16652](https://arxiv.org/abs/2511.16652)
 - 코드 저장소: [GitHub Repository](https://github.com/example/EGGROLL)
-- 관련 자료: [EGGROLL Documentation](https://example.com/EGGROLL-docs)
+- 관련 자료: EGGROLL Documentation
 - Salimans et al. (2017): [참고](https://arxiv.org/abs/1703.03864)

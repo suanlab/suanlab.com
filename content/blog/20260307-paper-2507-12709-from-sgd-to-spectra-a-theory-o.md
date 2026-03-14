@@ -185,4 +185,4 @@ def plot_singular_value_spectrum(weight_matrix, step):
 
 -   논문 링크: [arXiv:2507.12709](https://arxiv.org/abs/2507.12709)
 -   코드 저장소: [GitHub Repository](https://github.com/author/sgd-to-spectra)
--   관련 자료: [Supplementary Materials](https://example.com/supplementary)
+-   관련 자료: Supplementary Materials

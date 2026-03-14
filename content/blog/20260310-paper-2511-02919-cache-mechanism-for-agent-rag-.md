@@ -153,4 +153,4 @@ ARC는 기존의 범용 캐시 전략을 넘어, **LLM 에이전트의 특성을
 
 *   논문 링크: [arXiv:2511.02919](https://arxiv.org/abs/2511.02919) (가상 링크)
 *   코드 저장소: [GitHub Repository](https://github.com/example/arc-cache) (가상 링크)
-*   관련 자료: [Supplementary Materials](https://example.com/supplementary) (가상 링크)
+*   관련 자료: Supplementary Materials (가상 링크)
