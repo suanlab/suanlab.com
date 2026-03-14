@@ -3,9 +3,6 @@
 import { useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 
-// TODO: Configure Giscus at https://giscus.app with repo: suanlab/suanlab-next
-// Get the data-repo-id and data-category-id from the giscus configuration page
-
 export default function GiscusComments() {
   const ref = useRef<HTMLDivElement>(null);
   const { resolvedTheme } = useTheme();
@@ -18,10 +15,10 @@ export default function GiscusComments() {
 
     const script = document.createElement('script');
     script.src = 'https://giscus.app/client.js';
-    script.setAttribute('data-repo', 'suanlab/suanlab-next');
-    script.setAttribute('data-repo-id', ''); // TODO: Fill in repo ID from https://giscus.app
-    script.setAttribute('data-category', 'Blog Comments');
-    script.setAttribute('data-category-id', ''); // TODO: Fill in category ID
+    script.setAttribute('data-repo', 'suanlab/suanlab.com');
+    script.setAttribute('data-repo-id', 'R_kgDOQwIYFg');
+    script.setAttribute('data-category', 'General');
+    script.setAttribute('data-category-id', 'DIC_kwDOQwIYFs4C4WZ0');
     script.setAttribute('data-mapping', 'pathname');
     script.setAttribute('data-strict', '0');
     script.setAttribute('data-reactions-enabled', '1');
