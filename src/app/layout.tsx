@@ -100,7 +100,14 @@ export const metadata: Metadata = {
       'application/rss+xml': `${BASE_URL}/feed.xml`,
     },
   },
-  verification: {},
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: {
+      ...(process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION
+        ? { 'naver-site-verification': process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION }
+        : {}),
+    },
+  },
   category: 'technology',
 };
 
