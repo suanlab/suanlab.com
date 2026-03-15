@@ -59,6 +59,14 @@ export const mediaArticles: MediaArticle[] = [
     excerpt: '이수안 교수가 인하대 음성AI연구소 객원연구원 및 세명대 겸임교수로서 인하대 이우기 교수팀과 함께 장비 고장진단 AI 연구에 참여했다.',
   },
   {
+    id: '12',
+    title: "제천 'AI 행정활용 미리보기' - 이수안 세명대 교수 특별강연",
+    source: '충청도민일보',
+    date: '2025-03-06',
+    url: 'https://www.dominilbo.com/news/articleView.html?idxno=221195',
+    excerpt: '이수안 교수가 제천시청에서 160여 명의 공직자를 대상으로 AI 기술 행정업무 활용 방안 및 미래 전략에 대한 특별 강연을 진행했다.',
+  },
+  {
     id: '5',
     title: '제천제일고, 지역 문화와 AI 융합 스마트팜 프로그램 운영',
     source: '충북인뉴스',
