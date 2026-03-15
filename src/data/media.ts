@@ -11,6 +11,22 @@ export interface MediaArticle {
 // Sorted by date (newest first)
 export const mediaArticles: MediaArticle[] = [
   {
+    id: '11',
+    title: "세명대 데이터지능연구실, 국제학술대회 'IEEE BigComp 2026'서 우수논문상 Runner-Up 수상",
+    source: '세명대학교',
+    date: '2026-03-05',
+    url: 'https://www.semyung.ac.kr/prog/vwBoard/bbs08/kor/sub08_03/view.do?board_num=189021&mno=sub08_03',
+    excerpt: '데이터지능연구실 김재성(3학년), 길상현(4학년) 학생이 IEEE BigComp 2026에서 LLM 내부 표현 공간 분석 및 다국어 안전성 연구 논문 2편을 채택받고, Best Paper Award Runner-Up을 수상했다.',
+  },
+  {
+    id: '10',
+    title: "세명대 컴퓨터학부 데이터지능연구실, 'KDBC 2025' 우수논문상 동상 수상",
+    source: '세명대학교',
+    date: '2025-11-11',
+    url: 'https://www.semyung.ac.kr/cop/bbs/BBSMSTR_000000000203/selectBoardArticle.do?nttId=469702',
+    excerpt: '이하은 학생(3학년)과 이수안 교수 연구팀이 조명 변화에 강건한 단안 깊이 추정 모델 연구로 KDBC 2025 우수논문상 동상을 수상했다.',
+  },
+  {
     id: '1',
     title: "세명대-지오비전-강원대 공동연구팀 세계 최고 권위 'AAAI' 논문 채택",
     source: '베리타스알파',
