@@ -27,6 +27,7 @@ export interface PaperMetadata {
 export interface GeneratedPost {
   slug: string;
   title: string;
+  subtitle?: string;
   date: string;
   excerpt: string;
   category: string;

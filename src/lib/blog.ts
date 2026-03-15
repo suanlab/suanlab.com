@@ -45,6 +45,7 @@ function rehypeWrapMath() {
 export interface BlogPost {
   slug: string;
   title: string;
+  subtitle?: string;
   date: string;
   excerpt: string;
   category: string;
@@ -72,6 +73,7 @@ function calculateReadingTime(content: string): number {
 export interface BlogPostMeta {
   slug: string;
   title: string;
+  subtitle?: string;
   date: string;
   excerpt: string;
   category: string;
@@ -103,6 +105,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
   return {
     slug: realSlug,
     title: data.title || '',
+    subtitle: data.subtitle || undefined,
     date: data.date || '',
     excerpt: data.excerpt || '',
     category: data.category || 'General',
@@ -184,4 +187,53 @@ export function searchPosts(query: string): BlogPostMeta[] {
     post.tags.some((tag) => tag.toLowerCase().includes(lowerQuery)) ||
     post.category.toLowerCase().includes(lowerQuery)
   );
+}
+
+export function getRelatedPosts(
+  slug: string,
+  category: string,
+  tags: string[],
+  limit: number = 4
+): BlogPostMeta[] {
+  const allPosts = getAllPosts();
+  
+  // Filter out current post
+  const candidates = allPosts.filter((post) => post.slug !== slug);
+  
+  // Separate posts by category match
+  const sameCategory = candidates.filter(
+    (post) => post.category.toLowerCase() === category.toLowerCase()
+  );
+  
+  const otherCategory = candidates.filter(
+    (post) => post.category.toLowerCase() !== category.toLowerCase()
+  );
+  
+  // Calculate tag overlap count for sorting
+  const calculateTagOverlap = (postTags: string[]): number => {
+    return postTags.filter((tag) =>
+      tags.some((t) => t.toLowerCase() === tag.toLowerCase())
+    ).length;
+  };
+  
+  // Sort same category by tag overlap, then by date
+  const sortedSameCategory = sameCategory.sort((a, b) => {
+    const overlapA = calculateTagOverlap(a.tags);
+    const overlapB = calculateTagOverlap(b.tags);
+    if (overlapA !== overlapB) return overlapB - overlapA;
+    return new Date(b.date) > new Date(a.date) ? 1 : -1;
+  });
+  
+  // Sort other category by tag overlap, then by date
+  const sortedOtherCategory = otherCategory.sort((a, b) => {
+    const overlapA = calculateTagOverlap(a.tags);
+    const overlapB = calculateTagOverlap(b.tags);
+    if (overlapA !== overlapB) return overlapB - overlapA;
+    return new Date(b.date) > new Date(a.date) ? 1 : -1;
+  });
+  
+  // Combine: same category first, then other categories
+  const related = [...sortedSameCategory, ...sortedOtherCategory].slice(0, limit);
+  
+  return related;
 }

@@ -1,13 +1,13 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, Tag, Folder, ArrowLeft, ArrowRight, Clock } from 'lucide-react';
+import { Calendar, Tag, Folder, ArrowLeft, ArrowRight, Clock, BookOpen } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
-import { getPostBySlugWithHtml, getAllPosts, getPostSlugs } from '@/lib/blog';
+import { getPostBySlugWithHtml, getAllPosts, getPostSlugs, getRelatedPosts } from '@/lib/blog';
 import ShareButtons from './ShareButtons';
 import GiscusComments from './GiscusComments';
 import '@/styles/blog-prose.css';
@@ -52,9 +52,13 @@ export async function generateMetadata({ params }: Props) {
   const ogImage = post.thumbnail || '/assets/images/og-image.jpg';
   const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${BASE_URL}${ogImage}`;
   const ogDescription = sanitizeDescription(post.excerpt);
+  const pageTitle = post.subtitle ? `${post.subtitle} | SuanLab Blog` : `${post.title} | SuanLab Blog`;
+  const keywordArray = post.subtitle 
+    ? [post.subtitle, post.category, ...post.tags, 'SuanLab', '이수안', 'AI', 'Deep Learning']
+    : [post.category, ...post.tags, 'SuanLab', '이수안', 'AI', 'Deep Learning'];
 
   return {
-    title: `${post.title} | SuanLab Blog`,
+    title: pageTitle,
     description: ogDescription,
     openGraph: {
       type: 'article',
@@ -85,7 +89,7 @@ export async function generateMetadata({ params }: Props) {
     alternates: {
       canonical: postUrl,
     },
-    keywords: [post.category, ...post.tags, 'SuanLab', '이수안', 'AI', 'Deep Learning'].join(', '),
+    keywords: keywordArray.join(', '),
   };
 }
 
@@ -193,9 +197,44 @@ export default async function BlogPostPage({ params }: Props) {
               dangerouslySetInnerHTML={{ __html: post.contentHtml }}
             />
 
-            {/* TODO: Configure Giscus at https://giscus.app with repo: suanlab/suanlab-next */}
             <GiscusComments />
 
+            {/* 관련 포스트 */}
+            {(() => {
+              const relatedPosts = getRelatedPosts(slug, post.category, post.tags, 3);
+              if (relatedPosts.length === 0) return null;
+              
+              return (
+                <div className="mt-12 pt-8 border-t">
+                  <div className="flex items-center gap-2 mb-6">
+                    <BookOpen className="h-5 w-5" />
+                    <h2 className="text-2xl font-bold">관련 포스트</h2>
+                  </div>
+                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {relatedPosts.map((relatedPost) => (
+                      <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`}>
+                        <Card className="h-full hover:shadow-md transition-shadow">
+                          <CardContent className="p-4 flex flex-col h-full">
+                            <div className="flex-1">
+                              <p className="font-medium line-clamp-2 mb-2">{relatedPost.title}</p>
+                              <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                                {relatedPost.excerpt}
+                              </p>
+                            </div>
+                            <div className="flex items-center justify-between text-xs text-muted-foreground">
+                              <span>{relatedPost.date}</span>
+                              <Badge variant="secondary" className="text-xs">
+                                {relatedPost.category}
+                              </Badge>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* 이전/다음 포스트 네비게이션 */}
             <div className="border-t pt-8">

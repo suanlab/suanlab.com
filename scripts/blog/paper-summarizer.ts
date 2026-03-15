@@ -133,11 +133,12 @@ export async function generateFromPaper(
   return {
     slug,
     title: `[논문 리뷰] ${metadata.title}`,
+    subtitle: parsed.subtitle,
     date,
     excerpt: metadata.abstract.slice(0, 200) + '...',
     category: 'Paper Review',
     tags: ['Paper Review', ...metadata.categories.slice(0, 3)],
-    content: parsed.content,  // Use parsed content to remove markdown code block wrappers
+    content: parsed.content,
     thumbnail,
   };
 }
@@ -200,8 +201,9 @@ async function summarizePaper(
  * Format post as markdown with frontmatter
  */
 export function formatAsMarkdown(post: GeneratedPost): string {
+  const subtitleLine = post.subtitle ? `\nsubtitle: "${escapeQuotes(post.subtitle)}"` : '';
   const frontmatter = `---
-title: "${escapeQuotes(post.title)}"
+title: "${escapeQuotes(post.title)}"${subtitleLine}
 date: "${post.date}"
 excerpt: "${escapeQuotes(post.excerpt)}"
 category: "${post.category}"
