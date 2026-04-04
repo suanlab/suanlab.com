@@ -8,6 +8,7 @@ import { Menu, ChevronDown, User, Search, Youtube, Newspaper, FolderKanban, Grad
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { LanguageSwitcher } from '@/components/language-switcher';
 import { cn } from '@/lib/utils';
 
 const navigation = [
@@ -179,10 +180,8 @@ export default function ModernHeader() {
               <Search className="h-5 w-5" />
             </Link>
           </Button>
-          {/* Theme Toggle */}
           <ThemeToggle />
-
-          {/* Mobile Menu */}
+          <LanguageSwitcher />
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
               <Button variant="ghost" size="icon">

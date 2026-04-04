@@ -2,7 +2,7 @@
 
 ## OVERVIEW
 
-Standalone CLI tools run outside Next.js. Blog generation via AI, bot integrations (Telegram/Slack), data extraction from legacy site, and asset generation. Uses `tsx` for TypeScript execution.
+Standalone CLI tools run outside Next.js. Blog generation via AI, Slack bot automation, legacy-data extraction, and asset generation. Uses `tsx` for TypeScript execution.
 
 ## STRUCTURE
 
@@ -13,8 +13,7 @@ scripts/
 │   ├── topic-generator.ts   # Topic → markdown blog post via AI
 │   ├── paper-summarizer.ts  # arXiv/PDF → paper review post via AI
 │   └── tsconfig.json        # Separate tsconfig (target ES2020, output dist/scripts)
-├── telegram-bot.ts          # Telegram bot (polling mode, user whitelist)
-├── slack-bot.ts             # Slack bot integration
+├── slack-bot.ts             # Slack slash-command bot; can generate and push posts
 ├── extract-courses.js       # Extract course data from legacy WWW site
 ├── extract-projects.js      # Extract project data from legacy WWW site
 ├── extract-publications.js  # Extract publication data from legacy WWW site
@@ -32,20 +31,24 @@ scripts/
 | Add blog generation mode | `blog/generate.ts` | Commander.js subcommands |
 | Modify AI prompts | `../src/lib/ai/prompts.ts` | Templates used by generators |
 | Paper processing | `blog/paper-summarizer.ts` | arXiv → PDF → chunks → AI summary |
-| Telegram commands | `telegram-bot.ts` | Polling mode, TELEGRAM_ALLOWED_USERS whitelist |
+| Slack automation | `slack-bot.ts` | Bolt app, batch arXiv mode, git push flow |
 | Extract legacy data | `extract-*.js` | One-time migration scripts (JS, not TS) |
 
 ## CONVENTIONS
 
 - **Run with tsx**: `npx tsx scripts/{file}.ts` or via npm scripts
 - **Blog scripts import from `../src/lib/`** — reuse AI and PDF libraries
+- **Slack bot loads `.env.local` first** — credentials are read before Bolt app startup
+- **Slack bot shells out to git** — it can commit/push generated posts from the repo root
 - **Extract scripts are JS** (not TS) — legacy one-time migration tools
 - **Environment**: Scripts read `.env.local` via dotenv
 - **Blog output**: Saves to `content/blog/YYYYMMDD-slug.md` with frontmatter
-- **Interactive CLI**: Uses Commander.js + Inquirer + Ora (spinner)
+- **Interactive CLI**: Uses Commander.js plus Node `readline` prompts
 
 ## ANTI-PATTERNS
 
-- **DO NOT** import scripts from `src/` — scripts are standalone entry points
+- **DO NOT** import script entry points into `src/` runtime code — keep scripts as standalone tooling
 - **DO NOT** run extract-*.js again — they were one-time migrations from WWW
 - **DO NOT** run bots without `.env.local` configured — will crash on missing tokens
+- **DO NOT** assume a Telegram bot exists — only `slack-bot.ts` is present on disk
+- **DO NOT** run `slack-bot.ts` outside the repo root — it uses `process.cwd()` for `.env.local` and git commands
