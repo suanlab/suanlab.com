@@ -1,7 +1,7 @@
 ---
 title: "[논문 리뷰] AlphaResearch: Accelerating New Algorithm Discovery with Language Models"
 date: "2026-01-02"
-excerpt: "Large language models have made significant progress in complex but easy-to-verify problems, yet they still struggle with discovering the unknown. In this paper, we present \textbf{AlphaResearch}, an ..."
+excerpt: 'Large language models have made significant progress in complex but easy-to-verify problems, yet they still struggle with discovering the unknown. In this paper, we present \textbf{AlphaResearch}, an ...'
 category: "Paper Review"
 tags: ["Paper Review","cs.CL","cs.CL"]
 thumbnail: "/assets/images/blog/20260102-paper-2511-08522-alpharesearch-accelerating-new.jpg"

@@ -1,7 +1,7 @@
 ---
 title: "[논문 리뷰] Reinforced Generation of Combinatorial Structures: Ramsey Numbers"
 date: "2026-03-16"
-excerpt: "We present improved lower bounds for five classical Ramsey numbers: $\mathbf{R}(3, 13)$ is increased from $60$ to $61$, $\mathbf{R}(3, 18)$ from $99$ to $100$, $\mathbf{R}(4, 13)$ from $138$ to $139$,..."
+excerpt: 'We present improved lower bounds for five classical Ramsey numbers: $\mathbf{R}(3, 13)$ is increased from $60$ to $61$, $\mathbf{R}(3, 18)$ from $99$ to $100$, $\mathbf{R}(4, 13)$ from $138$ to $139$,...'
 category: "Paper Review"
 tags: ["Paper Review","math.CO","cs.AI","cs.CC"]
 thumbnail: "/assets/images/blog/20260316-paper-2603-09172-reinforced-generation-of-combi.jpg"

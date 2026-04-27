@@ -1,7 +1,7 @@
 ---
 title: "[논문 리뷰] Completed Hyperparameter Transfer across Modules, Width, Depth, Batch and Duration"
 date: "2026-01-03"
-excerpt: "Hyperparameter tuning can dramatically impact training stability and final performance of large-scale models. Recent works on neural network parameterisations, such as $μ$P, have enabled transfer of o..."
+excerpt: 'Hyperparameter tuning can dramatically impact training stability and final performance of large-scale models. Recent works on neural network parameterisations, such as $μ$P, have enabled transfer of o...'
 category: "Paper Review"
 tags: ["Paper Review","cs.LG","cs.AI","stat.ML"]
 thumbnail: "/assets/images/blog/20260103-paper-2512-22382-completed-hyperparameter-trans.jpg"

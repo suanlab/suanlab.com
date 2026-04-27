@@ -1,7 +1,7 @@
 ---
 title: "[논문 리뷰] Learning to Reason in 13 Parameters"
 date: "2026-02-09"
-excerpt: "Recent research has shown that language models can learn to \textit{reason}, often via reinforcement learning. Some work even trains low-rank parameterizations for reasoning, but conventional LoRA can..."
+excerpt: 'Recent research has shown that language models can learn to \textit{reason}, often via reinforcement learning. Some work even trains low-rank parameterizations for reasoning, but conventional LoRA can...'
 category: "Paper Review"
 tags: ["Paper Review","cs.LG","cs.LG"]
 thumbnail: "/assets/images/blog/20260209-paper-2602-04118-learning-to-reason-in-13-param.jpg"
