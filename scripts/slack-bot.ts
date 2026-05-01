@@ -44,7 +44,7 @@ function runCommand(command: string): string {
       timeout: 300000, // 5 minutes
       env: {
         ...process.env,
-        GIT_SSH_COMMAND: 'ssh -i /home/suanlab/.ssh/id_ed25519_bot -o StrictHostKeyChecking=no'
+        GIT_SSH_COMMAND: 'ssh -i /home/suan/.ssh/id_ed25519 -o StrictHostKeyChecking=no'
       }
     });
   } catch (error: unknown) {
