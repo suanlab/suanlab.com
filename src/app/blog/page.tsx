@@ -35,7 +35,7 @@ export default function BlogPage() {
     <>
       <PageHeader
         title="Blog"
-        subtitle="데이터 과학, 인공지능, 딥러닝에 관한 이야기"
+        subtitleKey="pageheader.blog.subtitle"
         breadcrumbs={[{ label: 'Blog' }]}
       />
 

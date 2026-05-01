@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
+import { useLanguage } from '@/components/language-provider';
 
 interface PageHeaderProps {
   title: string;
   subtitle?: string;
+  subtitleKey?: string;
   backgroundImage?: string;
   breadcrumbs?: { label: string; href?: string }[];
 }
@@ -13,9 +15,12 @@ interface PageHeaderProps {
 export default function PageHeader({
   title,
   subtitle,
+  subtitleKey,
   backgroundImage = '/assets/images/slider/blue.jpg',
   breadcrumbs = [],
 }: PageHeaderProps) {
+  const { t } = useLanguage();
+  const displaySubtitle = subtitleKey ? (t(subtitleKey) as string) : subtitle;
   return (
     <section
       className="relative py-16 md:py-20 lg:py-24 text-white overflow-hidden"
@@ -320,9 +325,9 @@ export default function PageHeader({
           </h1>
 
           {/* Subtitle */}
-          {subtitle && (
+          {displaySubtitle && (
             <p className="mt-4 text-lg md:text-xl text-slate-400 max-w-2xl animate-fade-in-up">
-              {subtitle}
+              {displaySubtitle}
             </p>
           )}
 

@@ -9,12 +9,13 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/language-switcher';
+import { useLanguage } from '@/components/language-provider';
 import { cn } from '@/lib/utils';
 
 const navigation = [
-  { name: 'SUAN', href: '/suan', icon: User },
+  { nameKey: 'nav.suan', href: '/suan', icon: User },
   {
-    name: 'RESEARCH',
+    nameKey: 'nav.research',
     href: '/research',
     icon: Search,
     children: [
@@ -27,11 +28,11 @@ const navigation = [
       { name: 'Audio & Speech Processing', href: '/research/asp' },
     ],
   },
-  { name: 'PROJECT', href: '/project', icon: FolderKanban },
-  { name: 'PUBLICATION', href: '/publication', icon: Newspaper },
-  { name: 'BLOG', href: '/blog', icon: PenLine },
+  { nameKey: 'nav.project', href: '/project', icon: FolderKanban },
+  { nameKey: 'nav.publication', href: '/publication', icon: Newspaper },
+  { nameKey: 'nav.blog', href: '/blog', icon: PenLine },
   {
-    name: 'BOOK',
+    nameKey: 'nav.book',
     href: '/book',
     icon: BookMarked,
     children: [
@@ -40,7 +41,7 @@ const navigation = [
     ],
   },
   {
-    name: 'LECTURE',
+    nameKey: 'nav.lecture',
     href: '/lecture',
     icon: GraduationCap,
     children: [
@@ -57,9 +58,9 @@ const navigation = [
       { name: 'Cloud Computing', href: '/lecture/cloud' },
     ],
   },
-  { name: 'COURSE', href: '/course', icon: Presentation },
+  { nameKey: 'nav.course', href: '/course', icon: Presentation },
   {
-    name: 'YOUTUBE',
+    nameKey: 'nav.youtube',
     href: '/youtube',
     icon: Youtube,
     children: [
@@ -77,6 +78,7 @@ export default function ModernHeader() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   const isActive = useCallback((href: string) => {
     return pathname === href || (href !== '/' && pathname.startsWith(href));
@@ -111,10 +113,10 @@ export default function ModernHeader() {
         <nav className="hidden lg:flex items-center space-x-1">
           {navigation.map((item) => (
             <div
-              key={item.name}
+              key={item.nameKey}
               className="relative group"
               ref={item.children ? dropdownRef : undefined}
-              onMouseEnter={() => item.children && setOpenDropdown(item.name)}
+              onMouseEnter={() => item.children && setOpenDropdown(item.nameKey)}
               onMouseLeave={() => setOpenDropdown(null)}
             >
               <Link
@@ -124,16 +126,16 @@ export default function ModernHeader() {
                   "hover:bg-accent hover:text-accent-foreground",
                   isActive(item.href) && "text-primary font-semibold"
                 )}
-                aria-expanded={item.children ? openDropdown === item.name : undefined}
+                aria-expanded={item.children ? openDropdown === item.nameKey : undefined}
                 aria-haspopup={item.children ? "true" : undefined}
                 onKeyDown={(e) => {
                   if (!item.children) return;
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    setOpenDropdown(openDropdown === item.name ? null : item.name);
+                    setOpenDropdown(openDropdown === item.nameKey ? null : item.nameKey);
                   } else if (e.key === 'ArrowDown') {
                     e.preventDefault();
-                    setOpenDropdown(item.name);
+                    setOpenDropdown(item.nameKey);
                     // Focus first dropdown item after render
                     setTimeout(() => {
                       const firstItem = e.currentTarget.parentElement?.querySelector('[role="menuitem"]');
@@ -143,12 +145,12 @@ export default function ModernHeader() {
                 }}
               >
                 <item.icon className="h-4 w-4" />
-                {item.name}
+                {(t(item.nameKey) as string).toUpperCase()}
                 {item.children && <ChevronDown className="h-3 w-3" />}
               </Link>
 
               {/* Dropdown Menu */}
-              {item.children && openDropdown === item.name && (
+              {item.children && openDropdown === item.nameKey && (
                 <div className="absolute top-full left-0 pt-2 w-56" role="menu">
                   <div className="rounded-md border bg-popover p-1 shadow-lg">
                     {item.children.map((child) => (
@@ -193,7 +195,7 @@ export default function ModernHeader() {
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="flex flex-col space-y-4 mt-8 pb-8">
                 {navigation.map((item) => (
-                  <div key={item.name}>
+                  <div key={item.nameKey}>
                     <Link
                       href={item.href}
                       className={cn(
@@ -202,7 +204,7 @@ export default function ModernHeader() {
                       )}
                     >
                       <item.icon className="h-5 w-5" />
-                      {item.name}
+                      {(t(item.nameKey) as string).toUpperCase()}
                     </Link>
                     {item.children && (
                       <div className="ml-7 mt-2 space-y-2">

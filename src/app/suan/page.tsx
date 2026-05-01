@@ -73,7 +73,7 @@ export default function SuanPage() {
     <>
       <PageHeader
         title="Professor Suan Lee"
-        subtitle="Data Science & Artificial Intelligence Researcher"
+        subtitleKey="pageheader.suan.subtitle"
         breadcrumbs={[{ label: 'Suan' }]}
       />
 

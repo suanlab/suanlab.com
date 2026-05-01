@@ -66,7 +66,7 @@ export default function ProjectPage() {
     <>
       <PageHeader
         title="Project"
-        subtitle="Research projects funded by various organizations"
+        subtitleKey="pageheader.project.subtitle"
         breadcrumbs={[{ label: 'Project' }]}
       />
 

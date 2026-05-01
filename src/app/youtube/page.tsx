@@ -77,7 +77,7 @@ export default function YouTubePage() {
       <VideoCollectionJsonLd videos={allVideos} />
       <PageHeader
         title="YouTube"
-        subtitle="영상으로 데이터 사이언스와 AI를 배워보세요"
+        subtitleKey="pageheader.youtube.subtitle"
         breadcrumbs={[{ label: 'YouTube' }]}
       />
 

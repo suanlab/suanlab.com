@@ -116,7 +116,7 @@ export default function PublicationPage() {
       }))} />
       <PageHeader
         title="Publication"
-        subtitle="Research publications including journals, conferences, and more"
+        subtitleKey="pageheader.publication.subtitle"
         breadcrumbs={[{ label: 'Publication' }]}
       />
 

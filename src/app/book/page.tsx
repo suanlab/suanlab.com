@@ -52,7 +52,7 @@ export default function BookPage() {
     <>
       <PageHeader
         title="Book"
-        subtitle="Books by Professor Suan Lee"
+        subtitleKey="pageheader.book.subtitle"
         breadcrumbs={[{ label: 'Book' }]}
       />
 

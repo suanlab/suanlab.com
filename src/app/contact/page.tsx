@@ -38,7 +38,7 @@ export default function ContactPage() {
     <>
       <PageHeader
         title="문의하기"
-        subtitle="SuanLab에 문의하세요"
+        subtitleKey="pageheader.contact.subtitle"
         breadcrumbs={[{ label: '문의하기' }]}
       />
 

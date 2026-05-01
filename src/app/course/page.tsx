@@ -70,7 +70,7 @@ export default function CoursePage() {
       }))} />
       <PageHeader
         title="Course"
-        subtitle="특강 및 세미나 경력"
+        subtitleKey="pageheader.course.subtitle"
         breadcrumbs={[{ label: 'Course' }]}
       />
 

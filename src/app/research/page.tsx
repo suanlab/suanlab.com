@@ -54,7 +54,7 @@ export default function ResearchPage() {
     <>
       <PageHeader
         title="Research"
-        subtitle="Exploring cutting-edge technologies in data science and artificial intelligence"
+        subtitleKey="pageheader.research.subtitle"
         breadcrumbs={[{ label: 'Research' }]}
       />
 

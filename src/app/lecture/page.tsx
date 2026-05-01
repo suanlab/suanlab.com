@@ -35,7 +35,7 @@ export default function LecturePage() {
     <>
       <PageHeader
         title="Lecture"
-        subtitle="University courses taught by Professor Suan Lee"
+        subtitleKey="pageheader.lecture.subtitle"
         breadcrumbs={[{ label: 'Lecture' }]}
       />
 
