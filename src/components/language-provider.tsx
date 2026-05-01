@@ -193,18 +193,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   const t = (key: string): string | string[] => {
-    const keys = key.split('.');
-    let value: unknown = translations[language];
-    
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = (value as Record<string, unknown>)[k];
-      } else {
-        return key;
-      }
+    const dict = translations[language] as Record<string, unknown>;
+    if (key in dict) {
+      return dict[key] as string | string[];
     }
-    
-    return value as string | string[];
+    return key;
   };
 
   if (!mounted) {
