@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -74,13 +75,31 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+const BASE_URL = 'https://suanlab.com';
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const area = getResearchBySlug(params.slug);
   if (!area) return { title: 'Not Found' };
 
   return {
-    title: `${area.titleEn} | Research | SuanLab`,
+    title: `${area.titleEn} | Research`,
     description: area.description,
+    openGraph: {
+      title: `${area.titleEn} | Research | SuanLab`,
+      description: area.description,
+      url: `${BASE_URL}/research/${area.slug}`,
+      siteName: 'SuanLab',
+      type: 'website',
+      locale: 'ko_KR',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${area.titleEn} | Research | SuanLab`,
+      description: area.description,
+    },
+    alternates: {
+      canonical: `${BASE_URL}/research/${area.slug}/`,
+    },
   };
 }
 

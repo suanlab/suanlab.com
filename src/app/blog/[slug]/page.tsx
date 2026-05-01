@@ -10,6 +10,8 @@ import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { getPostBySlugWithHtml, getAllPosts, getPostSlugs, getRelatedPosts } from '@/lib/blog';
 import ShareButtons from './ShareButtons';
 import GiscusComments from './GiscusComments';
+import ReadingProgress from './ReadingProgress';
+import TableOfContents from './TableOfContents';
 import '@/styles/blog-prose.css';
 import 'katex/dist/katex.min.css';
 
@@ -25,6 +27,20 @@ export async function generateStaticParams() {
 }
 
 const BASE_URL = 'https://suanlab.com';
+
+function extractHeadings(html: string): { id: string; text: string; level: number }[] {
+  const headingRegex = /<h([23])\s+id="([^"]+)">(.*?)<\/h[23]>/g;
+  const headings: { id: string; text: string; level: number }[] = [];
+  let match;
+  while ((match = headingRegex.exec(html)) !== null) {
+    headings.push({
+      level: parseInt(match[1]),
+      id: match[2],
+      text: match[3].replace(/<[^>]+>/g, ''),
+    });
+  }
+  return headings;
+}
 
 // OG description을 위한 텍스트 정리 (160자 제한, 줄바꿈 제거)
 function sanitizeDescription(text: string, maxLength: number = 160): string {
@@ -112,8 +128,11 @@ export default async function BlogPostPage({ params }: Props) {
     ? (post.thumbnail.startsWith('http') ? post.thumbnail : `${BASE_URL}${post.thumbnail}`)
     : `${BASE_URL}/assets/images/og-image.jpg`;
 
+  const tocItems = extractHeadings(post.contentHtml);
+
   return (
     <>
+      <ReadingProgress />
       {/* SEO: Structured Data */}
       <ArticleJsonLd
         title={post.title}
@@ -138,7 +157,8 @@ export default async function BlogPostPage({ params }: Props) {
 
       <section className="py-16 md:py-20">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
+          <div className="grid gap-8 lg:grid-cols-4">
+            <div className="lg:col-span-3 max-w-none">
             {/* 포스트 메타 정보 */}
             <Card className="mb-8">
               <CardContent className="p-6">
@@ -281,6 +301,12 @@ export default async function BlogPostPage({ params }: Props) {
                 </Button>
               </Link>
             </div>
+            </div>
+            {tocItems.length > 0 && (
+              <aside className="hidden lg:block lg:col-span-1">
+                <TableOfContents items={tocItems} />
+              </aside>
+            )}
           </div>
         </div>
       </section>

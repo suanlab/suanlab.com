@@ -1,9 +1,12 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Database, Brain, BookOpen, Eye, Network, MapPin, Mic } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { researchAreas } from '@/data/research';
+
+const BASE_URL = 'https://suanlab.com';
 
 const iconMap: Record<string, React.ElementType> = {
   'et-gears': Database,
@@ -25,9 +28,25 @@ const colorMap: Record<string, string> = {
   asp: 'from-rose-500 to-pink-500',
 };
 
-export const metadata = {
-  title: 'Research | SuanLab',
-  description: 'SuanLab Research Areas - Data Science, Deep Learning, NLP, Computer Vision',
+export const metadata: Metadata = {
+  title: 'Research',
+  description: 'SuanLab 연구 분야 - 데이터 사이언스, 딥러닝, 자연어처리, 컴퓨터 비전, 그래프, 시공간 분석, 오디오 음성 처리',
+  openGraph: {
+    title: 'Research | SuanLab',
+    description: 'SuanLab 연구 분야 - 데이터 사이언스, 딥러닝, 자연어처리, 컴퓨터 비전, 그래프, 시공간 분석, 오디오 음성 처리',
+    url: `${BASE_URL}/research`,
+    siteName: 'SuanLab',
+    type: 'website',
+    locale: 'ko_KR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Research | SuanLab',
+    description: 'SuanLab 연구 분야 - 데이터 사이언스, 딥러닝, 자연어처리, 컴퓨터 비전, 그래프, 시공간 분석, 오디오 음성 처리',
+  },
+  alternates: {
+    canonical: `${BASE_URL}/research/`,
+  },
 };
 
 export default function ResearchPage() {

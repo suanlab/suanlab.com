@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Rss } from 'lucide-react';
 import { socialLinks, contactInfo, siteDescription } from '@/data/navigation';
 
 export default function Footer() {
@@ -31,6 +32,16 @@ export default function Footer() {
                   <i className={`icon-${social.icon}`}></i>
                 </a>
               ))}
+              <a
+                href="/feed.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon social-icon-sm social-icon-transparent pull-left"
+                title="RSS Feed"
+                style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32 }}
+              >
+                <Rss className="h-4 w-4" />
+              </a>
             </div>
 
             <p>{siteDescription}</p>

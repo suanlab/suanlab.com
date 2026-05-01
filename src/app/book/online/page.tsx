@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
@@ -5,9 +6,27 @@ import PageHeader from '@/components/layout/PageHeader';
 import { getAllBookPosts } from '@/lib/books';
 import '@/styles/bookshelf.css';
 
-export const metadata = {
-  title: 'Online Book | SuanLab',
-  description: 'Online book contents and materials by Professor Suan Lee',
+const BASE_URL = 'https://suanlab.com';
+
+export const metadata: Metadata = {
+  title: { absolute: 'Online Book | SuanLab' },
+  description: '이수안 교수의 온라인 도서 - 데이터 사이언스, 머신러닝, 딥러닝 학습 자료',
+  openGraph: {
+    title: 'Online Book | SuanLab',
+    description: '이수안 교수의 온라인 도서 - 데이터 사이언스, 머신러닝, 딥러닝 학습 자료',
+    url: `${BASE_URL}/book/online`,
+    siteName: 'SuanLab',
+    type: 'website',
+    locale: 'ko_KR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Online Book | SuanLab',
+    description: '이수안 교수의 온라인 도서 - 데이터 사이언스, 머신러닝, 딥러닝 학습 자료',
+  },
+  alternates: {
+    canonical: `${BASE_URL}/book/online/`,
+  },
 };
 
 export default async function OnlineBookPage() {

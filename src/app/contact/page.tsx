@@ -1,11 +1,30 @@
+import { Metadata } from 'next';
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import ContactForm from './contact-form';
 
-export const metadata = {
-  title: '문의하기 | SuanLab',
-  description: 'SuanLab에 문의하기',
+const BASE_URL = 'https://suanlab.com';
+
+export const metadata: Metadata = {
+  title: '문의하기',
+  description: 'SuanLab에 문의하세요 - 이메일, 전화, 주소 정보 및 문의 양식',
+  openGraph: {
+    title: '문의하기 | SuanLab',
+    description: 'SuanLab에 문의하세요 - 이메일, 전화, 주소 정보 및 문의 양식',
+    url: `${BASE_URL}/contact`,
+    siteName: 'SuanLab',
+    type: 'website',
+    locale: 'ko_KR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '문의하기 | SuanLab',
+    description: 'SuanLab에 문의하세요 - 이메일, 전화, 주소 정보 및 문의 양식',
+  },
+  alternates: {
+    canonical: `${BASE_URL}/contact/`,
+  },
 };
 
 const contactInfo = {

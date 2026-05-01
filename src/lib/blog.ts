@@ -189,6 +189,53 @@ export function searchPosts(query: string): BlogPostMeta[] {
   );
 }
 
+export function stripMarkdown(text: string): string {
+  return text
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[[^\]]*\]\([^)]*\)/g, (m) => m.replace(/\[([^\]]*)\]\([^)]*\)/, '$1'))
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/`{3}[\s\S]*?`{3}/g, (m) => m.replace(/`{3}[^\n]*\n?/g, '').replace(/`{3}$/g, ''))
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/(\*{1,3}|_{1,3})(.+?)\1/g, '$2')
+    .replace(/~~(.+?)~~/g, '$1')
+    .replace(/^>\s+/gm, '')
+    .replace(/^\s*[-*+]\s+/gm, '')
+    .replace(/^\s*\d+\.\s+/gm, '')
+    .replace(/\$\$[\s\S]*?\$\$/g, '')
+    .replace(/\$[^$]+\$/g, '')
+    .replace(/^\|.*\|$/gm, '')
+    .replace(/^---[\s\S]*?---/g, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export function getAllPostsWithContent(): BlogPost[] {
+  const slugs = getPostSlugs();
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug.replace(/\.md$/, '')))
+    .filter((post): post is BlogPost => post !== null)
+    .sort((a, b) => (new Date(b.date) > new Date(a.date) ? 1 : -1));
+  return posts;
+}
+
+export function searchPostsFullText(query: string): BlogPostMeta[] {
+  const lowerQuery = query.toLowerCase();
+  const posts = getAllPostsWithContent();
+  const matched = posts.filter((post) => {
+    const plainContent = stripMarkdown(post.content).toLowerCase();
+    return (
+      post.title.toLowerCase().includes(lowerQuery) ||
+      post.excerpt.toLowerCase().includes(lowerQuery) ||
+      post.tags.some((tag) => tag.toLowerCase().includes(lowerQuery)) ||
+      post.category.toLowerCase().includes(lowerQuery) ||
+      plainContent.includes(lowerQuery)
+    );
+  });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  return matched.map(({ content, ...meta }) => meta);
+}
+
 export function getRelatedPosts(
   slug: string,
   category: string,

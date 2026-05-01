@@ -315,7 +315,7 @@ export const projects: Project[] = [
     "url": "https://new.sba.kr/"
   },
   {
-    "id": 22,
+    "id": 23,
     "title": "강릉 IP융복합 콘텐츠 클러스터 조성사업 계획 용역",
     "organization": "강릉과학산업진흥원",
     "program": "기술이전",
@@ -650,7 +650,7 @@ export const projects: Project[] = [
     "organization": "한국연구재단",
     "program": "신진연구지원사업",
     "period": "2011.05.01-2012.04.30",
-    "budget": "50.000.000",
+    "budget": "50,000,000",
     "completed": true,
     "items": [
       "스트림 데이터의 다차원 분석 연구"

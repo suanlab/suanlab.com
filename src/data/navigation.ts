@@ -40,6 +40,11 @@ export const navigation: NavItem[] = [
     ],
   },
   {
+    label: 'BLOG',
+    href: '/blog',
+    icon: 'et-pencil',
+  },
+  {
     label: 'LECTURE',
     href: '/lecture',
     icon: 'et-documents',
@@ -80,6 +85,11 @@ export const navigation: NavItem[] = [
       { label: 'Natural Language Processing', href: '/youtube/nlp', icon: 'fa fa-search' },
       { label: 'Audio Speech Processing', href: '/youtube/asp', icon: 'fa fa-tasks' },
     ],
+  },
+  {
+    label: 'QT',
+    href: '/qt',
+    icon: 'et-heart',
   },
 ];
 

@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GraduationCap, Building, BookOpen, Youtube, ChevronRight } from 'lucide-react';
@@ -6,9 +7,27 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { lectures, graduateCourses, teachingHistory } from '@/data/lectures';
 
-export const metadata = {
-  title: 'Lecture | SuanLab',
-  description: 'University courses taught by Professor Suan Lee - AI, Deep Learning, NLP, Computer Vision, and more',
+const BASE_URL = 'https://suanlab.com';
+
+export const metadata: Metadata = {
+  title: 'Lecture',
+  description: '이수안 교수의 대학 강의 - 인공지능, 딥러닝, 자연어처리, 컴퓨터 비전 등 데이터 사이언스 관련 강의',
+  openGraph: {
+    title: 'Lecture | SuanLab',
+    description: '이수안 교수의 대학 강의 - 인공지능, 딥러닝, 자연어처리, 컴퓨터 비전 등 데이터 사이언스 관련 강의',
+    url: `${BASE_URL}/lecture`,
+    siteName: 'SuanLab',
+    type: 'website',
+    locale: 'ko_KR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Lecture | SuanLab',
+    description: '이수안 교수의 대학 강의 - 인공지능, 딥러닝, 자연어처리, 컴퓨터 비전 등 데이터 사이언스 관련 강의',
+  },
+  alternates: {
+    canonical: `${BASE_URL}/lecture/`,
+  },
 };
 
 export default function LecturePage() {

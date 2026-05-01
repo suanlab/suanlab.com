@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { GraduationCap, Building, Mail, Phone, MapPin, Check, Globe, Instagram, Facebook, Linkedin, Youtube, Calendar, Award, BookOpen, Plane, Users, Briefcase, Heart, Scale, Download } from 'lucide-react';
 import { academicActivities, journalMemberships, journalReviews, journalReviewStats, conferenceReviews, advisoryActivities, activityCategories } from '@/data/academic-activities';
@@ -16,9 +17,27 @@ import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
-export const metadata = {
-  title: 'Suan | SuanLab',
-  description: 'Professor Suan Lee - Data Science & Artificial Intelligence Researcher',
+const BASE_URL = 'https://suanlab.com';
+
+export const metadata: Metadata = {
+  title: 'Suan',
+  description: '이수안 교수 - 데이터 사이언스 및 인공지능 연구자. 세명대학교 컴퓨터학부 조교수',
+  openGraph: {
+    title: 'Suan | SuanLab',
+    description: '이수안 교수 - 데이터 사이언스 및 인공지능 연구자. 세명대학교 컴퓨터학부 조교수',
+    url: `${BASE_URL}/suan`,
+    siteName: 'SuanLab',
+    type: 'profile',
+    locale: 'ko_KR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Suan | SuanLab',
+    description: '이수안 교수 - 데이터 사이언스 및 인공지능 연구자. 세명대학교 컴퓨터학부 조교수',
+  },
+  alternates: {
+    canonical: `${BASE_URL}/suan/`,
+  },
 };
 
 const skills = [

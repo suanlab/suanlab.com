@@ -1,12 +1,31 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Globe, BookOpen, ArrowRight } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
-export const metadata = {
-  title: 'Book | SuanLab',
-  description: 'Books by Professor Suan Lee - Online books and published books',
+const BASE_URL = 'https://suanlab.com';
+
+export const metadata: Metadata = {
+  title: 'Book',
+  description: '이수안 교수의 도서 - 온라인 도서와 출판 도서를 확인하세요',
+  openGraph: {
+    title: 'Book | SuanLab',
+    description: '이수안 교수의 도서 - 온라인 도서와 출판 도서를 확인하세요',
+    url: `${BASE_URL}/book`,
+    siteName: 'SuanLab',
+    type: 'website',
+    locale: 'ko_KR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Book | SuanLab',
+    description: '이수안 교수의 도서 - 온라인 도서와 출판 도서를 확인하세요',
+  },
+  alternates: {
+    canonical: `${BASE_URL}/book/`,
+  },
 };
 
 const bookCategories = [

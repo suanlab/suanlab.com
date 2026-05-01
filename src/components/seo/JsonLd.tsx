@@ -251,3 +251,103 @@ export function BreadcrumbJsonLd({ items }: { items: BreadcrumbItem[] }) {
     />
   );
 }
+
+// VideoObject Schema for YouTube videos
+interface VideoJsonLdProps {
+  videos: { title: string; videoId: string; thumbnail?: string }[];
+}
+
+export function VideoCollectionJsonLd({ videos }: VideoJsonLdProps) {
+  const schemas = videos.map((video) => ({
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.title,
+    thumbnailUrl: video.thumbnail || `https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`,
+    embedUrl: `https://www.youtube.com/embed/${video.videoId}`,
+    contentUrl: `https://www.youtube.com/watch?v=${video.videoId}`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'SuanLab',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/assets/images/logo.png`,
+      },
+    },
+  }));
+
+  return (
+    <Script
+      id="video-jsonld"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
+    />
+  );
+}
+
+// ScholarlyArticle Schema for publications
+interface ScholarlyArticleJsonLdProps {
+  publications: { title: string; authors: string; venue: string; date: string; url?: string }[];
+}
+
+export function ScholarlyArticleCollectionJsonLd({ publications }: ScholarlyArticleJsonLdProps) {
+  const schemas = publications.map((pub) => ({
+    '@context': 'https://schema.org',
+    '@type': 'ScholarlyArticle',
+    headline: pub.title,
+    author: pub.authors.split(',').map((a) => ({
+      '@type': 'Person',
+      name: a.trim(),
+    })),
+    publisher: {
+      '@type': 'Organization',
+      name: pub.venue,
+    },
+    datePublished: pub.date,
+    ...(pub.url && { url: pub.url }),
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${BASE_URL}/publication`,
+    },
+  }));
+
+  return (
+    <Script
+      id="scholarly-jsonld"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
+    />
+  );
+}
+
+// Event Schema for lectures/seminars
+interface EventJsonLdProps {
+  events: { name: string; description?: string; date: string; venue?: string; url?: string }[];
+}
+
+export function EventCollectionJsonLd({ events }: EventJsonLdProps) {
+  const schemas = events.map((event) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.name,
+    startDate: event.date,
+    location: {
+      '@type': 'Place',
+      name: event.venue || 'Semyung University',
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: 'SuanLab',
+      url: BASE_URL,
+    },
+    ...(event.description && { description: event.description }),
+    ...(event.url && { url: event.url }),
+  }));
+
+  return (
+    <Script
+      id="event-jsonld"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
+    />
+  );
+}

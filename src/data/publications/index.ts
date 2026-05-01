@@ -14,17 +14,29 @@ export interface Publication {
   impact?: string;
 }
 
-export const publicationTypes: { key: PublicationType | 'all'; label: string; count: number }[] = [
-  { key: 'all', label: 'All', count: 271 },
-  { key: 'journal', label: 'International Journal', count: 31 },
-  { key: 'conference', label: 'International Conference', count: 40 },
-  { key: 'djournal', label: 'Domestic Journal', count: 28 },
-  { key: 'dconference', label: 'Domestic Conference', count: 145 },
-  { key: 'book', label: 'Book', count: 2 },
-  { key: 'patent', label: 'Patent', count: 11 },
-  { key: 'report', label: 'Report', count: 3 },
-  { key: 'column', label: 'Column', count: 9 },
-];
+const typeLabels: Record<PublicationType, string> = {
+  journal: 'International Journal',
+  conference: 'International Conference',
+  djournal: 'Domestic Journal',
+  dconference: 'Domestic Conference',
+  book: 'Book',
+  patent: 'Patent',
+  report: 'Report',
+  column: 'Column',
+};
+
+function computePublicationTypes(publications: Publication[]) {
+  const counts = new Map<PublicationType, number>();
+  for (const pub of publications) {
+    counts.set(pub.type, (counts.get(pub.type) || 0) + 1);
+  }
+  const types = (Object.keys(typeLabels) as PublicationType[]).map((key) => ({
+    key,
+    label: typeLabels[key],
+    count: counts.get(key) || 0,
+  }));
+  return [{ key: 'all' as const, label: 'All', count: publications.length }, ...types];
+}
 
 export const publications: Publication[] = [
   // ============ 2025 International Journals ============
@@ -2665,6 +2677,8 @@ export const publications: Publication[] = [
     "keywords": "data mining, academic achievement, learning method, decision tree, association rules"
   }
 ];
+
+export const publicationTypes = computePublicationTypes(publications);
 
 export const getPublicationsByType = (type: PublicationType | 'all'): Publication[] => {
   if (type === 'all') return publications;

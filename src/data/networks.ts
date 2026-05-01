@@ -449,7 +449,7 @@ export const networkCategories: NetworkCategory[] = [
 ];
 
 export const networkStats = {
-  totalConnections: 860,
+  totalConnections: networkCategories.reduce((sum, cat) => sum + cat.items.length, 0),
   universities: 78,
   government: 72,
   companies: 226,
