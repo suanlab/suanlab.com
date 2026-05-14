@@ -11,6 +11,14 @@ export interface MediaArticle {
 // Sorted by date (newest first)
 export const mediaArticles: MediaArticle[] = [
   {
+    id: '13',
+    title: '인하대 이우기 교수 연구팀, 단일 카메라로 손끝 접촉 인식 구현',
+    source: '교수신문',
+    date: '2026-04-16',
+    url: 'https://www.kyosu.net/news/articleView.html?idxno=203925',
+    excerpt: '이수안 교수가 인하대 이우기 교수 연구팀과 공동으로 일반 카메라 영상만으로 손끝 접촉을 실시간 인식하는 AI 기술을 개발했다. 연구 성과는 CVPR 2026에 채택되었다.',
+  },
+  {
     id: '11',
     title: "세명대 데이터지능연구실, 국제학술대회 'IEEE BigComp 2026'서 우수논문상 Runner-Up 수상",
     source: '세명대학교',

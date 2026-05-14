@@ -36,8 +36,8 @@ const translations = {
     'youtube.btn.watch': '영상 보기',
     'youtube.topics': ['Python Programming', 'Data Science', 'Machine Learning', 'Deep Learning', 'Computer Vision', 'NLP'],
     
-    'media.badge': '미디어 복도',
-    'media.title': '미디어 복도',
+    'media.badge': '미디어 보도',
+    'media.title': '미디어 보도',
     'media.description': 'SuanLab과 이수안 교수의 연구 및 활동에 관한 미디어 기사',
     
     'quicklinks.title': 'SuanLab 둘러보기',
