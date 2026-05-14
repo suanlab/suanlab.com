@@ -12,7 +12,7 @@ export interface MediaArticle {
 export const mediaArticles: MediaArticle[] = [
   {
     id: '13',
-    title: '인하대 이우기 교수 연구팀, 단일 카메라로 손끝 접촉 인식 구현',
+    title: '단일 카메라로 손끝 접촉 인식 구현',
     source: '교수신문',
     date: '2026-04-16',
     url: 'https://www.kyosu.net/news/articleView.html?idxno=203925',
