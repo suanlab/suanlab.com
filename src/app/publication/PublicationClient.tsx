@@ -178,7 +178,13 @@ export default function PublicationClient({
                         <Badge
                           className={cn(
                             'text-xs',
-                            pub.badge.includes('Best Paper Award Runner-up')
+                            pub.badge === 'SCIE'
+                              ? 'bg-purple-500 text-white hover:bg-purple-600'
+                              : pub.badge === 'SSCI'
+                              ? 'bg-yellow-500 text-white hover:bg-yellow-600'
+                              : pub.badge === 'KCI'
+                              ? 'bg-blue-500 text-white hover:bg-blue-600'
+                              : pub.badge.includes('Best Paper Award Runner-up')
                               ? 'bg-orange-500 text-white hover:bg-orange-600'
                               : 'bg-destructive text-destructive-foreground'
                           )}
