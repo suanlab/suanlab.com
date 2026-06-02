@@ -1,4 +1,4 @@
-export type PublicationType = 'journal' | 'conference' | 'djournal' | 'dconference' | 'book' | 'patent' | 'report' | 'column';
+export type PublicationType = 'journal' | 'conference' | 'workshop' | 'djournal' | 'dconference' | 'book' | 'patent' | 'report' | 'column';
 
 export interface Publication {
   id: number;
@@ -17,6 +17,7 @@ export interface Publication {
 const typeLabels: Record<PublicationType, string> = {
   journal: 'International Journal',
   conference: 'International Conference',
+  workshop: 'Workshop',
   djournal: 'Domestic Journal',
   dconference: 'Domestic Conference',
   book: 'Book',
@@ -215,6 +216,18 @@ export const publications: Publication[] = [
     "badge": "[SCIE]",
     "impact": "(IF: 3.9)",
     "keywords": "leak detection; machine learning; vibration sensor; water pipeline"
+  },
+  // ============ 2026 Workshops ============
+  {
+    "id": 225,
+    "type": "workshop",
+    "title": "How Language Directions Align with Token Geometry in Multilingual LLMs",
+    "authors": "JaeSeong Kim and Suan Lee",
+    "venue": "ACL 2026 Student Research Workshop",
+    "date": "2026",
+    "badge": "ACL 2026 SRW Accepted",
+    "url": "https://arxiv.org/abs/2511.16693",
+    "keywords": "multilingual LLMs; representation space; language directions; token geometry; probing"
   },
   // ============ 2025 Domestic Journals (KCI) ============
   {
