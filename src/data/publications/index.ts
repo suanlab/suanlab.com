@@ -420,7 +420,6 @@ export const publications: Publication[] = [
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "2026 IEEE International Conference on Big Data and Smart Computing (BigComp)",
     "date": "2026",
-    "badge": "BigComp 2026",
     "keywords": "LLM; representation space; linear separability; feature importance"
   },
   {
