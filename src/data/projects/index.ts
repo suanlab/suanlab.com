@@ -12,6 +12,18 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    "id": 50,
+    "title": "선형 LM Head 구조 기반 은닉 표현 섭동의 선형 투영을 이용한 학습 불필요 LLM 워터마킹 및 탐지",
+    "organization": "한국연구재단",
+    "program": "신진연구",
+    "period": "2026.03.01-2029.02.28",
+    "budget": "300,000,000",
+    "completed": false,
+    "items": [
+      "LLM의 선형 LM Head 구조를 활용하여, 모델 재학습 없이 추론 단계에서 은닉 상태에 미세한 섭동을 주입해 AI 생성 텍스트를 식별하는 학습 불필요(Training-Free) 워터마킹 기술 개발"
+    ]
+  },
+  {
     "id": 1,
     "title": "지휘결심 지원 및 가상 시뮬레이션을 위한 온톨로지 및 에이전트 개발",
     "organization": "㈜네비웍스",

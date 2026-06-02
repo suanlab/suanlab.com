@@ -2273,9 +2273,36 @@ export const publications: Publication[] = [
     "venue": "정보통신산업진흥원 주간기술동향 1445호",
     "date": "2010년"
   },
-  // ============ Patents (특허) - 등록 7건 ============
+  // ============ Patents (특허) - 등록 10건 ============
   {
     "id": 400,
+    "type": "patent",
+    "title": "WiFi CSI 적응형 학습 시스템 및 이의 실행 방법",
+    "authors": "김재한, 진동민, 이수안",
+    "venue": "대한민국 특허청 (등록번호: 1020250118369)",
+    "date": "2025년 08월",
+    "url": "https://doi.org/10.8080/1020250118369"
+  },
+  {
+    "id": 401,
+    "type": "patent",
+    "title": "WiFi CSI 기반의 객체 위치 추정 시스템 및 이의 실행 방법",
+    "authors": "김재한, 진동민, 이수안",
+    "venue": "대한민국 특허청 (등록번호: 1020250118368)",
+    "date": "2025년 08월",
+    "url": "https://doi.org/10.8080/1020250118368"
+  },
+  {
+    "id": 402,
+    "type": "patent",
+    "title": "WiFi CSI 기반의 자세 분류 및 이상 상태 판단 시스템 및 그 방법",
+    "authors": "김재한, 진동민, 이수안",
+    "venue": "대한민국 특허청 (등록번호: 1020250118370)",
+    "date": "2025년 08월",
+    "url": "https://doi.org/10.8080/1020250118370"
+  },
+  {
+    "id": 403,
     "type": "patent",
     "title": "위치 이동 인식 기반 객체 정보 인식 방법",
     "authors": "오영, 이수안, 김재형, 권봉기",
@@ -2284,7 +2311,7 @@ export const publications: Publication[] = [
     "url": "https://doi.org/10.8080/1020190085640"
   },
   {
-    "id": 401,
+    "id": 404,
     "type": "patent",
     "title": "회귀분석용 와이드 앤 딥 모델 기반 학습 방법",
     "authors": "김민규, 이수안, 김진호",
@@ -2293,7 +2320,7 @@ export const publications: Publication[] = [
     "url": "https://doi.org/10.8080/1020190174909"
   },
   {
-    "id": 402,
+    "id": 405,
     "type": "patent",
     "title": "동작 인식과 마커 기반 객체 정보 인식 방법",
     "authors": "오영, 이수안, 김재형, 권봉기",
@@ -2302,7 +2329,7 @@ export const publications: Publication[] = [
     "url": "https://doi.org/10.8080/1020190085636"
   },
   {
-    "id": 403,
+    "id": 406,
     "type": "patent",
     "title": "WiFi CSI 기반의 행동 예측 모델 시스템 및 이의 실행 방법",
     "authors": "김재한, 진동민, 이수안",
@@ -2311,7 +2338,7 @@ export const publications: Publication[] = [
     "url": "https://doi.org/10.8080/1020240094911"
   },
   {
-    "id": 404,
+    "id": 407,
     "type": "patent",
     "title": "구조 변형 인식 기반 객체 정보 인식 방법",
     "authors": "오영, 이수안, 김재형, 권봉기",
@@ -2320,7 +2347,7 @@ export const publications: Publication[] = [
     "url": "https://doi.org/10.8080/1020190085633"
   },
   {
-    "id": 405,
+    "id": 408,
     "type": "patent",
     "title": "인공신경망을 이용한 이미지 변환 기반의 코골이 분류 방법",
     "authors": "최예신, 이수안",
@@ -2329,7 +2356,7 @@ export const publications: Publication[] = [
     "url": "https://doi.org/10.8080/1020220186688"
   },
   {
-    "id": 406,
+    "id": 409,
     "type": "patent",
     "title": "사용자를 위한 수면 큐레이션 서비스 시스템의 동작 방법",
     "authors": "최예신, 김인헌, 이경수, 이수안",
@@ -2337,37 +2364,7 @@ export const publications: Publication[] = [
     "date": "2023년 04월",
     "url": "https://doi.org/10.8080/1020230007147"
   },
-  // ============ Patents (특허) - 출원 4건 ============
-  {
-    "id": 407,
-    "type": "patent",
-    "title": "WiFi CSI 기반의 자세 분류 및 이상 상태 판단 시스템 및 그 방법",
-    "authors": "김재한, 진동민, 이수안",
-    "venue": "대한민국 특허청 (출원번호: 1020250118370)",
-    "date": "2025년 08월",
-    "badge": "[출원]",
-    "url": "https://doi.org/10.8080/1020250118370"
-  },
-  {
-    "id": 408,
-    "type": "patent",
-    "title": "WiFi CSI 적응형 학습 시스템 및 이의 실행 방법",
-    "authors": "김재한, 진동민, 이수안",
-    "venue": "대한민국 특허청 (출원번호: 1020250118369)",
-    "date": "2025년 08월",
-    "badge": "[출원]",
-    "url": "https://doi.org/10.8080/1020250118369"
-  },
-  {
-    "id": 409,
-    "type": "patent",
-    "title": "WiFi CSI 기반의 객체 위치 추정 시스템 및 이의 실행 방법",
-    "authors": "김재한, 진동민, 이수안",
-    "venue": "대한민국 특허청 (출원번호: 1020250118368)",
-    "date": "2025년 08월",
-    "badge": "[출원]",
-    "url": "https://doi.org/10.8080/1020250118368"
-  },
+  // ============ Patents (특허) - 출원 1건 ============
   {
     "id": 410,
     "type": "patent",
