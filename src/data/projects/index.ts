@@ -342,7 +342,7 @@ export const projects: Project[] = [
     "url": "https://www.gsif.or.kr/"
   },
   {
-    "id": 23,
+    "id": 51,
     "title": "인공지능기반 스마트 의정 분석 및 구축 기술",
     "organization": "재단법인 여의도연구원",
     "program": "기술이전",
