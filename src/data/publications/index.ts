@@ -384,6 +384,46 @@ export const publications: Publication[] = [
     "url": "https://arxiv.org/abs/2603.27223",
     "keywords": "multilingual benchmark; multimodal; civil service exam; AI bias"
   },
+  {
+    "id": 613,
+    "type": "conference",
+    "title": "The Latent Hivemind: Do LLMs Converge in How They Think?",
+    "authors": "JaeSeong Kim and Suan Lee",
+    "venue": "European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD 2026)",
+    "date": "2026",
+    "badge": "ECML-PKDD 2026",
+    "keywords": "LLM convergence; representation analysis; latent behavior"
+  },
+  {
+    "id": 614,
+    "type": "conference",
+    "title": "Same Benchmark, Same Subspace: Task-Selective Convergence in LLM Representations",
+    "authors": "JaeSeong Kim and Suan Lee",
+    "venue": "Conference on Uncertainty in Artificial Intelligence (UAI 2026)",
+    "date": "2026",
+    "badge": "UAI 2026",
+    "keywords": "LLM representations; task-selective convergence; subspace analysis"
+  },
+  {
+    "id": 615,
+    "type": "conference",
+    "title": "Interpretable Spatial-Temporal Forecasting via Additive Neural Decomposition and Knowledge Distillation",
+    "authors": "Suan Lee and Jinho Kim",
+    "venue": "Conference on Uncertainty in Artificial Intelligence (UAI 2026)",
+    "date": "2026",
+    "badge": "UAI 2026",
+    "keywords": "interpretable forecasting; spatial-temporal; neural decomposition; knowledge distillation"
+  },
+  {
+    "id": 616,
+    "type": "conference",
+    "title": "FraudGNAM: Inherently Interpretable Spectral GNN for Graph Fraud Detection",
+    "authors": "Suan Lee and Jinho Kim",
+    "venue": "Conference on Uncertainty in Artificial Intelligence (UAI 2026)",
+    "date": "2026",
+    "badge": "UAI 2026",
+    "keywords": "graph fraud detection; interpretable GNN; spectral methods"
+  },
   // ============ 2024 International Conferences ============
   {
     "id": 222,
@@ -421,6 +461,160 @@ export const publications: Publication[] = [
     "venue": "NeurIPS 2023 Workshop on Diffusion Models",
     "date": "December 2023",
     "keywords": "diffusion models; generative AI; corrupted data; image generation"
+  },
+  // ============ 2026 Domestic Conferences ============
+  {
+    "id": 617,
+    "type": "dconference",
+    "title": "StatsBomb 360 기반 축구 패스 위험-보상 순효용 모델링",
+    "authors": "이준형, 박동호, 이우기, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "축구 분석; 패스 모델링; 위험-보상; 순효용"
+  },
+  {
+    "id": 618,
+    "type": "dconference",
+    "title": "IR 피칭 발표력 자동 평가를 위한 멀티모달 분석 시스템 설계 및 모듈별 비교",
+    "authors": "김혜진, 이하은, 백상렬, 신재광, 홍재우, 이은슬, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "피칭 발표력; 멀티모달 분석; 자동 평가"
+  },
+  {
+    "id": 619,
+    "type": "dconference",
+    "title": "케미스트리 임계점: NBA 로스터 연속성이 팀 성적에 미치는 인과적 효과",
+    "authors": "김도경, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "NBA; 로스터 연속성; 인과 추론; 팀 성적"
+  },
+  {
+    "id": 620,
+    "type": "dconference",
+    "title": "멀티모달 분석 기반 AI 면접 코칭 시스템: 음성·영상·텍스트 통합 파이프라인 설계",
+    "authors": "나영민, 김주영, 공태식, 전윤성, 정윤재, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "AI 면접; 멀티모달; 음성 분석; 영상 분석; 텍스트 분석"
+  },
+  {
+    "id": 621,
+    "type": "dconference",
+    "title": "Supervised Contrastive Learning 기반 노이즈 강건 수면패턴 예측",
+    "authors": "김지환, 신재광, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "수면 패턴 예측; Supervised Contrastive Learning; 노이즈 강건"
+  },
+  {
+    "id": 622,
+    "type": "dconference",
+    "title": "다중 베어링 Run-to-Failure 데이터셋 기반 잔여수명 예측모델 비교와 학습 안정성 검증",
+    "authors": "김현우, 고상근, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "잔여수명 예측; Run-to-Failure; 베어링; 학습 안정성"
+  },
+  {
+    "id": 623,
+    "type": "dconference",
+    "title": "추론 단계의 엔트로피 기반 리스크 탐지를 활용한 LVLM 시각 토큰 프루닝 및 동적 복구 기술",
+    "authors": "이하은, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "LVLM; 시각 토큰 프루닝; 엔트로피; 동적 복구"
+  },
+  {
+    "id": 624,
+    "type": "dconference",
+    "title": "OrbiqAI: 지식 그래프 기반 멀티 에이전트 군집 지능을 활용한 개인 진로 의사결정 지원 시스템",
+    "authors": "박윤조, 우종찬, 왕제교, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "지식 그래프; 멀티 에이전트; 군집 지능; 진로 의사결정"
+  },
+  {
+    "id": 625,
+    "type": "dconference",
+    "title": "Tabular 금융 사기 탐지를 위한 Representation Disentanglement 기반 표현 분리 효과 분석",
+    "authors": "정예림, 고상근, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "금융 사기 탐지; 표현 분리; Tabular 데이터; Representation Disentanglement"
+  },
+  {
+    "id": 626,
+    "type": "dconference",
+    "title": "과업 인식형 백본 분리와 다시점 지도 대조 학습을 이용한 다중 부위 피부 상태 평가",
+    "authors": "이겸수, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "피부 상태 평가; 백본 분리; 대조 학습; 다시점 지도"
+  },
+  {
+    "id": 627,
+    "type": "dconference",
+    "title": "LLM 기반 오답 원인 진단 시스템의 설계 및 평가",
+    "authors": "안수혁, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "LLM; 오답 원인 진단; 자동 평가"
+  },
+  {
+    "id": 628,
+    "type": "dconference",
+    "title": "SeoulOps: Text-to-SQL, City2Graph, GraphRAG를 결합한 도시운영 의사결정 지원",
+    "authors": "김수웅, 이가연, 이찬우, 최예지, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "Text-to-SQL; City2Graph; GraphRAG; 도시운영; 의사결정"
+  },
+  {
+    "id": 629,
+    "type": "dconference",
+    "title": "비정형 물류 객체 적재 효율 향상을 위한 기하학적 임베딩 및 3D 형상 복원",
+    "authors": "이세정, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "물류 적재; 기하학적 임베딩; 3D 형상 복원"
+  },
+  {
+    "id": 630,
+    "type": "dconference",
+    "title": "물리 인과 쌍의 실행 구조 붕괴 기반 산업제어시스템 이상탐지",
+    "authors": "최하정, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "산업제어시스템; 이상탐지; 인과 추론; 실행 구조"
+  },
+  {
+    "id": 631,
+    "type": "dconference",
+    "title": "Transformer 구성요소별 개입을 통한 연속 사전학습 Forgetting 분석",
+    "authors": "백상렬, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "Transformer; 연속 학습; Forgetting; 구성요소 분석"
+  },
+  {
+    "id": 632,
+    "type": "dconference",
+    "title": "텍스트 소스 편향 분석을 위한 프롬프트-캡션 삼각 검증 프로토콜",
+    "authors": "김혜진, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "텍스트 편향; 프롬프트; 캡션; 삼각 검증"
+  },
+  {
+    "id": 633,
+    "type": "dconference",
+    "title": "단일 Run-to-Failure 궤적 환경에서의 베어링 잔여수명 예측을 위한 딥러닝 모델",
+    "authors": "고상근, 이수안",
+    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "date": "2026",
+    "keywords": "잔여수명 예측; Run-to-Failure; 베어링; 딥러닝"
   },
   // ============ 2025 Domestic Conferences ============
   {
