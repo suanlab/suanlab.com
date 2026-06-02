@@ -229,6 +229,15 @@ export const publications: Publication[] = [
     "url": "https://arxiv.org/abs/2511.16693",
     "keywords": "multilingual LLMs; representation space; language directions; token geometry; probing"
   },
+  {
+    "id": 640,
+    "type": "workshop",
+    "title": "Diffusion-C: Unveiling the Generative Challenges of Diffusion Models through Corrupted Data",
+    "authors": "Keywoong Bae, Suan Lee, and Wookey Lee",
+    "venue": "NeurIPS 2023 Workshop on Diffusion Models",
+    "date": "December 2023",
+    "keywords": "diffusion models; generative AI; corrupted data; image generation"
+  },
   // ============ 2025 Domestic Journals (KCI) ============
   {
     "id": 214,
@@ -451,16 +460,6 @@ export const publications: Publication[] = [
     "venue": "2024 IEEE International Conference on Big Data and Smart Computing (BigComp)",
     "date": "February 2024",
     "keywords": "human action recognition; Doppler; 3D CNN; deep learning"
-  },
-  // ============ 2023 International Conferences ============
-  {
-    "id": 225,
-    "type": "conference",
-    "title": "Diffusion-C: Unveiling the Generative Challenges of Diffusion Models through Corrupted Data",
-    "authors": "Keywoong Bae, Suan Lee, and Wookey Lee",
-    "venue": "NeurIPS 2023 Workshop on Diffusion Models",
-    "date": "December 2023",
-    "keywords": "diffusion models; generative AI; corrupted data; image generation"
   },
   // ============ 2026 Domestic Conferences ============
   {

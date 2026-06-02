@@ -14,6 +14,7 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 import type { Publication, PublicationType } from '@/data/publications';
 
 interface PublicationTypeOption {
@@ -174,7 +175,14 @@ export default function PublicationClient({
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
                       {pub.badge && (
-                        <Badge variant="destructive" className="text-xs">
+                        <Badge
+                          className={cn(
+                            'text-xs',
+                            pub.badge.includes('Best Paper Award Runner-up')
+                              ? 'bg-orange-500 text-white hover:bg-orange-600'
+                              : 'bg-destructive text-destructive-foreground'
+                          )}
+                        >
                           {pub.badge}
                         </Badge>
                       )}
