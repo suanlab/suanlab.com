@@ -98,7 +98,7 @@ export default function ModernHeader() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2 shrink-0">
           <Image
             src="/assets/images/logo.png"
             alt="SuanLab"
@@ -110,7 +110,7 @@ export default function ModernHeader() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-1">
+        <nav className="hidden lg:flex items-center space-x-1 min-w-0">
           {navigation.map((item) => (
             <div
               key={item.nameKey}
