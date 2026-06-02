@@ -60,13 +60,11 @@ const socialLinks = [
 ];
 
 const researchInterests = [
-  'Data Science & Big Data',
-  'Deep Learning & Machine Learning',
-  'Natural Language Processing',
-  'Computer Vision',
-  'Graphs and Tensors',
-  'Spatio-Temporal Analysis',
-  'Audio & Speech Processing',
+  { title: 'Trustworthy & Causal Machine Intelligence', detail: 'Interpretability, Explainability, and Causal Reasoning' },
+  { title: 'Geometric & Relational Representation Learning', detail: 'Tensors, Hypergraphs, Knowledge Graphs, and Networks' },
+  { title: 'High-dimensional Structured Data Analytics', detail: 'Tabular Data, Time Series, and Spatio-Temporal Modeling' },
+  { title: 'Multimodal Foundation Models', detail: 'Large Language Models, Computer Vision, and Visual Language Action Models' },
+  { title: 'Autonomous Agency & Collective Intelligence', detail: 'AI Agents, Multi-Agent Systems, and Meta-Policy Optimization' },
 ];
 
 export default function SuanPage() {
@@ -344,11 +342,14 @@ export default function SuanPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       {researchInterests.map((interest) => (
-                        <li key={interest} className="flex items-center gap-2">
-                          <Check className="h-4 w-4 text-green-500" />
-                          <span className="text-sm">{interest}</span>
+                        <li key={interest.title} className="flex items-start gap-2">
+                          <Check className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                          <div>
+                            <span className="text-sm font-medium">{interest.title}</span>
+                            <p className="text-xs text-muted-foreground">{interest.detail}</p>
+                          </div>
                         </li>
                       ))}
                     </ul>
