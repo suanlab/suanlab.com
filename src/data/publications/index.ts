@@ -50,6 +50,17 @@ export const publications: Publication[] = [
     "badge": "[SCIE]",
     "keywords": "instruction fine-tuning; verbatim memorization; large language models"
   },
+  {
+    "id": 223,
+    "type": "journal",
+    "title": "Architectural 3D Point cloud data registration and fusion combining deep learning and traditional algorithms",
+    "authors": "Chenglong Huang, Chi-Ho Lin, Suan Lee, and Jie Zhang",
+    "venue": "Archives of Nano-Research (ANR), 20(3), 415",
+    "date": "2026",
+    "badge": "[SCIE]",
+    "url": "https://doi.org/10.12989/anr.2026.20.3.415",
+    "keywords": "3D point cloud; registration; fusion; RPMNet++; ICP; deep learning"
+  },
   // ============ 2025 International Journals ============
   {
     "id": 200,
