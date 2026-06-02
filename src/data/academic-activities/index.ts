@@ -159,6 +159,8 @@ export const conferenceReviews: ConferenceReview[] = [
   { id: 9, conference: 'KDD', fullName: 'ACM SIGKDD Conference on Knowledge Discovery and Data Mining', role: 'Reviewer' },
   { id: 10, conference: 'AISTATS', fullName: 'International Conference on Artificial Intelligence and Statistics', role: 'Reviewer' },
   { id: 11, conference: 'DASFAA', fullName: 'Database Systems for Advanced Applications', role: 'Reviewer' },
+  { id: 12, conference: 'UAI', fullName: 'Conference on Uncertainty in Artificial Intelligence', role: 'Reviewer' },
+  { id: 13, conference: 'CIKM', fullName: 'ACM International Conference on Information and Knowledge Management', role: 'Reviewer' },
 ];
 
 // 학회 멤버십
