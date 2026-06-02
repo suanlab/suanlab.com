@@ -341,7 +341,7 @@ export const publications: Publication[] = [
     "authors": "Toshpulatov Mukhiddin Amonkulovich, Wookey Lee, Suan Lee, and Geehyuk Lee",
     "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2026)",
     "date": "2026",
-    "badge": "CVPR 2026 Accepted",
+    "badge": "CVPR 2026",
     "keywords": "fingertip contact detection; multimodal fusion; depth sensing; human-computer interaction"
   },
   {
@@ -372,6 +372,17 @@ export const publications: Publication[] = [
     "date": "2026",
     "badge": "AAAI 2026",
     "keywords": "transparent networks; multivariate time series; interpretable deep learning"
+  },
+  {
+    "id": 612,
+    "type": "conference",
+    "title": "EuraGovExam: A Multilingual Multimodal Benchmark from Real-World Civil Service Exams",
+    "authors": "Jaeseong Kim, Chaehwan Lim, Sang Hyun Gil, and Suan Lee",
+    "venue": "ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2026)",
+    "date": "2026",
+    "badge": "KDD 2026",
+    "url": "https://arxiv.org/abs/2603.27223",
+    "keywords": "multilingual benchmark; multimodal; civil service exam; AI bias"
   },
   // ============ 2024 International Conferences ============
   {
