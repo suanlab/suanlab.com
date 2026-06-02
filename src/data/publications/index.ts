@@ -48,7 +48,7 @@ export const publications: Publication[] = [
     "authors": "Sizheng Wei and Suan Lee",
     "venue": "PLoS One",
     "date": "2025",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.9)",
     "keywords": "fraud detection; heterogeneous graph; attention network; deep learning"
   },
@@ -68,7 +68,7 @@ export const publications: Publication[] = [
     "authors": "Mukhiddin Toshpulatov, Wookey Lee, Jaesung Jun, and Suan Lee",
     "venue": "Pattern Recognition",
     "date": "2025",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 7.5, JCR: Q1)",
     "keywords": "sign language processing; deep learning; gesture recognition"
   },
@@ -79,7 +79,7 @@ export const publications: Publication[] = [
     "authors": "Sangkeun Ko and Suan Lee",
     "venue": "Applied Sciences",
     "date": "2025",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.5)",
     "keywords": "bearing fault detection; time series transformer; noise robustness; deep learning"
   },
@@ -91,7 +91,7 @@ export const publications: Publication[] = [
     "authors": "Hyeonbin Ji, Ingeun Hwang, Junghwon Kim, Suan Lee, and Wookey Lee",
     "venue": "PLoS ONE",
     "date": "December 2024",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.9)",
     "keywords": "fault diagnosis; feature extraction; clustering; equipment monitoring"
   },
@@ -102,7 +102,7 @@ export const publications: Publication[] = [
     "authors": "Minkyu Kim, Suan Lee, and Jinho Kim",
     "venue": "Electronics",
     "date": "August 2024",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.6)",
     "keywords": "tensor factorization; explainable AI; revenue prediction; commercial district"
   },
@@ -113,7 +113,7 @@ export const publications: Publication[] = [
     "authors": "Xiangui Ju, Chi-Ho Lin, Suan Lee, and Sizheng Wei",
     "venue": "Photochemistry and Photobiology",
     "date": "2024",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.6)",
     "keywords": "melanoma classification; GAN; reinforcement learning; medical imaging"
   },
@@ -124,7 +124,7 @@ export const publications: Publication[] = [
     "authors": "Mukhiddin Toshpulatov, Wookey Lee, Suan Lee, et al.",
     "venue": "IEEE Access",
     "date": "2024",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 3.4)",
     "keywords": "human action recognition; Doppler; 3D CNN; deep learning"
   },
@@ -135,7 +135,7 @@ export const publications: Publication[] = [
     "authors": "Hongxin Zhang and Suan Lee",
     "venue": "Biomimetics",
     "date": "June 2024",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 3.4)",
     "keywords": "robotic vision; bionic eye; binocular system; computer vision"
   },
@@ -146,7 +146,7 @@ export const publications: Publication[] = [
     "authors": "Chunsik Lee, Suan Lee, et al.",
     "venue": "Journal of Contingencies and Crisis Management",
     "date": "June 2024",
-    "badge": "[SSCI]",
+    "badge": "SSCI",
     "impact": "(IF: 3.42)",
     "keywords": "social media analysis; cryptocurrency; FTX crisis; sentiment analysis"
   },
@@ -157,7 +157,7 @@ export const publications: Publication[] = [
     "authors": "Insu Bae and Suan Lee",
     "venue": "Machines",
     "date": "February 2024",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.6)",
     "keywords": "fault classification; CNN; electric motor; image transformation"
   },
@@ -168,7 +168,7 @@ export const publications: Publication[] = [
     "authors": "Sizheng Wei and Suan Lee",
     "venue": "Journal of Theoretical and Applied Electronic Commerce Research",
     "date": "March 2024",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 5.6, JCR: Q1)",
     "keywords": "financial fraud detection; graph attention network; dual-channel; deep learning"
   },
@@ -179,7 +179,7 @@ export const publications: Publication[] = [
     "authors": "Suan Lee, Sangkeun Ko, Arousha Haghighian Roudsari, and Wookey Lee",
     "venue": "Data & Knowledge Engineering",
     "date": "March 2024",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.5)",
     "keywords": "deep learning; commercial district; sales prediction; store prediction"
   },
@@ -191,7 +191,7 @@ export const publications: Publication[] = [
     "authors": "Suan Lee and Byeonghak Kim",
     "venue": "Sensors",
     "date": "October 2023",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 3.9)",
     "keywords": "leak detection; machine learning; vibration sensor; water pipeline"
   },
@@ -213,7 +213,7 @@ export const publications: Publication[] = [
     "authors": "김재성, 고수윤, 정진근, 이수안",
     "venue": "정보과학회 컴퓨팅의 실제 논문지, 한국정보과학회",
     "date": "2025",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "keywords": "LLM; 법률 문서 검색; 사용자 의도 분석; 지능형 검색"
   },
   {
@@ -223,7 +223,7 @@ export const publications: Publication[] = [
     "authors": "김동후, 이수안",
     "venue": "데이터베이스연구, 한국정보과학회",
     "date": "2025",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "keywords": "강화학습; Text-to-SQL; 소규모 언어 모델; sLLM"
   },
   {
@@ -233,7 +233,7 @@ export const publications: Publication[] = [
     "authors": "김재성, 이수안",
     "venue": "정보과학회논문지, 한국정보과학회",
     "date": "2025",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "keywords": "모델 경량화; Pruning; Fine-tuning; 한국어 언어 모델"
   },
   {
@@ -243,7 +243,7 @@ export const publications: Publication[] = [
     "authors": "김재한, 염보영, 이수안, 문양세",
     "venue": "데이터베이스연구, 한국정보과학회, 제41집, 제3호, pp.121-138",
     "date": "2025",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "keywords": "Wi-Fi CSI; 딥러닝; 운동형태 분류; 칼로리 추론"
   },
   {
@@ -253,7 +253,7 @@ export const publications: Publication[] = [
     "authors": "김병학, 이수안",
     "venue": "데이터베이스연구, 한국정보과학회, 제41집, 제3호, pp.166-184",
     "date": "2025",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "keywords": "진로 검사; 대규모 언어 모델; 성숙도 분석; 자동 평가"
   },
   // ============ 2024 Domestic Journals (KCI) ============
@@ -264,7 +264,7 @@ export const publications: Publication[] = [
     "authors": "김재성, 이수안",
     "venue": "데이터베이스연구, 한국정보과학회",
     "date": "2024",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "keywords": "Text-to-SQL; Self-Debug; 단계별 추론; 언어 모델"
   },
   {
@@ -274,7 +274,7 @@ export const publications: Publication[] = [
     "authors": "고상근, 이수안",
     "venue": "정보과학회 컴퓨팅의 실제, 한국정보과학회",
     "date": "2024",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "keywords": "고장 분류; 이미지 변환; 데이터 증강; 산업용 설비"
   },
   // ============ 2023 Domestic Journals (KCI) ============
@@ -285,7 +285,7 @@ export const publications: Publication[] = [
     "authors": "서경식, 고상근, 이수안",
     "venue": "데이터베이스연구, 한국정보과학회",
     "date": "2023",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "keywords": "시계열 예측; 원자재 가격; 머신러닝; 딥러닝"
   },
   {
@@ -295,7 +295,7 @@ export const publications: Publication[] = [
     "authors": "신동윤, 이수안, 김진호",
     "venue": "한국융합과학회지, 한국융합과학회",
     "date": "November 2023",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "keywords": "프로야구; 타순; 기계학습; 회귀 모델; 득점력"
   },
   // ============ 2026 International Conferences ============
@@ -357,7 +357,7 @@ export const publications: Publication[] = [
     "authors": "Jie Zhang, Chi-Ho Lin and Suan Lee",
     "venue": "Electronics, 15(2), 377",
     "date": "2026",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "keywords": "instruction fine-tuning; verbatim memorization; large language models"
   },
   {
@@ -367,7 +367,7 @@ export const publications: Publication[] = [
     "authors": "Chenglong Huang, Chi-Ho Lin, Suan Lee, and Jie Zhang",
     "venue": "Archives of Nano-Research (ANR), 20(3), 415",
     "date": "2026",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "url": "https://doi.org/10.12989/anr.2026.20.3.415",
     "keywords": "3D point cloud; registration; fusion; RPMNet++; ICP; deep learning"
   },
@@ -378,7 +378,7 @@ export const publications: Publication[] = [
     "authors": "노기웅, 이수안, 성열훈, 정명숙",
     "venue": "Journal of Korea Society of Industrial Information Systems, 제31권, 제2호, pp.59-80",
     "date": "2026",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003329862",
     "keywords": "Solar Photovoltaic Power Generation; Anomaly Detection; Anomaly Prediction; Ensemble Learning; One-Class SVM"
   },
@@ -1515,7 +1515,7 @@ export const publications: Publication[] = [
     "authors": "Hyungjoon Kim, Jae Ho Lee, and Suan Lee",
     "venue": "Electronics",
     "date": "April 2023",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.690, JCR: Q2)",
     "abstract": "In the field of urban environment analysis research, image segmentation technology that groups important objects in the urban landscape image in pixel units has been the subject of increased attention. However, since a dataset consisting of a huge amount of image and label pairs is required to utilize this technology, in most cases, a model trained with a dataset having similar characteristics is used for analysis, and as a result, the quality of segmentation is poor. To overcome this limitation, we propose a hybrid model to leverage the strengths of each model in predicting specific classes. In particular, we first introduce a pre-processing operation to reduce the differences between the collected urban dataset and public dataset. Subsequently, we train several segmentation models with a pre-processed dataset then, based on the weight rule, the segmentation results are fused to create one segmentation map. To evaluate our proposal, we collected Google Street View images that do not have any labels and trained a model using the cityscapes dataset which contains foregrounds similar to the collected images. We quantitatively assessed its performance using the cityscapes dataset with ground truths and qualitatively evaluated the results of GSV data segmentation through user studies. Our approach outperformed existing methods and demonstrated the potential for accurate and efficient urban environment analysis using computer vision technology.",
     "keywords": "urban environment analysis; streetscapes; image segmentation; hybrid model; deep learning",
@@ -1528,7 +1528,7 @@ export const publications: Publication[] = [
     "authors": "Wookey Lee, Tae-Yun Jung, and Suan Lee",
     "venue": "Electronics",
     "date": "April 2023",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.690, JCR: Q2)",
     "abstract": "This paper presents a comprehensive study on the utilization of machine learning and deep learning techniques to predict the dynamic characteristics of design parameters, exemplified by a diesel engine valve train. The research aims to address the challenging and time-consuming analysis required to optimize the performance and durability of valve train components, which are influenced by numerous factors. To this end, dynamic analyses data have been collected for diesel engine specifications and used to construct a regression prediction model using a gradient boosting regressor tree (GBRT), a deep neural network (DNN), a one-dimensional convolution neural network (1D-CNN), and long short-term memory (LSTM). The prediction model was utilized to estimate the force and valve seating velocity values of the valve train system. The dynamic characteristics of the case were evaluated by comparing the actual and predicted values. The results showed that the GBRT model had an R2 value of 0.90 for the valve train force and 0.97 for the valve seating velocity, while the 1D-CNN model had an R2 value of 0.89 for the valve train force and 0.98 for the valve seating velocity. The results of this study have important implications for advancing the design and development of efficient and reliable diesel engines.",
     "keywords": "diesel engine; valve train dynamics; deep learning; GBRT; DNN; LSTM; 1D-CNN",
@@ -1541,7 +1541,7 @@ export const publications: Publication[] = [
     "authors": "Mukhiddin Toshpulatov, Wookey Lee, and Suan Lee",
     "venue": "Expert Systems with Applications",
     "date": "June 2023",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 8.665, JCR: Q1)",
     "abstract": "Talking human face generation aims at synthesizing a natural human face that talks in correspondence to the given text or audio series. Implementing the recently developed Deep Learning (DL) methods such as Convolutional Neural Networks (CNN), Generative Adversarial Networks (GAN)s, Neural Rendering Fields (NeRF) for data generation, and talking human face generation has attracted significant research interest from academia and industry. They have been explored and exploited recently and have been used to address several problems in image processing and computer vision. Notwithstanding notable advancements, implementing them to real-world problems such as talking human face generation remains challenging. The generation of deepfakes created by the abovementioned methods would greatly promote many fascinating applications, including augmented reality, virtual reality, computer games, teleconferencing, virtual try-on, special movie effects, and avatars. This research reviews and discusses DL related methods, including CNN, GANs, NeRF, and their implementation in talking human face generation. We aim to analyze existing approaches regarding their implementation to talking face generation, investigate the related general problems, and highlight the open study issues. We also provide quantitative and qualitative evaluations of the existing research approaches in the related field.",
     "keywords": "Talking human face animation; 3D face generation; Deep generative model; Autoencoder; Neural radiance field; Datasets; Evaluation metrics; Neural networks; Unsupervised learning; Mel spectogram",
@@ -1554,7 +1554,7 @@ export const publications: Publication[] = [
     "authors": "Hongxin Zhang, and Suan Lee",
     "venue": "Electronics",
     "date": "January 2023",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.690, JCR: Q2)",
     "abstract": "This paper mainly studies the structure and system of robot bionic eye. Given that most robots usually run on battery power, the STM32L053C8T6 with high efficiency and super low power consumption was selected as the main control. By carrying IMU, the bionic eye attitude data can be acquired quickly and accurately, and the measurement data of accelerometer and gyroscope can be fused by the algorithm to obtain stable and accurate bionic eye attitude data. Thus, the precise control of the motor can be realized through the drive control system equipped with PCA9685, which can enhance the motion control precision of robot bionic eye. In the present study, three kinds of IMU sensors, MPU6050, MPU9250, and WT9011G4K, were selected to carry out experiments. Finally, MPU9250 with better power consumption and adaptability is selected. This is the attitude acquisition device of bionic eye. In addition, three different filters, CF, GD, and EKF, were used for data fusion and comparison. The experimental result showed that the dynamic mean errors of CF, GD, and EKF are 0.62°, 0.61°, and 0.43°, respectively, and the static mean errors are 0.1017°, 0.1001°, and 0.0462°, respectively. The result showed that, after the use of EKF, the robot bionic eye system designed in this paper can significantly reduce the attitude angle error and effectively improve the image quality. It ensures accuracy and reduces power consumption and cost, which has lower requirements on hardware and is easier to popularize.",
     "keywords": "bionic eye; motion attitude detection; attitude sensor; Kalman filter",
@@ -1567,7 +1567,7 @@ export const publications: Publication[] = [
     "authors": "Jaegwang Shin, and Suan Lee",
     "venue": "Electronics",
     "date": "January 2023",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.690, JCR: Q2)",
     "abstract": "Machines in factories are typically operated 24 h a day to support production, which may result in malfunctions. Such mechanical malfunctions may disrupt factory output, resulting in financial losses or human casualties. Therefore, we investigate a deep learning model that can detect abnormalities in machines based on the operating noise. Various data preprocessing methods, including the discrete wavelet transform, the Hilbert transform, and short-time Fourier transform, were applied to extract characteristics from machine-operating noises. To create a model that can be used in factories, the environment of real factories was simulated by introducing noise and quality degradation to the sound dataset for Malfunctioning Industrial Machine Investigation and Inspection (MIMII). Thus, we proposed a lightweight model that runs reliably even in noisy and low-quality sound data environments, such as a real factory. We propose a Convolutional Neural Network–Long Short-Term Memory (CNN–LSTM) model using Short-Time Fourier Transforms (STFTs), and the proposed model can be very effective in terms of application because it is a lightweight model that requires only about 6.6% of the number of parameters used in the underlying CNN, and has only a performance difference within 0.5%.",
     "keywords": "fault diagnosis; deep learning; CNN; image representation; feature extraction",
@@ -1680,7 +1680,7 @@ export const publications: Publication[] = [
     "authors": "Hongxin Zhang, and Suan Lee",
     "venue": "Applied Sciences",
     "date": "August 2022",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.838, JCR: Q2)",
     "abstract": "The visual organ is important for animals to obtain information and understand the outside world; however, robots cannot do so without a visual system. At present, the vision technology of artificial intelligence has achieved automation and relatively simple intelligence; however, bionic vision equipment is not as dexterous and intelligent as the human eye. At present, robots can function as smartly as human beings; however, existing reviews of robot bionic vision are still limited. Robot bionic vision has been explored in view of humans and animals’ visual principles and motion characteristics. In this study, the development history of robot bionic vision equipment and related technologies are discussed, the most representative binocular bionic and multi-eye compound eye bionic vision technologies are selected, and the existing technologies are reviewed; their prospects are discussed from the perspective of visual bionic control. This comprehensive study will serve as the most up-to-date source of information regarding developments in the field of robot bionic vision technology.",
     "keywords": "artificial intelligence; robot bionic vision; optical devices; bionic eye; intelligent camera",
@@ -1765,7 +1765,7 @@ export const publications: Publication[] = [
     "authors": "안동주, 신재광, 이수안",
     "venue": "대한전자공학회논문지, 대한전자공학회",
     "date": "2022년 04월",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "산업 현장에서 사용되는 전동기 기계 설비들의 고장은 베어링, 회전체, 벨트, 축이 상당 부분을 차지한다. 설비들이 기계적 또는 전기적 원인에 의해 고장이 발생하거나 성능이 저하되면 공통 적으로 진동이 발생하고 전류 등이 이상 움직임을 보인다. 이러한 상황에서 불특정하게 발생하는 고장을 쉽게 감지하고 예측하는 것은 필수적이다. 따라서 본 논문에서는 전동기 기계 설비에 부착된 센서에서 생성되는 시계열 데이터를 이미지로 인코딩하는 방법을 사용하여 경량화된 딥러닝 모델을 제안하였다. 이미지 인코딩에는 세 개의 방식을 사용하였고, 각각의 방식에 대한 CNN 기반 딥러닝 분류모델을 생성하였다. CNN 모델은 작은 파라미터를 가지면서도 제일 정확도가 높은 모델을 실험을 통해 만들었다. CNN 모델의 정확도를 분석하고 어떠한 인코딩 방식이 학습에 효율적이고 더 적합한지 실험해보았더니 세 개의 이미지 인코딩 방식 중에서도 GASF 방식이 대체로 정확도가 높게 나온 것을 확인하였다. 본 논문에서 제안한 이미지 인코딩 기반의 경량화된 딥러닝 모델을 이용해 산업에서 활용되는 여러 센서 데이터에 대해 다양한 응용에 활용할 수 있을 것이라 예상된다.<br /> The failure of mechanical facilities used in industrial sites accounts for a significant portion of bearings, rotators, belts, and axes. When facilities fail due to mechanical or electrical causes or performance degrades, vibration is commonly generated and current or the like shows abnormal movement. It is essential to easily detect and predict failures that occur unspecified in this situation. Therefore, in this paper, a lightweight deep learning model was proposed using a method of encoding time series data generated by a sensor attached to a mechanical facility into an image. Three methods were used for image encoding, and a CNN-based deep learning classification model was created for each method. The CNN model was created through experiments with the most accurate model with small parameters. When analyzing the accuracy of the CNN model and experimenting with which encoding methods are more efficient and suitable for learning, it was confirmed that the GASF method was generally more accurate among the three image encoding methods. It is expected that various sensor data used in the industry can be used for various applications using the lightweight deep learning model based on image encoding proposed in this paper.",
     "keywords": "Timeseries classification, Image encoding, Deep learning, Lightweight model",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002841355"
@@ -1777,7 +1777,7 @@ export const publications: Publication[] = [
     "authors": "이수형, 고상근, 이수안",
     "venue": "한국차세대컴퓨팅학회 논문지, 한국차세대컴퓨팅학회",
     "date": "2022년 02월",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "최근 4차 산업 혁명으로 인해 공장에서는 기계 시설물의 고장으로 인한 제조 및 생산 시간 증가와 수리비용 증가를 최신 기술을 통해 예방하고자 한다. 그리하여 연구자들은 안전사고 및 고장을 예지(豫知)하고, 제품 불량 등으로 인한 시민 불편, 사회적 혼란 등의 문제를 방지하기 위해 노력하고 있다. 이런 문제 해결을 위해 장비에 부착된 센서로부터 받은 데이터를 통해 기계 상황을 모니터링 및 예측 가능한 시스템이 요구된다. 본 논문에서는 기계설비에서 생성되는 시계열 데이터를 다양한 딥러닝 기반의 시계열 분류 모델에서 비교분석을 수행하였다. 총 13개의 모델을 사용하여 어떤 딥러닝 모델이 학습에 효율적이고 성능이 좋은지 실험을 수행하였고, 시계열의 복잡한 패턴과 시간 및 공간 패턴을 효과적으로 학습하는 CNN 계열 모델이 정확도, 정밀도, 재현율, F1 성능지표에서 100% 성능을 달성하여 우수한 것을 확인할 수 있었다. 기존까지 진동 시계열 데이터에 대해 다양한 딥러닝 모델의 비교분석이 연구는 없었기에 본 논문의 결과를 통해 다른 기계 시설물의 고장 분류에 있어서 도움이 될 것이라 예상된다.<br /> Due to the recent Fourth Industrial Revolution, factories want to prevent the increase in manufacturing and production time and repair costs due to the failure of mechanical facilities through the latest technology. Therefore, researchers are trying to predict safety accidents and failures, and to prevent problems such as civil inconvenience and social confusion caused by product defects. To solve this problem, a system that can monitor and predict the machine situation through data received from sensors attached to the equipment is required. In this paper, comparative analysis was performed on time series data generated in machine facilities in various deep learning-based time series classification models. A total of 13 models were used to experiment with which deep learning models were efficient and performing well, and the models that effectively learned time and space patterns of time series recorded 100% performance in accuracy, precision, reproducibility, and F1 performance indicators. Since there have been no studies on the comparative analysis of various deep learning models for vibration time series data until now, the results of this paper are expected to help in classifying failures in other mechanical facilities.",
     "keywords": "시계열 데이터, 딥러닝, 기계학습, 분류, 예지 보전<br /> Time Series, Deep Learning, Machine learning, Classification, Predictive Maintenance",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002837888"
@@ -1789,7 +1789,7 @@ export const publications: Publication[] = [
     "authors": "Mukhiddin Toshpulatov, Wookey Lee, Suan Lee and Arousha Haghighian Roudsari",
     "venue": "The Journal of Supercomputing",
     "date": "January 2022",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.474, JCR: Q2)",
     "abstract": "Human pose estimation is one of the issues that have gained many benefits from using state-of-the-art deep learning-based models. Human pose, hand and mesh estimation is a significant problem that has attracted the attention of the computer vision community for the past few decades. A wide variety of solutions have been proposed to tackle the problem. Deep Learning-based approaches have been extensively studied in recent years and used to address several computer vision problems. However, it is sometimes hard to compare these methods due to their intrinsic difference. This paper extensively summarizes the current deep learning-based 2D and 3D human pose, hand and mesh estimation methods with a single or multi-person, single or double-stage methodology-based taxonomy. The authors aim to make every step in the deep learning-based human pose, hand and mesh estimation techniques interpretable by providing readers with a readily understandable explanation. The presented taxonomy has clearly illustrated current research on deep learning-based 2D and 3D human pose, hand and mesh estimation. Moreover, it also provided dataset and evaluation metrics for both 2D and 3D HPE approaches.",
     "keywords": "3D pose estimation, Generator, Discriminator, Loss function, Deep neural network, Deep learning, Mesh estimation, Evaluation metric, Dataset",
@@ -1802,7 +1802,7 @@ export const publications: Publication[] = [
     "authors": "Haghighian Roudsari, Arousha, Jafar Afshar, Wookey Lee, and Suan Lee",
     "venue": "Scientometrics",
     "date": "January 2022",
-    "badge": "[SSCI]",
+    "badge": "SSCI",
     "impact": "(IF: 3.238, JCR: Q1)",
     "abstract": "Patent classification is an expensive and time-consuming task that has conventionally been performed by domain experts. However, the increase in the number of filed patents and the complexity of the documents make the classification task challenging. The text used in patent documents is not always written in a way to efficiently convey knowledge. Moreover, patent classification is a multi-label classification task with a large number of labels, which makes the problem even more complicated. Hence, automating this expensive and laborious task is essential for assisting domain experts in managing patent documents, facilitating reliable search, retrieval, and further patent analysis tasks. Transfer learning and pre-trained language models have recently achieved state-of-the-art results in many Natural Language Processing tasks. In this work, we focus on investigating the effect of fine-tuning the pre-trained language models, namely, BERT, XLNet, RoBERTa, and ELECTRA, for the essential task of multi-label patent classification. We compare these models with the baseline deep-learning approaches used for patent classification. We use various word embeddings to enhance the performance of the baseline models. The publicly available USPTO-2M patent classification benchmark and M-patent datasets are used for conducting experiments. We conclude that fine-tuning the pre-trained language models on the patent text improves the multi-label patent classification performance. Our findings indicate that XLNet performs the best and achieves a new state-of-the-art classification performance with respect to precision, recall, F1 measure, as well as coverage error, and LRAP.",
     "keywords": "Patent classification, Multi-label text classification, Pre-trained language model",
@@ -1890,7 +1890,7 @@ export const publications: Publication[] = [
     "authors": "조현욱, 김민규, 김지융, 조무환, 김문주, 이수안, 김경대, 김병완, 성경일",
     "venue": "한국초지조사료학회지, 한국초지조사료학회",
     "date": "2021년 12월",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "본 연구는 기계학습을 통한 수량예측모델을 이용하여 이상기상에 따른 WCM의 DMY 피해량을 산출하기 위한 목적으로 수행하였다. 수량예측모델은 WCM 데이터 및 기상 데이터를 수집 후 가공하여 8가지 기계학습을 통해 제작하였으며 실험지역은 경기도로 선정하였다. 수량예측모델은 기계학습 기법 중 정확성이 가장 높은 DeepCrossing (R2=0.5442, RMSE=0.1769) 기법을 통해 제작하였다. 피해량은 정상기상 및 이상기상의 DMY 예측값 간 차이로 산출하였다. 정상기상에서 WCM의 DMY 예측값은 지역에 따라 차이가 있으나 15,003~17,517 kg/ha 범위로 나타났다. 이상기온, 이상강수량 및 이상풍속에서 WCM의 DMY 예측 값은 지역 및 각 이상기상 수준에 따라 차이가 있었으며 각각 14,947~17,571 kg/ha, 14,986~17,525 kg/ha 및 14,920~17,557 kg/ha 범위로 나타났다. 이상기온, 이상강수량 및 이상풍속에서 WCM의 피해량은 각각 –68~89 kg/ha, -17~17 kg/ha 및 – 112~121 kg/ha 범위로 피해로 판단할 수 없는 수준이었다. WCM의 정확한 피해량을 산출하기 위해서는 수량예측모델에 이용하는 이상기상 데이터 수의 증가가 필요하다.",
     "keywords": "Abnormal climate, Whole crop maize, Machine learning, Forage yield prediction model, Dry matter yield damage",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002470779"
@@ -1931,7 +1931,7 @@ export const publications: Publication[] = [
     "authors": "Sunhwa Jo, Beomjun Park, Suan Lee, and Jinho Kim. 2021.",
     "venue": "Applied Sciences",
     "date": "April 2021",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.474, JCR: Q1)",
     "abstract": "Real-world systems that are composed of various types of components, their interactions, and relationships, and numerous applications are often modeled as graphs or network structures to represent and analyze the presence of relationship, shape, and meaning of objects. Network-structured data are used for various exploration and in-depth analysis through visualization of information in various fields. In particular, online bibliographic databases are a service that is used for a myriad of purposes, such as simple search of research materials as well as understanding the history and flow of research, current status, and trends. A visualization tool that can intuitively perform exploration and analysis by modeling the data provided by the online bibliographic database in a network structure will be a very meaningful study for the exploration of various information using a large amount of complex bibliographic data. This study has modeled an online bibliographic database as an information network, and further developed a prototype of a visualization tool that provides an interactive interface for easily and efficiently performing visual exploration and multidimensional analysis. The visualization tool that was developed through this study will be used to conveniently perform various online analysis of the bibliographic data, and the information and knowledge acquired as a result of the analysis are expected to contribute to the research development of various researchers. Furthermore, this visualization tool can be applied to other types of data in the future, and it is expected to develop into a useful tool for various information network analysis by improving, supplementing, and expanding the functions and performance of the developed prototype.",
     "keywords": "bibliographic information network; Information Network OLAP; information network visualization",
@@ -1944,7 +1944,7 @@ export const publications: Publication[] = [
     "authors": "Toshpulatov, Mukhiddin, Wookey Lee, and Suan Lee.",
     "venue": "Image and Vision Computing",
     "date": "February 2021",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 3.103, JCR: Q1)",
     "abstract": "Generative adversarial networks (GANs) have been extensively studied in recent years and have been used to address several problems in the fields of image generation and computer vision. Despite significant advancements in computer vision, applying GANs to real-world problems such as 3D face generation remains a challenge. Owing to the proliferation of fake images generated by GANs, it is important to analyze and build a taxonomy for providing an overall view of GANs. This, in turn, would facilitate many interesting applications, including virtual reality, augmented reality, computer games, teleconferencing, virtual try-on, special effects in movies, and 3D avatars. This paper reviews and discusses GANs and their application to 3D face generation. We aim to compare existing GANs methods in terms of their application to 3D face generation, investigate the related theoretical issues, and highlight the open research problems. Authors provided both qualitative and quantitative evaluations of the proposed approach. They claimed their results show the higher quality of the synthesized data compared to state-of-the-art ones.",
     "keywords": "Generative adversarial networks; 3D face generation; Generator; Discriminator; Deep neural network; Deep learning",
@@ -1957,7 +1957,7 @@ export const publications: Publication[] = [
     "authors": "Wookey Lee, Jessica J. Seong, Busra Ozlu, Bong S. Shim, Azizbek Marakhimov, and Suan Lee.",
     "venue": "Sensors",
     "date": "February 2021",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 3.275, JCR: Q1)",
     "abstract": "Voice is one of the essential mechanisms for communicating and expressing one’s intentions as a human being. There are several causes of voice inability, including disease, accident, vocal abuse, medical surgery, ageing, and environmental pollution, and the risk of voice loss continues to increase. Novel approaches should have been developed for speech recognition and production because that would seriously undermine the quality of life and sometimes leads to isolation from society. In this review, we survey mouth interface technologies which are mouth-mounted devices for speech recognition, production, and volitional control, and the corresponding research to develop artificial mouth technologies based on various sensors, including electromyography (EMG), electroencephalography (EEG), electropalatography (EPG), electromagnetic articulography (EMA), permanent magnet articulography (PMA), gyros, images and 3-axial magnetic sensors, especially with deep learning techniques. We especially research various deep learning technologies related to voice recognition, including visual speech recognition, silent speech interface, and analyze its flow, and systematize them into a taxonomy. Finally, we discuss methods to solve the communication problems of people with disabilities in speaking and future research with respect to deep learning components.",
     "keywords": "mouth interface; voice production; artificial larynx; EMG; biosignal; deep learning",
@@ -2034,7 +2034,7 @@ export const publications: Publication[] = [
     "authors": "Seok Kang, Suan Lee, and Jinho Kim",
     "venue": "Cluster Computing",
     "date": "October 2020",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.469, JCR: Q2)",
     "abstract": "Graph OLAP is a technology that generates aggregates or summaries of a large-scale graph based on the properties (or dimensions) associated with its nodes and edges, and in turn enables interactive analyses of the statistical information contained in the graph. To efficiently support these OLAP functions, a graph cube is widely used, which maintains aggregate graphs for all dimensions of the source graph. However, computing the graph cube for a large graph requires an enormous amount of time. While previous approaches have used the MapReduce framework to cut down on this computation time, the recently developed Spark environment offers superior computational performance. To leverage the advantages of Spark, we propose the GraphNaïve and GraphTDC algorithms. GraphNaïve sequentially computes graph cuboids for all dimensions in a graph, while GraphTDC computes them after first creating an execution plan. We also propose the Generate Multi-Dimension Table method to efficiently create a multidimensional graph table to express the graph. Evaluation experiments demonstrated that the GraphTDC algorithm significantly outperformed Spark SQL’s built-in library DataFrame, as the size of graphs increased.",
     "keywords": "Distributed parallel processing, Spark framework, Resilient distributed dataset, Graph cube, Data cube, Online analytical processing",
@@ -2047,7 +2047,7 @@ export const publications: Publication[] = [
     "authors": "Svetlana Kim, Suan Lee, Jinho Kim, and Yong-Ik Yoon",
     "venue": "The Journal of Supercomputing",
     "date": "October 2020",
-    "badge": "[SCIE]",
+    "badge": "SCIE",
     "impact": "(IF: 2.469, JCR: Q2)",
     "abstract": "Context information can be an important factor of user behavior modeling and various context recognition recommendations. However, state-of-the-art context modeling methods cannot deal with contexts of other dimensions such as those of users and items and cannot extract special semantics. On the other hand, some tasks for predicting multidimensional relationships can be used to recommend context recognition, but there is a problem with the generation recommendations based on a variety of context information. In this paper, we propose MRTensorCube, which is a large-scale data cube calculation based on distributed parallel computing using MapReduce computation framework and supports efficient context recognition. The basic idea of MRTensorCube is the reduction of continuous data combined partial filter and slice when calculating using a four-way algorithm. From the experimental results, it is clear that MRTensor is superior to all other algorithms.",
     "keywords": "Context awareness, Tensor data cube, MapReduce framework",
@@ -2080,7 +2080,7 @@ export const publications: Publication[] = [
     "authors": "유영석, 박범준, 조선화, 이수안, 김진호",
     "venue": "한국빅데이터학회지, 한국빅데이터학회",
     "date": "2020년 08월",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "최근 다양한 실세계의 복잡한 관계를 그래프의 형태로 구성하고 분석하는 다양한 연구들이 진행되고 있다. 특히 DBLP와 같은 컴퓨터 분야 문헌 데이터 시스템은 논문의 저자, 그리고 논문과 논문들이 서로 인용 관계로 표현되는 대표적인 그래프 데이터이다. 그래프 데이터는 저장 구조 및 표현이 매우 복잡하므로, 문헌 빅데이터의 검색과 분석, 그리고 시각화는 매우 어려운 작업이다. 본 논문에서는 문헌 빅데이터를 그래프의 형태로 시각화한 그래픽 사용자 인터페이스 도구, 즉 EEUM을 개발하였다. EEUM은 그래프 데이터를 시각적으로 표시하여 연결된 그래프 구조에 따라 문헌 데이터를 브라우징 하는 기능을 제공하며, 문헌 빅데이터에 대한 검색 및 관리, 분석이 가능하도록 구현하였다. 또한 EEUM을 DBLP가 제공하는 문헌 그래프 빅데이터에 적용하여 편리하게 검색, 탐색 및 분석하는 할 수 있음을 시연한다. EEUM을 이용하여 모든 연구 분야에서 영향력 있는 저자나 논문을 쉽게 찾을 수 있으며, 여러 저자와 논문 사이의 모든 관계를한 눈에 볼 수 있는 등 복잡한 문헌 그래프 빅데이터의 검색 및 분석 도구로 편리하게 사용할 수 있다. Recently, many researches habe been done to organize and analyze various complex relationships in real world, represented in the form of graphs. In particular, the computer field literature data system, such as DBLP, is a representative graph data in which can be composed of papers, their authors, and citation among papers. Becasue graph data is very complex in storage structure and expression, it is very difficult task to search, analysis, and visualize a large size of bibliographic big data. In this paper, we develop a graphic user interface tool, called EEUM, which visualizes bibliographic big data in the form of graphs. EEUM provides the features to browse bibliographic big data according to the connected graph structure by visually displaying graph data, and implements search, management and analysis of the bibliographc big data. It also shows that EEUM can be conveniently used to search, explore, and analyze by applying EEUM to the bibliographic graph big data provided by DBLP. Through EEUM, you can easily find influential authors or papers in every research fields, and conveniently use it as a search and analysis tool for complex bibliographc big data, such as giving you a glimpse of all the relationships between several authors and papers.",
     "keywords": "그래프 데이터, 문헌 빅데이터, 그래픽 인터페이스, 시각화 도구 Graph Data, Bibliographic Big Data, Graphic Interface, Visualization Tool",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002623960"
@@ -2153,7 +2153,7 @@ export const publications: Publication[] = [
     "authors": "고수윤, 이수안, 손경호",
     "venue": "과학기술법연구, 한남대학교 과학기술법연구원",
     "date": "2020.05.01",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "우리나라는 해외 주요국과 같이 개인정보에 대한 정보주체의 권리를 보장하고자 마이데이터 정책을 점차 확장하고 있다. 마이데이터는 정보주체 중심의 데이터 생태계를 형성하는 것을 목적으로 하고 있으며 데이터 이동에 대한 통제권을 정보주체에게 보장함으로써 이를 달성하고자 하였다. 데이터이동권을 처음으로 규정한 EU GDPR은 공정한 시장경쟁을 위한 것을 목적으로 하고 있으며 특히 데이터이동권은 정보주체가 특정 서비스에 락인(lock-in)되는 현상을 방지하여 다른 서비스로 이전할 수 있도록 보장하고자 한 권리이다. 실제 거대 IT기업들이 정보유통시장을 과점하는 것을 방지하려는 목적이 있었다. 동일한 이유로, 단일화되고 있는 디지털 시장에서 우리나라 기업의 유효경쟁을 보장하고 정보주체의 서비스 선택에 자율성을 보장하기 위해 데이터이동권을 보장하는 것이 필요하다. 우리나라에서 데이터이동권은 데이터 이동에 대한 정보주체의 통제권을 의미한다는 점에서 데이터를 받을 수 있는 권리, 동의를 결정할 권리, 데이터 제공을 요청할 권리라는 모든 경우에 해당될 수 있다. 하지만 데이터이동권을 처음으로 명시한 EU GDPR의 규정에 따르면 데이터이동권은 정보주체가 개인정보를 기계판독이 가능한 포맷으로 제공받을 권리이다. 기계판독이 가능한 포맷 또는 상호운용성 있는 포맷의 보장은 해당 데이터가 이전받은 컨트롤러에 의한 이용가능성을 보장하고자 하는 의도가 있다. 우리나라 데이터이동권의 권리범위도 데이터 활용을 보장하며 정보주체가 데이터의 제공을 적극적으로 요청할 수 있는 권리로 보는 것이 타당할 것이다. 개인정보 일반에 대하여는 해당 규정이 존재하지 않으므로 이를 보장하기 위해서는 규정의 신설이 필요하다. 구체적으로 데이터이동권 규정을 도입하기 위하여 권리제한사유, 데이터 제공자, 제공자의 의무, 대상 데이터의 범위, 정보제공방법, 데이터 이동 요청에 따른 처리기간, 처리비용에 대하여 해외 주요국의 규정과 비교검토해 본다. Korea is gradually expanding its MyData policy to ensure the right of the data subject to personal data like major foreign countries. My Data aims to form a data ecosystem centered on the data subject, and aims to achieve this by ensuring control over data portability by the data subject. The EU GDPR, which first stipulated the right to data portability, aims to promote fair market competition. In particular, the right to data portability is intended to prevent data subjects from being locked in to a specific service and to be able to transfer to another service. Indeed, it generated to prevent IT giants from dominating the information distribution market. For the same reason, it is necessary to guarantee the right to data portability in order to ensure the effective competition of Korean companies in a single digital market and to ensure the autonomy in the choice of services by data subjects. In Korea, the right to data portability can refer to all cases of the right to receive data, the right to decide consent, and the right to request data in that it means the right to control the data subject. However, according to the EU GDPR, the right to data portability is the right of the data subject to receive personal data in a machine-readable format. The guarantee of a machine-readable format or an interoperable format is intended to guarantee the availability of the transferred data by a controller. It would be appropriate to view the right scope of data portability in Korea as the right to guarantee the utilization of data and to actively request the controller to provide the personal data. In Korea, there is no provision for the right to data portability, it is necessary to establish a new provision to ensure this. Specifically, this paper compares the reasons for restriction of the right, the data provider, the obligations of the providers, the scope of the target data, the method of providing data, and the processing period and the processing cost according to the request for data porting with the regulations of foreign countries to introduce the provision for the right to data portability.",
     "keywords": "데이터이동권, GDPR, 디지털공화국법, 기업 및 규제개혁법, 마이데이터 Data Portability, GDPR, Digital Republic Act, Enterprise and Regulatory Reform Act, MyData",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002590817"
@@ -2422,7 +2422,7 @@ export const publications: Publication[] = [
     "authors": "박범준, 조선화, 이수안, 신지운, 유혁상, 김진호",
     "venue": "한국빅데이터학회지, 한국빅데이터학회",
     "date": "2019년 9월",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "주변 세포의 구조적, 생화학적 지지체를 제공하는 세포 외 기질은 세포의 분열과 분화 등을 좌우하는 세포 생리 조절인자이다. 바이오 분야에서는 3차원 조직공학 지지체인 스캐폴드를 제작하고, 제작한 스캐폴드에 줄기세포를 배양해 동물에 이식해 조직 재생력을 평가한다. 이는 조직 내 콜라겐과 같은 구성성분에 좌우된다. 따라서 조직 내 구성성분의 포함율 및 분포를 파악하는 것이 매우 중요한데, 이에 관한 데이터를 염색된 조직 이미지의 색상을 분석함으로써 얻어낸다. 이때 이미지 수집부터 분석까지의 과정이 적지 않은 비용이 소모되고 있고, 수집되고 분석된 데이터를 연구 기관마다 상이한 포맷으로 관리하고 있다. 따라서 데이터 통합관리 및 분석결과 검색 등이 이루어지지 않고 있다. 본 논문에서는 관련 빅데이터를 통합적으로 관리할 수 있는 데이터베이스를 구축하고, 이 연구 분야에서 중요한 분석 척도인 색상을 기준으로 검색할 수 있는 바이오 이미지 통합 관리 및 검색 시스템을 제안한다. The extracellular matrix, which provides the structural and biochemical support of surrounding cells, is a cell physiological modulator that controls cell division and differentiation. In the bio sector, the company produces Scapold, a three-dimensional support for tissue engineering, and cultivates stem cells in the produced Scapold to be transplanted into animals to assess tissue regeneration. This depends on components such as collagen in the tissue. Therefore, it is very important to identify the inclusion rate and distribution of components in the tissue, and the data are obtained by analyzing the color of the dyed tissue image. The process from image collection to analysis is costly, and the data collected and analyzed are managed in different formats by different research institutions. Therefore, data integration management and analysis results search are not being performed. In this paper, we establish a database that can manage relevant bigdata in an integrated manner, and propose a bio-image integra ed management and retrieval system that can be searched based on color, an important analytical measure in this field of study.",
     "keywords": "바이오 세포 이미지, 세포외 기질, 이미지 분석, 시각적 검색, Bio Cell Image, extracellular matrix, image analysis, visual retrieval",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002501655"
@@ -2464,7 +2464,7 @@ export const publications: Publication[] = [
     "authors": "이수안, 박범준, 김민규, 신혜숙, 김진호",
     "venue": "컴퓨터교육학회논문지, 한국컴퓨터교육학회",
     "date": "2017년 5월",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "사회 각 분야에서 관련 주제에 대한 보다 직접적인 정보를 수집하고 분석하기 위하여 빅데이터 분석이 활발하게 활용되고 있다. 우리나라에서 사회적 관심과 파급 효과가 큰 교육 분야에서도 빅데이터 분석 기술을 활용하여 교육이나 정책의 효과를 파악하고 정책 수립에 활용하는 것에 관심이 높아지고 있다. 본 논문에서는 교육 분야에서 빅데이터 분석 기술을 활용하는 방안을 소개하고자 한다. 현재 핵심 교육정책 중의 하나인 자유학기제에 초점을 두고, 각 학교가 작성한 운영계획서에 대해 텍스트 분석과 시각화를 통하여 주요 관심 사항과 차이점에 대해 살펴보았다. 특히 서울과 강원도 지역의 중학교 자유학기제 운영계획서를 대상으로 지역적으로 주요 특성과 관심 사항이 서로 다르다는 것을 비교하였다. 본 연구는 빅데이터 분석 기술을 교육 분야의 필요와 요구에 따라 적용하고 활용하였다는 것에 큰 의의가 있다. Big data analysis is actively used for collecting and analyzing direct information on related topics in each field of society. Applying big data analysis technology in education field is increasingly interested in Korea, because applying this technology helps to identify the effectiveness of education methods and policies and applying them for policy formulation. In this paper, we propose our approach of utilizing big data analysis technology in education field. We focus on free semester program, one of the current core education policies, and we analyze the main points of interests and differences in the free semester through analysis and visualization of texts that are written on the operation reports prepared by each school. We compare regional differences in key characteristics and interests based on the free semester operation reports from middle schools particularly at Seoul and Gangwon-do regions. In conclusion, applying and utilizing big data analysis technology according to the needs and requirements of education field is a great significance.",
     "keywords": "빅데이터, 텍스트 분석, 교육정책, 자유학기제, 시각화, Big Data, Text Analysis, Education Policies, Free Semester, Visualization",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002470779"
@@ -2522,7 +2522,7 @@ export const publications: Publication[] = [
     "authors": "이수안, 이솔, 유혁상, 김진호",
     "venue": "데이터베이스연구, 한국정보과학회 데이터베이스 소사이어티",
     "date": "2017년 12월 29일",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "세포외 기질은 세포가 성장하고 분화하는데 필요한 생화학적 인자들과 세포를 위한 환경을 제공한다. 생체재료 분야에서는 세포외 기질의 구성 및 구조를 모방한 생체재료를 만들고, 세포를 배양하여 조직을 만들어 내는 실험이 지속되고 있다. 그러나 세포가 원하는 조직으로 잘 분화되는 3차원 지지체를 만들기 위해서는 세포외 기질에 대한 구성과 구조, 특성을 분석하고, 물리적 환경에 따른 조절 요인 등에 대한 연구가 필요하다. 본 논문에서는 형광 염색된 세포외 기질 이미지로부터 추출/가공을 통해 다양한 데이터를 저장하고 분석하는 바이오 빅데이터 시스템을 제안한다. The extracellular matrix provides the environment for cells and biochemical factors necessary for cell growth and differentiation. In the field of biomaterials, experiments have been continuing to make biomaterials that mimic the structure and structure of extracellular matrix, and use them to culture cells to produce tissues. However, it is necessary to analyze the constitution, structure, and characteristics of the extracellular matrix and to study the factors regulating the physical environment in order to produce a three-dimensional scaffold that differentiates cells into desired tissues, In this paper, we propose a bio-data system for storing and analyzing various data through extraction/processing from fluorescence-stained extracellular matrix images.",
     "keywords": "Context awareness, Tensor data cube, MapReduce framework",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002302451"
@@ -2556,7 +2556,7 @@ export const publications: Publication[] = [
     "authors": "이기준, 이수안, 구경아, 김진호",
     "venue": "정보화 연구, 한국엔터프라이즈아키텍처학회",
     "date": "2017년 06월",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "전 세계적인 경기침체로 인해 우리나라에서도 많은 문제를 겪고 있는데 이 중 청년층의 취업률 및 실업률 문제가 큰 문제로 부각되고 있다. 이를 위해 정부에서는 많은 정책을 수립하여 시행하고 있는데 이 과정에서 사용되는 기초데이터로 많이 활용되는 데이터는 고등교육기관 졸업자 취업통계 정보이다. 그러나 현재 고등교육기관 졸업자 취업통계정보는 정부차원에서의 정책 수립 및 평가에 주로 활용되고 그 내용이 취업자 수에 의한 양적 정보에 한정됨에 따라 실제 청년층의 취업률 제고에는 효과적으로 활용되고 있지 못하다는 지적이 있으며 일선 대학에서는 진로 및 취업 상세정보의 부재로 학생들의 진로 및 취업상담에 애로를 겪고 있다. 따라서 대학생의 진로 설계와 취업 지원을 위한 미래진로 빅데이터가 필요한 시점이며 이를 활용하여 청년층 실업문제를 과학적으로 접근하는 시도가 필요하다. 본 논문에서는 기존 고등교육기관 졸업자 취업통계조사를 개선하여 대학생 진로설계와 취업지원이 가능하도록 데이터를 수집하는 데이터베이스를 구축하고 정보의 수요자들이 손쉽게 본인의 진로를 결정할 수 있는 정보를 전달하는 정보시스템을 제안한다. Due to the global economic downturn, many problems have been experienced in Korea. Among them, the employment rate and the unemployment rate of the young people are becoming big problems. To this end, the government establishes and implements a number of policies. Data that are often used as basic data in this process are statistical information on employment of grad-uates of higher education institutions. However, it is pointed out that employment statistics infor-mation of graduates of higher education institutions is mainly used for policy formulation and evaluation at the government level and its content is limited to quantitative information by the number of employed persons. Therefore, there is an indication that it is not being effectively used to raise the employment rate of young people. At University, students are struggling with career and career counseling due to lack of career and employment details. It is necessary to try to approach the youth unemployment problem scientifically by utilizing the future career big data for career planning and career support of university students. In this paper, we have developed an information system that improves the employment survey of graduates of existing higher educa-tion institutions and builds a database that collects data to enable college career design and employment support, and allows information consumers to easily determine their own career path.",
     "keywords": "빅데이터, 정보 시스템, 진로 및 취업, Big Data, Information System, Career Path, Supporting Employment",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002243258"
@@ -2568,7 +2568,7 @@ export const publications: Publication[] = [
     "authors": "강석, 이수안, 김진호, 이강수",
     "venue": "정보화 연구, 한국엔터프라이즈아키텍처학회",
     "date": "2017년 03월",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "스마트폰의 출현으로 SNS, 위치정보, 각종 로그들을 포함에 방대한 양의 데이터가 쌓이고 있다. 이런 데이터들을 활용하여 가치있는 정보로 활용하기 위해 빅 데이터 기술에 대한 관심을 가지고 있다. 사람들이 빅 데이터 처리를 통해 나온 결과를 쉽게 알아볼 수 있는 시각화 기술에 대해서도 관심이 뜨겁다. 본 논문에서는 경영 시뮬레이션 게임에서 의사 결정을 위해서 빅 데이터 분석을 수행하였고 가공처리되서 나온 데이터들을 이용해 시각화 도구를 개발하였다. 시각화 도구에는 워드 클라우드, 단어 빈도 분석, 네트워크 그래프 분석, 군집 분석 등 다양한 시각화 도구가 있다. 이런 시각화 도구를 통해 사용자는 앞서 말한 가치 있는 정보를 확인 할 수 있다. 또한 사용자는 데이터를 필터링하거나 단어의 빈도수 또는 단어의 개수를 조절하거나 군집의 개수를 설정하여 사용자가 좀 더 쉽게 이해 할 수 있도록 시각화를 다시 할 수 있다. 이를 통해 효과적이고 탄력적인 경영과 의사 결정에 도움을 줄 수 있다. SNS with the advent of smart phones, position information, has accumulated a huge amount of data to include a variety of log. By utilizing such data, in order to take advantage of the information that is of value, we have an interest in big data technology. People are hot interest in big data processing through the you can find the results that have been briefly out of visualization technology. In this paper, we run the big data analysis for decision-making in the management simulation game, we were using the data that came out be processed to develop a visualization tool. The visualization tool, the analysis of the word cloud, word of the frequency of use, network graph analysis, cluster analysis, etc., there are a variety of visualization tools. Using such visualization tools, the user can confirm the valuable information previously described. Also, users can filter the data, or to adjust the number of words in the frequency and the word, by setting the number of congestion, the user can repeat the visualization may be more easily understood. Thus, it is possible to support effective and flexible management and decision making.",
     "keywords": "빅 데이터, 워드 클라우드, 소셜 네트워크 분석, 군집 분석, 시뮬레이션 게임, Big Data, Word Cloud, Social Network Analysis, Clutering Analysis, Simulation Game",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002213667"
@@ -2602,7 +2602,7 @@ export const publications: Publication[] = [
     "authors": "이강수, 이수안, 강석, 박찬민, 김진호",
     "venue": "정보화연구, 한국엔터프라이즈아키텍처학회",
     "date": "2016년 06월 30일",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "스마트폰의 출현으로 SNS, 위치정보, 각종 로그들을 포함에 방대한 양의 데이터가 쌓이고 있다. 이런 데이터들을 활용하여 가치있는 정보로 활용하기 위해 빅 데이터 기술에 대한 관심을 가지고 있다. 사람들이 빅 데이터 처리를 통해 나온 결과를 쉽게 알아볼 수 있는 시각화 기술에 대해서도 관심이 뜨겁다. 본 논문에서는 경영 시뮬레이션 게임에서 의사 결정을 위해서 빅 데이터 분석을 수행하였고 가공처리되서 나온 데이터들을 이용해 시각화 도구를 개발하였다. 시각화 도구에는 워드 클라우드, 단어 빈도 분석, 네트워크 그래프 분석, 군집 분석 등 다양한 시각화 도구가 있다. 이런 시각화 도구를 통해 사용자는 앞서 말한 가치 있는 정보를 확인 할 수 있다. 또한 사용자는 데이터를 필터링하거나 단어의 빈도수 또는 단어의 개수를 조절하거나 군집의 개수를 설정하여 사용자가 좀 더 쉽게 이해 할 수 있도록 시각화를 다시 할 수 있다. 이를 통해 효과적이고 탄력적인 경영과 의사 결정에 도움을 줄 수 있다. SNS with the advent of smart phones, position information, has accumulated a huge amount of data to include a variety of log. By utilizing such data, in order to take advantage of the information that is of value, we have an interest in big data technology. People are hot interest in big data processing through the you can find the results that have been briefly out of visualization technology. In this paper, we run the big data analysis for decision-making in the management simulation game, we were using the data that came out be processed to develop a visualization tool. The visualization tool, the analysis of the word cloud, word of the frequency of use, network graph analysis, cluster analysis, etc., there are a variety of visualization tools. Using such visualization tools, the user can confirm the valuable information previously described. Also, users can filter the data, or to adjust the number of words in the frequency and the word, by setting the number of congestion, the user can repeat the visualization may be more easily understood. Thus, it is possible to support effective and flexible management and decision making.",
     "keywords": "물류 데이터, 데이터 크롤러, 빅 데이터 분석, 텍스트 시각화, Logistics Data, Data Crawler, Big Data Analysis, Text Visualization",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002127079"
@@ -2614,7 +2614,7 @@ export const publications: Publication[] = [
     "authors": "이수안, 최재용, 강상원, 이기준, 한명훈, 김진호",
     "venue": "정보화연구, 한국엔터프라이즈아키텍처학회",
     "date": "2016년 03월 30일",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "많은 공공기관과 기업들이 전자문서를 이용하고 있으며 자체적으로 전자문서관리시스템을 운영하고 있다. 그러나 최근 전자문서의 범위는 지식, 정보, 콘텐츠를 포함하는 것으로 확대되어가고 있다. 또한 사용자들은 전자문서의 공유 및 협업에 대한 요구가 증가되는 한편, 모바일과 사물인터넷 등으로 데이터의 양은 급증하고 있다. 이러한 대규모의 데이터를 처리하며 IT 자원을 효율적으로 관리해주는 클라우드 컴퓨팅이 활성화되고 있다. 그리하여 본 논문에서는 클라우드 환경에서 자동화 기술을 통해 IT 자원을 상황에 맞게 조절하고, 시스템의 확장 및 축소가 가능한 전자문서관리에 대해서 연구하였다. 또한 클라우드 환경에서 스토리지 관리 기법과 전자문서의 체계적인 복제본 관리기술 등에 대해서 제안하였다. Many public institutions and companies have been utilizing a lot of electronic documents and have been operating electronic document management systems on their own. However, the scope of the recent electronic documents is becoming enlarged to include knowledge, information, contents, etc. In addition, users have an increasing demand for sharing and collaborating the electronic documents. With the recent advance of mobile and Internet of Things(IoT) technologies, furthermore, the size of data are increasing very rapidly and tremendously. In order to manage a huge amount of data, cloud computing technology has been raving up more and more, which can handle IT resources efficiently. Thus, we have studied the electronic document management system which is possible to expand and to collapse to suit users' needs and IT resources automatically in cloud environments. In addition, we propose an efficient storage management system and a systematic replica management technology of electronic documents in cloud environments.",
     "keywords": "전자문서, 전사콘텐츠관리(ECM), 전자문서관리시스템(EDMS), 클라우드 컴퓨팅, 클라우드 스토리지 서비스, Electronic Document, Enterprise Contents Management, Electronic Document Management System, Cloud Computing, Cloud Storage Service",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002099017"
@@ -2704,7 +2704,7 @@ export const publications: Publication[] = [
     "authors": "김남수, 이수안, 조선화, 김진호",
     "venue": "정보화연구, 한국엔터프라이즈아키텍처학회",
     "date": "2014년 03월 30일",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "웹의 발달로 텍스트 등으로 이루어진 비정형 데이터의 활용에 대한 관심이 높아지고 있다. 웹 상에서 사용자들이 작성한 대부분의 비정형 데이터는 사용자의 주관이 담겨져있어 이를 적절히 분석 할 경우 사용자의 취향이나 주관적인 관점 등의 아주 유용한 정보를 얻을 수 있다. 이 논문에서는 이러한 비정형 텍스트 문서를 다양한 차원으로 분석하기 하는데 OLAP(온라인 분석 처리)의 다차원 데 이터 큐브 기술을 활용한다. 다차원 데이터 큐브는 간단한 문자나 숫자 형태의 정형적인 데이터에 대 해 다차원 분석하는데 널리 사용되었지만, 텍스트 문장으로 이루어진 비정형 데이터에 대해서는 활용 되지 않았다. 이러한 텍스트 데이터베이스에 포함된 정보를 다차원으로 분석하기 위한 방법으로 텍스 트큐브 모델이 최근에 제안되었는데, 이 텍스트 큐브는 정보 검색에서 널리 사용하는 용어 빈도수 (Term Frequency)와 역 인덱스(Inverted Index)를 측정값으로 이용하여 텍스트 데이터베이스에 대 한 다차원 분석을 지원한다. 이 논문에서는 이러한 다차원 텍스트 큐브를 활용하여 실제 서비스되고 있는 호텔 정보 공유 사이트의 리뷰 데이터 분석에 활용하였다. 이를 위해 호텔 리뷰 데이터에 대한 다차원 텍스트 큐브를 생성하였으며, 이를 이용하여 다차원 키워드 검색 기능을 제공하여 사용자 중 심의 의미있는 정보 검색이 가능한 시스템을 설계 및 구현하였다. 또한, 본 논문에서 제안하는 시스템 에 대해 다양한 실험을 수행하였으며 이를 통해 제안된 시스템의 실효성을 검증하였다. As the advance of WWW, unstructured data including texts are taking users' interests more and more. These unstructured data created by WWW users represent users' subjective opinions thus we can get very useful information such as users' personal tastes or perspectives from them if we analyze appropriately. In this paper, we provide various analysis efficiently for unstructured text documents by taking advantage of OLAP (On-Line Analytical Processing) multidimen-sional cube technology. OLAP cubes have been widely used for the multidimensional analysis for structured data such as simple alphabetic and numberic data but they didn't have used for unstructured data consisting of long texts. In order to provide multidimensional analysis for unstructured text data, however, Text Cube model has been proposed precently. It incorporates term frequency and inverted index as measurements to search and analyze text databases which play key roles in information retrieval. The primary goal of this paper is to apply this text cube model to a real data set from in an Internet site sharing hotel information and to provide multidimensional analysis for users' reviews on hotels written in texts. To achieve this goal, we first build text cubes for the hotel review data. By using the text cubes, we design and implement the system which provides multidimensional keyword search features to search and to analyze review texts on various dimensions. This system will be able to help users to get valuable guest-subjective summary information easily. Furthermore, this paper evaluats the proposed systems through various experiments and it reveals the effectiveness of the system.",
     "keywords": "다차원 텍스트 데이터베이스, 텍스트 큐브, 온라인 다차원 분석, 사용자 리뷰 분석, 키워드 검색 Multi-dimensional Text Databases, Text Cubes, On-Line Analytical Processing (OLAP), Usres' review analysis, keyword search",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001866784"
@@ -2727,7 +2727,7 @@ export const publications: Publication[] = [
     "authors": "이수안, 김진호",
     "venue": "전자공학회논문지, 대한전자공학회",
     "date": "2012년 09월 30일",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "최근 많은 응용 분야에서 대규모 데이터에 대해 온라인 다차원 분석(OLAP)을 사용하고 있다. 다차원 데이터 큐브는 OLAP 분석에서 핵심 도구로 여긴다. 본 논문에서는 맵리듀스 분산 병렬 처리를 이용하여 효율적으로 데이터 큐브를 계산하는 방법을 연구하고자 한다. 이를 위해, 맵리듀스 프레임워크에서 데이터 큐브 계산 방법으로 잘 알려진 PipeSort 알고리즘을 구현하는 효율적인 방법에 대해서 살펴본다. PipeSort는 데이터 큐브의 한 큐보이드에서 동일한 정렬 순서를 갖는 여러 큐보이드를 한 파이프라인으로 한꺼번에 계산하는 효율적인 방식이다. 이 논문에서는 맵리듀스 프레임워크에서 PipeSort의 파이프라인을 구현한 네 가지 방법을 20대의 서버에서 수행하였다. 실험 결과를 보면, 고차원 데이터에 대해서는 PipeMap-NoReduce 알고리즘이 우수한 성능을 보였으며, 저차원 데이터에 대해서는 Post-Pipe 알고리즘이 더 우수함을 보였다. Recently, many applications perform OLAP(On-Line Analytical Processing) over a very large volume of data. Multidimensional data cube is regarded as a core tool in OLAP analysis. This paper focuses on the method how to efficiently compute data cubes in parallel by using a popular parallel processing tool, MapReduce. We investigate efficient ways to implement PipeSort algorithm, a well-known data cube computation method, on the MapReduce framework. The PipeSort executes several (descendant) cuboids at the same time as a pipeline by scanning one (ancestor) cuboid once, which have the same sorting order. This paper proposed four ways implementing the pipeline of the PipeSort on the MapReduce framework which runs across 20 servers. Our experiments show that PipeMap-NoReduce algorithm outperforms the rest algorithms for high-dimensional data. On the contrary, Post-Pipe stands out above the others for low-dimensional data.",
     "keywords": "multidimensional Data Cube, MapReduce, Distributed Parallel Computing, PipeSort",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001696347"
@@ -2739,7 +2739,7 @@ export const publications: Publication[] = [
     "authors": "최재용, 원지섭, 이수안, 김진호",
     "venue": "정보과학회논문지, 한국정보과학회",
     "date": "2012년 09월 30일",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "최근 스마트폰의 보급이 확산되고, 대중화됨에 따라 기존의 많은 모바일 기기들을 대체하고 있다. 많은 사용자들은 스마트폰을 이용한 사진 촬영을 취미뿐만 아니라 일상생활의 한 부분으로 많이 이용하고 있다. 하지만, PC에 비해 제한된 처리 능력과 디스플레이 크기를 가진 스마트폰에서 사진의 양이 증가함에 따라 단일 분류 기준으로는 관리 및 탐색에 어려움이 있다. 본 논문에서는 스마트폰에서 날짜/시간, GPS 정보를 추출한 뒤, 계층 모델을 생성하고, 계층 모델에 따라 사진 분류를 통해 효과적인 계층적 사진 탐색을 제공한다. 본 논문에서 제안한 시스템은 (1) 사용자 지정 가상 계층에 따른 사진 탐색, (2) 계층 트리 노드 병합을 이용한 사진 탐색, 그리고 (3) 균형 계층 트리를 이용한 사진 탐색 기법을 이용하여 사진 탐색의 편리함과 효율성을 극대화 하였으며, 구글 안드로이드 기반의 스마트폰에서 계층적 사진 탐색기를 설계 및 개발하였다. Recently smart phones are replacing a number of existing mobile devices while gaining wide popularity. Taking pictures with smart phones became a big part of our daily lives as well as hobbies. However, smart phones have limited processing capabilities and display size compared to a PC. Therefore, it is hard to manage and explore photos in a single category basis when the number of photos in a phone increase. This paper provides an effective hierarchical photo exploring system. As generating a hierarchical model by extracting date/time and GPS data from smartphones, this system offers us with an efficient way to explore photos. This photo exploring system features (1) using user customizable virtual hierarchy (2) using hierarchical tree nodes merge (3) maximizing efficiency and convenience by using balanced hierarchy tree. It was designed and developed using a Google Android smart phone.",
     "keywords": "사진 메타데이터, 사진 관리, 사진 검색, 계층 모델, 스마트폰 Photo Metadata, Photo Management, Photo Search, Hierarchy Model, Smartphone",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001695091"
@@ -2772,7 +2772,7 @@ export const publications: Publication[] = [
     "authors": "이수안, 김진호",
     "venue": "정보화연구, 한국엔터프라이즈아키텍처학회",
     "date": "2012년 03월 30일",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "최근 데이터의 폭발적인 증가로 인해 대규모 데이터의 분석에 대한 요구를 충족할 수 있는 방법들이 계속 연구되고 있다. 본 논문에서는 맵리듀스를 이용한 분산 병렬 처리를 통해 대규모 데이터큐브의 효율적인 계산이 가능한 MRIterativeBUC 알고리즘을 제안하였다. MRIterativeBUC 알고리즘은 기존의 BUC 알고리즘을 맵리듀스의 반복적 단계에 따른 효율적인 동작이 가능하도록 개발되었고, 기존의 대규모 데이터 큐브 계산에 따른 문제인 데이터 크기와 저장 및 처리 능력의 한계를 해결하였다. 또한, 분석자의 관심 부분에 대해서만 계산하는 빙산 큐브 개념의 도입과 파티셔닝, 정렬과 같은 큐브 계산을 분산 병렬 처리하는 방법 등의 장점들을 통해 데이터 방출량을 줄여서 네트워크 부하를 줄이고, 각 노드의 처리량을 줄이며, 궁극적으로 전체 큐브 계산 비용을 줄일 수 있다. 본 연구결과는 맵리듀스를 이용한 데이터 큐브 계산에 대해서 상향식 처리와 반복적 알고리즘을 통해 다양한 확장이 가능하며, 여러 응용 분야에서 활용이 가능할 것으로 예상된다. Due to the recent data explosion, methods which can meet the requirement of large data analysis has been studying. This paper proposes MRIterativeBUC algorithm which enables efficient computation of large data cube by distributed parallel processing with MapReduce framework. MRIterativeBUC algorithm is developed for efficient iterative operation of the BUC method with MapReduce, and overcomes the limitations about the storage size and processing ability caused by large data cube computation. It employs the idea from the iceberg cube which computes only the interesting aspect of analysts and the distributed parallel process of cube computation by partitioning and sorting. Thus, it reduces data emission so that it can reduce network overload, processing amount on each node, and eventually the cube computation cost. The bottom-up cube computation and iterative algorithm using MapReduce, proposed in this paper, can be expanded in various way, and will make full use of many applications.",
     "keywords": "데이터 큐브, BUC 알고리즘, 맵리듀스, 분산 병렬 컴퓨팅 Data Cube, BUC Algorithm, MapReduce, Distributed Parallel Computing",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001735949"
@@ -2784,7 +2784,7 @@ export const publications: Publication[] = [
     "authors": "이수안, 원지섭, 최미정",
     "venue": "Telecommunications Review, SK텔레콤",
     "date": "2012년",
-    "badge": "[KCI]"
+    "badge": "KCI"
   },
   {
     "id": 101,
@@ -2922,7 +2922,7 @@ export const publications: Publication[] = [
     "authors": "이수안, 김진호, 신성현, 남시병",
     "venue": "전자공학회논문지, 대한전자공학회",
     "date": "2009년 05월",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "abstract": "유비쿼터스 센서 네트워크를 통해 수집되는 데이터는 끊임없이 변화하는 스트림 데이터이다. 이 스트림 데이터는 기존의 데이터베이스와는 매우 다른 특성을 가지고 있어서, 이를 저장하고 분석 및 질의 처리하는 방법에 대한 새로운 기법이 필요하며, 이에 대한 연구가 최근에 많은 관심을 끌고 있다. 본 연구에서는 센서 네트워크로부터 끊임없이 들어오는 스트림 데이터를 수집하고 이를 효율적으로 데이터베이스에 저장하는 저장 관리자를 구현하였다. 이 저장 관리자는 무선 센서 환경에서 발생하는 오류에 대한 정제, 반복적으로 센싱되는 동일한 데이터에 대한 축소 기능, 장기간의 스트림 데이터를 경동 시간 구조로 유지하는 기능 등을 제공한다. 또 이 연구에서는, 구현된 저장 관리자를 건물의 온도, 습도, 조도 등을 수집하는 건물 화재 감시 센서 네트워크에 적용하여 그 성능을 측정하였다. 실험 결과, 이 저장 관리자는 스트림 데이터의 저장 공간을 현저히 줄이며, 건물 화재 감시를 위한 장기간의 스트림 데이터를 저장하는데 효과적임을 보였다. Stream data, gathered from ubiquitous sensor networks, change continuously over time. Because they have quite different characteristics from traditional databases, we need new techniques for storing and querying/analyzing these stream data, which are research issues recently emerging . In this research, we implemented a storage manager gathering stream data and storing them into databases, which are sampled continuously from sensor networks. The storage manager cleans faulty data occurred in mobile sensors and it also reduces the size of stream data by merging repeatedly-sampled values into one and by employing the tilted time frame which stores stream data with several different sampling rates. In this research, furthermore, we measured the performance of the storage manager in the context of a sensor network monitoring fires of a building. The experimental results reveal that the storage manager reduces significantly the size of storage spaces and it is effective to manage the data stream for real applications monitoring buildings and their fires.",
     "keywords": "유비쿼터스 센서 네트워크, 스트림 데이터, 저장 관리자, 경동 시간 구조, 데이터 축소",
     "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001342984"
@@ -2934,7 +2934,7 @@ export const publications: Publication[] = [
     "authors": "김진호, 최황규, 김화종, 이수안, 김석훈",
     "venue": "정보과학회지, 한국정보과학회",
     "date": "2008년 08월",
-    "badge": "[KCI]",
+    "badge": "KCI",
     "url": "https://www.dbpia.co.kr/Journal/ArticleDetail/NODE01030765?TotalCount=0&Seq=7&isIdentifyAuthor=1&Collection=0&isFullText=0&specificParam=0&SearchMethod=0&Page=1&PageSize=20"
   },
   {
