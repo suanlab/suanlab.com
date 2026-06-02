@@ -228,6 +228,17 @@ export const publications: Publication[] = [
     "keywords": "LLM; 법률 문서 검색; 사용자 의도 분석; 지능형 검색"
   },
   {
+    "id": 224,
+    "type": "djournal",
+    "title": "MKEAD: Multi-Kernel Ensemble Adaptive Detector for Solar Photovoltaic Anomaly Detection and Prediction",
+    "authors": "노기웅, 이수안, 성열훈, 정명숙",
+    "venue": "Journal of Korea Society of Industrial Information Systems, 제31권, 제2호, pp.59-80",
+    "date": "2026",
+    "badge": "[KCI]",
+    "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003329862",
+    "keywords": "Solar Photovoltaic Power Generation; Anomaly Detection; Anomaly Prediction; Ensemble Learning; One-Class SVM"
+  },
+  {
     "id": 215,
     "type": "djournal",
     "title": "강화학습을 활용한 소규모 언어 모델 기반 Text-to-SQL 성능 향상",
