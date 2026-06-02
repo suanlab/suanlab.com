@@ -287,8 +287,8 @@ export default function SuanPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="border-l-2 border-primary pl-4">
-                    <p className="font-medium">세명대학교 IT엔지니어링대학 컴퓨터학부</p>
-                    <p className="text-sm text-muted-foreground">조교수 (2021.03 - 현재)</p>
+                    <p className="font-medium">세명대학교 AI융합대학 AI컴퓨터학부</p>
+                    <p className="text-sm text-muted-foreground">조교수 (2021.03 - 현재) / 학부장 (2024.01 - 현재)</p>
                   </div>
                   <div className="border-l-2 border-muted pl-4">
                     <p className="font-medium">인하대학교 VOICE AI 연구소</p>
@@ -421,7 +421,7 @@ export default function SuanPage() {
                       ))}
                     </div>
                     <p className="text-xs text-muted-foreground mt-4 text-center">
-                      총 {awards.length}건 (2017 - 2025)
+                      총 {awards.length}건 (2017 - 2026)
                     </p>
                   </CardContent>
                 </Card>

@@ -10,8 +10,24 @@ export interface Award {
 
 export const awards: Award[] = [
   {
-    id: 1,
-    date: '2025.12',
+    id: 100,
+    date: '2026.02.24',
+    award: '2025학년도 교원업적평가 우수교원 (자연공학계열)',
+    organization: '세명대학교',
+    category: 'teaching',
+  },
+  {
+    id: 101,
+    date: '2026.02.04',
+    award: 'Best Paper Award Runner-Up',
+    title: 'Linear Separability and Feature Importance Analysis in Large Language Model Representation Spaces',
+    authors: 'JaeSeong Kim, Suan Lee',
+    organization: '2026 IEEE International Conference on Big Data and Smart Computing (BigComp)',
+    category: 'paper',
+  },
+  {
+    id: 102,
+    date: '2025.12.16',
     award: '2025 데이터 소사이어티 공로상',
     organization: '한국정보과학회 데이터소사이어티',
     category: 'contribution',
