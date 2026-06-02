@@ -115,10 +115,21 @@ async function processBatch<T, R>(
   return results;
 }
 
+// Global error handler
+app.error(async (args) => {
+  console.error('[GLOBAL ERROR]', (args as { error?: Error }).error || args);
+});
+
 // /suanblog slash command - unified command
-app.command('/suanblog', async ({ command, ack, respond }) => {
-  console.log('Received /suanblog command:', command.text);
-  await ack();
+app.command('/suanblog', async ({ command, ack, respond, logger }) => {
+  console.log('[COMMAND] /suanblog received:', JSON.stringify({ text: command.text, channel_id: command.channel_id, user_id: command.user_id }));
+
+  try {
+    await ack();
+  } catch (ackError) {
+    console.error('[COMMAND] ack() failed:', ackError);
+    return;
+  }
 
   if (!isAllowedChannel(command.channel_id)) {
     await respond({
@@ -241,26 +252,31 @@ app.command('/suanblog', async ({ command, ack, respond }) => {
   }
 
   const inputType = detectInputType(input);
+  console.log(`[COMMAND] Input type: ${inputType}, input: ${input}`);
 
   if (inputType === 'arxiv') {
     // Handle arXiv paper
     const arxivId = extractArxivId(input);
 
-    await respond({
-      response_type: 'in_channel',
-      blocks: [
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `:hourglass_flowing_sand: *논문 리뷰 생성 중...*\n:page_facing_up: arXiv ID: ${arxivId}\n\n약 3-5분 소요됩니다.`
+    try {
+      await respond({
+        response_type: 'in_channel',
+        blocks: [
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: `:hourglass_flowing_sand: *논문 리뷰 생성 중...*\n:page_facing_up: arXiv ID: ${arxivId}\n\n약 3-5분 소요됩니다.`
+            }
           }
-        }
-      ]
-    });
+        ]
+      });
+    } catch (respondErr) {
+      console.error('[COMMAND] Initial respond failed:', respondErr);
+    }
 
     try {
-      console.log(`Generating paper review for arXiv: ${arxivId}`);
+      console.log(`[COMMAND] Generating paper review for arXiv: ${arxivId}`);
       const post = await generateFromPaper({ arxivId, generateImage: true });
       const filepath = await savePaperPost(post);
 

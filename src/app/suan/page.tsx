@@ -16,6 +16,7 @@ const XIcon = ({ className }: { className?: string }) => (
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import AboutMe from './AboutMe';
 
 const BASE_URL = 'https://suanlab.com';
 
@@ -119,7 +120,6 @@ export default function SuanPage() {
                       이력서 다운로드 (CV)
                     </a>
                   </Button>
-                  {/* TODO: Upload actual CV PDF to public/assets/documents/ */}
                 </CardContent>
               </Card>
 
@@ -277,20 +277,7 @@ export default function SuanPage() {
             {/* Right Content */}
             <div className="lg:col-span-2">
               {/* About Me */}
-              <div className="mb-12">
-                <h2 className="text-2xl font-bold mb-6">
-                  About <span className="text-primary">Me</span>
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                  &quot;데이터와 AI를 이용해 세상을 이롭게하자!&quot;라는 생각을 가진 데이터 과학자이자 AI 연구자입니다.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  새로운 연구와 기술에 흥미를 가지며, 인공지능, 머신러닝, 딥러닝, 자연어처리, 컴퓨터비전,
-                  오디오음성처리, 빅데이터에 관심이 많습니다. 머신러닝, 딥러닝, 데이터마이닝, 데이터웨어하우스,
-                  데이터베이스 분야에서 19년간 연구하였고, 인메모리 데이터베이스와 실시간 스트림 데이터 처리 엔진,
-                  빅데이터 플랫폼과 관련해 3년 이상의 개발 경력을 쌓았습니다.
-                </p>
-              </div>
+              <AboutMe />
 
               {/* Experience */}
               <Card className="mb-12">
