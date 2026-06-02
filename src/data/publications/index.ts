@@ -42,7 +42,7 @@ function computePublicationTypes(publications: Publication[]) {
 export const publications: Publication[] = [
   // ============ 2026 International Journals ============
   {
-    "id": 222,
+    "id": 634,
     "type": "journal",
     "title": "Instruction Fine-Tuning through the Lens of Verbatim Memorization",
     "authors": "Jie Zhang, Chi-Ho Lin and Suan Lee",
@@ -52,7 +52,7 @@ export const publications: Publication[] = [
     "keywords": "instruction fine-tuning; verbatim memorization; large language models"
   },
   {
-    "id": 223,
+    "id": 635,
     "type": "journal",
     "title": "Architectural 3D Point cloud data registration and fusion combining deep learning and traditional algorithms",
     "authors": "Chenglong Huang, Chi-Ho Lin, Suan Lee, and Jie Zhang",
@@ -219,13 +219,13 @@ export const publications: Publication[] = [
   },
   // ============ 2026 Workshops ============
   {
-    "id": 225,
+    "id": 636,
     "type": "workshop",
     "title": "How Language Directions Align with Token Geometry in Multilingual LLMs",
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "ACL 2026 Student Research Workshop",
     "date": "2026",
-    "badge": "ACL 2026 SRW Accepted",
+    "badge": "ACL 2026 SRW",
     "url": "https://arxiv.org/abs/2511.16693",
     "keywords": "multilingual LLMs; representation space; language directions; token geometry; probing"
   },
@@ -241,7 +241,7 @@ export const publications: Publication[] = [
     "keywords": "LLM; 법률 문서 검색; 사용자 의도 분석; 지능형 검색"
   },
   {
-    "id": 224,
+    "id": 637,
     "type": "djournal",
     "title": "MKEAD: Multi-Kernel Ensemble Adaptive Detector for Solar Photovoltaic Anomaly Detection and Prediction",
     "authors": "노기웅, 이수안, 성열훈, 정명숙",
@@ -272,7 +272,7 @@ export const publications: Publication[] = [
     "keywords": "모델 경량화; Pruning; Fine-tuning; 한국어 언어 모델"
   },
   {
-    "id": 220,
+    "id": 638,
     "type": "djournal",
     "title": "Wi-Fi CSI 기반 딥러닝 운동형태 분류를 이용한 비접촉식 실내 운동량·칼로리 추론",
     "authors": "김재한, 염보영, 이수안, 문양세",
@@ -282,7 +282,7 @@ export const publications: Publication[] = [
     "keywords": "Wi-Fi CSI; 딥러닝; 운동형태 분류; 칼로리 추론"
   },
   {
-    "id": 221,
+    "id": 639,
     "type": "djournal",
     "title": "서술형 진로 검사 평가의 자동화: 대규모 언어 모델 기반의 성숙도 분석 및 피드백",
     "authors": "김병학, 이수안",
