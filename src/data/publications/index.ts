@@ -298,16 +298,47 @@ export const publications: Publication[] = [
     "badge": "[KCI]",
     "keywords": "프로야구; 타순; 기계학습; 회귀 모델; 득점력"
   },
-  // ============ 2024 International Conferences ============
+  // ============ 2026 International Conferences ============
   {
-    "id": 221,
+    "id": 608,
     "type": "conference",
-    "title": "Course Recommendation System for Company Job Placement Using Collaborative Filtering and Hybrid Model",
-    "authors": "Jaeheon Park, Suan Lee, Woncheol Lee, and Jinho Kim",
-    "venue": "13th International Conference on Data Science, Technology and Applications (DATA 2024), SciTePress",
-    "date": "2024",
-    "keywords": "course recommendation; collaborative filtering; hybrid model; job placement"
+    "title": "Real-Time Multimodal Fingertip Contact Detection via Depth and Motion Fusion for Vision-Based Human–Computer Interaction",
+    "authors": "Toshpulatov Mukhiddin Amonkulovich, Wookey Lee, Suan Lee, and Geehyuk Lee",
+    "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2026)",
+    "date": "2026",
+    "badge": "CVPR 2026 Accepted",
+    "keywords": "fingertip contact detection; multimodal fusion; depth sensing; human-computer interaction"
   },
+  {
+    "id": 609,
+    "type": "conference",
+    "title": "Linear Separability and Feature Importance Analysis in Large Language Model Representation Spaces",
+    "authors": "JaeSeong Kim and Suan Lee",
+    "venue": "2026 IEEE International Conference on Big Data and Smart Computing (BigComp)",
+    "date": "2026",
+    "badge": "Best Paper Award Runner-up",
+    "keywords": "LLM; representation space; linear separability; feature importance"
+  },
+  {
+    "id": 610,
+    "type": "conference",
+    "title": "Analyzing LLM Safety Circumvention via Multilingual Euphemistic Coating",
+    "authors": "SangHyeon Gil, JaeSeong Kim, and Suan Lee",
+    "venue": "2026 IEEE International Conference on Big Data and Smart Computing (BigComp)",
+    "date": "2026",
+    "keywords": "LLM safety; multilingual; euphemistic coating; safety circumvention"
+  },
+  {
+    "id": 611,
+    "type": "conference",
+    "title": "Transparent Networks for Multivariate Time Series",
+    "authors": "Minkyu Kim, Suan Lee, and Jinho Kim",
+    "venue": "AAAI Conference on Artificial Intelligence (AAAI 2026)",
+    "date": "2026",
+    "badge": "AAAI 2026",
+    "keywords": "transparent networks; multivariate time series; interpretable deep learning"
+  },
+  // ============ 2024 International Conferences ============
   {
     "id": 222,
     "type": "conference",
