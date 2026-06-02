@@ -40,28 +40,6 @@ function computePublicationTypes(publications: Publication[]) {
 }
 
 export const publications: Publication[] = [
-  // ============ 2026 International Journals ============
-  {
-    "id": 634,
-    "type": "journal",
-    "title": "Instruction Fine-Tuning through the Lens of Verbatim Memorization",
-    "authors": "Jie Zhang, Chi-Ho Lin and Suan Lee",
-    "venue": "Electronics, 15(2), 377",
-    "date": "2026",
-    "badge": "[SCIE]",
-    "keywords": "instruction fine-tuning; verbatim memorization; large language models"
-  },
-  {
-    "id": 635,
-    "type": "journal",
-    "title": "Architectural 3D Point cloud data registration and fusion combining deep learning and traditional algorithms",
-    "authors": "Chenglong Huang, Chi-Ho Lin, Suan Lee, and Jie Zhang",
-    "venue": "Archives of Nano-Research (ANR), 20(3), 415",
-    "date": "2026",
-    "badge": "[SCIE]",
-    "url": "https://doi.org/10.12989/anr.2026.20.3.415",
-    "keywords": "3D point cloud; registration; fusion; RPMNet++; ICP; deep learning"
-  },
   // ============ 2025 International Journals ============
   {
     "id": 200,
@@ -217,18 +195,7 @@ export const publications: Publication[] = [
     "impact": "(IF: 3.9)",
     "keywords": "leak detection; machine learning; vibration sensor; water pipeline"
   },
-  // ============ 2026 Workshops ============
-  {
-    "id": 636,
-    "type": "workshop",
-    "title": "How Language Directions Align with Token Geometry in Multilingual LLMs",
-    "authors": "JaeSeong Kim and Suan Lee",
-    "venue": "ACL 2026 Student Research Workshop",
-    "date": "2026",
-    "badge": "ACL 2026 SRW",
-    "url": "https://arxiv.org/abs/2511.16693",
-    "keywords": "multilingual LLMs; representation space; language directions; token geometry; probing"
-  },
+  // ============ Workshops ============
   {
     "id": 640,
     "type": "workshop",
@@ -248,17 +215,6 @@ export const publications: Publication[] = [
     "date": "2025",
     "badge": "[KCI]",
     "keywords": "LLM; 법률 문서 검색; 사용자 의도 분석; 지능형 검색"
-  },
-  {
-    "id": 637,
-    "type": "djournal",
-    "title": "MKEAD: Multi-Kernel Ensemble Adaptive Detector for Solar Photovoltaic Anomaly Detection and Prediction",
-    "authors": "노기웅, 이수안, 성열훈, 정명숙",
-    "venue": "Journal of Korea Society of Industrial Information Systems, 제31권, 제2호, pp.59-80",
-    "date": "2026",
-    "badge": "[KCI]",
-    "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003329862",
-    "keywords": "Solar Photovoltaic Power Generation; Anomaly Detection; Anomaly Prediction; Ensemble Learning; One-Class SVM"
   },
   {
     "id": 215,
@@ -393,6 +349,49 @@ export const publications: Publication[] = [
     "badge": "Top Conf: KDD 2026",
     "url": "https://arxiv.org/abs/2603.27223",
     "keywords": "multilingual benchmark; multimodal; civil service exam; AI bias"
+  },
+  {
+    "id": 634,
+    "type": "journal",
+    "title": "Instruction Fine-Tuning through the Lens of Verbatim Memorization",
+    "authors": "Jie Zhang, Chi-Ho Lin and Suan Lee",
+    "venue": "Electronics, 15(2), 377",
+    "date": "2026",
+    "badge": "[SCIE]",
+    "keywords": "instruction fine-tuning; verbatim memorization; large language models"
+  },
+  {
+    "id": 635,
+    "type": "journal",
+    "title": "Architectural 3D Point cloud data registration and fusion combining deep learning and traditional algorithms",
+    "authors": "Chenglong Huang, Chi-Ho Lin, Suan Lee, and Jie Zhang",
+    "venue": "Archives of Nano-Research (ANR), 20(3), 415",
+    "date": "2026",
+    "badge": "[SCIE]",
+    "url": "https://doi.org/10.12989/anr.2026.20.3.415",
+    "keywords": "3D point cloud; registration; fusion; RPMNet++; ICP; deep learning"
+  },
+  {
+    "id": 637,
+    "type": "djournal",
+    "title": "MKEAD: Multi-Kernel Ensemble Adaptive Detector for Solar Photovoltaic Anomaly Detection and Prediction",
+    "authors": "노기웅, 이수안, 성열훈, 정명숙",
+    "venue": "Journal of Korea Society of Industrial Information Systems, 제31권, 제2호, pp.59-80",
+    "date": "2026",
+    "badge": "[KCI]",
+    "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003329862",
+    "keywords": "Solar Photovoltaic Power Generation; Anomaly Detection; Anomaly Prediction; Ensemble Learning; One-Class SVM"
+  },
+  {
+    "id": 636,
+    "type": "workshop",
+    "title": "How Language Directions Align with Token Geometry in Multilingual LLMs",
+    "authors": "JaeSeong Kim and Suan Lee",
+    "venue": "ACL 2026 Student Research Workshop",
+    "date": "2026",
+    "badge": "ACL 2026 SRW",
+    "url": "https://arxiv.org/abs/2511.16693",
+    "keywords": "multilingual LLMs; representation space; language directions; token geometry; probing"
   },
   {
     "id": 608,
