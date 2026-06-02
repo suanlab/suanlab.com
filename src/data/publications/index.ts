@@ -306,7 +306,7 @@ export const publications: Publication[] = [
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD 2026)",
     "date": "2026",
-    "badge": "Top Conf: ECML-PKDD 2026",
+    "badge": "ECML-PKDD 2026",
     "keywords": "LLM convergence; representation analysis; latent behavior"
   },
   {
@@ -316,7 +316,7 @@ export const publications: Publication[] = [
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "Conference on Uncertainty in Artificial Intelligence (UAI 2026)",
     "date": "2026",
-    "badge": "Top Conf: UAI 2026",
+    "badge": "UAI 2026",
     "keywords": "LLM representations; task-selective convergence; subspace analysis"
   },
   {
@@ -326,7 +326,7 @@ export const publications: Publication[] = [
     "authors": "Suan Lee and Jinho Kim",
     "venue": "Conference on Uncertainty in Artificial Intelligence (UAI 2026)",
     "date": "2026",
-    "badge": "Top Conf: UAI 2026",
+    "badge": "UAI 2026",
     "keywords": "interpretable forecasting; spatial-temporal; neural decomposition; knowledge distillation"
   },
   {
@@ -336,7 +336,7 @@ export const publications: Publication[] = [
     "authors": "Suan Lee and Jinho Kim",
     "venue": "Conference on Uncertainty in Artificial Intelligence (UAI 2026)",
     "date": "2026",
-    "badge": "Top Conf: UAI 2026",
+    "badge": "UAI 2026",
     "keywords": "graph fraud detection; interpretable GNN; spectral methods"
   },
   {
@@ -346,7 +346,7 @@ export const publications: Publication[] = [
     "authors": "Jaeseong Kim, Chaehwan Lim, Sang Hyun Gil, and Suan Lee",
     "venue": "ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2026)",
     "date": "2026",
-    "badge": "Top Conf: KDD 2026",
+    "badge": "KDD 2026",
     "url": "https://arxiv.org/abs/2603.27223",
     "keywords": "multilingual benchmark; multimodal; civil service exam; AI bias"
   },
@@ -400,7 +400,7 @@ export const publications: Publication[] = [
     "authors": "Toshpulatov Mukhiddin Amonkulovich, Wookey Lee, Suan Lee, and Geehyuk Lee",
     "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2026)",
     "date": "2026",
-    "badge": "Top Conf: CVPR 2026",
+    "badge": "CVPR 2026",
     "keywords": "fingertip contact detection; multimodal fusion; depth sensing; human-computer interaction"
   },
   {
@@ -410,7 +410,7 @@ export const publications: Publication[] = [
     "authors": "Minkyu Kim, Suan Lee, and Jinho Kim",
     "venue": "AAAI Conference on Artificial Intelligence (AAAI 2026)",
     "date": "2026",
-    "badge": "Top Conf: AAAI 2026",
+    "badge": "AAAI 2026",
     "keywords": "transparent networks; multivariate time series; interpretable deep learning"
   },
   {
@@ -420,7 +420,7 @@ export const publications: Publication[] = [
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "2026 IEEE International Conference on Big Data and Smart Computing (BigComp)",
     "date": "2026",
-    "badge": "Top Conf: BigData",
+    "badge": "BigData",
     "keywords": "LLM; representation space; linear separability; feature importance"
   },
   {
@@ -2017,7 +2017,7 @@ export const publications: Publication[] = [
     "authors": "Minkyu Kim, Suan Lee, and Jinho Kim",
     "venue": "2020 IEEE International Conference on Big Data (IEEE BigData 2020)",
     "date": "December 2020",
-    "badge": "Top Conf: BigData"
+    "badge": "BigData"
   },
   {
     "id": 603,
