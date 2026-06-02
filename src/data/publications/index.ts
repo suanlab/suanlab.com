@@ -466,7 +466,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "StatsBomb 360 기반 축구 패스 위험-보상 순효용 모델링",
     "authors": "이준형, 박동호, 이우기, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "축구 분석; 패스 모델링; 위험-보상; 순효용"
   },
@@ -475,7 +475,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "IR 피칭 발표력 자동 평가를 위한 멀티모달 분석 시스템 설계 및 모듈별 비교",
     "authors": "김혜진, 이하은, 백상렬, 신재광, 홍재우, 이은슬, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "피칭 발표력; 멀티모달 분석; 자동 평가"
   },
@@ -484,7 +484,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "케미스트리 임계점: NBA 로스터 연속성이 팀 성적에 미치는 인과적 효과",
     "authors": "김도경, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "NBA; 로스터 연속성; 인과 추론; 팀 성적"
   },
@@ -493,7 +493,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "멀티모달 분석 기반 AI 면접 코칭 시스템: 음성·영상·텍스트 통합 파이프라인 설계",
     "authors": "나영민, 김주영, 공태식, 전윤성, 정윤재, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "AI 면접; 멀티모달; 음성 분석; 영상 분석; 텍스트 분석"
   },
@@ -502,7 +502,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Supervised Contrastive Learning 기반 노이즈 강건 수면패턴 예측",
     "authors": "김지환, 신재광, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "수면 패턴 예측; Supervised Contrastive Learning; 노이즈 강건"
   },
@@ -511,7 +511,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "다중 베어링 Run-to-Failure 데이터셋 기반 잔여수명 예측모델 비교와 학습 안정성 검증",
     "authors": "김현우, 고상근, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "잔여수명 예측; Run-to-Failure; 베어링; 학습 안정성"
   },
@@ -520,7 +520,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "추론 단계의 엔트로피 기반 리스크 탐지를 활용한 LVLM 시각 토큰 프루닝 및 동적 복구 기술",
     "authors": "이하은, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "LVLM; 시각 토큰 프루닝; 엔트로피; 동적 복구"
   },
@@ -529,7 +529,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "OrbiqAI: 지식 그래프 기반 멀티 에이전트 군집 지능을 활용한 개인 진로 의사결정 지원 시스템",
     "authors": "박윤조, 우종찬, 왕제교, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "지식 그래프; 멀티 에이전트; 군집 지능; 진로 의사결정"
   },
@@ -538,7 +538,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Tabular 금융 사기 탐지를 위한 Representation Disentanglement 기반 표현 분리 효과 분석",
     "authors": "정예림, 고상근, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "금융 사기 탐지; 표현 분리; Tabular 데이터; Representation Disentanglement"
   },
@@ -547,7 +547,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "과업 인식형 백본 분리와 다시점 지도 대조 학습을 이용한 다중 부위 피부 상태 평가",
     "authors": "이겸수, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "피부 상태 평가; 백본 분리; 대조 학습; 다시점 지도"
   },
@@ -556,7 +556,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "LLM 기반 오답 원인 진단 시스템의 설계 및 평가",
     "authors": "안수혁, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "LLM; 오답 원인 진단; 자동 평가"
   },
@@ -565,7 +565,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "SeoulOps: Text-to-SQL, City2Graph, GraphRAG를 결합한 도시운영 의사결정 지원",
     "authors": "김수웅, 이가연, 이찬우, 최예지, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "Text-to-SQL; City2Graph; GraphRAG; 도시운영; 의사결정"
   },
@@ -574,7 +574,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "비정형 물류 객체 적재 효율 향상을 위한 기하학적 임베딩 및 3D 형상 복원",
     "authors": "이세정, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "물류 적재; 기하학적 임베딩; 3D 형상 복원"
   },
@@ -583,7 +583,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "물리 인과 쌍의 실행 구조 붕괴 기반 산업제어시스템 이상탐지",
     "authors": "최하정, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "산업제어시스템; 이상탐지; 인과 추론; 실행 구조"
   },
@@ -592,7 +592,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Transformer 구성요소별 개입을 통한 연속 사전학습 Forgetting 분석",
     "authors": "백상렬, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "Transformer; 연속 학습; Forgetting; 구성요소 분석"
   },
@@ -601,7 +601,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "텍스트 소스 편향 분석을 위한 프롬프트-캡션 삼각 검증 프로토콜",
     "authors": "김혜진, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "텍스트 편향; 프롬프트; 캡션; 삼각 검증"
   },
@@ -610,7 +610,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "단일 Run-to-Failure 궤적 환경에서의 베어링 잔여수명 예측을 위한 딥러닝 모델",
     "authors": "고상근, 이수안",
-    "venue": "한국컴퓨터종합학술대회 (KCC 2026)",
+    "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
     "keywords": "잔여수명 예측; Run-to-Failure; 베어링; 딥러닝"
   },
@@ -620,7 +620,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "이미지 인코딩 기반 특징 결합을 활용한 시계열 이상 탐지 모델",
     "authors": "최하정, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2026), 한국정보과학회",
     "date": "2025년 12월",
     "keywords": "시계열 이상 탐지; 이미지 인코딩; 특징 결합; 딥러닝"
   },
@@ -629,7 +629,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "잔여 수명 예측을 위한 딥러닝 기반 모델 비교 분석",
     "authors": "고상근, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2025), 한국정보과학회",
     "date": "2025년 12월",
     "keywords": "잔여 수명 예측; 딥러닝; 모델 비교; RUL"
   },
@@ -638,7 +638,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "멀티뷰 Video-LLM 기반 기업 IR 발표 영상 자동 분석 및 평가 시스템",
     "authors": "김혜진, 임채환, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2025), 한국정보과학회",
     "date": "2025년 12월",
     "keywords": "Video-LLM; IR 발표; 영상 분석; 멀티뷰"
   },
@@ -647,7 +647,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "물리 일관성과 불확실성을 통합한 RGB 영상 기반 피부 생체 지표 복원 모델",
     "authors": "배인수, 김병학, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2025), 한국정보과학회",
     "date": "2025년 12월",
     "keywords": "피부 생체 지표; RGB 영상; 물리 일관성; 불확실성"
   },
@@ -656,7 +656,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Wi-Fi CSI 기반 시간 및 주파수 도메인 특성을 이용하여 강건한 비접촉식 호흡률 예측 모델",
     "authors": "김남현, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2025), 한국정보과학회",
     "date": "2025년 12월",
     "keywords": "Wi-Fi CSI; 호흡률 예측; 비접촉식; 시간-주파수 도메인"
   },
@@ -665,7 +665,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "시각적 인지 보상 기반 위성 영상 이미지에 대한 강화학습",
     "authors": "임채환, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2025), 한국정보과학회",
     "date": "2025년 12월",
     "keywords": "위성 영상; 강화학습; 시각적 인지 보상; 이미지 분석"
   },
@@ -683,7 +683,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "한국어 완곡 코팅을 통한 LLM 안전성 우회 분석",
     "authors": "길상현, 김재성, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2025), 한국정보과학회",
     "date": "2025년 12월",
     "keywords": "LLM 안전성; 완곡 코팅; 우회 분석; 한국어"
   },
@@ -758,7 +758,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "시간 경과에 따른 정적 악성코드 탐지 모델의 성능 저하 분석: OPCode 시퀀스와 트랜스포머 모델 기반 연구",
     "authors": "길상현, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -766,7 +766,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "절연체 종류별 부분방전 분류를 위한 UFH 및 HFCT 센서 기반 딥러닝 시계열 모델",
     "authors": "최하정, 배인수, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -774,7 +774,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "전력 수요 예측을 위한 시계열 딥러닝 모델 간의 장단기 예측 및 설명가능성 비교",
     "authors": "박주성, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -782,7 +782,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "AI Agent를 이용한 개인 맞춤형 취업 매칭 및 추천 시스템",
     "authors": "장영진, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -790,7 +790,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "강화학습을 통한 소규모 언어 모델 기반의 효율적인 Text-to-SQL 모델",
     "authors": "김동후, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -798,7 +798,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "대규모 언어 모델을 이용한 진로 성숙도 검사 서술형 응답 자동 분석 및 피드백 생성",
     "authors": "김병학, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월",
     "badge": "[우수상]"
   },
@@ -807,7 +807,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "모달리티 특성을 고려한 데이터 증강 기반 다중 모달 딥러닝 흉부 질환 분류",
     "authors": "정예림, 고상근, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -815,7 +815,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "MCP를 이용한 LLM 기반 적응형 크롤링과 문서 분석을 위한 자동화 워크플로우 아키텍처 설계",
     "authors": "길상현, 이동혁, 유재익, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -823,7 +823,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "대학생 역량 강화를 위한 학습 보조용 AI 챗봇 시스템",
     "authors": "권용, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -831,7 +831,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Grad-CAM을 적용한 객체 탐지 및 분할 모델 기반의 설명가능한 와이어 로프 결함 탐지",
     "authors": "서지훈, 조홍석, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -839,7 +839,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "K-GovExam: 한국 공무원 시험 기반 LLM 평가용 데이터셋 구축 및 추론 언어 모델 분석",
     "authors": "김재성, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월",
     "badge": "[최우수상]"
   },
@@ -848,7 +848,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "KO-SmallThinker: Reasoning 기반 소형 언어 모델을 활용한 초거대 언어 모델의 성능 한계 극복",
     "authors": "김재성, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -856,7 +856,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Minimal Tuning, Maximum Gains: 선택적 레이어 파인튜닝 기반 효율적 학습 전략",
     "authors": "김재성, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -864,7 +864,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Text-to-Image 생성 모델의 스타일 전이 성능 비교 연구",
     "authors": "백상렬, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -872,7 +872,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "FLUX 및 LoRA 기반 텍스트-이미지 생성 모델을 활용한 웹툰 제작 자동화 모델 설계 및 구현",
     "authors": "이수현, 백상렬, 김정원, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -880,7 +880,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "LoRA와 ControlNet Line-Art를 활용한 화풍 보존형 애니메이션 프레임 보간",
     "authors": "이하은, 김주일, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -888,7 +888,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "텍스트에서 생성된 단일 이미지의 Gaussian Splatting을 이용한 3차원 객체 생성",
     "authors": "우강석, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -896,7 +896,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Wi-Fi CSI로부터 웹캠 영상 생성을 위한 1D-CNN과 트랜스포머를 결합한 MoPoE-VAE 모델",
     "authors": "진동민, 김재한, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -904,7 +904,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Wi-Fi MIMO CSI의 진폭과 위상 정보를 활용한 스펙트로그램 기반 실내 인원 수 추정 딥러닝 모델",
     "authors": "김남현, 진동민, 김재한, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   {
@@ -912,7 +912,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "SHAP 기반 설명 가능성을 활용한 모터 전류 시계열의 고장 분류 딥러닝 모델",
     "authors": "고상근, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
   },
   // ============ 2024년 12월 한국소프트웨어종합학술대회 ============
@@ -921,7 +921,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "효과적인 소리 특징 추출을 이용한 낙상 탐지 모델",
     "authors": "민성호, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2025), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -929,7 +929,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Depth-Up Scaling을 활용한 언어 모델 증강과 소규모 데이터 학습 성능 비교",
     "authors": "김재성, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -937,7 +937,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "시공간 그래프 신경망을 이용한 이동수단의 수요 예측 모델",
     "authors": "김지나, 김병학, 정은지, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -945,7 +945,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "입면 정사 영상 데이터를 이용한 세그멘테이션 기반 아스팔트 균열탐지 모델",
     "authors": "김병학, 배인수, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -953,7 +953,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "EmoNeXt를 이용한 한국인 표정인식 모델",
     "authors": "김병학, 배인수, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -961,7 +961,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "서울시 상권 매출액 예측 모델: 특징 중요도 및 예측 기여도 분석",
     "authors": "정채윤, 고상근, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -969,7 +969,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "YOLOv10과 YOLOv11를 이용한 인쇄 회로 기판(PCB) 결함 탐지 및 분류",
     "authors": "박소연, 조홍석, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -977,7 +977,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "경쟁 게임의 밸런스를 위한 머신 러닝 기반 승패 예측 및 특징 상호작용 분석",
     "authors": "이동혁, 길상현, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -985,7 +985,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "NeRF와 Oculus Quest를 활용한 몰입형 3D 경험 구현 및 분석",
     "authors": "김주일, 이하은, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -993,7 +993,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "텍스트와 이미지 프롬프트를 활용한 안경 가상 피팅 모델",
     "authors": "김정원, 백상렬, 배인수, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -1001,7 +1001,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "텍스트와 인물 이미지 기반 다각도의 고해상도 헤어 스타일 생성 및 변환",
     "authors": "이수현, 배인수, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -1009,7 +1009,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Auto Masking 기법을 이용한 레이어링 VTON",
     "authors": "최하정, 배인수, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   // ============ 2024년 06월 한국컴퓨터종합학술대회 ============
@@ -1018,7 +1018,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "딥러닝 기반 전력 설비 이상 분류 시계열 모델",
     "authors": "고상근, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1026,7 +1026,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Image Captioning과 Visual Question Answering를 이용한 위성 이미지 기반 도시 변화 탐지 모델",
     "authors": "임채환, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1034,7 +1034,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Jetson Orin Nano 기반의 스테레오 카메라를 이용한 깊이 추정 및 객체 탐지",
     "authors": "임채환, 진동민, 장홍흠, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1042,7 +1042,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "사전 학습된 대규모 언어 모델을 이용한 주식 예측",
     "authors": "서세일, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1050,7 +1050,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Mamba, Transformer, LSTM을 이용한 주식 예측 모델 분석",
     "authors": "서세일, 백상렬, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1058,7 +1058,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "YOLOv9 기반의 인쇄 회로 기판(PCB) 결함 탐지 및 분류",
     "authors": "조홍석, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1066,7 +1066,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "NVIDIA Jetson AGX Orin 기반의 YOLOv8, YOLOv9 모델을 이용한 화재 탐지",
     "authors": "조홍석, 권희준, 정해영, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1074,7 +1074,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "WiFi CSI 기반의 실내 재실자 수 예측 모델",
     "authors": "배인수, 진동민, 김재한, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1082,7 +1082,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "구름 요소 베어링의 진동 및 모터 전류 데이터의 고장 분류 모델",
     "authors": "최하정, 배인수, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월",
     "badge": "[장려상]"
   },
@@ -1091,7 +1091,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "진동 센서 기반 상수관 누수 감지 및 분류 모델",
     "authors": "이수현, 고상근, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1099,7 +1099,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "실내외 CCTV를 이용한 군중 인원 수 계수 모델 비교",
     "authors": "김지나, 정은지, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1107,7 +1107,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "현실 공간 소리 탐지 및 분류 모델",
     "authors": "민성호, 김정원, 김재한, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1115,7 +1115,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "파인튜닝, RAG, 프롬프트 기반 언러닝 방법론의 효율성 비교 분석",
     "authors": "김재성, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1123,7 +1123,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "법률 QA데이터셋을 이용한 거대 언어 모델 학습",
     "authors": "김재성, 김강준, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1131,7 +1131,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "생성형 AI 기반 사용자 맞춤형 동화책 생성 및 구연 서비스",
     "authors": "안현주, 배지호, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   {
@@ -1139,7 +1139,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Stable Diffusion 기반의 3D 캐릭터 생성에 대한 활용 및 비교 분석",
     "authors": "이하은, 김주일, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
   },
   // ============ 2023년 12월 한국소프트웨어종합학술대회 ============
@@ -1148,7 +1148,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "산업용 설비 소리의 이미지 변환을 이용한 딥러닝 기반의 고장 진단 및 분류 모델",
     "authors": "고상근, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2023년 12월",
     "badge": "[우수발표논문상]"
   },
@@ -1157,7 +1157,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "딥러닝 모델을 이용한 시각 장애인 생활 보조",
     "authors": "최동현, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1165,7 +1165,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "ChatGPT와 DALL-E 3 기반의 AI 생성 모델을 활용한 AR 공간 내의 NPC 생성 및 활용",
     "authors": "임채환, 이수형, 이동근, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1173,7 +1173,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "YOLOv8과 YOLO-NAS를 이용한 인쇄 회로 기판(PCB) 결함 탐지 및 분류",
     "authors": "조홍석, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1181,7 +1181,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "시계열의 이미지 인코딩을 이용한 전동기 기계시설물 고장 분류 모델",
     "authors": "배인수, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월",
     "badge": "[우수상]"
   },
@@ -1190,7 +1190,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "지도 위치 및 AR 기반 산책 애플리케이션",
     "authors": "현지원, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월",
     "badge": "[장려상]"
   },
@@ -1199,7 +1199,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "AutoML을 이용한 GPS 궤적에 따른 이동 수단 분류 모델",
     "authors": "정은지, 배인수, 민성호, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1207,7 +1207,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "재난 분류를 위한 트윗 데이터 분석 및 언어 모델",
     "authors": "황민정, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1215,7 +1215,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "서로 다른 언어 모델의 상징적 지식 증류를 이용한 경량화된 감정 분석 모델",
     "authors": "김재성, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1223,7 +1223,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "한국어 혐오 발언 댓글 분류를 위한 언어 모델별 비교",
     "authors": "어식, 배인수, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1231,7 +1231,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "머신러닝을 이용한 투수와 타자 간의 출루율 예측 및 분석",
     "authors": "이정원, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1239,7 +1239,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "수면 소리 특징과 컨볼루션 신경망을 이용한 상태 분류 모델",
     "authors": "민성호, 최예신, 김우제, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1247,7 +1247,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "통계적, 머신러닝, 딥러닝 모델을 이용한 주가 시계열 예측 및 비교",
     "authors": "김지나, 고상근, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1255,7 +1255,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Neural Collaborative Filtering 기반의 기업 취업을 위한 과목 추천 시스템",
     "authors": "박재헌, 이원철, 은동진, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   {
@@ -1263,7 +1263,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Graph Convolutional Matrix Completion을 이용한 수강 강의 추천 시스템",
     "authors": "추화랑, 이원철, 은동진, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월"
   },
   // ============ 2022년 국내학술대회 ============
@@ -1312,7 +1312,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "딥러닝 모델 기반 가상 피팅 웹 서비스 개발",
     "authors": "고상근, 장현수, 민정호, 이다혁, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2022), 한국정보과학회",
     "date": "2022년 06월",
     "badge": "[장려상]"
   },
@@ -1321,7 +1321,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "동질적 특징을 이용한 견고한 멀티모달 분류 모델",
     "authors": "배기웅, 이수안, 이우기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2022), 한국정보과학회",
     "date": "2022년 06월",
     "badge": "[우수상]"
   },
@@ -1330,7 +1330,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "AIoT 환경에서 마커와 사람 인식을 이용한 식별된 사람 출입관리 시스템 개발",
     "authors": "임채환, 이수형, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2022), 한국정보과학회",
     "date": "2022년 06월"
   },
   // ============ 2021년 국내학술대회 ============
@@ -1339,7 +1339,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "윤리적 소비를 위한 지속가능한 거래: 중고거래 금지 품목 탐지를 중심으로",
     "authors": "이충성, 전서영, 이우기, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2021년 12월"
   },
   {
@@ -1347,7 +1347,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "택시 데이터 분석을 통한 수요 예측과 승차대 위치 개선",
     "authors": "김예원, 김유정, 김주아, 이유정, 이우기, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2021), 한국정보과학회",
     "date": "2021년 12월",
     "badge": "[장려상]"
   },
@@ -1356,7 +1356,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "NVIDIA Jetson AGX Xavier 환경에서 경량화된 실시간 안전모 탐지 모델 개발",
     "authors": "조홍석, 이수형, 장현수, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2021), 한국정보과학회",
     "date": "2021년 12월"
   },
   {
@@ -1364,7 +1364,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "장애인 안전 이동을 위한 이미지 캡션 기반 시각 읽기 딥러닝 모델",
     "authors": "이정엽, 이수안, 이우기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2021), 한국정보과학회",
     "date": "2021년 07월"
   },
   {
@@ -1372,7 +1372,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "모바일 자율주행 로봇을 위한 저비용 차선 인식 및 제어 알고리즘",
     "authors": "장현수, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2021), 한국정보과학회",
     "date": "2021년 07월",
     "badge": "[장려상]"
   },
@@ -1382,7 +1382,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Face detection을 위한 RetinaFace 기반 대용량 학습 데이터 자동 레이블링 프레임워크",
     "authors": "이효준, 이수안, 이우기",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2021), 한국정보과학회",
     "date": "2020년 12월"
   },
   {
@@ -1390,7 +1390,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Generative Adversarial Networks 기반 개인정보 보호를 위한 얼굴 비식별화",
     "authors": "조시헌, 이수안, 이우기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2020), 한국정보과학회",
     "date": "2020년 07월"
   },
   {
@@ -1398,7 +1398,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "벡터화 경로 데이터에 노이즈 추가를 통한 프라이버시 보호 방안: 코로나 바이러스를 중심으로",
     "authors": "박수경, 라시드, 이철기, 이수안, 이우기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2020), 한국정보과학회",
     "date": "2020년 07월"
   },
   {
@@ -1406,7 +1406,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "적대적 공격을 이용한 객체 탐지 모델의 취약성 검증",
     "authors": "이효준, 이철기, 이수안, 이우기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2020), 한국정보과학회",
     "date": "2020년 07월"
   },
   {
@@ -1424,7 +1424,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "로봇 판단지능을 위해 인간 작업 영상을 활용한 빅데이터 시스템 설계 및 구축",
     "authors": "장종원, 전호빈, 이수안, 김진호, 박홍성, 김미숙, 유수정, 지상훈",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2020), 한국정보과학회",
     "date": "2019년 12월"
   },
   {
@@ -1432,7 +1432,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "효율적인 회귀분석을 위한 Shared Wide & Deep 모델",
     "authors": "김민규, 이수안, 김진호",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2019), 한국정보과학회",
     "date": "2019년 07월"
   },
   {
@@ -1440,7 +1440,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "빅데이터 기술을 이용한 자유학기제 운영 실태 보고서 문서 분석",
     "authors": "김민규, 이수안, 김진호, 신혜숙",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2019), 한국정보과학회",
     "date": "2018년 12월"
   },
   {
@@ -1448,7 +1448,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "빅데이터 기반의 통합적 트래픽 분석 플랫폼을 위한 저장구조 설계",
     "authors": "장종원, 김희상, 김민규, 이수안, 김진호",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2018), 한국정보과학회",
     "date": "2018년 12월"
   },
   {
@@ -1456,7 +1456,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "초·중등 과학 교과서 용어주석 말뭉치 구축 및 검색을 위한 시스템 개발",
     "authors": "유영석, 이수안, 김진호, 윤은정, 박윤배",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2018), 한국정보과학회",
     "date": "2017년 06월"
   },
   {
@@ -1464,7 +1464,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "얼굴 인식과 SNS 정보를 이용한 모바일 기기에서 사진 자동 분류 및 검색",
     "authors": "최재용, 이수안, 김진호",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2017), 한국정보과학회",
     "date": "2012년 06월"
   },
   {
@@ -1496,7 +1496,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "맵리듀스를 이용한 빙산 큐브 병렬 계산",
     "authors": "이수안, 김진호, 문양세, 노웅기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2010), 한국정보과학회",
     "date": "2010년 06월"
   },
   {
@@ -1578,7 +1578,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Noise와 Curruption을 이용한 디퓨전 생성모델의 성능분석",
     "authors": "배기웅, 이수안, 이우기",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
     "abstract": "디퓨전 생성모델은 가우시안 노이즈를 더해주는 디퓨전 과정과 노이즈를 걷어내면서 학습하는 리버스 과정을 통해 이미지를 만들어내는 생성모델이다. 본 논문에서는 획득비용이 높거나 정제가 어려워 다량의 노이즈가 포함된 데이터셋을 디퓨전 생성모델이 학습하는 과정을 통해 디퓨전 생성모델이 노이즈에 견고하며 일반화에 우수함을 증명하였다. 실험 과정에서는 총 3개의 노이즈를 사용하였으며, MNIST 데이터셋을 사용하였다. 검증은 프레쳇 인셉션 거리(Fréchet Inception Distance, FID)를 사용해 평가하였다. 실험을 통해 디퓨전 생성모델의 견고함을 확인하였다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224347"
@@ -1588,7 +1588,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "아파트 매매가 예측 모델을 위한 불규칙 시계열 데이터 보정 기법",
     "authors": "이수형, 고상근, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
     "abstract": "사람들이 생각하는 주택보유에 대한 인식은 일반적으로 집 한 채는 소유해야 한다는 의견이 많다. 그리하여 연구자들은 아파트 매매가를 예측하고 주택소유를 통해 주거문제를 완화하기 위해 노력하고 있다. 본 논문에서는 최근 아파트 거래량 감소로 인한 불규칙적인 시계열 데이터에 대한 예측을 위해 딥러닝 모델과 머신러닝 모델에 전처리 방법을 적용한 성능 비교분석과 어떤 전처리 방법과 모델이 불규칙적인 시계열 데이터에 강점을 보이는지에 대한 연구를 진행하였으며, SMA(6) 기법을 사용한 NeuralProphet 모델이 가장 우수한 성능을 보여주었다. 본 연구 결과를 통해 향후 불규칙적인 시계열 데이터의 예측에 있어서 도움이 될 것이다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224414"
@@ -1598,7 +1598,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "니켈 원자재 가격 예측을 위한 딥러닝 기반 시계열 모델 비교",
     "authors": "서경식, 고상근, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
     "badge": "[장려상]",
     "abstract": "원자재에는 금, 은과 같은 금속 뿐만 아니라 곡물, 육류, 에너지. 농산물 등 여러 가지 종류가 있다. 이러한 원자재는 우리의 생활들에 없어선 안될 요소들이다. 따라서 원자재 가격을 예측하는 연구가 필요하다. 본 논문에서는 니켈 가격데이터를 기반으로 Seq2seq, Transformer, Informer 세 가지 모델을 사용하여 시계열 예측 실험을 진행하였다. 실험은 학습 데이터를 4달, 6달로 나누고 테스트 데이터를 1달로 설정하여 두 가지 기준으로 진행하였다. 기준 1에서는 Transformer 모델이 기준 2에서는 Informer 모델이 가장 좋은 성능을 보여 기간이 장기간으로 갈수록 Informer 모델이 좋은 성능을 보인 것을 알 수 있다. 이러한 연구결과를 통해 앞으로의 원자재 가격 예측에 기여를 할 것으로 기대한다.",
@@ -1609,7 +1609,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "소음에 견고한 코골이 소리 분류를 위한 특징 추출 기반의 CNN-LSTM 모델",
     "authors": "신재광, 김남현, 최예신, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
     "abstract": "최근 불면증 및 수면장애 등으로 건강에 문제가 있는 현대인들이 많고, 자신의 수면 상태와 패턴을 분석하고자 하는 요구가 증가하고 있다. 본 논문에서는 코골이 소리 데이터를 통하여 수면 중에 발생하는 코골이를 탐지 및 분류하는 딥러닝 모델을 연구하였다. 코골이 소리의 주요 특징들을 추출하기 위해 다양한 특징 추출 기법을 이용해 모델에 학습시키는 방법을 사용하였다. 소리의 특징 추출 방법으로는 STFT, Hilbert Transform, DWT를 사용하였고, STFT를 사용하였을 때 98.12%의 정확도로 모델의 성능이 가장 우수한 결과를 보여주었다. 본 연구 결과를 통하여 수면 중에 발생하는 코골이를 매우 높은 정확도로 탐지 및 분류가 가능하며, 향후 다양한 수면 분석에 활용될 수 있다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224437"
@@ -1619,7 +1619,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "인쇄 회로 기판(PCB) 결함 탐지 및 분류 딥러닝 모델 비교",
     "authors": "최동현, 전제성, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
     "abstract": "최근 일상생활에서의 전자제품 대중화로 인하여 인쇄 회로 기판(Printed Circuit Board; PCB)의 수요와 공급도 늘어나고 있다. PCB의 생산량이 늘어남에 따라 전자 제품 생산 회사 및 공장에서는 결함을 가진 PCB를 사전에 탐지하기 위해 많은 인력과 설비를 사용하고 큰 비용을 지출한다. 본 논문에서는 객체 탐지 모델인 YOLOv5, EfficientDet 2개의 모델을 사용하여 PCB 결함 탐지 작업에 대해 성능을 측정한 후, 각 모델의 실험 결과를 토대로 비교 분석하였다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224437"
@@ -1629,7 +1629,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "상수관로 진동 센서 데이터를 이용한 누수 감지 머신러닝 모델",
     "authors": "김병학, 전제성, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
     "badge": "[장려상]",
     "abstract": "자동차의 증가, 도로의 확장 등으로 인해 교통사고 발생률이 증가하고 있으며, 이로 인해 인명피해, 기물 파손 등 금전적인 피해도 증가하고 있다. 본 논문에서는 교통사고에 취약한 도로형태, 도로의 종류에 따라 사고 건수를 예측하는 딥러닝 모델을 제안하였다. 서울시 사고 데이터를 구별 도로형태, 인구수, 자동차 수, 사고 건수를 나누어 사용하였고, Linear, TF, FM, NTF 모델을 사용하여 사고 건수 예측 실험을 하였다. 실험 결과로는 NTF 모델에서 가장 우수한 성능을 보여주었다. 본 연구를 통하여 NTF 모델로 교통사고를 예측하는 결과를 볼 수 있었고, 향후 연구를 통하여 모델의 성능을 올리고 경량화하여 실생활에서도 사용할 수 있게 만들어 교통사고 분석 및 예측에 활용할 수 있다.",
@@ -1640,7 +1640,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "도로 형태와 지역 정보를 결합한 서울시 교통사고 건수 예측 모델",
     "authors": "김남현, 고상근, 김성재, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
     "abstract": "자동차의 증가, 도로의 확장 등으로 인해 교통사고 발생률이 증가하고 있으며, 이로 인해 인명피해, 기물 파손 등 금전적인 피해도 증가하고 있다. 본 논문에서는 교통사고에 취약한 도로형태, 도로의 종류에 따라 사고 건수를 예측하는 딥러닝 모델을 제안하였다. 서울시 사고 데이터를 구별 도로형태, 인구수, 자동차 수, 사고 건수를 나누어 사용하였고, Linear, TF, FM, NTF 모델을 사용하여 사고 건수 예측 실험을 하였다. 실험 결과로는 NTF 모델에서 가장 우수한 성능을 보여주었다. 본 연구를 통하여 NTF 모델로 교통사고를 예측하는 결과를 볼 수 있었고, 향후 연구를 통하여 모델의 성능을 올리고 경량화하여 실생활에서도 사용할 수 있게 만들어 교통사고 분석 및 예측에 활용할 수 있다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224449"
@@ -1650,7 +1650,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "위성 영상 기반 시맨틱 세그멘테이션을 이용한 도시화 분석",
     "authors": "임채환, 전제성, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
     "abstract": "최근 자영업자들이 코로나 19 팬데믹 현상의 여파로 인해 이전 수익에 비해 수익 창출에 많은 어려움을 겪고 있다. 유동인구에 따라 자영업자들의 수익이 결정되기 때문에 유동인구가 많고, 이에 따라 도시화가 잘된 지역일수록 수익 창출에 유리하다. 따라서 어려움을 겪고 있는 자영업자와 더불어 창업을 시작하려는 예정자들에게 어느 곳이 도시화가 잘 되었는지 주거지역 및 상권 발달 경향 파악이 필요하다. 그리하여 본 논문에서는 서울시 한정으로 주거지역 및 주변 상권 건물을 분석하여 인구밀도를 예측할 수 있게 딥러닝 모델을 연구하였다. Semantic Segmentation 모델 중 메모리를 타 모델에 비교해 적게 사용하고, 빠른 속도와 파라미터 사용량 대비 높은 효율을 보이는 DeepLab V3+ 모델을 사용했다. 사용한 결과 주거 건물과 상권 건물에 대한 Segmentation이 잘 적용된 것을 확인했다. 본 연구결과를 통해 어느 지역이 사람이 많이 거주하고 있고 상권이 잘 발달하였는지 자영업자 및 창업 예정자들에게 정보를 제공하여 경향 파악에 도움을 주는 데 의의가 있다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224449"
@@ -1731,7 +1731,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "딥러닝 모델 기반 가상 피팅 웹 서비스 개발",
     "authors": "고상근, 장현수, 민정호, 이다혁, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2022), 한국정보과학회",
     "date": "2022년 06월",
     "badge": "[장려상]",
     "abstract": "본 연구에서는 데이터 획득 비용이 높아 충분한 학습 데이터를 획득하지 못하거나, 학습에 사용되는 데이터에 노이즈가 많이 포함되어 학습이 제대로 진행되지 못하는 상황에서 동일한 데이터이지만 서로 다른 모달의 동질적인 특징을 이용한 멀티모달 학습 방법이 노이즈에 견고하고, 일반화에 우수함을 실험을 통해 증명하였다. 실험 과정에서는 이미지 MNIST 데이터셋과 시퀀스 MNIST 데이터셋에 노이즈를 추가하여 사용하였다. 실험 비교를 위해 단일 CNN 계열 모델 3개, 단일 RNN 계열 모델 3개, 그리고 멀티모달 계열 모델 3개를 사용하였으며, 단일모달만을 사용하였을 때보다 멀티모달 모델을 사용했을 때 전반적으로 성능이 개선되는 것을 확인하였다",
@@ -1742,7 +1742,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "동질적 특징을 이용한 견고한 멀티모달 분류 모델",
     "authors": "배기웅, 이수안, 이우기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2022), 한국정보과학회",
     "date": "2022년 06월",
     "badge": "[우수상]",
     "abstract": "본 연구에서는 데이터 획득 비용이 높아 충분한 학습 데이터를 획득하지 못하거나, 학습에 사용되는 데이터에 노이즈가 많이 포함되어 학습이 제대로 진행되지 못하는 상황에서 동일한 데이터이지만 서로 다른 모달의 동질적인 특징을 이용한 멀티모달 학습 방법이 노이즈에 견고하고, 일반화에 우수함을 실험을 통해 증명하였다. 실험 과정에서는 이미지 MNIST 데이터셋과 시퀀스 MNIST 데이터셋에 노이즈를 추가하여 사용하였다. 실험 비교를 위해 단일 CNN 계열 모델 3개, 단일 RNN 계열 모델 3개, 그리고 멀티모달 계열 모델 3개를 사용하였으며, 단일모달만을 사용하였을 때보다 멀티모달 모델을 사용했을 때 전반적으로 성능이 개선되는 것을 확인하였다.",
@@ -1753,7 +1753,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "AIoT 환경에서 마커와 사람 인식을 이용한 식별된 사람 출입관리 시스템 개발",
     "authors": "임채환, 이수형, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2022), 한국정보과학회",
     "date": "2022년 06월",
     "abstract": "출입관리가 필요한 여러 기관과 장소 등에서 일일이 신원 확인을 하기 어려운 상황들이 상당수 발생한다. 또한, 한 번에 한 명씩 출입관리 시스템에 접근해야 하는 제한적인 조건 때문에 사람들이 몰리면 대기 시간이 발생하는 불편함과 혼잡함이 발생한다. 이를 한 번에 해소하고자 본 논문에서는 임베디드 장비에서 동작 가능한 실시간 사람 인식 및 마커 탐지 모델을 연구하였다. 객체 탐지 모델 중에서 빠른 속도와 높은 성능을 보이고 있는 YOLOv5 모델을 사용했고, 임베디드 장비인 NVIDIA Jetson AGX Xavier에서 사람과 마커를 탐지할 수 있는 모델 개발을 진행하였다. 이러한 개발환경에서 사람 탐지와 사람 몸에 부착된 마커를 실시간으로 잘 탐지하는 것을 확인했다. 본 연구결과를 통해 넓은 공간에서 많은 사람의 출입 및 신원을 효과적으로 관리한다. 더불어 제한된 출입 시스템의 체증에 대한 불편함과 혼잡함을 해소하고 편의성을 증대시켜 효율적인 작업자들의 출입관리에 기여를 하는데 의의가 있다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11113809"
@@ -1846,7 +1846,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "윤리적 소비를 위한 지속가능한 거래: 중고거래 금지 품목 탐지를 중심으로",
     "authors": "이충성, 전서영, 이우기, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2021), 한국정보과학회",
     "date": "2021년 12월",
     "abstract": "최근 온라인 중고거래 시장은 빠르게 성장하고 거래되는 품목도 다양해지고 있다. 중고거래 시장이 커지면서 정상 범주를 벗어난 거래 또한 증가하였다. 온라인 중고 거래 금지 품목 중 건강식품과 의약품이 거래되는 경우 약물 부작용 등 심각한 문제를 초래할 수 있다. 이러한 문제를 방지하기 위해 온라인 중고거래 시장에서 실시간으로 거래금지 품목을 식별하는 것은 매우 중요하다. 본 연구에서는 크롤링한 이미지를 이용한 딥러닝의 EfficientnetB0, Resnet50, Denset121 모델을 만들어 거래금지 품목의 이미지 분류를 하고 각 모델의 성능을 비교한다",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11036045"
@@ -1856,7 +1856,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "택시 데이터 분석을 통한 수요 예측과 승차대 위치 개선",
     "authors": "김예원, 김유정, 김주아, 이유정, 이우기, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2021), 한국정보과학회",
     "date": "2021년 12월",
     "badge": "(장려상)",
     "abstract": "본 논문에서는 택시 승차 데이터 분석을 통해 수요와 공급이 일치하지 않는 곳에 위치한 택시 승차대의 위치와 서비스를 개선하고 ‘에코 스마트 택시 승차대’를 제안한다. 서울시 도로 네트워크 데이터와 택시 운행 분석 데이터, 택시 승차대 데이터를 K-means 기법과 Elbow 기법을 이용해 서울시 권역의 택시 승차 수요량과 승차대 현황을 분석한 후 서울시 지도 위에 시각화하였다. 데이터 분석 결과 수요 대비 승차대 위치와 수의 불균형이 확인되었고, 개선이 필요한 승차대의 위치를 추천하였다. 본 연구를 통해 택시 운수종사자, 이용 승객, 도시 시설의 모든 방면에서의 개선을 기대할 수 있다.",
@@ -1867,7 +1867,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "NVIDIA Jetson AGX Xavier 환경에서 경량화된 실시간 안전모 탐지 모델 개발",
     "authors": "조홍석, 이수형, 장현수, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2021), 한국정보과학회",
     "date": "2021년 12월",
     "abstract": "최근 공사현장 및 건설현장에서 빈번히 발생하는 안전사고를 예방하고자 개인안전장비(PPE, Person Protective Equipment)를 착용해야 하며, 전동 킥보드와 자전거와 같은 이동 수단에서도 안전모를 착용해야 하는 법적 의무가 있다. 본 논문에서는 임베디드 모듈에서 동작 가능한 경량화된 실시간 안전모 탐지모델 연구를 진행하였다. 최근 객체탐지 분야에서 빠른 속도와 높은 성능을 보이는 YOLOv5 모델을 이용하였고, 외부나 공사현장에서 안전모 착용 여부를 탐지할 수 있도록 임베디드 환경인 NVIDIA Jetson AGX Xavier에서 개발하였다. 실제 사람이 안전모를 착용하거나 미착용한 경우에 대해서 실시간으로 잘 탐지하는 것을 확인하였으며, 본 연구결과를 통해 공사현장이나 이동 수단 이용 시에 단순 안전모 미착용으로 발생하는 안전사고 예방에 도움이 되는 데 의의가 있다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11035992"
@@ -1900,7 +1900,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "장애인 안전 이동을 위한 이미지 캡션 기반 시각 읽기 딥러닝 모델",
     "authors": "이정엽, 이수안, 이우기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2021), 한국정보과학회",
     "date": "2021년 07월",
     "abstract": "인간의 편의성을 높이기 위해 다양한 방면에서 도움을 주는 인공지능 모델들이 생겨나고 있지만, 장애인을 위한 인공지능 모델은 부족하며, 불편함을 근본적으로 해소하는 모델이나 서비스는 없다. 이러한 이유로 장애인의 이동권은 제한되어 있으며, 주체적 이동이 불가능한 것이 현실이다. 본 논문에서는 이러한 장애인들의 이동권에 기여하고자, 안전한 보행에 위협이 되는 요소들을 객체 인식 모델로 식별하고 이미지 캡셔닝 모델로 주위 상황에 대한 설명을 음성으로 제공하는 안전 보행 모델을 제안한다. 그리고 추가적인 데이터 셋을 활용하여 본 논문에서 제안한 안전 보행 모델을 보완하고 강화할 수 있는 방법에 대해 설명한다. 이를 통해 장애인들의 주체적인 보행을 보장하여 궁극적으로 이동권을 향상시킬 수 있을 것으로 기대한다."
   },
@@ -1909,7 +1909,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "모바일 자율주행 로봇을 위한 저비용 차선 인식 및 제어 알고리즘",
     "authors": "장현수, 이수안",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2021), 한국정보과학회",
     "date": "2021년 07월",
     "badge": "(장려상)",
     "abstract": "최근 실내에서 작동하는 모바일 자율주행 로봇의 중요성은 크게 증가하고 있다. 본 논문에서는 제한된 실내 환경 조건 아래에 저비용으로도 자율주행이 가능한 모바일 로봇을 위해 저비용 차선 인식 및 제어 알고리즘을 제안하도록 제시한다. 특히 관심 영역 자동 추출, 히스토그램을 이용한 RGB 임계값 자동 추출을 통해 영상 처리 과정에서의 정확도를 높이고 연산을 줄일 수 있다. 또한, 저비용의 차선 인식을 바탕으로 보조선을 이용한 조향각 제어를 통해 자율주행에 사용한다. 주행에 있어 차선이 하나만 인식되거나 영상 중앙에 차선이 인식될 때 가중치를 주어 안전하게 주행이 이루어지도록 하였다"
@@ -2068,7 +2068,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Face detection을 위한 RetinaFace 기반 대용량 학습 데이터 자동 레이블링 프레임워크",
     "authors": "이효준, 이수안, 이우기",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2020), 한국정보과학회",
     "date": "2020년 09월",
     "abstract": "컴퓨팅 파워의 발전과 새로운 알고리즘들의 연구 결과들로 큰 규모의 딥러닝 모델들이 많이 등장했다. 위 모델들을 학습하기 위해서는 많은 양의 데이터는 필수적이다. 특히 컴퓨터 비전 (Computer vision) 분야의 경우 좋은 성능은 결국 학습 데이터의 수에 직결되는 추세를 보인다. 학습 데이터를 구축하기 위해서는 해당 데이터에 대한 레이블링이 필수적이나, 사람이 직접 레이블링을 일일이 하는 것은 많은 비용을 필요로 하기에 딥러닝 모델의 성능을 올리는 데 있어서 상당 부분 장애물이 되었다. 본 논문에서는 이러한 문제점을 해결하기 위해 기존의 InsightFace의 RetinaFace를 활용하여 레이블링이 되지 않은 대용량 데이터를 받아 영역 검출 후 자동 레이블링 방식을 제안한다.",
     "url": "https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE10529697"
@@ -2101,7 +2101,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "Generative Adversarial Networks 기반 개인정보 보호를 위한 얼굴 비식별화",
     "authors": "조시헌, 이수안, 이우기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2020), 한국정보과학회",
     "date": "2020년 07월",
     "abstract": "스마트시티가 활성화되고 도시의 치안 문제와 개인시설의 보안 문제 등으로 방범용 CCTV, IP 카메라 등이 지속적으로 증가하고있다. 그로 인해 영상 데이터들이 계속 많아지고, 이와함께 개인정보 유출에 대한 위험성도 커지고 있다. 개인정보는 주민등록번호, 이름, 주소 등 문서나 의료 데이터에서만 유출되는 것이 아닌 영상, 이미지에서도 유출된다. 본 논문에서는 영상에서 검출되는 얼굴을 비식별화하기 위해서 얼굴을 GAN(Generative Adversarial Network)으로 생성한 얼굴과 바꾸는 모델을 제안한다. 이미지에서 개인정보로 쉽게 알아볼 수 있는 얼굴을 탐지 후 GAN을 통하여 생성한 임의의 얼굴을 해당 이미지 내의 얼굴로 대체한다. 비식별화된 이미지 데이터들은 다른 영상관련 딥러닝 훈련에 개인정보 유출 없이 사용 될 수 있다. 본 논문에서 제시한 비식별화 기술을 통하여 영상이나 이미지 내에 개인 정보의 유출을 막을 수 있다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE09874643"
@@ -2111,7 +2111,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "벡터화 경로 데이터에 노이즈 추가를 통한 프라이버시 보호 방안: 코로나 바이러스를 중심으로",
     "authors": "박수경, 라시드, 이철기, 이수안, 이우기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2020), 한국정보과학회",
     "date": "2020년 07월",
     "abstract": "최근 코로나 바이러스가 전세계적으로 확산됨에 따라 이를 차단하기 위한 많은 노력이 계속되고 있다. 국내에서는 COVID-19 확진 환자의 이동경로를 감염관리에 활용하고 있으며, 이 때 개인 정보 보호 차원에서 거주지 주소와 같은 세부 정보는 공개하지 않는다. 이와 같은 제한된 정보 공개는 국민들의 자가 감염 예방 활동이 제약되는 난점뿐만 아니라 여전한 개인 사생활 침해 가능성이란 문제점을 가진다. 본 연구에서는 이를 해결하기 위해 개인을 식별할 수 있는 위치 정보를 삭제하지 않고도 해당 데이터에 노이즈를 추가하는 익명화 방식을 통해 결과적으로 프라이버시를 보호할 수 있는 모델을 제안한다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE09874634"
@@ -2121,7 +2121,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "적대적 공격을 이용한 객체 탐지 모델의 취약성 검증",
     "authors": "이효준, 이철기, 이수안, 이우기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2020), 한국정보과학회",
     "date": "2020년 07월",
     "abstract": "딥러닝 모델들은 높은 정확도로 인해 영상, 음성 및 자연어 처리 등 다양한 분야에 적용되며 산업에 활용 되고 있다. 이에 따라 딥러닝 모델에 대한 악의적인 공격에 관한 연구도 활발히 이루어지고 있다 .특히, 컴퓨터 비전 분야에서 영상 또는 이미지의 특성상 작은 노이즈에도 민감하게 반응할 수 있어 적대적 공격(Adversarial Attack)에 취약 하다. 만약 주민등록증이나 신용카드와 같은 개인정보를 포함하는 자료에 해당 공격이 가해진다면 다양한 인적, 물적 피해를 유발할 수 있기에 관련된 연구가 필요하다. 본 논문에서는 개인정보 자료들을 항한 적대적 공격의 유효성을 검증하기 위하여 개인 민감정보로서 쉽게 사용되어질 수 있는 차량 번호판에 적용하였다. 다양한 적대적 공격 방식을 대상으로 적대적 예제(Adversarial Example)들을 생성하였으며, 이를 통한 객체 탐지 모델의 오작동이 생길 수 있음을 검증하였다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE09874643"
@@ -2389,7 +2389,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "딥러닝 기반 개인정보 보호 영상 세그멘테이션 및 복원 가능한 영상 왜곡 모델",
     "authors": "박지형, 김진호, 이수안",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2019), 한국정보과학회",
     "date": "2019년 12월",
     "badge": "(장려상)",
     "abstract": "최근 기술의 발전으로 지능형 CCTV같은 영상 수집 장치의 유용성이 대두되고 있다. 하지만 이러한 유용성에도 불구하고 개인 정보 침해 문제 때문에 영상 수집 장치의 설치나 보급에 어려움을 겪고 있다. 이러한 문제를 해결하기 위해 모자이크 등의 여러 기술이 존재하나 이러한 기술들은 필요시 복원이 불가능하거나 여러 문제점을 가지고 있다. 따라서 본 논문은 이러한 문제를 해결하기 위한 복원 가능한 영상 왜곡 모델을 제안하고, 이 구조의 특징인 왜곡 후 복윈 시 원본과 차이가 없다는 것과 시드를 통해 의도하지 않은 조작과 왜곡을 방지할 수 있는 것을 실험으로 증명하였다.",
@@ -2400,7 +2400,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "로봇 판단지능을 위해 인간 작업 영상을 활용한 빅데이터 시스템 설계 및 구축",
     "authors": "장종원, 전호빈, 이수안, 김진호, 박홍성, 김미숙, 유수정, 지상훈",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2019), 한국정보과학회",
     "date": "2019년 12월",
     "abstract": "최근 빅데이터와 AI를 이용한 다양한 활용성이 주요한 이슈로 떠오르고 있다. 그중에는 수많은 영상을 데이터로써 입력하여 로봇이 영상 속 인간 작업자의 동작을 따라 하게 하는 연구 또한 존재한다. 본 논문에서는 인간 작업자의 작업과정에 대한 영상 데이터를 저장, 분류하고, 각 영상에 annotation을 추가하여 빅데이터 시스템에 저장한다. 빅데이터 시스템을 이용해 필요한 데이터를 질의하고 처리 분석하고, 판단지능을 위한 학습 데이터를 가져올 수 있다. 또한, 지속적인 판단지능 향상을 위해 학습된 모델의 결과도 빅데이터 시스템에 저장한다. 본 논문에서는 빅데이터 시스템의 설계와 저장구조 모델을 설명하며 활용성을 보인다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE09301504"
@@ -2452,7 +2452,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "효율적인 회귀분석을 위한 Shared Wide & Deep 모델",
     "authors": "김민규, 이수안, 김진호",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2019), 한국정보과학회",
     "date": "2019년 7월",
     "abstract": "회귀분석은 시간에 따라 변화하는 데이터의 예측에 많이 이용되는 방법 중에 하나이다. 기존의 Wide & Deep 모델은 추천시스템에서 뛰어난 성능을 내는 방법이지만 회귀분석에서는 좋은 성능을 내지 못한다. 따라서 본 논문에서는 기존의 Wide & Deep 모델을 개선하여 회귀분석에서 잘 동작하는 Shared Wide & Deep 모델을 제안하였다. 제안한 모델을 검증하기 위해 여러 데이터들을 기존의 Wide & Deep 모델 그리고 다양한 회귀 분석 모델들과 비교하였다. 제안한 모델이 다른 모델들보다 높은 R^2 값을 가지고, 효율적으로 회귀 분석이 수행됨을 실험을 통해 확인하였다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE08763671"
@@ -2485,7 +2485,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "빅데이터 기반의 통합적 트래픽 분석 플랫폼을 위한 저장구조 설계",
     "authors": "장종원, 김희상, 김민규, 이수안, 김진호",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2018), 한국정보과학회",
     "date": "2018년 12월",
     "abstract": "오늘날 보안이라는 이슈가 점점 더 중요하게 여겨지고 있다. 다양한 보안 장비들로 구성된 보안관리 시스템에서는 장비마다 다른 보안 로그를 생성해내며, 그 로그들을 한데 모아 저장 및 분석할 필요가 있다. 많은 보안 장비에서 생성되는 로그의 양은 빅데이터라 할 수 있고, 기존 RDBMS를 이용하여 저장, 분석하기에는 힘든 상황이다. 따라서 본 논문에서는 대용량 로그를 저장할 수 있는 Hadoop 기반의 분산저장 데이터베이스 시스템인 HBase를 사용한 보안로그 분석시스템을 제안한다. 제안한 시스템과 기존 RDBMS와의 수행시간을 비교하였으며, 데이터가 많아질수록 HBase가 압도적으로 우수한 수행시간을 보였다.",
     "keywords": "##",
@@ -2496,7 +2496,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "빅데이터 기술을 이용한 자유학기제 운영 실태 보고서 문서 분석",
     "authors": "김민규, 이수안, 김진호, 신혜숙",
-    "venue": "한국소프트웨어종합학술대회, 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2018), 한국정보과학회",
     "date": "2018년 12월",
     "abstract": "빅데이터 기술은 많은 분야에서 다각적인 자료 분석이 가능하도록 활용되고 있다. 본 논문에서는 교육 분야에서 새로운 정책에 대한 효과를 평가하기 위해 빅데이터 기술을 활용하였다. 전국 중학교에서 운영되고 있는 자유학기제의 운영 실태 분석을 위하여 비정형 데이터 분석과 시각화를 통하여 주요 관심사항과 차이점에 대해서 살펴보았다. 특히 지역적으로 중요 특성과 관심 사항이 다르다는 것을 부산과 전남을 중심으로 살펴보았다. 본 연구는 교육 전문가와 함께 필요와 요구에 따라 빅데이터 분석 기술을 적용하였다는 것에 의미가 있다.",
     "keywords": "##",
@@ -2543,7 +2543,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "초·중등 과학 교과서 용어주석 말뭉치 구축 및 검색을 위한 시스템 개발",
     "authors": "유영석, 이수안, 김진호, 윤은정, 박윤배",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2017), 한국정보과학회",
     "date": "2017년 06월",
     "abstract": "초중등 학교의 과학 교수학습 상황에서 과학용어는 교사와 학생 모두에게 많은 어려움을 야기하는 주요한 요인 가운데 하나이다. 학생의 수준에 맞게 과학 용어를 사용하고 그 과학 용어의 의미를 정확하게 설명하는 것이 중요하다. 이를 위해 초∙중등 교육과정에서 사용하는 과학 교과서에 있는 과학 용어들을 추출하고, 교과서 내에서 그 과학 용어의 용례와 정의를 파악하는 것이 매우 효과적인 방법이다. 이 논문에서는 6차, 7차, 및 2009 개정 교육 과정의 모든 과학 교과서에서 과학용어 말뭉치를 추출하고, 이들용어들의 출현빈도와 출현한 문장들과 교과서 정보들을 데이터베이스에 저장한다. 과학용어 말뭉치는 표준국어대사전과 교과서의 품사 매칭을 이용해 과학용서를 식별한다. 이렇게 구축된 과학용어 데이터베이스를 이용하여 과학용어 키워드 질의에 대해 교과서 내의 예문과 과목이나 교육과정별 정보를 시각회된 차트로 제공하는 검색 시스템을 개발한다. 이 시스템을 활용하여, 원하는 과학용어에 대해 학년별/과목별 교과서에 대한 예문이나 교육과정에 대해 파악할 수 있으며, 학생 수준에 맞춰 학습 보조자료로 활용하거나 연구 보조자료 등으로 편리하게 활용할 수 있을 것이다.",
     "keywords": "유비쿼터스 센서 네트워크, 스트림 데이터, 저장 관리자, 경동 시간 구조, 데이터 축소",
@@ -2760,7 +2760,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "얼굴 인식과 SNS 정보를 이용한 모바일 기기에서 사진 자동 분류 및 검색",
     "authors": "최재용, 이수안, 김진호",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2012), 한국정보과학회",
     "date": "2012년 06월",
     "abstract": "본 논문에서는 얼굴 인식 기술과 SNS 정보를 이용하여 사람의 얼굴을 기준으로 사진들을 효과적으로 분류하고 검색할 수 있는 시스템을 개발하였다. 얼굴 인식 기술을 이용하여 촬영된 사진의 분석을 통해 얼굴로부터 나이, 성별, 안경 착용 유무, 웃는 얼굴 판단 등의 의미적인 정보를 추출한다. 또한, 얼굴 인식을 통해 얻은 SNS 정보에서는 이름, 생일, 학력, 직업, 고향, 관심 분야, 종교 등의 개인적인 정보를 추출할 수 있다. 추출한 정보를 이용한 효과적인 사진 분류 및 검색을 통해 사용자의 편의를 극대화하였다. 본 논문에서는 구글 안드로이드 기반의 스마트폰에서 제안한 사진 자동 분류 및 검색 시스템을 구현하였다.",
     "url": "https://www.dbpia.co.kr/Journal/ArticleDetail/NODE01907205"
@@ -2869,7 +2869,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "맵리듀스를 이용한 빙산 큐브 병렬 계산",
     "authors": "이수안, 김진호, 문양세, 노웅기",
-    "venue": "한국컴퓨터종합학술대회, 한국정보과학회",
+    "venue": "한국컴퓨터종합학술대회(KCC 2010), 한국정보과학회",
     "date": "2010년 6월",
     "abstract": "대용량 데이터의 효율적 분석을 위해 데이터 뷰브가 연구되었으며, 데이터 큐브 계산의 고비용 문제점을 해결하기 위하여 큐브의 일부 영역만을 계산하는 빙산 큐브가 등장하였다. 빙산 큐브는 저장 공간의 감소, 집중적인 분석 등의 장점이 있으나, 여전히 많은 계산과 저장 공간을 필요로 하는 단점이 있다. 본 논문에서는 이러한 문제점을 해결하는 실용적인 방법으로 대용량 문제를 분산하여 처리하는 분산 병렬 컴퓨팅 기술인 맵리듀스(MapReduce) 프레임워크를 사용하여 분산 병렬 빙산 큐브인 MR-Naive와 MR-BUC 알고리즘을 제안한다. 실험을 통해 맵리듀스 프레임워크를 통한 빙사 큐브 계산이 효율적으로 분산 병렬 처리 됨을 확인하였다.",
     "url": "http://www.dbpia.co.kr/Journal/ArticleDetail/NODE01471710"
