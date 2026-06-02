@@ -15,7 +15,7 @@ export function LanguageSwitcher() {
             : 'text-muted-foreground hover:text-foreground'
         }`}
       >
-        한
+        KO
       </button>
       <button
         onClick={() => setLanguage('en')}
