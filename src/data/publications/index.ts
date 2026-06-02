@@ -39,6 +39,17 @@ function computePublicationTypes(publications: Publication[]) {
 }
 
 export const publications: Publication[] = [
+  // ============ 2026 International Journals ============
+  {
+    "id": 222,
+    "type": "journal",
+    "title": "Instruction Fine-Tuning through the Lens of Verbatim Memorization",
+    "authors": "Jie Zhang, Chi-Ho Lin and Suan Lee",
+    "venue": "Electronics, 15(2), 377",
+    "date": "2026",
+    "badge": "[SCIE]",
+    "keywords": "instruction fine-tuning; verbatim memorization; large language models"
+  },
   // ============ 2025 International Journals ============
   {
     "id": 200,
@@ -224,6 +235,26 @@ export const publications: Publication[] = [
     "date": "2025",
     "badge": "[KCI]",
     "keywords": "모델 경량화; Pruning; Fine-tuning; 한국어 언어 모델"
+  },
+  {
+    "id": 220,
+    "type": "djournal",
+    "title": "Wi-Fi CSI 기반 딥러닝 운동형태 분류를 이용한 비접촉식 실내 운동량·칼로리 추론",
+    "authors": "김재한, 염보영, 이수안, 문양세",
+    "venue": "데이터베이스연구, 한국정보과학회, 제41집, 제3호, pp.121-138",
+    "date": "2025",
+    "badge": "[KCI]",
+    "keywords": "Wi-Fi CSI; 딥러닝; 운동형태 분류; 칼로리 추론"
+  },
+  {
+    "id": 221,
+    "type": "djournal",
+    "title": "서술형 진로 검사 평가의 자동화: 대규모 언어 모델 기반의 성숙도 분석 및 피드백",
+    "authors": "김병학, 이수안",
+    "venue": "데이터베이스연구, 한국정보과학회, 제41집, 제3호, pp.166-184",
+    "date": "2025",
+    "badge": "[KCI]",
+    "keywords": "진로 검사; 대규모 언어 모델; 성숙도 분석; 자동 평가"
   },
   // ============ 2024 Domestic Journals (KCI) ============
   {
