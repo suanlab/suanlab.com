@@ -11,6 +11,14 @@ export interface MediaArticle {
 // Sorted by date (newest first)
 export const mediaArticles: MediaArticle[] = [
   {
+    id: '14',
+    title: "세명대 데이터지능연구실, 세계 최고 권위 'KDD 2026' 논문 채택···AI 편향성 밝혀내",
+    source: '이뉴스투데이',
+    date: '2026-06-02',
+    url: 'https://www.enewstoday.co.kr/news/articleView.html?idxno=2435502',
+    excerpt: '세명대학교 AI컴퓨터학부 데이터지능연구실(DILab)이 KDD 2026 데이터셋 및 벤치마크 트랙에 최종 채택되었다. 유라시아 5개 지역 공무원 시험을 활용한 EuraGovExam 벤치마크로 AI의 지역적 편향성을 밝혀냈다.',
+  },
+  {
     id: '13',
     title: '단일 카메라로 손끝 접촉 인식 구현',
     source: '교수신문',
