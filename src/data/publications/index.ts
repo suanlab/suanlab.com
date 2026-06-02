@@ -335,56 +335,6 @@ export const publications: Publication[] = [
   },
   // ============ 2026 International Conferences ============
   {
-    "id": 608,
-    "type": "conference",
-    "title": "Real-Time Multimodal Fingertip Contact Detection via Depth and Motion Fusion for Vision-Based Human–Computer Interaction",
-    "authors": "Toshpulatov Mukhiddin Amonkulovich, Wookey Lee, Suan Lee, and Geehyuk Lee",
-    "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2026)",
-    "date": "2026",
-    "badge": "CVPR 2026",
-    "keywords": "fingertip contact detection; multimodal fusion; depth sensing; human-computer interaction"
-  },
-  {
-    "id": 609,
-    "type": "conference",
-    "title": "Linear Separability and Feature Importance Analysis in Large Language Model Representation Spaces",
-    "authors": "JaeSeong Kim and Suan Lee",
-    "venue": "2026 IEEE International Conference on Big Data and Smart Computing (BigComp)",
-    "date": "2026",
-    "badge": "Best Paper Award Runner-up",
-    "keywords": "LLM; representation space; linear separability; feature importance"
-  },
-  {
-    "id": 610,
-    "type": "conference",
-    "title": "Analyzing LLM Safety Circumvention via Multilingual Euphemistic Coating",
-    "authors": "SangHyeon Gil, JaeSeong Kim, and Suan Lee",
-    "venue": "2026 IEEE International Conference on Big Data and Smart Computing (BigComp)",
-    "date": "2026",
-    "keywords": "LLM safety; multilingual; euphemistic coating; safety circumvention"
-  },
-  {
-    "id": 611,
-    "type": "conference",
-    "title": "Transparent Networks for Multivariate Time Series",
-    "authors": "Minkyu Kim, Suan Lee, and Jinho Kim",
-    "venue": "AAAI Conference on Artificial Intelligence (AAAI 2026)",
-    "date": "2026",
-    "badge": "AAAI 2026",
-    "keywords": "transparent networks; multivariate time series; interpretable deep learning"
-  },
-  {
-    "id": 612,
-    "type": "conference",
-    "title": "EuraGovExam: A Multilingual Multimodal Benchmark from Real-World Civil Service Exams",
-    "authors": "Jaeseong Kim, Chaehwan Lim, Sang Hyun Gil, and Suan Lee",
-    "venue": "ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2026)",
-    "date": "2026",
-    "badge": "KDD 2026",
-    "url": "https://arxiv.org/abs/2603.27223",
-    "keywords": "multilingual benchmark; multimodal; civil service exam; AI bias"
-  },
-  {
     "id": 613,
     "type": "conference",
     "title": "The Latent Hivemind: Do LLMs Converge in How They Think?",
@@ -423,6 +373,56 @@ export const publications: Publication[] = [
     "date": "2026",
     "badge": "UAI 2026",
     "keywords": "graph fraud detection; interpretable GNN; spectral methods"
+  },
+  {
+    "id": 612,
+    "type": "conference",
+    "title": "EuraGovExam: A Multilingual Multimodal Benchmark from Real-World Civil Service Exams",
+    "authors": "Jaeseong Kim, Chaehwan Lim, Sang Hyun Gil, and Suan Lee",
+    "venue": "ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2026)",
+    "date": "2026",
+    "badge": "KDD 2026",
+    "url": "https://arxiv.org/abs/2603.27223",
+    "keywords": "multilingual benchmark; multimodal; civil service exam; AI bias"
+  },
+  {
+    "id": 608,
+    "type": "conference",
+    "title": "Real-Time Multimodal Fingertip Contact Detection via Depth and Motion Fusion for Vision-Based Human–Computer Interaction",
+    "authors": "Toshpulatov Mukhiddin Amonkulovich, Wookey Lee, Suan Lee, and Geehyuk Lee",
+    "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2026)",
+    "date": "2026",
+    "badge": "CVPR 2026",
+    "keywords": "fingertip contact detection; multimodal fusion; depth sensing; human-computer interaction"
+  },
+  {
+    "id": 611,
+    "type": "conference",
+    "title": "Transparent Networks for Multivariate Time Series",
+    "authors": "Minkyu Kim, Suan Lee, and Jinho Kim",
+    "venue": "AAAI Conference on Artificial Intelligence (AAAI 2026)",
+    "date": "2026",
+    "badge": "AAAI 2026",
+    "keywords": "transparent networks; multivariate time series; interpretable deep learning"
+  },
+  {
+    "id": 609,
+    "type": "conference",
+    "title": "Linear Separability and Feature Importance Analysis in Large Language Model Representation Spaces",
+    "authors": "JaeSeong Kim and Suan Lee",
+    "venue": "2026 IEEE International Conference on Big Data and Smart Computing (BigComp)",
+    "date": "2026",
+    "badge": "Best Paper Award Runner-up",
+    "keywords": "LLM; representation space; linear separability; feature importance"
+  },
+  {
+    "id": 610,
+    "type": "conference",
+    "title": "Analyzing LLM Safety Circumvention via Multilingual Euphemistic Coating",
+    "authors": "SangHyeon Gil, JaeSeong Kim, and Suan Lee",
+    "venue": "2026 IEEE International Conference on Big Data and Smart Computing (BigComp)",
+    "date": "2026",
+    "keywords": "LLM safety; multilingual; euphemistic coating; safety circumvention"
   },
   // ============ 2024 International Conferences ============
   {
