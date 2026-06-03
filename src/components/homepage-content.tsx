@@ -100,6 +100,59 @@ export function HomepageContent({
       <section className="py-20 md:py-28">
         <div className="container">
           <div className="mx-auto max-w-2xl text-center">
+            <Badge variant="outline" className="mb-4">
+              <Newspaper className="mr-2 h-3 w-3" />
+              {t('media.badge') as string}
+            </Badge>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t('media.title') as string}</h2>
+            <p className="mt-4 text-muted-foreground">
+              {t('media.description') as string}
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {mediaArticles.map((article) => (
+              <a
+                key={article.id}
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <Card className="h-full transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/50">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
+                      <Badge variant="secondary" className="text-xs font-normal">
+                        {article.source}
+                      </Badge>
+                      <span className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        {article.date}
+                      </span>
+                    </div>
+                    <CardTitle className="text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">
+                      {article.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-sm text-muted-foreground line-clamp-3">
+                      {article.excerpt}
+                    </p>
+                    <div className="mt-4 flex items-center text-xs text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                      Read more
+                      <ExternalLink className="ml-1 h-3 w-3" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-muted/30 py-20 md:py-28">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center">
             <Badge variant="outline" className="mb-4">{t('blog.badge') as string}</Badge>
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t('blog.title') as string}</h2>
             <p className="mt-4 text-muted-foreground">
@@ -155,7 +208,7 @@ export function HomepageContent({
         </div>
       </section>
 
-      <section className="bg-muted/30 py-20 md:py-28">
+      <section className="py-20 md:py-28">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
@@ -192,59 +245,6 @@ export function HomepageContent({
                 allowFullScreen
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-28">
-        <div className="container">
-          <div className="mx-auto max-w-2xl text-center">
-            <Badge variant="outline" className="mb-4">
-              <Newspaper className="mr-2 h-3 w-3" />
-              {t('media.badge') as string}
-            </Badge>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t('media.title') as string}</h2>
-            <p className="mt-4 text-muted-foreground">
-              {t('media.description') as string}
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {mediaArticles.map((article) => (
-              <a
-                key={article.id}
-                href={article.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group"
-              >
-                <Card className="h-full transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/50">
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
-                      <Badge variant="secondary" className="text-xs font-normal">
-                        {article.source}
-                      </Badge>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        {article.date}
-                      </span>
-                    </div>
-                    <CardTitle className="text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">
-                      {article.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <p className="text-sm text-muted-foreground line-clamp-3">
-                      {article.excerpt}
-                    </p>
-                    <div className="mt-4 flex items-center text-xs text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                      Read more
-                      <ExternalLink className="ml-1 h-3 w-3" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </a>
-            ))}
           </div>
         </div>
       </section>
