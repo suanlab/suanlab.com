@@ -11,12 +11,28 @@ export interface MediaArticle {
 // Sorted by date (newest first)
 export const mediaArticles: MediaArticle[] = [
   {
+    id: '16',
+    title: '한국디지털컨버전스학회, Claude API 기반 Agent AI 단기강좌 성료',
+    source: '비즈앤잡스',
+    date: '2026-06-19',
+    url: 'https://www.biznjobs.com/news_view.jsp?news_cd=2342',
+    excerpt: '한국디지털컨버전스학회는 6월 19일 동국대학교 신공학관에서 세명대 이수안 교수 강의로 Claude API 기반 Agent AI 단기강좌를 개최했다. 40여 명이 참석해 Claude API와 LangGraph로 Workflow Agent 및 Multi-Agent 시스템을 실습했다.',
+  },
+  {
     id: '14',
     title: "세명대 데이터지능연구실, 세계 최고 권위 'KDD 2026' 논문 채택···AI 편향성 밝혀내",
     source: '이뉴스투데이',
     date: '2026-06-02',
     url: 'https://www.enewstoday.co.kr/news/articleView.html?idxno=2435502',
     excerpt: '세명대학교 AI컴퓨터학부 데이터지능연구실(DILab)이 KDD 2026 데이터셋 및 벤치마크 트랙에 최종 채택되었다. 유라시아 5개 지역 공무원 시험을 활용한 EuraGovExam 벤치마크로 AI의 지역적 편향성을 밝혀냈다.',
+  },
+  {
+    id: '15',
+    title: '(사)한국디지털컨버전스학회 Claude API 기반 Agent AI 단기강좌',
+    source: '비즈앤잡스',
+    date: '2026-06-01',
+    url: 'https://www.biznjobs.com/news_view.jsp?ncd=2267',
+    excerpt: '한국디지털컨버전스학회 주최, 한국컴퓨터산업협회 주관으로 Claude API와 LangGraph를 활용한 Agent AI 단기강좌가 동국대학교 신공학관에서 개최된다. 세명대 이수안 교수가 강사를 맡아 Workflow Agent와 Multi-Agent 시스템 구현을 실습한다.',
   },
   {
     id: '13',
