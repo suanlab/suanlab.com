@@ -1,7 +1,7 @@
 export interface CourseMaterial {
   title: string;
   url: string;
-  type: 'colab' | 'pdf' | 'drive';
+  type: 'colab' | 'pdf' | 'drive' | 'youtube';
 }
 
 export interface Course {
@@ -17,6 +17,104 @@ export interface Course {
 }
 
 export const courses: Course[] = [
+  // 2026년
+  {
+    id: 93,
+    title: 'Claude API 기반 Agent AI 단기강좌',
+    subtitle: '한국디지털컨버전스학회 단기강좌',
+    date: '2026.06.19',
+    location: '동국대학교 신공학관 4147호',
+    organization: '한국디지털컨버전스학회 (주최) / 한국컴퓨터산업협회 (주관)',
+    category: 'training',
+  },
+  {
+    id: 94,
+    title: 'AI엔지니어링교육 Advanced RAG',
+    subtitle: 'AI엔지니어링교육',
+    date: '2026.06.18',
+    location: '신한카드',
+    organization: '신한카드',
+    category: 'training',
+  },
+  {
+    id: 95,
+    title: '생성형 AI와 AI Agent를 업무에 활용하기',
+    subtitle: '전문가초청 세미나',
+    date: '2026.05.23',
+    location: '경희대학교 테크노경영대학원',
+    organization: '경희대학교 테크노경영대학원',
+    category: 'seminar',
+  },
+  {
+    id: 96,
+    title: 'AI와 함께 연구하기',
+    subtitle: '전문가초청 세미나',
+    date: '2026.05.22',
+    location: '인천대학교 매개체감염병연구소',
+    organization: '인천대학교 매개체감염병연구소',
+    category: 'seminar',
+  },
+  {
+    id: 97,
+    title: 'AI 알고리즘',
+    subtitle: '특강',
+    date: '2026.05.18, 2026.05.27',
+    location: '제천고등학교',
+    organization: '제천고등학교',
+    category: 'lecture',
+  },
+  {
+    id: 98,
+    title: '대학 교육연구행정 혁신을 위한 AI 기술 활용',
+    subtitle: '전문가초청 세미나',
+    date: '2026.05.07',
+    location: '충남대학교',
+    organization: '충남대학교',
+    category: 'seminar',
+    materials: [
+      {
+        title: 'YouTube',
+        url: 'https://youtu.be/4a8X-UW8aw4',
+        type: 'youtube',
+      },
+    ],
+  },
+  {
+    id: 99,
+    title: 'AI와 함께 연구 협업하기',
+    subtitle: 'BMSE 리서치페어',
+    date: '2026.02.05',
+    location: '인하대학교 60주년기념관 월천홀',
+    organization: 'BMSE 리서치페어',
+    category: 'seminar',
+  },
+  {
+    id: 100,
+    title: '파이썬 기초 / 딥러닝 기초',
+    subtitle: '대학원 통계 소프트웨어 활용 교육',
+    date: '2026.01.12-16',
+    location: '충남대학교 정보화본부 교육관 1307호',
+    organization: '충남대학교 대학원',
+    category: 'training',
+  },
+  {
+    id: 101,
+    title: '빅데이터 분석 및 인공지능 모델 제작',
+    subtitle: '석천학사 프로그램',
+    date: '2026.01.02, 2026.01.05-09',
+    location: '양구여자고등학교',
+    organization: '양구여자고등학교',
+    category: 'camp',
+  },
+  {
+    id: 102,
+    title: 'AI의 모든 것',
+    subtitle: '특강',
+    date: '2025.12.30',
+    location: '신남고등학교',
+    organization: '신남고등학교',
+    category: 'lecture',
+  },
   // 2025년
   {
     id: 1,

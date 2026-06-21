@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Presentation, BookOpen, GraduationCap, Tent, Calendar, MapPin, Building2, FileText, ExternalLink, Code } from 'lucide-react';
+import { Presentation, BookOpen, GraduationCap, Tent, Calendar, MapPin, Building2, FileText, ExternalLink, Code, Youtube } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -41,6 +41,8 @@ function MaterialButton({ material }: { material: CourseMaterial }) {
           <Code className="mr-1 h-3 w-3" />
         ) : material.type === 'pdf' ? (
           <FileText className="mr-1 h-3 w-3" />
+        ) : material.type === 'youtube' ? (
+          <Youtube className="mr-1 h-3 w-3" />
         ) : (
           <ExternalLink className="mr-1 h-3 w-3" />
         )}
