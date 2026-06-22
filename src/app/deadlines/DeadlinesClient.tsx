@@ -176,7 +176,7 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
         </Button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {filtered.map((conf) => {
           const next = getNextDeadline(conf, now);
           const passed = !next;
