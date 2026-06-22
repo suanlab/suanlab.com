@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { Menu, ChevronDown, User, Search, Youtube, Newspaper, FolderKanban, GraduationCap, Presentation, BookMarked, PenLine } from 'lucide-react';
+import { Menu, ChevronDown, User, Search, Youtube, Newspaper, FolderKanban, GraduationCap, Presentation, BookMarked, PenLine, CalendarClock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -59,6 +59,7 @@ const navigation = [
     ],
   },
   { nameKey: 'nav.course', href: '/course', icon: Presentation },
+  { nameKey: 'nav.deadlines', href: '/deadlines', icon: CalendarClock },
   {
     nameKey: 'nav.youtube',
     href: '/youtube',
