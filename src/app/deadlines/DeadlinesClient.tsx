@@ -40,10 +40,15 @@ function formatCountdown(target: Date, now: Date | null): string {
   return `${minutes}분 남음`;
 }
 
+function toDateObj(date: string, timezone?: string): Date {
+  if (timezone === 'UTC') return new Date(date + 'T23:59:59Z');
+  return new Date(date + 'T23:59:59-12:00');
+}
+
 function getNextDeadline(conf: Conference, now: Date | null) {
   if (!now) return null;
   const upcoming = conf.deadlines
-    .map((d) => ({ ...d, dateObj: new Date(d.date + 'T23:59:59-11:00') }))
+    .map((d) => ({ ...d, dateObj: toDateObj(d.date, conf.timezone) }))
     .filter((d) => d.dateObj.getTime() > now.getTime())
     .sort((a, b) => a.dateObj.getTime() - b.dateObj.getTime());
   return upcoming[0] ?? null;
@@ -51,7 +56,7 @@ function getNextDeadline(conf: Conference, now: Date | null) {
 
 function getLastDeadline(conf: Conference) {
   const sorted = [...conf.deadlines]
-    .map((d) => ({ ...d, dateObj: new Date(d.date + 'T23:59:59-11:00') }))
+    .map((d) => ({ ...d, dateObj: toDateObj(d.date, conf.timezone) }))
     .sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
   return sorted[0] ?? null;
 }
@@ -229,13 +234,21 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
                     <MapPin className="h-4 w-4 shrink-0" />
                     <span>{conf.location}</span>
                   </div>
+                  {conf.timezone && (
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 shrink-0" />
+                      <span className="text-xs">
+                        {conf.timezone === 'UTC' ? 'UTC 기준' : 'AoE (UTC-12) 기준'}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-auto space-y-1.5">
                   <p className="text-xs font-medium text-muted-foreground">일정</p>
                   <ul className="space-y-1">
                     {conf.deadlines.map((d, idx) => {
-                      const dObj = new Date(d.date + 'T23:59:59-11:00');
+                      const dObj = toDateObj(d.date, conf.timezone);
                       const isNext = next && d.type === next.type && d.date === next.date;
                       const isPassed = now ? dObj.getTime() < now.getTime() : false;
                       return (
@@ -248,7 +261,14 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
                           )}
                         >
                           <span>{d.type}</span>
-                          <span className="font-mono">{d.date}</span>
+                          <span className="font-mono text-right">
+                            {d.date}
+                            {d.note && (
+                              <span className="block text-[10px] text-muted-foreground font-sans">
+                                {d.note}
+                              </span>
+                            )}
+                          </span>
                         </li>
                       );
                     })}
@@ -277,7 +297,7 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
       )}
 
       <p className="mt-10 text-xs text-muted-foreground text-center">
-        마감일은 AoE (Anywhere on Earth, UTC-12) 기준이며 변경될 수 있습니다.
+        마감일은 학회별 표기 시간대(AoE/UTC)를 따르며 변경될 수 있습니다.
         <br />
         정확한 일정은 각 학회 공식 웹사이트를 반드시 확인하세요.
       </p>

@@ -65,11 +65,6 @@ export const navigation: NavItem[] = [
     icon: 'et-presentation',
   },
   {
-    label: 'DEADLINES',
-    href: '/deadlines',
-    icon: 'et-clock',
-  },
-  {
     label: 'YOUTUBE',
     href: '/youtube',
     icon: 'et-video',
