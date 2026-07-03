@@ -11,6 +11,14 @@ export interface MediaArticle {
 // Sorted by date (newest first)
 export const mediaArticles: MediaArticle[] = [
   {
+    id: '17',
+    title: "세명대 AI컴퓨터학부 김재성 학부생·이수안 교수, 최고 권위 AI 학회 'ECML PKDD 2026' 논문 채택",
+    source: '세명대학교',
+    date: '2026-07-02',
+    url: 'https://www.semyung.ac.kr/cop/bbs/BBSMSTR_000000000327/selectBoardArticle.do?bbsId=BBSMSTR_000000000327&nttId=477193',
+    excerpt: '데이터지능연구실(DILab) 김재성 학생(제1저자)과 이수안 교수(교신저자)가 22개 거대 언어 모델이 내부 잠재 공간에서 유사한 기하학적 구조로 사고한다는 "잠재적 하이브마인드" 현상을 세계 최초로 증명한 논문으로 데이터마이닝·AI 분야 세계 최고 권위 학회 ECML PKDD 2026에 채택되었다.',
+  },
+  {
     id: '16',
     title: '한국디지털컨버전스학회, Claude API 기반 Agent AI 단기강좌 성료',
     source: '비즈앤잡스',
