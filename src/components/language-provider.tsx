@@ -180,11 +180,12 @@ const translations = {
 };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  // SSG와 initial client render가 동일한 출력(Korean)을 갖도록, language 초기값은 'ko'.
+  // useEffect에서 localStorage의 저장값을 반영하여 언어가 전환됨.
+  // mounted 게이트를 두면 t()가 빈 문자열을 반환해 정적 HTML에 라벨이 빈 채로 export됨.
   const [language, setLanguageState] = useState<Language>('ko');
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const saved = localStorage.getItem('suanlab-language') as Language;
     if (saved && (saved === 'ko' || saved === 'en')) {
       setLanguageState(saved);
@@ -203,14 +204,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
     return key;
   };
-
-  if (!mounted) {
-    return (
-      <LanguageContext.Provider value={{ language: 'ko', setLanguage: () => {}, t: () => '' }}>
-        {children}
-      </LanguageContext.Provider>
-    );
-  }
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
