@@ -47,6 +47,8 @@ export const conferenceCategories: ConferenceCategoryInfo[] = [
   { id: 'Knowledge', label: 'Knowledge', color: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-300' },
 ];
 
+// Last verified: 2026-07-04 from official conference websites.
+// Timezone: 'AoE' = Anywhere on Earth (UTC-12), 'UTC' = UTC. Omitted = unspecified (treated as AoE for countdown).
 export const conferences: Conference[] = [
   {
     id: 'aaai-2027',
@@ -63,7 +65,7 @@ export const conferences: Conference[] = [
       { type: 'Supplementary/Code', date: '2026-07-31' },
       { type: 'Phase 1 Rejection Notice', date: '2026-09-24' },
       { type: 'Rebuttal Window Opens', date: '2026-10-19' },
-      { type: 'Rebuttal Window Ends', date: '2026-10-25' },
+      { type: 'Rebuttal Window Ends', date: '2026-10-25', note: 'Oct 19-25' },
       { type: 'Final Notification', date: '2026-11-30' },
       { type: 'Camera Ready', date: '2026-12-14' },
       { type: 'Conference', date: '2027-02-16', note: 'Feb 16-23, 2027' },
@@ -77,8 +79,11 @@ export const conferences: Conference[] = [
     categories: ['IR', 'Web', 'Data', 'ML'],
     location: 'Hong Kong, China',
     url: 'https://www.wsdm-conference.org/2027/',
+    timezone: 'AoE',
     deadlines: [
-      { type: 'Conference', date: '2027-02-15', note: 'Feb 15-19, 2027 (20th Anniversary)' },
+      { type: 'Abstract', date: '2026-08-17' },
+      { type: 'Notification', date: '2026-11-02' },
+      { type: 'Conference', date: '2027-02-15', note: 'Feb 15-19, 2027 (20th Anniversary, Cordis Hong Kong)' },
     ],
   },
   {
@@ -87,10 +92,10 @@ export const conferences: Conference[] = [
     year: 2027,
     full_name: 'International Conference on Machine Learning',
     categories: ['ML', 'AI'],
-    location: 'South America (city TBA)',
-    url: 'https://icml.cc/',
+    location: 'TBA',
+    url: 'https://icml.cc/Conferences/FutureMeetings',
     deadlines: [
-      { type: 'Conference', date: '2027-07-01', note: 'Exact dates TBA (typically July)' },
+      { type: 'Conference', date: '2027-07-01', note: 'Location/dates TBA (official: "Announcement coming in August")' },
     ],
   },
   {
@@ -99,10 +104,10 @@ export const conferences: Conference[] = [
     year: 2027,
     full_name: 'International Conference on Learning Representations',
     categories: ['ML', 'AI', 'CV', 'NLP'],
-    location: 'TBA',
-    url: 'https://iclr.cc/',
+    location: 'West Coast, North America (city TBA)',
+    url: 'https://iclr.cc/Conferences/FutureMeetings',
     deadlines: [
-      { type: 'Conference', date: '2027-04-15', note: 'Exact dates TBA (typically April-May)' },
+      { type: 'Conference', date: '2027-04-28', note: 'Exact dates TBA (typically late April / early May)' },
     ],
   },
   {
@@ -111,10 +116,10 @@ export const conferences: Conference[] = [
     year: 2027,
     full_name: 'Annual Meeting of the Association for Computational Linguistics',
     categories: ['NLP', 'ML'],
-    location: 'Japan (city TBA)',
+    location: 'Asia/Pacific (city TBA)',
     url: 'https://www.aclweb.org/portal/',
     deadlines: [
-      { type: 'Conference', date: '2027-07-01', note: 'Exact dates TBA (typically July)' },
+      { type: 'Conference', date: '2027-07-01', note: 'Exact dates/city TBA (typically July)' },
     ],
   },
   {
@@ -124,21 +129,22 @@ export const conferences: Conference[] = [
     full_name: 'IEEE/CVF Conference on Computer Vision and Pattern Recognition',
     categories: ['CV', 'ML', 'AI'],
     location: 'Seattle, USA',
-    url: 'https://cvpr.thecvf.com/',
+    url: 'https://2027.cvpr.conf/',
+    timezone: 'AoE',
     deadlines: [
-      { type: 'Conference', date: '2027-06-01', note: 'Exact dates TBA (typically June). GC: Deva Ramanan, A. Ross' },
+      { type: 'Conference', date: '2027-06-20', note: 'Jun 20-24, 2027, Seattle Convention Center. GC: D. Ramanan, A. Ross' },
     ],
   },
   {
     id: 'iccv-2027',
     name: 'ICCV',
     year: 2027,
-    full_name: 'International Conference on Computer Vision',
+    full_name: 'IEEE/CVF International Conference on Computer Vision',
     categories: ['CV', 'ML', 'AI'],
     location: 'Hong Kong',
-    url: 'https://iccv.thecvf.com/',
+    url: 'https://2027.iccv.conf/',
     deadlines: [
-      { type: 'Conference', date: '2027-10-15', note: 'Exact dates TBA (typically October). GC: Gang Hua, William Scheirer, Nuria Oliver' },
+      { type: 'Conference', date: '2027-10-02', note: 'Oct 2-8, 2027. GC: G. Hua, W. Scheirer, N. Oliver' },
     ],
   },
   {
@@ -162,8 +168,12 @@ export const conferences: Conference[] = [
     full_name: 'IEEE International Conference on Robotics and Automation',
     categories: ['Robotics'],
     location: 'Seoul, Korea (Coex)',
-    url: 'https://2027.ieee-icra.org/',
+    url: 'https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/',
     deadlines: [
+      { type: 'Submission Opens', date: '2026-07-15' },
+      { type: 'Full Paper', date: '2026-09-15', note: '11:59 PM Pacific Time' },
+      { type: 'Notification', date: '2027-01-31' },
+      { type: 'Camera Ready', date: '2027-03-06' },
       { type: 'Conference', date: '2027-05-24', note: 'May 24-28, 2027' },
     ],
   },
@@ -174,12 +184,14 @@ export const conferences: Conference[] = [
     full_name: 'ACM SIGKDD Conference on Knowledge Discovery and Data Mining',
     categories: ['Data', 'ML', 'AI'],
     location: 'San Jose, USA',
-    url: 'https://kdd2027.kdd.org/',
-    timezone: 'UTC',
+    url: 'https://kdd2027.kdd.org/research-track-call-for-papers/',
+    timezone: 'AoE',
     deadlines: [
-      { type: 'Abstract (Cycle 1)', date: '2027-05-20' },
-      { type: 'Full Paper (Cycle 1)', date: '2027-06-19' },
-      { type: 'Conference', date: '2027-08-25', note: 'Aug 25-29, 2027 (approx)' },
+      { type: 'Abstract (Cycle 1)', date: '2026-07-19' },
+      { type: 'Full Paper (Cycle 1)', date: '2026-07-26' },
+      { type: 'Rebuttal (Cycle 1)', date: '2026-09-29', note: 'Sep 29 - Oct 13' },
+      { type: 'Notification (Cycle 1)', date: '2026-11-14' },
+      { type: 'Conference', date: '2027-08-01', note: 'August 2027, San Jose (exact dates TBA). Two cycles/yr.' },
     ],
   },
   {
@@ -189,9 +201,9 @@ export const conferences: Conference[] = [
     full_name: 'The Web Conference',
     categories: ['Web', 'IR', 'Data'],
     location: 'Dublin, Ireland',
-    url: 'https://thewebconf.org/',
+    url: 'https://acmweb2027.org/',
     deadlines: [
-      { type: 'Conference', date: '2027-04-01', note: 'Exact dates TBA' },
+      { type: 'Conference', date: '2027-05-10', note: 'May 10-14, 2027 (CFP coming soon)' },
     ],
   },
   {
@@ -202,8 +214,9 @@ export const conferences: Conference[] = [
     categories: ['NLP'],
     location: 'Macau, China',
     url: 'https://2027.coling-iccl.org/',
+    timezone: 'AoE',
     deadlines: [
-      { type: 'Conference', date: '2027-05-09', note: 'May 9-14, 2027' },
+      { type: 'Conference', date: '2027-05-09', note: 'May 9-14, 2027 (other dates TBD — site under construction)' },
     ],
   },
   {
@@ -212,7 +225,7 @@ export const conferences: Conference[] = [
     year: 2026,
     full_name: 'Conference on Neural Information Processing Systems',
     categories: ['ML', 'AI', 'NLP', 'CV'],
-    location: 'Atlanta, USA',
+    location: 'Sydney, Australia (satellites: Atlanta, Paris)',
     url: 'https://neurips.cc/Conferences/2026',
     timezone: 'AoE',
     deadlines: [
@@ -221,7 +234,8 @@ export const conferences: Conference[] = [
       { type: 'Discussion Opens', date: '2026-07-27' },
       { type: 'Discussion Ends', date: '2026-08-10' },
       { type: 'Notification', date: '2026-09-24' },
-      { type: 'Conference', date: '2026-12-06', note: 'Dec 6-12, 2026 (40th NeurIPS)' },
+      { type: 'Workshop Accept/Reject', date: '2026-09-29' },
+      { type: 'Conference', date: '2026-12-06', note: 'Dec 6-12, 2026, Sydney (40th NeurIPS)' },
     ],
   },
   {
@@ -235,7 +249,9 @@ export const conferences: Conference[] = [
     timezone: 'AoE',
     deadlines: [
       { type: 'ARR Submission', date: '2026-05-25' },
+      { type: 'Reviewer Registration', date: '2026-05-27' },
       { type: 'Author Response', date: '2026-07-07', note: 'Jul 7-13' },
+      { type: 'Meta Review Released', date: '2026-07-30' },
       { type: 'Commitment Deadline', date: '2026-08-02' },
       { type: 'Notification', date: '2026-08-20' },
       { type: 'Camera Ready', date: '2026-08-30' },
@@ -256,7 +272,7 @@ export const conferences: Conference[] = [
       { type: 'Full Paper', date: '2026-03-31' },
       { type: 'Rebuttal Period', date: '2026-05-22', note: 'May 22 - Jun 8' },
       { type: 'Notification', date: '2026-07-08' },
-      { type: 'Conference', date: '2026-10-06', note: 'Oct 6-9, 2026' },
+      { type: 'Conference', date: '2026-10-06', note: 'Oct 6-9, 2026 (workshops Oct 9), Hilton Union Square' },
     ],
   },
   {
@@ -267,14 +283,13 @@ export const conferences: Conference[] = [
     categories: ['CV', 'ML'],
     location: 'Malmö, Sweden',
     url: 'https://eccv.ecva.net/Conferences/2026',
-    timezone: 'UTC',
     deadlines: [
       { type: 'Paper Registration (Abstract)', date: '2026-02-26' },
       { type: 'Full Paper', date: '2026-03-05' },
       { type: 'Supplemental Materials', date: '2026-03-12' },
       { type: 'Rebuttal Deadline', date: '2026-05-11' },
-      { type: 'Camera Ready', date: '2026-06-27' },
-      { type: 'Conference', date: '2026-09-08', note: 'Sep 8-12, 2026 (36th ECCV)' },
+      { type: 'Camera Ready', date: '2026-06-30', note: 'Extended from Jun 27' },
+      { type: 'Conference', date: '2026-09-08', note: 'Sep 8-12, 2026 (36th ECCV), Malmö Arena / Malmömässan' },
     ],
   },
   {
@@ -292,7 +307,8 @@ export const conferences: Conference[] = [
       { type: 'Short Paper Abstract', date: '2026-05-30' },
       { type: 'Short Paper Submission', date: '2026-06-06' },
       { type: 'Notification', date: '2026-08-07' },
-      { type: 'Conference', date: '2026-11-07', note: 'Nov 7-11, 2026' },
+      { type: 'Camera Ready', date: '2026-08-20' },
+      { type: 'Conference', date: '2026-11-07', note: 'Nov 7-11, 2026 (main Nov 9-11)' },
     ],
   },
   {
@@ -307,7 +323,8 @@ export const conferences: Conference[] = [
     deadlines: [
       { type: 'Full Paper', date: '2026-06-06' },
       { type: 'Notification', date: '2026-08-16' },
-      { type: 'Conference', date: '2026-11-12', note: 'Nov 12-15, 2026 (26th IEEE ICDM)' },
+      { type: 'Camera Ready', date: '2026-09-16' },
+      { type: 'Conference', date: '2026-11-12', note: 'Nov 12-15, 2026 (26th IEEE ICDM), Northeastern University' },
     ],
   },
   {
@@ -324,7 +341,8 @@ export const conferences: Conference[] = [
       { type: 'Full Paper', date: '2026-05-05' },
       { type: 'Notification', date: '2026-07-09' },
       { type: 'Camera Ready', date: '2026-07-27' },
-      { type: 'Conference', date: '2026-09-27', note: 'Sep 27 - Oct 2, 2026 (20th RecSys)' },
+      { type: 'Demo Papers', date: '2026-07-14' },
+      { type: 'Conference', date: '2026-09-28', note: 'Sep 28 - Oct 2, 2026 (20th RecSys), Marriott City Center' },
     ],
   },
   {
@@ -339,7 +357,8 @@ export const conferences: Conference[] = [
     deadlines: [
       { type: 'Abstract', date: '2026-05-25' },
       { type: 'Full Paper', date: '2026-05-28' },
-      { type: 'Conference', date: '2026-11-10', note: 'Nov 10-12, 2026 (main)' },
+      { type: 'Camera Ready', date: '2026-10-12' },
+      { type: 'Conference', date: '2026-11-09', note: 'Nov 9-12, 2026 (workshops Nov 9, main Nov 10-12), JW Marriott Austin' },
     ],
   },
   {
@@ -353,6 +372,7 @@ export const conferences: Conference[] = [
     timezone: 'AoE',
     deadlines: [
       { type: 'Camera Ready', date: '2026-06-19' },
+      { type: 'Travel Grant Close', date: '2026-07-01' },
       { type: 'Early-bird Registration', date: '2026-07-15' },
       { type: 'Conference', date: '2026-09-28', note: 'Sep 28 - Oct 1, 2026 (Theme: Speaking Together)' },
     ],
@@ -369,6 +389,8 @@ export const conferences: Conference[] = [
     deadlines: [
       { type: 'Abstract', date: '2026-04-20' },
       { type: 'Full Paper', date: '2026-04-27' },
+      { type: 'Notification', date: '2026-07-10' },
+      { type: 'Camera Ready', date: '2026-07-31' },
       { type: 'Conference', date: '2026-11-08', note: 'Nov 8-12, 2026 (27th ISMIR)' },
     ],
   },
@@ -384,7 +406,8 @@ export const conferences: Conference[] = [
     deadlines: [
       { type: 'Abstract', date: '2026-03-05' },
       { type: 'Full Paper', date: '2026-03-12' },
-      { type: 'Notification', date: '2026-07-15' },
+      { type: 'Notification (Research Track)', date: '2026-05-27' },
+      { type: 'Camera Ready', date: '2026-06-20' },
       { type: 'Conference', date: '2026-09-07', note: 'Sep 7-11, 2026' },
     ],
   },
@@ -401,7 +424,8 @@ export const conferences: Conference[] = [
       { type: 'Abstract', date: '2026-03-25' },
       { type: 'Full Paper', date: '2026-04-01' },
       { type: 'Supplementary', date: '2026-04-08' },
-      { type: 'Notification', date: '2026-07-07' },
+      { type: 'Rebuttal', date: '2026-06-04' },
+      { type: 'Notification', date: '2026-07-09' },
       { type: 'Camera Ready', date: '2026-08-06' },
       { type: 'Conference', date: '2026-11-10', note: 'Nov 10-14, 2026 (34th ACM MM)' },
     ],
@@ -416,9 +440,11 @@ export const conferences: Conference[] = [
     url: 'https://lrec2026.info/',
     timezone: 'AoE',
     deadlines: [
-      { type: 'Paper Submission', date: '2025-10-17' },
-      { type: 'Workshop Notification', date: '2025-11-17' },
-      { type: 'Conference', date: '2026-05-11', note: 'May 11-16, 2026 (15th LREC)' },
+      { type: 'Paper Submission', date: '2025-10-24' },
+      { type: 'Notification', date: '2026-02-13' },
+      { type: 'Camera Ready', date: '2026-03-15' },
+      { type: 'Early-bird Registration', date: '2026-03-31' },
+      { type: 'Conference', date: '2026-05-11', note: 'May 11-16, 2026 (main May 13-15), 15th LREC' },
     ],
   },
   {
@@ -429,11 +455,15 @@ export const conferences: Conference[] = [
     categories: ['Data', 'IR'],
     location: 'Copenhagen, Denmark',
     url: 'https://icde2027.github.io/',
-    timezone: 'AoE',
     deadlines: [
-      { type: 'Round 1 Submission', date: '2026-06-11' },
-      { type: 'Round 2 Submission', date: '2026-11-11' },
-      { type: 'Notification', date: '2027-02-10' },
+      { type: 'Round 1 Submission', date: '2026-06-11', note: '5:00 PM Pacific Time' },
+      { type: 'Round 1 Rebuttal', date: '2026-08-08', note: 'Aug 8-15' },
+      { type: 'Round 1 Notification', date: '2026-09-10' },
+      { type: 'Round 1 Camera Ready', date: '2026-10-10' },
+      { type: 'Round 2 Submission', date: '2026-11-11', note: '5:00 PM Pacific Time' },
+      { type: 'Round 2 Rebuttal', date: '2027-01-08', note: 'Jan 8-15, 2027' },
+      { type: 'Round 2 Notification', date: '2027-02-10' },
+      { type: 'Round 2 Camera Ready', date: '2027-03-10' },
       { type: 'Conference', date: '2027-05-17', note: 'May 17-21, 2027 (43rd ICDE)' },
     ],
   },
@@ -447,10 +477,15 @@ export const conferences: Conference[] = [
     url: 'https://2027.sigmod.org/',
     timezone: 'AoE',
     deadlines: [
-      { type: 'Submission', date: '2027-01-15' },
-      { type: 'Notification', date: '2027-03-08' },
-      { type: 'Camera Ready', date: '2027-04-02' },
-      { type: 'Conference', date: '2027-06-13', note: 'Jun 13-19, 2027 (co-located with PODS)' },
+      { type: 'Round 3 Abstract + COIs', date: '2026-07-10' },
+      { type: 'Round 3 Paper Submission', date: '2026-07-17' },
+      { type: 'Round 3 Notification', date: '2026-10-19' },
+      { type: 'Round 3 Final Notification', date: '2026-12-12' },
+      { type: 'Round 4 Abstract + COIs', date: '2026-10-10' },
+      { type: 'Round 4 Paper Submission', date: '2026-10-17' },
+      { type: 'Round 4 Notification', date: '2027-01-19' },
+      { type: 'Round 4 Final Notification', date: '2027-03-12' },
+      { type: 'Conference', date: '2027-06-13', note: 'Jun 13-19, 2027 (co-located with PODS). Research track: 4 rolling rounds/yr.' },
     ],
   },
   {
@@ -463,9 +498,13 @@ export const conferences: Conference[] = [
     url: 'https://2027.sigmod.org/',
     timezone: 'AoE',
     deadlines: [
-      { type: 'Revision Submission', date: '2027-02-22' },
-      { type: 'Final Notification', date: '2027-03-01' },
-      { type: 'Conference', date: '2027-06-13', note: 'Jun 13-19, 2027 (co-located with SIGMOD)' },
+      { type: 'Cycle 2 Abstract', date: '2026-12-03' },
+      { type: 'Cycle 2 Full Paper', date: '2026-12-10' },
+      { type: 'Cycle 2 Rebuttal', date: '2027-01-26', note: 'Jan 26-29, 2027' },
+      { type: 'Cycle 2 Initial Notification', date: '2027-02-08' },
+      { type: 'Cycle 2 Revision', date: '2027-02-22' },
+      { type: 'Cycle 2 Final Notification', date: '2027-03-01' },
+      { type: 'Conference', date: '2027-06-13', note: 'Jun 13-19, 2027 (co-located with SIGMOD). Cycle 1 (May-Sep 2026) passed.' },
     ],
   },
   {
@@ -474,11 +513,11 @@ export const conferences: Conference[] = [
     year: 2027,
     full_name: 'International Conference on Very Large Data Bases',
     categories: ['Data', 'IR'],
-    location: 'TBA',
-    url: 'https://www.vldb.org/2027/',
+    location: 'Athens, Greece',
+    url: 'https://vldb.org/2027/',
     deadlines: [
-      { type: 'PVLDB Rolling Submission', date: '2027-07-01', note: 'Monthly on 20th (PVLDB Vol.20)' },
-      { type: 'Conference', date: '2027-08-15', note: 'Dates TBA (typically Aug-Sep)' },
+      { type: 'PVLDB Rolling Submission', date: '2027-07-01', note: 'Monthly on 20th (PVLDB Vol.20 → VLDB 2027 Research Track)' },
+      { type: 'Conference', date: '2027-08-23', note: 'Aug 23-27, 2027' },
     ],
   },
   {
@@ -491,7 +530,8 @@ export const conferences: Conference[] = [
     url: 'https://www.cidrdb.org/cidr2027/',
     deadlines: [
       { type: 'Paper Submission', date: '2026-08-04' },
-      { type: 'Conference', date: '2027-01-24', note: 'Jan 24-27, 2027 (17th CIDR)' },
+      { type: 'Notification', date: '2026-10-06' },
+      { type: 'Conference', date: '2027-01-24', note: 'Jan 24-27, 2027 (17th CIDR), Mövenpick Hotel Amsterdam' },
     ],
   },
   {
@@ -518,7 +558,7 @@ export const conferences: Conference[] = [
     location: 'TBA',
     url: 'https://www.dasfaa.net/',
     deadlines: [
-      { type: 'Conference', date: '2027-04-15', note: 'Dates TBA (typically Apr-May). 2026 was Jeju, Korea.' },
+      { type: 'Conference', date: '2027-04-15', note: 'Dates/location TBA (2026 was Jeju, Korea, Apr 27-30)' },
     ],
   },
   {
@@ -535,7 +575,9 @@ export const conferences: Conference[] = [
       { type: 'Reviews Released', date: '2026-04-23' },
       { type: 'Author Response', date: '2026-04-23', note: 'Apr 23 - May 2' },
       { type: 'Notification', date: '2026-06-01' },
-      { type: 'Conference', date: '2026-08-18', note: 'Aug 18-20, 2026 (main)' },
+      { type: 'Tutorials', date: '2026-08-17' },
+      { type: 'Conference', date: '2026-08-18', note: 'Aug 18-20, 2026 (main), KIT Events' },
+      { type: 'Workshops', date: '2026-08-21' },
     ],
   },
   {
@@ -544,10 +586,10 @@ export const conferences: Conference[] = [
     year: 2027,
     full_name: 'International Conference on Artificial Intelligence and Statistics',
     categories: ['AI', 'ML'],
-    location: 'TBA',
+    location: 'Montréal, Canada',
     url: 'https://aistats.org/',
     deadlines: [
-      { type: 'Conference', date: '2027-05-02', note: 'Dates TBA (typically May). 2026 was Tangier, Morocco.' },
+      { type: 'Conference', date: '2027-05-01', note: 'Dates TBA (typically late April / early May). GC: Arno Solin; PC: Q. Berthet, A. Dieuleveut' },
     ],
   },
   {
@@ -556,10 +598,10 @@ export const conferences: Conference[] = [
     year: 2027,
     full_name: 'Annual Conference on Computational Learning Theory',
     categories: ['ML', 'AI'],
-    location: 'TBA',
-    url: 'https://learningtheory.org/',
+    location: 'Tokyo, Japan',
+    url: 'https://learningtheory.org/colt2027/',
     deadlines: [
-      { type: 'Conference', date: '2027-07-01', note: 'Dates TBA (typically Jun-Jul). 2026 was San Diego.' },
+      { type: 'Conference', date: '2027-06-28', note: 'Jun 28 - Jul 2, 2027 (40th COLT). Other dates TBD.' },
     ],
   },
   {
@@ -569,9 +611,9 @@ export const conferences: Conference[] = [
     full_name: 'International Joint Conference on Artificial Intelligence',
     categories: ['AI', 'ML', 'NLP', 'CV'],
     location: 'TBA',
-    url: 'https://www.ijcai.org/',
+    url: 'https://www.ijcai.org/future_conferences',
     deadlines: [
-      { type: 'Conference', date: '2027-08-15', note: 'Dates TBA (typically Aug). 2026 was Bremen.' },
+      { type: 'Conference', date: '2027-08-15', note: 'Host/dates TBA (announced at IJCAI-ECAI 2026 Bremen, Aug 15-21, 2026)' },
     ],
   },
   {
@@ -583,7 +625,7 @@ export const conferences: Conference[] = [
     location: 'TBA',
     url: 'https://naacl.org/',
     deadlines: [
-      { type: 'Conference', date: '2027-06-01', note: 'Dates TBA (typically Apr-Jun)' },
+      { type: 'Conference', date: '2027-06-01', note: 'Dates/location TBA (typically Apr-Jun)' },
     ],
   },
   {
@@ -595,7 +637,7 @@ export const conferences: Conference[] = [
     location: 'TBA',
     url: 'https://sigir.org/',
     deadlines: [
-      { type: 'Conference', date: '2027-07-15', note: 'Dates TBA (typically Jul). 50th anniversary edition.' },
+      { type: 'Conference', date: '2027-07-15', note: 'Dates/location TBA (typically Jul). 50th anniversary edition.' },
     ],
   },
   {
@@ -607,7 +649,7 @@ export const conferences: Conference[] = [
     location: 'TBA',
     url: 'https://roboticsconference.org/',
     deadlines: [
-      { type: 'Conference', date: '2027-07-01', note: 'Dates TBA. 2026 was Sydney.' },
+      { type: 'Conference', date: '2027-07-01', note: 'Dates/location TBA (2026 was Sydney, Jul 13-17)' },
     ],
   },
   {
@@ -622,7 +664,7 @@ export const conferences: Conference[] = [
     deadlines: [
       { type: 'Abstract', date: '2026-04-10' },
       { type: 'Full Paper', date: '2026-04-10' },
-      { type: 'Conference', date: '2026-11-19', note: 'Nov 19-20, 2026 (joint with IS26, MDS26)' },
+      { type: 'Conference', date: '2026-11-19', note: 'Nov 19-20, 2026 (joint with IS26, MDS26), Salt Palace Convention Center' },
     ],
   },
   {
@@ -651,9 +693,9 @@ export const conferences: Conference[] = [
     timezone: 'AoE',
     deadlines: [
       { type: 'Workshop Proposal', date: '2026-05-25' },
-      { type: 'Paper Submission', date: '2026-08-21' },
-      { type: 'Notification', date: '2026-10-24' },
-      { type: 'Conference', date: '2026-12-14', note: 'Dec 14-17, 2026 (14th IEEE BigData)' },
+      { type: 'Paper Submission', date: '2026-08-21', note: 'Tentative (CFP not yet official)' },
+      { type: 'Notification', date: '2026-10-24', note: 'Tentative (CFP not yet official)' },
+      { type: 'Conference', date: '2026-12-14', note: 'Dec 14-17, 2026 (14th IEEE BigData), Sheraton Phoenix Downtown' },
     ],
   },
   {
@@ -663,28 +705,30 @@ export const conferences: Conference[] = [
     full_name: 'International Conference on Advances in Social Networks Analysis and Mining',
     categories: ['Data', 'Web', 'Knowledge'],
     location: 'Rabat, Morocco',
-    url: 'http://asonam.cpsc.ucalgary.ca/',
+    url: 'http://asonam.cpsc.ucalgary.ca/2026/CFP.php',
     timezone: 'AoE',
     deadlines: [
-      { type: 'Abstract', date: '2026-05-03' },
-      { type: 'Full Paper', date: '2026-05-10' },
+      { type: 'Abstract', date: '2026-04-19' },
+      { type: 'Full Paper', date: '2026-04-26' },
       { type: 'Tutorial Proposal', date: '2026-06-28' },
-      { type: 'Conference', date: '2026-08-24', note: 'Aug 24-27, 2026 (18th ASONAM)' },
+      { type: 'Notification', date: '2026-06-27' },
+      { type: 'Camera Ready', date: '2026-07-10' },
+      { type: 'Conference', date: '2026-08-24', note: 'Aug 24-27, 2026 (tutorials Aug 24), 18th ASONAM' },
     ],
   },
   {
-    id: 'icwsm-2026',
+    id: 'icwsm-2027',
     name: 'ICWSM',
-    year: 2026,
+    year: 2027,
     full_name: 'International Conference on Weblogs and Social Media',
     categories: ['Web', 'NLP', 'ML'],
-    location: 'Los Angeles, USA',
+    location: 'Edinburgh, Scotland',
     url: 'https://www.icwsm.org/',
     timezone: 'AoE',
     deadlines: [
-      { type: 'Round 3 Submission', date: '2026-01-15' },
-      { type: 'Round 3 Notification', date: '2026-03-15' },
-      { type: 'Conference', date: '2026-05-27', note: 'May 27-29, 2026 (20th ICWSM)' },
+      { type: 'Round 2 Submission', date: '2026-09-15' },
+      { type: 'Round 3 Submission', date: '2027-01-15' },
+      { type: 'Conference', date: '2027-05-01', note: 'May 2027 (exact dates TBA). ICWSM 2026 (Los Angeles) already held.' },
     ],
   },
   {
@@ -698,6 +742,8 @@ export const conferences: Conference[] = [
     timezone: 'AoE',
     deadlines: [
       { type: 'ARR Submission', date: '2026-08-03' },
+      { type: 'Commitment Deadline', date: '2026-10-11' },
+      { type: 'Notification', date: '2026-11-12' },
       { type: 'Conference', date: '2027-03-09', note: 'Mar 9-14, 2027 (20th EACL)' },
     ],
   },
@@ -728,6 +774,11 @@ export const conferences: Conference[] = [
     timezone: 'AoE',
     deadlines: [
       { type: 'ARR Submission', date: '2026-05-25' },
+      { type: 'Reviewer Registration', date: '2026-05-27' },
+      { type: 'Author-Reviewer Discussion', date: '2026-07-07', note: 'Jul 7-13' },
+      { type: 'Commitment Deadline', date: '2026-08-26' },
+      { type: 'Notification', date: '2026-09-07' },
+      { type: 'Camera Ready', date: '2026-09-30' },
       { type: 'Conference', date: '2026-11-06', note: 'Nov 6-10, 2026 (5th AACL & 15th IJCNLP)' },
     ],
   },
@@ -741,7 +792,10 @@ export const conferences: Conference[] = [
     url: 'https://2026.ieee-iros.org/',
     deadlines: [
       { type: 'Paper Submission', date: '2026-03-02' },
+      { type: 'Paper Video Submission', date: '2026-03-07' },
       { type: 'Notification', date: '2026-06-16' },
+      { type: 'Late-Breaking Results', date: '2026-07-31' },
+      { type: 'LBR Notification', date: '2026-08-07' },
       { type: 'Conference', date: '2026-09-27', note: 'Sep 27 - Oct 1, 2026' },
     ],
   },
@@ -757,8 +811,9 @@ export const conferences: Conference[] = [
     deadlines: [
       { type: 'Abstract', date: '2026-05-02' },
       { type: 'Full Paper', date: '2026-05-07' },
+      { type: 'Industry Track Submission', date: '2026-07-07' },
       { type: 'Notification', date: '2026-07-16' },
-      { type: 'Conference', date: '2026-10-25', note: 'Oct 25-29, 2026 (25th ISWC)' },
+      { type: 'Conference', date: '2026-10-25', note: 'Oct 25-29, 2026 (25th ISWC), The Nicolaus Hotel, Bari' },
     ],
   },
   {
@@ -770,8 +825,8 @@ export const conferences: Conference[] = [
     location: 'Hanoi, Vietnam',
     url: 'https://warwick.ac.uk/fac/sci/dcs/aamas2027/',
     deadlines: [
-      { type: 'Submission', date: '2026-10-15', note: 'Tentative Oct 2026 (TBC)' },
-      { type: 'Conference', date: '2027-05-03', note: 'May 3-7, 2027 (26th AAMAS)' },
+      { type: 'Submission Opens', date: '2026-10-01', note: 'Oct 2026 (exact date TBC)' },
+      { type: 'Conference', date: '2027-05-03', note: 'May 3-7, 2027 (26th AAMAS), JW Marriott Hotel Hanoi' },
     ],
   },
   {
@@ -780,15 +835,20 @@ export const conferences: Conference[] = [
     year: 2027,
     full_name: 'IEEE/CVF Winter Conference on Applications of Computer Vision',
     categories: ['CV', 'ML'],
-    location: 'TBA',
+    location: 'Buena Vista, FL, USA (Disney Springs)',
     url: 'https://wacv.thecvf.com/',
     timezone: 'AoE',
     deadlines: [
       { type: 'Round 1 Registration', date: '2026-06-19' },
       { type: 'Round 1 Submission', date: '2026-06-26' },
+      { type: 'Round 1 Supplementary', date: '2026-06-28' },
+      { type: 'Round 1 Rebuttal/Revision', date: '2026-08-21' },
+      { type: 'Round 2 Registration', date: '2026-08-21' },
       { type: 'Round 2 Submission', date: '2026-08-28' },
       { type: 'Round 2 Supplementary', date: '2026-08-30' },
-      { type: 'Conference', date: '2027-01-05', note: 'Jan 5-9, 2027' },
+      { type: 'Final Decisions', date: '2026-10-09' },
+      { type: 'Camera Ready', date: '2026-11-02' },
+      { type: 'Conference', date: '2027-01-04', note: 'Jan 4-8, 2027 (workshops Jan 4-5, main Jan 6-8)' },
     ],
   },
   {
@@ -803,9 +863,10 @@ export const conferences: Conference[] = [
     deadlines: [
       { type: 'Abstract', date: '2026-05-22' },
       { type: 'Full Paper', date: '2026-05-29' },
+      { type: 'Rebuttal Period', date: '2026-07-03', note: 'Jul 3-10' },
       { type: 'Notification', date: '2026-08-07' },
       { type: 'Author Registration', date: '2026-08-28' },
-      { type: 'Conference', date: '2026-11-23', note: 'Nov 23-26, 2026 (37th BMVC)' },
+      { type: 'Conference', date: '2026-11-23', note: 'Nov 23-26, 2026 (37th BMVC), Lancaster University' },
     ],
   },
   {
@@ -816,8 +877,18 @@ export const conferences: Conference[] = [
     categories: ['CV', 'ML', 'AI'],
     location: 'Osaka, Japan',
     url: 'https://accv2026.org/',
+    timezone: 'UTC',
     deadlines: [
-      { type: 'Conference', date: '2026-12-14', note: 'Dec 14-18, 2026 (18th ACCV, biennial)' },
+      { type: 'Workshop/Tutorial Proposal', date: '2026-06-28' },
+      { type: 'Paper Registration', date: '2026-07-03' },
+      { type: 'Paper Submission', date: '2026-07-05' },
+      { type: 'Supplementary Material', date: '2026-07-08' },
+      { type: 'Demo Abstract', date: '2026-08-06' },
+      { type: 'Reviews Released', date: '2026-08-26' },
+      { type: 'Rebuttal Deadline', date: '2026-09-02' },
+      { type: 'Notification', date: '2026-09-20' },
+      { type: 'Camera Ready', date: '2026-10-04' },
+      { type: 'Conference', date: '2026-12-14', note: 'Dec 14-18, 2026 (workshops Dec 14-15, main Dec 16-18), 18th ACCV' },
     ],
   },
 ];
