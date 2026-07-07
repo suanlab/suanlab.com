@@ -3,13 +3,14 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Search, FileText, BookOpen, GraduationCap } from 'lucide-react';
+import { Search, FileText, BookOpen, GraduationCap, Wand2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import type { BlogPostMeta } from '@/lib/blog';
 import type { Publication } from '@/data/publications';
 import type { Lecture } from '@/data/lectures';
+import { promptBuilders, promptSnippets } from '@/data/prompts';
 
 interface SearchClientProps {
   posts: BlogPostMeta[];
@@ -18,7 +19,7 @@ interface SearchClientProps {
 }
 
 interface SearchResult {
-  type: 'blog' | 'publication' | 'lecture';
+  type: 'blog' | 'publication' | 'lecture' | 'prompt';
   title: string;
   description: string;
   href: string;
@@ -100,6 +101,34 @@ export default function SearchClient({ posts, publications, lectures }: SearchCl
       }
     });
 
+    // Search prompt builders (titles/descriptions/tags)
+    promptBuilders.forEach((b) => {
+      const hay = `${b.title.ko} ${b.title.en} ${b.description.ko} ${b.description.en} ${b.tags.join(' ')}`.toLowerCase();
+      if (hay.includes(lowerQuery)) {
+        results.push({
+          type: 'prompt',
+          title: `${b.title.ko} (${b.title.en})`,
+          description: b.description.ko,
+          href: '/prompts/',
+          badges: ['빌더', ...b.tags.slice(0, 2)],
+        });
+      }
+    });
+
+    // Search prompt snippets
+    promptSnippets.forEach((s) => {
+      const hay = `${s.title.ko} ${s.title.en} ${s.description.ko} ${s.description.en} ${s.tags.join(' ')}`.toLowerCase();
+      if (hay.includes(lowerQuery)) {
+        results.push({
+          type: 'prompt',
+          title: `${s.title.ko} (${s.title.en})`,
+          description: s.description.ko,
+          href: '/prompts/',
+          badges: ['라이브러리', ...s.tags.slice(0, 2)],
+        });
+      }
+    });
+
     return results;
   }, [posts, publications, lectures]);
 
@@ -109,6 +138,7 @@ export default function SearchClient({ posts, publications, lectures }: SearchCl
   const blogResults = results.filter((r) => r.type === 'blog');
   const publicationResults = results.filter((r) => r.type === 'publication');
   const lectureResults = results.filter((r) => r.type === 'lecture');
+  const promptResults = results.filter((r) => r.type === 'prompt');
 
 
 
@@ -116,6 +146,7 @@ export default function SearchClient({ posts, publications, lectures }: SearchCl
     blog: '블로그 포스트',
     publication: '논문',
     lecture: '강의',
+    prompt: '프롬프트',
   };
 
   const renderResultGroup = (
@@ -209,6 +240,11 @@ export default function SearchClient({ posts, publications, lectures }: SearchCl
                 typeLabels.lecture,
                 <GraduationCap className="h-5 w-5 text-primary" />,
                 lectureResults
+              )}
+              {renderResultGroup(
+                typeLabels.prompt,
+                <Wand2 className="h-5 w-5 text-primary" />,
+                promptResults
               )}
             </>
           )}

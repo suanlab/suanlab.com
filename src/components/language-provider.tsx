@@ -46,6 +46,8 @@ const translations = {
     'quicklinks.youtube': '교육 영상 보기',
     'quicklinks.publications': '논문 목록',
     'quicklinks.projects': '프로젝트 목록',
+    'quicklinks.prompts': 'AI 연구 프롬프트',
+    'quicklinks.blog': '블로그 글 보기',
     
     'research.title': '연구 분야',
     'research.description': '데이터 사이언스와 인공지능 분야의 최신 기술을 연구합니다',
@@ -130,6 +132,8 @@ const translations = {
     'quicklinks.youtube': 'Watch Educational Videos',
     'quicklinks.publications': 'View Publications',
     'quicklinks.projects': 'View Projects',
+    'quicklinks.prompts': 'AI Research Prompts',
+    'quicklinks.blog': 'Read the Blog',
     
     'research.title': 'Research Areas',
     'research.description': 'We research cutting-edge technologies in Data Science and Artificial Intelligence',

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Brain, Database, Eye, BarChart3, Network, MapPin, Youtube, BookOpen, Newspaper, FolderKanban, AudioLines, ExternalLink, Calendar } from 'lucide-react';
+import { ArrowRight, Brain, Database, Eye, BarChart3, Network, MapPin, Youtube, BookOpen, Newspaper, FolderKanban, AudioLines, ExternalLink, Calendar, Wand2, PenLine } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -258,12 +258,14 @@ export function HomepageContent({
             </p>
           </div>
 
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { title: 'Research', description: t('quicklinks.research') as string, icon: BarChart3, href: '/research' },
               { title: 'YouTube', description: t('quicklinks.youtube') as string, icon: Youtube, href: '/youtube' },
               { title: 'Publications', description: t('quicklinks.publications') as string, icon: Newspaper, href: '/publication' },
               { title: 'Projects', description: t('quicklinks.projects') as string, icon: FolderKanban, href: '/project' },
+              { title: 'Prompts', description: t('quicklinks.prompts') as string, icon: Wand2, href: '/prompts' },
+              { title: 'Blog', description: t('quicklinks.blog') as string, icon: PenLine, href: '/blog' },
             ].map((link) => {
               const Icon = link.icon;
               return (

@@ -312,6 +312,10 @@ export const promptBuilders: PromptBuilder[] = [
       ];
       return lines.filter((l) => l !== false).join('\n');
     },
+    tips: [
+      { ko: '"이미 시도한 것들"을 구체적으로 적을수록 중복 제안이 줄고 날카로운 돌파구가 나옵니다.', en: 'The more specific "what you tried", the sharper and less redundant the ideas.' },
+      { ko: '출력 형식을 "검증 가능한 가설"로 두면 바로 다음 실험으로 이어갈 수 있습니다.', en: 'Pick "hypotheses" output to chain directly into the next experiment.' },
+    ],
   },
 
   // 2. 종합 품질 감사
@@ -1130,6 +1134,312 @@ export const promptBuilders: PromptBuilder[] = [
       const prereq = String(v.prereq ?? '').trim();
       const goal = String(v.goal ?? '').trim();
       return `당신은 뛰어난 1:1 튜터입니다. 아래 학습자에게 맞춰 개념을 설명해 주세요.\n\n## 학습 정보\n- 개념: ${String(v.concept ?? '').trim()}\n- 수준: ${levelMap[String(v.level ?? 'intermediate')]}\n${prereq ? `- 선수 지식: ${prereq}` : '- 선수 지식: 없음 (처음부터 설명)'}\n- 설명 깊이: ${depthMap[String(v.depth ?? 'intuition')]}\n- 비유/예시: ${v.analogy === 'no' ? '자제 (정확한 정의 중심)' : '적극 활용'}${goal ? `\n- 학습 목표: ${goal}` : ''}\n\n## 요청 사항\n1. **한 줄 요약**: 이 개념이 무엇인지 한 문장으로\n2. **왜 필요한가**: 해결하는 문제 / 등장 배경\n3. **직관적 설명**: 일상 비유 또는 시각화로 핵심 아이디어 전달\n4. **정식 설명**: 정의, 핵심 구성 요소, 작동 원리${v.depth !== 'intuition' ? '\n5. **수식/코드**: 핵심 수식과 (가능하면) Python/PyTorch 최소 코드' : ''}\n6. **예제**: 단계별로 풀어보는 작은 예 1~2개\n7. **흔한 오해 & 팁**: 학습자가 자주 헷갈리는 점과 주의점\n8. **점검 질문**: 학습을 확인할 수 있는 질문 3개\n\n## 톤\n- 친절하고 격려하는 어조, 대화형(질문을 던지며 점검)\n- 어려운 부분은 더 천천히, 여러 각도에서 재설명`;
+    },
+  },
+
+  // 14. (신규) 코드 생성 / 파이프라인 구현
+  {
+    id: 'code-gen',
+    title: { ko: '코드 생성 / 파이프라인 구현', en: 'Code Generation' },
+    description: {
+      ko: '알고리즘·데이터 파이프라인·유틸리티 구현을 지시하는 프롬프트를 생성합니다.',
+      en: 'Generate a prompt to implement an algorithm, pipeline, or utility.',
+    },
+    category: 'coding',
+    icon: 'file-text',
+    tags: ['구현', '파이프라인', '코딩'],
+    fields: [
+      { id: 'task', type: 'textarea', required: true, label: { ko: '구현할 작업', en: 'Task to implement' }, placeholder: { ko: '예: CSV를 읽어 결측치 처리 후 모델 학습 파이프라인', en: 'e.g. CSV → impute → train pipeline' } },
+      {
+        id: 'lang', type: 'select', default: 'python',
+        label: { ko: '언어/프레임워크', en: 'Language / framework' },
+        options: [
+          { value: 'python', label: { ko: 'Python', en: 'Python' } },
+          { value: 'pytorch', label: { ko: 'Python + PyTorch', en: 'Python + PyTorch' } },
+          { value: 'tf', label: { ko: 'Python + TensorFlow/Keras', en: 'Python + TF/Keras' } },
+          { value: 'pandas', label: { ko: 'Python + pandas/scikit-learn', en: 'Python + pandas/sklearn' } },
+          { value: 'cpp', label: { ko: 'C++', en: 'C++' } },
+          { value: 'js', label: { ko: 'JavaScript/TypeScript', en: 'JS/TS' } },
+        ],
+      },
+      {
+        id: 'style', type: 'multiselect',
+        label: { ko: '코드 스타일 요구 (복수 선택)', en: 'Code style (multi)' },
+        options: [
+          { value: 'typed', label: { ko: '타입 힌트 필수', en: 'Type hints' } },
+          { value: 'docstring', label: { ko: 'docstring/주석', en: 'Docstrings' } },
+          { value: 'test', label: { ko: '단위 테스트 포함', en: 'Unit tests' } },
+          { value: 'modular', label: { ko: '함수/클래스 분리', en: 'Modular' } },
+          { value: 'config', label: { ko: '설정 외부화(config)', en: 'Config-driven' } },
+          { value: 'log', label: { ko: '로깅 포함', en: 'Logging' } },
+        ],
+      },
+      { id: 'constraints', type: 'textarea', label: { ko: '제약/입출력 명세 (선택)', en: 'Constraints / I/O spec (optional)' } },
+    ],
+    tips: [
+      { ko: '복잡한 작업은 단계별로 나눠달라고 명시하면 더 안정적인 코드가 나옵니다.', en: 'Ask to break complex tasks into steps for more robust code.' },
+      { ko: '타입 힌트 + docstring을 요구하면 재사용성이 크게 올라갑니다.', en: 'Requesting type hints + docstrings boosts reusability.' },
+    ],
+    generate: (v) => {
+      const styleMap: Record<string, string> = {
+        typed: '- 모든 함수에 정확한 타입 힌트',
+        docstring: '- 모든 공개 함수/클래스에 docstring(Google 스타일)',
+        test: '- 핵심 함수별 pytest 단위 테스트 포함 (정상/경계/예외)',
+        modular: '- 단일 책임 원칙으로 함수·클래스 분리, 한 함수 50줄 이내 권장',
+        config: '- 하드코딩 금지, argparse/hydra/YAML config로 설정 분리',
+        log: '- 로깅(logging 모듈) 추가, 진행 단계와 경고를 기록',
+      };
+      const styles = (v.style as string[]) ?? [];
+      const cons = String(v.constraints ?? '').trim();
+      const langMap: Record<string, string> = { python: 'Python', pytorch: 'Python + PyTorch', tf: 'Python + TensorFlow/Keras', pandas: 'Python + pandas/scikit-learn', cpp: 'C++', js: 'JavaScript/TypeScript' };
+      return `당신은 시니어 ${langMap[String(v.lang ?? 'python')]} 엔지니어입니다. 아래 작업을 프로덕션 수준으로 구현해 주세요.\n\n## 작업\n${String(v.task ?? '').trim()}\n\n## 환경\n- 언어/프레임워크: ${langMap[String(v.lang ?? 'python')]}${cons ? `\n- 제약/입출력 명세:\n${cons}` : ''}\n\n## 코드 요구사항\n${(styles.length ? styles : ['typed', 'docstring', 'modular']).map((s) => styleMap[s] ?? s).join('\n')}\n- 외부 라이브러리는 안정적이고 널리 쓰이는 것 우선\n- 엣지 케이스(빈 입력·결측·대용량) 처리\n- 실행 예제(main 또는 사용 예시) 포함\n\n## 출력\n1. **파일 구조** (모듈이 여러 개면 트리로)\n2. **각 파일의 전체 코드** (코드 블록)\n3. **의존성** (requirements.txt / package.json)\n4. **실행 방법** 한 줄\n5. **복잡도**: 핵심 함수의 시간/공간 복잡도`;
+    },
+  },
+
+  // 15. (신규) 에러 분석 / 원인 진단
+  {
+    id: 'error-analysis',
+    title: { ko: '에러 분석 / 원인 진단', en: 'Error Analysis' },
+    description: {
+      ko: '에러 메시지·로그·예상치 못한 동작의 근본 원인을 진단하는 프롬프트를 생성합니다.',
+      en: 'Generate a root-cause diagnosis prompt from errors/logs.',
+    },
+    category: 'quality',
+    icon: 'shield-check',
+    tags: ['디버깅', '에러', '원인분석'],
+    fields: [
+      { id: 'symptom', type: 'textarea', required: true, label: { ko: '증상 / 에러 메시지', en: 'Symptom / error message' } },
+      { id: 'context', type: 'textarea', label: { ko: '상황 (무엇을 하려 했는지)', en: 'What you were trying to do' } },
+      { id: 'code', type: 'textarea', label: { ko: '관련 코드 (선택)', en: 'Related code (optional)' } },
+      { id: 'logs', type: 'textarea', label: { ko: '로그 / 스택트레이스 (선택)', en: 'Logs / stacktrace (optional)' } },
+      {
+        id: 'env', type: 'text',
+        label: { ko: '환경 (언어/프레임워크/버전)', en: 'Environment' },
+        placeholder: { ko: '예: Python 3.11, PyTorch 2.3, CUDA 12.1', en: 'e.g. Python 3.11, PyTorch 2.3, CUDA 12.1' },
+      },
+    ],
+    tips: [
+      { ko: '에러 재현 최소 예제(MCVE)를 같이 요구하면 원인 좁히기가 빨라집니다.', en: 'Ask for a minimal repro to narrow causes faster.' },
+      { ko: '로그/스택트레이스를 충분히 붙여넣을수록 정확도가 올라갑니다.', en: 'More log/stacktrace context improves accuracy.' },
+    ],
+    generate: (v) => {
+      const symptom = String(v.symptom ?? '').trim();
+      const ctx = String(v.context ?? '').trim();
+      const code = String(v.code ?? '').trim();
+      const logs = String(v.logs ?? '').trim();
+      const env = String(v.env ?? '').trim();
+      return `당신은 디버깅 전문가입니다. 아래 정보로 문제의 근본 원인(root cause)을 진단해 주세요.\n\n## 증상\n${symptom}${ctx ? `\n\n## 상황\n${ctx}` : ''}${env ? `\n\n## 환경\n${env}` : ''}${code ? `\n\n## 관련 코드\n\`\`\`\n${code}\n\`\`\`` : ''}${logs ? `\n\n## 로그 / 스택트레이스\n\`\`\`\n${logs}\n\`\`\`` : ''}\n\n## 요청 사항\n1. **가능한 원인 가설 3~5개** (가장 유력한 순). 각 가설의 근거를 로그/코드에서 인용.\n2. **각 가설을 확인하는 점검 방법** (로그 한 줄, 최소 실험, 디버거 포인트).\n3. **근본 원인 판별**: 가설 중 가장 설득력 있는 것과 이유.\n4. **수정 코드**: 근본 원인을 고치는 구체적 패치.\n5. **재발 방지**: 회귀 테스트와 가드(입력 검증/어설션/CI) 제안.\n6. **최소 재현 예제(MCVE)**: 에러를 가장 작게 재현하는 코드.\n\n주의: 추측은 "[추정]"으로 표시하고, 확실한 것만 단언해 주세요.`;
+    },
+  },
+
+  // 16. (신규) 하이퍼파라미터 튜닝 전략
+  {
+    id: 'hyperparam',
+    title: { ko: '하이퍼파라미터 튜닝 전략', en: 'Hyperparameter Tuning' },
+    description: {
+      ko: '모델·데이터에 맞는 하이퍼파라미터 탐색 전략을 수립하는 프롬프트를 생성합니다.',
+      en: 'Generate a hyperparameter search strategy prompt.',
+    },
+    category: 'ideation',
+    icon: 'flask-conical',
+    tags: ['튜닝', '최적화', '실험'],
+    fields: [
+      { id: 'model', type: 'text', required: true, label: { ko: '모델', en: 'Model' }, placeholder: { ko: '예: Transformer / ResNet50 / LightGBM', en: 'e.g. Transformer / ResNet50 / LightGBM' } },
+      { id: 'task', type: 'text', label: { ko: '태스크 / 데이터셋', en: 'Task / dataset' } },
+      { id: 'resources', type: 'text', label: { ko: '컴퓨팅 자원', en: 'Compute' }, placeholder: { ko: '예: GPU 2×A100, 2일 예산', en: 'e.g. 2×A100, 2-day budget' } },
+      {
+        id: 'method', type: 'select', default: 'auto',
+        label: { ko: '탐색 방법', en: 'Search method' },
+        options: [
+          { value: 'grid', label: { ko: 'Grid Search', en: 'Grid' } },
+          { value: 'random', label: { ko: 'Random Search', en: 'Random' } },
+          { value: 'bayesian', label: { ko: 'Bayesian (Optuna)', en: 'Bayesian' } },
+          { value: 'auto', label: { ko: '추천 받기', en: 'Recommend' } },
+        ],
+      },
+      { id: 'current', type: 'textarea', label: { ko: '현재 설정 / 결과 (선택)', en: 'Current config & results (optional)' } },
+    ],
+    generate: (v) => {
+      const methodMap: Record<string, string> = {
+        grid: 'Grid Search (이산 탐색 공간, 완전 탐색)',
+        random: 'Random Search (연속 공간에 효율적)',
+        bayesian: 'Bayesian 최적화 (Optuna/TPE, 적은 예산에 강점)',
+        auto: '데이터/자원을 고려해 가장 적합한 방법을 추천하고 이유 설명',
+      };
+      const cur = String(v.current ?? '').trim();
+      return `당신은 ML 하이퍼파라미터 최적화 전문가입니다. 아래 설정에 맞는 튜닝 전략을 수립해 주세요.\n\n## 설정\n- 모델: ${String(v.model ?? '').trim()}\n- 태스크/데이터셋: ${String(v.task ?? '미입력')}\n- 컴퓨팅 자원: ${String(v.resources ?? '미입력')}\n- 탐색 방법: ${methodMap[String(v.method ?? 'auto')]}${cur ? `\n- 현재 설정/결과:\n${cur}` : ''}\n\n## 요청 사항\n1. **탐색 공간**: 각 하이퍼파라미터별 (이름 / 의미 / 탐색 범위/후보 / 스케일 선형·로그) 표. 모델에 실제로 영향 큰 파라미터 우선.\n2. **탐색 전략**: 예산 배분, 초기 랜덤 단계 → 베이지안 등 단계적 계획. 동일 실험 반복 횟수·PRNG 시드.\n3. **평가 프로토콜**: 검증 방식(교차검증/held-out), 단일 목표 vs 다목표(성능+지연), 조기종료(EarlyStopping) 기준.\n4. **과적합 방지**: 검증셋 간접 튜닝 경고, 최종 평가는 별도 테스트셋 1회 권장.\n5. **Optuna 코드 스켈레톤** (study 정의, sampler/pruner, objective 함수, 시드 고정).\n6. **결과 해석 가이드**: 파라미터 중요도, 파레토 프론티어, 최종 선택 근거.`;
+    },
+  },
+
+  // 17. (신규) 학회 포스터 설계
+  {
+    id: 'poster',
+    title: { ko: '학회 포스터 설계', en: 'Conference Poster' },
+    description: {
+      ko: '학회 포스터의 레이아웃·핵심 메시지·시각화를 설계하는 프롬프트를 생성합니다.',
+      en: 'Generate a conference poster design prompt.',
+    },
+    category: 'writing',
+    icon: 'presentation',
+    tags: ['포스터', '학회', '디자인'],
+    fields: [
+      { id: 'title', type: 'text', required: true, label: { ko: '논문 제목', en: 'Paper title' } },
+      { id: 'summary', type: 'textarea', required: true, label: { ko: '연구 요약 (문제/방법/결과)', en: 'Summary (problem/method/result)' } },
+      {
+        id: 'audience', type: 'select', default: 'mixed',
+        label: { ko: '관객', en: 'Audience' },
+        options: [
+          { value: 'expert', label: { ko: '전문가 (같은 분야)', en: 'Experts' } },
+          { value: 'mixed', label: { ko: '혼합 (인접 분야 포함)', en: 'Mixed' } },
+          { value: 'broad', label: { ko: '광범위 (다른 분야)', en: 'Broad' } },
+        ],
+      },
+      {
+        id: 'format', type: 'select', default: 'a0',
+        label: { ko: '포스터 사이즈/방향', en: 'Size / orientation' },
+        options: [
+          { value: 'a0', label: { ko: 'A0 세로', en: 'A0 portrait' } },
+          { value: 'a0h', label: { ko: 'A0 가로', en: 'A0 landscape' } },
+          { value: '48x36', label: { ko: '48×36인치', en: '48×36 in' } },
+        ],
+      },
+    ],
+    generate: (v) => {
+      const audMap: Record<string, string> = { expert: '같은 분야 전문가 — 기술 디테일·수식 허용', mixed: '인접 분야 포함 — 핵심 아이디어는 비전문가도 이해', broad: '광범위 청중 — 비유와 큰 그림 위주' };
+      return `당신은 학회 포스터 디자인 전문가입니다. 아래 논문으로 효과적인 포스터 구조와 콘텐츠를 설계해 주세요.\n\n## 논문 정보\n- 제목: ${String(v.title ?? '').trim()}\n- 요약: ${String(v.summary ?? '').trim()}\n- 관객: ${audMap[String(v.audience ?? 'mixed')]}\n- 규격: ${String(v.format ?? 'a0')}\n\n## 요청 사항\n1. **핵심 메시지 1문장**: 포스터 최상단에 들어갈 "한 줄 테이크어웨이"\n2. **레이아웃 제안**: 섹션 배치(텍스트 박스/그림 위치)를 텍스트 다이어그램으로. F자/Z자 시선 흐름 고려.\n3. **섹션별 콘텐츠** (각 2~4문장, 포스터 분량에 맞게 압축):\n   - Hook/문제 · Method(그림 위주) · Key Results(수치+그래프) · Takeaway · 다음 단계/QR코드\n4. **시각화 제안**: 핵심 그림 2~3개(구조도·결과 그래프·비교표)의 역할과 그리는 법.\n5. **가독성 가이드**: 글자 크기(제목/본문/캡션), 색 대비, 여백, 3피트(1m) 거리에서 읽을 수 있는 최소 크기.\n6. **흔한 실수**: 텍스트 과다, 작은 글씨, 낮은 해상도 이미지 — 피하는 방법.`;
+    },
+  },
+
+  // 18. (신규) 학위논문 챕터/구조
+  {
+    id: 'thesis',
+    title: { ko: '학위논문 챕터 / 구조', en: 'Thesis Chapter' },
+    description: {
+      ko: '석박사 학위논문의 챕터 구조와 집필 계획을 세우는 프롬프트를 생성합니다.',
+      en: 'Generate a thesis chapter/outline prompt.',
+    },
+    category: 'writing',
+    icon: 'file-text',
+    tags: ['학위논문', '구조', '작성'],
+    fields: [
+      {
+        id: 'degree', type: 'select', default: 'phd',
+        label: { ko: '학위', en: 'Degree' },
+        options: [
+          { value: 'ms', label: { ko: '석사', en: 'Master' } },
+          { value: 'phd', label: { ko: '박사', en: 'PhD' } },
+        ],
+      },
+      { id: 'topic', type: 'text', required: true, label: { ko: '연구 주제', en: 'Research topic' } },
+      { id: 'contrib', type: 'textarea', required: true, label: { ko: '핵심 기여(들)', en: 'Key contributions' } },
+      {
+        id: 'chapter', type: 'select', default: 'all',
+        label: { ko: '작업할 챕터', en: 'Chapter to draft' },
+        options: [
+          { value: 'all', label: { ko: '전체 개요', en: 'Full outline' } },
+          { value: 'intro', label: { ko: '서론(Introduction)', en: 'Introduction' } },
+          { value: 'related', label: { ko: '관련연구(Related Work)', en: 'Related Work' } },
+          { value: 'method', label: { ko: '방법론(Methodology)', en: 'Methodology' } },
+          { value: 'exp', label: { ko: '실험(Experiments)', en: 'Experiments' } },
+          { value: 'concl', label: { ko: '결론(Conclusion)', en: 'Conclusion' } },
+        ],
+      },
+      { id: 'notes', type: 'textarea', label: { ko: '추가 메모 (논문/지도/제약)', en: 'Notes (papers/advisor/constraints)' } },
+    ],
+    generate: (v) => {
+      const chapterMap: Record<string, string> = {
+        all: '전체 챕터 개요',
+        intro: '서론(Introduction) 챕터',
+        related: '관련연구(Related Work) 챕터',
+        method: '방법론(Methodology) 챕터',
+        exp: '실험(Experiments) 챕터',
+        concl: '결론(Conclusion) 챕터',
+      };
+      const notes = String(v.notes ?? '').trim();
+      return `당신은 ${v.degree === 'ms' ? '석사' : '박사'} 학위논문 집필 어드바이저입니다. 아래 정보로 ${chapterMap[String(v.chapter ?? 'all')]} 구조와 집필 계획을 세워 주세요.\n\n## 연구 정보\n- 학위: ${v.degree === 'ms' ? '석사' : '박사'}\n- 주제: ${String(v.topic ?? '').trim()}\n- 핵심 기여:\n${String(v.contrib ?? '').trim()}${notes ? `\n- 추가 메모:\n${notes}` : ''}\n\n## 요청 사항\n${v.chapter === 'all' ? `1. **전체 챕터 개요**: 각 챕터(서론/관련연구/예비연구/방법론/실험/논의/결론)별 핵심 내용 2~3문장과 목표 분량(페이지).\n2. **챕터 간 논리 흐름**: 한 챕터의 결론이 다음 챕터의 동기가 되도록 스토리라인 설계.\n3. **집필 순서 권장**: 어느 챕터부터 쓰는 것이 효율적인지(보통 방법론·실험 → 관련연구 → 서론·결론).\n4. **채피언 챕터 후보**: 심사위원이 가장 중요하게 볼 챕터와 강화 방법.` : `1. **${chapterMap[String(v.chapter ?? 'intro')]}의 절(Section) 구조**: 소제목과 각 절의 핵심 메시지.\n2. **각 절별 집필 가이드**: 다뤄야 할 논점, 인용해야 할 문헌 유형, 금기(과장/사족).\n3. **시작 문장 후보 3개**: 첫 문단의 hook.\n4. **분량 배분**: 절별 예상 페이지 수.\n5. **디펜스 대비**: 이 챕터에서 심사위원이 꼬리질문할 만한 포인트와 답변 방향.`}\n\n## 톤\n- 학위논문 다운 공식·정밀한 문체, 명확한 기여 명시.`;
+    },
+  },
+
+  // 19. (신규) 모델카드 / 데이터시트
+  {
+    id: 'model-card',
+    title: { ko: '모델카드 / 데이터시트', en: 'Model Card / Datasheet' },
+    description: {
+      ko: '모델카드 또는 데이터시트를 작성하는 프롬프트를 생성합니다 (투명성·윤리 강화).',
+      en: 'Generate a model card or dataset datasheet prompt.',
+    },
+    category: 'quality',
+    icon: 'shield-check',
+    tags: ['모델카드', '데이터시트', '윤리'],
+    fields: [
+      {
+        id: 'kind', type: 'select', default: 'model',
+        label: { ko: '문서 종류', en: 'Document type' },
+        options: [
+          { value: 'model', label: { ko: '모델카드 (Model Card)', en: 'Model Card' } },
+          { value: 'data', label: { ko: '데이터시트 (Datasheet)', en: 'Datasheet' } },
+        ],
+      },
+      { id: 'name', type: 'text', required: true, label: { ko: '모델/데이터셋 이름', en: 'Name' } },
+      { id: 'desc', type: 'textarea', required: true, label: { ko: '개요 (무엇인지 한 문단)', en: 'Overview' } },
+      { id: 'details', type: 'textarea', label: { ko: '세부 정보 (학습/구성/성능/한계)', en: 'Details (training/composition/performance/limits)' } },
+    ],
+    generate: (v) => {
+      const isModel = v.kind !== 'data';
+      return `당신은 AI 투명성 문서 작성 전문가입니다. 아래 정보로 ${isModel ? '모델카드(Model Card, Mitchell et al. 2019 규격)' : '데이터시트(Datasheet for Datasets, Gebru et al. 2018 규격)'}를 작성해 주세요.\n\n## 대상\n- 이름: ${String(v.name ?? '').trim()}\n- 개요: ${String(v.desc ?? '').trim()}${String(v.details ?? '').trim() ? `\n- 세부 정보:\n${String(v.details ?? '').trim()}` : ''}\n\n## 요청: 다음 섹션을 마크다운으로 작성\n${isModel ? `- **모델 개요**(용도·아키텍처·입출력)\n- **의도된 용도와 부적절한 용도**\n- **학습 데이터**(출처·규모·전처리)\n- **평가**(데이터·지표·결과·베이스라인)\n- **윤리·편향·리스크**(알려진 편향·영향 평가)\n- **환경 영향**(탄소 배출 추정 등)\n- **인용·라이선스·연락처**` : `- **동기**(왜 만들었는가)\n- **구성**(인스턴스·속성·라벨·통계)\n- **수집 프로세스**(출처·방법·시기·근로자)\n- **전처리/정제/라벨링**\n- **분포**(의도·의도하지 않은 편향)\n- **유지보수·라이선스·윤리 검토**`}\n\n모르는 항목은 "[작성자가 보강 필요]"로 표시. 과장·허위 정보 금지. 공정성/편향 섹션은 구체적으로.`;
+    },
+  },
+
+  // 20. (신규) 데이터 정제 파이프라인
+  {
+    id: 'data-cleaning',
+    title: { ko: '데이터 정제 파이프라인', en: 'Data Cleaning Pipeline' },
+    description: {
+      ko: '결측·이상치·중복·타입 문제를 처리하는 정제 파이프라인을 설계합니다.',
+      en: 'Design a data-cleaning pipeline (missing/outliers/duplicates/types).',
+    },
+    category: 'coding',
+    icon: 'database',
+    tags: ['데이터', '전처리', '파이프라인'],
+    fields: [
+      { id: 'desc', type: 'textarea', required: true, label: { ko: '데이터 설명 (컬럼/형태/목적)', en: 'Data description' } },
+      {
+        id: 'issues', type: 'multiselect', required: true,
+        label: { ko: '해결할 문제 (복수 선택)', en: 'Issues (multi)' },
+        options: [
+          { value: 'missing', label: { ko: '결측치', en: 'Missing values' } },
+          { value: 'outlier', label: { ko: '이상치', en: 'Outliers' } },
+          { value: 'dup', label: { ko: '중복', en: 'Duplicates' } },
+          { value: 'dtype', label: { ko: '타입/인코딩', en: 'Types/encoding' } },
+          { value: 'inconsistent', label: { ko: '불일치/포맷', en: 'Inconsistent/format' } },
+          { value: 'leakage', label: { ko: '데이터 누수 방지', en: 'Leakage prevention' } },
+          { value: 'imbalance', label: { ko: '클래스 불균형', en: 'Class imbalance' } },
+        ],
+      },
+      {
+        id: 'lang', type: 'select', default: 'pandas',
+        label: { ko: '도구', en: 'Tool' },
+        options: [
+          { value: 'pandas', label: { ko: 'pandas', en: 'pandas' } },
+          { value: 'pyspark', label: { ko: 'PySpark', en: 'PySpark' } },
+          { value: 'sklearn', label: { ko: 'pandas + sklearn pipeline', en: 'pandas + sklearn' } },
+        ],
+      },
+      { id: 'target', type: 'text', label: { ko: '타겟 변수 (선택)', en: 'Target variable (optional)' } },
+    ],
+    generate: (v) => {
+      const issueMap: Record<string, string> = {
+        missing: '결측치 처리(MCAR/MAR/MNAR 판단 → 삭제/평균/중앙/KNN/모델 기반)',
+        outlier: '이상치 탐지(IQR·Z-score·도메인 규칙)과 처리(삭제/클리핑/변환)',
+        dup: '중복 식별 및 제거(부분 중복/정확 중복 구분)',
+        dtype: '타입 변환·카테고리 인코딩(원핫/타깃/순서)',
+        inconsistent: '포맷 정규화(날짜·문자열·단위·대소문자)',
+        leakage: '데이터 누수 방지(train/test 분리 후 전처리, 스케일러/인코더는 train에만 fit)',
+        imbalance: '클래스 불균형 처리(가중치/오버/언더/SMOTE — train에만)',
+      };
+      const issues = (v.issues as string[]) ?? [];
+      const langMap: Record<string, string> = { pandas: 'pandas', pyspark: 'PySpark', sklearn: 'pandas + scikit-learn Pipeline' };
+      return `당신은 데이터 엔지니어링 전문가입니다. 아래 데이터의 정제 파이프라인을 설계하고 ${langMap[String(v.lang ?? 'pandas')]} 코드를 작성해 주세요.\n\n## 데이터\n${String(v.desc ?? '').trim()}${String(v.target ?? '').trim() ? `\n- 타겟 변수: ${String(v.target ?? '').trim()}` : ''}\n\n## 해결할 문제\n${issues.map((i) => `- ${issueMap[i] ?? i}`).join('\n')}\n\n## 요청 사항\n1. **파이프라인 단계**: 각 단계의 목적·입출력·주의점을 번호로 정리(EDA → 결측 → 이상치 → 타입 → 인코딩 → 분할 → 스케일링).\n2. **재현 가능/누수 방지**: 모든 fit은 train에만, transform은 train/val/test에 동일 적용. 랜덤 시드 고정.\n3. **${langMap[String(v.lang ?? 'pandas')]} 코드**: 함수/클래스로 모듈화. sklearn Pipeline/ColumnTransformer 권장(해당 시).\n4. **검증**: 정제 전후 통계·분포 변화를 점검하는 코드.\n5. **결정 근거**: 결측치/이상치 처리 방식을 고른 이유를 주석으로 명시.\n\n## 출력\n마크다운: 설명 + 코드 블록. 하드코딩 피하고 컬럼명은 일반화.`;
     },
   },
 ];

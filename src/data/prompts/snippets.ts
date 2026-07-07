@@ -469,7 +469,8 @@ PDF: [파일 경로 또는 파일명]`,
     description: { ko: '주제에 대해 다각도로 연구 아이디어를 발산합니다.', en: 'Brainstorm research ideas from many angles.' },
     category: 'ideation',
     tags: ['아이디어', '브레인스토밍'],
-    content: `주제 "[주제]"에 대해 연구 아이디어를 다음 각도에서 3개씩, 총 15개 발산해 주세요:
+    variables: [{ name: 'topic', label: { ko: '주제', en: 'Topic' } }],
+    content: `주제 "{{topic}}"에 대해 연구 아이디어를 다음 각도에서 3개씩, 총 15개 발산해 주세요:
 1. 기존 방법의 약점 공략
 2. 다른 분야 기법 차용(물리/생물/통계)
 3. 새로운 데이터/평가 관점
@@ -478,4 +479,277 @@ PDF: [파일 경로 또는 파일명]`,
 
 각 아이디어: 한 줄 설명 + 왜 흥미로운지 + 대략적 난이도. 평가는 나중에 하므로 양 위주로.`,
   },
+
+  // ── 추가 스니펫 (v2 확장) ──
+  {
+    id: 'snip-commit-msg',
+    title: { ko: '커밋 메시지 / PR 설명', en: 'Commit message & PR' },
+    description: { ko: '변경 diff를 Conventional Commits + PR 본문으로 정리합니다.', en: 'Turn a diff into a commit msg + PR body.' },
+    category: 'coding',
+    tags: ['git', 'PR'],
+    variables: [
+      { name: 'summary', label: { ko: '변경 요약', en: 'Change summary' } },
+      { name: 'diff', label: { ko: 'diff/설명', en: 'diff / description' } },
+    ],
+    content: `아래 변경을 Conventional Commits 규격의 커밋 메시지와 GitHub PR 본문으로 작성해 주세요.
+변경 요약: {{summary}}
+diff/설명:
+{{diff}}
+
+출력:
+1. 커밋 메시지 (제목 50자 이내, type: scope: subject + 본문 bullet)
+2. PR 제목 + 본문(## 배경 / ## 변경사항 / ## 테스트 / ## 체크리스트)`,
+  },
+  {
+    id: 'snip-naming',
+    title: { ko: '변수/함수 네이밍', en: 'Naming help' },
+    description: { ko: '의도를 잘 드러내는 이름 후보를 제안합니다.', en: 'Suggest intention-revealing names.' },
+    category: 'coding',
+    tags: ['네이밍', '가독성'],
+    variables: [{ name: 'thing', label: { ko: '이름 지을 대상/역할', en: 'What to name / role' } }],
+    content: `"{{thing}}"의 역할을 하는 변수/함수/클래스 이름 후보를 각각 5개씩 제안해 주세요.
+각 후보에: 왜 좋은지(명확성/관례/발음) 1줄. 그리고 가장 추천하는 1개와 이유.`,
+  },
+  {
+    id: 'snip-cfg-readme',
+    title: { ko: 'README 작성', en: 'Write a README' },
+    description: { ko: '프로젝트 README 구조와 초안을 작성합니다.', en: 'Draft a project README.' },
+    category: 'writing',
+    tags: ['README', '문서'],
+    variables: [{ name: 'project', label: { ko: '프로젝트 설명', en: 'Project description' } }],
+    content: `다음 프로젝트의 GitHub README를 작성해 주세요: {{project}}
+포함 섹션: 배지(선택) · 제목+한줄소개 · 데모/스크린샷 · 기능 · 설치 · 사용법 · 설정 · 예제 · 테스트 · 기여 가이드 · 라이선스.
+마크다운, 초보자도 따라할 수 있게, 코드 블록 포함.`,
+  },
+  {
+    id: 'snip-error-handle',
+    title: { ko: '에러 처리 설계', en: 'Error-handling design' },
+    description: { ko: '함수의 예외 케이스와 처리 전략을 설계합니다.', en: 'Design exception cases and handling.' },
+    category: 'coding',
+    tags: ['예외', '안정성'],
+    variables: [{ name: 'func', label: { ko: '함수/기능 설명', en: 'Function description' } }],
+    content: `다음 함수의 에러 처리를 설계해 주세요: {{func}}
+1. 발생 가능한 예외 케이스 전부 (입력/환경/의존성/상태)
+2. 각 케이스별 처리 전략(raise/기본값/재시도/사용자 메시지)
+3. 커스텀 예외 계층 제안
+4. Python 코드 예시 (try/except + 로깅)
+5. 호출자가 알아야 할 계약(contract)`,
+  },
+  {
+    id: 'snip-optimize',
+    title: { ko: '성능 최적화', en: 'Performance optimization' },
+    description: { ko: '느린 코드의 병목을 찾고 최적화 방안을 제시합니다.', en: 'Find bottlenecks and optimize.' },
+    category: 'coding',
+    tags: ['성능', '최적화'],
+    variables: [{ name: 'code', label: { ko: '코드/상황', en: 'Code / situation' } }],
+    content: `다음 코드의 성능을 분석·최적화해 주세요:
+{{code}}
+1. 병목 구간 추정 (시간/공간 복잡도 근거)
+2. 프로파일링 방법 (cProfile/timeit/line_profiler)
+3. 최적화 전략 후보 (알고리즘 개선 / 벡터화 / 캐싱 / 병렬화 / I/O)
+4. Before/After 코드 + 예상 개선 폭
+5. 가독성을 해치지 않는 선에서의 권장안`,
+  },
+  {
+    id: 'snip-translate',
+    title: { ko: '코드 번역/포팅', en: 'Translate/port code' },
+    description: { ko: '한 언어/프레임워크 코드를 다른 것으로 번역합니다.', en: 'Port code between languages/frameworks.' },
+    category: 'coding',
+    tags: ['포팅', '번역'],
+    variables: [
+      { name: 'from', label: { ko: '원본 언어/프레임워크', en: 'From' } },
+      { name: 'to', label: { ko: '대상 언어/프레임워크', en: 'To' } },
+      { name: 'code', label: { ko: '코드', en: 'Code' } },
+    ],
+    content: `다음 {{from}} 코드를 {{to}}로 번역(포팅)해 주세요. 의미와 동작을 동일하게 유지:
+{{code}}
+1. 번역된 전체 코드 (관용구 활용, 단순 직역 금지)
+2. 주요 차이점/주의점 (표준 라이브러리, 타입 시스템, 생태계)
+3. 원본에 없는 대상 언어 특유의 개선이 가능하면 병행 표시`,
+  },
+  {
+    id: 'snip-survey-question',
+    title: { ko: '연구 질문 다듬기', en: 'Refine a research question' },
+    description: { ko: '모호한 아이디어를 명확하고 검증 가능한 연구 질문으로 다듬습니다.', en: 'Sharpen a vague idea into a testable RQ.' },
+    category: 'ideation',
+    tags: ['연구질문', '기획'],
+    variables: [{ name: 'idea', label: { ko: '초안 아이디어', en: 'Draft idea' } }],
+    content: `다음 초안을 명확하고 검증 가능한 연구 질문(RQ)으로 다듬어 주세요: "{{idea}}"
+1. RQ 후보 5개 (각: 독립/종속 변수, 검증 가능성, novelty)
+2. 각 RQ의 평가(의미있는가 / 측정 가능한가 / 범위 적절한가)
+3. 가장 추천하는 RQ와 그것을 검증할 최소 실험 1개
+4. 피해야 할 함정(너무 광범위/자명/측정 불가)`,
+  },
+  {
+    id: 'snip-baseline',
+    title: { ko: '베이스라인 선정', en: 'Baseline selection' },
+    description: { ko: '연구에 적합한 베이스라인과 비교 조건을 선정합니다.', en: 'Pick baselines and fair comparison conditions.' },
+    category: 'strategy',
+    tags: ['베이스라인', '비교'],
+    variables: [{ name: 'method', label: { ko: '제안 방법 요약', en: 'Proposed method' } }],
+    content: `제안 방법을 위한 베이스라인을 선정해 주세요: {{method}}
+1. 필수 베이스라인 3~5개 (왜 이것들이어야 하는지: 분야 표준/SOTA/단순)
+2. 공정한 비교 조건 (데이터 분할/하이퍼파라미터 튜닝 예산/평가 지표 통일)
+3. ablation 후보 (제안 구성요소별 기여 측정)
+4. "우리 방법이 더 좋다"고 설득하려면 필수로 넘겨야 할 비교 시나리오`,
+  },
+  {
+    id: 'snip-peer-feedback',
+    title: { ko: '동료 피드백 요청', en: 'Request peer feedback' },
+    description: { ko: '초안에 대해 구체적이고 건설적인 피드백을 요청합니다.', en: 'Ask for specific, constructive feedback.' },
+    category: 'writing',
+    tags: ['피드백', '커뮤니케이션'],
+    variables: [{ name: 'draft', label: { ko: '초안 요약', en: 'Draft summary' } }],
+    content: `다음 초안에 대해 건설적이고 구체적인 피드백을 주세요: {{draft}}
+1. 강점 (유지해야 할 점)
+2. 약점/혼란스러운 점 (위치 인용)
+3. 개선 제안 (우선순위 순, 3~5개)
+4. 추가로 필요한 근거/데이터/인용
+톤: 동료 대 동료, 직설적이되 건설적으로.`,
+  },
+  {
+    id: 'snip-literature-gap',
+    title: { ko: 'Research Gap 도출', en: 'Find research gaps' },
+    description: { ko: '주제의 미해결 과제를 구조적으로 도출합니다.', en: 'Surface open problems systematically.' },
+    category: 'learning',
+    tags: ['gap', '문헌'],
+    variables: [{ name: 'topic', label: { ko: '주제', en: 'Topic' } }],
+    content: `주제 "{{topic}}"의 미해결 연구 과제(Gap)를 도출해 주세요.
+1. 현재 패러다임 요약 (주류 접근과 전제)
+2. 각 접근의 한계/가정이 깨지는 조건
+3. 데이터/평가/이론/응용 측면에서의 Gap 각 2~3개
+4. 각 Gap의 중요도(왜 풀어야 하는가)와 난이도
+5. 가장 매력적인 Gap 1개와 접근 실마리
+허위 인용 금지, [verification needed] 표시.`,
+  },
+  {
+    id: 'snip-repro-checklist',
+    title: { ko: '재현성 체크리스트', en: 'Reproducibility checklist' },
+    description: { ko: '논문/코드의 재현성을 점검하는 체크리스트를 만듭니다.', en: 'Build a reproducibility checklist.' },
+    category: 'quality',
+    tags: ['재현성', '체크리스트'],
+    content: `ML 연구 재현성 체크리스트를 작성해 주세요 (NeurIPS Reproducibility Checklist 참고).
+영역별 항목과 ✅/⚠️/❌ 판정 기준:
+1. 데이터 (출처/전처리/분할/해시)
+2. 코드 (공개 여부/의존성 고정/빌드 방법)
+3. 모델 (체크포인트/아키텍처/가중치)
+4. 하이퍼파라미터 (전수 기록/탐색 범위)
+5. 실험 (시드/하드웨어/실행 명령)
+6. 결과 (통계/오차표시/벤치마드 버전)
+각 항목별 누락 시 위험도.`,
+  },
+  {
+    id: 'snip-timeline',
+    title: { ko: '연구 주차별 타임라인', en: 'Weekly research timeline' },
+    description: { ko: '목표까지의 주차별 마일스톤 타임라인을 만듭니다.', en: 'Weekly milestones toward a goal.' },
+    category: 'strategy',
+    tags: ['일정', '계획'],
+    variables: [
+      { name: 'goal', label: { ko: '목표', en: 'Goal' } },
+      { name: 'weeks', label: { ko: '기간(주)', en: 'Weeks' }, default: '12' },
+    ],
+    content: `목표 "{{goal}}"을 {{weeks}}주 안에 달성하기 위한 주차별 타임라인을 만들어 주세요.
+- 각 주: 마일스톤 / 핵심 산출물 / 의존성 / 위험
+- 데드라인(학회/발표) 역산 포함
+- 베이스라인 구축 → 실험 → 분석 → 작성 버퍼 순서
+- 2주 단위 checkpoint와 "지연 시 생략 가능" 항목 표시`,
+  },
+  {
+    id: 'snip-abstract-review',
+    title: { ko: '초록 비평', en: 'Critique an abstract' },
+    description: { ko: '초록을 리뷰어 관점에서 비평하고 개선안을 줍니다.', en: 'Critique & improve an abstract.' },
+    category: 'writing',
+    tags: ['초록', '리뷰'],
+    variables: [{ name: 'abstract', label: { ko: '초록', en: 'Abstract' } }],
+    content: `다음 초록을 깐깐한 리뷰어 관점에서 비평해 주세요: {{abstract}}
+1. 구조 점검 (problem → gap → solution → result → impact 흐름)
+2. 모호/과장 표현, 빠진 수치
+3. 설득력 약한 부분과 근거 부족
+4. 한 문장씩 개선 제안 (Before/After)
+5. 150/250단어 분량에 맞춘 최종 다듬은 버전`,
+  },
+  {
+    id: 'snip-prompt-improve',
+    title: { ko: '프롬프트 개선', en: 'Improve a prompt' },
+    description: { ko: '기존 프롬프트를 더 명확하고 효과적으로 개선합니다.', en: 'Make an existing prompt clearer/stronger.' },
+    category: 'learning',
+    tags: ['프롬프트', '개선'],
+    variables: [{ name: 'prompt', label: { ko: '원본 프롬프트', en: 'Original prompt' } }],
+    content: `다음 프롬프트를 더 효과적으로 개선해 주세요: {{prompt}}
+1. 현재 프롬프트의 약점 (모호성/역할 부재/출력 형식 불명확 등)
+2. 개선 원칙 적용 (역할 부여, 컨텍스트, 명확한 출력 형식, 예시/제약)
+3. 개선된 프롬프트 전문
+4. Before/After 비교와 기대 효과`,
+  },
+  {
+    id: 'snip-meeting-minutes',
+    title: { ko: '회의록 자동 정리', en: 'Meeting minutes' },
+    description: { ko: '회의 노트/녹취록을 구조화된 회의록으로 정리합니다.', en: 'Turn notes into structured minutes.' },
+    category: 'writing',
+    tags: ['회의록', '정리'],
+    variables: [{ name: 'notes', label: { ko: '회의 노트', en: 'Raw notes' } }],
+    content: `아래 회의 노트를 구조화된 회의록으로 정리해 주세요: {{notes}}
+구성:
+1. 회의 개요 (일시/참석자/안건)
+2. 논의 내용 (안건별 요약, 양측 의견)
+3. 결정 사항
+4. 액션 아이템 (누가/언까지/무엇을 표)
+5. 차기 회의 안건
+톤: 객관적·간결.`,
+  },
+  {
+    id: 'snip-reg-explain',
+    title: { ko: '규제/정책 요약', en: 'Summarize a regulation' },
+    description: { ko: 'AI 규제·논문·정책 문서를 핵심으로 요약합니다.', en: 'Summarize a dense policy/paper doc.' },
+    category: 'learning',
+    tags: ['요약', '정책'],
+    variables: [{ name: 'doc', label: { ko: '문서/링크/텍스트', en: 'Document' } }],
+    content: `다음 문서를 연구자가 빠르게 이해할 수 있게 요약해 주세요: {{doc}}
+1. 한 문장 요약
+2. 핵심 포인트 5개 (불릿)
+3. 우리 연구/서비스에 미치는 영향
+4. 준수/대응해야 할 항목
+5. 모호하거나 추가 확인이 필요한 부분`,
+  },
+  {
+    id: 'snip-docstring',
+    title: { ko: 'docstring 생성', en: 'Generate docstrings' },
+    description: { ko: '함수/클래스에 Google 스타일 docstring을 붙입니다.', en: 'Add Google-style docstrings.' },
+    category: 'coding',
+    tags: ['docstring', '문서'],
+    variables: [{ name: 'code', label: { ko: '코드', en: 'Code' } }],
+    content: `아래 코드의 모든 공개 함수/클래스에 Google 스타일 docstring을 작성해 주세요: {{code}}
+- Args / Returns / Raises / Example 포함
+- 타입은 타입 힌트와 일치
+- 복잡한 로직은 1~2줄로 설명
+코드 전체를 다시 출력하되 docstring만 추가.`,
+  },
+  {
+    id: 'snip-critique-own',
+    title: { ko: '내 연구 비판', en: 'Self-critique my work' },
+    description: { ko: '내 연구를 가장 비판적인 리뷰어 관점에서 공략합니다.', en: 'Attack your own work like a harsh reviewer.' },
+    category: 'quality',
+    tags: ['자가비평', '리뷰'],
+    variables: [{ name: 'work', label: { ko: '연구 요약', en: 'Work summary' } }],
+    content: `다음 연구를 가장 비판적인 top-tier 리뷰어 관점에서 공격해 주세요: {{work}}
+1. 가장 약한 가정 3개와 반례
+2. 실험 설계의 구멍 (베이스라인/누수/통계)
+3. novelty에 대한 의심과 "이미 누군가 했을 법한" 근거
+4. 리젝 사유가 될 만한 점 5개
+5. 각 공격에 대한 우리 방어/추가 실험`,
+  },
+  {
+    id: 'snip-simple-explain',
+    title: { ko: '5살에게 설명 (ELI5)', en: 'Explain like I\'m 5' },
+    description: { ko: '어려운 개념을 일상 비유로 아주 쉽게 풉니다.', en: 'Explain a concept with everyday analogies.' },
+    category: 'learning',
+    tags: ['설명', '초급'],
+    variables: [{ name: 'concept', label: { ko: '개념', en: 'Concept' } }],
+    content: `"{{concept}}"을 전문 용어 없이 일상 비유로 설명해 주세요.
+1. 한 문장 정의 (10살도 이해)
+2. 일상 비유 1개 (요리/게임/장난감 등)
+3. "왜 필요한지"를 비유 안에서 설명
+4. 자주 묻는 질문 2개와 쉬운 답`,
+  },
 ];
+

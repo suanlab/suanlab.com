@@ -44,6 +44,14 @@ export interface PromptBuilder {
   tags: string[];
   fields: PromptField[];
   generate: (values: Record<string, string | string[]>) => string;
+  tips?: LocalizedText[];
+  example?: string;
+}
+
+export interface PromptSnippetVariable {
+  name: string;
+  label: LocalizedText;
+  default?: string;
 }
 
 export interface PromptSnippet {
@@ -53,6 +61,20 @@ export interface PromptSnippet {
   category: PromptCategory;
   tags: string[];
   content: string;
+  variables?: PromptSnippetVariable[];
+}
+
+export interface PromptWorkflowStep {
+  builderId: string;
+  note?: LocalizedText;
+}
+
+export interface PromptWorkflow {
+  id: string;
+  title: LocalizedText;
+  description: LocalizedText;
+  icon: string;
+  steps: PromptWorkflowStep[];
 }
 
 export const promptCategories: PromptCategoryInfo[] = [
@@ -90,3 +112,4 @@ export const promptCategories: PromptCategoryInfo[] = [
 
 export { promptBuilders } from './builders';
 export { promptSnippets } from './snippets';
+export { promptWorkflows } from './workflows';
