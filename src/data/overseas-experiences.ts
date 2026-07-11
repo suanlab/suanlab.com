@@ -8,11 +8,15 @@ export interface OverseasExperience {
 }
 
 export const overseasExperiences: OverseasExperience[] = [
+  { id: 33, purpose: '캐나다 횡단 여행 (예정)', countries: ['캐나다'], cities: '캐나다 횡단', period: '2026.07 (예정)', year: 2026 },
+  { id: 34, purpose: 'KCC 2026', countries: ['한국'], cities: '제주도', period: '2026.06', year: 2026 },
+  { id: 35, purpose: 'CVPR 2026', countries: ['미국'], cities: '덴버', period: '2026.06', year: 2026 },
+  { id: 36, purpose: 'DASFAA 2026', countries: ['한국'], cities: '제주도', period: '2026.04', year: 2026 },
+  { id: 37, purpose: 'AAAI 2026', countries: ['싱가포르'], cities: '싱가포르', period: '2026.01', year: 2026 },
   { id: 1, purpose: 'KJDB 2025', countries: ['일본'], cities: '나고야, 이세', period: '2025.12.12 ~ 2025.12.15', year: 2025 },
   { id: 2, purpose: 'ACL 2025', countries: ['오스트리아'], cities: '비엔나', period: '2025.07.23 ~ 2025.08.07', year: 2025 },
   { id: 3, purpose: '성지순례', countries: ['이집트'], cities: '이집트', period: '2025.02.02 ~ 2025.02.11', year: 2025 },
   { id: 4, purpose: 'NeurIPS 2024', countries: ['캐나다'], cities: '벤쿠버, 빅토리아', period: '2024.12.07 ~ 2024.12.17', year: 2024 },
-  { id: 5, purpose: '세미나 초청', countries: ['중국'], cities: '시안', period: '2024.08.11 ~ 2024.08.16', year: 2024 },
   { id: 6, purpose: 'Trip', countries: ['베트남'], cities: '다낭', period: '2024.08.02 ~ 2024.08.05', year: 2024 },
   { id: 7, purpose: 'DATA 2024', countries: ['프랑스', '독일', '스위스'], cities: '디종, 스트라스부르, 프랑크푸르트, 베른 등', period: '2024.06.30 ~ 2024.07.14', year: 2024 },
   { id: 8, purpose: 'BigComp 2024', countries: ['태국'], cities: '방콕', period: '2024.02.17 ~ 2024.02.22', year: 2024 },
@@ -81,6 +85,6 @@ export const continentColors: Record<string, string> = {
 // 통계
 export const overseasStats = {
   totalCountries: 23,
-  totalTrips: 32,
-  totalYears: 17, // 2008 ~ 2025
+  totalTrips: 36,
+  totalYears: 18, // 2008 ~ 2026
 };
