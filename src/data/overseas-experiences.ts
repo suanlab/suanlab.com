@@ -12,7 +12,7 @@ export const overseasExperiences: OverseasExperience[] = [
   { id: 35, purpose: 'CVPR 2026', countries: ['미국'], cities: '덴버', period: '2026.06', year: 2026 },
   { id: 36, purpose: 'DASFAA 2026', countries: ['한국'], cities: '제주도', period: '2026.04', year: 2026 },
   { id: 37, purpose: 'AAAI 2026', countries: ['싱가포르'], cities: '싱가포르', period: '2026.01', year: 2026 },
-  { id: 1, purpose: 'KJDB 2025', countries: ['일본'], cities: '이세', period: '2025.12.12 ~ 2025.12.14', year: 2025 },
+  { id: 1, purpose: 'KJDB 2025', countries: ['일본'], cities: '이세, 일본', period: '2025.12.12 ~ 2025.12.14', year: 2025 },
   { id: 2, purpose: 'ACL 2025', countries: ['오스트리아', '헝가리', '체코'], cities: '비엔나, 부다페스트, 프라하', period: '2025.07.27 ~ 2025.08.01', year: 2025 },
   { id: 3, purpose: '성지순례', countries: ['이집트'], cities: '이집트', period: '2025.02.02 ~ 2025.02.11', year: 2025 },
   { id: 4, purpose: 'NeurIPS 2024', countries: ['캐나다'], cities: '벤쿠버, 빅토리아', period: '2024.12.07 ~ 2024.12.17', year: 2024 },
