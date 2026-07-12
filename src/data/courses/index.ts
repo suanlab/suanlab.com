@@ -19,6 +19,15 @@ export interface Course {
 export const courses: Course[] = [
   // 2026년
   {
+    id: 103,
+    title: 'Agent AI & Multi Agent 단기강좌',
+    subtitle: '충북대학교 AI+ 데이터센터 단기강좌',
+    date: '2026.07.10',
+    location: '충북대학교 AI+ 데이터센터',
+    organization: '충북대학교 AI+ 데이터센터',
+    category: 'training',
+  },
+  {
     id: 93,
     title: 'Claude API 기반 Agent AI 단기강좌',
     subtitle: '한국디지털컨버전스학회 단기강좌',
