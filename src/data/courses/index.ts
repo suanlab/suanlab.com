@@ -19,13 +19,36 @@ export interface Course {
 export const courses: Course[] = [
   // 2026년
   {
+    id: 105,
+    title: '실생활 통계 및 데이터 분석 시각화 특강',
+    subtitle: '강원사대부설고등학교 특강',
+    date: '2026.07.13',
+    location: '강원사대부설고등학교',
+    organization: '강원사대부설고등학교',
+    category: 'lecture',
+    materials: [
+      { title: 'Colab 실습 1', url: 'https://drive.google.com/file/d/1IiswlJZ0C62dZf8gawJVYoRX24oWg4i0/view?usp=sharing', type: 'colab' },
+      { title: 'Colab 실습 2', url: 'https://drive.google.com/file/d/1n1EjKsrQkOmEwz6Nwgf169gDt7P0oa49/view?usp=sharing', type: 'colab' },
+      { title: 'Colab 실습 3', url: 'https://drive.google.com/file/d/1eOnixsb-zATdBQH0va-3Hn_PVoiYJcFP/view?usp=sharing', type: 'colab' },
+    ],
+  },
+  {
     id: 103,
     title: 'Agent AI & Multi Agent 단기강좌',
     subtitle: '충북대학교 AI+ 데이터센터 단기강좌',
     date: '2026.07.10',
-    location: '충북대학교 AI+ 데이터센터',
+    location: '충북대학교 E8-7동 417호',
     organization: '충북대학교 AI+ 데이터센터',
     category: 'training',
+  },
+  {
+    id: 104,
+    title: 'Agentic AI Research with Claude Code',
+    subtitle: 'AI4Research 워크숍 (2박 3일 집중 워크숍)',
+    date: '2026.06.11 ~ 2026.06.13',
+    location: '세명대학교 첨단정보관 322·303호 (충북 제천)',
+    organization: '세명대학교 (이수안 교수)',
+    category: 'camp',
   },
   {
     id: 93,
