@@ -16,6 +16,7 @@ const XIcon = ({ className }: { className?: string }) => (
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { VisitedCountriesMap } from '@/components/visited-countries-map';
 import AboutMe from './AboutMe';
 
 const BASE_URL = 'https://suanlab.com';
@@ -230,6 +231,11 @@ export default function SuanPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="pt-0">
+                  {/* Interactive Map */}
+                  <div className="mb-4">
+                    <VisitedCountriesMap />
+                  </div>
+
                   {/* Countries by Continent */}
                   <div className="space-y-3">
                     {(['Europe', 'Asia', 'America', 'Oceania', 'Africa'] as const).map((continent) => {
