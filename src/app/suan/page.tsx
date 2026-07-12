@@ -265,7 +265,7 @@ export default function SuanPage() {
                   <div className="mt-4 pt-3 border-t">
                     <p className="text-xs font-medium text-muted-foreground mb-2">Recent Trips</p>
                     <div className="space-y-1.5">
-                      {overseasExperiences.slice(0, 5).map((exp) => (
+                      {overseasExperiences.slice(0, 6).map((exp) => (
                         <div key={exp.id} className="flex items-center gap-2 text-xs">
                           <span className="text-muted-foreground w-20 shrink-0">{exp.period.split(' ~ ')[0]}</span>
                           <span className="font-medium truncate">{exp.cities}</span>
