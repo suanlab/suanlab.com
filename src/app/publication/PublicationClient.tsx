@@ -184,6 +184,10 @@ export default function PublicationClient({
                               ? 'bg-yellow-500 text-white hover:bg-yellow-600'
                               : pub.badge === 'KCI'
                               ? 'bg-blue-500 text-white hover:bg-blue-600'
+                              : pub.badge.includes('장려상')
+                              ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                              : pub.badge.includes('우수')
+                              ? 'bg-amber-500 text-white hover:bg-amber-600'
                               : pub.badge.includes('Best Paper Award Runner-up')
                               ? 'bg-orange-500 text-white hover:bg-orange-600'
                               : 'bg-destructive text-destructive-foreground'

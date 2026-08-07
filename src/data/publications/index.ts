@@ -503,7 +503,8 @@ export const publications: Publication[] = [
     "authors": "김지환, 신재광, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
-    "keywords": "수면 패턴 예측; Supervised Contrastive Learning; 노이즈 강건"
+    "keywords": "수면 패턴 예측; Supervised Contrastive Learning; 노이즈 강건",
+    "badge": "장려상"
   },
   {
     "id": 622,
@@ -530,7 +531,8 @@ export const publications: Publication[] = [
     "authors": "박윤조, 우종찬, 왕제교, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
-    "keywords": "지식 그래프; 멀티 에이전트; 군집 지능; 진로 의사결정"
+    "keywords": "지식 그래프; 멀티 에이전트; 군집 지능; 진로 의사결정",
+    "badge": "장려상"
   },
   {
     "id": 625,
@@ -548,7 +550,8 @@ export const publications: Publication[] = [
     "authors": "이겸수, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
-    "keywords": "피부 상태 평가; 백본 분리; 대조 학습; 다시점 지도"
+    "keywords": "피부 상태 평가; 백본 분리; 대조 학습; 다시점 지도",
+    "badge": "장려상"
   },
   {
     "id": 627,
@@ -611,7 +614,8 @@ export const publications: Publication[] = [
     "authors": "고상근, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
     "date": "2026",
-    "keywords": "잔여수명 예측; Run-to-Failure; 베어링; 딥러닝"
+    "keywords": "잔여수명 예측; Run-to-Failure; 베어링; 딥러닝",
+    "badge": "우수발표논문상"
   },
   // ============ 2025 Domestic Conferences ============
   {
@@ -799,7 +803,7 @@ export const publications: Publication[] = [
     "authors": "김병학, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월",
-    "badge": "[우수상]"
+    "badge": "우수상"
   },
   {
     "id": 248,
@@ -840,7 +844,7 @@ export const publications: Publication[] = [
     "authors": "김재성, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월",
-    "badge": "[최우수상]"
+    "badge": "최우수상"
   },
   {
     "id": 253,
@@ -1083,7 +1087,7 @@ export const publications: Publication[] = [
     "authors": "최하정, 배인수, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월",
-    "badge": "[장려상]"
+    "badge": "장려상"
   },
   {
     "id": 283,
@@ -1149,7 +1153,7 @@ export const publications: Publication[] = [
     "authors": "고상근, 이수안",
     "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2023년 12월",
-    "badge": "[우수발표논문상]"
+    "badge": "우수발표논문상"
   },
   {
     "id": 291,
@@ -1182,7 +1186,7 @@ export const publications: Publication[] = [
     "authors": "배인수, 이수안",
     "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월",
-    "badge": "[우수상]"
+    "badge": "우수상"
   },
   {
     "id": 295,
@@ -1191,7 +1195,7 @@ export const publications: Publication[] = [
     "authors": "현지원, 이수안",
     "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월",
-    "badge": "[장려상]"
+    "badge": "장려상"
   },
   {
     "id": 296,
@@ -1313,7 +1317,7 @@ export const publications: Publication[] = [
     "authors": "고상근, 장현수, 민정호, 이다혁, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2022), 한국정보과학회",
     "date": "2022년 06월",
-    "badge": "[장려상]"
+    "badge": "장려상"
   },
   {
     "id": 313,
@@ -1322,7 +1326,7 @@ export const publications: Publication[] = [
     "authors": "배기웅, 이수안, 이우기",
     "venue": "한국컴퓨터종합학술대회(KCC 2022), 한국정보과학회",
     "date": "2022년 06월",
-    "badge": "[우수상]"
+    "badge": "우수상"
   },
   {
     "id": 314,
@@ -1348,7 +1352,7 @@ export const publications: Publication[] = [
     "authors": "김예원, 김유정, 김주아, 이유정, 이우기, 이수안",
     "venue": "한국소프트웨어종합학술대회(KSC 2021), 한국정보과학회",
     "date": "2021년 12월",
-    "badge": "[장려상]"
+    "badge": "장려상"
   },
   {
     "id": 317,
@@ -1373,7 +1377,7 @@ export const publications: Publication[] = [
     "authors": "장현수, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2021), 한국정보과학회",
     "date": "2021년 07월",
-    "badge": "[장려상]"
+    "badge": "장려상"
   },
   // ============ 2020년 국내학술대회 ============
   {
@@ -1415,7 +1419,7 @@ export const publications: Publication[] = [
     "authors": "강명철, 이철기, 이수안, 이우기",
     "venue": "2020 춘계학술대회, 한국지식재산교육연구학회",
     "date": "2020년 06월",
-    "badge": "[우수논문]"
+    "badge": "우수논문"
   },
   // ============ 2019년 이전 국내학술대회 ============
   {
@@ -1599,7 +1603,7 @@ export const publications: Publication[] = [
     "authors": "서경식, 고상근, 이수안",
     "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
-    "badge": "[장려상]",
+    "badge": "장려상",
     "abstract": "원자재에는 금, 은과 같은 금속 뿐만 아니라 곡물, 육류, 에너지. 농산물 등 여러 가지 종류가 있다. 이러한 원자재는 우리의 생활들에 없어선 안될 요소들이다. 따라서 원자재 가격을 예측하는 연구가 필요하다. 본 논문에서는 니켈 가격데이터를 기반으로 Seq2seq, Transformer, Informer 세 가지 모델을 사용하여 시계열 예측 실험을 진행하였다. 실험은 학습 데이터를 4달, 6달로 나누고 테스트 데이터를 1달로 설정하여 두 가지 기준으로 진행하였다. 기준 1에서는 Transformer 모델이 기준 2에서는 Informer 모델이 가장 좋은 성능을 보여 기간이 장기간으로 갈수록 Informer 모델이 좋은 성능을 보인 것을 알 수 있다. 이러한 연구결과를 통해 앞으로의 원자재 가격 예측에 기여를 할 것으로 기대한다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224419"
   },
@@ -1630,7 +1634,7 @@ export const publications: Publication[] = [
     "authors": "김병학, 전제성, 이수안",
     "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
-    "badge": "[장려상]",
+    "badge": "장려상",
     "abstract": "자동차의 증가, 도로의 확장 등으로 인해 교통사고 발생률이 증가하고 있으며, 이로 인해 인명피해, 기물 파손 등 금전적인 피해도 증가하고 있다. 본 논문에서는 교통사고에 취약한 도로형태, 도로의 종류에 따라 사고 건수를 예측하는 딥러닝 모델을 제안하였다. 서울시 사고 데이터를 구별 도로형태, 인구수, 자동차 수, 사고 건수를 나누어 사용하였고, Linear, TF, FM, NTF 모델을 사용하여 사고 건수 예측 실험을 하였다. 실험 결과로는 NTF 모델에서 가장 우수한 성능을 보여주었다. 본 연구를 통하여 NTF 모델로 교통사고를 예측하는 결과를 볼 수 있었고, 향후 연구를 통하여 모델의 성능을 올리고 경량화하여 실생활에서도 사용할 수 있게 만들어 교통사고 분석 및 예측에 활용할 수 있다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224438"
   },
@@ -1732,7 +1736,7 @@ export const publications: Publication[] = [
     "authors": "고상근, 장현수, 민정호, 이다혁, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2022), 한국정보과학회",
     "date": "2022년 06월",
-    "badge": "[장려상]",
+    "badge": "장려상",
     "abstract": "본 연구에서는 데이터 획득 비용이 높아 충분한 학습 데이터를 획득하지 못하거나, 학습에 사용되는 데이터에 노이즈가 많이 포함되어 학습이 제대로 진행되지 못하는 상황에서 동일한 데이터이지만 서로 다른 모달의 동질적인 특징을 이용한 멀티모달 학습 방법이 노이즈에 견고하고, 일반화에 우수함을 실험을 통해 증명하였다. 실험 과정에서는 이미지 MNIST 데이터셋과 시퀀스 MNIST 데이터셋에 노이즈를 추가하여 사용하였다. 실험 비교를 위해 단일 CNN 계열 모델 3개, 단일 RNN 계열 모델 3개, 그리고 멀티모달 계열 모델 3개를 사용하였으며, 단일모달만을 사용하였을 때보다 멀티모달 모델을 사용했을 때 전반적으로 성능이 개선되는 것을 확인하였다",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11121476"
   },
@@ -1743,7 +1747,7 @@ export const publications: Publication[] = [
     "authors": "배기웅, 이수안, 이우기",
     "venue": "한국컴퓨터종합학술대회(KCC 2022), 한국정보과학회",
     "date": "2022년 06월",
-    "badge": "[우수상]",
+    "badge": "우수상",
     "abstract": "본 연구에서는 데이터 획득 비용이 높아 충분한 학습 데이터를 획득하지 못하거나, 학습에 사용되는 데이터에 노이즈가 많이 포함되어 학습이 제대로 진행되지 못하는 상황에서 동일한 데이터이지만 서로 다른 모달의 동질적인 특징을 이용한 멀티모달 학습 방법이 노이즈에 견고하고, 일반화에 우수함을 실험을 통해 증명하였다. 실험 과정에서는 이미지 MNIST 데이터셋과 시퀀스 MNIST 데이터셋에 노이즈를 추가하여 사용하였다. 실험 비교를 위해 단일 CNN 계열 모델 3개, 단일 RNN 계열 모델 3개, 그리고 멀티모달 계열 모델 3개를 사용하였으며, 단일모달만을 사용하였을 때보다 멀티모달 모델을 사용했을 때 전반적으로 성능이 개선되는 것을 확인하였다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11121476"
   },
@@ -1857,7 +1861,7 @@ export const publications: Publication[] = [
     "authors": "김예원, 김유정, 김주아, 이유정, 이우기, 이수안",
     "venue": "한국소프트웨어종합학술대회(KSC 2021), 한국정보과학회",
     "date": "2021년 12월",
-    "badge": "(장려상)",
+    "badge": "장려상",
     "abstract": "본 논문에서는 택시 승차 데이터 분석을 통해 수요와 공급이 일치하지 않는 곳에 위치한 택시 승차대의 위치와 서비스를 개선하고 ‘에코 스마트 택시 승차대’를 제안한다. 서울시 도로 네트워크 데이터와 택시 운행 분석 데이터, 택시 승차대 데이터를 K-means 기법과 Elbow 기법을 이용해 서울시 권역의 택시 승차 수요량과 승차대 현황을 분석한 후 서울시 지도 위에 시각화하였다. 데이터 분석 결과 수요 대비 승차대 위치와 수의 불균형이 확인되었고, 개선이 필요한 승차대의 위치를 추천하였다. 본 연구를 통해 택시 운수종사자, 이용 승객, 도시 시설의 모든 방면에서의 개선을 기대할 수 있다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11036014"
   },
@@ -1910,7 +1914,7 @@ export const publications: Publication[] = [
     "authors": "장현수, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2021), 한국정보과학회",
     "date": "2021년 07월",
-    "badge": "(장려상)",
+    "badge": "장려상",
     "abstract": "최근 실내에서 작동하는 모바일 자율주행 로봇의 중요성은 크게 증가하고 있다. 본 논문에서는 제한된 실내 환경 조건 아래에 저비용으로도 자율주행이 가능한 모바일 로봇을 위해 저비용 차선 인식 및 제어 알고리즘을 제안하도록 제시한다. 특히 관심 영역 자동 추출, 히스토그램을 이용한 RGB 임계값 자동 추출을 통해 영상 처리 과정에서의 정확도를 높이고 연산을 줄일 수 있다. 또한, 저비용의 차선 인식을 바탕으로 보조선을 이용한 조향각 제어를 통해 자율주행에 사용한다. 주행에 있어 차선이 하나만 인식되거나 영상 중앙에 차선이 인식될 때 가중치를 주어 안전하게 주행이 이루어지도록 하였다"
   },
   {
@@ -2369,7 +2373,7 @@ export const publications: Publication[] = [
     "authors": "오영, 이수안, 김재형, 권봉기",
     "venue": "대한민국 특허청 (출원번호: 1020190085643)",
     "date": "2019년 07월",
-    "badge": "[출원]",
+    "badge": "출원",
     "url": "https://doi.org/10.8080/1020190085643"
   },
   // ============ Columns (칼럼) ============
@@ -2390,7 +2394,7 @@ export const publications: Publication[] = [
     "authors": "박지형, 김진호, 이수안",
     "venue": "한국소프트웨어종합학술대회(KSC 2019), 한국정보과학회",
     "date": "2019년 12월",
-    "badge": "(장려상)",
+    "badge": "장려상",
     "abstract": "최근 기술의 발전으로 지능형 CCTV같은 영상 수집 장치의 유용성이 대두되고 있다. 하지만 이러한 유용성에도 불구하고 개인 정보 침해 문제 때문에 영상 수집 장치의 설치나 보급에 어려움을 겪고 있다. 이러한 문제를 해결하기 위해 모자이크 등의 여러 기술이 존재하나 이러한 기술들은 필요시 복원이 불가능하거나 여러 문제점을 가지고 있다. 따라서 본 논문은 이러한 문제를 해결하기 위한 복원 가능한 영상 왜곡 모델을 제안하고, 이 구조의 특징인 왜곡 후 복윈 시 원본과 차이가 없다는 것과 시드를 통해 의도하지 않은 조작과 왜곡을 방지할 수 있는 것을 실험으로 증명하였다.",
     "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE09301969"
   },
@@ -2508,7 +2512,7 @@ export const publications: Publication[] = [
     "authors": "Suan Lee, Seok Kang, Jinho Kim, and Eun Jung Yu",
     "venue": "Cluster Computing",
     "date": "01 Feb. 2018",
-    "badge": "[SCI]",
+    "badge": "SCI",
     "impact": "(IF: 2.040)",
     "abstract": "A data cube is a powerful analytical tool that stores all aggregate values over a set of dimensions. It provides users with a simple and efficient means of performing complex data analysis while assisting in decision making. Since the computation time for building a data cube is very large, however, efficient methods for reducing the data cube computation time are needed. Previous works have developed various algorithms for efficiently generating data cubes using MapReduce, which is a large-scale distributed parallel processing framework. However, MapReduce incurs the overhead of disk I/Os and network traffic. To overcome these MapReduce limitations, Spark was recently proposed as a memory-based parallel/distributed processing framework. It has attracted considerable research attention owing to its high performance. In this paper, we propose two algorithms for efficiently building data cubes. The algorithms fully leverage Spark’s mechanisms and properties: Resilient Distributed Top-Down Computation (RDTDC) and Resilient Distributed Bottom-Up Computation (RDBUC). The former is an algorithm for computing the components (i.e., cuboids) of a data cube in a top-down approach; the latter is a bottom-up approach. The RDTDC algorithm has three key functions. (1) It approximates the size of the cuboid using the cardinality without additional Spark action computation to determine the size of each cuboid during top-down computation. Thus, one cuboid can be computed from the upper cuboid of a smaller size. (2) It creates an execution plan that is optimized to input the smaller sized cuboid. (3) Lastly, it uses a method of reusing the result of the already computed cuboid by top-down computation and simultaneously computes the cuboid of several dimensions. In addition, we propose the RDBUC bottom-up algorithm in Spark, which is widely used in computing Iceberg cubes to maintain only cells satisfying a certain condition of minimum support. This algorithm incorporates two primary strategies: (1) reducing the input size to compute aggregate values for a dimension combination (e.g., A, B, and C) by removing the input, which does not satisfy the Iceberg cube condition at its lower dimension combination (e.g., A and B) computed earlier. (2) We use a lazy materialization strategy that computes every combination of dimensions using only transformation operations without any action operation. It then stores them in a single action operation. To prove the efficiency of the proposed algorithms using a lazy materialization strategy by employing only one action operation, we conducted extensive experiments. We compared them to the cube() function, a built-in cube computation library of Spark SQL. The results showed that the proposed RDTDC and RDBUC algorithms outperformed Spark SQL cube().",
     "keywords": "Distributed processing, Spark framework, Resilient distributed dataset, Data warehousing, On-line analytical processing, Multidimensional data cube, Iceberg cube",
@@ -2647,7 +2651,7 @@ export const publications: Publication[] = [
     "authors": "Suan Lee, Sunhwa Jo, Ji-Seop Won, Jinho Kim, and Yang-Sae Moon.",
     "venue": "Applied Mathematics & Information Sciences",
     "date": "1 May 2015",
-    "badge": "[SCOPUS]",
+    "badge": "SCOPUS",
     "abstract": "Recently new mobile devices such as cellular phones, smartphones, and digital cameras are popularly used to take photos. By virtue of these convenient instruments, we can take many photos easily, but we suffer from the difficulty of managing and searching photos due to their large volume. This paper develops a mobile application software, called Photo Cube, which automatically extracts various metadata for photos (e.g., date/time, address, place name, weather, personal event, etc.) by taking advantage of sensors and programming functions embedded in mobile smartphones like Android phones or iPhones. To avoid heavy network traffic and high processing overhead, it clusters photos into a set of clusters hierarchically by GPSs and it extracts the metadata for each centroid photo of clusters automatically. Then it constructs and stores the hierarchies of clusters based on the date/time, and address within the extracted metadata as well as the other metadata into photo database tables in the flash memory of smartphones. Furthermore, the system builds a multidimensional cube view for the photo database, which is popularly used in OLAP(On-Line Analytical Processing) applications and it facilitates the top-down browsing of photos over several dimensions such as date/time, address, etc. In addition to the hierarchical browsing, it provides users with keyword search function in order to find photos over every metadata of the photo database in a user-friendly manner. With these convenient features of the Photo Cube, therefore, users will be able to manage and search a large number of photos easily, without inputting any additional information but with clicking simply the shutter in a camera.",
     "keywords": "photo metadata, photo annotation, clustered databases, multidimensional data cube, OLAP, hierarchical clustering, keyword search, multidimensional hierarchical browsing, mobile application, smartphones",
     "url": "http://www.naturalspublishing.com/Article.asp?ArtcID=8783"
@@ -2889,7 +2893,7 @@ export const publications: Publication[] = [
     "authors": "Jinho Kim, Donghoo Kim, Suan Lee, Yang-Sae Moon, Il-Yeol Song, Ritu Khare, and Yuan An",
     "venue": "Revista de Informática Teórica e Aplicada 16.2",
     "date": "2009",
-    "badge": "[SCOPUS]",
+    "badge": "SCOPUS",
     "abstract": "This paper presents a tool that automatically generates multidimensional schemas for data warehouses from OLTP entity-relationship diagrams (ERDs). Based on user’s input parameters, it generates star schemas, snowflake schemas, or a fact constellation schema by taking advantage of only structural information of input ERDs. Hence, SAMSTARplus can help users reduce efforts for designing data warehouses and aids decision making.",
     "url": "http://www.seer.ufrgs.br/rita/article/view/rita_v16_n2_p79"
   },
