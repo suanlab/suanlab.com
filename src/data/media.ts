@@ -11,6 +11,22 @@ export interface MediaArticle {
 // Sorted by date (newest first)
 export const mediaArticles: MediaArticle[] = [
   {
+    id: '19',
+    title: '대전 중구, 공직자 AI 혁신 캠프로 행정 디지털 전환 속도',
+    source: '충청매일',
+    date: '2026-08-30',
+    url: 'https://www.ccdn.co.kr/news/articleView.html?idxno=1096423',
+    excerpt: '대전 중구와 충남대학교 소프트웨어중심대학사업단의 상생협약에 따라 충남대학교에서 중구 공직자 30여 명을 대상으로 "공직자 AI 혁신 캠프"가 개최됐다. 생성형 AI 이해와 안전한 활용, 프롬프트 작성 및 업무 적용 실습 등 실무 중심 교육으로 AI 기반 행정 전환을 가속화했다.',
+  },
+  {
+    id: '18',
+    title: "세명대 이수안 교수 연구팀, AI·머신러닝 최고 권위 'UAI 2026' 논문 3편 동시 채택 기염",
+    source: '세명대학교',
+    date: '2026-08-21',
+    url: 'https://www.semyung.ac.kr/cop/bbs/BBSMSTR_000000000327/selectBoardArticle.do?bbsId=BBSMSTR_000000000327&nttId=483556&bbsTyCode=&bbsAttrbCode=&kind=&mno=sitemap_12&pageIndex=1&searchCnd=&searchWrd=',
+    excerpt: '한국연구재단 신진연구자지원사업 수행 결과로 UAI 2026(암스테르담)에서 3편의 논문을 동시 채택. 학부 4학년 김재성 학생이 제1저자로 참여한 LLM 잠재 표현 수렴 연구를 포함해, 시공간 예측·그래프 이상 탐지의 설명 가능한 AI(XAI) 원천기술을 확보했다.',
+  },
+  {
     id: '17',
     title: "세명대 AI컴퓨터학부 김재성 학부생·이수안 교수, 최고 권위 AI 학회 'ECML PKDD 2026' 논문 채택",
     source: '세명대학교',
