@@ -10,6 +10,42 @@ export interface Award {
 
 export const awards: Award[] = [
   {
+    id: 103,
+    date: '2026.06',
+    award: '우수발표논문상',
+    title: '단일 Run-to-Failure 궤적 환경에서의 베어링 잔여수명 예측을 위한 딥러닝 모델',
+    authors: '고상근, 이수안',
+    organization: '한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회',
+    category: 'paper',
+  },
+  {
+    id: 104,
+    date: '2026.06',
+    award: '장려상',
+    title: '과업 인식형 백본 분리와 다시점 지도 대조 학습을 이용한 다중 부위 피부 상태 평가',
+    authors: '이겸수, 이수안',
+    organization: '한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회',
+    category: 'paper',
+  },
+  {
+    id: 105,
+    date: '2026.06',
+    award: '장려상',
+    title: 'OrbiqAI: 지식 그래프 기반 멀티 에이전트 군집 지능을 활용한 개인 진로 의사결정 지원 시스템',
+    authors: '박윤조, 우종찬, 왕제교, 이수안',
+    organization: '한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회',
+    category: 'paper',
+  },
+  {
+    id: 106,
+    date: '2026.06',
+    award: '장려상',
+    title: 'Supervised Contrastive Learning 기반 노이즈 강건 수면패턴 예측',
+    authors: '김지환, 신재광, 이수안',
+    organization: '한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회',
+    category: 'paper',
+  },
+  {
     id: 100,
     date: '2026.02.24',
     award: '2025학년도 교원업적평가 우수교원 (자연공학계열)',

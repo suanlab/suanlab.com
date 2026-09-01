@@ -1,7 +1,7 @@
 export interface CourseMaterial {
   title: string;
   url: string;
-  type: 'colab' | 'pdf' | 'drive' | 'youtube';
+  type: 'colab' | 'pdf' | 'drive' | 'youtube' | 'github';
 }
 
 export interface Course {
@@ -40,6 +40,9 @@ export const courses: Course[] = [
     location: '충북대학교 E8-7동 417호',
     organization: '충북대학교 AI+ 데이터센터',
     category: 'training',
+    materials: [
+      { title: '강의 자료 (GitHub)', url: 'https://github.com/suanlab/CBNU-Agent-AI', type: 'github' },
+    ],
   },
   {
     id: 104,
@@ -49,6 +52,9 @@ export const courses: Course[] = [
     location: '세명대학교 첨단정보관 322·303호 (충북 제천)',
     organization: '세명대학교 (이수안 교수)',
     category: 'camp',
+    materials: [
+      { title: '강의 자료 (GitHub)', url: 'https://github.com/suanlab/AI4Research', type: 'github' },
+    ],
   },
   {
     id: 93,
@@ -58,6 +64,9 @@ export const courses: Course[] = [
     location: '동국대학교 신공학관 4147호',
     organization: '한국디지털컨버전스학회 (주최) / 한국컴퓨터산업협회 (주관)',
     category: 'training',
+    materials: [
+      { title: '강의 자료 (GitHub)', url: 'https://github.com/suanlab/Agent-AI', type: 'github' },
+    ],
   },
   {
     id: 94,
@@ -67,6 +76,9 @@ export const courses: Course[] = [
     location: '신한카드',
     organization: '신한카드',
     category: 'training',
+    materials: [
+      { title: '강의 자료 (GitHub)', url: 'https://github.com/suanlab/Advanced-RAG', type: 'github' },
+    ],
   },
   {
     id: 95,

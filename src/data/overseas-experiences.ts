@@ -8,7 +8,7 @@ export interface OverseasExperience {
 }
 
 export const overseasExperiences: OverseasExperience[] = [
-  { id: 33, purpose: '캐나다 횡단 여행 (예정)', countries: ['캐나다'], cities: '캐나다 횡단', period: '2026.07 (예정)', year: 2026 },
+  { id: 33, purpose: '캐나다 횡단 여행', countries: ['캐나다'], cities: '토론토, 몬트리올, 퀘벡, 캘거리, 밴프, 재스퍼, 벤쿠버, 빅토리아', period: '2026.07', year: 2026 },
   { id: 35, purpose: 'CVPR 2026', countries: ['미국'], cities: '덴버', period: '2026.06', year: 2026 },
   { id: 36, purpose: 'DASFAA 2026', countries: ['한국'], cities: '제주도', period: '2026.04', year: 2026 },
   { id: 37, purpose: 'AAAI 2026', countries: ['싱가포르'], cities: '싱가포르', period: '2026.01', year: 2026 },
