@@ -358,9 +358,9 @@ export const publications: Publication[] = [
     "type": "conference",
     "title": "Not All Components Forget Alike: Component-Level Intervention Profiles in Continual Pretraining",
     "authors": "Sangyeol Baek and Suan Lee",
-    "venue": "Conference on Empirical Methods in Natural Language Processing (EMNLP 2026)",
+    "venue": "Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP 2026)",
     "date": "2026",
-    "badge": "EMNLP 2026",
+    "badge": "EMNLP 2026 Findings",
     "keywords": "continual pretraining; catastrophic forgetting; component-level analysis; intervention"
   },
   {
@@ -368,9 +368,9 @@ export const publications: Publication[] = [
     "type": "conference",
     "title": "Linearly Readable, Not Robust: How Linear Jailbreak Probes Conflate Benign Register with Adversarial Intent",
     "authors": "JaeSeong Kim and Suan Lee",
-    "venue": "Conference on Empirical Methods in Natural Language Processing (EMNLP 2026)",
+    "venue": "Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP 2026)",
     "date": "2026",
-    "badge": "EMNLP 2026",
+    "badge": "EMNLP 2026 Findings",
     "keywords": "jailbreak probes; robustness; adversarial intent; linear probes"
   },
   {
