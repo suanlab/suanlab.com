@@ -40,6 +40,40 @@ function computePublicationTypes(publications: Publication[]) {
 }
 
 export const publications: Publication[] = [
+  // ============ 2026 International Journals ============
+  {
+    "id": 636,
+    "type": "journal",
+    "title": "Physics-Informed Neural Networks and Neural Operators for PDEs: A Review of Architectures, Training Pathologies, and Method Selection",
+    "authors": "Namhyeon Kim, Mukhiddin Toshpulatov, and Suan Lee",
+    "venue": "Neural Networks",
+    "date": "2026",
+    "badge": "SCIE",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0893608026010968",
+    "keywords": "physics-informed neural networks; neural operators; PDEs; training pathologies; method selection"
+  },
+  {
+    "id": 637,
+    "type": "journal",
+    "title": "EchoCSI: A Systematic Cross-Environment Benchmark and a Frozen-Prior Vector-Quantized Recipe for WiFi CSI-to-Image Generation",
+    "authors": "Suan Lee",
+    "venue": "IEEE Access",
+    "date": "2026",
+    "badge": "SCIE",
+    "url": "https://ieeexplore.ieee.org/document/11683450",
+    "keywords": "Wi-Fi sensing; CSI-to-image generation; cross-environment benchmark; vector quantization"
+  },
+  {
+    "id": 638,
+    "type": "journal",
+    "title": "MS-MBSP: Multi-Scale Multi-Band Spectral Pooling for Device-Free Wi-Fi CSI Respiratory State Classification",
+    "authors": "Namhyeon Kim, Dongmin Jin, and Suan Lee",
+    "venue": "IEEE Access",
+    "date": "2026",
+    "badge": "SCIE",
+    "url": "https://ieeexplore.ieee.org/document/11683458",
+    "keywords": "Wi-Fi CSI; respiratory state classification; multi-band spectral pooling; CNN-BiLSTM; device-free sensing"
+  },
   // ============ 2025 International Journals ============
   {
     "id": 200,
@@ -299,6 +333,96 @@ export const publications: Publication[] = [
     "keywords": "프로야구; 타순; 기계학습; 회귀 모델; 득점력"
   },
   // ============ 2026 International Conferences ============
+  {
+    "id": 639,
+    "type": "conference",
+    "title": "Auditing PEFT Claims: A Stability Probe Unifying Three LoRA-Variant Failure Modes",
+    "authors": "Suan Lee and JaeSeong Kim",
+    "venue": "Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
+    "date": "2026",
+    "badge": "AACL-IJCNLP 2026",
+    "keywords": "PEFT; LoRA; stability probe; failure mode analysis"
+  },
+  {
+    "id": 640,
+    "type": "conference",
+    "title": "Memorization or Extraction? Auditing LLM-Based Recovery of Scientific Assumptions",
+    "authors": "Suan Lee and JaeSeong Kim",
+    "venue": "Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
+    "date": "2026",
+    "badge": "AACL-IJCNLP 2026",
+    "keywords": "LLM audit; memorization; scientific assumptions; extraction"
+  },
+  {
+    "id": 641,
+    "type": "conference",
+    "title": "Not All Components Forget Alike: Component-Level Intervention Profiles in Continual Pretraining",
+    "authors": "Sangyeol Baek and Suan Lee",
+    "venue": "Conference on Empirical Methods in Natural Language Processing (EMNLP 2026)",
+    "date": "2026",
+    "badge": "EMNLP 2026",
+    "keywords": "continual pretraining; catastrophic forgetting; component-level analysis; intervention"
+  },
+  {
+    "id": 642,
+    "type": "conference",
+    "title": "Linearly Readable, Not Robust: How Linear Jailbreak Probes Conflate Benign Register with Adversarial Intent",
+    "authors": "JaeSeong Kim and Suan Lee",
+    "venue": "Conference on Empirical Methods in Natural Language Processing (EMNLP 2026)",
+    "date": "2026",
+    "badge": "EMNLP 2026",
+    "keywords": "jailbreak probes; robustness; adversarial intent; linear probes"
+  },
+  {
+    "id": 643,
+    "type": "conference",
+    "title": "Transparent Generalized Additive Time Series Forecasting at Transformer-Level Accuracy",
+    "authors": "Suan Lee and Jinho Kim",
+    "venue": "IEEE International Conference on Data Mining (ICDM 2026)",
+    "date": "2026",
+    "badge": "ICDM 2026",
+    "keywords": "time series forecasting; generalized additive model; interpretability; transformer"
+  },
+  {
+    "id": 644,
+    "type": "conference",
+    "title": "The Held-Out Season Is Not Enough: Auditing Player-Identity Leakage in Team-Performance Benchmarks",
+    "authors": "Suan Lee and Wookey Lee",
+    "venue": "IEEE International Conference on Data Mining (ICDM 2026)",
+    "date": "2026",
+    "badge": "ICDM 2026",
+    "keywords": "data leakage; benchmark audit; player identity; team performance"
+  },
+  {
+    "id": 645,
+    "type": "conference",
+    "title": "Pretraining Builds Cooperation, Not Components: Tracking Inter-Layer Coordination via Lie Brackets",
+    "authors": "JaeSeong Kim and Suan Lee",
+    "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
+    "date": "2026",
+    "badge": "AACL-IJCNLP 2026 Findings",
+    "keywords": "pretraining; inter-layer coordination; Lie bracket; representation analysis"
+  },
+  {
+    "id": 646,
+    "type": "conference",
+    "title": "When Quality Filters Backfire: Agreement-Based Latent Filtering Hurts Bootstrap Pretraining",
+    "authors": "Suan Lee and JaeSeong Kim",
+    "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
+    "date": "2026",
+    "badge": "AACL-IJCNLP 2026 Findings",
+    "keywords": "quality filters; data filtering; bootstrap pretraining; data curation"
+  },
+  {
+    "id": 647,
+    "type": "conference",
+    "title": "Mass-Tail SHAP Entropy: A Regime-Conditional Decoder for Vision-Language Model Hallucination",
+    "authors": "Jaegwang Shin and Suan Lee",
+    "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
+    "date": "2026",
+    "badge": "AACL-IJCNLP 2026 Findings",
+    "keywords": "vision-language model; hallucination; SHAP entropy; interpretability"
+  },
   {
     "id": 613,
     "type": "conference",
