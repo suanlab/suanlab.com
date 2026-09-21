@@ -114,7 +114,7 @@ export const publications: Publication[] = [
     "venue": "Applied Sciences",
     "date": "2025",
     "badge": "SCIE",
-    "impact": "(IF: 2.5)",
+    "impact": "(IF: 2.9, JCR: Q2)",
     "keywords": "bearing fault detection; time series transformer; noise robustness; deep learning"
   },
   // ============ 2024 International Journals ============
@@ -137,7 +137,7 @@ export const publications: Publication[] = [
     "venue": "Electronics",
     "date": "August 2024",
     "badge": "SCIE",
-    "impact": "(IF: 2.6)",
+    "impact": "(IF: 2.9, JCR: Q2)",
     "keywords": "tensor factorization; explainable AI; revenue prediction; commercial district"
   },
   {
@@ -170,7 +170,7 @@ export const publications: Publication[] = [
     "venue": "Biomimetics",
     "date": "June 2024",
     "badge": "SCIE",
-    "impact": "(IF: 3.4)",
+    "impact": "(IF: 4.2, JCR: Q1)",
     "keywords": "robotic vision; bionic eye; binocular system; computer vision"
   },
   {
@@ -192,7 +192,7 @@ export const publications: Publication[] = [
     "venue": "Machines",
     "date": "February 2024",
     "badge": "SCIE",
-    "impact": "(IF: 2.6)",
+    "impact": "(IF: 3.0, JCR: Q2)",
     "keywords": "fault classification; CNN; electric motor; image transformation"
   },
   {
@@ -522,6 +522,7 @@ export const publications: Publication[] = [
     "venue": "Electronics, 15(2), 377",
     "date": "January 2026",
     "badge": "SCIE",
+    "impact": "(IF: 2.9, JCR: Q2)",
     "keywords": "instruction fine-tuning; verbatim memorization; large language models"
   },
   {
@@ -1442,7 +1443,7 @@ export const publications: Publication[] = [
     "venue": "Electronics",
     "date": "April 2023",
     "badge": "SCIE",
-    "impact": "(IF: 2.690, JCR: Q2)",
+    "impact": "(IF: 2.9, JCR: Q2)",
     "abstract": "In the field of urban environment analysis research, image segmentation technology that groups important objects in the urban landscape image in pixel units has been the subject of increased attention. However, since a dataset consisting of a huge amount of image and label pairs is required to utilize this technology, in most cases, a model trained with a dataset having similar characteristics is used for analysis, and as a result, the quality of segmentation is poor. To overcome this limitation, we propose a hybrid model to leverage the strengths of each model in predicting specific classes. In particular, we first introduce a pre-processing operation to reduce the differences between the collected urban dataset and public dataset. Subsequently, we train several segmentation models with a pre-processed dataset then, based on the weight rule, the segmentation results are fused to create one segmentation map. To evaluate our proposal, we collected Google Street View images that do not have any labels and trained a model using the cityscapes dataset which contains foregrounds similar to the collected images. We quantitatively assessed its performance using the cityscapes dataset with ground truths and qualitatively evaluated the results of GSV data segmentation through user studies. Our approach outperformed existing methods and demonstrated the potential for accurate and efficient urban environment analysis using computer vision technology.",
     "keywords": "urban environment analysis; streetscapes; image segmentation; hybrid model; deep learning",
     "url": "https://www.mdpi.com/2079-9292/12/8/1845"
@@ -1455,7 +1456,7 @@ export const publications: Publication[] = [
     "venue": "Electronics",
     "date": "April 2023",
     "badge": "SCIE",
-    "impact": "(IF: 2.690, JCR: Q2)",
+    "impact": "(IF: 2.9, JCR: Q2)",
     "abstract": "This paper presents a comprehensive study on the utilization of machine learning and deep learning techniques to predict the dynamic characteristics of design parameters, exemplified by a diesel engine valve train. The research aims to address the challenging and time-consuming analysis required to optimize the performance and durability of valve train components, which are influenced by numerous factors. To this end, dynamic analyses data have been collected for diesel engine specifications and used to construct a regression prediction model using a gradient boosting regressor tree (GBRT), a deep neural network (DNN), a one-dimensional convolution neural network (1D-CNN), and long short-term memory (LSTM). The prediction model was utilized to estimate the force and valve seating velocity values of the valve train system. The dynamic characteristics of the case were evaluated by comparing the actual and predicted values. The results showed that the GBRT model had an R2 value of 0.90 for the valve train force and 0.97 for the valve seating velocity, while the 1D-CNN model had an R2 value of 0.89 for the valve train force and 0.98 for the valve seating velocity. The results of this study have important implications for advancing the design and development of efficient and reliable diesel engines.",
     "keywords": "diesel engine; valve train dynamics; deep learning; GBRT; DNN; LSTM; 1D-CNN",
     "url": "https://www.mdpi.com/2079-9292/12/3/698"
@@ -1481,7 +1482,7 @@ export const publications: Publication[] = [
     "venue": "Electronics",
     "date": "January 2023",
     "badge": "SCIE",
-    "impact": "(IF: 2.690, JCR: Q2)",
+    "impact": "(IF: 2.9, JCR: Q2)",
     "abstract": "This paper mainly studies the structure and system of robot bionic eye. Given that most robots usually run on battery power, the STM32L053C8T6 with high efficiency and super low power consumption was selected as the main control. By carrying IMU, the bionic eye attitude data can be acquired quickly and accurately, and the measurement data of accelerometer and gyroscope can be fused by the algorithm to obtain stable and accurate bionic eye attitude data. Thus, the precise control of the motor can be realized through the drive control system equipped with PCA9685, which can enhance the motion control precision of robot bionic eye. In the present study, three kinds of IMU sensors, MPU6050, MPU9250, and WT9011G4K, were selected to carry out experiments. Finally, MPU9250 with better power consumption and adaptability is selected. This is the attitude acquisition device of bionic eye. In addition, three different filters, CF, GD, and EKF, were used for data fusion and comparison. The experimental result showed that the dynamic mean errors of CF, GD, and EKF are 0.62°, 0.61°, and 0.43°, respectively, and the static mean errors are 0.1017°, 0.1001°, and 0.0462°, respectively. The result showed that, after the use of EKF, the robot bionic eye system designed in this paper can significantly reduce the attitude angle error and effectively improve the image quality. It ensures accuracy and reduces power consumption and cost, which has lower requirements on hardware and is easier to popularize.",
     "keywords": "bionic eye; motion attitude detection; attitude sensor; Kalman filter",
     "url": "https://www.mdpi.com/2079-9292/12/3/698"
@@ -1494,7 +1495,7 @@ export const publications: Publication[] = [
     "venue": "Electronics",
     "date": "January 2023",
     "badge": "SCIE",
-    "impact": "(IF: 2.690, JCR: Q2)",
+    "impact": "(IF: 2.9, JCR: Q2)",
     "abstract": "Machines in factories are typically operated 24 h a day to support production, which may result in malfunctions. Such mechanical malfunctions may disrupt factory output, resulting in financial losses or human casualties. Therefore, we investigate a deep learning model that can detect abnormalities in machines based on the operating noise. Various data preprocessing methods, including the discrete wavelet transform, the Hilbert transform, and short-time Fourier transform, were applied to extract characteristics from machine-operating noises. To create a model that can be used in factories, the environment of real factories was simulated by introducing noise and quality degradation to the sound dataset for Malfunctioning Industrial Machine Investigation and Inspection (MIMII). Thus, we proposed a lightweight model that runs reliably even in noisy and low-quality sound data environments, such as a real factory. We propose a Convolutional Neural Network–Long Short-Term Memory (CNN–LSTM) model using Short-Time Fourier Transforms (STFTs), and the proposed model can be very effective in terms of application because it is a lightweight model that requires only about 6.6% of the number of parameters used in the underlying CNN, and has only a performance difference within 0.5%.",
     "keywords": "fault diagnosis; deep learning; CNN; image representation; feature extraction",
     "url": "https://www.mdpi.com/2079-9292/12/2/409"
@@ -1607,7 +1608,7 @@ export const publications: Publication[] = [
     "venue": "Applied Sciences",
     "date": "August 2022",
     "badge": "SCIE",
-    "impact": "(IF: 2.838, JCR: Q2)",
+    "impact": "(IF: 2.9, JCR: Q2)",
     "abstract": "The visual organ is important for animals to obtain information and understand the outside world; however, robots cannot do so without a visual system. At present, the vision technology of artificial intelligence has achieved automation and relatively simple intelligence; however, bionic vision equipment is not as dexterous and intelligent as the human eye. At present, robots can function as smartly as human beings; however, existing reviews of robot bionic vision are still limited. Robot bionic vision has been explored in view of humans and animals’ visual principles and motion characteristics. In this study, the development history of robot bionic vision equipment and related technologies are discussed, the most representative binocular bionic and multi-eye compound eye bionic vision technologies are selected, and the existing technologies are reviewed; their prospects are discussed from the perspective of visual bionic control. This comprehensive study will serve as the most up-to-date source of information regarding developments in the field of robot bionic vision technology.",
     "keywords": "artificial intelligence; robot bionic vision; optical devices; bionic eye; intelligent camera",
     "url": "https://www.mdpi.com/2076-3417/12/16/7970"
@@ -1858,7 +1859,7 @@ export const publications: Publication[] = [
     "venue": "Applied Sciences",
     "date": "April 2021",
     "badge": "SCIE",
-    "impact": "(IF: 2.474, JCR: Q1)",
+    "impact": "(IF: 2.9, JCR: Q2)",
     "abstract": "Real-world systems that are composed of various types of components, their interactions, and relationships, and numerous applications are often modeled as graphs or network structures to represent and analyze the presence of relationship, shape, and meaning of objects. Network-structured data are used for various exploration and in-depth analysis through visualization of information in various fields. In particular, online bibliographic databases are a service that is used for a myriad of purposes, such as simple search of research materials as well as understanding the history and flow of research, current status, and trends. A visualization tool that can intuitively perform exploration and analysis by modeling the data provided by the online bibliographic database in a network structure will be a very meaningful study for the exploration of various information using a large amount of complex bibliographic data. This study has modeled an online bibliographic database as an information network, and further developed a prototype of a visualization tool that provides an interactive interface for easily and efficiently performing visual exploration and multidimensional analysis. The visualization tool that was developed through this study will be used to conveniently perform various online analysis of the bibliographic data, and the information and knowledge acquired as a result of the analysis are expected to contribute to the research development of various researchers. Furthermore, this visualization tool can be applied to other types of data in the future, and it is expected to develop into a useful tool for various information network analysis by improving, supplementing, and expanding the functions and performance of the developed prototype.",
     "keywords": "bibliographic information network; Information Network OLAP; information network visualization",
     "url": "https://www.mdpi.com/2076-3417/11/9/3862/htm"
