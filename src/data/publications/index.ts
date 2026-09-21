@@ -334,6 +334,46 @@ export const publications: Publication[] = [
   },
   // ============ 2026 International Conferences ============
   {
+    "id": 648,
+    "type": "conference",
+    "title": "DuoMamba: A Vision Backbone with Duo Scan and Resolution-Aware Mixer Scheduling",
+    "authors": "Gwangsoo Kim, Seungkyu Oh, Dohhoon Kim, Nirmal Adhikari, Bimal Thapa Magar, Suan Lee, and Wookey Lee",
+    "venue": "Asian Conference on Computer Vision (ACCV 2026)",
+    "date": "2026",
+    "badge": "ACCV 2026",
+    "keywords": "vision backbone; Mamba; duo scan; resolution-aware mixer; scheduling"
+  },
+  {
+    "id": 649,
+    "type": "conference",
+    "title": "Source-Sensitive Audit-and-Response: Claim-Level Reporting for Text-to-Image Evaluation",
+    "authors": "Hyejin Kim and Suan Lee",
+    "venue": "Asian Conference on Computer Vision (ACCV 2026)",
+    "date": "2026",
+    "badge": "ACCV 2026",
+    "keywords": "text-to-image; evaluation; claim-level reporting; audit"
+  },
+  {
+    "id": 650,
+    "type": "conference",
+    "title": "Same Outputs, Opposite Verdicts: Object-Claim Churn in Compressed Vision-Language Models",
+    "authors": "Lee GyeomSoo and Suan Lee",
+    "venue": "Asian Conference on Computer Vision (ACCV 2026)",
+    "date": "2026",
+    "badge": "ACCV 2026",
+    "keywords": "vision-language model; compression; claim churn; evaluation consistency"
+  },
+  {
+    "id": 651,
+    "type": "conference",
+    "title": "Where Does Binding Live? From UNet Cross-Attention Heads to the MM-DiT Text Stream",
+    "authors": "Sangyeol Baek and Suan Lee",
+    "venue": "Asian Conference on Computer Vision (ACCV 2026)",
+    "date": "2026",
+    "badge": "ACCV 2026",
+    "keywords": "binding problem; cross-attention; MM-DiT; diffusion; interpretability"
+  },
+  {
     "id": 639,
     "type": "conference",
     "title": "Auditing PEFT Claims: A Stability Probe Unifying Three LoRA-Variant Failure Modes",
