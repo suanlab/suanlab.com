@@ -47,7 +47,7 @@ export const publications: Publication[] = [
     "title": "Physics-Informed Neural Networks and Neural Operators for PDEs: A Review of Architectures, Training Pathologies, and Method Selection",
     "authors": "Namhyeon Kim, Mukhiddin Toshpulatov, and Suan Lee",
     "venue": "Neural Networks",
-    "date": "2026",
+    "date": "September 2026",
     "badge": "SCIE",
     "url": "https://www.sciencedirect.com/science/article/pii/S0893608026010968",
     "keywords": "physics-informed neural networks; neural operators; PDEs; training pathologies; method selection"
@@ -58,7 +58,7 @@ export const publications: Publication[] = [
     "title": "EchoCSI: A Systematic Cross-Environment Benchmark and a Frozen-Prior Vector-Quantized Recipe for WiFi CSI-to-Image Generation",
     "authors": "Suan Lee, Dongmin Jin, and Namhyeon Kim",
     "venue": "IEEE Access",
-    "date": "2026",
+    "date": "September 2026",
     "badge": "SCIE",
     "url": "https://ieeexplore.ieee.org/document/11683450",
     "keywords": "Wi-Fi sensing; CSI-to-image generation; cross-environment benchmark; vector quantization"
@@ -69,7 +69,7 @@ export const publications: Publication[] = [
     "title": "MS-MBSP: Multi-Scale Multi-Band Spectral Pooling for Device-Free Wi-Fi CSI Respiratory State Classification",
     "authors": "Namhyeon Kim, Dongmin Jin, and Suan Lee",
     "venue": "IEEE Access",
-    "date": "2026",
+    "date": "September 2026",
     "badge": "SCIE",
     "url": "https://ieeexplore.ieee.org/document/11683458",
     "keywords": "Wi-Fi CSI; respiratory state classification; multi-band spectral pooling; CNN-BiLSTM; device-free sensing"
@@ -339,7 +339,7 @@ export const publications: Publication[] = [
     "title": "DuoMamba: A Vision Backbone with Duo Scan and Resolution-Aware Mixer Scheduling",
     "authors": "Gwangsoo Kim, Seungkyu Oh, Dohhoon Kim, Nirmal Adhikari, Bimal Thapa Magar, Suan Lee, and Wookey Lee",
     "venue": "Asian Conference on Computer Vision (ACCV 2026)",
-    "date": "2026",
+    "date": "December 2026",
     "badge": "ACCV 2026",
     "keywords": "vision backbone; Mamba; duo scan; resolution-aware mixer; scheduling"
   },
@@ -349,7 +349,7 @@ export const publications: Publication[] = [
     "title": "Source-Sensitive Audit-and-Response: Claim-Level Reporting for Text-to-Image Evaluation",
     "authors": "Hyejin Kim and Suan Lee",
     "venue": "Asian Conference on Computer Vision (ACCV 2026)",
-    "date": "2026",
+    "date": "December 2026",
     "badge": "ACCV 2026",
     "keywords": "text-to-image; evaluation; claim-level reporting; audit"
   },
@@ -359,7 +359,7 @@ export const publications: Publication[] = [
     "title": "Same Outputs, Opposite Verdicts: Object-Claim Churn in Compressed Vision-Language Models",
     "authors": "Lee GyeomSoo and Suan Lee",
     "venue": "Asian Conference on Computer Vision (ACCV 2026)",
-    "date": "2026",
+    "date": "December 2026",
     "badge": "ACCV 2026",
     "keywords": "vision-language model; compression; claim churn; evaluation consistency"
   },
@@ -369,7 +369,7 @@ export const publications: Publication[] = [
     "title": "Where Does Binding Live? From UNet Cross-Attention Heads to the MM-DiT Text Stream",
     "authors": "Sangyeol Baek and Suan Lee",
     "venue": "Asian Conference on Computer Vision (ACCV 2026)",
-    "date": "2026",
+    "date": "December 2026",
     "badge": "ACCV 2026",
     "keywords": "binding problem; cross-attention; MM-DiT; diffusion; interpretability"
   },
@@ -379,7 +379,7 @@ export const publications: Publication[] = [
     "title": "Auditing PEFT Claims: A Stability Probe Unifying Three LoRA-Variant Failure Modes",
     "authors": "Suan Lee and JaeSeong Kim",
     "venue": "Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
-    "date": "2026",
+    "date": "November 2026",
     "badge": "AACL-IJCNLP 2026",
     "keywords": "PEFT; LoRA; stability probe; failure mode analysis"
   },
@@ -389,7 +389,7 @@ export const publications: Publication[] = [
     "title": "Memorization or Extraction? Auditing LLM-Based Recovery of Scientific Assumptions",
     "authors": "Suan Lee and JaeSeong Kim",
     "venue": "Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
-    "date": "2026",
+    "date": "November 2026",
     "badge": "AACL-IJCNLP 2026",
     "keywords": "LLM audit; memorization; scientific assumptions; extraction"
   },
@@ -399,7 +399,7 @@ export const publications: Publication[] = [
     "title": "Pretraining Builds Cooperation, Not Components: Tracking Inter-Layer Coordination via Lie Brackets",
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
-    "date": "2026",
+    "date": "November 2026",
     "badge": "AACL-IJCNLP 2026 Findings",
     "keywords": "pretraining; inter-layer coordination; Lie bracket; representation analysis"
   },
@@ -409,7 +409,7 @@ export const publications: Publication[] = [
     "title": "When Quality Filters Backfire: Agreement-Based Latent Filtering Hurts Bootstrap Pretraining",
     "authors": "Suan Lee and JaeSeong Kim",
     "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
-    "date": "2026",
+    "date": "November 2026",
     "badge": "AACL-IJCNLP 2026 Findings",
     "keywords": "quality filters; data filtering; bootstrap pretraining; data curation"
   },
@@ -419,7 +419,7 @@ export const publications: Publication[] = [
     "title": "Mass-Tail SHAP Entropy: A Regime-Conditional Decoder for Vision-Language Model Hallucination",
     "authors": "Jaegwang Shin and Suan Lee",
     "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
-    "date": "2026",
+    "date": "November 2026",
     "badge": "AACL-IJCNLP 2026 Findings",
     "keywords": "vision-language model; hallucination; SHAP entropy; interpretability"
   },
@@ -429,7 +429,7 @@ export const publications: Publication[] = [
     "title": "Not All Components Forget Alike: Component-Level Intervention Profiles in Continual Pretraining",
     "authors": "Sangyeol Baek and Suan Lee",
     "venue": "Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP 2026)",
-    "date": "2026",
+    "date": "October 2026",
     "badge": "EMNLP 2026 Findings",
     "keywords": "continual pretraining; catastrophic forgetting; component-level analysis; intervention"
   },
@@ -439,7 +439,7 @@ export const publications: Publication[] = [
     "title": "Linearly Readable, Not Robust: How Linear Jailbreak Probes Conflate Benign Register with Adversarial Intent",
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP 2026)",
-    "date": "2026",
+    "date": "October 2026",
     "badge": "EMNLP 2026 Findings",
     "keywords": "jailbreak probes; robustness; adversarial intent; linear probes"
   },
@@ -449,7 +449,7 @@ export const publications: Publication[] = [
     "title": "Transparent Generalized Additive Time Series Forecasting at Transformer-Level Accuracy",
     "authors": "Suan Lee and Jinho Kim",
     "venue": "IEEE International Conference on Data Mining (ICDM 2026)",
-    "date": "2026",
+    "date": "November 2026",
     "badge": "ICDM 2026",
     "keywords": "time series forecasting; generalized additive model; interpretability; transformer"
   },
@@ -459,7 +459,7 @@ export const publications: Publication[] = [
     "title": "The Held-Out Season Is Not Enough: Auditing Player-Identity Leakage in Team-Performance Benchmarks",
     "authors": "Suan Lee and Wookey Lee",
     "venue": "IEEE International Conference on Data Mining (ICDM 2026)",
-    "date": "2026",
+    "date": "November 2026",
     "badge": "ICDM 2026",
     "keywords": "data leakage; benchmark audit; player identity; team performance"
   },
@@ -469,7 +469,7 @@ export const publications: Publication[] = [
     "title": "The Latent Hivemind: Do LLMs Converge in How They Think?",
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD 2026)",
-    "date": "2026",
+    "date": "September 2026",
     "badge": "ECML-PKDD 2026",
     "keywords": "LLM convergence; representation analysis; latent behavior"
   },
@@ -479,7 +479,7 @@ export const publications: Publication[] = [
     "title": "Same Benchmark, Same Subspace: Task-Selective Convergence in LLM Representations",
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "Conference on Uncertainty in Artificial Intelligence (UAI 2026)",
-    "date": "2026",
+    "date": "August 2026",
     "badge": "UAI 2026",
     "keywords": "LLM representations; task-selective convergence; subspace analysis"
   },
@@ -489,7 +489,7 @@ export const publications: Publication[] = [
     "title": "Interpretable Spatial-Temporal Forecasting via Additive Neural Decomposition and Knowledge Distillation",
     "authors": "Suan Lee and Jinho Kim",
     "venue": "Conference on Uncertainty in Artificial Intelligence (UAI 2026)",
-    "date": "2026",
+    "date": "August 2026",
     "badge": "UAI 2026",
     "keywords": "interpretable forecasting; spatial-temporal; neural decomposition; knowledge distillation"
   },
@@ -499,7 +499,7 @@ export const publications: Publication[] = [
     "title": "FraudGNAM: Inherently Interpretable Spectral GNN for Graph Fraud Detection",
     "authors": "Suan Lee and Jinho Kim",
     "venue": "Conference on Uncertainty in Artificial Intelligence (UAI 2026)",
-    "date": "2026",
+    "date": "August 2026",
     "badge": "UAI 2026",
     "keywords": "graph fraud detection; interpretable GNN; spectral methods"
   },
@@ -509,7 +509,7 @@ export const publications: Publication[] = [
     "title": "EuraGovExam: A Multilingual Multimodal Benchmark from Real-World Civil Service Exams",
     "authors": "Jaeseong Kim, Chaehwan Lim, Sang Hyun Gil, and Suan Lee",
     "venue": "ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2026)",
-    "date": "2026",
+    "date": "August 2026",
     "badge": "KDD 2026",
     "url": "https://arxiv.org/abs/2603.27223",
     "keywords": "multilingual benchmark; multimodal; civil service exam; AI bias"
@@ -520,7 +520,7 @@ export const publications: Publication[] = [
     "title": "Instruction Fine-Tuning through the Lens of Verbatim Memorization",
     "authors": "Jie Zhang, Chi-Ho Lin and Suan Lee",
     "venue": "Electronics, 15(2), 377",
-    "date": "2026",
+    "date": "January 2026",
     "badge": "SCIE",
     "keywords": "instruction fine-tuning; verbatim memorization; large language models"
   },
@@ -529,7 +529,7 @@ export const publications: Publication[] = [
     "type": "journal",
     "title": "Architectural 3D Point cloud data registration and fusion combining deep learning and traditional algorithms",
     "authors": "Chenglong Huang, Chi-Ho Lin, Suan Lee, and Jie Zhang",
-    "venue": "Archives of Nano-Research (ANR), 20(3), 415",
+    "venue": "Advances in Nano Research (ANR), 20(3), 415",
     "date": "2026",
     "badge": "SCIE",
     "url": "https://doi.org/10.12989/anr.2026.20.3.415",
@@ -539,7 +539,7 @@ export const publications: Publication[] = [
     "id": 637,
     "type": "djournal",
     "title": "MKEAD: Multi-Kernel Ensemble Adaptive Detector for Solar Photovoltaic Anomaly Detection and Prediction",
-    "authors": "노웅기, 이수안, 성열훈, 정명숙",
+    "authors": "노웅기, 이수안, 성열훈, 정명석",
     "venue": "Journal of Korea Society of Industrial Information Systems, 제31권, 제2호, pp.59-80",
     "date": "2026",
     "badge": "KCI",
@@ -549,10 +549,10 @@ export const publications: Publication[] = [
   {
     "id": 636,
     "type": "workshop",
-    "title": "How Language Directions Align with Token Geometry in Multilingual LLMs",
+    "title": "Language Directions in Multilingual LLMs: A Layer-wise Diagnostic Study of Token Alignment and Pretraining Imprint",
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "ACL 2026 Student Research Workshop",
-    "date": "2026",
+    "date": "July 2026",
     "badge": "ACL 2026 SRW",
     "url": "https://arxiv.org/abs/2511.16693",
     "keywords": "multilingual LLMs; representation space; language directions; token geometry; probing"
@@ -563,7 +563,7 @@ export const publications: Publication[] = [
     "title": "Real-Time Multimodal Fingertip Contact Detection via Depth and Motion Fusion for Vision-Based Human–Computer Interaction",
     "authors": "Toshpulatov Mukhiddin Amonkulovich, Wookey Lee, Suan Lee, and Geehyuk Lee",
     "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2026)",
-    "date": "2026",
+    "date": "June 2026",
     "badge": "CVPR 2026",
     "keywords": "fingertip contact detection; multimodal fusion; depth sensing; human-computer interaction"
   },
@@ -573,7 +573,7 @@ export const publications: Publication[] = [
     "title": "Transparent Networks for Multivariate Time Series",
     "authors": "Minkyu Kim, Suan Lee, and Jinho Kim",
     "venue": "AAAI Conference on Artificial Intelligence (AAAI 2026)",
-    "date": "2026",
+    "date": "January 2026",
     "badge": "AAAI 2026",
     "keywords": "transparent networks; multivariate time series; interpretable deep learning"
   },
@@ -583,7 +583,7 @@ export const publications: Publication[] = [
     "title": "Linear Separability and Feature Importance Analysis in Large Language Model Representation Spaces",
     "authors": "JaeSeong Kim and Suan Lee",
     "venue": "2026 IEEE International Conference on Big Data and Smart Computing (BigComp)",
-    "date": "2026",
+    "date": "February 2026",
     "keywords": "LLM; representation space; linear separability; feature importance"
   },
   {
@@ -592,7 +592,7 @@ export const publications: Publication[] = [
     "title": "Analyzing LLM Safety Circumvention via Multilingual Euphemistic Coating",
     "authors": "SangHyeon Gil, JaeSeong Kim, and Suan Lee",
     "venue": "2026 IEEE International Conference on Big Data and Smart Computing (BigComp)",
-    "date": "2026",
+    "date": "February 2026",
     "keywords": "LLM safety; multilingual; euphemistic coating; safety circumvention"
   },
   // ============ 2024 International Conferences ============
@@ -600,7 +600,7 @@ export const publications: Publication[] = [
     "id": 222,
     "type": "conference",
     "title": "Deep Learning Model for Traffic Accident Prediction Using Multiple Feature Interactions",
-    "authors": "Namhyeon Kim, Minkyu Kim, and Suan Lee",
+    "authors": "Namhyeon Kim, Sangkeun Ko, Minkyu Kim, and Suan Lee",
     "venue": "2024 IEEE International Conference on Big Data and Smart Computing (BigComp)",
     "date": "February 2024",
     "keywords": "traffic accident prediction; deep learning; feature interactions"
@@ -628,9 +628,9 @@ export const publications: Publication[] = [
     "id": 617,
     "type": "dconference",
     "title": "StatsBomb 360 기반 축구 패스 위험-보상 순효용 모델링",
-    "authors": "이준형, 박동호, 이우기, 이수안",
+    "authors": "이준형, 박동호, 이수안, 니르비카, 울룩벡",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "축구 분석; 패스 모델링; 위험-보상; 순효용"
   },
   {
@@ -639,16 +639,16 @@ export const publications: Publication[] = [
     "title": "IR 피칭 발표력 자동 평가를 위한 멀티모달 분석 시스템 설계 및 모듈별 비교",
     "authors": "김혜진, 이하은, 백상렬, 신재광, 홍재우, 이은슬, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "피칭 발표력; 멀티모달 분석; 자동 평가"
   },
   {
     "id": 619,
     "type": "dconference",
-    "title": "케미스트리 임계점: NBA 로스터 연속성이 팀 성적에 미치는 인과적 효과",
+    "title": "Chemistry Threshold: NBA 로스터 연속성과 팀 성적에 대한 IV 기반 추정",
     "authors": "김도경, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "NBA; 로스터 연속성; 인과 추론; 팀 성적"
   },
   {
@@ -657,7 +657,7 @@ export const publications: Publication[] = [
     "title": "멀티모달 분석 기반 AI 면접 코칭 시스템: 음성·영상·텍스트 통합 파이프라인 설계",
     "authors": "나영민, 김주영, 공태식, 전윤성, 정윤재, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "AI 면접; 멀티모달; 음성 분석; 영상 분석; 텍스트 분석"
   },
   {
@@ -666,7 +666,7 @@ export const publications: Publication[] = [
     "title": "Supervised Contrastive Learning 기반 노이즈 강건 수면패턴 예측",
     "authors": "김지환, 신재광, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "수면 패턴 예측; Supervised Contrastive Learning; 노이즈 강건",
     "badge": "장려상"
   },
@@ -676,7 +676,7 @@ export const publications: Publication[] = [
     "title": "다중 베어링 Run-to-Failure 데이터셋 기반 잔여수명 예측모델 비교와 학습 안정성 검증",
     "authors": "김현우, 고상근, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "잔여수명 예측; Run-to-Failure; 베어링; 학습 안정성"
   },
   {
@@ -685,7 +685,7 @@ export const publications: Publication[] = [
     "title": "추론 단계의 엔트로피 기반 리스크 탐지를 활용한 LVLM 시각 토큰 프루닝 및 동적 복구 기술",
     "authors": "이하은, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "LVLM; 시각 토큰 프루닝; 엔트로피; 동적 복구"
   },
   {
@@ -694,17 +694,17 @@ export const publications: Publication[] = [
     "title": "OrbiqAI: 지식 그래프 기반 멀티 에이전트 군집 지능을 활용한 개인 진로 의사결정 지원 시스템",
     "authors": "박윤조, 우종찬, 왕제교, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "지식 그래프; 멀티 에이전트; 군집 지능; 진로 의사결정",
     "badge": "장려상"
   },
   {
     "id": 625,
     "type": "dconference",
-    "title": "Tabular 금융 사기 탐지를 위한 Representation Disentanglement 기반 표현 분리 효과 분석",
+    "title": "극단적 클래스 불균형 환경에서 Tabular 금융 사기 탐지를 위한 표현 분리 전략 비교 분석",
     "authors": "정예림, 고상근, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "금융 사기 탐지; 표현 분리; Tabular 데이터; Representation Disentanglement"
   },
   {
@@ -713,17 +713,17 @@ export const publications: Publication[] = [
     "title": "과업 인식형 백본 분리와 다시점 지도 대조 학습을 이용한 다중 부위 피부 상태 평가",
     "authors": "이겸수, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "피부 상태 평가; 백본 분리; 대조 학습; 다시점 지도",
     "badge": "장려상"
   },
   {
     "id": 627,
     "type": "dconference",
-    "title": "LLM 기반 오답 원인 진단 시스템의 설계 및 평가",
+    "title": "고등수학 개인화 피드백과 규칙 기반 추천 알고리즘을 통한 교재 추천 시스템 설계 및 구현",
     "authors": "안수혁, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "LLM; 오답 원인 진단; 자동 평가"
   },
   {
@@ -732,7 +732,7 @@ export const publications: Publication[] = [
     "title": "SeoulOps: Text-to-SQL, City2Graph, GraphRAG를 결합한 도시운영 의사결정 지원",
     "authors": "김수웅, 이가연, 이찬우, 최예지, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "Text-to-SQL; City2Graph; GraphRAG; 도시운영; 의사결정"
   },
   {
@@ -741,7 +741,7 @@ export const publications: Publication[] = [
     "title": "비정형 물류 객체 적재 효율 향상을 위한 기하학적 임베딩 및 3D 형상 복원",
     "authors": "이세정, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "물류 적재; 기하학적 임베딩; 3D 형상 복원"
   },
   {
@@ -750,7 +750,7 @@ export const publications: Publication[] = [
     "title": "물리 인과 쌍의 실행 구조 붕괴 기반 산업제어시스템 이상탐지",
     "authors": "최하정, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "산업제어시스템; 이상탐지; 인과 추론; 실행 구조"
   },
   {
@@ -759,7 +759,7 @@ export const publications: Publication[] = [
     "title": "Transformer 구성요소별 개입을 통한 연속 사전학습 Forgetting 분석",
     "authors": "백상렬, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "Transformer; 연속 학습; Forgetting; 구성요소 분석"
   },
   {
@@ -768,7 +768,7 @@ export const publications: Publication[] = [
     "title": "텍스트 소스 편향 분석을 위한 프롬프트-캡션 삼각 검증 프로토콜",
     "authors": "김혜진, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "텍스트 편향; 프롬프트; 캡션; 삼각 검증"
   },
   {
@@ -777,7 +777,7 @@ export const publications: Publication[] = [
     "title": "단일 Run-to-Failure 궤적 환경에서의 베어링 잔여수명 예측을 위한 딥러닝 모델",
     "authors": "고상근, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2026), 한국정보과학회",
-    "date": "2026",
+    "date": "2026년 6월",
     "keywords": "잔여수명 예측; Run-to-Failure; 베어링; 딥러닝",
     "badge": "우수발표논문상"
   },
@@ -787,7 +787,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "이미지 인코딩 기반 특징 결합을 활용한 시계열 이상 탐지 모델",
     "authors": "최하정, 이수안",
-    "venue": "한국소프트웨어종합학술대회(KSC 2026), 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2025), 한국정보과학회",
     "date": "2025년 12월",
     "keywords": "시계열 이상 탐지; 이미지 인코딩; 특징 결합; 딥러닝"
   },
@@ -850,7 +850,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "한국어 완곡 코팅을 통한 LLM 안전성 우회 분석",
     "authors": "길상현, 김재성, 이수안",
-    "venue": "한국소프트웨어종합학술대회(KSC 2025), 한국정보과학회",
+    "venue": "추계학술대회논문집, 대한전자공학회",
     "date": "2025년 12월",
     "keywords": "LLM 안전성; 완곡 코팅; 우회 분석; 한국어"
   },
@@ -914,7 +914,7 @@ export const publications: Publication[] = [
   {
     "id": 241,
     "type": "dconference",
-    "title": "하루버디: 글로벌 한국을 위한 디지털 스케폴딩",
+    "title": "HaruBuddy: Digital Scaffolding for a Global South Korea",
     "authors": "Chukwuka Chinechebem Yvette, 이수안",
     "venue": "추계학술대회논문집, 대한전자공학회",
     "date": "2025년 11월"
@@ -972,7 +972,7 @@ export const publications: Publication[] = [
   {
     "id": 248,
     "type": "dconference",
-    "title": "모달리티 특성을 고려한 데이터 증강 기반 다중 모달 딥러닝 흉부 질환 분류",
+    "title": "모달리티 특성을 고려한 데이터 증강 기반 다중 모달 딥러닝 흉부 질환 분류 : Grayscale 중심 증강 접근",
     "authors": "정예림, 고상근, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2025), 한국정보과학회",
     "date": "2025년 07월"
@@ -1088,7 +1088,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "효과적인 소리 특징 추출을 이용한 낙상 탐지 모델",
     "authors": "민성호, 이수안",
-    "venue": "한국소프트웨어종합학술대회(KSC 2025), 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
   },
   {
@@ -1134,7 +1134,7 @@ export const publications: Publication[] = [
   {
     "id": 268,
     "type": "dconference",
-    "title": "YOLOv10과 YOLOv11를 이용한 인쇄 회로 기판(PCB) 결함 탐지 및 분류",
+    "title": "YOLOv10과 YOLOv11을 이용한 인쇄 회로 기판(PCB) 결함 탐지 및 분류",
     "authors": "박소연, 조홍석, 이수안",
     "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
     "date": "2024년 12월"
@@ -1247,7 +1247,7 @@ export const publications: Publication[] = [
   {
     "id": 282,
     "type": "dconference",
-    "title": "구름 요소 베어링의 진동 및 모터 전류 데이터의 고장 분류 모델",
+    "title": "구름 요소 베어링의 모터 전류 데이터 고장 분류 모델",
     "authors": "최하정, 배인수, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월",
@@ -1280,7 +1280,7 @@ export const publications: Publication[] = [
   {
     "id": 286,
     "type": "dconference",
-    "title": "파인튜닝, RAG, 프롬프트 기반 언러닝 방법론의 효율성 비교 분석",
+    "title": "파인튜닝, RAG, 프롬프트 기반 언러닝 방법의 성능 비교 분석",
     "authors": "김재성, 이수안",
     "venue": "한국컴퓨터종합학술대회(KCC 2024), 한국정보과학회",
     "date": "2024년 06월"
@@ -1315,7 +1315,7 @@ export const publications: Publication[] = [
     "type": "dconference",
     "title": "산업용 설비 소리의 이미지 변환을 이용한 딥러닝 기반의 고장 진단 및 분류 모델",
     "authors": "고상근, 이수안",
-    "venue": "한국소프트웨어종합학술대회(KSC 2024), 한국정보과학회",
+    "venue": "한국소프트웨어종합학술대회(KSC 2023), 한국정보과학회",
     "date": "2023년 12월",
     "badge": "우수발표논문상"
   },
@@ -1502,7 +1502,7 @@ export const publications: Publication[] = [
   {
     "id": 6,
     "type": "dconference",
-    "title": "Noise와 Curruption을 이용한 디퓨전 생성모델의 성능분석",
+    "title": "Noise와 Corruption을 이용한 디퓨전 생성모델의 성능분석",
     "authors": "배기웅, 이수안, 이우기",
     "venue": "한국소프트웨어종합학술대회(KSC 2022), 한국정보과학회",
     "date": "2022년 12월",
@@ -1801,7 +1801,7 @@ export const publications: Publication[] = [
   {
     "id": 34,
     "type": "conference",
-    "title": "Trajectory Privacy Preservationby Using Deep Learning: Transformer-TrajGAN",
+    "title": "Trajectory Privacy Preservation by Using Deep Learning: Transformer-TrajGAN",
     "authors": "Ellen S. Park, Hazel H. Kim, Suan Lee and Wookey Lee",
     "venue": "The 9th International Conference on Big Data Applications and Services (BIGDAS), 2021.",
     "date": "November 25-27, 2021",
@@ -1958,7 +1958,7 @@ export const publications: Publication[] = [
     "type": "journal",
     "title": "Distributed graph cube generation using Spark framework",
     "authors": "Seok Kang, Suan Lee, and Jinho Kim",
-    "venue": "Cluster Computing",
+    "venue": "The Journal of Supercomputing",
     "date": "October 2020",
     "badge": "SCIE",
     "impact": "(IF: 2.469, JCR: Q2)",
@@ -2149,7 +2149,7 @@ export const publications: Publication[] = [
     "type": "conference",
     "title": "A Study on the Voice Security System Using Sensor Technology",
     "authors": "Jessica Jiwon Seong, Steve Siheon Cho, Allen Hyojun Lee, Suan Lee, Wookey Lee",
-    "venue": "Industrial Security - eGovernance Vision and Strategy (ISComp2020)",
+    "venue": "International Workshop on Industrial Security - eGovernance Vision and Strategy (ISComp 2020), co-located with IEEE BigComp 2020",
     "date": "February 19, 2020",
     "url": "https://sites.google.com/view/iscomp2020/"
   },
@@ -2378,7 +2378,7 @@ export const publications: Publication[] = [
     "id": 72,
     "type": "dconference",
     "title": "효율적인 회귀분석을 위한 Shared Wide & Deep 모델",
-    "authors": "김민규, 이수안, 김진호",
+    "authors": "김민규, 이수안, 김진호, 박지형",
     "venue": "한국컴퓨터종합학술대회(KCC 2019), 한국정보과학회",
     "date": "2019년 7월",
     "abstract": "회귀분석은 시간에 따라 변화하는 데이터의 예측에 많이 이용되는 방법 중에 하나이다. 기존의 Wide & Deep 모델은 추천시스템에서 뛰어난 성능을 내는 방법이지만 회귀분석에서는 좋은 성능을 내지 못한다. 따라서 본 논문에서는 기존의 Wide & Deep 모델을 개선하여 회귀분석에서 잘 동작하는 Shared Wide & Deep 모델을 제안하였다. 제안한 모델을 검증하기 위해 여러 데이터들을 기존의 Wide & Deep 모델 그리고 다양한 회귀 분석 모델들과 비교하였다. 제안한 모델이 다른 모델들보다 높은 R^2 값을 가지고, 효율적으로 회귀 분석이 수행됨을 실험을 통해 확인하였다.",
@@ -2388,7 +2388,7 @@ export const publications: Publication[] = [
     "id": 73,
     "type": "djournal",
     "title": "자유학기제 운영계획서에 대한 텍스트 빅데이터 분석 및 요약",
-    "authors": "이수안, 박범준, 김민규, 신혜숙, 김진호",
+    "authors": "이수안, 김진호, 신혜숙, 박범준, 김민규",
     "venue": "컴퓨터교육학회논문지, 한국컴퓨터교육학회",
     "date": "2017년 5월",
     "badge": "KCI",
@@ -2696,7 +2696,7 @@ export const publications: Publication[] = [
     "id": 100,
     "type": "djournal",
     "title": "맵리듀스를 이용한 데이터 큐브의 상향식 계산을 위한 반복적 알고리즘",
-    "authors": "이수안, 김진호",
+    "authors": "이수안, 김진호, 조선화",
     "venue": "정보화연구, 한국엔터프라이즈아키텍처학회",
     "date": "2012년 03월 30일",
     "badge": "KCI",
@@ -2834,7 +2834,7 @@ export const publications: Publication[] = [
   {
     "id": 113,
     "type": "conference",
-    "title": "SAMSTAR: An Automatic Tool for Generating Star Schema from Entity-Relationship Diagram",
+    "title": "SAMSTAR: An Automatic Tool for Generating Star Schemas from an Entity-Relationship Diagram",
     "authors": "Il-Yeol Song, Ritu Khare, Yuan An, Suan Lee, Sang-Pil Kim, Jinho Kim, and Yang-Sae Moon",
     "venue": "International Conference on Conceptual Modeling. Springer Berlin Heidelberg",
     "date": "2008",
@@ -2884,7 +2884,7 @@ export const publications: Publication[] = [
     "id": 116,
     "type": "conference",
     "title": "Query Optimization Techniques for Horizontal View Tables used for Multidimensional Analysis",
-    "authors": "Sung-Hyun Shin, Yang-Sae Moon, Jinho Kim, Soo-Ahn Lee, and Sang-Wook Kim",
+    "authors": "Sung-Hyun Shin, Yang-Sae Moon, Jinho Kim, Suan Lee, and Sang-Wook Kim",
     "venue": "International Conference on Information and Knowledge Engineering (IKE'08)",
     "date": "2008",
     "abstract": "To support effective analyses in various business applications, On-Line Analytical Processing (OLAP) systems often represent multidimensional data as the horizontal format of tables whose columns are corresponding to values of dimension attributes. (Cross tabulation for statistical data is an example of horizontal tabular form.) These horizontal tables can have a lot of columns. Because conventional DBMSs have the limitation on the maximum number of attributes which tables can have (MS SQLServer and Oracle permit each table to have up to 1,024 columns), horizontal tables cannot be often stored directly into relational database systems. In that case, horizontal tables can be represented by equivalent vertical tables with the form of <attribute name, value> pairs and every queries for horizontal tables should be transformed into the ones for vertical tables. In this paper, we propose various optimization strategies in transforming horizontal table queries to equivalent vertical table ones. To achieve this goal, we first store a horizontal table by using an equivalent vertical table, then we develop various query transformation rules for horizontal table queries. We proposed various alternative query transformation rules for basic relational operators such as selection, projection, and join. (The PIVOT operator which the recent version of MS SQLServer newly provides is used in these transformation rules.) Here, we note that horizontal queries can be transformed/executed in several ways, and their execution times differ from each other. Thus, we propose various optimization strategies that transform horizontal queries to equivalent vertical queries. Finally, we evaluate these methods through experiments and identify optimal transformation strategies.",
