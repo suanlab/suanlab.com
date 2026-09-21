@@ -42,7 +42,7 @@ function computePublicationTypes(publications: Publication[]) {
 export const publications: Publication[] = [
   // ============ 2026 International Journals ============
   {
-    "id": 636,
+    "id": 652,
     "type": "journal",
     "title": "Physics-Informed Neural Networks and Neural Operators for PDEs: A Review of Architectures, Training Pathologies, and Method Selection",
     "authors": "Namhyeon Kim, Mukhiddin Toshpulatov, and Suan Lee",
@@ -53,7 +53,7 @@ export const publications: Publication[] = [
     "keywords": "physics-informed neural networks; neural operators; PDEs; training pathologies; method selection"
   },
   {
-    "id": 637,
+    "id": 653,
     "type": "journal",
     "title": "EchoCSI: A Systematic Cross-Environment Benchmark and a Frozen-Prior Vector-Quantized Recipe for WiFi CSI-to-Image Generation",
     "authors": "Suan Lee, Dongmin Jin, and Namhyeon Kim",
@@ -64,7 +64,7 @@ export const publications: Publication[] = [
     "keywords": "Wi-Fi sensing; CSI-to-image generation; cross-environment benchmark; vector quantization"
   },
   {
-    "id": 638,
+    "id": 654,
     "type": "journal",
     "title": "MS-MBSP: Multi-Scale Multi-Band Spectral Pooling for Device-Free Wi-Fi CSI Respiratory State Classification",
     "authors": "Namhyeon Kim, Dongmin Jin, and Suan Lee",
@@ -374,7 +374,7 @@ export const publications: Publication[] = [
     "keywords": "binding problem; cross-attention; MM-DiT; diffusion; interpretability"
   },
   {
-    "id": 639,
+    "id": 655,
     "type": "conference",
     "title": "Auditing PEFT Claims: A Stability Probe Unifying Three LoRA-Variant Failure Modes",
     "authors": "Suan Lee and JaeSeong Kim",
@@ -384,7 +384,7 @@ export const publications: Publication[] = [
     "keywords": "PEFT; LoRA; stability probe; failure mode analysis"
   },
   {
-    "id": 640,
+    "id": 656,
     "type": "conference",
     "title": "Memorization or Extraction? Auditing LLM-Based Recovery of Scientific Assumptions",
     "authors": "Suan Lee and JaeSeong Kim",
@@ -392,6 +392,36 @@ export const publications: Publication[] = [
     "date": "2026",
     "badge": "AACL-IJCNLP 2026",
     "keywords": "LLM audit; memorization; scientific assumptions; extraction"
+  },
+  {
+    "id": 645,
+    "type": "conference",
+    "title": "Pretraining Builds Cooperation, Not Components: Tracking Inter-Layer Coordination via Lie Brackets",
+    "authors": "JaeSeong Kim and Suan Lee",
+    "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
+    "date": "2026",
+    "badge": "AACL-IJCNLP 2026 Findings",
+    "keywords": "pretraining; inter-layer coordination; Lie bracket; representation analysis"
+  },
+  {
+    "id": 646,
+    "type": "conference",
+    "title": "When Quality Filters Backfire: Agreement-Based Latent Filtering Hurts Bootstrap Pretraining",
+    "authors": "Suan Lee and JaeSeong Kim",
+    "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
+    "date": "2026",
+    "badge": "AACL-IJCNLP 2026 Findings",
+    "keywords": "quality filters; data filtering; bootstrap pretraining; data curation"
+  },
+  {
+    "id": 647,
+    "type": "conference",
+    "title": "Mass-Tail SHAP Entropy: A Regime-Conditional Decoder for Vision-Language Model Hallucination",
+    "authors": "Jaegwang Shin and Suan Lee",
+    "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
+    "date": "2026",
+    "badge": "AACL-IJCNLP 2026 Findings",
+    "keywords": "vision-language model; hallucination; SHAP entropy; interpretability"
   },
   {
     "id": 641,
@@ -432,36 +462,6 @@ export const publications: Publication[] = [
     "date": "2026",
     "badge": "ICDM 2026",
     "keywords": "data leakage; benchmark audit; player identity; team performance"
-  },
-  {
-    "id": 645,
-    "type": "conference",
-    "title": "Pretraining Builds Cooperation, Not Components: Tracking Inter-Layer Coordination via Lie Brackets",
-    "authors": "JaeSeong Kim and Suan Lee",
-    "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
-    "date": "2026",
-    "badge": "AACL-IJCNLP 2026 Findings",
-    "keywords": "pretraining; inter-layer coordination; Lie bracket; representation analysis"
-  },
-  {
-    "id": 646,
-    "type": "conference",
-    "title": "When Quality Filters Backfire: Agreement-Based Latent Filtering Hurts Bootstrap Pretraining",
-    "authors": "Suan Lee and JaeSeong Kim",
-    "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
-    "date": "2026",
-    "badge": "AACL-IJCNLP 2026 Findings",
-    "keywords": "quality filters; data filtering; bootstrap pretraining; data curation"
-  },
-  {
-    "id": 647,
-    "type": "conference",
-    "title": "Mass-Tail SHAP Entropy: A Regime-Conditional Decoder for Vision-Language Model Hallucination",
-    "authors": "Jaegwang Shin and Suan Lee",
-    "venue": "Findings of the Asia Pacific Chapter of ACL and IJCNLP Joint Conference (AACL-IJCNLP 2026)",
-    "date": "2026",
-    "badge": "AACL-IJCNLP 2026 Findings",
-    "keywords": "vision-language model; hallucination; SHAP entropy; interpretability"
   },
   {
     "id": 613,
