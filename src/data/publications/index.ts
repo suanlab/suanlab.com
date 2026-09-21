@@ -50,6 +50,7 @@ export const publications: Publication[] = [
     "date": "September 2026",
     "badge": "SCIE",
     "url": "https://www.sciencedirect.com/science/article/pii/S0893608026010968",
+    "impact": "(IF: 7.2)",
     "keywords": "physics-informed neural networks; neural operators; PDEs; training pathologies; method selection"
   },
   {
@@ -61,6 +62,7 @@ export const publications: Publication[] = [
     "date": "September 2026",
     "badge": "SCIE",
     "url": "https://ieeexplore.ieee.org/document/11683450",
+    "impact": "(IF: 4.2)",
     "keywords": "Wi-Fi sensing; CSI-to-image generation; cross-environment benchmark; vector quantization"
   },
   {
@@ -72,6 +74,7 @@ export const publications: Publication[] = [
     "date": "September 2026",
     "badge": "SCIE",
     "url": "https://ieeexplore.ieee.org/document/11683458",
+    "impact": "(IF: 4.2)",
     "keywords": "Wi-Fi CSI; respiratory state classification; multi-band spectral pooling; CNN-BiLSTM; device-free sensing"
   },
   // ============ 2025 International Journals ============
@@ -83,7 +86,7 @@ export const publications: Publication[] = [
     "venue": "PLoS One",
     "date": "2025",
     "badge": "SCIE",
-    "impact": "(IF: 2.9)",
+    "impact": "(IF: 2.8)",
     "keywords": "fraud detection; heterogeneous graph; attention network; deep learning"
   },
   {
@@ -103,7 +106,7 @@ export const publications: Publication[] = [
     "venue": "Pattern Recognition",
     "date": "2025",
     "badge": "SCIE",
-    "impact": "(IF: 7.5, JCR: Q1)",
+    "impact": "(IF: 9.1, JCR: Q1)",
     "keywords": "sign language processing; deep learning; gesture recognition"
   },
   {
@@ -126,7 +129,7 @@ export const publications: Publication[] = [
     "venue": "PLoS ONE",
     "date": "December 2024",
     "badge": "SCIE",
-    "impact": "(IF: 2.9)",
+    "impact": "(IF: 2.8)",
     "keywords": "fault diagnosis; feature extraction; clustering; equipment monitoring"
   },
   {
@@ -159,7 +162,7 @@ export const publications: Publication[] = [
     "venue": "IEEE Access",
     "date": "2024",
     "badge": "SCIE",
-    "impact": "(IF: 3.4)",
+    "impact": "(IF: 4.2)",
     "keywords": "human action recognition; Doppler; 3D CNN; deep learning"
   },
   {
@@ -203,7 +206,7 @@ export const publications: Publication[] = [
     "venue": "Journal of Theoretical and Applied Electronic Commerce Research",
     "date": "March 2024",
     "badge": "SCIE",
-    "impact": "(IF: 5.6, JCR: Q1)",
+    "impact": "(IF: 4.5, JCR: Q2)",
     "keywords": "financial fraud detection; graph attention network; dual-channel; deep learning"
   },
   {
@@ -214,7 +217,7 @@ export const publications: Publication[] = [
     "venue": "Data & Knowledge Engineering",
     "date": "March 2024",
     "badge": "SCIE",
-    "impact": "(IF: 2.5)",
+    "impact": "(IF: 3.9)",
     "keywords": "deep learning; commercial district; sales prediction; store prediction"
   },
   // ============ 2023 International Journals (New) ============
@@ -226,7 +229,7 @@ export const publications: Publication[] = [
     "venue": "Sensors",
     "date": "October 2023",
     "badge": "SCIE",
-    "impact": "(IF: 3.9)",
+    "impact": "(IF: 4.0, JCR: Q2)",
     "keywords": "leak detection; machine learning; vibration sensor; water pipeline"
   },
   // ============ Workshops ============
@@ -534,6 +537,7 @@ export const publications: Publication[] = [
     "date": "2026",
     "badge": "SCIE",
     "url": "https://doi.org/10.12989/anr.2026.20.3.415",
+    "impact": "(IF: 3.7)",
     "keywords": "3D point cloud; registration; fusion; RPMNet++; ICP; deep learning"
   },
   {
@@ -1469,7 +1473,7 @@ export const publications: Publication[] = [
     "venue": "Expert Systems with Applications",
     "date": "June 2023",
     "badge": "SCIE",
-    "impact": "(IF: 8.665, JCR: Q1)",
+    "impact": "(IF: 9.4, JCR: Q1)",
     "abstract": "Talking human face generation aims at synthesizing a natural human face that talks in correspondence to the given text or audio series. Implementing the recently developed Deep Learning (DL) methods such as Convolutional Neural Networks (CNN), Generative Adversarial Networks (GAN)s, Neural Rendering Fields (NeRF) for data generation, and talking human face generation has attracted significant research interest from academia and industry. They have been explored and exploited recently and have been used to address several problems in image processing and computer vision. Notwithstanding notable advancements, implementing them to real-world problems such as talking human face generation remains challenging. The generation of deepfakes created by the abovementioned methods would greatly promote many fascinating applications, including augmented reality, virtual reality, computer games, teleconferencing, virtual try-on, special movie effects, and avatars. This research reviews and discusses DL related methods, including CNN, GANs, NeRF, and their implementation in talking human face generation. We aim to analyze existing approaches regarding their implementation to talking face generation, investigate the related general problems, and highlight the open study issues. We also provide quantitative and qualitative evaluations of the existing research approaches in the related field.",
     "keywords": "Talking human face animation; 3D face generation; Deep generative model; Autoencoder; Neural radiance field; Datasets; Evaluation metrics; Neural networks; Unsupervised learning; Mel spectogram",
     "url": "https://www.sciencedirect.com/science/article/pii/S0957417423001793"
@@ -1717,7 +1721,7 @@ export const publications: Publication[] = [
     "venue": "The Journal of Supercomputing",
     "date": "January 2022",
     "badge": "SCIE",
-    "impact": "(IF: 2.474, JCR: Q2)",
+    "impact": "(IF: 3.5, JCR: Q2)",
     "abstract": "Human pose estimation is one of the issues that have gained many benefits from using state-of-the-art deep learning-based models. Human pose, hand and mesh estimation is a significant problem that has attracted the attention of the computer vision community for the past few decades. A wide variety of solutions have been proposed to tackle the problem. Deep Learning-based approaches have been extensively studied in recent years and used to address several computer vision problems. However, it is sometimes hard to compare these methods due to their intrinsic difference. This paper extensively summarizes the current deep learning-based 2D and 3D human pose, hand and mesh estimation methods with a single or multi-person, single or double-stage methodology-based taxonomy. The authors aim to make every step in the deep learning-based human pose, hand and mesh estimation techniques interpretable by providing readers with a readily understandable explanation. The presented taxonomy has clearly illustrated current research on deep learning-based 2D and 3D human pose, hand and mesh estimation. Moreover, it also provided dataset and evaluation metrics for both 2D and 3D HPE approaches.",
     "keywords": "3D pose estimation, Generator, Discriminator, Loss function, Deep neural network, Deep learning, Mesh estimation, Evaluation metric, Dataset",
     "url": "https://link.springer.com/article/10.1007/s11227-021-04184-7"
@@ -1872,7 +1876,7 @@ export const publications: Publication[] = [
     "venue": "Image and Vision Computing",
     "date": "February 2021",
     "badge": "SCIE",
-    "impact": "(IF: 3.103, JCR: Q1)",
+    "impact": "(IF: 5.0, JCR: Q1)",
     "abstract": "Generative adversarial networks (GANs) have been extensively studied in recent years and have been used to address several problems in the fields of image generation and computer vision. Despite significant advancements in computer vision, applying GANs to real-world problems such as 3D face generation remains a challenge. Owing to the proliferation of fake images generated by GANs, it is important to analyze and build a taxonomy for providing an overall view of GANs. This, in turn, would facilitate many interesting applications, including virtual reality, augmented reality, computer games, teleconferencing, virtual try-on, special effects in movies, and 3D avatars. This paper reviews and discusses GANs and their application to 3D face generation. We aim to compare existing GANs methods in terms of their application to 3D face generation, investigate the related theoretical issues, and highlight the open research problems. Authors provided both qualitative and quantitative evaluations of the proposed approach. They claimed their results show the higher quality of the synthesized data compared to state-of-the-art ones.",
     "keywords": "Generative adversarial networks; 3D face generation; Generator; Discriminator; Deep neural network; Deep learning",
     "url": "https://www.sciencedirect.com/science/article/abs/pii/S026288562100024X"
@@ -1885,7 +1889,7 @@ export const publications: Publication[] = [
     "venue": "Sensors",
     "date": "February 2021",
     "badge": "SCIE",
-    "impact": "(IF: 3.275, JCR: Q1)",
+    "impact": "(IF: 4.0, JCR: Q2)",
     "abstract": "Voice is one of the essential mechanisms for communicating and expressing one’s intentions as a human being. There are several causes of voice inability, including disease, accident, vocal abuse, medical surgery, ageing, and environmental pollution, and the risk of voice loss continues to increase. Novel approaches should have been developed for speech recognition and production because that would seriously undermine the quality of life and sometimes leads to isolation from society. In this review, we survey mouth interface technologies which are mouth-mounted devices for speech recognition, production, and volitional control, and the corresponding research to develop artificial mouth technologies based on various sensors, including electromyography (EMG), electroencephalography (EEG), electropalatography (EPG), electromagnetic articulography (EMA), permanent magnet articulography (PMA), gyros, images and 3-axial magnetic sensors, especially with deep learning techniques. We especially research various deep learning technologies related to voice recognition, including visual speech recognition, silent speech interface, and analyze its flow, and systematize them into a taxonomy. Finally, we discuss methods to solve the communication problems of people with disabilities in speaking and future research with respect to deep learning components.",
     "keywords": "mouth interface; voice production; artificial larynx; EMG; biosignal; deep learning",
     "url": "https://www.mdpi.com/1424-8220/21/4/1399/htm"
@@ -1962,7 +1966,7 @@ export const publications: Publication[] = [
     "venue": "The Journal of Supercomputing",
     "date": "October 2020",
     "badge": "SCIE",
-    "impact": "(IF: 2.469, JCR: Q2)",
+    "impact": "(IF: 3.5, JCR: Q2)",
     "abstract": "Graph OLAP is a technology that generates aggregates or summaries of a large-scale graph based on the properties (or dimensions) associated with its nodes and edges, and in turn enables interactive analyses of the statistical information contained in the graph. To efficiently support these OLAP functions, a graph cube is widely used, which maintains aggregate graphs for all dimensions of the source graph. However, computing the graph cube for a large graph requires an enormous amount of time. While previous approaches have used the MapReduce framework to cut down on this computation time, the recently developed Spark environment offers superior computational performance. To leverage the advantages of Spark, we propose the GraphNaïve and GraphTDC algorithms. GraphNaïve sequentially computes graph cuboids for all dimensions in a graph, while GraphTDC computes them after first creating an execution plan. We also propose the Generate Multi-Dimension Table method to efficiently create a multidimensional graph table to express the graph. Evaluation experiments demonstrated that the GraphTDC algorithm significantly outperformed Spark SQL’s built-in library DataFrame, as the size of graphs increased.",
     "keywords": "Distributed parallel processing, Spark framework, Resilient distributed dataset, Graph cube, Data cube, Online analytical processing",
     "url": "https://link.springer.com/article/10.1007%2Fs11227-019-02746-4"
@@ -1975,7 +1979,7 @@ export const publications: Publication[] = [
     "venue": "The Journal of Supercomputing",
     "date": "October 2020",
     "badge": "SCIE",
-    "impact": "(IF: 2.469, JCR: Q2)",
+    "impact": "(IF: 3.5, JCR: Q2)",
     "abstract": "Context information can be an important factor of user behavior modeling and various context recognition recommendations. However, state-of-the-art context modeling methods cannot deal with contexts of other dimensions such as those of users and items and cannot extract special semantics. On the other hand, some tasks for predicting multidimensional relationships can be used to recommend context recognition, but there is a problem with the generation recommendations based on a variety of context information. In this paper, we propose MRTensorCube, which is a large-scale data cube calculation based on distributed parallel computing using MapReduce computation framework and supports efficient context recognition. The basic idea of MRTensorCube is the reduction of continuous data combined partial filter and slice when calculating using a four-way algorithm. From the experimental results, it is clear that MRTensor is superior to all other algorithms.",
     "keywords": "Context awareness, Tensor data cube, MapReduce framework",
     "url": "https://link.springer.com/article/10.1007/s11227-017-2002-1"
