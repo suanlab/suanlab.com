@@ -183,9 +183,10 @@ function parseQTContent(filename: string, content: string): QTEntry {
   const lines = content.split('\n');
 
   // Extract date and title from filename
-  const filenameMatch = filename.match(/^(\d{4}-\d{2}-\d{2})\s+(.+)\.md$/);
-  const date = filenameMatch?.[1] || '';
-  const title = filenameMatch?.[2] || lines[0]?.trim() || 'Untitled';
+  const filenameMatch = filename.match(/^(\d{4}-\d{2}-\d{2})(?:\s+(.+))?\.md$/);
+  const date = filename.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] || '';
+  const stem = filename.replace(/\.md$/, '');
+  const filenameTitle = filenameMatch?.[2] || (stem !== date ? stem : undefined);
 
   // Generate URL-safe ASCII slug
   const slug = getSlugForFilename(filename);
@@ -262,7 +263,7 @@ function parseQTContent(filename: string, content: string): QTEntry {
   return {
     slug,
     date,
-    title,
+    title: filenameTitle || `${date} ${bibleReference || '묵상'}`,
     bibleBook,
     chapter,
     verses,

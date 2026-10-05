@@ -44,3 +44,18 @@ test('lecture Markdown keeps code separators, renders math/images, and separates
   assert.ok(pilot?.slides.some(slide => slide.contentHtml?.includes('hljs')));
   assert.ok(pilot?.slides.some(slide => slide.contentHtml?.includes('search-tree.svg')));
 });
+
+test('calendar date validation rejects rollover and incomplete dates', async () => {
+  const { isCalendarDate } = await import('../src/lib/content-date');
+  assert.equal(isCalendarDate('2024-02-29'), true);
+  for (const value of ['2026-02-29', '2026-02-30', '2026-13-01', '2026-1-2', undefined]) assert.equal(isCalendarDate(value), false);
+});
+
+test('date-only legacy QT files retain their date, title, and stable slug', async () => {
+  const { getQTBySlug } = await import('../src/lib/qt');
+  const entry = getQTBySlug('2015-02-01');
+  assert.equal(entry?.date, '2015-02-01');
+  assert.equal(entry?.slug, '2015-02-01');
+  assert.match(entry?.title || '', /잠언/);
+  assert.notEqual(entry?.title, '---');
+});

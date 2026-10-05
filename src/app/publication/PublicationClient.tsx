@@ -1,5 +1,6 @@
 'use client';
 
+import { useLanguage } from '@/components/language-provider';
 import { useState, useEffect } from 'react';
 import {
   Users,
@@ -108,6 +109,8 @@ export default function PublicationClient({
   publications,
   publicationTypes,
 }: PublicationClientProps) {
+  const { language } = useLanguage();
+  const ko = language === 'ko';
   const [activeFilter, setActiveFilter] = useState<PublicationType | 'all'>(
     'all'
   );
@@ -147,10 +150,10 @@ export default function PublicationClient({
   return (
     <div className="lg:col-span-3">
       <div className="mb-6 grid gap-3 sm:grid-cols-[1fr_auto]">
-        <label className="text-sm">검색 / Search<input className="mt-2 block w-full rounded-lg border bg-background p-3" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="제목, 저자, 학술지, 키워드" /></label>
+        <label className="text-sm">검색 / Search<input className="mt-2 block w-full rounded-lg border bg-background p-3" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={ko ? '제목, 저자, 학술지, 키워드' : 'Title, author, venue, keywords'} /></label>
         <label className="text-sm">연도 / Year<select className="mt-2 block w-full rounded-lg border bg-background p-3" value={year} onChange={(event) => setYear(event.target.value)}><option value="all">전체 / All</option>{years.map((value) => <option key={value} value={value}>{value}</option>)}</select></label>
       </div>
-      <p className="mb-4 text-sm text-muted-foreground" aria-live="polite">{filteredPublications.length} results</p>
+      <p className="mb-4 text-sm text-muted-foreground" aria-live="polite">{filteredPublications.length} {ko ? '개 결과' : 'results'}</p>
       <div className="mb-8 flex flex-wrap gap-2">
         {publicationTypes.map((type) => (
           <Button
@@ -158,6 +161,7 @@ export default function PublicationClient({
             variant={activeFilter === type.key ? 'default' : 'outline'}
             size="sm"
             onClick={() => setActiveFilter(type.key)}
+            aria-pressed={activeFilter === type.key}
             className="relative"
           >
             {type.label}
@@ -195,15 +199,15 @@ export default function PublicationClient({
                           className={cn(
                             'text-xs',
                             pub.badge === 'SCIE'
-                              ? 'bg-purple-500 text-white hover:bg-purple-600'
+                              ? 'bg-purple-700 text-white hover:bg-purple-600'
                               : pub.badge === 'SSCI'
-                              ? 'bg-yellow-500 text-white hover:bg-yellow-600'
+                              ? 'bg-yellow-800 text-white hover:bg-yellow-600'
                               : pub.badge === 'KCI'
-                              ? 'bg-blue-500 text-white hover:bg-blue-600'
+                              ? 'bg-blue-700 text-white hover:bg-blue-600'
                               : pub.badge.includes('장려상')
-                              ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                              ? 'bg-emerald-700 text-white hover:bg-emerald-700'
                               : pub.badge.includes('우수')
-                              ? 'bg-amber-500 text-white hover:bg-amber-600'
+                              ? 'bg-amber-800 text-white hover:bg-amber-600'
                               : pub.badge.includes('Best Paper Award Runner-up')
                               ? 'bg-orange-500 text-white hover:bg-orange-600'
                               : 'bg-destructive text-destructive-foreground'
@@ -215,7 +219,7 @@ export default function PublicationClient({
                       {pub.impact && (
                         <Badge
                           variant="outline"
-                          className="text-xs text-orange-600 border-orange-600"
+                          className="text-xs text-orange-700 dark:text-orange-400 border-orange-600"
                         >
                           {pub.impact}
                         </Badge>
@@ -307,12 +311,12 @@ export default function PublicationClient({
                       {copiedId === pub.id ? (
                         <>
                           <Check className="mr-2 h-4 w-4" />
-                          복사됨!
+                          {ko ? '복사됨' : 'Copied'}!
                         </>
                       ) : (
                         <>
                           <Copy className="mr-2 h-4 w-4" />
-                          BibTeX 복사
+                          {ko ? 'BibTeX 복사' : 'Copy BibTeX'}
                         </>
                       )}
                     </Button>
@@ -330,7 +334,7 @@ export default function PublicationClient({
             <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
               <Search className="h-8 w-8 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-semibold">No publications found</h3>
+            <h3 className="text-lg font-semibold">{ko ? '해당하는 논문이 없습니다.' : 'No publications found'}</h3>
             <p className="mt-2 text-muted-foreground">
               해당 카테고리에 출판물이 없습니다.
             </p>

@@ -318,6 +318,7 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
           </Button>
         )}
         <select
+          aria-label={language === 'ko' ? '프롬프트 정렬' : 'Sort prompts'}
           value={sort}
           onChange={(e) => setSort(e.target.value as typeof sort)}
           className="ml-auto h-9 rounded-md border border-input bg-background px-2 text-xs"

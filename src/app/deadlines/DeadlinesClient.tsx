@@ -1,5 +1,6 @@
 'use client';
 
+import { useLanguage } from '@/components/language-provider';
 import { useState, useMemo, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -63,6 +64,8 @@ function getLastDeadline(conf: Conference) {
 
 export default function DeadlinesClient({ conferences, categories }: DeadlinesClientProps) {
   const [selectedCategories, setSelectedCategories] = useState<Set<ConferenceCategory>>(new Set());
+  const { language } = useLanguage();
+  const ko = language === 'ko';
   const [query, setQuery] = useState('');
   const [showPassed, setShowPassed] = useState(false);
   const now = useNow();
@@ -116,19 +119,19 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
         <Card>
           <CardContent className="p-4 text-center">
             <p className="text-3xl font-bold text-primary">{conferences.length}</p>
-            <p className="text-sm text-muted-foreground">전체 학회</p>
+            <p className="text-sm text-muted-foreground">{ko ? '전체 학회' : 'Conferences'}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
             <p className="text-3xl font-bold text-green-600 dark:text-green-400">{activeCount}</p>
-            <p className="text-sm text-muted-foreground">진행 중</p>
+            <p className="text-sm text-muted-foreground">{ko ? '진행 중' : 'Open'}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
             <p className="text-3xl font-bold text-muted-foreground">{categories.length}</p>
-            <p className="text-sm text-muted-foreground">분야</p>
+            <p className="text-sm text-muted-foreground">{ko ? '분야' : 'Categories'}</p>
           </CardContent>
         </Card>
       </div>
@@ -137,7 +140,7 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="학회 이름, 장소 검색..."
+            placeholder={ko ? '학회 이름, 장소 검색...' : 'Search conference or location...'} aria-label={ko ? '학회 검색' : 'Search conferences'}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="pl-9"
@@ -154,6 +157,7 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
               variant={active ? 'default' : 'outline'}
               size="sm"
               onClick={() => toggleCategory(cat.id)}
+              aria-pressed={active}
               className={cn(!active && 'hover:bg-accent')}
             >
               {cat.label}
@@ -164,15 +168,16 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
 
       <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
         <Badge variant="outline" className="text-sm">
-          {filtered.length}개 표시 중
+          {filtered.length} {ko ? '개 표시 중' : 'conferences shown'}
         </Badge>
         <Button
           variant={showPassed ? 'default' : 'ghost'}
           size="sm"
           onClick={() => setShowPassed((v) => !v)}
+          aria-pressed={showPassed}
         >
           <History className="mr-1 h-3 w-3" />
-          {showPassed ? '마감된 학회 표시 중' : '마감된 학회 숨김'}
+          {ko ? (showPassed ? '마감된 학회 표시 중' : '마감된 학회 숨김') : (showPassed ? 'Showing past deadlines' : 'Hiding past deadlines')}
         </Button>
       </div>
 
@@ -185,7 +190,7 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
               key={conf.id}
               className={cn(
                 'h-full flex flex-col transition-all hover:shadow-md',
-                passed && 'opacity-60'
+                passed && 'bg-muted/20'
               )}
             >
               <CardHeader className="pb-3">
@@ -207,7 +212,7 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
                       {formatCountdown(next.dateObj, now)}
                     </Badge>
                   )}
-                  {passed && <Badge variant="secondary">마감</Badge>}
+                  {passed && <Badge variant="secondary">{ko ? '마감' : 'Closed'}</Badge>}
                 </div>
                 <p className="text-xs text-muted-foreground">{conf.full_name}</p>
                 <div className="flex flex-wrap gap-1 mt-2">
@@ -245,7 +250,7 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
                 </div>
 
                 <div className="mt-auto space-y-1.5">
-                  <p className="text-xs font-medium text-muted-foreground">일정</p>
+                  <p className="text-xs font-medium text-muted-foreground">{ko ? '일정' : 'Schedule'}</p>
                   <ul className="space-y-1">
                     {conf.deadlines.map((d, idx) => {
                       const dObj = toDateObj(d.date, conf.timezone);
@@ -257,7 +262,7 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
                           className={cn(
                             'flex items-center justify-between text-xs',
                             isNext && 'font-medium text-primary',
-                            isPassed && !isNext && 'text-muted-foreground/60 line-through'
+                            isPassed && !isNext && 'text-muted-foreground line-through'
                           )}
                         >
                           <span>{d.type}</span>
@@ -292,7 +297,7 @@ export default function DeadlinesClient({ conferences, categories }: DeadlinesCl
       {filtered.length === 0 && (
         <div className="text-center py-16 text-muted-foreground">
           <Calendar className="h-10 w-10 mx-auto mb-3 opacity-40" />
-          <p>조건에 맞는 학회가 없습니다.</p>
+          <p>{ko ? '조건에 맞는 학회가 없습니다.' : 'No matching conferences.'}</p>
         </div>
       )}
 

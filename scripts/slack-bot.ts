@@ -31,7 +31,11 @@ const app = new App({
   logLevel: LogLevel.INFO,
 });
 
+if (process.env.SUANLAB_QUEUE_LOCKED !== '1') throw new Error('Start the bot with npm run bot:slack to acquire the queue lock.');
 const queue = new JobQueue(path.join(process.cwd(), '.runtime/slack-jobs.json'));
+function publishJob(jobId: string, files: string[], message: string) {
+  return publishPosts(files, message, process.cwd(), stage => queue.update(jobId, { stage }));
+}
 
 // Check if channel is allowed
 function isAllowedChannel(channelId: string): boolean {
@@ -132,6 +136,16 @@ app.command('/suanblog', async ({ command, ack, respond, logger }) => {
     return;
   }
 
+  if (/^retry\b/i.test(input)) {
+    const id = input.split(/\s+/)[1];
+    try {
+      await respond({ response_type: 'ephemeral', text: '저장된 파일의 발행을 재시도합니다. 콘텐츠를 다시 생성하지 않습니다.' });
+      await queue.retryPublication(id, files => publishJob(id, files, `Publish saved blog job ${id}`));
+      await respond({ response_type: 'ephemeral', text: `작업 ${id}: ${queue.jobs[id].stage}. 작업 이력에 기록했습니다.` });
+    } catch (error) { await respond({ response_type: 'ephemeral', text: error instanceof Error ? error.message : '재발행 실패' }); }
+    return;
+  }
+
   await respond({ response_type: 'ephemeral', text: '작업을 접수했습니다. 앞선 작업이 있으면 순서대로 처리합니다.' });
   try {
     await queue.run(input, async (jobId) => {
@@ -157,8 +171,9 @@ app.command('/suanblog', async ({ command, ack, respond, logger }) => {
             const cleanId = arxivId.replace(/v\d+$/, '').replace(/[^a-zA-Z0-9]/g, '-');
           const existing = fs.readdirSync('content/blog').find(file => file.includes(`-paper-${cleanId}-`));
           if (existing) throw new Error(`이미 저장된 논문 리뷰가 있습니다: ${existing}`);
-          const post = await generateFromPaper({ arxivId, generateImage: true });
-            const filepath = await savePaperPost(post);
+          const post = await generateFromPaper({ arxivId, generateImage: true, onProgress: stage => queue.update(jobId, { stage }) });
+            queue.update(jobId, { stage: 'saving' });
+          const filepath = await savePaperPost(post);
             queue.update(jobId, { stage: 'saved', files: [...(queue.jobs[jobId].files || []), filepath] });
             console.log(`[Batch] Saved: ${filepath}`);
             return { arxivId, title: post.title, filepath };
@@ -178,10 +193,10 @@ app.command('/suanblog', async ({ command, ack, respond, logger }) => {
             }
           });
 
-          if (failed.length) queue.update(jobId, { status: 'failed', error: `${failed.length} paper(s) failed to generate.` });
+          if (failed.length) queue.update(jobId, { status: 'failed', error: `${failed.length} paper(s) failed to generate.`, generationError: `${failed.length} paper(s) failed to generate.` });
           let isGitSuccess = false;
           if (succeeded.length > 0) {
-            const gitOutput = publishPosts(succeeded.map((item) => item.filepath), `Add ${succeeded.length} paper reviews (batch)`);
+            const gitOutput = publishJob(jobId, succeeded.map((item) => item.filepath), `Add ${succeeded.length} paper reviews (batch)`);
             isGitSuccess = gitOutput.includes('master -> master');
             queue.update(jobId, { stage: gitOutput === 'Saved for review' ? 'review' : isGitSuccess ? 'pushed' : 'publish-failed' });
           }
@@ -272,13 +287,14 @@ app.command('/suanblog', async ({ command, ack, respond, logger }) => {
           const cleanId = arxivId.replace(/v\d+$/, '').replace(/[^a-zA-Z0-9]/g, '-');
           const existing = fs.readdirSync('content/blog').find(file => file.includes(`-paper-${cleanId}-`));
           if (existing) throw new Error(`이미 저장된 논문 리뷰가 있습니다: ${existing}`);
-          const post = await generateFromPaper({ arxivId, generateImage: true });
+          const post = await generateFromPaper({ arxivId, generateImage: true, onProgress: stage => queue.update(jobId, { stage }) });
+          queue.update(jobId, { stage: 'saving' });
           const filepath = await savePaperPost(post);
             queue.update(jobId, { stage: 'saved', files: [...(queue.jobs[jobId].files || []), filepath] });
 
           console.log(`Saved: ${filepath}`);
 
-          const gitOutput = publishPosts([filepath], `Add paper review: ${arxivId}`);
+          const gitOutput = publishJob(jobId, [filepath], `Add paper review: ${arxivId}`);
           queue.update(jobId, { stage: gitOutput === 'Saved for review' ? 'review' : gitOutput.includes('master -> master') ? 'pushed' : 'publish-failed' });
           const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
 
@@ -344,13 +360,14 @@ app.command('/suanblog', async ({ command, ack, respond, logger }) => {
 
         try {
           console.log(`Generating paper review from PDF URL: ${input}`);
-          const post = await generateFromPaper({ pdfUrl: input, generateImage: true });
+          const post = await generateFromPaper({ pdfUrl: input, generateImage: true, onProgress: stage => queue.update(jobId, { stage }) });
+          queue.update(jobId, { stage: 'saving' });
           const filepath = await savePaperPost(post);
             queue.update(jobId, { stage: 'saved', files: [...(queue.jobs[jobId].files || []), filepath] });
 
           console.log(`Saved: ${filepath}`);
 
-          const gitOutput = publishPosts([filepath], `Add paper review from PDF`);
+          const gitOutput = publishJob(jobId, [filepath], `Add paper review from PDF`);
           queue.update(jobId, { stage: gitOutput === 'Saved for review' ? 'review' : gitOutput.includes('master -> master') ? 'pushed' : 'publish-failed' });
           const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
 
@@ -427,13 +444,14 @@ app.command('/suanblog', async ({ command, ack, respond, logger }) => {
 
         try {
           console.log(`Generating blog post for topic: ${topic} (${category})`);
-          const post = await generateFromTopic({ topic, category, generateImage: true });
+          const post = await generateFromTopic({ topic, category, generateImage: true, onProgress: stage => queue.update(jobId, { stage }) });
+          queue.update(jobId, { stage: 'saving' });
           const filepath = await saveTopicPost(post);
           queue.update(jobId, { stage: 'saved', files: [filepath] });
 
           console.log(`Saved: ${filepath}`);
 
-          const gitOutput = publishPosts([filepath], `Add blog: ${topic}`);
+          const gitOutput = publishJob(jobId, [filepath], `Add blog: ${topic}`);
           queue.update(jobId, { stage: gitOutput === 'Saved for review' ? 'review' : gitOutput.includes('master -> master') ? 'pushed' : 'publish-failed' });
           const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
 
@@ -519,7 +537,7 @@ app.command('/suanblog-status', async ({ command, ack, respond }) => {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `:bar_chart: *블로그 상태*\n\n총 포스트 수: *${postCount}*개\n작업 상태: ${Object.values(queue.jobs).slice(-5).map(job => `${job.id}: ${job.status} (${job.stage || '-'})`).join(' / ')}`
+            text: `:bar_chart: *블로그 상태*\n\n총 포스트 수: *${postCount}*개\n운영 지표: ${JSON.stringify(queue.metrics())}\n작업 상태: ${Object.values(queue.jobs).slice(-5).map(job => `${job.id}: ${job.status} (${job.stage || '-'})`).join(' / ')}`
           }
         },
         {
@@ -565,7 +583,7 @@ app.command('/suanblog-help', async ({ command, ack, respond }) => {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: '`/suanblog <입력>` - 자동 감지하여 블로그 생성\n`/suanblog-status` - 블로그 상태 확인\n`/suanblog-help` - 도움말'
+          text: '`/suanblog <입력>` - 자동 감지하여 블로그 생성\n`/suanblog retry JOB_ID` - 저장된 파일 재발행\n`/suanblog-status` - 블로그 상태 확인\n`/suanblog-help` - 도움말'
         }
       },
       {

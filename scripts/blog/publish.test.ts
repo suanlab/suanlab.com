@@ -20,6 +20,7 @@ test('publishes only generated assets and treats shell syntax as a literal commi
     fs.writeFileSync(path.join(cwd, 'site.txt'), 'original');
     git('add', '.'); git('commit', '-m', 'Initial');
     git('remote', 'add', 'origin', remote);
+    git('push', 'origin', 'master');
     fs.writeFileSync(path.join(cwd, 'site.txt'), 'design in progress');
     fs.mkdirSync(path.join(cwd, 'content/blog'), { recursive: true });
     fs.mkdirSync(path.join(cwd, 'public/assets/images/blog'), { recursive: true });
@@ -41,6 +42,13 @@ test('publishes only generated assets and treats shell syntax as a literal commi
     assert.match(publishPosts([post], 'Do not include staged edits', cwd), /failed/);
     assert.equal(git('diff', '--cached', '--name-only'), 'site.txt');
     git('reset', '--', 'site.txt');
+    git('add', 'site.txt'); git('commit', '-m', 'Unpublished site change');
+    const remoteBefore = git('rev-parse', 'origin/master');
+    assert.match(publishPosts([post], 'Do not push unrelated commits', cwd), /failed/);
+    assert.equal(git('rev-parse', 'origin/master'), remoteBefore);
+    git('revert', '--no-edit', 'HEAD');
+    assert.match(publishPosts([post], 'Do not push unrelated reverted history', cwd), /failed/);
+    assert.equal(git('rev-parse', 'origin/master'), remoteBefore);
     git('checkout', '-b', 'design');
     assert.match(publishPosts([post], 'Wrong branch', cwd), /failed/);
   } finally {

@@ -1,3 +1,4 @@
+import { parseProvenance, type ContentProvenance } from './content-provenance';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -11,7 +12,7 @@ import rehypeKatex from 'rehype-katex';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeStringify from 'rehype-stringify';
-import { visit } from 'unist-util-visit';
+import { visit, SKIP } from 'unist-util-visit';
 import type { Root, Element } from 'hast';
 
 // Custom rehype plugin to wrap block math in centered div
@@ -42,7 +43,21 @@ function rehypeWrapMath() {
   };
 }
 
+function rehypeAccessibleBlocks() {
+  return (tree: Root) => {
+    visit(tree, 'element', (node, index, parent) => {
+      const classes = node.properties.className as string[] | undefined;
+      if (node.tagName === 'pre' || classes?.includes('math-block') || classes?.includes('katex-display')) node.properties.tabIndex = 0;
+      if (node.tagName === 'table' && parent && index !== undefined) {
+        parent.children[index] = { type: 'element', tagName: 'div', properties: { className: ['blog-table-scroll'], tabIndex: 0, role: 'region', ariaLabel: '표 / Table' }, children: [node] };
+        return SKIP;
+      }
+    });
+  };
+}
+
 export interface BlogPost {
+  provenance?: ContentProvenance;
   slug: string;
   title: string;
   subtitle?: string;
@@ -103,13 +118,14 @@ export function getPostBySlug(slug: string): BlogPost | null {
   const { data, content } = matter(fileContents);
 
   return {
+    provenance: parseProvenance(data.provenance),
     slug: realSlug,
     title: data.title || '',
     subtitle: data.subtitle || undefined,
     date: data.date || '',
     excerpt: data.excerpt || '',
     category: data.category || 'General',
-    tags: data.tags || [],
+    tags: Array.from(new Set<string>(data.tags || [])),
     thumbnail: data.thumbnail || null,
     content,
     readingTime: calculateReadingTime(content),
@@ -129,6 +145,7 @@ export async function getPostBySlugWithHtml(slug: string): Promise<(BlogPost & {
     .use(rehypeAutolinkHeadings, { behavior: 'wrap' })
     .use(rehypeKatex)
     .use(rehypeWrapMath)
+    .use(rehypeAccessibleBlocks)
     .use(rehypeHighlight, { detect: true })
     .use(rehypeStringify)
     .process(post.content);

@@ -1,3 +1,6 @@
+import { publicSourceUrl } from '../../src/lib/content-provenance';
+import { createHash } from 'node:crypto';
+import { formatAsMarkdown } from './post-format';
 import { generateWithAI, parseGeneratedContent } from '../../src/lib/ai/claude';
 import {
   buildPaperPrompt,
@@ -35,6 +38,7 @@ export async function generateFromPaper(
   let pdfBuffer: Buffer | null = null;
   let metadata: PaperMetadata;
 
+  options.onProgress?.('fetching-source');
   // Get PDF content and metadata based on source
   if (options.arxivId) {
     const arxivId = extractArxivId(options.arxivId);
@@ -45,12 +49,14 @@ export async function generateFromPaper(
     pdfBuffer = await fetchArxivPdf(arxivId);
 
     console.log(`Parsing PDF (${metadata.title})...`);
+    options.onProgress?.('parsing-source');
     const parsed = await parsePdfFromBuffer(pdfBuffer);
     pdfText = parsed.text;
   } else if (options.pdfUrl) {
     console.log(`Fetching PDF from URL...`);
     const response = await fetch(options.pdfUrl);
     pdfBuffer = Buffer.from(await response.arrayBuffer());
+    options.onProgress?.('parsing-source');
     const parsed = await parsePdfFromBuffer(pdfBuffer);
     pdfText = parsed.text;
 
@@ -68,6 +74,7 @@ export async function generateFromPaper(
   } else if (options.pdfBuffer) {
     console.log(`Parsing PDF buffer...`);
     pdfBuffer = options.pdfBuffer;
+    options.onProgress?.('parsing-source');
     const parsed = await parsePdfFromBuffer(pdfBuffer);
     pdfText = parsed.text;
 
@@ -84,6 +91,7 @@ export async function generateFromPaper(
   } else if (options.localPath) {
     console.log(`Parsing local PDF: ${options.localPath}`);
     pdfBuffer = await fs.readFile(options.localPath);
+    options.onProgress?.('parsing-source');
     const parsed = await parsePdfFromBuffer(pdfBuffer);
     pdfText = parsed.text;
 
@@ -102,6 +110,7 @@ export async function generateFromPaper(
   }
 
   // Generate summary
+  options.onProgress?.('generating-text');
   const rawContent = await summarizePaper(pdfText, metadata, options);
   const parsed = parseGeneratedContent(rawContent);
   const date = new Date().toISOString().split('T')[0];
@@ -114,6 +123,7 @@ export async function generateFromPaper(
   if (options.generateImage && pdfBuffer) {
     // First try to extract a figure from the PDF
     console.log('Extracting figure from PDF...');
+    options.onProgress?.('extracting-figure');
     const extractResult = await extractFirstFigure(pdfBuffer, slug);
 
     if (extractResult.success && extractResult.imagePath) {
@@ -123,14 +133,22 @@ export async function generateFromPaper(
       // Fall back to AI-generated thumbnail
       console.log(`Figure extraction failed: ${extractResult.error}`);
       console.log('Generating thumbnail with AI...');
+      options.onProgress?.('generating-image');
       thumbnail = await generateAndSaveThumbnail(metadata.title, slug, 'technical');
     }
   } else if (options.generateImage) {
     // No PDF buffer available, use AI generation
+    options.onProgress?.('generating-image');
     thumbnail = await generateAndSaveThumbnail(metadata.title, slug, 'technical');
   }
 
   return {
+    provenance: {
+      method: 'ai-assisted', generatedAt: new Date().toISOString(), review: { status: 'pending' },
+      source: options.arxivId
+        ? { kind: 'arxiv', identifier: extractArxivId(options.arxivId), url: `https://arxiv.org/abs/${extractArxivId(options.arxivId)}`, title: metadata.title, authors: metadata.authors, ...(pdfBuffer ? { sha256: createHash('sha256').update(pdfBuffer).digest('hex') } : {}) }
+        : { kind: 'pdf', title: metadata.title, authors: metadata.authors, ...(publicSourceUrl(metadata.pdfUrl) ? { url: publicSourceUrl(metadata.pdfUrl) } : {}), ...(pdfBuffer ? { sha256: createHash('sha256').update(pdfBuffer).digest('hex') } : {}) },
+    },
     slug,
     title: `[논문 리뷰] ${metadata.title}`,
     subtitle: parsed.subtitle,
@@ -200,21 +218,7 @@ async function summarizePaper(
 /**
  * Format post as markdown with frontmatter
  */
-export function formatAsMarkdown(post: GeneratedPost): string {
-  const subtitleLine = post.subtitle ? `\nsubtitle: "${escapeQuotes(post.subtitle)}"` : '';
-  const frontmatter = `---
-title: "${escapeQuotes(post.title)}"${subtitleLine}
-date: "${post.date}"
-excerpt: "${escapeQuotes(post.excerpt)}"
-category: "${post.category}"
-tags: ${JSON.stringify(post.tags)}
-thumbnail: "${post.thumbnail}"
----
-
-`;
-
-  return frontmatter + post.content;
-}
+export { formatAsMarkdown } from './post-format';
 
 /**
  * Save post to content directory
@@ -251,11 +255,4 @@ function generatePaperSlug(title: string, paperId: string): string {
     .slice(0, 30);
 
   return `${date}-paper-${cleanId}-${cleanTitle}`;
-}
-
-/**
- * Escape quotes for YAML frontmatter
- */
-function escapeQuotes(str: string): string {
-  return str.replace(/"/g, '\\"');
 }

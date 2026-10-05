@@ -15,7 +15,13 @@ npm run typecheck           # run after build; do not run concurrently with next
 
 The static build is in `out/`. Preview with
 `python3 -m http.server 4173 --directory out`. `next start` is not the preview
-server for a static export.
+server for a static export. For the browser acceptance sweep, serve `out/` on port
+4175, then run `npm run check:browser`. This checks 35 routes in light/Korean and
+dark/English modes at 390px, including WCAG A/AA rules and horizontal overflow.
+It writes `.runtime/browser-check.json` and two screenshots. The current host uses
+`/usr/bin/google-chrome`; override `SUANLAB_BROWSER_PATH` for another executable or
+`SUANLAB_TEST_BASE` for an already-running preview. Browser checks are separate from
+the portable CI gate because they require a browser and a preview server.
 
 ## Where to edit
 
@@ -44,6 +50,22 @@ Blog reading suggestions are separately labeled keyword matches. Search covers
 research outputs, projects, courses, online books, videos, posts and prompts.
 Original content remains in its original language; the language selector translates
 supported UI labels, not complete articles.
+
+## Generated content provenance
+
+New topic and paper posts contain `provenance`: AI-assisted generation time,
+`review.status: pending`, and input-derived source metadata. Paper sources record
+the arXiv identifier/canonical URL or PDF URL/hash, title and extracted authors.
+Query-bearing PDF URLs retain a content hash rather than publishing access parameters.
+The source block is independent of AI-generated prose and citations. Historical
+posts without provenance show “Review not recorded”; they are not labeled reviewed.
+
+After checking the source, citations and claims, an editor can change
+`provenance.review` to `status: reviewed`, `reviewer: "Name"`, and
+`reviewedAt: "YYYY-MM-DD"`. Preserve the original source and generation timestamp.
+Automatic publication does not imply human review. `SUANLAB_PUBLISH_MODE=review`
+keeps posts local; retries honor that mode too. These records are editorial
+metadata, not authentication or an automated fact-check.
 
 ## Lecture presentations
 
@@ -77,11 +99,16 @@ included in the same commit. For a job that already saved
 files, retry publication without paying for generation again:
 
 ```bash
-npx tsx scripts/blog/retry-publish.ts JOB_ID
+npm run bot:retry -- JOB_ID
 ```
 
-Do not run that command while a generation/publish job is active. The running bot
-owns its ledger; a manual publish does not rewrite historical job status.
+While the bot is running, use `/suanblog retry JOB_ID` in an allowed Slack channel.
+For an offline retry, stop `suanlab-slack.service` first, run the command above,
+then restart the service. Both entry points acquire the same Linux `flock`; a
+second writer is refused. Retry outcomes and attempt timestamps are persisted,
+including interrupted attempts. A successful retry never hides a partial batch's
+generation failure. `/suanblog-status` reports queue counts, review/push counts,
+retry count, average completed-attempt duration, and recent stages.
 Never commit `.env.local`, credentials, or `.runtime/`. Do not run the one-time
 `extract-*.js` migration scripts again.
 
@@ -90,7 +117,8 @@ Never commit `.env.local`, credentials, or `.runtime/`. Do not run the one-time
 Pull requests run the same checks as local development. Pushes to `master` run
 checks, upload `out/`, then deploy to GitHub Pages. Export validation confirms every
 sitemap URL has an HTML page and canonical, and scans every exported HTML page for
-broken internal links and assets (external availability and fragment targets are not checked). Verify the deployed home, search, lecture presentation,
+broken internal links, assets and fragment targets (including numeric slide hashes).
+External availability is not part of this offline gate. Verify the deployed home, search, lecture presentation,
 and sitemap after release. New dynamic routes must define `generateStaticParams`.
 
 Use imperative commit subjects describing observable changes. Include affected

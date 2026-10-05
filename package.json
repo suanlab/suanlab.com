@@ -10,12 +10,14 @@
     "blog:generate": "tsx scripts/blog/generate.ts",
     "blog:topic": "tsx scripts/blog/generate.ts topic",
     "blog:paper": "tsx scripts/blog/generate.ts paper",
-    "bot:slack": "tsx scripts/slack-bot.ts",
+    "bot:slack": "tsx scripts/with-bot-lock.ts bot",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test scripts/site.test.ts scripts/blog/*.test.ts",
     "validate:content": "tsx scripts/validate-content.ts",
     "check:export": "tsx scripts/check-export.ts",
-    "check": "npm run lint && npm run validate:content && npm test && npm run build && npm run check:export"
+    "check": "npm run lint && npm run validate:content && npm test && npm run build && npm run check:export",
+    "bot:retry": "tsx scripts/with-bot-lock.ts retry",
+    "check:browser": "node scripts/check-browser.cjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -54,6 +56,7 @@
     "unified": "^11.0.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
     "@types/d3-geo": "^3.1.0",
     "@types/hast": "^3.0.4",
     "@types/node": "^20",
@@ -70,6 +73,7 @@
     "ora": "^9.0.0",
     "parse5": "^7.3.0",
     "pdf2pic": "^3.2.0",
+    "playwright": "1.63.0",
     "postcss": "^8.5.6",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.19",

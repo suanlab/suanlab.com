@@ -1,11 +1,12 @@
 'use client';
 
+import { useLanguage } from '@/components/language-provider';
 import { useState, useMemo, useEffect, Fragment } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, Folder, Rss, Search, Tag, X, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Badge, badgeVariants } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import type { BlogPostMeta } from '@/lib/blog';
@@ -17,6 +18,8 @@ interface BlogContentProps {
 }
 
 export default function BlogContent({ posts, categories, tags }: BlogContentProps) {
+  const { language } = useLanguage();
+  const ko = language === 'ko';
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -103,7 +106,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     type="text"
-                    placeholder="검색..."
+                    placeholder={ko ? '검색...' : 'Search posts...'} aria-label={ko ? '블로그 검색' : 'Search blog'}
                     className="pl-10"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -115,7 +118,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                     className="flex items-center gap-1 text-xs text-muted-foreground mt-2 hover:text-foreground transition-colors"
                   >
                     <X className="h-3 w-3" />
-                    필터 초기화
+                    {ko ? '필터 초기화' : 'Clear filters'}
                   </button>
                 )}
               </CardContent>
@@ -126,13 +129,14 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
               <CardContent className="p-4">
                 <h3 className="font-semibold mb-3 flex items-center gap-2">
                   <Folder className="h-4 w-4 text-primary" />
-                  카테고리
+                  {ko ? '카테고리' : 'Categories'}
                 </h3>
                 <div className="space-y-1">
                   {categories.map((category) => (
                     <button
                       key={category}
                       onClick={() => handleCategoryClick(category)}
+                      aria-pressed={selectedCategory === category}
                       className={`block w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                         selectedCategory === category
                           ? 'bg-primary text-primary-foreground'
@@ -151,18 +155,18 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
               <CardContent className="p-4">
                 <h3 className="font-semibold mb-3 flex items-center gap-2">
                   <Tag className="h-4 w-4 text-primary" />
-                  태그
+                  {ko ? '태그' : 'Tags'}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {tags.map((tag) => (
-                    <Badge
+                    <button
                       key={tag}
-                      variant={selectedTag === tag ? 'default' : 'secondary'}
-                      className="cursor-pointer"
+                      className={badgeVariants({ variant: selectedTag === tag ? 'default' : 'secondary' })}
+                      aria-pressed={selectedTag === tag}
                       onClick={() => handleTagClick(tag)}
                     >
                       {tag}
-                    </Badge>
+                    </button>
                   ))}
                 </div>
               </CardContent>
@@ -173,16 +177,16 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
               <CardContent className="p-4">
                 <h3 className="font-semibold mb-3 flex items-center gap-2">
                   <Rss className="h-4 w-4 text-primary" />
-                  구독
+                  {ko ? '구독' : 'Subscribe'}
                 </h3>
                 <a
                   href="/feed.xml"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-2 rounded-md text-sm bg-orange-500 text-white hover:bg-orange-600 transition-colors"
+                  className="flex items-center gap-2 px-3 py-2 rounded-md text-sm bg-orange-700 text-white hover:bg-orange-800 transition-colors"
                 >
                   <Rss className="h-4 w-4" />
-                  RSS 피드 구독
+                  {ko ? 'RSS 피드 구독' : 'Subscribe via RSS'}
                 </a>
               </CardContent>
             </Card>
@@ -192,12 +196,12 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
           <div className="lg:col-span-3">
             {/* 검색 결과 수 */}
             <p className="text-sm text-muted-foreground mb-6">
-              {searchQuery && `"${searchQuery}" 검색 결과: `}
-              {selectedCategory && `카테고리 "${selectedCategory}": `}
-              {selectedTag && `태그 "${selectedTag}": `}
+              {searchQuery && (ko ? `"${searchQuery}" 검색 결과: ` : `Results for "${searchQuery}": `)}
+              {selectedCategory && `${ko ? "카테고리" : "Category"} "${selectedCategory}": `}
+              {selectedTag && `${ko ? "태그" : "Tag"} "${selectedTag}": `}
               {filteredPosts.length > POSTS_PER_PAGE
-                ? `${filteredPosts.length}개 중 ${startItem}-${endItem}번째 포스트`
-                : `${filteredPosts.length}개의 포스트`}
+                ? (ko ? `${filteredPosts.length}개 중 ${startItem}-${endItem}번째 포스트` : `${startItem}–${endItem} of ${filteredPosts.length} posts`)
+                : (ko ? `${filteredPosts.length}개의 포스트` : `${filteredPosts.length} posts`)}
             </p>
 
             {/* 포스트 카드 */}
@@ -260,7 +264,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
                 >
-                  이전
+                  {ko ? '이전' : 'Previous'}
                 </Button>
                 {Array.from({ length: totalPages }, (_, i) => i + 1)
                   .filter(
@@ -278,6 +282,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                         variant={page === currentPage ? 'default' : 'outline'}
                         size="sm"
                         onClick={() => setCurrentPage(page)}
+                        aria-current={page === currentPage ? 'page' : undefined}
                       >
                         {page}
                       </Button>
@@ -289,19 +294,19 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                   onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
                 >
-                  다음
+                  {ko ? '다음' : 'Next'}
                 </Button>
               </div>
             )}
 
             {filteredPosts.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-muted-foreground">검색 결과가 없습니다.</p>
+                <p className="text-muted-foreground">{ko ? '검색 결과가 없습니다.' : 'No results found.'}</p>
                 <button
                   onClick={clearFilters}
                   className="mt-4 text-primary hover:underline"
                 >
-                  필터 초기화
+                  {ko ? '필터 초기화' : 'Clear filters'}
                 </button>
               </div>
             )}

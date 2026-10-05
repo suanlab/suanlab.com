@@ -1,3 +1,4 @@
+import { formatAsMarkdown } from './post-format';
 import { generateWithAI, parseGeneratedContent } from '../../src/lib/ai/claude';
 import { buildTopicPrompt } from '../../src/lib/ai/prompts';
 import { generateAndSaveThumbnail } from '../../src/lib/ai/image';
@@ -19,6 +20,7 @@ export async function generateFromTopic(
     tags: options.tags,
   });
 
+  options.onProgress?.('generating-text');
   const rawContent = await generateWithAI(prompt, {
     maxTokens: 4096,
     temperature: 0.7,
@@ -31,10 +33,12 @@ export async function generateFromTopic(
   // Generate thumbnail image if requested
   let thumbnail = '/assets/images/blog/default.jpg';
   if (options.generateImage) {
+    options.onProgress?.('generating-image');
     thumbnail = await generateAndSaveThumbnail(options.topic, slug, 'technical');
   }
 
   return {
+    provenance: { method: 'ai-assisted', generatedAt: new Date().toISOString(), review: { status: 'pending' }, source: { kind: 'topic', title: options.topic } },
     slug,
     title: parsed.title,
     date,
@@ -49,20 +53,7 @@ export async function generateFromTopic(
 /**
  * Format post as markdown with frontmatter
  */
-export function formatAsMarkdown(post: GeneratedPost): string {
-  const frontmatter = `---
-title: "${escapeQuotes(post.title)}"
-date: "${post.date}"
-excerpt: "${escapeQuotes(post.excerpt)}"
-category: "${post.category}"
-tags: ${JSON.stringify(post.tags)}
-thumbnail: "${post.thumbnail}"
----
-
-`;
-
-  return frontmatter + post.content;
-}
+export { formatAsMarkdown } from './post-format';
 
 /**
  * Save post to content directory
@@ -115,11 +106,4 @@ function generateSlug(title: string): string {
     .slice(0, 50);
 
   return `${date}-${cleanTitle || 'post'}`;
-}
-
-/**
- * Escape quotes in string for YAML frontmatter
- */
-function escapeQuotes(str: string): string {
-  return str.replace(/"/g, '\\"');
 }

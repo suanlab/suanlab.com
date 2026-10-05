@@ -1,3 +1,5 @@
+import { isCalendarDate } from '../../src/lib/content-date';
+import { parseProvenance } from '../../src/lib/content-provenance';
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
@@ -8,10 +10,11 @@ import { visit } from 'unist-util-visit';
 /** Validate metadata and local assets before staging any generated content. */
 export function validatePost(source: string, cwd = process.cwd()) {
   const { data, content } = matter(source);
+  parseProvenance(data.provenance);
   for (const key of ['title', 'excerpt', 'category']) {
     if (typeof data[key] !== 'string' || !data[key].trim()) throw new Error(`Post ${key} is required.`);
   }
-  if (!data.date || Number.isNaN(Date.parse(data.date))) throw new Error('Post date is invalid.');
+  if (!isCalendarDate(data.date)) throw new Error('Post date is invalid.');
   if (!Array.isArray(data.tags) || data.tags.some(tag => typeof tag !== 'string' || !tag.trim())) throw new Error('Post tags must be non-empty strings.');
   if (!content.trim()) throw new Error('Post body is empty.');
   const assets = new Set<string>();

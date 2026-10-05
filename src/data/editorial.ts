@@ -8,6 +8,25 @@ export const featuredPublications = [
 // Use declared project status; dates alone do not establish completion.
 export const featuredProjectIds = [50, 2];
 
+// Summaries paraphrase the registered project scope. No benchmark results are inferred.
+export const projectSummaries: Record<number, { problem: string; approach: string; outcome: string }> = {
+  50: {
+    problem: '모델을 재학습하지 않고 AI 생성 텍스트를 식별하는 워터마킹과 탐지 기술 개발',
+    approach: '선형 LM Head 구조와 은닉 상태의 미세한 섭동을 활용하는 추론 단계의 워터마킹',
+    outcome: '진행 중인 연구입니다. 공개 평가 수치와 산출물 링크는 아직 등록되지 않았습니다.',
+  },
+  2: {
+    problem: 'IR 발표의 전달력과 논리 구조를 분석하고 피드백을 제공하는 평가 시스템 개발',
+    approach: '피치덱 문서와 발표 영상의 텍스트·음성·표정·행동 데이터를 통합 분석',
+    outcome: '진행 중인 연구입니다. 자동 리포트 제공을 목표로 하며, 공개 평가 수치는 아직 등록되지 않았습니다.',
+  },
+  3: {
+    problem: '설비 전류 데이터로 이상을 탐지하고 잔여수명을 예측하는 AI 모델 개발',
+    approach: '이상 탐지·RUL 예측·Health Index 산출 알고리즘과 통합 예측 운영 모델',
+    outcome: '종료된 과제입니다. 공개 평가 수치와 산출물 링크는 등록되지 않았습니다.',
+  },
+};
+
 export interface ResearchLinks {
   publications: number[];
   projects: number[];

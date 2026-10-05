@@ -68,7 +68,7 @@ export default function YouTubePlaylistPage({ params }: { params: { playlist: st
                         <p className={`font-medium ${playlist.slug !== params.playlist ? 'group-hover:text-primary' : ''} transition-colors`}>
                           {playlist.titleKo}
                         </p>
-                        <p className={`text-xs ${playlist.slug === params.playlist ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
+                        <p className={`text-xs ${playlist.slug === params.playlist ? 'text-primary-foreground' : 'text-muted-foreground'}`}>
                           {playlist.titleEn}
                         </p>
                       </div>
@@ -107,7 +107,7 @@ export default function YouTubePlaylistPage({ params }: { params: { playlist: st
                             <iframe
                               className="h-full w-full"
                               src={`https://www.youtube.com/embed/${video.youtubeId}${currentPlaylist.playlistId ? `?list=${currentPlaylist.playlistId}` : ''}`}
-                              title={video.titleKo}
+                              title={video.titleKo || video.titleEn || `${currentPlaylist.titleEn} — Episode ${video.id}`}
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                               allowFullScreen
                             />
@@ -117,7 +117,7 @@ export default function YouTubePlaylistPage({ params }: { params: { playlist: st
                           <Badge variant="outline" className="w-fit mb-3">
                             Episode {video.id}
                           </Badge>
-                          <h3 className="text-lg font-semibold">{video.titleKo}</h3>
+                          <h3 className="text-lg font-semibold">{video.titleKo || video.titleEn || `Episode ${video.id}`}</h3>
                           <p className="mt-1 text-sm text-muted-foreground">{video.titleEn}</p>
                           {video.description && (
                             <p className="mt-3 text-sm text-muted-foreground">{video.description}</p>

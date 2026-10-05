@@ -1,3 +1,5 @@
+import { visit } from 'unist-util-visit';
+import type { Root } from 'hast';
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
@@ -30,7 +32,7 @@ export async function parseLectureContent(source: string): Promise<{ title: stri
     const notes = section.match(/<!-- notes:([\s\S]*?)-->/)?.[1].trim();
     const markdown = section.trim().replace(/^# .+\r?\n/, '').replace(/<!-- notes:[\s\S]*?-->/g, '');
     const html = await unified().use(remarkParse).use(remarkGfm).use(remarkMath).use(remarkRehype)
-      .use(rehypeKatex).use(rehypeHighlight).use(rehypeStringify).process(markdown);
+      .use(rehypeKatex).use(rehypeHighlight).use(() => (tree: Root) => { visit(tree, 'element', node => { if (node.tagName === 'pre') node.properties.tabIndex = 0; }); }).use(rehypeStringify).process(markdown);
     return { title: heading[1], points: [], contentHtml: String(html), ...(notes ? { notes } : {}) };
   }));
   return { title: data.title, slides };

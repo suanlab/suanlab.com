@@ -15,7 +15,7 @@
 .blog-content :not(pre) > code {
   @apply px-1.5 py-0.5 rounded text-sm font-medium;
   background: rgba(136, 136, 136, 0.15);
-  color: #e879f9;
+  color: #86198f;
 }
 
 /* Highlight.js Theme - GitHub Dark Dimmed */
@@ -351,3 +351,9 @@
     @apply text-black bg-gray-100;
   }
 }
+
+.dark .blog-content :not(pre) > code { color: #f0abfc; }
+.blog-content { overflow-wrap: anywhere; }
+.blog-table-scroll { max-width: 100%; overflow-x: auto; }
+
+.blog-content .katex-display { max-width: 100%; overflow-x: auto; overflow-y: hidden; padding-block: .5rem; }

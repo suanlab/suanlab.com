@@ -410,7 +410,7 @@ export default function SuanPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="max-h-96 overflow-y-auto pr-2 space-y-3">
+                    <div tabIndex={0} className="max-h-96 overflow-y-auto pr-2 space-y-3">
                       {awards.map((award) => (
                         <div key={award.id} className="flex items-start gap-3 pb-3 border-b border-muted last:border-0">
                           <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium shrink-0 ${awardCategories[award.category].color}`}>
@@ -451,7 +451,7 @@ export default function SuanPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="max-h-80 overflow-y-auto pr-2 space-y-3">
+                    <div tabIndex={0} className="max-h-80 overflow-y-auto pr-2 space-y-3">
                       {academicActivities.map((activity) => (
                         <div key={activity.id} className="flex items-start gap-3 pb-3 border-b border-muted last:border-0">
                           <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium shrink-0
@@ -505,7 +505,7 @@ export default function SuanPage() {
                     {/* Journal Reviews */}
                     <div className="pt-4 border-t">
                       <p className="text-xs font-medium text-muted-foreground mb-2">Journal</p>
-                      <div className="max-h-72 overflow-y-auto pr-2 space-y-4">
+                      <div tabIndex={0} className="max-h-72 overflow-y-auto pr-2 space-y-4">
                         {(() => {
                           // Group by publisher
                           const grouped = journalReviews.reduce((acc, item) => {
@@ -583,7 +583,7 @@ export default function SuanPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="max-h-80 overflow-y-auto pr-2 space-y-3">
+                    <div tabIndex={0} className="max-h-80 overflow-y-auto pr-2 space-y-3">
                       {advisoryActivities.map((activity) => (
                         <div key={activity.id} className="flex items-start gap-3 pb-3 border-b border-muted last:border-0">
                           <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium shrink-0

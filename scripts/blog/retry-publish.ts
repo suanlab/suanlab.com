@@ -1,12 +1,10 @@
-import fs from 'node:fs';
+import { config } from 'dotenv';
 import { publishPosts } from './publish';
-import type { Job } from './job-queue';
-const filename = '.runtime/slack-jobs.json';
-const jobs: Record<string, Job> = JSON.parse(fs.readFileSync(filename, 'utf8'));
-const job = jobs[process.argv[2]];
-if (!job?.files?.length) throw new Error('Provide a saved job ID from /suanblog-status.');
-if (['queued', 'running'].includes(job.status)) throw new Error('Wait for the job to finish.');
-const result = publishPosts(job.files, `Publish saved blog job ${job.id}`);
-console.log(result);
-if (result !== 'master -> master') process.exitCode = 1;
-// The running bot owns the job ledger. Do not overwrite it from a second process.
+import { JobQueue } from './job-queue';
+if (process.env.SUANLAB_QUEUE_LOCKED !== '1') throw new Error('Use npm run bot:retry -- JOB_ID to acquire the queue lock.');
+config({ path: '.env.local', quiet: true });
+const queue = new JobQueue('.runtime/slack-jobs.json');
+const id = process.argv[2];
+queue.retryPublication(id, files => publishPosts(files, `Publish saved blog job ${id}`, process.cwd(), stage => queue.update(id, { stage })))
+  .then(() => console.log(`Saved job ${id}: ${queue.jobs[id].stage}`))
+  .catch(error => { console.error(error.message); process.exitCode = 1; });

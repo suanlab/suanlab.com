@@ -1,3 +1,4 @@
+import ResearchBacklinks from '@/components/research-backlinks';
 import { getLectureContentSlugs } from '@/lib/lecture-content';
 import { site } from '@/config/site';
 import Image from 'next/image';
@@ -227,6 +228,7 @@ export default function LectureDetailPage({ params }: { params: { slug: string }
             </div>
           </div>
         </div>
+        <div className="container"><ResearchBacklinks lectureSlug={lecture.slug} /></div>
       </section>
     </>
   );

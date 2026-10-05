@@ -4,13 +4,14 @@ import path from 'path';
 import { validatePost } from './validate-post';
 
 /** Publish only the generated posts and their local thumbnails, never site edits. */
-export function publishPosts(postFiles: string[], message: string, cwd = process.cwd()): string {
+export function publishPosts(postFiles: string[], message: string, cwd = process.cwd(), onStage: (stage: string) => void = () => {}): string {
   const git = (...args: string[]) => execFileSync('git', args, {
     cwd, encoding: 'utf-8', timeout: 300000,
     env: { ...process.env, GIT_TERMINAL_PROMPT: '0' },
   }).trim();
 
   try {
+    onStage('validating');
     if (git('branch', '--show-current') !== 'master') {
       throw new Error('Automatic publication requires the master branch. Generated files were saved locally.');
     }
@@ -41,11 +42,22 @@ export function publishPosts(postFiles: string[], message: string, cwd = process
     }
     if (!files.size) throw new Error('No generated posts to publish.');
     const paths = [...files];
-    if (process.env.SUANLAB_PUBLISH_MODE === 'review') return 'Saved for review';
+    if (process.env.SUANLAB_PUBLISH_MODE === 'review') { onStage('review'); return 'Saved for review'; }
+    onStage('syncing');
+    git('fetch', 'origin', 'master');
+    const [ahead, behind] = git('rev-list', '--left-right', '--count', 'HEAD...origin/master').split(/\s+/).map(Number);
+    if (behind) throw new Error('Local master is behind origin/master. Synchronize before retrying saved files.');
+    if (ahead) {
+      const pending = git('log', '--format=', '--name-only', 'origin/master..HEAD').split('\n').filter(Boolean);
+      if (pending.some(file => !files.has(file))) throw new Error('Unpushed commits include unrelated files. Publish them separately before retrying.');
+    }
+    onStage('staging');
     git('add', '--', ...paths);
     if (git('diff', '--cached', '--name-only', '--', ...paths)) {
+      onStage('committing');
       git('commit', '--only', '-m', message, '--', ...paths);
     }
+    onStage('pushing');
     git('push', 'origin', 'master');
     return 'master -> master';
   } catch (error) {

@@ -1,4 +1,8 @@
+import type { ContentProvenance } from '../content-provenance';
+export type GenerationStage = 'fetching-source' | 'parsing-source' | 'generating-text' | 'extracting-figure' | 'generating-image';
+
 export interface TopicGeneratorOptions {
+  onProgress?: (stage: GenerationStage) => void;
   topic: string;
   category?: string;
   tags?: string[];
@@ -7,6 +11,7 @@ export interface TopicGeneratorOptions {
 }
 
 export interface PaperSummarizerOptions {
+  onProgress?: (stage: GenerationStage) => void;
   arxivId?: string;
   pdfUrl?: string;
   pdfBuffer?: Buffer;
@@ -25,6 +30,7 @@ export interface PaperMetadata {
 }
 
 export interface GeneratedPost {
+  provenance?: ContentProvenance;
   slug: string;
   title: string;
   subtitle?: string;

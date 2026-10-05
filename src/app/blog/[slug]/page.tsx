@@ -1,3 +1,4 @@
+import ContentProvenanceNotice from '@/components/content-provenance-notice';
 import { site } from '@/config/site';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -159,7 +160,7 @@ export default async function BlogPostPage({ params }: Props) {
       <section className="py-16 md:py-20">
         <div className="container">
           <div className="grid gap-8 lg:grid-cols-4">
-            <div className="lg:col-span-3 max-w-none">
+            <div className="min-w-0 break-words lg:col-span-3 max-w-none">
             {/* 포스트 메타 정보 */}
             <Card className="mb-8">
               <CardContent className="p-6">
@@ -194,10 +195,7 @@ export default async function BlogPostPage({ params }: Props) {
               </CardContent>
             </Card>
 
-            {post.category === 'Paper Review' && <aside className="mb-8 rounded-xl border bg-muted/30 p-5 text-sm leading-relaxed">
-              <p className="font-semibold">논문 리뷰 / Paper review</p>
-              <p className="mt-2 text-muted-foreground">이 글은 논문을 소개하는 학습 자료입니다. 원문과 저자 정보는 본문의 출처에서 확인하세요. 연구실의 논문 목록은 <Link href="/publication/" className="text-primary underline">Publications</Link>에서 별도로 확인할 수 있습니다.</p>
-            </aside>}
+            <ContentProvenanceNotice provenance={post.provenance} paperReview={post.category === 'Paper Review'} />
 
             {/* 공유 버튼 */}
             <div className="mb-8">

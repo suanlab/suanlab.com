@@ -33,9 +33,10 @@ already enabled on the current host. The service restarts after failures.
 
 Slack commands: `/suanblog`, `/suanblog-status`, `/suanblog-help` (these must also be
 registered in the Slack app with Socket Mode enabled). A generation command saves
-content, commits only the generated Markdown and local thumbnail, then pushes
+content, commits only generated Markdown and referenced blog images, then pushes
 `master`. Unrelated site edits are excluded; existing staged changes or a different
-branch prevent publication. A failed push leaves the local commit available for
+branch prevent publication. Unpushed commits containing unrelated files and a
+branch behind the remote also prevent automatic publication. A failed push leaves the local commit available for
 manual review and retry. Do not start a second bot process alongside this service.
 
 Connection startup does not test AI generation or GitHub publishing. The local
@@ -56,11 +57,40 @@ retain the paths of saved posts and the failed status.
 Set `Environment=SUANLAB_PUBLISH_MODE=review` in a systemd override to require
 review before pushing generated content. Restart the service after changing its
 environment. Default mode retains automatic publishing. For saved jobs whose
-publication failed, stop new submissions and run:
+publication failed, use `/suanblog retry JOB_ID` in an allowed channel. This shares
+the running queue and requires no additional Slack command registration.
+
+For offline recovery:
 
 ```bash
-npx tsx scripts/blog/retry-publish.ts JOB_ID
+systemctl --user stop suanlab-slack.service
+npm run bot:retry -- JOB_ID
+systemctl --user start suanlab-slack.service
 ```
 
-This retries Git publication only. It does not regenerate content or rewrite the
-running bot's job history. Inspect the recorded filenames before retrying.
+Both retry paths publish saved files without generating content. They persist
+attempt start/end times, outcome and failure stage. Successful publication preserves
+any earlier partial-generation error. Already-pushed jobs cannot be pushed again.
+In review mode, a retry stays in review; it does not approve content or change mode.
+
+Use `npm run bot:slack` for a foreground daemon. The wrapper and service use Linux
+`flock` on `.runtime/slack-queue.lock`; an existing owner returns exit code 75.
+The kernel releases the lock after exit/crash, so a stale file is harmless. Never
+bypass the wrapper by setting its internal environment flag manually.
+
+`/suanblog-status` reports job totals, waiting/running jobs, failed/interrupted jobs,
+review/push counts, publication attempts and average finished-attempt duration.
+Counters are job-based, not post-based. Inspect `.runtime/slack-jobs.json` for the
+full history and `journalctl` for process diagnostics. Validation, synchronization,
+staging, commit and push failures retain saved files for correction and retry.
+
+## Publishing checkout decision
+
+The current deployment retains the existing repository checkout. An isolated
+worktree was considered, but would require separate credential/configuration and
+asset synchronization while the user also maintains this checkout. The enforced
+boundary is instead: one queue writer, master only, no pre-staged changes, no
+unrelated unpushed commits, and only the current job's content/assets in the Git
+commit. Local-remote integration tests exercise these refusal cases. A separate
+publishing checkout remains an optional operational change if concurrent editing
+frequently causes these deliberate refusals; it is not assumed to exist.

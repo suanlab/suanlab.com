@@ -8,7 +8,7 @@ StartLimitBurst=5
 [Service]
 Type=simple
 WorkingDirectory=/home/suan/Projects/suanlab/suanlab-next
-ExecStart=/home/suan/.nvm/versions/node/v24.13.0/bin/node /home/suan/Projects/suanlab/suanlab-next/node_modules/tsx/dist/cli.mjs scripts/slack-bot.ts
+ExecStart=/home/suan/.nvm/versions/node/v24.13.0/bin/node /home/suan/Projects/suanlab/suanlab-next/node_modules/tsx/dist/cli.mjs scripts/with-bot-lock.ts bot
 Environment=PATH=/home/suan/.nvm/versions/node/v24.13.0/bin:/usr/local/bin:/usr/bin:/bin
 Environment=NODE_ENV=production
 Restart=on-failure

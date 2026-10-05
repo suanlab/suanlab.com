@@ -243,7 +243,7 @@ export default function PublishedBookPage() {
                                 </div>
                                 {chapter.downloadUrl && (
                                   <Button variant="outline" size="sm" asChild>
-                                    <a href={chapter.downloadUrl} target="_blank" rel="noopener noreferrer">
+                                    <a href={chapter.downloadUrl} aria-label={`${chapter.title} download / 다운로드`} target="_blank" rel="noopener noreferrer">
                                       <Download className="h-4 w-4" />
                                     </a>
                                   </Button>

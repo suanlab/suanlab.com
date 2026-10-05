@@ -1,6 +1,7 @@
 'use client';
 import { site } from '@/config/site';
 
+import { useLanguage } from '@/components/language-provider';
 import { useState } from 'react';
 import { Share2, Facebook, Linkedin, LinkIcon, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -20,6 +21,8 @@ interface ShareButtonsProps {
 const BASE_URL = site.url;
 
 export default function ShareButtons({ title, slug }: ShareButtonsProps) {
+  const { language } = useLanguage();
+  const ko = language === 'ko';
   const [copied, setCopied] = useState(false);
 
   const url = `${BASE_URL}/blog/${slug}/`;
@@ -44,7 +47,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
     <div className="flex items-center gap-3">
       <span className="flex items-center gap-1 text-sm text-muted-foreground">
         <Share2 className="h-4 w-4" />
-        공유하기
+        {ko ? '공유하기' : 'Share'}
       </span>
       <div className="flex items-center gap-2">
         <a
@@ -52,7 +55,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="p-2 rounded-full hover:bg-muted transition-colors"
-          aria-label="X (Twitter)에 공유"
+          aria-label={ko ? 'X (Twitter)에 공유' : 'Share on X (Twitter)'}
         >
           <XIcon className="h-4 w-4" />
         </a>
@@ -61,7 +64,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="p-2 rounded-full hover:bg-muted transition-colors"
-          aria-label="Facebook에 공유"
+          aria-label={ko ? 'Facebook에 공유' : 'Share on Facebook'}
         >
           <Facebook className="h-4 w-4" />
         </a>
@@ -70,7 +73,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="p-2 rounded-full hover:bg-muted transition-colors"
-          aria-label="LinkedIn에 공유"
+          aria-label={ko ? 'LinkedIn에 공유' : 'Share on LinkedIn'}
         >
           <Linkedin className="h-4 w-4" />
         </a>
@@ -79,7 +82,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
           size="icon"
           onClick={handleCopyLink}
           className="h-8 w-8"
-          aria-label="링크 복사"
+          aria-label={ko ? '링크 복사' : 'Copy link'}
         >
           {copied ? (
             <Check className="h-4 w-4 text-green-500" />

@@ -1,5 +1,6 @@
 'use client';
 
+import { useLanguage } from '@/components/language-provider';
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Book, BookOpen, Calendar, ChevronRight, Search } from 'lucide-react';
@@ -42,6 +43,8 @@ interface Props {
 }
 
 export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
+  const { language } = useLanguage();
+  const ko = language === 'ko';
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTestament, setSelectedTestament] = useState<'all' | 'old' | 'new'>('all');
 
@@ -66,7 +69,7 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
             </div>
             <div>
               <h1 className="text-2xl md:text-3xl font-bold">Quiet Time</h1>
-              <p className="text-muted-foreground text-sm">성경과 함께하는 묵상 일지</p>
+              <p className="text-muted-foreground text-sm">{ko ? '성경과 함께하는 묵상 일지' : 'Reflections on the Bible'}</p>
             </div>
           </div>
 
@@ -75,25 +78,25 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
             <Card>
               <CardContent className="p-4 text-center">
                 <p className="text-2xl font-bold text-amber-600 dark:text-amber-400">{stats.total}</p>
-                <p className="text-xs text-muted-foreground">총 묵상</p>
+                <p className="text-xs text-muted-foreground">{ko ? '총 묵상' : 'Reflections'}</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-4 text-center">
                 <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">{stats.booksCount}</p>
-                <p className="text-xs text-muted-foreground">성경 책</p>
+                <p className="text-xs text-muted-foreground">{ko ? '성경 책' : 'Bible books'}</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-4 text-center">
                 <p className="text-2xl font-bold text-green-600 dark:text-green-400">{stats.oldTestamentEntries}</p>
-                <p className="text-xs text-muted-foreground">구약</p>
+                <p className="text-xs text-muted-foreground">{ko ? '구약' : 'Old Testament'}</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-4 text-center">
                 <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">{stats.newTestamentEntries}</p>
-                <p className="text-xs text-muted-foreground">신약</p>
+                <p className="text-xs text-muted-foreground">{ko ? '신약' : 'New Testament'}</p>
               </CardContent>
             </Card>
           </div>
@@ -106,41 +109,41 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="묵상 제목 또는 성경 책 검색..."
+              placeholder={ko ? '묵상 제목 또는 성경 책 검색...' : 'Search reflections or Bible books...'} aria-label={ko ? '묵상 검색' : 'Search reflections'}
               className="pl-10"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Button
               variant={selectedTestament === 'all' ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedTestament('all')}
+              onClick={() => setSelectedTestament('all')} aria-pressed={selectedTestament === 'all'}
             >
-              전체
+              {ko ? '전체' : 'All'}
             </Button>
             <Button
               variant={selectedTestament === 'old' ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedTestament('old')}
+              onClick={() => setSelectedTestament('old')} aria-pressed={selectedTestament === 'old'}
             >
-              구약
+              {ko ? '구약' : 'Old Testament'}
             </Button>
             <Button
               variant={selectedTestament === 'new' ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedTestament('new')}
+              onClick={() => setSelectedTestament('new')} aria-pressed={selectedTestament === 'new'}
             >
-              신약
+              {ko ? '신약' : 'New Testament'}
             </Button>
           </div>
         </div>
 
         <Tabs defaultValue="bybook" className="w-full">
           <TabsList className="mb-6">
-            <TabsTrigger value="bybook">성경순</TabsTrigger>
-            <TabsTrigger value="recent">최근 묵상</TabsTrigger>
+            <TabsTrigger value="bybook">{ko ? '성경순' : 'By Bible book'}</TabsTrigger>
+            <TabsTrigger value="recent">{ko ? '최근 묵상' : 'Recent reflections'}</TabsTrigger>
           </TabsList>
 
           {/* By Bible Book */}
@@ -194,7 +197,7 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
                         <div className="text-center pt-2">
                           <Button variant="ghost" size="sm" asChild>
                             <Link href={`/qt?book=${encodeURIComponent(bookData.book)}`}>
-                              +{bookData.entries.length - 5}개 더 보기
+                              {ko ? `+${bookData.entries.length - 5}개 더 보기` : `View ${bookData.entries.length - 5} more`}
                             </Link>
                           </Button>
                         </div>
@@ -250,7 +253,7 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
       <footer className="border-t py-8 mt-12">
         <div className="container text-center text-sm text-muted-foreground">
           <p>{stats.dateRange.start} ~ {stats.dateRange.end}</p>
-          <p className="mt-1">매일 말씀 묵상과 함께하는 신앙 여정</p>
+          <p className="mt-1">{ko ? '매일 말씀 묵상과 함께하는 신앙 여정' : 'A journey of daily reflection'}</p>
         </div>
       </footer>
     </div>

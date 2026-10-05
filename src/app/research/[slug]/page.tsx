@@ -325,7 +325,7 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="max-h-80 overflow-y-auto pr-2 space-y-3">
+                      <div tabIndex={0} className="max-h-80 overflow-y-auto pr-2 space-y-3">
                         {journalPubs.map((pub) => (
                           <div key={pub.id} className="pb-3 border-b border-muted last:border-0">
                             <div className="flex items-start gap-2">
@@ -364,7 +364,7 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="max-h-80 overflow-y-auto pr-2 space-y-3">
+                      <div tabIndex={0} className="max-h-80 overflow-y-auto pr-2 space-y-3">
                         {confPubs.map((pub) => (
                           <div key={pub.id} className="pb-3 border-b border-muted last:border-0">
                             <div className="flex items-start gap-2">
@@ -401,7 +401,7 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="max-h-60 overflow-y-auto pr-2 space-y-3">
+                      <div tabIndex={0} className="max-h-60 overflow-y-auto pr-2 space-y-3">
                         {domesticJournalPubs.map((pub) => (
                           <div key={pub.id} className="pb-3 border-b border-muted last:border-0">
                             <div className="flex-1 min-w-0">
@@ -427,7 +427,7 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="max-h-60 overflow-y-auto pr-2 space-y-3">
+                      <div tabIndex={0} className="max-h-60 overflow-y-auto pr-2 space-y-3">
                         {domesticConfPubs.map((pub) => (
                           <div key={pub.id} className="pb-3 border-b border-muted last:border-0">
                             <div className="flex-1 min-w-0">
