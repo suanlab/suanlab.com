@@ -78,23 +78,29 @@ function particlesFor(pattern: DotVariant) {
 }
 
 function connectionsFor(particles: ReturnType<typeof particlesFor>) {
-  // Sample a few visible dots; cap degree and edge count to keep the graph sparse.
-  const nodes = particles.filter(p => p.n % (p.ambient ? 10 : 4) === 0);
+  // Include more dots and add neighbors in rounds so connections span the whole header.
+  const nodes = particles.filter(p => p.n % (p.ambient ? 4 : 2) === 0);
+  const limit = Math.min(160, nodes.length * 3);
+  const neighbors = new Map(nodes.map(a => [a.i, nodes.filter(b => b.i !== a.i)
+    .map(b => ({ b, distance: Math.hypot((a.x - b.x) * 3, a.y - b.y) }))
+    .filter(candidate => candidate.distance >= 3 && candidate.distance <= 80)
+    .sort((a, b) => a.distance - b.distance)]));
   const edges: { from: number; to: number }[] = [];
   const degree = new Map<number, number>();
   const seen = new Set<string>();
-  for (const a of nodes) {
-    const neighbors = nodes.filter(b => b.i !== a.i).map(b => ({ b, distance: Math.hypot((a.x - b.x) * 3, a.y - b.y) })).sort((a, b) => a.distance - b.distance);
-    for (const { b, distance } of neighbors) {
-      const key = [a.i, b.i].sort((a, b) => a - b).join('-');
-      if (distance < 3 || distance > 80 || seen.has(key) || (degree.get(a.i) || 0) >= 3 || (degree.get(b.i) || 0) >= 3) continue;
-      edges.push({ from: a.i, to: b.i });
-      seen.add(key);
-      degree.set(a.i, (degree.get(a.i) || 0) + 1);
-      degree.set(b.i, (degree.get(b.i) || 0) + 1);
-      break;
+  for (let round = 0; round < 4; round++) {
+    for (const a of nodes) {
+      for (const { b } of neighbors.get(a.i) || []) {
+        const key = [a.i, b.i].sort((a, b) => a - b).join('-');
+        if (seen.has(key) || (degree.get(a.i) || 0) >= 6 || (degree.get(b.i) || 0) >= 6) continue;
+        edges.push({ from: a.i, to: b.i });
+        seen.add(key);
+        degree.set(a.i, (degree.get(a.i) || 0) + 1);
+        degree.set(b.i, (degree.get(b.i) || 0) + 1);
+        break;
+      }
+      if (edges.length === limit) return edges;
     }
-    if (edges.length === 32) break;
   }
   return edges;
 }
@@ -128,6 +134,14 @@ export default function MenuDotField({ variant }: { variant?: DotVariant }) {
     const field = ref.current;
     const svg = connectionRef.current;
     if (!field || !svg) return;
+    const mobile = window.matchMedia('(max-width: 639px)');
+    let activeConnections = connections;
+    let activeIds = new Set<number>();
+    const updateConnections = () => {
+      activeConnections = mobile.matches ? connections.slice(0, 64) : connections;
+      activeIds = new Set(activeConnections.flatMap(edge => [edge.from, edge.to]));
+    };
+    updateConnections();
     const ids = new Set(connections.flatMap(edge => [edge.from, edge.to]));
     const nodes = [...field.querySelectorAll<HTMLElement>('.menu-dot-anchor')]
       .filter(node => ids.has(Number(node.dataset.node)))
@@ -137,12 +151,12 @@ export default function MenuDotField({ variant }: { variant?: DotVariant }) {
     const sync = () => {
       const bounds = field.getBoundingClientRect();
       if (!bounds.width || !bounds.height) return;
-      const positions = new Map(nodes.map(({ id, dot }) => {
+      const positions = new Map(nodes.filter(node => activeIds.has(node.id)).map(({ id, dot }) => {
         const rect = dot.getBoundingClientRect();
         return [id, { x: rect.left + rect.width / 2 - bounds.left, y: rect.top + rect.height / 2 - bounds.top }] as const;
       }));
       const reach = Math.min(320, Math.max(150, bounds.width * .25));
-      connections.forEach((edge, i) => {
+      activeConnections.forEach((edge, i) => {
         const a = positions.get(edge.from);
         const b = positions.get(edge.to);
         if (!a || !b) return;
@@ -160,11 +174,13 @@ export default function MenuDotField({ variant }: { variant?: DotVariant }) {
       if (time - last >= 1000 / 30) { sync(); last = time; }
       frame = requestAnimationFrame(tick);
     };
+    const updateViewport = () => { updateConnections(); sync(); };
     sync();
+    mobile.addEventListener('change', updateViewport);
     const observer = new ResizeObserver(sync);
     observer.observe(field);
     if (running) frame = requestAnimationFrame(tick);
-    return () => { cancelAnimationFrame(frame); observer.disconnect(); };
+    return () => { cancelAnimationFrame(frame); observer.disconnect(); mobile.removeEventListener('change', updateViewport); };
   }, [connections, running, reduced]);
 
   const palette = [colors[pattern], '#38bdf8', '#a78bfa', '#f472b6', '#fbbf24', '#34d399'];

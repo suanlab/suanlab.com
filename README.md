@@ -63,8 +63,8 @@ Title backgrounds use `PageHeader/MenuDotField.tsx` and `menu-dots.css`, with
 deterministic dot patterns selected by the top-level route. Each menu has its own
 motion; nested pages inherit it. A multicolor particle layer fills the entire
 header, with percentage positions and pixel-sized dots for responsive layouts.
-Sparse connections track a sample of moving dots at up to 30 frames per second;
-mobile headers show fewer edges. QT uses the same field in its existing header.
+Up to 160 neighbor connections track moving dots at up to 30 frames per second;
+mobile headers show and update up to 64 edges. QT uses the same field in its existing header.
 Animation pauses offscreen, in hidden tabs, through the pause control, and when
 reduced motion is requested.
 

@@ -68,7 +68,7 @@
   70% { transform: translate(0,var(--dy)) scale(.9); opacity: .6; }
 }
 @media (max-width: 639px) {
-  .menu-dot-ambient:nth-of-type(2n), .menu-connection:nth-of-type(n+17) { display: none; }
+  .menu-dot-ambient:nth-of-type(2n), .menu-connection:nth-of-type(n+65) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .menu-dot { animation: none !important; opacity: .55; transform: none; }
