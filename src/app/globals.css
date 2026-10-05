@@ -83,19 +83,22 @@
 }
 .identity-wordmark { text-shadow: 0 0 48px rgb(103 232 249 / .15); }
 .identity-slide { grid-area: 1 / 1; visibility: hidden; pointer-events: none; }
-.identity-slide-active { visibility: visible; pointer-events: auto; animation: identity-reveal .7s ease-out both; }
-.identity-control {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 44px; min-height: 44px; border: 1px solid rgb(255 255 255 / .3);
-  border-radius: .5rem; background: rgb(2 6 23 / .6); color: #cffafe;
+.identity-slide-active { visibility: visible; pointer-events: auto; }
+.identity-letter { position: relative; }
+.identity-copy { transition: opacity .65s ease, transform .65s ease; }
+.identity-copy[data-readable="false"] { transform: translateY(6px); }
+.identity-cursor {
+  position: absolute; right: -3px; top: .1em; height: 1.05em; width: 2px;
+  background: #a5f3fc; opacity: 1; animation: identity-blink 1s steps(1) infinite;
 }
-.identity-control:hover { background: rgb(255 255 255 / .12); }
+.identity-cursor-start { right: auto; left: 0; }
+.identity-hero[data-motion="paused"] .identity-cursor { display: none; }
 .identity-hero :focus-visible { outline-color: #67e8f9; }
 .identity-signal { animation: identity-flow 6s linear infinite; }
 .identity-node { transform-box: fill-box; transform-origin: center; animation: identity-pulse 4s ease-in-out infinite; }
 .identity-hero[data-motion="paused"] .identity-signal,
 .identity-hero[data-motion="paused"] .identity-node { animation-play-state: paused; }
-@keyframes identity-reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes identity-blink { 50% { opacity: 0; } }
 @keyframes identity-flow { to { stroke-dashoffset: -216; } }
 @keyframes identity-pulse { 0%, 100% { opacity: .5; transform: scale(.95); } 50% { opacity: 1; transform: scale(1.12); } }
 @media (max-width: 639px) {
@@ -110,6 +113,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .identity-letter, .identity-copy { opacity: 1 !important; transform: none !important; }
+  .identity-cursor { display: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

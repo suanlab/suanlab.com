@@ -3,12 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Pause, Play } from 'lucide-react';
+import { ArrowRight, Pause, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/components/language-provider';
 import { labIdentities, labIdentityName } from '@/data/lab-identity';
 
-const INTERVAL_MS = 15_000;
+const READING_MS = 14_000;
+type TypingPhase = 'typing' | 'reading' | 'deleting';
 const connections = [
   { title: 'AI Research', ko: '모델과 학습 방법론을 탐구하는 연구', en: 'Exploring models and learning methods', href: '/research/' },
   { title: 'Applied Intelligence', ko: '데이터와 실제 문제를 연결하는 프로젝트', en: 'Connecting data with real-world problems', href: '/project/' },
@@ -17,7 +18,7 @@ const connections = [
 
 export function HomeIdentityHero({ stats }: { stats: { label: string; value: string }[] }) {
   const { language, t } = useLanguage();
-  const [index, setIndex] = useState(0);
+  const [typing, setTyping] = useState<{ index: number; length: number; phase: TypingPhase }>({ index: 0, length: 0, phase: 'typing' });
   const [paused, setPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(true);
   const [visible, setVisible] = useState(true);
@@ -25,6 +26,7 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
   const sectionRef = useRef<HTMLElement>(null);
   const ko = language === 'ko';
   const running = !paused && !reducedMotion && visible && inView;
+  const { index, length, phase } = typing;
 
   useEffect(() => {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -44,17 +46,32 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
 
   useEffect(() => {
     if (!running) return;
-    const timer = window.setTimeout(() => setIndex(current => (current + 1) % labIdentities.length), INTERVAL_MS);
+    const name = labIdentityName(labIdentities[index]);
+    const delay = phase === 'reading' ? READING_MS : phase === 'deleting' ? (length === 0 ? 350 : 18) : (name[length] === ' ' ? 85 : 42);
+    const timer = window.setTimeout(() => {
+      if (phase === 'typing') {
+        const nextLength = Math.min(length + 1, name.length);
+        setTyping({ index, length: nextLength, phase: nextLength === name.length ? 'reading' : 'typing' });
+      } else if (phase === 'reading') {
+        setTyping({ index, length, phase: 'deleting' });
+      } else if (length > 0) {
+        setTyping({ index, length: length - 1, phase: 'deleting' });
+      } else {
+        setTyping({ index: (index + 1) % labIdentities.length, length: 0, phase: 'typing' });
+      }
+    }, delay);
     return () => window.clearTimeout(timer);
-  }, [index, running, language]);
+  }, [index, length, phase, running]);
 
-  function select(next: number) {
-    setIndex((next + labIdentities.length) % labIdentities.length);
-    setPaused(true);
+  function togglePause() {
+    // Pausing finishes the current sentence so the entire explanation is readable.
+    if (!paused) setTyping({ index, length: labIdentityName(labIdentities[index]).length, phase: 'reading' });
+    setPaused(current => !current);
   }
 
   return (
     <section ref={sectionRef} className="identity-hero relative isolate overflow-hidden bg-slate-950 text-white" aria-labelledby="lab-identity-heading" data-motion={running ? 'running' : 'paused'}>
+      <noscript><style>{'.identity-letter, .identity-copy { opacity: 1 !important; } .identity-cursor { display: none; }'}</style></noscript>
       <Image src="/assets/images/slider/2.jpg" alt="" fill priority sizes="100vw" className="-z-20 object-cover object-center" />
       <div aria-hidden="true" className="identity-photo-shade absolute inset-0 -z-10" />
       <div className="container grid items-center gap-10 py-14 md:py-20 lg:grid-cols-[1.5fr_1fr] lg:gap-16 lg:py-24">
@@ -68,30 +85,38 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
           <p className="mt-5 text-sm text-slate-200">{ko ? '초지능의 가능성을 연구하고, 실제 가치로 연결합니다.' : 'Exploring superintelligence. Connecting research to real-world value.'}</p>
 
           <div id="lab-identity-description" className="identity-panel mt-8 grid border-l-2 border-cyan-300/70 pl-5 md:pl-6">
-            {labIdentities.map((identity, position) => (
-              <div key={labIdentityName(identity)} className={`identity-slide ${position === index ? 'identity-slide-active' : ''}`} aria-hidden={position !== index}>
-                <p lang="en" className="flex flex-wrap gap-x-2 gap-y-1 text-base font-medium leading-relaxed md:text-xl">
-                  {['Superintelligence', identity.unifying, identity.approach, 'Neural-networks', 'LAB'].map((word, wordIndex) => (
-                    <span key={wordIndex}><span className="text-cyan-200">{wordIndex === 4 ? word : word[0]}</span>{wordIndex === 4 ? '' : word.slice(1)}</span>
-                  ))}
-                </p>
-                <h2 lang="ko" className="mt-4 text-xl font-semibold leading-relaxed [word-break:keep-all] md:text-2xl">{identity.titleKo}</h2>
-                <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-200 [word-break:keep-all] md:text-base">{ko ? identity.descriptionKo : identity.descriptionEn}</p>
-              </div>
-            ))}
+            {labIdentities.map((identity, position) => {
+              const name = labIdentityName(identity);
+              const words = name.split(' ');
+              const active = position === index;
+              return (
+                <div key={name} className={`identity-slide ${active ? 'identity-slide-active' : ''}`} aria-hidden={!active}>
+                  <p lang="en" className="sr-only">{name}</p>
+                  <p lang="en" aria-hidden="true" className="identity-typed-name flex flex-wrap gap-x-2 gap-y-1 text-base font-medium leading-relaxed md:text-xl">
+                    {words.map((word, wordIndex) => {
+                      if (!active) return <span key={wordIndex} className="inline-block whitespace-nowrap">{word}</span>;
+                      const offset = words.slice(0, wordIndex).reduce((total, previous) => total + previous.length + 1, 0);
+                      return <span key={wordIndex} className="inline-block whitespace-nowrap">{Array.from(word).map((letter, letterIndex) => {
+                        const characterIndex = offset + letterIndex;
+                        const cursor = active && (length === 0 ? characterIndex === 0 : characterIndex === length - 1);
+                        return <span key={letterIndex} className={`identity-letter ${letterIndex === 0 || wordIndex === 4 ? 'text-cyan-200' : ''}`} style={{ opacity: active && characterIndex < length ? 1 : 0 }}>{letter}{cursor && <span className={`identity-cursor ${length === 0 ? 'identity-cursor-start' : ''}`} />}</span>;
+                      })}</span>;
+                    })}
+                  </p>
+                  <div className="identity-copy" data-readable={active && phase !== 'deleting'} style={{ opacity: active && phase !== 'deleting' ? 1 : 0 }}>
+                    <h2 lang="ko" className="mt-4 text-xl font-semibold leading-relaxed [word-break:keep-all] md:text-2xl">{identity.titleKo}</h2>
+                    <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-200 [word-break:keep-all] md:text-base">{ko ? identity.descriptionKo : identity.descriptionEn}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span className="font-mono text-xs tabular-nums text-cyan-200">{String(index + 1).padStart(2, '0')} / {labIdentities.length}</span>
-            <div className="flex gap-1">
-              <button type="button" className="identity-control" aria-label={ko ? '이전 SUANLAB 설명' : 'Previous SUANLAB perspective'} aria-controls="lab-identity-description" onClick={() => select(index - 1)}><ArrowLeft aria-hidden="true" className="h-4 w-4" /></button>
-              <button type="button" className="identity-control" aria-label={ko ? '다음 SUANLAB 설명' : 'Next SUANLAB perspective'} aria-controls="lab-identity-description" onClick={() => select(index + 1)}><ArrowRight aria-hidden="true" className="h-4 w-4" /></button>
-              {!reducedMotion && <button type="button" className="identity-control" aria-label={ko ? (paused ? '설명 자동 전환 재생' : '설명 자동 전환 일시정지') : (paused ? 'Play perspectives' : 'Pause perspectives')} aria-controls="lab-identity-description" onClick={() => setPaused(current => !current)}>{paused ? <Play aria-hidden="true" className="h-4 w-4" /> : <Pause aria-hidden="true" className="h-4 w-4" />}</button>}
-            </div>
-            <label className="sr-only" htmlFor="lab-identity-select">{ko ? 'SUANLAB 설명 선택' : 'Choose a SUANLAB perspective'}</label>
-            <select id="lab-identity-select" value={index} onChange={event => select(Number(event.target.value))} className="min-w-0 max-w-full flex-1 rounded-md border border-white/30 bg-slate-950/70 px-3 py-2 text-xs text-white sm:flex-none sm:max-w-64">
-              {labIdentities.map((identity, position) => <option key={position} value={position}>{String(position + 1).padStart(2, '0')} · {identity.unifying} {identity.approach}</option>)}
-            </select>
+          <div className="mt-4 h-11">
+            {!reducedMotion && <button type="button" className="identity-pause inline-flex min-h-11 items-center gap-2 rounded-md px-1 text-xs text-cyan-200 hover:text-white" aria-controls="lab-identity-description" onClick={togglePause}>
+              {paused ? <Play aria-hidden="true" className="h-3 w-3" /> : <Pause aria-hidden="true" className="h-3 w-3" />}
+              {ko ? (paused ? '애니메이션 이어보기' : '잠시 멈추고 읽기') : (paused ? 'Resume animation' : 'Pause to read')}
+            </button>}
           </div>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700" asChild><Link href="/publication/">{t('cta.btn.publications') as string}<ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button>
