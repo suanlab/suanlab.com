@@ -1,5 +1,6 @@
 'use client';
 
+import MenuDotField from '@/components/layout/PageHeader/MenuDotField';
 import { useLanguage } from '@/components/language-provider';
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
@@ -61,8 +62,9 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50/50 to-background dark:from-amber-950/20">
       {/* Header */}
-      <header className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container py-6">
+      <header className="qt-menu-header overflow-hidden border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
+        <MenuDotField variant="qt" />
+        <div className="container relative z-10 py-6">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-amber-100 dark:bg-amber-900 rounded-lg">
               <BookOpen className="h-8 w-8 text-amber-700 dark:text-amber-300" />

@@ -9,8 +9,6 @@ import { useLanguage } from '@/components/language-provider';
 import { labIdentities, labIdentityName } from '@/data/lab-identity';
 
 const READING_MS = 14_000;
-const uWords = Array.from(new Set(labIdentities.map(identity => identity.unifying)));
-const aWords = Array.from(new Set(labIdentities.map(identity => identity.approach)));
 type TypingPhase = 'typing' | 'reading' | 'deleting';
 const connections = [
   { title: 'Superintelligence Research', ko: '초지능을 향한 모델과 학습 방법론 연구', en: 'Exploring models and learning methods for superintelligence', href: '/research/' },
@@ -18,15 +16,15 @@ const connections = [
   { title: 'Open Knowledge', ko: '논문에서 코드와 강의로 이어지는 지식 공유', en: 'Sharing knowledge through papers, code, and teaching', href: '/lecture/' },
 ];
 
-function TypedIdentityWord({ word, reserve, length, slot }: { word: string; reserve: string[]; length: number; slot: 'u' | 'a' }) {
+function TypedIdentityWord({ word, length, slot }: { word: string; length: number; slot: 'u' | 'a' }) {
   return (
-    <span className="identity-variable-word relative inline-grid whitespace-nowrap" data-slot={slot}>
-      {reserve.map(term => <span key={term} className="invisible col-start-1 row-start-1">{term}</span>)}
-      <span className="absolute left-0 top-0">{Array.from(word).map((letter, characterIndex) => (
-        <span key={characterIndex} className={`identity-letter ${characterIndex === 0 ? 'text-cyan-200' : ''}`} style={{ opacity: characterIndex < length ? 1 : 0 }}>
-          {letter}{characterIndex === (length === 0 ? 0 : length - 1) && <span className={`identity-cursor ${length === 0 ? 'identity-cursor-start' : ''}`} />}
+    <span className={`identity-variable-word relative inline-block whitespace-nowrap ${length === 0 ? 'identity-variable-empty' : ''}`} data-slot={slot}>
+      <span className="identity-animated-term">{Array.from(word.slice(0, length)).map((letter, characterIndex) => (
+        <span key={characterIndex} className={`identity-letter ${characterIndex === 0 ? 'text-cyan-200' : ''}`}>
+          {letter}{characterIndex === length - 1 && <span className="identity-cursor" />}
         </span>
       ))}</span>
+      <span className="identity-static-term"><span className="text-cyan-200">{word[0]}</span>{word.slice(1)}</span>
     </span>
   );
 }
@@ -93,7 +91,7 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
 
   return (
     <section ref={sectionRef} className="identity-hero relative isolate overflow-hidden bg-slate-950 text-white" aria-labelledby="lab-identity-heading" data-motion={running ? 'running' : 'paused'}>
-      <noscript><style>{'.identity-letter, .identity-copy { opacity: 1 !important; } .identity-cursor { display: none; }'}</style></noscript>
+      <noscript><style>{'.identity-copy { opacity: 1 !important; } .identity-animated-term, .identity-cursor { display: none; } .identity-static-term, .identity-variable-empty { display: inline-block; }'}</style></noscript>
       <Image src="/assets/images/slider/2.jpg" alt="" fill priority sizes="100vw" className="-z-20 object-cover object-center" />
       <div aria-hidden="true" className="identity-photo-shade absolute inset-0 -z-10" />
       <div className="container grid items-center gap-10 py-14 md:py-20 lg:grid-cols-[1.5fr_1fr] lg:gap-16 lg:py-24">
@@ -110,10 +108,12 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
             <p lang="en" className="identity-accessible-name sr-only">{labIdentityName(identity)}</p>
             <p lang="en" aria-hidden="true" className="identity-typed-name flex flex-wrap gap-x-2 gap-y-1 text-base font-medium leading-relaxed md:text-xl">
               <span className="identity-fixed-word whitespace-nowrap" data-slot="s"><span className="text-cyan-200">S</span>uperintelligence</span>
-              <TypedIdentityWord slot="u" word={identity.unifying} reserve={uWords} length={uLength} />
-              <TypedIdentityWord slot="a" word={identity.approach} reserve={aWords} length={aLength} />
-              <span className="identity-fixed-word whitespace-nowrap" data-slot="n"><span className="text-cyan-200">N</span>eural-networks</span>
-              <span className="identity-fixed-word whitespace-nowrap text-cyan-200" data-slot="lab">LAB</span>
+              <TypedIdentityWord slot="u" word={identity.unifying} length={uLength} />
+              <TypedIdentityWord slot="a" word={identity.approach} length={aLength} />
+              <span className="identity-name-tail inline-flex gap-2 whitespace-nowrap">
+                <span className="identity-fixed-word" data-slot="n"><span className="text-cyan-200">N</span>eural-networks</span>
+                <span className="identity-fixed-word text-cyan-200" data-slot="lab">LAB</span>
+              </span>
             </p>
             <div className="mt-4 grid">
               {labIdentities.map((entry, position) => {

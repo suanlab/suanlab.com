@@ -1,6 +1,7 @@
 import { site } from '@/config/site';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import MenuDotField from '@/components/layout/PageHeader/MenuDotField';
 import { ArrowLeft, ArrowRight, Book, BookOpen, Calendar, Home } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -56,8 +57,9 @@ export default async function QTEntryPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50/50 to-background dark:from-amber-950/20">
       {/* Header */}
-      <header className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container py-4">
+      <header className="qt-menu-header overflow-hidden border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
+        <MenuDotField variant="qt" />
+        <div className="container relative z-10 py-4">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Link href="/qt" className="hover:text-primary flex items-center gap-1">
               <Home className="h-4 w-4" />

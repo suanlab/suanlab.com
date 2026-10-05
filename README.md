@@ -52,9 +52,16 @@ Original content remains in its original language; the language selector transla
 supported UI labels, not complete articles.
 
 Homepage identity meanings live in `src/data/lab-identity.ts`. Superintelligence,
-Neural-networks and LAB remain fixed; only the U/A terms type and erase. Site
+Neural-networks and LAB remain visible; only the U/A terms type and erase. Their
+width follows the entered text, moving the following words without reserved gaps. Site
 branding metadata is centralized in `src/config/site.ts`; publication and course
 titles retain their original terminology.
+
+Title backgrounds use `PageHeader/MenuDotField.tsx` and `menu-dots.css`, with
+deterministic dot patterns selected by the top-level route. Each menu has its own
+motion; nested pages inherit it. QT uses the same field in its existing header.
+Animation pauses offscreen, in hidden tabs, through the pause control, and when
+reduced motion is requested.
 
 ## Contact email drafts
 

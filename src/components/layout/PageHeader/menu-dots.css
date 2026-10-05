@@ -1,0 +1,46 @@
+.menu-dot-field {
+  position: absolute; inset: 0 0 0 auto; width: 65%; min-width: 360px;
+  overflow: hidden; pointer-events: none; opacity: .55;
+  mask-image: linear-gradient(90deg, transparent, #000 38%);
+}
+.menu-dot { fill: var(--dot-color); opacity: .4; transform-origin: 350px 120px; animation: menu-dot-drift 8s ease-in-out infinite; animation-delay: var(--delay); }
+.menu-dot-field[data-motion="paused"] .menu-dot { animation-play-state: paused; }
+.menu-dot-profile { animation-name: menu-dot-orbit; animation-duration: 12s; }
+.menu-dot-research { animation-name: menu-dot-converge; }
+.menu-dot-project { animation-name: menu-dot-flow; animation-duration: 6s; }
+.menu-dot-publication { animation-name: menu-dot-reading; animation-duration: 7s; }
+.menu-dot-blog { animation-name: menu-dot-writing; animation-duration: 6s; }
+.menu-dot-book { animation-name: menu-dot-page; animation-duration: 9s; }
+.menu-dot-lecture { animation-name: menu-dot-rise; animation-duration: 6s; }
+.menu-dot-course { animation-name: menu-dot-radiate; animation-duration: 7s; }
+.menu-dot-youtube { animation-name: menu-dot-equalizer; animation-duration: 3s; }
+.menu-dot-prompts { animation-name: menu-dot-terminal; animation-duration: 5s; }
+.menu-dot-deadlines { animation-name: menu-dot-clock; animation-duration: 12s; }
+.menu-dot-contact { animation-name: menu-dot-exchange; animation-duration: 6s; }
+.menu-dot-search { animation-name: menu-dot-scan; animation-duration: 7s; }
+.menu-dot-privacy { animation-name: menu-dot-shield; animation-duration: 10s; }
+.menu-dot-terms { animation-name: menu-dot-checklist; animation-duration: 8s; }
+.menu-dot-qt { animation-name: menu-dot-stars; animation-duration: 12s; }
+.menu-dot-control:focus-visible { outline-color: #a5f3fc; }
+.qt-menu-header .menu-dot-field { opacity: .28; }
+@keyframes menu-dot-orbit { 0%,100% { transform: translate(0,0); opacity: .35; } 50% { transform: translate(var(--dx),var(--dy)); opacity: .8; } }
+@keyframes menu-dot-converge { 0%,100% { transform: translate(var(--dx),var(--dy)); opacity: .2; } 50% { transform: translate(0,0); opacity: .85; } }
+@keyframes menu-dot-flow { 0% { transform: translateX(-18px); opacity: .15; } 50% { opacity: .85; } 100% { transform: translateX(55px); opacity: .15; } }
+@keyframes menu-dot-reading { 0%,100% { opacity: .2; } 40% { transform: translateY(-3px); opacity: .85; } }
+@keyframes menu-dot-writing { 0%,100% { opacity: .15; transform: translateX(-5px); } 50% { opacity: .85; transform: translateX(5px); } }
+@keyframes menu-dot-page { 0%,100% { transform: translateY(0); opacity: .3; } 50% { transform: translateY(-9px); opacity: .8; } }
+@keyframes menu-dot-rise { 0%,100% { transform: translateY(8px); opacity: .2; } 50% { transform: translateY(-8px); opacity: .85; } }
+@keyframes menu-dot-radiate { 0%,100% { transform: translate(0,0); opacity: .25; } 50% { transform: translate(var(--dx),var(--dy)); opacity: .85; } }
+@keyframes menu-dot-equalizer { 0%,100% { transform: translateY(3px); opacity: .25; } 50% { transform: translateY(-12px); opacity: .85; } }
+@keyframes menu-dot-terminal { 0%,100% { opacity: .12; } 35%,60% { opacity: .85; } }
+@keyframes menu-dot-clock { 0%,30%,100% { opacity: .25; transform: scale(1); } 10% { opacity: 1; transform: scale(1.04); } }
+@keyframes menu-dot-exchange { 0% { transform: translateX(0); opacity: .15; } 50% { opacity: .8; } 100% { transform: translateX(var(--dx)); opacity: .15; } }
+@keyframes menu-dot-scan { 0%,100% { transform: translateX(-16px); opacity: .3; } 50% { transform: translateX(16px); opacity: .85; } }
+@keyframes menu-dot-shield { 0%,100% { transform: scale(.98); opacity: .35; } 50% { transform: scale(1.02); opacity: .75; } }
+@keyframes menu-dot-checklist { 0%,100% { opacity: .2; } 50% { opacity: .85; } }
+@keyframes menu-dot-stars { 0%,100% { opacity: .25; transform: translateY(0); } 50% { opacity: .75; transform: translateY(-4px); } }
+@keyframes menu-dot-drift { 50% { transform: translate(var(--dx),var(--dy)); } }
+@media (prefers-reduced-motion: reduce) {
+  .menu-dot { animation: none !important; opacity: .45; transform: none; }
+}
+@media print { .menu-dot-field, .menu-dot-control { display: none; } }
