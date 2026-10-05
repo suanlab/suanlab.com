@@ -12,11 +12,11 @@ import { playlists } from '@/data/youtube';
 const BASE_URL = site.url;
 
 export const metadata: Metadata = {
-  title: { absolute: 'SuanLab | Data Science & AI Research' },
-  description: '이수안 교수의 데이터 사이언스 연구실 - 딥러닝, 머신러닝, 빅데이터, 자연어처리, 컴퓨터 비전 연구 및 교육 콘텐츠 제공',
+  title: { absolute: site.title },
+  description: site.description,
   openGraph: {
-    title: 'SuanLab | Data Science & AI Research',
-    description: '이수안 교수의 데이터 사이언스 연구실 - 딥러닝, 머신러닝, 빅데이터, 자연어처리, 컴퓨터 비전 연구 및 교육 콘텐츠 제공',
+    title: site.title,
+    description: site.description,
     url: BASE_URL,
     siteName: 'SuanLab',
     type: 'website',
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SuanLab | Data Science & AI Research',
-    description: '이수안 교수의 데이터 사이언스 연구실 - 딥러닝, 머신러닝, 빅데이터, 자연어처리, 컴퓨터 비전 연구 및 교육 콘텐츠 제공',
+    title: site.title,
+    description: site.description,
   },
   alternates: {
     canonical: `${BASE_URL}/`,

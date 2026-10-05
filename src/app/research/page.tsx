@@ -66,7 +66,7 @@ export default function ResearchPage() {
               Research <span className="text-primary">Areas</span>
             </h2>
             <p className="mt-4 text-muted-foreground">
-              SuanLab focuses on various research areas in data science and AI
+              SuanLab explores data science and technologies for superintelligence
             </p>
           </div>
 

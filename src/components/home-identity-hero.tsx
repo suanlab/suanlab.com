@@ -9,16 +9,31 @@ import { useLanguage } from '@/components/language-provider';
 import { labIdentities, labIdentityName } from '@/data/lab-identity';
 
 const READING_MS = 14_000;
+const uWords = Array.from(new Set(labIdentities.map(identity => identity.unifying)));
+const aWords = Array.from(new Set(labIdentities.map(identity => identity.approach)));
 type TypingPhase = 'typing' | 'reading' | 'deleting';
 const connections = [
-  { title: 'AI Research', ko: '모델과 학습 방법론을 탐구하는 연구', en: 'Exploring models and learning methods', href: '/research/' },
+  { title: 'Superintelligence Research', ko: '초지능을 향한 모델과 학습 방법론 연구', en: 'Exploring models and learning methods for superintelligence', href: '/research/' },
   { title: 'Applied Intelligence', ko: '데이터와 실제 문제를 연결하는 프로젝트', en: 'Connecting data with real-world problems', href: '/project/' },
   { title: 'Open Knowledge', ko: '논문에서 코드와 강의로 이어지는 지식 공유', en: 'Sharing knowledge through papers, code, and teaching', href: '/lecture/' },
 ];
 
+function TypedIdentityWord({ word, reserve, length, slot }: { word: string; reserve: string[]; length: number; slot: 'u' | 'a' }) {
+  return (
+    <span className="identity-variable-word relative inline-grid whitespace-nowrap" data-slot={slot}>
+      {reserve.map(term => <span key={term} className="invisible col-start-1 row-start-1">{term}</span>)}
+      <span className="absolute left-0 top-0">{Array.from(word).map((letter, characterIndex) => (
+        <span key={characterIndex} className={`identity-letter ${characterIndex === 0 ? 'text-cyan-200' : ''}`} style={{ opacity: characterIndex < length ? 1 : 0 }}>
+          {letter}{characterIndex === (length === 0 ? 0 : length - 1) && <span className={`identity-cursor ${length === 0 ? 'identity-cursor-start' : ''}`} />}
+        </span>
+      ))}</span>
+    </span>
+  );
+}
+
 export function HomeIdentityHero({ stats }: { stats: { label: string; value: string }[] }) {
   const { language, t } = useLanguage();
-  const [typing, setTyping] = useState<{ index: number; length: number; phase: TypingPhase }>({ index: 0, length: 0, phase: 'typing' });
+  const [typing, setTyping] = useState<{ index: number; uLength: number; aLength: number; phase: TypingPhase }>({ index: 0, uLength: 0, aLength: 0, phase: 'typing' });
   const [paused, setPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(true);
   const [visible, setVisible] = useState(true);
@@ -26,7 +41,8 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
   const sectionRef = useRef<HTMLElement>(null);
   const ko = language === 'ko';
   const running = !paused && !reducedMotion && visible && inView;
-  const { index, length, phase } = typing;
+  const { index, uLength, aLength, phase } = typing;
+  const identity = labIdentities[index];
 
   useEffect(() => {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -46,26 +62,32 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
 
   useEffect(() => {
     if (!running) return;
-    const name = labIdentityName(labIdentities[index]);
-    const delay = phase === 'reading' ? READING_MS : phase === 'deleting' ? (length === 0 ? 350 : 18) : (name[length] === ' ' ? 85 : 42);
+    const current = labIdentities[index];
+    const nextIndex = (index + 1) % labIdentities.length;
+    const next = labIdentities[nextIndex];
+    const changeU = current.unifying !== next.unifying;
+    const changeA = current.approach !== next.approach;
+    const cleared = (!changeU || uLength === 0) && (!changeA || aLength === 0);
+    const delay = phase === 'reading' ? READING_MS : phase === 'deleting' ? (cleared ? 350 : 18) : 65;
     const timer = window.setTimeout(() => {
       if (phase === 'typing') {
-        const nextLength = Math.min(length + 1, name.length);
-        setTyping({ index, length: nextLength, phase: nextLength === name.length ? 'reading' : 'typing' });
+        const nextU = Math.min(uLength + 1, current.unifying.length);
+        const nextA = Math.min(aLength + 1, current.approach.length);
+        setTyping({ index, uLength: nextU, aLength: nextA, phase: nextU === current.unifying.length && nextA === current.approach.length ? 'reading' : 'typing' });
       } else if (phase === 'reading') {
-        setTyping({ index, length, phase: 'deleting' });
-      } else if (length > 0) {
-        setTyping({ index, length: length - 1, phase: 'deleting' });
+        setTyping({ index, uLength, aLength, phase: 'deleting' });
+      } else if (!cleared) {
+        setTyping({ index, uLength: changeU ? Math.max(0, uLength - 1) : uLength, aLength: changeA ? Math.max(0, aLength - 1) : aLength, phase: 'deleting' });
       } else {
-        setTyping({ index: (index + 1) % labIdentities.length, length: 0, phase: 'typing' });
+        setTyping({ index: nextIndex, uLength: changeU ? 0 : uLength, aLength: changeA ? 0 : aLength, phase: 'typing' });
       }
     }, delay);
     return () => window.clearTimeout(timer);
-  }, [index, length, phase, running]);
+  }, [index, uLength, aLength, phase, running]);
 
   function togglePause() {
     // Pausing finishes the current sentence so the entire explanation is readable.
-    if (!paused) setTyping({ index, length: labIdentityName(labIdentities[index]).length, phase: 'reading' });
+    if (!paused) setTyping({ index, uLength: identity.unifying.length, aLength: identity.approach.length, phase: 'reading' });
     setPaused(current => !current);
   }
 
@@ -77,7 +99,7 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
       <div className="container grid items-center gap-10 py-14 md:py-20 lg:grid-cols-[1.5fr_1fr] lg:gap-16 lg:py-24">
         <div className="min-w-0">
           <p className="mb-5 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-cyan-200">
-            <span aria-hidden="true" className="h-px w-8 bg-cyan-300" /> Data Science & AI Research
+            <span aria-hidden="true" className="h-px w-8 shrink-0 bg-cyan-300" /> Superintelligence Research
           </p>
           <h1 id="lab-identity-heading" className="identity-wordmark text-[clamp(3.2rem,11vw,6.5rem)] font-semibold leading-none tracking-[-0.055em]" aria-label="SuanLab">
             <span className="text-white">SUAN</span><span className="text-cyan-200">LAB</span>
@@ -85,31 +107,25 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
           <p className="mt-5 text-sm text-slate-200">{ko ? '초지능의 가능성을 연구하고, 실제 가치로 연결합니다.' : 'Exploring superintelligence. Connecting research to real-world value.'}</p>
 
           <div id="lab-identity-description" className="identity-panel mt-8 grid border-l-2 border-cyan-300/70 pl-5 md:pl-6">
-            {labIdentities.map((identity, position) => {
-              const name = labIdentityName(identity);
-              const words = name.split(' ');
-              const active = position === index;
-              return (
-                <div key={name} className={`identity-slide ${active ? 'identity-slide-active' : ''}`} aria-hidden={!active}>
-                  <p lang="en" className="sr-only">{name}</p>
-                  <p lang="en" aria-hidden="true" className="identity-typed-name flex flex-wrap gap-x-2 gap-y-1 text-base font-medium leading-relaxed md:text-xl">
-                    {words.map((word, wordIndex) => {
-                      if (!active) return <span key={wordIndex} className="inline-block whitespace-nowrap">{word}</span>;
-                      const offset = words.slice(0, wordIndex).reduce((total, previous) => total + previous.length + 1, 0);
-                      return <span key={wordIndex} className="inline-block whitespace-nowrap">{Array.from(word).map((letter, letterIndex) => {
-                        const characterIndex = offset + letterIndex;
-                        const cursor = active && (length === 0 ? characterIndex === 0 : characterIndex === length - 1);
-                        return <span key={letterIndex} className={`identity-letter ${letterIndex === 0 || wordIndex === 4 ? 'text-cyan-200' : ''}`} style={{ opacity: active && characterIndex < length ? 1 : 0 }}>{letter}{cursor && <span className={`identity-cursor ${length === 0 ? 'identity-cursor-start' : ''}`} />}</span>;
-                      })}</span>;
-                    })}
-                  </p>
+            <p lang="en" className="identity-accessible-name sr-only">{labIdentityName(identity)}</p>
+            <p lang="en" aria-hidden="true" className="identity-typed-name flex flex-wrap gap-x-2 gap-y-1 text-base font-medium leading-relaxed md:text-xl">
+              <span className="identity-fixed-word whitespace-nowrap" data-slot="s"><span className="text-cyan-200">S</span>uperintelligence</span>
+              <TypedIdentityWord slot="u" word={identity.unifying} reserve={uWords} length={uLength} />
+              <TypedIdentityWord slot="a" word={identity.approach} reserve={aWords} length={aLength} />
+              <span className="identity-fixed-word whitespace-nowrap" data-slot="n"><span className="text-cyan-200">N</span>eural-networks</span>
+              <span className="identity-fixed-word whitespace-nowrap text-cyan-200" data-slot="lab">LAB</span>
+            </p>
+            <div className="mt-4 grid">
+              {labIdentities.map((entry, position) => {
+                const active = position === index;
+                return <div key={labIdentityName(entry)} className={`identity-slide ${active ? 'identity-slide-active' : ''}`} aria-hidden={!active}>
                   <div className="identity-copy" data-readable={active && phase !== 'deleting'} style={{ opacity: active && phase !== 'deleting' ? 1 : 0 }}>
-                    <h2 lang="ko" className="mt-4 text-xl font-semibold leading-relaxed [word-break:keep-all] md:text-2xl">{identity.titleKo}</h2>
-                    <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-200 [word-break:keep-all] md:text-base">{ko ? identity.descriptionKo : identity.descriptionEn}</p>
+                    <h2 lang="ko" className="text-xl font-semibold leading-relaxed [word-break:keep-all] md:text-2xl">{entry.titleKo}</h2>
+                    <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-200 [word-break:keep-all] md:text-base">{ko ? entry.descriptionKo : entry.descriptionEn}</p>
                   </div>
-                </div>
-              );
-            })}
+                </div>;
+              })}
+            </div>
           </div>
 
           <div className="mt-4 h-11">

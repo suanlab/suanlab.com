@@ -14,9 +14,9 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const translations = {
   ko: {
-    'hero.badge': '데이터 사이언스 & 인공지능 연구실',
+    'hero.badge': '초지능 연구실',
     'hero.title': '데이터에서 지능으로, 연구에서 실제 가치로.',
-    'hero.description': '데이터 사이언스와 인공지능의 방법론을 연구하고, 실제 문제에 적용합니다. SuanLab의 논문, 연구 프로젝트, 공개 교육 자료를 만나보세요.',
+    'hero.description': '데이터 사이언스와 초지능을 향한 방법론을 연구하고, 실제 문제에 적용합니다. SuanLab의 논문, 연구 프로젝트, 공개 교육 자료를 만나보세요.',
     'hero.btn.profile': '이수안 교수 소개',
     'hero.btn.research': '연구 분야 보기',
     
@@ -50,7 +50,7 @@ const translations = {
     'quicklinks.blog': '블로그 글 보기',
     
     'research.title': '연구 분야',
-    'research.description': '데이터 사이언스와 인공지능 분야의 최신 기술을 연구합니다',
+    'research.description': '데이터 사이언스와 초지능을 향한 최신 기술을 연구합니다',
     'research.areas': [
       { title: 'Data Science & Big Data', titleKo: '데이터과학 및 빅데이터' },
       { title: 'Deep Learning & ML', titleKo: '딥러닝 및 머신러닝' },
@@ -62,7 +62,7 @@ const translations = {
     ],
     
     'cta.title': '협업에 관심이 있으신가요?',
-    'cta.description': '데이터 사이언스와 인공지능 연구에 참여하거나 협업하고 싶으시면 연락 주세요.',
+    'cta.description': '데이터 사이언스와 초지능 연구에 참여하거나 협업하고 싶으시면 연락 주세요.',
     'cta.btn.contact': '이수안 교수에게 연락하기',
     'cta.btn.publications': '논문 보기',
 
@@ -82,7 +82,7 @@ const translations = {
     'nav.contact': '연락처',
 
     'pageheader.suan.subtitle': '이수안 교수 프로필',
-    'pageheader.research.subtitle': '데이터 사이언스와 인공지능 분야의 연구',
+    'pageheader.research.subtitle': '데이터 사이언스와 초지능을 향한 연구',
     'pageheader.project.subtitle': '연구 및 산학협력 프로젝트',
     'pageheader.publication.subtitle': '학술 논문 및 연구 성과',
     'pageheader.blog.subtitle': '데이터 과학, 인공지능, 딥러닝에 관한 이야기',
@@ -100,9 +100,9 @@ const translations = {
     'lang.switch': '언어 변경',
   },
   en: {
-    'hero.badge': 'Data Science & AI Research Lab',
+    'hero.badge': 'Superintelligence Research Lab',
     'hero.title': 'From data to intelligence. From research to impact.',
-    'hero.description': 'We develop methods in data science and artificial intelligence and apply them to real-world problems. Explore our publications, research projects, and open educational resources.',
+    'hero.description': 'We develop methods in data science and superintelligence research and apply them to real-world problems. Explore our publications, research projects, and open educational resources.',
     'hero.btn.profile': 'About Prof. Suan Lee',
     'hero.btn.research': 'View Research Areas',
     
@@ -136,7 +136,7 @@ const translations = {
     'quicklinks.blog': 'Read the Blog',
     
     'research.title': 'Research Areas',
-    'research.description': 'We research cutting-edge technologies in Data Science and Artificial Intelligence',
+    'research.description': 'We research data science and technologies for superintelligence',
     'research.areas': [
       { title: 'Data Science & Big Data', titleKo: 'Data Science & Big Data' },
       { title: 'Deep Learning & ML', titleKo: 'Deep Learning & Machine Learning' },
@@ -148,7 +148,7 @@ const translations = {
     ],
     
     'cta.title': 'Interested in Collaboration?',
-    'cta.description': 'Contact us if you are interested in participating in or collaborating on Data Science and AI research.',
+    'cta.description': 'Contact us if you are interested in participating in or collaborating on data science and superintelligence research.',
     'cta.btn.contact': 'Contact Prof. Suan Lee',
     'cta.btn.publications': 'View Publications',
 
@@ -168,7 +168,7 @@ const translations = {
     'nav.contact': 'Contact',
 
     'pageheader.suan.subtitle': 'Prof. Suan Lee Profile',
-    'pageheader.research.subtitle': 'Research in Data Science and AI',
+    'pageheader.research.subtitle': 'Research in Data Science and Superintelligence',
     'pageheader.project.subtitle': 'Research and Industry Projects',
     'pageheader.publication.subtitle': 'Academic Publications',
     'pageheader.blog.subtitle': 'Data Science, AI, and Deep Learning',

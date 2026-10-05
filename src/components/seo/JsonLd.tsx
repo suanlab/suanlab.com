@@ -13,7 +13,7 @@ export function OrganizationJsonLd() {
     url: BASE_URL,
     logo: `${BASE_URL}/assets/images/logo.png`,
     description:
-      '이수안 교수의 데이터 사이언스 연구실 - 딥러닝, 머신러닝, 빅데이터, 자연어처리, 컴퓨터 비전 연구',
+      site.description,
     foundingDate: '2021',
     founder: {
       '@type': 'Person',
@@ -31,7 +31,7 @@ export function OrganizationJsonLd() {
       'Natural Language Processing',
       'Computer Vision',
       'Big Data',
-      'Artificial Intelligence',
+      'Superintelligence',
     ],
   };
 

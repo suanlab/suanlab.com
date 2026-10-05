@@ -25,11 +25,11 @@ const BASE_URL = site.url;
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'SuanLab | Data Science & AI Research',
+    default: site.title,
     template: '%s | SuanLab',
   },
   description:
-    '이수안 교수의 데이터 사이언스 연구실 - 딥러닝, 머신러닝, 빅데이터, 자연어처리, 컴퓨터 비전 연구 및 교육 콘텐츠 제공',
+    site.description,
   keywords: [
     '이수안',
     'SuanLab',
@@ -45,7 +45,9 @@ export const metadata: Metadata = {
     'NLP',
     '컴퓨터 비전',
     'Computer Vision',
+    'Superintelligence',
     'AI',
+    '초지능',
     '인공지능',
     'PyTorch',
     'TensorFlow',
@@ -65,23 +67,23 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     url: BASE_URL,
     siteName: 'SuanLab',
-    title: 'SuanLab | Data Science & AI Research',
+    title: site.title,
     description:
-      '이수안 교수의 데이터 사이언스 연구실 - 딥러닝, 머신러닝, 빅데이터, 자연어처리, 컴퓨터 비전 연구 및 교육 콘텐츠 제공',
+      site.description,
     images: [
       {
         url: '/assets/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'SuanLab - Data Science & AI Research',
+        alt: site.title,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SuanLab | Data Science & AI Research',
+    title: site.title,
     description:
-      '이수안 교수의 데이터 사이언스 연구실 - 딥러닝, 머신러닝, 빅데이터, 자연어처리, 컴퓨터 비전',
+      site.description,
     images: ['/assets/images/og-image.jpg'],
     creator: '@suanlab',
   },

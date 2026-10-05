@@ -51,6 +51,19 @@ research outputs, projects, courses, online books, videos, posts and prompts.
 Original content remains in its original language; the language selector translates
 supported UI labels, not complete articles.
 
+Homepage identity meanings live in `src/data/lab-identity.ts`. Superintelligence,
+Neural-networks and LAB remain fixed; only the U/A terms type and erase. Site
+branding metadata is centralized in `src/config/site.ts`; publication and course
+titles retain their original terminology.
+
+## Contact email drafts
+
+The contact form prepares a Gmail web draft or opens the visitor's email app;
+the visitor must send it there. Copy and manual-copy fallbacks support other mail
+services. It does not claim delivery, store inquiries, or send email from Pages.
+The recipient is the first address in `site.contact.emails`. Direct website
+submission requires a separately configured mail service endpoint.
+
 ## Generated content provenance
 
 New topic and paper posts contain `provenance`: AI-assisted generation time,

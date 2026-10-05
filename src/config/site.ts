@@ -1,5 +1,7 @@
 export const site = {
   name: 'SuanLab',
+  title: 'SuanLab | Superintelligence Research',
+  description: '이수안 교수의 초지능(Superintelligence) 연구실. 데이터 사이언스, 신경망, 언어 모델, 검색 증강 생성과 에이전트를 연구하고 교육 자료를 공유합니다.',
   url: 'https://suanlab.com',
   contact: {
     address: '65 Semyung-ro, Jecheon-si, Chungcheongbuk-do, 27136 Korea',

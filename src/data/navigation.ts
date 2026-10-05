@@ -127,6 +127,6 @@ export const contactInfo: ContactInfo = {
   emails: ['suanlab@gmail.com', 'suanlee@semyung.ac.kr'],
 };
 
-export const siteDescription = `SuanLab is professor Suan's personal website, and conducting research on data science and artificial intelligence and shares various information, lecture, and youtube contents.
+export const siteDescription = `SuanLab is professor Suan's personal website, and conducting research on data science and superintelligence and shares various information, lecture, and youtube contents.
 Currently, I am an assistant professor in the School of Computer Science at Semyung University and teach artificial intelligence, image processing, big data, and database lecture.
-Contact me if anyone or company wants to join or collaborate on an interesting data science & artificial intelligence research.`;
+Contact me if anyone or company wants to join or collaborate on an interesting data science & superintelligence research.`;

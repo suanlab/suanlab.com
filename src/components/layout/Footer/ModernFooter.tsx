@@ -39,7 +39,7 @@ export default function ModernFooter() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">SuanLab</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              이수안 교수의 데이터 사이언스 &amp; 인공지능 연구실입니다.
+              이수안 교수의 초지능(Superintelligence) 연구실입니다.
               <br />
               강의, 논문, YouTube 콘텐츠를 통해 지식을 공유합니다.
             </p>
