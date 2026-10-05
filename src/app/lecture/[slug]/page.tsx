@@ -1,3 +1,4 @@
+import { getLectureContentSlugs } from '@/lib/lecture-content';
 import { site } from '@/config/site';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -48,7 +49,8 @@ export default function LectureDetailPage({ params }: { params: { slug: string }
       <section className="py-16 md:py-20">
         <div className="container">
           <div className="mb-8 flex flex-wrap items-center gap-4 rounded-xl border bg-muted/30 p-5">
-            <div className="flex-1"><h2 className="font-semibold">강의 개요 발표 / Lecture overview</h2><p className="mt-1 text-sm text-muted-foreground">아래 강의 소개와 학습 주제를 발표 화면으로 볼 수 있습니다.</p></div>
+            <div className="flex-1"><h2 className="font-semibold">{getLectureContentSlugs().includes(lecture.slug) ? '강의 자료 / Lecture notes' : '강의 개요 발표 / Lecture overview'}</h2><p className="mt-1 text-sm text-muted-foreground">{getLectureContentSlugs().includes(lecture.slug) ? '코드·수식·그림을 포함한 강의 자료를 읽거나 발표할 수 있습니다.' : '아래 강의 소개와 학습 주제를 발표 화면으로 볼 수 있습니다.'}</p></div>
+            {getLectureContentSlugs().includes(lecture.slug) && <Button variant="outline" asChild><Link href={`/lecture/${lecture.slug}/notes/`}>강의 자료 읽기</Link></Button>}
             <Button asChild><Link href={`/lecture/${lecture.slug}/present/`}>발표 모드 열기</Link></Button>
           </div>
           <div className="grid gap-12 lg:grid-cols-3">

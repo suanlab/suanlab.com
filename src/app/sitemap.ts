@@ -1,3 +1,4 @@
+import { getLectureContentSlugs } from '@/lib/lecture-content';
 import { MetadataRoute } from 'next';
 import { site } from '@/config/site';
 import { researchAreas } from '@/data/research';
@@ -16,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       { route: `lecture/${item.slug}`, date: undefined },
       { route: `lecture/${item.slug}/present`, date: undefined },
     ]),
+    ...getLectureContentSlugs().map(slug => ({ route: `lecture/${slug}/notes`, date: undefined })),
     ...playlists.map((item) => ({ route: `youtube/${item.slug}`, date: undefined })),
     ...getAllPosts().map((item) => ({ route: `blog/${item.slug}`, date: item.date })),
     ...getAllQTEntries().map((item) => ({ route: `qt/${item.slug}`, date: item.date })),

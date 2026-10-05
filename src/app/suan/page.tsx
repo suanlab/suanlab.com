@@ -44,13 +44,13 @@ export const metadata: Metadata = {
 };
 
 const skills = [
-  { name: 'Deep Learning & ML', detail: 'TensorFlow, Keras, PyTorch', percent: 100 },
-  { name: 'Big Data', detail: 'Hadoop, Spark, HBase, Hive, ZooKeeper', percent: 95 },
-  { name: 'Database', detail: 'Oracle, PostgreSQL, MySQL, MariaDB', percent: 95 },
-  { name: 'Programming', detail: 'Python, Java, Scala, C++, C', percent: 90 },
-  { name: 'Statistics & Data Mining', detail: 'R, MATLAB, Weka, RapidMiner', percent: 95 },
-  { name: 'Web', detail: 'HTML5, JavaScript, CSS, Node.js', percent: 85 },
-  { name: 'Multimedia', detail: 'Photoshop, Illustrator, Premiere', percent: 80 },
+  { name: 'Deep Learning & ML', detail: 'TensorFlow, Keras, PyTorch' },
+  { name: 'Big Data', detail: 'Hadoop, Spark, HBase, Hive, ZooKeeper' },
+  { name: 'Database', detail: 'Oracle, PostgreSQL, MySQL, MariaDB' },
+  { name: 'Programming', detail: 'Python, Java, Scala, C++, C' },
+  { name: 'Statistics & Data Mining', detail: 'R, MATLAB, Weka, RapidMiner' },
+  { name: 'Web', detail: 'HTML5, JavaScript, CSS, Node.js' },
+  { name: 'Multimedia', detail: 'Photoshop, Illustrator, Premiere' },
 ];
 
 const socialLinks = [
@@ -78,11 +78,20 @@ export default function SuanPage() {
         breadcrumbs={[{ label: 'Suan' }]}
       />
 
+      <nav aria-label="프로필 목차 / Profile contents" className="border-b bg-muted/20">
+        <div className="container flex flex-wrap gap-x-6 gap-y-3 py-5 text-sm">
+          <a href="#about" className="hover:text-primary">소개 / About</a>
+          <a href="#experience" className="hover:text-primary">경력 / Experience</a>
+          <a href="#education-research" className="hover:text-primary">학력·연구 / Education &amp; research</a>
+          <a href="#awards" className="hover:text-primary">수상 / Awards</a>
+          <a href="#activities" className="hover:text-primary">학술 활동 / Activities</a>
+        </div>
+      </nav>
       <section className="py-16 md:py-20">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-3">
             {/* Left Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="min-w-0 break-words lg:col-span-1">
               {/* Profile Card */}
               <Card className="mb-6 overflow-hidden">
                 <div className="relative aspect-square bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-700">
@@ -144,22 +153,15 @@ export default function SuanPage() {
               {/* Skills */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Skills</CardTitle>
+                  <CardTitle className="text-lg">Tools &amp; Technologies</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {skills.map((skill) => (
                     <div key={skill.name}>
                       <div className="flex justify-between text-sm mb-1">
                         <span className="font-medium">{skill.name}</span>
-                        <span className="text-muted-foreground">{skill.percent}%</span>
                       </div>
                       <p className="text-xs text-muted-foreground mb-2">{skill.detail}</p>
-                      <div className="h-2 rounded-full bg-muted overflow-hidden">
-                        <div
-                          className="h-full bg-primary rounded-full transition-all"
-                          style={{ width: `${skill.percent}%` }}
-                        />
-                      </div>
                     </div>
                   ))}
                 </CardContent>
@@ -280,12 +282,12 @@ export default function SuanPage() {
             </div>
 
             {/* Right Content */}
-            <div className="lg:col-span-2">
+            <div className="min-w-0 break-words lg:col-span-2">
               {/* About Me */}
-              <AboutMe />
+              <div id="about" className="scroll-mt-24"><AboutMe /></div>
 
               {/* Experience */}
-              <Card className="mb-12">
+              <Card id="experience" className="mb-12 scroll-mt-24">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Building className="h-5 w-5 text-primary" />
@@ -317,7 +319,7 @@ export default function SuanPage() {
               </Card>
 
               {/* Education & Research */}
-              <div className="grid gap-6 md:grid-cols-2 mb-12">
+              <div id="education-research" className="grid scroll-mt-24 gap-6 md:grid-cols-2 mb-12">
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -365,7 +367,7 @@ export default function SuanPage() {
               </div>
 
               {/* Awards */}
-              <div className="mb-12">
+              <div id="awards" className="mb-12 scroll-mt-24">
                 <h2 className="text-2xl font-bold mb-6">
                   <Trophy className="inline h-6 w-6 text-primary mr-2" />
                   Awards & <span className="text-primary">Honors</span>
@@ -435,7 +437,7 @@ export default function SuanPage() {
               </div>
 
               {/* Academic Activities */}
-              <div className="mb-12">
+              <div id="activities" className="mb-12 scroll-mt-24">
                 <h2 className="text-2xl font-bold mb-6">
                   Academic <span className="text-primary">Activities</span>
                 </h2>

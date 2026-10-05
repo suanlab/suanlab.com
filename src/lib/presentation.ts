@@ -1,4 +1,4 @@
-export interface Slide { title: string; points: string[]; notes?: string; }
+export interface Slide { title: string; points: string[]; notes?: string; contentHtml?: string; }
 export function buildLectureSlides(lecture: { titleKo: string; titleEn: string; descriptionKo: string; topics: string[]; relatedYoutube?: string[] }): Slide[] {
   return [
     { title: lecture.titleKo, points: [lecture.titleEn, lecture.descriptionKo], notes: '강의 개요와 학습 범위를 소개합니다. 이 자료는 전체 강의 교안을 대체하지 않습니다.' },

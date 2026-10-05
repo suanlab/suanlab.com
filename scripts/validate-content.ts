@@ -1,3 +1,4 @@
+import { getLectureContentSlugs } from '../src/lib/lecture-content';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,6 +13,7 @@ import { getQTSlugs } from '../src/lib/qt';
 import { getBookSlugs } from '../src/lib/books';
 import { getPostSlugs } from '../src/lib/blog';
 import { mainNavigation } from '../src/data/site-navigation';
+import { featuredPublications, featuredProjectIds, researchLinks, learningPaths } from '../src/data/editorial';
 
 function unique(values: (number | string)[], label: string) {
   assert.equal(new Set(values).size, values.length, `${label}: duplicate identifiers`);
@@ -27,10 +29,23 @@ for (const file of fs.readdirSync('content/blog').filter(f => f.endsWith('.md'))
   assert.ok(data.title && data.date, `${file}: title and date required`);
   assert.ok(!Number.isNaN(Date.parse(data.date)), `${file}: invalid date`);
   assert.ok(Array.isArray(data.tags), `${file}: tags must be an array`);
+  for (const key of ['title', 'excerpt', 'category']) assert.ok(typeof data[key] === 'string' && data[key].trim(), `${file}: ${key} must be a non-empty string`);
+  assert.ok(data.tags.every((tag: unknown) => typeof tag === 'string' && tag.trim()), `${file}: tags must contain non-empty strings`);
 }
+for (const slug of getLectureContentSlugs()) assert.ok(lectures.some(lecture => lecture.slug === slug), `Unknown lecture content: ${slug}`);
 const urls = sitemap().map(entry => new URL(entry.url).pathname.replace(/\/$/, '') || '/');
 unique(urls, 'sitemap');
 const routes = new Set(urls);
+unique(featuredPublications.map(p => p.id), 'featured publications');
+for (const selection of featuredPublications) assert.ok(publications.some(p => p.id === selection.id), `Missing featured publication: ${selection.id}`);
+for (const id of featuredProjectIds) assert.ok(projects.some(p => p.id === id && !p.completed), `Featured project must be active: ${id}`);
+assert.deepEqual(Object.keys(researchLinks).sort(), researchAreas.map(p => p.slug).sort(), 'Every research area needs curated links');
+for (const [slug, links] of Object.entries(researchLinks)) {
+  for (const id of links.publications) assert.ok(publications.some(p => p.id === id), `${slug}: missing publication ${id}`);
+  for (const id of links.projects) assert.ok(projects.some(p => p.id === id), `${slug}: missing project ${id}`);
+  for (const course of links.lectures) assert.ok(lectures.some(p => p.slug === course), `${slug}: missing lecture ${course}`);
+}
+for (const learningPath of learningPaths) for (const step of learningPath.steps) assert.ok(routes.has(step.href.replace(/\/$/, '')), `Missing learning step: ${step.href}`);
 for (const [prefix, slugs] of [['qt', getQTSlugs()], ['book/online', getBookSlugs()], ['blog', getPostSlugs()]] as const) {
   for (const slug of slugs) assert.ok(routes.has(`/${prefix}/${slug.replace(/\.md$/, '')}`), `Missing sitemap route: ${prefix}/${slug}`);
 }

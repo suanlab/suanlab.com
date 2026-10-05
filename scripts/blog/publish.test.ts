@@ -25,7 +25,7 @@ test('publishes only generated assets and treats shell syntax as a literal commi
     fs.mkdirSync(path.join(cwd, 'public/assets/images/blog'), { recursive: true });
     const post = 'content/blog/test.md';
     const thumbnail = 'public/assets/images/blog/test.jpg';
-    fs.writeFileSync(path.join(cwd, post), '---\ntitle: Test\ndate: 2026-10-05\ntags: [test]\nthumbnail: /assets/images/blog/test.jpg\n---\nTest');
+    fs.writeFileSync(path.join(cwd, post), '---\ntitle: Test\nexcerpt: Test post\ncategory: Test\ndate: 2026-10-05\ntags: [test]\nthumbnail: /assets/images/blog/test.jpg\n---\nTest');
     fs.writeFileSync(path.join(cwd, thumbnail), 'image');
     const message = 'Add blog: $(touch INJECTED) "quoted"';
     assert.equal(publishPosts([post], message, cwd), 'master -> master');

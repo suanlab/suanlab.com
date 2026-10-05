@@ -1,7 +1,7 @@
 import { execFileSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import { validatePost } from './validate-post';
 
 /** Publish only the generated posts and their local thumbnails, never site edits. */
 export function publishPosts(postFiles: string[], message: string, cwd = process.cwd()): string {
@@ -26,8 +26,11 @@ export function publishPosts(postFiles: string[], message: string, cwd = process
       const realFile = fs.realpathSync(path.join(cwd, relative));
       if (!realFile.startsWith(fs.realpathSync(path.join(cwd, 'content/blog')) + path.sep)) throw new Error('Post must remain inside content/blog.');
       files.add(relative);
-      const { data } = matter(fs.readFileSync(path.join(cwd, relative), 'utf8'));
-      if (!data.title || !data.date || Number.isNaN(Date.parse(data.date)) || !Array.isArray(data.tags)) throw new Error('Generated post metadata is incomplete or invalid.');
+      const { data, assets } = validatePost(fs.readFileSync(path.join(cwd, relative), 'utf8'), cwd);
+      for (const asset of assets) {
+        if (asset.startsWith('public/assets/images/blog/')) files.add(asset);
+        else git('ls-files', '--error-unmatch', '--', asset);
+      }
       if (typeof data.thumbnail === 'string' && data.thumbnail.startsWith('/assets/images/blog/')) {
         const thumbnail = path.normalize(`public${data.thumbnail}`);
         if (!thumbnail.startsWith('public/assets/images/blog/')) throw new Error('Invalid thumbnail path.');

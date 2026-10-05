@@ -98,6 +98,6 @@ image: "/assets/images/books/audio-speech-processing.jpg"
 
 ## 관련 강의
 
-- [YouTube 오디오 신호 처리](/youtube/audio)
+- [YouTube 오디오 신호 처리](/youtube/asp)
 - [YouTube 딥러닝](/youtube/dl)
-- [자연어 처리](/lecture/natural-language-processing)
+- [자연어 처리](/lecture/nlp)

@@ -86,4 +86,4 @@ image: "/assets/images/books/computer-vision.jpg"
 
 - [YouTube 컴퓨터 비전](/youtube/cv)
 - [YouTube 딥러닝](/youtube/dl)
-- [이미지 처리](/lecture/image-processing)
+- [이미지 처리](/lecture/cv)

@@ -9,12 +9,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/components/language-provider';
 import type { BlogPostMeta } from '@/lib/blog';
+import type { Project } from '@/data/projects';
 import type { Publication } from '@/data/publications';
 import type { MediaArticle } from '@/data/media';
 
 interface HomepageContentProps {
   recentPosts: BlogPostMeta[];
-  selectedPublications: Publication[];
+  selectedPublications: (Publication & { reasonKo: string; reasonEn: string })[];
+  featuredProjects: Project[];
   stats: {
     publications: number;
     videos: number;
@@ -39,6 +41,7 @@ const youtubeTopics = ['Python Programming', 'Data Science', 'Machine Learning',
 export function HomepageContent({
   recentPosts,
   selectedPublications,
+  featuredProjects,
   stats,
   mediaArticles,
 }: HomepageContentProps) {
@@ -127,10 +130,23 @@ export function HomepageContent({
                   <p className="mb-3 text-xs font-medium text-primary">{publication.venue} · {publication.date}</p>
                   <CardTitle className="text-lg leading-relaxed"><a href={publication.url || '/publication/'} target={publication.url ? '_blank' : undefined} rel={publication.url ? 'noopener noreferrer' : undefined} className="hover:text-primary">{publication.title}</a></CardTitle>
                 </CardHeader>
-                <CardContent className="mt-auto"><p className="text-sm leading-relaxed text-muted-foreground">{publication.authors}</p>{publication.badge && <Badge variant="secondary" className="mt-4">{publication.badge}</Badge>}</CardContent>
+                <CardContent className="mt-auto"><p className="mb-4 text-sm leading-relaxed">{language === 'ko' ? publication.reasonKo : publication.reasonEn}</p><p className="text-sm leading-relaxed text-muted-foreground">{publication.authors}</p>{publication.badge && <Badge variant="secondary" className="mt-4">{publication.badge}</Badge>}</CardContent>
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-b py-16" aria-labelledby="current-projects">
+        <div className="container">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div><p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Current Projects</p><h2 id="current-projects" className="text-3xl font-semibold">{language === 'ko' ? '진행 중인 연구 프로젝트' : 'Current research projects'}</h2></div>
+            <Link href="/project/" className="text-sm text-primary hover:underline">{language === 'ko' ? '전체 프로젝트 →' : 'All projects →'}</Link>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">{featuredProjects.map(project => <Card key={project.id}>
+            <CardHeader><p className="mb-3 text-xs text-muted-foreground">{project.organization} · {project.period}</p><CardTitle className="text-lg leading-relaxed"><Link href={`/project/#project-${project.id}`} className="hover:text-primary">{project.title}</Link></CardTitle></CardHeader>
+            <CardContent><p className="mb-2 text-xs font-medium text-primary">{language === 'ko' ? '연구 목표' : 'Research objective'}</p><p className="text-sm leading-relaxed text-muted-foreground">{project.items[0]}</p></CardContent>
+          </Card>)}</div>
         </div>
       </section>
 

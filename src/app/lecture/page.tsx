@@ -1,3 +1,4 @@
+import LearningPaths from '@/components/learning-paths';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -39,6 +40,8 @@ export default function LecturePage() {
         subtitleKey="pageheader.lecture.subtitle"
         breadcrumbs={[{ label: 'Lecture' }]}
       />
+
+      <LearningPaths />
 
       <section className="py-16 md:py-20">
         <div className="container">

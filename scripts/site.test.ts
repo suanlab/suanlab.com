@@ -26,3 +26,21 @@ test('search matches multiple terms across fields and filters content types', ()
   assert.equal(searchItems(items, 'AI', 'blog').length, 1);
   assert.equal(searchItems(items, ' ').length, 0);
 });
+
+test('lecture Markdown keeps code separators, renders math/images, and separates notes', async () => {
+  const { parseLectureContent, getLectureContent } = await import('../src/lib/lecture-content');
+  const source = '---\ntitle: Test\n---\n# First\n\n```text\n---\n```\n\n<!-- notes: presenter only -->\n\n---\n# Second\n\n$$x^2$$\n\n![Diagram](/assets/test.svg)\n\n<script>alert(1)</script>\n';
+  const deck = await parseLectureContent(source);
+  assert.equal(deck.slides.length, 2);
+  assert.ok(deck.slides[0].contentHtml?.includes('---'));
+  assert.equal(deck.slides[0].notes, 'presenter only');
+  assert.ok(!deck.slides[0].contentHtml?.includes('presenter only'));
+  assert.match(deck.slides[1].contentHtml!, /class="katex"/);
+  assert.match(deck.slides[1].contentHtml!, /alt="Diagram"/);
+  assert.ok(!deck.slides[1].contentHtml?.includes('<script>'));
+  assert.equal(await getLectureContent('../blog'), null);
+  const pilot = await getLectureContent('ai');
+  assert.equal(pilot?.slides.length, 10);
+  assert.ok(pilot?.slides.some(slide => slide.contentHtml?.includes('hljs')));
+  assert.ok(pilot?.slides.some(slide => slide.contentHtml?.includes('search-tree.svg')));
+});

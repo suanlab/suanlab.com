@@ -101,3 +101,23 @@ body[data-presentation="true"] > div > footer { display: none; }
   .deck-slide { display: flex !important; min-height: 90vh; break-after: page; }
   .deck-slide:last-of-type { break-after: auto; }
 }
+
+.lecture-prose { line-height: 1.75; overflow-wrap: anywhere; }
+.lecture-prose > * + * { margin-top: 1.1rem; }
+.lecture-prose ul, .lecture-prose ol { padding-left: 1.5rem; }
+.lecture-prose ul { list-style: disc; }
+.lecture-prose ol { list-style: decimal; }
+.lecture-prose a { color: hsl(var(--primary)); text-decoration: underline; }
+.lecture-prose pre { overflow-x: auto; border-radius: .75rem; padding: 1rem; background: hsl(var(--muted)); font-size: .85rem; line-height: 1.5; }
+.lecture-prose img { max-width: 100%; height: auto; max-height: 35vh; margin-inline: auto; }
+.lecture-prose table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.lecture-prose th, .lecture-prose td { border: 1px solid hsl(var(--border)); padding: .65rem; text-align: left; }
+.lecture-prose th { background: hsl(var(--muted)); }
+.lecture-prose .katex-display { overflow-x: auto; overflow-y: hidden; padding-block: .5rem; }
+.lecture-prose .hljs-keyword, .lecture-prose .hljs-built_in { color: hsl(var(--primary)); font-weight: 600; }
+@media print {
+  .lecture-prose { font-size: 12pt; }
+  .lecture-prose pre { white-space: pre-wrap; font-size: 9pt; }
+  .deck-slide { padding: 1cm; min-height: 0; height: auto; }
+  .deck-slide h1 { font-size: 24pt; margin-bottom: 1rem; }
+}

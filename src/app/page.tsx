@@ -1,3 +1,4 @@
+import { featuredPublications, featuredProjectIds } from '@/data/editorial';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import { getAllPosts } from '@/lib/blog';
@@ -37,7 +38,8 @@ export default async function Home() {
   return (
     <HomepageContent
       recentPosts={recentPosts}
-      selectedPublications={publications.filter((publication) => publication.type === 'journal').slice(0, 3)}
+      selectedPublications={featuredPublications.map(selection => ({ ...publications.find(publication => publication.id === selection.id)!, ...selection }))}
+      featuredProjects={featuredProjectIds.map(id => projects.find(project => project.id === id)!)}
       stats={{
         publications: publications.length,
         videos: playlists.reduce((acc, playlist) => acc + playlist.videos.length, 0),
