@@ -1,46 +1,70 @@
 .menu-dot-field {
-  position: absolute; inset: 0 0 0 auto; width: 65%; min-width: 360px;
-  overflow: hidden; pointer-events: none; opacity: .55;
-  mask-image: linear-gradient(90deg, transparent, #000 38%);
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none; opacity: .85;
 }
-.menu-dot { fill: var(--dot-color); opacity: .4; transform-origin: 350px 120px; animation: menu-dot-drift 8s ease-in-out infinite; animation-delay: var(--delay); }
+.menu-dot-field::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgb(2 6 23 / .35), transparent 65%);
+}
+.menu-dot-anchor { position: absolute; color: var(--dot-color); }
+.menu-dot {
+  display: block; width: var(--dot-size); height: var(--dot-size); border-radius: 50%;
+  background: currentColor; opacity: .55;
+  animation: menu-dot-drift var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+.menu-dot-motif:nth-child(5n) .menu-dot { box-shadow: 0 0 12px currentColor; }
+.menu-dot-ambient .menu-dot { width: 2px; height: 2px; opacity: .4; }
 .menu-dot-field[data-motion="paused"] .menu-dot { animation-play-state: paused; }
-.menu-dot-profile { animation-name: menu-dot-orbit; animation-duration: 12s; }
+.menu-dot-profile { animation-name: menu-dot-orbit; }
 .menu-dot-research { animation-name: menu-dot-converge; }
-.menu-dot-project { animation-name: menu-dot-flow; animation-duration: 6s; }
-.menu-dot-publication { animation-name: menu-dot-reading; animation-duration: 7s; }
-.menu-dot-blog { animation-name: menu-dot-writing; animation-duration: 6s; }
-.menu-dot-book { animation-name: menu-dot-page; animation-duration: 9s; }
-.menu-dot-lecture { animation-name: menu-dot-rise; animation-duration: 6s; }
-.menu-dot-course { animation-name: menu-dot-radiate; animation-duration: 7s; }
-.menu-dot-youtube { animation-name: menu-dot-equalizer; animation-duration: 3s; }
-.menu-dot-prompts { animation-name: menu-dot-terminal; animation-duration: 5s; }
+.menu-dot-project { animation-name: menu-dot-flow; animation-timing-function: linear; }
+.menu-dot-publication { animation-name: menu-dot-reading; }
+.menu-dot-blog { animation-name: menu-dot-writing; }
+.menu-dot-book { animation-name: menu-dot-page; }
+.menu-dot-lecture { animation-name: menu-dot-rise; }
+.menu-dot-course { animation-name: menu-dot-radiate; }
+.menu-dot-youtube { animation-name: menu-dot-equalizer; }
+.menu-dot-prompts { animation-name: menu-dot-terminal; }
 .menu-dot-deadlines { animation-name: menu-dot-clock; animation-duration: 12s; }
-.menu-dot-contact { animation-name: menu-dot-exchange; animation-duration: 6s; }
-.menu-dot-search { animation-name: menu-dot-scan; animation-duration: 7s; }
-.menu-dot-privacy { animation-name: menu-dot-shield; animation-duration: 10s; }
-.menu-dot-terms { animation-name: menu-dot-checklist; animation-duration: 8s; }
-.menu-dot-qt { animation-name: menu-dot-stars; animation-duration: 12s; }
+.menu-dot-contact { animation-name: menu-dot-exchange; }
+.menu-dot-search { animation-name: menu-dot-scan; }
+.menu-dot-privacy { animation-name: menu-dot-shield; }
+.menu-dot-terms { animation-name: menu-dot-checklist; }
+.menu-dot-qt { animation-name: menu-dot-stars; }
 .menu-dot-control:focus-visible { outline-color: #a5f3fc; }
-.qt-menu-header .menu-dot-field { opacity: .28; }
-@keyframes menu-dot-orbit { 0%,100% { transform: translate(0,0); opacity: .35; } 50% { transform: translate(var(--dx),var(--dy)); opacity: .8; } }
-@keyframes menu-dot-converge { 0%,100% { transform: translate(var(--dx),var(--dy)); opacity: .2; } 50% { transform: translate(0,0); opacity: .85; } }
-@keyframes menu-dot-flow { 0% { transform: translateX(-18px); opacity: .15; } 50% { opacity: .85; } 100% { transform: translateX(55px); opacity: .15; } }
-@keyframes menu-dot-reading { 0%,100% { opacity: .2; } 40% { transform: translateY(-3px); opacity: .85; } }
-@keyframes menu-dot-writing { 0%,100% { opacity: .15; transform: translateX(-5px); } 50% { opacity: .85; transform: translateX(5px); } }
-@keyframes menu-dot-page { 0%,100% { transform: translateY(0); opacity: .3; } 50% { transform: translateY(-9px); opacity: .8; } }
-@keyframes menu-dot-rise { 0%,100% { transform: translateY(8px); opacity: .2; } 50% { transform: translateY(-8px); opacity: .85; } }
-@keyframes menu-dot-radiate { 0%,100% { transform: translate(0,0); opacity: .25; } 50% { transform: translate(var(--dx),var(--dy)); opacity: .85; } }
-@keyframes menu-dot-equalizer { 0%,100% { transform: translateY(3px); opacity: .25; } 50% { transform: translateY(-12px); opacity: .85; } }
-@keyframes menu-dot-terminal { 0%,100% { opacity: .12; } 35%,60% { opacity: .85; } }
-@keyframes menu-dot-clock { 0%,30%,100% { opacity: .25; transform: scale(1); } 10% { opacity: 1; transform: scale(1.04); } }
-@keyframes menu-dot-exchange { 0% { transform: translateX(0); opacity: .15; } 50% { opacity: .8; } 100% { transform: translateX(var(--dx)); opacity: .15; } }
-@keyframes menu-dot-scan { 0%,100% { transform: translateX(-16px); opacity: .3; } 50% { transform: translateX(16px); opacity: .85; } }
-@keyframes menu-dot-shield { 0%,100% { transform: scale(.98); opacity: .35; } 50% { transform: scale(1.02); opacity: .75; } }
-@keyframes menu-dot-checklist { 0%,100% { opacity: .2; } 50% { opacity: .85; } }
-@keyframes menu-dot-stars { 0%,100% { opacity: .25; transform: translateY(0); } 50% { opacity: .75; transform: translateY(-4px); } }
-@keyframes menu-dot-drift { 50% { transform: translate(var(--dx),var(--dy)); } }
+.qt-menu-header .menu-dot-field { opacity: .65; }
+.qt-menu-header .menu-dot-field::after { background: linear-gradient(90deg, rgb(255 255 255 / .35), transparent 65%); }
+.dark .qt-menu-header .menu-dot-field::after { background: linear-gradient(90deg, rgb(2 6 23 / .35), transparent 65%); }
+@keyframes menu-dot-orbit {
+  0%,100% { transform: translate(calc(var(--dx) * -1),0) scale(.75); opacity: .35; }
+  25% { transform: translate(0,var(--dy)) scale(1.2); opacity: .85; }
+  50% { transform: translate(var(--dx),0) scale(1); opacity: .6; }
+  75% { transform: translate(0,calc(var(--dy) * -1)) scale(1.3); opacity: .85; }
+}
+@keyframes menu-dot-converge { 0%,100% { transform: translate(var(--dx),var(--dy)) scale(.6); opacity: .3; } 50% { transform: translate(0,0) scale(1.5); opacity: .95; } }
+@keyframes menu-dot-flow { 0% { transform: translate(-65px,var(--dy)) scale(.6); opacity: .2; } 50% { opacity: .9; } 100% { transform: translate(100px,calc(var(--dy) * -1)) scale(1.3); opacity: .2; } }
+@keyframes menu-dot-reading { 0%,100% { transform: translate(-25px,8px) scale(.7); opacity: .3; } 40% { transform: translate(40px,-12px) scale(1.4); opacity: .9; } }
+@keyframes menu-dot-writing { 0%,100% { opacity: .25; transform: translate(-35px,var(--dy)) scale(.6); } 50% { opacity: .95; transform: translate(35px,calc(var(--dy) * -1)) scale(1.3); } }
+@keyframes menu-dot-page { 0%,100% { transform: translate(0,15px) scale(.7); opacity: .35; } 50% { transform: translate(var(--dx),-25px) scale(1.4); opacity: .9; } }
+@keyframes menu-dot-rise { 0% { transform: translate(0,35px) scale(.6); opacity: .2; } 50% { opacity: .95; } 100% { transform: translate(var(--dx),-65px) scale(1.4); opacity: .2; } }
+@keyframes menu-dot-radiate { 0%,100% { transform: translate(0,0) scale(.5); opacity: .3; } 50% { transform: translate(var(--dx),var(--dy)) scale(1.6); opacity: .95; } }
+@keyframes menu-dot-equalizer { 0%,100% { transform: translate(0,15px) scale(.7); opacity: .3; } 35% { transform: translate(8px,-35px) scale(1.5); opacity: .95; } 65% { transform: translate(-8px,8px) scale(.9); opacity: .65; } }
+@keyframes menu-dot-terminal { 0%,100% { opacity: .2; transform: translate(-20px,0) scale(.6); } 35%,60% { opacity: .95; transform: translate(25px,var(--dy)) scale(1.3); } }
+@keyframes menu-dot-clock { 0%,30%,100% { opacity: .35; transform: translate(0,0) scale(.7); } 10% { opacity: 1; transform: translate(var(--dx),var(--dy)) scale(1.8); } }
+@keyframes menu-dot-exchange { 0% { transform: translate(calc(var(--dx) * -.5),var(--dy)) scale(.6); opacity: .2; } 50% { opacity: .95; } 100% { transform: translate(calc(var(--dx) * 1.5),calc(var(--dy) * -1)) scale(1.4); opacity: .2; } }
+@keyframes menu-dot-scan { 0%,100% { transform: translate(-45px,var(--dy)) scale(.8); opacity: .3; } 50% { transform: translate(45px,calc(var(--dy) * -1)) scale(1.4); opacity: .95; } }
+@keyframes menu-dot-shield { 0%,100% { transform: translate(0,0) scale(.7); opacity: .4; } 50% { transform: translate(calc(var(--dx) * .5),calc(var(--dy) * .5)) scale(1.5); opacity: .9; } }
+@keyframes menu-dot-checklist { 0%,100% { transform: translate(-15px,15px) scale(.7); opacity: .3; } 50% { transform: translate(20px,-20px) scale(1.4); opacity: .95; } }
+@keyframes menu-dot-stars { 0%,100% { opacity: .35; transform: translate(0,0) scale(.6); } 50% { opacity: .95; transform: translate(var(--dx),-25px) scale(1.5); } }
+@keyframes menu-dot-drift {
+  0%,100% { transform: translate(calc(var(--dx) * -.5),calc(var(--dy) * -.5)) scale(.6); opacity: .25; }
+  35% { transform: translate(var(--dx),0) scale(1.4); opacity: .8; }
+  70% { transform: translate(0,var(--dy)) scale(.9); opacity: .6; }
+}
+@media (max-width: 639px) {
+  .menu-dot-ambient:nth-child(2n) { display: none; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .menu-dot { animation: none !important; opacity: .45; transform: none; }
+  .menu-dot { animation: none !important; opacity: .55; transform: none; }
 }
 @media print { .menu-dot-field, .menu-dot-control { display: none; } }

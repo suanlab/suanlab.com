@@ -19,7 +19,31 @@ export default function ModernHeader() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [fitsDesktop, setFitsDesktop] = useState(false);
+  const rowRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLAnchorElement>(null);
+  const navigationRef = useRef<HTMLElement>(null);
+  const utilityRef = useRef<HTMLDivElement>(null);
+
+  // Measure the translated labels instead of assuming one breakpoint fits both languages.
+  useEffect(() => {
+    const row = rowRef.current;
+    const logo = logoRef.current;
+    const nav = navigationRef.current;
+    const utilities = utilityRef.current;
+    if (!row || !logo || !nav || !utilities) return;
+    const update = () => {
+      const style = getComputedStyle(row);
+      const available = row.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      setFitsDesktop(available >= logo.offsetWidth + nav.offsetWidth + utilities.offsetWidth + 32);
+    };
+    const observer = new ResizeObserver(update);
+    [row, logo, nav, utilities].forEach(element => observer.observe(element));
+    update();
+    document.fonts.ready.then(update);
+    return () => observer.disconnect();
+  }, [language]);
 
   const isActive = useCallback((href: string) => {
     return pathname === href || (href !== '/' && pathname.startsWith(href));
@@ -37,9 +61,9 @@ export default function ModernHeader() {
   }, []);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between gap-2 px-4 sm:px-8">
+      <div ref={rowRef} className="container relative flex h-16 items-center justify-between gap-2 px-4 sm:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2 shrink-0">
+        <Link ref={logoRef} href="/" className="flex items-center space-x-2 shrink-0">
           <Image
             src="/assets/images/logo.png"
             alt="SuanLab"
@@ -51,7 +75,8 @@ export default function ModernHeader() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden xl:flex items-center space-x-1 min-w-0">
+        <div className={fitsDesktop ? 'min-w-0' : 'invisible absolute h-0 w-0 overflow-hidden'}>
+        <nav ref={navigationRef} aria-hidden={!fitsDesktop} className="flex w-max shrink-0 items-center space-x-0.5">
           {navigation.map((item) => (
             <div
               key={item.nameKey}
@@ -63,7 +88,7 @@ export default function ModernHeader() {
               <Link
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                  "flex items-center gap-1 whitespace-nowrap px-2 py-2 text-sm font-medium rounded-md transition-colors",
                   "hover:bg-accent hover:text-accent-foreground",
                   isActive(item.href) && "text-primary font-semibold"
                 )}
@@ -114,19 +139,22 @@ export default function ModernHeader() {
             </div>
           ))}
         </nav>
+        </div>
 
         {/* Dark Mode Toggle & Mobile Menu */}
         <div className="flex shrink-0 items-center gap-0 sm:gap-2">
+          <div ref={utilityRef} className="flex shrink-0 items-center gap-0 sm:gap-2">
           {/* Search */}
           <Button variant="ghost" size="icon" asChild>
-            <Link href="/search" aria-label="검색">
+            <Link href="/search" aria-label={language === 'ko' ? '검색' : 'Search'}>
               <Search className="h-5 w-5" />
             </Link>
           </Button>
           <ThemeToggle />
           <LanguageSwitcher />
+          </div>
           <Sheet>
-            <SheetTrigger asChild className="xl:hidden">
+            <SheetTrigger asChild className={fitsDesktop ? 'hidden' : ''}>
               <Button variant="ghost" size="icon">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>

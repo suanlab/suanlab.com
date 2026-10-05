@@ -49,7 +49,9 @@ Research relationships indicate shared topics, not funding or authorship claims.
 Blog reading suggestions are separately labeled keyword matches. Search covers
 research outputs, projects, courses, online books, videos, posts and prompts.
 Original content remains in its original language; the language selector translates
-supported UI labels, not complete articles.
+supported UI labels, not complete articles. The header measures translated menu
+widths and switches to the navigation drawer when the search and utility buttons
+need more space.
 
 Homepage identity meanings live in `src/data/lab-identity.ts`. Superintelligence,
 Neural-networks and LAB remain visible; only the U/A terms type and erase. Their
@@ -59,7 +61,9 @@ titles retain their original terminology.
 
 Title backgrounds use `PageHeader/MenuDotField.tsx` and `menu-dots.css`, with
 deterministic dot patterns selected by the top-level route. Each menu has its own
-motion; nested pages inherit it. QT uses the same field in its existing header.
+motion; nested pages inherit it. A multicolor particle layer fills the entire
+header, with percentage positions and pixel-sized dots for responsive layouts.
+QT uses the same field in its existing header.
 Animation pauses offscreen, in hidden tabs, through the pause control, and when
 reduced motion is requested.
 

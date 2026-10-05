@@ -84,19 +84,33 @@ export default function MenuDotField({ variant }: { variant?: DotVariant }) {
     return () => { observer.disconnect(); preference.removeEventListener('change', update); document.removeEventListener('visibilitychange', update); };
   }, []);
 
+  const palette = [colors[pattern], '#38bdf8', '#a78bfa', '#f472b6', '#fbbf24', '#34d399'];
+  const motifCount = pattern === 'qt' ? 60 : 96;
+  const ambientCount = pattern === 'qt' ? 72 : 96;
+
   return <>
-    <div ref={ref} aria-hidden="true" className="menu-dot-field" data-pattern={pattern} data-motion={enabled && !paused ? 'running' : 'paused'} style={{ '--dot-color': colors[pattern] } as CSSProperties}>
-      <svg viewBox="0 0 700 240" preserveAspectRatio="xMidYMid meet" className="h-full w-full">
-        {Array.from({ length: pattern === 'qt' ? 60 : 96 }, (_, i) => {
-          const p = point(pattern, i);
-          const style = {
-            '--dx': `${pattern === 'contact' ? (i % 2 ? -90 : 90) : (Math.cos(i * 2.4) * 24).toFixed(2)}px`,
-            '--dy': `${(Math.sin(i * 2.4) * 16).toFixed(2)}px`,
-            '--delay': `${pattern === 'deadlines' ? -i / 8 : -i * .14}s`,
-          } as CSSProperties;
-          return <circle key={i} cx={p.x.toFixed(2)} cy={p.y.toFixed(2)} r={i % 9 === 0 ? 3.1 : 2.1} className={`menu-dot menu-dot-${pattern}`} style={style} />;
-        })}
-      </svg>
+    <div ref={ref} aria-hidden="true" className="menu-dot-field" data-pattern={pattern} data-motion={enabled && !paused ? 'running' : 'paused'}>
+      {Array.from({ length: motifCount + ambientCount }, (_, i) => {
+        const ambient = i >= motifCount;
+        const n = ambient ? i - motifCount : i;
+        const p = point(pattern, n);
+        // A stratified particle layer fills every edge, independent of the menu motif.
+        const x = ambient ? ((n % 12 + .2 + (n * 17 % 7) / 10) / 12) * 100 : 3 + (p.x - 100) / 5.5;
+        const y = ambient ? ((Math.floor(n / 12) + .2 + (n * 13 % 7) / 10) / (ambientCount / 12)) * 100 : 3 + p.y / 2.55;
+        const style = {
+          left: `${Math.min(97, Math.max(3, x)).toFixed(2)}%`,
+          top: `${Math.min(97, Math.max(3, y)).toFixed(2)}%`,
+          '--dot-color': palette[i % palette.length],
+          '--dot-size': `${n % 9 === 0 ? 5 : n % 3 === 0 ? 3.5 : 2.5}px`,
+          '--dx': `${((pattern === 'contact' ? (n % 2 ? -1 : 1) : Math.cos(n * 2.4)) * (ambient ? 65 : 48)).toFixed(2)}px`,
+          '--dy': `${(Math.sin(n * 2.4) * (ambient ? 48 : 32)).toFixed(2)}px`,
+          '--delay': `${pattern === 'deadlines' && !ambient ? -n / 8 : -n * .21}s`,
+          '--duration': `${(ambient ? 9 : 4) + n % 7}s`,
+        } as CSSProperties;
+        return <span key={i} className={`menu-dot-anchor ${ambient ? 'menu-dot-ambient' : 'menu-dot-motif'}`} style={style}>
+          <span className={`menu-dot ${ambient ? 'menu-dot-drift' : `menu-dot-${pattern}`}`} />
+        </span>;
+      })}
     </div>
     {!reduced && <button type="button" className="menu-dot-control absolute right-4 top-3 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-slate-950/65 text-cyan-100 hover:bg-slate-800" onClick={() => setPaused(current => !current)} aria-label={language === 'ko' ? (paused ? '제목 배경 애니메이션 재생' : '제목 배경 애니메이션 일시정지') : (paused ? 'Play title background animation' : 'Pause title background animation')}>
       {paused ? <Play aria-hidden="true" className="h-3.5 w-3.5" /> : <Pause aria-hidden="true" className="h-3.5 w-3.5" />}
