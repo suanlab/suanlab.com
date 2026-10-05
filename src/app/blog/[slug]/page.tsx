@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -26,7 +27,7 @@ export async function generateStaticParams() {
   }));
 }
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 function extractHeadings(html: string): { id: string; text: string; level: number }[] {
   const headingRegex = /<h([23])\s+id="([^"]+)">(.*?)<\/h[23]>/g;

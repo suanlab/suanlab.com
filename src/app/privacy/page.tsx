@@ -1,8 +1,10 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import PageHeader from '@/components/layout/PageHeader';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${site.url}/privacy/` },
   title: '개인정보처리방침 | SuanLab',
   description: 'SuanLab 개인정보처리방침',
 };

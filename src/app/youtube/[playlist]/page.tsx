@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Play, Youtube, FileText, ExternalLink, Video, ChevronRight } from 'lucide-react';
@@ -19,6 +20,7 @@ export async function generateMetadata({ params }: { params: { playlist: string 
 
   return {
     title: `${playlist.titleEn} | YouTube | SuanLab`,
+    alternates: { canonical: `${site.url}/youtube/${params.playlist}/` },
     description: `${playlist.titleKo} - ${playlist.titleEn} YouTube 강좌`,
   };
 }

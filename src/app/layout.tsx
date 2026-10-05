@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
@@ -19,7 +20,7 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -138,7 +139,7 @@ export default function RootLayout({
         <PersonJsonLd />
         <WebSiteJsonLd />
       </head>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} antialiased`}>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md">본문으로 건너뛰기</a>
         <LanguageProvider>
           <ThemeProvider

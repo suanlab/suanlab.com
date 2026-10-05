@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,7 +7,7 @@ import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { researchAreas } from '@/data/research';
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 const iconMap: Record<string, React.ElementType> = {
   'et-gears': Database,

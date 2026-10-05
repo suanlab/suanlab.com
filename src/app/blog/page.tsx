@@ -1,9 +1,10 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import PageHeader from '@/components/layout/PageHeader';
 import { getAllPosts, getAllCategories, getAllTags } from '@/lib/blog';
 import BlogContent from './BlogContent';
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 export const metadata: Metadata = {
   title: 'Blog',

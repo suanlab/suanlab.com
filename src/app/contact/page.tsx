@@ -1,10 +1,11 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import ContactForm from './contact-form';
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 export const metadata: Metadata = {
   title: '문의하기',
@@ -27,11 +28,7 @@ export const metadata: Metadata = {
   },
 };
 
-const contactInfo = {
-  address: '65 Semyung-ro, Jecheon-si, Chungcheongbuk-do, 27136 Korea',
-  phone: '+82-43-649-1273',
-  emails: ['suanlab@gmail.com', 'suanlee@semyung.ac.kr'],
-};
+const contactInfo = site.contact;
 
 export default function ContactPage() {
   return (

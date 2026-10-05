@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Books | SuanLab',
     description: '이수안 교수의 저서 및 온라인 도서',
-    url: 'https://suanlab.com/book',
+    url: `${site.url}/book`,
   },
 };
 

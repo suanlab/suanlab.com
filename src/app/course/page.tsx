@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import PageHeader from '@/components/layout/PageHeader';
 import { EventCollectionJsonLd } from '@/components/seo/JsonLd';
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     title: 'Course & Seminar | SuanLab',
     description:
       '이수안 교수의 교육 과정 및 세미나 - 데이터 사이언스, AI, 머신러닝, 딥러닝 강의 및 워크샵',
-    url: 'https://suanlab.com/course',
+    url: `${site.url}/course`,
     siteName: 'SuanLab',
     type: 'website',
     locale: 'ko_KR',
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
       '이수안 교수의 교육 과정 및 세미나 - 데이터 사이언스, AI, 머신러닝, 딥러닝 강의 및 워크샵',
   },
   alternates: {
-    canonical: 'https://suanlab.com/course',
+    canonical: `${site.url}/course`,
   },
 };
 

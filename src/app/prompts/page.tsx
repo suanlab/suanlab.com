@@ -1,10 +1,11 @@
+import { site } from '@/config/site';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import PageHeader from '@/components/layout/PageHeader';
 import PromptsClient from './PromptsClient';
 import { promptBuilders, promptSnippets } from '@/data/prompts';
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 export const metadata: Metadata = {
   title: 'AI Research Prompts',

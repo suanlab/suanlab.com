@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Book, BookOpen, Calendar, Home } from 'lucide-react';
@@ -26,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${entry.title} | Quiet Time`,
+    alternates: { canonical: `${site.url}/qt/${slug}/` },
     description: entry.reflection.slice(0, 160) + '...',
     openGraph: {
       title: entry.title,

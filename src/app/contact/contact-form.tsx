@@ -1,11 +1,12 @@
 'use client';
 
+import { site } from '@/config/site';
 import { useState } from 'react';
 import { Send } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
-const contactEmails = ['suanlab@gmail.com', 'suanlee@semyung.ac.kr'];
+const contactEmails = site.contact.emails;
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({

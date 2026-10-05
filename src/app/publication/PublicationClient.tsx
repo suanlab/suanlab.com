@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Users,
   Building,
@@ -114,10 +114,20 @@ export default function PublicationClient({
   const [openToggle, setOpenToggle] = useState<number | null>(null);
   const [copiedId, setCopiedId] = useState<number | null>(null);
 
+  const [query, setQuery] = useState('');
+  const [year, setYear] = useState('all');
+  useEffect(() => {
+    setQuery(new URLSearchParams(window.location.search).get('q') || '');
+    const match = window.location.hash.match(/^#publication-(\d+)$/);
+    if (match) setOpenToggle(Number(match[1]));
+  }, []);
+  const years = Array.from(new Set(publications.map((p) => p.sortYear))).sort((a, b) => b - a);
   const filteredPublications = (
     activeFilter === 'all'
       ? publications
       : publications.filter((p) => p.type === activeFilter)
+  ).filter((p) => (year === 'all' || String(p.sortYear) === year) &&
+    `${p.title} ${p.authors} ${p.venue} ${p.keywords || ''}`.toLowerCase().includes(query.toLowerCase())
   ).sort((a, b) => {
     if (b.sortYear !== a.sortYear) return b.sortYear - a.sortYear;
     return b.sortMonth - a.sortMonth;
@@ -136,6 +146,11 @@ export default function PublicationClient({
 
   return (
     <div className="lg:col-span-3">
+      <div className="mb-6 grid gap-3 sm:grid-cols-[1fr_auto]">
+        <label className="text-sm">검색 / Search<input className="mt-2 block w-full rounded-lg border bg-background p-3" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="제목, 저자, 학술지, 키워드" /></label>
+        <label className="text-sm">연도 / Year<select className="mt-2 block w-full rounded-lg border bg-background p-3" value={year} onChange={(event) => setYear(event.target.value)}><option value="all">전체 / All</option>{years.map((value) => <option key={value} value={value}>{value}</option>)}</select></label>
+      </div>
+      <p className="mb-4 text-sm text-muted-foreground" aria-live="polite">{filteredPublications.length} results</p>
       <div className="mb-8 flex flex-wrap gap-2">
         {publicationTypes.map((type) => (
           <Button
@@ -160,6 +175,7 @@ export default function PublicationClient({
         {filteredPublications.map((pub) => (
           <Card
             key={pub.id}
+            id={`publication-${pub.id}`}
             className={`transition-all ${
               openToggle === pub.id ? 'ring-2 ring-primary' : ''
             }`}

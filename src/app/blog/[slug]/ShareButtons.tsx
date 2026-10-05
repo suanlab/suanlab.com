@@ -1,4 +1,5 @@
 'use client';
+import { site } from '@/config/site';
 
 import { useState } from 'react';
 import { Share2, Facebook, Linkedin, LinkIcon, Check } from 'lucide-react';
@@ -16,7 +17,7 @@ interface ShareButtonsProps {
   slug: string;
 }
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 export default function ShareButtons({ title, slug }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);

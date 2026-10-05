@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Globe, BookOpen, ArrowRight } from 'lucide-react';
@@ -5,7 +6,7 @@ import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 export const metadata: Metadata = {
   title: 'Book',

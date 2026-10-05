@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import type { Metadata } from 'next';
 import { FileText, GraduationCap, BookOpen, ExternalLink } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Publications | SuanLab',
     description: '이수안 교수의 학술 논문 및 연구 성과',
-    url: 'https://suanlab.com/publication',
+    url: `${site.url}/publication`,
     siteName: 'SuanLab',
     type: 'website',
     locale: 'ko_KR',
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     description: '이수안 교수의 학술 논문 및 연구 성과',
   },
   alternates: {
-    canonical: 'https://suanlab.com/publication',
+    canonical: `${site.url}/publication`,
   },
 };
 

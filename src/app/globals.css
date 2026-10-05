@@ -67,3 +67,37 @@
     animation-delay: 4s;
   }
 }
+
+/* Shared research identity: a quiet technical grid and readable typography. */
+.research-grid {
+  background-image: linear-gradient(rgb(148 163 184 / 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(148 163 184 / 0.18) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+@layer base {
+  body { font-family: var(--font-inter), Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+  h1, h2, h3 { text-wrap: balance; }
+  :focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 4px; }
+  ::selection { background: hsl(var(--primary) / 0.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body[data-presentation="true"] > div > header,
+body[data-presentation="true"] > div > footer { display: none; }
+@media print {
+  body:has(.lecture-deck) header, body:has(.lecture-deck) footer,
+  .deck-controls, .deck-notes { display: none !important; }
+  .lecture-deck { background: white !important; color: black !important; }
+  .deck-slide { display: flex !important; min-height: 90vh; break-after: page; }
+  .deck-slide:last-of-type { break-after: auto; }
+}

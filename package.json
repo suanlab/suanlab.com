@@ -10,7 +10,12 @@
     "blog:generate": "tsx scripts/blog/generate.ts",
     "blog:topic": "tsx scripts/blog/generate.ts topic",
     "blog:paper": "tsx scripts/blog/generate.ts paper",
-    "bot:slack": "tsx scripts/slack-bot.ts"
+    "bot:slack": "tsx scripts/slack-bot.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test scripts/site.test.ts scripts/blog/*.test.ts",
+    "validate:content": "tsx scripts/validate-content.ts",
+    "check:export": "tsx scripts/check-export.ts",
+    "check": "npm run lint && npm run validate:content && npm test && npm run build && npm run check:export"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

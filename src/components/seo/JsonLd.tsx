@@ -1,6 +1,7 @@
+import { site } from '@/config/site';
 import Script from 'next/script';
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 // Organization Schema
 export function OrganizationJsonLd() {

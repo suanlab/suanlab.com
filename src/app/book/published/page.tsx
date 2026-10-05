@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import Image from 'next/image';
 import { BookOpen, User, Building, Calendar, ShoppingCart, Download } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
@@ -6,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata = {
+  alternates: { canonical: `${site.url}/book/published/` },
   title: 'Published Book | SuanLab',
   description: 'Published books by Professor Suan Lee',
 };

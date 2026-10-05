@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Brain, Database, Eye, BarChart3, Network, MapPin, Youtube, BookOpen, Newspaper, FolderKanban, AudioLines, ExternalLink, Calendar, Wand2, PenLine } from 'lucide-react';
@@ -8,10 +9,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/components/language-provider';
 import type { BlogPostMeta } from '@/lib/blog';
+import type { Publication } from '@/data/publications';
 import type { MediaArticle } from '@/data/media';
 
 interface HomepageContentProps {
   recentPosts: BlogPostMeta[];
+  selectedPublications: Publication[];
   stats: {
     publications: number;
     videos: number;
@@ -35,51 +38,61 @@ const youtubeTopics = ['Python Programming', 'Data Science', 'Machine Learning',
 
 export function HomepageContent({
   recentPosts,
+  selectedPublications,
   stats,
   mediaArticles,
 }: HomepageContentProps) {
   const { language, t } = useLanguage();
+  const [showAllMedia, setShowAllMedia] = useState(false);
 
   const statsData = [
-    { label: t('stats.publications') as string, value: `${stats.publications}+` },
-    { label: t('stats.videos') as string, value: `${stats.videos}+` },
-    { label: t('stats.projects') as string, value: `${stats.projects}+` },
-    { label: t('stats.lectures') as string, value: `${stats.lectures}+` },
+    { label: t('stats.publications') as string, value: stats.publications.toLocaleString() },
+    { label: t('stats.videos') as string, value: stats.videos.toLocaleString() },
+    { label: t('stats.projects') as string, value: stats.projects.toLocaleString() },
+    { label: t('stats.lectures') as string, value: stats.lectures.toLocaleString() },
   ];
 
   return (
     <>
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-        <div className="absolute inset-0 bg-[url('/assets/images/slider/2.jpg')] bg-cover bg-center opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent" />
-
-        <div className="container relative py-24 md:py-32 lg:py-40">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              {t('hero.badge') as string}
-            </Badge>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                SuanLab
-              </span>
-              {language === 'ko' ? '에 오신 것을 환영합니다' : ''}
+        <div aria-hidden="true" className="research-grid absolute inset-0 opacity-30" />
+        <div aria-hidden="true" className="absolute -right-32 top-0 h-96 w-96 rounded-full bg-blue-500/15 blur-3xl" />
+        <div className="container relative grid items-center gap-12 py-20 md:py-28 lg:grid-cols-[1.4fr_1fr] lg:py-32">
+          <div>
+            <p className="mb-6 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-cyan-300">
+              <span className="h-px w-8 bg-cyan-400" /> SuanLab · Data Science & AI
+            </p>
+            <h1 className="max-w-3xl [word-break:keep-all] text-4xl font-semibold leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl">
+              {t('hero.title') as string}
             </h1>
-            <p className="mt-6 text-lg text-slate-300 md:text-xl">
+            <p className="mt-6 max-w-2xl [word-break:keep-all] text-base leading-relaxed text-slate-300 md:text-lg">
               {t('hero.description') as string}
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button size="lg" asChild>
-                <Link href="/suan">
-                  {t('hero.btn.profile') as string}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                <Link href="/publication">{t('cta.btn.publications') as string}<ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20" asChild>
-                <Link href="/research">
-                  {t('hero.btn.research') as string}
-                </Link>
+              <Button size="lg" variant="outline" className="border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white" asChild>
+                <Link href="/suan">{t('hero.btn.profile') as string}</Link>
               </Button>
             </div>
+          </div>
+          <div className="rounded-2xl border border-white/15 bg-slate-950/40 p-6 backdrop-blur-sm md:p-8">
+            <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
+              <span className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">Research / Practice / Education</span>
+              <Network aria-hidden="true" className="h-5 w-5 shrink-0 text-cyan-400" />
+            </div>
+            {[
+              { number: '01', title: 'AI Research', ko: '모델과 학습 방법론을 탐구하는 연구', en: 'Exploring models and learning methods', href: '/research' },
+              { number: '02', title: 'Applied Intelligence', ko: '데이터와 실제 문제를 연결하는 프로젝트', en: 'Connecting data with real-world problems', href: '/project' },
+              { number: '03', title: 'Open Knowledge', ko: '논문에서 코드와 강의로 이어지는 지식 공유', en: 'Sharing knowledge through papers, code, and teaching', href: '/lecture' },
+            ].map((item) => (
+              <Link key={item.number} href={item.href} className="group flex items-start gap-4 rounded-lg py-4 transition-colors hover:bg-white/5">
+                <span className="pt-1 font-mono text-xs text-cyan-400">{item.number}</span>
+                <div className="flex-1"><h2 className="text-lg font-semibold">{item.title}</h2><p className="mt-1 text-sm leading-relaxed text-slate-400">{language === 'ko' ? item.ko : item.en}</p></div>
+                <ArrowRight aria-hidden="true" className="mt-1 h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-cyan-300" />
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -97,6 +110,30 @@ export function HomepageContent({
         </div>
       </section>
 
+      <section className="border-b bg-muted/20 py-16 md:py-20" aria-labelledby="selected-research">
+        <div className="container">
+          <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Selected Publications</p>
+              <h2 id="selected-research" className="text-3xl font-semibold tracking-tight">{language === 'ko' ? '논문으로 만나는 SuanLab의 연구' : 'Research from SuanLab'}</h2>
+              <p className="mt-3 text-muted-foreground">{language === 'ko' ? '신경망 방법론부터 실제 환경의 센싱과 생성 모델까지.' : 'From neural network methods to sensing and generation in real environments.'}</p>
+            </div>
+            <Link href="/publication" className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-primary hover:underline">{language === 'ko' ? '전체 연구 성과' : 'All publications'}<ArrowRight className="h-4 w-4" /></Link>
+          </div>
+          <div className="grid gap-5 lg:grid-cols-3">
+            {selectedPublications.map((publication) => (
+              <Card key={publication.id} className="relative flex h-full flex-col overflow-hidden border-t-2 border-t-primary/60">
+                <CardHeader>
+                  <p className="mb-3 text-xs font-medium text-primary">{publication.venue} · {publication.date}</p>
+                  <CardTitle className="text-lg leading-relaxed"><a href={publication.url || '/publication/'} target={publication.url ? '_blank' : undefined} rel={publication.url ? 'noopener noreferrer' : undefined} className="hover:text-primary">{publication.title}</a></CardTitle>
+                </CardHeader>
+                <CardContent className="mt-auto"><p className="text-sm leading-relaxed text-muted-foreground">{publication.authors}</p>{publication.badge && <Badge variant="secondary" className="mt-4">{publication.badge}</Badge>}</CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 md:py-28">
         <div className="container">
           <div className="mx-auto max-w-2xl text-center">
@@ -110,8 +147,8 @@ export function HomepageContent({
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {mediaArticles.map((article) => (
+          <div id="media-articles" className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {(showAllMedia ? mediaArticles : mediaArticles.slice(0, 4)).map((article) => (
               <a
                 key={article.id}
                 href={article.url}
@@ -147,6 +184,13 @@ export function HomepageContent({
               </a>
             ))}
           </div>
+          {mediaArticles.length > 4 && (
+            <div className="mt-8 text-center">
+              <Button variant="outline" aria-expanded={showAllMedia} aria-controls="media-articles" onClick={() => setShowAllMedia(!showAllMedia)}>
+                {language === 'ko' ? (showAllMedia ? '보도 접기' : `전체 보도 ${mediaArticles.length}건 보기`) : (showAllMedia ? 'Show less' : `View all ${mediaArticles.length} articles`)}
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -239,6 +283,7 @@ export function HomepageContent({
             <div className="aspect-video overflow-hidden rounded-xl shadow-2xl">
               <iframe
                 className="h-full w-full"
+                loading="lazy"
                 src="https://www.youtube.com/embed/k60oT_8lyFw"
                 title="SuanLab YouTube"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -328,7 +373,7 @@ export function HomepageContent({
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/suan">{t('cta.btn.contact') as string}</Link>
+              <Link href="/contact">{t('cta.btn.contact') as string}</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10" asChild>
               <Link href="/publication">{t('cta.btn.publications') as string}</Link>

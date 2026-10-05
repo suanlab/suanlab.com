@@ -1,6 +1,7 @@
+import { site } from '@/config/site';
 import { getAllPosts } from '@/lib/blog';
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 function escapeXml(text: string): string {
   return text

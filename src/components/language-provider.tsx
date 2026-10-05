@@ -15,12 +15,12 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const translations = {
   ko: {
     'hero.badge': '데이터 사이언스 & 인공지능 연구실',
-    'hero.title': '에 오신 것을 환영합니다',
-    'hero.description': '데이터 사이언스, 딥러닝, 머신러닝, 빅데이터 연구실입니다. 논문, 강의, YouTube 콘텐츠를 통해 지식을 공유합니다.',
+    'hero.title': '데이터에서 지능으로, 연구에서 실제 가치로.',
+    'hero.description': '데이터 사이언스와 인공지능의 방법론을 연구하고, 실제 문제에 적용합니다. SuanLab의 논문, 연구 프로젝트, 공개 교육 자료를 만나보세요.',
     'hero.btn.profile': '이수안 교수 소개',
     'hero.btn.research': '연구 분야 보기',
     
-    'stats.publications': '논문',
+    'stats.publications': '연구 성과',
     'stats.videos': 'YouTube 영상',
     'stats.projects': '프로젝트',
     'stats.lectures': '강의',
@@ -101,12 +101,12 @@ const translations = {
   },
   en: {
     'hero.badge': 'Data Science & AI Research Lab',
-    'hero.title': 'Welcome to SuanLab',
-    'hero.description': 'A research laboratory focused on Data Science, Deep Learning, Machine Learning, and Big Data. We share knowledge through publications, lectures, and YouTube content.',
+    'hero.title': 'From data to intelligence. From research to impact.',
+    'hero.description': 'We develop methods in data science and artificial intelligence and apply them to real-world problems. Explore our publications, research projects, and open educational resources.',
     'hero.btn.profile': 'About Prof. Suan Lee',
     'hero.btn.research': 'View Research Areas',
     
-    'stats.publications': 'Publications',
+    'stats.publications': 'Research outputs',
     'stats.videos': 'YouTube Videos',
     'stats.projects': 'Projects',
     'stats.lectures': 'Lectures',
@@ -199,6 +199,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       setLanguageState(saved);
     }
   }, []);
+
+  useEffect(() => { document.documentElement.lang = language; }, [language]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);

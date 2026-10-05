@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 import { config } from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 
 // Load environment variables
 config({ path: path.join(process.cwd(), '.env.local') });
 
 import { App, LogLevel } from '@slack/bolt';
-import { execSync } from 'child_process';
+import { JobQueue } from './blog/job-queue';
+import { publishPosts } from './blog/publish';
 import { generateFromPaper, savePost as savePaperPost } from './blog/paper-summarizer';
 import { generateFromTopic, savePost as saveTopicPost } from './blog/topic-generator';
 
@@ -29,30 +31,12 @@ const app = new App({
   logLevel: LogLevel.INFO,
 });
 
+const queue = new JobQueue(path.join(process.cwd(), '.runtime/slack-jobs.json'));
+
 // Check if channel is allowed
 function isAllowedChannel(channelId: string): boolean {
   if (ALLOWED_CHANNELS.length === 0) return true;
   return ALLOWED_CHANNELS.includes(channelId);
-}
-
-// Execute command and return output
-function runCommand(command: string): string {
-  try {
-    return execSync(command, {
-      encoding: 'utf-8',
-      cwd: process.cwd(),
-      timeout: 300000, // 5 minutes
-      env: {
-        ...process.env,
-        GIT_SSH_COMMAND: 'ssh -i /home/suan/.ssh/id_ed25519 -o StrictHostKeyChecking=no'
-      }
-    });
-  } catch (error: unknown) {
-    if (error instanceof Error && 'stdout' in error) {
-      return (error as { stdout: string }).stdout || error.message;
-    }
-    return error instanceof Error ? error.message : 'Unknown error';
-  }
 }
 
 // Detect input type
@@ -143,346 +127,365 @@ app.command('/suanblog', async ({ command, ack, respond, logger }) => {
   if (!input) {
     await respond({
       response_type: 'ephemeral',
-      text: ':warning: 입력을 해주세요.\n예: `/blog 2312.00752` 또는 `/blog 트랜스포머 아키텍처`'
+      text: ':warning: 입력을 해주세요.\n예: `/suanblog 2312.00752` 또는 `/suanblog 트랜스포머 아키텍처`'
     });
     return;
   }
 
-  // Check for multiple arXiv IDs (batch mode)
-  const multipleIds = parseMultipleArxivIds(input);
-  if (multipleIds && multipleIds.length > 1) {
-    await respond({
-      response_type: 'in_channel',
-      blocks: [
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `:hourglass_flowing_sand: *${multipleIds.length}개 논문 리뷰 일괄 생성 중...*\n:page_facing_up: arXiv IDs: ${multipleIds.join(', ')}\n\n약 ${multipleIds.length * 3}-${multipleIds.length * 5}분 소요됩니다.`
+  await respond({ response_type: 'ephemeral', text: '작업을 접수했습니다. 앞선 작업이 있으면 순서대로 처리합니다.' });
+  try {
+    await queue.run(input, async (jobId) => {
+      // Check for multiple arXiv IDs (batch mode)
+      const multipleIds = parseMultipleArxivIds(input);
+      if (multipleIds && multipleIds.length > 1) {
+        await respond({
+          response_type: 'in_channel',
+          blocks: [
+            {
+              type: 'section',
+              text: {
+                type: 'mrkdwn',
+                text: `:hourglass_flowing_sand: *${multipleIds.length}개 논문 리뷰 일괄 생성 중...*\n:page_facing_up: arXiv IDs: ${multipleIds.join(', ')}\n\n약 ${multipleIds.length * 3}-${multipleIds.length * 5}분 소요됩니다.`
+              }
+            }
+          ]
+        });
+
+        try {
+          const results = await processBatch(multipleIds, async (arxivId) => {
+            console.log(`[Batch] Generating paper review for arXiv: ${arxivId}`);
+            const cleanId = arxivId.replace(/v\d+$/, '').replace(/[^a-zA-Z0-9]/g, '-');
+          const existing = fs.readdirSync('content/blog').find(file => file.includes(`-paper-${cleanId}-`));
+          if (existing) throw new Error(`이미 저장된 논문 리뷰가 있습니다: ${existing}`);
+          const post = await generateFromPaper({ arxivId, generateImage: true });
+            const filepath = await savePaperPost(post);
+            queue.update(jobId, { stage: 'saved', files: [...(queue.jobs[jobId].files || []), filepath] });
+            console.log(`[Batch] Saved: ${filepath}`);
+            return { arxivId, title: post.title, filepath };
+          }, 5000);  // 5s delay between each paper to respect arXiv rate limits
+
+          const succeeded: { arxivId: string; title: string; filepath: string }[] = [];
+          const failed: { arxivId: string; reason: string }[] = [];
+
+          results.forEach((result, index) => {
+            if (result.status === 'fulfilled') {
+              succeeded.push(result.value);
+            } else {
+              failed.push({
+                arxivId: multipleIds[index],
+                reason: result.reason instanceof Error ? result.reason.message : String(result.reason),
+              });
+            }
+          });
+
+          if (failed.length) queue.update(jobId, { status: 'failed', error: `${failed.length} paper(s) failed to generate.` });
+          let isGitSuccess = false;
+          if (succeeded.length > 0) {
+            const gitOutput = publishPosts(succeeded.map((item) => item.filepath), `Add ${succeeded.length} paper reviews (batch)`);
+            isGitSuccess = gitOutput.includes('master -> master');
+            queue.update(jobId, { stage: gitOutput === 'Saved for review' ? 'review' : isGitSuccess ? 'pushed' : 'publish-failed' });
           }
-        }
-      ]
-    });
 
-    try {
-      const results = await processBatch(multipleIds, async (arxivId) => {
-        console.log(`[Batch] Generating paper review for arXiv: ${arxivId}`);
-        const post = await generateFromPaper({ arxivId, generateImage: true });
-        const filepath = await savePaperPost(post);
-        console.log(`[Batch] Saved: ${filepath}`);
-        return { arxivId, title: post.title, filepath };
-      }, 5000);  // 5s delay between each paper to respect arXiv rate limits
+          const resultLines = succeeded.map(
+            s => `:white_check_mark: *${s.title}*\n\`${path.basename(s.filepath)}\``
+          );
+          const failedLines = failed.map(
+            f => `:x: ${f.arxivId}: ${f.reason}`
+          );
 
-      const succeeded: { arxivId: string; title: string; filepath: string }[] = [];
-      const failed: { arxivId: string; reason: string }[] = [];
+          const blocks: Array<{ type: string; text: { type: string; text: string } }> = [
+            {
+              type: 'section',
+              text: {
+                type: 'mrkdwn',
+                text: `:clipboard: *일괄 논문 리뷰 생성 결과*\n성공: ${succeeded.length}개 | 실패: ${failed.length}개`
+              }
+            }
+          ];
 
-      results.forEach((result, index) => {
-        if (result.status === 'fulfilled') {
-          succeeded.push(result.value);
-        } else {
-          failed.push({
-            arxivId: multipleIds[index],
-            reason: result.reason instanceof Error ? result.reason.message : String(result.reason),
+          if (resultLines.length > 0) {
+            blocks.push({
+              type: 'section',
+              text: { type: 'mrkdwn', text: resultLines.join('\n\n') }
+            });
+          }
+
+          if (failedLines.length > 0) {
+            blocks.push({
+              type: 'section',
+              text: { type: 'mrkdwn', text: failedLines.join('\n') }
+            });
+          }
+
+          blocks.push({
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: `*GitHub:* ${isGitSuccess ? ':white_check_mark: 푸시 완료' : queue.jobs[jobId].stage === 'review' ? '검토 대기 — 로컬 저장 완료' : (succeeded.length === 0 ? ':warning: 생성된 포스트 없음' : ':x: 푸시 실패')}`
+            }
+          });
+
+          await app.client.chat.postMessage({
+            token: SLACK_BOT_TOKEN,
+            channel: command.channel_id,
+            blocks,
+          });
+        } catch (error: unknown) {
+          queue.update(jobId, { status: 'failed', error: error instanceof Error ? error.message : String(error) });
+          console.error('Batch paper generation failed:', error);
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          await app.client.chat.postMessage({
+            token: SLACK_BOT_TOKEN,
+            channel: command.channel_id,
+            text: `:x: 일괄 생성 실패\n*오류:* ${errorMessage}`
           });
         }
-      });
-
-      let isGitSuccess = false;
-      if (succeeded.length > 0) {
-        const gitOutput = runCommand(
-          `git add -A && git commit -m "Add ${succeeded.length} paper reviews (batch)" && git push origin master 2>&1`
-        );
-        isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
+        return;
       }
 
-      const resultLines = succeeded.map(
-        s => `:white_check_mark: *${s.title}*\n\`${path.basename(s.filepath)}\``
-      );
-      const failedLines = failed.map(
-        f => `:x: ${f.arxivId}: ${f.reason}`
-      );
+      const inputType = detectInputType(input);
+      console.log(`[COMMAND] Input type: ${inputType}, input: ${input}`);
 
-      const blocks: Array<{ type: string; text: { type: string; text: string } }> = [
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `:clipboard: *일괄 논문 리뷰 생성 결과*\n성공: ${succeeded.length}개 | 실패: ${failed.length}개`
-          }
+      if (inputType === 'arxiv') {
+        // Handle arXiv paper
+        const arxivId = extractArxivId(input);
+
+        try {
+          await respond({
+            response_type: 'in_channel',
+            blocks: [
+              {
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: `:hourglass_flowing_sand: *논문 리뷰 생성 중...*\n:page_facing_up: arXiv ID: ${arxivId}\n\n약 3-5분 소요됩니다.`
+                }
+              }
+            ]
+          });
+        } catch (respondErr) {
+          console.error('[COMMAND] Initial respond failed:', respondErr);
         }
-      ];
 
-      if (resultLines.length > 0) {
-        blocks.push({
-          type: 'section',
-          text: { type: 'mrkdwn', text: resultLines.join('\n\n') }
+        try {
+          console.log(`[COMMAND] Generating paper review for arXiv: ${arxivId}`);
+          const cleanId = arxivId.replace(/v\d+$/, '').replace(/[^a-zA-Z0-9]/g, '-');
+          const existing = fs.readdirSync('content/blog').find(file => file.includes(`-paper-${cleanId}-`));
+          if (existing) throw new Error(`이미 저장된 논문 리뷰가 있습니다: ${existing}`);
+          const post = await generateFromPaper({ arxivId, generateImage: true });
+          const filepath = await savePaperPost(post);
+            queue.update(jobId, { stage: 'saved', files: [...(queue.jobs[jobId].files || []), filepath] });
+
+          console.log(`Saved: ${filepath}`);
+
+          const gitOutput = publishPosts([filepath], `Add paper review: ${arxivId}`);
+          queue.update(jobId, { stage: gitOutput === 'Saved for review' ? 'review' : gitOutput.includes('master -> master') ? 'pushed' : 'publish-failed' });
+          const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
+
+          await app.client.chat.postMessage({
+            token: SLACK_BOT_TOKEN,
+            channel: command.channel_id,
+            blocks: [
+              {
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: `:white_check_mark: *논문 리뷰 생성 완료!*`
+                }
+              },
+              {
+                type: 'section',
+                fields: [
+                  {
+                    type: 'mrkdwn',
+                    text: `*제목:*\n${post.title}`
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: `*arXiv:*\n${arxivId}`
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: `*파일:*\n\`${path.basename(filepath)}\``
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : queue.jobs[jobId].stage === 'review' ? '검토 대기 — 로컬 저장 완료' : ':x: 푸시 실패'}`
+                  }
+                ]
+              }
+            ]
+          });
+        } catch (error: unknown) {
+          queue.update(jobId, { status: 'failed', error: error instanceof Error ? error.message : String(error) });
+          console.error('arXiv paper generation failed:', error);
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          await app.client.chat.postMessage({
+            token: SLACK_BOT_TOKEN,
+            channel: command.channel_id,
+            text: `:x: 논문 리뷰 생성 실패\n*오류:* ${errorMessage}`
+          });
+        }
+
+      } else if (inputType === 'pdf') {
+        // Handle PDF URL
+        await respond({
+          response_type: 'in_channel',
+          blocks: [
+            {
+              type: 'section',
+              text: {
+                type: 'mrkdwn',
+                text: `:hourglass_flowing_sand: *논문 리뷰 생성 중...*\n:link: PDF URL: ${input}\n\n약 3-5분 소요됩니다.`
+              }
+            }
+          ]
         });
-      }
 
-      if (failedLines.length > 0) {
-        blocks.push({
-          type: 'section',
-          text: { type: 'mrkdwn', text: failedLines.join('\n') }
+        try {
+          console.log(`Generating paper review from PDF URL: ${input}`);
+          const post = await generateFromPaper({ pdfUrl: input, generateImage: true });
+          const filepath = await savePaperPost(post);
+            queue.update(jobId, { stage: 'saved', files: [...(queue.jobs[jobId].files || []), filepath] });
+
+          console.log(`Saved: ${filepath}`);
+
+          const gitOutput = publishPosts([filepath], `Add paper review from PDF`);
+          queue.update(jobId, { stage: gitOutput === 'Saved for review' ? 'review' : gitOutput.includes('master -> master') ? 'pushed' : 'publish-failed' });
+          const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
+
+          await app.client.chat.postMessage({
+            token: SLACK_BOT_TOKEN,
+            channel: command.channel_id,
+            blocks: [
+              {
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: `:white_check_mark: *논문 리뷰 생성 완료!*`
+                }
+              },
+              {
+                type: 'section',
+                fields: [
+                  {
+                    type: 'mrkdwn',
+                    text: `*제목:*\n${post.title}`
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: `*파일:*\n\`${path.basename(filepath)}\``
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : queue.jobs[jobId].stage === 'review' ? '검토 대기 — 로컬 저장 완료' : ':x: 푸시 실패'}`
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: `*배포:*\n약 1-2분 후 반영`
+                  }
+                ]
+              }
+            ]
+          });
+        } catch (error: unknown) {
+          queue.update(jobId, { status: 'failed', error: error instanceof Error ? error.message : String(error) });
+          console.error('PDF paper generation failed:', error);
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          await app.client.chat.postMessage({
+            token: SLACK_BOT_TOKEN,
+            channel: command.channel_id,
+            text: `:x: 논문 리뷰 생성 실패\n*오류:* ${errorMessage}`
+          });
+        }
+
+      } else {
+        // Handle topic
+        const parts = input.split(/\s+/);
+        let topic = input;
+        let category = 'General';
+
+        const knownCategories = ['NLP', 'Deep Learning', 'MLOps', 'Computer Vision', 'General'];
+        const lastWord = parts[parts.length - 1];
+        if (knownCategories.some(c => c.toLowerCase() === lastWord.toLowerCase())) {
+          category = lastWord;
+          topic = parts.slice(0, -1).join(' ');
+        }
+
+        await respond({
+          response_type: 'in_channel',
+          blocks: [
+            {
+              type: 'section',
+              text: {
+                type: 'mrkdwn',
+                text: `:hourglass_flowing_sand: *블로그 생성 중...*\n:memo: 주제: ${topic}\n:label: 카테고리: ${category}\n\n약 2-3분 소요됩니다.`
+              }
+            }
+          ]
         });
+
+        try {
+          console.log(`Generating blog post for topic: ${topic} (${category})`);
+          const post = await generateFromTopic({ topic, category, generateImage: true });
+          const filepath = await saveTopicPost(post);
+          queue.update(jobId, { stage: 'saved', files: [filepath] });
+
+          console.log(`Saved: ${filepath}`);
+
+          const gitOutput = publishPosts([filepath], `Add blog: ${topic}`);
+          queue.update(jobId, { stage: gitOutput === 'Saved for review' ? 'review' : gitOutput.includes('master -> master') ? 'pushed' : 'publish-failed' });
+          const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
+
+          await app.client.chat.postMessage({
+            token: SLACK_BOT_TOKEN,
+            channel: command.channel_id,
+            blocks: [
+              {
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: `:white_check_mark: *블로그 생성 완료!*`
+                }
+              },
+              {
+                type: 'section',
+                fields: [
+                  {
+                    type: 'mrkdwn',
+                    text: `*주제:*\n${topic}`
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: `*제목:*\n${post.title}`
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: `*파일:*\n\`${path.basename(filepath)}\``
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : queue.jobs[jobId].stage === 'review' ? '검토 대기 — 로컬 저장 완료' : ':x: 푸시 실패'}`
+                  }
+                ]
+              }
+            ]
+          });
+        } catch (error: unknown) {
+          queue.update(jobId, { status: 'failed', error: error instanceof Error ? error.message : String(error) });
+          console.error('Topic blog generation failed:', error);
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          await app.client.chat.postMessage({
+            token: SLACK_BOT_TOKEN,
+            channel: command.channel_id,
+            text: `:x: 블로그 생성 실패\n*오류:* ${errorMessage}`
+          });
+        }
       }
-
-      blocks.push({
-        type: 'section',
-        text: {
-          type: 'mrkdwn',
-          text: `*GitHub:* ${isGitSuccess ? ':white_check_mark: 푸시 완료' : (succeeded.length === 0 ? ':warning: 생성된 포스트 없음' : ':x: 푸시 실패')}`
-        }
-      });
-
-      await app.client.chat.postMessage({
-        token: SLACK_BOT_TOKEN,
-        channel: command.channel_id,
-        blocks,
-      });
-    } catch (error: unknown) {
-      console.error('Batch paper generation failed:', error);
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      await app.client.chat.postMessage({
-        token: SLACK_BOT_TOKEN,
-        channel: command.channel_id,
-        text: `:x: 일괄 생성 실패\n*오류:* ${errorMessage}`
-      });
-    }
-    return;
-  }
-
-  const inputType = detectInputType(input);
-  console.log(`[COMMAND] Input type: ${inputType}, input: ${input}`);
-
-  if (inputType === 'arxiv') {
-    // Handle arXiv paper
-    const arxivId = extractArxivId(input);
-
-    try {
-      await respond({
-        response_type: 'in_channel',
-        blocks: [
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: `:hourglass_flowing_sand: *논문 리뷰 생성 중...*\n:page_facing_up: arXiv ID: ${arxivId}\n\n약 3-5분 소요됩니다.`
-            }
-          }
-        ]
-      });
-    } catch (respondErr) {
-      console.error('[COMMAND] Initial respond failed:', respondErr);
-    }
-
-    try {
-      console.log(`[COMMAND] Generating paper review for arXiv: ${arxivId}`);
-      const post = await generateFromPaper({ arxivId, generateImage: true });
-      const filepath = await savePaperPost(post);
-
-      console.log(`Saved: ${filepath}`);
-
-      const gitOutput = runCommand(
-        `git add -A && git commit -m "Add paper review: ${arxivId}" && git push origin master 2>&1`
-      );
-      const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
-
-      await app.client.chat.postMessage({
-        token: SLACK_BOT_TOKEN,
-        channel: command.channel_id,
-        blocks: [
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: `:white_check_mark: *논문 리뷰 생성 완료!*`
-            }
-          },
-          {
-            type: 'section',
-            fields: [
-              {
-                type: 'mrkdwn',
-                text: `*제목:*\n${post.title}`
-              },
-              {
-                type: 'mrkdwn',
-                text: `*arXiv:*\n${arxivId}`
-              },
-              {
-                type: 'mrkdwn',
-                text: `*파일:*\n\`${path.basename(filepath)}\``
-              },
-              {
-                type: 'mrkdwn',
-                text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : ':x: 푸시 실패'}`
-              }
-            ]
-          }
-        ]
-      });
-    } catch (error: unknown) {
-      console.error('arXiv paper generation failed:', error);
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      await app.client.chat.postMessage({
-        token: SLACK_BOT_TOKEN,
-        channel: command.channel_id,
-        text: `:x: 논문 리뷰 생성 실패\n*오류:* ${errorMessage}`
-      });
-    }
-
-  } else if (inputType === 'pdf') {
-    // Handle PDF URL
-    await respond({
-      response_type: 'in_channel',
-      blocks: [
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `:hourglass_flowing_sand: *논문 리뷰 생성 중...*\n:link: PDF URL: ${input}\n\n약 3-5분 소요됩니다.`
-          }
-        }
-      ]
+      if (queue.jobs[jobId].status === 'failed') throw new Error(queue.jobs[jobId].error || 'Generation failed');
     });
-
-    try {
-      console.log(`Generating paper review from PDF URL: ${input}`);
-      const post = await generateFromPaper({ pdfUrl: input, generateImage: true });
-      const filepath = await savePaperPost(post);
-
-      console.log(`Saved: ${filepath}`);
-
-      const gitOutput = runCommand(
-        `git add -A && git commit -m "Add paper review from PDF" && git push origin master 2>&1`
-      );
-      const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
-
-      await app.client.chat.postMessage({
-        token: SLACK_BOT_TOKEN,
-        channel: command.channel_id,
-        blocks: [
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: `:white_check_mark: *논문 리뷰 생성 완료!*`
-            }
-          },
-          {
-            type: 'section',
-            fields: [
-              {
-                type: 'mrkdwn',
-                text: `*제목:*\n${post.title}`
-              },
-              {
-                type: 'mrkdwn',
-                text: `*파일:*\n\`${path.basename(filepath)}\``
-              },
-              {
-                type: 'mrkdwn',
-                text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : ':x: 푸시 실패'}`
-              },
-              {
-                type: 'mrkdwn',
-                text: `*배포:*\n약 1-2분 후 반영`
-              }
-            ]
-          }
-        ]
-      });
-    } catch (error: unknown) {
-      console.error('PDF paper generation failed:', error);
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      await app.client.chat.postMessage({
-        token: SLACK_BOT_TOKEN,
-        channel: command.channel_id,
-        text: `:x: 논문 리뷰 생성 실패\n*오류:* ${errorMessage}`
-      });
-    }
-
-  } else {
-    // Handle topic
-    const parts = input.split(/\s+/);
-    let topic = input;
-    let category = 'General';
-
-    const knownCategories = ['NLP', 'Deep Learning', 'MLOps', 'Computer Vision', 'General'];
-    const lastWord = parts[parts.length - 1];
-    if (knownCategories.some(c => c.toLowerCase() === lastWord.toLowerCase())) {
-      category = lastWord;
-      topic = parts.slice(0, -1).join(' ');
-    }
-
-    await respond({
-      response_type: 'in_channel',
-      blocks: [
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `:hourglass_flowing_sand: *블로그 생성 중...*\n:memo: 주제: ${topic}\n:label: 카테고리: ${category}\n\n약 2-3분 소요됩니다.`
-          }
-        }
-      ]
-    });
-
-    try {
-      console.log(`Generating blog post for topic: ${topic} (${category})`);
-      const post = await generateFromTopic({ topic, category, generateImage: true });
-      const filepath = await saveTopicPost(post);
-
-      console.log(`Saved: ${filepath}`);
-
-      const gitOutput = runCommand(
-        `git add -A && git commit -m "Add blog: ${topic}" && git push origin master 2>&1`
-      );
-      const isGitSuccess = gitOutput.includes('master -> master') || gitOutput.includes('nothing to commit');
-
-      await app.client.chat.postMessage({
-        token: SLACK_BOT_TOKEN,
-        channel: command.channel_id,
-        blocks: [
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: `:white_check_mark: *블로그 생성 완료!*`
-            }
-          },
-          {
-            type: 'section',
-            fields: [
-              {
-                type: 'mrkdwn',
-                text: `*주제:*\n${topic}`
-              },
-              {
-                type: 'mrkdwn',
-                text: `*제목:*\n${post.title}`
-              },
-              {
-                type: 'mrkdwn',
-                text: `*파일:*\n\`${path.basename(filepath)}\``
-              },
-              {
-                type: 'mrkdwn',
-                text: `*GitHub:*\n${isGitSuccess ? ':white_check_mark: 푸시 완료' : ':x: 푸시 실패'}`
-              }
-            ]
-          }
-        ]
-      });
-    } catch (error: unknown) {
-      console.error('Topic blog generation failed:', error);
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      await app.client.chat.postMessage({
-        token: SLACK_BOT_TOKEN,
-        channel: command.channel_id,
-        text: `:x: 블로그 생성 실패\n*오류:* ${errorMessage}`
-      });
-    }
+  } catch (error) {
+    await respond({ response_type: 'ephemeral', text: error instanceof Error ? error.message : '작업 처리 실패' });
   }
 });
 
@@ -499,8 +502,11 @@ app.command('/suanblog-status', async ({ command, ack, respond }) => {
   }
 
   try {
-    const postCount = runCommand('ls -1 content/blog/*.md 2>/dev/null | wc -l').trim();
-    const latestPosts = runCommand('ls -1t content/blog/*.md 2>/dev/null | head -5').trim();
+    const posts = fs.readdirSync('content/blog').filter((file) => file.endsWith('.md'));
+    const postCount = posts.length;
+    const latestPosts = posts
+      .sort((a, b) => fs.statSync(path.join('content/blog', b)).mtimeMs - fs.statSync(path.join('content/blog', a)).mtimeMs)
+      .slice(0, 5).map((file) => path.join('content/blog', file)).join('\n');
 
     const postList = latestPosts.split('\n')
       .map(p => `• \`${path.basename(p, '.md')}\``)
@@ -513,7 +519,7 @@ app.command('/suanblog-status', async ({ command, ack, respond }) => {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `:bar_chart: *블로그 상태*\n\n총 포스트 수: *${postCount}*개`
+            text: `:bar_chart: *블로그 상태*\n\n총 포스트 수: *${postCount}*개\n작업 상태: ${Object.values(queue.jobs).slice(-5).map(job => `${job.id}: ${job.status} (${job.stage || '-'})`).join(' / ')}`
           }
         },
         {
@@ -586,9 +592,19 @@ app.command('/suanblog-help', async ({ command, ack, respond }) => {
   });
 });
 
+for (const signal of ['SIGINT', 'SIGTERM'] as const) {
+  process.once(signal, async () => {
+    await app.stop();
+    process.exit(0);
+  });
+}
+
 // Start the app
 (async () => {
   await app.start();
   console.log(':robot_face: SuanLab Slack Bot started!');
   console.log(`Allowed channels: ${ALLOWED_CHANNELS.length > 0 ? ALLOWED_CHANNELS.join(', ') : 'All channels'}`);
-})();
+})().catch((error: unknown) => {
+  console.error('[STARTUP]', error instanceof Error ? error.message : 'Slack connection failed');
+  process.exit(1);
+});

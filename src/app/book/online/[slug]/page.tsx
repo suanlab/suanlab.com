@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -30,6 +31,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   return {
     title: `${book.title} | SuanLab`,
+    alternates: { canonical: `${site.url}/book/online/${slug}/` },
     description: book.subtitle || `${book.title} by ${book.author}`,
   };
 }

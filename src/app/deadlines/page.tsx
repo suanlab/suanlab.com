@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import PageHeader from '@/components/layout/PageHeader';
 import { conferences, conferenceCategories } from '@/data/conferences';
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Conference Deadlines | SuanLab',
     description:
       'AI, 머신러닝, NLP, 컴퓨터 비전 등 주요 학술대회 논문 마감일 및 일정',
-    url: 'https://suanlab.com/deadlines',
+    url: `${site.url}/deadlines`,
     siteName: 'SuanLab',
     type: 'website',
     locale: 'ko_KR',
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
       'AI, 머신러닝, NLP, 컴퓨터 비전 등 주요 학술대회 논문 마감일 및 일정',
   },
   alternates: {
-    canonical: 'https://suanlab.com/deadlines',
+    canonical: `${site.url}/deadlines`,
   },
 };
 

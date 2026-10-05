@@ -1,3 +1,5 @@
+import ResearchConnections from '@/components/research-connections';
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -75,7 +77,7 @@ export async function generateStaticParams() {
   }));
 }
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const area = getResearchBySlug(params.slug);
@@ -527,6 +529,7 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
           </div>
         </div>
       </section>
+      <ResearchConnections slug={area.slug} />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import { getAllPosts } from '@/lib/blog';
 import { HomepageContent } from '@/components/homepage-content';
@@ -7,7 +8,7 @@ import { projects } from '@/data/projects';
 import { lectures } from '@/data/lectures';
 import { playlists } from '@/data/youtube';
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 export const metadata: Metadata = {
   title: { absolute: 'SuanLab | Data Science & AI Research' },
@@ -36,6 +37,7 @@ export default async function Home() {
   return (
     <HomepageContent
       recentPosts={recentPosts}
+      selectedPublications={publications.filter((publication) => publication.type === 'journal').slice(0, 3)}
       stats={{
         publications: publications.length,
         videos: playlists.reduce((acc, playlist) => acc + playlist.videos.length, 0),

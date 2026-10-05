@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import Link from 'next/link';
 import { Youtube, Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 
@@ -9,11 +10,11 @@ const XIcon = ({ className }: { className?: string }) => (
 );
 
 const socialLinks = [
-  { name: 'YouTube', href: 'https://www.youtube.com/channel/UCFfALXX0DOx7zv6VeR5U_Bg', icon: Youtube },
-  { name: 'Facebook', href: 'https://www.facebook.com/suanlab', icon: Facebook },
-  { name: 'Instagram', href: 'https://www.instagram.com/suanlab', icon: Instagram },
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/suan-lee-46aaa15b/', icon: Linkedin },
-  { name: 'X', href: 'https://x.com/leesuanlab', icon: XIcon },
+  { name: 'YouTube', href: site.social.youtube, icon: Youtube },
+  { name: 'Facebook', href: site.social.facebook, icon: Facebook },
+  { name: 'Instagram', href: site.social.instagram, icon: Instagram },
+  { name: 'LinkedIn', href: site.social.linkedin, icon: Linkedin },
+  { name: 'X', href: site.social.x, icon: XIcon },
 ];
 
 const quickLinks = [
@@ -23,6 +24,10 @@ const quickLinks = [
   { name: 'YouTube', href: '/youtube' },
   { name: 'Book', href: '/book' },
   { name: 'Project', href: '/project' },
+  { name: 'AI Prompts', href: '/prompts' },
+  { name: 'Conference Deadlines', href: '/deadlines' },
+  { name: 'QT', href: '/qt' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export default function ModernFooter() {
@@ -77,16 +82,16 @@ export default function ModernFooter() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
-                <span>65 Semyung-ro, Jecheon-si,<br />Chungcheongbuk-do, 27136 Korea</span>
+                <span>{site.contact.address}<br /></span>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Phone className="h-4 w-4 shrink-0" />
-                <span>+82-43-649-1273</span>
+                <span>{site.contact.phone}</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4 shrink-0" />
-                <a href="mailto:suanlab@gmail.com" className="hover:text-primary transition-colors">
-                  suanlab@gmail.com
+                <a href={`mailto:${site.contact.emails[0]}`} className="hover:text-primary transition-colors">
+                  {site.contact.emails[0]}
                 </a>
               </li>
             </ul>

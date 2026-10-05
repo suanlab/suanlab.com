@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { Play, Map, TrendingUp, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -43,7 +44,9 @@ function LazyVideo({ video, badge }: { video: VideoItem; badge: React.ReactNode 
             className="relative h-full w-full cursor-pointer"
             aria-label={`영상 재생: ${video.title}`}
           >
-            <img
+            <Image
+              width={480}
+              height={360}
               src={thumbnailUrl}
               alt={video.title}
               className="h-full w-full object-cover"
@@ -93,7 +96,7 @@ export default function YouTubeClient({ popularVideos, recentVideos }: YouTubeCl
 
       {activeTab === 'roadmap' && (
         <div className="overflow-hidden rounded-xl border bg-white dark:bg-gray-900 shadow-lg">
-          <img
+          <Image
             src="/assets/youtubes/roadmap.png"
             alt="YouTube Roadmap"
             width={822}

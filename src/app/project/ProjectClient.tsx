@@ -29,7 +29,7 @@ interface ProjectClientProps {
 
 function ProjectCard({ project, showActiveStyle }: { project: ProjectWithBudget; showActiveStyle?: boolean }) {
   return (
-    <Card className={cn('h-full flex flex-col', showActiveStyle && 'border-green-200 dark:border-green-900')}>
+    <Card id={`project-${project.id}`} className={cn('scroll-mt-24 h-full flex flex-col', showActiveStyle && 'border-green-200 dark:border-green-900')}>
       <CardHeader>
         <div className="flex items-center gap-2 mb-2">
           {project.completed ? (

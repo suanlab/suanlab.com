@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Play, Youtube, ChevronRight } from 'lucide-react';
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'YouTube | SuanLab',
     description: '이수안 교수의 데이터 사이언스, 머신러닝, 딥러닝 유튜브 강의',
-    url: 'https://suanlab.com/youtube',
+    url: `${site.url}/youtube`,
     siteName: 'SuanLab',
     type: 'website',
     locale: 'ko_KR',
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     images: ['/assets/images/slider/blue.jpg'],
   },
   alternates: {
-    canonical: 'https://suanlab.com/youtube',
+    canonical: `${site.url}/youtube`,
   },
 };
 

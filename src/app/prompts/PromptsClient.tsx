@@ -109,7 +109,7 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
   const categories = promptCategories;
   const workflows = _props.workflows ?? promptWorkflows;
   const { language } = useLanguage();
-  const L = (t: LocalizedText) => t[language];
+  const L = useCallback((t: LocalizedText) => t[language], [language]);
 
   const [tab, setTab] = useState<'builders' | 'library' | 'workflows' | 'favorites'>('builders');
   const [query, setQuery] = useState('');
@@ -233,7 +233,7 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
       if (sort === 'alpha') return [...arr].sort((a, b) => L(a.title as LocalizedText).localeCompare(L(b.title as LocalizedText)));
       return arr;
     },
-    [sort, language],
+    [sort, L],
   );
 
   const filteredBuilders = useMemo(

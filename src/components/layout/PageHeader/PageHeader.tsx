@@ -23,7 +23,7 @@ export default function PageHeader({
   const displaySubtitle = subtitleKey ? (t(subtitleKey) as string) : subtitle;
   return (
     <section
-      className="relative py-16 md:py-20 lg:py-24 text-white overflow-hidden"
+      className="relative py-14 md:py-16 lg:py-20 text-white overflow-hidden"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
@@ -33,8 +33,10 @@ export default function PageHeader({
       {/* Dark Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950/95 via-slate-900/90 to-blue-950/80" />
 
+      <div aria-hidden="true" className="research-grid absolute inset-0 opacity-20" />
+
       {/* Animated Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
         {/* Floating Particles */}
         <div className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-particle-1 opacity-60" style={{ left: '10%', top: '20%' }} />
         <div className="absolute w-1.5 h-1.5 bg-blue-400 rounded-full animate-particle-2 opacity-50" style={{ left: '20%', top: '60%' }} />
@@ -47,7 +49,7 @@ export default function PageHeader({
       </div>
 
       {/* Neural Network / Data Flow Background */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div aria-hidden="true" className="absolute inset-0 overflow-hidden opacity-30">
         {/* Animated Data Streams - More visible */}
         <div className="absolute top-0 left-[15%] w-0.5 h-full overflow-hidden">
           <div className="w-full h-20 bg-gradient-to-b from-transparent via-cyan-400 to-transparent animate-stream-down" />
@@ -297,7 +299,7 @@ export default function PageHeader({
                 href="/"
                 className="flex items-center text-cyan-400/80 hover:text-cyan-300 transition-colors"
               >
-                <Home className="h-4 w-4" />
+                <Home className="h-4 w-4" /><span className="sr-only">Home</span>
               </Link>
               {breadcrumbs.map((crumb, index) => (
                 <span key={index} className="flex items-center">
@@ -326,7 +328,7 @@ export default function PageHeader({
 
           {/* Subtitle */}
           {displaySubtitle && (
-            <p className="mt-4 text-lg md:text-xl text-slate-400 max-w-2xl animate-fade-in-up">
+            <p className="mt-4 text-lg md:text-xl text-slate-300 max-w-2xl">
               {displaySubtitle}
             </p>
           )}

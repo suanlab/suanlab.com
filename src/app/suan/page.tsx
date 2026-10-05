@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { GraduationCap, Building, Mail, Phone, MapPin, Check, Globe, Instagram, Facebook, Linkedin, Youtube, Calendar, Award, BookOpen, Plane, Users, Briefcase, Heart, Scale, Download } from 'lucide-react';
@@ -19,7 +20,7 @@ import { Button } from '@/components/ui/button';
 import { VisitedCountriesMap } from '@/components/visited-countries-map';
 import AboutMe from './AboutMe';
 
-const BASE_URL = 'https://suanlab.com';
+const BASE_URL = site.url;
 
 export const metadata: Metadata = {
   title: 'Suan',

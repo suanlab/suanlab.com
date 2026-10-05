@@ -1,8 +1,10 @@
+import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import PageHeader from '@/components/layout/PageHeader';
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${site.url}/terms/` },
   title: '이용약관 | SuanLab',
   description: 'SuanLab 이용약관',
 };

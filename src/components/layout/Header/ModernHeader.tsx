@@ -1,10 +1,11 @@
 'use client';
 
+import { mainNavigation as navigation } from '@/data/site-navigation';
 import { useState, useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { Menu, ChevronDown, User, Search, Youtube, Newspaper, FolderKanban, GraduationCap, Presentation, BookMarked, PenLine } from 'lucide-react';
+import { Menu, ChevronDown, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -12,67 +13,7 @@ import { LanguageSwitcher } from '@/components/language-switcher';
 import { useLanguage } from '@/components/language-provider';
 import { cn } from '@/lib/utils';
 
-const navigation = [
-  { nameKey: 'nav.suan', href: '/suan', icon: User },
-  {
-    nameKey: 'nav.research',
-    href: '/research',
-    icon: Search,
-    children: [
-      { name: 'Data Science & Big Data', href: '/research/ds' },
-      { name: 'Deep Learning & ML', href: '/research/dl' },
-      { name: 'Natural Language Processing', href: '/research/nlp' },
-      { name: 'Computer Vision', href: '/research/cv' },
-      { name: 'Graphs and Tensors', href: '/research/graphs' },
-      { name: 'Spatio-Temporal', href: '/research/st' },
-      { name: 'Audio & Speech Processing', href: '/research/asp' },
-    ],
-  },
-  { nameKey: 'nav.project', href: '/project', icon: FolderKanban },
-  { nameKey: 'nav.publication', href: '/publication', icon: Newspaper },
-  { nameKey: 'nav.blog', href: '/blog', icon: PenLine },
-  {
-    nameKey: 'nav.book',
-    href: '/book',
-    icon: BookMarked,
-    children: [
-      { name: 'Online Book', href: '/book/online' },
-      { name: 'Published Book', href: '/book/published' },
-    ],
-  },
-  {
-    nameKey: 'nav.lecture',
-    href: '/lecture',
-    icon: GraduationCap,
-    children: [
-      { name: 'Artificial Intelligence', href: '/lecture/ai' },
-      { name: 'Deep Learning', href: '/lecture/dl' },
-      { name: 'Machine Learning', href: '/lecture/ml' },
-      { name: 'Natural Language Processing', href: '/lecture/nlp' },
-      { name: 'Computer Vision', href: '/lecture/cv' },
-      { name: 'Audio Signal Processing', href: '/lecture/asp' },
-      { name: 'Big Data Analysis', href: '/lecture/bd' },
-      { name: 'Database', href: '/lecture/db' },
-      { name: 'Web Programming', href: '/lecture/web' },
-      { name: 'Computer Programming', href: '/lecture/cpp' },
-      { name: 'Cloud Computing', href: '/lecture/cloud' },
-    ],
-  },
-  { nameKey: 'nav.course', href: '/course', icon: Presentation },
-  {
-    nameKey: 'nav.youtube',
-    href: '/youtube',
-    icon: Youtube,
-    children: [
-      { name: 'Python Programming', href: '/youtube/pp' },
-      { name: 'Data Science', href: '/youtube/ds' },
-      { name: 'Machine Learning', href: '/youtube/ml' },
-      { name: 'Deep Learning', href: '/youtube/dl' },
-      { name: 'Computer Vision', href: '/youtube/cv' },
-      { name: 'NLP', href: '/youtube/nlp' },
-    ],
-  },
-];
+
 
 export default function ModernHeader() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -96,7 +37,7 @@ export default function ModernHeader() {
   }, []);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center justify-between gap-2 px-4 sm:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 shrink-0">
           <Image
@@ -104,13 +45,13 @@ export default function ModernHeader() {
             alt="SuanLab"
             width={305}
             height={80}
-            className="h-10 w-auto"
+            className="h-7 w-auto dark:brightness-0 dark:invert sm:h-8"
             priority
           />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-1 min-w-0">
+        <nav className="hidden xl:flex items-center space-x-1 min-w-0">
           {navigation.map((item) => (
             <div
               key={item.nameKey}
@@ -175,7 +116,7 @@ export default function ModernHeader() {
         </nav>
 
         {/* Dark Mode Toggle & Mobile Menu */}
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-0 sm:gap-2">
           {/* Search */}
           <Button variant="ghost" size="icon" asChild>
             <Link href="/search" aria-label="검색">
@@ -185,7 +126,7 @@ export default function ModernHeader() {
           <ThemeToggle />
           <LanguageSwitcher />
           <Sheet>
-            <SheetTrigger asChild className="lg:hidden">
+            <SheetTrigger asChild className="xl:hidden">
               <Button variant="ghost" size="icon">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>

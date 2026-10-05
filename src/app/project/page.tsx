@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import type { Metadata } from 'next';
 import { Briefcase, Calendar, Users } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader/PageHeader';
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Projects | SuanLab',
     description: '이수안 교수의 연구 프로젝트 - 정부 R&D, 산학협력, AI/빅데이터 연구개발 과제',
-    url: 'https://suanlab.com/project',
+    url: `${site.url}/project`,
     type: 'website',
     siteName: 'SuanLab',
     locale: 'ko_KR',
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     description: '이수안 교수의 연구 프로젝트 - 정부 R&D, 산학협력, AI/빅데이터 연구개발 과제',
   },
   alternates: {
-    canonical: 'https://suanlab.com/project',
+    canonical: `${site.url}/project`,
   },
 };
 

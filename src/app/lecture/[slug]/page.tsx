@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${lecture.titleEn} | Lecture | SuanLab`,
     description: lecture.description,
+    alternates: { canonical: `${site.url}/lecture/${params.slug}/` },
   };
 }
 
@@ -45,6 +47,10 @@ export default function LectureDetailPage({ params }: { params: { slug: string }
 
       <section className="py-16 md:py-20">
         <div className="container">
+          <div className="mb-8 flex flex-wrap items-center gap-4 rounded-xl border bg-muted/30 p-5">
+            <div className="flex-1"><h2 className="font-semibold">강의 개요 발표 / Lecture overview</h2><p className="mt-1 text-sm text-muted-foreground">아래 강의 소개와 학습 주제를 발표 화면으로 볼 수 있습니다.</p></div>
+            <Button asChild><Link href={`/lecture/${lecture.slug}/present/`}>발표 모드 열기</Link></Button>
+          </div>
           <div className="grid gap-12 lg:grid-cols-3">
             {/* Left: Course Info */}
             <div className="lg:col-span-2">
