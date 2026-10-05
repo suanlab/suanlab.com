@@ -502,14 +502,14 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
               Other Research <span className="text-primary">Areas</span>
             </h2>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {researchAreas
               .filter((r) => r.slug !== area.slug)
               .map((r) => {
                 const RIcon = iconMap[r.icon] || Database;
                 const rColor = colorMap[r.slug] || 'from-blue-500 to-cyan-500';
                 return (
-                  <Link key={r.slug} href={`/research/${r.slug}`}>
+                  <Link key={r.slug} href={`/research/${r.slug}`} className="min-w-0">
                     <Card className="group transition-all hover:shadow-md hover:border-primary/50 h-full">
                       <CardContent className="flex items-center gap-4 p-4">
                         <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${rColor}`}>
