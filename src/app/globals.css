@@ -76,6 +76,32 @@
   mask-image: linear-gradient(to bottom, black, transparent);
 }
 
+/* Keep the original lab photograph visible behind the animated identity. */
+.identity-photo-shade {
+  background: linear-gradient(90deg, rgb(2 6 23 / .92), rgb(2 6 23 / .78) 48%, rgb(2 6 23 / .50)),
+    linear-gradient(0deg, rgb(2 6 23 / .65), transparent 65%);
+}
+.identity-wordmark { text-shadow: 0 0 48px rgb(103 232 249 / .15); }
+.identity-slide { grid-area: 1 / 1; visibility: hidden; pointer-events: none; }
+.identity-slide-active { visibility: visible; pointer-events: auto; animation: identity-reveal .7s ease-out both; }
+.identity-control {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px; border: 1px solid rgb(255 255 255 / .3);
+  border-radius: .5rem; background: rgb(2 6 23 / .6); color: #cffafe;
+}
+.identity-control:hover { background: rgb(255 255 255 / .12); }
+.identity-hero :focus-visible { outline-color: #67e8f9; }
+.identity-signal { animation: identity-flow 6s linear infinite; }
+.identity-node { transform-box: fill-box; transform-origin: center; animation: identity-pulse 4s ease-in-out infinite; }
+.identity-hero[data-motion="paused"] .identity-signal,
+.identity-hero[data-motion="paused"] .identity-node { animation-play-state: paused; }
+@keyframes identity-reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes identity-flow { to { stroke-dashoffset: -216; } }
+@keyframes identity-pulse { 0%, 100% { opacity: .5; transform: scale(.95); } 50% { opacity: 1; transform: scale(1.12); } }
+@media (max-width: 639px) {
+  .identity-photo-shade { background: linear-gradient(180deg, rgb(2 6 23 / .87), rgb(2 6 23 / .70) 60%, rgb(2 6 23 / .82)); }
+}
+
 @layer base {
   body { font-family: var(--font-inter), Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
   h1, h2, h3 { text-wrap: balance; }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { HomeIdentityHero } from '@/components/home-identity-hero';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Brain, Database, Eye, BarChart3, Network, MapPin, Youtube, BookOpen, Newspaper, FolderKanban, AudioLines, ExternalLink, Calendar, Wand2, PenLine } from 'lucide-react';
@@ -57,61 +58,7 @@ export function HomepageContent({
 
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-        <div aria-hidden="true" className="research-grid absolute inset-0 opacity-30" />
-        <div aria-hidden="true" className="absolute -right-32 top-0 h-96 w-96 rounded-full bg-blue-500/15 blur-3xl" />
-        <div className="container relative grid items-center gap-12 py-20 md:py-28 lg:grid-cols-[1.4fr_1fr] lg:py-32">
-          <div>
-            <p className="mb-6 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-cyan-300">
-              <span className="h-px w-8 bg-cyan-400" /> SuanLab · Data Science & AI
-            </p>
-            <h1 className="max-w-3xl [word-break:keep-all] text-4xl font-semibold leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl">
-              {t('hero.title') as string}
-            </h1>
-            <p className="mt-6 max-w-2xl [word-break:keep-all] text-base leading-relaxed text-slate-300 md:text-lg">
-              {t('hero.description') as string}
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button size="lg" asChild>
-                <Link href="/publication">{t('cta.btn.publications') as string}<ArrowRight className="ml-2 h-4 w-4" /></Link>
-              </Button>
-              <Button size="lg" variant="outline" className="border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white" asChild>
-                <Link href="/suan">{t('hero.btn.profile') as string}</Link>
-              </Button>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-white/15 bg-slate-950/40 p-6 backdrop-blur-sm md:p-8">
-            <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-              <span className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300">Research / Practice / Education</span>
-              <Network aria-hidden="true" className="h-5 w-5 shrink-0 text-cyan-400" />
-            </div>
-            {[
-              { number: '01', title: 'AI Research', ko: '모델과 학습 방법론을 탐구하는 연구', en: 'Exploring models and learning methods', href: '/research' },
-              { number: '02', title: 'Applied Intelligence', ko: '데이터와 실제 문제를 연결하는 프로젝트', en: 'Connecting data with real-world problems', href: '/project' },
-              { number: '03', title: 'Open Knowledge', ko: '논문에서 코드와 강의로 이어지는 지식 공유', en: 'Sharing knowledge through papers, code, and teaching', href: '/lecture' },
-            ].map((item) => (
-              <Link key={item.number} href={item.href} className="group flex items-start gap-4 rounded-lg py-4 transition-colors hover:bg-white/5">
-                <span className="pt-1 font-mono text-xs text-cyan-400">{item.number}</span>
-                <div className="flex-1"><h2 className="text-lg font-semibold">{item.title}</h2><p className="mt-1 text-sm leading-relaxed text-slate-400">{language === 'ko' ? item.ko : item.en}</p></div>
-                <ArrowRight aria-hidden="true" className="mt-1 h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-cyan-300" />
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="relative border-t border-white/10 bg-white/5 backdrop-blur-sm">
-          <div className="container py-8">
-            <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-              {statsData.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="text-3xl font-bold text-white md:text-4xl">{stat.value}</div>
-                  <div className="mt-1 text-sm text-slate-400">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeIdentityHero stats={statsData} />
 
       <section className="border-b bg-muted/20 py-16 md:py-20" aria-labelledby="selected-research">
         <div className="container">
