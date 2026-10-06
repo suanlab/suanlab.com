@@ -36,6 +36,7 @@ export interface PromptField {
 }
 
 export interface PromptBuilder {
+  updatedAt?: string;
   id: string;
   title: LocalizedText;
   description: LocalizedText;
@@ -55,6 +56,8 @@ export interface PromptSnippetVariable {
 }
 
 export interface PromptSnippet {
+  updatedAt?: string;
+  contentEn?: string;
   id: string;
   title: LocalizedText;
   description: LocalizedText;

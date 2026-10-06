@@ -3,6 +3,21 @@ import type { PromptWorkflow } from './index';
 // 연구 작업을 빌더 체인으로 엮은 워크플로우 템플릿. 단계의 builderId는 builders.ts의 id와 일치.
 export const promptWorkflows: PromptWorkflow[] = [
   {
+    id: 'wf-rag', title: { ko: 'RAG 서비스 설계 → 평가 → 운영', en: 'RAG: Design → Evaluate → Operate' },
+    description: { ko: '검색·근거 기반 답변을 설계하고 고정 평가셋과 운영 기준으로 연결합니다.', en: 'Connect grounded retrieval with held-out evaluation and operational criteria.' }, icon: 'database',
+    steps: [{ builderId: 'rag-system' }, { builderId: 'llm-evaluation' }, { builderId: 'llm-operations' }],
+  },
+  {
+    id: 'wf-agent', title: { ko: '에이전트 구현 → 검증 → 개선', en: 'Agents: Build → Verify → Improve' },
+    description: { ko: '도구 계약과 완료 조건부터 실행 평가와 프롬프트 회귀 검증까지.', en: 'From tool contracts and completion criteria to evaluation and prompt regression.' }, icon: 'shield-check',
+    steps: [{ builderId: 'agent-system' }, { builderId: 'llm-evaluation' }, { builderId: 'prompt-evaluation' }],
+  },
+  {
+    id: 'wf-sql', title: { ko: 'Text-to-SQL 설계 → 평가', en: 'Text-to-SQL: Design → Evaluate' },
+    description: { ko: '스키마 기반 질의와 실행 검증 기준을 단계별로 준비합니다.', en: 'Prepare schema-grounded queries and execution validation step by step.' }, icon: 'database',
+    steps: [{ builderId: 'text-to-sql' }, { builderId: 'llm-evaluation' }],
+  },
+  {
     id: 'wf-paper',
     title: { ko: '논문 투고 파이프라인', en: 'Paper Submission Pipeline' },
     description: {

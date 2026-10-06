@@ -8,9 +8,9 @@ import { promptBuilders, promptSnippets } from '@/data/prompts';
 const BASE_URL = site.url;
 
 export const metadata: Metadata = {
-  title: 'AI Research Prompts',
+  title: 'Superintelligence Research Prompts',
   description:
-    'AI/ML 연구를 위한 프롬프트 툴킷 — 돌파구 전략, 품질 감사, 논문 리뷰, 실험 설계, 논문 작성, 학회 전략, Rebuttal 등 13개 빌더와 즉시 복사 가능한 큐레이션 프롬프트 라이브러리',
+    'LLM, RAG, 에이전트, 멀티모달, Text-to-SQL의 설계·평가·운영을 위한 프롬프트 빌더, 라이브러리, 연구 워크플로우',
   keywords: [
     'AI 프롬프트',
     'Prompt Engineering',
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
     'Prompt Library',
   ],
   openGraph: {
-    title: 'AI Research Prompts | SuanLab',
-    description: 'AI/ML 연구를 위한 프롬프트 툴킷 — 13개 빌더 + 큐레이션 라이브러리',
+    title: 'Superintelligence Research Prompts | SuanLab',
+    description: '초지능 연구와 실무 시스템을 위한 프롬프트 빌더·평가·워크플로우',
     url: `${BASE_URL}/prompts`,
     siteName: 'SuanLab',
     type: 'website',
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Research Prompts | SuanLab',
-    description: 'AI/ML 연구를 위한 프롬프트 툴킷',
+    title: 'Superintelligence Research Prompts | SuanLab',
+    description: '초지능 연구와 실무 시스템을 위한 프롬프트 툴킷',
   },
   alternates: {
     canonical: `${BASE_URL}/prompts`,
@@ -56,14 +56,14 @@ export default function PromptsPage() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: 'AI Research Prompts',
-            description: 'AI/ML 연구를 위한 프롬프트 툴킷',
+            name: 'Superintelligence Research Prompts',
+            description: '초지능 연구와 실무 시스템을 위한 프롬프트 툴킷',
             itemListElement: itemList,
           }),
         }}
       />
       <PageHeader
-        title="AI Research Prompts"
+        title="Superintelligence Research Prompts"
         subtitleKey="pageheader.prompts.subtitle"
         breadcrumbs={[{ label: 'Prompts' }]}
       />

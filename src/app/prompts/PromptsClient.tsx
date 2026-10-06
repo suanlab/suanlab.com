@@ -1,6 +1,9 @@
 'use client';
 
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useEffect, useCallback, useId } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
+import { promptsUpdatedAt, promptReferences } from '@/data/prompts/advanced';
+import { defaultPromptValues, normalizePromptValues, encodePromptShare as encodeShare, decodePromptShare as decodeShare, detectPromptVariables as detectVariables, substitutePromptVariables as substitute } from '@/lib/prompt-state';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -67,38 +70,6 @@ function estimateTokens(text: string): number {
   return Math.round(korean / 1.8 + other / 4);
 }
 
-function detectVariables(content: string): string[] {
-  const set = new Set<string>();
-  const re = /\{\{(\w+)\}\}/g;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(content))) set.add(m[1]);
-  return [...set];
-}
-
-function substitute(content: string, values: Record<string, string>): string {
-  return content.replace(/\{\{(\w+)\}\}/g, (_, n) => values[n]?.trim() || `{{${n}}}`);
-}
-
-function encodeShare(builderId: string, values: Record<string, string | string[]>): string {
-  try {
-    const json = JSON.stringify({ b: builderId, v: values });
-    return btoa(encodeURIComponent(json));
-  } catch {
-    return '';
-  }
-}
-
-function decodeShare(hash: string): { b: string; v: Record<string, string | string[]> } | null {
-  try {
-    const json = decodeURIComponent(atob(hash));
-    const parsed = JSON.parse(json);
-    if (parsed && typeof parsed.b === 'string' && parsed.v) return parsed;
-    return null;
-  } catch {
-    return null;
-  }
-}
-
 function asLocalized(s: string): LocalizedText {
   return { ko: s, en: s };
 }
@@ -116,8 +87,13 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
   const [selectedCats, setSelectedCats] = useState<Set<PromptCategory>>(new Set());
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
   const [sort, setSort] = useState<'default' | 'alpha' | 'recent'>('default');
+  const [showAllTags, setShowAllTags] = useState(false);
+  const [, setWorkflowRevision] = useState(0);
+  const [shareFailed, setShareFailed] = useState(false);
+  const [workflowSaveFailed, setWorkflowSaveFailed] = useState(false);
 
   const [activeBuilder, setActiveBuilder] = useState<PromptBuilder | null>(null);
+  const [builderVersion, setBuilderVersion] = useState(0);
   const [pendingValues, setPendingValues] = useState<Record<string, string | string[]> | null>(null);
   const [workflowCtx, setWorkflowCtx] = useState<{ wf: PromptWorkflow; step: number } | null>(null);
 
@@ -140,23 +116,28 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
   useEffect(() => {
     try {
       const fav = localStorage.getItem(FAV_KEY);
-      if (fav) setFavorites(JSON.parse(fav));
+      if (fav) { const value: unknown = JSON.parse(fav); if (Array.isArray(value)) setFavorites(value.filter((id): id is string => typeof id === 'string')); }
       const cus = localStorage.getItem(CUSTOM_KEY);
-      if (cus) setCustoms(JSON.parse(cus));
+      if (cus) { const value: unknown = JSON.parse(cus); if (Array.isArray(value)) setCustoms(value.filter((c): c is CustomSnippet => !!c && typeof c.id === 'string' && typeof c.title === 'string' && typeof c.content === 'string' && Array.isArray(c.tags) && c.tags.every((tag: unknown) => typeof tag === 'string') && categories.some(cat => cat.id === c.category))); }
     } catch {
       /* noop */
     }
-    if (typeof window !== 'undefined' && window.location.hash.length > 1) {
-      const decoded = decodeShare(window.location.hash.slice(1));
+    const restoreSharedBuilder = () => {
+      const decoded = decodeShare(window.location.hash);
       if (decoded) {
         const b = builders.find((x) => x.id === decoded.b);
         if (b) {
-          setActiveBuilder(b);
-          setPendingValues(decoded.v);
           setTab('builders');
+          setActiveBuilder(b);
+          setPendingValues(normalizePromptValues(b.fields, decoded.v));
+          setWorkflowCtx(null);
+          setBuilderVersion(v => v + 1);
         }
       }
-    }
+    };
+    restoreSharedBuilder();
+    window.addEventListener('hashchange', restoreSharedBuilder);
+    return () => window.removeEventListener('hashchange', restoreSharedBuilder);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -186,6 +167,7 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
   };
 
   const deleteCustom = (id: string) => {
+    if (favorites.includes(id)) toggleFav(id);
     setCustoms((prev) => {
       const next = prev.filter((x) => x.id !== id);
       try {
@@ -220,16 +202,18 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
     const set = new Set<string>();
     builders.forEach((b) => b.tags.forEach((t) => set.add(t)));
     snippets.forEach((s) => s.tags.forEach((t) => set.add(t)));
-    return [...set].sort((a, b) => a.localeCompare(b));
+    const featured = ['RAG', 'Agents', 'Multimodal', 'Evals', 'Text-to-SQL', 'LLMOps', 'Grounding'];
+    return [...featured.filter(tag => set.has(tag)), ...[...set].filter(tag => !featured.includes(tag)).sort((a, b) => a.localeCompare(b))];
   }, [builders, snippets]);
 
   const q = query.trim().toLowerCase();
-  const matchText = (hay: string) => !q || hay.toLowerCase().includes(q);
+  const matchText = (hay: string) => !q || q.split(/\s+/).every(term => hay.toLowerCase().includes(term));
   const catOk = (c: PromptCategory) => selectedCats.size === 0 || selectedCats.has(c);
   const tagOk = (tags: string[]) => selectedTags.size === 0 || tags.some((t) => selectedTags.has(t));
 
   const sortFn = useCallback(
-    <T extends { title: LocalizedText | string }>(arr: T[]): T[] => {
+    <T extends { title: LocalizedText | string; updatedAt?: string }>(arr: T[]): T[] => {
+      if (sort === 'recent') return [...arr].sort((a, b) => (b.updatedAt ?? '').localeCompare(a.updatedAt ?? ''));
       if (sort === 'alpha') return [...arr].sort((a, b) => L(a.title as LocalizedText).localeCompare(L(b.title as LocalizedText)));
       return arr;
     },
@@ -240,7 +224,7 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
     () =>
       sortFn(
         builders.filter(
-          (b) => catOk(b.category) && tagOk(b.tags) && matchText(`${L(b.title)} ${L(b.description)} ${b.tags.join(' ')}`),
+          (b) => catOk(b.category) && tagOk(b.tags) && matchText(`${b.title.ko} ${b.title.en} ${b.description.ko} ${b.description.en} ${b.tags.join(' ')}`),
         ),
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -253,7 +237,7 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
         snippets.filter((s) => {
           const title = L(s.title);
           const desc = L(s.description);
-          return catOk(s.category) && tagOk(s.tags) && matchText(`${title} ${desc} ${s.tags.join(' ')} ${s.content}`);
+          return catOk(s.category) && tagOk(s.tags) && matchText(`${title} ${desc} ${s.title.ko} ${s.title.en} ${s.description.ko} ${s.description.en} ${s.tags.join(' ')} ${s.content} ${s.contentEn ?? ''}`);
         }),
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -272,12 +256,14 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
       if (!encoded) return;
       if (typeof window !== 'undefined') {
         const url = `${window.location.origin}/prompts/#${encoded}`;
-        navigator.clipboard?.writeText(url).then(
+        setShareFailed(false);
+        if (!navigator.clipboard) { setShareFailed(true); return; }
+        navigator.clipboard.writeText(url).then(
           () => {
             setShared(true);
             setTimeout(() => setShared(false), 2000);
           },
-          () => {},
+          () => setShareFailed(true),
         );
       }
     },
@@ -285,7 +271,10 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
   );
 
   const openBuilder = (b: PromptBuilder, opts?: { values?: Record<string, string | string[]> | null; wf?: typeof workflowCtx }) => {
+    setTab('builders');
+    setShareFailed(false);
     setActiveBuilder(b);
+    setBuilderVersion(v => v + 1);
     setPendingValues(opts?.values ?? null);
     setWorkflowCtx(opts?.wf ?? null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -296,7 +285,8 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
       <div className="relative mb-3">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder={language === 'ko' ? '프롬프트 검색...' : 'Search prompts...'}
+          aria-label={language === 'ko' ? '프롬프트 검색' : 'Search prompts'}
+          placeholder={language === 'ko' ? '제목·내용·태그 검색 (예: RAG 평가)' : 'Search titles, content or tags (e.g. RAG evaluation)'}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="pl-9"
@@ -306,13 +296,13 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
         {categories.map((c) => {
           const active = selectedCats.has(c.id);
           return (
-            <Button key={c.id} variant={active ? 'default' : 'outline'} size="sm" onClick={() => toggleCat(c.id)} className={cn(!active && 'hover:bg-accent')}>
+            <Button key={c.id} variant={active ? 'default' : 'outline'} size="sm" onClick={() => toggleCat(c.id)} aria-pressed={active} className={cn(!active && 'hover:bg-accent')}>
               {L(c.label)}
             </Button>
           );
         })}
-        {(selectedCats.size > 0 || selectedTags.size > 0) && (
-          <Button variant="ghost" size="sm" onClick={() => { setSelectedCats(new Set()); setSelectedTags(new Set()); }}>
+        {(query || selectedCats.size > 0 || selectedTags.size > 0) && (
+          <Button variant="ghost" size="sm" onClick={() => { setQuery(''); setSelectedCats(new Set()); setSelectedTags(new Set()); }}>
             <RotateCcw className="mr-1 h-3 w-3" />
             {language === 'ko' ? '초기화' : 'Reset'}
           </Button>
@@ -324,26 +314,36 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
           className="ml-auto h-9 rounded-md border border-input bg-background px-2 text-xs"
         >
           <option value="default">{language === 'ko' ? '기본 순' : 'Default'}</option>
+          <option value="recent">{language === 'ko' ? '최근 업데이트' : 'Recently updated'}</option>
           <option value="alpha">{language === 'ko' ? '가나다' : 'A→Z'}</option>
         </select>
       </div>
       {allTags.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-4">
-          {allTags.slice(0, 16).map((t) => {
+          {(showAllTags ? allTags : allTags.slice(0, 12)).map((t) => {
             const on = selectedTags.has(t);
             return (
-              <button key={t} type="button" onClick={() => toggleTag(t)} className={cn('rounded-full border px-2 py-0.5 text-[11px] transition-colors', on ? 'border-primary bg-primary text-primary-foreground' : 'border-input bg-background hover:bg-accent text-muted-foreground')}>
+              <button key={t} type="button" onClick={() => toggleTag(t)} aria-pressed={on} className={cn('rounded-full border px-2 py-0.5 text-[11px] transition-colors', on ? 'border-primary bg-primary text-primary-foreground' : 'border-input bg-background hover:bg-accent text-muted-foreground')}>
                 #{t}
               </button>
             );
           })}
+          <button type="button" className="px-2 text-xs text-primary hover:underline" aria-expanded={showAllTags} onClick={() => setShowAllTags(v => !v)}>{language === 'ko' ? (showAllTags ? '태그 접기' : `모든 태그 (${allTags.length})`) : (showAllTags ? 'Fewer tags' : `All tags (${allTags.length})`)}</button>
         </div>
       )}
+      <p role="status" className="mb-4 text-xs text-muted-foreground">{language === 'ko' ? `${tab === 'library' ? filteredSnippets.length : tab === 'favorites' ? favBuilders.length + favSnippets.length : filteredBuilders.length}개 결과` : `${tab === 'library' ? filteredSnippets.length : tab === 'favorites' ? favBuilders.length + favSnippets.length : filteredBuilders.length} results`}</p>
     </>
   );
 
   return (
-    <Tabs value={tab} onValueChange={(v) => setTab(v as typeof tab)} className="w-full">
+    <>
+    <div className="mb-8 rounded-xl border bg-muted/30 p-5">
+      <p className="text-xs font-semibold uppercase tracking-wider text-primary">Research Toolkit · {promptsUpdatedAt}</p>
+      <h2 className="mt-2 text-xl font-semibold">{language === 'ko' ? '연구에서 실제 시스템까지' : 'From research to working systems'}</h2>
+      <p className="mt-2 text-sm leading-6 text-muted-foreground">{language === 'ko' ? 'RAG·에이전트·멀티모달·Text-to-SQL의 설계와 평가를 준비하세요. 폼으로 프롬프트를 만들고, 선호하는 AI 도구에서 실행한 결과를 워크플로우로 이어갈 수 있습니다.' : 'Prepare RAG, agents, multimodal systems and Text-to-SQL with design and evaluation templates. Build a prompt, run it in your preferred AI tool, then bring the result into a workflow.'}</p>
+      <div className="mt-3 flex flex-wrap gap-2 text-xs">{['RAG', 'Agents', 'Multimodal', 'Text-to-SQL', 'Evals'].map(tag => <button key={tag} type="button" aria-pressed={selectedTags.has(tag)} className={cn('rounded-full border px-3 py-1.5', selectedTags.has(tag) ? 'border-primary bg-primary text-primary-foreground' : 'bg-background hover:bg-accent')} onClick={() => { setTab('builders'); setActiveBuilder(null); setSelectedCats(new Set()); setSelectedTags(new Set([tag])); setQuery(''); }}>{tag}</button>)}</div>
+    </div>
+    <Tabs value={tab} onValueChange={(v) => { setTab(v as typeof tab); setActiveBuilder(null); setPendingValues(null); setWorkflowCtx(null); }} className="w-full">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <TabsList className="flex-wrap h-auto">
           <TabsTrigger value="builders"><Wand2 className="mr-1.5 h-4 w-4" />{language === 'ko' ? '빌더' : 'Builders'} ({builders.length})</TabsTrigger>
@@ -354,10 +354,12 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
       </div>
 
       {!activeBuilder && (tab === 'builders' || tab === 'library' || tab === 'favorites') && renderToolbar()}
+      {workflowSaveFailed && <p role="alert" className="mb-4 text-sm text-red-700 dark:text-red-300">{language === 'ko' ? '워크플로우 진행 기록을 저장하지 못했습니다. 결과를 복사해 보관하고 브라우저 저장 설정을 확인하세요.' : 'Workflow progress could not be saved. Copy your result and check browser storage settings.'}</p>}
 
       <TabsContent value="builders" className="mt-0">
         {activeBuilder ? (
           <BuilderDetail
+            key={`${activeBuilder.id}-${builderVersion}`}
             builder={activeBuilder}
             initialValues={pendingValues}
             workflowCtx={workflowCtx}
@@ -366,17 +368,15 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
             onToggleFav={() => toggleFav(activeBuilder.id)}
             onShare={handleShare}
             shared={shared}
+            shareFailed={shareFailed}
             onWorkflowDone={(output) => {
               if (workflowCtx) {
-                saveWorkflowOutput(workflowCtx, output);
-                const nextStep = workflowCtx.step + 1;
-                const wf = workflowCtx.wf;
+                if (!saveWorkflowOutput(workflowCtx, output)) { setWorkflowSaveFailed(true); return; }
+                setWorkflowSaveFailed(false);
                 setActiveBuilder(null);
                 setWorkflowCtx(null);
                 setPendingValues(null);
-                if (nextStep < wf.steps.length) {
-                  setTab('workflows');
-                }
+                setTab('workflows');
               }
             }}
             language={language}
@@ -460,7 +460,7 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
                       const done = state.outputs[i];
                       return (
                         <li key={i} className={cn('flex items-start gap-2 text-sm rounded-md border p-2', done && 'border-green-500/40 bg-green-500/5')}>
-                          <span className={cn('mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-bold', done ? 'bg-green-500 text-white' : 'bg-muted text-muted-foreground')}>{done ? '✓' : i + 1}</span>
+                          <span className={cn('mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-bold', done ? 'bg-green-700 text-white' : 'bg-muted text-muted-foreground')}>{done ? '✓' : i + 1}</span>
                           <div className="min-w-0">
                             <p className="font-medium">{sb ? L(sb.title) : step.builderId}</p>
                             {step.note && <p className="text-xs text-muted-foreground">{L(step.note)}</p>}
@@ -473,12 +473,12 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
                     className="mt-auto"
                     size="sm"
                     onClick={() => {
-                      const startStep = state.outputs.findIndex((o) => !o);
+                      const startStep = wf.steps.findIndex((_, i) => !state.outputs[i]);
                       const step = startStep === -1 ? 0 : startStep;
                       const sb = builders.find((b) => b.id === wf.steps[step].builderId);
                       if (sb) {
                         const prevOutput = step > 0 ? state.outputs[step - 1] : '';
-                        const prefilled = prevOutput ? prefillBuilder(sb, prevOutput) : null;
+                        const prefilled = prevOutput ? prefillBuilder(sb, prevOutput, language) : null;
                         setTab('builders');
                         openBuilder(sb, { values: prefilled, wf: { wf, step } });
                       }
@@ -487,6 +487,10 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
                     <Workflow className="mr-1.5 h-4 w-4" />
                     {language === 'ko' ? '시작 / 이어하기' : 'Start / Resume'}
                   </Button>
+                  {state.outputs.some(Boolean) && <Button variant="ghost" size="sm" className="mt-2" onClick={() => {
+                    try { const all = JSON.parse(localStorage.getItem(WF_KEY) ?? '{}'); delete all[wf.id]; localStorage.setItem(WF_KEY, JSON.stringify(all)); } catch { /* Storage is optional. */ }
+                    setWorkflowRevision(v => v + 1);
+                  }}>{language === 'ko' ? '진행 기록 초기화' : 'Reset progress'}</Button>}
                 </CardContent>
               </Card>
             );
@@ -540,6 +544,12 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
         />
       )}
     </Tabs>
+    <div className="mt-10 border-t pt-5 text-xs text-muted-foreground">
+      <p className="font-medium">{language === 'ko' ? '프롬프트 작성·평가 참고 자료' : 'Prompt design and evaluation references'}</p>
+      <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">{promptReferences.map(ref => <a key={ref.url} href={ref.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-primary hover:underline">{ref.title}<ExternalLink aria-hidden="true" className="h-3 w-3" /></a>)}</div>
+      <p className="mt-3">{language === 'ko' ? '빌더는 프롬프트를 작성합니다. 모델 실행과 결과 검증은 사용하는 AI 도구에서 진행하세요.' : 'Builders compose prompts. Run models and verify results in your chosen AI tool.'}</p>
+    </div>
+    </>
   );
 
   // ── workflow state helpers (closures over component scope) ──
@@ -547,7 +557,8 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
     try {
       const raw = localStorage.getItem(WF_KEY);
       const all = raw ? JSON.parse(raw) : {};
-      return all[wfId] ?? { outputs: [] };
+      const outputs = all?.[wfId]?.outputs;
+      return { outputs: Array.isArray(outputs) && outputs.every(value => typeof value === 'string') ? outputs : [] };
     } catch {
       return { outputs: [] };
     }
@@ -555,29 +566,24 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
   function saveWorkflowOutput(ctx: { wf: PromptWorkflow; step: number }, output: string) {
     try {
       const raw = localStorage.getItem(WF_KEY);
-      const all = raw ? JSON.parse(raw) : {};
-      const prev = all[ctx.wf.id]?.outputs ?? [];
-      const outputs = [...prev];
+      const parsed = raw ? JSON.parse(raw) : {};
+      const all = parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+      const prev = loadWorkflowState(ctx.wf.id).outputs;
+      const outputs = prev.slice(0, ctx.step);
       outputs[ctx.step] = output;
       all[ctx.wf.id] = { outputs };
       localStorage.setItem(WF_KEY, JSON.stringify(all));
+      return true;
     } catch {
-      /* noop */
+      return false;
     }
   }
 }
 
-function prefillBuilder(b: PromptBuilder, prevOutput: string): Record<string, string | string[]> {
-  const v: Record<string, string | string[]> = {};
-  let filled = false;
-  for (const f of b.fields) {
-    if (f.type === 'multiselect') v[f.id] = [];
-    else if (!filled && (f.type === 'textarea' || f.type === 'text')) {
-      v[f.id] = prevOutput;
-      filled = true;
-    } else if (f.default) v[f.id] = f.default;
-    else v[f.id] = '';
-  }
+function prefillBuilder(b: PromptBuilder, prevOutput: string, language: 'ko' | 'en'): Record<string, string | string[]> {
+  const v = defaultPromptValues(b.fields, language);
+  const target = b.fields.find(f => f.id === 'context') ?? b.fields.find(f => f.type === 'textarea');
+  if (target) v[target.id] = prevOutput;
   return v;
 }
 
@@ -604,7 +610,7 @@ function BuilderCard({
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <div className={cn('inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0')}><Icon className="h-5 w-5" /></div>
-          <button onClick={(e) => { e.stopPropagation(); onToggleFav(); }} aria-label="favorite" className="text-muted-foreground hover:text-amber-500 transition-colors">
+          <button onClick={(e) => { e.stopPropagation(); onToggleFav(); }} aria-pressed={isFav} aria-label={lang === 'ko' ? '즐겨찾기 변경' : 'Toggle favorite'} className="text-muted-foreground hover:text-amber-500 transition-colors">
             <Star className={cn('h-5 w-5', isFav && 'fill-amber-400 text-amber-400')} />
           </button>
         </div>
@@ -629,7 +635,7 @@ function BuilderCard({
 
 // ─── Builder detail ───
 function BuilderDetail({
-  builder, initialValues, workflowCtx, onBack, isFav, onToggleFav, onShare, shared, onWorkflowDone, language, L,
+  builder, initialValues, workflowCtx, onBack, isFav, onToggleFav, onShare, shared, shareFailed, onWorkflowDone, language, L,
 }: {
   builder: PromptBuilder;
   initialValues: Record<string, string | string[]> | null;
@@ -639,34 +645,30 @@ function BuilderDetail({
   onToggleFav: () => void;
   onShare: (id: string, values: Record<string, string | string[]>) => void;
   shared: boolean;
+  shareFailed: boolean;
   onWorkflowDone: (output: string) => void;
   language: 'ko' | 'en';
   L: (t: LocalizedText) => string;
 }) {
-  const buildInitial = useCallback((): Record<string, string | string[]> => {
-    const base: Record<string, string | string[]> = {};
-    for (const f of builder.fields) {
-      if (f.type === 'multiselect') base[f.id] = [];
-      else if (f.default) base[f.id] = f.default;
-      else base[f.id] = '';
-    }
-    if (initialValues) {
-      for (const k of Object.keys(initialValues)) base[k] = initialValues[k];
-    }
-    return base;
-  }, [builder, initialValues]);
-
-  const [values, setValues] = useState<Record<string, string | string[]>>(buildInitial);
-  const [output, setOutput] = useState('');
+  const draftKey = `suanlab-prompt-draft-${builder.id}`;
+  const [draft] = useState(() => {
+    try {
+      const value = JSON.parse(localStorage.getItem(draftKey) ?? '{}');
+      return { values: normalizePromptValues(builder.fields, value?.values), output: typeof value?.output === 'string' ? value.output : '', edited: value?.edited === true };
+    } catch { return { values: {}, output: '', edited: false }; }
+  });
+  const [values, setValues] = useState<Record<string, string | string[]>>(() => ({
+    ...defaultPromptValues(builder.fields, language),
+    ...(initialValues ? {} : draft.values), ...normalizePromptValues(builder.fields, initialValues),
+  }));
+  const [output, setOutput] = useState(initialValues ? '' : draft.output);
+  const [edited, setEdited] = useState(!initialValues && draft.edited);
   const [copied, setCopied] = useState(false);
+  const [copyFailed, setCopyFailed] = useState(false);
   const [missing, setMissing] = useState<Set<string>>(new Set());
   const [showExample, setShowExample] = useState(false);
-
-  useEffect(() => {
-    const v = buildInitial();
-    setValues(v);
-    setMissing(new Set());
-  }, [builder.id, buildInitial]);
+  const [workflowResult, setWorkflowResult] = useState('');
+  const [storageBlocked, setStorageBlocked] = useState(false);
 
   const prompt = useMemo(() => {
     try {
@@ -676,10 +678,11 @@ function BuilderDetail({
     }
   }, [builder, values]);
 
-  // live-regenerate output when the form changes (clobbers manual edits, as intended)
+  useEffect(() => { if (!edited) setOutput(prompt); }, [prompt, edited]);
   useEffect(() => {
-    setOutput(prompt);
-  }, [prompt]);
+    try { localStorage.setItem(draftKey, JSON.stringify({ values, output, edited })); }
+    catch { setStorageBlocked(true); }
+  }, [draftKey, values, output, edited]);
 
   const setValue = (id: string, val: string | string[]) => {
     setValues((prev) => ({ ...prev, [id]: val }));
@@ -691,30 +694,36 @@ function BuilderDetail({
     });
   };
 
-  const handleCopy = async () => {
+  const validate = () => {
     const reqMissing = builder.fields.filter((f) => f.required && f.type !== 'multiselect' && !String(values[f.id] ?? '').trim());
     const mulMissing = builder.fields.filter((f) => f.required && f.type === 'multiselect' && (values[f.id] as string[]).length === 0);
     if ([...reqMissing, ...mulMissing].length > 0) {
       setMissing(new Set([...reqMissing, ...mulMissing].map((f) => f.id)));
-      return;
+      return false;
     }
+    return true;
+  };
+  const handleCopy = async () => {
+    if (!validate() || !output.trim()) return;
+    setCopyFailed(false);
     try {
       await navigator.clipboard.writeText(output);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      /* noop */
+      setCopyFailed(true);
     }
   };
 
   const handleDownload = () => {
+    if (!validate() || !output.trim()) return;
     const blob = new Blob([`# ${L(builder.title)}\n\n${output}\n`], { type: 'text/markdown;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = `${builder.id}.md`;
     a.click();
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const tokens = estimateTokens(output);
@@ -727,6 +736,10 @@ function BuilderDetail({
           {language === 'ko' ? '목록으로' : 'Back'}
         </Button>
         <div className="flex gap-2">
+          <Button variant="ghost" size="sm" onClick={() => {
+            setValues(defaultPromptValues(builder.fields, language));
+            setEdited(false); setMissing(new Set()); setWorkflowResult('');
+          }}><RotateCcw className="mr-1.5 h-4 w-4" />{language === 'ko' ? '초안 초기화' : 'Clear draft'}</Button>
           <Button variant="ghost" size="sm" onClick={onToggleFav}>
             <Star className={cn('mr-1.5 h-4 w-4', isFav && 'fill-amber-400 text-amber-400')} />
             {isFav ? (language === 'ko' ? '즐겨찾기됨' : 'Favorited') : (language === 'ko' ? '즐겨찾기' : 'Favorite')}
@@ -775,13 +788,13 @@ function BuilderDetail({
           <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
             <span className="text-sm font-medium text-muted-foreground">
               {language === 'ko' ? '생성된 프롬프트' : 'Generated prompt'}
-              <span className="ml-2 text-[11px] text-muted-foreground/70">≈ {tokens} tokens</span>
+              <span className="ml-2 text-[11px] text-muted-foreground">≈ {tokens} tokens</span>
             </span>
             <div className="flex gap-2">
-              <Button size="sm" variant="ghost" onClick={() => setOutput(prompt)} title={language === 'ko' ? '재생성' : 'Regenerate'}>
+              <Button size="sm" variant="ghost" onClick={() => { setOutput(prompt); setEdited(false); }} aria-label={language === 'ko' ? '현재 폼으로 프롬프트 업데이트' : 'Update prompt from current form'} title={language === 'ko' ? '재생성' : 'Regenerate'}>
                 <RefreshCw className="h-3.5 w-3.5" />
               </Button>
-              <Button size="sm" variant="ghost" onClick={() => onShare(builder.id, values)} title={language === 'ko' ? '공유 URL 복사' : 'Copy share URL'}>
+              <Button size="sm" variant="ghost" onClick={() => onShare(builder.id, values)} aria-label={language === 'ko' ? '입력값을 포함한 공유 링크 복사' : 'Copy share link containing inputs'} title={language === 'ko' ? '공유 URL 복사' : 'Copy share URL'}>
                 {shared ? <Check className="h-3.5 w-3.5 text-green-500" /> : <Share2 className="h-3.5 w-3.5" />}
               </Button>
               <Button size="sm" variant="outline" onClick={handleDownload} disabled={!output}><Download className="mr-1 h-3.5 w-3.5" />.md</Button>
@@ -791,23 +804,28 @@ function BuilderDetail({
               </Button>
             </div>
           </div>
-          {missing.size > 0 && <p className="text-xs text-red-500 mb-2">{language === 'ko' ? '필수 항목을 입력해 주세요.' : 'Please fill required fields.'}</p>}
+          {missing.size > 0 && <p role="alert" className="text-xs text-red-700 dark:text-red-300 mb-2">{language === 'ko' ? '필수 항목을 입력해 주세요.' : 'Please fill required fields.'}</p>}
           <textarea
             value={output}
-            onChange={(e) => setOutput(e.target.value)}
+            aria-label={language === 'ko' ? '생성된 프롬프트 편집' : 'Edit generated prompt'}
+            onChange={(e) => { setOutput(e.target.value); setEdited(true); }}
             spellCheck={false}
             className="w-full min-h-[280px] max-h-[60vh] overflow-y-auto whitespace-pre-wrap break-words rounded-md border bg-muted/40 p-4 text-xs font-mono leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             placeholder={language === 'ko' ? '왼쪽 폼을 채우면 프롬프트가 생성됩니다. 직접 수정도 가능합니다.' : 'Fill the form to generate. You can also edit directly.'}
           />
           <p className="mt-2 text-[11px] text-muted-foreground flex items-center gap-1">
             <ExternalLink className="h-3 w-3" />
-            {language === 'ko' ? '폼을 바꾸면 자동 재생성. 직접 수정 후 복사하세요.' : 'Edits to the form regenerate; edit the box freely before copying.'}
+            {language === 'ko' ? (edited ? '직접 수정한 내용을 유지합니다. 폼 변경을 반영하려면 업데이트 버튼을 누르세요.' : '폼을 채우면 자동 생성됩니다. 초안은 이 브라우저에 저장됩니다.') : (edited ? 'Your edits are preserved. Use Update to apply form changes.' : 'The form generates a prompt. Drafts are saved in this browser.')}
           </p>
-          {workflowCtx && (
-            <Button className="w-full mt-3" size="sm" onClick={() => onWorkflowDone(output)}>
-              {language === 'ko' ? '이 단계 완료' : 'Complete this step'}
-            </Button>
-          )}
+          {(copyFailed || shareFailed) && <p role="alert" className="mt-2 text-xs text-red-700 dark:text-red-300">{language === 'ko' ? '복사하지 못했습니다. 프롬프트를 선택하여 직접 복사하세요.' : 'Copy failed. Select the prompt and copy it manually.'}</p>}
+          {storageBlocked && <p role="status" className="mt-2 text-xs text-muted-foreground">{language === 'ko' ? '이 브라우저에서 초안을 저장하지 못했습니다.' : 'Draft storage is unavailable in this browser.'}</p>}
+          <p className="mt-2 text-xs text-muted-foreground">{language === 'ko' ? '공유 링크에는 폼 입력값이 포함됩니다.' : 'Share links include the form inputs.'}</p>
+          {workflowCtx && <div className="mt-5 rounded-lg border p-3">
+            <label htmlFor="workflow-result" className="text-sm font-medium">{language === 'ko' ? 'AI 도구에서 실행한 결과' : 'Result from your AI tool'}</label>
+            <textarea id="workflow-result" value={workflowResult} onChange={e => setWorkflowResult(e.target.value)} className="mt-2 min-h-28 w-full rounded-md border bg-background p-3 text-sm" />
+            <p className="mt-2 text-xs text-muted-foreground">{language === 'ko' ? '실제 응답을 붙여넣으면 다음 단계의 입력으로 이어집니다.' : 'Paste the actual response to carry it into the next step.'}</p>
+            <Button className="mt-3 w-full" size="sm" disabled={!workflowResult.trim()} onClick={() => { if (validate()) onWorkflowDone(workflowResult.trim()); }}>{language === 'ko' ? '결과 저장 & 단계 완료' : 'Save result & complete step'}</Button>
+          </div>}
         </div>
       </div>
     </div>
@@ -824,19 +842,21 @@ function FieldInput({
   invalid: boolean;
   L: (t: LocalizedText) => string;
 }) {
+  const fieldId = useId();
   const label = (
-    <label className="text-sm font-medium flex items-center gap-1">
+    <label htmlFor={field.type === 'multiselect' ? undefined : fieldId} id={`${fieldId}-label`} className="text-sm font-medium flex items-center gap-1">
       {L(field.label)}
-      {field.required && <span className="text-red-500">*</span>}
+      {field.required && <span aria-hidden="true" className="text-red-700 dark:text-red-300">*</span>}
     </label>
   );
-  const help = field.help && <p className="text-xs text-muted-foreground mt-0.5">{L(field.help)}</p>;
+  const help = field.help && <p id={`${fieldId}-help`} className="text-xs text-muted-foreground mt-0.5">{L(field.help)}</p>;
 
   if (field.type === 'textarea') {
     return (
       <div>
         {label}
         <textarea
+          id={fieldId} aria-required={field.required} aria-invalid={invalid} aria-describedby={field.help ? `${fieldId}-help` : undefined}
           value={value as string}
           onChange={(e) => onChange(e.target.value)}
           placeholder={field.placeholder ? L(field.placeholder) : undefined}
@@ -850,7 +870,7 @@ function FieldInput({
     return (
       <div>
         {label}
-        <select value={value as string} onChange={(e) => onChange(e.target.value)} className={cn('mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2', invalid && 'border-red-500')}>
+        <select id={fieldId} aria-required={field.required} aria-invalid={invalid} aria-describedby={field.help ? `${fieldId}-help` : undefined} value={value as string} onChange={(e) => onChange(e.target.value)} className={cn('mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2', invalid && 'border-red-500')}>
           {field.options?.map((o) => <option key={o.value} value={o.value}>{L(o.label)}</option>)}
         </select>
         {help}
@@ -863,12 +883,12 @@ function FieldInput({
     return (
       <div>
         {label}
-        <div className="mt-1.5 flex flex-wrap gap-1.5">
+        <div role="group" aria-labelledby={`${fieldId}-label`} aria-describedby={field.help ? `${fieldId}-help` : undefined} className="mt-1.5 flex flex-wrap gap-1.5">
           {field.options?.map((o) => {
             const on = arr.includes(o.value);
             const lbl = L(o.label);
             return (
-              <button key={o.value} type="button" onClick={() => toggle(o.value)} className={cn('rounded-full border px-2.5 py-1 text-xs transition-colors', on ? 'border-primary bg-primary text-primary-foreground' : 'border-input bg-background hover:bg-accent')}>
+              <button key={o.value} type="button" onClick={() => toggle(o.value)} aria-pressed={on} className={cn('rounded-full border px-2.5 py-1 text-xs transition-colors', on ? 'border-primary bg-primary text-primary-foreground' : 'border-input bg-background hover:bg-accent')}>
                 {lbl.length > 42 ? lbl.slice(0, 40) + '…' : lbl}
               </button>
             );
@@ -881,7 +901,7 @@ function FieldInput({
   return (
     <div>
       {label}
-      <Input value={value as string} onChange={(e) => onChange(e.target.value)} placeholder={field.placeholder ? L(field.placeholder) : undefined} className={cn('mt-1', invalid && 'border-red-500')} />
+      <Input id={fieldId} aria-required={field.required} aria-invalid={invalid} aria-describedby={field.help ? `${fieldId}-help` : undefined} value={value as string} onChange={(e) => onChange(e.target.value)} placeholder={field.placeholder ? L(field.placeholder) : undefined} className={cn('mt-1', invalid && 'border-red-500')} />
       {help}
     </div>
   );
@@ -907,30 +927,37 @@ function SnippetCard({
   lang: 'ko' | 'en';
 }) {
   const [copied, setCopied] = useState(false);
-  const declared = snippet.variables?.map((v) => v.name) ?? detectVariables(snippet.content);
-  const finalContent = substitute(snippet.content, values);
+  const [copyError, setCopyError] = useState(false);
+  const contentId = useId();
+  const content = lang === 'en' && snippet.contentEn ? snippet.contentEn : snippet.content;
+  const declared = detectVariables(content);
+  const defaults = Object.fromEntries((snippet.variables ?? []).map(v => [v.name, v.default ?? '']));
+  const filledValues = { ...defaults, ...values };
+  const finalContent = substitute(content, filledValues);
   const handleCopy = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    setCopyError(false);
+    if (declared.some(name => !filledValues[name]?.trim())) { setCopyError(true); if (!expanded) onToggle(); return; }
     try {
       await navigator.clipboard.writeText(finalContent);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      /* noop */
+      setCopyError(true);
     }
   };
   return (
     <Card className="h-full flex flex-col transition-all hover:shadow-md">
-      <CardHeader className="pb-2 cursor-pointer" onClick={onToggle}>
+      <CardHeader className="pb-2">
         <div className="flex items-start justify-between gap-2">
           <CardTitle className="text-base hover:text-primary transition-colors flex items-center gap-1.5">
-            {L(snippet.title)}
+            <button type="button" onClick={onToggle} aria-expanded={expanded} aria-controls={expanded ? contentId : undefined} className="text-left">{L(snippet.title)}</button>
             {isCustom && <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[9px] font-bold text-primary">MINE</span>}
           </CardTitle>
           <div className="flex items-center gap-1 shrink-0">
             {isCustom && onEdit && <button onClick={(e) => { e.stopPropagation(); onEdit(); }} aria-label="edit" className="text-muted-foreground hover:text-primary"><Edit3 className="h-4 w-4" /></button>}
             {isCustom && onDelete && <button onClick={(e) => { e.stopPropagation(); onDelete(); }} aria-label="delete" className="text-muted-foreground hover:text-red-500"><Trash2 className="h-4 w-4" /></button>}
-            <button onClick={(e) => { e.stopPropagation(); onToggleFav(); }} aria-label="favorite" className="text-muted-foreground hover:text-amber-500"><Star className={cn('h-5 w-5', isFav && 'fill-amber-400 text-amber-400')} /></button>
+            <button onClick={(e) => { e.stopPropagation(); onToggleFav(); }} aria-pressed={isFav} aria-label={lang === 'ko' ? '즐겨찾기 변경' : 'Toggle favorite'} className="text-muted-foreground hover:text-amber-500"><Star className={cn('h-5 w-5', isFav && 'fill-amber-400 text-amber-400')} /></button>
           </div>
         </div>
         <p className="text-sm text-muted-foreground line-clamp-2">{L(snippet.description)}</p>
@@ -947,16 +974,17 @@ function SnippetCard({
               const meta = snippet.variables?.find((vv) => vv.name === name);
               return (
                 <div key={name}>
-                  <label className="text-xs font-medium">{meta ? L(meta.label) : name}{meta?.default ? '' : ''}</label>
-                  <Input value={values[name] ?? meta?.default ?? ''} onChange={(e) => onValueChange(name, e.target.value)} placeholder={name} className="mt-0.5 h-8 text-xs" />
+                  <label htmlFor={`${contentId}-${name}`} className="text-xs font-medium">{meta ? L(meta.label) : name}</label>
+                  <Input id={`${contentId}-${name}`} value={values[name] ?? meta?.default ?? ''} onChange={(e) => onValueChange(name, e.target.value)} placeholder={name} className="mt-0.5 h-8 text-xs" />
                 </div>
               );
             })}
           </div>
         )}
         {expanded && (
-          <pre className="whitespace-pre-wrap break-words rounded-md border bg-muted/40 p-3 text-xs font-mono leading-relaxed max-h-[40vh] overflow-y-auto mb-3">{finalContent}</pre>
+          <pre id={contentId} className="whitespace-pre-wrap break-words rounded-md border bg-muted/40 p-3 text-xs font-mono leading-relaxed max-h-[40vh] overflow-y-auto mb-3">{finalContent}</pre>
         )}
+        {copyError && <p role="alert" className="mb-2 text-xs text-red-700 dark:text-red-300">{lang === 'ko' ? '변수를 모두 채워 주세요. 복사가 실패하면 본문을 직접 선택해 복사하세요.' : 'Fill all variables. If copying fails, select and copy the text manually.'}</p>}
         <div className="mt-auto flex gap-2">
           <Button className="flex-1" size="sm" variant={expanded ? 'outline' : 'default'} onClick={onToggle}>{expanded ? (lang === 'ko' ? '접기' : 'Collapse') : (lang === 'ko' ? '보기' : 'View')}</Button>
           <Button size="sm" variant="outline" onClick={handleCopy}>{copied ? <Check className="h-3.5 w-3.5 text-green-500" /> : <Copy className="h-3.5 w-3.5" />}<span className="ml-1">{copied ? (lang === 'ko' ? '복사됨' : 'Copied') : (lang === 'ko' ? '복사' : 'Copy')}</span></Button>
@@ -981,6 +1009,8 @@ function CustomPromptForm({
   const [content, setContent] = useState(initial?.content ?? '');
   const [category, setCategory] = useState<PromptCategory>(initial?.category ?? 'coding');
   const [tags, setTags] = useState((initial?.tags ?? []).join(', '));
+  const [returnFocus] = useState(() => document.activeElement instanceof HTMLElement ? document.activeElement : null);
+  const formId = useId();
 
   const submit = () => {
     if (!title.trim() || !content.trim()) return;
@@ -994,32 +1024,34 @@ function CustomPromptForm({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
-      <div className="w-full max-w-lg rounded-lg border bg-background p-5 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+    <Dialog.Root open onOpenChange={open => { if (!open) onClose(); }}><Dialog.Portal>
+      <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50" />
+      <Dialog.Content onCloseAutoFocus={event => { event.preventDefault(); if (returnFocus?.isConnected) returnFocus.focus(); }} className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-[calc(100%_-_2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg border bg-background p-5">
+        <Dialog.Description className="sr-only">{lang === 'ko' ? '개인 프롬프트를 이 브라우저에 저장합니다.' : 'Save a personal prompt in this browser.'}</Dialog.Description>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-bold">{lang === 'ko' ? (initial ? '내 프롬프트 수정' : '내 프롬프트 추가') : (initial ? 'Edit my prompt' : 'Add my prompt')}</h3>
-          <button onClick={onClose} aria-label="close"><X className="h-5 w-5 text-muted-foreground" /></button>
+          <Dialog.Title className="font-bold">{lang === 'ko' ? (initial ? '내 프롬프트 수정' : '내 프롬프트 추가') : (initial ? 'Edit my prompt' : 'Add my prompt')}</Dialog.Title>
+          <button onClick={onClose} aria-label={lang === 'ko' ? '닫기' : 'Close'}><X className="h-5 w-5 text-muted-foreground" /></button>
         </div>
         <div className="space-y-3">
           <div>
-            <label className="text-sm font-medium">{lang === 'ko' ? '제목' : 'Title'}<span className="text-red-500">*</span></label>
-            <Input value={title} onChange={(e) => setTitle(e.target.value)} className="mt-1" />
+            <label htmlFor={`${formId}-title`} className="text-sm font-medium">{lang === 'ko' ? '제목' : 'Title'}<span aria-hidden="true" className="text-red-700 dark:text-red-300">*</span></label>
+            <Input id={`${formId}-title`} aria-required value={title} onChange={(e) => setTitle(e.target.value)} className="mt-1" />
           </div>
           <div>
-            <label className="text-sm font-medium">{lang === 'ko' ? '본문' : 'Content'}<span className="text-red-500">*</span></label>
-            <textarea value={content} onChange={(e) => setContent(e.target.value)} className="mt-1 flex min-h-[160px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+            <label htmlFor={`${formId}-content`} className="text-sm font-medium">{lang === 'ko' ? '본문' : 'Content'}<span aria-hidden="true" className="text-red-700 dark:text-red-300">*</span></label>
+            <textarea id={`${formId}-content`} aria-required value={content} onChange={(e) => setContent(e.target.value)} className="mt-1 flex min-h-[160px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
             <p className="text-xs text-muted-foreground mt-1">{lang === 'ko' ? '{{변수}} 문법으로 변수를 넣으면 확장 시 채울 수 있습니다.' : 'Use {{variable}} placeholders to fill in later.'}</p>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-sm font-medium">{lang === 'ko' ? '분야' : 'Category'}</label>
-              <select value={category} onChange={(e) => setCategory(e.target.value as PromptCategory)} className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 text-sm">
+              <label htmlFor={`${formId}-category`} className="text-sm font-medium">{lang === 'ko' ? '분야' : 'Category'}</label>
+              <select id={`${formId}-category`} value={category} onChange={(e) => setCategory(e.target.value as PromptCategory)} className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 text-sm">
                 {categories.map((c) => <option key={c.id} value={c.id}>{L(c.label)}</option>)}
               </select>
             </div>
             <div>
-              <label className="text-sm font-medium">{lang === 'ko' ? '태그 (쉼표)' : 'Tags (comma)'}</label>
-              <Input value={tags} onChange={(e) => setTags(e.target.value)} className="mt-1" />
+              <label htmlFor={`${formId}-tags`} className="text-sm font-medium">{lang === 'ko' ? '태그 (쉼표)' : 'Tags (comma)'}</label>
+              <Input id={`${formId}-tags`} value={tags} onChange={(e) => setTags(e.target.value)} className="mt-1" />
             </div>
           </div>
         </div>
@@ -1027,8 +1059,8 @@ function CustomPromptForm({
           <Button variant="outline" size="sm" onClick={onClose}>{lang === 'ko' ? '취소' : 'Cancel'}</Button>
           <Button size="sm" onClick={submit} disabled={!title.trim() || !content.trim()}>{lang === 'ko' ? '저장' : 'Save'}</Button>
         </div>
-      </div>
-    </div>
+      </Dialog.Content>
+    </Dialog.Portal></Dialog.Root>
   );
 }
 

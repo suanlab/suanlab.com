@@ -1,4 +1,5 @@
 import type { PromptBuilder } from './index';
+import { advancedBuilders } from './advanced';
 
 // ───────────────────────────────────────────────────────────
 // 조회 맵 (lookup maps) — 원본 AI-Research-Prompt-Toolkit에서 이식
@@ -31,7 +32,7 @@ const BC: Record<string, string> = {
 const SL: Record<string, string> = {
   analogy: '타 분야(물리학, 생물학, 통계학 등)와의 유추를 통해 새로운 시각을 제시하고',
   first_principles: '제1원리(first principles)로 문제를 분해하여 근본 원인을 파악하고',
-  literature: '관련 최신 논문(2022-2025)에서 유사 문제의 해결 사례를 찾아 적용 가능성을 검토하고',
+  literature: '관련 최신 논문(검색 시점을 기준으로 최근 문헌과 핵심 선행 연구)에서 유사 문제의 해결 사례를 찾아 적용 가능성을 검토하고',
   ablation: '체계적인 ablation study 설계를 통해 핵심 변수를 격리하고',
   math: '수학적으로 문제를 정식화하여 이론적 하한/상한을 분석하고',
   experiment: '대조 실험 계획을 수립하여 가설을 검증할 수 있는 최소 실험 단위를 제안하고',
@@ -178,16 +179,6 @@ const W_SECTIONS: Record<string, string> = {
   conclusion: 'Conclusion', limitation: 'Limitations', appendix: 'Appendix',
 };
 
-const STYLE_PKG: Record<string, string> = {
-  neurips: '\\usepackage{neurips_2024}', icml: '\\usepackage{icml2024}',
-  iclr: '\\usepackage{iclr2024_conference}', cvpr: '\\usepackage{cvpr}',
-  iccv: '\\usepackage{iccv}', eccv: '\\usepackage{eccv}', acl: '\\usepackage{acl}',
-  aaai: '\\usepackage{aaai25}', ijcai: '\\usepackage{ijcai24}',
-  kdd: 'ACM \\documentclass{acmart}', www: 'ACM \\documentclass{acmart}',
-  sigir: 'ACM \\documentclass{acmart}', icra: 'IEEE \\usepackage{ieeeconf}',
-  uai: '\\usepackage{uai2024}',
-};
-
 const ST_LEVEL: Record<string, string> = {
   sota: 'SOTA 달성 / 확실한 성능 개선',
   competitive: '경쟁력 있는 수준의 결과',
@@ -220,6 +211,7 @@ const RB_STRATEGY: Record<string, string> = {
 // ───────────────────────────────────────────────────────────
 
 export const promptBuilders: PromptBuilder[] = [
+  ...advancedBuilders,
   // 1. 돌파구 전략
   {
     id: 'breakthrough',
@@ -616,6 +608,7 @@ export const promptBuilders: PromptBuilder[] = [
   // 6. 논문 작성
   {
     id: 'writing',
+    updatedAt: '2026-10-06',
     title: { ko: '논문 작성', en: 'Paper Writing' },
     description: {
       ko: '학회 규격에 맞는 LaTeX 논문 작성을 지시하는 프롬프트를 생성합니다.',
@@ -628,7 +621,7 @@ export const promptBuilders: PromptBuilder[] = [
       {
         id: 'conf', type: 'select', default: 'neurips',
         label: { ko: '투고 학회 (스타일)', en: 'Venue (style)' },
-        options: Object.keys(STYLE_PKG).map((k) => ({ value: k, label: { ko: k.toUpperCase(), en: k.toUpperCase() } })),
+        options: ['neurips', 'icml', 'iclr', 'cvpr', 'iccv', 'eccv', 'acl', 'aaai', 'ijcai', 'kdd', 'www', 'sigir', 'icra', 'uai'].map((k) => ({ value: k, label: { ko: k.toUpperCase(), en: k.toUpperCase() } })),
       },
       {
         id: 'domain', type: 'text',
@@ -654,7 +647,7 @@ export const promptBuilders: PromptBuilder[] = [
     ],
     generate: (v) => {
       const conf = String(v.conf ?? 'neurips');
-      const pkg = STYLE_PKG[conf] ?? `\\usepackage{${conf}}`;
+      const pkg = '해당 연도의 공식 CFP / author kit에서 확인한 양식 (확인 불가 시 미확인으로 표시)';
       const title = String(v.title ?? '').trim();
       const contrib = String(v.contrib ?? '').trim();
       const results = String(v.results ?? '').trim();
@@ -663,7 +656,7 @@ export const promptBuilders: PromptBuilder[] = [
       const domain = String(v.domain ?? '').trim();
       const secs = (v.sections as string[]) ?? ['abstract', 'intro', 'related', 'method', 'experiments', 'conclusion'];
       const secList = secs.map((s) => `- ${W_SECTIONS[s] ?? s}`).join('\n');
-      return `당신은 top-tier AI/ML 논문 작성 전문가입니다.\n아래 정보를 바탕으로 ${conf.toUpperCase()} 제출 규격에 맞는 완전한 LaTeX 논문을 작성해 주세요.\n\n## LaTeX 스타일 요구사항\n- 공식 스타일 패키지: ${pkg}\n- 최신 ${conf.toUpperCase()} 스타일 파일 규격을 정확히 따라 주세요.\n  익명 제출(blind review) 여부, 줄 번호(line numbers), 컬럼 수 등 학회 규정을 반영해 주세요.\n\n## 논문 정보\n- 제목: ${title || '(작성 중 — 적절한 제목을 제안해 주세요)'}${domain ? `\n- 연구 분야: ${domain}` : ''}\n\n### 핵심 Contribution\n${contrib}${results ? `\n\n### 주요 실험 결과\n${results}` : ''}${baselines ? `\n\n### 베이스라인 / 비교 대상\n${baselines}` : ''}${extra ? `\n\n### 추가 사항\n${extra}` : ''}\n\n## 작성할 섹션\n${secList}\n\n## 작성 지시사항\n\n1. **완전한 .tex 파일**을 출력해 주세요.\n   - \\documentclass 부터 \\end{document} 까지 전체 포함\n   - pdflatex 또는 xelatex으로 바로 컴파일 가능한 수준\n   - 필요한 모든 \\usepackage 선언 포함\n\n2. **섹션별 작성 기준**:\n   - Abstract: 4~6문장, problem / gap / solution / key result 구조\n   - Introduction: motivation → gap → contribution 흐름, \\itemize로 contribution 명시\n   - Related Work: 3~4개 그룹으로 분류, 각 그룹 마지막에 우리 연구와의 차별점 1문장\n   - Method: 핵심 아이디어를 수식(\\equation)과 함께 설명, \\algorithm 환경 포함 권장\n   - Experiments: 메인 결과 table(\\booktabs 사용), ablation table 포함\n   - Conclusion: 기여 요약 + limitation + future work\n\n3. **표와 수식**:\n   - \\usepackage{booktabs} 사용, \\toprule/\\midrule/\\bottomrule\n   - 수식은 \\begin{equation}으로 번호 부여\n\n4. **참고문헌**: \\bibitem 형식으로 예시 5개 포함 (실제 관련 논문으로 채워 주세요)`;
+      return `당신은 top-tier AI/ML 논문 작성 전문가입니다.\n아래 정보를 바탕으로 ${conf.toUpperCase()} 제출 규격에 맞는 완전한 LaTeX 논문을 작성해 주세요.\n\n## LaTeX 스타일 요구사항\n- 공식 제출 양식: ${pkg}\n- 최신 ${conf.toUpperCase()} 스타일 파일 규격을 정확히 따라 주세요.\n  익명 제출(blind review) 여부, 줄 번호(line numbers), 컬럼 수 등 학회 규정을 반영해 주세요.\n\n## 논문 정보\n- 제목: ${title || '(작성 중 — 적절한 제목을 제안해 주세요)'}${domain ? `\n- 연구 분야: ${domain}` : ''}\n\n### 핵심 Contribution\n${contrib}${results ? `\n\n### 주요 실험 결과\n${results}` : ''}${baselines ? `\n\n### 베이스라인 / 비교 대상\n${baselines}` : ''}${extra ? `\n\n### 추가 사항\n${extra}` : ''}\n\n## 작성할 섹션\n${secList}\n\n## 작성 지시사항\n\n1. **완전한 .tex 파일**을 출력해 주세요.\n   - \\documentclass 부터 \\end{document} 까지 전체 포함\n   - pdflatex 또는 xelatex으로 바로 컴파일 가능한 수준\n   - 필요한 모든 \\usepackage 선언 포함\n\n2. **섹션별 작성 기준**:\n   - Abstract: 4~6문장, problem / gap / solution / key result 구조\n   - Introduction: motivation → gap → contribution 흐름, \\itemize로 contribution 명시\n   - Related Work: 3~4개 그룹으로 분류, 각 그룹 마지막에 우리 연구와의 차별점 1문장\n   - Method: 핵심 아이디어를 수식(\\equation)과 함께 설명, \\algorithm 환경 포함 권장\n   - Experiments: 메인 결과 table(\\booktabs 사용), ablation table 포함\n   - Conclusion: 기여 요약 + limitation + future work\n\n3. **표와 수식**:\n   - \\usepackage{booktabs} 사용, \\toprule/\\midrule/\\bottomrule\n   - 수식은 \\begin{equation}으로 번호 부여\n\n4. **참고문헌**: \\bibitem 형식으로 확인된 실제 문헌만 포함. DOI/공식 링크로 실재성과 주장 지지를 검증하고, 확인되지 않은 문헌이나 실험 수치는 만들어내지 마세요`;
     },
   },
 
@@ -893,7 +886,7 @@ export const promptBuilders: PromptBuilder[] = [
         gap: '- 현재 연구 동향에서 해결되지 않은 Gap 정리',
         future: '- 향후 연구 방향과 유망한 접근 제안',
       };
-      const periodMap: Record<string, string> = { '2y': '최근 2년(2024-2025) 중심', '5y': '최근 5년(2020-2025)', all: '전 기간' };
+      const periodMap: Record<string, string> = { '2y': '검색 시점을 기준으로 최근 2년 중심', '5y': '검색 시점을 기준으로 최근 5년', all: '전 기간' };
       return `당신은 AI/ML 분야의 체계적 문헌 조사(systematic review) 전문가입니다.\n\n## 조사 주제\n${topic}\n${queries ? `\n## 검색 키워드\n${queries}` : ''}\n\n## 조사 범위\n- 기간: ${periodMap[String(v.period ?? '5y')]}\n- 분량: ${String(v.depth ?? 'full')}\n\n## 요청 사항\n1. 먼저 해당 주제의 핵심 논문들을 ${v.depth === 'exhaustive' ? '40편 이상' : v.depth === 'brief' ? '10편 내외' : '20~30편'} 선정. 각 논문: 제목(저자, 연도), 핵심 기여 1문장, 한계 1문장.\n2. 아래 관점들을 포함해 survey를 구성:\n${angles.map((a) => angleMap[a] ?? a).join('\n')}\n3. 인용은 실제 존재하는 논문만 사용. 불확실하면 "[verification needed]" 표시. 절대 허위 인용을 만들지 마세요.\n\n## 출력 형식 (마크다운)\n- # 조사 개요\n- # 핵심 논문 목록\n- # 분류 체계(taxonomy)\n- # 비교표\n- # 미해결 과제(Gap)\n- # 향후 연구 방향`;
     },
   },

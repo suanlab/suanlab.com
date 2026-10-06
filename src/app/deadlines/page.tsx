@@ -5,7 +5,7 @@ import { conferences, conferenceCategories } from '@/data/conferences';
 import DeadlinesClient from './DeadlinesClient';
 
 export const metadata: Metadata = {
-  title: 'Conference Deadlines | SuanLab',
+  title: 'Conference Deadlines',
   description:
     'AI, 머신러닝, NLP, 컴퓨터 비전, 데이터 마이닝 등 주요 학술대회 논문 마감일 및 일정 - SuanLab',
   keywords: [

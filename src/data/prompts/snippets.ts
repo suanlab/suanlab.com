@@ -1,7 +1,9 @@
 import type { PromptSnippet } from './index';
+import { advancedSnippets } from './advanced';
 
 // 즉시 복사 가능한 단문 프롬프트 라이브러리. 본문(content)은 한국어 기본.
 export const promptSnippets: PromptSnippet[] = [
+  ...advancedSnippets,
   // ── 코딩 / 구현 ──
   {
     id: 'snip-code-review',

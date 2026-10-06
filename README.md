@@ -82,6 +82,39 @@ services. It does not claim delivery, store inquiries, or send email from Pages.
 The recipient is the first address in `site.contact.emails`. Direct website
 submission requires a separately configured mail service endpoint.
 
+## Research prompts and conference calendar
+
+`/prompts/` contains 28 builders, 59 library templates and eight workflows.
+The research toolkit adds RAG, agents, evaluation, multimodal analysis, Text-to-SQL,
+schema extraction and service operations. New templates support Korean and English
+output. Builders compose text locally; visitors execute it in their preferred model
+tool. Workflow steps save the actual model response and pass it to the next builder.
+Drafts, favorites, personal prompts and workflow progress use this browser's
+localStorage. Manual output edits persist until explicit regeneration. Shared URLs
+contain form inputs; they do not include manually edited output or workflow responses.
+
+Edit typed content in `src/data/prompts/`; current research additions and reference
+links live in `advanced.ts`. Preserve stable IDs for saved items and workflow steps.
+Set `updatedAt` when changing content. Do not hardcode obsolete conference author
+kits, API versions, model prices or invented citations.
+
+`/deadlines/` separates submissions from the full conference schedule, with search,
+year/area filters, a 30-day view, saved venues, timezone conversion and ICS export.
+Maintain `src/data/conferences/index.ts` against each track's official CFP. Record
+`sourceUrl` and `verifiedAt` only after checking the source; older records retain
+their previous verification date. Keep unknown dates `null` and provisional dates
+`status: 'tentative'`. Do not insert guessed month-start dates. For conferences,
+`endDate` is inclusive; for invited revisions, explicitly use `kind: 'milestone'`.
+Use IANA timezones plus `deadlineTime` for Pacific deadlines so daylight saving
+is handled correctly. A row can override `timezone`, including `null` when that
+track's time is unpublished. No timezone means date-only, never implicit AoE.
+VLDB monthly submissions are explicit cycles through March 2027.
+
+Calendar exports include future confirmed dates in the selected view. Exact
+deadlines export in UTC; unpublished times and conference ranges use all-day
+events. Conflicting official schedules remain tentative and are excluded. Dates
+are maintained editorially, not scraped at runtime; check the CFP before submission.
+
 ## Generated content provenance
 
 New topic and paper posts contain `provenance`: AI-assisted generation time,
