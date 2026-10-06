@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Pause, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { HomeResearchNetwork } from '@/components/home-research-network';
 import { useLanguage } from '@/components/language-provider';
 import { labIdentities, labIdentityName } from '@/data/lab-identity';
 
@@ -141,17 +142,7 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
         </div>
 
         <div className="min-w-0 rounded-2xl border border-white/25 bg-slate-950/65 p-6 backdrop-blur-sm md:p-8">
-          <div aria-hidden="true" className="identity-network relative mx-auto mb-6 max-w-xs">
-            <svg viewBox="0 0 320 180" className="w-full overflow-visible" fill="none">
-              <path d="M52 40L160 90L268 40M52 140L160 90L268 140M52 40L52 140M268 40L268 140" stroke="#67e8f9" strokeOpacity=".3" />
-              <path className="identity-signal" d="M52 40L160 90L268 140M52 140L160 90L268 40" stroke="#a5f3fc" strokeWidth="2" strokeDasharray="8 100" />
-              {[{ x: 52, y: 40, label: 'LLM' }, { x: 268, y: 40, label: 'RAG' }, { x: 52, y: 140, label: 'Agents' }, { x: 268, y: 140, label: 'Multimodal' }].map(({ x, y, label }, n) => (
-                <g key={label}><circle className="identity-node" style={{ animationDelay: `${n * .6}s` }} cx={x} cy={y} r="20" stroke="#67e8f9" strokeOpacity=".45" /><circle cx={x} cy={y} r="4" fill="#a5f3fc" /><text x={x} y={y + 35} textAnchor="middle" fill="#e2e8f0" fontSize="11">{label}</text></g>
-              ))}
-              <circle cx="160" cy="90" r="37" fill="#0f172a" stroke="#67e8f9" strokeOpacity=".7" />
-              <text x="160" y="94" textAnchor="middle" fill="#cffafe" fontSize="13" fontWeight="600" letterSpacing="1">SUANLAB</text>
-            </svg>
-          </div>
+          <HomeResearchNetwork />
           <p className="mb-2 border-b border-white/20 pb-4 text-xs font-medium uppercase tracking-[0.16em] text-slate-200">Research / Practice / Education</p>
           {connections.map((item, position) => (
             <Link key={item.href} href={item.href} className="group flex items-start gap-4 rounded-lg py-4 transition-colors hover:bg-white/5">

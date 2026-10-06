@@ -97,13 +97,18 @@
 .identity-cursor-start { right: auto; left: 0; }
 .identity-hero[data-motion="paused"] .identity-cursor { display: none; }
 .identity-hero :focus-visible { outline-color: #67e8f9; }
-.identity-signal { animation: identity-flow 6s linear infinite; }
-.identity-node { transform-box: fill-box; transform-origin: center; animation: identity-pulse 4s ease-in-out infinite; }
-.identity-hero[data-motion="paused"] .identity-signal,
-.identity-hero[data-motion="paused"] .identity-node { animation-play-state: paused; }
+.research-link-signal { animation: research-signal-flow 3s linear infinite; }
+.research-orbit { transform-origin: 180px 130px; animation: research-orbit 12s linear infinite; }
+.research-orbit-reverse { animation-direction: reverse; animation-duration: 18s; }
+.research-node-aura, .research-node-core, .research-hub-aura {
+  transform-box: fill-box; transform-origin: center; animation: research-node-pulse 3s ease-in-out infinite;
+}
+.research-hub-aura { animation-duration: 4s; }
+.identity-hero[data-motion="paused"] .research-network * { animation-play-state: paused; }
 @keyframes identity-blink { 50% { opacity: 0; } }
-@keyframes identity-flow { to { stroke-dashoffset: -216; } }
-@keyframes identity-pulse { 0%, 100% { opacity: .5; transform: scale(.95); } 50% { opacity: 1; transform: scale(1.12); } }
+@keyframes research-signal-flow { to { stroke-dashoffset: -100; } }
+@keyframes research-orbit { to { transform: rotate(360deg); } }
+@keyframes research-node-pulse { 0%,100% { opacity: .45; transform: scale(.9); } 50% { opacity: 1; transform: scale(1.18); } }
 @media (max-width: 639px) {
   .identity-photo-shade { background: linear-gradient(180deg, rgb(2 6 23 / .87), rgb(2 6 23 / .70) 60%, rgb(2 6 23 / .82)); }
 }
@@ -116,6 +121,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .research-network * { animation: none !important; transform: none !important; }
+  .research-link-signal { opacity: .5; }
   .identity-animated-term { display: none; }
   .identity-static-term, .identity-variable-empty { display: inline-block; }
   .identity-letter, .identity-copy { opacity: 1 !important; transform: none !important; }

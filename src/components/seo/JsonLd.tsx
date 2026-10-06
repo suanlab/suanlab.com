@@ -11,7 +11,7 @@ export function OrganizationJsonLd() {
     name: 'SuanLab',
     alternateName: '수안랩',
     url: BASE_URL,
-    logo: `${BASE_URL}/assets/images/logo.png`,
+    logo: `${BASE_URL}/assets/images/logo.svg`,
     description:
       site.description,
     foundingDate: '2021',
@@ -166,7 +166,7 @@ export function ArticleJsonLd({
       name: 'SuanLab',
       logo: {
         '@type': 'ImageObject',
-        url: `${BASE_URL}/assets/images/logo.png`,
+        url: `${BASE_URL}/assets/images/logo.svg`,
       },
     },
     image: image || `${BASE_URL}/assets/images/og-image.jpg`,
@@ -271,7 +271,7 @@ export function VideoCollectionJsonLd({ videos }: VideoJsonLdProps) {
       name: 'SuanLab',
       logo: {
         '@type': 'ImageObject',
-        url: `${BASE_URL}/assets/images/logo.png`,
+        url: `${BASE_URL}/assets/images/logo.svg`,
       },
     },
   }));

@@ -68,6 +68,12 @@ mobile headers show and update up to 64 edges. QT uses the same field in its exi
 Animation pauses offscreen, in hidden tabs, through the pause control, and when
 reduced motion is requested.
 
+The shared header logo is `public/assets/images/logo.svg`, with vector
+geometry and traced lettering preserving the original artwork and no embedded bitmap or font dependency.
+The PNG remains available for RSS readers. The homepage research graphic in
+`HomeResearchNetwork` connects all five nodes with ten connections and bidirectional signals;
+its motion follows the hero pause and reduced-motion controls.
+
 ## Contact email drafts
 
 The contact form prepares a Gmail web draft or opens the visitor's email app;

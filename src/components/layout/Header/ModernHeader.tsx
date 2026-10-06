@@ -65,7 +65,7 @@ export default function ModernHeader() {
         {/* Logo */}
         <Link ref={logoRef} href="/" className="flex items-center space-x-2 shrink-0">
           <Image
-            src="/assets/images/logo.png"
+            src="/assets/images/logo.svg"
             alt="SuanLab"
             width={305}
             height={80}

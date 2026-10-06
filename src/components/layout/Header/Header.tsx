@@ -58,7 +58,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="logo pull-left">
             <Image
-              src="/assets/images/logo.png"
+              src="/assets/images/logo.svg"
               alt="SuanLab"
               width={240}
               height={63}
