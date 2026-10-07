@@ -8,6 +8,8 @@ export interface OverseasExperience {
 }
 
 export const overseasExperiences: OverseasExperience[] = [
+  { id: 38, purpose: 'KDD 2026', countries: ['한국'], cities: '제주도', period: '2026.08', year: 2026 },
+  { id: 39, purpose: 'UAI 2026', countries: ['네덜란드', '벨기에'], cities: '암스테르담, 로테르담, 안트베르펜, 헨트, 브뤼허, 브뤼셀', period: '2026.08', year: 2026 },
   { id: 33, purpose: '캐나다 횡단 여행', countries: ['캐나다'], cities: '토론토, 몬트리올, 퀘벡, 캘거리, 밴프, 재스퍼, 벤쿠버, 빅토리아', period: '2026.07', year: 2026 },
   { id: 35, purpose: 'CVPR 2026', countries: ['미국'], cities: '덴버', period: '2026.06', year: 2026 },
   { id: 36, purpose: 'DASFAA 2026', countries: ['한국'], cities: '제주도', period: '2026.04', year: 2026 },
@@ -60,6 +62,8 @@ export const visitedCountries = [
   { name: '이스라엘', code: 'IL', iso: '376', flag: '🇮🇱', continent: 'Asia' },
   { name: '튀르키예', code: 'TR', iso: '792', flag: '🇹🇷', continent: 'Asia' },
   { name: '호주', code: 'AU', iso: '036', flag: '🇦🇺', continent: 'Oceania' },
+  { name: '네덜란드', code: 'NL', iso: '528', flag: '🇳🇱', continent: 'Europe' },
+  { name: '벨기에', code: 'BE', iso: '056', flag: '🇧🇪', continent: 'Europe' },
   { name: '독일', code: 'DE', iso: '276', flag: '🇩🇪', continent: 'Europe' },
   { name: '프랑스', code: 'FR', iso: '250', flag: '🇫🇷', continent: 'Europe' },
   { name: '스위스', code: 'CH', iso: '756', flag: '🇨🇭', continent: 'Europe' },
@@ -85,7 +89,7 @@ export const continentColors: Record<string, string> = {
 
 // 통계
 export const overseasStats = {
-  totalCountries: 24,
-  totalTrips: 35,
+  totalCountries: visitedCountries.length,
+  totalTrips: overseasExperiences.length,
   totalYears: 18, // 2008 ~ 2026
 };
