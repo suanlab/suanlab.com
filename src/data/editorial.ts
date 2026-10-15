@@ -3,16 +3,16 @@ import type { ConferenceVenue } from '@/lib/publication-groups';
 // Homepage Top Conf selection; editorial order breaks ties within the same month.
 // Add venues explicitly. Publication dates alone do not establish eligibility.
 export const featuredConferenceVenues: ConferenceVenue[] = [
-  { id: 'neurips', acronym: 'NeurIPS', name: 'Conference on Neural Information Processing Systems', aliases: ['NIPS'] },
-  { id: 'accv', acronym: 'ACCV', name: 'Asian Conference on Computer Vision' },
-  { id: 'aacl-ijcnlp', acronym: 'AACL-IJCNLP', name: 'Asia Pacific Chapter of ACL and IJCNLP Joint Conference' },
-  { id: 'icdm', acronym: 'ICDM', name: 'IEEE International Conference on Data Mining' },
-  { id: 'emnlp', acronym: 'EMNLP', name: 'Conference on Empirical Methods in Natural Language Processing' },
-  { id: 'ecml-pkdd', acronym: 'ECML-PKDD', name: 'European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases', aliases: ['ECML PKDD'] },
-  { id: 'uai', acronym: 'UAI', name: 'Conference on Uncertainty in Artificial Intelligence' },
-  { id: 'kdd', acronym: 'KDD', name: 'ACM SIGKDD Conference on Knowledge Discovery and Data Mining' },
-  { id: 'cvpr', acronym: 'CVPR', name: 'IEEE/CVF Conference on Computer Vision and Pattern Recognition' },
-  { id: 'aaai', acronym: 'AAAI', name: 'AAAI Conference on Artificial Intelligence' },
+  { id: 'neurips', acronym: 'NeurIPS', name: 'Conference on Neural Information Processing Systems', homepageUrl: 'https://neurips.cc/Conferences/2026', aliases: ['NIPS'] },
+  { id: 'accv', acronym: 'ACCV', name: 'Asian Conference on Computer Vision', homepageUrl: 'https://accv2026.org/' },
+  { id: 'aacl-ijcnlp', acronym: 'AACL-IJCNLP', name: 'Asia Pacific Chapter of ACL and IJCNLP Joint Conference', homepageUrl: 'https://2026.aaclnet.org/' },
+  { id: 'icdm', acronym: 'ICDM', name: 'IEEE International Conference on Data Mining', homepageUrl: 'https://www3.cs.stonybrook.edu/~icdm2026/index.html' },
+  { id: 'emnlp', acronym: 'EMNLP', name: 'Conference on Empirical Methods in Natural Language Processing', homepageUrl: 'https://2026.emnlp.org/' },
+  { id: 'ecml-pkdd', acronym: 'ECML-PKDD', name: 'European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases', homepageUrl: 'https://ecmlpkdd.org/', aliases: ['ECML PKDD'] },
+  { id: 'uai', acronym: 'UAI', name: 'Conference on Uncertainty in Artificial Intelligence', homepageUrl: 'https://auai.org/uai2026/' },
+  { id: 'kdd', acronym: 'KDD', name: 'ACM SIGKDD Conference on Knowledge Discovery and Data Mining', homepageUrl: 'https://kdd2026.kdd.org/' },
+  { id: 'cvpr', acronym: 'CVPR', name: 'IEEE/CVF Conference on Computer Vision and Pattern Recognition', homepageUrl: 'https://cvpr.thecvf.com/Conferences/2026' },
+  { id: 'aaai', acronym: 'AAAI', name: 'AAAI Conference on Artificial Intelligence', homepageUrl: 'https://aaai.org/conference/aaai/aaai-26/' },
 ];
 // Use declared project status; dates alone do not establish completion.
 export const featuredProjectIds = [50, 2];

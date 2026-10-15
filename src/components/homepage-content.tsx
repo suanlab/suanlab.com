@@ -76,10 +76,10 @@ export function HomepageContent({
               <Card key={group.id} data-publication-group={group.id} className="mb-5 inline-block w-full break-inside-avoid border-t-2 border-t-primary/60 align-top">
                 <CardHeader>
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <CardTitle className="text-xl">{group.conference.acronym} {group.year}</CardTitle>
+                    <CardTitle className="text-xl"><a href={group.conference.homepageUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-primary hover:underline">{group.conference.acronym} {group.year}<ExternalLink aria-hidden="true" className="h-4 w-4" /></a></CardTitle>
                     <Badge variant="secondary">{group.papers.length}{language === 'ko' ? '편' : group.papers.length === 1 ? ' paper' : ' papers'}</Badge>
                   </div>
-                  <CardDescription className="leading-6">{group.conference.name}</CardDescription>
+                  <CardDescription className="leading-6"><a href={group.conference.homepageUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:underline">{group.conference.name}</a></CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="divide-y">

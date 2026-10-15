@@ -2,6 +2,7 @@ export interface ConferenceVenue {
   id: string;
   acronym: string;
   name: string;
+  homepageUrl?: string;
   aliases?: string[];
 }
 

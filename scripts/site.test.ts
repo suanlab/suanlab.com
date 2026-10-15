@@ -199,6 +199,7 @@ test('conference grouping normalizes venue aliases, honors conference years and 
 });
 
 test('homepage shows all selected conference collections including UAI, KDD and accepted PINNBench', () => {
+  assert.ok(featuredConferenceVenues.every(venue => venue.homepageUrl?.startsWith('https://')));
   const groups = groupConferencePublications(publications, featuredConferenceVenues);
   assert.ok(groups.length > 6);
   assert.equal(new Set(groups.map(g => g.id)).size, groups.length);

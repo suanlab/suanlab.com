@@ -52,6 +52,7 @@ unique(urls, 'sitemap');
 const routes = new Set(urls);
 for (const id of Object.keys(projectSummaries)) assert.ok(projects.some(p => p.id === Number(id)), `Unknown project summary: ${id}`);
 unique(featuredConferenceVenues.map(venue => venue.id), 'featured conference venues');
+for (const venue of featuredConferenceVenues) assert.match(venue.homepageUrl ?? '', /^https:\/\//, `Missing official conference homepage: ${venue.id}`);
 const publicationGroups = groupConferencePublications(publications, featuredConferenceVenues);
 assert.ok(publicationGroups.length >= 6, 'Not enough Top Conf groups for the homepage');
 unique(publicationGroups.map(group => group.id), 'conference publication groups');
