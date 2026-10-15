@@ -1,4 +1,4 @@
-import { featuredConferenceVenues, featuredConferenceGroupLimit, featuredProjectIds } from '@/data/editorial';
+import { featuredConferenceVenues, featuredProjectIds } from '@/data/editorial';
 import { groupConferencePublications } from '@/lib/publication-groups';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
@@ -39,7 +39,7 @@ export default async function Home() {
   return (
     <HomepageContent
       recentPosts={recentPosts}
-      publicationGroups={groupConferencePublications(publications, featuredConferenceVenues).slice(0, featuredConferenceGroupLimit)}
+      publicationGroups={groupConferencePublications(publications, featuredConferenceVenues)}
       featuredProjects={featuredProjectIds.map(id => projects.find(project => project.id === id)!)}
       stats={{
         publications: publications.length,

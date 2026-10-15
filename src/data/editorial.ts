@@ -14,8 +14,6 @@ export const featuredConferenceVenues: ConferenceVenue[] = [
   { id: 'cvpr', acronym: 'CVPR', name: 'IEEE/CVF Conference on Computer Vision and Pattern Recognition' },
   { id: 'aaai', acronym: 'AAAI', name: 'AAAI Conference on Artificial Intelligence' },
 ];
-export const featuredConferenceGroupLimit = 6;
-
 // Use declared project status; dates alone do not establish completion.
 export const featuredProjectIds = [50, 2];
 

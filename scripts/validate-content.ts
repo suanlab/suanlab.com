@@ -17,7 +17,7 @@ import { getAllQTEntries, getQTSlugs } from '../src/lib/qt';
 import { getBookSlugs } from '../src/lib/books';
 import { getPostSlugs } from '../src/lib/blog';
 import { mainNavigation } from '../src/data/site-navigation';
-import { featuredConferenceVenues, featuredConferenceGroupLimit, featuredProjectIds, projectSummaries, researchLinks, learningPaths } from '../src/data/editorial';
+import { featuredConferenceVenues, featuredProjectIds, projectSummaries, researchLinks, learningPaths } from '../src/data/editorial';
 
 function unique(values: (number | string)[], label: string) {
   assert.equal(new Set(values).size, values.length, `${label}: duplicate identifiers`);
@@ -53,7 +53,7 @@ const routes = new Set(urls);
 for (const id of Object.keys(projectSummaries)) assert.ok(projects.some(p => p.id === Number(id)), `Unknown project summary: ${id}`);
 unique(featuredConferenceVenues.map(venue => venue.id), 'featured conference venues');
 const publicationGroups = groupConferencePublications(publications, featuredConferenceVenues);
-assert.ok(publicationGroups.length >= featuredConferenceGroupLimit, 'Not enough Top Conf groups for the homepage');
+assert.ok(publicationGroups.length >= 6, 'Not enough Top Conf groups for the homepage');
 unique(publicationGroups.map(group => group.id), 'conference publication groups');
 unique(publicationGroups.flatMap(group => group.papers.map(paper => paper.publication.id)), 'grouped conference papers');
 for (const id of featuredProjectIds) assert.ok(projects.some(p => p.id === id && !p.completed), `Featured project must be active: ${id}`);

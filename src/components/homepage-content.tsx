@@ -67,13 +67,13 @@ export function HomepageContent({
             <div>
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Top Conference Publications</p>
               <h2 id="selected-research" className="text-3xl font-semibold tracking-tight">{language === 'ko' ? '논문으로 만나는 SuanLab의 연구' : 'Research from SuanLab'}</h2>
-              <p className="mt-3 text-muted-foreground">{language === 'ko' ? '주요 국제학회 논문을 학회·연도별로 모았습니다. 최신 6개 묶음을 확인하세요.' : 'Explore our top conference papers by venue and year, starting with the six latest collections.'}</p>
+              <p className="mt-3 text-muted-foreground">{language === 'ko' ? '주요 국제학회 논문을 학회·연도별로 모았습니다.' : 'Explore our top conference papers by venue and year.'}</p>
             </div>
             <Link href="/publication" className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-primary hover:underline">{language === 'ko' ? '전체 연구 성과' : 'All publications'}<ArrowRight className="h-4 w-4" /></Link>
           </div>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="columns-1 gap-5 md:columns-2 xl:columns-3">
             {publicationGroups.map((group) => (
-              <Card key={group.id} data-publication-group={group.id} className="flex h-full flex-col border-t-2 border-t-primary/60">
+              <Card key={group.id} data-publication-group={group.id} className="mb-5 inline-block w-full break-inside-avoid border-t-2 border-t-primary/60 align-top">
                 <CardHeader>
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <CardTitle className="text-xl">{group.conference.acronym} {group.year}</CardTitle>
@@ -81,17 +81,14 @@ export function HomepageContent({
                   </div>
                   <CardDescription className="leading-6">{group.conference.name}</CardDescription>
                 </CardHeader>
-                <CardContent className="flex flex-1 flex-col">
-                  <ul className="mb-5 flex-1 divide-y">
+                <CardContent>
+                  <ul className="divide-y">
                     {group.papers.map(({ publication, track }) => <li key={publication.id} data-publication-id={publication.id} className="py-3 first:pt-0">
-                      {(track === 'findings' || group.papers.some(paper => paper.track === 'findings')) && <Badge variant="outline" className="mb-2 text-xs">{track === 'findings' ? 'Findings' : language === 'ko' ? '본회의' : 'Main track'}</Badge>}
+                      {(track === 'findings' || group.papers.some(paper => paper.track === 'findings')) && <Badge variant="outline" className="mb-2 text-xs">{track === 'findings' ? 'Findings' : 'Main'}</Badge>}
                       {publication.status === 'accepted' && <Badge variant="outline" className="mb-2 text-xs">Accepted</Badge>}
                       <Link href={`/publication/#publication-${publication.id}`} className="block text-sm font-medium leading-6 hover:text-primary hover:underline">{publication.title}</Link>
                     </li>)}
                   </ul>
-                  <Link href={`/publication/?q=${encodeURIComponent(`${group.conference.acronym} ${group.year}`)}`} className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
-                    {language === 'ko' ? '이 학회 논문 모두 보기' : 'View conference papers'}<ArrowRight aria-hidden="true" className="h-4 w-4" />
-                  </Link>
                 </CardContent>
               </Card>
             ))}

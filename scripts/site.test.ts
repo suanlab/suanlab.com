@@ -10,7 +10,7 @@ import { defaultPromptValues, normalizePromptValues, encodePromptShare, decodePr
 import { promptBuilders, promptSnippets } from '../src/data/prompts';
 import { promptWorkflows } from '../src/data/prompts/workflows';
 import { groupConferencePublications } from '../src/lib/publication-groups';
-import { featuredConferenceVenues, featuredConferenceGroupLimit } from '../src/data/editorial';
+import { featuredConferenceVenues } from '../src/data/editorial';
 import { publications } from '../src/data/publications';
 test('sitemap uses content slugs, not filenames or playlist IDs', () => {
   const urls = new Set(sitemap().map(p => new URL(p.url).pathname));
@@ -198,16 +198,18 @@ test('conference grouping normalizes venue aliases, honors conference years and 
   assert.equal(groups[2].month, 9);
 });
 
-test('homepage shows six distinct conference collections and includes PINNBench as accepted', () => {
-  const groups = groupConferencePublications(publications, featuredConferenceVenues).slice(0, featuredConferenceGroupLimit);
-  assert.equal(groups.length, 6);
-  assert.equal(new Set(groups.map(g => g.id)).size, 6);
-  assert.deepEqual(groups.map(g => g.id), ['neurips-2026', 'accv-2026', 'aacl-ijcnlp-2026', 'icdm-2026', 'emnlp-2026', 'ecml-pkdd-2026']);
+test('homepage shows all selected conference collections including UAI, KDD and accepted PINNBench', () => {
+  const groups = groupConferencePublications(publications, featuredConferenceVenues);
+  assert.ok(groups.length > 6);
+  assert.equal(new Set(groups.map(g => g.id)).size, groups.length);
+  assert.deepEqual(groups.map(g => g.id).slice(0, 6), ['neurips-2026', 'accv-2026', 'aacl-ijcnlp-2026', 'icdm-2026', 'emnlp-2026', 'ecml-pkdd-2026']);
+  assert.ok(groups.some(g => g.id === 'uai-2026'));
+  assert.ok(groups.some(g => g.id === 'kdd-2026'));
   assert.equal(groups.find(g => g.id === 'accv-2026')?.papers.length, 4);
   const aacl = groups.find(g => g.id === 'aacl-ijcnlp-2026')!;
   assert.equal(aacl.papers.length, 5);
   assert.equal(aacl.papers.filter(p => p.track === 'findings').length, 3);
-  const pinnbench = groups[0].papers[0].publication;
+  const pinnbench = groups.find(g => g.id === 'neurips-2026')!.papers[0].publication;
   assert.equal(pinnbench.title, 'PINNBench: A Benchmark for Training Policy Selection in Hybrid PINN-Operator Solvers');
   assert.equal(pinnbench.authors, 'Suan Lee, Namhyeon Kim, and Dongmin Jin');
   assert.equal(pinnbench.status, 'accepted');
