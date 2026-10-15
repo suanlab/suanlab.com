@@ -42,9 +42,12 @@ Use the content loaders for all route lists; do not independently recreate slugs
 Historical `Header.tsx`/`Footer.tsx` and `src/data/navigation.ts` are legacy;
 the live shell uses `ModernHeader` and `ModernFooter`.
 
-`src/data/editorial.ts` defines the ordered featured publications with selection
-reasons, featured active projects, stable research-to-publication/project/course IDs,
-and learning paths. Update it deliberately rather than relying on array order.
+`src/data/editorial.ts` defines the homepage Top Conf venue selection and six-card
+limit, featured active projects, stable research-to-publication/project/course IDs,
+and learning paths. Homepage conference papers are grouped by venue and conference
+year, then sorted by year/month; editorial venue order breaks date ties. Findings
+share the conference card but keep their own label; journals and workshops are
+excluded. Counts and paper links come from `src/data/publications/` automatically.
 Research relationships indicate shared topics, not funding or authorship claims.
 Blog reading suggestions are separately labeled keyword matches. Search covers
 research outputs, projects, courses, online books, videos, posts and prompts.

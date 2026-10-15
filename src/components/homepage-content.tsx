@@ -12,11 +12,12 @@ import { useLanguage } from '@/components/language-provider';
 import type { BlogPostMeta } from '@/lib/blog';
 import type { Project } from '@/data/projects';
 import type { Publication } from '@/data/publications';
+import type { ConferencePublicationGroup } from '@/lib/publication-groups';
 import type { MediaArticle } from '@/data/media';
 
 interface HomepageContentProps {
   recentPosts: BlogPostMeta[];
-  selectedPublications: (Publication & { reasonKo: string; reasonEn: string })[];
+  publicationGroups: ConferencePublicationGroup<Publication>[];
   featuredProjects: Project[];
   stats: {
     publications: number;
@@ -41,7 +42,7 @@ const youtubeTopics = ['Python Programming', 'Data Science', 'Machine Learning',
 
 export function HomepageContent({
   recentPosts,
-  selectedPublications,
+  publicationGroups,
   featuredProjects,
   stats,
   mediaArticles,
@@ -64,20 +65,34 @@ export function HomepageContent({
         <div className="container">
           <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Selected Publications</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Top Conference Publications</p>
               <h2 id="selected-research" className="text-3xl font-semibold tracking-tight">{language === 'ko' ? '논문으로 만나는 SuanLab의 연구' : 'Research from SuanLab'}</h2>
-              <p className="mt-3 text-muted-foreground">{language === 'ko' ? '신경망 방법론부터 실제 환경의 센싱과 생성 모델까지.' : 'From neural network methods to sensing and generation in real environments.'}</p>
+              <p className="mt-3 text-muted-foreground">{language === 'ko' ? '주요 국제학회 논문을 학회·연도별로 모았습니다. 최신 6개 묶음을 확인하세요.' : 'Explore our top conference papers by venue and year, starting with the six latest collections.'}</p>
             </div>
             <Link href="/publication" className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-primary hover:underline">{language === 'ko' ? '전체 연구 성과' : 'All publications'}<ArrowRight className="h-4 w-4" /></Link>
           </div>
-          <div className="grid gap-5 lg:grid-cols-3">
-            {selectedPublications.map((publication) => (
-              <Card key={publication.id} className="relative flex h-full flex-col overflow-hidden border-t-2 border-t-primary/60">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {publicationGroups.map((group) => (
+              <Card key={group.id} data-publication-group={group.id} className="flex h-full flex-col border-t-2 border-t-primary/60">
                 <CardHeader>
-                  <p className="mb-3 text-xs font-medium text-primary">{publication.venue} · {publication.date}</p>
-                  <CardTitle className="text-lg leading-relaxed"><a href={publication.url || '/publication/'} target={publication.url ? '_blank' : undefined} rel={publication.url ? 'noopener noreferrer' : undefined} className="hover:text-primary">{publication.title}</a></CardTitle>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <CardTitle className="text-xl">{group.conference.acronym} {group.year}</CardTitle>
+                    <Badge variant="secondary">{group.papers.length}{language === 'ko' ? '편' : group.papers.length === 1 ? ' paper' : ' papers'}</Badge>
+                  </div>
+                  <CardDescription className="leading-6">{group.conference.name}</CardDescription>
                 </CardHeader>
-                <CardContent className="mt-auto"><p className="mb-4 text-sm leading-relaxed">{language === 'ko' ? publication.reasonKo : publication.reasonEn}</p><p className="text-sm leading-relaxed text-muted-foreground">{publication.authors}</p>{publication.badge && <Badge variant="secondary" className="mt-4">{publication.badge}</Badge>}</CardContent>
+                <CardContent className="flex flex-1 flex-col">
+                  <ul className="mb-5 flex-1 divide-y">
+                    {group.papers.map(({ publication, track }) => <li key={publication.id} data-publication-id={publication.id} className="py-3 first:pt-0">
+                      {(track === 'findings' || group.papers.some(paper => paper.track === 'findings')) && <Badge variant="outline" className="mb-2 text-xs">{track === 'findings' ? 'Findings' : language === 'ko' ? '본회의' : 'Main track'}</Badge>}
+                      {publication.status === 'accepted' && <Badge variant="outline" className="mb-2 text-xs">Accepted</Badge>}
+                      <Link href={`/publication/#publication-${publication.id}`} className="block text-sm font-medium leading-6 hover:text-primary hover:underline">{publication.title}</Link>
+                    </li>)}
+                  </ul>
+                  <Link href={`/publication/?q=${encodeURIComponent(`${group.conference.acronym} ${group.year}`)}`} className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
+                    {language === 'ko' ? '이 학회 논문 모두 보기' : 'View conference papers'}<ArrowRight aria-hidden="true" className="h-4 w-4" />
+                  </Link>
+                </CardContent>
               </Card>
             ))}
           </div>

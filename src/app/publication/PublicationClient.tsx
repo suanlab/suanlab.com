@@ -216,6 +216,7 @@ export default function PublicationClient({
                           {pub.badge}
                         </Badge>
                       )}
+                      {pub.status === 'accepted' && <Badge variant="outline" className="text-xs">Accepted</Badge>}
                       {pub.impact && (
                         <Badge
                           variant="outline"

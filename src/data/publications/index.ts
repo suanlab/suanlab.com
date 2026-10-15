@@ -12,6 +12,7 @@ export interface Publication {
   url?: string;
   badge?: string;
   impact?: string;
+  status?: 'accepted';
 }
 
 const typeLabels: Record<PublicationType, string> = {
@@ -336,6 +337,16 @@ export const publications: Publication[] = [
     "keywords": "프로야구; 타순; 기계학습; 회귀 모델; 득점력"
   },
   // ============ 2026 International Conferences ============
+  {
+    "id": 657,
+    "type": "conference",
+    "title": "PINNBench: A Benchmark for Training Policy Selection in Hybrid PINN-Operator Solvers",
+    "authors": "Suan Lee, Namhyeon Kim, and Dongmin Jin",
+    "venue": "Conference on Neural Information Processing Systems (NeurIPS 2026)",
+    "date": "December 2026",
+    "badge": "NeurIPS 2026",
+    "status": "accepted"
+  },
   {
     "id": 648,
     "type": "conference",

@@ -8,6 +8,7 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import sitemap from '../src/app/sitemap';
 import { publications } from '../src/data/publications';
+import { groupConferencePublications } from '../src/lib/publication-groups';
 import { projects } from '../src/data/projects';
 import { lectures } from '../src/data/lectures';
 import { playlists } from '../src/data/youtube';
@@ -16,7 +17,7 @@ import { getAllQTEntries, getQTSlugs } from '../src/lib/qt';
 import { getBookSlugs } from '../src/lib/books';
 import { getPostSlugs } from '../src/lib/blog';
 import { mainNavigation } from '../src/data/site-navigation';
-import { featuredPublications, featuredProjectIds, projectSummaries, researchLinks, learningPaths } from '../src/data/editorial';
+import { featuredConferenceVenues, featuredConferenceGroupLimit, featuredProjectIds, projectSummaries, researchLinks, learningPaths } from '../src/data/editorial';
 
 function unique(values: (number | string)[], label: string) {
   assert.equal(new Set(values).size, values.length, `${label}: duplicate identifiers`);
@@ -50,8 +51,11 @@ const urls = sitemap().map(entry => new URL(entry.url).pathname.replace(/\/$/, '
 unique(urls, 'sitemap');
 const routes = new Set(urls);
 for (const id of Object.keys(projectSummaries)) assert.ok(projects.some(p => p.id === Number(id)), `Unknown project summary: ${id}`);
-unique(featuredPublications.map(p => p.id), 'featured publications');
-for (const selection of featuredPublications) assert.ok(publications.some(p => p.id === selection.id), `Missing featured publication: ${selection.id}`);
+unique(featuredConferenceVenues.map(venue => venue.id), 'featured conference venues');
+const publicationGroups = groupConferencePublications(publications, featuredConferenceVenues);
+assert.ok(publicationGroups.length >= featuredConferenceGroupLimit, 'Not enough Top Conf groups for the homepage');
+unique(publicationGroups.map(group => group.id), 'conference publication groups');
+unique(publicationGroups.flatMap(group => group.papers.map(paper => paper.publication.id)), 'grouped conference papers');
 for (const id of featuredProjectIds) assert.ok(projects.some(p => p.id === id && !p.completed), `Featured project must be active: ${id}`);
 assert.deepEqual(Object.keys(researchLinks).sort(), researchAreas.map(p => p.slug).sort(), 'Every research area needs curated links');
 for (const [slug, links] of Object.entries(researchLinks)) {

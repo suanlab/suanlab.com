@@ -9,6 +9,9 @@ import { conferences } from '../src/data/conferences';
 import { defaultPromptValues, normalizePromptValues, encodePromptShare, decodePromptShare, detectPromptVariables, substitutePromptVariables } from '../src/lib/prompt-state';
 import { promptBuilders, promptSnippets } from '../src/data/prompts';
 import { promptWorkflows } from '../src/data/prompts/workflows';
+import { groupConferencePublications } from '../src/lib/publication-groups';
+import { featuredConferenceVenues, featuredConferenceGroupLimit } from '../src/data/editorial';
+import { publications } from '../src/data/publications';
 test('sitemap uses content slugs, not filenames or playlist IDs', () => {
   const urls = new Set(sitemap().map(p => new URL(p.url).pathname));
   assert.ok(urls.has('/lecture/ai/'));
@@ -157,4 +160,55 @@ test('research workflows resolve builders and new prompts produce both language 
   }
   const writing = promptBuilders.find(b => b.id === 'writing')!.generate({ venue: 'neurips' });
   assert.ok(!writing.includes('neurips_2024'));
+});
+
+test('conference groups separate years, retain Findings and exclude journals and workshops', () => {
+  const venues = [{ id: 'accv', acronym: 'ACCV', name: 'Asian Conference on Computer Vision' }, { id: 'acl', acronym: 'ACL', name: 'Annual Meeting of the ACL' }];
+  const paper = { type: 'conference', venue: 'Asian Conference on Computer Vision (ACCV 2026)', date: 'December 2026' };
+  const input = [
+    { ...paper, id: 1 }, { ...paper, id: 2 },
+    { ...paper, id: 3, venue: 'ACCV 2025', date: 'December 2025' },
+    { ...paper, id: 4, type: 'journal' },
+    { ...paper, id: 5, type: 'workshop' },
+    { ...paper, id: 6, venue: 'ACCV 2026 Workshop' },
+    { ...paper, id: 7, venue: 'Unselected Conference 2026' },
+    { ...paper, id: 8, venue: 'NAACL 2026', date: 'July 2026' },
+    { ...paper, id: 9, venue: 'Findings of ACL 2026', date: 'July 2026' },
+    { ...paper, id: 10, venue: 'ACL 2026 Student Research Workshop' },
+  ];
+  const groups = groupConferencePublications(input, venues);
+  assert.deepEqual(groups.map(g => g.id), ['accv-2026', 'acl-2026', 'accv-2025']);
+  assert.deepEqual(groups[0].papers.map(p => p.publication.id), [1, 2]);
+  assert.equal(groups[1].papers[0].track, 'findings');
+  assert.deepEqual(groupConferencePublications(input, venues, { includeFindings: false }).map(g => g.id), ['accv-2026', 'accv-2025']);
+  assert.deepEqual(groupConferencePublications([...input].reverse(), venues).map(g => g.id), groups.map(g => g.id));
+});
+
+test('conference grouping normalizes venue aliases, honors conference years and sorts months', () => {
+  const venues = [{ id: 'ecml', acronym: 'ECML-PKDD', name: 'European Conference on Machine Learning', aliases: ['ECML PKDD'] }, { id: 'accv', acronym: 'ACCV', name: 'Asian Conference on Computer Vision' }];
+  const groups = groupConferencePublications([
+    { type: 'conference', venue: 'ECML–PKDD 2026', date: 'September 2026' },
+    { type: 'conference', venue: 'ECML PKDD', badge: 'ECML-PKDD 2026', date: '2026.09' },
+    { type: 'conference', venue: 'ACCV 2026', date: '2026년 12월' },
+    { type: 'conference', venue: 'ACCV 2027', date: 'December 2026' },
+    { type: 'conference', venue: 'ACCV', date: 'TBA' },
+  ], venues);
+  assert.deepEqual(groups.map(g => g.id), ['accv-2027', 'accv-2026', 'ecml-2026']);
+  assert.equal(groups[2].papers.length, 2);
+  assert.equal(groups[2].month, 9);
+});
+
+test('homepage shows six distinct conference collections and includes PINNBench as accepted', () => {
+  const groups = groupConferencePublications(publications, featuredConferenceVenues).slice(0, featuredConferenceGroupLimit);
+  assert.equal(groups.length, 6);
+  assert.equal(new Set(groups.map(g => g.id)).size, 6);
+  assert.deepEqual(groups.map(g => g.id), ['neurips-2026', 'accv-2026', 'aacl-ijcnlp-2026', 'icdm-2026', 'emnlp-2026', 'ecml-pkdd-2026']);
+  assert.equal(groups.find(g => g.id === 'accv-2026')?.papers.length, 4);
+  const aacl = groups.find(g => g.id === 'aacl-ijcnlp-2026')!;
+  assert.equal(aacl.papers.length, 5);
+  assert.equal(aacl.papers.filter(p => p.track === 'findings').length, 3);
+  const pinnbench = groups[0].papers[0].publication;
+  assert.equal(pinnbench.title, 'PINNBench: A Benchmark for Training Policy Selection in Hybrid PINN-Operator Solvers');
+  assert.equal(pinnbench.authors, 'Suan Lee, Namhyeon Kim, and Dongmin Jin');
+  assert.equal(pinnbench.status, 'accepted');
 });
