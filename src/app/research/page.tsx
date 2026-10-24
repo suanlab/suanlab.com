@@ -1,3 +1,4 @@
+import { ResearchStory } from '@/components/motion/research-story';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -58,6 +59,8 @@ export default function ResearchPage() {
         subtitleKey="pageheader.research.subtitle"
         breadcrumbs={[{ label: 'Research' }]}
       />
+
+      <ResearchStory />
 
       <section className="py-16 md:py-20">
         <div className="container">

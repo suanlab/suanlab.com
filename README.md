@@ -41,6 +41,31 @@ theme. Comments initialize once after the theme resolves; later theme/language
 changes preserve drafts. The embed waits until the browser mounts to keep streamed
 article hydration consistent with the exported HTML.
 
+## Motion design
+
+Shared motion lives in `src/components/motion/` and `src/styles/motion.css`.
+Use `data-motion-reveal` for a one-time viewport entrance; shared cards already
+include it. Content stays visible in exported HTML and without JavaScript.
+Entrances preserve text opacity so labels keep their contrast while moving.
+`MotionList` / `MotionItem` animate filtered results with lazy-loaded Motion layout
+features. Keep stable item keys and preserve focus on the search field.
+
+The hero and page-title pause controls share a site-wide preference with the footer.
+The choice survives navigation/reload and also works when storage is denied.
+OS reduced-motion settings take precedence. Decorative scenes pause outside the
+viewport or when the tab is hidden; counters expose their final value to readers.
+Buttons use 180ms, list movement 240ms and entrances 480ms; mobile entrances move
+8px rather than 16px. The research page follows four scroll stages with normal
+document scrolling. Publication timeline counts come from publication records;
+map routes are schematic connections within selected trip records.
+
+`npm run check:browser` includes `scripts/check-motion.cjs` for pause preferences,
+reduced motion, research stages, timeline filters, map routes, denied storage,
+no-JavaScript content, and runtime/hydration errors. Results and screenshots go to
+`.runtime/motion-check.json` and `.runtime/motion-*.png`.
+Accessibility sweeps await finite entrance animations and font loading before
+measuring the settled layout; continuous decorative loops keep running.
+
 ## Where to edit
 
 Blog filters use `?q=...&category=...&tag=...&page=2`; QT uses

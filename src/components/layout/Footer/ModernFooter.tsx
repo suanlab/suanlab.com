@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/components/language-provider';
+import { MotionControls } from '@/components/motion/motion-provider';
 import { researchAreas } from '@/data/research';
 import { site } from '@/config/site';
 import Link from 'next/link';
@@ -46,6 +47,7 @@ export default function ModernFooter() {
             <p className="text-sm text-muted-foreground leading-relaxed">
               {t('footer.about') as string}
             </p>
+            <MotionControls />
             <div className="flex space-x-3">
               {socialLinks.map((social) => (
                 <a

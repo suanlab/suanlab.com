@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { geoEqualEarth, geoPath } from 'd3-geo';
 import { feature } from 'topojson-client';
 import { visitedCountries, overseasExperiences } from '@/data/overseas-experiences';
 import { useLanguage } from '@/components/language-provider';
+import { useSceneActivity } from '@/components/motion/use-scene-activity';
 
 const W = 800;
 const H = 420;
@@ -30,6 +31,11 @@ interface GeoFeature {
 
 export function VisitedCountriesMap() {
   const { language } = useLanguage();
+  const tripInput = useId();
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const running = useSceneActivity(sceneRef);
+  const [tripId, setTripId] = useState(overseasExperiences[0]?.id ?? 0);
+  const trip = overseasExperiences.find(item => item.id === tripId);
   const [loadError, setLoadError] = useState(false);
   const [loadVersion, setLoadVersion] = useState(0);
   const [topo, setTopo] = useState<{ objects: { countries: unknown } } | null>(null);
@@ -92,7 +98,7 @@ export function VisitedCountriesMap() {
 
   if (!view) {
     return (
-      <div role="status" className="aspect-[800/420] w-full rounded-md bg-muted/40 flex flex-col gap-3 items-center justify-center">
+      <div ref={sceneRef} role="status" className="aspect-[800/420] w-full rounded-md bg-muted/40 flex flex-col gap-3 items-center justify-center">
         <span className="text-xs text-foreground">{loadError
           ? (language === 'ko' ? '지도를 불러오지 못했습니다.' : 'Could not load the map.')
           : (language === 'ko' ? '지도를 불러오는 중…' : 'Loading map…')}</span>
@@ -102,9 +108,15 @@ export function VisitedCountriesMap() {
   }
 
   return (
-    <div className="w-full">
+    <div ref={sceneRef} data-motion={running ? 'running' : 'paused'} className="visited-map w-full">
+      <label htmlFor={tripInput} className="mb-3 block text-xs font-medium">{language === 'ko' ? '여행·학회 경로' : 'Trip / conference route'}
+        <select id={tripInput} value={tripId} onChange={event => setTripId(Number(event.target.value))} className="mt-2 block w-full min-w-0 rounded-lg border bg-background p-2 text-xs">
+          {overseasExperiences.map(item => <option key={item.id} value={item.id}>{item.period} · {item.purpose}</option>)}
+        </select>
+      </label>
       <div className="relative w-full">
-        <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto rounded-md bg-background border" role="img" aria-label="Visited countries world map">
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto rounded-md bg-background border" role="img" aria-label={language === 'ko' ? '방문 국가 세계 지도' : 'Visited countries world map'}>
+          <desc>{trip ? `${trip.period} · ${trip.purpose} · ${trip.countries.join(', ')}` : ''}</desc>
           {view.sphere && <path d={view.sphere} fill="hsl(var(--muted))" fillOpacity="0.3" stroke="hsl(var(--border))" strokeWidth={0.5} />}
           {view.paths.map((p) => (
             <path
@@ -116,8 +128,21 @@ export function VisitedCountriesMap() {
               strokeWidth={0.4}
             />
           ))}
+          <g key={tripId} data-motion-reveal="route" aria-hidden="true">
+            {trip?.countries.slice(1).map((country, index) => {
+              const from = view.pins.find(pin => pin.name === trip.countries[index]);
+              const to = view.pins.find(pin => pin.name === country);
+              if (!from || !to || Math.abs(to.x - from.x) > W * .55) return null;
+              const d = `M${from.x},${from.y} Q${(from.x + to.x) / 2},${Math.max(12, Math.min(from.y, to.y) - Math.min(65, Math.hypot(to.x - from.x, to.y - from.y) * .4))} ${to.x},${to.y}`;
+              return <g key={`${from.iso}-${to.iso}`}>
+                <path data-motion-path className="map-route" d={d} pathLength="1" fill="none" stroke="hsl(var(--foreground))" strokeWidth="1.8" strokeOpacity=".6" />
+                <path className="map-route-signal" d={d} pathLength="1" fill="none" stroke="hsl(var(--primary))" strokeWidth="3" strokeDasharray=".12 .88" strokeLinecap="round" />
+              </g>;
+            })}
+          </g>
           {view.pins.map((p) => (
             <g key={p.iso} className="cursor-pointer">
+              {trip?.countries.includes(p.name) && <circle className="map-pin-halo" cx={p.x} cy={p.y} r="8" fill="none" stroke="hsl(var(--foreground))" strokeWidth="1.5" />}
               <circle
                 cx={p.x}
                 cy={p.y}
@@ -139,10 +164,14 @@ export function VisitedCountriesMap() {
           >
             <span className="mr-1">{hovered.flag}</span>
             <span className="font-medium">{hovered.name}</span>
-            <span className="text-muted-foreground"> · {hovered.trips}회 방문</span>
+            <span className="text-muted-foreground"> · {hovered.trips}{language === 'ko' ? '회 방문' : ' visits'}</span>
           </div>
         )}
       </div>
+
+      <p className="mt-2 text-[10px] leading-relaxed text-muted-foreground">{language === 'ko'
+        ? `${trip?.countries.join(' → ') ?? ''} · 국가 위치를 잇는 개략 경로입니다.`
+        : `${trip?.countries.join(' → ') ?? ''} · Schematic connections between country locations.`}</p>
 
       <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-muted-foreground">
         {Object.entries(CONTINENT_FILL).map(([c, color]) => (

@@ -1,5 +1,6 @@
 'use client';
 
+import { MotionList, MotionItem } from '@/components/motion/motion-list';
 import { updateListQuery } from '@/lib/list-query';
 import MenuDotField from '@/components/layout/PageHeader/MenuDotField';
 import { useLanguage } from '@/components/language-provider';
@@ -175,9 +176,9 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
 
           {/* By Bible Book */}
           <TabsContent value="bybook">
-            <div className="grid gap-4">
+            <MotionList className="grid gap-4">
               {filteredBooks.map((bookData) => (
-                <Card key={bookData.book} className="overflow-hidden">
+                <MotionItem key={bookData.book}><Card className="overflow-hidden">
                   <CardHeader className="bg-gradient-to-r from-amber-50 to-transparent dark:from-amber-950/30 py-4">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex flex-wrap items-center gap-3">
@@ -234,18 +235,17 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
                       )}
                     </div>
                   </CardContent>
-                </Card>
+                </Card></MotionItem>
               ))}
-            </div>
+            </MotionList>
           </TabsContent>
 
           {resultCount === 0 && <p role="status" className="py-8 text-center text-muted-foreground">{ko ? '검색 결과가 없습니다.' : 'No reflections found.'}</p>}
           {/* Recent Entries */}
           <TabsContent value="recent">
-            <div className="grid gap-3">
+            <MotionList className="grid gap-3">
               {filteredRecent.map((entry) => (
-                <Link
-                  key={entry.slug}
+                <MotionItem key={entry.slug}><Link data-motion-reveal
                   href={`/qt/${entry.slug}`}
                   className="block"
                 >
@@ -273,9 +273,9 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
                       </div>
                     </CardContent>
                   </Card>
-                </Link>
+                </Link></MotionItem>
               ))}
-            </div>
+            </MotionList>
           </TabsContent>
         </Tabs>
       </section>

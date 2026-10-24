@@ -29,6 +29,11 @@ export function HomeResearchNetwork() {
         <defs>
           <linearGradient id={gradient} x1="0" y1="0" x2="1" y2="1"><stop stopColor="#67e8f9" /><stop offset=".5" stopColor="#a78bfa" /><stop offset="1" stopColor="#34d399" /></linearGradient>
         </defs>
+        {Array.from({ length: 24 }, (_, i) => {
+          const node = nodes[i % nodes.length];
+          return <circle key={`particle-${i}`} className="research-particle" cx={node.x} cy={node.y} r={i % 3 ? 1.4 : 2.2} fill={node.color}
+            style={{ '--particle-x': `${(Math.cos(i * 2.4) * 38).toFixed(2)}px`, '--particle-y': `${(Math.sin(i * 2.4) * 42).toFixed(2)}px`, animationDelay: `${(-i * .29).toFixed(2)}s` } as React.CSSProperties} />;
+        })}
         {edges.map((edge, i) => <g key={`${edge.from}-${edge.to}`} data-from={edge.from} data-to={edge.to} className="research-connection">
           <path d={edge.d} stroke={nodes[i % nodes.length].color} strokeWidth="1" strokeOpacity=".25" />
           <path className="research-link-signal" d={edge.d} pathLength="100" stroke={nodes[i % nodes.length].color} strokeWidth="2.2" strokeLinecap="round" strokeDasharray="7 93" style={{ animationDelay: `${-i * .43}s`, animationDuration: `${2.8 + i % 4 * .5}s`, animationDirection: i % 2 ? 'reverse' : 'normal' }} />
@@ -47,6 +52,7 @@ export function HomeResearchNetwork() {
         <circle cx="180" cy="130" r="41" fill="#0f172a" stroke={`url(#${gradient})`} strokeWidth="1.5" />
         <text x="180" y="134" textAnchor="middle" fill="#cffafe" fontSize="13" fontWeight="600" letterSpacing="1">SUANLAB</text>
       </svg>
+      <p className="mt-2 text-center font-mono text-[9px] tracking-[.22em] text-cyan-100/80">DATA → MODELS → EVIDENCE</p>
     </div>
   );
 }

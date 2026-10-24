@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 const AxeBuilder = require('@axe-core/playwright').default;
+const { settleMotion } = require('./browser-motion.cjs');
 const base = process.env.SUANLAB_TEST_BASE || 'http://127.0.0.1:4175';
 const routes = ['/', '/suan/', '/research/', '/project/', '/publication/', '/lecture/',
   '/lecture/ai/present/', '/course/', '/youtube/', '/book/', '/blog/', '/search/',
@@ -87,6 +88,7 @@ const routes = ['/', '/suan/', '/research/', '/project/', '/publication/', '/lec
     assert.equal(await listPage.locator('[role="tabpanel"] a[href^="/qt/"]').count(), 1);
     for (const route of ['/qt/', '/qt/2015-02-01/']) {
       await go(listPage, route);
+      await settleMotion(listPage);
       const audit = await new AxeBuilder({ page: listPage }).analyze();
       fs.writeFileSync(`.runtime/qt-${route === '/qt/' ? 'list' : 'detail'}-accessibility.json`, JSON.stringify(audit.violations, null, 2));
       assert.equal(audit.violations.length, 0, `QT accessibility: ${route}`);

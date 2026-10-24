@@ -1,5 +1,6 @@
 'use client';
 
+import { MotionList, MotionItem } from '@/components/motion/motion-list';
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { promptsUpdatedAt, promptReferences } from '@/data/prompts/advanced';
@@ -379,12 +380,11 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
             L={L}
           />
         ) : (
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <MotionList className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {filteredBuilders.map((b) => {
               const Icon = ICONS[b.icon] ?? Wand2;
               return (
-                <BuilderCard
-                  key={b.id}
+                <MotionItem key={b.id} className="h-full"><BuilderCard
                   builder={b}
                   Icon={Icon}
                   isFav={favorites.includes(b.id)}
@@ -394,11 +394,11 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
                   catColor={catColor(b.category)}
                   L={L}
                   lang={language}
-                />
+                /></MotionItem>
               );
             })}
             {filteredBuilders.length === 0 && <EmptyState lang={language} />}
-          </div>
+          </MotionList>
         )}
       </TabsContent>
 
@@ -409,10 +409,9 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
             {language === 'ko' ? '내 프롬프트 추가' : 'Add my prompt'}
           </Button>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <MotionList className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {filteredSnippets.map((s) => (
-            <SnippetCard
-              key={s.id}
+            <MotionItem key={s.id} className="h-full"><SnippetCard
               snippet={s}
               isCustom={customIds.has(s.id)}
               expanded={expandedSnip === s.id}
@@ -427,10 +426,10 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
               catColor={catColor(s.category)}
               L={L}
               lang={language}
-            />
+            /></MotionItem>
           ))}
           {filteredSnippets.length === 0 && <EmptyState lang={language} />}
-        </div>
+        </MotionList>
       </TabsContent>
 
       <TabsContent value="workflows" className="mt-0">

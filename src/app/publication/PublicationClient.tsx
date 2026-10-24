@@ -1,5 +1,8 @@
 'use client';
 
+import { MotionList, MotionItem } from '@/components/motion/motion-list';
+import { PublicationTimeline } from '@/components/motion/publication-timeline';
+import { publicationYearCounts } from '@/components/motion/publication-timeline-data';
 import { useLanguage } from '@/components/language-provider';
 import { useState, useEffect } from 'react';
 import {
@@ -148,7 +151,8 @@ export default function PublicationClient({
   }
 
   return (
-    <div className="lg:col-span-3">
+    <div className="min-w-0 lg:col-span-3">
+      <PublicationTimeline years={publicationYearCounts(publications)} selected={year} onSelect={setYear} />
       <div className="mb-6 grid gap-3 sm:grid-cols-[1fr_auto]">
         <label className="text-sm">검색 / Search<input className="mt-2 block w-full rounded-lg border bg-background p-3" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={ko ? '제목, 저자, 학술지, 키워드' : 'Title, author, venue, keywords'} /></label>
         <label className="text-sm">연도 / Year<select className="mt-2 block w-full rounded-lg border bg-background p-3" value={year} onChange={(event) => setYear(event.target.value)}><option value="all">전체 / All</option>{years.map((value) => <option key={value} value={value}>{value}</option>)}</select></label>
@@ -175,10 +179,9 @@ export default function PublicationClient({
         ))}
       </div>
 
-      <div className="space-y-4">
+      <MotionList className="space-y-4">
         {filteredPublications.map((pub) => (
-          <Card
-            key={pub.id}
+          <MotionItem key={pub.id}><Card
             id={`publication-${pub.id}`}
             className={`transition-all ${
               openToggle === pub.id ? 'ring-2 ring-primary' : ''
@@ -325,9 +328,9 @@ export default function PublicationClient({
                 </div>
               )}
             </CardContent>
-          </Card>
+          </Card></MotionItem>
         ))}
-      </div>
+      </MotionList>
 
       {filteredPublications.length === 0 && (
         <Card className="p-12">

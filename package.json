@@ -17,7 +17,7 @@
     "check:export": "tsx scripts/check-export.ts",
     "check": "npm run lint && npm run validate:content && npm test && npm run build && npm run typecheck && npm run check:export",
     "bot:retry": "tsx scripts/with-bot-lock.ts retry",
-    "check:browser": "node scripts/check-browser.cjs && node scripts/check-navigation.cjs",
+    "check:browser": "node scripts/check-browser.cjs && node scripts/check-navigation.cjs && node scripts/check-motion.cjs",
     "qt:register": "tsx scripts/register-qt-slugs.ts",
     "preview": "node scripts/preview.cjs"
   },
@@ -35,6 +35,7 @@
     "dotenv": "^17.2.3",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.562.0",
+    "motion": "14.6.0",
     "next": "14.2.35",
     "next-themes": "^0.4.6",
     "openai": "^6.15.0",

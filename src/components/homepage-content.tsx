@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ResearchStory } from '@/components/motion/research-story';
 import { HomeIdentityHero } from '@/components/home-identity-hero';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -51,10 +52,10 @@ export function HomepageContent({
   const [showAllMedia, setShowAllMedia] = useState(false);
 
   const statsData = [
-    { label: t('stats.publications') as string, value: stats.publications.toLocaleString() },
-    { label: t('stats.videos') as string, value: stats.videos.toLocaleString() },
-    { label: t('stats.projects') as string, value: stats.projects.toLocaleString() },
-    { label: t('stats.lectures') as string, value: stats.lectures.toLocaleString() },
+    { label: t('stats.publications') as string, value: stats.publications },
+    { label: t('stats.videos') as string, value: stats.videos },
+    { label: t('stats.projects') as string, value: stats.projects },
+    { label: t('stats.lectures') as string, value: stats.lectures },
   ];
 
   return (
@@ -63,7 +64,7 @@ export function HomepageContent({
 
       <section className="border-b bg-muted/20 py-16 md:py-20" aria-labelledby="selected-research">
         <div className="container">
-          <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div data-motion-reveal="heading" className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Top Conference Publications</p>
               <h2 id="selected-research" className="text-3xl font-semibold tracking-tight">{language === 'ko' ? '논문으로 만나는 SuanLab의 연구' : 'Research from SuanLab'}</h2>
@@ -98,7 +99,7 @@ export function HomepageContent({
 
       <section className="border-b py-16" aria-labelledby="current-projects">
         <div className="container">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+          <div data-motion-reveal="heading" className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div><p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Current Projects</p><h2 id="current-projects" className="text-3xl font-semibold">{language === 'ko' ? '진행 중인 연구 프로젝트' : 'Current research projects'}</h2></div>
             <Link href="/project/" className="text-sm text-primary hover:underline">{language === 'ko' ? '전체 프로젝트 →' : 'All projects →'}</Link>
           </div>
@@ -109,9 +110,11 @@ export function HomepageContent({
         </div>
       </section>
 
+      <ResearchStory compact />
+
       <section className="py-20 md:py-28">
         <div className="container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div data-motion-reveal="heading" className="mx-auto max-w-2xl text-center">
             <Badge variant="outline" className="mb-4">
               <Newspaper className="mr-2 h-3 w-3" />
               {t('media.badge') as string}
@@ -171,7 +174,7 @@ export function HomepageContent({
 
       <section className="bg-muted/30 py-20 md:py-28">
         <div className="container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div data-motion-reveal="heading" className="mx-auto max-w-2xl text-center">
             <Badge variant="outline" className="mb-4">{t('blog.badge') as string}</Badge>
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t('blog.title') as string}</h2>
             <p className="mt-4 text-muted-foreground">
@@ -271,7 +274,7 @@ export function HomepageContent({
 
       <section className="bg-muted/50 py-20 md:py-28">
         <div className="container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div data-motion-reveal="heading" className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t('quicklinks.title') as string}</h2>
             <p className="mt-4 text-muted-foreground">
               {t('quicklinks.description') as string}
@@ -308,7 +311,7 @@ export function HomepageContent({
 
       <section className="py-20 md:py-28">
         <div className="container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div data-motion-reveal="heading" className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t('research.title') as string}</h2>
             <p className="mt-4 text-muted-foreground">
               {t('research.description') as string}

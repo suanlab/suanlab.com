@@ -1,4 +1,5 @@
 'use client';
+import { useSiteMotion } from '@/components/motion/motion-provider';
 
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { usePathname } from 'next/navigation';
@@ -106,17 +107,17 @@ function connectionsFor(particles: ReturnType<typeof particlesFor>) {
 }
 
 export default function MenuDotField({ variant }: { variant?: DotVariant }) {
+  const { canAnimate, paused, togglePaused } = useSiteMotion();
   const pathname = usePathname();
   const pattern = variant || menus[pathname?.split('/')[1] || ''] || 'research';
   const { language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const [reduced, setReduced] = useState(true);
-  const [paused, setPaused] = useState(false);
   const connectionRef = useRef<SVGSVGElement>(null);
   const particles = useMemo(() => particlesFor(pattern), [pattern]);
   const connections = useMemo(() => connectionsFor(particles), [particles]);
-  const running = enabled && !paused;
+  const running = enabled && !paused && canAnimate;
 
   useEffect(() => {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -208,7 +209,7 @@ export default function MenuDotField({ variant }: { variant?: DotVariant }) {
         </span>;
       })}
     </div>
-    {!reduced && <button type="button" className="menu-dot-control absolute right-4 top-3 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-slate-950/65 text-cyan-100 hover:bg-slate-800" onClick={() => setPaused(current => !current)} aria-label={language === 'ko' ? (paused ? '제목 배경 애니메이션 재생' : '제목 배경 애니메이션 일시정지') : (paused ? 'Play title background animation' : 'Pause title background animation')}>
+    {!reduced && <button type="button" className="menu-dot-control absolute right-4 top-3 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-slate-950/65 text-cyan-100 hover:bg-slate-800" onClick={togglePaused} aria-pressed={paused} aria-label={language === 'ko' ? (paused ? '사이트 모션 재생' : '사이트 모션 일시정지') : (paused ? 'Play site motion' : 'Pause site motion')}>
       {paused ? <Play aria-hidden="true" className="h-3.5 w-3.5" /> : <Pause aria-hidden="true" className="h-3.5 w-3.5" />}
     </button>}
   </>;

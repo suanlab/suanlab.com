@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/components/language-provider';
+import { SiteMotionProvider } from '@/components/motion/motion-provider';
 import ModernHeader from '@/components/layout/Header/ModernHeader';
 import ModernFooter from '@/components/layout/Footer/ModernFooter';
 import {
@@ -12,6 +13,7 @@ import {
 } from '@/components/seo/JsonLd';
 import './globals.css';
 import './fonts/inter.css';
+import '@/styles/motion.css';
 
 const GA_MEASUREMENT_ID = 'G-PYEC6PCW0P';
 
@@ -116,7 +118,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html lang="ko" data-site-motion="paused" suppressHydrationWarning>
       <head>
         <link rel="preload" href="/assets/fonts/inter/latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {/* Google Analytics */}
@@ -146,11 +148,11 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="relative flex min-h-screen flex-col">
+            <SiteMotionProvider><div className="relative flex min-h-screen flex-col">
               <ModernHeader />
               <main id="main-content" className="flex-1">{children}</main>
               <ModernFooter />
-            </div>
+            </div></SiteMotionProvider>
           </ThemeProvider>
         </LanguageProvider>
       </body>

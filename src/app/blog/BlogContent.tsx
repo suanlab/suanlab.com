@@ -1,5 +1,6 @@
 'use client';
 
+import { MotionList, MotionItem } from '@/components/motion/motion-list';
 import { useLanguage } from '@/components/language-provider';
 import { useState, useMemo, useEffect, Fragment } from 'react';
 import Link from 'next/link';
@@ -201,9 +202,9 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
             </p>
 
             {/* 포스트 카드 */}
-            <div className="grid gap-6 md:grid-cols-2">
+            <MotionList className="grid gap-6 md:grid-cols-2">
               {paginatedPosts.map((post) => (
-                <Link key={post.slug} href={`/blog/${post.slug}`}>
+                <MotionItem key={post.slug}><Link href={`/blog/${post.slug}`} className="block h-full">
                   <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
                     {post.thumbnail && (
                       <div className="relative aspect-video">
@@ -246,9 +247,9 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                       </div>
                     </CardContent>
                   </Card>
-                </Link>
+                </Link></MotionItem>
               ))}
-            </div>
+            </MotionList>
 
 
             {/* 페이지네이션 */}

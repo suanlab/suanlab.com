@@ -7,6 +7,8 @@ import { ArrowRight, Pause, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HomeResearchNetwork } from '@/components/home-research-network';
 import { useLanguage } from '@/components/language-provider';
+import { MotionControls, useSiteMotion } from '@/components/motion/motion-provider';
+import { CountUp } from '@/components/motion/count-up';
 import { labIdentities, labIdentityName } from '@/data/lab-identity';
 
 const READING_MS = 14_000;
@@ -30,8 +32,9 @@ function TypedIdentityWord({ word, length, slot }: { word: string; length: numbe
   );
 }
 
-export function HomeIdentityHero({ stats }: { stats: { label: string; value: string }[] }) {
+export function HomeIdentityHero({ stats }: { stats: { label: string; value: number }[] }) {
   const { language, t } = useLanguage();
+  const { canAnimate } = useSiteMotion();
   const [typing, setTyping] = useState<{ index: number; uLength: number; aLength: number; phase: TypingPhase }>({ index: 0, uLength: 0, aLength: 0, phase: 'typing' });
   const [paused, setPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(true);
@@ -39,7 +42,7 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
   const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const ko = language === 'ko';
-  const running = !paused && !reducedMotion && visible && inView;
+  const running = !paused && !reducedMotion && visible && inView && canAnimate;
   const { index, uLength, aLength, phase } = typing;
   const identity = labIdentities[index];
 
@@ -92,11 +95,12 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
 
   return (
     <section ref={sectionRef} className="identity-hero relative isolate overflow-hidden bg-slate-950 text-white" aria-labelledby="lab-identity-heading" data-motion={running ? 'running' : 'paused'}>
+      <div className="absolute right-4 top-3 z-20"><MotionControls compact /></div>
       <noscript><style>{'.identity-copy { opacity: 1 !important; } .identity-animated-term, .identity-cursor { display: none; } .identity-static-term, .identity-variable-empty { display: inline-block; }'}</style></noscript>
       <Image src="/assets/images/slider/2.jpg" alt="" fill priority sizes="100vw" className="-z-20 object-cover object-center" />
       <div aria-hidden="true" className="identity-photo-shade absolute inset-0 -z-10" />
       <div className="container grid items-center gap-10 py-14 md:py-20 lg:grid-cols-[1.5fr_1fr] lg:gap-16 lg:py-24">
-        <div className="min-w-0">
+        <div data-motion-reveal="hero" className="min-w-0">
           <p className="mb-5 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-cyan-200">
             <span aria-hidden="true" className="h-px w-8 shrink-0 bg-cyan-300" /> Superintelligence Research
           </p>
@@ -155,7 +159,7 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
       </div>
 
       <div className="relative border-t border-white/20 bg-slate-950/75 backdrop-blur-sm">
-        <div className="container grid grid-cols-2 gap-8 py-7 md:grid-cols-4">{stats.map(stat => <div key={stat.label} className="text-center"><div className="text-3xl font-bold text-white md:text-4xl">{stat.value}</div><div className="mt-1 text-sm text-slate-200">{stat.label}</div></div>)}</div>
+        <div className="container grid grid-cols-2 gap-8 py-7 md:grid-cols-4">{stats.map(stat => <div key={stat.label} className="text-center"><div className="text-3xl font-bold text-white md:text-4xl"><CountUp value={stat.value} /></div><div className="mt-1 text-sm text-slate-200">{stat.label}</div></div>)}</div>
       </div>
     </section>
   );

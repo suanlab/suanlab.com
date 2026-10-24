@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 const AxeBuilder = require('@axe-core/playwright').default;
+const { settleMotion } = require('./browser-motion.cjs');
 const routes = [
   '/', '/suan/', '/research/', '/research/nlp/', '/project/', '/publication/',
   '/lecture/', '/lecture/ai/', '/lecture/ai/notes/', '/lecture/ai/present/',
@@ -44,6 +45,7 @@ async function routeExport(context) {
         const response = await page.goto(origin + route);
         assert.equal(response.status(), 200, `Unexpected page status: ${route}`);
         await page.locator('#main-content h1').first().waitFor();
+        await settleMotion(page);
         const audit = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
         results.push({ route, theme, overflow, violations: audit.violations });
