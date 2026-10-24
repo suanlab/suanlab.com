@@ -121,7 +121,7 @@ export function HomeIdentityHero({ stats }: { stats: { label: string; value: str
                 const active = position === index;
                 return <div key={labIdentityName(entry)} className={`identity-slide ${active ? 'identity-slide-active' : ''}`} aria-hidden={!active}>
                   <div className="identity-copy" data-readable={active && phase !== 'deleting'} style={{ opacity: active && phase !== 'deleting' ? 1 : 0 }}>
-                    <h2 lang="ko" className="text-xl font-semibold leading-relaxed [word-break:keep-all] md:text-2xl">{entry.titleKo}</h2>
+                    <h2 lang={language} className="text-xl font-semibold leading-relaxed [word-break:keep-all] md:text-2xl">{ko ? entry.titleKo : entry.titleEn}</h2>
                     <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-200 [word-break:keep-all] md:text-base">{ko ? entry.descriptionKo : entry.descriptionEn}</p>
                   </div>
                 </div>;

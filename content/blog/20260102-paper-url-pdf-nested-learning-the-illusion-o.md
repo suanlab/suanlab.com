@@ -73,8 +73,10 @@ Nested Learning(NL)은 기계 학습 모델을 여러 수준의 중첩된 최적
 2. **Momentum-based Gradient Descent**: 모멘텀을 사용하는 경사 하강법이 2단계 최적화 문제로 설명됩니다.
 
    $$
+   \begin{aligned}
    v_{t+1} = \beta v_t + (1 - \beta) \nabla L(\theta_t) \\
    \theta_{t+1} = \theta_t - \eta v_{t+1}
+   \end{aligned}
    $$
 
    여기서 $v_t$는 모멘텀, $\beta$는 모멘텀 계수를 나타냅니다.  모멘텀은 과거 기울기의 정보를 사용하여 현재 업데이트 방향을 결정하므로, 진동을 줄이고 학습 속도를 향상시키는 데 도움이 됩니다.

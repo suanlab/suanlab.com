@@ -47,8 +47,10 @@ thumbnail: "/assets/images/blog/20260511-paper-2603-12231-temporal-straightening
 
 1.  **잠재 속도 벡터 (Latent Velocity Vector)**:
     $$
+    \begin{aligned}
     v_t = z_{t+1} - z_t \\
     v_{t+1} = z_{t+2} - z_{t+1}
+    \end{aligned}
     $$
 
 2.  **곡률 계산 (코사인 유사도)**: 두 벡터 사이의 각도를 최소화하기 위해 코사인 유사도 $C$를 최대화합니다.

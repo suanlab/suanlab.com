@@ -1,4 +1,5 @@
-import fs from 'fs';
+import { createContentStore } from './content-store';
+import registeredSlugs from '../config/qt-slugs.json';
 import path from 'path';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
@@ -118,49 +119,31 @@ export interface QTByBook {
   entries: QTEntry[];
 }
 
-// Cache for filename to slug mapping
+const entries = createContentStore<QTEntry>(QT_DIR, parseQTContent);
 let slugCache: Map<string, string> | null = null;
-
-/**
- * Build slug cache for all files (handles duplicates with indices)
- */
+let slugSignature = '';
 function buildSlugCache(): Map<string, string> {
-  if (slugCache) return slugCache;
-
-  const files = fs.readdirSync(QT_DIR).filter(f => f.endsWith('.md'));
-  const dateCount: Map<string, number> = new Map();
-  const cache: Map<string, string> = new Map();
-
-  // Sort files to ensure consistent ordering
-  files.sort();
-
+  const files = entries.filenames();
+  const signature = files.join('\0');
+  if (slugCache && signature === slugSignature) return slugCache;
+  const registry: Record<string, string> = registeredSlugs;
+  const map = new Map<string, string>();
   for (const filename of files) {
-    const match = filename.match(/^(\d{4}-\d{2}-\d{2})/);
-    if (match) {
-      const date = match[1];
-      const count = dateCount.get(date) || 0;
-
-      // Generate slug: date only for first entry, date-N for duplicates
-      const slug = count === 0 ? date : `${date}-${count + 1}`;
-      cache.set(filename, slug);
-      dateCount.set(date, count + 1);
-    } else {
-      // Fallback for files without date prefix
-      const slug = filename.replace(/\.md$/, '').replace(/[^a-zA-Z0-9-]/g, '-').toLowerCase();
-      cache.set(filename, slug);
-    }
+    if (!registry[filename]) throw new Error(`Unregistered QT filename: ${filename}. Run npm run qt:register.`);
+    map.set(filename, registry[filename]);
   }
-
-  slugCache = cache;
-  return cache;
+  slugCache = map;
+  slugSignature = signature;
+  return map;
 }
 
 /**
  * Get slug for a filename
  */
 function getSlugForFilename(filename: string): string {
-  const cache = buildSlugCache();
-  return cache.get(filename) || filename.replace(/\.md$/, '');
+  const slug = (registeredSlugs as Record<string, string>)[filename];
+  if (!slug) throw new Error(`Unregistered QT filename: ${filename}. Run npm run qt:register.`);
+  return slug;
 }
 
 /**
@@ -277,15 +260,7 @@ function parseQTContent(filename: string, content: string): QTEntry {
  * Get all QT entries
  */
 export function getAllQTEntries(): QTEntry[] {
-  const files = fs.readdirSync(QT_DIR).filter(f => f.endsWith('.md'));
-
-  const entries = files.map(filename => {
-    const content = fs.readFileSync(path.join(QT_DIR, filename), 'utf-8');
-    return parseQTContent(filename, content);
-  });
-
-  // Sort by date (newest first)
-  return entries.sort((a, b) => b.date.localeCompare(a.date));
+  return entries.all().sort((a, b) => b.date.localeCompare(a.date));
 }
 
 /**
@@ -336,8 +311,7 @@ export function getQTBySlug(slug: string): QTEntry | null {
   const filename = getFilenameForSlug(slug);
   if (!filename) return null;
 
-  const content = fs.readFileSync(path.join(QT_DIR, filename), 'utf-8');
-  return parseQTContent(filename, content);
+  return entries.get(filename);
 }
 
 /**

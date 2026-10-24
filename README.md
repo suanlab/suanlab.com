@@ -10,20 +10,43 @@ Pages. `WWW/` in the parent workspace is an archived site and is not maintained.
 npm ci
 npm run dev                 # http://localhost:3000
 npm run check               # lint, content checks, regression tests, build, export checks
-npm run typecheck           # run after build; do not run concurrently with next build
+npm run typecheck           # also included after build in npm run check
+npm start                   # preview out/ at http://127.0.0.1:4175 (built-in Node.js server)
 ```
 
-The static build is in `out/`. Preview with
-`python3 -m http.server 4173 --directory out`. `next start` is not the preview
-server for a static export. For the browser acceptance sweep, serve `out/` on port
-4175, then run `npm run check:browser`. This checks 35 routes in light/Korean and
+The static build is in `out/`. `npm start` and `npm run preview` serve this export;
+they do not use `next start`. Do not run `typecheck` concurrently with `next build`.
+For the browser acceptance sweep, run `npm start`, then `npm run check:browser`.
+This checks 35 routes in light/Korean and
 dark/English modes at 390px, including WCAG A/AA rules and horizontal overflow.
 It writes `.runtime/browser-check.json` and two screenshots. The current host uses
 `/usr/bin/google-chrome`; override `SUANLAB_BROWSER_PATH` for another executable or
 `SUANLAB_TEST_BASE` for an already-running preview. Browser checks are separate from
 the portable CI gate because they require a browser and a preview server.
+The sweep also checks blocked language storage, language switching, persisted and
+shared builder drafts, personal prompts, workflow response handoff, comment draft
+preservation, and the real visible comment frame in dark mode. The live comment
+check requires a connection to Giscus.
+Navigation regressions also cover system dark mode, desktop keyboard controls,
+mobile menu closure, blog/QT filter history, and prompt search destinations.
+An additional 96 layout cases cover 16 routes in both languages at 320, 768 and
+1440px; results are in `.runtime/responsive-check.json`.
+Inter font subsets are vendored with their license in `public/assets/fonts/inter/`;
+builds and page views do not need a Google Fonts connection.
+The preview serves public assets with CORS headers, matching GitHub Pages.
+The browser sweep routes this export under its canonical public origin so external
+widgets can load its styles without public-to-loopback network restrictions.
+Production comments use an explicit dark canvas; HTTP previews use Giscus' built-in
+theme. Comments initialize once after the theme resolves; later theme/language
+changes preserve drafts. The embed waits until the browser mounts to keep streamed
+article hydration consistent with the exported HTML.
 
 ## Where to edit
+
+Blog filters use `?q=...&category=...&tag=...&page=2`; QT uses
+`?book=요한복음&q=...&testament=new&tab=recent`. Reload and browser history restore
+the selection. Prompt search opens `/prompts/?builder=rag-system` or
+`/prompts/?snippet=snip-grounded-answer`; existing shared-input hashes still work.
 
 | Area | Source |
 | --- | --- |
@@ -35,10 +58,16 @@ the portable CI gate because they require a browser and a preview server.
 | Route assembly and sitemap | `src/app/` |
 | Markdown and presentation helpers | `src/lib/` |
 | UI translations | `src/components/language-provider.tsx` |
+| Prompt UI and workflow storage | `src/components/prompts/` |
 
 Content is plain Markdown, not MDX. Blog files use `YYYYMMDD-slug.md` and YAML
 metadata. QT filenames generate date-based slugs with suffixes for duplicate dates.
 Use the content loaders for all route lists; do not independently recreate slugs.
+After adding a QT file, run `npm run qt:register` and include
+`src/config/qt-slugs.json` in the change. Existing and retired mappings remain
+reserved, including when a new title sorts before an older duplicate-date entry.
+Content loaders reuse parsed records within each build worker. Development checks
+file stats and directory listings so edits, additions and deletions are visible.
 Historical `Header.tsx`/`Footer.tsx` and `src/data/navigation.ts` are legacy;
 the live shell uses `ModernHeader` and `ModernFooter`.
 
@@ -56,6 +85,15 @@ Original content remains in its original language; the language selector transla
 supported UI labels, not complete articles. The header measures translated menu
 widths and switches to the navigation drawer when the search and utility buttons
 need more space.
+
+Historical QT variants formerly nested under `content/blog/content/qt/` are stored
+in `archive/qt/`. All 878 source files are retained byte for byte and checked against
+`archive/qt-manifest.json`. Of these, 876 filenames also exist in active QT: 196
+have identical bytes and 680 contain differences. The two archive-only files remain
+unpublished. Edit `content/qt/` for the live site; do not merge or delete historical
+variants as automatic deduplication. Content validation rejects nested archives.
+The preserved `AGENTS.md` files contain some historical file maps and command
+descriptions; use this README and the current exports/types to locate active code.
 
 Homepage identity meanings live in `src/data/lab-identity.ts`. Superintelligence,
 Neural-networks and LAB remain visible; only the U/A terms type and erase. Their
@@ -154,6 +192,17 @@ synchronization is required.
 
 See [service installation and operations](scripts/systemd/README.md).
 The bot is a separate long-running process, not part of GitHub Pages.
+Copy `.env.example` to `.env.local` and configure the AI and Slack credentials
+described there. The example selects review mode; the code retains automatic
+publishing when that setting is absent. No Telegram service or web admin password
+is configured by this project.
+
+Remote downloads have a whole-response timeout and streaming size limit (PDFs:
+60 seconds and 50 MiB; metadata: 2 MiB). Image generation has a 120-second timeout
+and normalizes decoded images to the format advertised by their URL. Generated
+posts use unique names; explicit output collisions fail instead of replacing an
+existing article or image. PDF input without extractable text and AI output without
+an article body fail before publication. These checks do not certify factual accuracy.
 
 Requests run serially. `.runtime/slack-jobs.json` stores status and saved files;
 completed/active requests are deduplicated, including arXiv URL/ID variants.
@@ -182,7 +231,8 @@ Never commit `.env.local`, credentials, or `.runtime/`. Do not run the one-time
 
 ## CI and release
 
-Pull requests run the same checks as local development. Pushes to `master` run
+Pull requests run the same checks as local development, including an explicit
+post-build type check. Pushes to `master` run
 checks, upload `out/`, then deploy to GitHub Pages. Export validation confirms every
 sitemap URL has an HTML page and canonical, and scans every exported HTML page for
 broken internal links, assets and fragment targets (including numeric slide hashes).

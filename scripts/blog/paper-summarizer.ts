@@ -1,6 +1,7 @@
+import { downloadBytes } from '../../src/lib/http';
 import { publicSourceUrl } from '../../src/lib/content-provenance';
 import { createHash } from 'node:crypto';
-import { formatAsMarkdown } from './post-format';
+import { saveGeneratedPost, uniqueGenerationSlug } from './save-post';
 import { generateWithAI, parseGeneratedContent } from '../../src/lib/ai/claude';
 import {
   buildPaperPrompt,
@@ -12,8 +13,7 @@ import { extractFirstFigure } from '../../src/lib/pdf/figure-extractor';
 import type { PaperSummarizerOptions, GeneratedPost, PaperMetadata } from '../../src/lib/ai/types';
 import {
   parsePdfFromBuffer,
-  parsePdfFromFile,
-  parsePdfFromUrl,
+  MAX_PDF_BYTES,
   chunkText,
   extractMetadataFromText,
 } from '../../src/lib/pdf/parser';
@@ -24,9 +24,7 @@ import {
   formatMetadata,
 } from '../../src/lib/pdf/arxiv';
 import fs from 'fs/promises';
-import path from 'path';
 
-const CONTENT_DIR = path.join(process.cwd(), 'content/blog');
 
 /**
  * Generate a blog post summarizing a paper
@@ -54,8 +52,7 @@ export async function generateFromPaper(
     pdfText = parsed.text;
   } else if (options.pdfUrl) {
     console.log(`Fetching PDF from URL...`);
-    const response = await fetch(options.pdfUrl);
-    pdfBuffer = Buffer.from(await response.arrayBuffer());
+    pdfBuffer = await downloadBytes(options.pdfUrl);
     options.onProgress?.('parsing-source');
     const parsed = await parsePdfFromBuffer(pdfBuffer);
     pdfText = parsed.text;
@@ -90,6 +87,7 @@ export async function generateFromPaper(
     };
   } else if (options.localPath) {
     console.log(`Parsing local PDF: ${options.localPath}`);
+    if ((await fs.stat(options.localPath)).size > MAX_PDF_BYTES) throw new Error('PDF exceeds the size limit.');
     pdfBuffer = await fs.readFile(options.localPath);
     options.onProgress?.('parsing-source');
     const parsed = await parsePdfFromBuffer(pdfBuffer);
@@ -111,6 +109,7 @@ export async function generateFromPaper(
 
   // Generate summary
   options.onProgress?.('generating-text');
+  if (!pdfText.trim()) throw new Error('PDF contains no extractable text.');
   const rawContent = await summarizePaper(pdfText, metadata, options);
   const parsed = parseGeneratedContent(rawContent);
   const date = new Date().toISOString().split('T')[0];
@@ -153,7 +152,7 @@ export async function generateFromPaper(
     title: `[논문 리뷰] ${metadata.title}`,
     subtitle: parsed.subtitle,
     date,
-    excerpt: metadata.abstract.slice(0, 200) + '...',
+    excerpt: metadata.abstract.trim() ? metadata.abstract.slice(0, 200) + (metadata.abstract.length > 200 ? '...' : '') : parsed.excerpt,
     category: 'Paper Review',
     tags: ['Paper Review', ...metadata.categories.slice(0, 3)],
     content: parsed.content,
@@ -227,14 +226,7 @@ export async function savePost(
   post: GeneratedPost,
   customSlug?: string
 ): Promise<string> {
-  const slug = customSlug || post.slug;
-  const markdown = formatAsMarkdown({ ...post, slug });
-  const filepath = path.join(CONTENT_DIR, `${slug}.md`);
-
-  await fs.mkdir(CONTENT_DIR, { recursive: true });
-  await fs.writeFile(filepath, markdown, 'utf-8');
-
-  return filepath;
+  return saveGeneratedPost(post, customSlug);
 }
 
 /**
@@ -254,5 +246,5 @@ function generatePaperSlug(title: string, paperId: string): string {
     .replace(/^-|-$/g, '')
     .slice(0, 30);
 
-  return `${date}-paper-${cleanId}-${cleanTitle}`;
+  return uniqueGenerationSlug(`${date}-paper-${cleanId}-${cleanTitle}`);
 }

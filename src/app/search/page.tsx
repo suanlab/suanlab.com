@@ -4,6 +4,7 @@ import { playlists } from '@/data/youtube';
 import { getAllBookPosts } from '@/lib/books';
 import { promptBuilders, promptSnippets } from '@/data/prompts';
 import type { SearchItem } from '@/lib/search';
+import { promptHref } from '@/lib/prompt-state';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import PageHeader from '@/components/layout/PageHeader';
@@ -49,15 +50,17 @@ export default function SearchPage() {
     ...projects.map(p => ({ type: 'project', title: p.title, description: `${p.organization} ${p.items.join(' ')}`, href: `/project/#project-${p.id}` })),
     ...playlists.map(p => ({ type: 'youtube', title: `${p.titleKo} · ${p.titleEn}`, description: 'YouTube 교육 영상 강좌', href: `/youtube/${p.slug}/` })),
     ...getAllBookPosts().map(p => ({ type: 'book', title: p.title, description: `${p.subtitle || ''} ${p.author}`, href: `/book/online/${p.slug}/` })),
-    ...[...promptBuilders, ...promptSnippets].map(p => ({ type: 'prompt', title: `${p.title.ko} · ${p.title.en}`, description: `${p.description.ko} ${p.description.en} ${p.tags.join(' ')}`, href: '/prompts/' })),
+    ...promptBuilders.map(p => ({ type: 'prompt', title: `${p.title.ko} · ${p.title.en}`, description: `${p.description.ko} ${p.description.en} ${p.tags.join(' ')}`, href: promptHref('builder', p.id) })),
+    ...promptSnippets.map(p => ({ type: 'prompt', title: `${p.title.ko} · ${p.title.en}`, description: `${p.description.ko} ${p.description.en} ${p.tags.join(' ')}`, href: promptHref('snippet', p.id) })),
   ];
 
   return (
     <>
       <PageHeader
         title="검색"
-        subtitle="연구 성과, 프로젝트, 강의, 도서와 블로그를 검색하세요"
-        breadcrumbs={[{ label: '검색' }]}
+        titleKey="nav.search"
+        subtitleKey="search.subtitle"
+        breadcrumbs={[{ label: '검색', labelKey: 'nav.search' }]}
       />
       <SearchClient items={items} />
     </>

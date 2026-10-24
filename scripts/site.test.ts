@@ -198,12 +198,12 @@ test('conference grouping normalizes venue aliases, honors conference years and 
   assert.equal(groups[2].month, 9);
 });
 
-test('homepage shows all selected conference collections including UAI, KDD and accepted PINNBench', () => {
+test('homepage shows selected conference collections and keeps IEEE BigData distinct from BigComp', () => {
   assert.ok(featuredConferenceVenues.every(venue => venue.homepageUrl?.startsWith('https://')));
   const groups = groupConferencePublications(publications, featuredConferenceVenues);
   assert.ok(groups.length > 6);
   assert.equal(new Set(groups.map(g => g.id)).size, groups.length);
-  assert.deepEqual(groups.map(g => g.id).slice(0, 6), ['neurips-2026', 'accv-2026', 'aacl-ijcnlp-2026', 'icdm-2026', 'emnlp-2026', 'ecml-pkdd-2026']);
+  assert.deepEqual(groups.map(g => g.id).slice(0, 7), ['neurips-2026', 'ieee-bigdata-2026', 'accv-2026', 'aacl-ijcnlp-2026', 'icdm-2026', 'emnlp-2026', 'ecml-pkdd-2026']);
   assert.ok(groups.some(g => g.id === 'uai-2026'));
   assert.ok(groups.some(g => g.id === 'kdd-2026'));
   assert.equal(groups.find(g => g.id === 'accv-2026')?.papers.length, 4);
@@ -214,4 +214,12 @@ test('homepage shows all selected conference collections including UAI, KDD and 
   assert.equal(pinnbench.title, 'PINNBench: A Benchmark for Training Policy Selection in Hybrid PINN-Operator Solvers');
   assert.equal(pinnbench.authors, 'Suan Lee, Namhyeon Kim, and Dongmin Jin');
   assert.equal(pinnbench.status, 'accepted');
+  const bigdata = groups.find(g => g.id === 'ieee-bigdata-2026')!;
+  assert.equal(bigdata.papers.length, 1);
+  const urbanReplay = bigdata.papers[0].publication;
+  assert.equal(urbanReplay.title, 'UrbanReplayBench: Availability-Aware Runtime Evidence Verification for LLM-Planned Urban Data Systems');
+  assert.equal(urbanReplay.authors, 'Su Ung Kim and Suan Lee');
+  assert.equal(urbanReplay.status, 'accepted');
+  assert.ok(!groups.some(g => g.id === 'ieee-bigdata-2020'));
+  assert.ok(groups.filter(g => g.conference.id === 'ieee-bigdata').every(g => g.papers.every(p => !/BigComp|Smart Computing/i.test(p.publication.venue))));
 });

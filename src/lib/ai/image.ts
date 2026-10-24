@@ -1,3 +1,5 @@
+import sharp from 'sharp';
+import { downloadJson } from '../http';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -31,11 +33,12 @@ export async function generateBlogImage(
 
   console.log('Generating thumbnail image with Nano Banana Pro...');
 
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent?key=${apiKey}`,
+  const data = await downloadJson<{ candidates?: { content?: { parts?: { inlineData?: { data?: string } }[] } }[] }>(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent`,
     {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+      timeoutMs: 120_000,
       body: JSON.stringify({
         contents: [{
           parts: [{ text: prompt }]
@@ -47,18 +50,12 @@ export async function generateBlogImage(
     }
   );
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Nano Banana Pro API error: ${response.status} - ${errorText}`);
-  }
-
-  const data = await response.json();
-
   // Extract image from response
   const parts = data.candidates?.[0]?.content?.parts || [];
   for (const part of parts) {
     if (part.inlineData?.data) {
       const imageBuffer = Buffer.from(part.inlineData.data, 'base64');
+      if (imageBuffer.length > 20 * 1024 * 1024) throw new Error('Generated image exceeds the size limit.');
       return imageBuffer;
     }
   }
@@ -72,20 +69,21 @@ export async function generateBlogImage(
 export async function saveImageBuffer(
   buffer: Buffer,
   filename: string,
-  mimeType: string = 'image/jpeg'
+  mimeType: string = 'image/jpeg',
+  cwd = process.cwd()
 ): Promise<string> {
-  // Ensure directory exists
-  const fullDir = path.join(process.cwd(), IMAGES_DIR);
+  if (!/^[a-z0-9][a-z0-9.-]*$/i.test(filename) || filename.includes('..')) throw new Error('Invalid image filename.');
+  const formats = { 'image/jpeg': 'jpeg', 'image/png': 'png', 'image/webp': 'webp' } as const;
+  if (!(mimeType in formats)) throw new Error('Unsupported image type.');
+  const format = formats[mimeType as keyof typeof formats];
+  const ext = format === 'jpeg' ? 'jpg' : format;
+  const stem = filename.replace(/\.(jpe?g|png|webp)$/i, '');
+  const finalFilename = `${stem}.${ext}`;
+  const fullDir = path.join(cwd, IMAGES_DIR);
   await fs.mkdir(fullDir, { recursive: true });
-
-  // Determine extension based on mime type
-  const ext = mimeType.includes('png') ? '.png' : '.jpg';
-  const finalFilename = filename.endsWith(ext) ? filename : `${filename}${ext}`;
-  const filepath = path.join(fullDir, finalFilename);
-
-  await fs.writeFile(filepath, buffer);
-
-  // Return the public path for use in frontmatter
+  // Decode the provider bytes and encode the format advertised by the URL.
+  const encoded = await sharp(buffer, { limitInputPixels: 40_000_000 }).toFormat(format).toBuffer();
+  await fs.writeFile(path.join(fullDir, finalFilename), encoded, { flag: 'wx' });
   return `/assets/images/blog/${finalFilename}`;
 }
 

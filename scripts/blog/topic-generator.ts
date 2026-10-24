@@ -1,12 +1,9 @@
-import { formatAsMarkdown } from './post-format';
+import { saveGeneratedPost, uniqueGenerationSlug } from './save-post';
 import { generateWithAI, parseGeneratedContent } from '../../src/lib/ai/claude';
 import { buildTopicPrompt } from '../../src/lib/ai/prompts';
 import { generateAndSaveThumbnail } from '../../src/lib/ai/image';
 import type { TopicGeneratorOptions, GeneratedPost } from '../../src/lib/ai/types';
-import fs from 'fs/promises';
-import path from 'path';
 
-const CONTENT_DIR = path.join(process.cwd(), 'content/blog');
 
 /**
  * Generate a blog post from a topic
@@ -45,7 +42,7 @@ export async function generateFromTopic(
     excerpt: parsed.excerpt,
     category: options.category || 'General',
     tags: options.tags?.length ? options.tags : parsed.suggestedTags,
-    content: rawContent,
+    content: parsed.content,
     thumbnail,
   };
 }
@@ -62,15 +59,7 @@ export async function savePost(
   post: GeneratedPost,
   customSlug?: string
 ): Promise<string> {
-  const slug = customSlug || post.slug;
-  const markdown = formatAsMarkdown({ ...post, slug });
-  const filepath = path.join(CONTENT_DIR, `${slug}.md`);
-
-  // Ensure directory exists
-  await fs.mkdir(CONTENT_DIR, { recursive: true });
-
-  await fs.writeFile(filepath, markdown, 'utf-8');
-  return filepath;
+  return saveGeneratedPost(post, customSlug);
 }
 
 /**
@@ -105,5 +94,5 @@ function generateSlug(title: string): string {
     .replace(/^-|-$/g, '')
     .slice(0, 50);
 
-  return `${date}-${cleanTitle || 'post'}`;
+  return uniqueGenerationSlug(`${date}-${cleanTitle || 'post'}`);
 }

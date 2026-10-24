@@ -1,5 +1,8 @@
+import { downloadBytes } from '../http';
 import pdfParse from 'pdf-parse';
 import fs from 'fs/promises';
+
+export const MAX_PDF_BYTES = 50 * 1024 * 1024;
 
 export interface ParsedPdf {
   text: string;
@@ -12,11 +15,14 @@ export interface ParsedPdf {
 }
 
 export async function parsePdfFromFile(filePath: string): Promise<ParsedPdf> {
+  if ((await fs.stat(filePath)).size > MAX_PDF_BYTES) throw new Error('PDF exceeds the size limit.');
   const buffer = await fs.readFile(filePath);
   return parsePdfFromBuffer(buffer);
 }
 
 export async function parsePdfFromBuffer(buffer: Buffer): Promise<ParsedPdf> {
+  if (buffer.length > MAX_PDF_BYTES) throw new Error('PDF exceeds the size limit.');
+  if (!buffer.subarray(0, 1024).includes(Buffer.from('%PDF-'))) throw new Error('Source is not a PDF.');
   const data = await pdfParse(buffer);
 
   return {
@@ -31,13 +37,7 @@ export async function parsePdfFromBuffer(buffer: Buffer): Promise<ParsedPdf> {
 }
 
 export async function parsePdfFromUrl(url: string): Promise<ParsedPdf> {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch PDF: ${response.statusText}`);
-  }
-
-  const buffer = Buffer.from(await response.arrayBuffer());
-  return parsePdfFromBuffer(buffer);
+  return parsePdfFromBuffer(await downloadBytes(url, { maxBytes: MAX_PDF_BYTES }));
 }
 
 function cleanText(text: string): string {
@@ -61,43 +61,20 @@ function cleanText(text: string): string {
  * @param maxChars - Maximum characters per chunk (default ~100k chars = ~25k tokens)
  */
 export function chunkText(text: string, maxChars: number = 100000): string[] {
+  if (!Number.isSafeInteger(maxChars) || maxChars < 2) throw new Error('Chunk size must be an integer of at least two characters.');
   const chunks: string[] = [];
-  const paragraphs = text.split(/\n\n+/);
-
-  let currentChunk = '';
-
-  for (const para of paragraphs) {
-    if (currentChunk.length + para.length + 2 > maxChars) {
-      if (currentChunk) {
-        chunks.push(currentChunk.trim());
-      }
-      // If single paragraph is too long, split by sentences
-      if (para.length > maxChars) {
-        const sentences = para.split(/(?<=[.!?])\s+/);
-        let sentenceChunk = '';
-        for (const sentence of sentences) {
-          if (sentenceChunk.length + sentence.length > maxChars) {
-            if (sentenceChunk) {
-              chunks.push(sentenceChunk.trim());
-            }
-            sentenceChunk = sentence;
-          } else {
-            sentenceChunk += ' ' + sentence;
-          }
-        }
-        currentChunk = sentenceChunk;
-      } else {
-        currentChunk = para;
-      }
-    } else {
-      currentChunk += '\n\n' + para;
-    }
+  let remaining = text.trim();
+  while (remaining.length > maxChars) {
+    const window = remaining.slice(0, maxChars + 1);
+    const paragraph = window.lastIndexOf('\n\n', maxChars - 1);
+    const whitespace = window.search(/\s+\S*$/);
+    let end = paragraph > maxChars / 2 ? paragraph : whitespace > maxChars / 2 ? whitespace : maxChars;
+    // Do not split UTF-16 surrogate pairs when a hard boundary is necessary.
+    if (/[\uD800-\uDBFF]/.test(remaining[end - 1])) end--;
+    chunks.push(remaining.slice(0, end).trim());
+    remaining = remaining.slice(end).trim();
   }
-
-  if (currentChunk.trim()) {
-    chunks.push(currentChunk.trim());
-  }
-
+  if (remaining) chunks.push(remaining);
   return chunks;
 }
 

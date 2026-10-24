@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { geoEqualEarth, geoPath } from 'd3-geo';
 import { feature } from 'topojson-client';
 import { visitedCountries, overseasExperiences } from '@/data/overseas-experiences';
+import { useLanguage } from '@/components/language-provider';
 
 const W = 800;
 const H = 420;
@@ -28,17 +29,24 @@ interface GeoFeature {
 }
 
 export function VisitedCountriesMap() {
+  const { language } = useLanguage();
+  const [loadError, setLoadError] = useState(false);
+  const [loadVersion, setLoadVersion] = useState(0);
   const [topo, setTopo] = useState<{ objects: { countries: unknown } } | null>(null);
   const [hovered, setHovered] = useState<{ x: number; y: number; name: string; flag: string; trips: number } | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    fetch('/geo/countries-110m.json')
-      .then((r) => r.json())
-      .then((d) => { if (!cancelled) setTopo(d); })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, []);
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 10_000);
+    setLoadError(false);
+    fetch('/geo/countries-110m.json', { signal: controller.signal })
+      .then(r => { if (!r.ok) throw new Error('Map download failed'); return r.json(); })
+      .then(d => { if (!d?.objects?.countries) throw new Error('Invalid map data'); if (!cancelled) setTopo(d); })
+      .catch(() => { if (!cancelled) setLoadError(true); })
+      .finally(() => clearTimeout(timer));
+    return () => { cancelled = true; clearTimeout(timer); controller.abort(); };
+  }, [loadVersion]);
 
   const view = useMemo(() => {
     if (!topo) return null;
@@ -54,7 +62,7 @@ export function VisitedCountriesMap() {
       return {
         id: f.id ?? f.properties?.name,
         d: path(f as never),
-        fill: v ? CONTINENT_FILL[v.continent] : 'var(--muted)',
+        fill: v ? CONTINENT_FILL[v.continent] : 'hsl(var(--muted))',
         visited: !!v,
         name: f.properties?.name ?? f.id,
       };
@@ -84,8 +92,11 @@ export function VisitedCountriesMap() {
 
   if (!view) {
     return (
-      <div className="aspect-[800/420] w-full rounded-md bg-muted/40 animate-pulse flex items-center justify-center">
-        <span className="text-xs text-muted-foreground">지도를 불러오는 중…</span>
+      <div role="status" className="aspect-[800/420] w-full rounded-md bg-muted/40 flex flex-col gap-3 items-center justify-center">
+        <span className="text-xs text-foreground">{loadError
+          ? (language === 'ko' ? '지도를 불러오지 못했습니다.' : 'Could not load the map.')
+          : (language === 'ko' ? '지도를 불러오는 중…' : 'Loading map…')}</span>
+        {loadError && <button type="button" className="text-sm text-primary underline" onClick={() => setLoadVersion(value => value + 1)}>{language === 'ko' ? '다시 시도' : 'Retry map'}</button>}
       </div>
     );
   }
@@ -94,7 +105,7 @@ export function VisitedCountriesMap() {
     <div className="w-full">
       <div className="relative w-full">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto rounded-md bg-background border" role="img" aria-label="Visited countries world map">
-          {view.sphere && <path d={view.sphere} fill="var(--muted)" fillOpacity="0.3" stroke="hsl(var(--border))" strokeWidth={0.5} />}
+          {view.sphere && <path d={view.sphere} fill="hsl(var(--muted))" fillOpacity="0.3" stroke="hsl(var(--border))" strokeWidth={0.5} />}
           {view.paths.map((p) => (
             <path
               key={p.id}

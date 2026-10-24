@@ -95,6 +95,14 @@ const translations = {
     'pageheader.qt.subtitle': '매일 묵상과 말씀',
     'pageheader.contact.subtitle': '연락처 및 위치 안내',
 
+    "footer.about": "이수안 교수의 초지능(Superintelligence) 연구실입니다. 강의, 논문, YouTube 콘텐츠를 통해 지식을 공유합니다.",
+    "footer.links": "바로가기",
+    "footer.contact": "연락처",
+    "footer.research": "연구 분야",
+    "footer.privacy": "개인정보처리방침",
+    "footer.terms": "이용약관",
+    "footer.sitemap": "사이트맵",
+    "search.subtitle": "연구 성과, 프로젝트, 강의, 도서와 블로그를 검색하세요",
     'lang.ko': '한국어',
     'lang.en': 'English',
     'lang.switch': '언어 변경',
@@ -181,6 +189,14 @@ const translations = {
     'pageheader.qt.subtitle': 'Daily Devotionals',
     'pageheader.contact.subtitle': 'Contact and Location',
 
+    "footer.about": "The Superintelligence research lab led by Prof. Suan Lee. We share knowledge through lectures, papers and YouTube content.",
+    "footer.links": "Quick Links",
+    "footer.contact": "Contact",
+    "footer.research": "Research Areas",
+    "footer.privacy": "Privacy Policy",
+    "footer.terms": "Terms of Service",
+    "footer.sitemap": "Sitemap",
+    "search.subtitle": "Search research outputs, projects, lectures, books and blog posts",
     'lang.ko': '한국어',
     'lang.en': 'English',
     'lang.switch': 'Change Language',
@@ -194,17 +210,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>('ko');
 
   useEffect(() => {
-    const saved = localStorage.getItem('suanlab-language') as Language;
-    if (saved && (saved === 'ko' || saved === 'en')) {
-      setLanguageState(saved);
-    }
+    try {
+      const saved = localStorage.getItem('suanlab-language');
+      if (saved === 'ko' || saved === 'en') setLanguageState(saved);
+    } catch { /* Keep the default language when storage is unavailable. */ }
   }, []);
 
   useEffect(() => { document.documentElement.lang = language; }, [language]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('suanlab-language', lang);
+    try { localStorage.setItem('suanlab-language', lang); }
+    catch { /* The selection still works for this session. */ }
   };
 
   const t = (key: string): string | string[] => {

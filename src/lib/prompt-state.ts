@@ -6,6 +6,18 @@ export interface PromptFieldShape {
 }
 export type PromptValues = Record<string, string | string[]>;
 
+export function promptHref(kind: 'builder' | 'snippet', id: string): string {
+  return `/prompts/?${kind}=${encodeURIComponent(id)}`;
+}
+
+export function readPromptTarget(params: URLSearchParams): { kind: 'builder' | 'snippet'; id: string } | null {
+  for (const kind of ['builder', 'snippet'] as const) {
+    const id = params.get(kind)?.trim();
+    if (id) return { kind, id };
+  }
+  return null;
+}
+
 export function defaultPromptValues(fields: PromptFieldShape[], language: 'ko' | 'en'): PromptValues {
   return Object.fromEntries(fields.map(field => [field.id,
     field.type === 'multiselect' ? [] :

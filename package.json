@@ -5,19 +5,21 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npm run preview",
     "lint": "next lint",
     "blog:generate": "tsx scripts/blog/generate.ts",
     "blog:topic": "tsx scripts/blog/generate.ts topic",
     "blog:paper": "tsx scripts/blog/generate.ts paper",
     "bot:slack": "tsx scripts/with-bot-lock.ts bot",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test scripts/site.test.ts scripts/blog/*.test.ts",
+    "test": "tsx --test scripts/*.test.ts scripts/blog/*.test.ts",
     "validate:content": "tsx scripts/validate-content.ts",
     "check:export": "tsx scripts/check-export.ts",
-    "check": "npm run lint && npm run validate:content && npm test && npm run build && npm run check:export",
+    "check": "npm run lint && npm run validate:content && npm test && npm run build && npm run typecheck && npm run check:export",
     "bot:retry": "tsx scripts/with-bot-lock.ts retry",
-    "check:browser": "node scripts/check-browser.cjs"
+    "check:browser": "node scripts/check-browser.cjs && node scripts/check-navigation.cjs",
+    "qt:register": "tsx scripts/register-qt-slugs.ts",
+    "preview": "node scripts/preview.cjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

@@ -1,4 +1,6 @@
 import { site } from '@/config/site';
+import fs from 'node:fs';
+import path from 'node:path';
 import { getAllPosts } from '@/lib/blog';
 
 const BASE_URL = site.url;
@@ -19,6 +21,12 @@ export async function GET() {
     const postUrl = `${BASE_URL}/blog/${post.slug}`;
     const pubDate = new Date(post.date).toUTCString();
 
+    const imageUrl = post.thumbnail ? new URL(post.thumbnail, BASE_URL) : null;
+    const extension = imageUrl?.pathname.split('.').pop()?.toLowerCase();
+    const imageType = extension === 'png' ? 'image/png' : extension === 'webp' ? 'image/webp' : 'image/jpeg';
+    const imageFile = imageUrl?.origin === BASE_URL ? path.join(process.cwd(), 'public', decodeURIComponent(imageUrl.pathname)) : null;
+    const enclosure = imageUrl && imageFile && fs.existsSync(imageFile)
+      ? `<enclosure url="${escapeXml(imageUrl.href)}" type="${imageType}" length="${fs.statSync(imageFile).size}" />` : '';
     return `
     <item>
       <title>${escapeXml(post.title)}</title>
@@ -28,8 +36,8 @@ export async function GET() {
       <pubDate>${pubDate}</pubDate>
       <category>${escapeXml(post.category)}</category>
       ${post.tags.map((tag) => `<category>${escapeXml(tag)}</category>`).join('\n      ')}
-      <author>suan@suanlab.com (이수안)</author>
-      ${post.thumbnail ? `<enclosure url="${BASE_URL}${post.thumbnail}" type="image/jpeg" />` : ''}
+      <author>${escapeXml(site.contact.emails[0])} (이수안)</author>
+      ${enclosure}
     </item>`;
   });
 
@@ -49,8 +57,8 @@ export async function GET() {
       <title>SuanLab Blog</title>
       <link>${BASE_URL}/blog</link>
     </image>
-    <managingEditor>suan@suanlab.com (이수안)</managingEditor>
-    <webMaster>suan@suanlab.com (이수안)</webMaster>
+    <managingEditor>${escapeXml(site.contact.emails[0])} (이수안)</managingEditor>
+    <webMaster>${escapeXml(site.contact.emails[0])} (이수안)</webMaster>
     <copyright>Copyright ${new Date().getFullYear()} SuanLab. All rights reserved.</copyright>
     <ttl>60</ttl>
     ${rssItems.join('\n')}

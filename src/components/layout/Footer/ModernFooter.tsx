@@ -1,3 +1,7 @@
+'use client';
+
+import { useLanguage } from '@/components/language-provider';
+import { researchAreas } from '@/data/research';
 import { site } from '@/config/site';
 import Link from 'next/link';
 import { Youtube, Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
@@ -18,19 +22,20 @@ const socialLinks = [
 ];
 
 const quickLinks = [
-  { name: 'Research', href: '/research' },
-  { name: 'Publication', href: '/publication' },
-  { name: 'Lecture', href: '/lecture' },
-  { name: 'YouTube', href: '/youtube' },
-  { name: 'Book', href: '/book' },
-  { name: 'Project', href: '/project' },
-  { name: 'AI Prompts', href: '/prompts' },
-  { name: 'Conference Deadlines', href: '/deadlines' },
-  { name: 'QT', href: '/qt' },
-  { name: 'Contact', href: '/contact' },
+  { nameKey: 'nav.research', href: '/research' },
+  { nameKey: 'nav.publication', href: '/publication' },
+  { nameKey: 'nav.lecture', href: '/lecture' },
+  { nameKey: 'nav.youtube', href: '/youtube' },
+  { nameKey: 'nav.book', href: '/book' },
+  { nameKey: 'nav.project', href: '/project' },
+  { nameKey: 'nav.prompts', href: '/prompts' },
+  { nameKey: 'nav.deadlines', href: '/deadlines' },
+  { nameKey: 'nav.qt', href: '/qt' },
+  { nameKey: 'nav.contact', href: '/contact' },
 ];
 
 export default function ModernFooter() {
+  const { language, t } = useLanguage();
   return (
     <footer className="border-t bg-muted/50">
       <div className="container py-12">
@@ -39,9 +44,7 @@ export default function ModernFooter() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">SuanLab</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              이수안 교수의 초지능(Superintelligence) 연구실입니다.
-              <br />
-              강의, 논문, YouTube 콘텐츠를 통해 지식을 공유합니다.
+              {t('footer.about') as string}
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((social) => (
@@ -61,15 +64,15 @@ export default function ModernFooter() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Quick Links</h3>
+            <h3 className="text-lg font-semibold">{t('footer.links') as string}</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
-                <li key={link.name}>
+                <li key={link.nameKey}>
                   <Link
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {link.name}
+                    {t(link.nameKey) as string}
                   </Link>
                 </li>
               ))}
@@ -78,7 +81,7 @@ export default function ModernFooter() {
 
           {/* Contact */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Contact</h3>
+            <h3 className="text-lg font-semibold">{t('footer.contact') as string}</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
@@ -99,15 +102,9 @@ export default function ModernFooter() {
 
           {/* Research Areas */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Research Areas</h3>
+            <h3 className="text-lg font-semibold">{t('footer.research') as string}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/research/ds" className="hover:text-primary transition-colors">Data Science &amp; Big Data</Link></li>
-              <li><Link href="/research/dl" className="hover:text-primary transition-colors">Deep Learning &amp; Machine Learning</Link></li>
-              <li><Link href="/research/nlp" className="hover:text-primary transition-colors">Natural Language Processing</Link></li>
-              <li><Link href="/research/cv" className="hover:text-primary transition-colors">Computer Vision</Link></li>
-              <li><Link href="/research/graphs" className="hover:text-primary transition-colors">Graphs and Tensors</Link></li>
-              <li><Link href="/research/st" className="hover:text-primary transition-colors">Spatio-Temporal</Link></li>
-              <li><Link href="/research/asp" className="hover:text-primary transition-colors">Audio &amp; Speech Processing</Link></li>
+              {researchAreas.map(area => <li key={area.slug}><Link href={`/research/${area.slug}`} className="hover:text-primary transition-colors">{language === 'ko' ? area.titleKo : area.titleEn}</Link></li>)}
             </ul>
           </div>
         </div>
@@ -120,9 +117,9 @@ export default function ModernFooter() {
             © {new Date().getFullYear()} SuanLab. All rights reserved.
           </p>
           <div className="flex gap-4 text-sm text-muted-foreground">
-            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
-            <Link href="/sitemap.xml" className="hover:text-primary transition-colors">Sitemap</Link>
+            <Link href="/privacy" className="hover:text-primary transition-colors">{t('footer.privacy') as string}</Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">{t('footer.terms') as string}</Link>
+            <Link href="/sitemap.xml" className="hover:text-primary transition-colors">{t('footer.sitemap') as string}</Link>
           </div>
         </div>
       </div>

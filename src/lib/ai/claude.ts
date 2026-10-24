@@ -1,3 +1,4 @@
+import { downloadJson } from '../http';
 import OpenAI from 'openai';
 
 let openaiClient: OpenAI | null = null;
@@ -8,7 +9,7 @@ export function getOpenAIClient(): OpenAI {
     if (!apiKey) {
       throw new Error('OPENAI_API_KEY is not set in environment variables');
     }
-    openaiClient = new OpenAI({ apiKey });
+    openaiClient = new OpenAI({ apiKey, timeout: 120_000, maxRetries: 2 });
   }
   return openaiClient;
 }
@@ -50,6 +51,7 @@ export async function generateWithOpenAI(
     messages,
   });
 
+  if (response.choices[0]?.finish_reason === 'length') throw new Error('OpenAI response was truncated.');
   const content = response.choices[0]?.message?.content;
   if (!content) {
     throw new Error('No content in OpenAI response');
@@ -114,41 +116,21 @@ export async function generateWithGemini(
     };
   }
 
-  // Set a 5-minute timeout for thinking models (they take longer)
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), isThinkingModel ? 300000 : 120000);
-
-  let response: Response;
-  try {
-    response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents,
-          generationConfig,
-        }),
-        signal: controller.signal,
-      }
-    );
-  } finally {
-    clearTimeout(timeout);
-  }
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
-  }
-
-  const data = await response.json();
+  const data = await downloadJson<{
+    candidates?: { content?: { parts?: { text?: string; thought?: boolean }[] }; finishReason?: string }[];
+    usageMetadata?: { thoughtsTokenCount?: number };
+  }>(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+    body: JSON.stringify({ contents, generationConfig }),
+    timeoutMs: isThinkingModel ? 300_000 : 120_000,
+  });
 
   // Extract text content from parts (skip thinking parts if present)
   const parts = data.candidates?.[0]?.content?.parts || [];
   const textParts = parts.filter((p: { text?: string; thought?: boolean }) => p.text && !p.thought);
-  const content = textParts.length > 0
-    ? textParts.map((p: { text: string }) => p.text).join('')
-    : parts[0]?.text;
+  const content = textParts.map(p => p.text).join('');
+  if (data.candidates?.[0]?.finishReason === 'MAX_TOKENS') throw new Error('Gemini response was truncated.');
 
   if (!content) {
     const finishReason = data.candidates?.[0]?.finishReason;
@@ -328,14 +310,14 @@ export function parseGeneratedContent(rawContent: string): BlogGenerationResult 
   // Extract title from first heading
   const titleMatch = content.match(/^#\s+(.+)$/m);
   const title = titleMatch ? titleMatch[1].trim() : 'Untitled';
+  if (!content || !content.replace(/^#{1,6}\s+.*$/gm, '').trim()) throw new Error('Generated response has no article body.');
 
   // Extract first paragraph as excerpt
   const paragraphs = content
     .split('\n\n')
     .filter((p) => p.trim() && !p.startsWith('#'));
-  const excerpt =
-    paragraphs[0]?.replace(/[*_`]/g, '').slice(0, 200) + '...' ||
-    'No excerpt available';
+  const summary = paragraphs[0]?.replace(/[*_`]/g, '').trim();
+  const excerpt = summary ? summary.slice(0, 200) + (summary.length > 200 ? '...' : '') : title;
 
   // Try to extract tags from content
   const tagMatch = content.match(/태그[:：]\s*(.+)/i);

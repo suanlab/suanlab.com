@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import sharp from 'sharp';
 import fs from 'fs/promises';
 import path from 'path';
@@ -25,7 +25,8 @@ export async function extractFigureFromPdf(
   options: FigureExtractionOptions
 ): Promise<ExtractionResult> {
   const { pdfBuffer, slug } = options;
-  const tempDir = os.tmpdir();
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return { success: false, error: 'Invalid figure slug.' };
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'suanlab-figure-'));
   const tempPdfPath = path.join(tempDir, `${slug}-temp.pdf`);
   const tempImageBase = path.join(tempDir, `${slug}-page`);
 
@@ -35,10 +36,8 @@ export async function extractFigureFromPdf(
 
     // Convert first page at high resolution (300 DPI for better quality)
     const outputPath = `${tempImageBase}-1`;
-    execSync(
-      `pdftoppm -png -f 1 -l 1 -r 300 "${tempPdfPath}" "${outputPath}"`,
-      { encoding: 'utf-8', timeout: 30000 }
-    );
+    execFileSync('pdftoppm', ['-png', '-f', '1', '-l', '1', '-r', '300', tempPdfPath, outputPath],
+      { encoding: 'utf-8', timeout: 30000 });
 
     // Find the generated file
     const imageFile = await findGeneratedImage(outputPath);
@@ -60,7 +59,7 @@ export async function extractFigureFromPdf(
     // Use top 60% of the first page (title, authors, abstract area)
     const cropHeight = Math.floor(height * 0.6);
 
-    await sharp(buffer)
+    const encoded = await sharp(buffer)
       .extract({
         left: 0,
         top: 0,
@@ -72,7 +71,8 @@ export async function extractFigureFromPdf(
         position: 'north'  // Keep top portion (title area)
       })
       .jpeg({ quality: 90 })
-      .toFile(outputFilePath);
+      .toBuffer();
+    await fs.writeFile(outputFilePath, encoded, { flag: 'wx' });
 
     // Cleanup temp files
     await cleanupTempFiles(tempPdfPath, imageFile);
@@ -87,6 +87,7 @@ export async function extractFigureFromPdf(
       error: error instanceof Error ? error.message : 'Unknown error during extraction'
     };
   }
+  finally { await fs.rm(tempDir, { recursive: true, force: true }); }
 }
 
 /**

@@ -17,11 +17,25 @@ import { getAllQTEntries, getQTSlugs } from '../src/lib/qt';
 import { getBookSlugs } from '../src/lib/books';
 import { getPostSlugs } from '../src/lib/blog';
 import { mainNavigation } from '../src/data/site-navigation';
+import registeredQTSlugs from '../src/config/qt-slugs.json';
+import qtArchive from '../archive/qt-manifest.json';
 import { featuredConferenceVenues, featuredProjectIds, projectSummaries, researchLinks, learningPaths } from '../src/data/editorial';
 
 function unique(values: (number | string)[], label: string) {
   assert.equal(new Set(values).size, values.length, `${label}: duplicate identifiers`);
 }
+unique(Object.values(registeredQTSlugs), 'registered QT slugs');
+assert.ok(!fs.existsSync('content/blog/content'), 'Nested historical content belongs in archive/qt.');
+for (const [filename, hash] of Object.entries(qtArchive.files)) {
+  assert.equal(createHash('sha256').update(fs.readFileSync(path.join('archive/qt', filename))).digest('hex'), hash, `Historical QT changed: ${filename}`);
+}
+assert.equal(fs.readdirSync('archive/qt').filter(name => name.endsWith('.md')).length, Object.keys(qtArchive.files).length, 'QT archive inventory changed');
+const fontDirectory = 'public/assets/fonts/inter';
+const fonts = JSON.parse(fs.readFileSync(path.join(fontDirectory, 'source.json'), 'utf8')) as { sha256: Record<string, string> };
+for (const [filename, hash] of Object.entries(fonts.sha256)) {
+  assert.equal(createHash('sha256').update(fs.readFileSync(path.join(fontDirectory, filename))).digest('hex'), hash, `Vendored Inter font changed: ${filename}`);
+}
+assert.ok(fs.existsSync(path.join(fontDirectory, 'LICENSE.txt')), 'Inter font license must be included');
 unique(publications.map(p => p.id), 'publications');
 unique(publications.map(p => [p.type, p.title.trim().toLowerCase(), p.authors, p.date].join('|')), 'publication records');
 unique(projects.map(p => p.id), 'projects');

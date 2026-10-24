@@ -75,7 +75,7 @@ export default async function QTEntryPage({ params }: Props) {
         </div>
       </header>
 
-      <main className="container py-8 max-w-3xl mx-auto">
+      <article className="container py-8 max-w-3xl mx-auto">
         {/* Entry Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
@@ -112,7 +112,7 @@ export default async function QTEntryPage({ params }: Props) {
             <CardContent className="p-6">
               <div className="flex items-center gap-2 mb-4 text-amber-700 dark:text-amber-400">
                 <BookOpen className="h-5 w-5" />
-                <span className="font-semibold">본문 말씀</span>
+                <h2 className="font-semibold">본문 말씀</h2>
               </div>
               <div
                 className="prose prose-amber dark:prose-invert max-w-none leading-relaxed font-serif"
@@ -127,7 +127,7 @@ export default async function QTEntryPage({ params }: Props) {
           <CardContent className="p-6">
             <div className="flex items-center gap-2 mb-4 text-primary">
               <span className="text-lg">✍️</span>
-              <span className="font-semibold">묵상</span>
+              <h2 className="font-semibold">묵상</h2>
             </div>
             <div
               className="prose prose-lg dark:prose-invert max-w-none leading-relaxed"
@@ -183,7 +183,7 @@ export default async function QTEntryPage({ params }: Props) {
             </Button>
           </Link>
         </div>
-      </main>
+      </article>
 
       {/* Footer */}
       <footer className="border-t py-8 mt-12">

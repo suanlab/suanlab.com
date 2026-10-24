@@ -338,6 +338,16 @@ export const publications: Publication[] = [
   },
   // ============ 2026 International Conferences ============
   {
+    "id": 658,
+    "type": "conference",
+    "title": "UrbanReplayBench: Availability-Aware Runtime Evidence Verification for LLM-Planned Urban Data Systems",
+    "authors": "Su Ung Kim and Suan Lee",
+    "venue": "2026 IEEE International Conference on Big Data (IEEE BigData 2026)",
+    "date": "December 2026",
+    "badge": "IEEE BigData 2026",
+    "status": "accepted"
+  },
+  {
     "id": 657,
     "type": "conference",
     "title": "PINNBench: A Benchmark for Training Policy Selection in Hybrid PINN-Operator Solvers",

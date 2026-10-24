@@ -4,6 +4,8 @@ export interface ConferenceVenue {
   name: string;
   homepageUrl?: string;
   aliases?: string[];
+  excludedAliases?: string[];
+  years?: readonly number[];
 }
 
 interface ConferencePaper {
@@ -48,12 +50,12 @@ export function groupConferencePublications<T extends ConferencePaper>(
     if (/workshop|student research|companion|demonstration|\bdemo\b|\btutorial\b/i.test(source)) continue;
     const track = /\bfindings\b/i.test(source) ? 'findings' : 'main';
     if (track === 'findings' && !includeFindings) continue;
-    const conference = venues.find(venue => [venue.acronym, venue.name, ...(venue.aliases ?? [])].some(alias =>
-      new RegExp(`(^|[^a-z0-9])${escapePattern(normalize(alias))}(?=$|[^a-z0-9])`, 'i').test(source),
-    ));
+    const matchesAlias = (alias: string) => new RegExp(`(^|[^a-z0-9])${escapePattern(normalize(alias))}(?=$|[^a-z0-9])`, 'i').test(source);
+    const conference = venues.find(venue => !venue.excludedAliases?.some(matchesAlias)
+      && [venue.acronym, venue.name, ...(venue.aliases ?? [])].some(matchesAlias));
     if (!conference) continue;
     const year = Number(publication.badge?.match(/\b(?:19|20)\d{2}\b/)?.[0] ?? publication.venue.match(/\b(?:19|20)\d{2}\b/)?.[0] ?? publication.date.match(/\b(?:19|20)\d{2}\b/)?.[0]);
-    if (!year) continue;
+    if (!year || (conference.years && !conference.years.includes(year))) continue;
     const id = `${conference.id}-${year}`;
     let group = groups.get(id);
     if (!group) {

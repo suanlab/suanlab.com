@@ -4,6 +4,7 @@ import type { ConferenceVenue } from '@/lib/publication-groups';
 // Add venues explicitly. Publication dates alone do not establish eligibility.
 export const featuredConferenceVenues: ConferenceVenue[] = [
   { id: 'neurips', acronym: 'NeurIPS', name: 'Conference on Neural Information Processing Systems', homepageUrl: 'https://neurips.cc/Conferences/2026', aliases: ['NIPS'] },
+  { id: 'ieee-bigdata', acronym: 'IEEE BigData', name: 'IEEE International Conference on Big Data', homepageUrl: 'https://bigdataieee.org/BigData2026/', aliases: ['IEEE Big Data'], excludedAliases: ['BigComp', 'Smart Computing'], years: [2026] },
   { id: 'accv', acronym: 'ACCV', name: 'Asian Conference on Computer Vision', homepageUrl: 'https://accv2026.org/' },
   { id: 'aacl-ijcnlp', acronym: 'AACL-IJCNLP', name: 'Asia Pacific Chapter of ACL and IJCNLP Joint Conference', homepageUrl: 'https://2026.aaclnet.org/' },
   { id: 'icdm', acronym: 'ICDM', name: 'IEEE International Conference on Data Mining', homepageUrl: 'https://www3.cs.stonybrook.edu/~icdm2026/index.html' },

@@ -9,6 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge, badgeVariants } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { emptyBlogQuery, readBlogQuery, updateListQuery, type BlogQuery } from '@/lib/list-query';
 import type { BlogPostMeta } from '@/lib/blog';
 
 interface BlogContentProps {
@@ -20,12 +21,23 @@ interface BlogContentProps {
 export default function BlogContent({ posts, categories, tags }: BlogContentProps) {
   const { language } = useLanguage();
   const ko = language === 'ko';
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
-
-
-  const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState<BlogQuery>(emptyBlogQuery);
+  const { q: searchQuery, category: selectedCategory, tag: selectedTag } = filters;
+  useEffect(() => {
+    const sync = () => setFilters(readBlogQuery(new URLSearchParams(window.location.search)));
+    sync(); window.addEventListener('popstate', sync);
+    return () => window.removeEventListener('popstate', sync);
+  }, []);
+  function updateFilters(patch: Partial<BlogQuery>, push = true) {
+    const next = { ...filters, ...patch };
+    setFilters(next);
+    const url = updateListQuery(new URL(window.location.href), {
+      q: next.q, category: next.category, tag: next.tag, page: next.page > 1 ? String(next.page) : null,
+    });
+    window.history[push ? 'pushState' : 'replaceState'](null, '', url);
+  }
+  const setSearchQuery = (q: string) => updateFilters({ q, page: 1 }, false);
+  const setCurrentPage = (page: number) => updateFilters({ page });
   const POSTS_PER_PAGE = 12;
 
   const filteredPosts = useMemo(() => {
@@ -33,7 +45,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
 
     // 검색 필터
     if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
+      const query = searchQuery.trim().toLowerCase();
       result = result.filter(
         (post) =>
           post.title.toLowerCase().includes(query) ||
@@ -63,6 +75,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
 
   // 페이지네이션 계산
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const currentPage = Math.min(filters.page, Math.max(1, totalPages));
   const paginatedPosts = filteredPosts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
     currentPage * POSTS_PER_PAGE
@@ -70,26 +83,9 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
   const startItem = (currentPage - 1) * POSTS_PER_PAGE + 1;
   const endItem = Math.min(currentPage * POSTS_PER_PAGE, filteredPosts.length);
 
-  // 필터 변경 시 페이지 리셋
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchQuery, selectedCategory, selectedTag]);
-
-  const handleCategoryClick = (category: string) => {
-    setSelectedCategory(selectedCategory === category ? null : category);
-    setSelectedTag(null);
-  };
-
-  const handleTagClick = (tag: string) => {
-    setSelectedTag(selectedTag === tag ? null : tag);
-    setSelectedCategory(null);
-  };
-
-  const clearFilters = () => {
-    setSearchQuery('');
-    setSelectedCategory(null);
-    setSelectedTag(null);
-  };
+  const handleCategoryClick = (category: string) => updateFilters({ category: selectedCategory === category ? null : category, tag: null, page: 1 });
+  const handleTagClick = (tag: string) => updateFilters({ tag: selectedTag === tag ? null : tag, category: null, page: 1 });
+  const clearFilters = () => updateFilters(emptyBlogQuery);
 
   const hasActiveFilters = searchQuery || selectedCategory || selectedTag;
 
@@ -98,7 +94,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
       <div className="container">
         <div className="grid gap-8 lg:grid-cols-4">
           {/* 사이드바 */}
-          <aside className="lg:col-span-1">
+          <aside className="min-w-0 lg:col-span-1">
             {/* 검색 */}
             <Card className="mb-6">
               <CardContent className="p-4">
@@ -193,9 +189,9 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
           </aside>
 
           {/* 포스트 목록 */}
-          <div className="lg:col-span-3">
+          <div className="min-w-0 lg:col-span-3">
             {/* 검색 결과 수 */}
-            <p className="text-sm text-muted-foreground mb-6">
+            <p role="status" className="text-sm text-muted-foreground mb-6">
               {searchQuery && (ko ? `"${searchQuery}" 검색 결과: ` : `Results for "${searchQuery}": `)}
               {selectedCategory && `${ko ? "카테고리" : "Category"} "${selectedCategory}": `}
               {selectedTag && `${ko ? "태그" : "Tag"} "${selectedTag}": `}
@@ -225,7 +221,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                         <span>{post.date}</span>
                         <span className="mx-1">•</span>
                         <Clock className="h-3 w-3" />
-                        <span>{post.readingTime}분</span>
+                        <span>{post.readingTime}{ko ? '분' : ' min'}</span>
                         <span className="mx-1">•</span>
                         <Folder className="h-3 w-3" />
                         <span>{post.category}</span>
@@ -257,11 +253,11 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
 
             {/* 페이지네이션 */}
             {totalPages > 1 && (
-              <div className="mt-8 flex items-center justify-center gap-2">
+              <div aria-label={ko ? '블로그 페이지' : 'Blog pages'} className="mt-8 flex flex-wrap items-center justify-center gap-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                   disabled={currentPage === 1}
                 >
                   {ko ? '이전' : 'Previous'}
@@ -291,7 +287,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
                   disabled={currentPage === totalPages}
                 >
                   {ko ? '다음' : 'Next'}

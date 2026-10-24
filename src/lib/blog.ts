@@ -1,5 +1,5 @@
+import { createContentStore } from './content-store';
 import { parseProvenance, type ContentProvenance } from './content-provenance';
-import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { unified } from 'unified';
@@ -99,38 +99,19 @@ export interface BlogPostMeta {
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
 
-export function getPostSlugs(): string[] {
-  if (!fs.existsSync(postsDirectory)) {
-    return [];
-  }
-  return fs.readdirSync(postsDirectory).filter((file) => file.endsWith('.md'));
-}
-
-export function getPostBySlug(slug: string): BlogPost | null {
-  const realSlug = slug.replace(/\.md$/, '');
-  const fullPath = path.join(postsDirectory, `${realSlug}.md`);
-
-  if (!fs.existsSync(fullPath)) {
-    return null;
-  }
-
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
-
+const posts = createContentStore<BlogPost>(postsDirectory, (filename, source) => {
+  const { data, content } = matter(source);
   return {
-    provenance: parseProvenance(data.provenance),
-    slug: realSlug,
-    title: data.title || '',
-    subtitle: data.subtitle || undefined,
-    date: data.date || '',
-    excerpt: data.excerpt || '',
-    category: data.category || 'General',
-    tags: Array.from(new Set<string>(data.tags || [])),
-    thumbnail: data.thumbnail || null,
-    content,
-    readingTime: calculateReadingTime(content),
+    provenance: parseProvenance(data.provenance), slug: filename.slice(0, -3),
+    title: data.title || '', subtitle: data.subtitle || undefined, date: data.date || '',
+    excerpt: data.excerpt || '', category: data.category || 'General',
+    tags: Array.from(new Set<string>(data.tags || [])), thumbnail: data.thumbnail || undefined,
+    content, readingTime: calculateReadingTime(content),
   };
-}
+});
+
+export function getPostSlugs(): string[] { return posts.filenames(); }
+export function getPostBySlug(slug: string): BlogPost | null { return posts.get(`${slug.replace(/\.md$/, '')}.md`); }
 
 export async function getPostBySlugWithHtml(slug: string): Promise<(BlogPost & { contentHtml: string }) | null> {
   const post = getPostBySlug(slug);
@@ -159,19 +140,11 @@ export async function getPostBySlugWithHtml(slug: string): Promise<(BlogPost & {
 }
 
 export function getAllPosts(): BlogPostMeta[] {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => {
-      const post = getPostBySlug(slug.replace(/\.md$/, ''));
-      if (!post) return null;
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { content, ...meta } = post;
-      return meta;
-    })
-    .filter((post): post is BlogPostMeta => post !== null)
-    .sort((a, b) => (new Date(b.date) > new Date(a.date) ? 1 : -1));
-
-  return posts;
+  return getAllPostsWithContent().map(post => ({
+    slug: post.slug, title: post.title, subtitle: post.subtitle, date: post.date,
+    excerpt: post.excerpt, category: post.category, tags: post.tags,
+    thumbnail: post.thumbnail, readingTime: post.readingTime,
+  }));
 }
 
 export function getPostsByCategory(category: string): BlogPostMeta[] {
@@ -228,12 +201,7 @@ export function stripMarkdown(text: string): string {
 }
 
 export function getAllPostsWithContent(): BlogPost[] {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug.replace(/\.md$/, '')))
-    .filter((post): post is BlogPost => post !== null)
-    .sort((a, b) => (new Date(b.date) > new Date(a.date) ? 1 : -1));
-  return posts;
+  return posts.all().sort((a, b) => b.date.localeCompare(a.date) || b.slug.localeCompare(a.slug));
 }
 
 export function searchPostsFullText(query: string): BlogPostMeta[] {
@@ -285,7 +253,7 @@ export function getRelatedPosts(
     const overlapA = calculateTagOverlap(a.tags);
     const overlapB = calculateTagOverlap(b.tags);
     if (overlapA !== overlapB) return overlapB - overlapA;
-    return new Date(b.date) > new Date(a.date) ? 1 : -1;
+    return b.date.localeCompare(a.date) || b.slug.localeCompare(a.slug);
   });
   
   // Sort other category by tag overlap, then by date
@@ -293,7 +261,7 @@ export function getRelatedPosts(
     const overlapA = calculateTagOverlap(a.tags);
     const overlapB = calculateTagOverlap(b.tags);
     if (overlapA !== overlapB) return overlapB - overlapA;
-    return new Date(b.date) > new Date(a.date) ? 1 : -1;
+    return b.date.localeCompare(a.date) || b.slug.localeCompare(a.slug);
   });
   
   // Combine: same category first, then other categories

@@ -1,6 +1,5 @@
 import { site } from '@/config/site';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/components/language-provider';
@@ -12,13 +11,9 @@ import {
   WebSiteJsonLd,
 } from '@/components/seo/JsonLd';
 import './globals.css';
+import './fonts/inter.css';
 
 const GA_MEASUREMENT_ID = 'G-PYEC6PCW0P';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
 
 const BASE_URL = site.url;
 
@@ -123,6 +118,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
+        <link rel="preload" href="/assets/fonts/inter/latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {/* Google Analytics */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
@@ -141,7 +137,7 @@ export default function RootLayout({
         <PersonJsonLd />
         <WebSiteJsonLd />
       </head>
-      <body className={`${inter.variable} antialiased`}>
+      <body className="antialiased">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md">본문으로 건너뛰기</a>
         <LanguageProvider>
           <ThemeProvider

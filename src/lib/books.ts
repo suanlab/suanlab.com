@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { createContentStore } from './content-store';
 import path from 'path';
 import matter from 'gray-matter';
 import { unified } from 'unified';
@@ -26,36 +26,13 @@ export interface BookPostWithHtml extends BookPost {
 
 const booksDirectory = path.join(process.cwd(), 'content/books');
 
-export function getBookSlugs(): string[] {
-  if (!fs.existsSync(booksDirectory)) {
-    return [];
-  }
-  return fs.readdirSync(booksDirectory).filter((file) => file.endsWith('.md'));
-}
-
-export function getBookBySlug(slug: string): BookPost | null {
-  const realSlug = slug.replace(/\.md$/, '');
-  const fullPath = path.join(booksDirectory, `${realSlug}.md`);
-
-  if (!fs.existsSync(fullPath)) {
-    return null;
-  }
-
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
-
-  return {
-    slug: realSlug,
-    title: data.title || '',
-    subtitle: data.subtitle,
-    author: data.author || '',
-    publisher: data.publisher,
-    date: data.date || '',
-    image: data.image,
-    url: data.url,
-    content,
-  };
-}
+const books = createContentStore<BookPost>(booksDirectory, (filename, source) => {
+  const { data, content } = matter(source);
+  return { slug: filename.slice(0, -3), title: data.title || '', subtitle: data.subtitle,
+    author: data.author || '', publisher: data.publisher, date: data.date || '', image: data.image, url: data.url, content };
+});
+export function getBookSlugs(): string[] { return books.filenames(); }
+export function getBookBySlug(slug: string): BookPost | null { return books.get(`${slug.replace(/\.md$/, '')}.md`); }
 
 export async function getBookBySlugWithHtml(slug: string): Promise<BookPostWithHtml | null> {
   const book = getBookBySlug(slug);
@@ -78,13 +55,7 @@ export async function getBookBySlugWithHtml(slug: string): Promise<BookPostWithH
 }
 
 export function getAllBookPosts(): BookPost[] {
-  const slugs = getBookSlugs();
-  const books = slugs
-    .map((slug) => getBookBySlug(slug.replace(/\.md$/, '')))
-    .filter((book): book is BookPost => book !== null)
-    .sort((a, b) => (new Date(b.date) > new Date(a.date) ? 1 : -1));
-
-  return books;
+  return books.all().sort((a, b) => b.date.localeCompare(a.date) || b.slug.localeCompare(a.slug));
 }
 
 export async function getAllBookPostsWithHtml(): Promise<BookPostWithHtml[]> {

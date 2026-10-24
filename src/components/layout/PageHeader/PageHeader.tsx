@@ -7,13 +7,14 @@ import MenuDotField from './MenuDotField';
 
 interface PageHeaderProps {
   title: string;
+  titleKey?: string;
   subtitle?: string;
   subtitleKey?: string;
   backgroundImage?: string;
-  breadcrumbs?: { label: string; href?: string }[];
+  breadcrumbs?: { label: string; labelKey?: string; href?: string }[];
 }
 
-export default function PageHeader({ title, subtitle, subtitleKey, backgroundImage = '/assets/images/slider/blue.jpg', breadcrumbs = [] }: PageHeaderProps) {
+export default function PageHeader({ title, titleKey, subtitle, subtitleKey, backgroundImage = '/assets/images/slider/blue.jpg', breadcrumbs = [] }: PageHeaderProps) {
   const { t, language } = useLanguage();
   const displaySubtitle = subtitleKey ? (t(subtitleKey) as string) : subtitle;
   return (
@@ -28,12 +29,12 @@ export default function PageHeader({ title, subtitle, subtitleKey, backgroundIma
               {breadcrumbs.map((crumb, index) => (
                 <span key={index} className="flex min-w-0 items-center">
                   <ChevronRight aria-hidden="true" className="mx-2 h-4 w-4 shrink-0 text-slate-300" />
-                  {crumb.href ? <Link href={crumb.href} className="break-words text-slate-200 hover:text-cyan-100">{crumb.label}</Link> : <span aria-current="page" className="break-words font-medium text-cyan-100">{crumb.label}</span>}
+                  {crumb.href ? <Link href={crumb.href} className="break-words text-slate-200 hover:text-cyan-100">{crumb.labelKey ? t(crumb.labelKey) as string : crumb.label}</Link> : <span aria-current="page" className="break-words font-medium text-cyan-100">{crumb.labelKey ? t(crumb.labelKey) as string : crumb.label}</span>}
                 </span>
               ))}
             </nav>
           )}
-          <h1 className="break-words text-3xl font-bold tracking-tight [overflow-wrap:anywhere] sm:text-4xl md:text-5xl lg:text-6xl">{title}</h1>
+          <h1 className="break-words text-3xl font-bold tracking-tight [overflow-wrap:anywhere] sm:text-4xl md:text-5xl lg:text-6xl">{titleKey ? t(titleKey) as string : title}</h1>
           {displaySubtitle && <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-200 md:text-xl">{displaySubtitle}</p>}
           <div aria-hidden="true" className="mt-6 flex gap-2">{[0, 1, 2, 3, 4].map(i => <span key={i} className="h-1 w-1 rounded-full bg-cyan-200" style={{ opacity: 1 - i * .15 }} />)}</div>
         </div>
