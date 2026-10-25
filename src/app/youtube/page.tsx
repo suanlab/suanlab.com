@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { catalogEnglish } from '@/data/i18n/catalog';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -73,7 +75,7 @@ export default function YouTubePage() {
     }))
   );
 
-  return (
+  return <LocalizedContent translations={catalogEnglish}>
     <>
       <VideoCollectionJsonLd videos={allVideos} />
       <PageHeader
@@ -85,7 +87,7 @@ export default function YouTubePage() {
       <section className="py-16 md:py-20">
         <div className="container">
           <div className="grid gap-8 lg:grid-cols-4">
-            <aside className="lg:col-span-1">
+            <aside className="min-w-0 break-words lg:col-span-1">
               <div className="sticky top-24">
                 <div className="mb-4 flex items-center gap-2">
                   <Youtube className="h-5 w-5 text-red-500" />
@@ -113,7 +115,7 @@ export default function YouTubePage() {
               </div>
             </aside>
 
-            <div className="lg:col-span-3">
+            <div className="min-w-0 lg:col-span-3">
               <YouTubeClient popularVideos={popularVideos} recentVideos={recentVideos} />
 
               <div className="mt-12">
@@ -148,5 +150,5 @@ export default function YouTubePage() {
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

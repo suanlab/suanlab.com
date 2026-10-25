@@ -1,4 +1,6 @@
 'use client';
+import LocalizedContent from '@/components/localized-content';
+import { projectEnglish } from '@/data/i18n/projects';
 
 import { projectSummaries } from '@/data/editorial';
 import ResearchBacklinks from '@/components/research-backlinks';
@@ -34,8 +36,8 @@ function ProjectCard({ project, showActiveStyle }: { project: ProjectWithBudget;
   const { language } = useLanguage();
   const ko = language === 'ko';
   const summary = projectSummaries[project.id];
-  return (
-    <Card id={`project-${project.id}`} className={cn('scroll-mt-24 h-full flex flex-col', showActiveStyle && 'border-green-200 dark:border-green-900')}>
+  return <LocalizedContent>
+    <Card id={`project-${project.id}`} className={cn('scroll-mt-24 h-full min-w-0 break-words flex flex-col', showActiveStyle && 'border-green-200 dark:border-green-900')}>
       <CardHeader>
         <div className="flex items-center gap-2 mb-2">
           {project.completed ? (
@@ -56,28 +58,28 @@ function ProjectCard({ project, showActiveStyle }: { project: ProjectWithBudget;
         <div className="space-y-3 text-sm mb-4">
           <div className="flex items-start gap-2">
             <Building className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
-            <div>
+            <div className="min-w-0">
               <p className="text-muted-foreground">{ko ? '기관' : 'Organization'}</p>
               <p className="font-medium">{project.organization}</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <FolderOpen className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
-            <div>
+            <div className="min-w-0">
               <p className="text-muted-foreground">{ko ? '사업' : 'Program'}</p>
               <p className="font-medium">{project.program}</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <Calendar className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
-            <div>
+            <div className="min-w-0">
               <p className="text-muted-foreground">{ko ? '기간' : 'Period'}</p>
               <p className="font-medium">{project.period}</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <DollarSign className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
-            <div>
+            <div className="min-w-0">
               <p className="text-muted-foreground">{ko ? '예산' : 'Budget'}</p>
               <p className="font-medium">{project.formattedBudget}</p>
             </div>
@@ -102,7 +104,7 @@ function ProjectCard({ project, showActiveStyle }: { project: ProjectWithBudget;
         <ResearchBacklinks projectId={project.id} />
       </CardContent>
     </Card>
-  );
+  </LocalizedContent>;
 }
 
 export default function ProjectClient({ allProjects, activeProjects, completedProjects }: ProjectClientProps) {
@@ -122,7 +124,7 @@ export default function ProjectClient({ allProjects, activeProjects, completedPr
     { key: 'completed', label: ko ? '종료' : 'Completed', count: completedProjects.length },
   ];
 
-  return (
+  return <LocalizedContent translations={projectEnglish}>
     <>
       <div className="mt-6 flex justify-center gap-2 flex-wrap">
         {filters.map((f) => (
@@ -176,5 +178,5 @@ export default function ProjectClient({ allProjects, activeProjects, completedPr
         </div>
       )}
     </>
-  );
+  </LocalizedContent>;
 }

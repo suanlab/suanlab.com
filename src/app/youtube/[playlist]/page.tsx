@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { catalogEnglish } from '@/data/i18n/catalog';
 import { site } from '@/config/site';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -32,7 +34,7 @@ export default function YouTubePlaylistPage({ params }: { params: { playlist: st
     notFound();
   }
 
-  return (
+  return <LocalizedContent translations={catalogEnglish}>
     <>
       <PageHeader
         title={currentPlaylist.titleEn}
@@ -47,7 +49,7 @@ export default function YouTubePlaylistPage({ params }: { params: { playlist: st
         <div className="container">
           <div className="grid gap-8 lg:grid-cols-4">
             {/* Sidebar */}
-            <aside className="lg:col-span-1 order-2 lg:order-1">
+            <aside className="min-w-0 break-words lg:col-span-1 order-2 lg:order-1">
               <div className="sticky top-24">
                 <div className="mb-4 flex items-center gap-2">
                   <Youtube className="h-5 w-5 text-red-500" />
@@ -85,8 +87,8 @@ export default function YouTubePlaylistPage({ params }: { params: { playlist: st
             </aside>
 
             {/* Main Content */}
-            <div className="lg:col-span-3 order-1 lg:order-2">
-              <div className="mb-8 flex items-center justify-between">
+            <div className="min-w-0 lg:col-span-3 order-1 lg:order-2">
+              <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <h2 className="text-2xl font-bold">{currentPlaylist.titleKo}</h2>
                   <p className="text-muted-foreground">{currentPlaylist.titleEn}</p>
@@ -201,5 +203,5 @@ export default function YouTubePlaylistPage({ params }: { params: { playlist: st
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

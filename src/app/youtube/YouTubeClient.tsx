@@ -1,7 +1,10 @@
 'use client';
+import LocalizedContent, { OriginalLanguageNotice, useDisplayText } from '@/components/localized-content';
+import SourceText from '@/components/source-text';
+import { catalogEnglish } from '@/data/i18n/catalog';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { Play, Map, TrendingUp, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -24,17 +27,21 @@ const tabs = [
 ];
 
 function LazyVideo({ video, badge }: { video: VideoItem; badge: React.ReactNode }) {
+  const displayText = useDisplayText();
+  const titleId = useId();
+  const title = displayText(video.title);
   const [loaded, setLoaded] = useState(false);
   const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`;
 
-  return (
+  return <LocalizedContent>
     <Card className="overflow-hidden">
       <div className="relative aspect-video bg-black">
         {loaded ? (
           <iframe
             className="h-full w-full"
             src={`https://www.youtube.com/embed/${video.youtubeId}`}
-            title={video.title}
+            title={title}
+            lang={/[가-힣]/.test(title) ? 'ko' : undefined}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
@@ -42,13 +49,14 @@ function LazyVideo({ video, badge }: { video: VideoItem; badge: React.ReactNode 
           <button
             onClick={() => setLoaded(true)}
             className="relative h-full w-full cursor-pointer"
-            aria-label={`영상 재생: ${video.title}`}
+            aria-labelledby={`${titleId}-play ${titleId}`}
           >
+            <span id={`${titleId}-play`} className="sr-only">영상 재생</span>
             <Image
               width={480}
               height={360}
               src={thumbnailUrl}
-              alt={video.title}
+              alt=""
               className="h-full w-full object-cover"
               loading="lazy"
             />
@@ -62,19 +70,19 @@ function LazyVideo({ video, badge }: { video: VideoItem; badge: React.ReactNode 
       </div>
       <CardContent className="p-4">
         {badge}
-        <p className="text-sm font-medium mt-1">{video.title}</p>
+        <p id={titleId} className="text-sm font-medium mt-1"><SourceText text={title} /></p>
         <p className="text-xs text-muted-foreground">{video.playlistTitle}</p>
       </CardContent>
     </Card>
-  );
+  </LocalizedContent>;
 }
 
 export default function YouTubeClient({ popularVideos, recentVideos }: YouTubeClientProps) {
   const [activeTab, setActiveTab] = useState('roadmap');
 
-  return (
+  return <LocalizedContent translations={catalogEnglish}>
     <>
-      <div className="mb-8 flex gap-2 border-b">
+      <div className="mb-8 flex flex-wrap gap-2 border-b">
         {tabs.map((tab) => {
           const TabIcon = tab.icon;
           return (
@@ -106,6 +114,7 @@ export default function YouTubeClient({ popularVideos, recentVideos }: YouTubeCl
         </div>
       )}
 
+      {activeTab !== 'roadmap' && <OriginalLanguageNotice />}
       {activeTab === 'popular' && (
         <div className="space-y-6">
           <h3 className="text-lg font-semibold">인기 영상</h3>
@@ -146,5 +155,5 @@ export default function YouTubeClient({ popularVideos, recentVideos }: YouTubeCl
         </div>
       )}
     </>
-  );
+  </LocalizedContent>;
 }

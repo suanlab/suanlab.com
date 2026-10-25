@@ -1,4 +1,6 @@
 'use client';
+import SourceText from '@/components/source-text';
+import { OriginalLanguageNotice } from '@/components/localized-content';
 
 import { MotionList, MotionItem } from '@/components/motion/motion-list';
 import { useLanguage } from '@/components/language-provider';
@@ -93,6 +95,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
   return (
     <section className="py-16 md:py-20">
       <div className="container">
+        <OriginalLanguageNotice />
         <div className="grid gap-8 lg:grid-cols-4">
           {/* 사이드바 */}
           <aside className="min-w-0 lg:col-span-1">
@@ -210,7 +213,7 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                       <div className="relative aspect-video">
                         <Image
                           src={post.thumbnail}
-                          alt={post.title}
+                          alt={post.title} lang={/[가-힣]/.test(post.title) ? 'ko' : undefined}
                           fill
                           className="object-cover"
                         />
@@ -228,10 +231,10 @@ export default function BlogContent({ posts, categories, tags }: BlogContentProp
                         <span>{post.category}</span>
                       </div>
                       <h2 className="font-semibold text-lg mb-2 line-clamp-2">
-                        {post.title}
+                        <SourceText text={ko ? post.title : post.title.replace('[논문 리뷰]', '[Paper Review]')} />
                       </h2>
                       <p className="text-sm text-muted-foreground line-clamp-3">
-                        {post.excerpt}
+                        <SourceText text={post.excerpt} />
                       </p>
                       <div className="flex flex-wrap gap-1 mt-3">
                         {post.tags.slice(0, 3).map((tag) => (

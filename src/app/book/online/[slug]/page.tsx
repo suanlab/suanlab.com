@@ -1,3 +1,6 @@
+import { OriginalLanguageNotice } from '@/components/localized-content';
+import LocalizedContent from '@/components/localized-content';
+import { catalogEnglish } from '@/data/i18n/catalog';
 import { site } from '@/config/site';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -44,7 +47,7 @@ export default async function BookDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  return (
+  return <LocalizedContent translations={catalogEnglish}>
     <>
       <PageHeader
         title={book.title}
@@ -58,6 +61,7 @@ export default async function BookDetailPage({ params }: PageProps) {
 
       <section className="py-16 md:py-20">
         <div className="container">
+          <OriginalLanguageNotice />
           <div className="mb-8">
             <Button variant="ghost" asChild>
               <Link href="/book/online">
@@ -135,12 +139,12 @@ export default async function BookDetailPage({ params }: PageProps) {
             <CardContent className="p-6 lg:p-10">
               <div
                 className="book-content prose prose-lg dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: book.contentHtml }}
+                lang="ko" data-original-language="ko" dangerouslySetInnerHTML={{ __html: book.contentHtml }}
               />
             </CardContent>
           </Card>
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

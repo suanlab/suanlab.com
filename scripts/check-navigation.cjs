@@ -74,7 +74,7 @@ const routes = ['/', '/suan/', '/research/', '/project/', '/publication/', '/lec
 
     const lists = await context(); const listPage = await lists.newPage();
     await go(listPage, '/qt/');
-    const john = listPage.getByRole('heading', { name: '요한복음', exact: true }).locator('xpath=ancestor::div[contains(@class,"rounded-xl")]');
+    const john = listPage.getByRole('heading', { name: 'John', exact: true }).locator('xpath=ancestor::div[contains(@class,"rounded-xl")]');
     await john.getByRole('link', { name: /View \d+ more/ }).click();
     await listPage.waitForFunction(() => new URLSearchParams(location.search).get('book') === '요한복음');
     assert.equal(await listPage.locator('[role="tabpanel"] h3').count(), 1);

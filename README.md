@@ -41,6 +41,25 @@ theme. Comments initialize once after the theme resolves; later theme/language
 changes preserve drafts. The embed waits until the browser mounts to keep streamed
 article hydration consistent with the exported HTML.
 
+## English localization
+
+Keep curated display translations in `src/data/i18n/` using exact, whitespace-normalized
+Korean source strings as keys. Wrap server page trees and client-rendered lists with
+`LocalizedContent`; custom components should use `useDisplayText` or the existing
+language provider for their own labels. Translate headings, descriptions and readable
+attributes, while keeping IDs, URLs, filter values and citation exports canonical.
+
+Original Korean articles, book prose and formal citations use `SourceText` or precise
+`lang="ko"` regions. Show `OriginalLanguageNotice` when a page contains Korean source
+prose. These markers describe source material; do not use them to suppress missing UI
+translations. Presentation HTML is translated separately without changing code or math.
+
+After building and starting the preview, run `npm run check:language` (also included in
+`check:browser`). It scans every UI route family, sample original articles, video tabs
+and every lecture slide, then checks locale switching and filter preservation. Reports
+are written to `.runtime/language-check.json`; untranslated UI or document titles fail
+the check. Add new translations alongside changes to their source text.
+
 ## Motion design
 
 Shared motion lives in `src/components/motion/` and `src/styles/motion.css`.

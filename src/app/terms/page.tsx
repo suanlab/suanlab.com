@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { legalEnglish } from '@/data/i18n/legal';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -10,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
-  return (
+  return <LocalizedContent translations={legalEnglish}>
     <>
       <PageHeader
         title="이용약관"
@@ -180,5 +182,5 @@ export default function TermsPage() {
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

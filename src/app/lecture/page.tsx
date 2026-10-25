@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { catalogEnglish } from '@/data/i18n/catalog';
 import LearningPaths from '@/components/learning-paths';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
 };
 
 export default function LecturePage() {
-  return (
+  return <LocalizedContent translations={catalogEnglish}>
     <>
       <PageHeader
         title="Lecture"
@@ -164,5 +166,5 @@ export default function LecturePage() {
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

@@ -1,5 +1,7 @@
 'use client';
 
+import SourceText from '@/components/source-text';
+import { useLanguage } from '@/components/language-provider';
 import { useState, useEffect } from 'react';
 import { List } from 'lucide-react';
 
@@ -10,6 +12,7 @@ interface TocItem {
 }
 
 export default function TableOfContents({ items }: { items: TocItem[] }) {
+  const { language } = useLanguage();
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
@@ -38,7 +41,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
     <nav className="sticky top-24">
       <div className="flex items-center gap-2 mb-3">
         <List className="h-4 w-4 text-primary" />
-        <h3 className="font-semibold text-sm">목차</h3>
+        <h3 className="font-semibold text-sm">{language === 'en' ? 'Contents' : '목차'}</h3>
       </div>
       <ul className="space-y-1 text-sm">
         {items.map((item) => (
@@ -53,7 +56,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              {item.text}
+              <SourceText text={item.text} />
             </a>
           </li>
         ))}

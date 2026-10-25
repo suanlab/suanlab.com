@@ -1,4 +1,5 @@
 'use client';
+import LocalizedContent from '@/components/localized-content';
 
 import { MotionList, MotionItem } from '@/components/motion/motion-list';
 import { useState, useMemo, useEffect, useCallback } from 'react';
@@ -332,7 +333,7 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
     </>
   );
 
-  return (
+  return <LocalizedContent>
     <>
     <div className="mb-8 rounded-xl border bg-muted/30 p-5">
       <p className="text-xs font-semibold uppercase tracking-wider text-primary">Research Toolkit · {promptsUpdatedAt}</p>
@@ -545,6 +546,6 @@ export default function PromptsClient(_props: PromptsClientProps = {}) {
       <p className="mt-3">{language === 'ko' ? '빌더는 프롬프트를 작성합니다. 모델 실행과 결과 검증은 사용하는 AI 도구에서 진행하세요.' : 'Builders compose prompts. Run models and verify results in your chosen AI tool.'}</p>
     </div>
     </>
-  );
+  </LocalizedContent>;
 
 }

@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { researchEnglish } from '@/data/i18n/research';
 import { ResearchStory } from '@/components/motion/research-story';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
@@ -52,7 +54,7 @@ export const metadata: Metadata = {
 };
 
 export default function ResearchPage() {
-  return (
+  return <LocalizedContent translations={researchEnglish}>
     <>
       <PageHeader
         title="Research"
@@ -112,5 +114,5 @@ export default function ResearchPage() {
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

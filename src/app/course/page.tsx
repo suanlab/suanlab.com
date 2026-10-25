@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { courseEnglish } from '@/data/i18n/courses';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import PageHeader from '@/components/layout/PageHeader';
@@ -62,7 +64,7 @@ function getCourseStats(courseList: Course[]) {
 export default function CoursePage() {
   const { years, categoryCounts } = getCourseStats(courses);
 
-  return (
+  return <LocalizedContent translations={courseEnglish}>
     <>
       <EventCollectionJsonLd events={courses.map((c) => ({
         name: c.title,
@@ -86,5 +88,5 @@ export default function CoursePage() {
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

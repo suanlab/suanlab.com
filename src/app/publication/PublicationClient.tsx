@@ -1,4 +1,6 @@
 'use client';
+import SourceText from '@/components/source-text';
+import LocalizedContent from '@/components/localized-content';
 
 import { MotionList, MotionItem } from '@/components/motion/motion-list';
 import { PublicationTimeline } from '@/components/motion/publication-timeline';
@@ -150,7 +152,7 @@ export default function PublicationClient({
     }
   }
 
-  return (
+  return <LocalizedContent>
     <div className="min-w-0 lg:col-span-3">
       <PublicationTimeline years={publicationYearCounts(publications)} selected={year} onSelect={setYear} />
       <div className="mb-6 grid gap-3 sm:grid-cols-[1fr_auto]">
@@ -231,6 +233,7 @@ export default function PublicationClient({
                     </div>
                     <h3 className="font-medium leading-relaxed">
                       <span
+                        lang={/[가-힣]/.test(pub.authors) ? 'ko' : undefined}
                         dangerouslySetInnerHTML={{
                           __html: pub.authors
                             .replace(
@@ -243,7 +246,7 @@ export default function PublicationClient({
                             ),
                         }}
                       />
-                      , &ldquo;<strong>{pub.title}</strong>&rdquo; {pub.venue},{' '}
+                      , &ldquo;<strong><SourceText text={pub.title} /></strong>&rdquo; <SourceText text={pub.venue} />,{' '}
                       ({pub.date}).
                     </h3>
                   </div>
@@ -260,11 +263,11 @@ export default function PublicationClient({
                   <div className="grid gap-3 text-sm">
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Users className="h-4 w-4" />
-                      <span>{pub.authors}</span>
+                      <span><SourceText text={pub.authors} /></span>
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Building className="h-4 w-4" />
-                      <span>{pub.venue}</span>
+                      <span><SourceText text={pub.venue} /></span>
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Calendar className="h-4 w-4" />
@@ -287,7 +290,7 @@ export default function PublicationClient({
                       <div className="flex flex-wrap gap-2">
                         {pub.keywords.split(';').map((keyword, idx) => (
                           <Badge key={idx} variant="secondary" className="text-xs">
-                            {keyword.trim()}
+                            <SourceText text={keyword.trim()} />
                           </Badge>
                         ))}
                       </div>
@@ -346,5 +349,5 @@ export default function PublicationClient({
         </Card>
       )}
     </div>
-  );
+  </LocalizedContent>;
 }

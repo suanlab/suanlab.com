@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { catalogEnglish } from '@/data/i18n/catalog';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
 export default async function OnlineBookPage() {
   const books = await getAllBookPosts();
 
-  return (
+  return <LocalizedContent translations={catalogEnglish}>
     <>
       <PageHeader
         title="Online Book"
@@ -100,5 +102,5 @@ export default async function OnlineBookPage() {
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

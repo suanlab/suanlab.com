@@ -1,4 +1,7 @@
 'use client';
+import LocalizedContent, { OriginalLanguageNotice } from '@/components/localized-content';
+import { englishText } from '@/data/i18n/translate';
+import SourceText from '@/components/source-text';
 
 import { MotionList, MotionItem } from '@/components/motion/motion-list';
 import { updateListQuery } from '@/lib/list-query';
@@ -70,17 +73,17 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
     window.history[push ? 'pushState' : 'replaceState'](null, '', url);
   }
   const query = searchQuery.trim().toLowerCase();
-  const matchesEntry = (entry: QTEntry, book: string) => !query || `${book} ${entry.title} ${entry.bibleReference ?? ''} ${entry.date}`.toLowerCase().includes(query);
+  const matchesEntry = (entry: QTEntry, book: string) => !query || `${book} ${englishText(book)} ${entry.title} ${entry.bibleReference ?? ''} ${entry.date}`.toLowerCase().includes(query);
   const filteredBooks = useMemo(() => byBook
     .filter(book => (!selectedBook || book.book === selectedBook) && (selectedTestament === 'all' || book.bookInfo.testament === selectedTestament))
-    .map(book => ({ ...book, entries: book.entries.filter(entry => !query || `${book.book} ${entry.title} ${entry.bibleReference ?? ''} ${entry.date}`.toLowerCase().includes(query)) }))
+    .map(book => ({ ...book, entries: book.entries.filter(entry => !query || `${book.book} ${englishText(book.book)} ${entry.title} ${entry.bibleReference ?? ''} ${entry.date}`.toLowerCase().includes(query)) }))
     .filter(book => book.entries.length > 0), [byBook, selectedBook, selectedTestament, query]);
   const filteredRecent = recentEntries.filter(entry => (!selectedBook || entry.bibleBook === selectedBook)
     && (selectedTestament === 'all' || byBook.find(book => book.book === entry.bibleBook)?.bookInfo.testament === selectedTestament)
     && matchesEntry(entry, entry.bibleBook ?? ''));
   const resultCount = filters.tab === 'recent' ? filteredRecent.length : filteredBooks.reduce((total, book) => total + book.entries.length, 0);
 
-  return (
+  return <LocalizedContent>
     <div className="min-h-screen bg-gradient-to-b from-amber-50/50 to-background dark:from-amber-950/20">
       {/* Header */}
       <header className="qt-menu-header overflow-hidden border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
@@ -126,6 +129,7 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
         </div>
       </header>
 
+      <OriginalLanguageNotice />
       <section aria-labelledby="qt-list-title" className="container py-8">
         <h2 id="qt-list-title" className="sr-only">{ko ? '묵상 목록' : 'Reflections'}</h2>
         {/* Search and Filter */}
@@ -208,7 +212,7 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
                             <Book className="h-4 w-4 text-muted-foreground shrink-0" />
                             <div className="min-w-0">
                               <p className="font-medium truncate group-hover:text-primary">
-                                {entry.title}
+                                <SourceText text={entry.title} />
                               </p>
                               {entry.bibleReference && (
                                 <p className="text-xs text-muted-foreground">{entry.bibleReference}</p>
@@ -257,7 +261,7 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
                             <Calendar className="h-4 w-4 text-amber-700 dark:text-amber-300" />
                           </div>
                           <div className="min-w-0">
-                            <p className="font-medium truncate">{entry.title}</p>
+                            <p className="font-medium truncate"><SourceText text={entry.title} /></p>
                             <div className="flex items-center gap-2 text-xs text-muted-foreground">
                               <span>{entry.date}</span>
                               {entry.bibleReference && (
@@ -288,5 +292,5 @@ export default function QTClientPage({ byBook, stats, recentEntries }: Props) {
         </div>
       </footer>
     </div>
-  );
+  </LocalizedContent>;
 }

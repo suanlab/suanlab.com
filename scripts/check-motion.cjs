@@ -65,7 +65,7 @@ const base = process.env.SUANLAB_TEST_BASE || 'http://127.0.0.1:4175';
     assert.equal(await page.locator('label:has(select)').last().locator('select').inputValue(), '2026');
     await page.getByRole('button', { name: 'All years', exact: true }).click();
     await page.waitForFunction(() => document.querySelectorAll('[id^="publication-"].motion-card').length === 293);
-    const input = page.getByRole('textbox', { name: '검색 / Search', exact: true });
+    const input = page.getByRole('textbox', { name: 'Search', exact: true });
     await input.fill('UrbanReplayBench');
     await page.locator('#publication-658').waitFor();
     assert.equal(await input.evaluate(node => node === document.activeElement), true);

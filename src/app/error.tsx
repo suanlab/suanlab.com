@@ -1,5 +1,6 @@
 'use client';
 
+import { useLanguage } from '@/components/language-provider';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { AlertTriangle, Home } from 'lucide-react';
@@ -11,6 +12,8 @@ interface ErrorProps {
 }
 
 export default function Error({ error, reset }: ErrorProps) {
+  const { language } = useLanguage();
+  const ko = language === 'ko';
   useEffect(() => {
     // Log error to console for debugging
     console.error('Application error:', error);
@@ -42,12 +45,12 @@ export default function Error({ error, reset }: ErrorProps) {
 
           {/* Title */}
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            오류가 발생했습니다
+            {ko ? '오류가 발생했습니다' : 'Something went wrong'}
           </h1>
 
           {/* Description */}
           <p className="text-lg text-slate-300 mb-2">
-            예상치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요.
+            {ko ? '예상치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요.' : 'An unexpected error occurred. Please try again shortly.'}
           </p>
 
           {/* Error Details (if available) */}
@@ -63,12 +66,12 @@ export default function Error({ error, reset }: ErrorProps) {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" onClick={reset}>
               <AlertTriangle className="mr-2 h-4 w-4" />
-              다시 시도
+              {ko ? '다시 시도' : 'Try again'}
             </Button>
             <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20" asChild>
               <Link href="/">
                 <Home className="mr-2 h-4 w-4" />
-                홈으로 돌아가기
+                {ko ? '홈으로 돌아가기' : 'Return home'}
               </Link>
             </Button>
           </div>

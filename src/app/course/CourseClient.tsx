@@ -1,4 +1,6 @@
 'use client';
+import LocalizedContent from '@/components/localized-content';
+import { courseEnglish } from '@/data/i18n/courses';
 
 import { useState } from 'react';
 import { Presentation, BookOpen, GraduationCap, Tent, Calendar, MapPin, Building2, FileText, ExternalLink, Code, Youtube, Github } from 'lucide-react';
@@ -34,8 +36,8 @@ interface CourseClientProps {
 }
 
 function MaterialButton({ material }: { material: CourseMaterial }) {
-  return (
-    <Button variant="outline" size="sm" asChild className="h-auto py-1 px-2 text-xs">
+  return <LocalizedContent>
+    <Button variant="outline" size="sm" asChild className="h-auto max-w-full whitespace-normal py-1 px-2 text-left text-xs [&_svg]:shrink-0">
       <a href={material.url} target="_blank" rel="noopener noreferrer">
         {material.type === 'colab' ? (
           <Code className="mr-1 h-3 w-3" />
@@ -51,13 +53,13 @@ function MaterialButton({ material }: { material: CourseMaterial }) {
         {material.title}
       </a>
     </Button>
-  );
+  </LocalizedContent>;
 }
 
 function CourseCard({ course, categoryLabel }: { course: Course; categoryLabel: string }) {
   const CategoryIcon = categoryIcons[course.category];
-  return (
-    <Card className="h-full flex flex-col">
+  return <LocalizedContent>
+    <Card className="h-full min-w-0 break-words flex flex-col">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between mb-2">
           <Badge className={categoryColors[course.category]}>
@@ -79,11 +81,11 @@ function CourseCard({ course, categoryLabel }: { course: Course; categoryLabel: 
           </div>
           <div className="flex items-center gap-2">
             <MapPin className="h-4 w-4 shrink-0" />
-            <span>{course.location}</span>
+            <span className="min-w-0">{course.location}</span>
           </div>
           <div className="flex items-center gap-2">
             <Building2 className="h-4 w-4 shrink-0" />
-            <span>{course.organization}</span>
+            <span className="min-w-0">{course.organization}</span>
           </div>
         </div>
 
@@ -99,7 +101,7 @@ function CourseCard({ course, categoryLabel }: { course: Course; categoryLabel: 
         )}
       </CardContent>
     </Card>
-  );
+  </LocalizedContent>;
 }
 
 export default function CourseClient({ courses, categories, years, categoryCounts }: CourseClientProps) {
@@ -112,7 +114,7 @@ export default function CourseClient({ courses, categories, years, categoryCount
     return categoryMatch && yearMatch;
   });
 
-  return (
+  return <LocalizedContent translations={courseEnglish}>
     <>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
         <Card
@@ -178,5 +180,5 @@ export default function CourseClient({ courses, categories, years, categoryCount
         ))}
       </div>
     </>
-  );
+  </LocalizedContent>;
 }

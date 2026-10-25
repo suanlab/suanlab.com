@@ -1,4 +1,5 @@
 'use client';
+import LocalizedContent, { useDisplayText } from '@/components/localized-content';
 
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { geoEqualEarth, geoPath } from 'd3-geo';
@@ -31,6 +32,7 @@ interface GeoFeature {
 
 export function VisitedCountriesMap() {
   const { language } = useLanguage();
+  const displayText = useDisplayText();
   const tripInput = useId();
   const sceneRef = useRef<HTMLDivElement>(null);
   const running = useSceneActivity(sceneRef);
@@ -97,17 +99,17 @@ export function VisitedCountriesMap() {
   }, [topo]);
 
   if (!view) {
-    return (
+    return <LocalizedContent>
       <div ref={sceneRef} role="status" className="aspect-[800/420] w-full rounded-md bg-muted/40 flex flex-col gap-3 items-center justify-center">
         <span className="text-xs text-foreground">{loadError
           ? (language === 'ko' ? '지도를 불러오지 못했습니다.' : 'Could not load the map.')
           : (language === 'ko' ? '지도를 불러오는 중…' : 'Loading map…')}</span>
         {loadError && <button type="button" className="text-sm text-primary underline" onClick={() => setLoadVersion(value => value + 1)}>{language === 'ko' ? '다시 시도' : 'Retry map'}</button>}
       </div>
-    );
+    </LocalizedContent>;
   }
 
-  return (
+  return <LocalizedContent>
     <div ref={sceneRef} data-motion={running ? 'running' : 'paused'} className="visited-map w-full">
       <label htmlFor={tripInput} className="mb-3 block text-xs font-medium">{language === 'ko' ? '여행·학회 경로' : 'Trip / conference route'}
         <select id={tripInput} value={tripId} onChange={event => setTripId(Number(event.target.value))} className="mt-2 block w-full min-w-0 rounded-lg border bg-background p-2 text-xs">
@@ -116,7 +118,7 @@ export function VisitedCountriesMap() {
       </label>
       <div className="relative w-full">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto rounded-md bg-background border" role="img" aria-label={language === 'ko' ? '방문 국가 세계 지도' : 'Visited countries world map'}>
-          <desc>{trip ? `${trip.period} · ${trip.purpose} · ${trip.countries.join(', ')}` : ''}</desc>
+          <desc>{trip ? `${trip.period} · ${displayText(trip.purpose)} · ${trip.countries.map(displayText).join(', ')}` : ''}</desc>
           {view.sphere && <path d={view.sphere} fill="hsl(var(--muted))" fillOpacity="0.3" stroke="hsl(var(--border))" strokeWidth={0.5} />}
           {view.paths.map((p) => (
             <path
@@ -182,5 +184,5 @@ export function VisitedCountriesMap() {
         ))}
       </div>
     </div>
-  );
+  </LocalizedContent>;
 }

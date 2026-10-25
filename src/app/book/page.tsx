@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { catalogEnglish } from '@/data/i18n/catalog';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -49,7 +51,7 @@ const bookCategories = [
 ];
 
 export default function BookPage() {
-  return (
+  return <LocalizedContent translations={catalogEnglish}>
     <>
       <PageHeader
         title="Book"
@@ -94,5 +96,5 @@ export default function BookPage() {
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

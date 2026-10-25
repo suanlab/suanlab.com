@@ -1,4 +1,5 @@
 'use client';
+import { englishText } from '@/data/i18n/translate';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -36,7 +37,7 @@ export default function BuilderCard({
         <div className="flex flex-wrap gap-1.5 mb-3">
           <span className={cn('inline-flex items-center rounded px-2 py-0.5 text-[10px] font-medium', catColor)}>{catLabel}</span>
           {builder.tags.slice(0, 2).map((t) => (
-            <span key={t} className="inline-flex items-center rounded bg-muted px-2 py-0.5 text-[10px] text-muted-foreground">#{t}</span>
+            <span key={t} className="inline-flex items-center rounded bg-muted px-2 py-0.5 text-[10px] text-muted-foreground">#{lang === 'en' ? englishText(t) : t}</span>
           ))}
         </div>
         <Button className="mt-auto w-full" size="sm" onClick={onOpen}>

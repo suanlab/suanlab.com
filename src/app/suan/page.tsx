@@ -1,3 +1,6 @@
+import SourceText from '@/components/source-text';
+import LocalizedContent from '@/components/localized-content';
+import { profileEnglish } from '@/data/i18n/profile';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -70,7 +73,7 @@ const researchInterests = [
 ];
 
 export default function SuanPage() {
-  return (
+  return <LocalizedContent translations={profileEnglish}>
     <>
       <PageHeader
         title="Professor Suan Lee"
@@ -421,10 +424,10 @@ export default function SuanPage() {
                           <div className="flex-1 min-w-0">
                             <p className="font-medium text-sm">{award.award}</p>
                             {award.title && (
-                              <p className="text-xs text-muted-foreground mt-0.5">&quot;{award.title}&quot;</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">&quot;<SourceText text={award.title} />&quot;</p>
                             )}
                             {award.authors && (
-                              <p className="text-xs text-primary mt-0.5">{award.authors}</p>
+                              <p className="text-xs text-primary mt-0.5"><SourceText text={award.authors} /></p>
                             )}
                             <p className="text-xs text-muted-foreground">{award.date} · {award.organization}</p>
                           </div>
@@ -686,5 +689,5 @@ export default function SuanPage() {
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

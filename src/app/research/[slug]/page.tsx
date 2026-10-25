@@ -1,3 +1,6 @@
+import SourceText from '@/components/source-text';
+import LocalizedContent from '@/components/localized-content';
+import { researchEnglish } from '@/data/i18n/research';
 import ResearchConnections from '@/components/research-connections';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
@@ -116,7 +119,7 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
   const color = colorMap[area.slug] || 'from-blue-500 to-cyan-500';
   const bgColor = bgColorMap[area.slug] || 'bg-blue-50 dark:bg-blue-950/30';
 
-  return (
+  return <LocalizedContent translations={researchEnglish}>
     <>
       <PageHeader
         title={area.titleEn}
@@ -336,13 +339,13 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
                                 <p className="font-medium text-sm leading-relaxed">
                                   {pub.url ? (
                                     <a href={pub.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:underline">
-                                      {pub.title}
+                                      <SourceText text={pub.title} />
                                     </a>
-                                  ) : pub.title}
+                                  ) : <SourceText text={pub.title} />}
                                 </p>
-                                <p className="text-xs text-muted-foreground mt-1">{pub.authors}</p>
+                                <p className="text-xs text-muted-foreground mt-1"><SourceText text={pub.authors} /></p>
                                 <p className="text-xs text-muted-foreground">
-                                  {pub.venue}, {pub.date} {pub.impact && <span className="text-primary">{pub.impact}</span>}
+                                  <SourceText text={pub.venue} />, {pub.date} {pub.impact && <span className="text-primary">{pub.impact}</span>}
                                 </p>
                               </div>
                             </div>
@@ -375,12 +378,12 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
                                 <p className="font-medium text-sm leading-relaxed">
                                   {pub.url ? (
                                     <a href={pub.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:underline">
-                                      {pub.title}
+                                      <SourceText text={pub.title} />
                                     </a>
-                                  ) : pub.title}
+                                  ) : <SourceText text={pub.title} />}
                                 </p>
-                                <p className="text-xs text-muted-foreground mt-1">{pub.authors}</p>
-                                <p className="text-xs text-muted-foreground">{pub.venue}, {pub.date}</p>
+                                <p className="text-xs text-muted-foreground mt-1"><SourceText text={pub.authors} /></p>
+                                <p className="text-xs text-muted-foreground"><SourceText text={pub.venue} />, {pub.date}</p>
                               </div>
                             </div>
                           </div>
@@ -405,9 +408,9 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
                         {domesticJournalPubs.map((pub) => (
                           <div key={pub.id} className="pb-3 border-b border-muted last:border-0">
                             <div className="flex-1 min-w-0">
-                              <p className="font-medium text-sm leading-relaxed">{pub.title}</p>
-                              <p className="text-xs text-muted-foreground mt-1">{pub.authors}</p>
-                              <p className="text-xs text-muted-foreground">{pub.venue}, {pub.date}</p>
+                              <p className="font-medium text-sm leading-relaxed"><SourceText text={pub.title} /></p>
+                              <p className="text-xs text-muted-foreground mt-1"><SourceText text={pub.authors} /></p>
+                              <p className="text-xs text-muted-foreground"><SourceText text={pub.venue} />, {pub.date}</p>
                             </div>
                           </div>
                         ))}
@@ -431,9 +434,9 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
                         {domesticConfPubs.map((pub) => (
                           <div key={pub.id} className="pb-3 border-b border-muted last:border-0">
                             <div className="flex-1 min-w-0">
-                              <p className="font-medium text-sm leading-relaxed">{pub.title}</p>
-                              <p className="text-xs text-muted-foreground mt-1">{pub.authors}</p>
-                              <p className="text-xs text-muted-foreground">{pub.venue}, {pub.date}</p>
+                              <p className="font-medium text-sm leading-relaxed"><SourceText text={pub.title} /></p>
+                              <p className="text-xs text-muted-foreground mt-1"><SourceText text={pub.authors} /></p>
+                              <p className="text-xs text-muted-foreground"><SourceText text={pub.venue} />, {pub.date}</p>
                             </div>
                           </div>
                         ))}
@@ -531,5 +534,5 @@ export default function ResearchDetailPage({ params }: { params: { slug: string 
       </section>
       <ResearchConnections slug={area.slug} />
     </>
-  );
+  </LocalizedContent>;
 }

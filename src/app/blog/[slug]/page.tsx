@@ -1,3 +1,5 @@
+import SourceText from '@/components/source-text';
+import LocalizedContent, { OriginalLanguageNotice } from '@/components/localized-content';
 import ContentProvenanceNotice from '@/components/content-provenance-notice';
 import { site } from '@/config/site';
 import { notFound } from 'next/navigation';
@@ -133,7 +135,7 @@ export default async function BlogPostPage({ params }: Props) {
   const tocItems = extractHeadings(post.contentHtml);
 
   return (
-    <>
+    <LocalizedContent>
       <ReadingProgress />
       {/* SEO: Structured Data */}
       <ArticleJsonLd
@@ -152,6 +154,7 @@ export default async function BlogPostPage({ params }: Props) {
       />
 
       <PageHeader
+        originalText
         title={post.title}
         subtitle={post.excerpt}
         breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: post.title }]}
@@ -208,6 +211,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <Image
                   src={post.thumbnail}
                   alt={post.title}
+                  lang={/[가-힣]/.test(post.title) ? 'ko' : undefined}
                   fill
                   className="object-cover"
                   priority
@@ -216,9 +220,10 @@ export default async function BlogPostPage({ params }: Props) {
             )}
 
             {/* 포스트 내용 */}
+            <OriginalLanguageNotice />
             <article
               className="blog-content prose prose-lg dark:prose-invert max-w-none mb-12"
-              dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+              lang="ko" data-original-language="ko" dangerouslySetInnerHTML={{ __html: post.contentHtml }}
             />
 
             <GiscusComments />
@@ -240,9 +245,9 @@ export default async function BlogPostPage({ params }: Props) {
                         <Card className="h-full hover:shadow-md transition-shadow">
                           <CardContent className="p-4 flex flex-col h-full">
                             <div className="flex-1">
-                              <p className="font-medium line-clamp-2 mb-2">{relatedPost.title}</p>
+                              <p className="font-medium line-clamp-2 mb-2"><SourceText text={relatedPost.title} /></p>
                               <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                                {relatedPost.excerpt}
+                                <SourceText text={relatedPost.excerpt} />
                               </p>
                             </div>
                             <div className="flex items-center justify-between text-xs text-muted-foreground">
@@ -271,7 +276,7 @@ export default async function BlogPostPage({ params }: Props) {
                           <ArrowLeft className="h-4 w-4" />
                           <span>이전 글</span>
                         </div>
-                        <p className="font-medium line-clamp-2">{prevPost.title}</p>
+                        <p className="font-medium line-clamp-2"><SourceText text={prevPost.title} /></p>
                       </CardContent>
                     </Card>
                   </Link>
@@ -286,7 +291,7 @@ export default async function BlogPostPage({ params }: Props) {
                           <span>다음 글</span>
                           <ArrowRight className="h-4 w-4" />
                         </div>
-                        <p className="font-medium line-clamp-2">{nextPost.title}</p>
+                        <p className="font-medium line-clamp-2"><SourceText text={nextPost.title} /></p>
                       </CardContent>
                     </Card>
                   </Link>
@@ -314,6 +319,6 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </div>
       </section>
-    </>
+    </LocalizedContent>
   );
 }

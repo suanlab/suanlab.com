@@ -1,4 +1,5 @@
 'use client';
+import { englishText } from '@/data/i18n/translate';
 
 import { useState, useId } from 'react';
 import { detectPromptVariables as detectVariables, substitutePromptVariables as substitute } from '@/lib/prompt-state';
@@ -67,7 +68,7 @@ export default function SnippetCard({
       <CardContent className="flex-1 flex flex-col">
         <div className="flex flex-wrap gap-1.5 mb-3">
           <span className={cn('inline-flex items-center rounded px-2 py-0.5 text-[10px] font-medium', catColor)}>{catLabel}</span>
-          {snippet.tags.slice(0, 2).map((t) => <span key={t} className="inline-flex items-center rounded bg-muted px-2 py-0.5 text-[10px] text-muted-foreground">#{t}</span>)}
+          {snippet.tags.slice(0, 2).map((t) => <span key={t} className="inline-flex items-center rounded bg-muted px-2 py-0.5 text-[10px] text-muted-foreground">#{lang === 'en' ? englishText(t) : t}</span>)}
           {declared.length > 0 && <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-[10px] text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">{declared.length} {lang === 'ko' ? '변수' : 'vars'}</span>}
         </div>
         {expanded && declared.length > 0 && (

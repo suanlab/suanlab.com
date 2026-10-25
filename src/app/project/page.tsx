@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { projectEnglish } from '@/data/i18n/projects';
 import { site } from '@/config/site';
 import type { Metadata } from 'next';
 import { Briefcase, Calendar, Users } from 'lucide-react';
@@ -63,7 +65,7 @@ const activeProjectsWithBudget = addFormattedBudget(getActiveProjects());
 const completedProjectsWithBudget = addFormattedBudget(getCompletedProjects());
 
 export default function ProjectPage() {
-  return (
+  return <LocalizedContent translations={projectEnglish}>
     <>
       <PageHeader
         title="Project"
@@ -73,25 +75,25 @@ export default function ProjectPage() {
 
       <section className="py-8 bg-muted/30">
         <div className="container">
-          <div className="grid grid-cols-3 gap-4">
-            <Card className="text-center border-0 shadow-sm">
-              <CardContent className="p-6">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4">
+            <Card className="min-w-0 break-words text-center border-0 shadow-sm">
+              <CardContent className="p-2 sm:p-6">
                 <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary" />
-                <p className="text-3xl font-bold text-primary">{projectStats.totalProjects}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-primary">{projectStats.totalProjects}</p>
                 <p className="text-sm text-muted-foreground mt-1">총 연구과제</p>
               </CardContent>
             </Card>
-            <Card className="text-center border-0 shadow-sm">
-              <CardContent className="p-6">
+            <Card className="min-w-0 break-words text-center border-0 shadow-sm">
+              <CardContent className="p-2 sm:p-6">
                 <Calendar className="h-8 w-8 mx-auto mb-3 text-primary" />
-                <p className="text-3xl font-bold text-primary">{projectStats.totalYears}년</p>
+                <p className="text-2xl sm:text-3xl font-bold text-primary">{projectStats.totalYears}년</p>
                 <p className="text-sm text-muted-foreground mt-1">총 연구기간</p>
               </CardContent>
             </Card>
-            <Card className="text-center border-0 shadow-sm">
-              <CardContent className="p-6">
+            <Card className="min-w-0 break-words text-center border-0 shadow-sm">
+              <CardContent className="p-2 sm:p-6">
                 <Users className="h-8 w-8 mx-auto mb-3 text-primary" />
-                <p className="text-3xl font-bold text-primary">{uniqueAgencies.length}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-primary">{uniqueAgencies.length}</p>
                 <p className="text-sm text-muted-foreground mt-1">연구 기관</p>
               </CardContent>
             </Card>
@@ -118,5 +120,5 @@ export default function ProjectPage() {
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

@@ -1,3 +1,7 @@
+import { englishText } from '@/data/i18n/translate';
+import { projectEnglish } from '@/data/i18n/projects';
+import { researchEnglish } from '@/data/i18n/research';
+import { catalogEnglish } from '@/data/i18n/catalog';
 import { researchAreas } from '@/data/research';
 import { projects } from '@/data/projects';
 import { playlists } from '@/data/youtube';
@@ -45,13 +49,13 @@ export default function SearchPage() {
   const items: SearchItem[] = [
     ...getAllPosts().map(p => ({ type: 'blog', title: p.title, description: `${p.excerpt} ${p.tags.join(' ')}`, href: `/blog/${p.slug}/` })),
     ...publications.map(p => ({ type: 'publication', title: p.title, description: `${p.authors} · ${p.venue} ${p.keywords || ''}`, href: `/publication/?q=${encodeURIComponent(p.title)}#publication-${p.id}` })),
-    ...lectures.map(p => ({ type: 'lecture', title: `${p.titleKo} · ${p.titleEn}`, description: `${p.descriptionKo} ${p.topics.join(' ')}`, href: `/lecture/${p.slug}/` })),
-    ...researchAreas.map(p => ({ type: 'research', title: `${p.titleKo} · ${p.titleEn}`, description: p.overview, href: `/research/${p.slug}/` })),
-    ...projects.map(p => ({ type: 'project', title: p.title, description: `${p.organization} ${p.items.join(' ')}`, href: `/project/#project-${p.id}` })),
-    ...playlists.map(p => ({ type: 'youtube', title: `${p.titleKo} · ${p.titleEn}`, description: 'YouTube 교육 영상 강좌', href: `/youtube/${p.slug}/` })),
-    ...getAllBookPosts().map(p => ({ type: 'book', title: p.title, description: `${p.subtitle || ''} ${p.author}`, href: `/book/online/${p.slug}/` })),
-    ...promptBuilders.map(p => ({ type: 'prompt', title: `${p.title.ko} · ${p.title.en}`, description: `${p.description.ko} ${p.description.en} ${p.tags.join(' ')}`, href: promptHref('builder', p.id) })),
-    ...promptSnippets.map(p => ({ type: 'prompt', title: `${p.title.ko} · ${p.title.en}`, description: `${p.description.ko} ${p.description.en} ${p.tags.join(' ')}`, href: promptHref('snippet', p.id) })),
+    ...lectures.map(p => ({ type: 'lecture', titleEn: p.titleEn, descriptionEn: p.description, title: `${p.titleKo} · ${p.titleEn}`, description: `${p.descriptionKo} ${p.topics.join(' ')}`, href: `/lecture/${p.slug}/` })),
+    ...researchAreas.map(p => ({ type: 'research', titleEn: p.titleEn, descriptionEn: p.overview.split('\n\n').map(part => englishText(part, researchEnglish)).join(' '), title: `${p.titleKo} · ${p.titleEn}`, description: p.overview, href: `/research/${p.slug}/` })),
+    ...projects.map(p => ({ type: 'project', titleEn: englishText(p.title, projectEnglish), descriptionEn: p.items.map(item => englishText(item, projectEnglish)).join(' '), title: p.title, description: `${p.organization} ${p.items.join(' ')}`, href: `/project/#project-${p.id}` })),
+    ...playlists.map(p => ({ type: 'youtube', titleEn: p.titleEn, descriptionEn: 'YouTube educational video courses', title: `${p.titleKo} · ${p.titleEn}`, description: 'YouTube 교육 영상 강좌', href: `/youtube/${p.slug}/` })),
+    ...getAllBookPosts().map(p => ({ type: 'book', titleEn: englishText(p.title, catalogEnglish), descriptionEn: p.subtitle ? englishText(p.subtitle, catalogEnglish) : '', title: p.title, description: `${p.subtitle || ''} ${p.author}`, href: `/book/online/${p.slug}/` })),
+    ...promptBuilders.map(p => ({ type: 'prompt', titleEn: p.title.en, descriptionEn: p.description.en, title: `${p.title.ko} · ${p.title.en}`, description: `${p.description.ko} ${p.description.en} ${p.tags.join(' ')}`, href: promptHref('builder', p.id) })),
+    ...promptSnippets.map(p => ({ type: 'prompt', titleEn: p.title.en, descriptionEn: p.description.en, title: `${p.title.ko} · ${p.title.en}`, description: `${p.description.ko} ${p.description.en} ${p.tags.join(' ')}`, href: promptHref('snippet', p.id) })),
   ];
 
   return (

@@ -123,6 +123,8 @@ async function routeExport(context) {
     await toolPage.getByRole('button', { name: 'Save result & complete step', exact: true }).click();
     await toolPage.waitForFunction(() => (localStorage.getItem('suanlab-prompt-workflow-state') || '').includes('Actual first-step model response.'));
     await toolPage.getByRole('button', { name: 'Start / Resume', exact: true }).first().click();
+    // The generated output is populated by a post-mount effect.
+    await toolPage.waitForFunction(() => document.querySelector('textarea[aria-label="Edit generated prompt"]')?.value.includes('Actual first-step model response.'));
     assert.ok((await editor.inputValue()).includes('Actual first-step model response.'));
     await tools.close();
     console.log('Interaction regressions passed: denied storage, language switching, draft persistence, shared inputs, personal prompts and workflow handoff.');

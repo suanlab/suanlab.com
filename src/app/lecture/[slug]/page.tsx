@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { catalogEnglish } from '@/data/i18n/catalog';
 import ResearchBacklinks from '@/components/research-backlinks';
 import { getLectureContentSlugs } from '@/lib/lecture-content';
 import { site } from '@/config/site';
@@ -36,7 +38,7 @@ export default function LectureDetailPage({ params }: { params: { slug: string }
     notFound();
   }
 
-  return (
+  return <LocalizedContent translations={catalogEnglish}>
     <>
       <PageHeader
         title={lecture.titleEn}
@@ -231,5 +233,5 @@ export default function LectureDetailPage({ params }: { params: { slug: string }
         <div className="container"><ResearchBacklinks lectureSlug={lecture.slug} /></div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

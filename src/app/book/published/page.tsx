@@ -1,3 +1,5 @@
+import LocalizedContent from '@/components/localized-content';
+import { catalogEnglish } from '@/data/i18n/catalog';
 import { site } from '@/config/site';
 import Image from 'next/image';
 import { BookOpen, User, Building, Calendar, ShoppingCart, Download } from 'lucide-react';
@@ -152,7 +154,7 @@ const books: Book[] = [
 ];
 
 export default function PublishedBookPage() {
-  return (
+  return <LocalizedContent translations={catalogEnglish}>
     <>
       <PageHeader
         title="Published Book"
@@ -279,5 +281,5 @@ export default function PublishedBookPage() {
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

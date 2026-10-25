@@ -1,3 +1,4 @@
+import LocalizedContent from '@/components/localized-content';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { ArrowLeft, Home } from 'lucide-react';
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+    <LocalizedContent><section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-[url('/assets/images/slider/2.jpg')] bg-cover bg-center opacity-10" />
       <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent" />
@@ -69,6 +70,6 @@ export default function NotFound() {
           </div>
         </div>
       </div>
-    </section>
+    </section></LocalizedContent>
   );
 }

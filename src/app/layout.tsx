@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/components/language-provider';
 import { SiteMotionProvider } from '@/components/motion/motion-provider';
+import LocalizedContent from '@/components/localized-content';
 import ModernHeader from '@/components/layout/Header/ModernHeader';
 import ModernFooter from '@/components/layout/Footer/ModernFooter';
 import {
@@ -140,8 +141,8 @@ export default function RootLayout({
         <WebSiteJsonLd />
       </head>
       <body className="antialiased">
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md">본문으로 건너뛰기</a>
         <LanguageProvider>
+          <LocalizedContent><a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md">본문으로 건너뛰기</a></LocalizedContent>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -150,7 +151,7 @@ export default function RootLayout({
           >
             <SiteMotionProvider><div className="relative flex min-h-screen flex-col">
               <ModernHeader />
-              <main id="main-content" className="flex-1">{children}</main>
+              <main id="main-content" className="flex-1"><LocalizedContent translateTitle>{children}</LocalizedContent></main>
               <ModernFooter />
             </div></SiteMotionProvider>
           </ThemeProvider>

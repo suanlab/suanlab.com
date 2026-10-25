@@ -1,4 +1,7 @@
 'use client';
+import SourceText from '@/components/source-text';
+import LocalizedContent from '@/components/localized-content';
+import { homeEnglish } from '@/data/i18n/home';
 
 import { useState } from 'react';
 import { ResearchStory } from '@/components/motion/research-story';
@@ -58,7 +61,7 @@ export function HomepageContent({
     { label: t('stats.lectures') as string, value: stats.lectures },
   ];
 
-  return (
+  return <LocalizedContent translations={homeEnglish}>
     <>
       <HomeIdentityHero stats={statsData} />
 
@@ -190,7 +193,7 @@ export function HomepageContent({
                     <div className="aspect-video overflow-hidden">
                       <Image
                         src={post.thumbnail}
-                        alt={post.title}
+                        alt={post.title} lang={/[가-힣]/.test(post.title) ? 'ko' : undefined}
                         width={400}
                         height={225}
                         className="h-full w-full object-cover transition-transform group-hover:scale-105"
@@ -207,12 +210,12 @@ export function HomepageContent({
                       </Badge>
                     </div>
                     <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
-                      {post.title}
+                      <SourceText text={language === 'en' ? post.title.replace('[논문 리뷰]', '[Paper Review]') : post.title} />
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground line-clamp-2">
-                      {post.excerpt}
+                      <SourceText text={post.excerpt} />
                     </p>
                   </CardContent>
                 </Card>
@@ -360,5 +363,5 @@ export function HomepageContent({
         </div>
       </section>
     </>
-  );
+  </LocalizedContent>;
 }

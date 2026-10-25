@@ -1,3 +1,5 @@
+import SourceText from '@/components/source-text';
+import LocalizedContent, { OriginalLanguageNotice } from '@/components/localized-content';
 import { site } from '@/config/site';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -54,7 +56,7 @@ export default async function QTEntryPage({ params }: Props) {
 
   const bookInfo = entry.bibleBook ? BIBLE_BOOKS[entry.bibleBook as BibleBook] : null;
 
-  return (
+  return <LocalizedContent>
     <div className="min-h-screen bg-gradient-to-b from-amber-50/50 to-background dark:from-amber-950/20">
       {/* Header */}
       <header className="qt-menu-header overflow-hidden border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
@@ -76,6 +78,7 @@ export default async function QTEntryPage({ params }: Props) {
       </header>
 
       <article className="container py-8 max-w-3xl mx-auto">
+        <OriginalLanguageNotice />
         {/* Entry Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
@@ -96,7 +99,7 @@ export default async function QTEntryPage({ params }: Props) {
             </div>
           </div>
 
-          <h1 className="text-2xl md:text-3xl font-bold mb-4">{entry.title}</h1>
+          <h1 className="text-2xl md:text-3xl font-bold mb-4"><SourceText text={entry.title} /></h1>
 
           {entry.bibleReference && (
             <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400">
@@ -116,7 +119,7 @@ export default async function QTEntryPage({ params }: Props) {
               </div>
               <div
                 className="prose prose-amber dark:prose-invert max-w-none leading-relaxed font-serif"
-                dangerouslySetInnerHTML={{ __html: entry.contentHtml }}
+                lang="ko" data-original-language="ko" dangerouslySetInnerHTML={{ __html: entry.contentHtml }}
               />
             </CardContent>
           </Card>
@@ -131,7 +134,7 @@ export default async function QTEntryPage({ params }: Props) {
             </div>
             <div
               className="prose prose-lg dark:prose-invert max-w-none leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: entry.reflectionHtml }}
+              lang="ko" data-original-language="ko" dangerouslySetInnerHTML={{ __html: entry.reflectionHtml }}
             />
           </CardContent>
         </Card>
@@ -147,7 +150,7 @@ export default async function QTEntryPage({ params }: Props) {
                       <ArrowLeft className="h-4 w-4" />
                       <span>이전 묵상</span>
                     </div>
-                    <p className="font-medium line-clamp-2">{prevEntry.title}</p>
+                    <p className="font-medium line-clamp-2"><SourceText text={prevEntry.title} /></p>
                     <p className="text-xs text-muted-foreground mt-1">{prevEntry.date}</p>
                   </CardContent>
                 </Card>
@@ -163,7 +166,7 @@ export default async function QTEntryPage({ params }: Props) {
                       <span>다음 묵상</span>
                       <ArrowRight className="h-4 w-4" />
                     </div>
-                    <p className="font-medium line-clamp-2">{nextEntry.title}</p>
+                    <p className="font-medium line-clamp-2"><SourceText text={nextEntry.title} /></p>
                     <p className="text-xs text-muted-foreground mt-1">{nextEntry.date}</p>
                   </CardContent>
                 </Card>
@@ -193,5 +196,5 @@ export default async function QTEntryPage({ params }: Props) {
         </div>
       </footer>
     </div>
-  );
+  </LocalizedContent>;
 }

@@ -17,9 +17,10 @@
     "check:export": "tsx scripts/check-export.ts",
     "check": "npm run lint && npm run validate:content && npm test && npm run build && npm run typecheck && npm run check:export",
     "bot:retry": "tsx scripts/with-bot-lock.ts retry",
-    "check:browser": "node scripts/check-browser.cjs && node scripts/check-navigation.cjs && node scripts/check-motion.cjs",
+    "check:browser": "node scripts/check-browser.cjs && node scripts/check-navigation.cjs && node scripts/check-motion.cjs && npm run check:language",
     "qt:register": "tsx scripts/register-qt-slugs.ts",
-    "preview": "node scripts/preview.cjs"
+    "preview": "node scripts/preview.cjs",
+    "check:language": "node scripts/check-language.cjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
