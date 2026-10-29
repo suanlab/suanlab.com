@@ -1,3 +1,4 @@
+import { bookPath, interactiveBook, learningUnits } from '@/data/interactive-book';
 import { englishText } from '@/data/i18n/translate';
 import { projectEnglish } from '@/data/i18n/projects';
 import { researchEnglish } from '@/data/i18n/research';
@@ -47,6 +48,8 @@ export const metadata: Metadata = {
 export default function SearchPage() {
   // Load all searchable data at build time
   const items: SearchItem[] = [
+    { type: 'book', title: interactiveBook.title.ko, titleEn: interactiveBook.title.en, description: interactiveBook.description.ko, descriptionEn: interactiveBook.description.en, href: bookPath },
+    ...learningUnits.map(unit => ({ type: 'book', title: unit.title.ko, titleEn: unit.title.en, description: unit.subtitle.ko, descriptionEn: unit.subtitle.en, href: `${bookPath}${unit.id}/` })),
     ...getAllPosts().map(p => ({ type: 'blog', title: p.title, description: `${p.excerpt} ${p.tags.join(' ')}`, href: `/blog/${p.slug}/` })),
     ...publications.map(p => ({ type: 'publication', title: p.title, description: `${p.authors} · ${p.venue} ${p.keywords || ''}`, href: `/publication/?q=${encodeURIComponent(p.title)}#publication-${p.id}` })),
     ...lectures.map(p => ({ type: 'lecture', titleEn: p.titleEn, descriptionEn: p.description, title: `${p.titleKo} · ${p.titleEn}`, description: `${p.descriptionKo} ${p.topics.join(' ')}`, href: `/lecture/${p.slug}/` })),

@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "status": "design",
+  "bookId": "physics-math-for-ai",
+  "chapterId": "gradients",
+  "sceneId": "gradients",
+  "title": {
+    "ko": "그래디언트와 갱신",
+    "en": "Gradients and Updates"
+  },
+  "model": {
+    "loss": "0.5 * (a*x*x + b*y*y)",
+    "gradient": "[a*x, b*y]",
+    "update": "point - learningRate * gradient(point)",
+    "constraints": "a > 0 and b > 0",
+    "units": "Parameters and loss are dimensionless.",
+    "globalConvergenceRange": "0 < learningRate < 2/max(a,b) for this positive quadratic.",
+    "physics": "This is first-order gradient descent, not Newtonian motion."
+  },
+  "rendering": {
+    "worldPoint": "[x, heightScale*loss, y]",
+    "gradientArrow": "Negative gradient in the two-dimensional parameter plane.",
+    "heightScaleAffectsModel": false,
+    "interpolationAffectsModel": false
+  },
+  "controls": {
+    "curvature": {
+      "min": 0.5,
+      "max": 5,
+      "step": 0.5
+    },
+    "learningRate": {
+      "min": 0.05,
+      "max": 2,
+      "step": 0.05
+    },
+    "startComponent": {
+      "min": -3,
+      "max": 3,
+      "step": 0.5
+    },
+    "maxSteps": 50,
+    "stopPolicy": "Stop explicitly on non-finite or out-of-display-range state; never clamp the mathematical result to suggest convergence."
+  },
+  "referenceTolerance": {
+    "absolute": 1e-09
+  },
+  "defaultCaseId": "anisotropic-convergent",
+  "referenceCases": [
+    {
+      "id": "isotropic-convergent",
+      "a": 1,
+      "b": 1,
+      "point": [
+        2,
+        2
+      ],
+      "learningRate": 0.25,
+      "expected": {
+        "gradient": [
+          2,
+          2
+        ],
+        "nextPoint": [
+          1.5,
+          1.5
+        ],
+        "loss": 4,
+        "nextLoss": 2.25
+      }
+    },
+    {
+      "id": "anisotropic-convergent",
+      "a": 2,
+      "b": 1,
+      "point": [
+        2,
+        2
+      ],
+      "learningRate": 0.25,
+      "expected": {
+        "gradient": [
+          4,
+          2
+        ],
+        "nextPoint": [
+          1,
+          1.5
+        ],
+        "loss": 6,
+        "nextLoss": 2.125
+      }
+    },
+    {
+      "id": "stable-sign-change",
+      "a": 2,
+      "b": 1,
+      "point": [
+        2,
+        2
+      ],
+      "learningRate": 0.75,
+      "expected": {
+        "gradient": [
+          4,
+          2
+        ],
+        "nextPoint": [
+          -1,
+          0.5
+        ],
+        "loss": 6,
+        "nextLoss": 1.125
+      }
+    },
+    {
+      "id": "boundary-oscillation",
+      "a": 2,
+      "b": 1,
+      "point": [
+        2,
+        2
+      ],
+      "learningRate": 1,
+      "expected": {
+        "gradient": [
+          4,
+          2
+        ],
+        "nextPoint": [
+          -2,
+          0
+        ],
+        "loss": 6,
+        "nextLoss": 4
+      }
+    },
+    {
+      "id": "above-boundary",
+      "a": 2,
+      "b": 1,
+      "point": [
+        2,
+        2
+      ],
+      "learningRate": 1.25,
+      "expected": {
+        "gradient": [
+          4,
+          2
+        ],
+        "nextPoint": [
+          -3,
+          -0.5
+        ],
+        "loss": 6,
+        "nextLoss": 9.125
+      }
+    },
+    {
+      "id": "stationary-point",
+      "a": 2,
+      "b": 1,
+      "point": [
+        0,
+        0
+      ],
+      "learningRate": 0.25,
+      "expected": {
+        "gradient": [
+          0,
+          0
+        ],
+        "nextPoint": [
+          0,
+          0
+        ],
+        "loss": 0,
+        "nextLoss": 0
+      }
+    }
+  ]
+}

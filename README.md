@@ -85,6 +85,49 @@ no-JavaScript content, and runtime/hydration errors. Results and screenshots go 
 Accessibility sweeps await finite entrance animations and font loading before
 measuring the settled layout; continuous decorative loops keep running.
 
+## Learning content roadmap
+
+[Learning content plan](docs/online-learning/README.md) prioritizes the design of the
+new **Physics and Mathematics for AI** textbook. Its open-ended curriculum has no
+week, semester, page or chapter limit: it connects mathematical and physical
+foundations to AI mechanisms and research through a prerequisite graph. Detailed
+knowledge domains, research paths and authoring standards accompany the reader
+design, bilingual vector lesson and three initial Three.js scene specifications.
+
+The first Colab course is [Python Programming](docs/online-learning/python-programming.md):
+a nine-lesson plan and bilingual lesson 01 notebooks in `notebooks/python-programming/`.
+Other Colab subjects remain a backlog. One hundred and three interactive textbook units are published at
+[Online Book](https://suanlab.com/book/online/physics-math-for-ai/): logic and implication, quantifiers, sets and functions, relations and orders,
+proof strategies, mathematical induction, fractions and units, real and complex numbers, equations and inequalities,
+polynomial/rational functions, exponentials/logarithms, trigonometry/coordinates, composition/inverses, sequences/series,
+asymptotic growth, counting and permutations, inclusion–exclusion, recurrences and generating functions,
+graphs and DAGs, paths and connectivity, Boolean algebra, automata, lattices, finite-state transitions, vectors and forces, inner products and projection, linear transformations,
+least squares, eigenvalues and PCA, gradients, the chain rule, Jacobians, backpropagation, SVD, bases/rank/nullspaces, determinants/traces, PSD matrices,
+quadratic forms/Loewner order, Kronecker products, limits/continuity, differentiation/integration foundations, Taylor remainders,
+series/uniform convergence, compactness, convexity, integral interchanges, implicit/inverse functions,
+matrix derivatives, vector fields, geometric integrals, Gauss/Stokes and higher derivatives, complex polar maps, holomorphicity, contour integrals, residues,
+singularities, analytic continuation, Hermitian products, Wirtinger gradients, phase interference, tensor shapes/contractions, multilinear maps, broadcasting, CP/Tucker/TT,
+contraction networks, low-rank errors, symmetry and storage costs, groups/rings/fields, homomorphisms, quotients, finite fields, modules,
+group actions, polynomial systems, invariants and equivariant representations, probability spaces/events, conditioning,
+mass/density/CDFs, joint laws, Gaussian geometry, transformations, LLN/CLT, reparameterization, probability and moments, likelihood, Bayes,
+information theory, ridge, SGD, differential equations, mechanics, statistical mechanics, Markov processes,
+inverse problems and research evaluation.
+Each has Korean/English theory, equations, numeric readouts and understanding checks.
+Spatial labs use Three.js with a 2D fallback; calculus labs use interactive SVG computation graphs and derivative checks. Further labs use native SVG
+distribution plots, exact/numerical trajectories and sensitivity sweeps with numeric evidence. Preview content lives in
+`content/learning/physics-math-for-ai/`; typed metadata in `src/data/interactive-book.ts`.
+The one hundred and three units include graduate-entry explanations, worked examples,
+step-by-step concept diagrams, and three hundred and nine guided predict/try/explain experiments.
+The [implementation sequence](docs/online-learning/physics-math-for-ai/implementation-sequence.md)
+records prerequisite order, calculation contracts and the next authoring queue.
+The book also exposes the complete bilingual scope of 51 domains and 509 topics, with related readings
+and search. This scope is not a full-completion claim. Run `npm run learning:curriculum` after changing
+the scope, its English translation or the coverage ledger to synchronize the static public map.
+Run `npm run check:learning`, `npm run check:foundations`, `npm run check:logic` `npm run check:elementary` `npm run check:discrete` `npm run check:matrix-structures` `npm run check:analysis` `npm run check:complex` `npm run check:tensors` `npm run check:abstract-algebra` and `npm run check:probability` after building and starting the preview for bilingual
+accessibility, responsive layout, simulation interactions and fallback checks.
+See [implementation notes](docs/online-learning/physics-math-for-ai/preview-implementation.md)
+for model conventions and scope. Notebook verification distinguishes local Jupyter from Colab.
+
 ## Where to edit
 
 Blog filters use `?q=...&category=...&tag=...&page=2`; QT uses

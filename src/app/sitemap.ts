@@ -1,3 +1,4 @@
+import { interactiveBook, learningUnits } from '@/data/interactive-book';
 import { getLectureContentSlugs } from '@/lib/lecture-content';
 import { MetadataRoute } from 'next';
 import { site } from '@/config/site';
@@ -11,6 +12,8 @@ import { getAllBookPosts } from '@/lib/books';
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = ['', 'suan', 'research', 'publication', 'project', 'lecture', 'youtube', 'blog', 'qt', 'book', 'book/published', 'book/online', 'course', 'deadlines', 'prompts', 'contact', 'privacy', 'terms'];
   const entries = [
+    { route: `book/online/${interactiveBook.slug}`, date: undefined },
+    ...learningUnits.map(unit => ({ route: `book/online/${interactiveBook.slug}/${unit.id}`, date: undefined })),
     ...staticRoutes.map((route) => ({ route, date: undefined as string | undefined })),
     ...researchAreas.map((item) => ({ route: `research/${item.slug}`, date: undefined })),
     ...lectures.flatMap((item) => [

@@ -1,0 +1,1592 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-29",
+  "implementedUnitCount": 103,
+  "curriculumComplete": false,
+  "scope": "Core reading path with 103 bilingual introductory units and interactive examples. The full 51-domain, 509-topic catalog remains an authoring scope, not a completion claim.",
+  "domains": [
+    {
+      "id": "logic-proof",
+      "topicCount": 9,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "propositions-implications",
+        "quantifiers-counterexamples",
+        "sets-functions",
+        "relations-orders",
+        "proof-strategies",
+        "mathematical-induction"
+      ],
+      "topicEvidence": [
+        {
+          "topic": "명제와 술어",
+          "status": "introductory-authored",
+          "unitIds": [
+            "propositions-implications",
+            "quantifiers-counterexamples"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/propositions-implications.ko.md",
+            "content/learning/physics-math-for-ai/propositions-implications.en.md",
+            "content/learning/physics-math-for-ai/quantifiers-counterexamples.ko.md",
+            "content/learning/physics-math-for-ai/quantifiers-counterexamples.en.md"
+          ]
+        },
+        {
+          "topic": "전칭·존재 양화사",
+          "status": "introductory-authored",
+          "unitIds": [
+            "quantifiers-counterexamples"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/quantifiers-counterexamples.ko.md",
+            "content/learning/physics-math-for-ai/quantifiers-counterexamples.en.md"
+          ]
+        },
+        {
+          "topic": "집합·함수·관계",
+          "status": "introductory-authored",
+          "unitIds": [
+            "sets-functions"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/sets-functions.ko.md",
+            "content/learning/physics-math-for-ai/sets-functions.en.md"
+          ]
+        },
+        {
+          "topic": "동치·순서·사상",
+          "status": "introductory-authored",
+          "unitIds": [
+            "relations-orders"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/relations-orders.ko.md",
+            "content/learning/physics-math-for-ai/relations-orders.en.md"
+          ]
+        },
+        {
+          "topic": "직접·대우·모순 증명",
+          "status": "introductory-authored",
+          "unitIds": [
+            "proof-strategies"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/proof-strategies.ko.md",
+            "content/learning/physics-math-for-ai/proof-strategies.en.md"
+          ]
+        },
+        {
+          "topic": "수학적 귀납법",
+          "status": "introductory-authored",
+          "unitIds": [
+            "mathematical-induction"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/mathematical-induction.ko.md",
+            "content/learning/physics-math-for-ai/mathematical-induction.en.md"
+          ]
+        },
+        {
+          "topic": "반례 구성",
+          "status": "introductory-authored",
+          "unitIds": [
+            "quantifiers-counterexamples",
+            "proof-strategies",
+            "mathematical-induction"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/quantifiers-counterexamples.ko.md",
+            "content/learning/physics-math-for-ai/quantifiers-counterexamples.en.md",
+            "content/learning/physics-math-for-ai/proof-strategies.ko.md",
+            "content/learning/physics-math-for-ai/proof-strategies.en.md",
+            "content/learning/physics-math-for-ai/mathematical-induction.ko.md",
+            "content/learning/physics-math-for-ai/mathematical-induction.en.md"
+          ]
+        },
+        {
+          "topic": "필요·충분조건",
+          "status": "introductory-authored",
+          "unitIds": [
+            "propositions-implications"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/propositions-implications.ko.md",
+            "content/learning/physics-math-for-ai/propositions-implications.en.md"
+          ]
+        },
+        {
+          "topic": "정의·정리·가정·결론의 구분",
+          "status": "introductory-authored",
+          "unitIds": [
+            "proof-strategies"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/proof-strategies.ko.md",
+            "content/learning/physics-math-for-ai/proof-strategies.en.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elementary-math",
+      "topicCount": 11,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "numbers-ratios-units",
+        "real-complex-numbers",
+        "equations-inequalities",
+        "polynomial-rational-functions",
+        "exponentials-logarithms",
+        "trigonometry-coordinates",
+        "composition-inverse-functions",
+        "sequences-series",
+        "asymptotic-growth"
+      ],
+      "topicEvidence": [
+        {
+          "topic": "정수·유리수·분수·비율·단위 변환",
+          "status": "introductory-authored",
+          "unitIds": [
+            "numbers-ratios-units"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/numbers-ratios-units.ko.md",
+            "content/learning/physics-math-for-ai/numbers-ratios-units.en.md"
+          ]
+        },
+        {
+          "topic": "실수·복소수",
+          "status": "introductory-authored",
+          "unitIds": [
+            "real-complex-numbers"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/real-complex-numbers.ko.md",
+            "content/learning/physics-math-for-ai/real-complex-numbers.en.md"
+          ]
+        },
+        {
+          "topic": "방정식·부등식",
+          "status": "introductory-authored",
+          "unitIds": [
+            "equations-inequalities"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/equations-inequalities.ko.md",
+            "content/learning/physics-math-for-ai/equations-inequalities.en.md"
+          ]
+        },
+        {
+          "topic": "다항·유리함수",
+          "status": "introductory-authored",
+          "unitIds": [
+            "polynomial-rational-functions"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/polynomial-rational-functions.ko.md",
+            "content/learning/physics-math-for-ai/polynomial-rational-functions.en.md"
+          ]
+        },
+        {
+          "topic": "지수·로그",
+          "status": "introductory-authored",
+          "unitIds": [
+            "exponentials-logarithms"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/exponentials-logarithms.ko.md",
+            "content/learning/physics-math-for-ai/exponentials-logarithms.en.md"
+          ]
+        },
+        {
+          "topic": "삼각함수",
+          "status": "introductory-authored",
+          "unitIds": [
+            "trigonometry-coordinates"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/trigonometry-coordinates.ko.md",
+            "content/learning/physics-math-for-ai/trigonometry-coordinates.en.md"
+          ]
+        },
+        {
+          "topic": "함수 합성·역함수",
+          "status": "introductory-authored",
+          "unitIds": [
+            "composition-inverse-functions"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/composition-inverse-functions.ko.md",
+            "content/learning/physics-math-for-ai/composition-inverse-functions.en.md"
+          ]
+        },
+        {
+          "topic": "좌표·거리·각도",
+          "status": "introductory-authored",
+          "unitIds": [
+            "trigonometry-coordinates"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/trigonometry-coordinates.ko.md",
+            "content/learning/physics-math-for-ai/trigonometry-coordinates.en.md"
+          ]
+        },
+        {
+          "topic": "수열·급수의 도입",
+          "status": "introductory-authored",
+          "unitIds": [
+            "sequences-series"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/sequences-series.ko.md",
+            "content/learning/physics-math-for-ai/sequences-series.en.md"
+          ]
+        },
+        {
+          "topic": "단위와 차원",
+          "status": "introductory-authored",
+          "unitIds": [
+            "numbers-ratios-units"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/numbers-ratios-units.ko.md",
+            "content/learning/physics-math-for-ai/numbers-ratios-units.en.md"
+          ]
+        },
+        {
+          "topic": "점근 표기",
+          "status": "introductory-authored",
+          "unitIds": [
+            "asymptotic-growth"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/asymptotic-growth.ko.md",
+            "content/learning/physics-math-for-ai/asymptotic-growth.en.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "discrete-math",
+      "topicCount": 9,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "counting-permutations",
+        "binomial-inclusion-exclusion",
+        "recurrences-generating-functions",
+        "graphs-trees-dags",
+        "paths-cycles-connectivity",
+        "boolean-algebra",
+        "automata-formal-languages",
+        "posets-lattices",
+        "finite-state-transitions"
+      ],
+      "topicEvidence": [
+        {
+          "topic": "세기·순열·조합",
+          "status": "introductory-authored",
+          "unitIds": [
+            "counting-permutations"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/counting-permutations.ko.md",
+            "content/learning/physics-math-for-ai/counting-permutations.en.md"
+          ]
+        },
+        {
+          "topic": "이항계수·포함배제",
+          "status": "introductory-authored",
+          "unitIds": [
+            "binomial-inclusion-exclusion"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/binomial-inclusion-exclusion.ko.md",
+            "content/learning/physics-math-for-ai/binomial-inclusion-exclusion.en.md"
+          ]
+        },
+        {
+          "topic": "점화식·생성함수",
+          "status": "introductory-authored",
+          "unitIds": [
+            "recurrences-generating-functions"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/recurrences-generating-functions.ko.md",
+            "content/learning/physics-math-for-ai/recurrences-generating-functions.en.md"
+          ]
+        },
+        {
+          "topic": "그래프·트리·DAG",
+          "status": "introductory-authored",
+          "unitIds": [
+            "graphs-trees-dags"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/graphs-trees-dags.ko.md",
+            "content/learning/physics-math-for-ai/graphs-trees-dags.en.md"
+          ]
+        },
+        {
+          "topic": "연결성·경로·순환",
+          "status": "introductory-authored",
+          "unitIds": [
+            "paths-cycles-connectivity"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/paths-cycles-connectivity.ko.md",
+            "content/learning/physics-math-for-ai/paths-cycles-connectivity.en.md"
+          ]
+        },
+        {
+          "topic": "Boolean 대수",
+          "status": "introductory-authored",
+          "unitIds": [
+            "boolean-algebra"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/boolean-algebra.ko.md",
+            "content/learning/physics-math-for-ai/boolean-algebra.en.md"
+          ]
+        },
+        {
+          "topic": "오토마타·형식언어",
+          "status": "introductory-authored",
+          "unitIds": [
+            "automata-formal-languages"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/automata-formal-languages.ko.md",
+            "content/learning/physics-math-for-ai/automata-formal-languages.en.md"
+          ]
+        },
+        {
+          "topic": "부분순서·격자",
+          "status": "introductory-authored",
+          "unitIds": [
+            "posets-lattices"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/posets-lattices.ko.md",
+            "content/learning/physics-math-for-ai/posets-lattices.en.md"
+          ]
+        },
+        {
+          "topic": "유한 상태와 전이",
+          "status": "introductory-authored",
+          "unitIds": [
+            "finite-state-transitions"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/finite-state-transitions.ko.md",
+            "content/learning/physics-math-for-ai/finite-state-transitions.en.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "linear-algebra",
+      "topicCount": 11,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "vectors-and-forces",
+        "inner-products",
+        "linear-transforms",
+        "least-squares",
+        "eigenvalues",
+        "svd",
+        "vector-spaces-rank",
+        "determinants-traces",
+        "positive-semidefinite-matrices",
+        "quadratic-forms-orders",
+        "kronecker-products"
+      ],
+      "topicEvidence": [
+        {
+          "topic": "벡터·벡터공간",
+          "status": "introductory-authored",
+          "unitIds": [
+            "vectors-and-forces",
+            "vector-spaces-rank"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/vectors-and-forces.ko.md",
+            "content/learning/physics-math-for-ai/vectors-and-forces.en.md",
+            "content/learning/physics-math-for-ai/vector-spaces-rank.ko.md",
+            "content/learning/physics-math-for-ai/vector-spaces-rank.en.md"
+          ]
+        },
+        {
+          "topic": "기저·차원·랭크·영공간",
+          "status": "introductory-authored",
+          "unitIds": [
+            "vector-spaces-rank"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/vector-spaces-rank.ko.md",
+            "content/learning/physics-math-for-ai/vector-spaces-rank.en.md"
+          ]
+        },
+        {
+          "topic": "선형사상·행렬",
+          "status": "introductory-authored",
+          "unitIds": [
+            "linear-transforms"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/linear-transforms.ko.md",
+            "content/learning/physics-math-for-ai/linear-transforms.en.md"
+          ]
+        },
+        {
+          "topic": "내적·노름·직교·투영",
+          "status": "introductory-authored",
+          "unitIds": [
+            "inner-products"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/inner-products.ko.md",
+            "content/learning/physics-math-for-ai/inner-products.en.md"
+          ]
+        },
+        {
+          "topic": "선형 방정식·최소제곱",
+          "status": "introductory-authored",
+          "unitIds": [
+            "least-squares"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/least-squares.ko.md",
+            "content/learning/physics-math-for-ai/least-squares.en.md"
+          ]
+        },
+        {
+          "topic": "행렬식·trace",
+          "status": "introductory-authored",
+          "unitIds": [
+            "determinants-traces"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/determinants-traces.ko.md",
+            "content/learning/physics-math-for-ai/determinants-traces.en.md"
+          ]
+        },
+        {
+          "topic": "고유값·고유벡터",
+          "status": "introductory-authored",
+          "unitIds": [
+            "eigenvalues"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/eigenvalues.ko.md",
+            "content/learning/physics-math-for-ai/eigenvalues.en.md"
+          ]
+        },
+        {
+          "topic": "대칭·양의 준정부호 행렬",
+          "status": "introductory-authored",
+          "unitIds": [
+            "positive-semidefinite-matrices"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/positive-semidefinite-matrices.ko.md",
+            "content/learning/physics-math-for-ai/positive-semidefinite-matrices.en.md"
+          ]
+        },
+        {
+          "topic": "SVD·의사역행렬",
+          "status": "introductory-authored",
+          "unitIds": [
+            "svd"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/svd.ko.md",
+            "content/learning/physics-math-for-ai/svd.en.md"
+          ]
+        },
+        {
+          "topic": "이차형식·행렬 부등식",
+          "status": "introductory-authored",
+          "unitIds": [
+            "quadratic-forms-orders"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/quadratic-forms-orders.ko.md",
+            "content/learning/physics-math-for-ai/quadratic-forms-orders.en.md"
+          ]
+        },
+        {
+          "topic": "Kronecker 곱",
+          "status": "introductory-authored",
+          "unitIds": [
+            "kronecker-products"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/kronecker-products.ko.md",
+            "content/learning/physics-math-for-ai/kronecker-products.en.md"
+          ]
+        }
+      ],
+      "reviewNote": "Introductory sections exist for the eleven catalog topics. General-dimensional proofs, exercises and numerical conditioning need further expansion and review; this is not a full-domain completion claim."
+    },
+    {
+      "id": "analysis",
+      "topicCount": 9,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "limits-continuity-completeness",
+        "differentiability-mean-value",
+        "integration-fundamental-theorem",
+        "taylor-remainders",
+        "series-convergence-tests",
+        "pointwise-uniform-convergence",
+        "compactness-extreme-values",
+        "convexity-first-order",
+        "limits-integration-interchange"
+      ],
+      "topicEvidence": [
+        {
+          "topic": "극한·연속·완비성",
+          "status": "introductory-authored",
+          "unitIds": [
+            "limits-continuity-completeness"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/limits-continuity-completeness.ko.md",
+            "content/learning/physics-math-for-ai/limits-continuity-completeness.en.md"
+          ]
+        },
+        {
+          "topic": "미분·평균값정리",
+          "status": "introductory-authored",
+          "unitIds": [
+            "differentiability-mean-value"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/differentiability-mean-value.ko.md",
+            "content/learning/physics-math-for-ai/differentiability-mean-value.en.md"
+          ]
+        },
+        {
+          "topic": "적분·미적분 기본정리",
+          "status": "introductory-authored",
+          "unitIds": [
+            "integration-fundamental-theorem"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/integration-fundamental-theorem.ko.md",
+            "content/learning/physics-math-for-ai/integration-fundamental-theorem.en.md"
+          ]
+        },
+        {
+          "topic": "Taylor 전개와 나머지",
+          "status": "introductory-authored",
+          "unitIds": [
+            "taylor-remainders"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/taylor-remainders.ko.md",
+            "content/learning/physics-math-for-ai/taylor-remainders.en.md"
+          ]
+        },
+        {
+          "topic": "수열·급수·함수열",
+          "status": "introductory-authored",
+          "unitIds": [
+            "series-convergence-tests",
+            "pointwise-uniform-convergence"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/series-convergence-tests.ko.md",
+            "content/learning/physics-math-for-ai/series-convergence-tests.en.md",
+            "content/learning/physics-math-for-ai/pointwise-uniform-convergence.ko.md",
+            "content/learning/physics-math-for-ai/pointwise-uniform-convergence.en.md"
+          ]
+        },
+        {
+          "topic": "점별·균등 수렴",
+          "status": "introductory-authored",
+          "unitIds": [
+            "pointwise-uniform-convergence"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/pointwise-uniform-convergence.ko.md",
+            "content/learning/physics-math-for-ai/pointwise-uniform-convergence.en.md"
+          ]
+        },
+        {
+          "topic": "compactness·연속성",
+          "status": "introductory-authored",
+          "unitIds": [
+            "compactness-extreme-values"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/compactness-extreme-values.ko.md",
+            "content/learning/physics-math-for-ai/compactness-extreme-values.en.md"
+          ]
+        },
+        {
+          "topic": "볼록성의 도입",
+          "status": "introductory-authored",
+          "unitIds": [
+            "convexity-first-order"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/convexity-first-order.ko.md",
+            "content/learning/physics-math-for-ai/convexity-first-order.en.md"
+          ]
+        },
+        {
+          "topic": "적분과 극한의 교환 조건",
+          "status": "introductory-authored",
+          "unitIds": [
+            "limits-integration-interchange"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/limits-integration-interchange.ko.md",
+            "content/learning/physics-math-for-ai/limits-integration-interchange.en.md"
+          ]
+        }
+      ],
+      "reviewNote": "Introductory definitions, hypotheses, worked examples and small interactive models exist. Full general proofs, advanced exercises and research reproduction remain to expand."
+    },
+    {
+      "id": "matrix-calculus",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "gradients",
+        "chain-rule",
+        "jacobians",
+        "backpropagation",
+        "implicit-inverse-functions",
+        "matrix-trace-logdet-derivatives",
+        "vector-fields-divergence-curl",
+        "line-surface-volume-integrals",
+        "gauss-stokes-theorems",
+        "higher-order-autodiff"
+      ],
+      "topicEvidence": [
+        {
+          "topic": "전미분·선형화",
+          "status": "introductory-authored",
+          "unitIds": [
+            "jacobians",
+            "chain-rule"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/jacobians.ko.md",
+            "content/learning/physics-math-for-ai/jacobians.en.md",
+            "content/learning/physics-math-for-ai/chain-rule.ko.md",
+            "content/learning/physics-math-for-ai/chain-rule.en.md"
+          ]
+        },
+        {
+          "topic": "편미분·방향미분",
+          "status": "introductory-authored",
+          "unitIds": [
+            "gradients",
+            "jacobians"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/gradients.ko.md",
+            "content/learning/physics-math-for-ai/gradients.en.md",
+            "content/learning/physics-math-for-ai/jacobians.ko.md",
+            "content/learning/physics-math-for-ai/jacobians.en.md"
+          ]
+        },
+        {
+          "topic": "gradient·Jacobian·Hessian",
+          "status": "introductory-authored",
+          "unitIds": [
+            "gradients",
+            "jacobians",
+            "higher-order-autodiff"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/gradients.ko.md",
+            "content/learning/physics-math-for-ai/gradients.en.md",
+            "content/learning/physics-math-for-ai/jacobians.ko.md",
+            "content/learning/physics-math-for-ai/jacobians.en.md",
+            "content/learning/physics-math-for-ai/higher-order-autodiff.ko.md",
+            "content/learning/physics-math-for-ai/higher-order-autodiff.en.md"
+          ]
+        },
+        {
+          "topic": "chain rule",
+          "status": "introductory-authored",
+          "unitIds": [
+            "chain-rule",
+            "backpropagation"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/chain-rule.ko.md",
+            "content/learning/physics-math-for-ai/chain-rule.en.md",
+            "content/learning/physics-math-for-ai/backpropagation.ko.md",
+            "content/learning/physics-math-for-ai/backpropagation.en.md"
+          ]
+        },
+        {
+          "topic": "암묵함수·역함수 정리",
+          "status": "introductory-authored",
+          "unitIds": [
+            "implicit-inverse-functions"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/implicit-inverse-functions.ko.md",
+            "content/learning/physics-math-for-ai/implicit-inverse-functions.en.md"
+          ]
+        },
+        {
+          "topic": "행렬·trace·logdet 미분",
+          "status": "introductory-authored",
+          "unitIds": [
+            "matrix-trace-logdet-derivatives"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/matrix-trace-logdet-derivatives.ko.md",
+            "content/learning/physics-math-for-ai/matrix-trace-logdet-derivatives.en.md"
+          ]
+        },
+        {
+          "topic": "벡터장·발산·회전",
+          "status": "introductory-authored",
+          "unitIds": [
+            "vector-fields-divergence-curl"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/vector-fields-divergence-curl.ko.md",
+            "content/learning/physics-math-for-ai/vector-fields-divergence-curl.en.md"
+          ]
+        },
+        {
+          "topic": "선·면·체적 적분",
+          "status": "introductory-authored",
+          "unitIds": [
+            "line-surface-volume-integrals"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/line-surface-volume-integrals.ko.md",
+            "content/learning/physics-math-for-ai/line-surface-volume-integrals.en.md"
+          ]
+        },
+        {
+          "topic": "Gauss·Stokes 정리",
+          "status": "introductory-authored",
+          "unitIds": [
+            "gauss-stokes-theorems"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/gauss-stokes-theorems.ko.md",
+            "content/learning/physics-math-for-ai/gauss-stokes-theorems.en.md"
+          ]
+        },
+        {
+          "topic": "JVP·VJP·고차 미분",
+          "status": "introductory-authored",
+          "unitIds": [
+            "jacobians",
+            "higher-order-autodiff"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/jacobians.ko.md",
+            "content/learning/physics-math-for-ai/jacobians.en.md",
+            "content/learning/physics-math-for-ai/higher-order-autodiff.ko.md",
+            "content/learning/physics-math-for-ai/higher-order-autodiff.en.md"
+          ]
+        }
+      ],
+      "reviewNote": "Introductory definitions, hypotheses, worked examples and small interactive models exist. Full general proofs, advanced exercises and research reproduction remain to expand."
+    },
+    {
+      "id": "complex-analysis",
+      "topicCount": 9,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "complex-polar-maps",
+        "cauchy-riemann-holomorphic",
+        "complex-contour-integrals",
+        "residues-winding",
+        "analytic-functions-singularities",
+        "analytic-continuation-branches",
+        "complex-linear-algebra",
+        "wirtinger-gradients",
+        "complex-signals-phase"
+      ],
+      "topicEvidence": [
+        {
+          "topic": "복소평면·극형식",
+          "status": "introductory-authored",
+          "unitIds": [
+            "complex-polar-maps"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/complex-polar-maps.ko.md",
+            "content/learning/physics-math-for-ai/complex-polar-maps.en.md"
+          ]
+        },
+        {
+          "topic": "정칙성·Cauchy-Riemann 조건",
+          "status": "introductory-authored",
+          "unitIds": [
+            "cauchy-riemann-holomorphic"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/cauchy-riemann-holomorphic.ko.md",
+            "content/learning/physics-math-for-ai/cauchy-riemann-holomorphic.en.md"
+          ]
+        },
+        {
+          "topic": "복소 적분·Cauchy 정리",
+          "status": "introductory-authored",
+          "unitIds": [
+            "complex-contour-integrals"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/complex-contour-integrals.ko.md",
+            "content/learning/physics-math-for-ai/complex-contour-integrals.en.md"
+          ]
+        },
+        {
+          "topic": "유수",
+          "status": "introductory-authored",
+          "unitIds": [
+            "residues-winding"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/residues-winding.ko.md",
+            "content/learning/physics-math-for-ai/residues-winding.en.md"
+          ]
+        },
+        {
+          "topic": "해석적 함수·특이점",
+          "status": "introductory-authored",
+          "unitIds": [
+            "analytic-functions-singularities"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/analytic-functions-singularities.ko.md",
+            "content/learning/physics-math-for-ai/analytic-functions-singularities.en.md"
+          ]
+        },
+        {
+          "topic": "해석적 연속",
+          "status": "introductory-authored",
+          "unitIds": [
+            "analytic-continuation-branches"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/analytic-continuation-branches.ko.md",
+            "content/learning/physics-math-for-ai/analytic-continuation-branches.en.md"
+          ]
+        },
+        {
+          "topic": "복소 선형대수",
+          "status": "introductory-authored",
+          "unitIds": [
+            "complex-linear-algebra"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/complex-linear-algebra.ko.md",
+            "content/learning/physics-math-for-ai/complex-linear-algebra.en.md"
+          ]
+        },
+        {
+          "topic": "Wirtinger 미분",
+          "status": "introductory-authored",
+          "unitIds": [
+            "wirtinger-gradients"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/wirtinger-gradients.ko.md",
+            "content/learning/physics-math-for-ai/wirtinger-gradients.en.md"
+          ]
+        },
+        {
+          "topic": "복소 신호와 위상",
+          "status": "introductory-authored",
+          "unitIds": [
+            "complex-signals-phase"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/complex-signals-phase.ko.md",
+            "content/learning/physics-math-for-ai/complex-signals-phase.en.md"
+          ]
+        }
+      ],
+      "reviewNote": "Introductory definitions, hypotheses, explicit calculations and small interactive models exist. General proofs, advanced exercises and research reproduction require further expansion."
+    },
+    {
+      "id": "tensor-methods",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "tensor-order-shapes",
+        "tensor-indices-contractions",
+        "multilinear-maps",
+        "broadcasting-semantics",
+        "tensor-cp-tucker",
+        "tensor-trains",
+        "tensor-networks-contraction",
+        "tensor-low-rank-approximation",
+        "tensor-symmetry-antisymmetry",
+        "tensor-storage-cost"
+      ],
+      "topicEvidence": [
+        {
+          "topic": "텐서의 차수·축·shape",
+          "status": "introductory-authored",
+          "unitIds": [
+            "tensor-order-shapes"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/tensor-order-shapes.ko.md",
+            "content/learning/physics-math-for-ai/tensor-order-shapes.en.md"
+          ]
+        },
+        {
+          "topic": "지표와 수축",
+          "status": "introductory-authored",
+          "unitIds": [
+            "tensor-indices-contractions"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/tensor-indices-contractions.ko.md",
+            "content/learning/physics-math-for-ai/tensor-indices-contractions.en.md"
+          ]
+        },
+        {
+          "topic": "다중선형사상",
+          "status": "introductory-authored",
+          "unitIds": [
+            "multilinear-maps"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/multilinear-maps.ko.md",
+            "content/learning/physics-math-for-ai/multilinear-maps.en.md"
+          ]
+        },
+        {
+          "topic": "broadcasting과 연산 의미",
+          "status": "introductory-authored",
+          "unitIds": [
+            "broadcasting-semantics"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/broadcasting-semantics.ko.md",
+            "content/learning/physics-math-for-ai/broadcasting-semantics.en.md"
+          ]
+        },
+        {
+          "topic": "CP·Tucker 분해",
+          "status": "introductory-authored",
+          "unitIds": [
+            "tensor-cp-tucker"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/tensor-cp-tucker.ko.md",
+            "content/learning/physics-math-for-ai/tensor-cp-tucker.en.md"
+          ]
+        },
+        {
+          "topic": "tensor train",
+          "status": "introductory-authored",
+          "unitIds": [
+            "tensor-trains"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/tensor-trains.ko.md",
+            "content/learning/physics-math-for-ai/tensor-trains.en.md"
+          ]
+        },
+        {
+          "topic": "tensor network",
+          "status": "introductory-authored",
+          "unitIds": [
+            "tensor-networks-contraction"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/tensor-networks-contraction.ko.md",
+            "content/learning/physics-math-for-ai/tensor-networks-contraction.en.md"
+          ]
+        },
+        {
+          "topic": "저랭크 근사",
+          "status": "introductory-authored",
+          "unitIds": [
+            "tensor-low-rank-approximation"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/tensor-low-rank-approximation.ko.md",
+            "content/learning/physics-math-for-ai/tensor-low-rank-approximation.en.md"
+          ]
+        },
+        {
+          "topic": "대칭·반대칭 텐서",
+          "status": "introductory-authored",
+          "unitIds": [
+            "tensor-symmetry-antisymmetry"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/tensor-symmetry-antisymmetry.ko.md",
+            "content/learning/physics-math-for-ai/tensor-symmetry-antisymmetry.en.md"
+          ]
+        },
+        {
+          "topic": "저장·계산 복잡도",
+          "status": "introductory-authored",
+          "unitIds": [
+            "tensor-storage-cost"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/tensor-storage-cost.ko.md",
+            "content/learning/physics-math-for-ai/tensor-storage-cost.en.md"
+          ]
+        }
+      ],
+      "reviewNote": "Introductory definitions, explicit array calculations and interactive models exist. General decomposition algorithms, proofs and research reproduction require further expansion."
+    },
+    {
+      "id": "abstract-algebra",
+      "topicCount": 9,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "groups-rings-fields",
+        "homomorphisms-isomorphisms",
+        "subgroups-quotients",
+        "polynomials-finite-fields",
+        "modules-linear-actions",
+        "algebraic-symmetries",
+        "polynomial-systems",
+        "invariant-constructions",
+        "algebraic-representations-scope"
+      ],
+      "topicEvidence": [
+        {
+          "topic": "군·환·체",
+          "status": "introductory-authored",
+          "unitIds": [
+            "groups-rings-fields"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/groups-rings-fields.ko.md",
+            "content/learning/physics-math-for-ai/groups-rings-fields.en.md"
+          ]
+        },
+        {
+          "topic": "준동형·동형",
+          "status": "introductory-authored",
+          "unitIds": [
+            "homomorphisms-isomorphisms"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/homomorphisms-isomorphisms.ko.md",
+            "content/learning/physics-math-for-ai/homomorphisms-isomorphisms.en.md"
+          ]
+        },
+        {
+          "topic": "부분구조·몫구조",
+          "status": "introductory-authored",
+          "unitIds": [
+            "subgroups-quotients"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/subgroups-quotients.ko.md",
+            "content/learning/physics-math-for-ai/subgroups-quotients.en.md"
+          ]
+        },
+        {
+          "topic": "다항식·유한체",
+          "status": "introductory-authored",
+          "unitIds": [
+            "polynomials-finite-fields"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/polynomials-finite-fields.ko.md",
+            "content/learning/physics-math-for-ai/polynomials-finite-fields.en.md"
+          ]
+        },
+        {
+          "topic": "module",
+          "status": "introductory-authored",
+          "unitIds": [
+            "modules-linear-actions"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/modules-linear-actions.ko.md",
+            "content/learning/physics-math-for-ai/modules-linear-actions.en.md"
+          ]
+        },
+        {
+          "topic": "대수적 대칭",
+          "status": "introductory-authored",
+          "unitIds": [
+            "algebraic-symmetries"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/algebraic-symmetries.ko.md",
+            "content/learning/physics-math-for-ai/algebraic-symmetries.en.md"
+          ]
+        },
+        {
+          "topic": "다항식 시스템",
+          "status": "introductory-authored",
+          "unitIds": [
+            "polynomial-systems"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/polynomial-systems.ko.md",
+            "content/learning/physics-math-for-ai/polynomial-systems.en.md"
+          ]
+        },
+        {
+          "topic": "invariant의 구성",
+          "status": "introductory-authored",
+          "unitIds": [
+            "invariant-constructions"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/invariant-constructions.ko.md",
+            "content/learning/physics-math-for-ai/invariant-constructions.en.md"
+          ]
+        },
+        {
+          "topic": "대수적 표현의 적용 범위",
+          "status": "introductory-authored",
+          "unitIds": [
+            "algebraic-representations-scope"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/algebraic-representations-scope.ko.md",
+            "content/learning/physics-math-for-ai/algebraic-representations-scope.en.md"
+          ]
+        }
+      ],
+      "reviewNote": "Introductory definitions and explicit finite examples exist. General proofs, algorithms, advanced exercises and research reproduction remain to be expanded."
+    },
+    {
+      "id": "probability",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "probability-spaces-events",
+        "conditional-probability-independence",
+        "probability-distributions",
+        "mass-density-cdf",
+        "expectation-variance",
+        "joint-marginal-conditional",
+        "multivariate-gaussians",
+        "random-variable-transformations",
+        "laws-large-numbers-clt",
+        "reparameterization-gradients"
+      ],
+      "topicEvidence": [
+        {
+          "topic": "사건·확률공리",
+          "status": "introductory-authored",
+          "unitIds": [
+            "probability-spaces-events"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/probability-spaces-events.ko.md",
+            "content/learning/physics-math-for-ai/probability-spaces-events.en.md"
+          ]
+        },
+        {
+          "topic": "조건부 확률·독립·Bayes",
+          "status": "introductory-authored",
+          "unitIds": [
+            "conditional-probability-independence"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/conditional-probability-independence.ko.md",
+            "content/learning/physics-math-for-ai/conditional-probability-independence.en.md"
+          ]
+        },
+        {
+          "topic": "이산·연속 분포",
+          "status": "introductory-authored",
+          "unitIds": [
+            "probability-distributions",
+            "mass-density-cdf"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/probability-distributions.ko.md",
+            "content/learning/physics-math-for-ai/probability-distributions.en.md",
+            "content/learning/physics-math-for-ai/mass-density-cdf.ko.md",
+            "content/learning/physics-math-for-ai/mass-density-cdf.en.md"
+          ]
+        },
+        {
+          "topic": "밀도·질량·누적분포",
+          "status": "introductory-authored",
+          "unitIds": [
+            "mass-density-cdf"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/mass-density-cdf.ko.md",
+            "content/learning/physics-math-for-ai/mass-density-cdf.en.md"
+          ]
+        },
+        {
+          "topic": "기대·분산·공분산",
+          "status": "introductory-authored",
+          "unitIds": [
+            "expectation-variance",
+            "joint-marginal-conditional"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/expectation-variance.ko.md",
+            "content/learning/physics-math-for-ai/expectation-variance.en.md",
+            "content/learning/physics-math-for-ai/joint-marginal-conditional.ko.md",
+            "content/learning/physics-math-for-ai/joint-marginal-conditional.en.md"
+          ]
+        },
+        {
+          "topic": "다변량 Gaussian",
+          "status": "introductory-authored",
+          "unitIds": [
+            "multivariate-gaussians"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/multivariate-gaussians.ko.md",
+            "content/learning/physics-math-for-ai/multivariate-gaussians.en.md"
+          ]
+        },
+        {
+          "topic": "변수변환·Jacobian",
+          "status": "introductory-authored",
+          "unitIds": [
+            "random-variable-transformations"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/random-variable-transformations.ko.md",
+            "content/learning/physics-math-for-ai/random-variable-transformations.en.md"
+          ]
+        },
+        {
+          "topic": "결합·주변·조건부 분포",
+          "status": "introductory-authored",
+          "unitIds": [
+            "joint-marginal-conditional"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/joint-marginal-conditional.ko.md",
+            "content/learning/physics-math-for-ai/joint-marginal-conditional.en.md"
+          ]
+        },
+        {
+          "topic": "대수의 법칙·중심극한정리",
+          "status": "introductory-authored",
+          "unitIds": [
+            "laws-large-numbers-clt"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/laws-large-numbers-clt.ko.md",
+            "content/learning/physics-math-for-ai/laws-large-numbers-clt.en.md"
+          ]
+        },
+        {
+          "topic": "재매개화",
+          "status": "introductory-authored",
+          "unitIds": [
+            "reparameterization-gradients"
+          ],
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/reparameterization-gradients.ko.md",
+            "content/learning/physics-math-for-ai/reparameterization-gradients.en.md"
+          ]
+        }
+      ],
+      "reviewNote": "Introductory finite laws, elementary conditioning, Gaussian geometry and explicit transformations are authored. Measure-theoretic foundations, general proofs and research-level applications require expansion."
+    },
+    {
+      "id": "measure-probability",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "statistics",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "statistical-estimation",
+        "research-methods"
+      ]
+    },
+    {
+      "id": "bayesian-inference",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "bayesian-inference"
+      ]
+    },
+    {
+      "id": "information-theory",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "information-theory"
+      ]
+    },
+    {
+      "id": "high-dimensional",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "graphical-models",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "coding-algorithmic-information",
+      "topicCount": 9,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "functional-analysis",
+      "topicCount": 9,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "approximation-kernels",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "harmonic-analysis",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "geometry-topology",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "symmetry-groups",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "convex-optimization",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "regularization"
+      ]
+    },
+    {
+      "id": "stochastic-optimization",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "stochastic-optimization"
+      ]
+    },
+    {
+      "id": "variational-geometry",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "optimal-transport",
+      "topicCount": 8,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "numerical-computing",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "differential-equations",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "differential-equations"
+      ]
+    },
+    {
+      "id": "stochastic-processes",
+      "topicCount": 11,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "stochastic-processes"
+      ]
+    },
+    {
+      "id": "numerical-simulation",
+      "topicCount": 11,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "algorithms-complexity",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "learning-theory",
+      "topicCount": 11,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "causality",
+      "topicCount": 11,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "control-decision",
+      "topicCount": 11,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "discrete-optimization",
+      "topicCount": 9,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "game-theory",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "statistical-privacy",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "physical-modeling",
+      "topicCount": 9,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "classical-mechanics",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "mechanics-energy"
+      ]
+    },
+    {
+      "id": "analytical-mechanics",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "waves-optics",
+      "topicCount": 9,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "electromagnetism",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "continuum-physics",
+      "topicCount": 11,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "thermo-statmech",
+      "topicCount": 11,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "thermodynamics"
+      ]
+    },
+    {
+      "id": "nonequilibrium",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "quantum-physics",
+      "topicCount": 11,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "field-multiscale",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "relativity",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "matter-computation",
+      "topicCount": 10,
+      "status": "planned",
+      "implementedUnitIds": []
+    },
+    {
+      "id": "inverse-problems",
+      "topicCount": 11,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "inverse-problems"
+      ]
+    },
+    {
+      "id": "research-methods",
+      "topicCount": 10,
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "research-methods"
+      ]
+    }
+  ],
+  "completionRule": "Domain links indicate partial coverage only. Individual topic sections, proofs, experiments and research evidence require authoring and review.",
+  "namedQueueUnitIds": [
+    "svd",
+    "probability-distributions",
+    "expectation-variance",
+    "statistical-estimation",
+    "bayesian-inference",
+    "information-theory",
+    "regularization",
+    "stochastic-optimization",
+    "differential-equations",
+    "mechanics-energy",
+    "thermodynamics",
+    "stochastic-processes",
+    "inverse-problems",
+    "research-methods"
+  ],
+  "nextDomain": "measure-probability",
+  "nextTopic": "σ-대수·측도·확률측도와 가측함수"
+}

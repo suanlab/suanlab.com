@@ -1,0 +1,821 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-28",
+  "domains": [
+    {
+      "id": "logic-proof",
+      "title": "Logic, Sets and Proof",
+      "topics": [
+        "Propositions and predicates",
+        "Universal and existential quantifiers",
+        "Sets, functions and relations",
+        "Equivalence, order and maps",
+        "Direct, contrapositive and contradiction proofs",
+        "Mathematical induction",
+        "Constructing counterexamples",
+        "Necessary and sufficient conditions",
+        "Definitions, theorems, assumptions and conclusions"
+      ]
+    },
+    {
+      "id": "elementary-math",
+      "title": "Numbers, Functions, Coordinates and Basic Geometry",
+      "topics": [
+        "Integers, rationals, fractions, ratios and unit conversions",
+        "Real and complex numbers",
+        "Equations and inequalities",
+        "Polynomial and rational functions",
+        "Exponentials and logarithms",
+        "Trigonometric functions",
+        "Composition and inverse functions",
+        "Coordinates, distances and angles",
+        "Introduction to sequences and series",
+        "Units and dimensions",
+        "Asymptotic notation"
+      ]
+    },
+    {
+      "id": "discrete-math",
+      "title": "Discrete Mathematics and Combinatorial Structures",
+      "topics": [
+        "Counting, permutations and combinations",
+        "Binomial coefficients and inclusion–exclusion",
+        "Recurrences and generating functions",
+        "Graphs, trees and DAGs",
+        "Connectivity, paths and cycles",
+        "Boolean algebra",
+        "Automata and formal languages",
+        "Partial orders and lattices",
+        "Finite states and transitions"
+      ]
+    },
+    {
+      "id": "linear-algebra",
+      "title": "Linear Algebra and Matrix Analysis",
+      "topics": [
+        "Vectors and vector spaces",
+        "Bases, dimension, rank and nullspace",
+        "Linear maps and matrices",
+        "Inner products, norms, orthogonality and projection",
+        "Linear systems and least squares",
+        "Determinants and traces",
+        "Eigenvalues and eigenvectors",
+        "Symmetric and positive semidefinite matrices",
+        "SVD and pseudoinverses",
+        "Quadratic forms and matrix inequalities",
+        "Kronecker products"
+      ]
+    },
+    {
+      "id": "analysis",
+      "title": "Calculus and Real Analysis",
+      "topics": [
+        "Limits, continuity and completeness",
+        "Differentiation and the mean value theorem",
+        "Integration and the fundamental theorem",
+        "Taylor expansions and remainders",
+        "Sequences, series and function sequences",
+        "Pointwise and uniform convergence",
+        "Compactness and continuity",
+        "Introduction to convexity",
+        "Conditions for interchanging integrals and limits"
+      ]
+    },
+    {
+      "id": "matrix-calculus",
+      "title": "Multivariable, Vector and Matrix Calculus",
+      "topics": [
+        "Total derivatives and linearization",
+        "Partial and directional derivatives",
+        "Gradients, Jacobians and Hessians",
+        "Chain rules",
+        "Implicit and inverse function theorems",
+        "Matrix, trace and log-determinant derivatives",
+        "Vector fields, divergence and curl",
+        "Line, surface and volume integrals",
+        "Gauss and Stokes theorems",
+        "JVPs, VJPs and higher derivatives"
+      ]
+    },
+    {
+      "id": "complex-analysis",
+      "title": "Complex Analysis and Computation",
+      "topics": [
+        "Complex plane and polar form",
+        "Holomorphicity and Cauchy–Riemann conditions",
+        "Complex integration and Cauchy theorems",
+        "Residues",
+        "Analytic functions and singularities",
+        "Analytic continuation",
+        "Complex linear algebra",
+        "Wirtinger derivatives",
+        "Complex signals and phase"
+      ]
+    },
+    {
+      "id": "tensor-methods",
+      "title": "Tensors and Multilinear Algebra",
+      "topics": [
+        "Tensor order, axes and shapes",
+        "Indices and contractions",
+        "Multilinear maps",
+        "Broadcasting and operation semantics",
+        "CP and Tucker decompositions",
+        "Tensor trains",
+        "Tensor networks",
+        "Low-rank approximation",
+        "Symmetric and antisymmetric tensors",
+        "Storage and computation complexity"
+      ]
+    },
+    {
+      "id": "abstract-algebra",
+      "title": "Abstract Algebra and Algebraic Structures",
+      "topics": [
+        "Groups, rings and fields",
+        "Homomorphisms and isomorphisms",
+        "Substructures and quotient structures",
+        "Polynomials and finite fields",
+        "Modules",
+        "Algebraic symmetry",
+        "Polynomial systems",
+        "Constructing invariants",
+        "Scope of algebraic representations"
+      ]
+    },
+    {
+      "id": "probability",
+      "title": "Probability and Random Variables",
+      "topics": [
+        "Events and probability axioms",
+        "Conditional probability, independence and Bayes",
+        "Discrete and continuous distributions",
+        "Densities, masses and cumulative distributions",
+        "Expectation, variance and covariance",
+        "Multivariate Gaussians",
+        "Changes of variables and Jacobians",
+        "Joint, marginal and conditional distributions",
+        "Laws of large numbers and central limit theorem",
+        "Reparameterization"
+      ]
+    },
+    {
+      "id": "measure-probability",
+      "title": "Measure-Theoretic Probability and Limits",
+      "topics": [
+        "Sigma-algebras and measures",
+        "Lebesgue integration",
+        "Almost-sure properties",
+        "Convergence theorems and dominated convergence",
+        "Fubini and Tonelli",
+        "Probability measures and expectations",
+        "Conditional expectation",
+        "Radon–Nikodym derivatives",
+        "Weak convergence and convergence in probability",
+        "Conditions for interchanging probability and integration"
+      ]
+    },
+    {
+      "id": "statistics",
+      "title": "Statistical Estimation and Experiments",
+      "topics": [
+        "Samples, parameters and estimators",
+        "Bias, variance and consistency",
+        "Likelihood, MLE and MAP",
+        "Exponential families and sufficient statistics",
+        "Confidence intervals and hypothesis tests",
+        "Bootstrap and resampling",
+        "Regression and residuals",
+        "Asymptotic normality and the delta method",
+        "Power and multiple comparisons",
+        "Experimental design and error estimation"
+      ]
+    },
+    {
+      "id": "bayesian-inference",
+      "title": "Bayesian Inference and Latent Variables",
+      "topics": [
+        "Priors, likelihoods and posteriors",
+        "Conjugacy and posterior prediction",
+        "Hierarchical models",
+        "Model evidence",
+        "Latent variables and EM",
+        "Variational inference and ELBO",
+        "Importance sampling",
+        "Laplace approximation",
+        "Model selection",
+        "Predictive uncertainty and calibration"
+      ]
+    },
+    {
+      "id": "information-theory",
+      "title": "Information Theory and Compression",
+      "topics": [
+        "Self-information and entropy",
+        "Conditional entropy and mutual information",
+        "Cross-entropy and KL divergence",
+        "Jensen’s inequality",
+        "Data processing inequality",
+        "Coding, compression and MDL",
+        "Rate–distortion theory",
+        "Fano-type bounds",
+        "Rényi information",
+        "Bits, nats and normalization"
+      ]
+    },
+    {
+      "id": "high-dimensional",
+      "title": "High-Dimensional Probability and Random Matrices",
+      "topics": [
+        "Concentration",
+        "Sub-Gaussian variables and tail bounds",
+        "Hoeffding- and Bernstein-type inequalities",
+        "Covering and packing",
+        "High-dimensional geometry",
+        "Johnson–Lindenstrauss lemma",
+        "Random matrix spectra",
+        "Gaussian width",
+        "Random features",
+        "Curse of dimensionality and effective dimension"
+      ]
+    },
+    {
+      "id": "graphical-models",
+      "title": "Probabilistic Graphical Models and Structured Inference",
+      "topics": [
+        "Bayesian networks and Markov random fields",
+        "Factor graphs",
+        "Conditional independence and d-separation",
+        "Variable elimination",
+        "Junction trees",
+        "Belief propagation",
+        "HMMs and state-space models",
+        "Structure and parameter learning",
+        "Energy and partition functions",
+        "Conditions for exact and approximate inference"
+      ]
+    },
+    {
+      "id": "coding-algorithmic-information",
+      "title": "Coding, Computation and Algorithmic Information",
+      "topics": [
+        "Channels and capacity",
+        "Error-correcting codes",
+        "Finite fields and linear codes",
+        "Compression and reconstruction",
+        "Algorithmic complexity",
+        "Uncomputability of Kolmogorov complexity",
+        "MDL and model selection",
+        "Computational limits and approximation",
+        "Communication complexity and distributed representations"
+      ]
+    },
+    {
+      "id": "functional-analysis",
+      "title": "Functional Analysis and Operators",
+      "topics": [
+        "Normed, Banach and Hilbert spaces",
+        "Bounded and compact operators",
+        "Duals of function spaces",
+        "Orthogonal decompositions",
+        "Assumptions of spectral theorems",
+        "Distributions",
+        "Weak derivatives and Sobolev spaces",
+        "Integral operators",
+        "Finite- and infinite-dimensional approximation"
+      ]
+    },
+    {
+      "id": "approximation-kernels",
+      "title": "Approximation, Kernels and Expressiveness",
+      "topics": [
+        "Polynomial and spline approximation",
+        "Assumptions of universal approximation theorems",
+        "RKHS and Mercer theory",
+        "Representer theorem",
+        "Kernel regression",
+        "Gaussian processes",
+        "Random-feature approximations",
+        "NTK and limiting assumptions",
+        "Expressiveness and sample efficiency",
+        "Approximation, estimation and optimization errors"
+      ]
+    },
+    {
+      "id": "harmonic-analysis",
+      "title": "Harmonic Analysis and Signal Processing",
+      "topics": [
+        "Fourier series and transforms",
+        "Convolution theorem",
+        "Laplace and Z transforms",
+        "Sampling and aliasing",
+        "DFT and FFT",
+        "STFT and wavelets",
+        "Filters and frequency responses",
+        "Parseval relations",
+        "Spatial and frequency localization",
+        "Inverse filtering"
+      ]
+    },
+    {
+      "id": "geometry-topology",
+      "title": "Differential Geometry, Topology and Data Shape",
+      "topics": [
+        "Topology, continuity and connectedness",
+        "Manifolds and charts",
+        "Tangent and cotangent spaces",
+        "Metrics and geodesics",
+        "Connections and curvature",
+        "Differential forms",
+        "Embeddings and immersions",
+        "Homology and persistent homology",
+        "Conditions for topological stability",
+        "Coordinate-independent representations"
+      ]
+    },
+    {
+      "id": "symmetry-groups",
+      "title": "Groups, Symmetry and Representations",
+      "topics": [
+        "Groups and group actions",
+        "Invariance and equivariance",
+        "Representations and irreducible representations",
+        "Lie groups and Lie algebras",
+        "SO(3) and SE(3)",
+        "Generators and exponential maps",
+        "Introduction to gauge",
+        "Symmetry and constraints",
+        "Invariant features",
+        "Tensor representations"
+      ]
+    },
+    {
+      "id": "convex-optimization",
+      "title": "Convex Analysis and Constrained Optimization",
+      "topics": [
+        "Convex sets and functions",
+        "Subgradients",
+        "Optimality conditions",
+        "Lagrangians and KKT",
+        "Weak and strong duality with assumptions",
+        "Linear, quadratic and semidefinite programs",
+        "Proximal operators",
+        "Regularization",
+        "Interior-point methods",
+        "Duality gaps"
+      ]
+    },
+    {
+      "id": "stochastic-optimization",
+      "title": "Nonconvex, Stochastic and Large-Scale Optimization",
+      "topics": [
+        "Gradient descent and SGD",
+        "Smoothness and learning-rate conditions",
+        "Momentum and adaptive methods",
+        "Saddles and plateaus",
+        "Mini-batch noise",
+        "Variance reduction",
+        "Distributed optimization",
+        "Bilevel problems and hypergradients",
+        "Implicit differentiation",
+        "Convergence versus stationarity"
+      ]
+    },
+    {
+      "id": "variational-geometry",
+      "title": "Variational Methods and Geometric Optimization",
+      "topics": [
+        "Variations of functionals",
+        "Euler–Lagrange equations",
+        "Constrained variations",
+        "Fisher information",
+        "Natural gradients",
+        "Mirror descent",
+        "Bregman divergences",
+        "Riemannian optimization",
+        "Implicit objectives",
+        "Optimization in function spaces"
+      ]
+    },
+    {
+      "id": "optimal-transport",
+      "title": "Optimal Transport and Distribution Geometry",
+      "topics": [
+        "Monge and Kantorovich problems",
+        "Transport plans and duality",
+        "Wasserstein distances",
+        "Entropic regularization and Sinkhorn",
+        "Dynamic transport and continuity equations",
+        "Displacement interpolation",
+        "Gradient flows of distributions",
+        "Regularization and discretization errors"
+      ]
+    },
+    {
+      "id": "numerical-computing",
+      "title": "Numerical Computing and Automatic Differentiation",
+      "topics": [
+        "Floating point and rounding",
+        "Overflow, underflow and log-sum-exp",
+        "Conditioning and stability",
+        "Linear and nonlinear solvers",
+        "Sparse and iterative solvers",
+        "Interpolation and numerical integration",
+        "Forward and reverse autodiff",
+        "Finite differences and gradient checks",
+        "Mixed precision and quantization error",
+        "Computation and memory costs"
+      ]
+    },
+    {
+      "id": "differential-equations",
+      "title": "Ordinary and Partial Differential Equations",
+      "topics": [
+        "States, initial values and boundary values",
+        "Existence and uniqueness conditions",
+        "Linear and nonlinear ODEs",
+        "Phase portraits and fixed points",
+        "Stability, bifurcations and chaos",
+        "PDE classifications",
+        "Diffusion, waves and transport",
+        "Characteristics",
+        "Weak solutions",
+        "Conservation laws and boundary conditions"
+      ]
+    },
+    {
+      "id": "stochastic-processes",
+      "title": "Stochastic Processes and Stochastic Differential Equations",
+      "topics": [
+        "Markov chains and processes",
+        "Poisson processes",
+        "Martingales",
+        "Brownian motion",
+        "Itô and Stratonovich calculus",
+        "SDEs",
+        "Fokker–Planck equations",
+        "Conditions for time reversal",
+        "Ergodicity",
+        "MCMC, Langevin and HMC",
+        "Stochastic control"
+      ]
+    },
+    {
+      "id": "numerical-simulation",
+      "title": "Scientific Computing and Numerical Simulation",
+      "topics": [
+        "Euler, Runge–Kutta and implicit methods",
+        "Local and global errors",
+        "Stiffness",
+        "Symplectic integrators",
+        "Finite differences, volumes and elements",
+        "Spectral methods",
+        "Meshes and boundary handling",
+        "CFL-type stability conditions",
+        "Multigrid and multiscale methods",
+        "Adjoints and sensitivity",
+        "Convergence verification"
+      ]
+    },
+    {
+      "id": "algorithms-complexity",
+      "title": "Algorithms, Complexity and Computing Structures",
+      "topics": [
+        "Asymptotic time and space",
+        "Divide-and-conquer and dynamic programming",
+        "Graph search, flows and cuts",
+        "Randomized and approximation algorithms",
+        "Computability and reductions",
+        "Complexity and lower bounds",
+        "Sparse and parallel computation",
+        "Memory hierarchies and communication costs",
+        "Distributed computing",
+        "Complexity versus measured speed"
+      ]
+    },
+    {
+      "id": "learning-theory",
+      "title": "Statistical Learning, Generalization and Robustness",
+      "topics": [
+        "Risk and ERM",
+        "Approximation, estimation and optimization errors",
+        "VC dimension and Rademacher complexity",
+        "PAC and PAC-Bayes",
+        "Algorithmic stability",
+        "Implicit bias",
+        "Interpolation and double descent",
+        "Calibration and uncertainty",
+        "Distribution shift and robust optimization",
+        "Sample complexity",
+        "Theoretical bounds versus empirical scaling"
+      ]
+    },
+    {
+      "id": "causality",
+      "title": "Causal Inference and Identifiability",
+      "topics": [
+        "SCMs and causal DAGs",
+        "Confounding and selection",
+        "Observation and intervention",
+        "Assumptions of do-calculus",
+        "Counterfactuals",
+        "Identifiability",
+        "Instrumental variables",
+        "Mediation",
+        "Assumptions of causal discovery",
+        "Invariance and transportability",
+        "Off-policy confounding"
+      ]
+    },
+    {
+      "id": "control-decision",
+      "title": "Control, Optimal Control and Reinforcement Learning",
+      "topics": [
+        "State-space models",
+        "Controllability and observability",
+        "Kalman filtering",
+        "Lyapunov stability",
+        "LQR and MPC",
+        "Dynamic programming and Bellman equations",
+        "HJB and Pontryagin principles",
+        "MDPs and POMDPs",
+        "Bandits and exploration",
+        "Policy gradients and off-policy estimation",
+        "Constrained and robust control"
+      ]
+    },
+    {
+      "id": "discrete-optimization",
+      "title": "Combinatorial Optimization and Formal Reasoning",
+      "topics": [
+        "Integer programming and relaxations",
+        "Matching, cuts and flows",
+        "Submodularity",
+        "SAT, SMT and constraint satisfaction",
+        "Branch and bound",
+        "Approximation guarantees",
+        "Proof search and type checking",
+        "Program synthesis",
+        "Soft relaxations versus exact solutions"
+      ]
+    },
+    {
+      "id": "game-theory",
+      "title": "Game Theory and Multi-Agent Learning",
+      "topics": [
+        "Strategies, payoffs and mixed strategies",
+        "Nash equilibria",
+        "Minimax and saddle points",
+        "Repeated games and regret",
+        "No-regret learning",
+        "Cooperative and Markov games",
+        "Mean-field games",
+        "Mechanisms and incentives",
+        "Adversarial dynamics",
+        "Existence versus convergence of solutions"
+      ]
+    },
+    {
+      "id": "statistical-privacy",
+      "title": "Mathematics of Privacy, Fairness and Robustness",
+      "topics": [
+        "Definition of differential privacy",
+        "Epsilon, delta and composition",
+        "Sensitivity and noise",
+        "Information leakage and inference",
+        "Fairness metrics and identification conditions",
+        "Compatibility conditions between metrics",
+        "Robust statistics",
+        "Adversarial perturbations",
+        "Distributional robustness",
+        "Mathematical guarantees versus practical evaluation"
+      ]
+    },
+    {
+      "id": "physical-modeling",
+      "title": "Measurement, Units and Physical Modeling",
+      "topics": [
+        "SI units and dimensions",
+        "Measurement and uncertainty",
+        "Systems, boundaries and observations",
+        "Initial and boundary conditions",
+        "Approximations and validity ranges",
+        "Nondimensionalization and dimensional analysis",
+        "Conservation and constraints",
+        "Symmetry and models",
+        "Parameters and observability"
+      ]
+    },
+    {
+      "id": "classical-mechanics",
+      "title": "Newtonian Mechanics and Rigid Bodies",
+      "topics": [
+        "Force, mass and acceleration",
+        "Momentum and impulse",
+        "Work and energy",
+        "Angular momentum and torque",
+        "Conservation laws",
+        "Friction and constraints",
+        "Central forces",
+        "Rotation and inertia tensors",
+        "Rigid bodies and contact",
+        "Role of initial states"
+      ]
+    },
+    {
+      "id": "analytical-mechanics",
+      "title": "Analytical Mechanics and Structure Preservation",
+      "topics": [
+        "Generalized coordinates",
+        "Action and stationary action",
+        "Lagrange equations",
+        "Hamiltonians and canonical variables",
+        "Poisson brackets",
+        "Symplectic geometry",
+        "Noether’s theorem",
+        "Constraints and conserved quantities",
+        "Hamilton–Jacobi theory",
+        "Numerical approximation of conserved structure"
+      ]
+    },
+    {
+      "id": "waves-optics",
+      "title": "Waves, Oscillations, Acoustics and Optics",
+      "topics": [
+        "Harmonic oscillation, damping and resonance",
+        "Coupled oscillations and normal modes",
+        "Wave equation",
+        "Superposition, interference and diffraction",
+        "Dispersion and group velocity",
+        "Polarization",
+        "Geometrical and wave optics",
+        "Fourier optics",
+        "Observation, sampling and sensors"
+      ]
+    },
+    {
+      "id": "electromagnetism",
+      "title": "Electromagnetism and Electromagnetic Fields",
+      "topics": [
+        "Charges, currents and fields",
+        "Electrostatics and magnetostatics",
+        "Electric and vector potentials",
+        "Maxwell equations",
+        "Induction and electromagnetic waves",
+        "Field energy and Poynting flow",
+        "Media and boundaries",
+        "Gauge freedom",
+        "Circuits, sensors and continuous fields",
+        "Effective models"
+      ]
+    },
+    {
+      "id": "continuum-physics",
+      "title": "Continua, Fluids, Elasticity and Transport",
+      "topics": [
+        "Mass, momentum and energy conservation",
+        "Continuum assumptions",
+        "Stress and strain",
+        "Euler and Navier–Stokes equations",
+        "Heat and material diffusion",
+        "Reaction–transport systems",
+        "Constitutive equations",
+        "Dimensionless numbers",
+        "Multiphysics coupling",
+        "Turbulence and closure",
+        "Conservative discretization"
+      ]
+    },
+    {
+      "id": "thermo-statmech",
+      "title": "Thermodynamics and Equilibrium Statistical Mechanics",
+      "topics": [
+        "Temperature, heat and work",
+        "Laws of thermodynamics",
+        "Entropy and free energy",
+        "Microstates and macrostates",
+        "Ensembles",
+        "Partition functions",
+        "Boltzmann and Gibbs distributions",
+        "Phase transitions and order parameters",
+        "Correlations and fluctuations",
+        "Detailed balance",
+        "Finite systems and thermodynamic limits"
+      ]
+    },
+    {
+      "id": "nonequilibrium",
+      "title": "Nonequilibrium, Stochastic Thermodynamics and Complex Systems",
+      "topics": [
+        "Master equations",
+        "Fokker–Planck equations",
+        "Probability currents",
+        "Detailed balance and its violation",
+        "Fluctuation–dissipation relations",
+        "Linear response",
+        "Entropy production",
+        "Stochastic thermodynamics",
+        "Synchronization and critical dynamics",
+        "Coarse graining and effective descriptions"
+      ]
+    },
+    {
+      "id": "quantum-physics",
+      "title": "Quantum Mechanics and Quantum Information",
+      "topics": [
+        "States and Hilbert spaces",
+        "Observables and operators",
+        "Unitary evolution and Schrödinger equations",
+        "Spin and angular momentum",
+        "Density matrices",
+        "Uncertainty and measurement",
+        "Tensor products and entanglement",
+        "Variational principles",
+        "Many-body systems and tensor networks",
+        "Quantum circuits and channels",
+        "Quantum information"
+      ]
+    },
+    {
+      "id": "field-multiscale",
+      "title": "Fields, Critical Phenomena and Multiple Scales",
+      "topics": [
+        "Classical fields and actions",
+        "Symmetry and gauge",
+        "Perturbation theory",
+        "Correlation functions",
+        "Definitions and approximations of path integrals",
+        "Statistical field theory",
+        "Criticality and universality",
+        "Renormalization and coarse graining",
+        "Effective theories",
+        "Scale separation"
+      ]
+    },
+    {
+      "id": "relativity",
+      "title": "Relativity and Spacetime Geometry",
+      "topics": [
+        "Special relativity and Lorentz transformations",
+        "Minkowski metric",
+        "Causal structure",
+        "Relativistic kinematics",
+        "Curvature and covariant derivatives",
+        "Geodesics",
+        "Structure of Einstein equations",
+        "Spacetime observations",
+        "Coordinates and physical quantities",
+        "Effective approximations"
+      ]
+    },
+    {
+      "id": "matter-computation",
+      "title": "Matter, Computing Devices and Physical Resources",
+      "topics": [
+        "Solids, lattices and phonons",
+        "Electrons and bands",
+        "Semiconductors, circuits and sensors",
+        "Analog and photonic computing",
+        "Noise and nonidealities",
+        "Latency, bandwidth and memory movement",
+        "Energy and heat costs",
+        "Assumptions of Landauer’s principle",
+        "Lower bounds versus system measurements",
+        "Verification of physical implementations"
+      ]
+    },
+    {
+      "id": "inverse-problems",
+      "title": "Inverse Problems, Assimilation and Experimental Design",
+      "topics": [
+        "Forward and inverse maps",
+        "Ill-posedness",
+        "Identifiability",
+        "Regularization",
+        "Bayesian inverse problems",
+        "Sensitivity and adjoints",
+        "Data assimilation",
+        "Optimal experimental design",
+        "Uncertainty propagation",
+        "Observation and equation residuals",
+        "Model discrepancy"
+      ]
+    },
+    {
+      "id": "research-methods",
+      "title": "Research Methods for Mathematics, Physics and AI",
+      "topics": [
+        "Problems, hypotheses and formalization",
+        "Prior work and new contributions",
+        "Assumptions, theorems, proofs and counterexamples",
+        "Baselines and fair comparisons",
+        "Ablations and negative controls",
+        "Seeds, uncertainty and testing",
+        "Leakage, identification and reproducibility",
+        "Unit, limit, conservation and convergence checks",
+        "Theory, evidence and hypotheses",
+        "Negative results and research records"
+      ]
+    }
+  ]
+}

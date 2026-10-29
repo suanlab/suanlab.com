@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "status": "design",
+  "bookId": "physics-math-for-ai",
+  "chapterId": "linear-transforms",
+  "sceneId": "linear-transforms",
+  "title": {
+    "ko": "행렬과 선형변환",
+    "en": "Matrices and Linear Transformations"
+  },
+  "model": {
+    "equation": "output = A @ point",
+    "matrixStorage": "Array of rows; column-vector convention. Renderer adapter converts explicitly.",
+    "volumeScale": "abs(det(A))",
+    "basis": "Transformed unit basis vectors are columns of A.",
+    "singular": "A singular matrix has no inverse; do not silently substitute a matrix.",
+    "camera": "Independent of model coordinates."
+  },
+  "controls": {
+    "matrixEntry": {
+      "min": -3,
+      "max": 3,
+      "step": 0.5
+    },
+    "pointComponent": {
+      "min": -3,
+      "max": 3,
+      "step": 0.5
+    }
+  },
+  "referenceTolerance": {
+    "absolute": 1e-09
+  },
+  "defaultCaseId": "nonuniform-scale",
+  "referenceCases": [
+    {
+      "id": "identity",
+      "matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "point": [
+        1,
+        2,
+        3
+      ],
+      "expected": {
+        "point": [
+          1,
+          2,
+          3
+        ],
+        "determinant": 1,
+        "unitCubeVolumeScale": 1,
+        "invertible": true
+      }
+    },
+    {
+      "id": "nonuniform-scale",
+      "matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0.5,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "point": [
+        1,
+        2,
+        3
+      ],
+      "expected": {
+        "point": [
+          2,
+          1,
+          3
+        ],
+        "determinant": 1,
+        "unitCubeVolumeScale": 1,
+        "invertible": true
+      }
+    },
+    {
+      "id": "rotation-z-90",
+      "matrix": [
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "point": [
+        1,
+        0,
+        0
+      ],
+      "expected": {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "determinant": 1,
+        "unitCubeVolumeScale": 1,
+        "invertible": true
+      }
+    },
+    {
+      "id": "shear",
+      "matrix": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "point": [
+        1,
+        2,
+        0
+      ],
+      "expected": {
+        "point": [
+          3,
+          2,
+          0
+        ],
+        "determinant": 1,
+        "unitCubeVolumeScale": 1,
+        "invertible": true
+      }
+    },
+    {
+      "id": "reflection",
+      "matrix": [
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "point": [
+        1,
+        2,
+        3
+      ],
+      "expected": {
+        "point": [
+          -1,
+          2,
+          3
+        ],
+        "determinant": -1,
+        "unitCubeVolumeScale": 1,
+        "invertible": true
+      }
+    },
+    {
+      "id": "singular",
+      "matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "point": [
+        1,
+        2,
+        3
+      ],
+      "expected": {
+        "point": [
+          1,
+          0,
+          3
+        ],
+        "determinant": 0,
+        "unitCubeVolumeScale": 0,
+        "invertible": false
+      }
+    }
+  ]
+}

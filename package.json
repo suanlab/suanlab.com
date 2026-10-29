@@ -20,7 +20,19 @@
     "check:browser": "node scripts/check-browser.cjs && node scripts/check-navigation.cjs && node scripts/check-motion.cjs && npm run check:language",
     "qt:register": "tsx scripts/register-qt-slugs.ts",
     "preview": "node scripts/preview.cjs",
-    "check:language": "node scripts/check-language.cjs"
+    "check:language": "node scripts/check-language.cjs",
+    "check:learning": "node scripts/check-learning.cjs",
+    "check:foundations": "node scripts/check-foundations.cjs",
+    "check:logic": "node scripts/check-logic.cjs",
+    "check:elementary": "node scripts/check-elementary.cjs",
+    "check:discrete": "node scripts/check-discrete.cjs",
+    "check:matrix-structures": "node scripts/check-matrix-structures.cjs",
+    "check:analysis": "node scripts/check-analysis.cjs",
+    "learning:curriculum": "tsx scripts/learning/sync-curriculum.ts",
+    "check:complex": "node scripts/check-complex.cjs",
+    "check:tensors": "node scripts/check-tensors.cjs",
+    "check:abstract-algebra": "node scripts/check-abstract-algebra.cjs",
+    "check:probability": "node scripts/check-probability.cjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -56,6 +68,7 @@
     "remark-rehype": "^11.1.2",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
+    "three": "0.186.1",
     "topojson-client": "^3.1.0",
     "unified": "^11.0.5"
   },
@@ -67,6 +80,7 @@
     "@types/pdf-parse": "^1.1.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "0.186.0",
     "@types/topojson-client": "^3.1.5",
     "autoprefixer": "^10.4.23",
     "chalk": "^5.6.2",

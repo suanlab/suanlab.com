@@ -1,0 +1,382 @@
+{
+  "schemaVersion": 1,
+  "status": "design",
+  "bookId": "physics-math-for-ai",
+  "chapterId": "vectors-and-forces",
+  "sceneId": "vectors-and-forces",
+  "title": {
+    "ko": "벡터와 힘의 합",
+    "en": "Vectors and the Sum of Forces"
+  },
+  "model": {
+    "kind": "constant-force-particle",
+    "coordinateSystem": "right-handed Cartesian inertial frame",
+    "worldUnits": "1 world unit = 1 metre",
+    "gravity": false,
+    "friction": false,
+    "collisions": false,
+    "forceChanges": "Pause and reset time, position and velocity to the selected preset before changing force or mass.",
+    "solution": "Analytical constant-acceleration solution; renderer reads stateAt(timeSeconds).",
+    "camera": "Camera rotation changes the view only, not the basis or vector components.",
+    "bounds": "Pause with an explicit end-of-range message; never add hidden collisions or damping."
+  },
+  "units": {
+    "force": "N",
+    "mass": "kg",
+    "acceleration": "m/s^2",
+    "velocity": "m/s",
+    "position": "m",
+    "time": "s",
+    "energy": "J"
+  },
+  "controls": {
+    "forceComponentN": {
+      "min": -5,
+      "max": 5,
+      "step": 0.5
+    },
+    "massKg": {
+      "min": 0.5,
+      "max": 5,
+      "step": 0.5
+    },
+    "timeSeconds": {
+      "min": 0,
+      "max": 5,
+      "manualStep": 0.1
+    },
+    "actions": [
+      "play",
+      "pause",
+      "step",
+      "reset",
+      "select-preset",
+      "rotate-camera"
+    ],
+    "alternatives": [
+      "labelled numeric inputs",
+      "keyboard buttons",
+      "static vector diagram",
+      "state table"
+    ],
+    "motionPolicy": "Start paused; respect site pause and reduced motion. Pause automatic time when hidden. Keep manual state changes available."
+  },
+  "labels": {
+    "ko": {
+      "force1": "첫 번째 힘",
+      "force2": "두 번째 힘",
+      "netForce": "합력",
+      "mass": "질량",
+      "acceleration": "가속도",
+      "time": "시간",
+      "play": "재생",
+      "pause": "일시정지",
+      "step": "한 단계",
+      "reset": "초기화"
+    },
+    "en": {
+      "force1": "First force",
+      "force2": "Second force",
+      "netForce": "Net force",
+      "mass": "Mass",
+      "acceleration": "Acceleration",
+      "time": "Time",
+      "play": "Play",
+      "pause": "Pause",
+      "step": "Step",
+      "reset": "Reset"
+    }
+  },
+  "referenceTolerance": {
+    "absolute": 1e-09,
+    "scope": "Model calculations and numeric labels, not rendered pixel coordinates."
+  },
+  "defaultCaseId": "perpendicular-forces",
+  "referenceCases": [
+    {
+      "id": "perpendicular-forces",
+      "force1N": [
+        3,
+        0,
+        0
+      ],
+      "force2N": [
+        0,
+        4,
+        0
+      ],
+      "massKg": 2,
+      "initialPositionM": [
+        0,
+        0,
+        0
+      ],
+      "initialVelocityMps": [
+        0,
+        0,
+        0
+      ],
+      "timeSeconds": 2,
+      "expected": {
+        "netForceN": [
+          3,
+          4,
+          0
+        ],
+        "netForceMagnitudeN": 5,
+        "accelerationMps2": [
+          1.5,
+          2,
+          0
+        ],
+        "velocityMps": [
+          3,
+          4,
+          0
+        ],
+        "positionM": [
+          3,
+          4,
+          0
+        ],
+        "kineticEnergyJ": 25,
+        "workJ": 25
+      }
+    },
+    {
+      "id": "cancelled-at-rest",
+      "force1N": [
+        3,
+        0,
+        0
+      ],
+      "force2N": [
+        -3,
+        0,
+        0
+      ],
+      "massKg": 2,
+      "initialPositionM": [
+        0,
+        0,
+        0
+      ],
+      "initialVelocityMps": [
+        0,
+        0,
+        0
+      ],
+      "timeSeconds": 2,
+      "expected": {
+        "netForceN": [
+          0,
+          0,
+          0
+        ],
+        "netForceMagnitudeN": 0,
+        "accelerationMps2": [
+          0,
+          0,
+          0
+        ],
+        "velocityMps": [
+          0,
+          0,
+          0
+        ],
+        "positionM": [
+          0,
+          0,
+          0
+        ],
+        "kineticEnergyJ": 0,
+        "workJ": 0
+      }
+    },
+    {
+      "id": "cancelled-while-moving",
+      "force1N": [
+        3,
+        0,
+        0
+      ],
+      "force2N": [
+        -3,
+        0,
+        0
+      ],
+      "massKg": 2,
+      "initialPositionM": [
+        0,
+        0,
+        0
+      ],
+      "initialVelocityMps": [
+        1,
+        0,
+        0
+      ],
+      "timeSeconds": 2,
+      "expected": {
+        "netForceN": [
+          0,
+          0,
+          0
+        ],
+        "netForceMagnitudeN": 0,
+        "accelerationMps2": [
+          0,
+          0,
+          0
+        ],
+        "velocityMps": [
+          1,
+          0,
+          0
+        ],
+        "positionM": [
+          2,
+          0,
+          0
+        ],
+        "kineticEnergyJ": 1,
+        "workJ": 0
+      }
+    },
+    {
+      "id": "same-direction",
+      "force1N": [
+        3,
+        0,
+        0
+      ],
+      "force2N": [
+        3,
+        0,
+        0
+      ],
+      "massKg": 2,
+      "initialPositionM": [
+        0,
+        0,
+        0
+      ],
+      "initialVelocityMps": [
+        0,
+        0,
+        0
+      ],
+      "timeSeconds": 1,
+      "expected": {
+        "netForceN": [
+          6,
+          0,
+          0
+        ],
+        "netForceMagnitudeN": 6,
+        "accelerationMps2": [
+          3,
+          0,
+          0
+        ],
+        "velocityMps": [
+          3,
+          0,
+          0
+        ],
+        "positionM": [
+          1.5,
+          0,
+          0
+        ],
+        "kineticEnergyJ": 9,
+        "workJ": 9
+      }
+    },
+    {
+      "id": "negative-z",
+      "force1N": [
+        0,
+        0,
+        -2
+      ],
+      "force2N": [
+        0,
+        0,
+        0
+      ],
+      "massKg": 0.5,
+      "initialPositionM": [
+        0,
+        0,
+        0
+      ],
+      "initialVelocityMps": [
+        0,
+        0,
+        0
+      ],
+      "timeSeconds": 0.5,
+      "expected": {
+        "netForceN": [
+          0,
+          0,
+          -2
+        ],
+        "netForceMagnitudeN": 2,
+        "accelerationMps2": [
+          0,
+          0,
+          -4
+        ],
+        "velocityMps": [
+          0,
+          0,
+          -2
+        ],
+        "positionM": [
+          0,
+          0,
+          -0.5
+        ],
+        "kineticEnergyJ": 1,
+        "workJ": 1
+      }
+    }
+  ],
+  "assessment": {
+    "Q01": {
+      "answerChoiceId": "B",
+      "netForceMagnitudeN": 5
+    },
+    "Q02": {
+      "massMultiplier": 2,
+      "accelerationMultiplier": 0.5
+    },
+    "Q03": {
+      "referenceCaseId": "cancelled-while-moving"
+    },
+    "challenge": {
+      "fixedForce1N": [
+        3,
+        0,
+        0
+      ],
+      "targetNetForceN": [
+        0,
+        4,
+        0
+      ],
+      "answerForce2N": [
+        -3,
+        4,
+        0
+      ]
+    }
+  },
+  "rendering": {
+    "forceArrowWorldUnitsPerNewton": 0.4,
+    "forceArrows": "Scaled vector glyphs labelled in N; their drawn length is not a physical displacement.",
+    "arrowScaleAffectsModel": false
+  }
+}
