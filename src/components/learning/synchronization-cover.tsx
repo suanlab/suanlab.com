@@ -1,0 +1,7 @@
+import type {SynchronizationKind} from '@/lib/learning-synchronization';
+import {synchronizationKinds as kinds} from '@/lib/learning-synchronization';
+/** Static illustrations indicate model families, never a computed preparation. */
+export default function SynchronizationCover({kind}:{kind:SynchronizationKind}){
+ const blue='var(--learning-blue)',orange='var(--learning-orange)',neutral='var(--learning-neutral)';
+ return <svg viewBox="0 0 320 200" fill="none" aria-hidden="true" data-synchronization-cover={kind}><path d="M25 160H295M45 180V25" stroke={neutral} opacity=".5"/>{kind===kinds[0]?<><ellipse cx="175" cy="100" rx="82" ry="55" stroke={orange} strokeWidth="3" strokeDasharray="6 5"/><path d="M175 100C170 102 165 90 177 86C204 75 222 112 197 129C154 157 112 102 136 70C172 23 249 75 250 112" stroke={blue} strokeWidth="4"/><circle cx="175" cy="100" r="5" fill={blue}/></>:kind===kinds[1]?<><circle cx="165" cy="100" r="65" stroke={neutral}/><path d="M165 100L225 75M165 100L128 46" stroke={blue} strokeWidth="4"/><circle cx="225" cy="75" r="7" fill={blue}/><circle cx="128" cy="46" r="7" fill={orange}/><path d="M201 84A40 40 0 0 0 145 66" stroke={orange} strokeWidth="3" strokeDasharray="5 4"/></>:<><circle cx="165" cy="100" r="65" stroke={neutral}/>{Array.from({length:8},(_,i)=>{const a=i*Math.PI/4,x=165+65*Math.cos(a),y=100+65*Math.sin(a);return <g key={i}><path d={`M165 100L${x} ${y}`} stroke={blue} opacity=".5"/><circle cx={x} cy={y} r="6" fill={i%2?orange:blue}/></g>})}<circle cx="165" cy="100" r="5" fill={neutral}/></>}</svg>;
+}

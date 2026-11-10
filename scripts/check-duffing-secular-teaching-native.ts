@@ -1,0 +1,36 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {chromium} from 'playwright';
+import AxeBuilder from '@axe-core/playwright';
+import {duffingSecularExamples,duffingSecularDefault} from '../src/lib/learning-duffing-secular-input';
+import {duffingSecularSteps,duffingSecularExperiments,duffingSecularQuestions} from '../src/data/duffing-secular-teaching';
+const root='.runtime/learning/duffing-secular-teaching',{url}=JSON.parse(readFileSync(root+'/review-server.json','utf8'));
+type Harness=Window&{__counts:{created:number;closed:number;active:number}};
+async function main(){const browser=await chromium.launch({headless:true}),states=[];let accessibility=0;try{
+ for(const language of ['ko','en']as const)for(const dark of [false,true])for(const width of [320,1440]){
+ const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
+ await context.addInitScript(({language,dark})=>{localStorage.setItem('suanlab-language',language);localStorage.setItem('theme',dark?'dark':'light');const Native=Worker,active=new Set<Worker>(),counts={created:0,closed:0,active:0};(window as unknown as Harness).__counts=counts;window.Worker=class extends Native{constructor(url:string|URL,options?:WorkerOptions){super(url,options);active.add(this);counts.created++;counts.active=active.size;}terminate(){if(active.delete(this)){counts.closed++;counts.active=active.size;}super.terminate();}};},{language,dark});
+ const page=await context.newPage(),errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));const t=(ko:string,en:string)=>language==='ko'?ko:en;
+ const ready=async(input:object)=>{await page.waitForFunction(key=>document.querySelector('[data-duffing-result]')?.getAttribute('data-duffing-result-key')===key,JSON.stringify(input),{timeout:60000});await page.waitForFunction(()=>(window as unknown as Harness).__counts.active===0);};
+ const axe=async()=>{const report=await new AxeBuilder({page}).include('main').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(report.violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)})),[]);accessibility++;};
+ await page.goto(url);await ready(duffingSecularDefault);
+ for(const[i,s]of duffingSecularSteps.entries()){await page.getByRole('button',{name:`${i+1}. ${s.title[language]}`,exact:true}).click();assert.equal(await page.locator('.information-step >p').first().innerText(),s.body[language]);}
+ for(const[i,g]of duffingSecularExperiments.entries()){await page.getByLabel(t('안내 실험','Guided experiment'),{exact:true}).selectOption(String(i));await page.getByRole('button',{name:t('해설 보기','Show explanation'),exact:true}).click();assert.equal(await page.locator('[data-duffing-guide-explanation]').innerText(),g.explanation[language]);}
+ for(const[i,q]of duffingSecularQuestions.entries()){const field=page.locator('.information-question').nth(i);for(const answer of [(q.correct+1)%3,q.correct]){await field.locator('input').nth(answer).check();assert((await field.locator('[role=status]').innerText()).includes(q.explanation[language]));}}
+ const ids:string[]=states.length===0&&!process.argv.includes('--quick')?duffingSecularExamples.map(e=>e.id):['naive-breakdown','negative-truncated-frequency','equilibrium','maximum-coprime'];
+ for(const caseId of ids){const example=duffingSecularExamples.find(e=>e.id===caseId)!;await page.getByLabel(t('전체 예제','All examples'),{exact:true}).selectOption(caseId);await ready(example.input);
+ const before=await page.evaluate(()=>(window as unknown as Harness).__counts.created);await page.getByLabel(t('시간 구간','Time window'),{exact:true}).selectOption('full');await page.getByLabel(t('세로 척도','Vertical scale'),{exact:true}).selectOption('signed-log');await page.getByLabel(t('관찰 표본','Inspected sample'),{exact:true}).fill('37');assert(await page.getByRole('button',{name:t('표본 재생','Play samples'),exact:true}).isDisabled());
+ if(caseId==='naive-breakdown'){assert.equal(await page.locator('[data-duffing-alias-warning]').count(),1);assert.equal(await page.locator('[data-duffing-wave-line]').count(),0);await page.getByLabel(t('시간 구간','Time window'),{exact:true}).selectOption('local');assert.equal(await page.locator('[data-duffing-wave-line]').count(),4);}
+ if(caseId==='negative-truncated-frequency'){assert.equal(await page.locator('[data-duffing-invalid-frequency]').count(),1);assert.equal(await page.locator('[data-duffing-wave-line=secondPosition]').count(),0);await page.getByLabel(t('유효하지 않은 2차 근사도 형식적으로 표시','Show the invalid second approximation formally'),{exact:true}).check();await page.getByLabel(t('시간 구간','Time window'),{exact:true}).selectOption('local');assert.equal(await page.locator('[data-duffing-wave-line=secondPosition]').count(),1);}
+ if(caseId==='equilibrium')assert.equal(await page.locator('[data-duffing-equilibrium]').count(),1);
+ assert.equal(await page.evaluate(()=>(window as unknown as Harness).__counts.created),before);
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));if(language==='en')assert(!/[가-힣]/.test(await page.locator('main').innerText()));
+ }
+ await page.getByRole('button',{name:t('3D 궤적 보기','Show 3D orbit'),exact:true}).click();await page.locator('[data-duffing-orbit="3d"]').waitFor();const canvas=page.locator('[data-duffing-orbit] canvas');assert((await canvas.boundingBox())!.height>=300);await canvas.focus();await page.keyboard.press('ArrowRight');await page.keyboard.press('Home');
+ await canvas.evaluate(el=>{const context=(el as HTMLCanvasElement).getContext('webgl2');const extension=context?.getExtension('WEBGL_lose_context');if(!extension)throw Error('Context-loss extension unavailable');extension.loseContext();});await page.getByRole('button',{name:t('3D 다시 시도','Retry 3D'),exact:true}).click();await page.locator('[data-duffing-orbit="3d"]').waitFor();await axe();await page.getByRole('button',{name:t('3D 궤적 닫기','Close 3D orbit'),exact:true}).click();assert.equal(await page.locator('[data-duffing-orbit] canvas').count(),0);
+ await axe();await page.getByLabel(t('출발 진폭 A','Initial amplitude A'),{exact:true}).fill('-1');const previous=await page.locator('[data-duffing-result]').getAttribute('data-duffing-result-key');await page.getByRole('button',{name:t('입력 적용','Apply input'),exact:true}).click();assert.equal(await page.locator('[data-duffing-result]').getAttribute('data-duffing-result-key'),previous);assert.equal(await page.locator('form [role=alert]').count(),1);
+ await page.screenshot({path:`${root}/review-${language}-${dark?'dark':'light'}-${width}.png`,fullPage:false});const counts=await page.evaluate(()=>(window as unknown as Harness).__counts);assert.equal(counts.active,0);assert.equal(counts.created,counts.closed);assert.deepEqual(errors,[]);states.push({language,dark,width,examples:ids.length,counts,errors});console.log(JSON.stringify({language,dark,width,done:states.length}));await context.close();
+ }
+ writeFileSync(root+'/native-teaching.json',JSON.stringify({states,accessibility,readerRegistered:false,threeDimensionalViewVerified:true},null,2)+'\n');console.log(JSON.stringify({states:states.length,accessibility}));
+ }finally{await browser.close();}}
+main().catch(error=>{console.error(error);process.exitCode=1;});

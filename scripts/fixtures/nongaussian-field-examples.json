@@ -1,0 +1,381 @@
+[
+  {
+    "id": "pair-ring",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "2",
+      "fourBodyFactor": "1",
+      "temperature": "1",
+      "sourceFactors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "independent",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "1",
+      "fourBodyFactor": "1",
+      "temperature": "1",
+      "sourceFactors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "independent-repeated",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "1",
+      "fourBodyFactor": "1",
+      "temperature": "1",
+      "sourceFactors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "id": "biased-repeated",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "1",
+      "fourBodyFactor": "1",
+      "temperature": "1",
+      "sourceFactors": [
+        "2",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "id": "localized-source",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "2",
+      "fourBodyFactor": "1",
+      "temperature": "1",
+      "sourceFactors": [
+        "2",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "uniform-source",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "2",
+      "fourBodyFactor": "1",
+      "temperature": "1",
+      "sourceFactors": [
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "open-chain",
+    "input": {
+      "sites": 4,
+      "boundary": "open",
+      "pairFactor": "2",
+      "fourBodyFactor": "1",
+      "temperature": "1",
+      "sourceFactors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "antiferromagnetic",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "1/2",
+      "fourBodyFactor": "1",
+      "temperature": "1",
+      "sourceFactors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "odd-frustration",
+    "input": {
+      "sites": 5,
+      "boundary": "periodic",
+      "pairFactor": "1/2",
+      "fourBodyFactor": "1",
+      "temperature": "1",
+      "sourceFactors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        4
+      ]
+    }
+  },
+  {
+    "id": "pure-four-body",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "1",
+      "fourBodyFactor": "2",
+      "temperature": "1",
+      "sourceFactors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "negative-four-body",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "1",
+      "fourBodyFactor": "1/2",
+      "temperature": "1",
+      "sourceFactors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "mixed-interactions",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "3/2",
+      "fourBodyFactor": "5/3",
+      "temperature": "1",
+      "sourceFactors": [
+        "2",
+        "1/2",
+        "3/2",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "same-factors-hotter",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "2",
+      "fourBodyFactor": "1",
+      "temperature": "2",
+      "sourceFactors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "fixed-energy-reference",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "4",
+      "fourBodyFactor": "9",
+      "temperature": "1",
+      "sourceFactors": [
+        "4",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "hotter-fixed-energy",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "2",
+      "fourBodyFactor": "3",
+      "temperature": "2",
+      "sourceFactors": [
+        "2",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "equivalent-spelling",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "pairFactor": "4/2",
+      "fourBodyFactor": "2/2",
+      "temperature": "3/3",
+      "sourceFactors": [
+        "2/2",
+        "3/3",
+        "4/4",
+        "5/5"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "maximum-coprime",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "pairFactor": "999999999983/62499999999",
+      "fourBodyFactor": "62499999999/999999999979",
+      "temperature": "1/999999999989",
+      "sourceFactors": [
+        "16",
+        "1/16",
+        "999999999983/999999999979",
+        "999999999961/999999999959",
+        "999999999953/999999999929",
+        "999999999893/999999999883",
+        "999999999863/999999999859",
+        "999999999847/999999999821"
+      ],
+      "probes": [
+        0,
+        7,
+        7,
+        0
+      ]
+    }
+  }
+]

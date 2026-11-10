@@ -1,0 +1,3042 @@
+{
+  "method": "Fraction mapped-vector inner products; mpmath1600-digit eigenvalues and engineering strains; no product imports",
+  "strainCases": [
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 0.0,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0,
+          "sign": 0
+        },
+        "engineering": {
+          "value": 0.0,
+          "sign": 0
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 0.0,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7853981633974483,
+      "normal": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0,
+          "sign": 0
+        },
+        "engineering": {
+          "value": 0.0,
+          "sign": 0
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 0.0,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0,
+          "sign": 0
+        },
+        "engineering": {
+          "value": 0.0,
+          "sign": 0
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 0.0,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.5707963267948966,
+      "normal": [
+        6.123233995736766e-17,
+        1.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0,
+          "sign": 0
+        },
+        "engineering": {
+          "value": 0.0,
+          "sign": 0
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 5e-324,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": null,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0,
+          "sign": 0
+        },
+        "engineering": {
+          "value": 0.0,
+          "sign": 0
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 5e-324,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7853981633974483,
+      "normal": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": null,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": null,
+          "sign": 1
+        },
+        "engineering": {
+          "value": null,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 5e-324,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": null,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": null,
+          "sign": 1
+        },
+        "engineering": {
+          "value": null,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 5e-324,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.5707963267948966,
+      "normal": [
+        6.123233995736766e-17,
+        1.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": null,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": null,
+          "sign": 1
+        },
+        "engineering": {
+          "value": null,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 1e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 5e-324,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0,
+          "sign": 0
+        },
+        "engineering": {
+          "value": 0.0,
+          "sign": 0
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 1e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7853981633974483,
+      "normal": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 5e-324,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 5e-324,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 5e-324,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 1e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 5e-324,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 5e-324,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 5e-324,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 1e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.5707963267948966,
+      "normal": [
+        6.123233995736766e-17,
+        1.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 5e-324,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": null,
+          "sign": 1
+        },
+        "engineering": {
+          "value": null,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 2e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 1e-323,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0,
+          "sign": 0
+        },
+        "engineering": {
+          "value": 0.0,
+          "sign": 0
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 2e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7853981633974483,
+      "normal": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 1e-323,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 1e-323,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 1e-323,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 2e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 1e-323,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 1e-323,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 1e-323,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 2e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.5707963267948966,
+      "normal": [
+        6.123233995736766e-17,
+        1.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 1e-323,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": null,
+          "sign": 1
+        },
+        "engineering": {
+          "value": null,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 8e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 4e-323,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0,
+          "sign": 0
+        },
+        "engineering": {
+          "value": 0.0,
+          "sign": 0
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 8e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7853981633974483,
+      "normal": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 4e-323,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 4e-323,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 4e-323,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 8e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 4e-323,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 4e-323,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 4e-323,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.0,
+        "shear": 8e-323,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.5707963267948966,
+      "normal": [
+        6.123233995736766e-17,
+        1.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 4e-323,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": null,
+          "sign": 1
+        },
+        "engineering": {
+          "value": null,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.5,
+        "shear": 5e-324,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": null,
+            "sign": 1
+          },
+          {
+            "value": 0.625,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0,
+          "sign": 0
+        },
+        "engineering": {
+          "value": 0.0,
+          "sign": 0
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.5,
+        "shear": 5e-324,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": null,
+            "sign": 1
+          },
+          {
+            "value": 0.625,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.25938526784367466,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.23238408610601158,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.5,
+        "shear": 1e-200,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 5e-201,
+            "sign": 1
+          },
+          {
+            "value": 0.625,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0,
+          "sign": 0
+        },
+        "engineering": {
+          "value": 0.0,
+          "sign": 0
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.0,
+        "stretchY": 1.5,
+        "shear": 1e-200,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 5e-201,
+            "sign": 1
+          },
+          {
+            "value": 0.625,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.25938526784367466,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.23238408610601158,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.5,
+        "stretchY": 1.0,
+        "shear": 5e-324,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.375,
+            "sign": -1
+          },
+          {
+            "value": null,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": -0.375,
+          "sign": -1
+        },
+        "engineering": {
+          "value": -0.5,
+          "sign": -1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.5,
+        "stretchY": 1.0,
+        "shear": 5e-324,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.375,
+            "sign": -1
+          },
+          {
+            "value": null,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": -0.21936883929379522,
+          "sign": -1
+        },
+        "engineering": {
+          "value": -0.25082557343939615,
+          "sign": -1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.5,
+        "stretchY": 1.0,
+        "shear": 1e-200,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.375,
+            "sign": -1
+          },
+          {
+            "value": 2.5e-201,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": -0.375,
+          "sign": -1
+        },
+        "engineering": {
+          "value": -0.5,
+          "sign": -1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.5,
+        "stretchY": 1.0,
+        "shear": 1e-200,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.375,
+            "sign": -1
+          },
+          {
+            "value": 2.5e-201,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": -0.21936883929379522,
+          "sign": -1
+        },
+        "engineering": {
+          "value": -0.25082557343939615,
+          "sign": -1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 2.0,
+        "stretchY": 1.0,
+        "shear": 5e-324,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 1.5,
+            "sign": 1
+          },
+          {
+            "value": 5e-324,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 1.5,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 1.0,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 2.0,
+        "stretchY": 1.0,
+        "shear": 5e-324,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 1.5,
+            "sign": 1
+          },
+          {
+            "value": 5e-324,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.8774753571751809,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.6598044205117547,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 2.0,
+        "stretchY": 1.0,
+        "shear": 1e-200,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.0,
+      "normal": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 1.5,
+            "sign": 1
+          },
+          {
+            "value": 1e-200,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 1.5,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 1.0,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 2.0,
+        "stretchY": 1.0,
+        "shear": 1e-200,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7,
+      "normal": [
+        0.7648421872844885,
+        0.644217687237691
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 1.5,
+            "sign": 1
+          },
+          {
+            "value": 1e-200,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.8774753571751809,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.6598044205117547,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.4730584477819197,
+        "stretchY": 0.6325119785992409,
+        "shear": -0.5298396049792111,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.7051978044073914,
+      "normal": [
+        0.7614833529156477,
+        0.6481844669786087
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.5849505952908394,
+            "sign": 1
+          },
+          {
+            "value": -0.39024235304203114,
+            "sign": -1
+          },
+          {
+            "value": -0.15959929496197348,
+            "sign": -1
+          }
+        ],
+        "directionalGreen": {
+          "value": -0.11309985950886423,
+          "sign": -1
+        },
+        "engineering": {
+          "value": -0.12034081543914318,
+          "sign": -1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.9876051180717678,
+        "stretchY": 1.9970951595739646,
+        "shear": 0.7631213615828512,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -2.930370719034161,
+      "normal": [
+        -0.9777754602717984,
+        -0.20965483369164828
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.012318065379224828,
+            "sign": -1
+          },
+          {
+            "value": 0.37683128120455994,
+            "sign": 1
+          },
+          {
+            "value": 1.7853716444489118,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.2211969760956407,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.20099706585456795,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.537364668084742,
+        "stretchY": 0.6697701537803262,
+        "shear": -0.4547252960786501,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -2.1762809974875172,
+      "normal": [
+        -0.5691606521019142,
+        -0.8222263387285302
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.35561960674708754,
+            "sign": -1
+          },
+          {
+            "value": -0.12217665389851992,
+            "sign": -1
+          },
+          {
+            "value": -0.17231642310563108,
+            "sign": -1
+          }
+        ],
+        "directionalGreen": {
+          "value": -0.3460485488405756,
+          "sign": -1
+        },
+        "engineering": {
+          "value": -0.4451100088135949,
+          "sign": -1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.9637577784650933,
+        "stretchY": 0.7000662089024741,
+        "shear": 0.7803100746826972,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -2.984728429815827,
+      "normal": [
+        -0.987722015056916,
+        -0.15622170454807288
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.03558547222401412,
+            "sign": -1
+          },
+          {
+            "value": 0.37601495204506363,
+            "sign": 1
+          },
+          {
+            "value": 0.04948825474919947,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.08253170503344505,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.0793810309927121,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.570983202459737,
+        "stretchY": 1.541137186879435,
+        "shear": -0.9892564851406676,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.4429976155426294,
+      "normal": [
+        0.903470797461435,
+        0.42864964497174
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.7339941112053255,
+            "sign": 1
+          },
+          {
+            "value": -0.7770526605401745,
+            "sign": -1
+          },
+          {
+            "value": 1.1768661110877632,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.21350548754325852,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.19457564644794137,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.9494932834348284,
+        "stretchY": 1.7511343851333316,
+        "shear": -0.03803505308486721,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.09596287750907706,
+      "normal": [
+        0.9953990954588638,
+        0.09581566030496044
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 1.4002620310787541,
+            "sign": 1
+          },
+          {
+            "value": -0.03707454026201789,
+            "sign": -1
+          },
+          {
+            "value": 1.03395915002973,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 1.389827180591947,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.9441333187782915,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.5395904429375666,
+        "stretchY": 1.9145741358920454,
+        "shear": 0.7574217224693107,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.3058846183477195,
+      "normal": [
+        0.26182405761327104,
+        0.9651156214956437
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.6851693659923463,
+            "sign": 1
+          },
+          {
+            "value": 0.5830596225935304,
+            "sign": 1
+          },
+          {
+            "value": 1.619640893747575,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 1.850248394992917,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 1.1680629119068096,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.3178399886673675,
+        "stretchY": 1.5975118623391509,
+        "shear": -0.6825988921037023,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.6761587447294772,
+      "normal": [
+        -0.10516758387849863,
+        0.9944545134399858
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.36835111786540364,
+            "sign": 1
+          },
+          {
+            "value": -0.4497780581171503,
+            "sign": -1
+          },
+          {
+            "value": 1.008992698907752,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 1.095986578934823,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.7866094027149991,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.6342416506233605,
+        "stretchY": 0.922595483398436,
+        "shear": -0.6499462470520023,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -0.6471056789838299,
+      "normal": [
+        0.7978320654041849,
+        -0.6028797520342614
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.2988687643072776,
+            "sign": -1
+          },
+          {
+            "value": -0.2061114902733602,
+            "sign": -1
+          },
+          {
+            "value": 0.13680627502208811,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.0577613597933904,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.056183089992819756,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.1529194475241415,
+        "stretchY": 1.1779155570820745,
+        "shear": -0.36603382588380984,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -2.6537053937473205,
+      "normal": [
+        -0.8833251988624682,
+        -0.46876069913611684
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.1646116262396859,
+            "sign": 1
+          },
+          {
+            "value": -0.21100375815655492,
+            "sign": -1
+          },
+          {
+            "value": 0.2607329106535566,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.010993123386486793,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.010933354268704296,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.5479543594748273,
+        "stretchY": 1.5601993563138514,
+        "shear": 0.24302157841694427,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.9751445862737556,
+      "normal": [
+        0.5610483733523053,
+        0.8277830167131555
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.34987300996626586,
+            "sign": -1
+          },
+          {
+            "value": 0.06658236667000911,
+            "sign": 1
+          },
+          {
+            "value": 0.7466407595092096,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.4633305401188363,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.3880421752373638,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.7910260970951938,
+        "stretchY": 1.4414487305395407,
+        "shear": -0.7818331201102131,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -1.2672346280516977,
+      "normal": [
+        0.29892094580183515,
+        -0.954277877853687
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.18713885685717252,
+            "sign": -1
+          },
+          {
+            "value": -0.3092252007902699,
+            "sign": -1
+          },
+          {
+            "value": 0.8445187352376622,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.9287515112047915,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.6904150444223995,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.3017034681906998,
+        "stretchY": 1.101121698063472,
+        "shear": -0.8347664866609339,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -0.26693171569944685,
+      "normal": [
+        0.9645847663177668,
+        -0.26377306266504796
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.34721595954984813,
+            "sign": 1
+          },
+          {
+            "value": -0.5433092154079516,
+            "sign": -1
+          },
+          {
+            "value": 0.4546520405992115,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.6311608902707355,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.5041016523298786,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.5364282452601411,
+        "stretchY": 0.5977246940070535,
+        "shear": -0.0514319061534696,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -1.1341077977301313,
+      "normal": [
+        0.42294107631552985,
+        -0.9061571861244941
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.35612236884356296,
+            "sign": -1
+          },
+          {
+            "value": -0.013794763584144975,
+            "sign": -1
+          },
+          {
+            "value": -0.32003997460179745,
+            "sign": -1
+          }
+        ],
+        "directionalGreen": {
+          "value": -0.31592064624469557,
+          "sign": -1
+        },
+        "engineering": {
+          "value": -0.39323916778469553,
+          "sign": -1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.216853154900904,
+        "stretchY": 1.7268960583323336,
+        "shear": -0.44007069270880916,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -0.9334006505368002,
+      "normal": [
+        0.5951045014596618,
+        -0.8036483262860985
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.24036580029614182,
+            "sign": 1
+          },
+          {
+            "value": -0.2677507054010704,
+            "sign": -1
+          },
+          {
+            "value": 1.0879161054324809,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 1.0438627869629769,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.7571925261410469,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.3624605352919645,
+        "stretchY": 1.0170898996117745,
+        "shear": -0.42278376907218895,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -2.8533420496772957,
+      "normal": [
+        -0.9587426526633336,
+        -0.28427544031110835
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.4281493551140333,
+            "sign": 1
+          },
+          {
+            "value": -0.28801310016142445,
+            "sign": -1
+          },
+          {
+            "value": 0.1066089896415878,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.24517065907666716,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.22079536293079616,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.88853015832064,
+        "stretchY": 1.1672412588226322,
+        "shear": 0.9301599278553623,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 0.01568461446123992,
+      "normal": [
+        0.9998769989562266,
+        0.01568397138131654
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 1.2832730794432907,
+            "sign": 1
+          },
+          {
+            "value": 0.8783175379081012,
+            "sign": 1
+          },
+          {
+            "value": 0.6138248238428679,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 1.3106560293561706,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.9029745291811819,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.4157207338948892,
+        "stretchY": 1.629174946618917,
+        "shear": -0.42320065401375806,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.3151485368679037,
+      "normal": [
+        0.2528721982011111,
+        0.967499690634027
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.5021325981899418,
+            "sign": 1
+          },
+          {
+            "value": -0.29956697024257734,
+            "sign": -1
+          },
+          {
+            "value": 0.9166549001242117,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.7435681621479877,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.5770657323954431,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.2137044521776539,
+        "stretchY": 1.5139176600275768,
+        "shear": 0.6275171477715085,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 2.7329836053095526,
+      "normal": [
+        -0.917674381769998,
+        0.39733327200607277
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.23653924861792947,
+            "sign": 1
+          },
+          {
+            "value": 0.38081017803405126,
+            "sign": 1
+          },
+          {
+            "value": 0.8428622260453313,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.054557750477462405,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.05314552695955786,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.5425909979529965,
+        "stretchY": 1.291293719228475,
+        "shear": -0.2253093194583724,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -0.7691662563773898,
+      "normal": [
+        0.718490818339338,
+        -0.6955364433026269
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.3527975044701857,
+            "sign": -1
+          },
+          {
+            "value": -0.061125404246514387,
+            "sign": -1
+          },
+          {
+            "value": 0.3591018793768513,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.052691929526776204,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.051372369359948704,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.560621972980451,
+        "stretchY": 1.0525993098140836,
+        "shear": -0.2810719300039033,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": -2.804163307941768,
+      "normal": [
+        -0.9436088296448494,
+        -0.3310624965414803
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.7177704712746976,
+            "sign": 1
+          },
+          {
+            "value": -0.21932351497605737,
+            "sign": -1
+          },
+          {
+            "value": 0.0934833684286021,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.5123166423972744,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.422896090652634,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.045612524692223,
+        "stretchY": 1.1840846508369398,
+        "shear": 0.999469689549279,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.1821606261249453,
+      "normal": [
+        0.3789262088791919,
+        0.9254268897241116
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.04665277589662231,
+            "sign": 1
+          },
+          {
+            "value": 0.5225290127214869,
+            "sign": 1
+          },
+          {
+            "value": 0.7004980603376848,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.9730845714856546,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.7164408358493773,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 1.218716543426974,
+        "stretchY": 1.162428285788025,
+        "shear": -0.1907181082891991,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.3419694367447406,
+      "normal": [
+        0.22683514919153416,
+        0.9739331676718144
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": 0.2426350066112957,
+            "sign": 1
+          },
+          {
+            "value": -0.11621565685157202,
+            "sign": -1
+          },
+          {
+            "value": 0.19380645821474854,
+            "sign": 1
+          }
+        ],
+        "directionalGreen": {
+          "value": 0.14496963667725474,
+          "sign": 1
+        },
+        "engineering": {
+          "value": 0.13575493543039885,
+          "sign": 1
+        }
+      }
+    },
+    {
+      "model": {
+        "stretchX": 0.8543110778401815,
+        "stretchY": 0.8050415695229969,
+        "shear": 0.1303176795426788,
+        "rotation": 0,
+        "translationX": 0,
+        "translationY": 0
+      },
+      "angle": 1.4243549512120737,
+      "normal": [
+        0.14591852877237785,
+        0.9892966102038886
+      ],
+      "expected": {
+        "green": [
+          {
+            "value": -0.1350762911397737,
+            "sign": -1
+          },
+          {
+            "value": 0.05566591863586865,
+            "sign": 1
+          },
+          {
+            "value": -0.16746268686928073,
+            "sign": -1
+          }
+        ],
+        "directionalGreen": {
+          "value": -0.1507016114141275,
+          "sign": -1
+        },
+        "engineering": {
+          "value": -0.16417898018071775,
+          "sign": -1
+        }
+      }
+    }
+  ],
+  "principalCases": [
+    {
+      "stress": {
+        "normalX": 5e-324,
+        "normalY": 0.0,
+        "shear": 0.0,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 5e-324,
+            "sign": 1
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          }
+        ],
+        "direction": 0.0
+      }
+    },
+    {
+      "stress": {
+        "normalX": -5e-324,
+        "normalY": 0.0,
+        "shear": 0.0,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": -5e-324,
+            "sign": -1
+          }
+        ],
+        "direction": 1.5707963267948966
+      }
+    },
+    {
+      "stress": {
+        "normalX": 5e-324,
+        "normalY": 5e-324,
+        "shear": 0.0,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 5e-324,
+            "sign": 1
+          },
+          {
+            "value": 5e-324,
+            "sign": 1
+          }
+        ],
+        "direction": null
+      }
+    },
+    {
+      "stress": {
+        "normalX": 0.0,
+        "normalY": 0.0,
+        "shear": 5e-324,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 5e-324,
+            "sign": 1
+          },
+          {
+            "value": -5e-324,
+            "sign": -1
+          }
+        ],
+        "direction": 0.7853981633974483
+      }
+    },
+    {
+      "stress": {
+        "normalX": 5e-324,
+        "normalY": 0.0,
+        "shear": 5e-324,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 1e-323,
+            "sign": 1
+          },
+          {
+            "value": -5e-324,
+            "sign": -1
+          }
+        ],
+        "direction": 0.5535743588970452
+      }
+    },
+    {
+      "stress": {
+        "normalX": 1.0,
+        "normalY": 5e-324,
+        "shear": 0.0,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 1.0,
+            "sign": 1
+          },
+          {
+            "value": 5e-324,
+            "sign": 1
+          }
+        ],
+        "direction": 0.0
+      }
+    },
+    {
+      "stress": {
+        "normalX": -1.0,
+        "normalY": -5e-324,
+        "shear": 0.0,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": -5e-324,
+            "sign": -1
+          },
+          {
+            "value": -1.0,
+            "sign": -1
+          }
+        ],
+        "direction": 1.5707963267948966
+      }
+    },
+    {
+      "stress": {
+        "normalX": 1.0,
+        "normalY": 0.0,
+        "shear": 5e-324,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 1.0,
+            "sign": 1
+          },
+          {
+            "value": null,
+            "sign": -1
+          }
+        ],
+        "direction": 5e-324
+      }
+    },
+    {
+      "stress": {
+        "normalX": 1.0,
+        "normalY": 5e-324,
+        "shear": 5e-324,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 1.0,
+            "sign": 1
+          },
+          {
+            "value": 5e-324,
+            "sign": 1
+          }
+        ],
+        "direction": 5e-324
+      }
+    },
+    {
+      "stress": {
+        "normalX": 0.25,
+        "normalY": 1.0,
+        "shear": 0.5,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 1.25,
+            "sign": 1
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          }
+        ],
+        "direction": 1.1071487177940904
+      }
+    },
+    {
+      "stress": {
+        "normalX": -0.25,
+        "normalY": -1.0,
+        "shear": 0.5,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": -1.25,
+            "sign": -1
+          }
+        ],
+        "direction": 0.4636476090008061
+      }
+    },
+    {
+      "stress": {
+        "normalX": 0.0,
+        "normalY": 0.0,
+        "shear": 0.0,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 0.0,
+            "sign": 0
+          },
+          {
+            "value": 0.0,
+            "sign": 0
+          }
+        ],
+        "direction": null
+      }
+    },
+    {
+      "stress": {
+        "normalX": 3.0,
+        "normalY": -1.0,
+        "shear": 1.0,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 3.23606797749979,
+            "sign": 1
+          },
+          {
+            "value": -1.2360679774997898,
+            "sign": -1
+          }
+        ],
+        "direction": 0.23182380450040305
+      }
+    },
+    {
+      "stress": {
+        "normalX": 0.820799269382805,
+        "normalY": -1.2957293052769199,
+        "shear": -5.3560942433817615,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 5.222174974380736,
+            "sign": 1
+          },
+          {
+            "value": -5.697105010274851,
+            "sign": -1
+          }
+        ],
+        "direction": -0.6878637389316344
+      }
+    },
+    {
+      "stress": {
+        "normalX": -2.9841228096132166,
+        "normalY": 2.4777849613385623,
+        "shear": 4.369878191276873,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 4.899883038650657,
+            "sign": 1
+          },
+          {
+            "value": -5.406220886925311,
+            "sign": -1
+          }
+        ],
+        "direction": 1.06467972052207
+      }
+    },
+    {
+      "stress": {
+        "normalX": 4.284796401031063,
+        "normalY": -6.55876498471539,
+        "shear": 4.960405499104679,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 6.211575335537941,
+            "sign": 1
+          },
+          {
+            "value": -8.485543919222268,
+            "sign": -1
+          }
+        ],
+        "direction": 0.3704941322167377
+      }
+    },
+    {
+      "stress": {
+        "normalX": -4.432027842826834,
+        "normalY": 2.636135193218312,
+        "shear": -4.3515677525771235,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 4.707932204141747,
+            "sign": 1
+          },
+          {
+            "value": -6.5038248537502685,
+            "sign": -1
+          }
+        ],
+        "direction": -1.126447948589777
+      }
+    },
+    {
+      "stress": {
+        "normalX": 2.6289310080501345,
+        "normalY": 3.7450125230644407,
+        "shear": 3.60704121875437,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 6.836924620161326,
+            "sign": 1
+          },
+          {
+            "value": -0.46298108904675067,
+            "sign": -1
+          }
+        ],
+        "direction": 0.8621440878318838
+      }
+    },
+    {
+      "stress": {
+        "normalX": 7.563439433061859,
+        "normalY": 3.788492866926754,
+        "shear": 0.1119022748416505,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 7.566753687875954,
+            "sign": 1
+          },
+          {
+            "value": 3.7851786121126594,
+            "sign": 1
+          }
+        ],
+        "direction": 0.029608747907928112
+      }
+    },
+    {
+      "stress": {
+        "normalX": 4.349140664332975,
+        "normalY": -6.003407830041427,
+        "shear": 5.100731689472198,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 6.440003325865694,
+            "sign": 1
+          },
+          {
+            "value": -8.094270491574147,
+            "sign": -1
+          }
+        ],
+        "direction": 0.38902382853376294
+      }
+    },
+    {
+      "stress": {
+        "normalX": -7.733581533006767,
+        "normalY": -2.0858228581687843,
+        "shear": 6.701582118405572,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 2.362539370946936,
+            "sign": 1
+          },
+          {
+            "value": -12.181943762122486,
+            "sign": -1
+          }
+        ],
+        "direction": 0.9847962931239289
+      }
+    },
+    {
+      "stress": {
+        "normalX": 6.787908251735219,
+        "normalY": 7.434577676347416,
+        "shear": 2.818639396602931,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 9.948367103775814,
+            "sign": 1
+          },
+          {
+            "value": 4.2741188243068216,
+            "sign": 1
+          }
+        ],
+        "direction": 0.8425050681602633
+      }
+    },
+    {
+      "stress": {
+        "normalX": -3.212163119736836,
+        "normalY": -3.301917536842204,
+        "shear": 2.9145676309471487,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": -0.34212721822734254,
+            "sign": -1
+          },
+          {
+            "value": -6.171953438351697,
+            "sign": -1
+          }
+        ],
+        "direction": 0.7776999954058736
+      }
+    },
+    {
+      "stress": {
+        "normalX": 4.447730951289106,
+        "normalY": -0.3321998572972493,
+        "shear": 6.624652919970268,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 9.10034752690847,
+            "sign": 1
+          },
+          {
+            "value": -4.984816432916613,
+            "sign": -1
+          }
+        ],
+        "direction": 0.6122803380498295
+      }
+    },
+    {
+      "stress": {
+        "normalX": -3.8042482077448057,
+        "normalY": -1.3493196400167093,
+        "shear": 0.9514424581507228,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": -1.0237509817530734,
+            "sign": -1
+          },
+          {
+            "value": -4.129816866008442,
+            "sign": -1
+          }
+        ],
+        "direction": 1.2411011777126404
+      }
+    },
+    {
+      "stress": {
+        "normalX": -5.795222938075895,
+        "normalY": -3.5088042710602156,
+        "shear": 4.757872316119817,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 0.24127532586705577,
+            "sign": 1
+          },
+          {
+            "value": -9.545302535003167,
+            "sign": -1
+          }
+        ],
+        "direction": 0.903301805783451
+      }
+    },
+    {
+      "stress": {
+        "normalX": -2.881858412181984,
+        "normalY": -4.593935587816347,
+        "shear": -1.3841602250765401,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": -2.1104137919395636,
+            "sign": -1
+          },
+          {
+            "value": -5.365380208058767,
+            "sign": -1
+          }
+        ],
+        "direction": -0.5084592704836818
+      }
+    },
+    {
+      "stress": {
+        "normalX": -5.499227912639002,
+        "normalY": 4.863291357484178,
+        "shear": 1.9900775719248713,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 5.232334430221231,
+            "sign": 1
+          },
+          {
+            "value": -5.868270985376055,
+            "sign": -1
+          }
+        ],
+        "direction": 1.387437654714643
+      }
+    },
+    {
+      "stress": {
+        "normalX": 6.463534110499426,
+        "normalY": 0.5252721650315362,
+        "shear": 0.7939245337731844,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 6.567846629774889,
+            "sign": 1
+          },
+          {
+            "value": 0.4209596457560721,
+            "sign": 1
+          }
+        ],
+        "direction": 0.13064014269469776
+      }
+    },
+    {
+      "stress": {
+        "normalX": -3.534499363486015,
+        "normalY": -0.4699735716310105,
+        "shear": -6.297977119406859,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 4.479456627521541,
+            "sign": 1
+          },
+          {
+            "value": -8.483929562638567,
+            "sign": -1
+          }
+        ],
+        "direction": -0.9047269987283484
+      }
+    },
+    {
+      "stress": {
+        "normalX": -2.62266002515012,
+        "normalY": -2.1100374389146808,
+        "shear": 2.4080847155168232,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 0.05533817508119616,
+            "sign": 1
+          },
+          {
+            "value": -4.788035639145997,
+            "sign": -1
+          }
+        ],
+        "direction": 0.8384174571726625
+      }
+    },
+    {
+      "stress": {
+        "normalX": -2.992575131376393,
+        "normalY": 6.169965906186537,
+        "shear": 5.398367620004025,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 8.668978752282788,
+            "sign": 1
+          },
+          {
+            "value": -5.491587977472644,
+            "sign": -1
+          }
+        ],
+        "direction": 1.137250145848057
+      }
+    },
+    {
+      "stress": {
+        "normalX": 4.888009586904895,
+        "normalY": -3.473301919930771,
+        "shear": -6.154660822527868,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 8.147631541270894,
+            "sign": 1
+          },
+          {
+            "value": -6.7329238742967705,
+            "sign": -1
+          }
+        ],
+        "direction": -0.4870606596994815
+      }
+    },
+    {
+      "stress": {
+        "normalX": 5.386736467049321,
+        "normalY": 4.886115227300442,
+        "shear": 0.3529311716255048,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 5.569110279904876,
+            "sign": 1
+          },
+          {
+            "value": 4.703741414444886,
+            "sign": 1
+          }
+        ],
+        "direction": 0.4769501040604721
+      }
+    },
+    {
+      "stress": {
+        "normalX": -5.606166697952785,
+        "normalY": -6.686230958725615,
+        "shear": -2.126501483908118,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": -3.952197173163635,
+            "sign": -1
+          },
+          {
+            "value": -8.340200483514765,
+            "sign": -1
+          }
+        ],
+        "direction": -0.6610501793221734
+      }
+    },
+    {
+      "stress": {
+        "normalX": 3.9031972054020745,
+        "normalY": -5.548162444014462,
+        "shear": 2.378835873378984,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 4.46816100109856,
+            "sign": 1
+          },
+          {
+            "value": -6.113126239710947,
+            "sign": -1
+          }
+        ],
+        "direction": 0.23317593109892507
+      }
+    },
+    {
+      "stress": {
+        "normalX": -6.385587259607526,
+        "normalY": 5.524424349502393,
+        "shear": -6.888350247118813,
+        "gradientX": 0,
+        "gradientY": 0,
+        "crossGradient": 0
+      },
+      "expected": {
+        "values": [
+          {
+            "value": 8.674991742679968,
+            "sign": 1
+          },
+          {
+            "value": -9.5361546527851,
+            "sign": -1
+          }
+        ],
+        "direction": -1.1418253163347842
+      }
+    }
+  ]
+}

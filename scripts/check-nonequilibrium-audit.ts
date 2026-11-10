@@ -1,0 +1,19 @@
+/** Re-audit the original ten introductory topics against all seventeen readers. */
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {chromium} from 'playwright';
+import AxeBuilder from '@axe-core/playwright';
+import {learningUnits,learningGuides} from '../src/data/interactive-book';
+import {curriculumDomains} from '../src/data/learning-curriculum';
+import {getLearningContent} from '../src/lib/learning-content';
+const root='.runtime/learning/coarse-integration',base='http://localhost:4175',book='/book/online/physics-math-for-ai/';
+async function main(){
+ const progress=JSON.parse(readFileSync('docs/online-learning/physics-math-for-ai/remaining-authoring-progress.json','utf8')),domain=progress.domains.find((d:any)=>d.id==='nonequilibrium'),catalog=curriculumDomains.find(d=>d.id==='nonequilibrium')!;
+ const topics=domain.topics.map((t:any)=>({...t,unitIds:t.unitIds.length?t.unitIds:t.plannedUnitIds}));assert.equal(topics.length,10);assert.deepEqual(topics.map((t:any)=>t.title),catalog.topics.map(t=>t.ko));assert.deepEqual(topics.flatMap((t:any)=>t.unitIds),catalog.unitIds);assert.equal(catalog.unitIds.length,17);
+ const report={introductoryAuditOnly:true,wholeResearchDepthComplete:false,topics:[]as any[],readerCases:0,axeCases:0,errors:[]as string[]};
+ for(const topic of topics){const units=[];for(const id of topic.unitIds){const u=learningUnits.find(u=>u.id===id);assert(u&&u.questions.length===3);assert.equal(learningGuides[u.id].experiments.length,3);const html=await getLearningContent(id);assert(html.outline.ko.length>=10&&html.outline.en.length>=10);assert(!/[가-힣]/.test(html.en));assert(!html.en.includes('katex-error')&&!html.ko.includes('katex-error'));units.push({id,headings:html.outline,contentFiles:['ko','en'].map(l=>`content/learning/physics-math-for-ai/${id}.${l}.md`)});}report.topics.push({title:topic.title,units});}
+ const browser=await chromium.launch({headless:true});try{for(const language of ['ko','en']){const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});await context.addInitScript({content:`globalThis.__name=(fn)=>fn;localStorage.setItem('suanlab-language','${language}');`});const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
+ for(const id of catalog.unitIds){await page.goto(base+book+id+'/');await page.waitForFunction(l=>document.documentElement.lang===l,language);await page.waitForFunction(()=>{const lab=document.querySelector('.ai-experiment-column .ai-lab'),concept=document.querySelector('.ai-intuition');return lab&&concept&&Array.from(lab.attributes).some(a=>a.name.endsWith('-state')&&a.value==='ready')&&Array.from(concept.querySelectorAll('*')).some(el=>Array.from(el.attributes).some(a=>a.name.endsWith('-concept-state')&&a.value==='ready'));});assert.equal(await page.locator('.ai-quiz .ai-question').count(),3);assert.equal(await page.locator('main a[href="/book/interactive/"]').count()>0,true);assert.equal(await page.locator('.ai-theory .ai-prose h2').count(),report.topics.flatMap(t=>t.units).find(u=>u.id===id).headings[language].length);if(language==='en')assert(!/[가-힣]/.test(await page.locator('main').innerText()));assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));const a11y=await new AxeBuilder({page}).include('main').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(a11y.violations.map(v=>v.id),[],id);report.readerCases++;report.axeCases++;console.log(`AUDIT ${language} ${id}`);}
+ await context.close();}assert.deepEqual(report.errors,[]);writeFileSync(root+'/nonequilibrium-audit.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({topics:report.topics.length,readerCases:report.readerCases,axeCases:report.axeCases}));}finally{await browser.close();}
+}
+main().catch(e=>{console.error(e);process.exitCode=1;});

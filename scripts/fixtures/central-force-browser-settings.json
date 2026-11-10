@@ -1,0 +1,168 @@
+{
+  "inverse-square-effective-potential": [
+    {
+      "name": "forbidden-circle",
+      "values": [
+        1,
+        2,
+        0,
+        10,
+        20,
+        1
+      ],
+      "key": "1{queried radius allowed}",
+      "answer": "0"
+    },
+    {
+      "name": "radial-bound",
+      "values": [
+        1,
+        2,
+        0,
+        0,
+        30,
+        1
+      ],
+      "key": "1{radial degeneracy}",
+      "answer": "1"
+    },
+    {
+      "name": "parabolic",
+      "values": [
+        2,
+        2,
+        0,
+        20,
+        10,
+        1
+      ],
+      "key": "specific energy m squared per s squared",
+      "answer": "0"
+    },
+    {
+      "name": "tiny-periapsis",
+      "values": [
+        2,
+        1,
+        -30,
+        1,
+        120,
+        4
+      ],
+      "key": "1{geometry clipped}",
+      "answer": "1"
+    },
+    {
+      "name": "retrograde",
+      "values": [
+        1,
+        2,
+        10,
+        -10,
+        10,
+        4
+      ],
+      "key": "specific angular momentum m squared per s",
+      "answer": "-1"
+    },
+    {
+      "name": "hyperbolic",
+      "values": [
+        1,
+        8,
+        30,
+        30,
+        120,
+        1
+      ],
+      "key": "1{queried radius allowed}",
+      "answer": "1"
+    }
+  ],
+  "elliptic-kepler-time-area": [
+    {
+      "name": "zero-time",
+      "values": [
+        1,
+        8,
+        19,
+        -6,
+        1,
+        0,
+        4
+      ],
+      "key": "signed accumulated area m squared",
+      "answer": "0"
+    },
+    {
+      "name": "circle",
+      "values": [
+        1,
+        2,
+        0,
+        0,
+        0,
+        10,
+        1
+      ],
+      "key": "query speed m per s",
+      "answer": "1"
+    },
+    {
+      "name": "eccentric-periapsis",
+      "values": [
+        2,
+        4,
+        10,
+        0,
+        0,
+        0,
+        3
+      ],
+      "key": "total energy joules",
+      "answer": "-1.5"
+    },
+    {
+      "name": "many-turns",
+      "values": [
+        6,
+        1,
+        19,
+        0,
+        0,
+        200,
+        1
+      ],
+      "key": "signed accumulated area m squared",
+      "answer": "5.408"
+    },
+    {
+      "name": "many-turns-retrograde",
+      "values": [
+        6,
+        1,
+        19,
+        6,
+        1,
+        200,
+        1
+      ],
+      "key": "signed accumulated area m squared",
+      "answer": "-5.408"
+    },
+    {
+      "name": "short-query",
+      "values": [
+        6,
+        1,
+        19,
+        -12,
+        1,
+        1,
+        4
+      ],
+      "key": "angular momentum kg m squared per s",
+      "answer": "-2.163"
+    }
+  ]
+}

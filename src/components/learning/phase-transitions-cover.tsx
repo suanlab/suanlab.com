@@ -1,0 +1,8 @@
+import React from 'react';
+import type {PhaseKind} from '@/lib/learning-phase-transitions';
+/** Decorative fixed preparations, independent of saved experimental controls. */
+export default function PhaseTransitionsCover({kind}:{kind:PhaseKind}){
+ const finite=kind==='finite-curie-weiss-magnetization-symmetry',landau=kind==='landau-sixth-order-coexistence-stability';
+ const points=Array.from({length:161},(_,i)=>{const m=-1+2*i/160;const s=Math.abs(m)===1?0:-(1+m)/2*Math.log((1+m)/2)-(1-m)/2*Math.log((1-m)/2);const y=landau?m*m*(m*m-.75)**2/6:-m*m-s+Math.log(2);return {x:40+280*i/160,y:landau?180-8000*y:95-230*y};});
+ return <svg viewBox="0 0 360 240" aria-hidden="true" className="ai-book-art" data-phase-cover={kind}><text x="180" y="28" textAnchor="middle" fontSize="15" fill="currentColor">{finite?'finite N · P(M) ∝ g(M) exp(−βE)':landau?'Phi = m²(m²−3/4)²/6 ≥ 0':'psi = −Km²/2−bm−s(m)'}</text>{finite?<>{[.25,.5,.25].map((p,i)=><g key={i}><rect x={55+100*i} y={190-240*p} width="50" height={240*p} fill={i===1?'var(--learning-orange)':'var(--learning-blue)'}/><text x={80+100*i} y="214" textAnchor="middle" fontSize="13" fill="currentColor">{['−2','0','2'][i]}</text></g>)}</>:<><path d="M35 190H325" stroke="var(--learning-neutral)"/><path d={points.map((p,i)=>`${i?'L':'M'}${p.x} ${p.y}`).join(' ')} stroke="var(--learning-blue)" strokeWidth="3" fill="none"/>{(landau?[-Math.sqrt(3)/2,0,Math.sqrt(3)/2]:[-.957504024, .957504024]).map((m,i)=><circle key={i} cx={40+140*(m+1)} cy={landau?180:170} r="5" fill="var(--learning-orange)"/>)}</>}<text x="180" y="235" textAnchor="middle" fontSize="12" fill="currentColor">{finite?'E[m] = 0 does not mean E[|m|] = 0':landau?'coexistence ≠ spinodal':'local minimum ≠ global minimum'}</text></svg>;
+}

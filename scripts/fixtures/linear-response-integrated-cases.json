@@ -1,0 +1,602 @@
+[
+  {
+    "label": "Equilibrium reference",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "d775851dfa1568e23b5ab5a39a5f3dd72dc909394a9326504bf78e048a285e75"
+  },
+  {
+    "label": "Same drive; handle −1",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": -1,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "1ab485b4533fd5c987b7d316a41984d2812bd1d1c7fe50f118066707d8e3ab91"
+  },
+  {
+    "label": "Same drive; handle 0",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "30987c735df1d87a37a1af64daea9c8fd86cf399263cae2e53e9ab6fba332803"
+  },
+  {
+    "label": "Same drive; handle +1",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 1,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "c3f7cda340769863ea8b1c81d3aea24363978ee2deea61883fe09e135f44ec60"
+  },
+  {
+    "label": "Equilibrium; handle −1",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": -1,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "6dc57383acdb351951b91658f2d5fae1981d7c861d3d0e16dab30e49c5a8aa3a"
+  },
+  {
+    "label": "Equilibrium; handle +1",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 1,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "6917acaaa5128df1cfc80bfbd7875783f6feebc342c6db6926dd6bd26caecd4e"
+  },
+  {
+    "label": "Opposite circulating background",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 2,
+        "e": 3,
+        "f": 4,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "ef0631364bc43d32a2476dfbf278c5a98dc866ca6410b093ff590493b8cf9acb"
+  },
+  {
+    "label": "Zero input; kernel remains",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 0,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "2cfc073a3674de9315473a92d224d700cc0b12a3947d945f961de746f5a0aaf7"
+  },
+  {
+    "label": "Negative step input",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": -1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "1a01863dc62442a34e34e64dc2f0c7db37c94e224df0587b937e1e4d1aacf833"
+  },
+  {
+    "label": "Large input and tangent error",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 1
+      }
+    },
+    "resultSha256": "2ca78a1e4e296121f3e16a002ba01c48d4b6b4e9b0d70f7950a7d6b05f7ca32c"
+  },
+  {
+    "label": "Small input",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 100
+      }
+    },
+    "resultSha256": "f25e35f82e28dd98ec3330a43b6b539a80096d02decdd552f40f4b06d53a1e43"
+  },
+  {
+    "label": "Zero linear response; positive finite input",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 3,
+        "b": 3,
+        "c": 3,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": -1,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 2
+      }
+    },
+    "resultSha256": "a6db36b6d986133f957412902022137df2b40b8d4c9da53c2d00671d9210fc3f"
+  },
+  {
+    "label": "Zero linear response; negative finite input",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 3,
+        "b": 3,
+        "c": 3,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": -1,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": -1,
+        "amplitudeDenominator": 2
+      }
+    },
+    "resultSha256": "526782efee48e2b4bed0234496d98602e5b9690f999edf5a4ca04d07b67727e4"
+  },
+  {
+    "label": "Zero time; right-limit kernel",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 0,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "39b07d0ef9c2ec49f88b04754f732edcad469eac3332e17c76fa56300a297882"
+  },
+  {
+    "label": "Very short time and small input",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 1,
+        "timeDenominator": 1000000,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 1000000
+      }
+    },
+    "resultSha256": "dbb7330550d461af8cfbd0d554e9a8c5c24495940a7d1548cbb2512c89e0a587"
+  },
+  {
+    "label": "Fast mixing and tiny kernel",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 1000000,
+        "b": 1000000,
+        "c": 1000000,
+        "d": 1000000,
+        "e": 1000000,
+        "f": 1000000,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 2
+      }
+    },
+    "resultSha256": "b10d47cca4a64f3051986b2b316c9c01232a439a773ff098c1d356cd5627a6b4"
+  },
+  {
+    "label": "Unresolved positive exponential rate",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 1000000,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 1
+      }
+    },
+    "resultSha256": "bca028fe7dbb4ef9d053c303e09a2f14af561a707702c56c75ccb047693f620b"
+  },
+  {
+    "label": "Extremely small positive rates",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": -1000000,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 1
+      }
+    },
+    "resultSha256": "838f6953d4f54b1958a6ccbf5bf7b47f233aada9fc9d43a750a0dddb06cefe0c"
+  },
+  {
+    "label": "Fractional handle and negative input",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 1,
+        "kineticDenominator": 3,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": -1,
+        "amplitudeDenominator": 2
+      }
+    },
+    "resultSha256": "8c6fe93612007989f810677a835ef28d653d8234e28fa968adcbfe3bb67c483a"
+  },
+  {
+    "label": "Zero frequency and static limit",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 0,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "3ba6619df691409881269204e78dba7c06c0010821b69aeb00544f01d09cd70a"
+  },
+  {
+    "label": "Susceptibility to a fast sinusoid",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 20,
+        "frequencyDenominator": 1,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "8b5f9d4240f4acc911bbb10281f6816d850c0588ba2c492fe6619f61a6e37573"
+  },
+  {
+    "label": "Twice the clock and half the time",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 4,
+        "b": 6,
+        "c": 8,
+        "d": 2,
+        "e": 2,
+        "f": 2,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 1,
+        "timeNumerator": 2,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "95f40a285219ab9a365a9a0ed6416e9786be4ce78a0e4c0e0ad61e2916828c31"
+  },
+  {
+    "label": "Same rates with another integer encoding",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 4,
+        "b": 6,
+        "c": 8,
+        "d": 2,
+        "e": 2,
+        "f": 2,
+        "rateDenominator": 2,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 16,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "25bb7324557c8da165cc6d7b6be9957217253a13eadccafaae431e7abbb01f84"
+  },
+  {
+    "label": "Dense time records",
+    "input": {
+      "kind": "markov-perturbation-linear-response",
+      "parameters": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "e": 1,
+        "f": 1,
+        "rateDenominator": 1,
+        "kineticNumerator": 0,
+        "kineticDenominator": 1,
+        "frequencyNumerator": 1,
+        "frequencyDenominator": 2,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 64,
+        "amplitudeNumerator": 1,
+        "amplitudeDenominator": 10
+      }
+    },
+    "resultSha256": "a981a067a85a6a07b3a0bec8706e429447a49171ae6f73cecd112e027107c1dd"
+  }
+]

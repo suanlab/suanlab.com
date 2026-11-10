@@ -1,0 +1,73 @@
+import type { MeasureResult } from './learning-measure';
+import type { Vec2 } from './learning-simulations';
+
+export const functionalKinds = ['normed-banach-hilbert','bounded-compact-operators','dual-functionals-evaluation','orthogonal-hilbert-projections','spectral-theorem-conditions','distributions-test-functions','weak-derivatives-sobolev','integral-kernel-operators','finite-infinite-approximations'] as const;
+export type FunctionalKind = typeof functionalKinds[number];
+export const isFunctionalKind=(kind:string):kind is FunctionalKind=>(functionalKinds as readonly string[]).includes(kind);
+const grid=(f:(x:number)=>number,lo=0,hi=1):Vec2[]=>Array.from({length:121},(_,i)=>{const x=lo+(hi-lo)*i/120;return [x,f(x)];});
+const poly=(c:number[],x:number)=>c.reduceRight((s,a)=>s*x+a,0);
+export function polynomialIntegral(c:number[],lo=0,hi=1){return c.reduce((sum,a,k)=>sum+a*(hi**(k+1)-lo**(k+1))/(k+1),0);}
+export function polynomialProduct(a:number[],b:number[]){const c=Array(a.length+b.length-1).fill(0) as number[];a.forEach((x,i)=>b.forEach((y,j)=>c[i+j]+=x*y));return c;}
+export function geometricFunction(m:number){if(!Number.isInteger(m)||m<0||m>8)throw new Error('Use degree 0–8.');const coefficients=Array.from({length:m+1},(_,k)=>2**(-k-1));return {coefficients,value:(x:number)=>poly(coefficients,x),l1:polynomialIntegral(coefficients),l2:Math.sqrt(polynomialIntegral(polynomialProduct(coefficients,coefficients))),sup:1-2**(-m-1),uniformError:2**(-m-1)};}
+export function legendreProjection(a:number,degree:number){if(!Number.isFinite(a)||Math.abs(a)>2||!Number.isInteger(degree)||degree<0||degree>2)throw new Error('Invalid projection parameters.');const coefficients=[1/3,a,2/3],basisNormSquared=[2,2/3,2/5],basis=(x:number)=>[1,x,(3*x*x-1)/2],value=(x:number)=>coefficients.reduce((s,c,k)=>s+(k<=degree?c*basis(x)[k]:0),0),normSquared=coefficients.reduce((s,c,k)=>s+c*c*basisNormSquared[k],0),projectionSquared=coefficients.reduce((s,c,k)=>s+(k<=degree?c*c*basisNormSquared[k]:0),0),errorSquared=coefficients.reduce((s,c,k)=>s+(k>degree?c*c*basisNormSquared[k]:0),0);return {coefficients,basisNormSquared,value,normSquared,projectionSquared,errorSquared};}
+export function spectralExample(mode:number,a:number,b:number,c:number){
+ if(![0,1,2].includes(mode)||![a,b,c].every(x=>Number.isFinite(x)&&Math.abs(x)<=2))throw new Error('Invalid spectral example.');
+ const A=mode===0?[a,c,c,b]:mode===1?[a,c,0,a]:[0,-c,c,0];
+ const multiply=(M:number[],N:number[])=>[M[0]*N[0]+M[1]*N[2],M[0]*N[1]+M[1]*N[3],M[2]*N[0]+M[3]*N[2],M[2]*N[1]+M[3]*N[3]],transpose=(M:number[])=>[M[0],M[2],M[1],M[3]],frob=(M:number[])=>Math.hypot(...M),ATA=multiply(transpose(A),A),AAT=multiply(A,transpose(A)),commutator=frob(ATA.map((v,i)=>v-AAT[i]));
+ const theta=.5*Math.atan2(2*c,a-b),Q=[Math.cos(theta),-Math.sin(theta),Math.sin(theta),Math.cos(theta)],lambda=[(a+b)/2+Math.hypot((a-b)/2,c),(a+b)/2-Math.hypot((a-b)/2,c)],normal=mode!==1||c===0,realOrthogonal=mode===0||c===0;
+ const reconstruction=mode===0?multiply(multiply(Q,[lambda[0],0,0,lambda[1]]),transpose(Q)):realOrthogonal?A:null;
+ const real=mode===0?lambda:mode===1?[a,a]:[0,0],imaginary=mode===2?[c,-c]:[0,0];return {A,Q,lambda:real,imaginary,normal,realOrthogonal,commutator,reconstructionError:reconstruction?frob(reconstruction.map((v,i)=>v-A[i])):null};
+}
+export function triangleMoment(center:number,width:number,degree:number){if(!Number.isFinite(center)||Math.abs(center)>1||!Number.isFinite(width)||width<.05||width>1||!Number.isInteger(degree)||degree<0||degree>3)throw new Error('Invalid triangular distribution example.');return degree===0?1:degree===1?center:degree===2?center*center+width*width/6:center**3+center*width*width/2;}
+export function sobolevPower(alpha:number){if(!Number.isFinite(alpha)||alpha<.25||alpha>2)throw new Error('Use exponent in [.25,2].');return {normSquared:2/(2*alpha+1),derivativeL1:2,derivativeSquared:alpha>.5?2*alpha*alpha/(2*alpha-1):Infinity,inH1:alpha>.5,weakIdentity:-4*alpha/((alpha+1)*(alpha+3))};}
+export function rankOneKernel(a:number,b:number,n:number){if(![a,b].every(x=>Number.isFinite(x)&&Math.abs(x)<=2)||!Number.isInteger(n)||n<1||n>16)throw new Error('Invalid rank-one kernel parameters.');const g=(x:number)=>1+a*x,f=(x:number)=>1+b*x,nodes=Array.from({length:n},(_,i)=>(i+.5)/n),exact=1+(a+b)/2+a*b/3,approx=nodes.reduce((s,t)=>s+g(t)*f(t)/n,0),eigenvalue=1+a+a*a/3,discreteEigenvalue=nodes.reduce((s,t)=>s+g(t)**2/n,0);return {g,f,nodes,exact,approx,eigenvalue,discreteEigenvalue};}
+export const projectionTail=(n:number)=>{if(!Number.isInteger(n)||n<1||n>16)throw new Error('Use truncation rank 1–16.');return Math.sqrt(Math.PI**2/6-Array.from({length:n},(_,i)=>1/(i+1)**2).reduce((a,b)=>a+b,0));};
+
+export function evaluateFunctional(kind:FunctionalKind,v:number[]):MeasureResult{
+ const domains:Record<FunctionalKind,[number,number,boolean][]>={
+  'normed-banach-hilbert':[[0,8,true],[0,2,true],[0,1,false]],
+  'bounded-compact-operators':[[0,2,true],[.25,2,false],[1,16,true],[1,16,true]],
+  'dual-functionals-evaluation':[[-2,2,false],[-2,2,false],[1,16,true]],
+  'orthogonal-hilbert-projections':[[-2,2,false],[0,2,true],[-1,1,false]],
+  'spectral-theorem-conditions':[[0,2,true],[-2,2,false],[-2,2,false],[-2,2,false]],
+  'distributions-test-functions':[[-1,1,false],[.05,1,false],[0,3,true]],
+  'weak-derivatives-sobolev':[[.25,2,false],[0,1,true],[-1,1,false]],
+  'integral-kernel-operators':[[-2,2,false],[-2,2,false],[1,16,true],[0,1,false]],
+  'finite-infinite-approximations':[[1,16,true],[1,32,true]],
+ };
+ const domain=domains[kind];if(v.length!==domain.length||v.some((x,i)=>!Number.isFinite(x)||x<domain[i][0]||x>domain[i][1]||(domain[i][2]&&!Number.isInteger(x))))throw new Error('Use parameters in the stated functional-analysis domain.');const [a,b,c,d]=v;
+ if(kind==='normed-banach-hilbert'){
+  const r=geometricFunction(a),norm=[r.l1,r.l2,r.sup][b],limit=[Math.log(2),Math.SQRT1_2,1][b];
+  return {plot:'continuous',statement:`f_m(x)=sum from k=0 to m of x^k/2^(k+1), m=${a}; limit f=1/(2−x) on [0,1]. Selected space is ${['L¹','L²','L∞'][b]}, with functions identified almost everywhere.`,stats:{'selected norm of partial polynomial':norm,'selected norm of limit':limit,'exact uniform tail norm':r.uniformError,'query approximation error':1/(2-c)-r.value(c),'1{selected norm comes from an inner product}':Number(b===1),'parallelogram defect on two disjoint unit vectors':[4,0,-2][b]},curves:[grid(r.value),grid(x=>1/(2-x))],curveColors:['blue','orange'],dots:[[c,r.value(c)]],bounds:[0,1,0,1.05],table:{headers:['power k','coefficient','L1 integral contribution'],rows:r.coefficients.map((coefficient,k)=>[k,coefficient,coefficient/(k+1)])}};
+ }
+ if(kind==='bounded-compact-operators'){
+  const lambda=(k:number)=>a===0?1:a===1?k**(-b):k,tail=a===0?1:a===1?(d+1)**(-b):Infinity;
+  return {plot:'discrete',statement:`Infinite diagonal on ℓ²: lambda_k=${a===0?'1 (identity)':a===1?'k^(−alpha)':'k (unbounded, natural dense domain)'}; finite rank N=${d}. Every displayed matrix is finite; infinite boundedness is a separate statement.`,stats:{'infinite operator norm':a===2?Infinity:1,'finite N operator norm':a===2?d:1,'operator norm of infinite truncation tail':tail,'selected basis image norm':lambda(c),'distance between neighboring basis images':Math.hypot(lambda(c),lambda(c+1)),'1{bounded map on all ℓ²}':Number(a!==2),'1{compact bounded map on all ℓ²}':Number(a===1)},curves:[Array.from({length:16},(_,i)=>[i+1,lambda(i+1)] as Vec2),Array.from({length:16},(_,i)=>[i+1,i<d?lambda(i+1):0] as Vec2)],curveColors:['blue','orange'],dots:[[c,lambda(c)]],table:{headers:['index k','infinite multiplier','rank-N multiplier'],rows:Array.from({length:16},(_,i)=>[i+1,lambda(i+1),i<d?lambda(i+1):0])}};
+ }
+ if(kind==='dual-functionals-evaluation'){
+  const pairing=1+(a+b)/2+a*b/3,gNorm=Math.sqrt(1+a+a*a/3),fNorm=Math.sqrt(1+b+b*b/3);
+  return {plot:'continuous',statement:`L²[0,1]: g=1+${a}t, f=1+${b}t, ell_g(f)=integral gf. Counterexample v_m=max(1−mt,0), m=${c}: point evaluation on continuous representatives is not L²-bounded.`,stats:{'functional value integral gf':pairing,'dual norm of ell_g':gNorm,'Cauchy-Schwarz upper bound':gNorm*fNorm,'spike L² norm':1/Math.sqrt(3*c),'spike point value at zero':1,'point value to L² norm ratio':Math.sqrt(3*c)},curves:[grid(x=>1+b*x),[[0,1],[1/c,0],[1,0]]],curveColors:['blue','orange'],table:{headers:['term of integral gf','value'],rows:[['constant',1],['linear',(a+b)/2],['quadratic',a*b/3],['exact integral',pairing],['spike norm squared',1/(3*c)]]}};
+ }
+ if(kind==='orthogonal-hilbert-projections'){
+  const r=legendreProjection(a,b),target=(x:number)=>x*x+a*x;
+  return {plot:'continuous',statement:`Real L²[−1,1], f=x²+${a}x. Orthogonal projection onto Legendre P0 through P${b}; this subspace is finite dimensional and closed.`,stats:{'squared norm of f':r.normSquared,'squared norm of projection':r.projectionSquared,'squared norm of residual':r.errorSquared,'Pythagorean defect (exact identity)':0,'projection at query':r.value(c),'residual at query':target(c)-r.value(c)},curves:[grid(target,-1,1),grid(r.value,-1,1)],curveColors:['blue','orange'],dots:[[c,r.value(c)]],table:{headers:['Legendre degree','coefficient','basis norm squared','retained','residual inner product'],rows:r.coefficients.map((coefficient,k)=>[k,coefficient,r.basisNormSquared[k],Number(k<=b),k>b?coefficient*r.basisNormSquared[k]:0])}};
+ }
+ if(kind==='spectral-theorem-conditions'){
+  const r=spectralExample(a,b,c,d),circle=Array.from({length:121},(_,i)=>[Math.cos(2*Math.PI*i/120),Math.sin(2*Math.PI*i/120)] as Vec2),image=circle.map(([x,y])=>[r.A[0]*x+r.A[1]*y,r.A[2]*x+r.A[3]*y] as Vec2),radius=1.2*Math.max(1,...image.flat().map(Math.abs));
+  return {plot:'continuous',statement:`Real 2×2 ${['symmetric matrix','Jordan block','rotation generator'][a]}. A normal real matrix may require complex eigenvectors. The infinite-dimensional theorem also requires operator/domain hypotheses.`,stats:{'normality commutator Frobenius norm':r.commutator,'1{normal}':Number(r.normal),'1{real orthogonal diagonalization exists}':Number(r.realOrthogonal),'eigenvalue real parts':r.lambda,'eigenvalue imaginary parts':r.imaginary,'orthogonal reconstruction error':r.reconstructionError},curves:[image,circle],curveColors:['blue','orange'],dots:[[r.A[0],r.A[2]],[1,0]],dotColors:['blue','orange'],bounds:[-radius,radius,-.96*radius,.96*radius],table:{headers:['row','A column 1','A column 2'],rows:[[1,r.A[0],r.A[1]],[2,r.A[2],r.A[3]]]}};
+ }
+ if(kind==='distributions-test-functions'){
+  const moment=triangleMoment(a,b,c),exact=a**c,derivative=c===0?0:-c*a**(c-1),approxDerivative=c===0?0:-c*triangleMoment(a,b,c-1);
+  return {plot:'continuous',statement:`Unit-area triangular eta_epsilon centered at ${a}, epsilon=${b}. Test phi equals x^${c} on [−2,2] and has a smooth compactly supported extension outside; the extension is not drawn. Delta is a functional, not a finite-height point function.`,stats:{'triangle total mass':1,'triangle peak height':1/b,'Dirac action on test function':exact,'triangle action on test function':moment,'action approximation error':Math.abs(moment-exact),'Dirac derivative action':derivative,'triangle derivative action':approxDerivative},curves:[[[a-b,0],[a,1/b],[a+b,0]],grid(x=>x**c,-2,2)],curveColors:['blue','orange'],table:{headers:['test polynomial degree','Dirac action','triangle action'],rows:Array.from({length:4},(_,degree)=>[degree,a**degree,triangleMoment(a,b,degree)])}};
+ }
+ if(kind==='weak-derivatives-sobolev'){
+  const r=sobolevPower(a),derivative=(x:number)=>a*Math.sign(x)*Math.abs(x)**(a-1),left=b===0?0:r.weakIdentity;
+  return {plot:'continuous',statement:`u=|x|^alpha on [−1,1], alpha=${a}. Weak derivative v=alpha sign(x)|x|^(alpha−1) away from zero; choose v(0)=0. Derivative curves sample |x|>=1/60 and do not assert boundedness near zero. Tests vanish at endpoints.`,stats:{'u L² norm':Math.sqrt(r.normSquared),'weak derivative L1 norm':r.derivativeL1,'weak derivative L² norm':Math.sqrt(r.derivativeSquared),'1{u belongs to H¹}':Number(r.inH1),'integral u phi prime':left,'negative integral v phi':left,'classical derivative at query':c===0?(a>1?0:null):derivative(c),'chosen weak representative at zero':0},curves:[grid(x=>Math.abs(x)**a,-1,1),Array.from({length:60},(_,i)=>{const x=-(60-i)/60;return [x,derivative(x)] as Vec2;}),Array.from({length:60},(_,i)=>{const x=(i+1)/60;return [x,derivative(x)] as Vec2;})],curveColors:['blue','orange','orange'],dots:[[0,0]],dotColors:['orange'],table:{headers:['condition','value'],rows:[['u L2 integrability exponent',2*a],['v L2 integrability exponent',2*a-2],['v squared integral',Number.isFinite(r.derivativeSquared)?r.derivativeSquared:'∞'],['H1 threshold alpha > 1/2',Number(r.inH1)]]}};
+ }
+ if(kind==='integral-kernel-operators'){
+  const r=rankOneKernel(a,b,c);
+  return {plot:'continuous',statement:`L²[0,1], K(x,t)=g(x)g(t), g=1+${a}x, f=1+${b}t. Rank-one positive self-adjoint integral operator. Midpoint quadrature N=${c} is a separate approximation.`,stats:{'operator norm and nonzero eigenvalue':r.eigenvalue,'Hilbert-Schmidt norm':r.eigenvalue,'discrete midpoint eigenvalue':r.discreteEigenvalue,'exact coefficient integral gf':r.exact,'midpoint coefficient':r.approx,'coefficient quadrature error':Math.abs(r.approx-r.exact),'exact Tf at query':r.g(d)*r.exact,'midpoint Tf at query':r.g(d)*r.approx},curves:[grid(x=>r.g(x)*r.exact),grid(x=>r.g(x)*r.approx)],curveColors:['blue','orange'],dots:[[d,r.g(d)*r.approx]],dotColors:['orange'],table:{headers:['midpoint t','g(t)','f(t)','weight','weighted product'],rows:r.nodes.map(t=>[t,r.g(t),r.f(t),1/c,r.g(t)*r.f(t)/c])}};
+ }
+ const partial=Array.from({length:a},(_,i)=>1/(i+1)**2).reduce((s,x)=>s+x,0);
+ return {plot:'continuous',statement:`Infinite ℓ²; x_k=1/k; P_N keeps first N coordinates, N=${a}. Strong convergence for each fixed vector is different from uniform operator-norm convergence. Selected witness is e_${b}.`,stats:{'norm of fixed x':Math.PI/Math.sqrt(6),'norm of projected fixed x':Math.sqrt(partial),'fixed-vector truncation error':projectionTail(a),'operator norm of I minus P_N':1,'selected basis witness error':Number(b>a),'compact diag(1/k) truncation norm':1/(a+1),'inverse norm of finite diag(1/k)':a},curves:[Array.from({length:16},(_,i)=>[i+1,projectionTail(i+1)] as Vec2),[[1,1],[16,1]]],curveColors:['blue','orange'],dots:[[a,projectionTail(a)]],table:{headers:['rank N','fixed-vector tail norm','identity operator-norm error','compact diagonal tail norm'],rows:Array.from({length:16},(_,i)=>[i+1,projectionTail(i+1),1,1/(i+2)])}};
+}

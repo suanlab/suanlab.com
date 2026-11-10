@@ -1,0 +1,5634 @@
+{
+  "method": "independent SymPy finite/extended ladder matrices,H squared,quadrature products,exact coherent series and mpmath250dps incomplete-gamma tails",
+  "cutoffs": [
+    {
+      "cutoff": 0,
+      "annihilation": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "numberDiagonal": [
+        "0"
+      ],
+      "reverseNumberDiagonal": [
+        "0"
+      ],
+      "commutator": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "commutatorTrace": "0",
+      "nilpotent": true,
+      "projectedXSquareCorrection": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "projectedPSquareCorrection": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "projectedHamiltonian": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "recombinedFiniteHamiltonian": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "vacuum": {
+        "norm": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "annihilationMean": {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        "numberMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberSecond": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "commutatorMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "covariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "robertsonBound": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "uncertaintyProduct": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "energy": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "variance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "top": {
+        "norm": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "annihilationMean": {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        "numberMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberSecond": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "commutatorMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "covariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "robertsonBound": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "uncertaintyProduct": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "energy": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "variance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      }
+    },
+    {
+      "cutoff": 1,
+      "annihilation": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "numberDiagonal": [
+        "0",
+        "1"
+      ],
+      "reverseNumberDiagonal": [
+        "1",
+        "0"
+      ],
+      "commutator": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "-1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "commutatorTrace": "0",
+      "nilpotent": true,
+      "projectedXSquareCorrection": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "projectedPSquareCorrection": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "projectedHamiltonian": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "3/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "recombinedFiniteHamiltonian": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "vacuum": {
+        "norm": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "annihilationMean": {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        "numberMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberSecond": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "commutatorMean": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xVariance": {
+          "coefficients": [
+            "1/2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pVariance": {
+          "coefficients": [
+            "1/2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "covariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "robertsonBound": {
+          "coefficients": [
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "uncertaintyProduct": {
+          "coefficients": [
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "energy": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "variance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "top": {
+        "norm": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "annihilationMean": {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        "numberMean": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberSecond": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "commutatorMean": {
+          "coefficients": [
+            "-1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xVariance": {
+          "coefficients": [
+            "1/2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pVariance": {
+          "coefficients": [
+            "1/2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "covariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "robertsonBound": {
+          "coefficients": [
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "uncertaintyProduct": {
+          "coefficients": [
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "energy": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "variance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      }
+    },
+    {
+      "cutoff": 2,
+      "annihilation": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "1",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "numberDiagonal": [
+        "0",
+        "1",
+        "2"
+      ],
+      "reverseNumberDiagonal": [
+        "1",
+        "2",
+        "0"
+      ],
+      "commutator": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "-2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "commutatorTrace": "0",
+      "nilpotent": true,
+      "projectedXSquareCorrection": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "3/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "projectedPSquareCorrection": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "3/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "projectedHamiltonian": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "3/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "5/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "recombinedFiniteHamiltonian": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "3/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "vacuum": {
+        "norm": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "annihilationMean": {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        "numberMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberSecond": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "commutatorMean": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xVariance": {
+          "coefficients": [
+            "1/2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pVariance": {
+          "coefficients": [
+            "1/2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "covariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "robertsonBound": {
+          "coefficients": [
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "uncertaintyProduct": {
+          "coefficients": [
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "energy": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "variance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "top": {
+        "norm": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "annihilationMean": {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        "numberMean": {
+          "coefficients": [
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberSecond": {
+          "coefficients": [
+            "4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "commutatorMean": {
+          "coefficients": [
+            "-2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xVariance": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pVariance": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "covariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "robertsonBound": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "uncertaintyProduct": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "energy": {
+          "coefficients": [
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "variance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      }
+    },
+    {
+      "cutoff": 3,
+      "annihilation": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "1",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "1",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "numberDiagonal": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "reverseNumberDiagonal": [
+        "1",
+        "2",
+        "3",
+        "0"
+      ],
+      "commutator": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "-3",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "commutatorTrace": "0",
+      "nilpotent": true,
+      "projectedXSquareCorrection": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "projectedPSquareCorrection": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "projectedHamiltonian": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "3/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "5/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "7/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "recombinedFiniteHamiltonian": [
+        [
+          {
+            "real": {
+              "coefficients": [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "3/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "5/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          {
+            "real": {
+              "coefficients": [
+                "3/2",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "imaginary": {
+              "coefficients": [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          }
+        ]
+      ],
+      "vacuum": {
+        "norm": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "annihilationMean": {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        "numberMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberSecond": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "commutatorMean": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xVariance": {
+          "coefficients": [
+            "1/2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pVariance": {
+          "coefficients": [
+            "1/2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "covariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "robertsonBound": {
+          "coefficients": [
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "uncertaintyProduct": {
+          "coefficients": [
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "energy": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "variance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "top": {
+        "norm": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "annihilationMean": {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        "numberMean": {
+          "coefficients": [
+            "3",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberSecond": {
+          "coefficients": [
+            "9",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "numberVariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "commutatorMean": {
+          "coefficients": [
+            "-3",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pMean": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "xVariance": {
+          "coefficients": [
+            "3/2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "pVariance": {
+          "coefficients": [
+            "3/2",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "covariance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "robertsonBound": {
+          "coefficients": [
+            "9/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "uncertaintyProduct": {
+          "coefficients": [
+            "9/4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "energy": {
+          "coefficients": [
+            "3",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "variance": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      }
+    }
+  ],
+  "boundaryCat": {
+    "norm": {
+      "coefficients": [
+        "2",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "annihilationMean": {
+      "real": {
+        "coefficients": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "imaginary": {
+        "coefficients": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      }
+    },
+    "numberMean": {
+      "coefficients": [
+        "3/2",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "numberSecond": {
+      "coefficients": [
+        "9/2",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "numberVariance": {
+      "coefficients": [
+        "9/4",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "commutatorMean": {
+      "coefficients": [
+        "-1",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "xMean": {
+      "coefficients": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "pMean": {
+      "coefficients": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "xVariance": {
+      "coefficients": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "pVariance": {
+      "coefficients": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "covariance": {
+      "coefficients": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "robertsonBound": {
+      "coefficients": [
+        "1/4",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "uncertaintyProduct": {
+      "coefficients": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "energy": {
+      "coefficients": [
+        "3/2",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "variance": {
+      "coefficients": [
+        "9/4",
+        "0",
+        "0",
+        "0"
+      ]
+    }
+  },
+  "coherentUnit": {
+    "rawCoefficients": [
+      {
+        "real": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "imaginary": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      {
+        "real": {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "imaginary": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      {
+        "real": {
+          "coefficients": [
+            "0",
+            "1/2",
+            "0",
+            "0"
+          ]
+        },
+        "imaginary": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      {
+        "real": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1/6"
+          ]
+        },
+        "imaginary": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      }
+    ],
+    "seriesNorm": "8/3",
+    "topProbability": "1/16",
+    "annihilatorResidualSquared": "1/16",
+    "finite": {
+      "norm": {
+        "coefficients": [
+          "8/3",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "annihilationMean": {
+        "real": {
+          "coefficients": [
+            "15/16",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "imaginary": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "numberMean": {
+        "coefficients": [
+          "15/16",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "numberSecond": {
+        "coefficients": [
+          "27/16",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "numberVariance": {
+        "coefficients": [
+          "207/256",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "commutatorMean": {
+        "coefficients": [
+          "3/4",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "xMean": {
+        "coefficients": [
+          "0",
+          "15/16",
+          "0",
+          "0"
+        ]
+      },
+      "pMean": {
+        "coefficients": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "xVariance": {
+        "coefficients": [
+          "39/128",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "pVariance": {
+        "coefficients": [
+          "9/16",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "covariance": {
+        "coefficients": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "robertsonBound": {
+        "coefficients": [
+          "9/64",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "uncertaintyProduct": {
+        "coefficients": [
+          "351/2048",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "energy": {
+        "coefficients": [
+          "15/16",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "variance": {
+        "coefficients": [
+          "207/256",
+          "0",
+          "0",
+          "0"
+        ]
+      }
+    },
+    "embeddedOriginalOperators": {
+      "norm": {
+        "coefficients": [
+          "8/3",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "annihilationMean": {
+        "real": {
+          "coefficients": [
+            "15/16",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "imaginary": {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "numberMean": {
+        "coefficients": [
+          "15/16",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "numberSecond": {
+        "coefficients": [
+          "27/16",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "numberVariance": {
+        "coefficients": [
+          "207/256",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "commutatorMean": {
+        "coefficients": [
+          "1",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "xMean": {
+        "coefficients": [
+          "0",
+          "15/16",
+          "0",
+          "0"
+        ]
+      },
+      "pMean": {
+        "coefficients": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "xVariance": {
+        "coefficients": [
+          "55/128",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "pVariance": {
+        "coefficients": [
+          "11/16",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "covariance": {
+        "coefficients": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "robertsonBound": {
+        "coefficients": [
+          "1/4",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "uncertaintyProduct": {
+        "coefficients": [
+          "605/2048",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "energy": {
+        "coefficients": [
+          "15/16",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "variance": {
+        "coefficients": [
+          "207/256",
+          "0",
+          "0",
+          "0"
+        ]
+      }
+    }
+  },
+  "hopping": [
+    {
+      "cutoffs": [
+        3,
+        2
+      ],
+      "hamiltonianAction": [
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        }
+      ],
+      "energy": {
+        "coefficients": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "variance": {
+        "coefficients": [
+          "6",
+          "0",
+          "0",
+          "0"
+        ]
+      }
+    },
+    {
+      "cutoffs": [
+        3,
+        3
+      ],
+      "hamiltonianAction": [
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "real": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "imaginary": {
+            "coefficients": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        }
+      ],
+      "energy": {
+        "coefficients": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "variance": {
+        "coefficients": [
+          "12",
+          "0",
+          "0",
+          "0"
+        ]
+      }
+    }
+  ],
+  "tails": [
+    {
+      "mu": "0",
+      "cutoff": 0,
+      "seriesNorm": "1",
+      "retained": "decimal:1.0",
+      "tail": "decimal:0.0",
+      "fidelitySquared": "decimal:1.0",
+      "normalizedDistanceSquared": "decimal:0.0"
+    },
+    {
+      "mu": "1",
+      "cutoff": 0,
+      "seriesNorm": "1",
+      "retained": "decimal:0.36787944117144232159552377016146086744581113103176783450783680169746149574489980335714727434591964374662732527684399520824697579279012900862665358949409878309219436737733811504863899112514561634498771997868447595793974730254989249545323936620796",
+      "tail": "decimal:0.63212055882855767840447622983853913255418886896823216549216319830253850425510019664285272565408035625337267472315600479175302420720987099137334641050590121690780563262266188495136100887485438365501228002131552404206025269745010750454676063379204",
+      "fidelitySquared": "decimal:0.36787944117144232159552377016146086744581113103176783450783680169746149574489980335714727434591964374662732527684399520824697579279012900862665358949409878309219436737733811504863899112514561634498771997868447595793974730254989249545323936620796",
+      "normalizedDistanceSquared": "decimal:0.7869386805747331527924009300176390931161637290256260886342156825298869611725031520027047769840210879471524204119209496469243838288741069333176403541046451505848375069663041174549682023041988895112228562984937230263116013625686309368493582197848"
+    },
+    {
+      "mu": "1",
+      "cutoff": 1,
+      "seriesNorm": "2",
+      "retained": "decimal:0.73575888234288464319104754032292173489162226206353566901567360339492299148979960671429454869183928749325465055368799041649395158558025801725330717898819756618438873475467623009727798225029123268997543995736895191587949460509978499090647873241593",
+      "tail": "decimal:0.26424111765711535680895245967707826510837773793646433098432639660507700851020039328570545130816071250674534944631200958350604841441974198274669282101180243381561126524532376990272201774970876731002456004263104808412050539490021500909352126758407",
+      "fidelitySquared": "decimal:0.73575888234288464319104754032292173489162226206353566901567360339492299148979960671429454869183928749325465055368799041649395158558025801725330717898819756618438873475467623009727798225029123268997543995736895191587949460509978499090647873241593",
+      "normalizedDistanceSquared": "decimal:0.28447223007858640703962071744245504375840278449485941200051610376410003196339956785054014303163135584350417616460751975361805696139824599345875415252316826874396561285170957988610474947597657631395482546969056689744143386822089004123960015533793"
+    },
+    {
+      "mu": "1",
+      "cutoff": 3,
+      "seriesNorm": "8/3",
+      "retained": "decimal:0.98101184312384619092139672043056231318882968275138089202089813785989732198639947561905939825578571665767286740491732055532526878077367735633774290531759675491251831300623497346303730966705497691996725327649193588783932614013304665454197164322124",
+      "tail": "decimal:0.018988156876153809078603279569437686811170317248619107979101862140102678013600524380940601744214283342327132595082679444674731219226322643662257094682403245087481686993765026536962690332945023080032746723508064112160673859866953345458028356778761",
+      "fidelitySquared": "decimal:0.98101184312384619092139672043056231318882968275138089202089813785989732198639947561905939825578571665767286740491732055532526878077367735633774290531759675491251831300623497346303730966705497691996725327649193588783932614013304665454197164322124",
+      "normalizedDistanceSquared": "decimal:0.019079160467186976672090740751094174271646954033813485767994363728289593677450882842542250934100112004423619688823271883391213859065893265817378561775824546063773940240391041021612755569962839476744002891304071561682877751731462820484800263191042"
+    },
+    {
+      "mu": "16",
+      "cutoff": 3,
+      "seriesNorm": "2483/3",
+      "retained": "decimal:0.00009314161294264012711256792320209860561233566934431854443351785687749637705726140951025488459551549959027264692857431187072318622991691024740801680491442647835558071124350220113391213562026771539915729504876580520376668415705080897907138913125691",
+      "tail": "decimal:0.99990685838705735987288743207679790139438766433065568145556648214312250362294273859048974511540448450040972735307142568812927681377008308975259198319508557352164441928875649779886608786437973228460084270495123419479623331584294919102092861086874",
+      "fidelitySquared": "decimal:0.00009314161294264012711256792320209860561233566934431854443351785687749637705726140951025488459551549959027264692857431187072318622991691024740801680491442647835558071124350220113391213562026771539915729504876580520376668415705080897907138913125691",
+      "normalizedDistanceSquared": "decimal:1.9806980194857998960715811327954015527683672240978337055517020265610003766917519082297290751648873950494948057226097156441859998647153267003296420699472057016235824235812280981831913462708544756416742686987915997505711899407094300594691944703502"
+    },
+    {
+      "mu": "1/1000000000000",
+      "cutoff": 3,
+      "seriesNorm": "6000000000006000000000003000000000001/6000000000000000000000000000000000000",
+      "retained": "decimal:0.99999999999999999999999999999999999999999999999995833333333336666666666665277777777778174603174603087797619047634479717813048831569664903298861632194931081649831653364639475750258798373877766792780020291073144289083599964202205087942581242370965",
+      "tail": "decimal:0.000000000000000000000000000000000000000000000000041666666666633333333333347222222222218253968253969122023809523655202821869511684303350967011383678050689183501683466353605242497412016261222332072199797089268557109164000357977949120574187576290354028317310194532927660431861480783324907802051747",
+      "fidelitySquared": "decimal:0.99999999999999999999999999999999999999999999999995833333333336666666666665277777777778174603174603087797619047634479717813048831569664903298861632194931081649831653364639475750258798373877766792780020291073144289083599964202205087942581242370965",
+      "normalizedDistanceSquared": "decimal:0.000000000000000000000000000000000000000000000000041666666666633333333333347222222222218253968253969556051587300738536155203412147266313615820907487715988318201792891875357192560761044119057213943967809900891303124363577172947504073112986194968887384340021273728207453472942832814557910419192804"
+    }
+  ],
+  "twoMode": {
+    "retained": "decimal:0.90223522157741794595999663314989602271754363939717254312105915102715582734325126624732081660438032503384858126422368141632897914595235358772596756664470670394166818372455054869892280383896923120023996055630683208580902500104429022663957390009267",
+    "tail": "decimal:0.09776477842258205404000336685010397728245636060282745687894084897284417265674873375267918339561967496615141873577631858367102085404764641227403243335529329605833181627544945130107719616103076879976003944369316791419097499895570977336042609990733"
+  },
+  "finiteDisplacement": {
+    "vacuumReal0": "decimal:0.54030230586813971740093660744297660373231042061792222767009725538110039477447176451795185608718308934357173116003008909786063376002166345640651226541731858471797116447447949423311792455139325433594351775670289259637573615432754964175449177511513",
+    "vacuumReal1": "decimal:0.84147098480789650665250232163029899962256306079837106567275170999191040439123966894863974354305269585434903790792067429325911892099189888119341032772921240948079195582676660699990776401197840878273256634748480287029865615701796245539489357292467",
+    "fidelityToNormalizedProjection": "decimal:0.9546487134128408476980099329558724213511274857239451341894865057654836507703917723100633444624796901549839483711997431306404765543376640601350101698733868914241896550984834988749217852375825877404936712275844243313329969892102928024176436882623",
+    "unitary": true,
+    "differsFromCoherentProjection": true
+  },
+  "boundedObservableTraceDistanceSquared": "epsilon",
+  "unboundedNumberCounterexample": [
+    {
+      "tail": "1/100",
+      "occupation": 100,
+      "meanNumber": "1"
+    },
+    {
+      "tail": "1/100",
+      "occupation": 10000,
+      "meanNumber": "100"
+    }
+  ]
+}

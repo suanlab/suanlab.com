@@ -1,0 +1,6 @@
+import {coarseKinds as kinds,type CoarseKind} from '@/lib/learning-coarse';
+/** Decorative family diagrams; these are not computed trajectories. */
+export default function CoarseCover({kind}:{kind:CoarseKind}){
+ const blue='var(--learning-blue)',orange='var(--learning-orange)',neutral='var(--learning-neutral)';
+ return <svg viewBox="0 0 320 200" fill="none" aria-hidden="true" data-coarse-cover={kind}>{kind===kinds[0]?<><rect x={25} y={35} width={160} height={130} rx={18} stroke={blue} strokeWidth={2}/><rect x={225} y={35} width={70} height={130} rx={18} stroke={orange} strokeWidth={2}/><circle cx={70} cy={100} r={22} stroke={blue} strokeWidth={3}/><circle cx={140} cy={100} r={22} stroke={blue} strokeWidth={3}/><circle cx={260} cy={100} r={22} stroke={orange} strokeWidth={3}/><path d="M70 72Q165 0 260 72M140 128Q200 185 260 128" stroke={neutral} strokeWidth={2} strokeDasharray="5 5"/></>:<><path d="M30 160H295M45 175V30" stroke={neutral}/><path d="M45 45C80 55 80 130 125 128S190 146 290 155" stroke={blue} strokeWidth={4}/><path d="M45 45C90 115 120 150 290 155" stroke={orange} strokeWidth={3} strokeDasharray="7 5"/><circle cx={100} cy={48} r={18} stroke={blue} strokeWidth={2}/><circle cx={230} cy={48} r={18} stroke={orange} strokeWidth={2}/><path d="M120 40H210M210 56H120" stroke={neutral} strokeWidth={2}/></>}</svg>;
+}

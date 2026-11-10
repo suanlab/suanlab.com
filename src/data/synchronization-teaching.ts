@@ -1,0 +1,8 @@
+import type {LearningUnit,LearningGuide} from './interactive-book';
+import {synchronizationKinds as kinds,synchronizationTitles as titles,synchronizationText as t} from '@/lib/learning-synchronization';
+import {synchronizationSteps as steps} from '@/lib/learning-synchronization-concepts';
+const subtitles=[t('진폭·위상·임계 감쇠를 분리하고, 회전하는 원과 평형 원을 비교합니다.','Separate amplitude, phase and critical decay; compare rotating and equilibrium circles.'),t('안정·불안정 잠김과 병목·미끄러짐을 감지 않은 위상으로 비교합니다.','Compare stable and unstable locking, bottlenecks and slips using lifted phase.'),t('집단 질서·실제 주파수·수치 오차와 무한 집단 극한을 구별합니다.','Distinguish collective order, actual frequencies, numerical error and infinite-population limits.')];
+export const synchronizationTeaching:{unit:LearningUnit;guide:LearningGuide}[]=kinds.map((kind,i)=>({
+ unit:{id:kind,title:titles[kind],subtitle:subtitles[i],prerequisiteIds:i===0?['differential-equations','real-complex-numbers']:i===1?[kinds[0],'trigonometry-coordinates']:[kinds[1],'expectation-variance'],prerequisites:t('복소수·삼각함수·미분방정식과 안정성의 선형화를 복습하세요.','Review complex numbers, trigonometry, differential equations and linearized stability.'),eyebrow:'SYNCHRONIZATION & CRITICAL DYNAMICS',formula:steps[kind][0].formula,accent:'synchronization',questions:steps[kind].map((s,j)=>({id:`${kind}-quiz-${j}`,question:s.question,options:s.options,answer:s.answer,explanation:s.solution}))},
+ guide:{intuition:subtitles[i],steps:steps[kind].map(s=>({title:s.title,explanation:s.explanation,formula:s.formula,diagram:s.action})),experiments:steps[kind].map(s=>({title:s.title,predict:s.predict,action:s.action,explain:s.solution,preset:s.presets[0]}))},
+}));

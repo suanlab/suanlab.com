@@ -86,7 +86,7 @@ const translations = {
     'pageheader.project.subtitle': '연구 및 산학협력 프로젝트',
     'pageheader.publication.subtitle': '학술 논문 및 연구 성과',
     'pageheader.blog.subtitle': '데이터 과학, 인공지능, 딥러닝에 관한 이야기',
-    'pageheader.book.subtitle': '출간 도서 및 온라인 도서',
+    'pageheader.book.subtitle': '온라인 도서·인터랙티브 교재·출간 도서',
     'pageheader.lecture.subtitle': '강의 노트 및 교육 자료',
     'pageheader.course.subtitle': '특강 및 세미나 경력',
     'pageheader.deadlines.subtitle': 'AI/ML 주요 학술대회 논문 마감일 및 일정',
@@ -180,7 +180,7 @@ const translations = {
     'pageheader.project.subtitle': 'Research and Industry Projects',
     'pageheader.publication.subtitle': 'Academic Publications',
     'pageheader.blog.subtitle': 'Data Science, AI, and Deep Learning',
-    'pageheader.book.subtitle': 'Published and Online Books',
+    'pageheader.book.subtitle': 'Online, Interactive and Published Books',
     'pageheader.lecture.subtitle': 'Lecture Notes and Materials',
     'pageheader.course.subtitle': 'Guest Lectures and Seminars',
     'pageheader.deadlines.subtitle': 'Conference Deadlines and Schedules',
@@ -239,8 +239,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** Low-level controls also render in standalone previews without a provider. */
+export function useOptionalLanguage() { return useContext(LanguageContext); }
+
 export function useLanguage() {
-  const context = useContext(LanguageContext);
+  const context = useOptionalLanguage();
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }

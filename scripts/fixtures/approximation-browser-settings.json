@@ -1,0 +1,216 @@
+{
+  "pendulum-small-angle-validity": [
+    {
+      "name": "equilibrium",
+      "values": [
+        0,
+        4,
+        20,
+        0,
+        10
+      ],
+      "key": "nonlinear oscillation period seconds",
+      "answer": "—",
+      "checks": [
+        [
+          "relative period error",
+          "—"
+        ],
+        [
+          "1{period meets requested tolerance}",
+          "—"
+        ],
+        [
+          "1{nontrivial oscillation exists}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "small-angle",
+      "values": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "key": "1{period meets requested tolerance}",
+      "answer": "1"
+    },
+    {
+      "name": "large-corrected",
+      "values": [
+        150,
+        20,
+        1,
+        1,
+        100
+      ],
+      "key": "1{period meets requested tolerance}",
+      "answer": "0"
+    },
+    {
+      "name": "looser-tolerance",
+      "values": [
+        30,
+        4,
+        20,
+        0,
+        20
+      ],
+      "key": "1{period meets requested tolerance}",
+      "answer": "1"
+    },
+    {
+      "name": "ninety-corrected",
+      "values": [
+        90,
+        4,
+        20,
+        1,
+        10
+      ],
+      "key": "1{period meets requested tolerance}",
+      "answer": "0"
+    },
+    {
+      "name": "large-linear",
+      "values": [
+        150,
+        1,
+        20,
+        0,
+        1
+      ],
+      "key": "1{period meets requested tolerance}",
+      "answer": "0"
+    }
+  ],
+  "linear-drag-time-regimes": [
+    {
+      "name": "initial-zero-reference",
+      "values": [
+        1,
+        10,
+        20,
+        0,
+        0,
+        0,
+        10
+      ],
+      "key": "relative approximation error",
+      "answer": "—",
+      "checks": [
+        [
+          "absolute approximation error",
+          "0"
+        ],
+        [
+          "1{selected query meets tolerance}",
+          "—"
+        ]
+      ]
+    },
+    {
+      "name": "zero-drag-late",
+      "values": [
+        1,
+        0,
+        20,
+        40,
+        1,
+        1,
+        10
+      ],
+      "key": "selected approximation",
+      "answer": "—",
+      "checks": [
+        [
+          "time constant seconds",
+          "—"
+        ],
+        [
+          "terminal velocity meters per second",
+          "—"
+        ],
+        [
+          "1{finite terminal scale exists}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "zero-drag-early",
+      "values": [
+        5,
+        0,
+        20,
+        40,
+        0,
+        0,
+        10
+      ],
+      "key": "parent observable",
+      "answer": "40",
+      "checks": [
+        [
+          "relative approximation error",
+          "0"
+        ],
+        [
+          "1{selected query meets tolerance}",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "negative-late-position",
+      "values": [
+        1,
+        10,
+        20,
+        5,
+        1,
+        1,
+        10
+      ],
+      "key": "selected approximation",
+      "answer": "-5",
+      "checks": [
+        [
+          "1{selected query meets tolerance}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "late-velocity",
+      "values": [
+        1,
+        10,
+        20,
+        40,
+        0,
+        1,
+        10
+      ],
+      "key": "1{selected query meets tolerance}",
+      "answer": "0"
+    },
+    {
+      "name": "small-time-position",
+      "values": [
+        5,
+        1,
+        20,
+        1,
+        1,
+        0,
+        10
+      ],
+      "key": "1{selected query meets tolerance}",
+      "answer": "1"
+    }
+  ]
+}

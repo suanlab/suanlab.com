@@ -1,0 +1,653 @@
+{
+  "digits": 1600,
+  "outputDigits": 80,
+  "method": "independent spatial primitive integrals and high-precision endpoint subtraction on exact binary inputs",
+  "transportCases": [
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0
+      },
+      "start": 0.0,
+      "end": 5e-324,
+      "massChange": {
+        "value": "-5.851409371506180470814794466667110243281304581730955148708368056775822955190978e-648",
+        "sign": -1,
+        "logMagnitude": "-1490.3084577097077842087748595191175233994498277951058307771615893007648562247594",
+        "rounded": null
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0
+      },
+      "start": 0.0,
+      "end": 1e-323,
+      "massChange": {
+        "value": "-2.3405637486024721883259177866668440973125218326923820594833472227103291820763912e-647",
+        "sign": -1,
+        "logMagnitude": "-1488.92216334858789358994039527620117026329882752638532026892022928177806898082",
+        "rounded": null
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0
+      },
+      "start": -5e-324,
+      "end": 5e-324,
+      "massChange": {
+        "value": "0.0",
+        "sign": 0,
+        "logMagnitude": null,
+        "rounded": 0.0
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.3,
+        "halfWidth": 0.5,
+        "speed": 0.0
+      },
+      "start": 0.0,
+      "end": 5e-324,
+      "massChange": {
+        "value": "6.999918821650822328883968292708831035100377761892150541173516488361755492699437e-325",
+        "sign": 1,
+        "logMagnitude": "-746.39425667098380402849465575243854513751503551814318959238759128251347587858712",
+        "rounded": null
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 4.0,
+        "contrast": 0.8,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 4.0
+      },
+      "window": {
+        "center": 0.5,
+        "halfWidth": 1.0,
+        "speed": 0.0
+      },
+      "start": 0.0,
+      "end": 5e-324,
+      "massChange": {
+        "value": "5.1025225471030604088086772254874877552422462729391632378614521776524294805201627e-323",
+        "sign": 1,
+        "logMagnitude": "-742.10525000255015141693272317920274797068676428572217814620887533715882919238545",
+        "rounded": 5e-323
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 4.0,
+        "contrast": 0.8,
+        "wavenumber": 8.0,
+        "velocity": 2.0,
+        "area": 4.0
+      },
+      "window": {
+        "center": 0.25,
+        "halfWidth": 1.0,
+        "speed": -2.0
+      },
+      "start": 0.0,
+      "end": 5e-324,
+      "massChange": {
+        "value": "4.5513910769236363342260226868658781617625791998733095515281036945388286073215897e-322",
+        "sign": 1,
+        "logMagnitude": "-739.91696702665410056353718055790310712162492093978040684071251757427381550030957",
+        "rounded": 4.55e-322
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 5e-324,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0
+      },
+      "start": 0.0,
+      "end": 1.0,
+      "massChange": {
+        "value": "-6.1025215600132014653232664289909523567279896539366573781003942882601619159767613e-648",
+        "sign": -1,
+        "logMagnitude": "-1490.2664382038824152470490611350796213623252888745487963594620204107962872348436",
+        "rounded": null
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 5e-324,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 5e-324,
+        "speed": 0.0
+      },
+      "start": 0.0,
+      "end": 5e-324,
+      "massChange": {
+        "value": "-1.4719507824404581074101288569614361357616746719095539927812457953895976194036435e-1617",
+        "sign": -1,
+        "logMagnitude": "-3722.8935067874662568799537243518663471335112216489309698821723309890171435992303",
+        "rounded": null
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.3,
+        "halfWidth": 5e-324,
+        "speed": 0.0
+      },
+      "start": -0.4,
+      "end": 0.7,
+      "massChange": {
+        "value": "7.7182345633873518709665363764632846514355010282537517664321354263690613843111117e-325",
+        "sign": 1,
+        "logMagnitude": "-746.29656956867926866213072266104028871579039460655797746062853983341797304842996",
+        "rounded": null
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 1.0
+      },
+      "start": 0.0,
+      "end": 5e-324,
+      "massChange": {
+        "value": "0.0",
+        "sign": 0,
+        "logMagnitude": null,
+        "rounded": 0.0
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.0,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0
+      },
+      "start": 0.0,
+      "end": 5e-324,
+      "massChange": {
+        "value": "0.0",
+        "sign": 0,
+        "logMagnitude": null,
+        "rounded": 0.0
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.0,
+        "speed": 0.0
+      },
+      "start": 0.0,
+      "end": 5e-324,
+      "massChange": {
+        "value": "0.0",
+        "sign": 0,
+        "logMagnitude": null,
+        "rounded": 0.0
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0
+      },
+      "start": 0.2,
+      "end": 0.2,
+      "massChange": {
+        "value": "0.0",
+        "sign": 0,
+        "logMagnitude": null,
+        "rounded": 0.0
+      }
+    },
+    {
+      "system": {
+        "meanDensity": 1.0,
+        "contrast": 0.5,
+        "wavenumber": 1.0,
+        "velocity": 1.0,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0
+      },
+      "start": -0.4,
+      "end": 0.7,
+      "massChange": {
+        "value": "-0.074895285551073185417337840814778780971138235492427693068214489981971883750511581",
+        "sign": -1,
+        "logMagnitude": "-2.591664333683320986461066422714384886104713173550516042306502881497034276665621",
+        "rounded": -0.07489528555107318
+      }
+    }
+  ],
+  "gasCases": [
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 1.0,
+        "expansionRate": 5e-324,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": 0.0,
+      "end": 1.0,
+      "internalChange": {
+        "value": "-4.9406564584124654417656879286822137236505980261432476442558568250067550727020875e-324",
+        "sign": -1,
+        "logMagnitude": "-744.44007192138126231410729844608163411308714430291414292561033019590474999545212",
+        "rounded": -5e-324
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 1.0,
+        "expansionRate": -5e-324,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": 0.0,
+      "end": 1.0,
+      "internalChange": {
+        "value": "4.9406564584124654417656879286822137236505980261432476442558568250067550727020875e-324",
+        "sign": 1,
+        "logMagnitude": "-744.44007192138126231410729844608163411308714430291414292561033019590474999545212",
+        "rounded": 5e-324
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 1.0,
+        "expansionRate": 5e-324,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0,
+        "mode": "fixed"
+      },
+      "start": 0.0,
+      "end": 1.0,
+      "internalChange": {
+        "value": "-1.4821969375237396325297063786046641170951794078429742932767570475020265218106263e-323",
+        "sign": -1,
+        "logMagnitude": "-743.34145963271315262271205320915910840843965374509139347387563586226725570223352",
+        "rounded": -1.5e-323
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 1.0,
+        "expansionRate": 5e-324,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0,
+        "mode": "translating"
+      },
+      "start": 0.0,
+      "end": 1.0,
+      "internalChange": {
+        "value": "-1.4821969375237396325297063786046641170951794078429742932767570475020265218106263e-323",
+        "sign": -1,
+        "logMagnitude": "-743.34145963271315262271205320915910840843965374509139347387563586226725570223352",
+        "rounded": -1.5e-323
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 4.0,
+        "expansionRate": 5e-324,
+        "drift": 0.0,
+        "gamma": 1.1,
+        "area": 4.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 1.0,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": 0.4,
+      "end": 0.7,
+      "internalChange": {
+        "value": "-4.7430302000759657709307934881746715397463769198245688560295536772225375640379547e-323",
+        "sign": -1,
+        "logMagnitude": "-742.17830882290747198168848898158392251229287633670552101057407468123411770461527",
+        "rounded": -5e-323
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 4.0,
+        "expansionRate": 0.25,
+        "drift": 0.0,
+        "gamma": 1.1,
+        "area": 4.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 1.0,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": 0.0,
+      "end": 5e-324,
+      "internalChange": {
+        "value": "-3.95252516672997235341255034294577097892047842091459811540468546000540405816167e-323",
+        "sign": -1,
+        "logMagnitude": "-742.36063037970142638585560208170710440886064389983337716324829016742456912954304",
+        "rounded": -4e-323
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 1.0,
+        "expansionRate": 5e-324,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": 0.0,
+      "end": 5e-324,
+      "internalChange": {
+        "value": "-2.4410086240052805861293065715963809426911958615746629512401577153040647663907045e-647",
+        "sign": -1,
+        "logMagnitude": "-1488.8801438427625246282145968921632682261742886058282858512206603918094999909042",
+        "rounded": null
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 1.0,
+        "expansionRate": 0.5,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": -0.4,
+      "end": 0.7,
+      "internalChange": {
+        "value": "-0.51474204585204885991159282144070077408119442116057227698501122896950413620917381",
+        "sign": -1,
+        "logMagnitude": "-0.664089385642295152222953907890646511683334597960370496050084568592895668802634",
+        "rounded": -0.5147420458520489
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 1.0,
+        "expansionRate": -0.5,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0,
+        "mode": "fixed"
+      },
+      "start": -0.4,
+      "end": 0.7,
+      "internalChange": {
+        "value": "2.2950018233501832051399129114533942381119421859110325803232898477288139656786637",
+        "sign": 1,
+        "logMagnitude": "0.83073363800029012862245111288854526563745952674047168630856040045778040392388072",
+        "rounded": 2.295001823350183
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 0.0,
+        "expansionRate": 5e-324,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": 0.0,
+      "end": 1.0,
+      "internalChange": {
+        "value": "0.0",
+        "sign": 0,
+        "logMagnitude": null,
+        "rounded": 0.0
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 1.0,
+        "expansionRate": 0.0,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": 0.0,
+      "end": 1.0,
+      "internalChange": {
+        "value": "0.0",
+        "sign": 0,
+        "logMagnitude": null,
+        "rounded": 0.0
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 1.0,
+        "expansionRate": 5e-324,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.0,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": 0.0,
+      "end": 1.0,
+      "internalChange": {
+        "value": "0.0",
+        "sign": 0,
+        "logMagnitude": null,
+        "rounded": 0.0
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 1.0,
+        "expansionRate": 5e-324,
+        "drift": 0.0,
+        "gamma": 1.5,
+        "area": 1.0
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 0.5,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": 0.2,
+      "end": 0.2,
+      "internalChange": {
+        "value": "0.0",
+        "sign": 0,
+        "logMagnitude": null,
+        "rounded": 0.0
+      }
+    },
+    {
+      "system": {
+        "initialDensity": 1.0,
+        "initialPressure": 4.0,
+        "expansionRate": 5e-324,
+        "drift": 0.0,
+        "gamma": 1.1,
+        "area": 0.25
+      },
+      "window": {
+        "center": 0.0,
+        "halfWidth": 5e-324,
+        "speed": 0.0,
+        "mode": "material"
+      },
+      "start": 0.0,
+      "end": 1.0,
+      "internalChange": {
+        "value": "-4.882017248010561172258613143192761885382391723149325902480315430608129532781409e-647",
+        "sign": -1,
+        "logMagnitude": "-1488.1869966622025793187973647707050916580987884714680305970999803823161063689346",
+        "rounded": null
+      }
+    }
+  ]
+}

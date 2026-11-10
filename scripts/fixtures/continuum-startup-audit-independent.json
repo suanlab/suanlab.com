@@ -1,0 +1,5310 @@
+{
+  "precisionDigits": 800,
+  "method": "Independent analytic convolution, differentiation and endpoint energy difference",
+  "cases": [
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0007
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": 0.0007,
+          "sign": 1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": -2.2724877535296174e-20,
+          "sign": -1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 2.45e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626401684
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0007
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": 0.0007,
+          "sign": 1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": -2.272487770677345e-20,
+          "sign": -1,
+          "logMagnitude": -45.23082669426601
+        },
+        "energy": {
+          "value": 2.45e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626401684
+        },
+        "energyRate": {
+          "value": -1.5907414394741414e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525691718688
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": -2.2724877592451476e-32,
+          "sign": -1,
+          "logMagnitude": -72.86184781522526
+        },
+        "energyChange": {
+          "value": -1.5907414314716034e-35,
+          "sign": -1,
+          "logMagnitude": -80.12627803814613
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0007
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": 0.0007,
+          "sign": 1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": -2.2724877535296174e-20,
+          "sign": -1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 2.45e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626401684
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": -2.272487753529617e-40,
+          "sign": -1,
+          "logMagnitude": -91.28252856169271
+        },
+        "energyChange": {
+          "value": -1.590741427470732e-43,
+          "sign": -1,
+          "logMagnitude": -98.5469587846136
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0007
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": 0.0007,
+          "sign": 1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": -2.2724877535296174e-20,
+          "sign": -1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 2.45e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626401684
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": -2.2724877535296175e-120,
+          "sign": -1,
+          "logMagnitude": -275.4893360012164
+        },
+        "energyChange": {
+          "value": -1.5907414274707323e-123,
+          "sign": -1,
+          "logMagnitude": -282.7537662241372
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0007
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": 0.0007,
+          "sign": 1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": -2.2724877535296174e-20,
+          "sign": -1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 2.45e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626401684
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": -2.2724877535296175e-140,
+          "sign": -1,
+          "logMagnitude": -321.54103786109727
+        },
+        "energyChange": {
+          "value": -1.590741427470732e-143,
+          "sign": -1,
+          "logMagnitude": -328.8054680840182
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0007
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": 0.0006999999999428476,
+          "sign": 1,
+          "logMagnitude": -7.264430223002516
+        },
+        "stressRate": {
+          "value": -1.7144284064332808e-10,
+          "sign": -1,
+          "logMagnitude": -22.486771195585703
+        },
+        "energy": {
+          "value": 2.4499999995999335e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626564977
+        },
+        "energyRate": {
+          "value": -1.200099884405313e-13,
+          "sign": -1,
+          "logMagnitude": -29.75120141858822
+        },
+        "dissipation": {
+          "value": 4.899999999199867e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860446005032
+        },
+        "power": {
+          "value": 4.899998799099983e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860690923405
+        },
+        "stressChange": {
+          "value": -5.71523764802206e-14,
+          "sign": -1,
+          "logMagnitude": -30.493055422328464
+        },
+        "energyChange": {
+          "value": -4.0006663534521225e-17,
+          "sign": -1,
+          "logMagnitude": -37.75748564529015
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0013000000000000002
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": 0.0013000000000000002,
+          "sign": 1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": -8.569533971325427e-20,
+          "sign": -1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 8.450000000000002e-07,
+          "sign": 1,
+          "logMagnitude": -13.983929209589236
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0013000000000000002
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": 0.0013000000000000002,
+          "sign": 1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": -8.569534081166857e-20,
+          "sign": -1,
+          "logMagnitude": -43.903488495007366
+        },
+        "energy": {
+          "value": 8.450000000000002e-07,
+          "sign": 1,
+          "logMagnitude": -13.983929209589236
+        },
+        "energyRate": {
+          "value": -1.1140394305516916e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887950952201
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": -8.569534007937808e-32,
+          "sign": -1,
+          "logMagnitude": -71.5345096194812
+        },
+        "energyChange": {
+          "value": -1.1140394210319153e-34,
+          "sign": -1,
+          "logMagnitude": -78.17990063399584
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0013000000000000002
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": 0.0013000000000000002,
+          "sign": 1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": -8.569533971325427e-20,
+          "sign": -1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 8.450000000000002e-07,
+          "sign": 1,
+          "logMagnitude": -13.983929209589236
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": -8.569533971325426e-40,
+          "sign": -1,
+          "logMagnitude": -89.95519036770595
+        },
+        "energyChange": {
+          "value": -1.1140394162723055e-42,
+          "sign": -1,
+          "logMagnitude": -96.6005813822206
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0013000000000000002
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": 0.0013000000000000002,
+          "sign": 1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": -8.569533971325427e-20,
+          "sign": -1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 8.450000000000002e-07,
+          "sign": 1,
+          "logMagnitude": -13.983929209589236
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": -8.569533971325427e-120,
+          "sign": -1,
+          "logMagnitude": -274.1619978072296
+        },
+        "energyChange": {
+          "value": -1.1140394162723057e-122,
+          "sign": -1,
+          "logMagnitude": -280.80738882174427
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0013000000000000002
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": 0.0013000000000000002,
+          "sign": 1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": -8.569533971325427e-20,
+          "sign": -1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 8.450000000000002e-07,
+          "sign": 1,
+          "logMagnitude": -13.983929209589236
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": -8.569533971325426e-140,
+          "sign": -1,
+          "logMagnitude": -320.2136996671105
+        },
+        "energyChange": {
+          "value": -1.1140394162723056e-142,
+          "sign": -1,
+          "logMagnitude": -326.85909068162516
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0013000000000000002
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": 0.0012999999996339251,
+          "sign": 1,
+          "logMagnitude": -6.6453910147962425
+        },
+        "stressRate": {
+          "value": -1.0981337702678327e-09,
+          "sign": -1,
+          "logMagnitude": -20.629653670434827
+        },
+        "energy": {
+          "value": 8.449999995241025e-07,
+          "sign": 1,
+          "logMagnitude": -13.98392921015243
+        },
+        "energyRate": {
+          "value": -1.4275739009461831e-12,
+          "sign": -1,
+          "logMagnitude": -27.27504468523107
+        },
+        "dissipation": {
+          "value": 1.689999999048205e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029592485
+        },
+        "power": {
+          "value": 1.6899985714743043e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782874311127
+        },
+        "stressChange": {
+          "value": -3.66075112455009e-13,
+          "sign": -1,
+          "logMagnitude": -28.635937857278236
+        },
+        "energyChange": {
+          "value": -4.758976461245063e-16,
+          "sign": -1,
+          "logMagnitude": -35.28132887193368
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0007
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": -0.0007,
+          "sign": -1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": 2.2724877535296174e-20,
+          "sign": 1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 2.45e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626401684
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0007
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": -0.0007,
+          "sign": -1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": 2.272487770677345e-20,
+          "sign": 1,
+          "logMagnitude": -45.23082669426601
+        },
+        "energy": {
+          "value": 2.45e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626401684
+        },
+        "energyRate": {
+          "value": -1.5907414394741414e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525691718688
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 2.2724877592451476e-32,
+          "sign": 1,
+          "logMagnitude": -72.86184781522526
+        },
+        "energyChange": {
+          "value": -1.5907414314716034e-35,
+          "sign": -1,
+          "logMagnitude": -80.12627803814613
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0007
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": -0.0007,
+          "sign": -1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": 2.2724877535296174e-20,
+          "sign": 1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 2.45e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626401684
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 2.272487753529617e-40,
+          "sign": 1,
+          "logMagnitude": -91.28252856169271
+        },
+        "energyChange": {
+          "value": -1.590741427470732e-43,
+          "sign": -1,
+          "logMagnitude": -98.5469587846136
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0007
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": -0.0007,
+          "sign": -1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": 2.2724877535296174e-20,
+          "sign": 1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 2.45e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626401684
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 2.2724877535296175e-120,
+          "sign": 1,
+          "logMagnitude": -275.4893360012164
+        },
+        "energyChange": {
+          "value": -1.5907414274707323e-123,
+          "sign": -1,
+          "logMagnitude": -282.7537662241372
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0007
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": -0.0007,
+          "sign": -1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": 2.2724877535296174e-20,
+          "sign": 1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 2.45e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626401684
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 2.2724877535296175e-140,
+          "sign": 1,
+          "logMagnitude": -321.54103786109727
+        },
+        "energyChange": {
+          "value": -1.590741427470732e-143,
+          "sign": -1,
+          "logMagnitude": -328.8054680840182
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0007
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": -0.0006999999999428476,
+          "sign": -1,
+          "logMagnitude": -7.264430223002516
+        },
+        "stressRate": {
+          "value": 1.7144284064332808e-10,
+          "sign": 1,
+          "logMagnitude": -22.486771195585703
+        },
+        "energy": {
+          "value": 2.4499999995999335e-07,
+          "sign": 1,
+          "logMagnitude": -15.222007626564977
+        },
+        "energyRate": {
+          "value": -1.200099884405313e-13,
+          "sign": -1,
+          "logMagnitude": -29.75120141858822
+        },
+        "dissipation": {
+          "value": 4.899999999199867e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860446005032
+        },
+        "power": {
+          "value": 4.899998799099983e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860690923405
+        },
+        "stressChange": {
+          "value": 5.71523764802206e-14,
+          "sign": 1,
+          "logMagnitude": -30.493055422328464
+        },
+        "energyChange": {
+          "value": -4.0006663534521225e-17,
+          "sign": -1,
+          "logMagnitude": -37.75748564529015
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0013000000000000002
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": -0.0013000000000000002,
+          "sign": -1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": 8.569533971325427e-20,
+          "sign": 1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 8.450000000000002e-07,
+          "sign": 1,
+          "logMagnitude": -13.983929209589236
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0013000000000000002
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": -0.0013000000000000002,
+          "sign": -1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": 8.569534081166857e-20,
+          "sign": 1,
+          "logMagnitude": -43.903488495007366
+        },
+        "energy": {
+          "value": 8.450000000000002e-07,
+          "sign": 1,
+          "logMagnitude": -13.983929209589236
+        },
+        "energyRate": {
+          "value": -1.1140394305516916e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887950952201
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 8.569534007937808e-32,
+          "sign": 1,
+          "logMagnitude": -71.5345096194812
+        },
+        "energyChange": {
+          "value": -1.1140394210319153e-34,
+          "sign": -1,
+          "logMagnitude": -78.17990063399584
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0013000000000000002
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": -0.0013000000000000002,
+          "sign": -1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": 8.569533971325427e-20,
+          "sign": 1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 8.450000000000002e-07,
+          "sign": 1,
+          "logMagnitude": -13.983929209589236
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 8.569533971325426e-40,
+          "sign": 1,
+          "logMagnitude": -89.95519036770595
+        },
+        "energyChange": {
+          "value": -1.1140394162723055e-42,
+          "sign": -1,
+          "logMagnitude": -96.6005813822206
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0013000000000000002
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": -0.0013000000000000002,
+          "sign": -1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": 8.569533971325427e-20,
+          "sign": 1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 8.450000000000002e-07,
+          "sign": 1,
+          "logMagnitude": -13.983929209589236
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 8.569533971325427e-120,
+          "sign": 1,
+          "logMagnitude": -274.1619978072296
+        },
+        "energyChange": {
+          "value": -1.1140394162723057e-122,
+          "sign": -1,
+          "logMagnitude": -280.80738882174427
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0013000000000000002
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": -0.0013000000000000002,
+          "sign": -1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": 8.569533971325427e-20,
+          "sign": 1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 8.450000000000002e-07,
+          "sign": 1,
+          "logMagnitude": -13.983929209589236
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 8.569533971325426e-140,
+          "sign": 1,
+          "logMagnitude": -320.2136996671105
+        },
+        "energyChange": {
+          "value": -1.1140394162723056e-142,
+          "sign": -1,
+          "logMagnitude": -326.85909068162516
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0013000000000000002
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": -0.0012999999996339251,
+          "sign": -1,
+          "logMagnitude": -6.6453910147962425
+        },
+        "stressRate": {
+          "value": 1.0981337702678327e-09,
+          "sign": 1,
+          "logMagnitude": -20.629653670434827
+        },
+        "energy": {
+          "value": 8.449999995241025e-07,
+          "sign": 1,
+          "logMagnitude": -13.98392921015243
+        },
+        "energyRate": {
+          "value": -1.4275739009461831e-12,
+          "sign": -1,
+          "logMagnitude": -27.27504468523107
+        },
+        "dissipation": {
+          "value": 1.689999999048205e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029592485
+        },
+        "power": {
+          "value": 1.6899985714743043e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782874311127
+        },
+        "stressChange": {
+          "value": 3.66075112455009e-13,
+          "sign": 1,
+          "logMagnitude": -28.635937857278236
+        },
+        "energyChange": {
+          "value": -4.758976461245063e-16,
+          "sign": -1,
+          "logMagnitude": -35.28132887193368
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00035
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": 0.0007,
+          "sign": 1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": -4.544975507059235e-20,
+          "sign": -1,
+          "logMagnitude": -44.53767952125186
+        },
+        "energy": {
+          "value": 1.225e-07,
+          "sign": 1,
+          "logMagnitude": -15.91515480696163
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00035
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": 0.0007,
+          "sign": 1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": -4.544975541350145e-20,
+          "sign": -1,
+          "logMagnitude": -44.53767951370706
+        },
+        "energy": {
+          "value": 1.225e-07,
+          "sign": 1,
+          "logMagnitude": -15.91515480696163
+        },
+        "energyRate": {
+          "value": -1.5907414394725506e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525691718788
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": -4.544975518488023e-32,
+          "sign": -1,
+          "logMagnitude": -72.16870063466581
+        },
+        "energyChange": {
+          "value": -1.590741431470808e-35,
+          "sign": -1,
+          "logMagnitude": -80.12627803814662
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00035
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": 0.0007,
+          "sign": 1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": -4.544975507059235e-20,
+          "sign": -1,
+          "logMagnitude": -44.53767952125186
+        },
+        "energy": {
+          "value": 1.225e-07,
+          "sign": 1,
+          "logMagnitude": -15.91515480696163
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": -4.544975507059234e-40,
+          "sign": -1,
+          "logMagnitude": -90.58938138113277
+        },
+        "energyChange": {
+          "value": -1.590741427470732e-43,
+          "sign": -1,
+          "logMagnitude": -98.5469587846136
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00035
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": 0.0007,
+          "sign": 1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": -4.544975507059235e-20,
+          "sign": -1,
+          "logMagnitude": -44.53767952125186
+        },
+        "energy": {
+          "value": 1.225e-07,
+          "sign": 1,
+          "logMagnitude": -15.91515480696163
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": -4.544975507059235e-120,
+          "sign": -1,
+          "logMagnitude": -274.7961888206564
+        },
+        "energyChange": {
+          "value": -1.5907414274707323e-123,
+          "sign": -1,
+          "logMagnitude": -282.7537662241372
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00035
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": 0.0007,
+          "sign": 1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": -4.544975507059235e-20,
+          "sign": -1,
+          "logMagnitude": -44.53767952125186
+        },
+        "energy": {
+          "value": 1.225e-07,
+          "sign": 1,
+          "logMagnitude": -15.91515480696163
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": -4.544975507059235e-140,
+          "sign": -1,
+          "logMagnitude": -320.8478906805373
+        },
+        "energyChange": {
+          "value": -1.590741427470732e-143,
+          "sign": -1,
+          "logMagnitude": -328.8054680840182
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00035
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": 0.0006999999998857238,
+          "sign": 1,
+          "logMagnitude": -7.264430223084121
+        },
+        "stressRate": {
+          "value": -3.427714336660748e-10,
+          "sign": -1,
+          "logMagnitude": -21.793957265039932
+        },
+        "energy": {
+          "value": 1.2249999996000333e-07,
+          "sign": 1,
+          "logMagnitude": -15.915154807288133
+        },
+        "energyRate": {
+          "value": -1.1997000176354088e-13,
+          "sign": -1,
+          "logMagnitude": -29.751534668684
+        },
+        "dissipation": {
+          "value": 4.899999998400133e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860446168242
+        },
+        "power": {
+          "value": 4.899998798700115e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860691005011
+        },
+        "stressChange": {
+          "value": -1.1427618677088443e-13,
+          "sign": -1,
+          "logMagnitude": -29.800158185527952
+        },
+        "energyChange": {
+          "value": -3.999666536654479e-17,
+          "sign": -1,
+          "logMagnitude": -37.75773558909039
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0006500000000000001
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": 0.0013000000000000002,
+          "sign": 1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": -1.7139067942650854e-19,
+          "sign": -1,
+          "logMagnitude": -43.21034132726509
+        },
+        "energy": {
+          "value": 4.225000000000001e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076390149182
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0006500000000000001
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": 0.0013000000000000002,
+          "sign": 1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": -1.7139068162316576e-19,
+          "sign": -1,
+          "logMagnitude": -43.21034131444842
+        },
+        "energy": {
+          "value": 4.225000000000001e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076390149182
+        },
+        "energyRate": {
+          "value": -1.1140394305505775e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887950952301
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": -1.7139068015867047e-31,
+          "sign": -1,
+          "logMagnitude": -70.84136243892175
+        },
+        "energyChange": {
+          "value": -1.1140394210313583e-34,
+          "sign": -1,
+          "logMagnitude": -78.17990063399634
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0006500000000000001
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": 0.0013000000000000002,
+          "sign": 1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": -1.7139067942650854e-19,
+          "sign": -1,
+          "logMagnitude": -43.21034132726509
+        },
+        "energy": {
+          "value": 4.225000000000001e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076390149182
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": -1.7139067942650852e-39,
+          "sign": -1,
+          "logMagnitude": -89.262043187146
+        },
+        "energyChange": {
+          "value": -1.1140394162723055e-42,
+          "sign": -1,
+          "logMagnitude": -96.6005813822206
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0006500000000000001
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": 0.0013000000000000002,
+          "sign": 1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": -1.7139067942650854e-19,
+          "sign": -1,
+          "logMagnitude": -43.21034132726509
+        },
+        "energy": {
+          "value": 4.225000000000001e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076390149182
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": -1.7139067942650853e-119,
+          "sign": -1,
+          "logMagnitude": -273.4688506266697
+        },
+        "energyChange": {
+          "value": -1.1140394162723057e-122,
+          "sign": -1,
+          "logMagnitude": -280.80738882174427
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0006500000000000001
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": 0.0013000000000000002,
+          "sign": 1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": -1.7139067942650854e-19,
+          "sign": -1,
+          "logMagnitude": -43.21034132726509
+        },
+        "energy": {
+          "value": 4.225000000000001e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076390149182
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": -1.7139067942650852e-139,
+          "sign": -1,
+          "logMagnitude": -319.52055248655057
+        },
+        "energyChange": {
+          "value": -1.1140394162723056e-142,
+          "sign": -1,
+          "logMagnitude": -326.85909068162516
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0006500000000000001
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": 0.001299999999268033,
+          "sign": 1,
+          "logMagnitude": -6.645391015077697
+        },
+        "stressRate": {
+          "value": -2.1955357562577867e-09,
+          "sign": -1,
+          "logMagnitude": -19.93683973990235
+        },
+        "energy": {
+          "value": 4.224999995242214e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076391275286
+        },
+        "energyRate": {
+          "value": -1.4270982407640315e-12,
+          "sign": -1,
+          "logMagnitude": -27.275377935539993
+        },
+        "dissipation": {
+          "value": 1.6899999980968857e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782030155395
+        },
+        "power": {
+          "value": 1.6899985709986449e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782874592582
+        },
+        "stressChange": {
+          "value": -7.319672513942019e-13,
+          "sign": -1,
+          "logMagnitude": -27.943040620482684
+        },
+        "energyChange": {
+          "value": -4.757787132722873e-16,
+          "sign": -1,
+          "logMagnitude": -35.2815788158388
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00035
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": -0.0007,
+          "sign": -1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": 4.544975507059235e-20,
+          "sign": 1,
+          "logMagnitude": -44.53767952125186
+        },
+        "energy": {
+          "value": 1.225e-07,
+          "sign": 1,
+          "logMagnitude": -15.91515480696163
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00035
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": -0.0007,
+          "sign": -1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": 4.544975541350145e-20,
+          "sign": 1,
+          "logMagnitude": -44.53767951370706
+        },
+        "energy": {
+          "value": 1.225e-07,
+          "sign": 1,
+          "logMagnitude": -15.91515480696163
+        },
+        "energyRate": {
+          "value": -1.5907414394725506e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525691718788
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 4.544975518488023e-32,
+          "sign": 1,
+          "logMagnitude": -72.16870063466581
+        },
+        "energyChange": {
+          "value": -1.590741431470808e-35,
+          "sign": -1,
+          "logMagnitude": -80.12627803814662
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00035
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": -0.0007,
+          "sign": -1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": 4.544975507059235e-20,
+          "sign": 1,
+          "logMagnitude": -44.53767952125186
+        },
+        "energy": {
+          "value": 1.225e-07,
+          "sign": 1,
+          "logMagnitude": -15.91515480696163
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 4.544975507059234e-40,
+          "sign": 1,
+          "logMagnitude": -90.58938138113277
+        },
+        "energyChange": {
+          "value": -1.590741427470732e-43,
+          "sign": -1,
+          "logMagnitude": -98.5469587846136
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00035
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": -0.0007,
+          "sign": -1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": 4.544975507059235e-20,
+          "sign": 1,
+          "logMagnitude": -44.53767952125186
+        },
+        "energy": {
+          "value": 1.225e-07,
+          "sign": 1,
+          "logMagnitude": -15.91515480696163
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 4.544975507059235e-120,
+          "sign": 1,
+          "logMagnitude": -274.7961888206564
+        },
+        "energyChange": {
+          "value": -1.5907414274707323e-123,
+          "sign": -1,
+          "logMagnitude": -282.7537662241372
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00035
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": -0.0007,
+          "sign": -1,
+          "logMagnitude": -7.264430222920869
+        },
+        "stressRate": {
+          "value": 4.544975507059235e-20,
+          "sign": 1,
+          "logMagnitude": -44.53767952125186
+        },
+        "energy": {
+          "value": 1.225e-07,
+          "sign": 1,
+          "logMagnitude": -15.91515480696163
+        },
+        "energyRate": {
+          "value": -1.5907414274707322e-23,
+          "sign": -1,
+          "logMagnitude": -52.49525692473267
+        },
+        "dissipation": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "power": {
+          "value": 4.9e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860445841739
+        },
+        "stressChange": {
+          "value": 4.544975507059235e-140,
+          "sign": 1,
+          "logMagnitude": -320.8478906805373
+        },
+        "energyChange": {
+          "value": -1.590741427470732e-143,
+          "sign": -1,
+          "logMagnitude": -328.8054680840182
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00035
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": -0.0006999999998857238,
+          "sign": -1,
+          "logMagnitude": -7.264430223084121
+        },
+        "stressRate": {
+          "value": 3.427714336660748e-10,
+          "sign": 1,
+          "logMagnitude": -21.793957265039932
+        },
+        "energy": {
+          "value": 1.2249999996000333e-07,
+          "sign": 1,
+          "logMagnitude": -15.915154807288133
+        },
+        "energyRate": {
+          "value": -1.1997000176354088e-13,
+          "sign": -1,
+          "logMagnitude": -29.751534668684
+        },
+        "dissipation": {
+          "value": 4.899999998400133e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860446168242
+        },
+        "power": {
+          "value": 4.899998798700115e-07,
+          "sign": 1,
+          "logMagnitude": -14.528860691005011
+        },
+        "stressChange": {
+          "value": 1.1427618677088443e-13,
+          "sign": 1,
+          "logMagnitude": -29.800158185527952
+        },
+        "energyChange": {
+          "value": -3.999666536654479e-17,
+          "sign": -1,
+          "logMagnitude": -37.75773558909039
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0006500000000000001
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": -0.0013000000000000002,
+          "sign": -1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": 1.7139067942650854e-19,
+          "sign": 1,
+          "logMagnitude": -43.21034132726509
+        },
+        "energy": {
+          "value": 4.225000000000001e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076390149182
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0006500000000000001
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": -0.0013000000000000002,
+          "sign": -1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": 1.7139068162316576e-19,
+          "sign": 1,
+          "logMagnitude": -43.21034131444842
+        },
+        "energy": {
+          "value": 4.225000000000001e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076390149182
+        },
+        "energyRate": {
+          "value": -1.1140394305505775e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887950952301
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 1.7139068015867047e-31,
+          "sign": 1,
+          "logMagnitude": -70.84136243892175
+        },
+        "energyChange": {
+          "value": -1.1140394210313583e-34,
+          "sign": -1,
+          "logMagnitude": -78.17990063399634
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0006500000000000001
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": -0.0013000000000000002,
+          "sign": -1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": 1.7139067942650854e-19,
+          "sign": 1,
+          "logMagnitude": -43.21034132726509
+        },
+        "energy": {
+          "value": 4.225000000000001e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076390149182
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 1.7139067942650852e-39,
+          "sign": 1,
+          "logMagnitude": -89.262043187146
+        },
+        "energyChange": {
+          "value": -1.1140394162723055e-42,
+          "sign": -1,
+          "logMagnitude": -96.6005813822206
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0006500000000000001
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": -0.0013000000000000002,
+          "sign": -1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": 1.7139067942650854e-19,
+          "sign": 1,
+          "logMagnitude": -43.21034132726509
+        },
+        "energy": {
+          "value": 4.225000000000001e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076390149182
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 1.7139067942650853e-119,
+          "sign": 1,
+          "logMagnitude": -273.4688506266697
+        },
+        "energyChange": {
+          "value": -1.1140394162723057e-122,
+          "sign": -1,
+          "logMagnitude": -280.80738882174427
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0006500000000000001
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": -0.0013000000000000002,
+          "sign": -1,
+          "logMagnitude": -6.6453910145146455
+        },
+        "stressRate": {
+          "value": 1.7139067942650854e-19,
+          "sign": 1,
+          "logMagnitude": -43.21034132726509
+        },
+        "energy": {
+          "value": 4.225000000000001e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076390149182
+        },
+        "energyRate": {
+          "value": -1.1140394162723056e-22,
+          "sign": -1,
+          "logMagnitude": -50.54887952233968
+        },
+        "dissipation": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "power": {
+          "value": 1.6900000000000003e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782029029291
+        },
+        "stressChange": {
+          "value": 1.7139067942650852e-139,
+          "sign": 1,
+          "logMagnitude": -319.52055248655057
+        },
+        "energyChange": {
+          "value": -1.1140394162723056e-142,
+          "sign": -1,
+          "logMagnitude": -326.85909068162516
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0006500000000000001
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": -0.001299999999268033,
+          "sign": -1,
+          "logMagnitude": -6.645391015077697
+        },
+        "stressRate": {
+          "value": 2.1955357562577867e-09,
+          "sign": 1,
+          "logMagnitude": -19.93683973990235
+        },
+        "energy": {
+          "value": 4.224999995242214e-07,
+          "sign": 1,
+          "logMagnitude": -14.677076391275286
+        },
+        "energyRate": {
+          "value": -1.4270982407640315e-12,
+          "sign": -1,
+          "logMagnitude": -27.275377935539993
+        },
+        "dissipation": {
+          "value": 1.6899999980968857e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782030155395
+        },
+        "power": {
+          "value": 1.6899985709986449e-06,
+          "sign": 1,
+          "logMagnitude": -13.290782874592582
+        },
+        "stressChange": {
+          "value": 7.319672513942019e-13,
+          "sign": 1,
+          "logMagnitude": -27.943040620482684
+        },
+        "energyChange": {
+          "value": -4.757787132722873e-16,
+          "sign": -1,
+          "logMagnitude": -35.2815788158388
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0014
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": 0.0014,
+          "sign": 1,
+          "logMagnitude": -6.571283042360924
+        },
+        "stressRate": {
+          "value": -2.2724877535296174e-20,
+          "sign": -1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "energyRate": {
+          "value": -3.1814828549414643e-23,
+          "sign": -1,
+          "logMagnitude": -51.80210974417273
+        },
+        "dissipation": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "power": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0014
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": 0.0014,
+          "sign": 1,
+          "logMagnitude": -6.571283042360924
+        },
+        "stressRate": {
+          "value": -2.2724877706784813e-20,
+          "sign": -1,
+          "logMagnitude": -45.23082669426551
+        },
+        "energy": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "energyRate": {
+          "value": -3.181482878949874e-23,
+          "sign": -1,
+          "logMagnitude": -51.802109736626434
+        },
+        "dissipation": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "power": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "stressChange": {
+          "value": -2.2724877592457158e-32,
+          "sign": -1,
+          "logMagnitude": -72.861847815225
+        },
+        "energyChange": {
+          "value": -3.1814828629440023e-35,
+          "sign": -1,
+          "logMagnitude": -79.43313085758592
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0014
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": 0.0014,
+          "sign": 1,
+          "logMagnitude": -6.571283042360924
+        },
+        "stressRate": {
+          "value": -2.2724877535296174e-20,
+          "sign": -1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "energyRate": {
+          "value": -3.1814828549414643e-23,
+          "sign": -1,
+          "logMagnitude": -51.80210974417273
+        },
+        "dissipation": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "power": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "stressChange": {
+          "value": -2.272487753529617e-40,
+          "sign": -1,
+          "logMagnitude": -91.28252856169271
+        },
+        "energyChange": {
+          "value": -3.181482854941464e-43,
+          "sign": -1,
+          "logMagnitude": -97.85381160405365
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0014
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": 0.0014,
+          "sign": 1,
+          "logMagnitude": -6.571283042360924
+        },
+        "stressRate": {
+          "value": -2.2724877535296174e-20,
+          "sign": -1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "energyRate": {
+          "value": -3.1814828549414643e-23,
+          "sign": -1,
+          "logMagnitude": -51.80210974417273
+        },
+        "dissipation": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "power": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "stressChange": {
+          "value": -2.2724877535296175e-120,
+          "sign": -1,
+          "logMagnitude": -275.4893360012164
+        },
+        "energyChange": {
+          "value": -3.1814828549414646e-123,
+          "sign": -1,
+          "logMagnitude": -282.0606190435773
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0014
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": 0.0014,
+          "sign": 1,
+          "logMagnitude": -6.571283042360924
+        },
+        "stressRate": {
+          "value": -2.2724877535296174e-20,
+          "sign": -1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "energyRate": {
+          "value": -3.1814828549414643e-23,
+          "sign": -1,
+          "logMagnitude": -51.80210974417273
+        },
+        "dissipation": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "power": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "stressChange": {
+          "value": -2.2724877535296175e-140,
+          "sign": -1,
+          "logMagnitude": -321.54103786109727
+        },
+        "energyChange": {
+          "value": -3.181482854941464e-143,
+          "sign": -1,
+          "logMagnitude": -328.1123209034582
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.0014
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": 0.0013999999999428404,
+          "sign": 1,
+          "logMagnitude": -6.5712830424017525
+        },
+        "stressRate": {
+          "value": -1.7147141325972325e-10,
+          "sign": -1,
+          "logMagnitude": -22.486604549748524
+        },
+        "energy": {
+          "value": 9.799999999199767e-07,
+          "sign": 1,
+          "logMagnitude": -13.83571326536345
+        },
+        "energyRate": {
+          "value": -2.4005997855381133e-13,
+          "sign": -1,
+          "logMagnitude": -29.057887592150276
+        },
+        "dissipation": {
+          "value": 9.799999999199767e-07,
+          "sign": 1,
+          "logMagnitude": -13.83571326536345
+        },
+        "power": {
+          "value": 9.79999759859998e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713510322641
+        },
+        "stressChange": {
+          "value": -5.71595201701097e-14,
+          "sign": -1,
+          "logMagnitude": -30.49293043638898
+        },
+        "energyChange": {
+          "value": -8.002332823651998e-17,
+          "sign": -1,
+          "logMagnitude": -37.06421347877032
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0026000000000000003
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": 0.0026000000000000003,
+          "sign": 1,
+          "logMagnitude": -5.9522438339547
+        },
+        "stressRate": {
+          "value": -8.569533971325427e-20,
+          "sign": -1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "energyRate": {
+          "value": -2.228078832544611e-22,
+          "sign": -1,
+          "logMagnitude": -49.855732341779735
+        },
+        "dissipation": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "power": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0026000000000000003
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": 0.0026000000000000003,
+          "sign": 1,
+          "logMagnitude": -5.9522438339547
+        },
+        "stressRate": {
+          "value": -8.569534081171142e-20,
+          "sign": -1,
+          "logMagnitude": -43.90348849500687
+        },
+        "energy": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "energyRate": {
+          "value": -2.228078861104497e-22,
+          "sign": -1,
+          "logMagnitude": -49.855732328961565
+        },
+        "dissipation": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "power": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "stressChange": {
+          "value": -8.569534007939951e-32,
+          "sign": -1,
+          "logMagnitude": -71.53450961948094
+        },
+        "energyChange": {
+          "value": -2.2280788420643874e-34,
+          "sign": -1,
+          "logMagnitude": -77.48675345343564
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0026000000000000003
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": 0.0026000000000000003,
+          "sign": 1,
+          "logMagnitude": -5.9522438339547
+        },
+        "stressRate": {
+          "value": -8.569533971325427e-20,
+          "sign": -1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "energyRate": {
+          "value": -2.228078832544611e-22,
+          "sign": -1,
+          "logMagnitude": -49.855732341779735
+        },
+        "dissipation": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "power": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "stressChange": {
+          "value": -8.569533971325426e-40,
+          "sign": -1,
+          "logMagnitude": -89.95519036770595
+        },
+        "energyChange": {
+          "value": -2.228078832544611e-42,
+          "sign": -1,
+          "logMagnitude": -95.90743420166065
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0026000000000000003
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": 0.0026000000000000003,
+          "sign": 1,
+          "logMagnitude": -5.9522438339547
+        },
+        "stressRate": {
+          "value": -8.569533971325427e-20,
+          "sign": -1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "energyRate": {
+          "value": -2.228078832544611e-22,
+          "sign": -1,
+          "logMagnitude": -49.855732341779735
+        },
+        "dissipation": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "power": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "stressChange": {
+          "value": -8.569533971325427e-120,
+          "sign": -1,
+          "logMagnitude": -274.1619978072296
+        },
+        "energyChange": {
+          "value": -2.2280788325446114e-122,
+          "sign": -1,
+          "logMagnitude": -280.1142416411843
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0026000000000000003
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": 0.0026000000000000003,
+          "sign": 1,
+          "logMagnitude": -5.9522438339547
+        },
+        "stressRate": {
+          "value": -8.569533971325427e-20,
+          "sign": -1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "energyRate": {
+          "value": -2.228078832544611e-22,
+          "sign": -1,
+          "logMagnitude": -49.855732341779735
+        },
+        "dissipation": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "power": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "stressChange": {
+          "value": -8.569533971325426e-140,
+          "sign": -1,
+          "logMagnitude": -320.2136996671105
+        },
+        "energyChange": {
+          "value": -2.2280788325446112e-142,
+          "sign": -1,
+          "logMagnitude": -326.1659435010652
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0026000000000000003
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": 0.0025999999996338796,
+          "sign": 1,
+          "logMagnitude": -5.952243834095516
+        },
+        "stressRate": {
+          "value": -1.0983167849455089e-09,
+          "sign": -1,
+          "logMagnitude": -20.629487024590997
+        },
+        "energy": {
+          "value": 3.3799999990480864e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848750978
+        },
+        "energyRate": {
+          "value": -2.855623640456207e-12,
+          "sign": -1,
+          "logMagnitude": -26.581730858686516
+        },
+        "dissipation": {
+          "value": 3.3799999990480864e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848750978
+        },
+        "power": {
+          "value": 3.3799971434244462e-06,
+          "sign": 1,
+          "logMagnitude": -12.5976356936104
+        },
+        "stressChange": {
+          "value": -3.661208695572054e-13,
+          "sign": -1,
+          "logMagnitude": -28.635812871336277
+        },
+        "energyChange": {
+          "value": -9.51914260781712e-16,
+          "sign": -1,
+          "logMagnitude": -34.58805670536138
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0014
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": -0.0014,
+          "sign": -1,
+          "logMagnitude": -6.571283042360924
+        },
+        "stressRate": {
+          "value": 2.2724877535296174e-20,
+          "sign": 1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "energyRate": {
+          "value": -3.1814828549414643e-23,
+          "sign": -1,
+          "logMagnitude": -51.80210974417273
+        },
+        "dissipation": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "power": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0014
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": -0.0014,
+          "sign": -1,
+          "logMagnitude": -6.571283042360924
+        },
+        "stressRate": {
+          "value": 2.2724877706784813e-20,
+          "sign": 1,
+          "logMagnitude": -45.23082669426551
+        },
+        "energy": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "energyRate": {
+          "value": -3.181482878949874e-23,
+          "sign": -1,
+          "logMagnitude": -51.802109736626434
+        },
+        "dissipation": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "power": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "stressChange": {
+          "value": 2.2724877592457158e-32,
+          "sign": 1,
+          "logMagnitude": -72.861847815225
+        },
+        "energyChange": {
+          "value": -3.1814828629440023e-35,
+          "sign": -1,
+          "logMagnitude": -79.43313085758592
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0014
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": -0.0014,
+          "sign": -1,
+          "logMagnitude": -6.571283042360924
+        },
+        "stressRate": {
+          "value": 2.2724877535296174e-20,
+          "sign": 1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "energyRate": {
+          "value": -3.1814828549414643e-23,
+          "sign": -1,
+          "logMagnitude": -51.80210974417273
+        },
+        "dissipation": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "power": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "stressChange": {
+          "value": 2.272487753529617e-40,
+          "sign": 1,
+          "logMagnitude": -91.28252856169271
+        },
+        "energyChange": {
+          "value": -3.181482854941464e-43,
+          "sign": -1,
+          "logMagnitude": -97.85381160405365
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0014
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": -0.0014,
+          "sign": -1,
+          "logMagnitude": -6.571283042360924
+        },
+        "stressRate": {
+          "value": 2.2724877535296174e-20,
+          "sign": 1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "energyRate": {
+          "value": -3.1814828549414643e-23,
+          "sign": -1,
+          "logMagnitude": -51.80210974417273
+        },
+        "dissipation": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "power": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "stressChange": {
+          "value": 2.2724877535296175e-120,
+          "sign": 1,
+          "logMagnitude": -275.4893360012164
+        },
+        "energyChange": {
+          "value": -3.1814828549414646e-123,
+          "sign": -1,
+          "logMagnitude": -282.0606190435773
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0014
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": -0.0014,
+          "sign": -1,
+          "logMagnitude": -6.571283042360924
+        },
+        "stressRate": {
+          "value": 2.2724877535296174e-20,
+          "sign": 1,
+          "logMagnitude": -45.23082670181181
+        },
+        "energy": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "energyRate": {
+          "value": -3.1814828549414643e-23,
+          "sign": -1,
+          "logMagnitude": -51.80210974417273
+        },
+        "dissipation": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "power": {
+          "value": 9.8e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713265281793
+        },
+        "stressChange": {
+          "value": 2.2724877535296175e-140,
+          "sign": 1,
+          "logMagnitude": -321.54103786109727
+        },
+        "energyChange": {
+          "value": -3.181482854941464e-143,
+          "sign": -1,
+          "logMagnitude": -328.1123209034582
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.0014
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": -0.0013999999999428404,
+          "sign": -1,
+          "logMagnitude": -6.5712830424017525
+        },
+        "stressRate": {
+          "value": 1.7147141325972325e-10,
+          "sign": 1,
+          "logMagnitude": -22.486604549748524
+        },
+        "energy": {
+          "value": 9.799999999199767e-07,
+          "sign": 1,
+          "logMagnitude": -13.83571326536345
+        },
+        "energyRate": {
+          "value": -2.4005997855381133e-13,
+          "sign": -1,
+          "logMagnitude": -29.057887592150276
+        },
+        "dissipation": {
+          "value": 9.799999999199767e-07,
+          "sign": 1,
+          "logMagnitude": -13.83571326536345
+        },
+        "power": {
+          "value": 9.79999759859998e-07,
+          "sign": 1,
+          "logMagnitude": -13.835713510322641
+        },
+        "stressChange": {
+          "value": 5.71595201701097e-14,
+          "sign": 1,
+          "logMagnitude": -30.49293043638898
+        },
+        "energyChange": {
+          "value": -8.002332823651998e-17,
+          "sign": -1,
+          "logMagnitude": -37.06421347877032
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0026000000000000003
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": -0.0026000000000000003,
+          "sign": -1,
+          "logMagnitude": -5.9522438339547
+        },
+        "stressRate": {
+          "value": 8.569533971325427e-20,
+          "sign": 1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "energyRate": {
+          "value": -2.228078832544611e-22,
+          "sign": -1,
+          "logMagnitude": -49.855732341779735
+        },
+        "dissipation": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "power": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0026000000000000003
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": -0.0026000000000000003,
+          "sign": -1,
+          "logMagnitude": -5.9522438339547
+        },
+        "stressRate": {
+          "value": 8.569534081171142e-20,
+          "sign": 1,
+          "logMagnitude": -43.90348849500687
+        },
+        "energy": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "energyRate": {
+          "value": -2.228078861104497e-22,
+          "sign": -1,
+          "logMagnitude": -49.855732328961565
+        },
+        "dissipation": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "power": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "stressChange": {
+          "value": 8.569534007939951e-32,
+          "sign": 1,
+          "logMagnitude": -71.53450961948094
+        },
+        "energyChange": {
+          "value": -2.2280788420643874e-34,
+          "sign": -1,
+          "logMagnitude": -77.48675345343564
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0026000000000000003
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": -0.0026000000000000003,
+          "sign": -1,
+          "logMagnitude": -5.9522438339547
+        },
+        "stressRate": {
+          "value": 8.569533971325427e-20,
+          "sign": 1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "energyRate": {
+          "value": -2.228078832544611e-22,
+          "sign": -1,
+          "logMagnitude": -49.855732341779735
+        },
+        "dissipation": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "power": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "stressChange": {
+          "value": 8.569533971325426e-40,
+          "sign": 1,
+          "logMagnitude": -89.95519036770595
+        },
+        "energyChange": {
+          "value": -2.228078832544611e-42,
+          "sign": -1,
+          "logMagnitude": -95.90743420166065
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0026000000000000003
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": -0.0026000000000000003,
+          "sign": -1,
+          "logMagnitude": -5.9522438339547
+        },
+        "stressRate": {
+          "value": 8.569533971325427e-20,
+          "sign": 1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "energyRate": {
+          "value": -2.228078832544611e-22,
+          "sign": -1,
+          "logMagnitude": -49.855732341779735
+        },
+        "dissipation": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "power": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "stressChange": {
+          "value": 8.569533971325427e-120,
+          "sign": 1,
+          "logMagnitude": -274.1619978072296
+        },
+        "energyChange": {
+          "value": -2.2280788325446114e-122,
+          "sign": -1,
+          "logMagnitude": -280.1142416411843
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0026000000000000003
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": -0.0026000000000000003,
+          "sign": -1,
+          "logMagnitude": -5.9522438339547
+        },
+        "stressRate": {
+          "value": 8.569533971325427e-20,
+          "sign": 1,
+          "logMagnitude": -43.90348850782503
+        },
+        "energy": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "energyRate": {
+          "value": -2.228078832544611e-22,
+          "sign": -1,
+          "logMagnitude": -49.855732341779735
+        },
+        "dissipation": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "power": {
+          "value": 3.3800000000000007e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848469346
+        },
+        "stressChange": {
+          "value": 8.569533971325426e-140,
+          "sign": 1,
+          "logMagnitude": -320.2136996671105
+        },
+        "energyChange": {
+          "value": -2.2280788325446112e-142,
+          "sign": -1,
+          "logMagnitude": -326.1659435010652
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 1.0,
+        "viscosity": 2.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0026000000000000003
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": -0.0025999999996338796,
+          "sign": -1,
+          "logMagnitude": -5.952243834095516
+        },
+        "stressRate": {
+          "value": 1.0983167849455089e-09,
+          "sign": 1,
+          "logMagnitude": -20.629487024590997
+        },
+        "energy": {
+          "value": 3.3799999990480864e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848750978
+        },
+        "energyRate": {
+          "value": -2.855623640456207e-12,
+          "sign": -1,
+          "logMagnitude": -26.581730858686516
+        },
+        "dissipation": {
+          "value": 3.3799999990480864e-06,
+          "sign": 1,
+          "logMagnitude": -12.597634848750978
+        },
+        "power": {
+          "value": 3.3799971434244462e-06,
+          "sign": 1,
+          "logMagnitude": -12.5976356936104
+        },
+        "stressChange": {
+          "value": 3.661208695572054e-13,
+          "sign": 1,
+          "logMagnitude": -28.635812871336277
+        },
+        "energyChange": {
+          "value": -9.51914260781712e-16,
+          "sign": -1,
+          "logMagnitude": -34.58805670536138
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00105
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": 0.0021,
+          "sign": 1,
+          "logMagnitude": -6.16581793425276
+        },
+        "stressRate": {
+          "value": 2.6830389761774614e-20,
+          "sign": 1,
+          "logMagnitude": -45.06475176145481
+        },
+        "energy": {
+          "value": 1.1024999999999998e-06,
+          "sign": 1,
+          "logMagnitude": -13.717930229625411
+        },
+        "energyRate": {
+          "value": 2.817190924986334e-23,
+          "sign": 1,
+          "logMagnitude": -51.92371687626751
+        },
+        "dissipation": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "power": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00105
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": 0.0021,
+          "sign": 1,
+          "logMagnitude": -6.16581793425276
+        },
+        "stressRate": {
+          "value": 2.6830389418756728e-20,
+          "sign": 1,
+          "logMagnitude": -45.06475177423949
+        },
+        "energy": {
+          "value": 1.1024999999999998e-06,
+          "sign": 1,
+          "logMagnitude": -13.717930229625411
+        },
+        "energyRate": {
+          "value": 2.8171908889694565e-23,
+          "sign": 1,
+          "logMagnitude": -51.923716889052194
+        },
+        "dissipation": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "power": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "stressChange": {
+          "value": 2.6830389647432335e-32,
+          "sign": 1,
+          "logMagnitude": -72.69577288164503
+        },
+        "energyChange": {
+          "value": 2.8171909129803954e-35,
+          "sign": 1,
+          "logMagnitude": -79.55473799645773
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00105
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": 0.0021,
+          "sign": 1,
+          "logMagnitude": -6.16581793425276
+        },
+        "stressRate": {
+          "value": 2.6830389761774614e-20,
+          "sign": 1,
+          "logMagnitude": -45.06475176145481
+        },
+        "energy": {
+          "value": 1.1024999999999998e-06,
+          "sign": 1,
+          "logMagnitude": -13.717930229625411
+        },
+        "energyRate": {
+          "value": 2.817190924986334e-23,
+          "sign": 1,
+          "logMagnitude": -51.92371687626751
+        },
+        "dissipation": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "power": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "stressChange": {
+          "value": 2.6830389761774614e-40,
+          "sign": 1,
+          "logMagnitude": -91.11645362133572
+        },
+        "energyChange": {
+          "value": 2.8171909249863343e-43,
+          "sign": 1,
+          "logMagnitude": -97.97541873614843
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00105
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": 0.0021,
+          "sign": 1,
+          "logMagnitude": -6.16581793425276
+        },
+        "stressRate": {
+          "value": 2.6830389761774614e-20,
+          "sign": 1,
+          "logMagnitude": -45.06475176145481
+        },
+        "energy": {
+          "value": 1.1024999999999998e-06,
+          "sign": 1,
+          "logMagnitude": -13.717930229625411
+        },
+        "energyRate": {
+          "value": 2.817190924986334e-23,
+          "sign": 1,
+          "logMagnitude": -51.92371687626751
+        },
+        "dissipation": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "power": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "stressChange": {
+          "value": 2.6830389761774614e-120,
+          "sign": 1,
+          "logMagnitude": -275.32326106085935
+        },
+        "energyChange": {
+          "value": 2.8171909249863344e-123,
+          "sign": 1,
+          "logMagnitude": -282.1822261756721
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00105
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": 0.0021,
+          "sign": 1,
+          "logMagnitude": -6.16581793425276
+        },
+        "stressRate": {
+          "value": 2.6830389761774614e-20,
+          "sign": 1,
+          "logMagnitude": -45.06475176145481
+        },
+        "energy": {
+          "value": 1.1024999999999998e-06,
+          "sign": 1,
+          "logMagnitude": -13.717930229625411
+        },
+        "energyRate": {
+          "value": 2.817190924986334e-23,
+          "sign": 1,
+          "logMagnitude": -51.92371687626751
+        },
+        "dissipation": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "power": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "stressChange": {
+          "value": 2.683038976177461e-140,
+          "sign": 1,
+          "logMagnitude": -321.3749629207403
+        },
+        "energyChange": {
+          "value": 2.817190924986334e-143,
+          "sign": 1,
+          "logMagnitude": -328.233928035553
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": 0.00105
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": 0.0020999999998856855,
+          "sign": 1,
+          "logMagnitude": -6.165817934307195
+        },
+        "stressRate": {
+          "value": -3.429237764490094e-10,
+          "sign": -1,
+          "logMagnitude": -21.79351291955467
+        },
+        "energy": {
+          "value": 1.10249999987997e-06,
+          "sign": 1,
+          "logMagnitude": -13.71793022973428
+        },
+        "energyRate": {
+          "value": -3.6006996525185933e-13,
+          "sign": -1,
+          "logMagnitude": -28.652478034421808
+        },
+        "dissipation": {
+          "value": 1.4699999998399598e-06,
+          "sign": 1,
+          "logMagnitude": -13.4302481572825
+        },
+        "power": {
+          "value": 1.4699996397699946e-06,
+          "sign": 1,
+          "logMagnitude": -13.430248402228084
+        },
+        "stressChange": {
+          "value": -1.1431427749055935e-13,
+          "sign": -1,
+          "logMagnitude": -29.799824919482486
+        },
+        "energyChange": {
+          "value": -1.2002999136182037e-16,
+          "sign": -1,
+          "logMagnitude": -36.65879003432241
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0019500000000000003
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": 0.0039000000000000007,
+          "sign": 1,
+          "logMagnitude": -5.546778725846536
+        },
+        "stressRate": {
+          "value": -3.159509690912425e-19,
+          "sign": -1,
+          "logMagnitude": -42.59869991243044
+        },
+        "energy": {
+          "value": 3.8025000000000013e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851812812964
+        },
+        "energyRate": {
+          "value": -6.161043897279229e-22,
+          "sign": -1,
+          "logMagnitude": -48.838625818836924
+        },
+        "dissipation": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "power": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0019500000000000003
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": 0.0039000000000000007,
+          "sign": 1,
+          "logMagnitude": -5.546778725846536
+        },
+        "stressRate": {
+          "value": -3.1595097128803184e-19,
+          "sign": -1,
+          "logMagnitude": -42.598699905477496
+        },
+        "energy": {
+          "value": 3.8025000000000013e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851812812964
+        },
+        "energyRate": {
+          "value": -6.161043940116622e-22,
+          "sign": -1,
+          "logMagnitude": -48.83862581188398
+        },
+        "dissipation": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "power": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "stressChange": {
+          "value": -3.1595096982347045e-31,
+          "sign": -1,
+          "logMagnitude": -70.22972102604145
+        },
+        "energyChange": {
+          "value": -6.161043911557675e-34,
+          "sign": -1,
+          "logMagnitude": -76.46964693244793
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0019500000000000003
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": 0.0039000000000000007,
+          "sign": 1,
+          "logMagnitude": -5.546778725846536
+        },
+        "stressRate": {
+          "value": -3.159509690912425e-19,
+          "sign": -1,
+          "logMagnitude": -42.59869991243044
+        },
+        "energy": {
+          "value": 3.8025000000000013e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851812812964
+        },
+        "energyRate": {
+          "value": -6.161043897279229e-22,
+          "sign": -1,
+          "logMagnitude": -48.838625818836924
+        },
+        "dissipation": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "power": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "stressChange": {
+          "value": -3.159509690912424e-39,
+          "sign": -1,
+          "logMagnitude": -88.65040177231135
+        },
+        "energyChange": {
+          "value": -6.161043897279229e-42,
+          "sign": -1,
+          "logMagnitude": -94.89032767871784
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0019500000000000003
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": 0.0039000000000000007,
+          "sign": 1,
+          "logMagnitude": -5.546778725846536
+        },
+        "stressRate": {
+          "value": -3.159509690912425e-19,
+          "sign": -1,
+          "logMagnitude": -42.59869991243044
+        },
+        "energy": {
+          "value": 3.8025000000000013e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851812812964
+        },
+        "energyRate": {
+          "value": -6.161043897279229e-22,
+          "sign": -1,
+          "logMagnitude": -48.838625818836924
+        },
+        "dissipation": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "power": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "stressChange": {
+          "value": -3.1595096909124247e-119,
+          "sign": -1,
+          "logMagnitude": -272.857209211835
+        },
+        "energyChange": {
+          "value": -6.161043897279229e-122,
+          "sign": -1,
+          "logMagnitude": -279.0971351182415
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0019500000000000003
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": 0.0039000000000000007,
+          "sign": 1,
+          "logMagnitude": -5.546778725846536
+        },
+        "stressRate": {
+          "value": -3.159509690912425e-19,
+          "sign": -1,
+          "logMagnitude": -42.59869991243044
+        },
+        "energy": {
+          "value": 3.8025000000000013e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851812812964
+        },
+        "energyRate": {
+          "value": -6.161043897279229e-22,
+          "sign": -1,
+          "logMagnitude": -48.838625818836924
+        },
+        "dissipation": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "power": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "stressChange": {
+          "value": -3.1595096909124246e-139,
+          "sign": -1,
+          "logMagnitude": -318.9089110717159
+        },
+        "energyChange": {
+          "value": -6.161043897279229e-142,
+          "sign": -1,
+          "logMagnitude": -325.1488369781224
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": 0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": 0.0019500000000000003
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": 0.0038999999992677895,
+          "sign": 1,
+          "logMagnitude": -5.546778726034282
+        },
+        "stressRate": {
+          "value": -2.196511550083475e-09,
+          "sign": -1,
+          "logMagnitude": -19.936395394122954
+        },
+        "energy": {
+          "value": 3.8024999985721896e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851813188455
+        },
+        "energyRate": {
+          "value": -4.283197521858622e-12,
+          "sign": -1,
+          "logMagnitude": -26.17632130071718
+        },
+        "dissipation": {
+          "value": 5.0699999980962525e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740736675
+        },
+        "power": {
+          "value": 5.069995714898731e-06,
+          "sign": 1,
+          "logMagnitude": -12.192170585549167
+        },
+        "stressChange": {
+          "value": -7.322112324906005e-13,
+          "sign": -1,
+          "logMagnitude": -27.94270735360116
+        },
+        "energyChange": {
+          "value": -1.427811903222638e-15,
+          "sign": -1,
+          "logMagnitude": -34.18263326010152
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00105
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": -0.0021,
+          "sign": -1,
+          "logMagnitude": -6.16581793425276
+        },
+        "stressRate": {
+          "value": -2.6830389761774614e-20,
+          "sign": -1,
+          "logMagnitude": -45.06475176145481
+        },
+        "energy": {
+          "value": 1.1024999999999998e-06,
+          "sign": 1,
+          "logMagnitude": -13.717930229625411
+        },
+        "energyRate": {
+          "value": 2.817190924986334e-23,
+          "sign": 1,
+          "logMagnitude": -51.92371687626751
+        },
+        "dissipation": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "power": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00105
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": -0.0021,
+          "sign": -1,
+          "logMagnitude": -6.16581793425276
+        },
+        "stressRate": {
+          "value": -2.6830389418756728e-20,
+          "sign": -1,
+          "logMagnitude": -45.06475177423949
+        },
+        "energy": {
+          "value": 1.1024999999999998e-06,
+          "sign": 1,
+          "logMagnitude": -13.717930229625411
+        },
+        "energyRate": {
+          "value": 2.8171908889694565e-23,
+          "sign": 1,
+          "logMagnitude": -51.923716889052194
+        },
+        "dissipation": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "power": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "stressChange": {
+          "value": -2.6830389647432335e-32,
+          "sign": -1,
+          "logMagnitude": -72.69577288164503
+        },
+        "energyChange": {
+          "value": 2.8171909129803954e-35,
+          "sign": 1,
+          "logMagnitude": -79.55473799645773
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00105
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": -0.0021,
+          "sign": -1,
+          "logMagnitude": -6.16581793425276
+        },
+        "stressRate": {
+          "value": -2.6830389761774614e-20,
+          "sign": -1,
+          "logMagnitude": -45.06475176145481
+        },
+        "energy": {
+          "value": 1.1024999999999998e-06,
+          "sign": 1,
+          "logMagnitude": -13.717930229625411
+        },
+        "energyRate": {
+          "value": 2.817190924986334e-23,
+          "sign": 1,
+          "logMagnitude": -51.92371687626751
+        },
+        "dissipation": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "power": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "stressChange": {
+          "value": -2.6830389761774614e-40,
+          "sign": -1,
+          "logMagnitude": -91.11645362133572
+        },
+        "energyChange": {
+          "value": 2.8171909249863343e-43,
+          "sign": 1,
+          "logMagnitude": -97.97541873614843
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00105
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": -0.0021,
+          "sign": -1,
+          "logMagnitude": -6.16581793425276
+        },
+        "stressRate": {
+          "value": -2.6830389761774614e-20,
+          "sign": -1,
+          "logMagnitude": -45.06475176145481
+        },
+        "energy": {
+          "value": 1.1024999999999998e-06,
+          "sign": 1,
+          "logMagnitude": -13.717930229625411
+        },
+        "energyRate": {
+          "value": 2.817190924986334e-23,
+          "sign": 1,
+          "logMagnitude": -51.92371687626751
+        },
+        "dissipation": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "power": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "stressChange": {
+          "value": -2.6830389761774614e-120,
+          "sign": -1,
+          "logMagnitude": -275.32326106085935
+        },
+        "energyChange": {
+          "value": 2.8171909249863344e-123,
+          "sign": 1,
+          "logMagnitude": -282.1822261756721
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00105
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": -0.0021,
+          "sign": -1,
+          "logMagnitude": -6.16581793425276
+        },
+        "stressRate": {
+          "value": -2.6830389761774614e-20,
+          "sign": -1,
+          "logMagnitude": -45.06475176145481
+        },
+        "energy": {
+          "value": 1.1024999999999998e-06,
+          "sign": 1,
+          "logMagnitude": -13.717930229625411
+        },
+        "energyRate": {
+          "value": 2.817190924986334e-23,
+          "sign": 1,
+          "logMagnitude": -51.92371687626751
+        },
+        "dissipation": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "power": {
+          "value": 1.47e-06,
+          "sign": 1,
+          "logMagnitude": -13.43024815717363
+        },
+        "stressChange": {
+          "value": -2.683038976177461e-140,
+          "sign": -1,
+          "logMagnitude": -321.3749629207403
+        },
+        "energyChange": {
+          "value": 2.817190924986334e-143,
+          "sign": 1,
+          "logMagnitude": -328.233928035553
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 0.7,
+        "initialElasticStrain": -0.00105
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": -0.0020999999998856855,
+          "sign": -1,
+          "logMagnitude": -6.165817934307195
+        },
+        "stressRate": {
+          "value": 3.429237764490094e-10,
+          "sign": 1,
+          "logMagnitude": -21.79351291955467
+        },
+        "energy": {
+          "value": 1.10249999987997e-06,
+          "sign": 1,
+          "logMagnitude": -13.71793022973428
+        },
+        "energyRate": {
+          "value": -3.6006996525185933e-13,
+          "sign": -1,
+          "logMagnitude": -28.652478034421808
+        },
+        "dissipation": {
+          "value": 1.4699999998399598e-06,
+          "sign": 1,
+          "logMagnitude": -13.4302481572825
+        },
+        "power": {
+          "value": 1.4699996397699946e-06,
+          "sign": 1,
+          "logMagnitude": -13.430248402228084
+        },
+        "stressChange": {
+          "value": 1.1431427749055935e-13,
+          "sign": 1,
+          "logMagnitude": -29.799824919482486
+        },
+        "energyChange": {
+          "value": -1.2002999136182037e-16,
+          "sign": -1,
+          "logMagnitude": -36.65879003432241
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0019500000000000003
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": -0.0039000000000000007,
+          "sign": -1,
+          "logMagnitude": -5.546778725846536
+        },
+        "stressRate": {
+          "value": 3.159509690912425e-19,
+          "sign": 1,
+          "logMagnitude": -42.59869991243044
+        },
+        "energy": {
+          "value": 3.8025000000000013e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851812812964
+        },
+        "energyRate": {
+          "value": -6.161043897279229e-22,
+          "sign": -1,
+          "logMagnitude": -48.838625818836924
+        },
+        "dissipation": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "power": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0019500000000000003
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": -0.0039000000000000007,
+          "sign": -1,
+          "logMagnitude": -5.546778725846536
+        },
+        "stressRate": {
+          "value": 3.1595097128803184e-19,
+          "sign": 1,
+          "logMagnitude": -42.598699905477496
+        },
+        "energy": {
+          "value": 3.8025000000000013e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851812812964
+        },
+        "energyRate": {
+          "value": -6.161043940116622e-22,
+          "sign": -1,
+          "logMagnitude": -48.83862581188398
+        },
+        "dissipation": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "power": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "stressChange": {
+          "value": 3.1595096982347045e-31,
+          "sign": 1,
+          "logMagnitude": -70.22972102604145
+        },
+        "energyChange": {
+          "value": -6.161043911557675e-34,
+          "sign": -1,
+          "logMagnitude": -76.46964693244793
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0019500000000000003
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": -0.0039000000000000007,
+          "sign": -1,
+          "logMagnitude": -5.546778725846536
+        },
+        "stressRate": {
+          "value": 3.159509690912425e-19,
+          "sign": 1,
+          "logMagnitude": -42.59869991243044
+        },
+        "energy": {
+          "value": 3.8025000000000013e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851812812964
+        },
+        "energyRate": {
+          "value": -6.161043897279229e-22,
+          "sign": -1,
+          "logMagnitude": -48.838625818836924
+        },
+        "dissipation": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "power": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "stressChange": {
+          "value": 3.159509690912424e-39,
+          "sign": 1,
+          "logMagnitude": -88.65040177231135
+        },
+        "energyChange": {
+          "value": -6.161043897279229e-42,
+          "sign": -1,
+          "logMagnitude": -94.89032767871784
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0019500000000000003
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": -0.0039000000000000007,
+          "sign": -1,
+          "logMagnitude": -5.546778725846536
+        },
+        "stressRate": {
+          "value": 3.159509690912425e-19,
+          "sign": 1,
+          "logMagnitude": -42.59869991243044
+        },
+        "energy": {
+          "value": 3.8025000000000013e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851812812964
+        },
+        "energyRate": {
+          "value": -6.161043897279229e-22,
+          "sign": -1,
+          "logMagnitude": -48.838625818836924
+        },
+        "dissipation": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "power": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "stressChange": {
+          "value": 3.1595096909124247e-119,
+          "sign": 1,
+          "logMagnitude": -272.857209211835
+        },
+        "energyChange": {
+          "value": -6.161043897279229e-122,
+          "sign": -1,
+          "logMagnitude": -279.0971351182415
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0019500000000000003
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": -0.0039000000000000007,
+          "sign": -1,
+          "logMagnitude": -5.546778725846536
+        },
+        "stressRate": {
+          "value": 3.159509690912425e-19,
+          "sign": 1,
+          "logMagnitude": -42.59869991243044
+        },
+        "energy": {
+          "value": 3.8025000000000013e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851812812964
+        },
+        "energyRate": {
+          "value": -6.161043897279229e-22,
+          "sign": -1,
+          "logMagnitude": -48.838625818836924
+        },
+        "dissipation": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "power": {
+          "value": 5.0700000000000014e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740361182
+        },
+        "stressChange": {
+          "value": 3.1595096909124246e-139,
+          "sign": 1,
+          "logMagnitude": -318.9089110717159
+        },
+        "energyChange": {
+          "value": -6.161043897279229e-142,
+          "sign": -1,
+          "logMagnitude": -325.1488369781224
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 3.0,
+        "strainAmplitude": -0.001,
+        "angularFrequency": 1.3,
+        "initialElasticStrain": -0.0019500000000000003
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": -0.0038999999992677895,
+          "sign": -1,
+          "logMagnitude": -5.546778726034282
+        },
+        "stressRate": {
+          "value": 2.196511550083475e-09,
+          "sign": 1,
+          "logMagnitude": -19.936395394122954
+        },
+        "energy": {
+          "value": 3.8024999985721896e-06,
+          "sign": 1,
+          "logMagnitude": -12.479851813188455
+        },
+        "energyRate": {
+          "value": -4.283197521858622e-12,
+          "sign": -1,
+          "logMagnitude": -26.17632130071718
+        },
+        "dissipation": {
+          "value": 5.0699999980962525e-06,
+          "sign": 1,
+          "logMagnitude": -12.192169740736675
+        },
+        "power": {
+          "value": 5.069995714898731e-06,
+          "sign": 1,
+          "logMagnitude": -12.192170585549167
+        },
+        "stressChange": {
+          "value": 7.322112324906005e-13,
+          "sign": 1,
+          "logMagnitude": -27.94270735360116
+        },
+        "energyChange": {
+          "value": -1.427811903222638e-15,
+          "sign": -1,
+          "logMagnitude": -34.18263326010152
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.002,
+        "angularFrequency": 1.0,
+        "initialElasticStrain": 0.001
+      },
+      "time": 0.0,
+      "expected": {
+        "stress": {
+          "value": 0.002,
+          "sign": 1,
+          "logMagnitude": -6.214608098422191
+        },
+        "stressRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energy": {
+          "value": 1e-06,
+          "sign": 1,
+          "logMagnitude": -13.815510557964274
+        },
+        "energyRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "dissipation": {
+          "value": 4e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216196844383
+        },
+        "power": {
+          "value": 4e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216196844383
+        },
+        "stressChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "energyChange": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.002,
+        "angularFrequency": 1.0,
+        "initialElasticStrain": 0.001
+      },
+      "time": 1e-12,
+      "expected": {
+        "stress": {
+          "value": 0.002,
+          "sign": 1,
+          "logMagnitude": -6.214608098422191
+        },
+        "stressRate": {
+          "value": -1.9999999999986667e-27,
+          "sign": -1,
+          "logMagnitude": -61.47665033027995
+        },
+        "energy": {
+          "value": 1e-06,
+          "sign": 1,
+          "logMagnitude": -13.815510557964274
+        },
+        "energyRate": {
+          "value": -1.999999999998667e-30,
+          "sign": -1,
+          "logMagnitude": -68.38440560926209
+        },
+        "dissipation": {
+          "value": 4e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216196844383
+        },
+        "power": {
+          "value": 4e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216196844383
+        },
+        "stressChange": {
+          "value": -6.666666666663333e-40,
+          "sign": -1,
+          "logMagnitude": -90.20628373487645
+        },
+        "energyChange": {
+          "value": -6.666666666663333e-43,
+          "sign": -1,
+          "logMagnitude": -97.11403901385859
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.002,
+        "angularFrequency": 1.0,
+        "initialElasticStrain": 0.001
+      },
+      "time": 1e-20,
+      "expected": {
+        "stress": {
+          "value": 0.002,
+          "sign": 1,
+          "logMagnitude": -6.214608098422191
+        },
+        "stressRate": {
+          "value": -1.9999999999999998e-43,
+          "sign": -1,
+          "logMagnitude": -98.31801181818402
+        },
+        "energy": {
+          "value": 1e-06,
+          "sign": 1,
+          "logMagnitude": -13.815510557964274
+        },
+        "energyRate": {
+          "value": -2e-46,
+          "sign": -1,
+          "logMagnitude": -105.22576709716616
+        },
+        "dissipation": {
+          "value": 4e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216196844383
+        },
+        "power": {
+          "value": 4e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216196844383
+        },
+        "stressChange": {
+          "value": -6.666666666666665e-64,
+          "sign": -1,
+          "logMagnitude": -145.46832596673303
+        },
+        "energyChange": {
+          "value": -6.666666666666666e-67,
+          "sign": -1,
+          "logMagnitude": -152.37608124571517
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.002,
+        "angularFrequency": 1.0,
+        "initialElasticStrain": 0.001
+      },
+      "time": 1e-100,
+      "expected": {
+        "stress": {
+          "value": 0.002,
+          "sign": 1,
+          "logMagnitude": -6.214608098422191
+        },
+        "stressRate": {
+          "value": -2e-203,
+          "sign": -1,
+          "logMagnitude": -466.7316266972313
+        },
+        "energy": {
+          "value": 1e-06,
+          "sign": 1,
+          "logMagnitude": -13.815510557964274
+        },
+        "energyRate": {
+          "value": -2e-206,
+          "sign": -1,
+          "logMagnitude": -473.6393819762135
+        },
+        "dissipation": {
+          "value": 4e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216196844383
+        },
+        "power": {
+          "value": 4e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216196844383
+        },
+        "stressChange": {
+          "value": -6.6666666666666676e-304,
+          "sign": -1,
+          "logMagnitude": -698.088748285304
+        },
+        "energyChange": {
+          "value": -6.666666666666667e-307,
+          "sign": -1,
+          "logMagnitude": -704.9965035642862
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.002,
+        "angularFrequency": 1.0,
+        "initialElasticStrain": 0.001
+      },
+      "time": 1e-120,
+      "expected": {
+        "stress": {
+          "value": 0.002,
+          "sign": 1,
+          "logMagnitude": -6.214608098422191
+        },
+        "stressRate": {
+          "value": -2e-243,
+          "sign": -1,
+          "logMagnitude": -558.8350304169932
+        },
+        "energy": {
+          "value": 1e-06,
+          "sign": 1,
+          "logMagnitude": -13.815510557964274
+        },
+        "energyRate": {
+          "value": -2e-246,
+          "sign": -1,
+          "logMagnitude": -565.7427856959753
+        },
+        "dissipation": {
+          "value": 4e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216196844383
+        },
+        "power": {
+          "value": 4e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216196844383
+        },
+        "stressChange": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -836.2438538649468
+        },
+        "energyChange": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -843.1516091439289
+        }
+      }
+    },
+    {
+      "parameters": {
+        "elasticModulus": 2.0,
+        "viscosity": 1.0,
+        "strainAmplitude": 0.002,
+        "angularFrequency": 1.0,
+        "initialElasticStrain": 0.001
+      },
+      "time": 0.001,
+      "expected": {
+        "stress": {
+          "value": 0.0019999999993336667,
+          "sign": 1,
+          "logMagnitude": -6.214608098755359
+        },
+        "stressRate": {
+          "value": -1.998667166466739e-09,
+          "sign": -1,
+          "logMagnitude": -20.030785295307453
+        },
+        "energy": {
+          "value": 9.999999993336667e-07,
+          "sign": 1,
+          "logMagnitude": -13.815510558630608
+        },
+        "energyRate": {
+          "value": -1.9986671658008497e-12,
+          "sign": -1,
+          "logMagnitude": -26.938540574622756
+        },
+        "dissipation": {
+          "value": 3.999999997334667e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216197510717
+        },
+        "power": {
+          "value": 3.9999979986675005e-06,
+          "sign": 1,
+          "logMagnitude": -12.429216697177633
+        },
+        "stressChange": {
+          "value": -6.663334333000103e-13,
+          "sign": -1,
+          "logMagnitude": -28.036986199053377
+        },
+        "energyChange": {
+          "value": -6.663334331890103e-16,
+          "sign": -1,
+          "logMagnitude": -34.9447414782021
+        }
+      }
+    }
+  ]
+}

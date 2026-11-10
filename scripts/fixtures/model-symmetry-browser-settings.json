@@ -1,0 +1,180 @@
+{
+  "galilean-observers-frame-energy": [
+    {
+      "name": "identity",
+      "values": [
+        2,
+        10,
+        -10,
+        20,
+        20,
+        0,
+        0
+      ],
+      "key": "1{unchanged initial data globally valid}",
+      "answer": "1"
+    },
+    {
+      "name": "offset-only",
+      "values": [
+        1,
+        10,
+        20,
+        10,
+        10,
+        0,
+        30
+      ],
+      "key": "1{query coordinates coincide}",
+      "answer": "0"
+    },
+    {
+      "name": "initial-match",
+      "values": [
+        1,
+        10,
+        20,
+        10,
+        0,
+        20,
+        0
+      ],
+      "key": "1{query coordinates coincide}",
+      "answer": "1"
+    },
+    {
+      "name": "negative-force",
+      "values": [
+        5,
+        -30,
+        -30,
+        -30,
+        50,
+        -30,
+        -30
+      ],
+      "key": "exact position reconstruction residual",
+      "answer": "0"
+    },
+    {
+      "name": "large-coordinates",
+      "values": [
+        1,
+        30,
+        30,
+        30,
+        50,
+        -30,
+        30
+      ],
+      "key": "exact kinetic transformation residual",
+      "answer": "0"
+    },
+    {
+      "name": "opposite-velocities",
+      "values": [
+        1,
+        0,
+        10,
+        0,
+        10,
+        20,
+        0
+      ],
+      "key": "primed kinetic energy joules",
+      "answer": "0.5"
+    }
+  ],
+  "rotational-covariance-material-symmetry": [
+    {
+      "name": "origin",
+      "values": [
+        1,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "key": "1{queried active force equivariant}",
+      "answer": "1"
+    },
+    {
+      "name": "axis-torque",
+      "values": [
+        1,
+        2,
+        1,
+        10,
+        0,
+        0,
+        10,
+        1
+      ],
+      "key": "1{instant torque zero}",
+      "answer": "1"
+    },
+    {
+      "name": "off-diagonal",
+      "values": [
+        1,
+        2,
+        1,
+        10,
+        10,
+        0,
+        0,
+        4
+      ],
+      "key": "transformed stiffness xy N per m",
+      "answer": "-0.48"
+    },
+    {
+      "name": "identity-rotation",
+      "values": [
+        1,
+        5,
+        5,
+        30,
+        -30,
+        30,
+        -30,
+        0
+      ],
+      "key": "1{chosen rotation globally symmetric}",
+      "answer": "1"
+    },
+    {
+      "name": "isotropic-large",
+      "values": [
+        5,
+        5,
+        5,
+        30,
+        -30,
+        30,
+        -30,
+        7
+      ],
+      "key": "1{every planar rotation symmetric}",
+      "answer": "1"
+    },
+    {
+      "name": "negative-quarter",
+      "values": [
+        5,
+        1,
+        1,
+        -30,
+        20,
+        -30,
+        30,
+        3
+      ],
+      "key": "instant torque N m",
+      "answer": "-24"
+    }
+  ]
+}

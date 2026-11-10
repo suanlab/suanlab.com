@@ -1,0 +1,3 @@
+import type{CurrentKind}from'@/lib/learning-probability-current';
+/** Fixed decorative art, no model computation or Worker during SSR. */
+export default function ProbabilityCurrentCover({kind}:{kind:CurrentKind}){return <svg data-current-cover={kind} viewBox="0 0 320 220" aria-hidden="true" focusable="false" style={{width:'100%',height:'100%'}}><g fill="none" stroke="var(--learning-blue)"><circle cx={160} cy={110} r={74}/><circle cx={160} cy={110} r={47}/><circle cx={160} cy={110} r={22}/></g><g stroke="var(--learning-orange)" strokeWidth={5} fill="none"><path d="M234 110Q234 54 184 39L193 31M184 39L195 48"/><path d="M86 110Q86 166 136 181L127 189M136 181L125 172"/></g><circle cx={207} cy={110} r={6} fill="var(--learning-orange)"/></svg>;}

@@ -1,0 +1,11 @@
+/** Classical ensemble weights and complex raw representatives, not amplitude averaging. */
+type I=0|1|2|3;
+export type DensityEnsembleParameters={dimension:number;centerNumerator:number;centerDenominator:number;gapNumerator:number;gapDenominator:number}&Record<`weight${I}`,number>&Record<`component${I}${'Real'|'Imag'}${I}`,number>&Record<`probe${'Real'|'Imag'}${I}`,number>;
+export const densityEnsembleKeys=['dimension',...Array.from({length:4},(_,i)=>`weight${i}`),...Array.from({length:4},(_,i)=>Array.from({length:4},(_,j)=>[`component${i}Real${j}`,`component${i}Imag${j}`]).flat()).flat(),...Array.from({length:4},(_,i)=>[`probeReal${i}`,`probeImag${i}`]).flat(),'centerNumerator','centerDenominator','gapNumerator','gapDenominator'] as readonly string[];
+export function isDensityEnsembleParameters(value:unknown):value is DensityEnsembleParameters{
+ if(!value||typeof value!=='object'||Object.getPrototypeOf(value)!==Object.prototype||Reflect.ownKeys(value).length!==49)return false;const p=value as Record<string,number>;
+ if(!densityEnsembleKeys.every(k=>Object.hasOwn(p,k)&&Number.isSafeInteger(p[k])&&Math.abs(p[k])<=1000000)||p.dimension<1||p.dimension>4||p.centerDenominator<=0||p.gapDenominator<=0)return false;
+ const nonzero=(prefix:string)=>Array.from({length:p.dimension},(_,i)=>i).some(i=>p[`${prefix}Real${i}`]!==0||p[`${prefix}Imag${i}`]!==0);
+ return Array.from({length:4},(_,i)=>i).every(i=>p[`weight${i}`]>=0&&(p[`weight${i}`]===0||nonzero(`component${i}`)))&&Array.from({length:4},(_,i)=>p[`weight${i}`]).some(w=>w>0)&&nonzero('probe')&&['probe',...Array.from({length:4},(_,i)=>`component${i}`)].every(prefix=>Array.from({length:4-p.dimension},(_,i)=>i+p.dimension).every(i=>p[`${prefix}Real${i}`]===0&&p[`${prefix}Imag${i}`]===0));
+}
+export function snapshotDensityEnsembleParameters(value:DensityEnsembleParameters):Readonly<DensityEnsembleParameters>{if(!isDensityEnsembleParameters(value))throw new RangeError('49 owned integers |x|<=1e6; dimension1..4,nonnegative weights with positive sum,nonzero occupied states/probe,zero inactive coordinates and positive denominators');return Object.freeze(Object.fromEntries(densityEnsembleKeys.map(k=>[k,(value as unknown as Record<string,number>)[k]+0]))) as DensityEnsembleParameters;}

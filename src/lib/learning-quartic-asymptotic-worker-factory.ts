@@ -1,0 +1,2 @@
+export function createQuarticAsymptoticWorker():Worker{return new Worker(new URL('./learning-quartic-asymptotic.worker.ts',import.meta.url),{type:'module',name:'quartic-asymptotic-calculation'});}
+export function createQuarticAsymptoticValidationWorker():Worker{return new Worker(new URL('./learning-quartic-asymptotic-validation.worker.ts',import.meta.url),{type:'module',name:'quartic-asymptotic-validation'});}

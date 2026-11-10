@@ -1,0 +1,45 @@
+'use client';
+import {useEffect,useId,useState} from 'react';
+import {Button} from '@/components/ui/button';
+import {graphGaugeSteps,graphGaugeExperiments,graphGaugeQuestions} from '@/data/graph-gauge-teaching';
+import {graphGaugeExamples} from '@/lib/learning-graph-gauge-examples';
+import {graphGaugeInputKey,type GraphGaugeInput} from '@/lib/learning-graph-gauge-input';
+import {graphGaugeDraft,readGraphGaugeDraft} from '@/lib/learning-graph-gauge-draft';
+import {useSavedGraphGauge} from './use-saved-graph-gauge';
+import {useGraphGaugeCalculation} from './use-graph-gauge-calculation';
+import GraphGaugeResultView from './graph-gauge-result';
+export default function GraphGaugeLab({language,embedded=false}:{language:'ko'|'en';embedded?:boolean}){
+ const t=(ko:string,en:string)=>language==='ko'?ko:en,id=useId(),saved=useSavedGraphGauge(graphGaugeExamples[0].input),[running,setRunning]=useState(true),calculation=useGraphGaugeCalculation(saved.input,saved.ready&&running);
+ const[draft,setDraft]=useState(()=>graphGaugeDraft(saved.input)),[invalid,setInvalid]=useState(false),[step,setStep]=useState(0),[experiment,setExperiment]=useState(0),[explain,setExplain]=useState(false),[motion,setMotion]=useState(true),[answers,setAnswers]=useState<Record<number,number>>({});
+ useEffect(()=>{setDraft(graphGaugeDraft(saved.input));setInvalid(false);},[saved.input]);
+ const choose=(input:GraphGaugeInput)=>{saved.setInput(input);setRunning(true);calculation.retry();};
+ const key=graphGaugeInputKey(saved.input),example=graphGaugeExamples.find(item=>graphGaugeInputKey(item.input)===key),guide=graphGaugeExperiments[experiment];
+ const rowLabels=[t('물질 목록: Re Im','Matter rows: Re Im'),t('기준 목록: t minusOne','Frame rows: t minusOne'),t('간선 목록: from to t minusOne weight','Edge rows: from to t minusOne weight'),t('닫힌 경로: start: +edge −edge','Closed walks: start: +edge -edge')],coefficientLabels=[t('이차 계수 a','Quadratic coefficient a'),t('사차 계수 b (0이상)','Quartic coefficient b (nonnegative)'),t('루프 계수 κ (0이상)','Loop coefficient κ (nonnegative)')];
+ return <section className="ai-qubit-lab information-lab scalar-lab" lang={language} aria-labelledby={`${id}-title`} data-graph-gauge-phase={calculation.status}>
+  <h2 id={`${id}-title`}>{t('국소 기준과 Wilson루프 실험','Explore local frames and Wilson loops')}</h2>
+  <p>{t('물질과 링크를 함께 바꾸는 조작과 물질만 바꾸는 조작을 비교하세요. 닫힌 곱·감싼 관측·Hermitian 연산자와 복소 기울기를 검산합니다. 시간은 적분하지 않습니다.','Compare changing matter and links together with changing matter alone. Inspect closed products,dressed observations,the Hermitian operator and complex gradient. Time is not integrated.')}</p>
+  {!embedded&&<><nav className="qubit-actions" aria-label={t('개념 단계','Concept steps')}>{graphGaugeSteps.map((s,i)=><Button key={i} variant="outline" aria-pressed={step===i} onClick={()=>setStep(i)}>{i+1}. {s.title[language]}</Button>)}</nav>
+   <label className="scalar-check"><input type="checkbox" checked={motion} onChange={e=>setMotion(e.target.checked)}/>{t('개념 전환 효과 사용','Animate concept transitions')}</label>
+   <div className="information-step" key={step} style={!motion?{animation:'none'}:undefined} aria-live="polite"><h3>{graphGaugeSteps[step].title[language]}</h3><p>{graphGaugeSteps[step].body[language]}</p><p className="information-equation">{graphGaugeSteps[step].formula}</p></div></>}
+  <h3>{t('먼저 예측하고 비교하기','Predict first, then compare')}</h3>
+  <label className="qubit-field" htmlFor={`${id}-guide`}>{t('안내 실험','Guided experiment')}<select id={`${id}-guide`} aria-label={t('안내 실험','Guided experiment')} value={experiment} onChange={e=>{setExperiment(Number(e.target.value));setExplain(false);}}>{graphGaugeExperiments.map((g,i)=><option value={i} key={i}>{g.title[language]}</option>)}</select></label>
+  <p>{guide.predict[language]}</p><div className="qubit-actions" role="group" aria-label={t('안내 예제','Guided examples')}>{guide.examples.map(ex=>{const item=graphGaugeExamples.find(p=>p.id===ex)!;return <Button key={ex} variant="outline" aria-pressed={example?.id===ex} onClick={()=>choose(item.input)}>{(language==='ko'?item.titleKo:item.titleEn)}</Button>;})}</div>
+  <Button variant="outline" aria-expanded={explain} onClick={()=>setExplain(v=>!v)}>{t('해설 보기','Show explanation')}</Button>{explain&&<p data-graph-gauge-guide-explanation>{guide.explanation[language]}</p>}
+  <label className="qubit-field" htmlFor={`${id}-example`}>{t('전체 예제','All examples')}<select id={`${id}-example`} aria-label={t('전체 예제','All examples')} disabled={!saved.ready} value={example?.id??'custom'} onChange={e=>{const item=graphGaugeExamples.find(p=>p.id===e.target.value);if(item)choose(item.input);}}><option value="custom" disabled>{t('직접 입력','Custom input')}</option>{graphGaugeExamples.map(item=><option key={item.id} value={item.id}>{(language==='ko'?item.titleKo:item.titleEn)}</option>)}</select></label>
+  {!saved.ready&&<p role="status">{t('저장된 입력을 확인하고 있습니다.','Checking the saved input.')}</p>}
+  {saved.storage!=='available'&&<p role="status" data-graph-gauge-storage={saved.storage}>{saved.storage==='corrupt'?t('저장된 입력 형식이 잘못되어 첫 예제로 복원했습니다.','The saved input was invalid; the first example was restored.'):t('이 브라우저에서 저장할 수 없습니다. 현재 화면에서는 계속 실험할 수 있습니다.','Storage is unavailable. You can continue experimenting in this session.')}</p>}
+  <form onSubmit={e=>{e.preventDefault();const next=readGraphGaugeDraft(draft);if(next){choose(next);setInvalid(false);}else setInvalid(true);}}>
+   <h3>{t('물질·기준·그래프 직접 입력','Edit matter,frames and the graph')}</h3>
+   <p>{t('행마다 값을 공백으로 나눕니다. 노드3–12개, 간선0–32개, 닫힌 경로0–8개이며 각 경로는1–32단계입니다. 정수·분수의 분자/분모는18자리 이내입니다. 아래 true는−1위상을 뜻하며 t는0이어야 합니다. 번호는0부터 시작합니다.','Separate columns by spaces,one row per item. Use3–12 sites,0–32 edges and0–8 closed walks,with1–32 steps per walk. Integer/fraction numerators and denominators have at most18 digits. The true flag represents phase−1 and requires t=0. Indices start at0.')}</p>
+   <div className="scalar-inputs">{(['quadratic','quartic','loopCoupling']as const).map((field,i)=><label className="qubit-field" key={field} htmlFor={`${id}-${field}`}>{coefficientLabels[i]}<input aria-label={coefficientLabels[i]} id={`${id}-${field}`} value={draft[field]} maxLength={40} onChange={e=>setDraft(d=>({...d,[field]:e.target.value}))} autoComplete="off" spellCheck={false}/></label>)}</div>
+   {(['matter','frames','edges','walks']as const).map((field,i)=><label className="qubit-field" key={field} htmlFor={`${id}-${field}`}>{rowLabels[i]}<textarea aria-label={rowLabels[i]} id={`${id}-${field}`} value={draft[field]} maxLength={16000} rows={4} onChange={e=>setDraft(d=>({...d,[field]:e.target.value}))} spellCheck={false}/></label>)}
+   <p>{t('기본 경로는 0: +0 +1 +2입니다. 역방향은 ASCII 하이픈으로 − 대신 -0처럼 입력합니다. 자기 루프·평행 간선은 허용하며 경로는 실제로 이어지고 닫혀야 합니다. 빈 간선/경로 목록도 허용합니다.','The default walk is 0: +0 +1 +2. Use an ASCII hyphen for reverse steps,such as -0. Self-loops and parallel edges are allowed; walks must connect and close. Empty edge/walk lists are allowed.')}</p>
+   {invalid&&<p role="alert">{t('열 수·분수·부호·노드 번호와 경로의 연결/닫힘을 확인하세요. 결과는 이전에 적용한 입력의 값입니다.','Check columns,fractions,signs,site indices and walk connectivity/closure. Results still belong to the previously applied input.')}</p>}
+   <div className="qubit-actions"><Button type="submit" disabled={!saved.ready}>{t('입력 적용','Apply input')}</Button><Button type="button" variant="outline" onClick={()=>choose(graphGaugeExamples[0].input)}>{t('첫 예제로 초기화','Reset to first example')}</Button></div>
+  </form>
+  <div className="qubit-actions">{calculation.status==='pending'&&<Button variant="outline" onClick={()=>{setRunning(false);calculation.cancel();}}>{t('계산 취소','Cancel calculation')}</Button>}{(calculation.error||!running)&&<Button onClick={()=>{setRunning(true);calculation.retry();}}>{t('다시 계산','Recalculate')}</Button>}</div>
+  <p role={calculation.error?'alert':'status'} aria-live="polite">{calculation.error?t('현재 계산을 마치지 못했습니다. 다시 계산하거나 예제를 선택하세요. 이전 결과는 새 입력의 결과로 표시하지 않습니다.','The current calculation could not finish. Recalculate or select an example. Previous results are not shown for the new input.'):!running?t('계산을 취소했습니다.','Calculation cancelled.'):calculation.status==='ready'?t('현재 입력의 계산과 독립 검산을 완료했습니다.','Calculation and independent checks for the current input are complete.'):calculation.phase==='validating'?t('결과를 독립 검산하고 있습니다.','Independently checking the result.'):t('현재 입력을 계산하고 있습니다.','Calculating the current input.')}</p>
+  {calculation.response&&<GraphGaugeResultView key={key} result={calculation.response.result} language={language}/>}
+  {!embedded&&<><h3>{t('이해 확인','Check your understanding')}</h3>{graphGaugeQuestions.map((q,i)=><fieldset className="information-question" key={i}><legend>{i+1}. {q.prompt[language]}</legend>{q.options.map((option,j)=><label key={j}><input type="radio" name={`${id}-quiz-${i}`} checked={answers[i]===j} onChange={()=>setAnswers(a=>({...a,[i]:j}))}/>{option[language]}</label>)}{answers[i]!==undefined&&<p role="status"><strong>{answers[i]===q.correct?t('맞습니다. ','Correct. '):t('다시 생각해보세요. ','Think again. ')}</strong>{q.explanation[language]}</p>}</fieldset>)}</>}
+ </section>;
+}

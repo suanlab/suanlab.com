@@ -15,7 +15,7 @@ export interface LearningHeading { id: string; title: string; }
 export interface LearningContent { ko: string; en: string; outline: { ko: LearningHeading[]; en: LearningHeading[] }; }
 
 export async function getLearningContent(unitId: string): Promise<LearningContent> {
-  if (!/^[a-z]+(?:-[a-z]+)*$/.test(unitId)) throw new Error('Invalid learning unit ID');
+  if (!/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(unitId)) throw new Error('Invalid learning unit ID');
   const render = async (locale: 'ko' | 'en') => {
     const source = await fs.readFile(path.join(process.cwd(), 'content/learning/physics-math-for-ai', `${unitId}.${locale}.md`), 'utf8');
     const outline: LearningHeading[] = [];

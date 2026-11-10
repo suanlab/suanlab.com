@@ -1,0 +1,7 @@
+import type{LearningUnit,LearningGuide}from'./interactive-book';
+import{hilbertKinds as kinds,hilbertTitles as titles,hilbertText as t}from'@/lib/learning-hilbert';import{hilbertSteps as steps}from'@/lib/learning-hilbert-concepts';
+const subtitles=[t('복소 진폭·전역 위상·기저 확률과 Gram 기하를 비교합니다.','Compare complex amplitudes, global phase, basis probabilities and Gram geometry.'),t('정확 구간 확률과 유한 사영으로 L² 동치류·정규화·완비성을 이해합니다.','Understand L² equivalence, normalization and completeness through exact interval probabilities and finite projections.')];
+export const hilbertTeaching:{unit:LearningUnit;guide:LearningGuide}[]=kinds.map((kind,i)=>({
+ unit:{id:kind,title:titles[kind],subtitle:subtitles[i],prerequisiteIds:i===0?['real-complex-numbers','inner-products','orthogonal-hilbert-projections']:[kinds[0],'normed-banach-hilbert','orthogonal-hilbert-projections'],prerequisites:t('복소수·내적·정규직교 사영과 norm·완비성의 정의를 복습하세요.','Review complex numbers, inner products, orthogonal projections, norms and completeness.'),eyebrow:'QUANTUM STATES & HILBERT SPACE',formula:steps[kind][0].formula,accent:'hilbert',questions:steps[kind].map((s,j)=>({id:`${kind}-quiz-${j}`,question:s.question,options:s.options,answer:s.answer,explanation:s.solution}))},
+ guide:{intuition:subtitles[i],steps:steps[kind].map(s=>({title:s.title,explanation:s.explanation,formula:s.formula,diagram:s.action})),experiments:steps[kind].map(s=>({title:s.title,predict:s.predict,action:s.action,explain:s.solution,preset:s.presets[0]}))}
+}));

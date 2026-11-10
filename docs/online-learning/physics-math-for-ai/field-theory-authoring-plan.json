@@ -1,0 +1,322 @@
+{
+  "date": "2026-11-10",
+  "domainId": "field-multiscale",
+  "scope": "All ten original introductory topics, followed by domain audit and research depth; no weekly limit",
+  "registered": false,
+  "firstDraftId": "scalar-field-action-boundary-variation",
+  "sourceReferences": [
+    {
+      "url": "https://davidtong.org/teaching/quantum-field-theory/qfthtml/S1",
+      "verified": "2026-11-09",
+      "scope": "General field action, boundary variation, classical Euler–Lagrange framework"
+    },
+    {
+      "url": "https://davidtong.org/teaching/statistical-field-theory/sfthtml/S1",
+      "verified": "2026-11-09",
+      "scope": "Statistical field versus microscopic model, mean-field and fluctuation prerequisites"
+    },
+    {
+      "url": "https://davidtong.org/pdfs/teaching/gauge-theory/gauge4.pdf",
+      "verified": "2026-11-09",
+      "scope": "Chapter4 section4.2.1: group-valued links,endpoint transformation,Wilson products and dressed matter. Source SU(N) lattice theory distinguished from derived static finite U(1) graph. Does not substantiate the still-pending canonical-constraint unit."
+    },
+    {
+      "url": "https://arxiv.org/html/2409.13812v2",
+      "verified": "2026-11-10",
+      "scope": "Sections III.1 and C.3.2: maximal-tree fixing,rooted Wilson products and remaining root conjugation in SU(2). Disconnected U(1) multigraphs,matter Gram classification and anchored subgroups are derived separately with independent tests.",
+      "auditReport": "docs/online-learning/physics-math-for-ai/gauge-orbits-primary-source-audit.md"
+    }
+  ],
+  "topics": [
+    {
+      "order": 1,
+      "originalTopic": "Classical fields and actions",
+      "titleKo": "고전장·작용",
+      "proposedIds": [
+        "scalar-field-action-boundary-variation",
+        "field-noether-current-boundary-balance",
+        "field-fourier-modes-lattice-continuum"
+      ],
+      "requiredConcepts": [
+        "Functional derivatives and admissible variations",
+        "Boundary terms, initial data, mass matrix and units",
+        "Local currents, discrete symmetry and continuum limits"
+      ],
+      "proposedNumericalExamples": [
+        "Periodic scalar lattice with exact rational energy and variational derivatives",
+        "Fixed-boundary versus periodic comparison",
+        "Fourier mode dispersion with spatial refinement"
+      ],
+      "status": "Planned introductory topic verified against all three registered units,actual reader/production assets and cross-unit mathematics; research depth and the other domain topics remain pending",
+      "introductoryAuditReport": "docs/online-learning/physics-math-for-ai/classical-fields-introductory-audit.md"
+    },
+    {
+      "order": 2,
+      "originalTopic": "Symmetry and gauge",
+      "titleKo": "대칭·gauge",
+      "proposedIds": [
+        "graph-u1-local-frames-wilson-loops",
+        "gauge-orbits-tree-fixing-boundary-anchors",
+        "graph-gauss-constraints-physical-phase-space"
+      ],
+      "requiredConcepts": [
+        "Global symmetry versus local redundancy",
+        "Gauge-invariant observables and gauge fixing",
+        "Constraints, boundary data and non-identifiability"
+      ],
+      "proposedNumericalExamples": [
+        "Finite graph U(1) phases and invariant loop products; explicitly distinguish graph model from continuum gauge theory"
+      ],
+      "status": "First gauge unit registered and actual-reader/production verified. Second orbit/tree/anchor unit has bilingual manuscripts,independent response validation and native Workers/React hook verified; teaching UI,actual reader and production assets remain pending. Canonical constraints and the original-topic audit remain pending.",
+      "preparations": [
+        {
+          "id": "graph-u1-local-frames-wilson-loops",
+          "originalTopic": "대칭·gauge",
+          "stage": "actual-reader-and-production-assets-verified",
+          "bilingualDraftFiles": 2,
+          "sectionsPerLanguage": 16,
+          "preparedExamples": 13,
+          "independentReferenceCases": 49,
+          "newFoundationTestsPassed": 56,
+          "independentResponseValidatorImplemented": true,
+          "workerImplemented": true,
+          "teachingUiImplemented": true,
+          "readerRegistered": true,
+          "originalTopicComplete": false,
+          "report": "docs/online-learning/physics-math-for-ai/graph-gauge-reader-integration-status.md",
+          "evidence": ".runtime/learning/graph-gauge-reader-integration/verification.json",
+          "workerVerified": true,
+          "workerVerificationScope": "production-Next-assets-and-actual-reader-verified",
+          "newWorkerTestsPassed": 73,
+          "relatedTestsPassed": 149,
+          "semanticMutationsRejected": 231,
+          "nativeWorkerCases": 65,
+          "nativeEnergyMutationsRejected": 65,
+          "nativeRequestAttributionsRejected": 65,
+          "nativeHookWorkersCreated": 14,
+          "nativeHookWorkersTerminated": 14,
+          "maximumBudgetCases": 3,
+          "teachingReady": true,
+          "conceptSteps": 8,
+          "guidedExperiments": 6,
+          "explainedQuestions": 7,
+          "newTeachingTestsPassed": 8,
+          "teachingBrowserCases": 8,
+          "teachingAccessibilityCases": 16,
+          "teachingWorkersCreated": 304,
+          "teachingWorkersTerminated": 304,
+          "storageBrowserCases": 5,
+          "storageAccessibilityCases": 5,
+          "inputBrowserCases": 2,
+          "touchCameraCases": 2,
+          "plotReadabilityInspected": true,
+          "productionNextAssetsVerified": true,
+          "homepageIntegrated": true,
+          "verified": true,
+          "readerBrowserCases": 8,
+          "readerAccessibilityCases": 8,
+          "readerConceptChecks": 64,
+          "readerQuestionChecks": 56,
+          "referenceDiagramBrowserCases": 16,
+          "productionWorkerCases": 65,
+          "productionEnergyMutationsRejected": 65,
+          "productionRequestAttributionsRejected": 65,
+          "readerRecoveryWorkersCreated": 9,
+          "readerRecoveryWorkersTerminated": 9,
+          "priorProductionWorkerAssetsPreserved": 6
+        },
+        {
+          "id": "gauge-orbits-tree-fixing-boundary-anchors",
+          "originalTopic": "대칭·gauge",
+          "stage": "independent-validation-and-native-workers-verified",
+          "bilingualDraftFiles": 2,
+          "sectionsPerLanguage": 18,
+          "displayEquationsPerLanguage": 13,
+          "explainedQuestionsPerLanguage": 7,
+          "preparedExamples": 17,
+          "independentReferenceCases": 77,
+          "newFoundationTestsPassed": 85,
+          "relatedTestsPassed": 192,
+          "maximumBudgetAnchorPatterns": [
+            0,
+            1,
+            3,
+            12
+          ],
+          "independentResponseValidatorImplemented": true,
+          "workerImplemented": true,
+          "teachingUiImplemented": false,
+          "readerRegistered": false,
+          "originalTopicComplete": false,
+          "report": "docs/online-learning/physics-math-for-ai/gauge-orbits-worker-status.md",
+          "evidence": ".runtime/learning/gauge-orbits-worker/verification.json",
+          "workerVerified": true,
+          "workerVerificationScope": "local-esbuild-module-workers-and-react-hook; production-Next-assets-pending",
+          "newWorkerTestsPassed": 107,
+          "workerTestsPassed": 89,
+          "controllerTestsPassed": 18,
+          "semanticMutationsRejected": 462,
+          "nativeWorkerCases": 99,
+          "nativeOrbitMutationsRejected": 99,
+          "nativeRequestAttributionsRejected": 99,
+          "nativeHookWorkersCreated": 14,
+          "nativeHookWorkersTerminated": 14,
+          "maximumBudgetCases": 5
+        }
+      ],
+      "scopeDecomposition": [
+        {
+          "unitId": "graph-u1-local-frames-wilson-loops",
+          "scope": "Local frames,coordinated transformations,covariant matter differences,complex loop and dressed observables,operator and gradient covariance",
+          "status": "actual-reader-and-production-assets-verified"
+        },
+        {
+          "unitId": "gauge-orbits-tree-fixing-boundary-anchors",
+          "scope": "Gauge orbits,spanning forest fixing,independent cycles,residual root phases,external anchors and non-identifiability",
+          "status": "independent-validation-and-native-workers-verified-unregistered"
+        },
+        {
+          "unitId": "graph-gauss-constraints-physical-phase-space",
+          "scope": "Canonical electric variables,Gauss constraints,charges,boundaries,allowed gauge transformations and physical phase space",
+          "status": "pending-primary-source-audit-and-authoring"
+        }
+      ],
+      "originalTopicComplete": false
+    },
+    {
+      "order": 3,
+      "originalTopic": "Perturbation theory",
+      "titleKo": "perturbation",
+      "proposedIds": [],
+      "requiredConcepts": [
+        "Small parameter and remainder",
+        "Degenerate versus nondegenerate expansion",
+        "Secular terms and nonuniform validity"
+      ],
+      "proposedNumericalExamples": [
+        "Finite coupled matrices with exact eigenvalue oracles and order-by-order error scaling"
+      ],
+      "status": "pending authoring and topic-specific primary-source audit"
+    },
+    {
+      "order": 4,
+      "originalTopic": "Correlation functions",
+      "titleKo": "correlation function",
+      "proposedIds": [],
+      "requiredConcepts": [
+        "Connected versus disconnected functions",
+        "Source differentiation and response",
+        "Boundary and finite-size dependence"
+      ],
+      "proposedNumericalExamples": [
+        "Finite Gaussian field covariance from a positive precision matrix; reject zero-mode normalization failures"
+      ],
+      "status": "pending authoring and topic-specific primary-source audit"
+    },
+    {
+      "order": 5,
+      "originalTopic": "Definitions and approximations of path integrals",
+      "titleKo": "path integral의 정의·근사",
+      "proposedIds": [],
+      "requiredConcepts": [
+        "Finite dimensional integrals versus formal continuum notation",
+        "Normalization, measure and Euclidean versus oscillatory weights",
+        "Saddle approximation and convergence limitations"
+      ],
+      "proposedNumericalExamples": [
+        "Finite lattice Gaussian integral with explicit determinant; separate exact finite calculation from continuum existence"
+      ],
+      "status": "pending authoring and topic-specific primary-source audit"
+    },
+    {
+      "order": 6,
+      "originalTopic": "Statistical field theory",
+      "titleKo": "statistical field theory",
+      "proposedIds": [],
+      "requiredConcepts": [
+        "Order-parameter field and chosen coarse description",
+        "Fluctuations, stiffness and domains",
+        "Finite volume and thermodynamic limits"
+      ],
+      "proposedNumericalExamples": [
+        "Small finite field model with independent quadrature or enumeration where justified"
+      ],
+      "status": "pending authoring and topic-specific primary-source audit"
+    },
+    {
+      "order": 7,
+      "originalTopic": "Criticality and universality",
+      "titleKo": "criticality·universality",
+      "proposedIds": [],
+      "requiredConcepts": [
+        "Correlation length and scaling hypotheses",
+        "Finite-size rounding versus singular limits",
+        "Universality assumptions and counterexamples"
+      ],
+      "proposedNumericalExamples": [
+        "Explicit finite-size sequences and comparison of observables with independently known behavior"
+      ],
+      "status": "pending authoring and topic-specific primary-source audit"
+    },
+    {
+      "order": 8,
+      "originalTopic": "Renormalization and coarse graining",
+      "titleKo": "renormalization·coarse graining",
+      "proposedIds": [],
+      "requiredConcepts": [
+        "Integrating out versus rescaling",
+        "Running couplings and fixed points",
+        "Relevant, marginal and irrelevant directions"
+      ],
+      "proposedNumericalExamples": [
+        "Exact Gaussian block elimination retaining determinant and induced couplings"
+      ],
+      "status": "pending authoring and topic-specific primary-source audit"
+    },
+    {
+      "order": 9,
+      "originalTopic": "Effective theories",
+      "titleKo": "effective theory",
+      "proposedIds": [],
+      "requiredConcepts": [
+        "Specified observables and validity range",
+        "Matching, symmetry-allowed operators and truncation",
+        "Error estimates and breakdown scales"
+      ],
+      "proposedNumericalExamples": [
+        "Eliminate a massive finite quadratic field and compare exact response with a controlled low-frequency expansion"
+      ],
+      "status": "pending authoring and topic-specific primary-source audit"
+    },
+    {
+      "order": 10,
+      "originalTopic": "Scale separation",
+      "titleKo": "scale separation",
+      "proposedIds": [],
+      "requiredConcepts": [
+        "Initial layers, memory and reduced dynamics",
+        "Small parameter versus observed time scale",
+        "Uniform approximation and failure of closure"
+      ],
+      "proposedNumericalExamples": [
+        "Fast/slow linear field modes with exact memory kernel and reduced-model error"
+      ],
+      "status": "pending authoring and topic-specific primary-source audit"
+    }
+  ],
+  "gates": [
+    "Detailed bilingual manuscript with units, assumptions, derivations, worked examples and explained questions",
+    "Independent mathematical reference and validator with boundary and failure cases",
+    "Worker input ownership, cancellation and lifetime checks",
+    "Concept diagrams, interactive examples, accessible tables and reduced motion",
+    "Actual Interactive Book reader, discovery, prerequisite order and production assets",
+    "Only then update introductory-topic completion; retain broader research and domain audits"
+  ],
+  "registrationScope": "The three classical-field/action units are registered and their original introductory topic is verified. The first symmetry/gauge unit is registered and actual-reader/production verified,but tree fixing/boundary anchors and canonical constraints are pending. The other eight domain topics,domain audit and research depth remain pending.",
+  "registeredUnitIds": [
+    "scalar-field-action-boundary-variation",
+    "field-noether-current-boundary-balance",
+    "field-fourier-modes-lattice-continuum",
+    "graph-u1-local-frames-wilson-loops"
+  ]
+}

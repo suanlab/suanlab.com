@@ -1,0 +1,3474 @@
+{
+  "method": "Independent exact Fraction references for binary products and kernel moments.\nParticle positions are the declared ordinary binary64 geometry; all subsequent\nkernel and moment arithmetic is exact rational arithmetic before projection.\n",
+  "binaryCases": [
+    {
+      "terms": [
+        [
+          5e-324,
+          0.5
+        ]
+      ],
+      "denominator": [
+        [
+          1.0
+        ]
+      ],
+      "expected": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -745.1332191019412
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324,
+          0.5,
+          4.0
+        ]
+      ],
+      "denominator": [
+        [
+          1.0
+        ]
+      ],
+      "expected": {
+        "value": 1e-323,
+        "sign": 1,
+        "logMagnitude": -743.7469247408213
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324,
+          5e-324
+        ],
+        [
+          -5e-324,
+          5e-324
+        ],
+        [
+          5e-324,
+          5e-324,
+          5e-324
+        ]
+      ],
+      "denominator": [
+        [
+          1.0
+        ]
+      ],
+      "expected": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2233.3202157641435
+      }
+    },
+    {
+      "terms": [
+        [
+          1e+308,
+          1e+308,
+          1e-308
+        ]
+      ],
+      "denominator": [
+        [
+          1.0
+        ]
+      ],
+      "expected": {
+        "value": 1e+308,
+        "sign": 1,
+        "logMagnitude": 709.1962086421661
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324
+        ]
+      ],
+      "denominator": [
+        [
+          5e-324
+        ]
+      ],
+      "expected": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324,
+          5e-324
+        ]
+      ],
+      "denominator": [
+        [
+          5e-324
+        ]
+      ],
+      "expected": {
+        "value": 5e-324,
+        "sign": 1,
+        "logMagnitude": -744.4400719213813
+      }
+    },
+    {
+      "terms": [
+        [
+          3.0,
+          5e-324
+        ]
+      ],
+      "denominator": [
+        [
+          2.0
+        ]
+      ],
+      "expected": {
+        "value": 1e-323,
+        "sign": 1,
+        "logMagnitude": -744.0346068132731
+      }
+    },
+    {
+      "terms": [
+        [
+          5.0,
+          5e-324
+        ]
+      ],
+      "denominator": [
+        [
+          2.0
+        ]
+      ],
+      "expected": {
+        "value": 1e-323,
+        "sign": 1,
+        "logMagnitude": -743.5237811895071
+      }
+    },
+    {
+      "terms": [
+        [
+          -3.0,
+          5e-324
+        ]
+      ],
+      "denominator": [
+        [
+          2.0
+        ]
+      ],
+      "expected": {
+        "value": -1e-323,
+        "sign": -1,
+        "logMagnitude": -744.0346068132731
+      }
+    },
+    {
+      "terms": [
+        [
+          1.0
+        ],
+        [
+          -1.0000000000000002
+        ]
+      ],
+      "denominator": [
+        [
+          1.0
+        ]
+      ],
+      "expected": {
+        "value": -2.220446049250313e-16,
+        "sign": -1,
+        "logMagnitude": -36.04365338911715
+      }
+    },
+    {
+      "terms": [
+        [
+          1.0,
+          5e-324
+        ],
+        [
+          -1.0,
+          5e-324
+        ]
+      ],
+      "denominator": [
+        [
+          1.0
+        ]
+      ],
+      "expected": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      }
+    },
+    {
+      "terms": [
+        [
+          3.141592653589793,
+          3.141592653589793
+        ]
+      ],
+      "denominator": [
+        [
+          3.0
+        ]
+      ],
+      "expected": {
+        "value": 3.289868133696453,
+        "sign": 1,
+        "logMagnitude": 1.19084748303068
+      }
+    },
+    {
+      "terms": [
+        [
+          1.0,
+          -0.8427721181652554
+        ],
+        [
+          1.0,
+          0.5828951955655999
+        ],
+        [
+          1.0,
+          0.8061536252391779
+        ]
+      ],
+      "denominator": [
+        [
+          1.0180895877331655
+        ]
+      ],
+      "expected": {
+        "value": 0.5365703659300146,
+        "sign": 1,
+        "logMagnitude": -0.6225575681398823
+      }
+    },
+    {
+      "terms": [
+        [
+          1e-200,
+          -1.4265894436061743
+        ],
+        [
+          1e-200,
+          -1.217671071473311
+        ],
+        [
+          1e-200,
+          -1.3972292035771643
+        ]
+      ],
+      "denominator": [
+        [
+          2.6366910116054383
+        ]
+      ],
+      "expected": {
+        "value": -1.5327885220027554e-200,
+        "sign": -1,
+        "logMagnitude": -460.08992995885774
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324,
+          0.7456052646401936
+        ],
+        [
+          5e-324,
+          1.7327036468741586
+        ],
+        [
+          5e-324,
+          -1.559249360149055
+        ]
+      ],
+      "denominator": [
+        [
+          0.18147647450812937
+        ]
+      ],
+      "expected": {
+        "value": 2.5e-323,
+        "sign": 1,
+        "logMagnitude": -742.8178470292138
+      }
+    },
+    {
+      "terms": [
+        [
+          1e+200,
+          0.7067783872008806
+        ],
+        [
+          1e+200,
+          -1.4698649390885707
+        ],
+        [
+          1e+200,
+          1.2910524341707927
+        ]
+      ],
+      "denominator": [
+        [
+          0.9581269851410728
+        ]
+      ],
+      "expected": {
+        "value": 5.5103957040242e+199,
+        "sign": 1,
+        "logMagnitude": 459.9210699420137
+      }
+    },
+    {
+      "terms": [
+        [
+          1.0,
+          0.1319670489665472
+        ],
+        [
+          1.0,
+          -1.341386791665108
+        ],
+        [
+          1.0,
+          0.6958264721599949
+        ]
+      ],
+      "denominator": [
+        [
+          2.8749346924334693
+        ]
+      ],
+      "expected": {
+        "value": -0.17864519562489203,
+        "sign": -1,
+        "logMagnitude": -1.722353587542166
+      }
+    },
+    {
+      "terms": [
+        [
+          1e-200,
+          0.9900240839537378
+        ],
+        [
+          1e-200,
+          0.11317191255969483
+        ],
+        [
+          1e-200,
+          1.8437085549744716
+        ]
+      ],
+      "denominator": [
+        [
+          1.6251642325698583
+        ]
+      ],
+      "expected": {
+        "value": 1.8132964610155057e-200,
+        "sign": 1,
+        "logMagnitude": -459.9218721608149
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324,
+          1.3266203944059147
+        ],
+        [
+          5e-324,
+          -0.9022116469830079
+        ],
+        [
+          5e-324,
+          -0.20672707512982536
+        ]
+      ],
+      "denominator": [
+        [
+          0.9450796820474382
+        ]
+      ],
+      "expected": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -745.9083073881557
+      }
+    },
+    {
+      "terms": [
+        [
+          1e+200,
+          -1.4823849149033101
+        ],
+        [
+          1e+200,
+          1.7420691139881748
+        ],
+        [
+          1e+200,
+          0.1647106104147369
+        ]
+      ],
+      "denominator": [
+        [
+          3.9174188848634084
+        ]
+      ],
+      "expected": {
+        "value": 1.0833531515851646e+199,
+        "sign": 1,
+        "logMagnitude": 458.2944945070922
+      }
+    },
+    {
+      "terms": [
+        [
+          1.0,
+          -0.2594618061751639
+        ],
+        [
+          1.0,
+          1.6412943425157676
+        ],
+        [
+          1.0,
+          1.803366560511095
+        ]
+      ],
+      "denominator": [
+        [
+          1.1051215598709938
+        ]
+      ],
+      "expected": {
+        "value": 2.8822160498104137,
+        "sign": 1,
+        "logMagnitude": 1.0585594600036643
+      }
+    },
+    {
+      "terms": [
+        [
+          1e-200,
+          0.8766730294302083
+        ],
+        [
+          1e-200,
+          0.9961701014343345
+        ],
+        [
+          1e-200,
+          0.0560301895041464
+        ]
+      ],
+      "denominator": [
+        [
+          2.17373828222232
+        ]
+      ],
+      "expected": {
+        "value": 8.873530618399501e-201,
+        "sign": 1,
+        "logMagnitude": -460.63653093427297
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324,
+          1.3703579699997608
+        ],
+        [
+          5e-324,
+          -0.6704417692659264
+        ],
+        [
+          5e-324,
+          -1.2650319243898416
+        ]
+      ],
+      "denominator": [
+        [
+          3.3501808220372147
+        ]
+      ],
+      "expected": {
+        "value": null,
+        "sign": -1,
+        "logMagnitude": -746.2198109906675
+      }
+    },
+    {
+      "terms": [
+        [
+          1e+200,
+          1.2326844134002886
+        ],
+        [
+          1e+200,
+          -1.8507600834520925
+        ],
+        [
+          1e+200,
+          0.5298873435227023
+        ]
+      ],
+      "denominator": [
+        [
+          0.1735347566593129
+        ]
+      ],
+      "expected": {
+        "value": -5.081882628402498e+199,
+        "sign": -1,
+        "logMagnitude": 459.8401152948939
+      }
+    },
+    {
+      "terms": [
+        [
+          1.0,
+          1.72846805283076
+        ],
+        [
+          1.0,
+          0.2138585501611172
+        ],
+        [
+          1.0,
+          1.4700430904693973
+        ]
+      ],
+      "denominator": [
+        [
+          1.5756468634805207
+        ]
+      ],
+      "expected": {
+        "value": 2.1656944665402564,
+        "sign": 1,
+        "logMagnitude": 0.7727410797833798
+      }
+    },
+    {
+      "terms": [
+        [
+          1e-200,
+          -1.5600580736480065
+        ],
+        [
+          1e-200,
+          0.23526163521925136
+        ],
+        [
+          1e-200,
+          -1.0013360511695586
+        ]
+      ],
+      "denominator": [
+        [
+          2.4348951024486785
+        ]
+      ],
+      "expected": {
+        "value": -9.553317049506624e-201,
+        "sign": -1,
+        "logMagnitude": -460.5627152625905
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324,
+          1.2033528291230509
+        ],
+        [
+          5e-324,
+          -1.505894671889171
+        ],
+        [
+          5e-324,
+          -0.6170845323480658
+        ]
+      ],
+      "denominator": [
+        [
+          0.12321533881279201
+        ]
+      ],
+      "expected": {
+        "value": -3.5e-323,
+        "sign": -1,
+        "logMagnitude": -742.4300379945312
+      }
+    },
+    {
+      "terms": [
+        [
+          1e+200,
+          -1.3008762381421857
+        ],
+        [
+          1e+200,
+          -1.9497244769356632
+        ],
+        [
+          1e+200,
+          -0.21094888438081094
+        ]
+      ],
+      "denominator": [
+        [
+          3.9480766295519683
+        ]
+      ],
+      "expected": {
+        "value": -8.767685950035574e+199,
+        "sign": -1,
+        "logMagnitude": 460.385506417637
+      }
+    },
+    {
+      "terms": [
+        [
+          1.0,
+          0.9517474837472593
+        ],
+        [
+          1.0,
+          -1.2141192182013043
+        ],
+        [
+          1.0,
+          -1.8213089443293704
+        ]
+      ],
+      "denominator": [
+        [
+          3.8009227226059608
+        ]
+      ],
+      "expected": {
+        "value": -0.5482039049072847,
+        "sign": -1,
+        "logMagnitude": -0.6011079719952903
+      }
+    },
+    {
+      "terms": [
+        [
+          1e-200,
+          0.978438258086388
+        ],
+        [
+          1e-200,
+          -1.6906854124238175
+        ],
+        [
+          1e-200,
+          -0.7071215401554087
+        ]
+      ],
+      "denominator": [
+        [
+          2.9505251739223337
+        ]
+      ],
+      "expected": {
+        "value": -4.810562902623789e-201,
+        "sign": -1,
+        "logMagnitude": -461.24878958696024
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324,
+          0.4426382414722534
+        ],
+        [
+          5e-324,
+          -0.834677960134131
+        ],
+        [
+          5e-324,
+          -1.0936814332807172
+        ]
+      ],
+      "denominator": [
+        [
+          3.6449298945022415
+        ]
+      ],
+      "expected": {
+        "value": null,
+        "sign": -1,
+        "logMagnitude": -745.337508774743
+      }
+    },
+    {
+      "terms": [
+        [
+          1e+200,
+          -0.5807771210734884
+        ],
+        [
+          1e+200,
+          -1.6727976577545869
+        ],
+        [
+          1e+200,
+          0.6076138318838908
+        ]
+      ],
+      "denominator": [
+        [
+          1.2124149893837728
+        ]
+      ],
+      "expected": {
+        "value": -1.3575887475465537e+200,
+        "sign": -1,
+        "logMagnitude": 460.82272874522306
+      }
+    },
+    {
+      "terms": [
+        [
+          1.0,
+          -1.0579757624130361
+        ],
+        [
+          1.0,
+          0.6158985460249533
+        ],
+        [
+          1.0,
+          1.6019910816034209
+        ]
+      ],
+      "denominator": [
+        [
+          3.5592335973921516
+        ]
+      ],
+      "expected": {
+        "value": 0.3258886593072189,
+        "sign": 1,
+        "logMagnitude": -1.1211994918195174
+      }
+    },
+    {
+      "terms": [
+        [
+          1e-200,
+          1.3126025688015317
+        ],
+        [
+          1e-200,
+          -0.643511504275371
+        ],
+        [
+          1e-200,
+          -1.5731694473343794
+        ]
+      ],
+      "denominator": [
+        [
+          1.7982924928555046
+        ]
+      ],
+      "expected": {
+        "value": -5.027426775121741e-201,
+        "sign": -1,
+        "logMagnitude": -461.2046954141134
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324,
+          1.892318494465329
+        ],
+        [
+          5e-324,
+          0.3162736704497675
+        ],
+        [
+          5e-324,
+          -1.299393811506885
+        ]
+      ],
+      "denominator": [
+        [
+          3.351453776714826
+        ]
+      ],
+      "expected": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -745.7446581343208
+      }
+    },
+    {
+      "terms": [
+        [
+          1e+200,
+          -0.6228328163805079
+        ],
+        [
+          1e+200,
+          -0.3177750774088621
+        ],
+        [
+          1e+200,
+          0.48210861543435035
+        ]
+      ],
+      "denominator": [
+        [
+          0.3712408605424442
+        ]
+      ],
+      "expected": {
+        "value": -1.2350452956204135e+200,
+        "sign": -1,
+        "logMagnitude": 460.7281262448322
+      }
+    },
+    {
+      "terms": [
+        [
+          1.0,
+          -0.3678160905766461
+        ],
+        [
+          1.0,
+          0.6139489214744613
+        ],
+        [
+          1.0,
+          1.3669055280676883
+        ]
+      ],
+      "denominator": [
+        [
+          1.7022017805553484
+        ]
+      ],
+      "expected": {
+        "value": 0.9476187708129673,
+        "sign": 1,
+        "logMagnitude": -0.053802998099939714
+      }
+    },
+    {
+      "terms": [
+        [
+          1e-200,
+          -1.356969398449031
+        ],
+        [
+          1e-200,
+          -1.8322089558237327
+        ],
+        [
+          1e-200,
+          0.8761240764998313
+        ]
+      ],
+      "denominator": [
+        [
+          3.4224062245673843
+        ]
+      ],
+      "expected": {
+        "value": -6.758561450621831e-201,
+        "sign": -1,
+        "logMagnitude": -460.9087936275565
+      }
+    },
+    {
+      "terms": [
+        [
+          5e-324,
+          0.8654986056007616
+        ],
+        [
+          5e-324,
+          -0.7906603256319724
+        ],
+        [
+          5e-324,
+          1.2530166399552476
+        ]
+      ],
+      "denominator": [
+        [
+          3.5866765776569705
+        ]
+      ],
+      "expected": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -745.433733152689
+      }
+    },
+    {
+      "terms": [
+        [
+          1e+200,
+          0.5334471703737718
+        ],
+        [
+          1e+200,
+          0.5056389194032609
+        ],
+        [
+          1e+200,
+          -0.8276240087075224
+        ]
+      ],
+      "denominator": [
+        [
+          0.7778017230084019
+        ]
+      ],
+      "expected": {
+        "value": 2.718714484863979e+199,
+        "sign": 1,
+        "logMagnitude": 459.2145926585461
+      }
+    }
+  ],
+  "kernelCases": [
+    {
+      "x": 0.0,
+      "h": 1.0,
+      "expected": {
+        "value": {
+          "value": 0.9375,
+          "sign": 1,
+          "logMagnitude": -0.06453852113757108
+        },
+        "spatialDerivative": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "bandwidthDerivative": {
+          "value": -0.9375,
+          "sign": -1,
+          "logMagnitude": -0.06453852113757108
+        }
+      }
+    },
+    {
+      "x": 5e-324,
+      "h": 2.0,
+      "expected": {
+        "value": {
+          "value": 0.46875,
+          "sign": 1,
+          "logMagnitude": -0.757685701697028
+        },
+        "spatialDerivative": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -745.1977576230784
+        },
+        "bandwidthDerivative": {
+          "value": -0.234375,
+          "sign": -1,
+          "logMagnitude": -1.4508328822571457
+        }
+      }
+    },
+    {
+      "x": 5e-324,
+      "h": 1.0,
+      "expected": {
+        "value": {
+          "value": 0.9375,
+          "sign": 1,
+          "logMagnitude": -0.06453852113691028
+        },
+        "spatialDerivative": {
+          "value": -2e-323,
+          "sign": -1,
+          "logMagnitude": -743.1183160813987
+        },
+        "bandwidthDerivative": {
+          "value": -0.9375,
+          "sign": -1,
+          "logMagnitude": -0.06453852113691028
+        }
+      }
+    },
+    {
+      "x": 5e-324,
+      "h": 0.02,
+      "expected": {
+        "value": {
+          "value": 46.875,
+          "sign": 1,
+          "logMagnitude": 3.847484484290817
+        },
+        "spatialDerivative": {
+          "value": -2.315933e-318,
+          "sign": -1,
+          "logMagnitude": -731.3822470651144
+        },
+        "bandwidthDerivative": {
+          "value": -2343.75,
+          "sign": -1,
+          "logMagnitude": 7.759507489718544
+        }
+      }
+    },
+    {
+      "x": 0.9999999999999999,
+      "h": 1.0,
+      "expected": {
+        "value": {
+          "value": 4.6222318665293655e-32,
+          "sign": 1,
+          "logMagnitude": -72.15184529937189
+        },
+        "spatialDerivative": {
+          "value": -8.326672684688673e-16,
+          "sign": -1,
+          "logMagnitude": -34.72189754913484
+        },
+        "bandwidthDerivative": {
+          "value": 8.326672684688671e-16,
+          "sign": 1,
+          "logMagnitude": -34.72189754913484
+        }
+      }
+    },
+    {
+      "x": 1.0,
+      "h": 1.0,
+      "expected": {
+        "value": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "spatialDerivative": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "bandwidthDerivative": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "x": -1.0,
+      "h": 1.0,
+      "expected": {
+        "value": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "spatialDerivative": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "bandwidthDerivative": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "x": 0.4472135954999579,
+      "h": 1.0,
+      "expected": {
+        "value": {
+          "value": 0.6,
+          "sign": 1,
+          "logMagnitude": -0.51082562376601
+        },
+        "spatialDerivative": {
+          "value": -1.3416407864998738,
+          "sign": -1,
+          "logMagnitude": 0.29389333245106286
+        },
+        "bandwidthDerivative": {
+          "value": -3.883456375386209e-17,
+          "sign": -1,
+          "logMagnitude": -37.78722100540833
+        }
+      }
+    },
+    {
+      "x": 0.2,
+      "h": 0.7,
+      "expected": {
+        "value": {
+          "value": 1.1295516748973642,
+          "sign": 1,
+          "logMagnitude": 0.1218208061205246
+        },
+        "spatialDerivative": {
+          "value": -2.0080918664842033,
+          "sign": -1,
+          "logMagnitude": 0.6971849510240986
+        },
+        "bandwidthDerivative": {
+          "value": -1.0399047165721764,
+          "sign": -1,
+          "logMagnitude": 0.03912909027542355
+        }
+      }
+    },
+    {
+      "x": -0.2,
+      "h": 0.7,
+      "expected": {
+        "value": {
+          "value": 1.1295516748973642,
+          "sign": 1,
+          "logMagnitude": 0.1218208061205246
+        },
+        "spatialDerivative": {
+          "value": 2.0080918664842033,
+          "sign": 1,
+          "logMagnitude": 0.6971849510240986
+        },
+        "bandwidthDerivative": {
+          "value": -1.0399047165721764,
+          "sign": -1,
+          "logMagnitude": 0.03912909027542355
+        }
+      }
+    },
+    {
+      "x": 16.0,
+      "h": 0.02,
+      "expected": {
+        "value": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "spatialDerivative": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "bandwidthDerivative": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "x": 0.02,
+      "h": 0.02,
+      "expected": {
+        "value": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "spatialDerivative": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "bandwidthDerivative": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    }
+  ],
+  "particleCases": [
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": 0.0,
+      "time": 0.0,
+      "h": 1.0,
+      "bandwidthRate": 0.0,
+      "expected": {
+        "density": {
+          "value": 1.875,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223743
+        },
+        "flux": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "velocity": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFlux": {
+          "value": 1.875,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223743
+        },
+        "meanMomentumTransport": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "dispersion": {
+          "value": 1.875,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223743
+        },
+        "densityX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "continuityResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 3.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": 0.0,
+      "time": 0.0,
+      "h": 1.0,
+      "bandwidthRate": 0.0,
+      "expected": {
+        "density": {
+          "value": 3.75,
+          "sign": 1,
+          "logMagnitude": 1.3217558399823195
+        },
+        "flux": {
+          "value": 1.875,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223743
+        },
+        "velocity": {
+          "value": 0.5,
+          "sign": 1,
+          "logMagnitude": -0.6931471805599453
+        },
+        "momentumFlux": {
+          "value": 3.75,
+          "sign": 1,
+          "logMagnitude": 1.3217558399823195
+        },
+        "meanMomentumTransport": {
+          "value": 0.9375,
+          "sign": 1,
+          "logMagnitude": -0.06453852113757108
+        },
+        "dispersion": {
+          "value": 2.8125,
+          "sign": 1,
+          "logMagnitude": 1.0340737675305385
+        },
+        "densityX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "continuityResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 5e-324
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -5e-324
+        }
+      ],
+      "x": 0.0,
+      "time": 0.0,
+      "h": 1.0,
+      "bandwidthRate": 0.0,
+      "expected": {
+        "density": {
+          "value": 1.875,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223743
+        },
+        "flux": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "velocity": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFlux": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1488.2515351833401
+        },
+        "meanMomentumTransport": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "dispersion": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1488.2515351833401
+        },
+        "densityX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "continuityResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 5e-324
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 5e-324
+        }
+      ],
+      "x": 0.0,
+      "time": 0.0,
+      "h": 1.0,
+      "bandwidthRate": 0.0,
+      "expected": {
+        "density": {
+          "value": 1.875,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223743
+        },
+        "flux": {
+          "value": 1e-323,
+          "sign": 1,
+          "logMagnitude": -743.8114632619589
+        },
+        "velocity": {
+          "value": 5e-324,
+          "sign": 1,
+          "logMagnitude": -744.4400719213813
+        },
+        "momentumFlux": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1488.2515351833401
+        },
+        "meanMomentumTransport": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1488.2515351833401
+        },
+        "dispersion": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "continuityResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1e-200
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1e-200
+        }
+      ],
+      "x": 0.0,
+      "time": 0.0,
+      "h": 1.0,
+      "bandwidthRate": 0.0,
+      "expected": {
+        "density": {
+          "value": 1.875,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223743
+        },
+        "flux": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "velocity": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFlux": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -920.4054285381959
+        },
+        "meanMomentumTransport": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "dispersion": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -920.4054285381959
+        },
+        "densityX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "continuityResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 4.0,
+          "position": 0.0,
+          "velocity": 5e-324
+        }
+      ],
+      "x": 5e-324,
+      "time": 0.0,
+      "h": 2.0,
+      "bandwidthRate": 0.0,
+      "expected": {
+        "density": {
+          "value": 1.875,
+          "sign": 1,
+          "logMagnitude": 0.6286086594227527
+        },
+        "flux": {
+          "value": 1e-323,
+          "sign": 1,
+          "logMagnitude": -743.8114632619586
+        },
+        "velocity": {
+          "value": 5e-324,
+          "sign": 1,
+          "logMagnitude": -744.4400719213813
+        },
+        "momentumFlux": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1488.25153518334
+        },
+        "meanMomentumTransport": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1488.25153518334
+        },
+        "dispersion": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityX": {
+          "value": -1e-323,
+          "sign": -1,
+          "logMagnitude": -743.8114632619586
+        },
+        "densityT": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1488.25153518334
+        },
+        "fluxX": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -1488.25153518334
+        },
+        "smoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "continuityResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumT": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -2232.6916071047212
+        },
+        "momentumFluxX": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -2232.6916071047212
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 0.0
+        }
+      ],
+      "x": 0.0,
+      "time": 0.0,
+      "h": 2.0,
+      "bandwidthRate": 5e-324,
+      "expected": {
+        "density": {
+          "value": 0.46875,
+          "sign": 1,
+          "logMagnitude": -0.7576857016975165
+        },
+        "flux": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "velocity": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFlux": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "meanMomentumTransport": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "dispersion": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityT": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -745.8909048036388
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -745.8909048036388
+        },
+        "continuityResidual": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -745.8909048036388
+        },
+        "momentumT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 5e-324
+        }
+      ],
+      "x": 0.0,
+      "time": 0.0,
+      "h": 1.0,
+      "bandwidthRate": 5e-324,
+      "expected": {
+        "density": {
+          "value": 0.9375,
+          "sign": 1,
+          "logMagnitude": -0.06453852113757108
+        },
+        "flux": {
+          "value": 5e-324,
+          "sign": 1,
+          "logMagnitude": -744.5046104425189
+        },
+        "velocity": {
+          "value": 5e-324,
+          "sign": 1,
+          "logMagnitude": -744.4400719213813
+        },
+        "momentumFlux": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1488.9446823639
+        },
+        "meanMomentumTransport": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1488.9446823639
+        },
+        "dispersion": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityT": {
+          "value": -5e-324,
+          "sign": -1,
+          "logMagnitude": -744.5046104425189
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": -5e-324,
+          "sign": -1,
+          "logMagnitude": -744.5046104425189
+        },
+        "continuityResidual": {
+          "value": -5e-324,
+          "sign": -1,
+          "logMagnitude": -744.5046104425189
+        },
+        "momentumT": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -1488.9446823639
+        },
+        "momentumFluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumSmoothingRate": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -1488.9446823639
+        },
+        "momentumResidual": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -1488.9446823639
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1e-200
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0000000000000001e-200
+        }
+      ],
+      "x": 0.0,
+      "time": 0.0,
+      "h": 1.0,
+      "bandwidthRate": 0.0,
+      "expected": {
+        "density": {
+          "value": 1.875,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223743
+        },
+        "flux": {
+          "value": 1.8750000000000002e-200,
+          "sign": 1,
+          "logMagnitude": -459.88840993938675
+        },
+        "velocity": {
+          "value": 1e-200,
+          "sign": 1,
+          "logMagnitude": -460.5170185988091
+        },
+        "momentumFlux": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -920.405428538196
+        },
+        "meanMomentumTransport": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -920.4054285381959
+        },
+        "dispersion": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -994.7307426246591
+        },
+        "densityX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "continuityResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0000000000000002,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": 0.0,
+      "time": 0.0,
+      "h": 1.0,
+      "bandwidthRate": 0.0,
+      "expected": {
+        "density": {
+          "value": 1.8750000000000002,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223761
+        },
+        "flux": {
+          "value": -2.0816681711721685e-16,
+          "sign": -1,
+          "logMagnitude": -36.108191910254725
+        },
+        "velocity": {
+          "value": -1.1102230246251564e-16,
+          "sign": -1,
+          "logMagnitude": -36.7368005696771
+        },
+        "momentumFlux": {
+          "value": 1.8750000000000002,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223761
+        },
+        "meanMomentumTransport": {
+          "value": 2.3111159332646827e-32,
+          "sign": 1,
+          "logMagnitude": -72.84499247993183
+        },
+        "dispersion": {
+          "value": 1.8750000000000002,
+          "sign": 1,
+          "logMagnitude": 0.6286086594223761
+        },
+        "densityX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "continuityResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": 0.4472135954999579,
+      "time": 0.0,
+      "h": 1.0,
+      "bandwidthRate": 5e-324,
+      "expected": {
+        "density": {
+          "value": 1.2,
+          "sign": 1,
+          "logMagnitude": 0.18232155679393713
+        },
+        "flux": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "velocity": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFlux": {
+          "value": 1.2,
+          "sign": 1,
+          "logMagnitude": 0.18232155679393713
+        },
+        "meanMomentumTransport": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "dispersion": {
+          "value": 1.2,
+          "sign": 1,
+          "logMagnitude": 0.18232155679393713
+        },
+        "densityX": {
+          "value": -2.6832815729997477,
+          "sign": -1,
+          "logMagnitude": 0.9870405130109958
+        },
+        "densityT": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -781.5341457462297
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -781.5341457462297
+        },
+        "continuityResidual": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -781.5341457462297
+        },
+        "momentumT": {
+          "value": 2.6832815729997477,
+          "sign": 1,
+          "logMagnitude": 0.9870405130109958
+        },
+        "momentumFluxX": {
+          "value": -2.6832815729997477,
+          "sign": -1,
+          "logMagnitude": 0.9870405130109958
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": 8.0,
+      "time": 0.0,
+      "h": 0.02,
+      "bandwidthRate": 0.0,
+      "expected": {
+        "density": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "flux": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "velocity": null,
+        "momentumFlux": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "meanMomentumTransport": null,
+        "dispersion": null,
+        "densityX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "densityT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "fluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "smoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "continuityResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumT": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumFluxX": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumSmoothingRate": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "momentumResidual": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": 0.09067147498361983,
+      "time": 0.154688121721201,
+      "h": 1.0319142495980016,
+      "bandwidthRate": 0.2859032463193102,
+      "expected": {
+        "density": {
+          "value": 1.7102107150215717,
+          "sign": 1,
+          "logMagnitude": 0.5366165880817846
+        },
+        "flux": {
+          "value": 0.09284187402436135,
+          "sign": 1,
+          "logMagnitude": -2.3768575122522577
+        },
+        "velocity": {
+          "value": 0.05428680408144343,
+          "sign": 1,
+          "logMagnitude": -2.9134741003340423
+        },
+        "momentumFlux": {
+          "value": 1.7102107150215717,
+          "sign": 1,
+          "logMagnitude": 0.5366165880817846
+        },
+        "meanMomentumTransport": {
+          "value": 0.005040088625714556,
+          "sign": 1,
+          "logMagnitude": -5.290331612586272
+        },
+        "dispersion": {
+          "value": 1.705170626395857,
+          "sign": 1,
+          "logMagnitude": 0.5336651798608614
+        },
+        "densityX": {
+          "value": -0.5723738407472031,
+          "sign": -1,
+          "logMagnitude": -0.5579629333448679
+        },
+        "densityT": {
+          "value": -1.42390244998255,
+          "sign": -1,
+          "logMagnitude": 0.3534013064175099
+        },
+        "fluxX": {
+          "value": 1.0076338047456654,
+          "sign": 1,
+          "logMagnitude": 0.007604814700954421
+        },
+        "smoothingRate": {
+          "value": -0.41626864523688456,
+          "sign": -1,
+          "logMagnitude": -0.8764244453288086
+        },
+        "continuityResidual": {
+          "value": -0.41626864523688456,
+          "sign": -1,
+          "logMagnitude": -0.8764244453288086
+        },
+        "momentumT": {
+          "value": 0.49680683783374086,
+          "sign": 1,
+          "logMagnitude": -0.699553984702078
+        },
+        "momentumFluxX": {
+          "value": -0.5723738407472031,
+          "sign": -1,
+          "logMagnitude": -0.5579629333448679
+        },
+        "momentumSmoothingRate": {
+          "value": -0.07556700291346222,
+          "sign": -1,
+          "logMagnitude": -2.582735560475811
+        },
+        "momentumResidual": {
+          "value": -0.07556700291346222,
+          "sign": -1,
+          "logMagnitude": -2.582735560475811
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": -0.04487128633467663,
+      "time": 0.19883443587218586,
+      "h": 0.5622293063798584,
+      "bandwidthRate": 0.03943896269983549,
+      "expected": {
+        "density": {
+          "value": 2.526490046006583,
+          "sign": 1,
+          "logMagnitude": 0.9268310059069336
+        },
+        "flux": {
+          "value": -0.32702468826982545,
+          "sign": -1,
+          "logMagnitude": -1.1177196116387051
+        },
+        "velocity": {
+          "value": -0.12943834423045789,
+          "sign": -1,
+          "logMagnitude": -2.044550617545667
+        },
+        "momentumFlux": {
+          "value": 2.526490046006583,
+          "sign": 1,
+          "logMagnitude": 0.9268310059069336
+        },
+        "meanMomentumTransport": {
+          "value": 0.04232953417212785,
+          "sign": 1,
+          "logMagnitude": -3.162270229184344
+        },
+        "dispersion": {
+          "value": 2.484160511834455,
+          "sign": 1,
+          "logMagnitude": 0.9099347802743978
+        },
+        "densityX": {
+          "value": 1.1710388300963273,
+          "sign": 1,
+          "logMagnitude": 0.15789124384062347
+        },
+        "densityT": {
+          "value": -7.254547475053134,
+          "sign": -1,
+          "logMagnitude": 1.981628510173465
+        },
+        "fluxX": {
+          "value": 7.181167567083182,
+          "sign": 1,
+          "logMagnitude": 1.9714619836398128
+        },
+        "smoothingRate": {
+          "value": -0.07337990796995207,
+          "sign": -1,
+          "logMagnitude": -2.6121051142128806
+        },
+        "continuityResidual": {
+          "value": -0.07337990796995207,
+          "sign": -1,
+          "logMagnitude": -2.6121051142128806
+        },
+        "momentumT": {
+          "value": -1.1091620453679962,
+          "sign": -1,
+          "logMagnitude": 0.10360481615023787
+        },
+        "momentumFluxX": {
+          "value": 1.1710388300963273,
+          "sign": 1,
+          "logMagnitude": 0.15789124384062347
+        },
+        "momentumSmoothingRate": {
+          "value": 0.06187678472833105,
+          "sign": 1,
+          "logMagnitude": -2.7826102144150013
+        },
+        "momentumResidual": {
+          "value": 0.06187678472833105,
+          "sign": 1,
+          "logMagnitude": -2.7826102144150013
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": -0.4173447451377547,
+      "time": 0.03577995975766171,
+      "h": 0.7360014238036897,
+      "bandwidthRate": -0.24169743820095724,
+      "expected": {
+        "density": {
+          "value": 1.172251633660757,
+          "sign": 1,
+          "logMagnitude": 0.15892637259779008
+        },
+        "flux": {
+          "value": -0.18991971535376956,
+          "sign": -1,
+          "logMagnitude": -1.6611538468910396
+        },
+        "velocity": {
+          "value": -0.1620127538322811,
+          "sign": -1,
+          "logMagnitude": -1.8200802194888297
+        },
+        "momentumFlux": {
+          "value": 1.172251633660757,
+          "sign": 1,
+          "logMagnitude": 0.15892637259779008
+        },
+        "meanMomentumTransport": {
+          "value": 0.030769416091507164,
+          "sign": 1,
+          "logMagnitude": -3.481234066379841
+        },
+        "dispersion": {
+          "value": 1.1414822175692498,
+          "sign": 1,
+          "logMagnitude": 0.13232760874041105
+        },
+        "densityX": {
+          "value": 5.270882872480778,
+          "sign": 1,
+          "logMagnitude": 1.6621978765069798
+        },
+        "densityT": {
+          "value": -0.35991874189708756,
+          "sign": -1,
+          "logMagnitude": -1.0218769899624078
+        },
+        "fluxX": {
+          "value": 0.022226402476017773,
+          "sign": 1,
+          "logMagnitude": -3.8064743960402723
+        },
+        "smoothingRate": {
+          "value": -0.3376923394210698,
+          "sign": -1,
+          "logMagnitude": -1.0856200364168274
+        },
+        "continuityResidual": {
+          "value": -0.3376923394210698,
+          "sign": -1,
+          "logMagnitude": -1.0856200364168274
+        },
+        "momentumT": {
+          "value": -5.398229513752352,
+          "sign": -1,
+          "logMagnitude": 1.686071031986188
+        },
+        "momentumFluxX": {
+          "value": 5.270882872480778,
+          "sign": 1,
+          "logMagnitude": 1.6621978765069798
+        },
+        "momentumSmoothingRate": {
+          "value": -0.1273466412715745,
+          "sign": -1,
+          "logMagnitude": -2.060842451900726
+        },
+        "momentumResidual": {
+          "value": -0.1273466412715745,
+          "sign": -1,
+          "logMagnitude": -2.060842451900726
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": -0.4730780177097338,
+      "time": 0.1858539666550731,
+      "h": 0.7021906619362741,
+      "bandwidthRate": -0.24798312690992408,
+      "expected": {
+        "density": {
+          "value": 0.9447574461823454,
+          "sign": 1,
+          "logMagnitude": -0.0568270551404737
+        },
+        "flux": {
+          "value": -0.9066800694585541,
+          "sign": -1,
+          "logMagnitude": -0.09796562597841785
+        },
+        "velocity": {
+          "value": -0.9596961348358168,
+          "sign": -1,
+          "logMagnitude": -0.041138570837944144
+        },
+        "momentumFlux": {
+          "value": 0.9447574461823454,
+          "sign": 1,
+          "logMagnitude": -0.0568270551404737
+        },
+        "meanMomentumTransport": {
+          "value": 0.8701373581920443,
+          "sign": 1,
+          "logMagnitude": -0.13910419681633357
+        },
+        "dispersion": {
+          "value": 0.07462008799030113,
+          "sign": 1,
+          "logMagnitude": -2.595345532011322
+        },
+        "densityX": {
+          "value": 3.4426591903092327,
+          "sign": 1,
+          "logMagnitude": 1.2362441931976207
+        },
+        "densityT": {
+          "value": 1.6107240091711024,
+          "sign": 1,
+          "logMagnitude": 0.47668377305114973
+        },
+        "fluxX": {
+          "value": -1.7381588116636322,
+          "sign": -1,
+          "logMagnitude": 0.552826398769696
+        },
+        "smoothingRate": {
+          "value": -0.1274348024925299,
+          "sign": -1,
+          "logMagnitude": -2.0601503981689575
+        },
+        "continuityResidual": {
+          "value": -0.1274348024925299,
+          "sign": -1,
+          "logMagnitude": -2.0601503981689575
+        },
+        "momentumT": {
+          "value": -3.69842466548014,
+          "sign": -1,
+          "logMagnitude": 1.307906962899608
+        },
+        "momentumFluxX": {
+          "value": 3.4426591903092327,
+          "sign": 1,
+          "logMagnitude": 1.2362441931976207
+        },
+        "momentumSmoothingRate": {
+          "value": -0.2557654751709075,
+          "sign": -1,
+          "logMagnitude": -1.3634943670038524
+        },
+        "momentumResidual": {
+          "value": -0.2557654751709075,
+          "sign": -1,
+          "logMagnitude": -1.3634943670038524
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": -0.5423717891108154,
+      "time": -0.08876319426484952,
+      "h": 0.8458342354906088,
+      "bandwidthRate": 0.23436777813906018,
+      "expected": {
+        "density": {
+          "value": 0.7802567289509578,
+          "sign": 1,
+          "logMagnitude": -0.24813227377237013
+        },
+        "flux": {
+          "value": 0.34476598683443205,
+          "sign": 1,
+          "logMagnitude": -1.0648893911302935
+        },
+        "velocity": {
+          "value": 0.4418622410318258,
+          "sign": 1,
+          "logMagnitude": -0.8167571173578949
+        },
+        "momentumFlux": {
+          "value": 0.7802567289509578,
+          "sign": 1,
+          "logMagnitude": -0.24813227377237013
+        },
+        "meanMomentumTransport": {
+          "value": 0.1523390715742111,
+          "sign": 1,
+          "logMagnitude": -1.8816465084881884
+        },
+        "dispersion": {
+          "value": 0.6279176573767467,
+          "sign": 1,
+          "logMagnitude": -0.4653462399376167
+        },
+        "densityX": {
+          "value": 3.7360530903029603,
+          "sign": 1,
+          "logMagnitude": 1.3180297307321496
+        },
+        "densityT": {
+          "value": 0.06964122258468083,
+          "sign": 1,
+          "logMagnitude": -2.664398608453922
+        },
+        "fluxX": {
+          "value": 0.2690103475726701,
+          "sign": 1,
+          "logMagnitude": -1.313005433307211
+        },
+        "smoothingRate": {
+          "value": 0.3386515701573509,
+          "sign": 1,
+          "logMagnitude": -1.0827835168124125
+        },
+        "continuityResidual": {
+          "value": 0.3386515701573509,
+          "sign": 1,
+          "logMagnitude": -1.0827835168124125
+        },
+        "momentumT": {
+          "value": -3.8830427799519893,
+          "sign": -1,
+          "logMagnitude": 1.356619067931149
+        },
+        "momentumFluxX": {
+          "value": 3.7360530903029603,
+          "sign": 1,
+          "logMagnitude": 1.3180297307321496
+        },
+        "momentumSmoothingRate": {
+          "value": -0.146989689649029,
+          "sign": -1,
+          "logMagnitude": -1.9173928331051968
+        },
+        "momentumResidual": {
+          "value": -0.146989689649029,
+          "sign": -1,
+          "logMagnitude": -1.9173928331051968
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": -0.15155957279008636,
+      "time": 0.10039792376274298,
+      "h": 0.8170547349237229,
+      "bandwidthRate": 0.29541213047149184,
+      "expected": {
+        "density": {
+          "value": 2.0779996622070707,
+          "sign": 1,
+          "logMagnitude": 0.7314057301202581
+        },
+        "flux": {
+          "value": -0.19886789267715485,
+          "sign": -1,
+          "logMagnitude": -1.6151145306012324
+        },
+        "velocity": {
+          "value": -0.09570160009840167,
+          "sign": -1,
+          "logMagnitude": -2.346520260721519
+        },
+        "momentumFlux": {
+          "value": 2.0779996622070707,
+          "sign": 1,
+          "logMagnitude": 0.7314057301202581
+        },
+        "meanMomentumTransport": {
+          "value": 0.01903197553740094,
+          "sign": 1,
+          "logMagnitude": -3.9616347913227514
+        },
+        "dispersion": {
+          "value": 2.0589676866696696,
+          "sign": 1,
+          "logMagnitude": 0.7222047342215205
+        },
+        "densityX": {
+          "value": 1.9178653282968297,
+          "sign": 1,
+          "logMagnitude": 0.6512127593437356
+        },
+        "densityT": {
+          "value": -1.8191826980873962,
+          "sign": -1,
+          "logMagnitude": 0.5983873332429823
+        },
+        "fluxX": {
+          "value": 1.217142658724191,
+          "sign": 1,
+          "logMagnitude": 0.1965060287658673
+        },
+        "smoothingRate": {
+          "value": -0.6020400393632053,
+          "sign": -1,
+          "logMagnitude": -0.5074313253149398
+        },
+        "continuityResidual": {
+          "value": -0.6020400393632053,
+          "sign": -1,
+          "logMagnitude": -0.5074313253149398
+        },
+        "momentumT": {
+          "value": -1.7096490844352823,
+          "sign": -1,
+          "logMagnitude": 0.5362881356747948
+        },
+        "momentumFluxX": {
+          "value": 1.9178653282968297,
+          "sign": 1,
+          "logMagnitude": 0.6512127593437356
+        },
+        "momentumSmoothingRate": {
+          "value": 0.2082162438615474,
+          "sign": 1,
+          "logMagnitude": -1.5691781053761815
+        },
+        "momentumResidual": {
+          "value": 0.2082162438615474,
+          "sign": 1,
+          "logMagnitude": -1.5691781053761815
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": 0.4313745075233122,
+      "time": 0.04225375413458096,
+      "h": 1.3056078329434784,
+      "bandwidthRate": 0.22178861964941565,
+      "expected": {
+        "density": {
+          "value": 1.1376588127257585,
+          "sign": 1,
+          "logMagnitude": 0.12897247768069064
+        },
+        "flux": {
+          "value": 0.054654906162300954,
+          "sign": 1,
+          "logMagnitude": -2.9067162941474862
+        },
+        "velocity": {
+          "value": 0.04804156180300776,
+          "sign": 1,
+          "logMagnitude": -3.0356887718282053
+        },
+        "momentumFlux": {
+          "value": 1.1376588127257585,
+          "sign": 1,
+          "logMagnitude": 0.12897247768069064
+        },
+        "meanMomentumTransport": {
+          "value": 0.0026257070522337713,
+          "sign": 1,
+          "logMagnitude": -5.942405065975663
+        },
+        "dispersion": {
+          "value": 1.1350331056735248,
+          "sign": 1,
+          "logMagnitude": 0.12666181850227076
+        },
+        "densityX": {
+          "value": -1.2904471354213736,
+          "sign": -1,
+          "logMagnitude": 0.2549887749216566
+        },
+        "densityT": {
+          "value": -0.19361999685797057,
+          "sign": -1,
+          "logMagnitude": -1.6418578199180445
+        },
+        "fluxX": {
+          "value": 0.09561079061345212,
+          "sign": 1,
+          "logMagnitude": -2.3474695927687605
+        },
+        "smoothingRate": {
+          "value": -0.09800920624451845,
+          "sign": -1,
+          "logMagnitude": -2.3226938634531678
+        },
+        "continuityResidual": {
+          "value": -0.09800920624451845,
+          "sign": -1,
+          "logMagnitude": -2.3226938634531678
+        },
+        "momentumT": {
+          "value": 1.2648938286811617,
+          "sign": 1,
+          "logMagnitude": 0.23498818876086602
+        },
+        "momentumFluxX": {
+          "value": -1.2904471354213736,
+          "sign": -1,
+          "logMagnitude": 0.2549887749216566
+        },
+        "momentumSmoothingRate": {
+          "value": -0.025553306740211987,
+          "sign": -1,
+          "logMagnitude": -3.66698854838927
+        },
+        "momentumResidual": {
+          "value": -0.025553306740211987,
+          "sign": -1,
+          "logMagnitude": -3.66698854838927
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": 0.12629945091579842,
+      "time": 0.07311991687286407,
+      "h": 1.0496107498180076,
+      "bandwidthRate": 0.12511170405296268,
+      "expected": {
+        "density": {
+          "value": 1.7184766887612395,
+          "sign": 1,
+          "logMagnitude": 0.5414382523401287
+        },
+        "flux": {
+          "value": 0.05874020680035752,
+          "sign": 1,
+          "logMagnitude": -2.834630832612504
+        },
+        "velocity": {
+          "value": 0.034181555783977656,
+          "sign": 1,
+          "logMagnitude": -3.376069084952661
+        },
+        "momentumFlux": {
+          "value": 1.7184766887612395,
+          "sign": 1,
+          "logMagnitude": 0.5414382523401287
+        },
+        "meanMomentumTransport": {
+          "value": 0.002007831655508804,
+          "sign": 1,
+          "logMagnitude": -6.210699917565194
+        },
+        "dispersion": {
+          "value": 1.7164688571057307,
+          "sign": 1,
+          "logMagnitude": 0.5402691904977246
+        },
+        "densityX": {
+          "value": -0.7953897035861037,
+          "sign": -1,
+          "logMagnitude": -0.22892309124316057
+        },
+        "densityT": {
+          "value": -0.6402841666746414,
+          "sign": -1,
+          "logMagnitude": -0.4458431907427496
+        },
+        "fluxX": {
+          "value": 0.451353064141862,
+          "sign": 1,
+          "logMagnitude": -0.7955053984233871
+        },
+        "smoothingRate": {
+          "value": -0.1889311025327794,
+          "sign": -1,
+          "logMagnitude": -1.6663728672458262
+        },
+        "continuityResidual": {
+          "value": -0.1889311025327794,
+          "sign": -1,
+          "logMagnitude": -1.6663728672458262
+        },
+        "momentumT": {
+          "value": 0.7746605800908903,
+          "sign": 1,
+          "logMagnitude": -0.2553303067348338
+        },
+        "momentumFluxX": {
+          "value": -0.7953897035861037,
+          "sign": -1,
+          "logMagnitude": -0.22892309124316057
+        },
+        "momentumSmoothingRate": {
+          "value": -0.020729123495213365,
+          "sign": -1,
+          "logMagnitude": -3.8762156353765818
+        },
+        "momentumResidual": {
+          "value": -0.020729123495213365,
+          "sign": -1,
+          "logMagnitude": -3.8762156353765818
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": -0.3632851099469476,
+      "time": -0.04047803910918937,
+      "h": 1.8766959059981505,
+      "bandwidthRate": -0.3968578373061077,
+      "expected": {
+        "density": {
+          "value": 0.9247979887163461,
+          "sign": 1,
+          "logMagnitude": -0.07817995589732618
+        },
+        "flux": {
+          "value": 0.016052770758837497,
+          "sign": 1,
+          "logMagnitude": -4.131873811356087
+        },
+        "velocity": {
+          "value": 0.01735813761999995,
+          "sign": 1,
+          "logMagnitude": -4.053693855458761
+        },
+        "momentumFlux": {
+          "value": 0.9247979887163461,
+          "sign": 1,
+          "logMagnitude": -0.07817995589732618
+        },
+        "meanMomentumTransport": {
+          "value": 0.0002786462040142123,
+          "sign": 1,
+          "logMagnitude": -8.185567666814848
+        },
+        "dispersion": {
+          "value": 0.9245193425123319,
+          "sign": 1,
+          "logMagnitude": -0.07848130624046235
+        },
+        "densityX": {
+          "value": 0.39619621529995047,
+          "sign": 1,
+          "logMagnitude": -0.9258456972621616
+        },
+        "densityT": {
+          "value": 0.2055235883799046,
+          "sign": 1,
+          "logMagnitude": -1.5821944663294971
+        },
+        "fluxX": {
+          "value": -0.04074560041667782,
+          "sign": -1,
+          "logMagnitude": -3.200407410358821
+        },
+        "smoothingRate": {
+          "value": 0.16477798796322676,
+          "sign": 1,
+          "logMagnitude": -1.8031562386120754
+        },
+        "continuityResidual": {
+          "value": 0.16477798796322676,
+          "sign": 1,
+          "logMagnitude": -1.8031562386120754
+        },
+        "momentumT": {
+          "value": -0.3862800795101606,
+          "sign": -1,
+          "logMagnitude": -0.9511925780478805
+        },
+        "momentumFluxX": {
+          "value": 0.39619621529995047,
+          "sign": 1,
+          "logMagnitude": -0.9258456972621616
+        },
+        "momentumSmoothingRate": {
+          "value": 0.009916135789789853,
+          "sign": 1,
+          "logMagnitude": -4.6135919708942765
+        },
+        "momentumResidual": {
+          "value": 0.009916135789789853,
+          "sign": 1,
+          "logMagnitude": -4.6135919708942765
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": 0.6732359870692424,
+      "time": 0.181995579786641,
+      "h": 1.132319740183415,
+      "bandwidthRate": 0.3974155966462155,
+      "expected": {
+        "density": {
+          "value": 0.6983709728229025,
+          "sign": 1,
+          "logMagnitude": -0.3590048377160997
+        },
+        "flux": {
+          "value": 0.39285877453745927,
+          "sign": 1,
+          "logMagnitude": -0.9343050840173817
+        },
+        "velocity": {
+          "value": 0.5625359441121602,
+          "sign": 1,
+          "logMagnitude": -0.575300246301282
+        },
+        "momentumFlux": {
+          "value": 0.6983709728229025,
+          "sign": 1,
+          "logMagnitude": -0.3590048377160997
+        },
+        "meanMomentumTransport": {
+          "value": 0.22099718163717597,
+          "sign": 1,
+          "logMagnitude": -1.5096053303186636
+        },
+        "dispersion": {
+          "value": 0.4773737911857266,
+          "sign": 1,
+          "logMagnitude": -0.7394554656507353
+        },
+        "densityX": {
+          "value": -1.9789225864284026,
+          "sign": -1,
+          "logMagnitude": 0.6825525483355648
+        },
+        "densityT": {
+          "value": 0.29848688030891013,
+          "sign": 1,
+          "logMagnitude": -1.209029299179349
+        },
+        "fluxX": {
+          "value": -0.0811859981976821,
+          "sign": -1,
+          "logMagnitude": -2.5110124826724416
+        },
+        "smoothingRate": {
+          "value": 0.21730088211122806,
+          "sign": 1,
+          "logMagnitude": -1.5264723323113856
+        },
+        "continuityResidual": {
+          "value": 0.21730088211122806,
+          "sign": 1,
+          "logMagnitude": -1.5264723323113856
+        },
+        "momentumT": {
+          "value": 1.7338170778380881,
+          "sign": 1,
+          "logMagnitude": 0.5503253813508877
+        },
+        "momentumFluxX": {
+          "value": -1.9789225864284026,
+          "sign": -1,
+          "logMagnitude": 0.6825525483355648
+        },
+        "momentumSmoothingRate": {
+          "value": -0.24510550859031438,
+          "sign": -1,
+          "logMagnitude": -1.4060665138319166
+        },
+        "momentumResidual": {
+          "value": -0.24510550859031438,
+          "sign": -1,
+          "logMagnitude": -1.4060665138319166
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": -0.3842972119437156,
+      "time": 0.12683152483524918,
+      "h": 0.606734712369851,
+      "bandwidthRate": -0.11549846507600936,
+      "expected": {
+        "density": {
+          "value": 1.1690201922134509,
+          "sign": 1,
+          "logMagnitude": 0.15616595540615208
+        },
+        "flux": {
+          "value": -0.9085520289791229,
+          "sign": -1,
+          "logMagnitude": -0.09590312368376885
+        },
+        "velocity": {
+          "value": -0.7771910485642243,
+          "sign": -1,
+          "logMagnitude": -0.25206907908992093
+        },
+        "momentumFlux": {
+          "value": 1.1690201922134509,
+          "sign": 1,
+          "logMagnitude": 0.15616595540615208
+        },
+        "meanMomentumTransport": {
+          "value": 0.706118504077438,
+          "sign": 1,
+          "logMagnitude": -0.3479722027736898
+        },
+        "dispersion": {
+          "value": 0.4629016881360128,
+          "sign": 1,
+          "logMagnitude": -0.7702405840817619
+        },
+        "densityX": {
+          "value": 6.03569060392097,
+          "sign": 1,
+          "logMagnitude": 1.7976902811294337
+        },
+        "densityT": {
+          "value": 0.8593324870441186,
+          "sign": 1,
+          "logMagnitude": -0.15159936897225634
+        },
+        "fluxX": {
+          "value": -1.0529171309878715,
+          "sign": -1,
+          "logMagnitude": 0.05156453203775868
+        },
+        "smoothingRate": {
+          "value": -0.19358464394375294,
+          "sign": -1,
+          "logMagnitude": -1.6420404257578696
+        },
+        "continuityResidual": {
+          "value": -0.19358464394375294,
+          "sign": -1,
+          "logMagnitude": -1.6420404257578696
+        },
+        "momentumT": {
+          "value": -6.277341135192707,
+          "sign": -1,
+          "logMagnitude": 1.8369465047111078
+        },
+        "momentumFluxX": {
+          "value": 6.03569060392097,
+          "sign": 1,
+          "logMagnitude": 1.7976902811294337
+        },
+        "momentumSmoothingRate": {
+          "value": -0.24165053127173622,
+          "sign": -1,
+          "logMagnitude": -1.4202626821760305
+        },
+        "momentumResidual": {
+          "value": -0.24165053127173622,
+          "sign": -1,
+          "logMagnitude": -1.4202626821760305
+        }
+      }
+    },
+    {
+      "particles": [
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": 1.0
+        },
+        {
+          "mass": 1.0,
+          "position": 0.0,
+          "velocity": -1.0
+        }
+      ],
+      "x": -0.25468541036284814,
+      "time": -0.08838839055338017,
+      "h": 1.9672828662039525,
+      "bandwidthRate": 0.4979101526264883,
+      "expected": {
+        "density": {
+          "value": 0.9177607510997967,
+          "sign": 1,
+          "logMagnitude": -0.0858185420458426
+        },
+        "flux": {
+          "value": 0.021758408057422428,
+          "sign": 1,
+          "logMagnitude": -3.8277550187964664
+        },
+        "velocity": {
+          "value": 0.023708148372381672,
+          "sign": 1,
+          "logMagnitude": -3.7419364767505954
+        },
+        "momentumFlux": {
+          "value": 0.9177607510997967,
+          "sign": 1,
+          "logMagnitude": -0.0858185420458426
+        },
+        "meanMomentumTransport": {
+          "value": 0.0005158515665721957,
+          "sign": 1,
+          "logMagnitude": -7.569691495547033
+        },
+        "dispersion": {
+          "value": 0.9172448995332245,
+          "sign": 1,
+          "logMagnitude": -0.08638077636919661
+        },
+        "densityX": {
+          "value": 0.24515530128189647,
+          "sign": 1,
+          "logMagnitude": -1.405863386472987
+        },
+        "densityT": {
+          "value": -0.1321184700179413,
+          "sign": -1,
+          "logMagnitude": -2.0240562587722764
+        },
+        "fluxX": {
+          "value": -0.08251398131316712,
+          "sign": -1,
+          "logMagnitude": -2.494787529537348
+        },
+        "smoothingRate": {
+          "value": -0.21463245133110842,
+          "sign": -1,
+          "logMagnitude": -1.5388282424586919
+        },
+        "continuityResidual": {
+          "value": -0.21463245133110842,
+          "sign": -1,
+          "logMagnitude": -1.5388282424586919
+        },
+        "momentumT": {
+          "value": -0.2614653727301319,
+          "sign": -1,
+          "logMagnitude": -1.3414534221032
+        },
+        "momentumFluxX": {
+          "value": 0.24515530128189647,
+          "sign": 1,
+          "logMagnitude": -1.405863386472987
+        },
+        "momentumSmoothingRate": {
+          "value": -0.016310071448235406,
+          "sign": -1,
+          "logMagnitude": -4.115972481719012
+        },
+        "momentumResidual": {
+          "value": -0.016310071448235406,
+          "sign": -1,
+          "logMagnitude": -4.115972481719012
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,470 @@
+{
+  "scope": "Original field-multiscale perturbation introductory topic only",
+  "status": "introductory-topic-verified",
+  "unitIds": [
+    "regular-perturbation-residual-certificates",
+    "quartic-integral-asymptotic-truncation",
+    "singular-perturbation-boundary-layer-matching",
+    "duffing-secular-frequency-long-time"
+  ],
+  "requirements": [
+    {
+      "requirement": "positive curvature and nondimensionalization",
+      "unitId": "regular-perturbation-residual-certificates",
+      "reviewReason": "F′=k+3λx²≥k>0 proves a unique convex equilibrium; g=λh²/k³, not λ alone, controls the normalized equation.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/regular-perturbation-residual-certificates.ko.md",
+          "sections": [
+            2,
+            3,
+            4
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/regular-perturbation-residual-certificates.en.md",
+          "sections": [
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "coefficient construction and residual cancellation",
+      "unitId": "regular-perturbation-residual-certificates",
+      "reviewReason": "The cubic coefficient recurrence gives 1,−1,3,−12,55 at k=h=1; symbolic residual powers through the requested order vanish.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/regular-perturbation-residual-certificates.ko.md",
+          "sections": [
+            5,
+            6,
+            9
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/regular-perturbation-residual-certificates.en.md",
+          "sections": [
+            5,
+            6,
+            9
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "stability, energy and conditioning",
+      "unitId": "regular-perturbation-residual-certificates",
+      "reviewReason": "Mean-value and strong-convexity estimates supply distance ≤|F(p)|/k and gap ≤F(p)²/(2k); susceptibility exposes the same positive-slope assumption.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/regular-perturbation-residual-certificates.ko.md",
+          "sections": [
+            7,
+            8,
+            12
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/regular-perturbation-residual-certificates.en.md",
+          "sections": [
+            7,
+            8,
+            12
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "convergence, asymptotic limits and degenerations",
+      "unitId": "regular-perturbation-residual-certificates",
+      "reviewReason": "Lagrange coefficients and the inverse-map obstruction give radius4/27; a unique real root need not have a convergent Taylor expansion. Zero source/linear coupling are distinct from excluded k=0.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/regular-perturbation-residual-certificates.ko.md",
+          "sections": [
+            10,
+            11,
+            13
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/regular-perturbation-residual-certificates.en.md",
+          "sections": [
+            10,
+            11,
+            13
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "finite integral and coefficient normalization",
+      "unitId": "quartic-integral-asymptotic-truncation",
+      "reviewReason": "The Gaussian majorant proves0<Z≤1; gX⁴/4 fixes coefficients via finite Gaussian moments, independently of the equilibrium minimum.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/quartic-integral-asymptotic-truncation.ko.md",
+          "sections": [
+            2,
+            3,
+            4
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/quartic-integral-asymptotic-truncation.en.md",
+          "sections": [
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "finite signed remainder and legitimate averaging",
+      "unitId": "quartic-integral-asymptotic-truncation",
+      "reviewReason": "The exponential integral remainder proves its sign and first-omitted bound before averaging; odd/even envelopes do not rely on an unjustified infinite exchange.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/quartic-integral-asymptotic-truncation.ko.md",
+          "sections": [
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/quartic-integral-asymptotic-truncation.en.md",
+          "sections": [
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "divergence and truncation objectives",
+      "unitId": "quartic-integral-asymptotic-truncation",
+      "reviewReason": "The absolute term ratio grows without bound at fixed g>0. Minimizing the available first-omitted bound differs from actual error and from an unavailable global order.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/quartic-integral-asymptotic-truncation.ko.md",
+          "sections": [
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/quartic-integral-asymptotic-truncation.en.md",
+          "sections": [
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "independent reference and observable meaning",
+      "unitId": "quartic-integral-asymptotic-truncation",
+      "reviewReason": "Bounded-panel exponential enclosures plus a convex tail majorant define raw quadrature. Its intersection with the series envelope is explicitly dependent; normalization derivatives concern moments, not a stationary point.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/quartic-integral-asymptotic-truncation.ko.md",
+          "sections": [
+            13,
+            14,
+            16
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/quartic-integral-asymptotic-truncation.en.md",
+          "sections": [
+            13,
+            14,
+            16
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "boundary data, signs and lost order",
+      "unitId": "singular-perturbation-boundary-layer-matching",
+      "reviewReason": "Deleting εu″ loses an integration constant. Reflection gives positive canonical drift while preserving physical derivative signs; the exact solution satisfies both boundaries.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/singular-perturbation-boundary-layer-matching.ko.md",
+          "sections": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/singular-perturbation-boundary-layer-matching.en.md",
+          "sections": [
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "dominant balance, overlap and composition",
+      "unitId": "singular-perturbation-boundary-layer-matching",
+      "reviewReason": "δ=ε/|a| arises from derivative balance; the shared constant is subtracted once, with a real overlap only as δ→0 at fixed nonzero drift.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/singular-perturbation-boundary-layer-matching.ko.md",
+          "sections": [
+            6,
+            7,
+            8
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/singular-perturbation-boundary-layer-matching.en.md",
+          "sections": [
+            6,
+            7,
+            8
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "uniform, pointwise and derivative claims",
+      "unitId": "singular-perturbation-boundary-layer-matching",
+      "reviewReason": "The exact difference increases to D exp(−1/δ), proving the uniform value certificate; the outer maximum remains|D| and the derivative certificate is separately derived.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/singular-perturbation-boundary-layer-matching.ko.md",
+          "sections": [
+            9,
+            10,
+            11
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/singular-perturbation-boundary-layer-matching.en.md",
+          "sections": [
+            9,
+            10,
+            11
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "residual trap, degenerations and mesh limits",
+      "unitId": "singular-perturbation-boundary-layer-matching",
+      "reviewReason": "Zero interior residual leaves boundary defects. Compatible data can suppress the layer; zero drift uses a separate quadratic. Mesh targets and arithmetic bit counts are not convergence or final-accuracy proofs.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/singular-perturbation-boundary-layer-matching.ko.md",
+          "sections": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/singular-perturbation-boundary-layer-matching.en.md",
+          "sections": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "effective coupling, invariants and secular failure",
+      "unitId": "duffing-secular-frequency-long-time",
+      "reviewReason": "g=λA², energy bounds and resonant cos(t) forcing distinguish a bounded exact orbit from a t·sin(t) correction that fails uniformly on growing horizons.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.ko.md",
+          "sections": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.en.md",
+          "sections": [
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "clock corrections and multiple scales",
+      "unitId": "duffing-secular-frequency-long-time",
+      "reviewReason": "Resonant solvability gives ω1=3/8 and ω2=−21/256; waveform sums preserve turning data. Slow phase modulation reproduces the first clock without claiming a general averaging theorem.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.ko.md",
+          "sections": [
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.en.md",
+          "sections": [
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "separate residual, energy, phase and time regimes",
+      "unitId": "duffing-secular-frequency-long-time",
+      "reviewReason": "Polynomial residual bounds and energy defects do not imply long-time trajectory accuracy; unwrapped fundamental phase grows with horizon and the remaining frequency error order.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.ko.md",
+          "sections": [
+            10,
+            11,
+            12,
+            16
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.en.md",
+          "sections": [
+            10,
+            11,
+            12,
+            16
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "analytic reference and numerical uncertainty",
+      "unitId": "duffing-secular-frequency-long-time",
+      "reviewReason": "The cn parameter m=g/[2(1+g)] and AGM frequency are distinguished from modulus notation; Fourier tails and directed arithmetic are separate uncertainty sources.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.ko.md",
+          "sections": [
+            13,
+            14,
+            15
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.en.md",
+          "sections": [
+            13,
+            14,
+            15
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "sampling, strong and degenerate cases",
+      "unitId": "duffing-secular-frequency-long-time",
+      "reviewReason": "Sparse full-grid points cannot define a period; local sampling is a heuristic. Nonpositive truncated frequency is invalid extrapolation, not absent exact motion; equilibrium has no period.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.ko.md",
+          "sections": [
+            17,
+            18,
+            19
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.en.md",
+          "sections": [
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    },
+    {
+      "requirement": "cross-problem synthesis and research boundaries",
+      "unitId": "duffing-secular-frequency-long-time",
+      "reviewReason": "The added bilingual table and four worked diagnostic outputs require an observable, norm, regime, assumptions and reference uncertainty; certificates are not transferred between models.",
+      "sources": {
+        "ko": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.ko.md",
+          "sections": [
+            20
+          ]
+        },
+        "en": {
+          "file": "content/learning/physics-math-for-ai/duffing-secular-frequency-long-time.en.md",
+          "sections": [
+            20
+          ]
+        }
+      },
+      "substantiveReview": "satisfied"
+    }
+  ],
+  "verifiedOriginalTopic": true,
+  "generalResearchCompletion": false,
+  "remainingResearchDepth": [
+    "WKB and turning points",
+    "Stokes phenomena and exponential asymptotics",
+    "general averaging theorems and resonances",
+    "resummation and nonperturbative terms",
+    "continuum field-theory existence and renormalization"
+  ],
+  "completionScope": "original-introductory-coverage-only",
+  "currentBrowserEvidence": ".runtime/learning/perturbation-topic-audit/readers.json",
+  "numericalSourceEvidence": ".runtime/learning/perturbation-topic-audit/numerical-source-preservation.json",
+  "report": "docs/online-learning/physics-math-for-ai/perturbation-introductory-audit.md",
+  "evidence": ".runtime/learning/perturbation-topic-audit/verification.json"
+}

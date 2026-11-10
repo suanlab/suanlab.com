@@ -1,0 +1,278 @@
+{
+  "force-mass-calibration-identifiability": [
+    {
+      "name": "zero-background",
+      "values": [
+        5,
+        0,
+        20,
+        0,
+        50,
+        0
+      ],
+      "key": "recovered algebraic mass kg",
+      "answer": "5"
+    },
+    {
+      "name": "negative-mass",
+      "values": [
+        1,
+        20,
+        1,
+        -20,
+        10,
+        20
+      ],
+      "key": "1{physical solution exists}",
+      "answer": "0"
+    },
+    {
+      "name": "zero-mass",
+      "values": [
+        1,
+        20,
+        0,
+        1,
+        10,
+        20
+      ],
+      "key": "recovered algebraic mass kg",
+      "answer": "0"
+    },
+    {
+      "name": "ray-query",
+      "values": [
+        2,
+        40,
+        0,
+        0,
+        15,
+        30
+      ],
+      "key": "1{query compatible}",
+      "answer": "1"
+    },
+    {
+      "name": "small-calibrated-input",
+      "values": [
+        5,
+        40,
+        1,
+        0,
+        50,
+        40
+      ],
+      "key": "recovered algebraic mass kg",
+      "answer": "5"
+    },
+    {
+      "name": "outside-query-grid",
+      "values": [
+        5,
+        -50,
+        -20,
+        20,
+        1,
+        -100
+      ],
+      "key": "recovered algebraic mass kg",
+      "answer": "10"
+    }
+  ],
+  "oscillator-probe-excitation-identifiability": [
+    {
+      "name": "zero-excitation",
+      "values": [
+        10,
+        20,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "key": "affine solution dimension",
+      "answer": "2"
+    },
+    {
+      "name": "zero-row-inconsistent",
+      "values": [
+        10,
+        20,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "key": "1{responses consistent}",
+      "answer": "0"
+    },
+    {
+      "name": "proportional-inconsistent",
+      "values": [
+        10,
+        20,
+        10,
+        10,
+        20,
+        20,
+        0,
+        1,
+        1,
+        1
+      ],
+      "key": "1{responses consistent}",
+      "answer": "0"
+    },
+    {
+      "name": "negative-damping",
+      "values": [
+        0,
+        10,
+        10,
+        0,
+        0,
+        10,
+        1,
+        0,
+        1,
+        1
+      ],
+      "key": "1{unique fit physically admissible}",
+      "answer": "0"
+    },
+    {
+      "name": "small-equal-singular",
+      "values": [
+        10,
+        20,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "key": "normalized two-norm condition number",
+      "answer": "1"
+    },
+    {
+      "name": "empty-physical-family",
+      "values": [
+        0,
+        1,
+        10,
+        0,
+        20,
+        0,
+        1,
+        2,
+        1,
+        1
+      ],
+      "key": "1{physical coefficient set nonempty}",
+      "answer": "0"
+    }
+  ],
+  "position-sensor-affine-observability": [
+    {
+      "name": "known-repeated-time",
+      "values": [
+        10,
+        20,
+        10,
+        10,
+        10,
+        0,
+        0,
+        0
+      ],
+      "key": "complete fiber dimension",
+      "answer": "1"
+    },
+    {
+      "name": "velocity-only",
+      "values": [
+        10,
+        20,
+        10,
+        0,
+        10,
+        1,
+        0,
+        0
+      ],
+      "key": "1{offset uniquely determined}",
+      "answer": "\u2014"
+    },
+    {
+      "name": "unknown-repeated-time",
+      "values": [
+        10,
+        20,
+        10,
+        10,
+        10,
+        2,
+        0,
+        0
+      ],
+      "key": "complete fiber dimension",
+      "answer": "2"
+    },
+    {
+      "name": "calibrated-repeated-time",
+      "values": [
+        10,
+        20,
+        10,
+        10,
+        10,
+        3,
+        0,
+        0
+      ],
+      "key": "1{velocity uniquely determined}",
+      "answer": "0"
+    },
+    {
+      "name": "truth-member-not-unique",
+      "values": [
+        10,
+        20,
+        10,
+        0,
+        10,
+        2,
+        10,
+        0
+      ],
+      "key": "1{initial position uniquely determined}",
+      "answer": "0"
+    },
+    {
+      "name": "large-state-distinct-times",
+      "values": [
+        -30,
+        30,
+        -20,
+        50,
+        0,
+        3,
+        20,
+        -20
+      ],
+      "key": "observation rank",
+      "answer": "3"
+    }
+  ]
+}

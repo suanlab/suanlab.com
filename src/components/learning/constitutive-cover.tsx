@@ -1,0 +1,10 @@
+import{viscoelasticAt,neoHookeanAt}from '@/lib/learning-continuum-constitutive';
+import type{ContinuumConstitutiveKind}from '@/lib/learning-continuum-constitutive-lab';
+export default function ConstitutiveCover({kind}:{kind:ContinuumConstitutiveKind}){
+ if(kind==='kelvin-voigt-maxwell-memory-dissipation'){
+  const samples=Array.from({length:121},(_,i)=>{const time=2*Math.PI*i/120;return{time,value:viscoelasticAt({elasticModulus:2,viscosity:1,strainAmplitude:.002,angularFrequency:1,initialElasticStrain:0},time)};}),path=(model:'kelvin'|'maxwell')=>samples.map((s,i)=>(i===0?'M':'L')+(180+55000*s.value.strain!).toFixed(3)+' '+(130-15000*s.value[model].stress!).toFixed(3)).join(' ');
+  return <svg viewBox="0 0 360 240" aria-hidden="true" className="ai-book-art"><path d="M50 130H310M180 35V205" stroke="var(--learning-neutral)" strokeDasharray="4 4"/>{(['kelvin','maxwell']as const).map((name,i)=><path key={name} d={path(name)} fill="none" stroke={i===0?'var(--learning-blue)':'var(--learning-orange)'} strokeWidth="3"/>)}<g fill="currentColor" fontSize="14"><text x="40" y="25">σ · ε · memory</text><text x="310" y="150">ε</text><text x="190" y="45">σ</text></g></svg>;
+ }
+ const q=neoHookeanAt({shearModulus:2,logStretch:Math.log(2),rotation:.3,normalAngle:.3,referenceArea:1,referenceLength:1}),corners=[[-.5,-.5],[.5,-.5],[.5,.5],[-.5,.5]],polygon=(deformed:boolean)=>corners.map(([x,y])=>{const a=deformed?q.F[0][0]*x+q.F[0][1]*y:x,b=deformed?q.F[1][0]*x+q.F[1][1]*y:y;return(180+105*a).toFixed(3)+','+(120-105*b).toFixed(3);}).join(' ');
+ return <svg viewBox="0 0 360 240" aria-hidden="true" className="ai-book-art"><polygon points={polygon(false)} fill="none" stroke="var(--learning-neutral)" strokeDasharray="5 4" strokeWidth="2"/><polygon points={polygon(true)} fill="var(--learning-blue)" fillOpacity=".12" stroke="var(--learning-blue)" strokeWidth="3"/><g fill="currentColor" fontSize="14"><text x="35" y="25">W(F) · P · σ</text><text x="180" y="225" textAnchor="middle">det F=1 · A σ=A0 P</text></g></svg>;
+}

@@ -1,0 +1,270 @@
+{
+  "oscillator-nondimensional-similarity": [
+    {
+      "name": "critical",
+      "values": [
+        1,
+        1,
+        20,
+        10,
+        0,
+        1,
+        1,
+        1,
+        0,
+        20
+      ],
+      "key": "worldA discriminant numerator",
+      "answer": "0",
+      "checks": [
+        [
+          "1{same normalized problem}",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "overdamped-fast-scales",
+      "values": [
+        1,
+        1,
+        40,
+        10,
+        0,
+        4,
+        4,
+        4,
+        20,
+        80
+      ],
+      "key": "worldA discriminant numerator",
+      "answer": "1,200",
+      "checks": [
+        [
+          "1{same normalized law}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "undamped-with-velocity",
+      "values": [
+        1,
+        4,
+        0,
+        0,
+        20,
+        4,
+        3,
+        4,
+        0,
+        80
+      ],
+      "key": "worldA damping ratio",
+      "answer": "0",
+      "checks": [
+        [
+          "1{same normalized problem}",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "unexcited-different-laws",
+      "values": [
+        1,
+        1,
+        10,
+        0,
+        0,
+        3,
+        2,
+        2,
+        10,
+        80
+      ],
+      "key": "maximum sampled normalized gap",
+      "answer": "0",
+      "checks": [
+        [
+          "1{same normalized law}",
+          "0"
+        ],
+        [
+          "1{zero excitation}",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "negative-initial-data",
+      "values": [
+        5,
+        1,
+        40,
+        -20,
+        -20,
+        1,
+        1,
+        4,
+        1,
+        80
+      ],
+      "key": "normalized initial displacement",
+      "answer": "-2",
+      "checks": [
+        [
+          "1{same normalized law}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "slow-physical-clock",
+      "values": [
+        5,
+        1,
+        0,
+        20,
+        20,
+        4,
+        4,
+        4,
+        0,
+        80
+      ],
+      "key": "1{same normalized problem}",
+      "answer": "1"
+    }
+  ],
+  "buckingham-groups-law-identification": [
+    {
+      "name": "constant-monomial",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        100,
+        1
+      ],
+      "key": "1{candidate monomial dimensionless}",
+      "answer": "1",
+      "checks": [
+        [
+          "basis power a of normalized force",
+          "0"
+        ],
+        [
+          "basis power b of inverse Reynolds",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "large-defect",
+      "values": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        1,
+        120
+      ],
+      "key": "1{candidate monomial dimensionless}",
+      "answer": "0",
+      "checks": [
+        [
+          "mass exponent defect",
+          "9"
+        ],
+        [
+          "length exponent defect",
+          "-3"
+        ],
+        [
+          "time exponent defect",
+          "-12"
+        ],
+        [
+          "basis power a of normalized force",
+          "—"
+        ]
+      ]
+    },
+    {
+      "name": "combined-basis",
+      "values": [
+        2,
+        -1,
+        -3,
+        -3,
+        -1,
+        20,
+        5
+      ],
+      "key": "1{candidate monomial dimensionless}",
+      "answer": "1",
+      "checks": [
+        [
+          "basis power a of normalized force",
+          "2"
+        ],
+        [
+          "basis power b of inverse Reynolds",
+          "-1"
+        ]
+      ]
+    },
+    {
+      "name": "small-Re-second-hypothesis",
+      "values": [
+        1,
+        -1,
+        -2,
+        -2,
+        0,
+        1,
+        110
+      ],
+      "key": "1{query exactly matches toy hypothesis2}",
+      "answer": "1"
+    },
+    {
+      "name": "large-Re-first-hypothesis",
+      "values": [
+        0,
+        -1,
+        -1,
+        -1,
+        1,
+        100,
+        1
+      ],
+      "key": "1{query exactly matches toy hypothesis1}",
+      "answer": "1"
+    },
+    {
+      "name": "neither-hypothesis",
+      "values": [
+        1,
+        -1,
+        -2,
+        -2,
+        0,
+        20,
+        10
+      ],
+      "key": "1{query exactly matches toy hypothesis1}",
+      "answer": "0",
+      "checks": [
+        [
+          "1{query exactly matches toy hypothesis2}",
+          "0"
+        ]
+      ]
+    }
+  ]
+}

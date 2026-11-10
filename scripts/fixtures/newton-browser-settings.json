@@ -1,0 +1,186 @@
+{
+  "vector-force-superposition-dynamics": [
+    {
+      "name": "stationary-zero",
+      "values": [
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        50
+      ],
+      "key": "1{stationary for entire motion}",
+      "answer": "1"
+    },
+    {
+      "name": "initial-rest-force",
+      "values": [
+        1,
+        10,
+        20,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "key": "1{query rest while accelerating}",
+      "answer": "1"
+    },
+    {
+      "name": "opposed-work",
+      "values": [
+        2,
+        20,
+        0,
+        -20,
+        0,
+        10,
+        0,
+        50
+      ],
+      "key": "work of force1 joules",
+      "answer": "10"
+    },
+    {
+      "name": "negative-components",
+      "values": [
+        5,
+        -30,
+        30,
+        -30,
+        -30,
+        -30,
+        30,
+        50
+      ],
+      "key": "total physical work joules",
+      "answer": "180"
+    },
+    {
+      "name": "turning-mass-two",
+      "values": [
+        2,
+        -20,
+        0,
+        0,
+        0,
+        10,
+        0,
+        10
+      ],
+      "key": "1{query rest while accelerating}",
+      "answer": "1"
+    },
+    {
+      "name": "large-components",
+      "values": [
+        1,
+        30,
+        30,
+        30,
+        30,
+        30,
+        -30,
+        50
+      ],
+      "key": "total physical work joules",
+      "answer": "900"
+    }
+  ],
+  "accelerating-observer-inertial-force": [
+    {
+      "name": "inertial-limit",
+      "values": [
+        5,
+        -30,
+        30,
+        -30,
+        50,
+        -30,
+        30,
+        0
+      ],
+      "key": "1{observer inertial}",
+      "answer": "1"
+    },
+    {
+      "name": "zero-time-noninertial",
+      "values": [
+        1,
+        30,
+        30,
+        30,
+        0,
+        30,
+        30,
+        30
+      ],
+      "key": "omitted-inertial-term position error meters",
+      "answer": "0"
+    },
+    {
+      "name": "negative-observer",
+      "values": [
+        1,
+        0,
+        10,
+        0,
+        20,
+        10,
+        10,
+        -10
+      ],
+      "key": "omitted-inertial-term position error meters",
+      "answer": "-2"
+    },
+    {
+      "name": "matched-negative-acceleration",
+      "values": [
+        5,
+        0,
+        0,
+        -30,
+        50,
+        0,
+        0,
+        -6
+      ],
+      "key": "primed acceleration m per s squared",
+      "answer": "0"
+    },
+    {
+      "name": "extreme-frame",
+      "values": [
+        5,
+        -30,
+        -30,
+        30,
+        50,
+        30,
+        -30,
+        30
+      ],
+      "key": "exact primed kinetic work residual",
+      "answer": "0"
+    },
+    {
+      "name": "uniform-moving-frame",
+      "values": [
+        1,
+        20,
+        -10,
+        0,
+        50,
+        20,
+        -10,
+        0
+      ],
+      "key": "primed position meters",
+      "answer": "-12"
+    }
+  ]
+}

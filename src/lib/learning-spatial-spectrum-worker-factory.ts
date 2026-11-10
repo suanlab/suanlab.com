@@ -1,0 +1,2 @@
+export function createSpatialSpectrumWorker():Worker{return new Worker(new URL('./learning-spatial-spectrum.worker.ts',import.meta.url),{type:'module',name:'spatial-spectrum-calculation'});}
+export function createSpatialSpectrumValidationWorker():Worker{return new Worker(new URL('./learning-spatial-spectrum-validation.worker.ts',import.meta.url),{type:'module',name:'spatial-spectrum-validation'});}

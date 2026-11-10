@@ -1,0 +1,28 @@
+/** Exact finite Gaussian correlations via positive rational LDLᵀ factors. Worker-only numerical model. */
+import {readGaussianFieldInput} from './learning-gaussian-field-input';
+import {f,zero,one,two,add,sub,mul,div,neg,eq,sum,type F} from './learning-quantum-hilbert-core';
+const read=(s:string)=>{const[n,d='1']=s.split('/');return f(BigInt(n),BigInt(d));},integer=(n:number)=>f(BigInt(n)),text=(x:F)=>x.d===BigInt(1)?String(x.n):`${x.n}/${x.d}`;
+type M=F[][];
+const matrix=(n:number,m=n):M=>Array.from({length:n},()=>Array.from({length:m},()=>zero));
+const transpose=(a:M):M=>a[0].map((_,j)=>a.map(row=>row[j]));
+const product=(a:M,b:M):M=>a.map(row=>b[0].map((_,j)=>sum(row.map((x,k)=>mul(x,b[k][j])))));
+const vector=(a:M,x:F[])=>a.map(row=>sum(row.map((v,j)=>mul(v,x[j]))));
+const wire=(a:M)=>a.map(row=>row.map(text));
+function ldlt(a:M){const n=a.length,L=matrix(n),D:F[]=[];for(let i=0;i<n;i++){L[i][i]=one;D[i]=sub(a[i][i],sum(Array.from({length:i},(_,k)=>mul(mul(L[i][k],L[i][k]),D[k]))));if(D[i].n<=BigInt(0))throw Error('Nonpositive precision on the declared integration space');for(let j=i+1;j<n;j++)L[j][i]=div(sub(a[j][i],sum(Array.from({length:i},(_,k)=>mul(mul(L[j][k],L[i][k]),D[k])))),D[i]);}
+ const inverse=matrix(n);for(let col=0;col<n;col++){const y:F[]=[],z:F[]=[],x:F[]=[];for(let i=0;i<n;i++){y[i]=sub(i===col?one:zero,sum(Array.from({length:i},(_,k)=>mul(L[i][k],y[k]))));z[i]=div(y[i],D[i]);}for(let i=n-1;i>=0;i--)x[i]=sub(z[i],sum(Array.from({length:n-i-1},(_,k)=>mul(L[i+1+k][i],x[i+1+k]))));for(let i=0;i<n;i++)inverse[i][col]=x[i];}
+ return{L,D,inverse,determinant:D.reduce(mul,one)};
+}
+export function calculateGaussianField(value:unknown){
+ const input=readGaussianFieldInput(value);if(!input)throw RangeError('Invalid finite Gaussian field');const n=input.sites,mass=read(input.massSquared),stiffness=read(input.stiffness),T=read(input.temperature),J=input.source.map(read),K=matrix(n),laplacian=matrix(n);
+ const edge=(i:number,j:number)=>{laplacian[i][i]=add(laplacian[i][i],one);laplacian[j][j]=add(laplacian[j][j],one);laplacian[i][j]=sub(laplacian[i][j],one);laplacian[j][i]=sub(laplacian[j][i],one);};for(let i=0;i<n-1;i++)edge(i,i+1);if(input.boundary==='periodic')edge(n-1,0);if(input.boundary==='dirichlet'){laplacian[0][0]=add(laplacian[0][0],one);laplacian[n-1][n-1]=add(laplacian[n-1][n-1],one);}
+ for(let i=0;i<n;i++)for(let j=0;j<n;j++)K[i][j]=add(i===j?mass:zero,mul(stiffness,laplacian[i][j]));
+ const constrained=input.constraint==='mean-zero',d=constrained?n-1:n,B=matrix(n,d),P=matrix(n);for(let i=0;i<n;i++)for(let j=0;j<n;j++)P[i][j]=constrained?sub(i===j?one:zero,div(one,integer(n))):i===j?one:zero;
+ if(constrained)for(let j=0;j<d;j++){B[j][j]=one;B[n-1][j]=neg(one);}else for(let i=0;i<n;i++)B[i][i]=one;
+ const A=product(product(transpose(B),K),B),factor=ldlt(A),G=product(product(B,factor.inverse),transpose(B)),C=G.map(row=>row.map(x=>mul(T,x))),mean=vector(G,J),rawTwo=C.map((row,i)=>row.map((c,j)=>add(c,mul(mean[i],mean[j])))),stationarity=vector(K,mean).map((x,i)=>sub(x,J[i])),projectedStationarity=vector(P,stationarity),green=product(product(P,K),G).map((row,i)=>row.map((x,j)=>sub(x,P[i][j]))),logRatio=div(sum(J.map((x,i)=>mul(x,mean[i]))),mul(two,T)),detRestricted=div(factor.determinant,constrained?integer(n):one);
+ const[i,j,k,l]=input.probes,pairs=[[i,j,k,l],[i,k,j,l],[i,l,j,k]],wick=pairs.map(([a,b,c,d])=>mul(C[a][b],C[c][d])),centeredFourth=sum(wick),mu4=mul(mul(mean[i],mean[j]),mul(mean[k],mean[l]));
+ const indices=[i,j,k,l];let rawFourth=add(mu4,centeredFourth);for(let a=0;a<4;a++)for(let b=a+1;b<4;b++){const rest=[0,1,2,3].filter(v=>v!==a&&v!==b);rawFourth=add(rawFourth,mul(C[indices[a]][indices[b]],mul(mean[indices[rest[0]]],mean[indices[rest[1]]])));}
+ const naiveDisconnected=sum(pairs.map(([a,b,c,d])=>mul(rawTwo[a][b],rawTwo[c][d])));
+ if(projectedStationarity.some(x=>!eq(x,zero))||green.some(row=>row.some(x=>!eq(x,zero))))throw Error('Gaussian exact identities failed');
+ return{input,integrationDimension:d,precision:wire(K),laplacian:wire(laplacian),basis:wire(B),projector:wire(P),reducedPrecision:wire(A),factorization:{lower:wire(factor.L),diagonal:factor.D.map(text),reducedDeterminant:text(factor.determinant)},normalization:{restrictedPrecisionDeterminant:text(detRestricted),euclideanMeasureGramDeterminant:constrained?String(n):'1',formula:'Z(0)=(2πT)^(dimension/2)/sqrt(restrictedPrecisionDeterminant)',logZRatio:text(logRatio)},mean:mean.map(text),susceptibility:wire(G),connectedTwo:wire(C),rawTwo:wire(rawTwo),sourceDerivatives:{logZGradient:mean.map(x=>text(div(x,T))),logZHessian:C.map(row=>row.map(x=>text(div(x,mul(T,T)))))},fourPoint:{indices:input.probes,meanProduct:text(mu4),wickPairProducts:wick.map(text),centered:text(centeredFourth),raw:text(rawFourth),connectedCumulant:'0',incorrectRawPairSubtraction:text(sub(rawFourth,naiveDisconnected)),incorrectSubtractionDifference:text(neg(mul(two,mu4)))},certificates:{ambientMeanResidual:stationarity.map(text),constraintMultiplier:constrained?text(neg(div(sum(stationarity),integer(n)))):null,projectedMeanResidual:projectedStationarity.map(text),projectedGreenResidual:wire(green),constraintMeanSum:constrained?text(sum(mean)):null,covarianceRowSums:constrained?C.map(row=>text(sum(row))):null,precisionPositiveOnIntegrationSpace:true},contract:'Finite classical equilibrium Gaussian field on 3..8 sites. Temperature is positive. Open, periodic and fixed-zero exterior boundaries differ. Mean-zero uses the induced Euclidean measure on sum(phi)=0; it is a different ensemble. No continuum measure, time ordering, interacting Wick rule or fitted correlation length is claimed.'};
+}
+export type GaussianFieldResult=ReturnType<typeof calculateGaussianField>;

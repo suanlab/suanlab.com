@@ -1,0 +1,210 @@
+{
+  "point-mass-inertia-tensor": [
+    {
+      "name": "isotropic",
+      "values": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        0,
+        10,
+        10,
+        0,
+        0,
+        0
+      ],
+      "key": "1{repeated principal moment}",
+      "answer": "1"
+    },
+    {
+      "name": "zero-spin",
+      "values": [
+        4,
+        4,
+        4,
+        1,
+        1,
+        1,
+        -4,
+        0,
+        0,
+        0,
+        -20,
+        -12
+      ],
+      "key": "query axis inertia kg m squared",
+      "answer": "—"
+    },
+    {
+      "name": "negative-shear",
+      "values": [
+        1,
+        2,
+        3,
+        2,
+        4,
+        6,
+        -4,
+        10,
+        10,
+        10,
+        0,
+        0
+      ],
+      "key": "1{L and omega nonparallel}",
+      "answer": "1"
+    },
+    {
+      "name": "coordinate-quarter-turn",
+      "values": [
+        1,
+        1,
+        1,
+        2,
+        4,
+        6,
+        0,
+        10,
+        10,
+        0,
+        0,
+        6
+      ],
+      "key": "pivot kinetic energy joules",
+      "answer": "23"
+    },
+    {
+      "name": "view-direction-spin",
+      "values": [
+        1,
+        1,
+        1,
+        2,
+        4,
+        6,
+        0,
+        10,
+        10,
+        10,
+        0,
+        0
+      ],
+      "key": "omega magnitude rad per s",
+      "answer": "1.732"
+    },
+    {
+      "name": "negative-pivot-spin",
+      "values": [
+        1,
+        1,
+        1,
+        2,
+        4,
+        6,
+        0,
+        0,
+        0,
+        -20,
+        -20,
+        12
+      ],
+      "key": "pivot kinetic energy joules",
+      "answer": "68"
+    }
+  ],
+  "torque-free-euler-body-lab": [
+    {
+      "name": "stationary-pose",
+      "values": [
+        5,
+        5,
+        5,
+        0,
+        0,
+        0,
+        6,
+        100
+      ],
+      "key": "1{stationary}",
+      "answer": "1"
+    },
+    {
+      "name": "pure-intermediate-axis",
+      "values": [
+        3,
+        2,
+        1,
+        0,
+        10,
+        0,
+        0,
+        100
+      ],
+      "key": "query body omega2 rad per s",
+      "answer": "1"
+    },
+    {
+      "name": "principal-axis",
+      "values": [
+        3,
+        2,
+        1,
+        0,
+        0,
+        10,
+        6,
+        100
+      ],
+      "key": "query lab L z kg m squared per s",
+      "answer": "5"
+    },
+    {
+      "name": "anisotropic-fast",
+      "values": [
+        1,
+        5,
+        1,
+        -20,
+        20,
+        20,
+        -12,
+        100
+      ],
+      "key": "initial rotational energy joules",
+      "answer": "28"
+    },
+    {
+      "name": "zero-query",
+      "values": [
+        5,
+        1,
+        4,
+        20,
+        -20,
+        20,
+        -6,
+        0
+      ],
+      "key": "initial rotational energy joules",
+      "answer": "40"
+    },
+    {
+      "name": "negative-spherical",
+      "values": [
+        5,
+        5,
+        5,
+        -20,
+        -20,
+        -20,
+        12,
+        100
+      ],
+      "key": "initial angular momentum norm squared",
+      "answer": "1,200"
+    }
+  ]
+}

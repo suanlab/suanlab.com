@@ -1,0 +1,4271 @@
+{
+  "provenance": "Independent SciPy quadrature and five-point spatial/time differences; no site model imports.",
+  "planeWaves": [
+    {
+      "permittivity": 0.5,
+      "permeability": 0.25,
+      "amplitude": -2.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.5843340476953633,
+      "frequencyRatio": 1.0,
+      "time": 0.529671370924216,
+      "z": -1.5646100205621245,
+      "bottom": -0.7048450774010002,
+      "top": 0.2218554502439778,
+      "span": 0.7,
+      "electric": -1.6382374722169646,
+      "magnetic": 0.5792044128992621,
+      "electricCurlY": -0.45889920193849704,
+      "magneticCurlX": -0.16224536878634008,
+      "electricTimeDerivative": -1.2979629502881302,
+      "magneticTimeDerivative": 0.45889920193868206,
+      "faradayLine": 0.04209748639832431,
+      "ampereLine": -0.01488370905158175,
+      "magneticFlux": -0.4545513529522425,
+      "electricFlux": -1.2856653762802015,
+      "negativeMagneticFluxRate": 0.04209748639784812,
+      "displacementFluxRate": -0.014883709051546899
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 0.25,
+      "amplitude": -2.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.05149125623660877,
+      "frequencyRatio": 1.0,
+      "time": -0.6301569323425902,
+      "z": -1.4046191816125106,
+      "bottom": -1.282113681459958,
+      "top": 0.9324269253040749,
+      "span": 0.7,
+      "electric": -1.7127946839479478,
+      "magnetic": -0.6055643678999317,
+      "electricCurlY": 1.3424250766362147,
+      "magneticCurlX": -0.47461893746270073,
+      "electricTimeDerivative": -3.7969514996947598,
+      "magneticTimeDerivative": -1.3424250766357522,
+      "faradayLine": -2.3363328909301253,
+      "ampereLine": -0.8260184151429311,
+      "magneticFlux": -0.40768077894398236,
+      "electricFlux": 1.153095373402815,
+      "negativeMagneticFluxRate": -2.336332890928716,
+      "displacementFluxRate": -0.8260184151429271
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 0.25,
+      "amplitude": 0.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.9594954478964,
+      "frequencyRatio": 1.2,
+      "time": 0.12464966534115174,
+      "z": -0.9034269875823595,
+      "bottom": -1.0411790424700147,
+      "top": 0.5363976269346042,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": 0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 0.25,
+      "amplitude": 0.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.5459029495102539,
+      "frequencyRatio": 1.0,
+      "time": 0.4577953219047495,
+      "z": -1.8094839592340666,
+      "bottom": -1.0453055261832347,
+      "top": 0.3521690200154388,
+      "span": 0.7,
+      "electric": -0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": 0.0,
+      "electricFlux": -0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 0.25,
+      "amplitude": 1.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.6224992858199394,
+      "frequencyRatio": 1.0,
+      "time": -0.9106402586954592,
+      "z": -1.4768430256900982,
+      "bottom": -0.1492308836851528,
+      "top": 0.7032855087829117,
+      "span": 0.7,
+      "electric": 0.5415556925374103,
+      "magnetic": -0.19146885129168992,
+      "electricCurlY": 0.336265949956079,
+      "magneticCurlX": 0.11888796674801767,
+      "electricTimeDerivative": 0.9511037339882121,
+      "magneticTimeDerivative": -0.33626594995755926,
+      "faradayLine": -0.06951088425814161,
+      "ampereLine": 0.024575808812602584,
+      "magneticFlux": 0.20077601989573005,
+      "electricFlux": 0.5678803406716635,
+      "negativeMagneticFluxRate": -0.06951088425794874,
+      "displacementFluxRate": 0.024575808812548245
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 0.25,
+      "amplitude": 1.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.09563943110708117,
+      "frequencyRatio": 1.2,
+      "time": -0.7159730459355504,
+      "z": 0.46559813775739434,
+      "bottom": -0.20651696936780217,
+      "top": 1.0649788278807781,
+      "span": 0.7,
+      "electric": -0.8642360211377121,
+      "magnetic": -0.30555357554607837,
+      "electricCurlY": 0.6540125446864257,
+      "magneticCurlX": -0.23122835266439765,
+      "electricTimeDerivative": -2.219792185577755,
+      "magneticTimeDerivative": -0.7848150536237756,
+      "faradayLine": -0.4754225087296756,
+      "ampereLine": -0.16808723992573715,
+      "magneticFlux": 0.24842524267578786,
+      "electricFlux": -0.7026526948558531,
+      "negativeMagneticFluxRate": -0.5705070104751001,
+      "displacementFluxRate": -0.20170468791052182
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "amplitude": -2.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.9462277690979823,
+      "frequencyRatio": 1.0,
+      "time": -0.22080532127782537,
+      "z": 1.3743279940190338,
+      "bottom": -1.2888534448658775,
+      "top": 1.7219142896693518,
+      "span": 0.7,
+      "electric": -1.7342424821434683,
+      "magnetic": 1.2262946193454367,
+      "electricCurlY": -0.3984777059031404,
+      "magneticCurlX": -0.28176628799577347,
+      "electricTimeDerivative": -0.5635325759876612,
+      "magneticTimeDerivative": 0.3984777059005499,
+      "faradayLine": 1.3211268654630335,
+      "ampereLine": -0.9341777653766388,
+      "magneticFlux": -1.551139604479052,
+      "electricFlux": -2.1936426657883135,
+      "negativeMagneticFluxRate": 1.3211268654598576,
+      "displacementFluxRate": -0.9341777653759652
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "amplitude": -2.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.43105763849865997,
+      "frequencyRatio": 1.0,
+      "time": 0.35618037868487784,
+      "z": -0.5397119403131443,
+      "bottom": -0.9302408471949308,
+      "top": 1.6150731688001998,
+      "span": 0.7,
+      "electric": -1.2030341178749058,
+      "magnetic": -0.8506735827481223,
+      "electricCurlY": -2.077035883172873,
+      "magneticCurlX": 1.4686861577585066,
+      "electricTimeDerivative": 2.9373723155146076,
+      "magneticTimeDerivative": 2.07703588316982,
+      "faradayLine": -0.6126330862016804,
+      "ampereLine": -0.433197009632451,
+      "magneticFlux": 1.4806382926355284,
+      "electricFlux": -2.0939387544141077,
+      "negativeMagneticFluxRate": -0.6126330862014454,
+      "displacementFluxRate": -0.4331970096332904
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.7152853761739799,
+      "frequencyRatio": 1.2,
+      "time": -0.3666603619706883,
+      "z": 0.20913994456902385,
+      "bottom": -1.2197812014141698,
+      "top": 0.5775912992715286,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": 0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.8545916907142292,
+      "frequencyRatio": 1.0,
+      "time": -0.3257134719724435,
+      "z": 1.3017819095808454,
+      "bottom": -0.1558213556931145,
+      "top": 1.077101001724052,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": -0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.720239671344483,
+      "frequencyRatio": 1.0,
+      "time": 0.1718380448465493,
+      "z": 0.8140609329053814,
+      "bottom": -1.2571374474695016,
+      "top": 1.7128909760574484,
+      "span": 0.7,
+      "electric": 0.9560989683211452,
+      "magnetic": -0.6760640639853439,
+      "electricCurlY": 0.11721758419328912,
+      "magneticCurlX": 0.08288534865757978,
+      "electricTimeDerivative": 0.16577069731497454,
+      "magneticTimeDerivative": -0.1172175841931966,
+      "faradayLine": -0.3973873333376456,
+      "ampereLine": 0.2809952781606882,
+      "magneticFlux": 1.1937965888902398,
+      "electricFlux": 1.6882833267233153,
+      "negativeMagneticFluxRate": -0.39738733333738446,
+      "displacementFluxRate": 0.28099527816220304
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.6893357330538201,
+      "frequencyRatio": 1.2,
+      "time": -0.9833200668752318,
+      "z": 0.5408285995485134,
+      "bottom": -1.2429423646187279,
+      "top": 1.8521687916725897,
+      "span": 0.7,
+      "electric": -0.9130095746943112,
+      "magnetic": -0.6455952615545932,
+      "electricCurlY": 0.5303195667826406,
+      "magneticCurlX": -0.3749925618677189,
+      "electricTimeDerivative": -0.8999821484827659,
+      "magneticTimeDerivative": -0.6363834801386321,
+      "faradayLine": -0.1429023946281833,
+      "ampereLine": -0.10104725228938449,
+      "magneticFlux": 0.6842340991312371,
+      "electricFlux": -0.9676531428295322,
+      "negativeMagneticFluxRate": -0.1714828735527307,
+      "displacementFluxRate": -0.12125670274693948
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 4.0,
+      "amplitude": -2.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.833718923109618,
+      "frequencyRatio": 1.0,
+      "time": -0.33853986639217926,
+      "z": 0.0391968853357354,
+      "bottom": -1.6124654039768747,
+      "top": 1.756698472577919,
+      "span": 0.7,
+      "electric": -1.4584000536473087,
+      "magnetic": 2.0624891352336734,
+      "electricCurlY": 0.5474404856812646,
+      "magneticCurlX": 0.7741977594403574,
+      "electricTimeDerivative": 0.38709887972110385,
+      "magneticTimeDerivative": -0.5474404856797843,
+      "faradayLine": -1.2122545872422306,
+      "ampereLine": 1.7143868783269611,
+      "magneticFlux": -4.448322808506833,
+      "electricFlux": -3.1454392228019694,
+      "negativeMagneticFluxRate": -1.2122545872483845,
+      "displacementFluxRate": 1.7143868783294398
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 4.0,
+      "amplitude": -2.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.8670714454966639,
+      "frequencyRatio": 1.0,
+      "time": 0.6082095198209467,
+      "z": -0.9352190221067804,
+      "bottom": -1.6809117913845666,
+      "top": 0.646095984604369,
+      "span": 0.7,
+      "electric": 1.7555037947622585,
+      "magnetic": 2.4826572753502205,
+      "electricCurlY": -1.245700148877482,
+      "magneticCurlX": 1.76168604519189,
+      "electricTimeDerivative": 0.8808430225972403,
+      "magneticTimeDerivative": 1.2457001488782222,
+      "faradayLine": 2.4145917345251244,
+      "ampereLine": 3.4147483785594073,
+      "magneticFlux": -1.531979873705594,
+      "electricFlux": 1.083273357338536,
+      "negativeMagneticFluxRate": 2.4145917345230745,
+      "displacementFluxRate": 3.4147483785607053
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 4.0,
+      "amplitude": 0.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.0035500844556364264,
+      "frequencyRatio": 1.2,
+      "time": -0.6533893193642837,
+      "z": -1.9612346514576307,
+      "bottom": -0.8985041243352483,
+      "top": 1.8147397332728048,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": 0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 4.0,
+      "amplitude": 0.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.25822665024688596,
+      "frequencyRatio": 1.0,
+      "time": 0.7755588467741186,
+      "z": -0.5453098188033176,
+      "bottom": -1.8419852297279813,
+      "top": 1.157325146838162,
+      "span": 0.7,
+      "electric": -0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": -0.0,
+      "ampereLine": -0.0,
+      "magneticFlux": -0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 4.0,
+      "amplitude": 1.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.4806718468490194,
+      "frequencyRatio": 1.0,
+      "time": 0.03071170540171808,
+      "z": 1.5166643400185875,
+      "bottom": -0.4491745916814456,
+      "top": 1.5333478839878494,
+      "span": 0.7,
+      "electric": 0.9909442860969926,
+      "magnetic": -1.4014068489544915,
+      "electricCurlY": -0.053709473059234306,
+      "magneticCurlX": -0.07595666522752785,
+      "electricTimeDerivative": -0.03797833261367141,
+      "magneticTimeDerivative": 0.05370947305756897,
+      "faradayLine": -0.13646156940311938,
+      "ampereLine": 0.1929858021926088,
+      "magneticFlux": 1.8496879714041987,
+      "electricFlux": 1.3079269076590976,
+      "negativeMagneticFluxRate": -0.13646156940327892,
+      "displacementFluxRate": 0.19298580219540004
+    },
+    {
+      "permittivity": 0.5,
+      "permeability": 4.0,
+      "amplitude": 1.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.8467114258615924,
+      "frequencyRatio": 1.2,
+      "time": 0.6536096544884449,
+      "z": 1.2679321111458726,
+      "bottom": -0.23193545477154887,
+      "top": 1.5703962719359876,
+      "span": 0.7,
+      "electric": -0.20184252876508277,
+      "magnetic": -0.28544844164326166,
+      "electricCurlY": -1.273243383313587,
+      "magneticCurlX": 1.8006380608836616,
+      "electricTimeDerivative": 1.0803828365308723,
+      "magneticTimeDerivative": 1.5278920599770538,
+      "faradayLine": 1.082403527021123,
+      "ampereLine": 1.5307497478737448,
+      "magneticFlux": -0.7631961875291516,
+      "electricFlux": 0.5396611995775831,
+      "negativeMagneticFluxRate": 1.2988842324239875,
+      "displacementFluxRate": 1.8368996974486387
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 0.25,
+      "amplitude": -2.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.1316522079074196,
+      "frequencyRatio": 1.0,
+      "time": -0.24357807939653986,
+      "z": 1.614294029919356,
+      "bottom": -0.35082060004629034,
+      "top": 0.6946608143486591,
+      "span": 0.7,
+      "electric": -1.6701718614048429,
+      "magnetic": 0.8350859307024214,
+      "electricCurlY": 0.44009561749639803,
+      "magneticCurlX": 0.22004780874819901,
+      "electricTimeDerivative": 0.880191234992426,
+      "magneticTimeDerivative": -0.440095617496213,
+      "faradayLine": -0.003230239706057181,
+      "ampereLine": 0.0016151198530285904,
+      "magneticFlux": -0.7265046098113208,
+      "electricFlux": -1.4530092196226416,
+      "negativeMagneticFluxRate": -0.003230239706183043,
+      "displacementFluxRate": 0.0016151198530915214
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 0.25,
+      "amplitude": -2.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.9274733477130099,
+      "frequencyRatio": 1.0,
+      "time": -0.010524484312434579,
+      "z": -0.45046012884826236,
+      "bottom": -1.4255872082904175,
+      "top": 1.101324453772405,
+      "span": 0.7,
+      "electric": -1.8652046458226936,
+      "magnetic": -0.9326023229113468,
+      "electricCurlY": 0.9383547587928549,
+      "magneticCurlX": -0.46917737939642745,
+      "electricTimeDerivative": -1.87670951758682,
+      "magneticTimeDerivative": -0.93835475879341,
+      "faradayLine": -1.891526295060855,
+      "ampereLine": -0.9457631475304275,
+      "magneticFlux": 0.7902790416807075,
+      "electricFlux": -1.580558083361415,
+      "negativeMagneticFluxRate": -1.8915262950609337,
+      "displacementFluxRate": -0.9457631475304669
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 0.25,
+      "amplitude": 0.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.32908169380641317,
+      "frequencyRatio": 1.2,
+      "time": 0.9877743401661048,
+      "z": 0.7617579685831863,
+      "bottom": -1.3433030563832304,
+      "top": 1.1462642002078194,
+      "span": 0.7,
+      "electric": -0.0,
+      "magnetic": 0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": -0.0,
+      "magneticFlux": -0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 0.25,
+      "amplitude": 0.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.203063555276084,
+      "frequencyRatio": 1.0,
+      "time": -0.922362025913094,
+      "z": -1.364163530934483,
+      "bottom": -1.0080595505406362,
+      "top": 1.2102726146432776,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": -0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 0.25,
+      "amplitude": 1.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.46562031575931107,
+      "frequencyRatio": 1.0,
+      "time": 0.3739249942805083,
+      "z": -0.938604679503825,
+      "bottom": -0.25376116521278735,
+      "top": 0.26311457344148315,
+      "span": 0.7,
+      "electric": 0.9251679664667233,
+      "magnetic": -0.46258398323336164,
+      "electricCurlY": -0.15182317811187246,
+      "magneticCurlX": -0.07591158905593623,
+      "electricTimeDerivative": -0.3036463562224497,
+      "magneticTimeDerivative": 0.15182317811122484,
+      "faradayLine": 0.10021898638044521,
+      "ampereLine": -0.050109493190222607,
+      "magneticFlux": 0.13006630570627573,
+      "electricFlux": 0.26013261141255145,
+      "negativeMagneticFluxRate": 0.10021898638044867,
+      "displacementFluxRate": -0.050109493190224334
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 0.25,
+      "amplitude": 1.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.21006231228983796,
+      "frequencyRatio": 1.2,
+      "time": 0.9423956352277214,
+      "z": -1.137936296492199,
+      "bottom": -1.263287196935064,
+      "top": 1.868852488753601,
+      "span": 0.7,
+      "electric": -0.48193321988321536,
+      "magnetic": -0.24096660994160768,
+      "electricCurlY": -1.1390703349474507,
+      "magneticCurlX": 0.5695351674737253,
+      "electricTimeDerivative": 2.7337688038763885,
+      "magneticTimeDerivative": 1.3668844019381943,
+      "faradayLine": -0.9019670951570875,
+      "ampereLine": -0.45098354757854375,
+      "magneticFlux": 0.33357136516601527,
+      "electricFlux": -0.6671427303320305,
+      "negativeMagneticFluxRate": -1.0823605141889459,
+      "displacementFluxRate": -0.5411802570944729
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": -2.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.5896805650596484,
+      "frequencyRatio": 1.0,
+      "time": -0.8401138831175674,
+      "z": 1.3975109604484146,
+      "bottom": -0.8221999707358567,
+      "top": 1.1405775499311848,
+      "span": 0.7,
+      "electric": -1.8670156102862985,
+      "magnetic": 1.8670156102862985,
+      "electricCurlY": -0.2868456619002183,
+      "magneticCurlX": -0.2868456619002183,
+      "electricTimeDerivative": -0.2868456619002183,
+      "magneticTimeDerivative": 0.2868456619002183,
+      "faradayLine": 0.8131885006273575,
+      "ampereLine": -0.8131885006273575,
+      "magneticFlux": -1.7429680882672454,
+      "electricFlux": -1.7429680882672454,
+      "negativeMagneticFluxRate": 0.8131885006290583,
+      "displacementFluxRate": -0.8131885006290583
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": -2.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.3857767276816195,
+      "frequencyRatio": 1.0,
+      "time": -0.9051888460866127,
+      "z": 1.2472487128489465,
+      "bottom": -0.4153541732539343,
+      "top": 0.5703350556870409,
+      "span": 0.7,
+      "electric": 1.9982064999192777,
+      "magnetic": 1.9982064999192777,
+      "electricCurlY": -0.11008462390271755,
+      "magneticCurlX": 0.11008462390271755,
+      "electricTimeDerivative": 0.11008462390234748,
+      "magneticTimeDerivative": 0.11008462390234748,
+      "faradayLine": -1.6665648317371689,
+      "ampereLine": -1.6665648317371689,
+      "magneticFlux": -0.11887463870740977,
+      "electricFlux": 0.11887463870740977,
+      "negativeMagneticFluxRate": -1.6665648317390362,
+      "displacementFluxRate": -1.6665648317390362
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.19422911080002203,
+      "frequencyRatio": 1.2,
+      "time": -0.9647442767516923,
+      "z": -1.1467970323662917,
+      "bottom": -0.26413050539767435,
+      "top": 0.7879774774530957,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": 0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.6918103084804068,
+      "frequencyRatio": 1.0,
+      "time": 0.8195113831398904,
+      "z": -0.8414721240649778,
+      "bottom": -0.9243060943604573,
+      "top": 0.41333832360500494,
+      "span": 0.7,
+      "electric": -0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": -0.0,
+      "ampereLine": -0.0,
+      "magneticFlux": -0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.4100883808451614,
+      "frequencyRatio": 1.0,
+      "time": 0.27690799324325077,
+      "z": -0.2919275282525873,
+      "bottom": -0.4383828640471761,
+      "top": 0.5438418696055816,
+      "span": 0.7,
+      "electric": 0.9146737960367598,
+      "magnetic": -0.9146737960367598,
+      "electricCurlY": 0.16167713349400184,
+      "magneticCurlX": 0.16167713349400184,
+      "electricTimeDerivative": 0.16167713349400184,
+      "magneticTimeDerivative": -0.16167713349400184,
+      "faradayLine": -0.07505218132954898,
+      "ampereLine": 0.07505218132954898,
+      "magneticFlux": 0.6568713952745461,
+      "electricFlux": 0.6568713952745461,
+      "negativeMagneticFluxRate": -0.07505218133104415,
+      "displacementFluxRate": 0.07505218133104415
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.0674061676377764,
+      "frequencyRatio": 1.2,
+      "time": 0.5148659961900339,
+      "z": 0.3890982473684361,
+      "bottom": -1.3889890958270987,
+      "top": 0.8635156186803634,
+      "span": 0.7,
+      "electric": 0.9342060487934813,
+      "magnetic": 0.9342060487934813,
+      "electricCurlY": 0.46375403900344997,
+      "magneticCurlX": -0.46375403900344997,
+      "electricTimeDerivative": -0.556504846804251,
+      "magneticTimeDerivative": -0.556504846804251,
+      "faradayLine": -1.303473503888311,
+      "ampereLine": -1.303473503888311,
+      "magneticFlux": -0.37585418797540215,
+      "electricFlux": 0.37585418797540215,
+      "negativeMagneticFluxRate": -1.5641682046658536,
+      "displacementFluxRate": -1.5641682046658536
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 4.0,
+      "amplitude": -2.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.7636250757713356,
+      "frequencyRatio": 1.0,
+      "time": -0.21239159195342294,
+      "z": -1.008504008413476,
+      "bottom": -0.4387220185267169,
+      "top": 1.753292802198453,
+      "span": 0.7,
+      "electric": -0.7069649803697187,
+      "magnetic": 1.4139299607394373,
+      "electricCurlY": -0.7483529131677157,
+      "magneticCurlX": -1.4967058263354314,
+      "electricTimeDerivative": -0.3741764565843667,
+      "magneticTimeDerivative": 0.7483529131687334,
+      "faradayLine": 0.6143415853072735,
+      "ampereLine": -1.228683170614547,
+      "magneticFlux": -5.087520149510498,
+      "electricFlux": -2.543760074755249,
+      "negativeMagneticFluxRate": 0.6143415853143707,
+      "displacementFluxRate": -1.2286831706287413
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 4.0,
+      "amplitude": -2.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.40327150247834176,
+      "frequencyRatio": 1.0,
+      "time": -0.7436227031043341,
+      "z": -0.29486968209873554,
+      "bottom": -0.4349323774200351,
+      "top": 0.4242658500186289,
+      "span": 0.7,
+      "electric": -1.9087436028919886,
+      "magnetic": -3.8174872057839773,
+      "electricCurlY": -0.7764144387673032,
+      "magneticCurlX": 1.5528288775346064,
+      "electricTimeDerivative": 0.38820721938392916,
+      "magneticTimeDerivative": 0.7764144387678583,
+      "faradayLine": -0.10843670935638106,
+      "ampereLine": -0.2168734187127621,
+      "magneticFlux": 2.276527909262898,
+      "electricFlux": -1.138263954631449,
+      "negativeMagneticFluxRate": -0.10843670936030077,
+      "displacementFluxRate": -0.21687341872060154
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 4.0,
+      "amplitude": 0.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.6695071039087328,
+      "frequencyRatio": 1.2,
+      "time": 0.9250522895839168,
+      "z": 1.3125813211546373,
+      "bottom": -1.0528755105501097,
+      "top": 0.8870073662921567,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": 0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 4.0,
+      "amplitude": 0.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.8478141237624595,
+      "frequencyRatio": 1.0,
+      "time": -0.9587918839131262,
+      "z": -0.8010329841441628,
+      "bottom": -0.004705258961392511,
+      "top": 0.2525390648124265,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": -0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 4.0,
+      "amplitude": 1.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.96448607830638,
+      "frequencyRatio": 1.0,
+      "time": -0.5485067227905744,
+      "z": 1.6766532878630946,
+      "bottom": -1.7849782457044256,
+      "top": 0.9938444496216108,
+      "span": 0.7,
+      "electric": 0.919682139855139,
+      "magnetic": -1.839364279710278,
+      "electricCurlY": 0.15706546998284218,
+      "magneticCurlX": 0.31413093996568436,
+      "electricTimeDerivative": 0.07853273499105103,
+      "magneticTimeDerivative": -0.15706546998210205,
+      "faradayLine": -0.696744576858288,
+      "ampereLine": 1.393489153716576,
+      "magneticFlux": 1.2259834677248567,
+      "electricFlux": 0.6129917338624283,
+      "negativeMagneticFluxRate": -0.6967445768553866,
+      "displacementFluxRate": 1.3934891537107732
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 4.0,
+      "amplitude": 1.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.68290067579668,
+      "frequencyRatio": 1.2,
+      "time": -0.6920174089229036,
+      "z": -0.1826421001584202,
+      "bottom": -0.6795655360027513,
+      "top": 1.3078156558276293,
+      "span": 0.7,
+      "electric": 0.9284560958707249,
+      "magnetic": 1.8569121917414497,
+      "electricCurlY": 0.4828748076754485,
+      "magneticCurlX": -0.965749615350897,
+      "electricTimeDerivative": -0.28972488460547263,
+      "magneticTimeDerivative": -0.5794497692109453,
+      "faradayLine": 0.35280021194668504,
+      "ampereLine": 0.7056004238933701,
+      "magneticFlux": -1.9981547614968211,
+      "electricFlux": 0.9990773807484106,
+      "negativeMagneticFluxRate": 0.423360254334093,
+      "displacementFluxRate": 0.846720508668186
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 0.25,
+      "amplitude": -2.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.2030025018772974,
+      "frequencyRatio": 1.0,
+      "time": 0.41764950487473373,
+      "z": 1.217682492474359,
+      "bottom": -1.5180788490445467,
+      "top": 1.9194033458279347,
+      "span": 0.7,
+      "electric": -1.201537815478496,
+      "magnetic": 0.8496155371769152,
+      "electricCurlY": 0.6395381931330786,
+      "magneticCurlX": 0.452221793192283,
+      "electricTimeDerivative": 0.9044435863843809,
+      "magneticTimeDerivative": -0.6395381931334486,
+      "faradayLine": -0.8821708264752544,
+      "ampereLine": 0.6237889735655935,
+      "magneticFlux": -2.726673931169719,
+      "electricFlux": -3.856099253629379,
+      "negativeMagneticFluxRate": -0.8821708264742748,
+      "displacementFluxRate": 0.6237889735644097
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 0.25,
+      "amplitude": -2.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.29238006624648416,
+      "frequencyRatio": 1.0,
+      "time": -0.3860125264884373,
+      "z": -0.5314747825249366,
+      "bottom": -0.7127279698466933,
+      "top": 1.3609129641153368,
+      "span": 0.7,
+      "electric": -1.9039714436117023,
+      "magnetic": -1.3463111189633752,
+      "electricCurlY": 0.7959703096410696,
+      "magneticCurlX": -0.5628360035697666,
+      "electricTimeDerivative": -1.1256720071408284,
+      "magneticTimeDerivative": -0.7959703096403296,
+      "faradayLine": -2.701091599671234,
+      "ampereLine": -1.9099601867335487,
+      "magneticFlux": 0.2181731969452027,
+      "electricFlux": -0.30854349406620196,
+      "negativeMagneticFluxRate": -2.7010915996711344,
+      "displacementFluxRate": -1.9099601867331635
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 0.25,
+      "amplitude": 0.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.8496172807932185,
+      "frequencyRatio": 1.2,
+      "time": -0.5562572628285982,
+      "z": 0.7750510465681151,
+      "bottom": -1.4720305498921695,
+      "top": 0.3402760162083182,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": -0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": -0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 0.25,
+      "amplitude": 0.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.06955355112635275,
+      "frequencyRatio": 1.0,
+      "time": 0.2800510073340696,
+      "z": -0.889245626157622,
+      "bottom": -0.3208505224225635,
+      "top": 1.2799421096957981,
+      "span": 0.7,
+      "electric": -0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": -0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 0.25,
+      "amplitude": 1.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.09502566249050459,
+      "frequencyRatio": 1.0,
+      "time": -0.034328030475411,
+      "z": -0.3790804955136622,
+      "bottom": -1.002806370792087,
+      "top": 1.3036717962709112,
+      "span": 0.7,
+      "electric": 0.9648099366662285,
+      "magnetic": -0.6822236487728537,
+      "electricCurlY": 0.10517930299075438,
+      "magneticCurlX": 0.07437299838532659,
+      "electricTimeDerivative": 0.14874599677037562,
+      "magneticTimeDerivative": -0.1051793029902918,
+      "faradayLine": -0.033802768362795055,
+      "ampereLine": 0.023902166732210482,
+      "magneticFlux": 1.099965900183391,
+      "electricFlux": 1.5555866941872816,
+      "negativeMagneticFluxRate": -0.033802768363844216,
+      "displacementFluxRate": 0.023902166732721792
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 0.25,
+      "amplitude": 1.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.6108709035376494,
+      "frequencyRatio": 1.2,
+      "time": 0.326205985227505,
+      "z": -0.36579184699594824,
+      "bottom": -0.670982815736225,
+      "top": 0.3280742952807606,
+      "span": 0.7,
+      "electric": -0.23310639822934104,
+      "magnetic": -0.16483111492593888,
+      "electricCurlY": 1.2641866072720063,
+      "magneticCurlX": -0.8939149226873387,
+      "electricTimeDerivative": -2.145395814449937,
+      "magneticTimeDerivative": -1.517023928726685,
+      "faradayLine": -0.8464500652455649,
+      "ampereLine": -0.5985305810709347,
+      "magneticFlux": -0.007997171122731607,
+      "electricFlux": 0.011309707862385514,
+      "negativeMagneticFluxRate": -1.0157400782943742,
+      "displacementFluxRate": -0.7182366972849077
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "amplitude": -2.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.7353207552858168,
+      "frequencyRatio": 1.0,
+      "time": -0.9132575088328132,
+      "z": -1.0750090123268663,
+      "bottom": -0.37240872925974733,
+      "top": 1.8490784883489215,
+      "span": 0.7,
+      "electric": -0.2932662378969312,
+      "magnetic": 0.41474109101997464,
+      "electricCurlY": -0.7913527571157263,
+      "magneticCurlX": -1.1191418017342247,
+      "electricTimeDerivative": -0.5595709008664647,
+      "magneticTimeDerivative": 0.7913527571147086,
+      "faradayLine": 0.7737494402522219,
+      "ampereLine": -1.0942469522832832,
+      "magneticFlux": -3.2591006277715118,
+      "electricFlux": -2.30453215446657,
+      "negativeMagneticFluxRate": 0.7737494402452564,
+      "displacementFluxRate": -1.0942469522912113
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "amplitude": -2.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.6683454148526737,
+      "frequencyRatio": 1.0,
+      "time": -0.6600412563883273,
+      "z": -0.9196476265136528,
+      "bottom": -0.06346694684744425,
+      "top": 0.8861305362140874,
+      "span": 0.7,
+      "electric": -1.9936768752575147,
+      "magnetic": -2.819484875978791,
+      "electricCurlY": 0.20658352750650236,
+      "magneticCurlX": -0.2921532263637042,
+      "electricTimeDerivative": -0.1460766131818521,
+      "magneticTimeDerivative": -0.20658352750742753,
+      "faradayLine": -1.5745275358220276,
+      "ampereLine": -2.2267181954894006,
+      "magneticFlux": -0.4173794621945341,
+      "electricFlux": 0.2951318480457492,
+      "negativeMagneticFluxRate": -1.5745275358212036,
+      "displacementFluxRate": -2.226718195489086
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.8069353113444717,
+      "frequencyRatio": 1.2,
+      "time": 0.39328263005535447,
+      "z": 1.3031374541877536,
+      "bottom": -1.3406682452282233,
+      "top": 0.3070569324225567,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": 0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.5532775892180528,
+      "frequencyRatio": 1.0,
+      "time": -0.22259888861344157,
+      "z": 1.0792038035246714,
+      "bottom": -0.8137944566842461,
+      "top": 1.8368014520509917,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": -0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.3941682312388022,
+      "frequencyRatio": 1.0,
+      "time": 0.5958767338264541,
+      "z": 0.6128092957753202,
+      "bottom": -0.8940882598357898,
+      "top": 1.4365945098308426,
+      "span": 0.7,
+      "electric": 0.9998099808691071,
+      "magnetic": -1.4139448347410761,
+      "electricCurlY": -0.007797457580264547,
+      "magneticCurlX": -0.011027270261735703,
+      "electricTimeDerivative": -0.005513635131145407,
+      "magneticTimeDerivative": 0.007797457580172028,
+      "faradayLine": -0.07352989503338847,
+      "ampereLine": 0.10398697479608804,
+      "magneticFlux": 2.209364414254312,
+      "electricFlux": 1.562256559431469,
+      "negativeMagneticFluxRate": -0.07352989503680203,
+      "displacementFluxRate": 0.10398697479763185
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.43852575504395985,
+      "frequencyRatio": 1.2,
+      "time": 0.9904148731937621,
+      "z": 0.3551112892852868,
+      "bottom": -0.633286912910048,
+      "top": 1.3653271039853516,
+      "span": 0.7,
+      "electric": 0.4806553447372535,
+      "magnetic": 0.6797493073545394,
+      "electricCurlY": 1.139982474813265,
+      "magneticCurlX": -1.6121786767487691,
+      "electricTimeDerivative": -0.9673072060496316,
+      "magneticTimeDerivative": -1.3679789697765286,
+      "faradayLine": -1.1733269628669645,
+      "ampereLine": -1.6593349039844942,
+      "magneticFlux": -0.723357728821777,
+      "electricFlux": 0.5114911552735782,
+      "negativeMagneticFluxRate": -1.4079923554403497,
+      "displacementFluxRate": -1.9912018847830408
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 4.0,
+      "amplitude": -2.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": -0.30888447831967625,
+      "frequencyRatio": 1.0,
+      "time": 0.751846244869558,
+      "z": 0.6537868338045438,
+      "bottom": -0.802139716330458,
+      "top": 1.2479977053215598,
+      "span": 0.7,
+      "electric": -1.5592540218579811,
+      "magnetic": 4.410236369792703,
+      "electricCurlY": 0.5009953126056121,
+      "magneticCurlX": 1.4170287315481052,
+      "electricTimeDerivative": 0.1771285914418478,
+      "magneticTimeDerivative": -0.5009953126030215,
+      "faradayLine": -0.5394119588132948,
+      "ampereLine": 1.525687415719998,
+      "magneticFlux": -6.909721974804236,
+      "electricFlux": -2.442955632248889,
+      "negativeMagneticFluxRate": -0.5394119588057281,
+      "displacementFluxRate": 1.5256874157347036
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 4.0,
+      "amplitude": -2.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.47737510742255806,
+      "frequencyRatio": 1.0,
+      "time": -0.8069050170707557,
+      "z": -0.6591747082214305,
+      "bottom": -1.680619533845575,
+      "top": 0.4318422306000381,
+      "span": 0.7,
+      "electric": -1.9999246093329246,
+      "magnetic": -5.6566410124846715,
+      "electricCurlY": -0.022575015037144354,
+      "magneticCurlX": 0.06385178487130123,
+      "electricTimeDerivative": 0.00798147310854258,
+      "magneticTimeDerivative": 0.022575015031408203,
+      "faradayLine": -0.10029424973257439,
+      "ampereLine": -0.28367497639968176,
+      "magneticFlux": 5.96934792227562,
+      "electricFlux": -2.1104831975514595,
+      "negativeMagneticFluxRate": -0.10029424973338288,
+      "displacementFluxRate": -0.28367497638015493
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 4.0,
+      "amplitude": 0.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.4107835028813891,
+      "frequencyRatio": 1.2,
+      "time": 0.01903714226927411,
+      "z": -1.2313634285577781,
+      "bottom": -0.130020631303446,
+      "top": 0.20950202583199606,
+      "span": 0.7,
+      "electric": 0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": 0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 4.0,
+      "amplitude": 0.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": 0.8380737107008291,
+      "frequencyRatio": 1.0,
+      "time": 0.1383091014572777,
+      "z": -1.8517899257816706,
+      "bottom": -0.329709138622835,
+      "top": 1.9985794725069372,
+      "span": 0.7,
+      "electric": -0.0,
+      "magnetic": -0.0,
+      "electricCurlY": 0.0,
+      "magneticCurlX": -0.0,
+      "electricTimeDerivative": 0.0,
+      "magneticTimeDerivative": 0.0,
+      "faradayLine": 0.0,
+      "ampereLine": 0.0,
+      "magneticFlux": -0.0,
+      "electricFlux": 0.0,
+      "negativeMagneticFluxRate": -0.0,
+      "displacementFluxRate": 0.0
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 4.0,
+      "amplitude": 1.0,
+      "wavenumber": 0.4,
+      "direction": -1,
+      "phaseOffset": 0.024237221396598674,
+      "frequencyRatio": 1.0,
+      "time": 0.8994357066542178,
+      "z": -0.10557298631043288,
+      "bottom": -0.9665841415359504,
+      "top": 1.2640819644200934,
+      "span": 0.7,
+      "electric": 0.9981563180664789,
+      "magnetic": -2.8232124047560148,
+      "electricCurlY": -0.02427826914341846,
+      "magneticCurlX": -0.06866931498687259,
+      "electricTimeDerivative": -0.008583664374099223,
+      "magneticTimeDerivative": 0.02427826914878454,
+      "faradayLine": 0.09770756567367103,
+      "ampereLine": -0.27635872904433095,
+      "magneticFlux": 4.215192717443089,
+      "electricFlux": 1.4902956772560791,
+      "negativeMagneticFluxRate": 0.09770756567310337,
+      "displacementFluxRate": -0.27635872903738107
+    },
+    {
+      "permittivity": 2.0,
+      "permeability": 4.0,
+      "amplitude": 1.0,
+      "wavenumber": 1.3,
+      "direction": 1,
+      "phaseOffset": -0.6644783744110372,
+      "frequencyRatio": 1.2,
+      "time": -0.054635220214403146,
+      "z": 1.7737677149905258,
+      "bottom": -0.38853946950884066,
+      "top": 0.503379944978622,
+      "span": 0.7,
+      "electric": -0.10058662338710857,
+      "magnetic": -0.2845019339747274,
+      "electricCurlY": -1.2934067959151478,
+      "magneticCurlX": 3.6583068648976993,
+      "electricTimeDerivative": 0.5487460297332625,
+      "magneticTimeDerivative": 1.5520881550947403,
+      "faradayLine": -0.40719083576308823,
+      "ampereLine": -1.1517096048203899,
+      "magneticFlux": -1.4140284858617618,
+      "electricFlux": 0.49993456557189886,
+      "negativeMagneticFluxRate": -0.48862900291416855,
+      "displacementFluxRate": -1.3820515257834118
+    }
+  ],
+  "chargeBalances": [
+    {
+      "permittivity": 0.5,
+      "radius": 0.5,
+      "initialGradient": -1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.242,
+        0.363,
+        -0.484
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999999061,
+        0.0899999999998587,
+        -0.11999999999998122
+      ],
+      "conductionCurrent": [
+        0.03,
+        -0.045,
+        0.06
+      ],
+      "currentDivergence": 0.4499999999999209,
+      "chargeDensity": -1.815,
+      "chargeTimeDerivative": -0.45000000000128265,
+      "electricFlux": -1.9006635554218223,
+      "enclosedCharge": -0.9503317777109124,
+      "outwardConductionCurrent": 0.2356194490192353,
+      "chargeRate": -0.23561944901995255
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 0.5,
+      "initialGradient": -1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.2,
+        0.3,
+        -0.4
+      ],
+      "electricTimeDerivative": [
+        -4.625929269271485e-14,
+        1.3877787807814454e-13,
+        -9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": -1.2,
+      "chargeTimeDerivative": -5.551115123125782e-13,
+      "electricFlux": -1.570796326794891,
+      "enclosedCharge": -0.6283185307179585,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 9.25185853854297e-14
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 0.5,
+      "initialGradient": -1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.144,
+        0.216,
+        -0.288
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000009688,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.04000000000000001,
+        0.06,
+        -0.08000000000000002
+      ],
+      "currentDivergence": -0.5999999999998887,
+      "chargeDensity": -1.28,
+      "chargeTimeDerivative": 0.600000000001155,
+      "electricFlux": -1.130973355292327,
+      "enclosedCharge": -0.6702064327658225,
+      "outwardConductionCurrent": -0.31415926535898087,
+      "chargeRate": 0.31415926535984423
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 0.5,
+      "initialGradient": 0.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.042,
+        0.063,
+        -0.084
+      ],
+      "electricTimeDerivative": [
+        -0.059999999999944355,
+        0.08999999999991652,
+        -0.11999999999988871
+      ],
+      "conductionCurrent": [
+        0.03,
+        -0.045,
+        0.06
+      ],
+      "currentDivergence": 0.4499999999999209,
+      "chargeDensity": -0.315,
+      "chargeTimeDerivative": -0.4499999999997561,
+      "electricFlux": -0.3298672286269274,
+      "enclosedCharge": -0.16493361431346412,
+      "outwardConductionCurrent": 0.2356194490192353,
+      "chargeRate": -0.23561944901925866
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 0.5,
+      "initialGradient": 0.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 0.3,
+      "chargeTimeDerivative": 1.3877787807814454e-13,
+      "electricFlux": 0.0,
+      "enclosedCharge": 0.15707963267948963,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -2.3129646346357426e-14
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 0.5,
+      "initialGradient": 0.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.055999999999999994,
+        -0.08399999999999999,
+        0.11199999999999999
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000007374,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.04000000000000001,
+        0.06,
+        -0.08000000000000002
+      ],
+      "currentDivergence": -0.5999999999998887,
+      "chargeDensity": 0.21999999999999992,
+      "chargeTimeDerivative": 0.5999999999999986,
+      "electricFlux": 0.4398229715025705,
+      "enclosedCharge": 0.1151917306316257,
+      "outwardConductionCurrent": -0.31415926535898087,
+      "chargeRate": 0.31415926535903466
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 0.5,
+      "initialGradient": 1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.15800000000000003,
+        -0.237,
+        0.31600000000000006
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999989809,
+        0.08999999999997435,
+        -0.11999999999979619
+      ],
+      "conductionCurrent": [
+        0.03,
+        -0.045,
+        0.06
+      ],
+      "currentDivergence": 0.4499999999999209,
+      "chargeDensity": 1.185,
+      "chargeTimeDerivative": -0.45000000000128265,
+      "electricFlux": 1.2409290981679677,
+      "enclosedCharge": 0.6204645490839841,
+      "outwardConductionCurrent": 0.2356194490192353,
+      "chargeRate": -0.23561944902004509
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 0.5,
+      "initialGradient": 1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electricTimeDerivative": [
+        4.625929269271485e-14,
+        -1.3877787807814454e-13,
+        9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 1.8,
+      "chargeTimeDerivative": -5.551115123125782e-13,
+      "electricFlux": 1.570796326794891,
+      "enclosedCharge": 0.9424777960769379,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 0.0
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 0.5,
+      "initialGradient": 1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.256,
+        -0.384,
+        0.512
+      ],
+      "electricTimeDerivative": [
+        0.08000000000008,
+        -0.12000000000002749,
+        0.16000000000016
+      ],
+      "conductionCurrent": [
+        -0.04000000000000001,
+        0.06,
+        -0.08000000000000002
+      ],
+      "currentDivergence": -0.5999999999998887,
+      "chargeDensity": 1.72,
+      "chargeTimeDerivative": 0.600000000001155,
+      "electricFlux": 2.0106192982974673,
+      "enclosedCharge": 0.900589894029074,
+      "outwardConductionCurrent": -0.31415926535898087,
+      "chargeRate": 0.3141592653597517
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 1.0,
+      "initialGradient": -1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.242,
+        0.363,
+        -0.484
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999999061,
+        0.0899999999998587,
+        -0.11999999999998122
+      ],
+      "conductionCurrent": [
+        0.03,
+        -0.045,
+        0.06
+      ],
+      "currentDivergence": 0.4499999999999209,
+      "chargeDensity": -1.815,
+      "chargeTimeDerivative": -0.45000000000128265,
+      "electricFlux": -15.205308443374578,
+      "enclosedCharge": -7.602654221687299,
+      "outwardConductionCurrent": 1.8849555921538823,
+      "chargeRate": -1.8849555921596204
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 1.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.2,
+        0.3,
+        -0.4
+      ],
+      "electricTimeDerivative": [
+        -4.625929269271485e-14,
+        1.3877787807814454e-13,
+        -9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": -1.2,
+      "chargeTimeDerivative": -5.551115123125782e-13,
+      "electricFlux": -12.566370614359128,
+      "enclosedCharge": -5.026548245743668,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 7.401486830834376e-13
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 1.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.144,
+        0.216,
+        -0.288
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000009688,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.04000000000000001,
+        0.06,
+        -0.08000000000000002
+      ],
+      "currentDivergence": -0.5999999999998887,
+      "chargeDensity": -1.28,
+      "chargeTimeDerivative": 0.600000000001155,
+      "electricFlux": -9.047786842338615,
+      "enclosedCharge": -5.36165146212658,
+      "outwardConductionCurrent": -2.513274122871847,
+      "chargeRate": 2.513274122878754
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 1.0,
+      "initialGradient": 0.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.042,
+        0.063,
+        -0.084
+      ],
+      "electricTimeDerivative": [
+        -0.059999999999944355,
+        0.08999999999991652,
+        -0.11999999999988871
+      ],
+      "conductionCurrent": [
+        0.03,
+        -0.045,
+        0.06
+      ],
+      "currentDivergence": 0.4499999999999209,
+      "chargeDensity": -0.315,
+      "chargeTimeDerivative": -0.4499999999997561,
+      "electricFlux": -2.6389378290154193,
+      "enclosedCharge": -1.319468914507713,
+      "outwardConductionCurrent": 1.8849555921538823,
+      "chargeRate": -1.8849555921540693
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 1.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 0.3,
+      "chargeTimeDerivative": 1.3877787807814454e-13,
+      "electricFlux": 0.0,
+      "enclosedCharge": 1.256637061435917,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -1.850371707708594e-13
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 1.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.055999999999999994,
+        -0.08399999999999999,
+        0.11199999999999999
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000007374,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.04000000000000001,
+        0.06,
+        -0.08000000000000002
+      ],
+      "currentDivergence": -0.5999999999998887,
+      "chargeDensity": 0.21999999999999992,
+      "chargeTimeDerivative": 0.5999999999999986,
+      "electricFlux": 3.518583772020564,
+      "enclosedCharge": 0.9215338450530056,
+      "outwardConductionCurrent": -2.513274122871847,
+      "chargeRate": 2.5132741228722772
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 1.0,
+      "initialGradient": 1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.15800000000000003,
+        -0.237,
+        0.31600000000000006
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999989809,
+        0.08999999999997435,
+        -0.11999999999979619
+      ],
+      "conductionCurrent": [
+        0.03,
+        -0.045,
+        0.06
+      ],
+      "currentDivergence": 0.4499999999999209,
+      "chargeDensity": 1.185,
+      "chargeTimeDerivative": -0.45000000000128265,
+      "electricFlux": 9.927432785343742,
+      "enclosedCharge": 4.963716392671873,
+      "outwardConductionCurrent": 1.8849555921538823,
+      "chargeRate": -1.8849555921603607
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 1.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electricTimeDerivative": [
+        4.625929269271485e-14,
+        -1.3877787807814454e-13,
+        9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 1.8,
+      "chargeTimeDerivative": -5.551115123125782e-13,
+      "electricFlux": 12.566370614359128,
+      "enclosedCharge": 7.5398223686155035,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 0.0
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 1.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.256,
+        -0.384,
+        0.512
+      ],
+      "electricTimeDerivative": [
+        0.08000000000008,
+        -0.12000000000002749,
+        0.16000000000016
+      ],
+      "conductionCurrent": [
+        -0.04000000000000001,
+        0.06,
+        -0.08000000000000002
+      ],
+      "currentDivergence": -0.5999999999998887,
+      "chargeDensity": 1.72,
+      "chargeTimeDerivative": 0.600000000001155,
+      "electricFlux": 16.08495438637974,
+      "enclosedCharge": 7.204719152232592,
+      "outwardConductionCurrent": -2.513274122871847,
+      "chargeRate": 2.5132741228780136
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 2.0,
+      "initialGradient": -1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.242,
+        0.363,
+        -0.484
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999999061,
+        0.0899999999998587,
+        -0.11999999999998122
+      ],
+      "conductionCurrent": [
+        0.03,
+        -0.045,
+        0.06
+      ],
+      "currentDivergence": 0.4499999999999209,
+      "chargeDensity": -1.815,
+      "chargeTimeDerivative": -0.45000000000128265,
+      "electricFlux": -121.64246754699663,
+      "enclosedCharge": -60.82123377349839,
+      "outwardConductionCurrent": 15.079644737231058,
+      "chargeRate": -15.079644737276963
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 2.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.2,
+        0.3,
+        -0.4
+      ],
+      "electricTimeDerivative": [
+        -4.625929269271485e-14,
+        1.3877787807814454e-13,
+        -9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": -1.2,
+      "chargeTimeDerivative": -5.551115123125782e-13,
+      "electricFlux": -100.53096491487302,
+      "enclosedCharge": -40.212385965949345,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 5.921189464667501e-12
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 2.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.144,
+        0.216,
+        -0.288
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000009688,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.04000000000000001,
+        0.06,
+        -0.08000000000000002
+      ],
+      "currentDivergence": -0.5999999999998887,
+      "chargeDensity": -1.28,
+      "chargeTimeDerivative": 0.600000000001155,
+      "electricFlux": -72.38229473870892,
+      "enclosedCharge": -42.89321169701264,
+      "outwardConductionCurrent": -20.106192982974775,
+      "chargeRate": 20.10619298303003
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 2.0,
+      "initialGradient": 0.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.042,
+        0.063,
+        -0.084
+      ],
+      "electricTimeDerivative": [
+        -0.059999999999944355,
+        0.08999999999991652,
+        -0.11999999999988871
+      ],
+      "conductionCurrent": [
+        0.03,
+        -0.045,
+        0.06
+      ],
+      "currentDivergence": 0.4499999999999209,
+      "chargeDensity": -0.315,
+      "chargeTimeDerivative": -0.4499999999997561,
+      "electricFlux": -21.111502632123354,
+      "enclosedCharge": -10.555751316061704,
+      "outwardConductionCurrent": 15.079644737231058,
+      "chargeRate": -15.079644737232554
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 2.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 0.3,
+      "chargeTimeDerivative": 1.3877787807814454e-13,
+      "electricFlux": 0.0,
+      "enclosedCharge": 10.053096491487336,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -1.4802973661668753e-12
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 2.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.055999999999999994,
+        -0.08399999999999999,
+        0.11199999999999999
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000007374,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.04000000000000001,
+        0.06,
+        -0.08000000000000002
+      ],
+      "currentDivergence": -0.5999999999998887,
+      "chargeDensity": 0.21999999999999992,
+      "chargeTimeDerivative": 0.5999999999999986,
+      "electricFlux": 28.14867017616451,
+      "enclosedCharge": 7.372270760424045,
+      "outwardConductionCurrent": -20.106192982974775,
+      "chargeRate": 20.106192982978218
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 2.0,
+      "initialGradient": 1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.15800000000000003,
+        -0.237,
+        0.31600000000000006
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999989809,
+        0.08999999999997435,
+        -0.11999999999979619
+      ],
+      "conductionCurrent": [
+        0.03,
+        -0.045,
+        0.06
+      ],
+      "currentDivergence": 0.4499999999999209,
+      "chargeDensity": 1.185,
+      "chargeTimeDerivative": -0.45000000000128265,
+      "electricFlux": 79.41946228274993,
+      "enclosedCharge": 39.70973114137498,
+      "outwardConductionCurrent": 15.079644737231058,
+      "chargeRate": -15.079644737282885
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 2.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electricTimeDerivative": [
+        4.625929269271485e-14,
+        -1.3877787807814454e-13,
+        9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 1.8,
+      "chargeTimeDerivative": -5.551115123125782e-13,
+      "electricFlux": 100.53096491487302,
+      "enclosedCharge": 60.31857894892403,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 0.0
+    },
+    {
+      "permittivity": 0.5,
+      "radius": 2.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.256,
+        -0.384,
+        0.512
+      ],
+      "electricTimeDerivative": [
+        0.08000000000008,
+        -0.12000000000002749,
+        0.16000000000016
+      ],
+      "conductionCurrent": [
+        -0.04000000000000001,
+        0.06,
+        -0.08000000000000002
+      ],
+      "currentDivergence": -0.5999999999998887,
+      "chargeDensity": 1.72,
+      "chargeTimeDerivative": 0.600000000001155,
+      "electricFlux": 128.6796350910379,
+      "enclosedCharge": 57.637753217860734,
+      "outwardConductionCurrent": -20.106192982974775,
+      "chargeRate": 20.10619298302411
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 0.5,
+      "initialGradient": -1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.242,
+        0.363,
+        -0.484
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999999061,
+        0.0899999999998587,
+        -0.11999999999998122
+      ],
+      "conductionCurrent": [
+        0.06,
+        -0.09,
+        0.12
+      ],
+      "currentDivergence": 0.8999999999998418,
+      "chargeDensity": -3.63,
+      "chargeTimeDerivative": -0.9000000000025653,
+      "electricFlux": -1.9006635554218223,
+      "enclosedCharge": -1.9006635554218247,
+      "outwardConductionCurrent": 0.4712388980384706,
+      "chargeRate": -0.4712388980399051
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 0.5,
+      "initialGradient": -1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.2,
+        0.3,
+        -0.4
+      ],
+      "electricTimeDerivative": [
+        -4.625929269271485e-14,
+        1.3877787807814454e-13,
+        -9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": -2.7,
+      "chargeTimeDerivative": -7.401486830834376e-13,
+      "electricFlux": -1.570796326794891,
+      "enclosedCharge": -1.413716694115407,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 7.401486830834376e-13
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 0.5,
+      "initialGradient": -1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.144,
+        0.216,
+        -0.288
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000009688,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.08000000000000002,
+        0.12,
+        -0.16000000000000003
+      ],
+      "currentDivergence": -1.1999999999997775,
+      "chargeDensity": -2.3600000000000003,
+      "chargeTimeDerivative": 1.2000000000026803,
+      "electricFlux": -1.130973355292327,
+      "enclosedCharge": -1.2356931104119853,
+      "outwardConductionCurrent": -0.6283185307179617,
+      "chargeRate": 0.628318530717653
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 0.5,
+      "initialGradient": 0.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.042,
+        0.063,
+        -0.084
+      ],
+      "electricTimeDerivative": [
+        -0.059999999999944355,
+        0.08999999999991652,
+        -0.11999999999988871
+      ],
+      "conductionCurrent": [
+        0.06,
+        -0.09,
+        0.12
+      ],
+      "currentDivergence": 0.8999999999998418,
+      "chargeDensity": -0.63,
+      "chargeTimeDerivative": -0.8999999999995122,
+      "electricFlux": -0.3298672286269274,
+      "enclosedCharge": -0.32986722862692824,
+      "outwardConductionCurrent": 0.4712388980384706,
+      "chargeRate": -0.4712388980385173
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 0.5,
+      "initialGradient": 0.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 0.3,
+      "chargeTimeDerivative": 1.3877787807814454e-13,
+      "electricFlux": 0.0,
+      "enclosedCharge": 0.15707963267948963,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -2.3129646346357426e-14
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 0.5,
+      "initialGradient": 0.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.055999999999999994,
+        -0.08399999999999999,
+        0.11199999999999999
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000007374,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.08000000000000002,
+        0.12,
+        -0.16000000000000003
+      ],
+      "currentDivergence": -1.1999999999997775,
+      "chargeDensity": 0.6399999999999999,
+      "chargeTimeDerivative": 1.1999999999999047,
+      "electricFlux": 0.4398229715025705,
+      "enclosedCharge": 0.3351032163829112,
+      "outwardConductionCurrent": -0.6283185307179617,
+      "chargeRate": 0.6283185307179768
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 0.5,
+      "initialGradient": 1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.15800000000000003,
+        -0.237,
+        0.31600000000000006
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999989809,
+        0.08999999999997435,
+        -0.11999999999979619
+      ],
+      "conductionCurrent": [
+        0.06,
+        -0.09,
+        0.12
+      ],
+      "currentDivergence": 0.8999999999998418,
+      "chargeDensity": 2.37,
+      "chargeTimeDerivative": -0.9000000000025653,
+      "electricFlux": 1.2409290981679677,
+      "enclosedCharge": 1.2409290981679681,
+      "outwardConductionCurrent": 0.4712388980384706,
+      "chargeRate": -0.47123889804009017
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 0.5,
+      "initialGradient": 1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electricTimeDerivative": [
+        4.625929269271485e-14,
+        -1.3877787807814454e-13,
+        9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 3.3,
+      "chargeTimeDerivative": -7.401486830834376e-13,
+      "electricFlux": 1.570796326794891,
+      "enclosedCharge": 1.727875959474386,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 5.551115123125782e-13
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 0.5,
+      "initialGradient": 1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.256,
+        -0.384,
+        0.512
+      ],
+      "electricTimeDerivative": [
+        0.08000000000008,
+        -0.12000000000002749,
+        0.16000000000016
+      ],
+      "conductionCurrent": [
+        -0.08000000000000002,
+        0.12,
+        -0.16000000000000003
+      ],
+      "currentDivergence": -1.1999999999997775,
+      "chargeDensity": 3.6399999999999997,
+      "chargeTimeDerivative": 1.2000000000026803,
+      "electricFlux": 2.0106192982974673,
+      "enclosedCharge": 1.9058995431778076,
+      "outwardConductionCurrent": -0.6283185307179617,
+      "chargeRate": 0.628318530717468
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 1.0,
+      "initialGradient": -1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.242,
+        0.363,
+        -0.484
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999999061,
+        0.0899999999998587,
+        -0.11999999999998122
+      ],
+      "conductionCurrent": [
+        0.06,
+        -0.09,
+        0.12
+      ],
+      "currentDivergence": 0.8999999999998418,
+      "chargeDensity": -3.63,
+      "chargeTimeDerivative": -0.9000000000025653,
+      "electricFlux": -15.205308443374578,
+      "enclosedCharge": -15.205308443374598,
+      "outwardConductionCurrent": 3.7699111843077646,
+      "chargeRate": -3.7699111843192408
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 1.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.2,
+        0.3,
+        -0.4
+      ],
+      "electricTimeDerivative": [
+        -4.625929269271485e-14,
+        1.3877787807814454e-13,
+        -9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": -2.7,
+      "chargeTimeDerivative": -7.401486830834376e-13,
+      "electricFlux": -12.566370614359128,
+      "enclosedCharge": -11.309733552923255,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 5.921189464667501e-12
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 1.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.144,
+        0.216,
+        -0.288
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000009688,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.08000000000000002,
+        0.12,
+        -0.16000000000000003
+      ],
+      "currentDivergence": -1.1999999999997775,
+      "chargeDensity": -2.3600000000000003,
+      "chargeTimeDerivative": 1.2000000000026803,
+      "electricFlux": -9.047786842338615,
+      "enclosedCharge": -9.885544883295882,
+      "outwardConductionCurrent": -5.026548245743694,
+      "chargeRate": 5.026548245741224
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 1.0,
+      "initialGradient": 0.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.042,
+        0.063,
+        -0.084
+      ],
+      "electricTimeDerivative": [
+        -0.059999999999944355,
+        0.08999999999991652,
+        -0.11999999999988871
+      ],
+      "conductionCurrent": [
+        0.06,
+        -0.09,
+        0.12
+      ],
+      "currentDivergence": 0.8999999999998418,
+      "chargeDensity": -0.63,
+      "chargeTimeDerivative": -0.8999999999995122,
+      "electricFlux": -2.6389378290154193,
+      "enclosedCharge": -2.638937829015426,
+      "outwardConductionCurrent": 3.7699111843077646,
+      "chargeRate": -3.7699111843081385
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 1.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 0.3,
+      "chargeTimeDerivative": 1.3877787807814454e-13,
+      "electricFlux": 0.0,
+      "enclosedCharge": 1.256637061435917,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -1.850371707708594e-13
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 1.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.055999999999999994,
+        -0.08399999999999999,
+        0.11199999999999999
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000007374,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.08000000000000002,
+        0.12,
+        -0.16000000000000003
+      ],
+      "currentDivergence": -1.1999999999997775,
+      "chargeDensity": 0.6399999999999999,
+      "chargeTimeDerivative": 1.1999999999999047,
+      "electricFlux": 3.518583772020564,
+      "enclosedCharge": 2.6808257310632895,
+      "outwardConductionCurrent": -5.026548245743694,
+      "chargeRate": 5.026548245743815
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 1.0,
+      "initialGradient": 1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.15800000000000003,
+        -0.237,
+        0.31600000000000006
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999989809,
+        0.08999999999997435,
+        -0.11999999999979619
+      ],
+      "conductionCurrent": [
+        0.06,
+        -0.09,
+        0.12
+      ],
+      "currentDivergence": 0.8999999999998418,
+      "chargeDensity": 2.37,
+      "chargeTimeDerivative": -0.9000000000025653,
+      "electricFlux": 9.927432785343742,
+      "enclosedCharge": 9.927432785343745,
+      "outwardConductionCurrent": 3.7699111843077646,
+      "chargeRate": -3.7699111843207214
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 1.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electricTimeDerivative": [
+        4.625929269271485e-14,
+        -1.3877787807814454e-13,
+        9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 3.3,
+      "chargeTimeDerivative": -7.401486830834376e-13,
+      "electricFlux": 12.566370614359128,
+      "enclosedCharge": 13.823007675795088,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 4.440892098500625e-12
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 1.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.256,
+        -0.384,
+        0.512
+      ],
+      "electricTimeDerivative": [
+        0.08000000000008,
+        -0.12000000000002749,
+        0.16000000000016
+      ],
+      "conductionCurrent": [
+        -0.08000000000000002,
+        0.12,
+        -0.16000000000000003
+      ],
+      "currentDivergence": -1.1999999999997775,
+      "chargeDensity": 3.6399999999999997,
+      "chargeTimeDerivative": 1.2000000000026803,
+      "electricFlux": 16.08495438637974,
+      "enclosedCharge": 15.247196345422461,
+      "outwardConductionCurrent": -5.026548245743694,
+      "chargeRate": 5.026548245739744
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 2.0,
+      "initialGradient": -1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.242,
+        0.363,
+        -0.484
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999999061,
+        0.0899999999998587,
+        -0.11999999999998122
+      ],
+      "conductionCurrent": [
+        0.06,
+        -0.09,
+        0.12
+      ],
+      "currentDivergence": 0.8999999999998418,
+      "chargeDensity": -3.63,
+      "chargeTimeDerivative": -0.9000000000025653,
+      "electricFlux": -121.64246754699663,
+      "enclosedCharge": -121.64246754699678,
+      "outwardConductionCurrent": 30.159289474462117,
+      "chargeRate": -30.159289474553926
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 2.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.2,
+        0.3,
+        -0.4
+      ],
+      "electricTimeDerivative": [
+        -4.625929269271485e-14,
+        1.3877787807814454e-13,
+        -9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": -2.7,
+      "chargeTimeDerivative": -7.401486830834376e-13,
+      "electricFlux": -100.53096491487302,
+      "enclosedCharge": -90.47786842338604,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 4.736951571734001e-11
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 2.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.144,
+        0.216,
+        -0.288
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000009688,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.08000000000000002,
+        0.12,
+        -0.16000000000000003
+      ],
+      "currentDivergence": -1.1999999999997775,
+      "chargeDensity": -2.3600000000000003,
+      "chargeTimeDerivative": 1.2000000000026803,
+      "electricFlux": -72.38229473870892,
+      "enclosedCharge": -79.08435906636706,
+      "outwardConductionCurrent": -40.21238596594955,
+      "chargeRate": 40.21238596592979
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 2.0,
+      "initialGradient": 0.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.042,
+        0.063,
+        -0.084
+      ],
+      "electricTimeDerivative": [
+        -0.059999999999944355,
+        0.08999999999991652,
+        -0.11999999999988871
+      ],
+      "conductionCurrent": [
+        0.06,
+        -0.09,
+        0.12
+      ],
+      "currentDivergence": 0.8999999999998418,
+      "chargeDensity": -0.63,
+      "chargeTimeDerivative": -0.8999999999995122,
+      "electricFlux": -21.111502632123354,
+      "enclosedCharge": -21.111502632123408,
+      "outwardConductionCurrent": 30.159289474462117,
+      "chargeRate": -30.15928947446511
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 2.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 0.3,
+      "chargeTimeDerivative": 1.3877787807814454e-13,
+      "electricFlux": 0.0,
+      "enclosedCharge": 10.053096491487336,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -1.4802973661668753e-12
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 2.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.055999999999999994,
+        -0.08399999999999999,
+        0.11199999999999999
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000007374,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.08000000000000002,
+        0.12,
+        -0.16000000000000003
+      ],
+      "currentDivergence": -1.1999999999997775,
+      "chargeDensity": 0.6399999999999999,
+      "chargeTimeDerivative": 1.1999999999999047,
+      "electricFlux": 28.14867017616451,
+      "enclosedCharge": 21.446605848506316,
+      "outwardConductionCurrent": -40.21238596594955,
+      "chargeRate": 40.21238596595052
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 2.0,
+      "initialGradient": 1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.15800000000000003,
+        -0.237,
+        0.31600000000000006
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999989809,
+        0.08999999999997435,
+        -0.11999999999979619
+      ],
+      "conductionCurrent": [
+        0.06,
+        -0.09,
+        0.12
+      ],
+      "currentDivergence": 0.8999999999998418,
+      "chargeDensity": 2.37,
+      "chargeTimeDerivative": -0.9000000000025653,
+      "electricFlux": 79.41946228274993,
+      "enclosedCharge": 79.41946228274996,
+      "outwardConductionCurrent": 30.159289474462117,
+      "chargeRate": -30.15928947456577
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 2.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electricTimeDerivative": [
+        4.625929269271485e-14,
+        -1.3877787807814454e-13,
+        9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 3.3,
+      "chargeTimeDerivative": -7.401486830834376e-13,
+      "electricFlux": 100.53096491487302,
+      "enclosedCharge": 110.5840614063607,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": 3.5527136788005e-11
+    },
+    {
+      "permittivity": 1.0,
+      "radius": 2.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.256,
+        -0.384,
+        0.512
+      ],
+      "electricTimeDerivative": [
+        0.08000000000008,
+        -0.12000000000002749,
+        0.16000000000016
+      ],
+      "conductionCurrent": [
+        -0.08000000000000002,
+        0.12,
+        -0.16000000000000003
+      ],
+      "currentDivergence": -1.1999999999997775,
+      "chargeDensity": 3.6399999999999997,
+      "chargeTimeDerivative": 1.2000000000026803,
+      "electricFlux": 128.6796350910379,
+      "enclosedCharge": 121.97757076337969,
+      "outwardConductionCurrent": -40.21238596594955,
+      "chargeRate": 40.21238596591795
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 0.5,
+      "initialGradient": -1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.242,
+        0.363,
+        -0.484
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999999061,
+        0.0899999999998587,
+        -0.11999999999998122
+      ],
+      "conductionCurrent": [
+        0.12,
+        -0.18,
+        0.24
+      ],
+      "currentDivergence": 1.7999999999996836,
+      "chargeDensity": -7.26,
+      "chargeTimeDerivative": -1.8000000000051306,
+      "electricFlux": -1.9006635554218223,
+      "enclosedCharge": -3.8013271108436495,
+      "outwardConductionCurrent": 0.9424777960769412,
+      "chargeRate": -0.9424777960798102
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 0.5,
+      "initialGradient": -1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.2,
+        0.3,
+        -0.4
+      ],
+      "electricTimeDerivative": [
+        -4.625929269271485e-14,
+        1.3877787807814454e-13,
+        -9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": -5.7,
+      "chargeTimeDerivative": 2.2204460492503127e-12,
+      "electricFlux": -1.570796326794891,
+      "enclosedCharge": -2.9845130209103035,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -7.401486830834376e-13
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 0.5,
+      "initialGradient": -1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.144,
+        0.216,
+        -0.288
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000009688,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.16000000000000003,
+        0.24,
+        -0.32000000000000006
+      ],
+      "currentDivergence": -2.399999999999555,
+      "chargeDensity": -4.5200000000000005,
+      "chargeTimeDerivative": 2.40000000000314,
+      "electricFlux": -1.130973355292327,
+      "enclosedCharge": -2.366666465704311,
+      "outwardConductionCurrent": -1.2566370614359235,
+      "chargeRate": 1.2566370614378966
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 0.5,
+      "initialGradient": 0.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.042,
+        0.063,
+        -0.084
+      ],
+      "electricTimeDerivative": [
+        -0.059999999999944355,
+        0.08999999999991652,
+        -0.11999999999988871
+      ],
+      "conductionCurrent": [
+        0.12,
+        -0.18,
+        0.24
+      ],
+      "currentDivergence": 1.7999999999996836,
+      "chargeDensity": -1.26,
+      "chargeTimeDerivative": -1.7999999999990244,
+      "electricFlux": -0.3298672286269274,
+      "enclosedCharge": -0.6597344572538565,
+      "outwardConductionCurrent": 0.9424777960769412,
+      "chargeRate": -0.9424777960770346
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 0.5,
+      "initialGradient": 0.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 0.3,
+      "chargeTimeDerivative": 1.3877787807814454e-13,
+      "electricFlux": 0.0,
+      "enclosedCharge": 0.15707963267948963,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -2.3129646346357426e-14
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 0.5,
+      "initialGradient": 0.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.055999999999999994,
+        -0.08399999999999999,
+        0.11199999999999999
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000007374,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.16000000000000003,
+        0.24,
+        -0.32000000000000006
+      ],
+      "currentDivergence": -2.399999999999555,
+      "chargeDensity": 1.4799999999999998,
+      "chargeTimeDerivative": 2.4000000000003645,
+      "electricFlux": 0.4398229715025705,
+      "enclosedCharge": 0.7749261878854822,
+      "outwardConductionCurrent": -1.2566370614359235,
+      "chargeRate": 1.2566370614361386
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 0.5,
+      "initialGradient": 1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.15800000000000003,
+        -0.237,
+        0.31600000000000006
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999989809,
+        0.08999999999997435,
+        -0.11999999999979619
+      ],
+      "conductionCurrent": [
+        0.12,
+        -0.18,
+        0.24
+      ],
+      "currentDivergence": 1.7999999999996836,
+      "chargeDensity": 4.74,
+      "chargeTimeDerivative": -1.8000000000051306,
+      "electricFlux": 1.2409290981679677,
+      "enclosedCharge": 2.4818581963359363,
+      "outwardConductionCurrent": 0.9424777960769412,
+      "chargeRate": -0.9424777960801803
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 0.5,
+      "initialGradient": 1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electricTimeDerivative": [
+        4.625929269271485e-14,
+        -1.3877787807814454e-13,
+        9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 6.3,
+      "chargeTimeDerivative": 2.2204460492503127e-12,
+      "electricFlux": 1.570796326794891,
+      "enclosedCharge": 3.2986722862692823,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -1.1102230246251563e-12
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 0.5,
+      "initialGradient": 1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.256,
+        -0.384,
+        0.512
+      ],
+      "electricTimeDerivative": [
+        0.08000000000008,
+        -0.12000000000002749,
+        0.16000000000016
+      ],
+      "conductionCurrent": [
+        -0.16000000000000003,
+        0.24,
+        -0.32000000000000006
+      ],
+      "currentDivergence": -2.399999999999555,
+      "chargeDensity": 7.4799999999999995,
+      "chargeTimeDerivative": 2.40000000000314,
+      "electricFlux": 2.0106192982974673,
+      "enclosedCharge": 3.9165188414752747,
+      "outwardConductionCurrent": -1.2566370614359235,
+      "chargeRate": 1.2566370614375264
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 1.0,
+      "initialGradient": -1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.242,
+        0.363,
+        -0.484
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999999061,
+        0.0899999999998587,
+        -0.11999999999998122
+      ],
+      "conductionCurrent": [
+        0.12,
+        -0.18,
+        0.24
+      ],
+      "currentDivergence": 1.7999999999996836,
+      "chargeDensity": -7.26,
+      "chargeTimeDerivative": -1.8000000000051306,
+      "electricFlux": -15.205308443374578,
+      "enclosedCharge": -30.410616886749196,
+      "outwardConductionCurrent": 7.539822368615529,
+      "chargeRate": -7.5398223686384815
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 1.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.2,
+        0.3,
+        -0.4
+      ],
+      "electricTimeDerivative": [
+        -4.625929269271485e-14,
+        1.3877787807814454e-13,
+        -9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": -5.7,
+      "chargeTimeDerivative": 2.2204460492503127e-12,
+      "electricFlux": -12.566370614359128,
+      "enclosedCharge": -23.876104167282428,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -5.921189464667501e-12
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 1.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.144,
+        0.216,
+        -0.288
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000009688,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.16000000000000003,
+        0.24,
+        -0.32000000000000006
+      ],
+      "currentDivergence": -2.399999999999555,
+      "chargeDensity": -4.5200000000000005,
+      "chargeTimeDerivative": 2.40000000000314,
+      "electricFlux": -9.047786842338615,
+      "enclosedCharge": -18.93333172563449,
+      "outwardConductionCurrent": -10.053096491487388,
+      "chargeRate": 10.053096491503172
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 1.0,
+      "initialGradient": 0.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.042,
+        0.063,
+        -0.084
+      ],
+      "electricTimeDerivative": [
+        -0.059999999999944355,
+        0.08999999999991652,
+        -0.11999999999988871
+      ],
+      "conductionCurrent": [
+        0.12,
+        -0.18,
+        0.24
+      ],
+      "currentDivergence": 1.7999999999996836,
+      "chargeDensity": -1.26,
+      "chargeTimeDerivative": -1.7999999999990244,
+      "electricFlux": -2.6389378290154193,
+      "enclosedCharge": -5.277875658030852,
+      "outwardConductionCurrent": 7.539822368615529,
+      "chargeRate": -7.539822368616277
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 1.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 0.3,
+      "chargeTimeDerivative": 1.3877787807814454e-13,
+      "electricFlux": 0.0,
+      "enclosedCharge": 1.256637061435917,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -1.850371707708594e-13
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 1.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.055999999999999994,
+        -0.08399999999999999,
+        0.11199999999999999
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000007374,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.16000000000000003,
+        0.24,
+        -0.32000000000000006
+      ],
+      "currentDivergence": -2.399999999999555,
+      "chargeDensity": 1.4799999999999998,
+      "chargeTimeDerivative": 2.4000000000003645,
+      "electricFlux": 3.518583772020564,
+      "enclosedCharge": 6.199409503083857,
+      "outwardConductionCurrent": -10.053096491487388,
+      "chargeRate": 10.053096491489109
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 1.0,
+      "initialGradient": 1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.15800000000000003,
+        -0.237,
+        0.31600000000000006
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999989809,
+        0.08999999999997435,
+        -0.11999999999979619
+      ],
+      "conductionCurrent": [
+        0.12,
+        -0.18,
+        0.24
+      ],
+      "currentDivergence": 1.7999999999996836,
+      "chargeDensity": 4.74,
+      "chargeTimeDerivative": -1.8000000000051306,
+      "electricFlux": 9.927432785343742,
+      "enclosedCharge": 19.85486557068749,
+      "outwardConductionCurrent": 7.539822368615529,
+      "chargeRate": -7.539822368641443
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 1.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electricTimeDerivative": [
+        4.625929269271485e-14,
+        -1.3877787807814454e-13,
+        9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 6.3,
+      "chargeTimeDerivative": 2.2204460492503127e-12,
+      "electricFlux": 12.566370614359128,
+      "enclosedCharge": 26.38937829015426,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -8.88178419700125e-12
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 1.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.256,
+        -0.384,
+        0.512
+      ],
+      "electricTimeDerivative": [
+        0.08000000000008,
+        -0.12000000000002749,
+        0.16000000000016
+      ],
+      "conductionCurrent": [
+        -0.16000000000000003,
+        0.24,
+        -0.32000000000000006
+      ],
+      "currentDivergence": -2.399999999999555,
+      "chargeDensity": 7.4799999999999995,
+      "chargeTimeDerivative": 2.40000000000314,
+      "electricFlux": 16.08495438637974,
+      "enclosedCharge": 31.332150731802198,
+      "outwardConductionCurrent": -10.053096491487388,
+      "chargeRate": 10.053096491500211
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 2.0,
+      "initialGradient": -1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.242,
+        0.363,
+        -0.484
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999999061,
+        0.0899999999998587,
+        -0.11999999999998122
+      ],
+      "conductionCurrent": [
+        0.12,
+        -0.18,
+        0.24
+      ],
+      "currentDivergence": 1.7999999999996836,
+      "chargeDensity": -7.26,
+      "chargeTimeDerivative": -1.8000000000051306,
+      "electricFlux": -121.64246754699663,
+      "enclosedCharge": -243.28493509399357,
+      "outwardConductionCurrent": 60.318578948924234,
+      "chargeRate": -60.31857894910785
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 2.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.2,
+        0.3,
+        -0.4
+      ],
+      "electricTimeDerivative": [
+        -4.625929269271485e-14,
+        1.3877787807814454e-13,
+        -9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": -5.7,
+      "chargeTimeDerivative": 2.2204460492503127e-12,
+      "electricFlux": -100.53096491487302,
+      "enclosedCharge": -191.00883333825942,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -4.736951571734001e-11
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 2.0,
+      "initialGradient": -1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.144,
+        0.216,
+        -0.288
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000009688,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.16000000000000003,
+        0.24,
+        -0.32000000000000006
+      ],
+      "currentDivergence": -2.399999999999555,
+      "chargeDensity": -4.5200000000000005,
+      "chargeTimeDerivative": 2.40000000000314,
+      "electricFlux": -72.38229473870892,
+      "enclosedCharge": -151.4666538050759,
+      "outwardConductionCurrent": -80.4247719318991,
+      "chargeRate": 80.42477193202538
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 2.0,
+      "initialGradient": 0.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.042,
+        0.063,
+        -0.084
+      ],
+      "electricTimeDerivative": [
+        -0.059999999999944355,
+        0.08999999999991652,
+        -0.11999999999988871
+      ],
+      "conductionCurrent": [
+        0.12,
+        -0.18,
+        0.24
+      ],
+      "currentDivergence": 1.7999999999996836,
+      "chargeDensity": -1.26,
+      "chargeTimeDerivative": -1.7999999999990244,
+      "electricFlux": -21.111502632123354,
+      "enclosedCharge": -42.223005264246815,
+      "outwardConductionCurrent": 60.318578948924234,
+      "chargeRate": -60.31857894893022
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 2.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 0.3,
+      "chargeTimeDerivative": 1.3877787807814454e-13,
+      "electricFlux": 0.0,
+      "enclosedCharge": 10.053096491487336,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -1.4802973661668753e-12
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 2.0,
+      "initialGradient": 0.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.055999999999999994,
+        -0.08399999999999999,
+        0.11199999999999999
+      ],
+      "electricTimeDerivative": [
+        0.0800000000000106,
+        -0.12000000000007374,
+        0.1600000000000212
+      ],
+      "conductionCurrent": [
+        -0.16000000000000003,
+        0.24,
+        -0.32000000000000006
+      ],
+      "currentDivergence": -2.399999999999555,
+      "chargeDensity": 1.4799999999999998,
+      "chargeTimeDerivative": 2.4000000000003645,
+      "electricFlux": 28.14867017616451,
+      "enclosedCharge": 49.59527602467086,
+      "outwardConductionCurrent": -80.4247719318991,
+      "chargeRate": 80.42477193191287
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 2.0,
+      "initialGradient": 1.0,
+      "gradientRate": -0.3,
+      "chargeOffset": 0.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.15800000000000003,
+        -0.237,
+        0.31600000000000006
+      ],
+      "electricTimeDerivative": [
+        -0.05999999999989809,
+        0.08999999999997435,
+        -0.11999999999979619
+      ],
+      "conductionCurrent": [
+        0.12,
+        -0.18,
+        0.24
+      ],
+      "currentDivergence": 1.7999999999996836,
+      "chargeDensity": 4.74,
+      "chargeTimeDerivative": -1.8000000000051306,
+      "electricFlux": 79.41946228274993,
+      "enclosedCharge": 158.83892456549992,
+      "outwardConductionCurrent": 60.318578948924234,
+      "chargeRate": -60.31857894913154
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 2.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.0,
+      "chargeOffset": 0.3,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electricTimeDerivative": [
+        4.625929269271485e-14,
+        -1.3877787807814454e-13,
+        9.25185853854297e-14
+      ],
+      "conductionCurrent": [
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "currentDivergence": 0.0,
+      "chargeDensity": 6.3,
+      "chargeTimeDerivative": 2.2204460492503127e-12,
+      "electricFlux": 100.53096491487302,
+      "enclosedCharge": 211.11502632123407,
+      "outwardConductionCurrent": 0.0,
+      "chargeRate": -7.105427357601e-11
+    },
+    {
+      "permittivity": 2.0,
+      "radius": 2.0,
+      "initialGradient": 1.0,
+      "gradientRate": 0.4,
+      "chargeOffset": -0.2,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.256,
+        -0.384,
+        0.512
+      ],
+      "electricTimeDerivative": [
+        0.08000000000008,
+        -0.12000000000002749,
+        0.16000000000016
+      ],
+      "conductionCurrent": [
+        -0.16000000000000003,
+        0.24,
+        -0.32000000000000006
+      ],
+      "currentDivergence": -2.399999999999555,
+      "chargeDensity": 7.4799999999999995,
+      "chargeTimeDerivative": 2.40000000000314,
+      "electricFlux": 128.6796350910379,
+      "enclosedCharge": 250.65720585441758,
+      "outwardConductionCurrent": -80.4247719318991,
+      "chargeRate": 80.42477193200169
+    }
+  ],
+  "thinLoops": [
+    {
+      "bottom": 0.5,
+      "top": 0.50000001,
+      "phaseOffset": 0.7,
+      "line": 9.320390924622871e-09
+    },
+    {
+      "bottom": 0.5,
+      "top": 0.500000000001,
+      "phaseOffset": 0.7,
+      "line": 9.320184676596053e-13
+    },
+    {
+      "bottom": 0.5,
+      "top": 0.500000000000001,
+      "phaseOffset": 0.7,
+      "line": 9.312941277822602e-16
+    }
+  ],
+  "limitations": [
+    "Finite selected normalized-coefficient cases, not a certified error bound.",
+    "Detuning and constant charge offsets deliberately violate Maxwell constraints.",
+    "Spherical flux uses actual 3D vectors; radial symmetry makes this cubature especially simple."
+  ]
+}

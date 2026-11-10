@@ -1,0 +1,6 @@
+[
+  {"id":"maximum-coprime-soft","input":{"stiffness":"1000000001/999999999989","coupling":"999999999983/62499999999","source":"999999999979/62499999999","order":16}},
+  {"id":"maximum-coprime-negative","input":{"stiffness":"1000000001/999999999989","coupling":"999999999983/62499999999","source":"-999999999979/62499999999","order":16}},
+  {"id":"maximum-coprime-stiff","input":{"stiffness":"999999999983/62499999999","coupling":"999999999977/62499999999","source":"999999999979/62499999999","order":16}},
+  {"id":"maximum-tiny-coupling","input":{"stiffness":"1000000001/999999999989","coupling":"1/999999999989","source":"999999999979/62499999999","order":16}}
+]

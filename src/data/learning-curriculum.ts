@@ -679,7 +679,18 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Conditions for interchanging probability and integration"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "sigma-algebras-measures",
+      "lebesgue-simple-functions",
+      "almost-sure-null-sets",
+      "convergence-dominated-integration",
+      "fubini-tonelli-series",
+      "probability-measures-expectations",
+      "conditional-expectation",
+      "radon-nikodym-derivatives",
+      "weak-probability-convergence",
+      "interchanging-probability-integrals"
+    ]
   },
   {
     "id": "statistics",
@@ -734,7 +745,17 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
+      "samples-parameters-estimators",
+      "bias-variance-consistency",
       "statistical-estimation",
+      "likelihood-mle-map",
+      "exponential-families-sufficiency",
+      "confidence-intervals-tests",
+      "bootstrap-resampling",
+      "regression-residuals-diagnostics",
+      "asymptotic-delta-method",
+      "power-multiple-comparisons",
+      "experimental-design-error",
       "research-methods"
     ]
   },
@@ -790,7 +811,17 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
-      "bayesian-inference"
+      "bayesian-inference",
+      "finite-bayes-updates",
+      "conjugate-posterior-predictive",
+      "hierarchical-partial-pooling",
+      "marginal-likelihood-evidence",
+      "latent-mixtures-em",
+      "variational-elbo",
+      "importance-sampling",
+      "laplace-posterior-approximation",
+      "bayesian-model-comparison",
+      "predictive-uncertainty-calibration"
     ]
   },
   {
@@ -845,7 +876,17 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
-      "information-theory"
+      "information-theory",
+      "self-information-entropy",
+      "conditional-entropy-mutual-information",
+      "cross-entropy-kl",
+      "jensen-information-inequalities",
+      "data-processing-information",
+      "coding-compression-mdl",
+      "rate-distortion-binary",
+      "fano-error-bounds",
+      "renyi-information",
+      "information-units-normalization"
     ]
   },
   {
@@ -901,7 +942,18 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Curse of dimensionality and effective dimension"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "concentration-finite-averages",
+      "sub-gaussian-tail-bounds",
+      "hoeffding-bernstein-bounds",
+      "covering-packing-nets",
+      "high-dimensional-geometry",
+      "johnson-lindenstrauss-projections",
+      "random-matrix-spectra",
+      "gaussian-width-geometry",
+      "random-fourier-features",
+      "curse-effective-dimension"
+    ]
   },
   {
     "id": "graphical-models",
@@ -955,7 +1007,18 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Conditions for exact and approximate inference"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "bayesian-markov-factorization",
+      "factor-graphs-products",
+      "d-separation-colliders",
+      "variable-elimination-orders",
+      "junction-tree-calibration",
+      "tree-belief-propagation",
+      "hmm-forward-backward",
+      "graph-structure-parameter-learning",
+      "energy-partition-functions",
+      "exact-approximate-inference"
+    ]
   },
   {
     "id": "coding-algorithmic-information",
@@ -1006,7 +1069,17 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Communication complexity and distributed representations"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "binary-channel-capacity",
+      "repetition-error-correction",
+      "hamming-linear-codes",
+      "lossless-compression-reconstruction",
+      "finite-description-length",
+      "kolmogorov-uncomputability",
+      "two-part-mdl-selection",
+      "budgeted-description-search",
+      "communication-fingerprints"
+    ]
   },
   {
     "id": "functional-analysis",
@@ -1057,7 +1130,17 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Finite- and infinite-dimensional approximation"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "normed-banach-hilbert",
+      "bounded-compact-operators",
+      "dual-functionals-evaluation",
+      "orthogonal-hilbert-projections",
+      "spectral-theorem-conditions",
+      "distributions-test-functions",
+      "weak-derivatives-sobolev",
+      "integral-kernel-operators",
+      "finite-infinite-approximations"
+    ]
   },
   {
     "id": "approximation-kernels",
@@ -1111,7 +1194,18 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Approximation, estimation and optimization errors"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "polynomial-spline-approximation",
+      "universal-approximation-conditions",
+      "rkhs-mercer-features",
+      "representer-span-penalty",
+      "kernel-ridge-regression",
+      "gaussian-process-posteriors",
+      "random-feature-kernel-approximation",
+      "ntk-linearized-training",
+      "expressiveness-sample-efficiency",
+      "approximation-estimation-optimization-errors"
+    ]
   },
   {
     "id": "harmonic-analysis",
@@ -1166,7 +1260,18 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Inverse filtering"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "fourier-series-transform",
+      "convolution-boundary-theorem",
+      "laplace-z-convergence",
+      "sampling-aliasing",
+      "dft-fft-algorithms",
+      "stft-haar-localization",
+      "fir-frequency-response",
+      "parseval-normalization",
+      "gaussian-time-frequency-localization",
+      "inverse-filtering-regularization"
+    ]
   },
   {
     "id": "geometry-topology",
@@ -1221,7 +1326,18 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Coordinate-independent representations"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "finite-topology-continuity",
+      "circle-manifold-charts",
+      "tangent-cotangent-pairing",
+      "circle-metrics-geodesics",
+      "sphere-connection-holonomy",
+      "differential-forms-stokes",
+      "embeddings-immersions-cusps",
+      "rips-homology-persistence",
+      "persistence-stability-conditions",
+      "coordinate-invariant-metrics"
+    ]
   },
   {
     "id": "symmetry-groups",
@@ -1275,7 +1391,18 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Tensor representations"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "dihedral-group-actions",
+      "invariance-equivariance-maps",
+      "cyclic-real-irreducibles",
+      "lie-brackets-commutators",
+      "rigid-rotation-translation",
+      "generators-twist-exponentials",
+      "local-gauge-transport",
+      "reynolds-symmetry-constraints",
+      "gram-invariants-chirality",
+      "symmetric-tensor-representations"
+    ]
   },
   {
     "id": "convex-optimization",
@@ -1330,7 +1457,17 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
-      "regularization"
+      "regularization",
+      "convex-sets-jensen",
+      "subgradient-support-lines",
+      "constrained-first-order-optimality",
+      "lagrangian-kkt-multipliers",
+      "duality-slater-counterexamples",
+      "linear-quadratic-semidefinite-programs",
+      "proximal-operators-moreau",
+      "lasso-ridge-regularization",
+      "barrier-central-path-newton",
+      "primal-dual-gap-certificates"
     ]
   },
   {
@@ -1387,7 +1524,17 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
-      "stochastic-optimization"
+      "stochastic-optimization",
+      "finite-sum-gd-sgd",
+      "smoothness-learning-rate",
+      "momentum-adaptive-updates",
+      "saddles-flat-plateaus",
+      "minibatch-gradient-noise",
+      "variance-reduced-gradients",
+      "distributed-local-drift",
+      "bilevel-unrolled-hypergradients",
+      "implicit-solution-sensitivity",
+      "convergence-stationarity-limits"
     ]
   },
   {
@@ -1444,7 +1591,18 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Optimization in function spaces"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "functional-directional-variations",
+      "euler-lagrange-boundaries",
+      "isoperimetric-constrained-variations",
+      "bernoulli-fisher-coordinates",
+      "natural-gradient-coordinate-steps",
+      "entropic-mirror-simplex",
+      "bregman-generator-geometry",
+      "circle-riemannian-descent",
+      "implicit-adjoint-objectives",
+      "function-space-gradient-metrics"
+    ]
   },
   {
     "id": "optimal-transport",
@@ -1491,7 +1649,16 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Regularization and discretization errors"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "monge-kantorovich-mass",
+      "transport-plans-dual-certificates",
+      "wasserstein-quantile-metrics",
+      "sinkhorn-entropic-couplings",
+      "dynamic-transport-continuity",
+      "wasserstein-displacement-paths",
+      "wasserstein-gradient-flow-jko",
+      "transport-regularization-grid-errors"
+    ]
   },
   {
     "id": "numerical-computing",
@@ -1545,7 +1712,18 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Computation and memory costs"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "binary-floating-rounding",
+      "stable-exponentials-logsumexp",
+      "conditioning-backward-error",
+      "linear-nonlinear-solvers",
+      "sparse-iterative-residuals",
+      "interpolation-quadrature-errors",
+      "autodiff-jvp-vjp",
+      "finite-difference-gradient-check",
+      "mixed-precision-refinement",
+      "computation-memory-checkpointing"
+    ]
   },
   {
     "id": "differential-equations",
@@ -1601,6 +1779,16 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
+      "initial-boundary-state-data",
+      "existence-uniqueness-waiting",
+      "linear-nonlinear-ode-flows",
+      "phase-portraits-fixed-points",
+      "stability-bifurcation-chaos",
+      "pde-principal-symbol-types",
+      "diffusion-wave-advection-modes",
+      "characteristics-gradient-breakdown",
+      "weak-entropy-riemann-solutions",
+      "finite-volume-boundary-conservation",
       "differential-equations"
     ]
   },
@@ -1661,6 +1849,17 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
+      "markov-transitions-generators",
+      "poisson-arrivals-counts",
+      "martingale-stopping-compensation",
+      "brownian-covariance-variation",
+      "ito-stratonovich-sums",
+      "coupled-ou-sde-discretization",
+      "fokker-planck-gaussian-flux",
+      "reverse-time-score-conditions",
+      "ergodic-mixing-time-averages",
+      "mcmc-langevin-hamiltonian",
+      "stochastic-lqg-bellman",
       "stochastic-processes"
     ]
   },
@@ -1720,7 +1919,19 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Convergence verification"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "explicit-implicit-runge-kutta",
+      "local-global-discretization-error",
+      "stiff-fast-slow-modes",
+      "symplectic-oscillator-integrators",
+      "poisson-difference-volume-element",
+      "fourier-spectral-differentiation",
+      "nonuniform-mesh-boundary-data",
+      "cfl-heat-upwind-stability",
+      "two-grid-smoothing-correction",
+      "discrete-adjoint-sensitivity",
+      "manufactured-convergence-verification"
+    ]
   },
   {
     "id": "algorithms-complexity",
@@ -1774,7 +1985,18 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Complexity versus measured speed"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "search-asymptotic-costs",
+      "matrix-chain-dynamic-programming",
+      "residual-flow-cut-certificates",
+      "random-cuts-matching-approximation",
+      "sat-independent-set-reduction",
+      "comparison-sorting-lower-bounds",
+      "sparse-work-span-scheduling",
+      "cache-traffic-blocked-transpose",
+      "distributed-gossip-communication",
+      "operation-counts-wall-time"
+    ]
   },
   {
     "id": "learning-theory",
@@ -1834,7 +2056,19 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Theoretical bounds versus empirical scaling"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "finite-risk-empirical-minimization",
+      "approximation-estimation-optimization-risk",
+      "vc-threshold-rademacher",
+      "finite-posterior-pac-bayes",
+      "replace-one-ridge-stability",
+      "linear-nullspace-implicit-bias",
+      "minimum-norm-interpolation-risk",
+      "calibration-brier-bin-uncertainty",
+      "group-shift-total-variation-dro",
+      "binomial-sample-complexity",
+      "finite-window-learning-scaling"
+    ]
   },
   {
     "id": "causality",
@@ -1892,7 +2126,19 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Off-policy confounding"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "binary-structural-causal-model",
+      "confounding-selection-reversal",
+      "observation-intervention-policy",
+      "do-calculus-graph-conditions",
+      "abduction-action-counterfactual",
+      "observational-equivalence-causal-bounds",
+      "instrumental-moment-assumptions",
+      "natural-controlled-mediation",
+      "gaussian-markov-discovery",
+      "invariant-mechanism-transport",
+      "hidden-confounding-off-policy"
+    ]
   },
   {
     "id": "control-decision",
@@ -1951,7 +2197,21 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Constrained and robust control"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "state-space-coordinate-realizations",
+      "reachability-observability-gramians",
+      "kalman-position-velocity",
+      "lyapunov-nonnormal-metric",
+      "finite-horizon-lqr-box-mpc",
+      "discounted-bellman-policy-values",
+      "continuous-hjb-pontryagin",
+      "belief-mdp-sensing-pomdp",
+      "finite-bayes-bandit-exploration",
+      "seeded-bandit-regret-policies",
+      "finite-policy-gradient-baselines",
+      "sequential-off-policy-weights",
+      "one-step-constrained-robust-control"
+    ]
   },
   {
     "id": "discrete-optimization",
@@ -2001,7 +2261,17 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Soft relaxations versus exact solutions"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "binary-knapsack-integer-relaxation",
+      "bipartite-matching-cover-flow",
+      "coverage-submodularity-greedy",
+      "sat-smt-integer-difference",
+      "branch-bound-knapsack-certificates",
+      "knapsack-value-scaling-fptas",
+      "typed-lambda-proof-search",
+      "counterexample-guided-polynomial-synthesis",
+      "entropy-softmin-discrete-choice"
+    ]
   },
   {
     "id": "game-theory",
@@ -2055,7 +2325,19 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Existence versus convergence of solutions"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "normal-form-mixed-strategies",
+      "nash-best-response-sets",
+      "zero-sum-minimax-bounds",
+      "repeated-game-regret-comparators",
+      "hedge-no-regret-learning",
+      "coalition-shapley-core",
+      "finite-markov-team-values",
+      "mean-field-forward-backward-consistency",
+      "direct-mechanisms-truth-payments",
+      "bilinear-adversarial-gradient-dynamics",
+      "fixed-point-existence-versus-iteration"
+    ]
   },
   {
     "id": "statistical-privacy",
@@ -2110,7 +2392,24 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Mathematical guarantees versus practical evaluation"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "finite-events-differential-privacy",
+      "fresh-copy-privacy-composition",
+      "bounded-sensitivity-laplace",
+      "gaussian-sensitivity-calibration",
+      "posterior-odds-privacy-inference",
+      "fairness-metrics-selection-identification",
+      "binary-parity-compatibility",
+      "calibration-class-balance",
+      "replacement-contamination-location",
+      "influence-and-breakdown",
+      "linear-norm-adversarial-margins",
+      "relu-attacks-and-certificates",
+      "kl-ambiguity-risk-envelope",
+      "finite-wasserstein-risk-certificates",
+      "stratified-evaluation-shift-bounds",
+      "selection-aware-benchmark-coverage"
+    ]
   },
   {
     "id": "physical-modeling",
@@ -2161,7 +2460,28 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Parameters and observability"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "si-dimension-algebra",
+      "unit-covariant-predictions",
+      "measurement-calibration-identifiability",
+      "correlated-uncertainty-propagation",
+      "system-boundary-mass-balances",
+      "physical-states-observation-information",
+      "initial-data-temporal-order",
+      "heat-boundary-corner-compatibility",
+      "poisson-boundary-existence-gauge",
+      "pendulum-small-angle-validity",
+      "linear-drag-time-regimes",
+      "oscillator-nondimensional-similarity",
+      "buckingham-groups-law-identification",
+      "momentum-kinetic-invariant-constraints",
+      "circle-position-velocity-acceleration",
+      "galilean-observers-frame-energy",
+      "rotational-covariance-material-symmetry",
+      "force-mass-calibration-identifiability",
+      "oscillator-probe-excitation-identifiability",
+      "position-sensor-affine-observability"
+    ]
   },
   {
     "id": "classical-mechanics",
@@ -2216,7 +2536,27 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
-      "mechanics-energy"
+      "mechanics-energy",
+      "vector-force-superposition-dynamics",
+      "accelerating-observer-inertial-force",
+      "finite-force-pulse-impulse-histories",
+      "two-particle-momentum-center-of-mass",
+      "quartic-potential-work-allowed-states",
+      "damped-oscillator-work-power-heat",
+      "fixed-origin-angular-momentum-torque",
+      "central-harmonic-angular-momentum-area",
+      "isolated-central-pair-conservation",
+      "gyroscopic-force-energy-momentum",
+      "dry-friction-stopping-release",
+      "circular-guide-reaction-work",
+      "inverse-square-effective-potential",
+      "elliptic-kepler-time-area",
+      "point-mass-inertia-tensor",
+      "torque-free-euler-body-lab",
+      "frictionless-rod-contact-impulse",
+      "driven-wheel-rolling-sliding",
+      "inverted-spring-initial-state-sensitivity",
+      "nonlipschitz-newton-delayed-release"
     ]
   },
   {
@@ -2271,7 +2611,28 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Numerical approximation of conserved structure"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "polar-generalized-velocity-force-metric",
+      "double-pendulum-generalized-mass-metric",
+      "free-particle-action-boundary-gauge",
+      "harmonic-action-stationary-saddle",
+      "polar-lagrange-newton-equivalence",
+      "double-pendulum-lagrange-dynamics",
+      "polar-hamiltonian-legendre-map",
+      "time-gauge-hamiltonian-energy",
+      "poisson-observable-canonical-flow",
+      "angular-momentum-poisson-algebra",
+      "four-dimensional-symplectic-maps",
+      "lagrangian-momentum-graphs",
+      "noether-point-symmetry-defects",
+      "noether-boost-time-boundaries",
+      "routh-cyclic-momentum-reduction",
+      "circle-dirac-constraint-geometry",
+      "uniform-force-hamilton-jacobi-family",
+      "oscillator-hamilton-jacobi-caustic-atlas",
+      "quartic-discrete-action-splitting",
+      "circle-rattle-projection-phase"
+    ]
   },
   {
     "id": "waves-optics",
@@ -2322,7 +2683,26 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Observation, sampling and sensors"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "sinusoidal-forcing-transient-response",
+      "oscillator-frequency-response-power-resonance",
+      "mass-weighted-coupled-normal-modes",
+      "coupled-mode-beating-energy-transfer",
+      "coupled-chain-continuum-wave-limit",
+      "wave-initial-data-reflection-energy-flux",
+      "coherent-superposition-detector-averages",
+      "finite-aperture-fresnel-fraunhofer",
+      "dispersive-wave-packets-phase-group-velocity",
+      "lattice-wave-packet-transport-dispersion",
+      "jones-polarization-waveplates-analyzers",
+      "stokes-coherency-polarization-tomography",
+      "paraxial-ray-matrices-thin-lens-imaging",
+      "gaussian-beam-focusing-ray-wave-limit",
+      "coherent-fourier-pupil-spatial-filtering",
+      "incoherent-psf-otf-image-formation",
+      "pixel-aperture-sampling-aliasing",
+      "photon-counting-exposure-sensor-noise"
+    ]
   },
   {
     "id": "electromagnetism",
@@ -2377,7 +2757,28 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Effective models"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "charge-superposition-test-field",
+      "charge-continuity-surface-current",
+      "gauss-symmetry-electrostatic-sphere",
+      "ampere-symmetry-steady-current-cylinder",
+      "electrostatic-potential-reference-path-work",
+      "magnetic-vector-potential-curl-gauge",
+      "maxwell-plane-wave-local-integral-laws",
+      "maxwell-charge-displacement-continuity",
+      "faraday-induction-fixed-moving-loop",
+      "electromagnetic-wave-equation-transverse-initial-data",
+      "poynting-source-work-local-balance",
+      "transverse-pulse-energy-flux-balance",
+      "dielectric-interface-free-bound-charge",
+      "normal-incidence-impedance-interface",
+      "time-dependent-gauge-field-invariance",
+      "lorenz-gauge-source-initial-compatibility",
+      "rc-circuit-field-closure-approximation",
+      "finite-area-coil-sensor-observability",
+      "transmission-line-lumped-limit-energy",
+      "layered-medium-bloch-effective-limit"
+    ]
   },
   {
     "id": "continuum-physics",
@@ -2436,7 +2837,30 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Conservative discretization"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "moving-control-volume-mass-transport",
+      "compressible-flow-momentum-energy-balance",
+      "particle-kernel-continuum-fields",
+      "continuum-scale-separation-counting",
+      "cauchy-traction-stress-balance",
+      "finite-deformation-small-strain-rotation",
+      "linearized-euler-acoustic-characteristics",
+      "taylor-green-navier-stokes-viscous-decay",
+      "fourier-heat-diffusion-mode-budget",
+      "gaussian-fick-diffusion-spreading",
+      "reversible-reaction-advection-diffusion-budget",
+      "fisher-kpp-reaction-diffusion-front",
+      "kelvin-voigt-maxwell-memory-dissipation",
+      "neo-hookean-uniaxial-constitutive-objectivity",
+      "advection-diffusion-peclet-boundary-layer",
+      "reaction-diffusion-damkohler-penetration",
+      "thermoelastic-mode-reciprocal-energy-exchange",
+      "thermoelectric-bar-seebeck-peltier-joule-balance",
+      "reynolds-ensemble-stress-closure-defect",
+      "gaussian-filtered-burgers-subgrid-transfer",
+      "nonuniform-volume-shared-flux-mass-norm",
+      "godunov-burgers-conservative-shock-entropy"
+    ]
   },
   {
     "id": "thermo-statmech",
@@ -2496,7 +2920,38 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
-      "thermodynamics"
+      "thermodynamics",
+      "finite-body-thermal-contact-heat-entropy",
+      "ideal-gas-two-path-heat-work",
+      "carnot-cycle-engine-refrigerator",
+      "two-reservoir-cycle-entropy-admissibility",
+      "gapped-spectrum-low-temperature-entropy",
+      "finite-spectrum-helmholtz-kl-variational",
+      "ideal-gas-helmholtz-gibbs-volume-availability",
+      "binary-shell-multiplicity-block-counts",
+      "finite-macro-partition-conditional-entropy",
+      "finite-noisy-macro-observation-channel",
+      "finite-binary-reservoir-canonical-comparison",
+      "canonical-binary-energy-fluctuations",
+      "grand-canonical-finite-occupancy-fluctuations",
+      "finite-spectrum-partition-cumulant-generators",
+      "coupled-binary-sites-partition-factorization",
+      "infinite-energy-ladder-normalization-cutoff",
+      "reference-measure-boltzmann-softmax-identifiability",
+      "finite-gibbs-conditionals-scan-support",
+      "quadratic-gaussian-gibbs-normalizability",
+      "finite-curie-weiss-magnetization-symmetry",
+      "curie-weiss-variational-stability-limits",
+      "landau-sixth-order-coexistence-stability",
+      "binary-connected-correlations-field-hessian",
+      "periodic-ising-ring-correlation-length",
+      "finite-correlated-average-ar1-uncertainty",
+      "stationary-flux-three-state-cycle",
+      "metropolis-hastings-proposal-balance",
+      "reversible-two-state-periodicity-mixing",
+      "boundary-growth-extensivity-additivity",
+      "spatial-density-self-averaging-correlations",
+      "two-phase-partition-zeros-rounding"
     ]
   },
   {
@@ -2551,7 +3006,25 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Coarse graining and effective descriptions"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "two-state-continuous-time-generator-euler",
+      "poisson-uniformization-potential-events",
+      "state-dependent-holding-time-jump-occupation",
+      "ornstein-uhlenbeck-density-euler-moments",
+      "fokker-planck-cell-mass-boundaries",
+      "stationary-gaussian-circulating-current",
+      "continuous-cycle-path-reversal",
+      "thermal-ou-fluctuation-response",
+      "markov-perturbation-linear-response",
+      "stationary-jump-path-entropy-production",
+      "driven-two-state-heat-work",
+      "reservoir-resolved-two-state-heat-flow",
+      "hopf-amplitude-critical-relaxation",
+      "two-oscillator-locking-phase-slips",
+      "finite-kuramoto-collective-order",
+      "markov-partition-lumpability-memory",
+      "linear-hidden-memory-markov-limit"
+    ]
   },
   {
     "id": "quantum-physics",
@@ -2611,7 +3084,42 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Quantum information"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "complex-state-rays-basis-amplitudes",
+      "wavefunction-l2-projection-completeness",
+      "hermitian-spectrum-born-expectation",
+      "degenerate-projectors-sequential-observation",
+      "two-level-spectral-schrodinger-evolution",
+      "piecewise-hamiltonian-pulse-time-ordering",
+      "spin-half-measurement-su2-rotation",
+      "finite-spin-ladders-casimir-metric",
+      "finite-ensemble-density-gram-tomography",
+      "qubit-density-spectrum-entropy-dephasing",
+      "finite-state-covariance-uncertainty",
+      "qubit-povm-instrument-backaction",
+      "bipartite-pure-schmidt-partial-trace",
+      "two-qubit-ppt-correlations-chsh",
+      "finite-state-rayleigh-energy-variance",
+      "nonorthogonal-ritz-subspace-certificates",
+      "finite-spin-chain-local-hamiltonians",
+      "fermion-fock-parity-operator-algebra",
+      "boson-fock-cutoff-boundary-algebra",
+      "matrix-product-state-contraction-gauge",
+      "schmidt-cuts-bond-rank-truncation",
+      "finite-qubit-circuit-order-interference",
+      "qubit-channel-kraus-choi-verification",
+      "system-environment-stinespring-reference",
+      "quantum-instruments-records-feedforward",
+      "binary-qubit-state-discrimination",
+      "quantum-entropy-compression-conditional-information",
+      "classical-quantum-ensembles-holevo-information",
+      "quantum-relative-entropy-data-processing",
+      "no-cloning-bb84-information-disturbance",
+      "teleportation-superdense-coding-resources",
+      "quantum-error-correction-syndrome-knill-laflamme",
+      "pure-state-entanglement-majorization-resources",
+      "quantum-channel-capacities-coding-limits"
+    ]
   },
   {
     "id": "field-multiscale",
@@ -2667,7 +3175,21 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Scale separation"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "scalar-field-action-boundary-variation",
+      "field-noether-current-boundary-balance",
+      "field-fourier-modes-lattice-continuum",
+      "graph-u1-local-frames-wilson-loops",
+      "gauge-orbits-tree-fixing-boundary-anchors",
+      "graph-gauss-constraints-physical-phase-space",
+      "regular-perturbation-residual-certificates",
+      "quartic-integral-asymptotic-truncation",
+      "singular-perturbation-boundary-layer-matching",
+      "duffing-secular-frequency-long-time",
+      "finite-gaussian-field-sources-connected-correlations",
+      "interacting-nongaussian-connected-correlations",
+      "spatial-spectra-decay-and-correlation-length"
+    ]
   },
   {
     "id": "relativity",

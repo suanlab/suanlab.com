@@ -1,0 +1,2 @@
+export function createInformationWorker():Worker {return new Worker(new URL('./learning-quantum-information.worker.ts',import.meta.url),{type:'module',name:'quantum-information-calculation'});}
+export function createInformationValidationWorker():Worker {return new Worker(new URL('./learning-quantum-information-validation.worker.ts',import.meta.url),{type:'module',name:'quantum-information-validation'});}

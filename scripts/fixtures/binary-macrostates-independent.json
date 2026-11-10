@@ -1,0 +1,3275 @@
+{
+  "method": "Independent factorial multiplicities; exhaustive bit strings for N<=12; direct mpmath entropy sums and closed finite-population moments.",
+  "ordinary": [
+    {
+      "sites": 0,
+      "excitations": 0,
+      "blockASites": 0,
+      "energyGap": 1.0,
+      "enumerated": true,
+      "totalMicrostates": "1",
+      "multiplicity": "1",
+      "macroModes": [
+        0
+      ],
+      "selectedProbability": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "withinShellProbability": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "logMultiplicity": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "boltzmannEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedEnergy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "macroInformationEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockMean": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        0
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 1,
+      "excitations": 0,
+      "blockASites": 0,
+      "energyGap": 1.0,
+      "enumerated": true,
+      "totalMicrostates": "2",
+      "multiplicity": "1",
+      "macroModes": [
+        0,
+        1
+      ],
+      "selectedProbability": {
+        "value": 0.5,
+        "sign": 1,
+        "logMagnitude": -0.6931471805599453
+      },
+      "withinShellProbability": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "logMultiplicity": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.34657359027997264,
+        "sign": 1,
+        "logMagnitude": -1.0596601011416096
+      },
+      "boltzmannEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedEnergy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 0.6931471805599453,
+        "sign": 1,
+        "logMagnitude": -0.36651292058166435
+      },
+      "macroInformationEntropy": {
+        "value": 0.6931471805599453,
+        "sign": 1,
+        "logMagnitude": -0.36651292058166435
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockMean": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        0
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 1,
+      "excitations": 1,
+      "blockASites": 1,
+      "energyGap": 1.0,
+      "enumerated": true,
+      "totalMicrostates": "2",
+      "multiplicity": "1",
+      "macroModes": [
+        0,
+        1
+      ],
+      "selectedProbability": {
+        "value": 0.5,
+        "sign": 1,
+        "logMagnitude": -0.6931471805599453
+      },
+      "withinShellProbability": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "logMultiplicity": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.34657359027997264,
+        "sign": 1,
+        "logMagnitude": -1.0596601011416096
+      },
+      "boltzmannEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedEnergy": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 0.6931471805599453,
+        "sign": 1,
+        "logMagnitude": -0.36651292058166435
+      },
+      "macroInformationEntropy": {
+        "value": 0.6931471805599453,
+        "sign": 1,
+        "logMagnitude": -0.36651292058166435
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockMean": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        1
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 1,
+          "count": "1",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 4,
+      "excitations": 2,
+      "blockASites": 2,
+      "energyGap": 4.141947e-21,
+      "enumerated": true,
+      "totalMicrostates": "16",
+      "multiplicity": "6",
+      "macroModes": [
+        2
+      ],
+      "selectedProbability": {
+        "value": 0.375,
+        "sign": 1,
+        "logMagnitude": -0.9808292530117262
+      },
+      "withinShellProbability": {
+        "value": 0.16666666666666666,
+        "sign": 1,
+        "logMagnitude": -1.791759469228055
+      },
+      "logMultiplicity": {
+        "value": 1.791759469228055,
+        "sign": 1,
+        "logMagnitude": 0.5831980807826593
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.3678109698793973,
+        "sign": 1,
+        "logMagnitude": -1.0001861415922082
+      },
+      "boltzmannEntropy": {
+        "value": 2.4737909194302452e-23,
+        "sign": 1,
+        "logMagnitude": -52.05370537960782
+      },
+      "selectedEnergy": {
+        "value": 8.283894e-21,
+        "sign": 1,
+        "logMagnitude": -46.23997380517433
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 2.772588722239781,
+        "sign": 1,
+        "logMagnitude": 1.0197814405382264
+      },
+      "macroInformationEntropy": {
+        "value": 1.4075317407193153,
+        "sign": 1,
+        "logMagnitude": 0.34183763191016386
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 1.3650569815204658,
+        "sign": 1,
+        "logMagnitude": 0.3111961724692752
+      },
+      "conditionalBlockMean": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "conditionalBlockVariance": {
+        "value": 0.3333333333333333,
+        "sign": 1,
+        "logMagnitude": -1.0986122886681098
+      },
+      "conditionalBlockModes": [
+        1
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 0.16666666666666666,
+            "sign": 1,
+            "logMagnitude": -1.791759469228055
+          }
+        },
+        {
+          "excitationsA": 1,
+          "count": "4",
+          "probability": {
+            "value": 0.6666666666666666,
+            "sign": 1,
+            "logMagnitude": -0.4054651081081644
+          }
+        },
+        {
+          "excitationsA": 2,
+          "count": "1",
+          "probability": {
+            "value": 0.16666666666666666,
+            "sign": 1,
+            "logMagnitude": -1.791759469228055
+          }
+        }
+      ]
+    },
+    {
+      "sites": 8,
+      "excitations": 4,
+      "blockASites": 4,
+      "energyGap": 4.141947e-21,
+      "enumerated": true,
+      "totalMicrostates": "256",
+      "multiplicity": "70",
+      "macroModes": [
+        4
+      ],
+      "selectedProbability": {
+        "value": 0.2734375,
+        "sign": 1,
+        "logMagnitude": -1.2966822024302034
+      },
+      "withinShellProbability": {
+        "value": 0.014285714285714285,
+        "sign": 1,
+        "logMagnitude": -4.248495242049359
+      },
+      "logMultiplicity": {
+        "value": 4.248495242049359,
+        "sign": 1,
+        "logMagnitude": 1.4465648595477705
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.35456153972700877,
+        "sign": 1,
+        "logMagnitude": -1.0368733522310933
+      },
+      "boltzmannEntropy": {
+        "value": 5.865680707440206e-23,
+        "sign": 1,
+        "logMagnitude": -51.19033860084271
+      },
+      "selectedEnergy": {
+        "value": 1.6567788e-20,
+        "sign": 1,
+        "logMagnitude": -45.54682662461439
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 5.545177444479562,
+        "sign": 1,
+        "logMagnitude": 1.7129286210981716
+      },
+      "macroInformationEntropy": {
+        "value": 1.7635033290792475,
+        "sign": 1,
+        "logMagnitude": 0.567302358460403
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 3.781674115400315,
+        "sign": 1,
+        "logMagnitude": 1.3301667992577402
+      },
+      "conditionalBlockMean": {
+        "value": 2.0,
+        "sign": 1,
+        "logMagnitude": 0.6931471805599453
+      },
+      "conditionalBlockVariance": {
+        "value": 0.5714285714285714,
+        "sign": 1,
+        "logMagnitude": -0.5596157879354227
+      },
+      "conditionalBlockModes": [
+        2
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 0.014285714285714285,
+            "sign": 1,
+            "logMagnitude": -4.248495242049359
+          }
+        },
+        {
+          "excitationsA": 2,
+          "count": "36",
+          "probability": {
+            "value": 0.5142857142857142,
+            "sign": 1,
+            "logMagnitude": -0.664976303593249
+          }
+        },
+        {
+          "excitationsA": 4,
+          "count": "1",
+          "probability": {
+            "value": 0.014285714285714285,
+            "sign": 1,
+            "logMagnitude": -4.248495242049359
+          }
+        }
+      ]
+    },
+    {
+      "sites": 12,
+      "excitations": 3,
+      "blockASites": 5,
+      "energyGap": 4.141947e-21,
+      "enumerated": true,
+      "totalMicrostates": "4096",
+      "multiplicity": "220",
+      "macroModes": [
+        6
+      ],
+      "selectedProbability": {
+        "value": 0.0537109375,
+        "sign": 1,
+        "logMagnitude": -2.9241386203669824
+      },
+      "withinShellProbability": {
+        "value": 0.004545454545454545,
+        "sign": 1,
+        "logMagnitude": -5.393627546352362
+      },
+      "logMultiplicity": {
+        "value": 5.393627546352362,
+        "sign": 1,
+        "logMagnitude": 1.6852181727139932
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.1570582266798672,
+        "sign": 1,
+        "logMagnitude": -1.851138671816918
+      },
+      "boltzmannEntropy": {
+        "value": 7.446706478243842e-23,
+        "sign": 1,
+        "logMagnitude": -50.95168528767648
+      },
+      "selectedEnergy": {
+        "value": 1.2425841000000001e-20,
+        "sign": 1,
+        "logMagnitude": -45.83450869706617
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 8.317766166719343,
+        "sign": 1,
+        "logMagnitude": 2.118393729206336
+      },
+      "macroInformationEntropy": {
+        "value": 1.9675181955983942,
+        "sign": 1,
+        "logMagnitude": 0.6767729493471633
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 6.350247971120949,
+        "sign": 1,
+        "logMagnitude": 1.8484938627123748
+      },
+      "conditionalBlockMean": {
+        "value": 1.25,
+        "sign": 1,
+        "logMagnitude": 0.22314355131420976
+      },
+      "conditionalBlockVariance": {
+        "value": 0.5965909090909091,
+        "sign": 1,
+        "logMagnitude": -0.5165236448806284
+      },
+      "conditionalBlockModes": [
+        1
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "35",
+          "probability": {
+            "value": 0.1590909090909091,
+            "sign": 1,
+            "logMagnitude": -1.8382794848629478
+          }
+        },
+        {
+          "excitationsA": 2,
+          "count": "70",
+          "probability": {
+            "value": 0.3181818181818182,
+            "sign": 1,
+            "logMagnitude": -1.1451323043030026
+          }
+        },
+        {
+          "excitationsA": 3,
+          "count": "10",
+          "probability": {
+            "value": 0.045454545454545456,
+            "sign": 1,
+            "logMagnitude": -3.091042453358316
+          }
+        }
+      ]
+    },
+    {
+      "sites": 74,
+      "excitations": 48,
+      "blockASites": 69,
+      "energyGap": 2.0109522192461558e-56,
+      "enumerated": false,
+      "totalMicrostates": "18889465931478580854784",
+      "multiplicity": "66072789997853738148",
+      "macroModes": [
+        37
+      ],
+      "selectedProbability": {
+        "value": 0.0034978643778247817,
+        "sign": 1,
+        "logMagnitude": -5.655602674485331
+      },
+      "withinShellProbability": {
+        "value": 1.5134823276457424e-20,
+        "sign": 1,
+        "logMagnitude": -45.637288686950626
+      },
+      "logMultiplicity": {
+        "value": 45.637288686950626,
+        "sign": 1,
+        "logMagnitude": 3.820725116720707
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.0197825311302128,
+        "sign": 1,
+        "logMagnitude": -3.9229559968583647
+      },
+      "boltzmannEntropy": {
+        "value": 6.300907698834969e-22,
+        "sign": 1,
+        "logMagnitude": -48.81617834366977
+      },
+      "selectedEnergy": {
+        "value": 9.652570652381548e-55,
+        "sign": 1,
+        "logMagnitude": -124.374955845949
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 51.292891361435956,
+        "sign": 1,
+        "logMagnitude": 3.9375521726225053
+      },
+      "macroInformationEntropy": {
+        "value": 2.877808251363015,
+        "sign": 1,
+        "logMagnitude": 1.0570289805899302
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 48.415083110072935,
+        "sign": 1,
+        "logMagnitude": 3.8798113996802788
+      },
+      "conditionalBlockMean": {
+        "value": 44.75675675675676,
+        "sign": 1,
+        "logMagnitude": 3.8012424223009806
+      },
+      "conditionalBlockVariance": {
+        "value": 1.0770785594924803,
+        "sign": 1,
+        "logMagnitude": 0.0742523384040021
+      },
+      "conditionalBlockModes": [
+        45
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 43,
+          "count": "7023301266595310928",
+          "probability": {
+            "value": 0.10629642348723961,
+            "sign": 1,
+            "logMagnitude": -2.241523639663665
+          }
+        },
+        {
+          "excitationsA": 46,
+          "count": "12029369758331889600",
+          "probability": {
+            "value": 0.1820623854195145,
+            "sign": 1,
+            "logMagnitude": -1.7034058736096669
+          }
+        },
+        {
+          "excitationsA": 48,
+          "count": "269807672771096460",
+          "probability": {
+            "value": 0.004083491446022798,
+            "sign": 1,
+            "logMagnitude": -5.500802909934197
+          }
+        }
+      ]
+    },
+    {
+      "sites": 42,
+      "excitations": 18,
+      "blockASites": 33,
+      "energyGap": 1.0767996113674563e+57,
+      "enumerated": false,
+      "totalMicrostates": "4398046511104",
+      "multiplicity": "353697121050",
+      "macroModes": [
+        21
+      ],
+      "selectedProbability": {
+        "value": 0.08042141440682826,
+        "sign": 1,
+        "logMagnitude": -2.5204747899180044
+      },
+      "withinShellProbability": {
+        "value": 2.8272777483496567e-12,
+        "sign": 1,
+        "logMagnitude": -26.5917067935997
+      },
+      "logMultiplicity": {
+        "value": 26.5917067935997,
+        "sign": 1,
+        "logMagnitude": 3.2805993924991217
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.20270014758195923,
+        "sign": 1,
+        "logMagnitude": -1.5960274974437412
+      },
+      "boltzmannEntropy": {
+        "value": 3.671381339287663e-22,
+        "sign": 1,
+        "logMagnitude": -49.35630406789136
+      },
+      "selectedEnergy": {
+        "value": 1.9382393004614215e+58,
+        "sign": 1,
+        "logMagnitude": 134.21171537755072
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 29.112181583517703,
+        "sign": 1,
+        "logMagnitude": 3.371156697701704
+      },
+      "macroInformationEntropy": {
+        "value": 2.5945764811896694,
+        "sign": 1,
+        "logMagnitude": 0.9534232975910948
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 26.517605102328034,
+        "sign": 1,
+        "logMagnitude": 3.2778088558978085
+      },
+      "conditionalBlockMean": {
+        "value": 14.142857142857142,
+        "sign": 1,
+        "logMagnitude": 2.649209701079277
+      },
+      "conditionalBlockVariance": {
+        "value": 1.7740169238427077,
+        "sign": 1,
+        "logMagnitude": 0.5732464237757655
+      },
+      "conditionalBlockModes": [
+        14
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 9,
+          "count": "38567100",
+          "probability": {
+            "value": 0.00010903990364837605,
+            "sign": 1,
+            "logMagnitude": -9.12379665421197
+          }
+        },
+        {
+          "excitationsA": 14,
+          "count": "103169959200",
+          "probability": {
+            "value": 0.29169012994430193,
+            "sign": 1,
+            "logMagnitude": -1.232063239004879
+          }
+        },
+        {
+          "excitationsA": 18,
+          "count": "1037158320",
+          "probability": {
+            "value": 0.0029323346396517127,
+            "sign": 1,
+            "logMagnitude": -5.8319563678921265
+          }
+        }
+      ]
+    },
+    {
+      "sites": 5,
+      "excitations": 1,
+      "blockASites": 1,
+      "energyGap": 1.5200291648226702e-08,
+      "enumerated": true,
+      "totalMicrostates": "32",
+      "multiplicity": "5",
+      "macroModes": [
+        2,
+        3
+      ],
+      "selectedProbability": {
+        "value": 0.15625,
+        "sign": 1,
+        "logMagnitude": -1.8562979903656263
+      },
+      "withinShellProbability": {
+        "value": 0.2,
+        "sign": 1,
+        "logMagnitude": -1.6094379124341003
+      },
+      "logMultiplicity": {
+        "value": 1.6094379124341003,
+        "sign": 1,
+        "logMagnitude": 0.4758849953271106
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.2900465609946291,
+        "sign": 1,
+        "logMagnitude": -1.2377138137353232
+      },
+      "boltzmannEntropy": {
+        "value": 2.2220688443642285e-23,
+        "sign": 1,
+        "logMagnitude": -52.16101846506337
+      },
+      "selectedEnergy": {
+        "value": 1.5200291648226702e-08,
+        "sign": 1,
+        "logMagnitude": -18.00195122189492
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 3.4657359027997265,
+        "sign": 1,
+        "logMagnitude": 1.242924991852436
+      },
+      "macroInformationEntropy": {
+        "value": 1.5236708720427916,
+        "sign": 1,
+        "logMagnitude": 0.4211224707145242
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 1.942065030756935,
+        "sign": 1,
+        "logMagnitude": 0.6637518557950515
+      },
+      "conditionalBlockMean": {
+        "value": 0.2,
+        "sign": 1,
+        "logMagnitude": -1.6094379124341003
+      },
+      "conditionalBlockVariance": {
+        "value": 0.16,
+        "sign": 1,
+        "logMagnitude": -1.8325814637483102
+      },
+      "conditionalBlockModes": [
+        0
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "4",
+          "probability": {
+            "value": 0.8,
+            "sign": 1,
+            "logMagnitude": -0.22314355131420976
+          }
+        },
+        {
+          "excitationsA": 1,
+          "count": "1",
+          "probability": {
+            "value": 0.2,
+            "sign": 1,
+            "logMagnitude": -1.6094379124341003
+          }
+        }
+      ]
+    },
+    {
+      "sites": 53,
+      "excitations": 8,
+      "blockASites": 52,
+      "energyGap": 1.1191535352007525e+43,
+      "enumerated": false,
+      "totalMicrostates": "9007199254740992",
+      "multiplicity": "886322710",
+      "macroModes": [
+        26,
+        27
+      ],
+      "selectedProbability": {
+        "value": 9.840158798901655e-08,
+        "sign": 1,
+        "logMagnitude": -16.13420889491866
+      },
+      "withinShellProbability": {
+        "value": 1.1282572236019993e-09,
+        "sign": 1,
+        "logMagnitude": -20.602591674758443
+      },
+      "logMultiplicity": {
+        "value": 20.602591674758443,
+        "sign": 1,
+        "logMagnitude": 3.025416877336483
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 1.5876317762065118e-06,
+        "sign": 1,
+        "logMagnitude": -13.353267100990568
+      },
+      "boltzmannEntropy": {
+        "value": 2.844494759316357e-22,
+        "sign": 1,
+        "logMagnitude": -49.611486583053996
+      },
+      "selectedEnergy": {
+        "value": 8.95322828160602e+43,
+        "sign": 1,
+        "logMagnitude": 101.20317316784887
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 36.7368005696771,
+        "sign": 1,
+        "logMagnitude": 3.6037789929704576
+      },
+      "macroInformationEntropy": {
+        "value": 2.7109064504584754,
+        "sign": 1,
+        "logMagnitude": 0.9972830625284662
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 34.02589411921863,
+        "sign": 1,
+        "logMagnitude": 3.527121826494058
+      },
+      "conditionalBlockMean": {
+        "value": 7.849056603773585,
+        "sign": 1,
+        "logMagnitude": 2.0603933467091413
+      },
+      "conditionalBlockVariance": {
+        "value": 0.12815948736205054,
+        "sign": 1,
+        "logMagnitude": -2.054479795654088
+      },
+      "conditionalBlockModes": [
+        8
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 7,
+          "count": "133784560",
+          "probability": {
+            "value": 0.1509433962264151,
+            "sign": 1,
+            "logMagnitude": -1.890850371872286
+          }
+        },
+        {
+          "excitationsA": 8,
+          "count": "752538150",
+          "probability": {
+            "value": 0.8490566037735849,
+            "sign": 1,
+            "logMagnitude": -0.16362942378180206
+          }
+        }
+      ]
+    },
+    {
+      "sites": 6,
+      "excitations": 3,
+      "blockASites": 1,
+      "energyGap": 1.4910474791311447e-33,
+      "enumerated": true,
+      "totalMicrostates": "64",
+      "multiplicity": "20",
+      "macroModes": [
+        3
+      ],
+      "selectedProbability": {
+        "value": 0.3125,
+        "sign": 1,
+        "logMagnitude": -1.1631508098056809
+      },
+      "withinShellProbability": {
+        "value": 0.05,
+        "sign": 1,
+        "logMagnitude": -2.995732273553991
+      },
+      "logMultiplicity": {
+        "value": 2.995732273553991,
+        "sign": 1,
+        "logMagnitude": 1.0971887003649488
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.3634846280642753,
+        "sign": 1,
+        "logMagnitude": -1.0120182715842532
+      },
+      "boltzmannEntropy": {
+        "value": 4.1360547677500446e-23,
+        "sign": 1,
+        "logMagnitude": -51.53971476002553
+      },
+      "selectedEnergy": {
+        "value": 4.473142437393434e-33,
+        "sign": 1,
+        "logMagnitude": -74.4872169010428
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 4.1588830833596715,
+        "sign": 1,
+        "logMagnitude": 1.4252465486463908
+      },
+      "macroInformationEntropy": {
+        "value": 1.6173633156271283,
+        "sign": 1,
+        "logMagnitude": 0.48079724034602567
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 2.5415197677325434,
+        "sign": 1,
+        "logMagnitude": 0.9327622358531449
+      },
+      "conditionalBlockMean": {
+        "value": 0.5,
+        "sign": 1,
+        "logMagnitude": -0.6931471805599453
+      },
+      "conditionalBlockVariance": {
+        "value": 0.25,
+        "sign": 1,
+        "logMagnitude": -1.3862943611198906
+      },
+      "conditionalBlockModes": [
+        0,
+        1
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "10",
+          "probability": {
+            "value": 0.5,
+            "sign": 1,
+            "logMagnitude": -0.6931471805599453
+          }
+        },
+        {
+          "excitationsA": 1,
+          "count": "10",
+          "probability": {
+            "value": 0.5,
+            "sign": 1,
+            "logMagnitude": -0.6931471805599453
+          }
+        }
+      ]
+    },
+    {
+      "sites": 22,
+      "excitations": 12,
+      "blockASites": 22,
+      "energyGap": 1.3739291362907986e-86,
+      "enumerated": false,
+      "totalMicrostates": "4194304",
+      "multiplicity": "646646",
+      "macroModes": [
+        11
+      ],
+      "selectedProbability": {
+        "value": 0.15417242050170898,
+        "sign": 1,
+        "logMagnitude": -1.8696836892209743
+      },
+      "withinShellProbability": {
+        "value": 1.546441174924147e-06,
+        "sign": 1,
+        "logMagnitude": -13.379554283097823
+      },
+      "logMultiplicity": {
+        "value": 13.379554283097823,
+        "sign": 1,
+        "logMagnitude": 2.5937277419701688
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.28825365993976265,
+        "sign": 1,
+        "logMagnitude": -1.2439144228111907
+      },
+      "boltzmannEntropy": {
+        "value": 1.8472468241404728e-22,
+        "sign": 1,
+        "logMagnitude": -50.04317571842031
+      },
+      "selectedEnergy": {
+        "value": 1.6487149635489584e-85,
+        "sign": 1,
+        "logMagnitude": -195.21973672998175
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 15.249237972318797,
+        "sign": 1,
+        "logMagnitude": 2.7245295327766517
+      },
+      "macroInformationEntropy": {
+        "value": 2.2711218520683603,
+        "sign": 1,
+        "logMagnitude": 0.8202739173724081
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 12.978116120250437,
+        "sign": 1,
+        "logMagnitude": 2.5632645636277753
+      },
+      "conditionalBlockMean": {
+        "value": 12.0,
+        "sign": 1,
+        "logMagnitude": 2.4849066497880004
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        12
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 12,
+          "count": "646646",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 76,
+      "excitations": 74,
+      "blockASites": 63,
+      "energyGap": 7.4051381890863656e+53,
+      "enumerated": false,
+      "totalMicrostates": "75557863725914323419136",
+      "multiplicity": "2850",
+      "macroModes": [
+        38
+      ],
+      "selectedProbability": {
+        "value": 3.771943593241806e-20,
+        "sign": 1,
+        "logMagnitude": -44.72411144929315
+      },
+      "withinShellProbability": {
+        "value": 0.0003508771929824561,
+        "sign": 1,
+        "logMagnitude": -7.955074273262696
+      },
+      "logMultiplicity": {
+        "value": 7.955074273262696,
+        "sign": 1,
+        "logMagnitude": 2.073809998422807
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 1.686968256445938e-18,
+        "sign": 1,
+        "logMagnitude": -40.92359868707631
+      },
+      "boltzmannEntropy": {
+        "value": 1.098316534030587e-22,
+        "sign": 1,
+        "logMagnitude": -50.563093461967675
+      },
+      "selectedEnergy": {
+        "value": 5.47980225992391e+55,
+        "sign": 1,
+        "logMagnitude": 128.3432491310259
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 52.67918572255584,
+        "sign": 1,
+        "logMagnitude": 3.9642204197046667
+      },
+      "macroInformationEntropy": {
+        "value": 2.8911431988509095,
+        "sign": 1,
+        "logMagnitude": 1.0616519944435894
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 49.78804252370493,
+        "sign": 1,
+        "logMagnitude": 3.90777484523383
+      },
+      "conditionalBlockMean": {
+        "value": 61.3421052631579,
+        "sign": 1,
+        "logMagnitude": 4.116466479309372
+      },
+      "conditionalBlockVariance": {
+        "value": 0.2798060941828255,
+        "sign": 1,
+        "logMagnitude": -1.273658436491788
+      },
+      "conditionalBlockModes": [
+        61
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 61,
+          "count": "1953",
+          "probability": {
+            "value": 0.6852631578947368,
+            "sign": 1,
+            "logMagnitude": -0.37795234238601727
+          }
+        },
+        {
+          "excitationsA": 62,
+          "count": "819",
+          "probability": {
+            "value": 0.2873684210526316,
+            "sign": 1,
+            "logMagnitude": -1.2469901894096267
+          }
+        },
+        {
+          "excitationsA": 63,
+          "count": "78",
+          "probability": {
+            "value": 0.02736842105263158,
+            "sign": 1,
+            "logMagnitude": -3.5983654465731045
+          }
+        }
+      ]
+    },
+    {
+      "sites": 9,
+      "excitations": 1,
+      "blockASites": 7,
+      "energyGap": 5.879716095484593e+89,
+      "enumerated": true,
+      "totalMicrostates": "512",
+      "multiplicity": "9",
+      "macroModes": [
+        4,
+        5
+      ],
+      "selectedProbability": {
+        "value": 0.017578125,
+        "sign": 1,
+        "logMagnitude": -4.041100047703289
+      },
+      "withinShellProbability": {
+        "value": 0.1111111111111111,
+        "sign": 1,
+        "logMagnitude": -2.1972245773362196
+      },
+      "logMultiplicity": {
+        "value": 2.1972245773362196,
+        "sign": 1,
+        "logMagnitude": 0.7871950081766443
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.07103496177603437,
+        "sign": 1,
+        "logMagnitude": -2.644583103758694
+      },
+      "boltzmannEntropy": {
+        "value": 3.033595915474674e-23,
+        "sign": 1,
+        "logMagnitude": -51.84970845221383
+      },
+      "selectedEnergy": {
+        "value": 5.879716095484593e+89,
+        "sign": 1,
+        "logMagnitude": 206.70158175413408
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 6.238324625039508,
+        "sign": 1,
+        "logMagnitude": 1.8307116567545552
+      },
+      "macroInformationEntropy": {
+        "value": 1.822926834573998,
+        "sign": 1,
+        "logMagnitude": 0.6004433602635721
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 4.4153977904655095,
+        "sign": 1,
+        "logMagnitude": 1.4850979297628706
+      },
+      "conditionalBlockMean": {
+        "value": 0.7777777777777778,
+        "sign": 1,
+        "logMagnitude": -0.25131442828090605
+      },
+      "conditionalBlockVariance": {
+        "value": 0.1728395061728395,
+        "sign": 1,
+        "logMagnitude": -1.75539182505718
+      },
+      "conditionalBlockModes": [
+        1
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "2",
+          "probability": {
+            "value": 0.2222222222222222,
+            "sign": 1,
+            "logMagnitude": -1.5040773967762742
+          }
+        },
+        {
+          "excitationsA": 1,
+          "count": "7",
+          "probability": {
+            "value": 0.7777777777777778,
+            "sign": 1,
+            "logMagnitude": -0.25131442828090605
+          }
+        }
+      ]
+    },
+    {
+      "sites": 80,
+      "excitations": 24,
+      "blockASites": 52,
+      "energyGap": 7.418516878045129e+31,
+      "enumerated": false,
+      "totalMicrostates": "1208925819614629174706176",
+      "multiplicity": "162238272822099908200",
+      "macroModes": [
+        40
+      ],
+      "selectedProbability": {
+        "value": 0.00013420035389252982,
+        "sign": 1,
+        "logMagnitude": -8.916176696377041
+      },
+      "withinShellProbability": {
+        "value": 6.163773705212801e-21,
+        "sign": 1,
+        "logMagnitude": -46.53559774841858
+      },
+      "logMultiplicity": {
+        "value": 46.53559774841858,
+        "sign": 1,
+        "logMagnitude": 3.8402175626914943
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.0011965540680221264,
+        "sign": 1,
+        "logMagnitude": -6.728309463151962
+      },
+      "boltzmannEntropy": {
+        "value": 6.424932649575637e-22,
+        "sign": 1,
+        "logMagnitude": -48.796685897698985
+      },
+      "selectedEnergy": {
+        "value": 1.780444050730831e+33,
+        "sign": 1,
+        "logMagnitude": 76.56217086869857
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 55.451774444795625,
+        "sign": 1,
+        "logMagnitude": 4.015513714092218
+      },
+      "macroInformationEntropy": {
+        "value": 2.9167913100297045,
+        "sign": 1,
+        "logMagnitude": 1.0704841456556322
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 52.53498313476592,
+        "sign": 1,
+        "logMagnitude": 3.961479293112152
+      },
+      "conditionalBlockMean": {
+        "value": 15.6,
+        "sign": 1,
+        "logMagnitude": 2.747270914255491
+      },
+      "conditionalBlockVariance": {
+        "value": 3.870379746835443,
+        "sign": 1,
+        "logMagnitude": 1.3533526280249415
+      },
+      "conditionalBlockModes": [
+        16
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "20475",
+          "probability": {
+            "value": 1.262032666142321e-16,
+            "sign": 1,
+            "logMagnitude": -36.608637839697316
+          }
+        },
+        {
+          "excitationsA": 12,
+          "count": "6278423752844456850",
+          "probability": {
+            "value": 0.03869878323796613,
+            "sign": 1,
+            "logMagnitude": -3.2519471203201036
+          }
+        },
+        {
+          "excitationsA": 24,
+          "count": "426384982032100",
+          "probability": {
+            "value": 2.6281405405470905e-06,
+            "sign": 1,
+            "logMagnitude": -12.849233980633652
+          }
+        }
+      ]
+    },
+    {
+      "sites": 32,
+      "excitations": 31,
+      "blockASites": 30,
+      "energyGap": 1.571230620765305e+48,
+      "enumerated": false,
+      "totalMicrostates": "4294967296",
+      "multiplicity": "32",
+      "macroModes": [
+        16
+      ],
+      "selectedProbability": {
+        "value": 7.450580596923828e-09,
+        "sign": 1,
+        "logMagnitude": -18.714973875118524
+      },
+      "withinShellProbability": {
+        "value": 0.03125,
+        "sign": 1,
+        "logMagnitude": -3.4657359027997265
+      },
+      "logMultiplicity": {
+        "value": 3.4657359027997265,
+        "sign": 1,
+        "logMagnitude": 1.242924991852436
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 1.3943742122589442e-07,
+        "sign": 1,
+        "logMagnitude": -15.78564992969586
+      },
+      "boltzmannEntropy": {
+        "value": 4.78496480846454e-23,
+        "sign": 1,
+        "logMagnitude": -51.393978468538045
+      },
+      "selectedEnergy": {
+        "value": 4.870814924372445e+49,
+        "sign": 1,
+        "logMagnitude": 114.40993081540378
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 22.18070977791825,
+        "sign": 1,
+        "logMagnitude": 3.099222982218062
+      },
+      "macroInformationEntropy": {
+        "value": 2.4585722493773132,
+        "sign": 1,
+        "logMagnitude": 0.899580795022884
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 19.722137528540937,
+        "sign": 1,
+        "logMagnitude": 2.981741737242529
+      },
+      "conditionalBlockMean": {
+        "value": 29.0625,
+        "sign": 1,
+        "logMagnitude": 3.369448683347575
+      },
+      "conditionalBlockVariance": {
+        "value": 0.05859375,
+        "sign": 1,
+        "logMagnitude": -2.8371272433773522
+      },
+      "conditionalBlockModes": [
+        29
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 29,
+          "count": "30",
+          "probability": {
+            "value": 0.9375,
+            "sign": 1,
+            "logMagnitude": -0.06453852113757118
+          }
+        },
+        {
+          "excitationsA": 30,
+          "count": "2",
+          "probability": {
+            "value": 0.0625,
+            "sign": 1,
+            "logMagnitude": -2.772588722239781
+          }
+        }
+      ]
+    },
+    {
+      "sites": 10,
+      "excitations": 2,
+      "blockASites": 8,
+      "energyGap": 4.065361224970398e-30,
+      "enumerated": true,
+      "totalMicrostates": "1024",
+      "multiplicity": "45",
+      "macroModes": [
+        5
+      ],
+      "selectedProbability": {
+        "value": 0.0439453125,
+        "sign": 1,
+        "logMagnitude": -3.1248093158291335
+      },
+      "withinShellProbability": {
+        "value": 0.022222222222222223,
+        "sign": 1,
+        "logMagnitude": -3.8066624897703196
+      },
+      "logMultiplicity": {
+        "value": 3.8066624897703196,
+        "sign": 1,
+        "logMagnitude": 1.3367528183009176
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.13732072188702246,
+        "sign": 1,
+        "logMagnitude": -1.9854360534371769
+      },
+      "boltzmannEntropy": {
+        "value": 5.2556647598389026e-23,
+        "sign": 1,
+        "logMagnitude": -51.30015064208956
+      },
+      "selectedEnergy": {
+        "value": 8.130722449940796e-30,
+        "sign": 1,
+        "logMagnitude": -66.98190300797833
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 6.931471805599453,
+        "sign": 1,
+        "logMagnitude": 1.9360721724123813
+      },
+      "macroInformationEntropy": {
+        "value": 1.8759536052468004,
+        "sign": 1,
+        "logMagnitude": 0.6291171195995469
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 5.055518200352653,
+        "sign": 1,
+        "logMagnitude": 1.6204803596521535
+      },
+      "conditionalBlockMean": {
+        "value": 1.6,
+        "sign": 1,
+        "logMagnitude": 0.4700036292457356
+      },
+      "conditionalBlockVariance": {
+        "value": 0.28444444444444444,
+        "sign": 1,
+        "logMagnitude": -1.2572173188447482
+      },
+      "conditionalBlockModes": [
+        2
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 0.022222222222222223,
+            "sign": 1,
+            "logMagnitude": -3.8066624897703196
+          }
+        },
+        {
+          "excitationsA": 1,
+          "count": "16",
+          "probability": {
+            "value": 0.35555555555555557,
+            "sign": 1,
+            "logMagnitude": -1.0340737675305385
+          }
+        },
+        {
+          "excitationsA": 2,
+          "count": "28",
+          "probability": {
+            "value": 0.6222222222222222,
+            "sign": 1,
+            "logMagnitude": -0.4744579795951158
+          }
+        }
+      ]
+    },
+    {
+      "sites": 11,
+      "excitations": 10,
+      "blockASites": 8,
+      "energyGap": 4.7229414359734426e+86,
+      "enumerated": true,
+      "totalMicrostates": "2048",
+      "multiplicity": "11",
+      "macroModes": [
+        5,
+        6
+      ],
+      "selectedProbability": {
+        "value": 0.00537109375,
+        "sign": 1,
+        "logMagnitude": -5.226723713361028
+      },
+      "withinShellProbability": {
+        "value": 0.09090909090909091,
+        "sign": 1,
+        "logMagnitude": -2.3978952727983707
+      },
+      "logMultiplicity": {
+        "value": 2.3978952727983707,
+        "sign": 1,
+        "logMagnitude": 0.8745913829236889
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.028073223069810208,
+        "sign": 1,
+        "logMagnitude": -3.572939072620324
+      },
+      "boltzmannEntropy": {
+        "value": 3.3106517104937977e-23,
+        "sign": 1,
+        "logMagnitude": -51.76231207746679
+      },
+      "selectedEnergy": {
+        "value": 4.722941435973443e+87,
+        "sign": 1,
+        "logMagnitude": 201.87733488156752
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 7.6246189861593985,
+        "sign": 1,
+        "logMagnitude": 2.0313823522167063
+      },
+      "macroInformationEntropy": {
+        "value": 1.9238448337825422,
+        "sign": 1,
+        "logMagnitude": 0.6543257012691409
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 5.700774152376856,
+        "sign": 1,
+        "logMagnitude": 1.7406019818247844
+      },
+      "conditionalBlockMean": {
+        "value": 7.2727272727272725,
+        "sign": 1,
+        "logMagnitude": 1.984131361875511
+      },
+      "conditionalBlockVariance": {
+        "value": 0.19834710743801653,
+        "sign": 1,
+        "logMagnitude": -1.6177367152487954
+      },
+      "conditionalBlockModes": [
+        7
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 7,
+          "count": "8",
+          "probability": {
+            "value": 0.7272727272727273,
+            "sign": 1,
+            "logMagnitude": -0.3184537311185346
+          }
+        },
+        {
+          "excitationsA": 8,
+          "count": "3",
+          "probability": {
+            "value": 0.2727272727272727,
+            "sign": 1,
+            "logMagnitude": -1.2992829841302609
+          }
+        }
+      ]
+    },
+    {
+      "sites": 30,
+      "excitations": 13,
+      "blockASites": 21,
+      "energyGap": 3.8009110162969873e+25,
+      "enumerated": false,
+      "totalMicrostates": "1073741824",
+      "multiplicity": "119759850",
+      "macroModes": [
+        15
+      ],
+      "selectedProbability": {
+        "value": 0.11153505183756351,
+        "sign": 1,
+        "logMagnitude": -2.1934163712285066
+      },
+      "withinShellProbability": {
+        "value": 8.350043858605367e-09,
+        "sign": 1,
+        "logMagnitude": -18.600999045569854
+      },
+      "logMultiplicity": {
+        "value": 18.600999045569854,
+        "sign": 1,
+        "logMagnitude": 2.9232152914041225
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.24464280866633195,
+        "sign": 1,
+        "logMagnitude": -1.4079560560533093
+      },
+      "boltzmannEntropy": {
+        "value": 2.5681450731266974e-22,
+        "sign": 1,
+        "logMagnitude": -49.71368816898636
+      },
+      "selectedEnergy": {
+        "value": 4.941184321186083e+26,
+        "sign": 1,
+        "logMagnitude": 61.46481746144249
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 20.79441541679836,
+        "sign": 1,
+        "logMagnitude": 3.034684461080491
+      },
+      "macroInformationEntropy": {
+        "value": 2.4262905068701204,
+        "sign": 1,
+        "logMagnitude": 0.8863635506198827
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 18.368124909928238,
+        "sign": 1,
+        "logMagnitude": 2.9106168205238894
+      },
+      "conditionalBlockMean": {
+        "value": 9.1,
+        "sign": 1,
+        "logMagnitude": 2.2082744135228043
+      },
+      "conditionalBlockVariance": {
+        "value": 1.6003448275862069,
+        "sign": 1,
+        "logMagnitude": 0.4702191232666104
+      },
+      "conditionalBlockModes": [
+        9
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 4,
+          "count": "5985",
+          "probability": {
+            "value": 4.9975012493753125e-05,
+            "sign": 1,
+            "logMagnitude": -9.903987427577778
+          }
+        },
+        {
+          "excitationsA": 9,
+          "count": "37035180",
+          "probability": {
+            "value": 0.3092453773113443,
+            "sign": 1,
+            "logMagnitude": -1.1736202158848223
+          }
+        },
+        {
+          "excitationsA": 13,
+          "count": "203490",
+          "probability": {
+            "value": 0.001699150424787606,
+            "sign": 1,
+            "logMagnitude": -6.377626902961618
+          }
+        }
+      ]
+    },
+    {
+      "sites": 80,
+      "excitations": 5,
+      "blockASites": 39,
+      "energyGap": 1.7324833069298926e-57,
+      "enumerated": false,
+      "totalMicrostates": "1208925819614629174706176",
+      "multiplicity": "24040016",
+      "macroModes": [
+        40
+      ],
+      "selectedProbability": {
+        "value": 1.9885435160664586e-17,
+        "sign": 1,
+        "logMagnitude": -38.45654411160716
+      },
+      "withinShellProbability": {
+        "value": 4.159731008498497e-08,
+        "sign": 1,
+        "logMagnitude": -16.995230333188463
+      },
+      "logMultiplicity": {
+        "value": 16.995230333188463,
+        "sign": 1,
+        "logMagnitude": 2.8329327360535
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 7.647251144346017e-16,
+        "sign": 1,
+        "logMagnitude": -34.80701523217636
+      },
+      "boltzmannEntropy": {
+        "value": 2.346444776428632e-22,
+        "sign": 1,
+        "logMagnitude": -49.80397072433698
+      },
+      "selectedEnergy": {
+        "value": 8.662416534649463e-57,
+        "sign": 1,
+        "logMagnitude": -129.0883565714407
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 55.451774444795625,
+        "sign": 1,
+        "logMagnitude": 4.015513714092218
+      },
+      "macroInformationEntropy": {
+        "value": 2.9167913100297045,
+        "sign": 1,
+        "logMagnitude": 1.0704841456556322
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 52.53498313476592,
+        "sign": 1,
+        "logMagnitude": 3.961479293112152
+      },
+      "conditionalBlockMean": {
+        "value": 2.4375,
+        "sign": 1,
+        "logMagnitude": 0.8909729238898652
+      },
+      "conditionalBlockVariance": {
+        "value": 1.1859671677215189,
+        "sign": 1,
+        "logMagnitude": 0.17055861698958033
+      },
+      "conditionalBlockModes": [
+        2
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "749398",
+          "probability": {
+            "value": 0.031172940983067565,
+            "sign": 1,
+            "logMagnitude": -3.468204836652009
+          }
+        },
+        {
+          "excitationsA": 3,
+          "count": "7493980",
+          "probability": {
+            "value": 0.31172940983067565,
+            "sign": 1,
+            "logMagnitude": -1.1656197436579634
+          }
+        },
+        {
+          "excitationsA": 5,
+          "count": "575757",
+          "probability": {
+            "value": 0.02394994246260069,
+            "sign": 1,
+            "logMagnitude": -3.7317893575247294
+          }
+        }
+      ]
+    },
+    {
+      "sites": 16,
+      "excitations": 13,
+      "blockASites": 6,
+      "energyGap": 1.974265371864218e+42,
+      "enumerated": false,
+      "totalMicrostates": "65536",
+      "multiplicity": "560",
+      "macroModes": [
+        8
+      ],
+      "selectedProbability": {
+        "value": 0.008544921875,
+        "sign": 1,
+        "logMagnitude": -4.76241810522993
+      },
+      "withinShellProbability": {
+        "value": 0.0017857142857142857,
+        "sign": 1,
+        "logMagnitude": -6.327936783729195
+      },
+      "logMultiplicity": {
+        "value": 6.327936783729195,
+        "sign": 1,
+        "logMagnitude": 1.8449742404864384
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.040694490645275284,
+        "sign": 1,
+        "logMagnitude": -3.201662560677205
+      },
+      "boltzmannEntropy": {
+        "value": 8.73665959251893e-23,
+        "sign": 1,
+        "logMagnitude": -50.79192921990404
+      },
+      "selectedEnergy": {
+        "value": 2.566544983423483e+43,
+        "sign": 1,
+        "logMagnitude": 99.95371962875586
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 11.090354888959125,
+        "sign": 1,
+        "logMagnitude": 2.4060758016581167
+      },
+      "macroInformationEntropy": {
+        "value": 2.1117072375587664,
+        "sign": 1,
+        "logMagnitude": 0.7474967376554422
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 8.978647651400358,
+        "sign": 1,
+        "logMagnitude": 2.194849275361018
+      },
+      "conditionalBlockMean": {
+        "value": 4.875,
+        "sign": 1,
+        "logMagnitude": 1.5841201044498106
+      },
+      "conditionalBlockVariance": {
+        "value": 0.609375,
+        "sign": 1,
+        "logMagnitude": -0.4953214372300254
+      },
+      "conditionalBlockModes": [
+        5
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 3,
+          "count": "20",
+          "probability": {
+            "value": 0.03571428571428571,
+            "sign": 1,
+            "logMagnitude": -3.332204510175204
+          }
+        },
+        {
+          "excitationsA": 5,
+          "count": "270",
+          "probability": {
+            "value": 0.48214285714285715,
+            "sign": 1,
+            "logMagnitude": -0.7295148247308202
+          }
+        },
+        {
+          "excitationsA": 6,
+          "count": "120",
+          "probability": {
+            "value": 0.21428571428571427,
+            "sign": 1,
+            "logMagnitude": -1.5404450409471488
+          }
+        }
+      ]
+    },
+    {
+      "sites": 2,
+      "excitations": 2,
+      "blockASites": 0,
+      "energyGap": 3.6630515182982484e+97,
+      "enumerated": true,
+      "totalMicrostates": "4",
+      "multiplicity": "1",
+      "macroModes": [
+        1
+      ],
+      "selectedProbability": {
+        "value": 0.25,
+        "sign": 1,
+        "logMagnitude": -1.3862943611198906
+      },
+      "withinShellProbability": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "logMultiplicity": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.34657359027997264,
+        "sign": 1,
+        "logMagnitude": -1.0596601011416096
+      },
+      "boltzmannEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedEnergy": {
+        "value": 7.326103036596497e+97,
+        "sign": 1,
+        "logMagnitude": 225.34219774918964
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 1.3862943611198906,
+        "sign": 1,
+        "logMagnitude": 0.326634259978281
+      },
+      "macroInformationEntropy": {
+        "value": 1.0397207708399179,
+        "sign": 1,
+        "logMagnitude": 0.03895218752650006
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 0.34657359027997264,
+        "sign": 1,
+        "logMagnitude": -1.0596601011416096
+      },
+      "conditionalBlockMean": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        0
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 46,
+      "excitations": 21,
+      "blockASites": 28,
+      "energyGap": 3.610428125729948e-35,
+      "enumerated": false,
+      "totalMicrostates": "70368744177664",
+      "multiplicity": "6943526580276",
+      "macroModes": [
+        23
+      ],
+      "selectedProbability": {
+        "value": 0.09867344744344564,
+        "sign": 1,
+        "logMagnitude": -2.315939391598602
+      },
+      "withinShellProbability": {
+        "value": 1.4401903534734518e-13,
+        "sign": 1,
+        "logMagnitude": -29.56883091415888
+      },
+      "logMultiplicity": {
+        "value": 29.56883091415888,
+        "sign": 1,
+        "logMagnitude": 3.3867207968690414
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.22852172383911015,
+        "sign": 1,
+        "logMagnitude": -1.4761240016609343
+      },
+      "boltzmannEntropy": {
+        "value": 4.0824176832802548e-22,
+        "sign": 1,
+        "logMagnitude": -49.250182663521436
+      },
+      "selectedEnergy": {
+        "value": 7.581899064032891e-34,
+        "sign": 1,
+        "logMagnitude": -76.26212945737012
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 31.884770305757485,
+        "sign": 1,
+        "logMagnitude": 3.4621284759074307
+      },
+      "macroInformationEntropy": {
+        "value": 2.6400708256339875,
+        "sign": 1,
+        "logMagnitude": 0.9708057446900252
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 29.244699480123497,
+        "sign": 1,
+        "logMagnitude": 3.375698342901808
+      },
+      "conditionalBlockMean": {
+        "value": 12.782608695652174,
+        "sign": 1,
+        "logMagnitude": 2.5480855514095317
+      },
+      "conditionalBlockVariance": {
+        "value": 2.77882797731569,
+        "sign": 1,
+        "logMagnitude": 1.0220292479144826
+      },
+      "conditionalBlockModes": [
+        13
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 3,
+          "count": "3276",
+          "probability": {
+            "value": 4.718063597979028e-10,
+            "sign": 1,
+            "logMagnitude": -21.474452469185923
+          }
+        },
+        {
+          "excitationsA": 12,
+          "count": "1479105728100",
+          "probability": {
+            "value": 0.21301938013769461,
+            "sign": 1,
+            "logMagnitude": -1.5463721308497915
+          }
+        },
+        {
+          "excitationsA": 21,
+          "count": "1184040",
+          "probability": {
+            "value": 1.7052429861267057e-07,
+            "sign": 1,
+            "logMagnitude": -15.58438803651967
+          }
+        }
+      ]
+    },
+    {
+      "sites": 19,
+      "excitations": 12,
+      "blockASites": 19,
+      "energyGap": 2.20089963525154e-98,
+      "enumerated": false,
+      "totalMicrostates": "524288",
+      "multiplicity": "50388",
+      "macroModes": [
+        9,
+        10
+      ],
+      "selectedProbability": {
+        "value": 0.09610748291015625,
+        "sign": 1,
+        "logMagnitude": -2.3422881001667673
+      },
+      "withinShellProbability": {
+        "value": 1.9845995078193222e-05,
+        "sign": 1,
+        "logMagnitude": -10.827508330472194
+      },
+      "logMultiplicity": {
+        "value": 10.827508330472194,
+        "sign": 1,
+        "logMagnitude": 2.382089963487295
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.22511141355743994,
+        "sign": 1,
+        "logMagnitude": -1.4911598279682021
+      },
+      "boltzmannEntropy": {
+        "value": 1.4948988548958106e-22,
+        "sign": 1,
+        "logMagnitude": -50.25481349690318
+      },
+      "selectedEnergy": {
+        "value": 2.641079562301848e-97,
+        "sign": 1,
+        "logMagnitude": -222.37956626173695
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 13.16979643063896,
+        "sign": 1,
+        "logMagnitude": 2.5779260585847763
+      },
+      "macroInformationEntropy": {
+        "value": 2.1977501604479035,
+        "sign": 1,
+        "logMagnitude": 0.7874341827546781
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 10.972046270191058,
+        "sign": 1,
+        "logMagnitude": 2.3953507901819457
+      },
+      "conditionalBlockMean": {
+        "value": 12.0,
+        "sign": 1,
+        "logMagnitude": 2.4849066497880004
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        12
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 12,
+          "count": "50388",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    }
+  ],
+  "limits": [
+    {
+      "sites": 256,
+      "excitations": 128,
+      "blockASites": 128,
+      "energyGap": 5e-324,
+      "enumerated": false,
+      "totalMicrostates": "115792089237316195423570985008687907853269984665640564039457584007913129639936",
+      "multiplicity": "5768658823449206338089748357862286887740211701975162032608436567264518750790",
+      "macroModes": [
+        128
+      ],
+      "selectedProbability": {
+        "value": 0.04981910993614015,
+        "sign": 1,
+        "logMagnitude": -2.9993566349010274
+      },
+      "withinShellProbability": {
+        "value": 1.7335051883031595e-76,
+        "sign": 1,
+        "logMagnitude": -174.44632158844496
+      },
+      "logMultiplicity": {
+        "value": 174.44632158844496,
+        "sign": 1,
+        "logMagnitude": 5.16161708164633
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.14942527793182567,
+        "sign": 1,
+        "logMagnitude": -1.9009588242646773
+      },
+      "boltzmannEntropy": {
+        "value": 2.4084913945476497e-21,
+        "sign": 1,
+        "logMagnitude": -47.47528637874415
+      },
+      "selectedEnergy": {
+        "value": 6.3e-322,
+        "sign": 1,
+        "logMagnitude": -739.5880416574616
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 177.445678223346,
+        "sign": 1,
+        "logMagnitude": 5.178664523897898
+      },
+      "macroInformationEntropy": {
+        "value": 3.4983787932602066,
+        "sign": 1,
+        "logMagnitude": 1.2522996592585618
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 173.9472994300858,
+        "sign": 1,
+        "logMagnitude": 5.158752376499488
+      },
+      "conditionalBlockMean": {
+        "value": 64.0,
+        "sign": 1,
+        "logMagnitude": 4.1588830833596715
+      },
+      "conditionalBlockVariance": {
+        "value": 16.062745098039215,
+        "sign": 1,
+        "logMagnitude": 2.7765026215609176
+      },
+      "conditionalBlockModes": [
+        64
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 1.7335051883031595e-76,
+            "sign": 1,
+            "logMagnitude": -174.44632158844496
+          }
+        },
+        {
+          "excitationsA": 64,
+          "count": "573657396721767270211787970085344538053030286694706453507015635634428062500",
+          "probability": {
+            "value": 0.09944380735256675,
+            "sign": 1,
+            "logMagnitude": -2.308162544574525
+          }
+        },
+        {
+          "excitationsA": 128,
+          "count": "1",
+          "probability": {
+            "value": 1.7335051883031595e-76,
+            "sign": 1,
+            "logMagnitude": -174.44632158844496
+          }
+        }
+      ]
+    },
+    {
+      "sites": 1024,
+      "excitations": 0,
+      "blockASites": 512,
+      "energyGap": 1.0,
+      "enumerated": false,
+      "totalMicrostates": "179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768814416622492847430639474124377767893424865485276302219601246094119453082952085005768838150682342462881473913110540827237163350510684586298239947245938479716304835356329624224137216",
+      "multiplicity": "1",
+      "macroModes": [
+        512
+      ],
+      "selectedProbability": {
+        "value": 5.562684646268003e-309,
+        "sign": 1,
+        "logMagnitude": -709.782712893384
+      },
+      "withinShellProbability": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "logMultiplicity": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 3.9482973991984775e-306,
+        "sign": 1,
+        "logMagnitude": -703.2177540083662
+      },
+      "boltzmannEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedEnergy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 709.782712893384,
+        "sign": 1,
+        "logMagnitude": 6.564958885017789
+      },
+      "macroInformationEntropy": {
+        "value": 4.191527175815894,
+        "sign": 1,
+        "logMagnitude": 1.4330651486285906
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 705.5911857175681,
+        "sign": 1,
+        "logMagnitude": 6.559036012717686
+      },
+      "conditionalBlockMean": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        0
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 1075,
+      "excitations": 0,
+      "blockASites": 512,
+      "energyGap": 1.0,
+      "enumerated": false,
+      "totalMicrostates": "404804506614621236704990693437834614099113299528284236713802716054860679135990693783920767402874248990374155728633623822779617474771586953734026799881477019843034848553132722728933815484186432682479535356945490137124014966849385397236206711298319112681620113024717539104666829230461005064372655017292012526615415482186989568",
+      "multiplicity": "1",
+      "macroModes": [
+        537,
+        538
+      ],
+      "selectedProbability": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -745.1332191019412
+      },
+      "withinShellProbability": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "logMultiplicity": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 1.843e-321,
+        "sign": 1,
+        "logMagnitude": -738.5196560819611
+      },
+      "boltzmannEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedEnergy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 745.1332191019412,
+        "sign": 1,
+        "logMagnitude": 6.6135630199800985
+      },
+      "macroInformationEntropy": {
+        "value": 4.215829250680003,
+        "sign": 1,
+        "logMagnitude": 1.438846310105809
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 740.9173898512612,
+        "sign": 1,
+        "logMagnitude": 6.6078891344000485
+      },
+      "conditionalBlockMean": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        0
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 1080,
+      "excitations": 0,
+      "blockASites": 512,
+      "energyGap": 1.0,
+      "enumerated": false,
+      "totalMicrostates": "12953744211667879574559702190010707651171625584905095574841686913755541732351702201085464556891975967691972983316275962328947759192690782519488857596207264634977115153700247127325882095493965845839345131422255684387968478939180332711558614761546211605811843616790961251349338535374752162059924960553344400851693295429983666176",
+      "multiplicity": "1",
+      "macroModes": [
+        540
+      ],
+      "selectedProbability": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -748.5989550047409
+      },
+      "withinShellProbability": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "logMultiplicity": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 6e-323,
+        "sign": 1,
+        "logMagnitude": -741.9807516052043
+      },
+      "boltzmannEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedEnergy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 748.5989550047409,
+        "sign": 1,
+        "logMagnitude": 6.618203399536601
+      },
+      "macroInformationEntropy": {
+        "value": 4.218149441126266,
+        "sign": 1,
+        "logMagnitude": 1.4393965108093152
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 744.3808055636147,
+        "sign": 1,
+        "logMagnitude": 6.612552739324981
+      },
+      "conditionalBlockMean": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        0
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 4096,
+      "excitations": 0,
+      "blockASites": 2048,
+      "energyGap": 1.7976931348623157e+308,
+      "enumerated": false,
+      "totalMicrostates": "1044388881413152506691752710716624382579964249047383780384233483283953907971557456848826811934997558340890106714439262837987573438185793607263236087851365277945956976543709998340361590134383718314428070011855946226376318839397712745672334684344586617496807908705803704071284048740118609114467977783598029006686938976881787785946905630190260940599579453432823469303026696443059025015972399867714215541693835559885291486318237914434496734087811872639496475100189041349008417061675093668333850551032972088269550769983616369411933015213796825837188091833656751221318492846368125550225998300412344784862595674492194617023806505913245610825731835380087608622102834270197698202313169017678006675195485079921636419370285375124784014907159135459982790513399611551794271106831134090584272884279791554849782954323534517065223269061394905987693002122963395687782878948440616007412945674919823050571642377154816321380631045902916136926708342856440730447899971901781465763473223850267253059899795996090799469201774624817718449867455659250178329070473119433165550807568221846571746373296884912819520317457002440926616910874148385078411929804522981857338977648103126085903001302413467189726673216491511131602920781738033436090243804708340403154190336",
+      "multiplicity": "1",
+      "macroModes": [
+        2048
+      ],
+      "selectedProbability": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2839.130851573536
+      },
+      "withinShellProbability": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "logMultiplicity": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedMacroEntropyContribution": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2831.1795983273983
+      },
+      "boltzmannEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedEnergy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 2839.130851573536,
+        "sign": 1,
+        "logMagnitude": 7.9512532461376795
+      },
+      "macroInformationEntropy": {
+        "value": 4.884674431034918,
+        "sign": 1,
+        "logMagnitude": 1.586102636607416
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 2834.246177142501,
+        "sign": 1,
+        "logMagnitude": 7.949531282089354
+      },
+      "conditionalBlockMean": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        0
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 4096,
+      "excitations": 4096,
+      "blockASites": 2048,
+      "energyGap": 5e-324,
+      "enumerated": false,
+      "totalMicrostates": "1044388881413152506691752710716624382579964249047383780384233483283953907971557456848826811934997558340890106714439262837987573438185793607263236087851365277945956976543709998340361590134383718314428070011855946226376318839397712745672334684344586617496807908705803704071284048740118609114467977783598029006686938976881787785946905630190260940599579453432823469303026696443059025015972399867714215541693835559885291486318237914434496734087811872639496475100189041349008417061675093668333850551032972088269550769983616369411933015213796825837188091833656751221318492846368125550225998300412344784862595674492194617023806505913245610825731835380087608622102834270197698202313169017678006675195485079921636419370285375124784014907159135459982790513399611551794271106831134090584272884279791554849782954323534517065223269061394905987693002122963395687782878948440616007412945674919823050571642377154816321380631045902916136926708342856440730447899971901781465763473223850267253059899795996090799469201774624817718449867455659250178329070473119433165550807568221846571746373296884912819520317457002440926616910874148385078411929804522981857338977648103126085903001302413467189726673216491511131602920781738033436090243804708340403154190336",
+      "multiplicity": "1",
+      "macroModes": [
+        2048
+      ],
+      "selectedProbability": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2839.130851573536
+      },
+      "withinShellProbability": {
+        "value": 1.0,
+        "sign": 1,
+        "logMagnitude": 0.0
+      },
+      "logMultiplicity": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedMacroEntropyContribution": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2831.1795983273983
+      },
+      "boltzmannEntropy": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "selectedEnergy": {
+        "value": 2.0237e-320,
+        "sign": 1,
+        "logMagnitude": -736.122305754662
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 2839.130851573536,
+        "sign": 1,
+        "logMagnitude": 7.9512532461376795
+      },
+      "macroInformationEntropy": {
+        "value": 4.884674431034918,
+        "sign": 1,
+        "logMagnitude": 1.586102636607416
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 2834.246177142501,
+        "sign": 1,
+        "logMagnitude": 7.949531282089354
+      },
+      "conditionalBlockMean": {
+        "value": 2048.0,
+        "sign": 1,
+        "logMagnitude": 7.6246189861593985
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        2048
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 2048,
+          "count": "1",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 4096,
+      "excitations": 2048,
+      "blockASites": 2048,
+      "energyGap": 4.141947e-21,
+      "enumerated": false,
+      "totalMicrostates": "1044388881413152506691752710716624382579964249047383780384233483283953907971557456848826811934997558340890106714439262837987573438185793607263236087851365277945956976543709998340361590134383718314428070011855946226376318839397712745672334684344586617496807908705803704071284048740118609114467977783598029006686938976881787785946905630190260940599579453432823469303026696443059025015972399867714215541693835559885291486318237914434496734087811872639496475100189041349008417061675093668333850551032972088269550769983616369411933015213796825837188091833656751221318492846368125550225998300412344784862595674492194617023806505913245610825731835380087608622102834270197698202313169017678006675195485079921636419370285375124784014907159135459982790513399611551794271106831134090584272884279791554849782954323534517065223269061394905987693002122963395687782878948440616007412945674919823050571642377154816321380631045902916136926708342856440730447899971901781465763473223850267253059899795996090799469201774624817718449867455659250178329070473119433165550807568221846571746373296884912819520317457002440926616910874148385078411929804522981857338977648103126085903001302413467189726673216491511131602920781738033436090243804708340403154190336",
+      "multiplicity": "13019545387546591184272791617479633558154329342946682277107737018983450449533764762511546626252897839431963397266660016245985770299656948505747904057361632308907244766587774888190549034446691796509174243616590432880287963830108595659421047610822343105275104108371840495669831504153682284894349188888211312747894374005928885040703684499505104614898889940342046421093871843508957225891973105010910477773911275917035324070813451675139131091472913437270525692902386802961963053398471273270449073757671551937921412025742599785827421213274706574940775262658760502205068813002244528809435578386123355507949106848024605942633076474038867535102925356759980640857364142980548252843878784176457757519914757868102037478648777654518240063136653685556956762963654270575773524414178898622427987663251511268037187714434782112652243787091965655762485663074453908324218641050710514582852129835016093417606232811032754335414091833079754797591866712743331714999528747805523181494737286177424933007885564578569477358766388024403793932444262086624678359458875426275825229653447772371081393058111266850825091139833525632614193978194599059192544990109517343466365040143292062136958595464996285248027502178454921979767897388969451433370395321011386465927750",
+      "macroModes": [
+        2048
+      ],
+      "selectedProbability": {
+        "value": 0.01246618536376026,
+        "sign": 1,
+        "logMagnitude": -4.384735471160043
+      },
+      "withinShellProbability": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2834.746116102376
+      },
+      "logMultiplicity": {
+        "value": 2834.746116102376,
+        "sign": 1,
+        "logMagnitude": 7.9497076587486655
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.05466092515453577,
+        "sign": 1,
+        "logMagnitude": -2.9066061730027704
+      },
+      "boltzmannEntropy": {
+        "value": 3.9137893904506293e-20,
+        "sign": 1,
+        "logMagnitude": -44.68719580164181
+      },
+      "selectedEnergy": {
+        "value": 8.482707456e-18,
+        "sign": 1,
+        "logMagnitude": -39.30850199957488
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 2839.130851573536,
+        "sign": 1,
+        "logMagnitude": 7.9512532461376795
+      },
+      "macroInformationEntropy": {
+        "value": 4.884674431034918,
+        "sign": 1,
+        "logMagnitude": 1.586102636607416
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 2834.246177142501,
+        "sign": 1,
+        "logMagnitude": 7.949531282089354
+      },
+      "conditionalBlockMean": {
+        "value": 1024.0,
+        "sign": 1,
+        "logMagnitude": 6.931471805599453
+      },
+      "conditionalBlockVariance": {
+        "value": 256.06251526251526,
+        "sign": 1,
+        "logMagnitude": 5.545421614911737
+      },
+      "conditionalBlockModes": [
+        1024
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1",
+          "probability": {
+            "value": null,
+            "sign": 1,
+            "logMagnitude": -2834.746116102376
+          }
+        },
+        {
+          "excitationsA": 1024,
+          "count": "324568509711116559568952899589279183293253607543121625287920429700992310149504376631480808915632597419109273410353111383137329597042785069474976315856100902195321217254860090356526810024070841695384577497572417137097942997520115015807663562506951461850441306938107223825694777482566193480503529931954083380708772837723792664533177709701559544358925114449764924439054324223735924147564109855367090225342243468756484157167160748261305665766624370966638920177942168734539254496409454334346135457582917335787884622254004015384533402959315855401280967054293515618793659398443274375119091354727807126935087869795000660865026565216058922089226431051096747994629458603660851731721505459025258879146136034931735918764351228334179211554905112275786964057647172009869955881779416985601580357457849417583961469537250433495134615891655278490237000672006697678484314770619441487124118208538152146376506563384218010212935788391414448758085942556168496925649781002702319254096922015874759803576972650734216335874393145892353115664559206406030663644293019534668090095718025169939660523665385822466527735078938180666978837007480885919298180338366497699162199925979370228512655611104373030570294187356933327790513249591666715458488869536270588062500",
+          "probability": {
+            "value": 0.02492932741119914,
+            "sign": 1,
+            "logMagnitude": -3.691710360904109
+          }
+        },
+        {
+          "excitationsA": 2048,
+          "count": "1",
+          "probability": {
+            "value": null,
+            "sign": 1,
+            "logMagnitude": -2834.746116102376
+          }
+        }
+      ]
+    },
+    {
+      "sites": 4095,
+      "excitations": 2047,
+      "blockASites": 2047,
+      "energyGap": 4.141947e-21,
+      "enumerated": false,
+      "totalMicrostates": "522194440706576253345876355358312191289982124523691890192116741641976953985778728424413405967498779170445053357219631418993786719092896803631618043925682638972978488271854999170180795067191859157214035005927973113188159419698856372836167342172293308748403954352901852035642024370059304557233988891799014503343469488440893892973452815095130470299789726716411734651513348221529512507986199933857107770846917779942645743159118957217248367043905936319748237550094520674504208530837546834166925275516486044134775384991808184705966507606898412918594045916828375610659246423184062775112999150206172392431297837246097308511903252956622805412865917690043804311051417135098849101156584508839003337597742539960818209685142687562392007453579567729991395256699805775897135553415567045292136442139895777424891477161767258532611634530697452993846501061481697843891439474220308003706472837459911525285821188577408160690315522951458068463354171428220365223949985950890732881736611925133626529949897998045399734600887312408859224933727829625089164535236559716582775403784110923285873186648442456409760158728501220463308455437074192539205964902261490928669488824051563042951500651206733594863336608245755565801460390869016718045121902354170201577095168",
+      "multiplicity": "6509772693773295592136395808739816779077164671473341138553868509491725224766882381255773313126448919715981698633330008122992885149828474252873952028680816154453622383293887444095274517223345898254587121808295216440143981915054297829710523805411171552637552054185920247834915752076841142447174594444105656373947187002964442520351842249752552307449444970171023210546935921754478612945986552505455238886955637958517662035406725837569565545736456718635262846451193401480981526699235636635224536878835775968960706012871299892913710606637353287470387631329380251102534406501122264404717789193061677753974553424012302971316538237019433767551462678379990320428682071490274126421939392088228878759957378934051018739324388827259120031568326842778478381481827135287886762207089449311213993831625755634018593857217391056326121893545982827881242831537226954162109320525355257291426064917508046708803116405516377167707045916539877398795933356371665857499764373902761590747368643088712466503942782289284738679383194012201896966222131043312339179729437713137912614826723886185540696529055633425412545569916762816307096989097299529596272495054758671733182520071646031068479297732498142624013751089227460989883948694484725716685197660505693232963875",
+      "macroModes": [
+        2047,
+        2048
+      ],
+      "selectedProbability": {
+        "value": 0.01246618536376026,
+        "sign": 1,
+        "logMagnitude": -4.384735471160043
+      },
+      "withinShellProbability": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2834.052968921816
+      },
+      "logMultiplicity": {
+        "value": 2834.052968921816,
+        "sign": 1,
+        "logMagnitude": 7.949463110591774
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.05466092515453577,
+        "sign": 1,
+        "logMagnitude": -2.9066061730027704
+      },
+      "boltzmannEntropy": {
+        "value": 3.9128323974889365e-20,
+        "sign": 1,
+        "logMagnitude": -44.687440349798706
+      },
+      "selectedEnergy": {
+        "value": 8.478565509e-18,
+        "sign": 1,
+        "logMagnitude": -39.308990400072986
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 2838.4377043929762,
+        "sign": 1,
+        "logMagnitude": 7.951009075705506
+      },
+      "macroInformationEntropy": {
+        "value": 4.884552345816403,
+        "sign": 1,
+        "logMagnitude": 1.5860776427729377
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 2833.5531520471595,
+        "sign": 1,
+        "logMagnitude": 7.949286733876355
+      },
+      "conditionalBlockMean": {
+        "value": 1023.250061050061,
+        "sign": 1,
+        "logMagnitude": 6.930739175035409
+      },
+      "conditionalBlockVariance": {
+        "value": 255.99998473375763,
+        "sign": 1,
+        "logMagnitude": 5.545177384845801
+      },
+      "conditionalBlockModes": [
+        1023
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "2048",
+          "probability": {
+            "value": null,
+            "sign": 1,
+            "logMagnitude": -2826.4283499356566
+          }
+        },
+        {
+          "excitationsA": 1024,
+          "count": "162125928753260174145662326428986284727947167865442216729185619518934695411264625205188462599808673052277022425464188320162256345059420444459695486554462109194150695838525235378089489494950508241987223101226417145555265185102730622530267067320545510699927755270547218145127537630315991280017373000156576283827211407721543262674133646211900962645628935217833796402727623417124676257124706581412634336951442591222751110702035417668086342314645539448701587444981844284960095904547942067497776931007271878949655538140536639879884002258702163868737419640778809752997418158051664858596072949873792438039770721302478378890627903795728944497252617266499058510488080785438396182089181263435056142558850390131754917470583247714243664698645285351417488387819855677125285279483962435734643066359433074929744656002997289706837973986856100084879360335675540694033140646397223455031754656362472096531484254100214264613681096250150436843063417159764166269202622315496182885948901533783294653103814631391140257529452966533546141678296891395012390035002952196829328906348906231228396281089441503514987512546747657074627477607639232771395773983652338362898581816684329323900955778424818528440966462367560842759749057357008154453411025563483454720000",
+          "probability": {
+            "value": 0.024905006116163822,
+            "sign": 1,
+            "logMagnitude": -3.6926864468771643
+          }
+        },
+        {
+          "excitationsA": 2047,
+          "count": "1",
+          "probability": {
+            "value": null,
+            "sign": 1,
+            "logMagnitude": -2834.052968921816
+          }
+        }
+      ]
+    },
+    {
+      "sites": 4096,
+      "excitations": 1,
+      "blockASites": 1,
+      "energyGap": 1.7976931348623157e+308,
+      "enumerated": false,
+      "totalMicrostates": "1044388881413152506691752710716624382579964249047383780384233483283953907971557456848826811934997558340890106714439262837987573438185793607263236087851365277945956976543709998340361590134383718314428070011855946226376318839397712745672334684344586617496807908705803704071284048740118609114467977783598029006686938976881787785946905630190260940599579453432823469303026696443059025015972399867714215541693835559885291486318237914434496734087811872639496475100189041349008417061675093668333850551032972088269550769983616369411933015213796825837188091833656751221318492846368125550225998300412344784862595674492194617023806505913245610825731835380087608622102834270197698202313169017678006675195485079921636419370285375124784014907159135459982790513399611551794271106831134090584272884279791554849782954323534517065223269061394905987693002122963395687782878948440616007412945674919823050571642377154816321380631045902916136926708342856440730447899971901781465763473223850267253059899795996090799469201774624817718449867455659250178329070473119433165550807568221846571746373296884912819520317457002440926616910874148385078411929804522981857338977648103126085903001302413467189726673216491511131602920781738033436090243804708340403154190336",
+      "multiplicity": "4096",
+      "macroModes": [
+        2048
+      ],
+      "selectedProbability": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2830.8130854068168
+      },
+      "withinShellProbability": {
+        "value": 0.000244140625,
+        "sign": 1,
+        "logMagnitude": -8.317766166719343
+      },
+      "logMultiplicity": {
+        "value": 8.317766166719343,
+        "sign": 1,
+        "logMagnitude": 2.118393729206336
+      },
+      "selectedMacroEntropyContribution": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2822.8647661481136
+      },
+      "boltzmannEntropy": {
+        "value": 1.1483915540314896e-22,
+        "sign": 1,
+        "logMagnitude": -50.518509731184146
+      },
+      "selectedEnergy": {
+        "value": 1.7976931348623157e+308,
+        "sign": 1,
+        "logMagnitude": 709.782712893384
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 2839.130851573536,
+        "sign": 1,
+        "logMagnitude": 7.9512532461376795
+      },
+      "macroInformationEntropy": {
+        "value": 4.884674431034918,
+        "sign": 1,
+        "logMagnitude": 1.586102636607416
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 2834.246177142501,
+        "sign": 1,
+        "logMagnitude": 7.949531282089354
+      },
+      "conditionalBlockMean": {
+        "value": 0.000244140625,
+        "sign": 1,
+        "logMagnitude": -8.317766166719343
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0002440810203552246,
+        "sign": 1,
+        "logMagnitude": -8.318010337151518
+      },
+      "conditionalBlockModes": [
+        0
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "4095",
+          "probability": {
+            "value": 0.999755859375,
+            "sign": 1,
+            "logMagnitude": -0.0002441704321739145
+          }
+        },
+        {
+          "excitationsA": 1,
+          "count": "1",
+          "probability": {
+            "value": 0.000244140625,
+            "sign": 1,
+            "logMagnitude": -8.317766166719343
+          }
+        }
+      ]
+    },
+    {
+      "sites": 4096,
+      "excitations": 4095,
+      "blockASites": 4095,
+      "energyGap": 5e-324,
+      "enumerated": false,
+      "totalMicrostates": "1044388881413152506691752710716624382579964249047383780384233483283953907971557456848826811934997558340890106714439262837987573438185793607263236087851365277945956976543709998340361590134383718314428070011855946226376318839397712745672334684344586617496807908705803704071284048740118609114467977783598029006686938976881787785946905630190260940599579453432823469303026696443059025015972399867714215541693835559885291486318237914434496734087811872639496475100189041349008417061675093668333850551032972088269550769983616369411933015213796825837188091833656751221318492846368125550225998300412344784862595674492194617023806505913245610825731835380087608622102834270197698202313169017678006675195485079921636419370285375124784014907159135459982790513399611551794271106831134090584272884279791554849782954323534517065223269061394905987693002122963395687782878948440616007412945674919823050571642377154816321380631045902916136926708342856440730447899971901781465763473223850267253059899795996090799469201774624817718449867455659250178329070473119433165550807568221846571746373296884912819520317457002440926616910874148385078411929804522981857338977648103126085903001302413467189726673216491511131602920781738033436090243804708340403154190336",
+      "multiplicity": "4096",
+      "macroModes": [
+        2048
+      ],
+      "selectedProbability": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2830.8130854068168
+      },
+      "withinShellProbability": {
+        "value": 0.000244140625,
+        "sign": 1,
+        "logMagnitude": -8.317766166719343
+      },
+      "logMultiplicity": {
+        "value": 8.317766166719343,
+        "sign": 1,
+        "logMagnitude": 2.118393729206336
+      },
+      "selectedMacroEntropyContribution": {
+        "value": null,
+        "sign": 1,
+        "logMagnitude": -2822.8647661481136
+      },
+      "boltzmannEntropy": {
+        "value": 1.1483915540314896e-22,
+        "sign": 1,
+        "logMagnitude": -50.518509731184146
+      },
+      "selectedEnergy": {
+        "value": 2.023e-320,
+        "sign": 1,
+        "logMagnitude": -736.1225499250941
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 2839.130851573536,
+        "sign": 1,
+        "logMagnitude": 7.9512532461376795
+      },
+      "macroInformationEntropy": {
+        "value": 4.884674431034918,
+        "sign": 1,
+        "logMagnitude": 1.586102636607416
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 2834.246177142501,
+        "sign": 1,
+        "logMagnitude": 7.949531282089354
+      },
+      "conditionalBlockMean": {
+        "value": 4094.000244140625,
+        "sign": 1,
+        "logMagnitude": 8.317277825854996
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0002440810203552246,
+        "sign": 1,
+        "logMagnitude": -8.318010337151518
+      },
+      "conditionalBlockModes": [
+        4094
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 4094,
+          "count": "4095",
+          "probability": {
+            "value": 0.999755859375,
+            "sign": 1,
+            "logMagnitude": -0.0002441704321739145
+          }
+        },
+        {
+          "excitationsA": 4095,
+          "count": "1",
+          "probability": {
+            "value": 0.000244140625,
+            "sign": 1,
+            "logMagnitude": -8.317766166719343
+          }
+        }
+      ]
+    },
+    {
+      "sites": 64,
+      "excitations": 32,
+      "blockASites": 0,
+      "energyGap": 1.0,
+      "enumerated": false,
+      "totalMicrostates": "18446744073709551616",
+      "multiplicity": "1832624140942590534",
+      "macroModes": [
+        32
+      ],
+      "selectedProbability": {
+        "value": 0.09934675374796689,
+        "sign": 1,
+        "logMagnitude": -2.3091389854253754
+      },
+      "withinShellProbability": {
+        "value": 5.456656264964734e-19,
+        "sign": 1,
+        "logMagnitude": -42.05228057041112
+      },
+      "logMultiplicity": {
+        "value": 42.05228057041112,
+        "sign": 1,
+        "logMagnitude": 3.738913619678655
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.22940546215488491,
+        "sign": 1,
+        "logMagnitude": -1.4722642639561896
+      },
+      "boltzmannEntropy": {
+        "value": 5.805943911725755e-22,
+        "sign": 1,
+        "logMagnitude": -48.89798984071182
+      },
+      "selectedEnergy": {
+        "value": 32.0,
+        "sign": 1,
+        "logMagnitude": 3.4657359027997265
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 44.3614195558365,
+        "sign": 1,
+        "logMagnitude": 3.7923701627780075
+      },
+      "macroInformationEntropy": {
+        "value": 2.805211879765214,
+        "sign": 1,
+        "logMagnitude": 1.031479072580112
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 41.55620767607129,
+        "sign": 1,
+        "logMagnitude": 3.727046912694866
+      },
+      "conditionalBlockMean": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        0
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 0,
+          "count": "1832624140942590534",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sites": 64,
+      "excitations": 32,
+      "blockASites": 64,
+      "energyGap": 1.0,
+      "enumerated": false,
+      "totalMicrostates": "18446744073709551616",
+      "multiplicity": "1832624140942590534",
+      "macroModes": [
+        32
+      ],
+      "selectedProbability": {
+        "value": 0.09934675374796689,
+        "sign": 1,
+        "logMagnitude": -2.3091389854253754
+      },
+      "withinShellProbability": {
+        "value": 5.456656264964734e-19,
+        "sign": 1,
+        "logMagnitude": -42.05228057041112
+      },
+      "logMultiplicity": {
+        "value": 42.05228057041112,
+        "sign": 1,
+        "logMagnitude": 3.738913619678655
+      },
+      "selectedMacroEntropyContribution": {
+        "value": 0.22940546215488491,
+        "sign": 1,
+        "logMagnitude": -1.4722642639561896
+      },
+      "boltzmannEntropy": {
+        "value": 5.805943911725755e-22,
+        "sign": 1,
+        "logMagnitude": -48.89798984071182
+      },
+      "selectedEnergy": {
+        "value": 32.0,
+        "sign": 1,
+        "logMagnitude": 3.4657359027997265
+      },
+      "fullSpaceInformationEntropy": {
+        "value": 44.3614195558365,
+        "sign": 1,
+        "logMagnitude": 3.7923701627780075
+      },
+      "macroInformationEntropy": {
+        "value": 2.805211879765214,
+        "sign": 1,
+        "logMagnitude": 1.031479072580112
+      },
+      "meanWithinShellInformationEntropy": {
+        "value": 41.55620767607129,
+        "sign": 1,
+        "logMagnitude": 3.727046912694866
+      },
+      "conditionalBlockMean": {
+        "value": 32.0,
+        "sign": 1,
+        "logMagnitude": 3.4657359027997265
+      },
+      "conditionalBlockVariance": {
+        "value": 0.0,
+        "sign": 0,
+        "logMagnitude": null
+      },
+      "conditionalBlockModes": [
+        32
+      ],
+      "blockProbes": [
+        {
+          "excitationsA": 32,
+          "count": "1832624140942590534",
+          "probability": {
+            "value": 1.0,
+            "sign": 1,
+            "logMagnitude": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}

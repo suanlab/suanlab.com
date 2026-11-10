@@ -1,0 +1,9 @@
+export const countCoverageBits=(mask:number)=>((mask&1)>0?1:0)+((mask&2)>0?1:0)+((mask&4)>0?1:0)+((mask&8)>0?1:0);
+/** Four-sensor/four-target normalized coverage; greedy and exhaustive optimum are separate calculations. */
+export function coverageSubmodularity(m0:number,m1:number,m2:number,m3:number,k:number,A:number,B:number,e:number){
+ for(const [v,max] of [[m0,15],[m1,15],[m2,15],[m3,15],[k,4],[A,15],[B,15],[e,3]])if(!Number.isInteger(v)||v<0||v>max)throw new Error('Use integer target masks, budget, sensor sets and queried sensor in their stated ranges.');
+ const masks=[m0,m1,m2,m3],unions=Array.from({length:16},(_,S)=>masks.reduce((union,targets,i)=>(S>>i)&1?union|targets:union,0)),values=unions.map(countCoverageBits),history=[{step:0,set:0,value:0,chosen:null as number|null,gain:0,gains:[] as (number|null)[]}];let chosen=0;
+ for(let step=1;step<=4;step++){const gains=masks.map((_,i)=>(chosen>>i)&1?null:values[chosen|(1<<i)]-values[chosen]);let best=-1;for(let i=0;i<4;i++)if(gains[i]!==null&&(best<0||gains[i]!>gains[best]!))best=i;const gain=gains[best]!;chosen|=1<<best;history.push({step,set:chosen,value:values[chosen],chosen:best,gain,gains});}
+ const optimum=Array.from({length:5},(_,budget)=>{const feasible=Array.from({length:16},(_,S)=>S).filter(S=>countCoverageBits(S)<=budget),value=Math.max(...feasible.map(S=>values[S])),sets=feasible.filter(S=>values[S]===value).sort((a,b)=>countCoverageBits(a)-countCoverageBits(b)||a-b);return {budget,value,sets,set:sets[0]};}),current=history[k],exact=optimum[k],valid=(A&B)===A&&((B>>e)&1)===0,gainA=values[A|(1<<e)]-values[A],gainB=values[B|(1<<e)]-values[B],factor=k===0?null:1-((k-1)/k)**k;
+ return {masks,k,A,B,e,unions,values,history,optimum,current,exact,valid,gainA,gainB,diminishingGap:valid?gainA-gainB:null,ratio:exact.value>0?current.value/exact.value:null,factor,guaranteedValue:factor===null?null:factor*exact.value,newA:masks[e]&~unions[A]&15,newB:masks[e]&~unions[B]&15};
+}

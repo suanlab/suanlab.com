@@ -1,0 +1,19 @@
+import test from'node:test';import assert from'node:assert/strict';import{readFileSync}from'node:fs';
+import{unified}from'unified';import remarkParse from'remark-parse';import remarkGfm from'remark-gfm';import remarkMath from'remark-math';import remarkRehype from'remark-rehype';import rehypeKatex from'rehype-katex';import rehypeStringify from'rehype-stringify';
+import{quantumStateModel as finite}from'../src/lib/learning-quantum-state';import{wavefunctionL2Model as wave}from'../src/lib/learning-wavefunction-l2';
+const ids=['complex-state-rays-basis-amplitudes','wavefunction-l2-projection-completeness'];
+for(const id of ids){const source=Object.fromEntries(['ko','en'].map(lang=>[lang,readFileSync(`docs/online-learning/physics-math-for-ai/${id}-chapter.${lang}.md`,'utf8')]));
+ for(const lang of ['ko','en'])test(`quantum state manuscript ${id}.${lang}: detailed theory, assumptions and worked exercises render`,async()=>{
+  const s=source[lang];assert.equal((s.match(/^## /gm)||[]).length,14);assert.equal((s.match(/\$\$[\s\S]*?\$\$/g)||[]).length,10);assert.equal((s.match(/^\*\*\d\./gm)||[]).length,6);assert.equal((s.match(/^\| ---/gm)||[]).length,2);if(lang==='en'){assert(s.split(/\s+/).length>1200);assert(!/[가-힣]/.test(s));}else assert(s.length>5000);
+  const html=await unified().use(remarkParse).use(remarkGfm).use(remarkMath).use(remarkRehype).use(rehypeKatex,{strict:'error'}).use(rehypeStringify).process(s);assert.equal(html.messages.length,0);assert(!String(html).includes('katex-error'));assert.equal((String(html).match(/class="katex-display"/g)||[]).length,10);
+ });
+ test(`quantum state manuscript ${id}: bilingual equations and physical distinctions match`,()=>{assert.deepEqual(source.ko.match(/\$\$[\s\S]*?\$\$/g),source.en.match(/\$\$[\s\S]*?\$\$/g));if(id===ids[0]){for(const s of Object.values(source)){assert(s.includes('(1,i)/√2'));assert(s.includes('(−1,1)'));assert(s.includes('https://www.preskill.caltech.edu/ph219/chap2_15.pdf'));}}else for(const s of Object.values(source)){assert(s.includes('| 3 | 119/128 | 9/128 |'));assert(s.includes('15/16'));assert(s.includes('Dirichlet'));assert(s.includes('https://dlmf.nist.gov/18.3'));}});
+}
+test('manuscript hand calculations agree with the numerical preparations and independent reference cases',()=>{
+ const refs=JSON.parse(readFileSync('scripts/fixtures/quantum-state-reference.json','utf8')).cases,base=refs[0].input;
+ const normalized=finite({...base,stateReal0:3,stateImag0:4,stateReal1:0});assert.equal(normalized.rawNormSquared.value,25);assert.equal(normalized.standardProbabilities[0].value,1);
+ const imaginary=finite({...base,basisReal1:0,basisImag1:1});assert.equal(imaginary.basisCoordinates[0].real.value,.5);assert.equal(imaginary.basisCoordinates[0].imaginary.value,-.5);assert.equal(imaginary.basisCoordinates[1].imaginary.value,-.5);
+ assert.equal(finite({...base,phaseA:0,phaseB:1}).globalRepresentativeDistanceSquared.value,4);assert.equal(finite(base).globalRepresentativeDistanceSquared.value,2);
+ const wb=JSON.parse(readFileSync('scripts/fixtures/wavefunction-l2-reference.json','utf8')).cases[0].input,a={...wb,leftRealConstant:1,leftRealSlope:0,leftImagConstant:0,leftImagSlope:1,rightRealConstant:1,rightRealSlope:0,rightImagConstant:0,rightImagSlope:1};const degree0=wave({...a,cutoffDegree:0}),degree1=wave({...a,cutoffDegree:1});assert.equal(degree0.rawDimensionlessNormSquared.value,4/3);assert.equal(degree0.selectedCapturedMass.value,15/16);assert.equal(degree0.selectedSquaredL2Error.value,1/16);assert.equal(degree1.selectedSquaredL2Error.sign,0);
+ const step=wave(wb);assert.equal(step.coefficients[3].rawLegendreCoefficient.real.value,7/16);assert.equal(step.cutoffHistory[3].capturedProbability.value,119/128);assert.equal(wave({...wb,lengthNumerator:3}).points[0].density.value,2/3);
+});

@@ -1,0 +1,296 @@
+[
+  {
+    "id": "massive-ring",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "four-site-hand-check",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "sixteen-site-ring",
+    "input": {
+      "sites": 16,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "hotter",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "2",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "soft-mass",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1/999999999989",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "stiff-gradient",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "16",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "independent-sites",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "0",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "independent-constrained",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "mean-zero",
+      "massSquared": "1",
+      "speedSquared": "0",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "open-chain",
+    "input": {
+      "sites": 8,
+      "boundary": "open",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "pinned-chain",
+    "input": {
+      "sites": 8,
+      "boundary": "dirichlet",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "massless-pinned",
+    "input": {
+      "sites": 8,
+      "boundary": "dirichlet",
+      "constraint": "none",
+      "massSquared": "0",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "massless-ring-constrained",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "mean-zero",
+      "massSquared": "0",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "massive-ring-constrained",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "mean-zero",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "massless-pinned-constrained",
+    "input": {
+      "sites": 8,
+      "boundary": "dirichlet",
+      "constraint": "mean-zero",
+      "massSquared": "0",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "fixed-box-refined",
+    "input": {
+      "sites": 16,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1/2",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "odd-ring",
+    "input": {
+      "sites": 7,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "shifted-origin",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 3,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "negative-alias",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 7
+    }
+  },
+  {
+    "id": "nyquist",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "speedSquared": "1",
+      "spacing": "1",
+      "temperature": "1",
+      "origin": 0,
+      "selectedMode": 4
+    }
+  },
+  {
+    "id": "equivalent-spelling",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "2/2",
+      "speedSquared": "3/3",
+      "spacing": "4/4",
+      "temperature": "5/5",
+      "origin": 0,
+      "selectedMode": 1
+    }
+  },
+  {
+    "id": "maximum-coprime",
+    "input": {
+      "sites": 16,
+      "boundary": "dirichlet",
+      "constraint": "mean-zero",
+      "massSquared": "999999999983/62499999999",
+      "speedSquared": "999999999979/62499999999",
+      "spacing": "999999999961/62499999999",
+      "temperature": "1/999999999989",
+      "origin": 15,
+      "selectedMode": 15
+    }
+  }
+]

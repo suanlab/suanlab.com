@@ -1,0 +1,860 @@
+[
+  {
+    "label": "symmetric cycle",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1,
+        "clockwise12": 1,
+        "clockwise20": 1,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2,
+          0
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "433b0d8019ad135634f1ee2640e91c02ed24f315fb48a50fd717497a3a906d30"
+  },
+  {
+    "label": "nonuniform reversible open path",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 2,
+        "clockwise12": 3,
+        "clockwise20": 1,
+        "counter10": 1,
+        "counter21": 2,
+        "counter02": 3,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "c141d5234486875901462299b2b3f49388f74fe607d6483a690b41df30bfaaf4"
+  },
+  {
+    "label": "nonuniform clockwise cycle",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 2,
+        "clockwise12": 3,
+        "clockwise20": 4,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2,
+          0
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "ad6e9e211cf40aae7288f09a99e96bd2fb4ccd4ea256e8f193ebdbecf9b43057"
+  },
+  {
+    "label": "same generator reverse cycle",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 2,
+        "clockwise12": 3,
+        "clockwise20": 4,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          2,
+          1,
+          0
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "c824746a2c6c569b8b5b150864b4541cf2ef6acf7d57eec0c40261605b2b365d"
+  },
+  {
+    "label": "nonreversible backtrack",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 2,
+        "clockwise12": 3,
+        "clockwise20": 4,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          0
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "c365ca1d6da48b4c1314a72e57582c3b121265bf93515ac2e9c15928febc2b46"
+  },
+  {
+    "label": "unequal waiting rates",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1,
+        "clockwise12": 2,
+        "clockwise20": 7,
+        "counter10": 3,
+        "counter21": 5,
+        "counter02": 11,
+        "rateDenominator": 1,
+        "states": [
+          2,
+          0,
+          1,
+          2
+        ],
+        "dwellNumerators": [
+          1,
+          3,
+          2,
+          4
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "2220c371d4ddf6c9aa700cdf75f0ac3ac33f2e299f2e75111065f65eb1ca93bb"
+  },
+  {
+    "label": "same state path different waits",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1,
+        "clockwise12": 2,
+        "clockwise20": 7,
+        "counter10": 3,
+        "counter21": 5,
+        "counter02": 11,
+        "rateDenominator": 1,
+        "states": [
+          2,
+          0,
+          1,
+          2
+        ],
+        "dwellNumerators": [
+          4,
+          2,
+          3,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "a37c87bbb8b9ef5ad7be7d2ce97081ce3373787e7eb66279f94a91db40d9b250"
+  },
+  {
+    "label": "same histogram reversible",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1,
+        "clockwise12": 1,
+        "clockwise20": 1,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "633e51832510ffa7ea2c974cb1e22790de41432736ace7c7caaca1d425aa9685"
+  },
+  {
+    "label": "same histogram circulating",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 3,
+        "clockwise12": 3,
+        "clockwise20": 3,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "aa49c7d8fd6102e654c0008e0eba771590e7371307066efe02f607f7c2af1d70"
+  },
+  {
+    "label": "tenfold faster clock",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 20,
+        "clockwise12": 30,
+        "clockwise20": 40,
+        "counter10": 10,
+        "counter21": 10,
+        "counter02": 10,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2,
+          0
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "226e83fe817552a32ad91b178a51631341d19ef6b391d72174bb78807545ff02"
+  },
+  {
+    "label": "near detailed balance",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1000000,
+        "clockwise12": 1,
+        "clockwise20": 1,
+        "counter10": 999999,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2,
+          0
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "efae8b4cedf5ee954098ad98640d36762c17ccf88166dac99f33961ae1be0621"
+  },
+  {
+    "label": "strong counterclockwise bias",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1,
+        "clockwise12": 1,
+        "clockwise20": 1,
+        "counter10": 1000000,
+        "counter21": 1000000,
+        "counter02": 1000000,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2,
+          0
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "05973e1fff4ac1f2bf6490c9e05edeff9f87aa52a1e8f6fda3f30f4bca6c1891"
+  },
+  {
+    "label": "zero duration no jump",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 2,
+        "clockwise12": 3,
+        "clockwise20": 4,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          1
+        ],
+        "dwellNumerators": [
+          0
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "91bde88130532105453c259490c0383f47da0fe60033ca7b07785d1cd8905be1"
+  },
+  {
+    "label": "no jump positive duration",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 2,
+        "clockwise12": 3,
+        "clockwise20": 4,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          1
+        ],
+        "dwellNumerators": [
+          3
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "fb6b2c745300b1fe3c5cd61f56176b4b6c0402d928defd4e55e5cfdaa697a370"
+  },
+  {
+    "label": "final jump at observation endpoint",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 2,
+        "clockwise12": 3,
+        "clockwise20": 4,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1
+        ],
+        "dwellNumerators": [
+          1,
+          0
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "99c2ea3c159dd4822f7bd949e4138c7ea04643ae1caa4e1a2fbc717524c7c70f"
+  },
+  {
+    "label": "same rates different exact encoding",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 4,
+        "clockwise12": 6,
+        "clockwise20": 8,
+        "counter10": 2,
+        "counter21": 2,
+        "counter02": 2,
+        "rateDenominator": 2,
+        "states": [
+          0,
+          1,
+          2,
+          0
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "612d4a73966689d19e995885bbee696e40f019ce55950c925b594a0550ff9a17"
+  },
+  {
+    "label": "nonuniform reversible loop",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 2,
+        "clockwise12": 3,
+        "clockwise20": 1,
+        "counter10": 1,
+        "counter21": 2,
+        "counter02": 3,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2,
+          0
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "e7918181cf94b272b5a30b3ef8a3113ec83113028770717ce0695bb73e2cb4dc"
+  },
+  {
+    "label": "positive underflow path ratio",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1,
+        "clockwise12": 1,
+        "clockwise20": 1,
+        "counter10": 1000000,
+        "counter21": 1000000,
+        "counter02": 1000000,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "ed784f2557838ba482367b4d52ff42be641b94ab464a4e05b685d15cfd16b812"
+  },
+  {
+    "label": "huge path ratio",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1000000,
+        "clockwise12": 1000000,
+        "clockwise20": 1000000,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "1c7a19053a9be484a41ab1064b987161b3607ae24447eb4468a53fc2ae203f0c"
+  },
+  {
+    "label": "very long waits",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1000000,
+        "clockwise12": 1000000,
+        "clockwise20": 1000000,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          2,
+          0
+        ],
+        "dwellNumerators": [
+          1000000,
+          1000000,
+          1000000,
+          1000000
+        ],
+        "timeDenominator": 1
+      }
+    },
+    "resultSha256": "266b208294b6010ab20f300e501b8f1db0dc1d3dd9c5ace922300724781ff0e4"
+  },
+  {
+    "label": "tiny rate and short dwell",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1,
+        "clockwise12": 1,
+        "clockwise20": 1,
+        "counter10": 1,
+        "counter21": 1,
+        "counter02": 1,
+        "rateDenominator": 1000000,
+        "states": [
+          0,
+          2,
+          1
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 1000000
+      }
+    },
+    "resultSha256": "12136224948482a09f4e3887c8d832e960f640e204062464c3b32ad903b17784"
+  },
+  {
+    "label": "rare nonuniform occupation",
+    "input": {
+      "kind": "continuous-cycle-path-reversal",
+      "parameters": {
+        "clockwise01": 1,
+        "clockwise12": 1,
+        "clockwise20": 1,
+        "counter10": 1000000,
+        "counter21": 1,
+        "counter02": 1000000,
+        "rateDenominator": 1,
+        "states": [
+          0,
+          1,
+          0,
+          2,
+          0
+        ],
+        "dwellNumerators": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "timeDenominator": 4
+      }
+    },
+    "resultSha256": "8cd4377408b9a736b71513e2be6f480400d1f6ee9d81f0388475c390aa49cde2"
+  }
+]

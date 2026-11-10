@@ -1,0 +1,46 @@
+[
+  {
+    "id": "maximum-coprime-soft",
+    "input": {
+      "stiffness": "1000000001/999999999989",
+      "coupling": "999999999983/62499999999",
+      "source": "999999999979/62499999999",
+      "order": 16
+    },
+    "payloadSha256": "61a5d47b06acec56b0b97b82313e7d1831f7d74109d924e6a71d590c3cf52a98",
+    "method": "Fraction closed binomial coefficients and SymPy symbolic residual"
+  },
+  {
+    "id": "maximum-coprime-negative",
+    "input": {
+      "stiffness": "1000000001/999999999989",
+      "coupling": "999999999983/62499999999",
+      "source": "-999999999979/62499999999",
+      "order": 16
+    },
+    "payloadSha256": "352ee9dcaf6ee376c4e9901c020e66ac50e42427ecb536eea27a6bf3d4c93e15",
+    "method": "Fraction closed binomial coefficients and SymPy symbolic residual"
+  },
+  {
+    "id": "maximum-coprime-stiff",
+    "input": {
+      "stiffness": "999999999983/62499999999",
+      "coupling": "999999999977/62499999999",
+      "source": "999999999979/62499999999",
+      "order": 16
+    },
+    "payloadSha256": "4c98ebffdb5d8f42b0395a36d12b9dc2e3981fc6cfb70abafc123d6b64e0b286",
+    "method": "Fraction closed binomial coefficients and SymPy symbolic residual"
+  },
+  {
+    "id": "maximum-tiny-coupling",
+    "input": {
+      "stiffness": "1000000001/999999999989",
+      "coupling": "1/999999999989",
+      "source": "999999999979/62499999999",
+      "order": 16
+    },
+    "payloadSha256": "c148eab8a48b530c1d4dce17cdba9228c7419fa0617a34c960259e8bc5f408b6",
+    "method": "Fraction closed binomial coefficients and SymPy symbolic residual"
+  }
+]

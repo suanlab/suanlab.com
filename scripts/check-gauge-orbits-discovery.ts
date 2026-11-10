@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {writeFileSync} from 'node:fs';
+import {chromium} from 'playwright';
+import {gaugeOrbitReader} from '../src/data/gauge-orbits-reader';
+const root='.runtime/learning/gauge-orbits-reader-integration',base=process.env.GAUGE_ORBITS_PREVIEW_BASE??'http://127.0.0.1:4181',prefix='/book/online/physics-math-for-ai/',route=prefix+gaugeOrbitReader.unit.id+'/';
+async function main(){const browser=await chromium.launch({headless:true}),states=[],errors:string[]=[];
+ try{for(const language of ['ko','en']as const){
+  const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});await context.addInitScript(language=>localStorage.setItem('suanlab-language',language),language);const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(base+'/');await page.waitForFunction(language=>document.documentElement.lang===language,language);await page.evaluate(()=>document.fonts.ready);assert.equal(await page.locator('header').evaluate(el=>getComputedStyle(el).position),'sticky','Original site utilities must be compiled before navigation checks');await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>resolve())));const trigger=page.locator('header button[aria-controls="menu-nav-book"]');let menuMode='desktop';if(await trigger.isVisible()){await trigger.focus();await trigger.press('ArrowDown');await page.getByRole('menuitem',{name:'Interactive Book',exact:true}).click();}else{menuMode='drawer';await page.getByRole('button',{name:language==='ko'?'메뉴 열기':'Open menu',exact:true}).click();await page.getByRole('dialog').getByRole('link',{name:'Interactive Book',exact:true}).click();}await page.waitForURL('**/book/interactive/');assert((await page.locator('.ai-book-entry').innerText()).includes('589'));
+  await page.locator('.ai-book-entry').click();await page.locator('.ai-book-overview').waitFor();const card=page.locator(`.ai-unit-card[href="${route}"]`);assert.equal(await card.count(),1);assert.equal(await card.locator('h3').innerText(),gaugeOrbitReader.unit.title[language]);
+  await page.locator('.ai-curriculum > summary').click();await page.locator('#curriculum-field-multiscale > summary').click();assert.equal(await page.locator(`#curriculum-field-multiscale a[href="${route}"]`).count(),1);await card.click();await page.locator('[data-gauge-orbits-phase="ready"]').waitFor({timeout:60000});assert.equal(await page.locator('h1').innerText(),gaugeOrbitReader.unit.title[language]);
+  await page.locator(`.ai-prerequisite-links a[href="${prefix}graph-u1-local-frames-wilson-loops/"]`).click();await page.locator('[data-graph-gauge-phase="ready"]').waitFor({timeout:60000});assert.equal(await page.locator('[data-graph-gauge-metric=total]').innerText(),'0');
+  await page.goto(base+prefix+'field-noether-current-boundary-balance/');await page.locator('[data-balance-phase="ready"]').waitFor({timeout:60000});assert.equal(await page.locator('[data-balance-metric=H]').innerText(),'7/2');
+  await page.goto(base+prefix+'scalar-field-action-boundary-variation/');await page.locator('[data-scalar-phase="ready"]').waitFor({timeout:60000});assert.equal(await page.locator('[data-scalar-metric=H]').innerText(),'7/2');
+  await page.goto(base+prefix+'field-fourier-modes-lattice-continuum/');await page.locator('[data-modes-phase="ready"]').waitFor({timeout:60000});assert.equal(await page.locator('[data-modes-metric=fullEnergy]').innerText(),'5/2');
+  await page.goto(base+route);await page.locator('[data-gauge-orbits-phase="ready"]').waitFor({timeout:60000});await page.locator('.ai-reader-bottom a').first().click();await page.locator('[data-graph-gauge-phase="ready"]').waitFor({timeout:60000});
+  await page.goto(base+'/search/');await page.locator('input[type=search]').fill(language==='ko'?'경계 앵커':'Boundary Anchors');const result=page.locator(`main a[href="${route}"]`);await result.waitFor();assert.equal(await result.locator('h2').innerText(),gaugeOrbitReader.unit.title[language]);await result.click();await page.locator('[data-gauge-orbits-phase="ready"]').waitFor({timeout:60000});
+  await page.goto(base+'/book/online/');assert.equal(await page.locator('main .ai-book-entry').count(),0);assert.equal(await page.locator(`main a[href="${prefix}"]`).count(),0);
+  states.push({language,menuMode,bookSubmenu:true,interactiveLibrary:true,overviewCard:true,curriculumMap:true,localizedSearch:true,prerequisiteRoundTrip:true,previousGaugeReader:true,priorGaugeEnergy:'0',priorScalarEnergy:'7/2',priorNoetherEnergy:'7/2',priorModesEnergy:'5/2',onlineBookSeparated:true});await context.close();
+ }
+ assert.deepEqual(errors,[]);writeFileSync(root+'/discovery.json',JSON.stringify({states,errors},null,2)+'\n');console.log(JSON.stringify({locales:2,priorReaderChecks:8,interactiveBookSeparated:true}));
+ }finally{await browser.close();}
+}
+main().catch(error=>{console.error(error);process.exitCode=1;});

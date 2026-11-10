@@ -1,0 +1,13 @@
+/** Owned reader-safe preparations. Mathematical work belongs in Workers. */
+import type {ScalarFieldBoundary} from './learning-scalar-field-input';
+export type FieldModesInput=Readonly<{boundary:ScalarFieldBoundary;length:string;speed:string;quadratic:string;quartic:string;background:string;position:readonly string[];velocity:readonly string[];selectedBasis:number}>;
+const keys=['boundary','length','speed','quadratic','quartic','background','position','velocity','selectedBasis'];
+function data(value:object,key:PropertyKey):unknown{const d=Object.getOwnPropertyDescriptor(value,key);if(!d||!Object.hasOwn(d,'value'))throw Error('Owned data required');return d.value;}
+function fraction(value:unknown,sign:'any'|'positive'|'nonnegative'='any'):string{if(typeof value!=='string'||value.length>40||!/^(?:0|-?[1-9]\d{0,17})(?:\/[1-9]\d{0,17})?$/.test(value))throw Error('Bounded integer or fraction required');const n=value.split('/')[0];if(sign!=='any'&&(n.startsWith('-')||(sign==='positive'&&n==='0')))throw Error('Invalid sign');return value;}
+function vector(value:unknown):readonly string[]{if(!Array.isArray(value)||Object.getPrototypeOf(value)!==Array.prototype)throw Error('Plain vector required');const n=data(value,'length');if(typeof n!=='number'||!Number.isSafeInteger(n)||n<3||n>32||Reflect.ownKeys(value).length!==n+1)throw Error('Dense3–32 vector required');return Object.freeze(Array.from({length:n},(_,i)=>fraction(data(value,String(i)))));}
+export function readFieldModesInput(value:unknown):FieldModesInput|null{
+ try{if(!value||typeof value!=='object'||Object.getPrototypeOf(value)!==Object.prototype||Reflect.ownKeys(value).length!==keys.length)return null;const boundary=data(value,'boundary');if(boundary!=='periodic'&&boundary!=='dirichlet-zero'&&boundary!=='neumann-zero')return null;const position=vector(data(value,'position')),velocity=vector(data(value,'velocity')),selectedBasis=data(value,'selectedBasis');if(position.length!==velocity.length||typeof selectedBasis!=='number'||!Number.isSafeInteger(selectedBasis)||selectedBasis<0||selectedBasis>=position.length)return null;
+  return Object.freeze({boundary,length:fraction(data(value,'length'),'positive'),speed:fraction(data(value,'speed'),'positive'),quadratic:fraction(data(value,'quadratic')),quartic:fraction(data(value,'quartic'),'nonnegative'),background:fraction(data(value,'background')),position,velocity,selectedBasis});
+ }catch{return null;}
+}
+export const fieldModesInputKey=(p:FieldModesInput)=>JSON.stringify([p.boundary,p.length,p.speed,p.quadratic,p.quartic,p.background,p.position,p.velocity,p.selectedBasis]);

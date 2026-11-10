@@ -1,0 +1,29 @@
+/** Exact Q(sqrt(q)) accounts; only reporting and nested roots use intervals. */
+import {zero as Z,one as O,add as fa,sub as fs,mul as fm,div as fd,neg as fn,eq as fe,le,sqrtRange,q,type F,type C}from'./learning-quantum-hilbert-core';
+import {createQuantumEvolutionContext}from'./learning-quantum-evolution-interval';
+export type PovmReal={rational:F;radical:F};export type PovmComplex={real:PovmReal;imaginary:PovmReal};export type PovmMatrix=PovmComplex[][];
+export function createPovmAlgebraic(rootSquared:F){
+ if(!le(Z,rootSquared)||!le(rootSquared,O))throw new RangeError('Radicand in[0,1] required');
+ const ctx=createQuantumEvolutionContext(),rr=sqrtRange(rootSquared),knownRoot=fe(rr.lower,rr.upper)?rr.lower:null,root=ctx.range(rr);
+ const make=(a:F,b=Z):PovmReal=>knownRoot===null?{rational:a,radical:b}:{rational:fa(a,fm(b,knownRoot)),radical:Z};
+ const zero=make(Z),one=make(O),from=(x:F)=>make(x),add=(a:PovmReal,b:PovmReal)=>make(fa(a.rational,b.rational),fa(a.radical,b.radical)),neg=(a:PovmReal)=>make(fn(a.rational),fn(a.radical)),sub=(a:PovmReal,b:PovmReal)=>add(a,neg(b));
+ const mul=(a:PovmReal,b:PovmReal)=>make(fa(fm(a.rational,b.rational),fm(rootSquared,fm(a.radical,b.radical))),fa(fm(a.rational,b.radical),fm(a.radical,b.rational))),square=(a:PovmReal)=>mul(a,a),eq=(a:PovmReal,b:PovmReal)=>fe(a.rational,b.rational)&&fe(a.radical,b.radical);
+ const rationalSign=(x:F)=>x.n===BigInt(0)?0:x.n>BigInt(0)?1:-1;
+ const sign=(a:PovmReal):number=>{const sa=rationalSign(a.rational),sb=rationalSign(a.radical);if(sb===0)return sa;if(sa===0||sa===sb)return sb;const cmp=rationalSign(fs(fm(a.rational,a.rational),fm(rootSquared,fm(a.radical,a.radical))));return cmp===0?0:cmp>0?sa:sb;};
+ const div=(a:PovmReal,b:PovmReal)=>{if(sign(b)===0)throw new RangeError('Exact nonzero algebraic denominator required');const denominator=fs(fm(b.rational,b.rational),fm(rootSquared,fm(b.radical,b.radical))),n=mul(a,make(b.rational,fn(b.radical)));return make(fd(n.rational,denominator),fd(n.radical,denominator));};
+ const interval=(a:PovmReal)=>{
+  if(a.radical.n===BigInt(0))return ctx.from(a.rational);
+  const ra=ctx.from(a.rational),rb=ctx.multiply(ctx.from(a.radical),root);
+  // Opposite signs can cancel. Rationalize before the fixed-grid evaluation.
+  if(rationalSign(a.rational)*rationalSign(a.radical)<0){const numerator=fs(fm(a.rational,a.rational),fm(rootSquared,fm(a.radical,a.radical)));return ctx.divide(ctx.from(numerator),ctx.sub(ra,rb));}
+  return ctx.add(ra,rb);
+ };
+ const observe=(a:PovmReal)=>({rationalPart:q(a.rational),rootPart:q(a.radical),exactSign:sign(a),observation:a.radical.n===BigInt(0)?q(a.rational):ctx.observation(interval(a))});
+ const rootOf=(a:PovmReal)=>{const s=sign(a);if(s<0)throw new RangeError('Exact nonnegative square root required');if(s===0)return{interval:ctx.zero,observation:q(Z)};if(a.radical.n===BigInt(0)){const r=sqrtRange(a.rational);return{interval:ctx.range(r),observation:fe(r.lower,r.upper)?q(r.lower):ctx.observation(ctx.range(r))};}const r=ctx.rationalRange(interval(a)),lo=le(Z,r.lower)?r.lower:Z;if(!le(Z,r.upper))throw new RangeError('Positive algebraic value has inconsistent numeric bounds');const v=ctx.range({lower:sqrtRange(lo).lower,upper:sqrtRange(r.upper).upper});return{interval:v,observation:ctx.observation(v)};};
+ const abs=(a:PovmReal)=>sign(a)<0?neg(a):a,sum=(xs:PovmReal[])=>xs.reduce(add,zero),complex=(real:PovmReal,imaginary=zero):PovmComplex=>({real,imaginary}),conjugate=(z:PovmComplex)=>complex(z.real,neg(z.imaginary)),cAdd=(a:PovmComplex,b:PovmComplex)=>complex(add(a.real,b.real),add(a.imaginary,b.imaginary)),cSub=(a:PovmComplex,b:PovmComplex)=>cAdd(a,complex(neg(b.real),neg(b.imaginary))),cMul=(a:PovmComplex,b:PovmComplex)=>complex(sub(mul(a.real,b.real),mul(a.imaginary,b.imaginary)),add(mul(a.real,b.imaginary),mul(a.imaginary,b.real))),cScale=(z:PovmComplex,s:PovmReal)=>complex(mul(z.real,s),mul(z.imaginary,s));
+ const cDiv=(a:PovmComplex,b:PovmComplex)=>{const norm=add(square(b.real),square(b.imaginary)),numerator=cMul(a,conjugate(b));return complex(div(numerator.real,norm),div(numerator.imaginary,norm));},cZero=(z:PovmComplex)=>sign(z.real)===0&&sign(z.imaginary)===0;
+ const identity=(n:number):PovmMatrix=>Array.from({length:n},(_,i)=>Array.from({length:n},(_,j)=>complex(i===j?one:zero))),fromMatrix=(a:C[][]):PovmMatrix=>a.map(row=>row.map(z=>complex(from(z.re),from(z.im)))),adjoint=(a:PovmMatrix):PovmMatrix=>a[0].map((_,j)=>a.map(row=>conjugate(row[j]))),product=(a:PovmMatrix,b:PovmMatrix):PovmMatrix=>a.map(row=>b[0].map((_,j)=>row.reduce((s,v,k)=>cAdd(s,cMul(v,b[k][j])),complex(zero)))),mAdd=(a:PovmMatrix,b:PovmMatrix)=>a.map((row,i)=>row.map((v,j)=>cAdd(v,b[i][j]))),mSub=(a:PovmMatrix,b:PovmMatrix)=>a.map((row,i)=>row.map((v,j)=>cSub(v,b[i][j]))),scale=(a:PovmMatrix,s:PovmReal)=>a.map(row=>row.map(v=>cScale(v,s))),trace=(a:PovmMatrix)=>a.reduce((s,row,i)=>cAdd(s,row[i]),complex(zero));
+ const rank=(value:PovmMatrix)=>{const a=value.map(row=>row.map(v=>complex(v.real,v.imaginary)));let row=0;for(let col=0;col<a[0].length&&row<a.length;col++){const pivot=a.findIndex((v,i)=>i>=row&&!cZero(v[col]));if(pivot<0)continue;[a[row],a[pivot]]=[a[pivot],a[row]];for(let i=row+1;i<a.length;i++){if(cZero(a[i][col]))continue;const factor=cDiv(a[i][col],a[row][col]);for(let j=col;j<a[0].length;j++)a[i][j]=cSub(a[i][j],cMul(factor,a[row][j]));}row++;}return row;};
+ const observeComplex=(z:PovmComplex)=>({real:observe(z.real),imaginary:observe(z.imaginary)}),observeMatrix=(a:PovmMatrix)=>a.map(row=>row.map(observeComplex)),intervalMatrix=(a:PovmMatrix)=>a.map(row=>row.map(z=>({real:interval(z.real),imaginary:interval(z.imaginary)})));
+ return{ctx,knownRoot,rootSquared,make,from,zero,one,add,sub,mul,div,neg,eq,sign,abs,square,sum,interval,observe,rootOf,complex,conjugate,cAdd,cSub,cMul,cScale,identity,fromMatrix,adjoint,product,mAdd,mSub,scale,trace,rank,observeComplex,observeMatrix,intervalMatrix};
+}

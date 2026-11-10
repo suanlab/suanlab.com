@@ -1,0 +1,2924 @@
+{
+  "provenance": "No product imports. SciPy IVP and signed energy/area/edge quadrature;actual field differences;NumPy measured-voltage solve;180-digit exact binary-input geometry and exponential changes.",
+  "rcCases": [
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405,
+      "netWork": -1.7648878684343794e-12,
+      "storedChange": -1.7648878684343803e-12,
+      "faradayPhi": -27964.196964924635,
+      "curlBz": 1.0371455089549544e-05,
+      "muDisplacement": 1.0371455106827908e-05,
+      "gapMagneticEnergy": 1.3445885084303646e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.421671896677083,
+      "netWork": 1.941167063296231e-12,
+      "storedChange": 1.9411670632962294e-12,
+      "faradayPhi": -11369.394044934832,
+      "curlBz": 4.216718966773881e-06,
+      "muDisplacement": 4.216718973792943e-06,
+      "gapMagneticEnergy": 2.222589855590607e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.5926545765453743,
+      "netWork": 1.4011634868843909e-12,
+      "storedChange": 1.4011634868843905e-12,
+      "faradayPhi": -15979.541122815775,
+      "curlBz": 5.926545765453927e-06,
+      "muDisplacement": 5.9265457753365775e-06,
+      "gapMagneticEnergy": 4.390493088752212e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.24095536952976174,
+      "netWork": 5.9654593790407635e-12,
+      "storedChange": 5.965459379040763e-12,
+      "faradayPhi": -6496.796597107317,
+      "curlBz": 2.409553695298474e-06,
+      "muDisplacement": 2.409553699311839e-06,
+      "gapMagneticEnergy": 7.257436263153002e-11
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405,
+      "netWork": -4.4122196710859486e-13,
+      "storedChange": -4.4122196710859506e-13,
+      "faradayPhi": -111856.78785969854,
+      "curlBz": 1.0371455089549544e-05,
+      "muDisplacement": 1.0371455106827908e-05,
+      "gapMagneticEnergy": 5.378354033721458e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.421671896677083,
+      "netWork": 4.852917658240578e-13,
+      "storedChange": 4.852917658240574e-13,
+      "faradayPhi": -45477.57617973933,
+      "curlBz": 4.216718966773881e-06,
+      "muDisplacement": 4.216718973792943e-06,
+      "gapMagneticEnergy": 8.890359422362428e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.5926545765453743,
+      "netWork": 3.502908717210977e-13,
+      "storedChange": 3.502908717210976e-13,
+      "faradayPhi": -63918.1644912631,
+      "curlBz": 5.926545765453927e-06,
+      "muDisplacement": 5.9265457753365775e-06,
+      "gapMagneticEnergy": 1.7561972355008847e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.24095536952976174,
+      "netWork": 1.4913648447601909e-12,
+      "storedChange": 1.4913648447601907e-12,
+      "faradayPhi": -25987.18638842927,
+      "curlBz": 2.409553695298474e-06,
+      "muDisplacement": 2.409553699311839e-06,
+      "gapMagneticEnergy": 2.902974505261201e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405,
+      "netWork": -2.161987638832114e-11,
+      "storedChange": -2.161987638832115e-11,
+      "faradayPhi": -652.2261682777097,
+      "curlBz": 8.466493950648189e-07,
+      "muDisplacement": 8.466493964757479e-07,
+      "gapMagneticEnergy": 1.3445885084303656e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.421671896677083,
+      "netWork": 2.377929652537882e-11,
+      "storedChange": 2.37792965253788e-11,
+      "faradayPhi": -265.1753713102601,
+      "curlBz": 3.4422195647099965e-07,
+      "muDisplacement": 3.4422195704432195e-07,
+      "gapMagneticEnergy": 2.2225898555906081e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.5926545765453743,
+      "netWork": 1.7164252714333778e-11,
+      "storedChange": 1.7164252714333775e-11,
+      "faradayPhi": -372.7006675878176,
+      "curlBz": 4.837996543229948e-07,
+      "muDisplacement": 4.837996551295167e-07,
+      "gapMagneticEnergy": 4.3904930887522144e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.2409553695297617,
+      "netWork": 7.307687739324932e-11,
+      "storedChange": 7.307687739324931e-11,
+      "faradayPhi": -151.5287836058629,
+      "curlBz": 1.9669826084069182e-07,
+      "muDisplacement": 1.9669826116831347e-07,
+      "gapMagneticEnergy": 7.257436263153006e-11
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405,
+      "netWork": -5.404969097080285e-12,
+      "storedChange": -5.404969097080287e-12,
+      "faradayPhi": -2608.9046731108388,
+      "curlBz": 8.466493950648189e-07,
+      "muDisplacement": 8.466493964757479e-07,
+      "gapMagneticEnergy": 5.3783540337214625e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.421671896677083,
+      "netWork": 5.944824131344705e-12,
+      "storedChange": 5.9448241313447e-12,
+      "faradayPhi": -1060.7014852410405,
+      "curlBz": 3.4422195647099965e-07,
+      "muDisplacement": 3.4422195704432195e-07,
+      "gapMagneticEnergy": 8.890359422362433e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.5926545765453743,
+      "netWork": 4.2910631785834445e-12,
+      "storedChange": 4.291063178583444e-12,
+      "faradayPhi": -1490.8026703512703,
+      "curlBz": 4.837996543229948e-07,
+      "muDisplacement": 4.837996551295167e-07,
+      "gapMagneticEnergy": 1.7561972355008858e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.2409553695297617,
+      "netWork": 1.826921934831233e-11,
+      "storedChange": 1.8269219348312327e-11,
+      "faradayPhi": -606.1151344234517,
+      "curlBz": 1.9669826084069182e-07,
+      "muDisplacement": 1.9669826116831347e-07,
+      "gapMagneticEnergy": 2.9029745052612025e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405,
+      "netWork": -0.19932803604212476,
+      "storedChange": -0.19932803604212487,
+      "faradayPhi": -2.476002520961621e-07,
+      "curlBz": 1.03714550895523e-05,
+      "muDisplacement": 1.0371455106827908e-05,
+      "gapMagneticEnergy": 1.3445885084303652e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.421671896677083,
+      "netWork": 0.21923716813790495,
+      "storedChange": 0.21923716813790475,
+      "faradayPhi": -1.0066675024628246e-07,
+      "curlBz": 4.216718966772502e-06,
+      "muDisplacement": 4.216718973792942e-06,
+      "gapMagneticEnergy": 2.2225898555906076e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.5926545765453743,
+      "netWork": 0.15824867460976907,
+      "storedChange": 0.15824867460976905,
+      "faradayPhi": -1.4148585834079949e-07,
+      "curlBz": 5.926545765455306e-06,
+      "muDisplacement": 5.926545775336577e-06,
+      "gapMagneticEnergy": 4.390493088752214e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.2409553695297617,
+      "netWork": 0.6737443910066064,
+      "storedChange": 0.6737443910066063,
+      "faradayPhi": -5.752385728361255e-08,
+      "curlBz": 2.409553695298474e-06,
+      "muDisplacement": 2.409553699311839e-06,
+      "gapMagneticEnergy": 7.257436263153008e-11
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405,
+      "netWork": -0.04983200901053119,
+      "storedChange": -0.04983200901053122,
+      "faradayPhi": -9.904010083846484e-07,
+      "curlBz": 1.03714550895523e-05,
+      "muDisplacement": 1.0371455106827908e-05,
+      "gapMagneticEnergy": 5.378354033721461e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.421671896677083,
+      "netWork": 0.05480929203447624,
+      "storedChange": 0.05480929203447619,
+      "faradayPhi": -4.026670009851298e-07,
+      "curlBz": 4.216718966772502e-06,
+      "muDisplacement": 4.216718973792942e-06,
+      "gapMagneticEnergy": 8.89035942236243e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.5926545765453743,
+      "netWork": 0.03956216865244227,
+      "storedChange": 0.03956216865244226,
+      "faradayPhi": -5.659434333631979e-07,
+      "curlBz": 5.926545765455306e-06,
+      "muDisplacement": 5.926545775336577e-06,
+      "gapMagneticEnergy": 1.7561972355008856e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.2409553695297617,
+      "netWork": 0.1684360977516516,
+      "storedChange": 0.16843609775165158,
+      "faradayPhi": -2.300954291344502e-07,
+      "curlBz": 2.409553695298474e-06,
+      "muDisplacement": 2.409553699311839e-06,
+      "gapMagneticEnergy": 2.902974505261203e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405,
+      "netWork": -2.441768441516029,
+      "storedChange": -2.4417684415160292,
+      "faradayPhi": -5.7749329934934235e-09,
+      "curlBz": 8.466493950648189e-07,
+      "muDisplacement": 8.466493964757478e-07,
+      "gapMagneticEnergy": 1.344588508430365e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.421671896677083,
+      "netWork": 2.6856553096893347,
+      "storedChange": 2.685655309689333,
+      "faradayPhi": -2.3479125421904174e-09,
+      "curlBz": 3.442219564711122e-07,
+      "muDisplacement": 3.442219570443219e-07,
+      "gapMagneticEnergy": 2.2225898555906066e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.5926545765453743,
+      "netWork": 1.9385462639696711,
+      "storedChange": 1.9385462639696704,
+      "faradayPhi": -3.2999617105728906e-09,
+      "curlBz": 4.837996543228822e-07,
+      "muDisplacement": 4.837996551295166e-07,
+      "gapMagneticEnergy": 4.390493088752213e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.24095536952976174,
+      "netWork": 8.253368789830928,
+      "storedChange": 8.253368789830926,
+      "faradayPhi": -1.341664309822942e-09,
+      "curlBz": 1.9669826084063554e-07,
+      "muDisplacement": 1.9669826116831341e-07,
+      "gapMagneticEnergy": 7.257436263153005e-11
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405,
+      "netWork": -0.6104421103790072,
+      "storedChange": -0.6104421103790073,
+      "faradayPhi": -2.3099731973973694e-08,
+      "curlBz": 8.466493950648189e-07,
+      "muDisplacement": 8.466493964757478e-07,
+      "gapMagneticEnergy": 5.37835403372146e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.421671896677083,
+      "netWork": 0.6714138274223337,
+      "storedChange": 0.6714138274223332,
+      "faradayPhi": -9.39165016876167e-09,
+      "curlBz": 3.442219564711122e-07,
+      "muDisplacement": 3.442219570443219e-07,
+      "gapMagneticEnergy": 8.890359422362426e-10
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.5926545765453743,
+      "netWork": 0.4846365659924178,
+      "storedChange": 0.4846365659924176,
+      "faradayPhi": -1.3199846842291562e-08,
+      "curlBz": 4.837996543228822e-07,
+      "muDisplacement": 4.837996551295166e-07,
+      "gapMagneticEnergy": 1.7561972355008851e-09
+    },
+    {
+      "R": 1.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.24095536952976174,
+      "netWork": 2.063342197457732,
+      "storedChange": 2.0633421974577315,
+      "faradayPhi": -5.366657239291768e-09,
+      "curlBz": 1.9669826084063554e-07,
+      "muDisplacement": 1.9669826116831341e-07,
+      "gapMagneticEnergy": 2.902974505261202e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 0.5185727544772025,
+      "netWork": -1.7648878684343794e-12,
+      "storedChange": -1.7648878684343803e-12,
+      "faradayPhi": -6991.049241231159,
+      "curlBz": 5.185727544774772e-06,
+      "muDisplacement": 5.185727553413954e-06,
+      "gapMagneticEnergy": 3.3614712710759115e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.2108359483385415,
+      "netWork": 1.941167063296231e-12,
+      "storedChange": 1.9411670632962294e-12,
+      "faradayPhi": -2842.348511233708,
+      "curlBz": 2.1083594833869404e-06,
+      "muDisplacement": 2.1083594868964715e-06,
+      "gapMagneticEnergy": 5.556474638976518e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.2963272882726872,
+      "netWork": 1.4011634868843909e-12,
+      "storedChange": 1.4011634868843905e-12,
+      "faradayPhi": -3994.885280703944,
+      "curlBz": 2.9632728827269637e-06,
+      "muDisplacement": 2.9632728876682887e-06,
+      "gapMagneticEnergy": 1.097623272188053e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.12047768476488087,
+      "netWork": 5.9654593790407635e-12,
+      "storedChange": 5.965459379040763e-12,
+      "faradayPhi": -1624.1991492768293,
+      "curlBz": 1.204776847649237e-06,
+      "muDisplacement": 1.2047768496559195e-06,
+      "gapMagneticEnergy": 1.8143590657882506e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 0.5185727544772025,
+      "netWork": -4.4122196710859486e-13,
+      "storedChange": -4.4122196710859506e-13,
+      "faradayPhi": -27964.196964924635,
+      "curlBz": 5.185727544774772e-06,
+      "muDisplacement": 5.185727553413954e-06,
+      "gapMagneticEnergy": 1.3445885084303646e-09
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.2108359483385415,
+      "netWork": 4.852917658240578e-13,
+      "storedChange": 4.852917658240574e-13,
+      "faradayPhi": -11369.394044934832,
+      "curlBz": 2.1083594833869404e-06,
+      "muDisplacement": 2.1083594868964715e-06,
+      "gapMagneticEnergy": 2.222589855590607e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.2963272882726872,
+      "netWork": 3.502908717210977e-13,
+      "storedChange": 3.502908717210976e-13,
+      "faradayPhi": -15979.541122815775,
+      "curlBz": 2.9632728827269637e-06,
+      "muDisplacement": 2.9632728876682887e-06,
+      "gapMagneticEnergy": 4.390493088752212e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.12047768476488087,
+      "netWork": 1.4913648447601909e-12,
+      "storedChange": 1.4913648447601907e-12,
+      "faradayPhi": -6496.796597107317,
+      "curlBz": 1.204776847649237e-06,
+      "muDisplacement": 1.2047768496559195e-06,
+      "gapMagneticEnergy": 7.257436263153002e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 0.5185727544772025,
+      "netWork": -2.161987638832114e-11,
+      "storedChange": -2.161987638832115e-11,
+      "faradayPhi": -163.05654206942742,
+      "curlBz": 4.2332469753240944e-07,
+      "muDisplacement": 4.2332469823787396e-07,
+      "gapMagneticEnergy": 3.361471271075914e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.2108359483385415,
+      "netWork": 2.377929652537882e-11,
+      "storedChange": 2.37792965253788e-11,
+      "faradayPhi": -66.29384282756503,
+      "curlBz": 1.7211097823549983e-07,
+      "muDisplacement": 1.7211097852216098e-07,
+      "gapMagneticEnergy": 5.5564746389765204e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.2963272882726872,
+      "netWork": 1.7164252714333778e-11,
+      "storedChange": 1.7164252714333775e-11,
+      "faradayPhi": -93.1751668969544,
+      "curlBz": 2.418998271614974e-07,
+      "muDisplacement": 2.4189982756475834e-07,
+      "gapMagneticEnergy": 1.0976232721880536e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.12047768476488085,
+      "netWork": 7.307687739324932e-11,
+      "storedChange": 7.307687739324931e-11,
+      "faradayPhi": -37.88219590146573,
+      "curlBz": 9.834913042034591e-08,
+      "muDisplacement": 9.834913058415673e-08,
+      "gapMagneticEnergy": 1.8143590657882516e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 0.5185727544772025,
+      "netWork": -5.404969097080285e-12,
+      "storedChange": -5.404969097080287e-12,
+      "faradayPhi": -652.2261682777097,
+      "curlBz": 4.2332469753240944e-07,
+      "muDisplacement": 4.2332469823787396e-07,
+      "gapMagneticEnergy": 1.3445885084303656e-09
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.2108359483385415,
+      "netWork": 5.944824131344705e-12,
+      "storedChange": 5.9448241313447e-12,
+      "faradayPhi": -265.1753713102601,
+      "curlBz": 1.7211097823549983e-07,
+      "muDisplacement": 1.7211097852216098e-07,
+      "gapMagneticEnergy": 2.2225898555906081e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.2963272882726872,
+      "netWork": 4.2910631785834445e-12,
+      "storedChange": 4.291063178583444e-12,
+      "faradayPhi": -372.7006675878176,
+      "curlBz": 2.418998271614974e-07,
+      "muDisplacement": 2.4189982756475834e-07,
+      "gapMagneticEnergy": 4.3904930887522144e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.12047768476488085,
+      "netWork": 1.826921934831233e-11,
+      "storedChange": 1.8269219348312327e-11,
+      "faradayPhi": -151.5287836058629,
+      "curlBz": 9.834913042034591e-08,
+      "muDisplacement": 9.834913058415673e-08,
+      "gapMagneticEnergy": 7.257436263153006e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 0.5185727544772025,
+      "netWork": -0.19932803604212476,
+      "storedChange": -0.19932803604212487,
+      "faradayPhi": -6.190006302404052e-08,
+      "curlBz": 5.18572754477615e-06,
+      "muDisplacement": 5.185727553413954e-06,
+      "gapMagneticEnergy": 3.361471271075913e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.2108359483385415,
+      "netWork": 0.21923716813790495,
+      "storedChange": 0.21923716813790475,
+      "faradayPhi": -2.5166687561570614e-08,
+      "curlBz": 2.108359483386251e-06,
+      "muDisplacement": 2.108359486896471e-06,
+      "gapMagneticEnergy": 5.556474638976519e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.2963272882726872,
+      "netWork": 0.15824867460976907,
+      "storedChange": 0.15824867460976905,
+      "faradayPhi": -3.537146458519987e-08,
+      "curlBz": 2.963272882727653e-06,
+      "muDisplacement": 2.9632728876682883e-06,
+      "gapMagneticEnergy": 1.0976232721880535e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.12047768476488085,
+      "netWork": 0.6737443910066064,
+      "storedChange": 0.6737443910066063,
+      "faradayPhi": -1.4380964320903137e-08,
+      "curlBz": 1.204776847649237e-06,
+      "muDisplacement": 1.2047768496559195e-06,
+      "gapMagneticEnergy": 1.814359065788252e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 0.5185727544772025,
+      "netWork": -0.04983200901053119,
+      "storedChange": -0.04983200901053122,
+      "faradayPhi": -2.476002520961621e-07,
+      "curlBz": 5.18572754477615e-06,
+      "muDisplacement": 5.185727553413954e-06,
+      "gapMagneticEnergy": 1.3445885084303652e-09
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.2108359483385415,
+      "netWork": 0.05480929203447624,
+      "storedChange": 0.05480929203447619,
+      "faradayPhi": -1.0066675024628246e-07,
+      "curlBz": 2.108359483386251e-06,
+      "muDisplacement": 2.108359486896471e-06,
+      "gapMagneticEnergy": 2.2225898555906076e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.2963272882726872,
+      "netWork": 0.03956216865244227,
+      "storedChange": 0.03956216865244226,
+      "faradayPhi": -1.4148585834079949e-07,
+      "curlBz": 2.963272882727653e-06,
+      "muDisplacement": 2.9632728876682883e-06,
+      "gapMagneticEnergy": 4.390493088752214e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.12047768476488085,
+      "netWork": 0.1684360977516516,
+      "storedChange": 0.16843609775165158,
+      "faradayPhi": -5.752385728361255e-08,
+      "curlBz": 1.204776847649237e-06,
+      "muDisplacement": 1.2047768496559195e-06,
+      "gapMagneticEnergy": 7.257436263153008e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 0.5185727544772025,
+      "netWork": -2.441768441516029,
+      "storedChange": -2.4417684415160292,
+      "faradayPhi": -1.4437332483733559e-09,
+      "curlBz": 4.2332469753240944e-07,
+      "muDisplacement": 4.233246982378739e-07,
+      "gapMagneticEnergy": 3.3614712710759125e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.2108359483385415,
+      "netWork": 2.6856553096893347,
+      "storedChange": 2.685655309689333,
+      "faradayPhi": -5.869781355476044e-10,
+      "curlBz": 1.721109782355561e-07,
+      "muDisplacement": 1.7211097852216095e-07,
+      "gapMagneticEnergy": 5.5564746389765165e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.2963272882726872,
+      "netWork": 1.9385462639696711,
+      "storedChange": 1.9385462639696704,
+      "faradayPhi": -8.249904276432227e-10,
+      "curlBz": 2.418998271614411e-07,
+      "muDisplacement": 2.418998275647583e-07,
+      "gapMagneticEnergy": 1.0976232721880532e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.12047768476488087,
+      "netWork": 8.253368789830928,
+      "storedChange": 8.253368789830926,
+      "faradayPhi": -3.354160774557355e-10,
+      "curlBz": 9.834913042031777e-08,
+      "muDisplacement": 9.834913058415671e-08,
+      "gapMagneticEnergy": 1.8143590657882512e-11
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 0.5185727544772025,
+      "netWork": -0.6104421103790072,
+      "storedChange": -0.6104421103790073,
+      "faradayPhi": -5.7749329934934235e-09,
+      "curlBz": 4.2332469753240944e-07,
+      "muDisplacement": 4.233246982378739e-07,
+      "gapMagneticEnergy": 1.344588508430365e-09
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 0.2108359483385415,
+      "netWork": 0.6714138274223337,
+      "storedChange": 0.6714138274223332,
+      "faradayPhi": -2.3479125421904174e-09,
+      "curlBz": 1.721109782355561e-07,
+      "muDisplacement": 1.7211097852216095e-07,
+      "gapMagneticEnergy": 2.2225898555906066e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 0.2963272882726872,
+      "netWork": 0.4846365659924178,
+      "storedChange": 0.4846365659924176,
+      "faradayPhi": -3.2999617105728906e-09,
+      "curlBz": 2.418998271614411e-07,
+      "muDisplacement": 2.418998275647583e-07,
+      "gapMagneticEnergy": 4.390493088752213e-10
+    },
+    {
+      "R": 2.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 0.12047768476488087,
+      "netWork": 2.063342197457732,
+      "storedChange": 2.0633421974577315,
+      "faradayPhi": -1.341664309822942e-09,
+      "curlBz": 9.834913042031777e-08,
+      "muDisplacement": 9.834913058415671e-08,
+      "gapMagneticEnergy": 7.257436263153005e-11
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405e-05,
+      "netWork": -1.7648878684343792e-12,
+      "storedChange": -1.7648878684343803e-12,
+      "faradayPhi": -2.796419696492717e-06,
+      "curlBz": 1.03714550895467e-10,
+      "muDisplacement": 1.0371455106827906e-10,
+      "gapMagneticEnergy": 1.3445885084303648e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 4.21671896677083e-06,
+      "netWork": 1.941167063296232e-12,
+      "storedChange": 1.9411670632962294e-12,
+      "faradayPhi": -1.136939404492775e-06,
+      "curlBz": 4.2167189667723003e-11,
+      "muDisplacement": 4.216718973792942e-11,
+      "gapMagneticEnergy": 2.2225898555906063e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 5.926545765453743e-06,
+      "netWork": 1.4011634868843909e-12,
+      "storedChange": 1.4011634868843905e-12,
+      "faradayPhi": -1.597954112282071e-06,
+      "curlBz": 5.926545765455708e-11,
+      "muDisplacement": 5.926545775336577e-11,
+      "gapMagneticEnergy": 4.3904930887522106e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 2.409553695297617e-06,
+      "netWork": 5.9654593790407635e-12,
+      "storedChange": 5.965459379040763e-12,
+      "faradayPhi": -6.496796597105461e-07,
+      "curlBz": 2.4095536952985324e-11,
+      "muDisplacement": 2.409553699311839e-11,
+      "gapMagneticEnergy": 7.257436263153e-21
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405e-05,
+      "netWork": -4.412219671085948e-13,
+      "storedChange": -4.4122196710859506e-13,
+      "faradayPhi": -1.1185678785970867e-05,
+      "curlBz": 1.03714550895467e-10,
+      "muDisplacement": 1.0371455106827906e-10,
+      "gapMagneticEnergy": 5.378354033721459e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 4.21671896677083e-06,
+      "netWork": 4.85291765824058e-13,
+      "storedChange": 4.852917658240574e-13,
+      "faradayPhi": -4.5477576179711e-06,
+      "curlBz": 4.2167189667723003e-11,
+      "muDisplacement": 4.216718973792942e-11,
+      "gapMagneticEnergy": 8.890359422362425e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 5.926545765453743e-06,
+      "netWork": 3.502908717210977e-13,
+      "storedChange": 3.502908717210976e-13,
+      "faradayPhi": -6.391816449128284e-06,
+      "curlBz": 5.926545765455708e-11,
+      "muDisplacement": 5.926545775336577e-11,
+      "gapMagneticEnergy": 1.7561972355008842e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 2.409553695297617e-06,
+      "netWork": 1.4913648447601909e-12,
+      "storedChange": 1.4913648447601907e-12,
+      "faradayPhi": -2.5987186388421844e-06,
+      "curlBz": 2.4095536952985324e-11,
+      "muDisplacement": 2.409553699311839e-11,
+      "gapMagneticEnergy": 2.9029745052612e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.0371455089544052e-05,
+      "netWork": -2.161987638832115e-11,
+      "storedChange": -2.161987638832115e-11,
+      "faradayPhi": -6.522261682772855e-08,
+      "curlBz": 8.466493950650369e-12,
+      "muDisplacement": 8.46649396475748e-12,
+      "gapMagneticEnergy": 1.3445885084303655e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 4.21671896677083e-06,
+      "netWork": 2.3779296525378805e-11,
+      "storedChange": 2.37792965253788e-11,
+      "faradayPhi": -2.6517537131042715e-08,
+      "curlBz": 3.442219564712083e-12,
+      "muDisplacement": 3.44221957044322e-12,
+      "gapMagneticEnergy": 2.222589855590608e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 5.9265457654537435e-06,
+      "netWork": 1.7164252714333778e-11,
+      "storedChange": 1.7164252714333775e-11,
+      "faradayPhi": -3.7270066758754945e-08,
+      "curlBz": 4.837996543227433e-12,
+      "muDisplacement": 4.8379965512951675e-12,
+      "gapMagneticEnergy": 4.390493088752215e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 2.4095536952976173e-06,
+      "netWork": 7.30768773932493e-11,
+      "storedChange": 7.307687739324931e-11,
+      "faradayPhi": -1.51528783605879e-08,
+      "curlBz": 1.9669826084069658e-12,
+      "muDisplacement": 1.966982611683135e-12,
+      "gapMagneticEnergy": 7.257436263153005e-21
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.0371455089544052e-05,
+      "netWork": -5.404969097080287e-12,
+      "storedChange": -5.404969097080287e-12,
+      "faradayPhi": -2.608904673109142e-07,
+      "curlBz": 8.466493950650369e-12,
+      "muDisplacement": 8.46649396475748e-12,
+      "gapMagneticEnergy": 5.378354033721462e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 4.21671896677083e-06,
+      "netWork": 5.944824131344701e-12,
+      "storedChange": 5.9448241313447e-12,
+      "faradayPhi": -1.0607014852417086e-07,
+      "curlBz": 3.442219564712083e-12,
+      "muDisplacement": 3.44221957044322e-12,
+      "gapMagneticEnergy": 8.890359422362432e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 5.9265457654537435e-06,
+      "netWork": 4.2910631785834445e-12,
+      "storedChange": 4.291063178583444e-12,
+      "faradayPhi": -1.4908026703501978e-07,
+      "curlBz": 4.837996543227433e-12,
+      "muDisplacement": 4.8379965512951675e-12,
+      "gapMagneticEnergy": 1.756197235500886e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 8.854187817620389e-12,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 2.4095536952976173e-06,
+      "netWork": 1.8269219348312324e-11,
+      "storedChange": 1.8269219348312327e-11,
+      "faradayPhi": -6.06115134423516e-08,
+      "curlBz": 1.9669826084069658e-12,
+      "muDisplacement": 1.966982611683135e-12,
+      "gapMagneticEnergy": 2.902974505261202e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405e-05,
+      "netWork": -0.19932803604212476,
+      "storedChange": -0.19932803604212487,
+      "faradayPhi": -2.476002520959131e-17,
+      "curlBz": 1.03714550895467e-10,
+      "muDisplacement": 1.0371455106827909e-10,
+      "gapMagneticEnergy": 1.344588508430365e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 4.21671896677083e-06,
+      "netWork": 0.219237168137905,
+      "storedChange": 0.21923716813790475,
+      "faradayPhi": -1.0066675024640544e-17,
+      "curlBz": 4.2167189667723003e-11,
+      "muDisplacement": 4.216718973792943e-11,
+      "gapMagneticEnergy": 2.2225898555906066e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 5.926545765453743e-06,
+      "netWork": 0.15824867460976907,
+      "storedChange": 0.15824867460976905,
+      "faradayPhi": -1.4148585834076285e-17,
+      "curlBz": 5.92654576545676e-11,
+      "muDisplacement": 5.926545775336577e-11,
+      "gapMagneticEnergy": 4.390493088752212e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 2.409553695297617e-06,
+      "netWork": 0.6737443910066064,
+      "storedChange": 0.6737443910066063,
+      "faradayPhi": -5.752385728364877e-18,
+      "curlBz": 2.4095536952985324e-11,
+      "muDisplacement": 2.409553699311839e-11,
+      "gapMagneticEnergy": 7.257436263153002e-21
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405e-05,
+      "netWork": -0.04983200901053119,
+      "storedChange": -0.04983200901053122,
+      "faradayPhi": -9.904010083836524e-17,
+      "curlBz": 1.03714550895467e-10,
+      "muDisplacement": 1.0371455106827909e-10,
+      "gapMagneticEnergy": 5.37835403372146e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 4.21671896677083e-06,
+      "netWork": 0.05480929203447625,
+      "storedChange": 0.05480929203447619,
+      "faradayPhi": -4.0266700098562175e-17,
+      "curlBz": 4.2167189667723003e-11,
+      "muDisplacement": 4.216718973792943e-11,
+      "gapMagneticEnergy": 8.890359422362426e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 5.926545765453743e-06,
+      "netWork": 0.03956216865244227,
+      "storedChange": 0.03956216865244226,
+      "faradayPhi": -5.659434333630514e-17,
+      "curlBz": 5.92654576545676e-11,
+      "muDisplacement": 5.926545775336577e-11,
+      "gapMagneticEnergy": 1.7561972355008847e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.2,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 2.409553695297617e-06,
+      "netWork": 0.1684360977516516,
+      "storedChange": 0.16843609775165158,
+      "faradayPhi": -2.300954291345951e-17,
+      "curlBz": 2.4095536952985324e-11,
+      "muDisplacement": 2.409553699311839e-11,
+      "gapMagneticEnergy": 2.902974505261201e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405e-05,
+      "netWork": -2.441768441516027,
+      "storedChange": -2.4417684415160292,
+      "faradayPhi": -5.774932993497245e-19,
+      "curlBz": 8.466493950648651e-12,
+      "muDisplacement": 8.466493964757479e-12,
+      "gapMagneticEnergy": 1.3445885084303648e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 4.21671896677083e-06,
+      "netWork": 2.6856553096893374,
+      "storedChange": 2.685655309689333,
+      "faradayPhi": -2.3479125421881067e-19,
+      "curlBz": 3.442219564712083e-12,
+      "muDisplacement": 3.442219570443219e-12,
+      "gapMagneticEnergy": 2.2225898555906072e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 5.9265457654537435e-06,
+      "netWork": 1.9385462639696716,
+      "storedChange": 1.9385462639696704,
+      "faradayPhi": -3.2999617105693857e-19,
+      "curlBz": 4.837996543227433e-12,
+      "muDisplacement": 4.837996551295166e-12,
+      "gapMagneticEnergy": 4.390493088752213e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.05,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 2.409553695297617e-06,
+      "netWork": 8.253368789830926,
+      "storedChange": 8.253368789830926,
+      "faradayPhi": -1.3416643098228294e-19,
+      "curlBz": 1.9669826084065365e-12,
+      "muDisplacement": 1.966982611683134e-12,
+      "gapMagneticEnergy": 7.257436263153e-21
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": -0.03714550895442913,
+      "current": 1.037145508954405e-05,
+      "netWork": -0.6104421103790068,
+      "storedChange": -0.6104421103790073,
+      "faradayPhi": -2.309973197398898e-18,
+      "curlBz": 8.466493950648651e-12,
+      "muDisplacement": 8.466493964757479e-12,
+      "gapMagneticEnergy": 5.378354033721459e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": -0.4,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.5783281033228213,
+      "current": 4.21671896677083e-06,
+      "netWork": 0.6714138274223344,
+      "storedChange": 0.6714138274223332,
+      "faradayPhi": -9.391650168752427e-19,
+      "curlBz": 3.442219564712083e-12,
+      "muDisplacement": 3.442219570443219e-12,
+      "gapMagneticEnergy": 8.890359422362429e-20
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 0.3,
+      "radiusFraction": 0.6,
+      "voltage": 0.4073454234545939,
+      "current": 5.9265457654537435e-06,
+      "netWork": 0.4846365659924179,
+      "storedChange": 0.4846365659924176,
+      "faradayPhi": -1.3199846842277543e-18,
+      "curlBz": 4.837996543227433e-12,
+      "muDisplacement": 4.837996551295166e-12,
+      "gapMagneticEnergy": 1.7561972355008852e-19
+    },
+    {
+      "R": 100000.0,
+      "epsilon": 1.0,
+      "mu": 1.2566370614359173e-06,
+      "radius": 0.7,
+      "gap": 0.2,
+      "initialV": 0.2,
+      "theta": 1.2,
+      "radiusFraction": 0.6,
+      "voltage": 0.7590446304700713,
+      "current": 2.409553695297617e-06,
+      "netWork": 2.0633421974577315,
+      "storedChange": 2.0633421974577315,
+      "faradayPhi": -5.366657239291318e-19,
+      "curlBz": 1.9669826084065365e-12,
+      "muDisplacement": 1.966982611683134e-12,
+      "gapMagneticEnergy": 2.9029745052612e-20
+    }
+  ],
+  "fieldCases": [
+    {
+      "x": -0.7,
+      "y": -0.5,
+      "time": -0.3,
+      "electric": [
+        -0.105725,
+        0.14801499999999998,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.9559300000000002
+      ],
+      "current": [
+        -274144.3894759424,
+        383802.14526596596,
+        0.0
+      ],
+      "curlElectricZ": -0.4858000008499397,
+      "magneticTimeRate": 0.4857999999996476
+    },
+    {
+      "x": -0.7,
+      "y": -0.5,
+      "time": 0.2,
+      "electric": [
+        -0.08535000000000001,
+        0.11949,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.1830800000000001
+      ],
+      "current": [
+        -351732.42423260113,
+        492425.393925995,
+        0.0
+      ],
+      "curlElectricZ": -0.42280000109994054,
+      "magneticTimeRate": 0.42279999999950135
+    },
+    {
+      "x": -0.7,
+      "y": -0.5,
+      "time": 0.8,
+      "electric": [
+        -0.060899999999999996,
+        0.08525999999999999,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.41408
+      ],
+      "current": [
+        -471098.63155230467,
+        659538.0841728731,
+        0.0
+      ],
+      "curlElectricZ": -0.34720000139997625,
+      "magneticTimeRate": 0.34720000000043605
+    },
+    {
+      "x": -0.7,
+      "y": 0.0,
+      "time": -0.3,
+      "electric": [
+        0.0,
+        0.1405775,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.869805
+      ],
+      "current": [
+        0.0,
+        383802.14526596596,
+        0.0
+      ],
+      "curlElectricZ": -0.4433000008499854,
+      "magneticTimeRate": 0.4432999999998133
+    },
+    {
+      "x": -0.7,
+      "y": 0.0,
+      "time": 0.2,
+      "electric": [
+        0.0,
+        0.10986499999999999,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.07258
+      ],
+      "current": [
+        0.0,
+        492425.393925995,
+        0.0
+      ],
+      "curlElectricZ": -0.3678000011000168,
+      "magneticTimeRate": 0.36780000000069535
+    },
+    {
+      "x": -0.7,
+      "y": 0.0,
+      "time": 0.8,
+      "electric": [
+        0.0,
+        0.07300999999999998,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.26608
+      ],
+      "current": [
+        0.0,
+        659538.0841728731,
+        0.0
+      ],
+      "curlElectricZ": -0.277200001400027,
+      "magneticTimeRate": 0.2771999999995334
+    },
+    {
+      "x": -0.7,
+      "y": 0.6,
+      "time": -0.3,
+      "electric": [
+        0.12967499999999998,
+        0.1512875,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.9938250000000001
+      ],
+      "current": [
+        328973.2673709542,
+        383802.14526596596,
+        0.0
+      ],
+      "curlElectricZ": -0.5045000008502276,
+      "magneticTimeRate": 0.5044999999992417
+    },
+    {
+      "x": -0.7,
+      "y": 0.6,
+      "time": 0.2,
+      "electric": [
+        0.10605,
+        0.123725,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.2317
+      ],
+      "current": [
+        422078.9090792981,
+        492425.393925995,
+        0.0
+      ],
+      "curlElectricZ": -0.4470000010999703,
+      "magneticTimeRate": 0.4470000000000862
+    },
+    {
+      "x": -0.7,
+      "y": 0.6,
+      "time": 0.8,
+      "electric": [
+        0.07769999999999998,
+        0.09064999999999998,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.4792
+      ],
+      "current": [
+        565318.3578625888,
+        659538.0841728731,
+        0.0
+      ],
+      "curlElectricZ": -0.3780000013999668,
+      "magneticTimeRate": 0.3779999999997674
+    },
+    {
+      "x": 0.0,
+      "y": -0.5,
+      "time": -0.3,
+      "electric": [
+        -0.0953125,
+        -0.0,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.7871250000000001
+      ],
+      "current": [
+        -274144.3894755007,
+        -0.0,
+        0.0
+      ],
+      "curlElectricZ": -0.4025000008500701,
+      "magneticTimeRate": 0.40250000000019437
+    },
+    {
+      "x": 0.0,
+      "y": -0.5,
+      "time": 0.2,
+      "electric": [
+        -0.07187500000000001,
+        -0.0,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.9665000000000001
+      ],
+      "current": [
+        -351732.42423304287,
+        -0.0,
+        0.0
+      ],
+      "curlElectricZ": -0.31500000109999093,
+      "magneticTimeRate": 0.31500000000017625
+    },
+    {
+      "x": 0.0,
+      "y": -0.5,
+      "time": 0.8,
+      "electric": [
+        -0.04374999999999999,
+        -0.0,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.124
+      ],
+      "current": [
+        -471098.63155230467,
+        -0.0,
+        0.0
+      ],
+      "curlElectricZ": -0.21000000139999309,
+      "magneticTimeRate": 0.20999999999937735
+    },
+    {
+      "x": 0.0,
+      "y": 0.0,
+      "time": -0.3,
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.7010000000000001
+      ],
+      "current": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "curlElectricZ": -0.36000000085,
+      "magneticTimeRate": 0.3599999999998049
+    },
+    {
+      "x": 0.0,
+      "y": 0.0,
+      "time": 0.2,
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.8560000000000001
+      ],
+      "current": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "curlElectricZ": -0.2600000011,
+      "magneticTimeRate": 0.26000000000026
+    },
+    {
+      "x": 0.0,
+      "y": 0.0,
+      "time": 0.8,
+      "electric": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.976
+      ],
+      "current": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "curlElectricZ": -0.14000000139999996,
+      "magneticTimeRate": 0.1399999999995849
+    },
+    {
+      "x": 0.0,
+      "y": 0.6,
+      "time": -0.3,
+      "electric": [
+        0.11717999999999999,
+        -0.0,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.8250200000000001
+      ],
+      "current": [
+        328973.2673709542,
+        -0.0,
+        0.0
+      ],
+      "curlElectricZ": -0.4212000008498723,
+      "magneticTimeRate": 0.4211999999997884
+    },
+    {
+      "x": 0.0,
+      "y": 0.6,
+      "time": 0.2,
+      "electric": [
+        0.08988,
+        -0.0,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.01512
+      ],
+      "current": [
+        422078.9090792981,
+        -0.0,
+        0.0
+      ],
+      "curlElectricZ": -0.3392000010999513,
+      "magneticTimeRate": 0.339200000000206
+    },
+    {
+      "x": 0.0,
+      "y": 0.6,
+      "time": 0.8,
+      "electric": [
+        0.05711999999999998,
+        -0.0,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.18912
+      ],
+      "current": [
+        565318.3578617054,
+        -0.0,
+        0.0
+      ],
+      "curlElectricZ": -0.24080000139994895,
+      "magneticTimeRate": 0.24079999999981894
+    },
+    {
+      "x": 0.4,
+      "y": -0.5,
+      "time": -0.3,
+      "electric": [
+        -0.0987125,
+        -0.07897,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.8422450000000001
+      ],
+      "current": [
+        -274144.3894759424,
+        -219315.51158093062,
+        0.0
+      ],
+      "curlElectricZ": -0.42970000084997795,
+      "magneticTimeRate": 0.4296999999997553
+    },
+    {
+      "x": 0.4,
+      "y": -0.5,
+      "time": 0.2,
+      "electric": [
+        -0.07627500000000001,
+        -0.06102000000000001,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.03722
+      ],
+      "current": [
+        -351732.42423260113,
+        -281385.9393867877,
+        0.0
+      ],
+      "curlElectricZ": -0.35020000109992067,
+      "magneticTimeRate": 0.3501999999999672
+    },
+    {
+      "x": 0.4,
+      "y": -0.5,
+      "time": 0.8,
+      "electric": [
+        -0.04934999999999999,
+        -0.039479999999999994,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.21872
+      ],
+      "current": [
+        -471098.63155230467,
+        -376878.9052420204,
+        0.0
+      ],
+      "curlElectricZ": -0.2548000013999352,
+      "magneticTimeRate": 0.2548000000002215
+    },
+    {
+      "x": 0.4,
+      "y": 0.0,
+      "time": -0.3,
+      "electric": [
+        0.0,
+        -0.07472,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.7561200000000001
+      ],
+      "current": [
+        0.0,
+        -219315.51158093062,
+        0.0
+      ],
+      "curlElectricZ": -0.3872000008499967,
+      "magneticTimeRate": 0.38719999999936583
+    },
+    {
+      "x": 0.4,
+      "y": 0.0,
+      "time": 0.2,
+      "electric": [
+        0.0,
+        -0.05552000000000001,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.9267200000000001
+      ],
+      "current": [
+        0.0,
+        -281385.9393867877,
+        0.0
+      ],
+      "curlElectricZ": -0.2952000010999846,
+      "magneticTimeRate": 0.2952000000006061
+    },
+    {
+      "x": 0.4,
+      "y": 0.0,
+      "time": 0.8,
+      "electric": [
+        0.0,
+        -0.032479999999999995,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.0707200000000001
+      ],
+      "current": [
+        0.0,
+        -376878.9052420204,
+        0.0
+      ],
+      "curlElectricZ": -0.18480000139997013,
+      "magneticTimeRate": 0.18480000000042907
+    },
+    {
+      "x": 0.4,
+      "y": 0.6,
+      "time": -0.3,
+      "electric": [
+        0.12125999999999999,
+        -0.08084000000000001,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        0.8801400000000001
+      ],
+      "current": [
+        328973.2673709542,
+        -219315.51158093062,
+        0.0
+      ],
+      "curlElectricZ": -0.44840000084991893,
+      "magneticTimeRate": 0.4483999999993493
+    },
+    {
+      "x": 0.4,
+      "y": 0.6,
+      "time": 0.2,
+      "electric": [
+        0.09516000000000001,
+        -0.06344000000000001,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.0858400000000001
+      ],
+      "current": [
+        422078.9090792981,
+        -281385.9393867877,
+        0.0
+      ],
+      "curlElectricZ": -0.3744000011000198,
+      "magneticTimeRate": 0.37440000000055207
+    },
+    {
+      "x": 0.4,
+      "y": 0.6,
+      "time": 0.8,
+      "electric": [
+        0.06383999999999998,
+        -0.042559999999999994,
+        0.0
+      ],
+      "magnetic": [
+        0.0,
+        0.0,
+        1.28384
+      ],
+      "current": [
+        565318.3578625888,
+        -376878.9052420204,
+        0.0
+      ],
+      "curlElectricZ": -0.2856000014000992,
+      "magneticTimeRate": 0.2856000000006631
+    }
+  ],
+  "coilCases": [
+    {
+      "radius": 0.3,
+      "center": [
+        -0.5,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 0.2807297991002531,
+      "transformerEmf": -0.27832937601204644,
+      "motionalEmf": 0.044690185939705154,
+      "fluxLinkageRate": 0.2336391900723267
+    },
+    {
+      "radius": 0.3,
+      "center": [
+        -0.5,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 0.31805124124088663,
+      "transformerEmf": -0.17847980997736604,
+      "motionalEmf": 0.03756098229728448,
+      "fluxLinkageRate": 0.14091882767998387
+    },
+    {
+      "radius": 0.3,
+      "center": [
+        -0.5,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 0.3171218073375075,
+      "transformerEmf": -0.33267038378713215,
+      "motionalEmf": 0.09867833002793963,
+      "fluxLinkageRate": 0.23399205375901344
+    },
+    {
+      "radius": 0.3,
+      "center": [
+        -0.5,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 0.3523314960291392,
+      "transformerEmf": -0.22712071204177842,
+      "motionalEmf": 0.10987089474125458,
+      "fluxLinkageRate": 0.11724981730031059
+    },
+    {
+      "radius": 0.3,
+      "center": [
+        0.4,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 0.27713058949437086,
+      "transformerEmf": -0.27295499062769735,
+      "motionalEmf": -0.07003462024779304,
+      "fluxLinkageRate": 0.3429896108757269
+    },
+    {
+      "radius": 0.3,
+      "center": [
+        0.4,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 0.343962293199976,
+      "transformerEmf": -0.21524549181120894,
+      "motionalEmf": -0.11609758164615207,
+      "fluxLinkageRate": 0.331343073457141
+    },
+    {
+      "radius": 0.3,
+      "center": [
+        0.4,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 0.3135225977316252,
+      "transformerEmf": -0.32729599840278295,
+      "motionalEmf": -0.01604647615955857,
+      "fluxLinkageRate": 0.3433424745623026
+    },
+    {
+      "radius": 0.3,
+      "center": [
+        0.4,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 0.3782425479882285,
+      "transformerEmf": -0.26388639387562135,
+      "motionalEmf": -0.043787669202181904,
+      "fluxLinkageRate": 0.30767406307768974
+    },
+    {
+      "radius": 0.7,
+      "center": [
+        -0.5,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 1.6644990224842735,
+      "transformerEmf": -1.718547037788663,
+      "motionalEmf": 0.2433132345606172,
+      "fluxLinkageRate": 1.475233803229059
+    },
+    {
+      "radius": 0.7,
+      "center": [
+        -0.5,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 1.9138749528132706,
+      "transformerEmf": -1.2303393171202828,
+      "motionalEmf": 0.2044986813963266,
+      "fluxLinkageRate": 1.025840635724251
+    },
+    {
+      "radius": 0.7,
+      "center": [
+        -0.5,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 1.8626332895537696,
+      "transformerEmf": -2.0144036356752406,
+      "motionalEmf": 0.5372486857076715,
+      "fluxLinkageRate": 1.4771549499675296
+    },
+    {
+      "radius": 0.7,
+      "center": [
+        -0.5,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 2.1005118955493116,
+      "transformerEmf": -1.4951620061376387,
+      "motionalEmf": 0.5981859824801641,
+      "fluxLinkageRate": 0.8969760236566815
+    },
+    {
+      "radius": 0.7,
+      "center": [
+        0.4,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 1.6449033257411365,
+      "transformerEmf": -1.6892864951405397,
+      "motionalEmf": -0.38129959912687306,
+      "fluxLinkageRate": 2.0705860942680787
+    },
+    {
+      "radius": 0.7,
+      "center": [
+        0.4,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 2.054946235701646,
+      "transformerEmf": -1.4305080293267607,
+      "motionalEmf": -0.6320868334068277,
+      "fluxLinkageRate": 2.0625948627326363
+    },
+    {
+      "radius": 0.7,
+      "center": [
+        0.4,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 1.8430375928106326,
+      "transformerEmf": -1.9851430930271174,
+      "motionalEmf": -0.08736414797981891,
+      "fluxLinkageRate": 2.0725072410069934
+    },
+    {
+      "radius": 0.7,
+      "center": [
+        0.4,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 2.241583178437687,
+      "transformerEmf": -1.6953307183441164,
+      "motionalEmf": -0.23839953232299035,
+      "fluxLinkageRate": 1.9337302506681198
+    },
+    {
+      "radius": 1.1,
+      "center": [
+        -0.5,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 4.715160674379425,
+      "transformerEmf": -5.146954333218662,
+      "motionalEmf": 0.6008347220782588,
+      "fluxLinkageRate": 4.546119611142041
+    },
+    {
+      "radius": 1.1,
+      "center": [
+        -0.5,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 5.536238207136587,
+      "transformerEmf": -4.1877061626365535,
+      "motionalEmf": 0.5049865397746025,
+      "fluxLinkageRate": 3.682719622862818
+    },
+    {
+      "radius": 1.1,
+      "center": [
+        -0.5,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 5.204431007346955,
+      "transformerEmf": -5.877538993305924,
+      "motionalEmf": 1.3266753259311885,
+      "fluxLinkageRate": 4.550863667377669
+    },
+    {
+      "radius": 1.1,
+      "center": [
+        -0.5,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 5.997117188178649,
+      "transformerEmf": -4.841656068169209,
+      "motionalEmf": 1.4771531404102012,
+      "fluxLinkageRate": 3.364502927760915
+    },
+    {
+      "radius": 1.1,
+      "center": [
+        0.4,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 4.666771300789229,
+      "transformerEmf": -5.074698707495745,
+      "motionalEmf": -0.9415765611092177,
+      "fluxLinkageRate": 6.016275268603266
+    },
+    {
+      "radius": 1.1,
+      "center": [
+        0.4,
+        -0.2
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 5.884597905697677,
+      "transformerEmf": -4.682000329513775,
+      "motionalEmf": -1.5608674865760443,
+      "fluxLinkageRate": 6.24286781608796
+    },
+    {
+      "radius": 1.1,
+      "center": [
+        0.4,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.2,
+      "fluxPerTurn": 5.15604163375676,
+      "transformerEmf": -5.805283367583008,
+      "motionalEmf": -0.21573595725628777,
+      "fluxLinkageRate": 6.021019324840893
+    },
+    {
+      "radius": 1.1,
+      "center": [
+        0.4,
+        0.6
+      ],
+      "velocity": [
+        0.17,
+        -0.09
+      ],
+      "turns": 3,
+      "time": 0.8,
+      "fluxPerTurn": 6.345476886739739,
+      "transformerEmf": -5.335950235046431,
+      "motionalEmf": -0.5887008859404457,
+      "fluxLinkageRate": 5.9246511209860575
+    }
+  ],
+  "inferenceCases": [
+    {
+      "radii": [
+        0.3,
+        0.7
+      ],
+      "centers": [
+        [
+          0.1,
+          -0.2
+        ],
+        [
+          -0.3,
+          0.4
+        ]
+      ],
+      "turns": [
+        2,
+        3
+      ],
+      "voltages": [
+        -0.18039025016912588,
+        -1.842638339110021
+      ],
+      "trueRates": [
+        0.3,
+        0.2
+      ],
+      "independentLinearSolve": [
+        0.2999999999999999,
+        0.20000000000000018
+      ],
+      "highPrecisionRoundedGainRates": [
+        0.29999999999999993,
+        0.20000000000000007
+      ],
+      "highPrecisionRateStrings": [
+        "0.299999999999999911725155509269779102397794972350455086166981601981117635146628576430013697094975607033901503815205323033627866739797530984701891082347889641930239824994378998884993",
+        "0.200000000000000071013094285786992731328199117386212269535480056575893032203331720342361767981187792405643693445306440872662144790199846195855209553086949826385530175308292421577351"
+      ],
+      "conditionInfinity": 7.4750000000000005
+    },
+    {
+      "radii": [
+        0.7,
+        0.70000001
+      ],
+      "centers": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "turns": [
+        2,
+        3
+      ],
+      "voltages": [
+        -1.074487519380781,
+        -1.6117313315860349
+      ],
+      "trueRates": [
+        0.3,
+        0.2
+      ],
+      "independentLinearSolve": [
+        0.29999999844568775,
+        0.2000000063441315
+      ],
+      "highPrecisionRoundedGainRates": [
+        0.3000000024309715,
+        0.1999999900776673
+      ],
+      "highPrecisionRateStrings": [
+        "0.300000002430971516853446899076331132105525591364996172078778015303898276753840212297675162585822574172119925978670564468396273326639141799682086678437454861684609600480066856949719",
+        "0.199999990077667315889393579626140488120858405841486377667474921484047211378110112282492545194313993277957732513966731744202085247592791504937133421862171413821264380012747019476584"
+      ],
+      "conditionInfinity": 355714283.6702089
+    }
+  ],
+  "exactGeometryContrasts": [
+    {
+      "radii": [
+        0.3,
+        0.30000000000000004
+      ],
+      "centers": [
+        [
+          4.0,
+          4.0
+        ],
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "exact": "0.0000000000000000166533453693773490308008483272355141543694124407651128982887911433863337151706218719482421875",
+      "expected": 1.665334536937735e-17,
+      "exactZero": false
+    },
+    {
+      "radii": [
+        0.7,
+        0.70000001
+      ],
+      "centers": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "exact": "0.00000000700000008517331498569262651884769329466136219059703917782545856685061380630941130220890045166015625",
+      "expected": 7.000000085173315e-09,
+      "exactZero": false
+    },
+    {
+      "radii": [
+        0.5,
+        0.5
+      ],
+      "centers": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "exact": "0.0",
+      "expected": null,
+      "exactZero": true
+    },
+    {
+      "radii": [
+        5e-324,
+        1e-323
+      ],
+      "centers": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "exact": "3.66151293600792087919395985739457141403679379236199442686023657295609714958605677546063367468667345583875743541511108626736897338356670451055421415373629197157704212060268404246869e-647",
+      "expected": null,
+      "exactZero": false
+    }
+  ],
+  "tinyRcChanges": [
+    {
+      "theta": 1e-20,
+      "initialV": 1.0,
+      "supplyV": 2.0,
+      "expectedChange": 1e-20,
+      "exact": "0.0000000000000000000099999999999999994514827145420957165227798765491196338221352686673350644299486249638812489091544443124885325619034060460519111383194190854400590033401446512389327721967849502331608"
+    },
+    {
+      "theta": 1e-12,
+      "initialV": 1.0,
+      "supplyV": 2.0,
+      "expectedChange": 9.999999999995e-13,
+      "exact": "0.000000000000999999999999499979886647795942395386248577833883819315207414486399692714131278447279534370103329313666178289283444286068363172355806745563132978318335868716437499640014215875802788"
+    },
+    {
+      "theta": 0.3,
+      "initialV": 1.0,
+      "supplyV": 2.0,
+      "expectedChange": 0.2591817793182821,
+      "exact": "0.259181779318282125708391764055348015123652597260501406095953474240302083529189368310423374435544981114670473053358440307433458436822868124092003417017293861436103992944216345165455"
+    }
+  ]
+}

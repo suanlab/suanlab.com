@@ -1,0 +1,2 @@
+/** Shared declaration only; production and independent arithmetic stay separate. */
+export const quarticAsymptoticContract = 'Normalized finite real integral E[exp(-g X^4/4)] for X~N(0,1),g>=0. Exact finite coefficients and alternating remainder bounds; directed quadrature with analytic tails. Least omitted bound is not the actual optimal error. No continuum path integral,complex continuation or Borel resummation.';

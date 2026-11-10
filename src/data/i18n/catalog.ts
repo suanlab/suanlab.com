@@ -1,5 +1,7 @@
 // Exact source-text keys keep translations independent of record order.
 export const catalogEnglish: Record<string, string> = {
+  "시각화와 실험으로 수학·물리를 배우는 인터랙티브 교재입니다.": "Interactive textbooks for learning mathematics and physics through visualizations and experiments.",
+  "온라인 도서, 인터랙티브 교재와 출판 도서를 선택하여 살펴보세요": "Explore online books, interactive textbooks and published books.",
   "인공지능": "Artificial Intelligence",
   "4차 산업혁명의 핵심 기술인 인공지능의 기본 개념과 응용을 다루는 과목입니다. 탐색 알고리즘, 지식 표현, 추론, 머신러닝 기초를 학습합니다.": "Comprehensive course covering fundamental concepts of artificial intelligence, including search algorithms, knowledge representation, reasoning, and introduction to machine learning.",
   "인공지능 개요 및 역사": "Introduction and history of AI",

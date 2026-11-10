@@ -1,0 +1,7548 @@
+[
+  {
+    "values": [
+      2,
+      0,
+      -1,
+      3,
+      -3,
+      -3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-1/1000",
+      "timePrime": "3000",
+      "positionPrime": "-4500",
+      "finalVelocityPrime": "-3",
+      "forcePrime": "-2",
+      "energyPrime": "9000",
+      "wrongPosition": "-4500"
+    }
+  },
+  {
+    "values": [
+      5,
+      -5,
+      -2,
+      3,
+      -3,
+      -3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "5000",
+      "initialVelocityPrime": "-50",
+      "accelerationPrime": "-1/5",
+      "timePrime": "300",
+      "positionPrime": "-24000",
+      "finalVelocityPrime": "-110",
+      "forcePrime": "-1000",
+      "energyPrime": "30250000",
+      "wrongPosition": "-183/2"
+    }
+  },
+  {
+    "values": [
+      1,
+      5,
+      3,
+      4,
+      -3,
+      -3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "500",
+      "accelerationPrime": "30",
+      "timePrime": "40",
+      "positionPrime": "44000",
+      "finalVelocityPrime": "1700",
+      "forcePrime": "30000",
+      "energyPrime": "1445000000",
+      "wrongPosition": "13/5"
+    }
+  },
+  {
+    "values": [
+      5,
+      4,
+      2,
+      0,
+      -3,
+      -3,
+      0
+    ],
+    "expected": {
+      "massPrime": "5000",
+      "initialVelocityPrime": "4000",
+      "accelerationPrime": "2000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "4000",
+      "forcePrime": "10000000",
+      "energyPrime": "40000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      -3,
+      3,
+      -3,
+      -3,
+      1
+    ],
+    "expected": {
+      "massPrime": "4000",
+      "initialVelocityPrime": "10000",
+      "accelerationPrime": "-300000",
+      "timePrime": "3/10",
+      "positionPrime": "-10500",
+      "finalVelocityPrime": "-80000",
+      "forcePrime": "-1200000000",
+      "energyPrime": "12800000000000",
+      "wrongPosition": "33/200000"
+    }
+  },
+  {
+    "values": [
+      2,
+      3,
+      0,
+      5,
+      -3,
+      -3,
+      2
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "300000",
+      "accelerationPrime": "0",
+      "timePrime": "1/20",
+      "positionPrime": "15000",
+      "finalVelocityPrime": "300000",
+      "forcePrime": "0",
+      "energyPrime": "90000000000000",
+      "wrongPosition": "3/20000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -4,
+      3,
+      2,
+      -3,
+      -3,
+      3
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "-4000000",
+      "accelerationPrime": "3000000000",
+      "timePrime": "1/500",
+      "positionPrime": "-2000",
+      "finalVelocityPrime": "2000000",
+      "forcePrime": "6000000000000",
+      "energyPrime": "4000000000000000",
+      "wrongPosition": "-3997/500000000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -2,
+      -3,
+      5,
+      -3,
+      -2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "-2",
+      "accelerationPrime": "-3/1000",
+      "timePrime": "5000",
+      "positionPrime": "-47500",
+      "finalVelocityPrime": "-17",
+      "forcePrime": "-9/10",
+      "energyPrime": "43350",
+      "wrongPosition": "-37510"
+    }
+  },
+  {
+    "values": [
+      3,
+      3,
+      1,
+      3,
+      -3,
+      -2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "30",
+      "accelerationPrime": "1/10",
+      "timePrime": "300",
+      "positionPrime": "13500",
+      "finalVelocityPrime": "60",
+      "forcePrime": "30",
+      "energyPrime": "540000",
+      "wrongPosition": "459/10"
+    }
+  },
+  {
+    "values": [
+      5,
+      2,
+      0,
+      4,
+      -3,
+      -2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "200",
+      "accelerationPrime": "0",
+      "timePrime": "40",
+      "positionPrime": "8000",
+      "finalVelocityPrime": "200",
+      "forcePrime": "0",
+      "energyPrime": "10000000",
+      "wrongPosition": "2/25"
+    }
+  },
+  {
+    "values": [
+      4,
+      0,
+      -2,
+      5,
+      -3,
+      -2,
+      0
+    ],
+    "expected": {
+      "massPrime": "400",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-2000",
+      "timePrime": "5",
+      "positionPrime": "-25000",
+      "finalVelocityPrime": "-10000",
+      "forcePrime": "-800000",
+      "energyPrime": "20000000000",
+      "wrongPosition": "-1/40"
+    }
+  },
+  {
+    "values": [
+      4,
+      -2,
+      -2,
+      4,
+      -3,
+      -2,
+      1
+    ],
+    "expected": {
+      "massPrime": "400",
+      "initialVelocityPrime": "-20000",
+      "accelerationPrime": "-200000",
+      "timePrime": "2/5",
+      "positionPrime": "-24000",
+      "finalVelocityPrime": "-100000",
+      "forcePrime": "-80000000",
+      "energyPrime": "2000000000000",
+      "wrongPosition": "-3/3125"
+    }
+  },
+  {
+    "values": [
+      2,
+      5,
+      -3,
+      4,
+      -3,
+      -2,
+      2
+    ],
+    "expected": {
+      "massPrime": "200",
+      "initialVelocityPrime": "500000",
+      "accelerationPrime": "-30000000",
+      "timePrime": "1/25",
+      "positionPrime": "-4000",
+      "finalVelocityPrime": "-700000",
+      "forcePrime": "-6000000000",
+      "energyPrime": "49000000000000",
+      "wrongPosition": "247/1250000"
+    }
+  },
+  {
+    "values": [
+      3,
+      2,
+      1,
+      0,
+      -3,
+      -2,
+      3
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "2000000",
+      "accelerationPrime": "1000000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "2000000",
+      "forcePrime": "300000000000",
+      "energyPrime": "600000000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      0,
+      0,
+      3,
+      -3,
+      -1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "0",
+      "timePrime": "3000",
+      "positionPrime": "0",
+      "finalVelocityPrime": "0",
+      "forcePrime": "0",
+      "energyPrime": "0",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      -2,
+      -2,
+      5,
+      -3,
+      -1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "40",
+      "initialVelocityPrime": "-20",
+      "accelerationPrime": "-1/5",
+      "timePrime": "500",
+      "positionPrime": "-35000",
+      "finalVelocityPrime": "-120",
+      "forcePrime": "-8",
+      "energyPrime": "288000",
+      "wrongPosition": "-251"
+    }
+  },
+  {
+    "values": [
+      5,
+      -5,
+      1,
+      5,
+      -3,
+      -1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "-500",
+      "accelerationPrime": "10",
+      "timePrime": "50",
+      "positionPrime": "-12500",
+      "finalVelocityPrime": "0",
+      "forcePrime": "500",
+      "energyPrime": "0",
+      "wrongPosition": "1"
+    }
+  },
+  {
+    "values": [
+      4,
+      3,
+      -2,
+      4,
+      -3,
+      -1,
+      0
+    ],
+    "expected": {
+      "massPrime": "40",
+      "initialVelocityPrime": "3000",
+      "accelerationPrime": "-2000",
+      "timePrime": "4",
+      "positionPrime": "-4000",
+      "finalVelocityPrime": "-5000",
+      "forcePrime": "-80000",
+      "energyPrime": "500000000",
+      "wrongPosition": "-1/250"
+    }
+  },
+  {
+    "values": [
+      3,
+      5,
+      3,
+      3,
+      -3,
+      -1,
+      1
+    ],
+    "expected": {
+      "massPrime": "30",
+      "initialVelocityPrime": "50000",
+      "accelerationPrime": "300000",
+      "timePrime": "3/10",
+      "positionPrime": "28500",
+      "finalVelocityPrime": "140000",
+      "forcePrime": "9000000",
+      "energyPrime": "294000000000",
+      "wrongPosition": "327/200000"
+    }
+  },
+  {
+    "values": [
+      1,
+      -4,
+      1,
+      0,
+      -3,
+      -1,
+      2
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "-400000",
+      "accelerationPrime": "10000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-400000",
+      "forcePrime": "100000000",
+      "energyPrime": "800000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      1,
+      -2,
+      5,
+      -3,
+      -1,
+      3
+    ],
+    "expected": {
+      "massPrime": "30",
+      "initialVelocityPrime": "1000000",
+      "accelerationPrime": "-2000000000",
+      "timePrime": "1/200",
+      "positionPrime": "-20000",
+      "finalVelocityPrime": "-9000000",
+      "forcePrime": "-60000000000",
+      "energyPrime": "1215000000000000",
+      "wrongPosition": "199/40000000"
+    }
+  },
+  {
+    "values": [
+      5,
+      -5,
+      3,
+      2,
+      -3,
+      0,
+      -3
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "-5",
+      "accelerationPrime": "3/1000",
+      "timePrime": "2000",
+      "positionPrime": "-4000",
+      "finalVelocityPrime": "1",
+      "forcePrime": "3/200",
+      "energyPrime": "5/2",
+      "wrongPosition": "5990"
+    }
+  },
+  {
+    "values": [
+      5,
+      0,
+      -3,
+      1,
+      -3,
+      0,
+      -2
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-3/10",
+      "timePrime": "100",
+      "positionPrime": "-1500",
+      "finalVelocityPrime": "-30",
+      "forcePrime": "-3/2",
+      "energyPrime": "2250",
+      "wrongPosition": "-15"
+    }
+  },
+  {
+    "values": [
+      1,
+      0,
+      -1,
+      5,
+      -3,
+      0,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-10",
+      "timePrime": "50",
+      "positionPrime": "-12500",
+      "finalVelocityPrime": "-500",
+      "forcePrime": "-10",
+      "energyPrime": "125000",
+      "wrongPosition": "-5/4"
+    }
+  },
+  {
+    "values": [
+      4,
+      -2,
+      3,
+      3,
+      -3,
+      0,
+      0
+    ],
+    "expected": {
+      "massPrime": "4",
+      "initialVelocityPrime": "-2000",
+      "accelerationPrime": "3000",
+      "timePrime": "3",
+      "positionPrime": "7500",
+      "finalVelocityPrime": "7000",
+      "forcePrime": "12000",
+      "energyPrime": "98000000",
+      "wrongPosition": "3/400"
+    }
+  },
+  {
+    "values": [
+      2,
+      -3,
+      -3,
+      2,
+      -3,
+      0,
+      1
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "-30000",
+      "accelerationPrime": "-300000",
+      "timePrime": "1/5",
+      "positionPrime": "-12000",
+      "finalVelocityPrime": "-90000",
+      "forcePrime": "-600000",
+      "energyPrime": "8100000000",
+      "wrongPosition": "-33/50000"
+    }
+  },
+  {
+    "values": [
+      2,
+      5,
+      0,
+      0,
+      -3,
+      0,
+      2
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "500000",
+      "accelerationPrime": "0",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "500000",
+      "forcePrime": "0",
+      "energyPrime": "250000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      4,
+      1,
+      0,
+      -3,
+      0,
+      3
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "4000000",
+      "accelerationPrime": "1000000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "4000000",
+      "forcePrime": "5000000000",
+      "energyPrime": "40000000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      3,
+      0,
+      0,
+      -3,
+      1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "3",
+      "accelerationPrime": "0",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "3",
+      "forcePrime": "0",
+      "energyPrime": "9/4",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      5,
+      1,
+      4,
+      -3,
+      1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "50",
+      "accelerationPrime": "1/10",
+      "timePrime": "400",
+      "positionPrime": "28000",
+      "finalVelocityPrime": "90",
+      "forcePrime": "1/20",
+      "energyPrime": "2025",
+      "wrongPosition": "82"
+    }
+  },
+  {
+    "values": [
+      5,
+      -1,
+      3,
+      0,
+      -3,
+      1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "-100",
+      "accelerationPrime": "30",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-100",
+      "forcePrime": "15",
+      "energyPrime": "2500",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      -2,
+      1,
+      2,
+      -3,
+      1,
+      0
+    ],
+    "expected": {
+      "massPrime": "2/5",
+      "initialVelocityPrime": "-2000",
+      "accelerationPrime": "1000",
+      "timePrime": "2",
+      "positionPrime": "-2000",
+      "finalVelocityPrime": "0",
+      "forcePrime": "400",
+      "energyPrime": "0",
+      "wrongPosition": "-1/500"
+    }
+  },
+  {
+    "values": [
+      5,
+      5,
+      2,
+      1,
+      -3,
+      1,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "50000",
+      "accelerationPrime": "200000",
+      "timePrime": "1/10",
+      "positionPrime": "6000",
+      "finalVelocityPrime": "70000",
+      "forcePrime": "100000",
+      "energyPrime": "1225000000",
+      "wrongPosition": "51/100000"
+    }
+  },
+  {
+    "values": [
+      3,
+      5,
+      1,
+      1,
+      -3,
+      1,
+      2
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "500000",
+      "accelerationPrime": "10000000",
+      "timePrime": "1/100",
+      "positionPrime": "5500",
+      "finalVelocityPrime": "600000",
+      "forcePrime": "3000000",
+      "energyPrime": "54000000000",
+      "wrongPosition": "1001/20000000"
+    }
+  },
+  {
+    "values": [
+      3,
+      2,
+      1,
+      4,
+      -3,
+      1,
+      3
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "2000000",
+      "accelerationPrime": "1000000000",
+      "timePrime": "1/250",
+      "positionPrime": "16000",
+      "finalVelocityPrime": "6000000",
+      "forcePrime": "300000000",
+      "energyPrime": "5400000000000",
+      "wrongPosition": "1001/125000000"
+    }
+  },
+  {
+    "values": [
+      1,
+      5,
+      -3,
+      5,
+      -3,
+      2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "5",
+      "accelerationPrime": "-3/1000",
+      "timePrime": "5000",
+      "positionPrime": "-12500",
+      "finalVelocityPrime": "-10",
+      "forcePrime": "-3/100000",
+      "energyPrime": "1/2",
+      "wrongPosition": "-37475"
+    }
+  },
+  {
+    "values": [
+      2,
+      -5,
+      1,
+      2,
+      -3,
+      2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "-50",
+      "accelerationPrime": "1/10",
+      "timePrime": "200",
+      "positionPrime": "-8000",
+      "finalVelocityPrime": "-30",
+      "forcePrime": "1/500",
+      "energyPrime": "9",
+      "wrongPosition": "19"
+    }
+  },
+  {
+    "values": [
+      1,
+      2,
+      -2,
+      0,
+      -3,
+      2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "200",
+      "accelerationPrime": "-20",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "200",
+      "forcePrime": "-1/5",
+      "energyPrime": "200",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      -1,
+      2,
+      2,
+      -3,
+      2,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "-1000",
+      "accelerationPrime": "2000",
+      "timePrime": "2",
+      "positionPrime": "2000",
+      "finalVelocityPrime": "3000",
+      "forcePrime": "80",
+      "energyPrime": "180000",
+      "wrongPosition": "1/500"
+    }
+  },
+  {
+    "values": [
+      2,
+      -5,
+      -2,
+      2,
+      -3,
+      2,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "-50000",
+      "accelerationPrime": "-200000",
+      "timePrime": "1/5",
+      "positionPrime": "-14000",
+      "finalVelocityPrime": "-90000",
+      "forcePrime": "-4000",
+      "energyPrime": "81000000",
+      "wrongPosition": "-13/12500"
+    }
+  },
+  {
+    "values": [
+      1,
+      -5,
+      -1,
+      4,
+      -3,
+      2,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "-500000",
+      "accelerationPrime": "-10000000",
+      "timePrime": "1/25",
+      "positionPrime": "-28000",
+      "finalVelocityPrime": "-900000",
+      "forcePrime": "-100000",
+      "energyPrime": "4050000000",
+      "wrongPosition": "-251/1250000"
+    }
+  },
+  {
+    "values": [
+      4,
+      2,
+      3,
+      2,
+      -3,
+      2,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "2000000",
+      "accelerationPrime": "3000000000",
+      "timePrime": "1/500",
+      "positionPrime": "10000",
+      "finalVelocityPrime": "8000000",
+      "forcePrime": "120000000",
+      "energyPrime": "1280000000000",
+      "wrongPosition": "2003/500000000"
+    }
+  },
+  {
+    "values": [
+      4,
+      -3,
+      2,
+      0,
+      -3,
+      3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/250",
+      "initialVelocityPrime": "-3",
+      "accelerationPrime": "1/500",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-3",
+      "forcePrime": "1/125000",
+      "energyPrime": "9/500",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      -1,
+      1,
+      -3,
+      3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/250",
+      "initialVelocityPrime": "10",
+      "accelerationPrime": "-1/10",
+      "timePrime": "100",
+      "positionPrime": "500",
+      "finalVelocityPrime": "0",
+      "forcePrime": "-1/2500",
+      "energyPrime": "0",
+      "wrongPosition": "-49/10"
+    }
+  },
+  {
+    "values": [
+      3,
+      1,
+      -3,
+      5,
+      -3,
+      3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "100",
+      "accelerationPrime": "-30",
+      "timePrime": "50",
+      "positionPrime": "-32500",
+      "finalVelocityPrime": "-1400",
+      "forcePrime": "-9/100",
+      "energyPrime": "2940",
+      "wrongPosition": "-37/10"
+    }
+  },
+  {
+    "values": [
+      1,
+      -1,
+      -2,
+      2,
+      -3,
+      3,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/1000",
+      "initialVelocityPrime": "-1000",
+      "accelerationPrime": "-2000",
+      "timePrime": "2",
+      "positionPrime": "-6000",
+      "finalVelocityPrime": "-5000",
+      "forcePrime": "-2",
+      "energyPrime": "12500",
+      "wrongPosition": "-3/500"
+    }
+  },
+  {
+    "values": [
+      2,
+      -1,
+      2,
+      3,
+      -3,
+      3,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "-10000",
+      "accelerationPrime": "200000",
+      "timePrime": "3/10",
+      "positionPrime": "6000",
+      "finalVelocityPrime": "50000",
+      "forcePrime": "400",
+      "energyPrime": "2500000",
+      "wrongPosition": "-21/100000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -2,
+      1,
+      1,
+      -3,
+      3,
+      2
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "-200000",
+      "accelerationPrime": "10000000",
+      "timePrime": "1/100",
+      "positionPrime": "-1500",
+      "finalVelocityPrime": "-100000",
+      "forcePrime": "30000",
+      "energyPrime": "15000000",
+      "wrongPosition": "-399/20000000"
+    }
+  },
+  {
+    "values": [
+      1,
+      -5,
+      -1,
+      2,
+      -3,
+      3,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/1000",
+      "initialVelocityPrime": "-5000000",
+      "accelerationPrime": "-1000000000",
+      "timePrime": "1/500",
+      "positionPrime": "-12000",
+      "finalVelocityPrime": "-7000000",
+      "forcePrime": "-1000000",
+      "energyPrime": "24500000000",
+      "wrongPosition": "-5001/500000000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -5,
+      -2,
+      1,
+      -2,
+      -3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "3000",
+      "initialVelocityPrime": "-1/2",
+      "accelerationPrime": "-1/5000",
+      "timePrime": "1000",
+      "positionPrime": "-600",
+      "finalVelocityPrime": "-7/10",
+      "forcePrime": "-3/5",
+      "energyPrime": "735",
+      "wrongPosition": "-10050"
+    }
+  },
+  {
+    "values": [
+      1,
+      -2,
+      -1,
+      2,
+      -2,
+      -3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "-2",
+      "accelerationPrime": "-1/100",
+      "timePrime": "200",
+      "positionPrime": "-600",
+      "finalVelocityPrime": "-4",
+      "forcePrime": "-10",
+      "energyPrime": "8000",
+      "wrongPosition": "-204"
+    }
+  },
+  {
+    "values": [
+      4,
+      -3,
+      1,
+      5,
+      -2,
+      -3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "4000",
+      "initialVelocityPrime": "-30",
+      "accelerationPrime": "1",
+      "timePrime": "50",
+      "positionPrime": "-250",
+      "finalVelocityPrime": "20",
+      "forcePrime": "4000",
+      "energyPrime": "800000",
+      "wrongPosition": "11"
+    }
+  },
+  {
+    "values": [
+      2,
+      -4,
+      0,
+      1,
+      -2,
+      -3,
+      0
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "-400",
+      "accelerationPrime": "0",
+      "timePrime": "1",
+      "positionPrime": "-400",
+      "finalVelocityPrime": "-400",
+      "forcePrime": "0",
+      "energyPrime": "160000000",
+      "wrongPosition": "-1/25"
+    }
+  },
+  {
+    "values": [
+      3,
+      2,
+      0,
+      5,
+      -2,
+      -3,
+      1
+    ],
+    "expected": {
+      "massPrime": "3000",
+      "initialVelocityPrime": "2000",
+      "accelerationPrime": "0",
+      "timePrime": "1/2",
+      "positionPrime": "1000",
+      "finalVelocityPrime": "2000",
+      "forcePrime": "0",
+      "energyPrime": "6000000000",
+      "wrongPosition": "1/100"
+    }
+  },
+  {
+    "values": [
+      1,
+      3,
+      2,
+      2,
+      -2,
+      -3,
+      2
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "30000",
+      "accelerationPrime": "2000000",
+      "timePrime": "1/50",
+      "positionPrime": "1000",
+      "finalVelocityPrime": "70000",
+      "forcePrime": "2000000000",
+      "energyPrime": "2450000000000",
+      "wrongPosition": "151/250000"
+    }
+  },
+  {
+    "values": [
+      2,
+      1,
+      -2,
+      4,
+      -2,
+      -3,
+      3
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "100000",
+      "accelerationPrime": "-200000000",
+      "timePrime": "1/250",
+      "positionPrime": "-1200",
+      "finalVelocityPrime": "-700000",
+      "forcePrime": "-400000000000",
+      "energyPrime": "490000000000000",
+      "wrongPosition": "249/6250000"
+    }
+  },
+  {
+    "values": [
+      5,
+      -4,
+      -2,
+      4,
+      -2,
+      -2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "-2/5",
+      "accelerationPrime": "-1/5000",
+      "timePrime": "4000",
+      "positionPrime": "-3200",
+      "finalVelocityPrime": "-6/5",
+      "forcePrime": "-1/10",
+      "energyPrime": "360",
+      "wrongPosition": "-160160"
+    }
+  },
+  {
+    "values": [
+      2,
+      4,
+      2,
+      1,
+      -2,
+      -2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "200",
+      "initialVelocityPrime": "4",
+      "accelerationPrime": "1/50",
+      "timePrime": "100",
+      "positionPrime": "500",
+      "finalVelocityPrime": "6",
+      "forcePrime": "4",
+      "energyPrime": "3600",
+      "wrongPosition": "104"
+    }
+  },
+  {
+    "values": [
+      1,
+      2,
+      -3,
+      1,
+      -2,
+      -2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "100",
+      "initialVelocityPrime": "20",
+      "accelerationPrime": "-3",
+      "timePrime": "10",
+      "positionPrime": "50",
+      "finalVelocityPrime": "-10",
+      "forcePrime": "-300",
+      "energyPrime": "5000",
+      "wrongPosition": "-13/10"
+    }
+  },
+  {
+    "values": [
+      1,
+      -3,
+      -1,
+      2,
+      -2,
+      -2,
+      0
+    ],
+    "expected": {
+      "massPrime": "100",
+      "initialVelocityPrime": "-300",
+      "accelerationPrime": "-100",
+      "timePrime": "2",
+      "positionPrime": "-800",
+      "finalVelocityPrime": "-500",
+      "forcePrime": "-10000",
+      "energyPrime": "12500000",
+      "wrongPosition": "-2/25"
+    }
+  },
+  {
+    "values": [
+      3,
+      1,
+      3,
+      0,
+      -2,
+      -2,
+      1
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "1000",
+      "accelerationPrime": "30000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1000",
+      "forcePrime": "9000000",
+      "energyPrime": "150000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      -3,
+      3,
+      0,
+      -2,
+      -2,
+      2
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "-30000",
+      "accelerationPrime": "3000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-30000",
+      "forcePrime": "900000000",
+      "energyPrime": "135000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      -3,
+      3,
+      5,
+      -2,
+      -2,
+      3
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "-300000",
+      "accelerationPrime": "300000000",
+      "timePrime": "1/200",
+      "positionPrime": "2250",
+      "finalVelocityPrime": "1200000",
+      "forcePrime": "150000000000",
+      "energyPrime": "360000000000000",
+      "wrongPosition": "-1197/8000000"
+    }
+  },
+  {
+    "values": [
+      1,
+      -3,
+      3,
+      2,
+      -2,
+      -1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "-3/10",
+      "accelerationPrime": "3/10000",
+      "timePrime": "2000",
+      "positionPrime": "0",
+      "finalVelocityPrime": "3/10",
+      "forcePrime": "3/1000",
+      "energyPrime": "9/20",
+      "wrongPosition": "59940"
+    }
+  },
+  {
+    "values": [
+      5,
+      -1,
+      0,
+      5,
+      -2,
+      -1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "-1",
+      "accelerationPrime": "0",
+      "timePrime": "500",
+      "positionPrime": "-500",
+      "finalVelocityPrime": "-1",
+      "forcePrime": "0",
+      "energyPrime": "25",
+      "wrongPosition": "-5"
+    }
+  },
+  {
+    "values": [
+      1,
+      -5,
+      -2,
+      1,
+      -2,
+      -1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "-50",
+      "accelerationPrime": "-2",
+      "timePrime": "10",
+      "positionPrime": "-600",
+      "finalVelocityPrime": "-70",
+      "forcePrime": "-20",
+      "energyPrime": "24500",
+      "wrongPosition": "-3/2"
+    }
+  },
+  {
+    "values": [
+      2,
+      2,
+      2,
+      0,
+      -2,
+      -1,
+      0
+    ],
+    "expected": {
+      "massPrime": "20",
+      "initialVelocityPrime": "200",
+      "accelerationPrime": "200",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "200",
+      "forcePrime": "4000",
+      "energyPrime": "400000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      0,
+      0,
+      0,
+      -2,
+      -1,
+      1
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "0",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "0",
+      "forcePrime": "0",
+      "energyPrime": "0",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      -2,
+      0,
+      1,
+      -2,
+      -1,
+      2
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "-20000",
+      "accelerationPrime": "0",
+      "timePrime": "1/100",
+      "positionPrime": "-200",
+      "finalVelocityPrime": "-20000",
+      "forcePrime": "0",
+      "energyPrime": "2000000000",
+      "wrongPosition": "-1/5000"
+    }
+  },
+  {
+    "values": [
+      3,
+      5,
+      3,
+      3,
+      -2,
+      -1,
+      3
+    ],
+    "expected": {
+      "massPrime": "30",
+      "initialVelocityPrime": "500000",
+      "accelerationPrime": "300000000",
+      "timePrime": "3/1000",
+      "positionPrime": "2850",
+      "finalVelocityPrime": "1400000",
+      "forcePrime": "9000000000",
+      "energyPrime": "29400000000000",
+      "wrongPosition": "30027/200000000"
+    }
+  },
+  {
+    "values": [
+      1,
+      5,
+      0,
+      2,
+      -2,
+      0,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "1/2",
+      "accelerationPrime": "0",
+      "timePrime": "2000",
+      "positionPrime": "1000",
+      "finalVelocityPrime": "1/2",
+      "forcePrime": "0",
+      "energyPrime": "1/8",
+      "wrongPosition": "100"
+    }
+  },
+  {
+    "values": [
+      3,
+      -2,
+      1,
+      2,
+      -2,
+      0,
+      -2
+    ],
+    "expected": {
+      "massPrime": "3",
+      "initialVelocityPrime": "-2",
+      "accelerationPrime": "1/100",
+      "timePrime": "200",
+      "positionPrime": "-200",
+      "finalVelocityPrime": "0",
+      "forcePrime": "3/100",
+      "energyPrime": "0",
+      "wrongPosition": "196"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      3,
+      3,
+      -2,
+      0,
+      -1
+    ],
+    "expected": {
+      "massPrime": "4",
+      "initialVelocityPrime": "10",
+      "accelerationPrime": "3",
+      "timePrime": "30",
+      "positionPrime": "1650",
+      "finalVelocityPrime": "100",
+      "forcePrime": "12",
+      "energyPrime": "20000",
+      "wrongPosition": "69/5"
+    }
+  },
+  {
+    "values": [
+      1,
+      -1,
+      -2,
+      1,
+      -2,
+      0,
+      0
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "-100",
+      "accelerationPrime": "-200",
+      "timePrime": "1",
+      "positionPrime": "-200",
+      "finalVelocityPrime": "-300",
+      "forcePrime": "-200",
+      "energyPrime": "45000",
+      "wrongPosition": "-1/50"
+    }
+  },
+  {
+    "values": [
+      1,
+      5,
+      -3,
+      1,
+      -2,
+      0,
+      1
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "5000",
+      "accelerationPrime": "-30000",
+      "timePrime": "1/10",
+      "positionPrime": "350",
+      "finalVelocityPrime": "2000",
+      "forcePrime": "-30000",
+      "energyPrime": "2000000",
+      "wrongPosition": "97/20000"
+    }
+  },
+  {
+    "values": [
+      1,
+      -4,
+      3,
+      1,
+      -2,
+      0,
+      2
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "-40000",
+      "accelerationPrime": "3000000",
+      "timePrime": "1/100",
+      "positionPrime": "-250",
+      "finalVelocityPrime": "-10000",
+      "forcePrime": "3000000",
+      "energyPrime": "50000000",
+      "wrongPosition": "-797/2000000"
+    }
+  },
+  {
+    "values": [
+      1,
+      1,
+      0,
+      0,
+      -2,
+      0,
+      3
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "100000",
+      "accelerationPrime": "0",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "100000",
+      "forcePrime": "0",
+      "energyPrime": "5000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      -2,
+      -3,
+      3,
+      -2,
+      1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "-1/5",
+      "accelerationPrime": "-3/10000",
+      "timePrime": "3000",
+      "positionPrime": "-1950",
+      "finalVelocityPrime": "-11/10",
+      "forcePrime": "-3/20000",
+      "energyPrime": "121/400",
+      "wrongPosition": "-135060"
+    }
+  },
+  {
+    "values": [
+      3,
+      5,
+      2,
+      5,
+      -2,
+      1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "5",
+      "accelerationPrime": "1/50",
+      "timePrime": "500",
+      "positionPrime": "5000",
+      "finalVelocityPrime": "15",
+      "forcePrime": "3/500",
+      "energyPrime": "135/4",
+      "wrongPosition": "2525"
+    }
+  },
+  {
+    "values": [
+      1,
+      -3,
+      -3,
+      5,
+      -2,
+      1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/10",
+      "initialVelocityPrime": "-30",
+      "accelerationPrime": "-3",
+      "timePrime": "50",
+      "positionPrime": "-5250",
+      "finalVelocityPrime": "-180",
+      "forcePrime": "-3/10",
+      "energyPrime": "1620",
+      "wrongPosition": "-39"
+    }
+  },
+  {
+    "values": [
+      2,
+      0,
+      0,
+      1,
+      -2,
+      1,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/5",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "0",
+      "timePrime": "1",
+      "positionPrime": "0",
+      "finalVelocityPrime": "0",
+      "forcePrime": "0",
+      "energyPrime": "0",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      2,
+      1,
+      5,
+      -2,
+      1,
+      1
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "2000",
+      "accelerationPrime": "10000",
+      "timePrime": "1/2",
+      "positionPrime": "2250",
+      "finalVelocityPrime": "7000",
+      "forcePrime": "3000",
+      "energyPrime": "7350000",
+      "wrongPosition": "9/800"
+    }
+  },
+  {
+    "values": [
+      2,
+      4,
+      -1,
+      1,
+      -2,
+      1,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/5",
+      "initialVelocityPrime": "40000",
+      "accelerationPrime": "-1000000",
+      "timePrime": "1/100",
+      "positionPrime": "350",
+      "finalVelocityPrime": "30000",
+      "forcePrime": "-200000",
+      "energyPrime": "90000000",
+      "wrongPosition": "799/2000000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -4,
+      -3,
+      0,
+      -2,
+      1,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/5",
+      "initialVelocityPrime": "-400000",
+      "accelerationPrime": "-300000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-400000",
+      "forcePrime": "-60000000",
+      "energyPrime": "16000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      -2,
+      2,
+      -2,
+      2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "1/10",
+      "accelerationPrime": "-1/5000",
+      "timePrime": "2000",
+      "positionPrime": "-200",
+      "finalVelocityPrime": "-3/10",
+      "forcePrime": "-1/125000",
+      "energyPrime": "9/5000",
+      "wrongPosition": "-39980"
+    }
+  },
+  {
+    "values": [
+      5,
+      0,
+      1,
+      2,
+      -2,
+      2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/20",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "1/100",
+      "timePrime": "200",
+      "positionPrime": "200",
+      "finalVelocityPrime": "2",
+      "forcePrime": "1/2000",
+      "energyPrime": "1/10",
+      "wrongPosition": "200"
+    }
+  },
+  {
+    "values": [
+      4,
+      5,
+      -2,
+      4,
+      -2,
+      2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "50",
+      "accelerationPrime": "-2",
+      "timePrime": "40",
+      "positionPrime": "400",
+      "finalVelocityPrime": "-30",
+      "forcePrime": "-2/25",
+      "energyPrime": "18",
+      "wrongPosition": "-14"
+    }
+  },
+  {
+    "values": [
+      2,
+      3,
+      2,
+      4,
+      -2,
+      2,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "300",
+      "accelerationPrime": "200",
+      "timePrime": "4",
+      "positionPrime": "2800",
+      "finalVelocityPrime": "1100",
+      "forcePrime": "4",
+      "energyPrime": "12100",
+      "wrongPosition": "7/25"
+    }
+  },
+  {
+    "values": [
+      2,
+      -3,
+      -1,
+      5,
+      -2,
+      2,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "-3000",
+      "accelerationPrime": "-10000",
+      "timePrime": "1/2",
+      "positionPrime": "-2750",
+      "finalVelocityPrime": "-8000",
+      "forcePrime": "-200",
+      "energyPrime": "640000",
+      "wrongPosition": "-13/800"
+    }
+  },
+  {
+    "values": [
+      5,
+      4,
+      -2,
+      4,
+      -2,
+      2,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/20",
+      "initialVelocityPrime": "40000",
+      "accelerationPrime": "-2000000",
+      "timePrime": "1/25",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-40000",
+      "forcePrime": "-100000",
+      "energyPrime": "40000000",
+      "wrongPosition": "99/62500"
+    }
+  },
+  {
+    "values": [
+      1,
+      4,
+      0,
+      0,
+      -2,
+      2,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "400000",
+      "accelerationPrime": "0",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "400000",
+      "forcePrime": "0",
+      "energyPrime": "800000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      4,
+      0,
+      2,
+      -2,
+      3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "2/5",
+      "accelerationPrime": "0",
+      "timePrime": "2000",
+      "positionPrime": "800",
+      "finalVelocityPrime": "2/5",
+      "forcePrime": "0",
+      "energyPrime": "3/12500",
+      "wrongPosition": "80"
+    }
+  },
+  {
+    "values": [
+      3,
+      -5,
+      -2,
+      0,
+      -2,
+      3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "-5",
+      "accelerationPrime": "-1/50",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-5",
+      "forcePrime": "-3/50000",
+      "energyPrime": "3/80",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      -2,
+      -1,
+      0,
+      -2,
+      3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "-20",
+      "accelerationPrime": "-1",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-20",
+      "forcePrime": "-3/1000",
+      "energyPrime": "3/5",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      -5,
+      3,
+      0,
+      -2,
+      3,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/250",
+      "initialVelocityPrime": "-500",
+      "accelerationPrime": "300",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-500",
+      "forcePrime": "6/5",
+      "energyPrime": "500",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      2,
+      2,
+      3,
+      4,
+      -2,
+      3,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "2000",
+      "accelerationPrime": "30000",
+      "timePrime": "2/5",
+      "positionPrime": "3200",
+      "finalVelocityPrime": "14000",
+      "forcePrime": "60",
+      "energyPrime": "196000",
+      "wrongPosition": "13/1250"
+    }
+  },
+  {
+    "values": [
+      1,
+      1,
+      -3,
+      2,
+      -2,
+      3,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/1000",
+      "initialVelocityPrime": "10000",
+      "accelerationPrime": "-3000000",
+      "timePrime": "1/50",
+      "positionPrime": "-400",
+      "finalVelocityPrime": "-50000",
+      "forcePrime": "-3000",
+      "energyPrime": "1250000",
+      "wrongPosition": "97/500000"
+    }
+  },
+  {
+    "values": [
+      5,
+      4,
+      0,
+      3,
+      -2,
+      3,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/200",
+      "initialVelocityPrime": "400000",
+      "accelerationPrime": "0",
+      "timePrime": "3/1000",
+      "positionPrime": "1200",
+      "finalVelocityPrime": "400000",
+      "forcePrime": "0",
+      "energyPrime": "400000000",
+      "wrongPosition": "3/25000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -4,
+      -3,
+      5,
+      -1,
+      -3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "-1/25",
+      "accelerationPrime": "-3/100000",
+      "timePrime": "5000",
+      "positionPrime": "-575",
+      "finalVelocityPrime": "-19/100",
+      "forcePrime": "-3/50",
+      "energyPrime": "361/10",
+      "wrongPosition": "-3752000"
+    }
+  },
+  {
+    "values": [
+      4,
+      -3,
+      -2,
+      5,
+      -1,
+      -3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "4000",
+      "initialVelocityPrime": "-3/10",
+      "accelerationPrime": "-1/500",
+      "timePrime": "500",
+      "positionPrime": "-400",
+      "finalVelocityPrime": "-13/10",
+      "forcePrime": "-8",
+      "energyPrime": "3380",
+      "wrongPosition": "-25150"
+    }
+  },
+  {
+    "values": [
+      3,
+      5,
+      -1,
+      4,
+      -1,
+      -3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "3000",
+      "initialVelocityPrime": "5",
+      "accelerationPrime": "-1/10",
+      "timePrime": "40",
+      "positionPrime": "120",
+      "finalVelocityPrime": "1",
+      "forcePrime": "-300",
+      "energyPrime": "1500",
+      "wrongPosition": "-60"
+    }
+  },
+  {
+    "values": [
+      5,
+      0,
+      1,
+      1,
+      -1,
+      -3,
+      0
+    ],
+    "expected": {
+      "massPrime": "5000",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "10",
+      "timePrime": "1",
+      "positionPrime": "5",
+      "finalVelocityPrime": "10",
+      "forcePrime": "50000",
+      "energyPrime": "250000",
+      "wrongPosition": "1/20"
+    }
+  },
+  {
+    "values": [
+      3,
+      -4,
+      1,
+      5,
+      -1,
+      -3,
+      1
+    ],
+    "expected": {
+      "massPrime": "3000",
+      "initialVelocityPrime": "-400",
+      "accelerationPrime": "1000",
+      "timePrime": "1/2",
+      "positionPrime": "-75",
+      "finalVelocityPrime": "100",
+      "forcePrime": "3000000",
+      "energyPrime": "15000000",
+      "wrongPosition": "-3/16"
+    }
+  },
+  {
+    "values": [
+      2,
+      -1,
+      3,
+      1,
+      -1,
+      -3,
+      2
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "-1000",
+      "accelerationPrime": "300000",
+      "timePrime": "1/100",
+      "positionPrime": "5",
+      "finalVelocityPrime": "2000",
+      "forcePrime": "600000000",
+      "energyPrime": "4000000000",
+      "wrongPosition": "-197/200000"
+    }
+  },
+  {
+    "values": [
+      1,
+      2,
+      -2,
+      0,
+      -1,
+      -3,
+      3
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "20000",
+      "accelerationPrime": "-20000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "20000",
+      "forcePrime": "-20000000000",
+      "energyPrime": "200000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      -1,
+      2,
+      4,
+      -1,
+      -2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "-1/100",
+      "accelerationPrime": "1/50000",
+      "timePrime": "4000",
+      "positionPrime": "120",
+      "finalVelocityPrime": "7/100",
+      "forcePrime": "3/500",
+      "energyPrime": "147/200",
+      "wrongPosition": "1599600"
+    }
+  },
+  {
+    "values": [
+      3,
+      0,
+      -3,
+      5,
+      -1,
+      -2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-3/1000",
+      "timePrime": "500",
+      "positionPrime": "-375",
+      "finalVelocityPrime": "-3/2",
+      "forcePrime": "-9/10",
+      "energyPrime": "675/2",
+      "wrongPosition": "-37500"
+    }
+  },
+  {
+    "values": [
+      2,
+      3,
+      -1,
+      2,
+      -1,
+      -2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "200",
+      "initialVelocityPrime": "3",
+      "accelerationPrime": "-1/10",
+      "timePrime": "20",
+      "positionPrime": "40",
+      "finalVelocityPrime": "1",
+      "forcePrime": "-20",
+      "energyPrime": "100",
+      "wrongPosition": "-14"
+    }
+  },
+  {
+    "values": [
+      2,
+      -5,
+      0,
+      2,
+      -1,
+      -2,
+      0
+    ],
+    "expected": {
+      "massPrime": "200",
+      "initialVelocityPrime": "-50",
+      "accelerationPrime": "0",
+      "timePrime": "2",
+      "positionPrime": "-100",
+      "finalVelocityPrime": "-50",
+      "forcePrime": "0",
+      "energyPrime": "250000",
+      "wrongPosition": "-1"
+    }
+  },
+  {
+    "values": [
+      3,
+      -1,
+      -1,
+      1,
+      -1,
+      -2,
+      1
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "-100",
+      "accelerationPrime": "-1000",
+      "timePrime": "1/10",
+      "positionPrime": "-15",
+      "finalVelocityPrime": "-200",
+      "forcePrime": "-300000",
+      "energyPrime": "6000000",
+      "wrongPosition": "-21/2000"
+    }
+  },
+  {
+    "values": [
+      5,
+      -1,
+      -3,
+      0,
+      -1,
+      -2,
+      2
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "-1000",
+      "accelerationPrime": "-300000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-1000",
+      "forcePrime": "-150000000",
+      "energyPrime": "250000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      4,
+      -3,
+      0,
+      -1,
+      -2,
+      3
+    ],
+    "expected": {
+      "massPrime": "400",
+      "initialVelocityPrime": "40000",
+      "accelerationPrime": "-30000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "40000",
+      "forcePrime": "-12000000000",
+      "energyPrime": "320000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      1,
+      -2,
+      4,
+      -1,
+      -1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "1/100",
+      "accelerationPrime": "-1/50000",
+      "timePrime": "4000",
+      "positionPrime": "-120",
+      "finalVelocityPrime": "-7/100",
+      "forcePrime": "-1/1000",
+      "energyPrime": "49/400",
+      "wrongPosition": "-1599600"
+    }
+  },
+  {
+    "values": [
+      1,
+      -4,
+      -3,
+      0,
+      -1,
+      -1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "-2/5",
+      "accelerationPrime": "-3/1000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-2/5",
+      "forcePrime": "-3/100",
+      "energyPrime": "4/5",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      -5,
+      -1,
+      0,
+      -1,
+      -1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "30",
+      "initialVelocityPrime": "-5",
+      "accelerationPrime": "-1/10",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-5",
+      "forcePrime": "-3",
+      "energyPrime": "375",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      2,
+      -2,
+      5,
+      -1,
+      -1,
+      0
+    ],
+    "expected": {
+      "massPrime": "30",
+      "initialVelocityPrime": "20",
+      "accelerationPrime": "-20",
+      "timePrime": "5",
+      "positionPrime": "-150",
+      "finalVelocityPrime": "-80",
+      "forcePrime": "-600",
+      "energyPrime": "96000",
+      "wrongPosition": "-3/2"
+    }
+  },
+  {
+    "values": [
+      2,
+      -2,
+      2,
+      0,
+      -1,
+      -1,
+      1
+    ],
+    "expected": {
+      "massPrime": "20",
+      "initialVelocityPrime": "-200",
+      "accelerationPrime": "2000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-200",
+      "forcePrime": "40000",
+      "energyPrime": "400000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      0,
+      -2,
+      4,
+      -1,
+      -1,
+      2
+    ],
+    "expected": {
+      "massPrime": "40",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-200000",
+      "timePrime": "1/25",
+      "positionPrime": "-160",
+      "finalVelocityPrime": "-8000",
+      "forcePrime": "-8000000",
+      "energyPrime": "1280000000",
+      "wrongPosition": "-1/6250"
+    }
+  },
+  {
+    "values": [
+      5,
+      -2,
+      0,
+      3,
+      -1,
+      -1,
+      3
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "-20000",
+      "accelerationPrime": "0",
+      "timePrime": "3/1000",
+      "positionPrime": "-60",
+      "finalVelocityPrime": "-20000",
+      "forcePrime": "0",
+      "energyPrime": "10000000000",
+      "wrongPosition": "-3/5000"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      2,
+      5,
+      -1,
+      0,
+      -3
+    ],
+    "expected": {
+      "massPrime": "4",
+      "initialVelocityPrime": "1/100",
+      "accelerationPrime": "1/50000",
+      "timePrime": "5000",
+      "positionPrime": "300",
+      "finalVelocityPrime": "11/100",
+      "forcePrime": "1/12500",
+      "energyPrime": "121/5000",
+      "wrongPosition": "2500500"
+    }
+  },
+  {
+    "values": [
+      2,
+      1,
+      -2,
+      5,
+      -1,
+      0,
+      -2
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "1/10",
+      "accelerationPrime": "-1/500",
+      "timePrime": "500",
+      "positionPrime": "-200",
+      "finalVelocityPrime": "-9/10",
+      "forcePrime": "-1/250",
+      "energyPrime": "81/100",
+      "wrongPosition": "-24950"
+    }
+  },
+  {
+    "values": [
+      5,
+      2,
+      0,
+      0,
+      -1,
+      0,
+      -1
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "2",
+      "accelerationPrime": "0",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "2",
+      "forcePrime": "0",
+      "energyPrime": "10",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      0,
+      -2,
+      5,
+      -1,
+      0,
+      0
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-20",
+      "timePrime": "5",
+      "positionPrime": "-250",
+      "finalVelocityPrime": "-100",
+      "forcePrime": "-100",
+      "energyPrime": "25000",
+      "wrongPosition": "-5/2"
+    }
+  },
+  {
+    "values": [
+      4,
+      -5,
+      -1,
+      5,
+      -1,
+      0,
+      1
+    ],
+    "expected": {
+      "massPrime": "4",
+      "initialVelocityPrime": "-500",
+      "accelerationPrime": "-1000",
+      "timePrime": "1/2",
+      "positionPrime": "-375",
+      "finalVelocityPrime": "-1000",
+      "forcePrime": "-4000",
+      "energyPrime": "2000000",
+      "wrongPosition": "-21/80"
+    }
+  },
+  {
+    "values": [
+      3,
+      2,
+      1,
+      3,
+      -1,
+      0,
+      2
+    ],
+    "expected": {
+      "massPrime": "3",
+      "initialVelocityPrime": "2000",
+      "accelerationPrime": "100000",
+      "timePrime": "3/100",
+      "positionPrime": "105",
+      "finalVelocityPrime": "5000",
+      "forcePrime": "300000",
+      "energyPrime": "37500000",
+      "wrongPosition": "1209/200000"
+    }
+  },
+  {
+    "values": [
+      1,
+      3,
+      2,
+      4,
+      -1,
+      0,
+      3
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "30000",
+      "accelerationPrime": "20000000",
+      "timePrime": "1/250",
+      "positionPrime": "280",
+      "finalVelocityPrime": "110000",
+      "forcePrime": "20000000",
+      "energyPrime": "6050000000",
+      "wrongPosition": "751/625000"
+    }
+  },
+  {
+    "values": [
+      1,
+      1,
+      1,
+      3,
+      -1,
+      1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/10",
+      "initialVelocityPrime": "1/100",
+      "accelerationPrime": "1/100000",
+      "timePrime": "3000",
+      "positionPrime": "75",
+      "finalVelocityPrime": "1/25",
+      "forcePrime": "1/1000000",
+      "energyPrime": "1/12500",
+      "wrongPosition": "450300"
+    }
+  },
+  {
+    "values": [
+      2,
+      1,
+      2,
+      4,
+      -1,
+      1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/5",
+      "initialVelocityPrime": "1/10",
+      "accelerationPrime": "1/500",
+      "timePrime": "400",
+      "positionPrime": "200",
+      "finalVelocityPrime": "9/10",
+      "forcePrime": "1/2500",
+      "energyPrime": "81/1000",
+      "wrongPosition": "16040"
+    }
+  },
+  {
+    "values": [
+      5,
+      -4,
+      2,
+      1,
+      -1,
+      1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "-4",
+      "accelerationPrime": "1/5",
+      "timePrime": "10",
+      "positionPrime": "-30",
+      "finalVelocityPrime": "-2",
+      "forcePrime": "1/10",
+      "energyPrime": "1",
+      "wrongPosition": "6"
+    }
+  },
+  {
+    "values": [
+      5,
+      3,
+      1,
+      0,
+      -1,
+      1,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "30",
+      "accelerationPrime": "10",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "30",
+      "forcePrime": "5",
+      "energyPrime": "225",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      2,
+      3,
+      -3,
+      1,
+      -1,
+      1,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/5",
+      "initialVelocityPrime": "300",
+      "accelerationPrime": "-3000",
+      "timePrime": "1/10",
+      "positionPrime": "15",
+      "finalVelocityPrime": "0",
+      "forcePrime": "-600",
+      "energyPrime": "0",
+      "wrongPosition": "57/2000"
+    }
+  },
+  {
+    "values": [
+      4,
+      3,
+      0,
+      5,
+      -1,
+      1,
+      2
+    ],
+    "expected": {
+      "massPrime": "2/5",
+      "initialVelocityPrime": "3000",
+      "accelerationPrime": "0",
+      "timePrime": "1/20",
+      "positionPrime": "150",
+      "finalVelocityPrime": "3000",
+      "forcePrime": "0",
+      "energyPrime": "1800000",
+      "wrongPosition": "3/200"
+    }
+  },
+  {
+    "values": [
+      1,
+      4,
+      3,
+      5,
+      -1,
+      1,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/10",
+      "initialVelocityPrime": "40000",
+      "accelerationPrime": "30000000",
+      "timePrime": "1/200",
+      "positionPrime": "575",
+      "finalVelocityPrime": "190000",
+      "forcePrime": "3000000",
+      "energyPrime": "1805000000",
+      "wrongPosition": "1603/800000"
+    }
+  },
+  {
+    "values": [
+      5,
+      -4,
+      -1,
+      3,
+      -1,
+      2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/20",
+      "initialVelocityPrime": "-1/25",
+      "accelerationPrime": "-1/100000",
+      "timePrime": "3000",
+      "positionPrime": "-165",
+      "finalVelocityPrime": "-7/100",
+      "forcePrime": "-1/2000000",
+      "energyPrime": "49/400000",
+      "wrongPosition": "-451200"
+    }
+  },
+  {
+    "values": [
+      3,
+      -5,
+      3,
+      4,
+      -1,
+      2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "3/100",
+      "initialVelocityPrime": "-1/2",
+      "accelerationPrime": "3/1000",
+      "timePrime": "400",
+      "positionPrime": "40",
+      "finalVelocityPrime": "7/10",
+      "forcePrime": "9/100000",
+      "energyPrime": "147/20000",
+      "wrongPosition": "23800"
+    }
+  },
+  {
+    "values": [
+      3,
+      2,
+      2,
+      5,
+      -1,
+      2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "3/100",
+      "initialVelocityPrime": "2",
+      "accelerationPrime": "1/5",
+      "timePrime": "50",
+      "positionPrime": "350",
+      "finalVelocityPrime": "12",
+      "forcePrime": "3/500",
+      "energyPrime": "54/25",
+      "wrongPosition": "260"
+    }
+  },
+  {
+    "values": [
+      2,
+      0,
+      1,
+      0,
+      -1,
+      2,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "10",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "0",
+      "forcePrime": "1/5",
+      "energyPrime": "0",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      3,
+      3,
+      2,
+      -1,
+      2,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "300",
+      "accelerationPrime": "3000",
+      "timePrime": "1/5",
+      "positionPrime": "120",
+      "finalVelocityPrime": "900",
+      "forcePrime": "30",
+      "energyPrime": "4050",
+      "wrongPosition": "33/500"
+    }
+  },
+  {
+    "values": [
+      2,
+      0,
+      2,
+      4,
+      -1,
+      2,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "200000",
+      "timePrime": "1/25",
+      "positionPrime": "160",
+      "finalVelocityPrime": "8000",
+      "forcePrime": "4000",
+      "energyPrime": "640000",
+      "wrongPosition": "1/6250"
+    }
+  },
+  {
+    "values": [
+      4,
+      3,
+      2,
+      2,
+      -1,
+      2,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "30000",
+      "accelerationPrime": "20000000",
+      "timePrime": "1/500",
+      "positionPrime": "100",
+      "finalVelocityPrime": "70000",
+      "forcePrime": "800000",
+      "energyPrime": "98000000",
+      "wrongPosition": "1501/2500000"
+    }
+  },
+  {
+    "values": [
+      1,
+      -4,
+      0,
+      1,
+      -1,
+      3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/1000",
+      "initialVelocityPrime": "-1/25",
+      "accelerationPrime": "0",
+      "timePrime": "1000",
+      "positionPrime": "-40",
+      "finalVelocityPrime": "-1/25",
+      "forcePrime": "0",
+      "energyPrime": "1/1250000",
+      "wrongPosition": "-400"
+    }
+  },
+  {
+    "values": [
+      1,
+      -5,
+      -2,
+      3,
+      -1,
+      3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/1000",
+      "initialVelocityPrime": "-1/2",
+      "accelerationPrime": "-1/500",
+      "timePrime": "300",
+      "positionPrime": "-240",
+      "finalVelocityPrime": "-11/10",
+      "forcePrime": "-1/500000",
+      "energyPrime": "121/200000",
+      "wrongPosition": "-9150"
+    }
+  },
+  {
+    "values": [
+      2,
+      3,
+      -1,
+      3,
+      -1,
+      3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "3",
+      "accelerationPrime": "-1/10",
+      "timePrime": "30",
+      "positionPrime": "45",
+      "finalVelocityPrime": "0",
+      "forcePrime": "-1/5000",
+      "energyPrime": "0",
+      "wrongPosition": "-36"
+    }
+  },
+  {
+    "values": [
+      3,
+      3,
+      -3,
+      3,
+      -1,
+      3,
+      0
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "30",
+      "accelerationPrime": "-30",
+      "timePrime": "3",
+      "positionPrime": "-45",
+      "finalVelocityPrime": "-60",
+      "forcePrime": "-9/100",
+      "energyPrime": "27/5",
+      "wrongPosition": "-9/20"
+    }
+  },
+  {
+    "values": [
+      2,
+      -3,
+      -1,
+      2,
+      -1,
+      3,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "-300",
+      "accelerationPrime": "-1000",
+      "timePrime": "1/5",
+      "positionPrime": "-80",
+      "finalVelocityPrime": "-500",
+      "forcePrime": "-2",
+      "energyPrime": "250",
+      "wrongPosition": "-31/500"
+    }
+  },
+  {
+    "values": [
+      3,
+      -3,
+      3,
+      2,
+      -1,
+      3,
+      2
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "-3000",
+      "accelerationPrime": "300000",
+      "timePrime": "1/50",
+      "positionPrime": "0",
+      "finalVelocityPrime": "3000",
+      "forcePrime": "900",
+      "energyPrime": "13500",
+      "wrongPosition": "-297/50000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -2,
+      -1,
+      0,
+      -1,
+      3,
+      3
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "-20000",
+      "accelerationPrime": "-10000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-20000",
+      "forcePrime": "-30000",
+      "energyPrime": "600000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      -2,
+      1,
+      0,
+      0,
+      -3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "-1/500",
+      "accelerationPrime": "1/1000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-1/500",
+      "forcePrime": "1/1000",
+      "energyPrime": "1/500",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      0,
+      1,
+      0,
+      0,
+      -3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "4000",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "1/10000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "0",
+      "forcePrime": "2/5",
+      "energyPrime": "0",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      0,
+      2,
+      4,
+      0,
+      -3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "4000",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "1/50",
+      "timePrime": "40",
+      "positionPrime": "16",
+      "finalVelocityPrime": "4/5",
+      "forcePrime": "80",
+      "energyPrime": "1280",
+      "wrongPosition": "1600"
+    }
+  },
+  {
+    "values": [
+      2,
+      -4,
+      1,
+      0,
+      0,
+      -3,
+      0
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "-4",
+      "accelerationPrime": "1",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-4",
+      "forcePrime": "2000",
+      "energyPrime": "16000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      -5,
+      0,
+      4,
+      0,
+      -3,
+      1
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "-50",
+      "accelerationPrime": "0",
+      "timePrime": "2/5",
+      "positionPrime": "-20",
+      "finalVelocityPrime": "-50",
+      "forcePrime": "0",
+      "energyPrime": "1250000",
+      "wrongPosition": "-2"
+    }
+  },
+  {
+    "values": [
+      5,
+      -4,
+      0,
+      4,
+      0,
+      -3,
+      2
+    ],
+    "expected": {
+      "massPrime": "5000",
+      "initialVelocityPrime": "-400",
+      "accelerationPrime": "0",
+      "timePrime": "1/25",
+      "positionPrime": "-16",
+      "finalVelocityPrime": "-400",
+      "forcePrime": "0",
+      "energyPrime": "400000000",
+      "wrongPosition": "-4/25"
+    }
+  },
+  {
+    "values": [
+      2,
+      -2,
+      -1,
+      3,
+      0,
+      -3,
+      3
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "-2000",
+      "accelerationPrime": "-1000000",
+      "timePrime": "3/1000",
+      "positionPrime": "-21/2",
+      "finalVelocityPrime": "-5000",
+      "forcePrime": "-2000000000",
+      "energyPrime": "25000000000",
+      "wrongPosition": "-12009/2000000"
+    }
+  },
+  {
+    "values": [
+      5,
+      1,
+      1,
+      1,
+      0,
+      -2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "1/1000",
+      "accelerationPrime": "1/1000000",
+      "timePrime": "1000",
+      "positionPrime": "3/2",
+      "finalVelocityPrime": "1/500",
+      "forcePrime": "1/2000",
+      "energyPrime": "1/1000",
+      "wrongPosition": "501000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -4,
+      1,
+      1,
+      0,
+      -2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "200",
+      "initialVelocityPrime": "-1/25",
+      "accelerationPrime": "1/10000",
+      "timePrime": "100",
+      "positionPrime": "-7/2",
+      "finalVelocityPrime": "-3/100",
+      "forcePrime": "1/50",
+      "energyPrime": "9/100",
+      "wrongPosition": "4600"
+    }
+  },
+  {
+    "values": [
+      1,
+      1,
+      -2,
+      2,
+      0,
+      -2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "100",
+      "initialVelocityPrime": "1/10",
+      "accelerationPrime": "-1/50",
+      "timePrime": "20",
+      "positionPrime": "-2",
+      "finalVelocityPrime": "-3/10",
+      "forcePrime": "-2",
+      "energyPrime": "9/2",
+      "wrongPosition": "-380"
+    }
+  },
+  {
+    "values": [
+      2,
+      3,
+      -2,
+      0,
+      0,
+      -2,
+      0
+    ],
+    "expected": {
+      "massPrime": "200",
+      "initialVelocityPrime": "3",
+      "accelerationPrime": "-2",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "3",
+      "forcePrime": "-400",
+      "energyPrime": "900",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      -5,
+      0,
+      0,
+      0,
+      -2,
+      1
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "-50",
+      "accelerationPrime": "0",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-50",
+      "forcePrime": "0",
+      "energyPrime": "625000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      2,
+      3,
+      0,
+      0,
+      -2,
+      2
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "200",
+      "accelerationPrime": "30000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "200",
+      "forcePrime": "9000000",
+      "energyPrime": "6000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      1,
+      3,
+      0,
+      -2,
+      3
+    ],
+    "expected": {
+      "massPrime": "400",
+      "initialVelocityPrime": "1000",
+      "accelerationPrime": "1000000",
+      "timePrime": "3/1000",
+      "positionPrime": "15/2",
+      "finalVelocityPrime": "4000",
+      "forcePrime": "400000000",
+      "energyPrime": "3200000000",
+      "wrongPosition": "6009/2000000"
+    }
+  },
+  {
+    "values": [
+      3,
+      5,
+      3,
+      3,
+      0,
+      -1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "30",
+      "initialVelocityPrime": "1/200",
+      "accelerationPrime": "3/1000000",
+      "timePrime": "3000",
+      "positionPrime": "57/2",
+      "finalVelocityPrime": "7/500",
+      "forcePrime": "9/100000",
+      "energyPrime": "147/50000",
+      "wrongPosition": "13515000"
+    }
+  },
+  {
+    "values": [
+      2,
+      4,
+      1,
+      1,
+      0,
+      -1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "20",
+      "initialVelocityPrime": "1/25",
+      "accelerationPrime": "1/10000",
+      "timePrime": "100",
+      "positionPrime": "9/2",
+      "finalVelocityPrime": "1/20",
+      "forcePrime": "1/500",
+      "energyPrime": "1/40",
+      "wrongPosition": "5400"
+    }
+  },
+  {
+    "values": [
+      2,
+      2,
+      2,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "20",
+      "initialVelocityPrime": "1/5",
+      "accelerationPrime": "1/50",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1/5",
+      "forcePrime": "2/5",
+      "energyPrime": "2/5",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      2,
+      3,
+      4,
+      0,
+      -1,
+      0
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "2",
+      "accelerationPrime": "3",
+      "timePrime": "4",
+      "positionPrime": "32",
+      "finalVelocityPrime": "14",
+      "forcePrime": "30",
+      "energyPrime": "980",
+      "wrongPosition": "32"
+    }
+  },
+  {
+    "values": [
+      3,
+      4,
+      0,
+      5,
+      0,
+      -1,
+      1
+    ],
+    "expected": {
+      "massPrime": "30",
+      "initialVelocityPrime": "40",
+      "accelerationPrime": "0",
+      "timePrime": "1/2",
+      "positionPrime": "20",
+      "finalVelocityPrime": "40",
+      "forcePrime": "0",
+      "energyPrime": "24000",
+      "wrongPosition": "2"
+    }
+  },
+  {
+    "values": [
+      1,
+      -4,
+      3,
+      5,
+      0,
+      -1,
+      2
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "-400",
+      "accelerationPrime": "30000",
+      "timePrime": "1/20",
+      "positionPrime": "35/2",
+      "finalVelocityPrime": "1100",
+      "forcePrime": "300000",
+      "energyPrime": "6050000",
+      "wrongPosition": "-157/800"
+    }
+  },
+  {
+    "values": [
+      1,
+      -1,
+      2,
+      2,
+      0,
+      -1,
+      3
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "-1000",
+      "accelerationPrime": "2000000",
+      "timePrime": "1/500",
+      "positionPrime": "2",
+      "finalVelocityPrime": "3000",
+      "forcePrime": "20000000",
+      "energyPrime": "45000000",
+      "wrongPosition": "-499/250000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -4,
+      2,
+      1,
+      0,
+      0,
+      -3
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "-1/250",
+      "accelerationPrime": "1/500000",
+      "timePrime": "1000",
+      "positionPrime": "-3",
+      "finalVelocityPrime": "-1/500",
+      "forcePrime": "1/250000",
+      "energyPrime": "1/250000",
+      "wrongPosition": "996000"
+    }
+  },
+  {
+    "values": [
+      2,
+      3,
+      -3,
+      2,
+      0,
+      0,
+      -2
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "3/100",
+      "accelerationPrime": "-3/10000",
+      "timePrime": "200",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-3/100",
+      "forcePrime": "-3/5000",
+      "energyPrime": "9/10000",
+      "wrongPosition": "-59400"
+    }
+  },
+  {
+    "values": [
+      5,
+      2,
+      3,
+      4,
+      0,
+      0,
+      -1
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "1/5",
+      "accelerationPrime": "3/100",
+      "timePrime": "40",
+      "positionPrime": "32",
+      "finalVelocityPrime": "7/5",
+      "forcePrime": "3/20",
+      "energyPrime": "49/10",
+      "wrongPosition": "2480"
+    }
+  },
+  {
+    "values": [
+      2,
+      5,
+      3,
+      1,
+      0,
+      0,
+      0
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "5",
+      "accelerationPrime": "3",
+      "timePrime": "1",
+      "positionPrime": "13/2",
+      "finalVelocityPrime": "8",
+      "forcePrime": "6",
+      "energyPrime": "64",
+      "wrongPosition": "13/2"
+    }
+  },
+  {
+    "values": [
+      5,
+      -5,
+      1,
+      2,
+      0,
+      0,
+      1
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "-50",
+      "accelerationPrime": "100",
+      "timePrime": "1/5",
+      "positionPrime": "-8",
+      "finalVelocityPrime": "-30",
+      "forcePrime": "500",
+      "energyPrime": "2250",
+      "wrongPosition": "-49/50"
+    }
+  },
+  {
+    "values": [
+      4,
+      -5,
+      3,
+      3,
+      0,
+      0,
+      2
+    ],
+    "expected": {
+      "massPrime": "4",
+      "initialVelocityPrime": "-500",
+      "accelerationPrime": "30000",
+      "timePrime": "3/100",
+      "positionPrime": "-3/2",
+      "finalVelocityPrime": "400",
+      "forcePrime": "120000",
+      "energyPrime": "320000",
+      "wrongPosition": "-2973/20000"
+    }
+  },
+  {
+    "values": [
+      1,
+      0,
+      2,
+      2,
+      0,
+      0,
+      3
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "2000000",
+      "timePrime": "1/500",
+      "positionPrime": "4",
+      "finalVelocityPrime": "4000",
+      "forcePrime": "2000000",
+      "energyPrime": "8000000",
+      "wrongPosition": "1/250000"
+    }
+  },
+  {
+    "values": [
+      3,
+      3,
+      2,
+      5,
+      0,
+      1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "3/1000",
+      "accelerationPrime": "1/500000",
+      "timePrime": "5000",
+      "positionPrime": "40",
+      "finalVelocityPrime": "13/1000",
+      "forcePrime": "3/5000000",
+      "energyPrime": "507/20000000",
+      "wrongPosition": "25015000"
+    }
+  },
+  {
+    "values": [
+      3,
+      0,
+      -2,
+      1,
+      0,
+      1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-1/5000",
+      "timePrime": "100",
+      "positionPrime": "-1",
+      "finalVelocityPrime": "-1/50",
+      "forcePrime": "-3/50000",
+      "energyPrime": "3/50000",
+      "wrongPosition": "-10000"
+    }
+  },
+  {
+    "values": [
+      4,
+      -4,
+      0,
+      2,
+      0,
+      1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "2/5",
+      "initialVelocityPrime": "-2/5",
+      "accelerationPrime": "0",
+      "timePrime": "20",
+      "positionPrime": "-8",
+      "finalVelocityPrime": "-2/5",
+      "forcePrime": "0",
+      "energyPrime": "4/125",
+      "wrongPosition": "-80"
+    }
+  },
+  {
+    "values": [
+      1,
+      0,
+      -1,
+      3,
+      0,
+      1,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/10",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-1",
+      "timePrime": "3",
+      "positionPrime": "-9/2",
+      "finalVelocityPrime": "-3",
+      "forcePrime": "-1/10",
+      "energyPrime": "9/20",
+      "wrongPosition": "-9/2"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      -3,
+      1,
+      0,
+      1,
+      1
+    ],
+    "expected": {
+      "massPrime": "2/5",
+      "initialVelocityPrime": "10",
+      "accelerationPrime": "-300",
+      "timePrime": "1/10",
+      "positionPrime": "-1/2",
+      "finalVelocityPrime": "-20",
+      "forcePrime": "-120",
+      "energyPrime": "80",
+      "wrongPosition": "17/200"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      -1,
+      1,
+      0,
+      1,
+      2
+    ],
+    "expected": {
+      "massPrime": "2/5",
+      "initialVelocityPrime": "100",
+      "accelerationPrime": "-10000",
+      "timePrime": "1/100",
+      "positionPrime": "1/2",
+      "finalVelocityPrime": "0",
+      "forcePrime": "-4000",
+      "energyPrime": "0",
+      "wrongPosition": "199/20000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -2,
+      -2,
+      5,
+      0,
+      1,
+      3
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "-2000",
+      "accelerationPrime": "-2000000",
+      "timePrime": "1/200",
+      "positionPrime": "-35",
+      "finalVelocityPrime": "-12000",
+      "forcePrime": "-600000",
+      "energyPrime": "21600000",
+      "wrongPosition": "-401/40000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -3,
+      -1,
+      1,
+      0,
+      2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "-3/1000",
+      "accelerationPrime": "-1/1000000",
+      "timePrime": "1000",
+      "positionPrime": "-7/2",
+      "finalVelocityPrime": "-1/250",
+      "forcePrime": "-1/50000000",
+      "energyPrime": "1/6250000",
+      "wrongPosition": "-503000"
+    }
+  },
+  {
+    "values": [
+      4,
+      -3,
+      0,
+      4,
+      0,
+      2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "-3/100",
+      "accelerationPrime": "0",
+      "timePrime": "400",
+      "positionPrime": "-12",
+      "finalVelocityPrime": "-3/100",
+      "forcePrime": "0",
+      "energyPrime": "9/500000",
+      "wrongPosition": "-1200"
+    }
+  },
+  {
+    "values": [
+      5,
+      2,
+      -1,
+      3,
+      0,
+      2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/20",
+      "initialVelocityPrime": "1/5",
+      "accelerationPrime": "-1/100",
+      "timePrime": "30",
+      "positionPrime": "3/2",
+      "finalVelocityPrime": "-1/10",
+      "forcePrime": "-1/2000",
+      "energyPrime": "1/4000",
+      "wrongPosition": "-390"
+    }
+  },
+  {
+    "values": [
+      4,
+      -2,
+      3,
+      2,
+      0,
+      2,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "-2",
+      "accelerationPrime": "3",
+      "timePrime": "2",
+      "positionPrime": "2",
+      "finalVelocityPrime": "4",
+      "forcePrime": "3/25",
+      "energyPrime": "8/25",
+      "wrongPosition": "2"
+    }
+  },
+  {
+    "values": [
+      1,
+      4,
+      -3,
+      0,
+      0,
+      2,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "40",
+      "accelerationPrime": "-300",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "40",
+      "forcePrime": "-3",
+      "energyPrime": "8",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      5,
+      3,
+      4,
+      0,
+      2,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/20",
+      "initialVelocityPrime": "500",
+      "accelerationPrime": "30000",
+      "timePrime": "1/25",
+      "positionPrime": "44",
+      "finalVelocityPrime": "1700",
+      "forcePrime": "1500",
+      "energyPrime": "72250",
+      "wrongPosition": "253/1250"
+    }
+  },
+  {
+    "values": [
+      3,
+      4,
+      -3,
+      0,
+      0,
+      2,
+      3
+    ],
+    "expected": {
+      "massPrime": "3/100",
+      "initialVelocityPrime": "4000",
+      "accelerationPrime": "-3000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "4000",
+      "forcePrime": "-90000",
+      "energyPrime": "240000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      -4,
+      0,
+      4,
+      0,
+      3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/200",
+      "initialVelocityPrime": "-1/250",
+      "accelerationPrime": "0",
+      "timePrime": "4000",
+      "positionPrime": "-16",
+      "finalVelocityPrime": "-1/250",
+      "forcePrime": "0",
+      "energyPrime": "1/25000000",
+      "wrongPosition": "-16000"
+    }
+  },
+  {
+    "values": [
+      5,
+      3,
+      0,
+      2,
+      0,
+      3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/200",
+      "initialVelocityPrime": "3/100",
+      "accelerationPrime": "0",
+      "timePrime": "200",
+      "positionPrime": "6",
+      "finalVelocityPrime": "3/100",
+      "forcePrime": "0",
+      "energyPrime": "9/4000000",
+      "wrongPosition": "600"
+    }
+  },
+  {
+    "values": [
+      2,
+      5,
+      2,
+      0,
+      0,
+      3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "1/2",
+      "accelerationPrime": "1/50",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1/2",
+      "forcePrime": "1/25000",
+      "energyPrime": "1/4000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      2,
+      -2,
+      -2,
+      5,
+      0,
+      3,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "-2",
+      "accelerationPrime": "-2",
+      "timePrime": "5",
+      "positionPrime": "-35",
+      "finalVelocityPrime": "-12",
+      "forcePrime": "-1/250",
+      "energyPrime": "18/125",
+      "wrongPosition": "-35"
+    }
+  },
+  {
+    "values": [
+      4,
+      3,
+      -2,
+      5,
+      0,
+      3,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/250",
+      "initialVelocityPrime": "30",
+      "accelerationPrime": "-200",
+      "timePrime": "1/2",
+      "positionPrime": "-10",
+      "finalVelocityPrime": "-70",
+      "forcePrime": "-4/5",
+      "energyPrime": "49/5",
+      "wrongPosition": "5/4"
+    }
+  },
+  {
+    "values": [
+      3,
+      0,
+      3,
+      2,
+      0,
+      3,
+      2
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "30000",
+      "timePrime": "1/50",
+      "positionPrime": "6",
+      "finalVelocityPrime": "600",
+      "forcePrime": "90",
+      "energyPrime": "540",
+      "wrongPosition": "3/5000"
+    }
+  },
+  {
+    "values": [
+      3,
+      2,
+      0,
+      5,
+      0,
+      3,
+      3
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "2000",
+      "accelerationPrime": "0",
+      "timePrime": "1/200",
+      "positionPrime": "10",
+      "finalVelocityPrime": "2000",
+      "forcePrime": "0",
+      "energyPrime": "6000",
+      "wrongPosition": "1/100"
+    }
+  },
+  {
+    "values": [
+      1,
+      2,
+      1,
+      3,
+      1,
+      -3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "1/5000",
+      "accelerationPrime": "1/10000000",
+      "timePrime": "3000",
+      "positionPrime": "21/20",
+      "finalVelocityPrime": "1/2000",
+      "forcePrime": "1/10000",
+      "energyPrime": "1/8000",
+      "wrongPosition": "45060000"
+    }
+  },
+  {
+    "values": [
+      4,
+      -3,
+      3,
+      2,
+      1,
+      -3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "4000",
+      "initialVelocityPrime": "-3/1000",
+      "accelerationPrime": "3/100000",
+      "timePrime": "200",
+      "positionPrime": "0",
+      "finalVelocityPrime": "3/1000",
+      "forcePrime": "3/25",
+      "energyPrime": "9/500",
+      "wrongPosition": "594000"
+    }
+  },
+  {
+    "values": [
+      5,
+      -1,
+      2,
+      2,
+      1,
+      -3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "5000",
+      "initialVelocityPrime": "-1/100",
+      "accelerationPrime": "1/500",
+      "timePrime": "20",
+      "positionPrime": "1/5",
+      "finalVelocityPrime": "3/100",
+      "forcePrime": "10",
+      "energyPrime": "9/4",
+      "wrongPosition": "3800"
+    }
+  },
+  {
+    "values": [
+      5,
+      -4,
+      0,
+      2,
+      1,
+      -3,
+      0
+    ],
+    "expected": {
+      "massPrime": "5000",
+      "initialVelocityPrime": "-2/5",
+      "accelerationPrime": "0",
+      "timePrime": "2",
+      "positionPrime": "-4/5",
+      "finalVelocityPrime": "-2/5",
+      "forcePrime": "0",
+      "energyPrime": "400",
+      "wrongPosition": "-80"
+    }
+  },
+  {
+    "values": [
+      2,
+      1,
+      -1,
+      1,
+      1,
+      -3,
+      1
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "1",
+      "accelerationPrime": "-10",
+      "timePrime": "1/10",
+      "positionPrime": "1/20",
+      "finalVelocityPrime": "0",
+      "forcePrime": "-20000",
+      "energyPrime": "0",
+      "wrongPosition": "19/20"
+    }
+  },
+  {
+    "values": [
+      2,
+      2,
+      -1,
+      3,
+      1,
+      -3,
+      2
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "20",
+      "accelerationPrime": "-1000",
+      "timePrime": "3/100",
+      "positionPrime": "3/20",
+      "finalVelocityPrime": "-10",
+      "forcePrime": "-2000000",
+      "energyPrime": "100000",
+      "wrongPosition": "1191/2000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -3,
+      0,
+      3,
+      1,
+      -3,
+      3
+    ],
+    "expected": {
+      "massPrime": "3000",
+      "initialVelocityPrime": "-300",
+      "accelerationPrime": "0",
+      "timePrime": "3/1000",
+      "positionPrime": "-9/10",
+      "finalVelocityPrime": "-300",
+      "forcePrime": "0",
+      "energyPrime": "135000000",
+      "wrongPosition": "-9/100"
+    }
+  },
+  {
+    "values": [
+      5,
+      0,
+      -3,
+      4,
+      1,
+      -2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-3/10000000",
+      "timePrime": "4000",
+      "positionPrime": "-12/5",
+      "finalVelocityPrime": "-3/2500",
+      "forcePrime": "-3/20000",
+      "energyPrime": "9/25000",
+      "wrongPosition": "-240000000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -3,
+      2,
+      0,
+      1,
+      -2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "-3/1000",
+      "accelerationPrime": "1/50000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-3/1000",
+      "forcePrime": "3/500",
+      "energyPrime": "27/20000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      -2,
+      -3,
+      2,
+      1,
+      -2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "100",
+      "initialVelocityPrime": "-1/50",
+      "accelerationPrime": "-3/1000",
+      "timePrime": "20",
+      "positionPrime": "-1",
+      "finalVelocityPrime": "-2/25",
+      "forcePrime": "-3/10",
+      "energyPrime": "8/25",
+      "wrongPosition": "-6400"
+    }
+  },
+  {
+    "values": [
+      5,
+      -3,
+      -1,
+      4,
+      1,
+      -2,
+      0
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "-3/10",
+      "accelerationPrime": "-1/10",
+      "timePrime": "4",
+      "positionPrime": "-2",
+      "finalVelocityPrime": "-7/10",
+      "forcePrime": "-50",
+      "energyPrime": "245/2",
+      "wrongPosition": "-200"
+    }
+  },
+  {
+    "values": [
+      1,
+      2,
+      1,
+      3,
+      1,
+      -2,
+      1
+    ],
+    "expected": {
+      "massPrime": "100",
+      "initialVelocityPrime": "2",
+      "accelerationPrime": "10",
+      "timePrime": "3/10",
+      "positionPrime": "21/20",
+      "finalVelocityPrime": "5",
+      "forcePrime": "1000",
+      "energyPrime": "1250",
+      "wrongPosition": "129/20"
+    }
+  },
+  {
+    "values": [
+      1,
+      -3,
+      1,
+      0,
+      1,
+      -2,
+      2
+    ],
+    "expected": {
+      "massPrime": "100",
+      "initialVelocityPrime": "-30",
+      "accelerationPrime": "1000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-30",
+      "forcePrime": "100000",
+      "energyPrime": "45000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      5,
+      -2,
+      5,
+      1,
+      -2,
+      3
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "500",
+      "accelerationPrime": "-200000",
+      "timePrime": "1/200",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-500",
+      "forcePrime": "-100000000",
+      "energyPrime": "62500000",
+      "wrongPosition": "999/4000"
+    }
+  },
+  {
+    "values": [
+      1,
+      3,
+      -2,
+      5,
+      1,
+      -1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "3/10000",
+      "accelerationPrime": "-1/5000000",
+      "timePrime": "5000",
+      "positionPrime": "-1",
+      "finalVelocityPrime": "-7/10000",
+      "forcePrime": "-1/500000",
+      "energyPrime": "49/20000000",
+      "wrongPosition": "-249850000"
+    }
+  },
+  {
+    "values": [
+      4,
+      -4,
+      3,
+      5,
+      1,
+      -1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "40",
+      "initialVelocityPrime": "-1/250",
+      "accelerationPrime": "3/100000",
+      "timePrime": "500",
+      "positionPrime": "7/4",
+      "finalVelocityPrime": "11/1000",
+      "forcePrime": "3/2500",
+      "energyPrime": "121/50000",
+      "wrongPosition": "3730000"
+    }
+  },
+  {
+    "values": [
+      5,
+      5,
+      2,
+      5,
+      1,
+      -1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "1/20",
+      "accelerationPrime": "1/500",
+      "timePrime": "50",
+      "positionPrime": "5",
+      "finalVelocityPrime": "3/20",
+      "forcePrime": "1/10",
+      "energyPrime": "9/16",
+      "wrongPosition": "27500"
+    }
+  },
+  {
+    "values": [
+      1,
+      -2,
+      3,
+      2,
+      1,
+      -1,
+      0
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "-1/5",
+      "accelerationPrime": "3/10",
+      "timePrime": "2",
+      "positionPrime": "1/5",
+      "finalVelocityPrime": "2/5",
+      "forcePrime": "3",
+      "energyPrime": "4/5",
+      "wrongPosition": "20"
+    }
+  },
+  {
+    "values": [
+      5,
+      -3,
+      2,
+      0,
+      1,
+      -1,
+      1
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "-3",
+      "accelerationPrime": "20",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-3",
+      "forcePrime": "1000",
+      "energyPrime": "225",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      -5,
+      -1,
+      1,
+      1,
+      -1,
+      2
+    ],
+    "expected": {
+      "massPrime": "40",
+      "initialVelocityPrime": "-50",
+      "accelerationPrime": "-1000",
+      "timePrime": "1/100",
+      "positionPrime": "-11/20",
+      "finalVelocityPrime": "-60",
+      "forcePrime": "-40000",
+      "energyPrime": "72000",
+      "wrongPosition": "-1001/2000"
+    }
+  },
+  {
+    "values": [
+      5,
+      -5,
+      -3,
+      5,
+      1,
+      -1,
+      3
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "-500",
+      "accelerationPrime": "-300000",
+      "timePrime": "1/200",
+      "positionPrime": "-25/4",
+      "finalVelocityPrime": "-2000",
+      "forcePrime": "-15000000",
+      "energyPrime": "100000000",
+      "wrongPosition": "-2003/8000"
+    }
+  },
+  {
+    "values": [
+      4,
+      4,
+      -2,
+      3,
+      1,
+      0,
+      -3
+    ],
+    "expected": {
+      "massPrime": "4",
+      "initialVelocityPrime": "1/2500",
+      "accelerationPrime": "-1/5000000",
+      "timePrime": "3000",
+      "positionPrime": "3/10",
+      "finalVelocityPrime": "-1/5000",
+      "forcePrime": "-1/1250000",
+      "energyPrime": "1/12500000",
+      "wrongPosition": "-89880000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -5,
+      1,
+      2,
+      1,
+      0,
+      -2
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "-1/200",
+      "accelerationPrime": "1/100000",
+      "timePrime": "200",
+      "positionPrime": "-4/5",
+      "finalVelocityPrime": "-3/1000",
+      "forcePrime": "1/50000",
+      "energyPrime": "9/1000000",
+      "wrongPosition": "190000"
+    }
+  },
+  {
+    "values": [
+      2,
+      2,
+      -1,
+      5,
+      1,
+      0,
+      -1
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "1/50",
+      "accelerationPrime": "-1/1000",
+      "timePrime": "50",
+      "positionPrime": "-1/4",
+      "finalVelocityPrime": "-3/100",
+      "forcePrime": "-1/500",
+      "energyPrime": "9/10000",
+      "wrongPosition": "-11500"
+    }
+  },
+  {
+    "values": [
+      2,
+      3,
+      -2,
+      3,
+      1,
+      0,
+      0
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "3/10",
+      "accelerationPrime": "-1/5",
+      "timePrime": "3",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-3/10",
+      "forcePrime": "-2/5",
+      "energyPrime": "9/100",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      2,
+      2,
+      -2,
+      5,
+      1,
+      0,
+      1
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "2",
+      "accelerationPrime": "-20",
+      "timePrime": "1/2",
+      "positionPrime": "-3/2",
+      "finalVelocityPrime": "-8",
+      "forcePrime": "-40",
+      "energyPrime": "64",
+      "wrongPosition": "15/2"
+    }
+  },
+  {
+    "values": [
+      3,
+      -1,
+      -3,
+      1,
+      1,
+      0,
+      2
+    ],
+    "expected": {
+      "massPrime": "3",
+      "initialVelocityPrime": "-10",
+      "accelerationPrime": "-3000",
+      "timePrime": "1/100",
+      "positionPrime": "-1/4",
+      "finalVelocityPrime": "-40",
+      "forcePrime": "-9000",
+      "energyPrime": "2400",
+      "wrongPosition": "-203/2000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -2,
+      2,
+      1,
+      1,
+      0,
+      3
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "-200",
+      "accelerationPrime": "200000",
+      "timePrime": "1/1000",
+      "positionPrime": "-1/10",
+      "finalVelocityPrime": "0",
+      "forcePrime": "400000",
+      "energyPrime": "0",
+      "wrongPosition": "-1999/100000"
+    }
+  },
+  {
+    "values": [
+      4,
+      -1,
+      1,
+      3,
+      1,
+      1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "2/5",
+      "initialVelocityPrime": "-1/10000",
+      "accelerationPrime": "1/10000000",
+      "timePrime": "3000",
+      "positionPrime": "3/20",
+      "finalVelocityPrime": "1/5000",
+      "forcePrime": "1/25000000",
+      "energyPrime": "1/125000000",
+      "wrongPosition": "44970000"
+    }
+  },
+  {
+    "values": [
+      4,
+      3,
+      -3,
+      5,
+      1,
+      1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "2/5",
+      "initialVelocityPrime": "3/1000",
+      "accelerationPrime": "-3/100000",
+      "timePrime": "500",
+      "positionPrime": "-9/4",
+      "finalVelocityPrime": "-3/250",
+      "forcePrime": "-3/250000",
+      "energyPrime": "9/312500",
+      "wrongPosition": "-3735000"
+    }
+  },
+  {
+    "values": [
+      5,
+      -3,
+      -2,
+      4,
+      1,
+      1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "-3/100",
+      "accelerationPrime": "-1/500",
+      "timePrime": "40",
+      "positionPrime": "-14/5",
+      "finalVelocityPrime": "-11/100",
+      "forcePrime": "-1/1000",
+      "energyPrime": "121/40000",
+      "wrongPosition": "-17200"
+    }
+  },
+  {
+    "values": [
+      5,
+      -2,
+      -3,
+      1,
+      1,
+      1,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "-1/5",
+      "accelerationPrime": "-3/10",
+      "timePrime": "1",
+      "positionPrime": "-7/20",
+      "finalVelocityPrime": "-1/2",
+      "forcePrime": "-3/20",
+      "energyPrime": "1/16",
+      "wrongPosition": "-35"
+    }
+  },
+  {
+    "values": [
+      3,
+      -5,
+      -3,
+      4,
+      1,
+      1,
+      1
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "-5",
+      "accelerationPrime": "-30",
+      "timePrime": "2/5",
+      "positionPrime": "-22/5",
+      "finalVelocityPrime": "-17",
+      "forcePrime": "-9",
+      "energyPrime": "867/20",
+      "wrongPosition": "-112/5"
+    }
+  },
+  {
+    "values": [
+      4,
+      -1,
+      -3,
+      1,
+      1,
+      1,
+      2
+    ],
+    "expected": {
+      "massPrime": "2/5",
+      "initialVelocityPrime": "-10",
+      "accelerationPrime": "-3000",
+      "timePrime": "1/100",
+      "positionPrime": "-1/4",
+      "finalVelocityPrime": "-40",
+      "forcePrime": "-1200",
+      "energyPrime": "320",
+      "wrongPosition": "-203/2000"
+    }
+  },
+  {
+    "values": [
+      2,
+      3,
+      0,
+      0,
+      1,
+      1,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/5",
+      "initialVelocityPrime": "300",
+      "accelerationPrime": "0",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "300",
+      "forcePrime": "0",
+      "energyPrime": "9000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      -1,
+      -3,
+      0,
+      1,
+      2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/20",
+      "initialVelocityPrime": "-1/10000",
+      "accelerationPrime": "-3/10000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-1/10000",
+      "forcePrime": "-3/200000000",
+      "energyPrime": "1/4000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      -3,
+      1,
+      2,
+      1,
+      2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "-3/1000",
+      "accelerationPrime": "1/100000",
+      "timePrime": "200",
+      "positionPrime": "-2/5",
+      "finalVelocityPrime": "-1/1000",
+      "forcePrime": "1/2500000",
+      "energyPrime": "1/50000000",
+      "wrongPosition": "194000"
+    }
+  },
+  {
+    "values": [
+      2,
+      5,
+      -3,
+      4,
+      1,
+      2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "1/20",
+      "accelerationPrime": "-3/1000",
+      "timePrime": "40",
+      "positionPrime": "-2/5",
+      "finalVelocityPrime": "-7/100",
+      "forcePrime": "-3/50000",
+      "energyPrime": "49/1000000",
+      "wrongPosition": "-22000"
+    }
+  },
+  {
+    "values": [
+      2,
+      1,
+      -1,
+      0,
+      1,
+      2,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "1/10",
+      "accelerationPrime": "-1/10",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1/10",
+      "forcePrime": "-1/500",
+      "energyPrime": "1/10000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      1,
+      1,
+      0,
+      1,
+      2,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "1",
+      "accelerationPrime": "10",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1",
+      "forcePrime": "1/10",
+      "energyPrime": "1/200",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      -4,
+      2,
+      4,
+      1,
+      2,
+      2
+    ],
+    "expected": {
+      "massPrime": "3/100",
+      "initialVelocityPrime": "-40",
+      "accelerationPrime": "2000",
+      "timePrime": "1/25",
+      "positionPrime": "0",
+      "finalVelocityPrime": "40",
+      "forcePrime": "60",
+      "energyPrime": "24",
+      "wrongPosition": "-198/125"
+    }
+  },
+  {
+    "values": [
+      1,
+      1,
+      -1,
+      4,
+      1,
+      2,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "100",
+      "accelerationPrime": "-100000",
+      "timePrime": "1/250",
+      "positionPrime": "-2/5",
+      "finalVelocityPrime": "-300",
+      "forcePrime": "-1000",
+      "energyPrime": "450",
+      "wrongPosition": "499/12500"
+    }
+  },
+  {
+    "values": [
+      2,
+      0,
+      1,
+      5,
+      1,
+      3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "1/10000000",
+      "timePrime": "5000",
+      "positionPrime": "5/4",
+      "finalVelocityPrime": "1/2000",
+      "forcePrime": "1/5000000000",
+      "energyPrime": "1/4000000000",
+      "wrongPosition": "125000000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -1,
+      1,
+      2,
+      1,
+      3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "-1/1000",
+      "accelerationPrime": "1/100000",
+      "timePrime": "200",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1/1000",
+      "forcePrime": "3/100000000",
+      "energyPrime": "3/2000000000",
+      "wrongPosition": "198000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -5,
+      -1,
+      3,
+      1,
+      3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "-1/20",
+      "accelerationPrime": "-1/1000",
+      "timePrime": "30",
+      "positionPrime": "-39/20",
+      "finalVelocityPrime": "-2/25",
+      "forcePrime": "-1/500000",
+      "energyPrime": "1/156250",
+      "wrongPosition": "-6000"
+    }
+  },
+  {
+    "values": [
+      3,
+      2,
+      3,
+      1,
+      1,
+      3,
+      0
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "1/5",
+      "accelerationPrime": "3/10",
+      "timePrime": "1",
+      "positionPrime": "7/20",
+      "finalVelocityPrime": "1/2",
+      "forcePrime": "9/10000",
+      "energyPrime": "3/8000",
+      "wrongPosition": "35"
+    }
+  },
+  {
+    "values": [
+      4,
+      -3,
+      0,
+      4,
+      1,
+      3,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/250",
+      "initialVelocityPrime": "-3",
+      "accelerationPrime": "0",
+      "timePrime": "2/5",
+      "positionPrime": "-6/5",
+      "finalVelocityPrime": "-3",
+      "forcePrime": "0",
+      "energyPrime": "9/500",
+      "wrongPosition": "-12"
+    }
+  },
+  {
+    "values": [
+      2,
+      5,
+      -3,
+      2,
+      1,
+      3,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "50",
+      "accelerationPrime": "-3000",
+      "timePrime": "1/50",
+      "positionPrime": "2/5",
+      "finalVelocityPrime": "-10",
+      "forcePrime": "-6",
+      "energyPrime": "1/10",
+      "wrongPosition": "497/500"
+    }
+  },
+  {
+    "values": [
+      4,
+      -2,
+      -2,
+      0,
+      1,
+      3,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/250",
+      "initialVelocityPrime": "-200",
+      "accelerationPrime": "-200000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-200",
+      "forcePrime": "-800",
+      "energyPrime": "80",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      1,
+      1,
+      1,
+      2,
+      -3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "3000",
+      "initialVelocityPrime": "1/100000",
+      "accelerationPrime": "1/100000000",
+      "timePrime": "1000",
+      "positionPrime": "3/200",
+      "finalVelocityPrime": "1/50000",
+      "forcePrime": "3/100000",
+      "energyPrime": "3/5000000",
+      "wrongPosition": "50100000"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      1,
+      4,
+      2,
+      -3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "4000",
+      "initialVelocityPrime": "1/10000",
+      "accelerationPrime": "1/1000000",
+      "timePrime": "400",
+      "positionPrime": "3/25",
+      "finalVelocityPrime": "1/2000",
+      "forcePrime": "1/250",
+      "energyPrime": "1/2000",
+      "wrongPosition": "8040000"
+    }
+  },
+  {
+    "values": [
+      1,
+      -2,
+      -2,
+      1,
+      2,
+      -3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "-1/500",
+      "accelerationPrime": "-1/5000",
+      "timePrime": "10",
+      "positionPrime": "-3/100",
+      "finalVelocityPrime": "-1/250",
+      "forcePrime": "-1/5",
+      "energyPrime": "1/125",
+      "wrongPosition": "-12000"
+    }
+  },
+  {
+    "values": [
+      2,
+      2,
+      3,
+      4,
+      2,
+      -3,
+      0
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "1/50",
+      "accelerationPrime": "3/100",
+      "timePrime": "4",
+      "positionPrime": "8/25",
+      "finalVelocityPrime": "7/50",
+      "forcePrime": "60",
+      "energyPrime": "98/5",
+      "wrongPosition": "3200"
+    }
+  },
+  {
+    "values": [
+      3,
+      3,
+      -1,
+      3,
+      2,
+      -3,
+      1
+    ],
+    "expected": {
+      "massPrime": "3000",
+      "initialVelocityPrime": "3/10",
+      "accelerationPrime": "-1",
+      "timePrime": "3/10",
+      "positionPrime": "9/200",
+      "finalVelocityPrime": "0",
+      "forcePrime": "-3000",
+      "energyPrime": "0",
+      "wrongPosition": "171/2"
+    }
+  },
+  {
+    "values": [
+      5,
+      -1,
+      0,
+      2,
+      2,
+      -3,
+      2
+    ],
+    "expected": {
+      "massPrime": "5000",
+      "initialVelocityPrime": "-1",
+      "accelerationPrime": "0",
+      "timePrime": "1/50",
+      "positionPrime": "-1/50",
+      "finalVelocityPrime": "-1",
+      "forcePrime": "0",
+      "energyPrime": "2500",
+      "wrongPosition": "-2"
+    }
+  },
+  {
+    "values": [
+      1,
+      3,
+      1,
+      3,
+      2,
+      -3,
+      3
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "30",
+      "accelerationPrime": "10000",
+      "timePrime": "3/1000",
+      "positionPrime": "27/200",
+      "finalVelocityPrime": "60",
+      "forcePrime": "10000000",
+      "energyPrime": "1800000",
+      "wrongPosition": "18009/20000"
+    }
+  },
+  {
+    "values": [
+      5,
+      -5,
+      1,
+      2,
+      2,
+      -2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "-1/20000",
+      "accelerationPrime": "1/100000000",
+      "timePrime": "2000",
+      "positionPrime": "-2/25",
+      "finalVelocityPrime": "-3/100000",
+      "forcePrime": "1/200000",
+      "energyPrime": "9/40000000",
+      "wrongPosition": "199000000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -5,
+      -2,
+      3,
+      2,
+      -2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "200",
+      "initialVelocityPrime": "-1/2000",
+      "accelerationPrime": "-1/500000",
+      "timePrime": "300",
+      "positionPrime": "-6/25",
+      "finalVelocityPrime": "-11/10000",
+      "forcePrime": "-1/2500",
+      "energyPrime": "121/1000000",
+      "wrongPosition": "-9150000"
+    }
+  },
+  {
+    "values": [
+      2,
+      0,
+      -1,
+      5,
+      2,
+      -2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "200",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-1/10000",
+      "timePrime": "50",
+      "positionPrime": "-1/8",
+      "finalVelocityPrime": "-1/200",
+      "forcePrime": "-1/50",
+      "energyPrime": "1/400",
+      "wrongPosition": "-125000"
+    }
+  },
+  {
+    "values": [
+      1,
+      3,
+      2,
+      0,
+      2,
+      -2,
+      0
+    ],
+    "expected": {
+      "massPrime": "100",
+      "initialVelocityPrime": "3/100",
+      "accelerationPrime": "1/50",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "3/100",
+      "forcePrime": "2",
+      "energyPrime": "9/200",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      -2,
+      -3,
+      3,
+      2,
+      -2,
+      1
+    ],
+    "expected": {
+      "massPrime": "400",
+      "initialVelocityPrime": "-1/5",
+      "accelerationPrime": "-3",
+      "timePrime": "3/10",
+      "positionPrime": "-39/200",
+      "finalVelocityPrime": "-11/10",
+      "forcePrime": "-1200",
+      "energyPrime": "242",
+      "wrongPosition": "-147/2"
+    }
+  },
+  {
+    "values": [
+      4,
+      -5,
+      -3,
+      2,
+      2,
+      -2,
+      2
+    ],
+    "expected": {
+      "massPrime": "400",
+      "initialVelocityPrime": "-5",
+      "accelerationPrime": "-300",
+      "timePrime": "1/50",
+      "positionPrime": "-4/25",
+      "finalVelocityPrime": "-11",
+      "forcePrime": "-120000",
+      "energyPrime": "24200",
+      "wrongPosition": "-503/50"
+    }
+  },
+  {
+    "values": [
+      3,
+      1,
+      3,
+      1,
+      2,
+      -2,
+      3
+    ],
+    "expected": {
+      "massPrime": "300",
+      "initialVelocityPrime": "10",
+      "accelerationPrime": "30000",
+      "timePrime": "1/1000",
+      "positionPrime": "1/40",
+      "finalVelocityPrime": "40",
+      "forcePrime": "9000000",
+      "energyPrime": "240000",
+      "wrongPosition": "2003/20000"
+    }
+  },
+  {
+    "values": [
+      3,
+      1,
+      -1,
+      4,
+      2,
+      -1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "30",
+      "initialVelocityPrime": "1/100000",
+      "accelerationPrime": "-1/100000000",
+      "timePrime": "4000",
+      "positionPrime": "-1/25",
+      "finalVelocityPrime": "-3/100000",
+      "forcePrime": "-3/10000000",
+      "energyPrime": "27/2000000000",
+      "wrongPosition": "-799600000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -4,
+      -1,
+      2,
+      2,
+      -1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "20",
+      "initialVelocityPrime": "-1/2500",
+      "accelerationPrime": "-1/1000000",
+      "timePrime": "200",
+      "positionPrime": "-1/10",
+      "finalVelocityPrime": "-3/5000",
+      "forcePrime": "-1/50000",
+      "energyPrime": "9/2500000",
+      "wrongPosition": "-2080000"
+    }
+  },
+  {
+    "values": [
+      4,
+      -2,
+      0,
+      4,
+      2,
+      -1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "40",
+      "initialVelocityPrime": "-1/500",
+      "accelerationPrime": "0",
+      "timePrime": "40",
+      "positionPrime": "-2/25",
+      "finalVelocityPrime": "-1/500",
+      "forcePrime": "0",
+      "energyPrime": "1/12500",
+      "wrongPosition": "-8000"
+    }
+  },
+  {
+    "values": [
+      2,
+      5,
+      2,
+      4,
+      2,
+      -1,
+      0
+    ],
+    "expected": {
+      "massPrime": "20",
+      "initialVelocityPrime": "1/20",
+      "accelerationPrime": "1/50",
+      "timePrime": "4",
+      "positionPrime": "9/25",
+      "finalVelocityPrime": "13/100",
+      "forcePrime": "2/5",
+      "energyPrime": "169/1000",
+      "wrongPosition": "3600"
+    }
+  },
+  {
+    "values": [
+      1,
+      -1,
+      -1,
+      4,
+      2,
+      -1,
+      1
+    ],
+    "expected": {
+      "massPrime": "10",
+      "initialVelocityPrime": "-1/10",
+      "accelerationPrime": "-1",
+      "timePrime": "2/5",
+      "positionPrime": "-3/25",
+      "finalVelocityPrime": "-1/2",
+      "forcePrime": "-10",
+      "energyPrime": "5/4",
+      "wrongPosition": "-48"
+    }
+  },
+  {
+    "values": [
+      3,
+      4,
+      -3,
+      0,
+      2,
+      -1,
+      2
+    ],
+    "expected": {
+      "massPrime": "30",
+      "initialVelocityPrime": "4",
+      "accelerationPrime": "-300",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "4",
+      "forcePrime": "-9000",
+      "energyPrime": "240",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      3,
+      2,
+      0,
+      2,
+      -1,
+      3
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "30",
+      "accelerationPrime": "20000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "30",
+      "forcePrime": "1000000",
+      "energyPrime": "22500",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      -1,
+      1,
+      5,
+      2,
+      0,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "-1/100000",
+      "accelerationPrime": "1/100000000",
+      "timePrime": "5000",
+      "positionPrime": "3/40",
+      "finalVelocityPrime": "1/25000",
+      "forcePrime": "1/100000000",
+      "energyPrime": "1/1250000000",
+      "wrongPosition": "1249500000"
+    }
+  },
+  {
+    "values": [
+      1,
+      2,
+      0,
+      3,
+      2,
+      0,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "1/5000",
+      "accelerationPrime": "0",
+      "timePrime": "300",
+      "positionPrime": "3/50",
+      "finalVelocityPrime": "1/5000",
+      "forcePrime": "0",
+      "energyPrime": "1/50000000",
+      "wrongPosition": "60000"
+    }
+  },
+  {
+    "values": [
+      1,
+      5,
+      1,
+      1,
+      2,
+      0,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "1/200",
+      "accelerationPrime": "1/10000",
+      "timePrime": "10",
+      "positionPrime": "11/200",
+      "finalVelocityPrime": "3/500",
+      "forcePrime": "1/10000",
+      "energyPrime": "9/500000",
+      "wrongPosition": "10000"
+    }
+  },
+  {
+    "values": [
+      5,
+      -5,
+      -3,
+      3,
+      2,
+      0,
+      0
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "-1/20",
+      "accelerationPrime": "-3/100",
+      "timePrime": "3",
+      "positionPrime": "-57/200",
+      "finalVelocityPrime": "-7/50",
+      "forcePrime": "-3/20",
+      "energyPrime": "49/1000",
+      "wrongPosition": "-2850"
+    }
+  },
+  {
+    "values": [
+      3,
+      -2,
+      2,
+      5,
+      2,
+      0,
+      1
+    ],
+    "expected": {
+      "massPrime": "3",
+      "initialVelocityPrime": "-1/5",
+      "accelerationPrime": "2",
+      "timePrime": "1/2",
+      "positionPrime": "3/20",
+      "finalVelocityPrime": "4/5",
+      "forcePrime": "6",
+      "energyPrime": "24/25",
+      "wrongPosition": "-75"
+    }
+  },
+  {
+    "values": [
+      5,
+      -4,
+      -1,
+      0,
+      2,
+      0,
+      2
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "-4",
+      "accelerationPrime": "-100",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-4",
+      "forcePrime": "-500",
+      "energyPrime": "40",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      2,
+      3,
+      2,
+      2,
+      0,
+      3
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "20",
+      "accelerationPrime": "30000",
+      "timePrime": "1/500",
+      "positionPrime": "1/10",
+      "finalVelocityPrime": "80",
+      "forcePrime": "30000",
+      "energyPrime": "3200",
+      "wrongPosition": "2003/5000"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      0,
+      1,
+      2,
+      1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "2/5",
+      "initialVelocityPrime": "1/100000",
+      "accelerationPrime": "0",
+      "timePrime": "1000",
+      "positionPrime": "1/100",
+      "finalVelocityPrime": "1/100000",
+      "forcePrime": "0",
+      "energyPrime": "1/50000000000",
+      "wrongPosition": "100000"
+    }
+  },
+  {
+    "values": [
+      2,
+      4,
+      -1,
+      1,
+      2,
+      1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/5",
+      "initialVelocityPrime": "1/2500",
+      "accelerationPrime": "-1/1000000",
+      "timePrime": "100",
+      "positionPrime": "7/200",
+      "finalVelocityPrime": "3/10000",
+      "forcePrime": "-1/5000000",
+      "energyPrime": "9/1000000000",
+      "wrongPosition": "-460000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -3,
+      2,
+      4,
+      2,
+      1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "-3/1000",
+      "accelerationPrime": "1/5000",
+      "timePrime": "40",
+      "positionPrime": "1/25",
+      "finalVelocityPrime": "1/200",
+      "forcePrime": "3/50000",
+      "energyPrime": "3/800000",
+      "wrongPosition": "148000"
+    }
+  },
+  {
+    "values": [
+      1,
+      -4,
+      -2,
+      0,
+      2,
+      1,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/10",
+      "initialVelocityPrime": "-1/25",
+      "accelerationPrime": "-1/50",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-1/25",
+      "forcePrime": "-1/500",
+      "energyPrime": "1/12500",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      2,
+      -2,
+      0,
+      2,
+      1,
+      1
+    ],
+    "expected": {
+      "massPrime": "2/5",
+      "initialVelocityPrime": "1/5",
+      "accelerationPrime": "-2",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1/5",
+      "forcePrime": "-4/5",
+      "energyPrime": "1/125",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      3,
+      3,
+      1,
+      2,
+      1,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "3",
+      "accelerationPrime": "300",
+      "timePrime": "1/100",
+      "positionPrime": "9/200",
+      "finalVelocityPrime": "6",
+      "forcePrime": "150",
+      "energyPrime": "9",
+      "wrongPosition": "603/200"
+    }
+  },
+  {
+    "values": [
+      5,
+      1,
+      3,
+      5,
+      2,
+      1,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "10",
+      "accelerationPrime": "30000",
+      "timePrime": "1/200",
+      "positionPrime": "17/40",
+      "finalVelocityPrime": "160",
+      "forcePrime": "15000",
+      "energyPrime": "6400",
+      "wrongPosition": "403/800"
+    }
+  },
+  {
+    "values": [
+      1,
+      -2,
+      2,
+      1,
+      2,
+      2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "-1/50000",
+      "accelerationPrime": "1/50000000",
+      "timePrime": "1000",
+      "positionPrime": "-1/100",
+      "finalVelocityPrime": "0",
+      "forcePrime": "1/5000000000",
+      "energyPrime": "0",
+      "wrongPosition": "99800000"
+    }
+  },
+  {
+    "values": [
+      4,
+      -4,
+      2,
+      3,
+      2,
+      2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "-1/2500",
+      "accelerationPrime": "1/500000",
+      "timePrime": "300",
+      "positionPrime": "-3/100",
+      "finalVelocityPrime": "1/5000",
+      "forcePrime": "1/12500000",
+      "energyPrime": "1/1250000000",
+      "wrongPosition": "8880000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -3,
+      3,
+      5,
+      2,
+      2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "-3/1000",
+      "accelerationPrime": "3/10000",
+      "timePrime": "50",
+      "positionPrime": "9/40",
+      "finalVelocityPrime": "3/250",
+      "forcePrime": "3/500000",
+      "energyPrime": "9/6250000",
+      "wrongPosition": "360000"
+    }
+  },
+  {
+    "values": [
+      1,
+      -2,
+      0,
+      4,
+      2,
+      2,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "-1/50",
+      "accelerationPrime": "0",
+      "timePrime": "4",
+      "positionPrime": "-2/25",
+      "finalVelocityPrime": "-1/50",
+      "forcePrime": "0",
+      "energyPrime": "1/500000",
+      "wrongPosition": "-800"
+    }
+  },
+  {
+    "values": [
+      5,
+      -2,
+      -1,
+      0,
+      2,
+      2,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/20",
+      "initialVelocityPrime": "-1/5",
+      "accelerationPrime": "-1",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-1/5",
+      "forcePrime": "-1/20",
+      "energyPrime": "1/1000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      5,
+      0,
+      5,
+      2,
+      2,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "5",
+      "accelerationPrime": "0",
+      "timePrime": "1/20",
+      "positionPrime": "1/4",
+      "finalVelocityPrime": "5",
+      "forcePrime": "0",
+      "energyPrime": "1/8",
+      "wrongPosition": "25"
+    }
+  },
+  {
+    "values": [
+      5,
+      -3,
+      3,
+      0,
+      2,
+      2,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/20",
+      "initialVelocityPrime": "-30",
+      "accelerationPrime": "30000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-30",
+      "forcePrime": "1500",
+      "energyPrime": "45/2",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      2,
+      -5,
+      2,
+      2,
+      2,
+      3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "-1/20000",
+      "accelerationPrime": "1/50000000",
+      "timePrime": "2000",
+      "positionPrime": "-3/50",
+      "finalVelocityPrime": "-1/100000",
+      "forcePrime": "1/25000000000",
+      "energyPrime": "1/10000000000000",
+      "wrongPosition": "399000000"
+    }
+  },
+  {
+    "values": [
+      2,
+      1,
+      0,
+      0,
+      2,
+      3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "1/10000",
+      "accelerationPrime": "0",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1/10000",
+      "forcePrime": "0",
+      "energyPrime": "1/100000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      -2,
+      -1,
+      4,
+      2,
+      3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "-1/500",
+      "accelerationPrime": "-1/10000",
+      "timePrime": "40",
+      "positionPrime": "-4/25",
+      "finalVelocityPrime": "-3/500",
+      "forcePrime": "-3/10000000",
+      "energyPrime": "27/500000000",
+      "wrongPosition": "-88000"
+    }
+  },
+  {
+    "values": [
+      4,
+      -5,
+      2,
+      5,
+      2,
+      3,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/250",
+      "initialVelocityPrime": "-1/20",
+      "accelerationPrime": "1/50",
+      "timePrime": "5",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1/20",
+      "forcePrime": "1/12500",
+      "energyPrime": "1/200000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      -5,
+      0,
+      3,
+      2,
+      3,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/1000",
+      "initialVelocityPrime": "-1/2",
+      "accelerationPrime": "0",
+      "timePrime": "3/10",
+      "positionPrime": "-3/20",
+      "finalVelocityPrime": "-1/2",
+      "forcePrime": "0",
+      "energyPrime": "1/8000",
+      "wrongPosition": "-150"
+    }
+  },
+  {
+    "values": [
+      3,
+      -5,
+      -3,
+      4,
+      2,
+      3,
+      2
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "-5",
+      "accelerationPrime": "-300",
+      "timePrime": "1/25",
+      "positionPrime": "-11/25",
+      "finalVelocityPrime": "-17",
+      "forcePrime": "-9/10",
+      "energyPrime": "867/2000",
+      "wrongPosition": "-506/25"
+    }
+  },
+  {
+    "values": [
+      5,
+      0,
+      -1,
+      0,
+      2,
+      3,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/200",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-10000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "0",
+      "forcePrime": "-50",
+      "energyPrime": "0",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      5,
+      -5,
+      0,
+      4,
+      3,
+      -3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "5000",
+      "initialVelocityPrime": "-1/200000",
+      "accelerationPrime": "0",
+      "timePrime": "4000",
+      "positionPrime": "-1/50",
+      "finalVelocityPrime": "-1/200000",
+      "forcePrime": "0",
+      "energyPrime": "1/16000000",
+      "wrongPosition": "-20000000"
+    }
+  },
+  {
+    "values": [
+      1,
+      -1,
+      -1,
+      4,
+      3,
+      -3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "-1/100000",
+      "accelerationPrime": "-1/10000000",
+      "timePrime": "400",
+      "positionPrime": "-3/250",
+      "finalVelocityPrime": "-1/20000",
+      "forcePrime": "-1/10000",
+      "energyPrime": "1/800000",
+      "wrongPosition": "-80400000"
+    }
+  },
+  {
+    "values": [
+      5,
+      0,
+      -1,
+      5,
+      3,
+      -3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "5000",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-1/100000",
+      "timePrime": "50",
+      "positionPrime": "-1/80",
+      "finalVelocityPrime": "-1/2000",
+      "forcePrime": "-1/20",
+      "energyPrime": "1/1600",
+      "wrongPosition": "-1250000"
+    }
+  },
+  {
+    "values": [
+      2,
+      -3,
+      -2,
+      4,
+      3,
+      -3,
+      0
+    ],
+    "expected": {
+      "massPrime": "2000",
+      "initialVelocityPrime": "-3/1000",
+      "accelerationPrime": "-1/500",
+      "timePrime": "4",
+      "positionPrime": "-7/250",
+      "finalVelocityPrime": "-11/1000",
+      "forcePrime": "-4",
+      "energyPrime": "121/1000",
+      "wrongPosition": "-28000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -1,
+      2,
+      3,
+      3,
+      -3,
+      1
+    ],
+    "expected": {
+      "massPrime": "3000",
+      "initialVelocityPrime": "-1/100",
+      "accelerationPrime": "1/5",
+      "timePrime": "3/10",
+      "positionPrime": "3/500",
+      "finalVelocityPrime": "1/20",
+      "forcePrime": "600",
+      "energyPrime": "15/4",
+      "wrongPosition": "-210"
+    }
+  },
+  {
+    "values": [
+      1,
+      1,
+      -3,
+      0,
+      3,
+      -3,
+      2
+    ],
+    "expected": {
+      "massPrime": "1000",
+      "initialVelocityPrime": "1/10",
+      "accelerationPrime": "-30",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1/10",
+      "forcePrime": "-30000",
+      "energyPrime": "5",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      4,
+      -5,
+      1,
+      0,
+      3,
+      -3,
+      3
+    ],
+    "expected": {
+      "massPrime": "4000",
+      "initialVelocityPrime": "-5",
+      "accelerationPrime": "1000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-5",
+      "forcePrime": "4000000",
+      "energyPrime": "50000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      -4,
+      -3,
+      5,
+      3,
+      -2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "100",
+      "initialVelocityPrime": "-1/250000",
+      "accelerationPrime": "-3/1000000000",
+      "timePrime": "5000",
+      "positionPrime": "-23/400",
+      "finalVelocityPrime": "-19/1000000",
+      "forcePrime": "-3/10000000",
+      "energyPrime": "361/20000000000",
+      "wrongPosition": "-37520000000"
+    }
+  },
+  {
+    "values": [
+      5,
+      -3,
+      -3,
+      1,
+      3,
+      -2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "500",
+      "initialVelocityPrime": "-3/100000",
+      "accelerationPrime": "-3/10000000",
+      "timePrime": "100",
+      "positionPrime": "-9/2000",
+      "finalVelocityPrime": "-3/50000",
+      "forcePrime": "-3/20000",
+      "energyPrime": "9/10000000",
+      "wrongPosition": "-15300000"
+    }
+  },
+  {
+    "values": [
+      1,
+      1,
+      -2,
+      5,
+      3,
+      -2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "100",
+      "initialVelocityPrime": "1/10000",
+      "accelerationPrime": "-1/50000",
+      "timePrime": "50",
+      "positionPrime": "-1/50",
+      "finalVelocityPrime": "-9/10000",
+      "forcePrime": "-1/500",
+      "energyPrime": "81/2000000",
+      "wrongPosition": "-2450000"
+    }
+  },
+  {
+    "values": [
+      2,
+      0,
+      -1,
+      4,
+      3,
+      -2,
+      0
+    ],
+    "expected": {
+      "massPrime": "200",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-1/1000",
+      "timePrime": "4",
+      "positionPrime": "-1/125",
+      "finalVelocityPrime": "-1/250",
+      "forcePrime": "-1/5",
+      "energyPrime": "1/625",
+      "wrongPosition": "-8000"
+    }
+  },
+  {
+    "values": [
+      4,
+      4,
+      -1,
+      3,
+      3,
+      -2,
+      1
+    ],
+    "expected": {
+      "massPrime": "400",
+      "initialVelocityPrime": "1/25",
+      "accelerationPrime": "-1/10",
+      "timePrime": "3/10",
+      "positionPrime": "3/400",
+      "finalVelocityPrime": "1/100",
+      "forcePrime": "-40",
+      "energyPrime": "1/50",
+      "wrongPosition": "1155"
+    }
+  },
+  {
+    "values": [
+      4,
+      1,
+      -3,
+      0,
+      3,
+      -2,
+      2
+    ],
+    "expected": {
+      "massPrime": "400",
+      "initialVelocityPrime": "1/10",
+      "accelerationPrime": "-30",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "1/10",
+      "forcePrime": "-12000",
+      "energyPrime": "2",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      -1,
+      2,
+      2,
+      3,
+      -2,
+      3
+    ],
+    "expected": {
+      "massPrime": "100",
+      "initialVelocityPrime": "-1",
+      "accelerationPrime": "2000",
+      "timePrime": "1/500",
+      "positionPrime": "1/500",
+      "finalVelocityPrime": "3",
+      "forcePrime": "200000",
+      "energyPrime": "450",
+      "wrongPosition": "-499/250"
+    }
+  },
+  {
+    "values": [
+      4,
+      -3,
+      -1,
+      2,
+      3,
+      -1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "40",
+      "initialVelocityPrime": "-3/1000000",
+      "accelerationPrime": "-1/1000000000",
+      "timePrime": "2000",
+      "positionPrime": "-1/125",
+      "finalVelocityPrime": "-1/200000",
+      "forcePrime": "-1/25000000",
+      "energyPrime": "1/2000000000",
+      "wrongPosition": "-2006000000"
+    }
+  },
+  {
+    "values": [
+      2,
+      5,
+      -1,
+      2,
+      3,
+      -1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "20",
+      "initialVelocityPrime": "1/20000",
+      "accelerationPrime": "-1/10000000",
+      "timePrime": "200",
+      "positionPrime": "1/125",
+      "finalVelocityPrime": "3/100000",
+      "forcePrime": "-1/500000",
+      "energyPrime": "9/1000000000",
+      "wrongPosition": "-19000000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -4,
+      -3,
+      0,
+      3,
+      -1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "30",
+      "initialVelocityPrime": "-1/2500",
+      "accelerationPrime": "-3/100000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-1/2500",
+      "forcePrime": "-9/10000",
+      "energyPrime": "3/1250000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      2,
+      5,
+      1,
+      4,
+      3,
+      -1,
+      0
+    ],
+    "expected": {
+      "massPrime": "20",
+      "initialVelocityPrime": "1/200",
+      "accelerationPrime": "1/1000",
+      "timePrime": "4",
+      "positionPrime": "7/250",
+      "finalVelocityPrime": "9/1000",
+      "forcePrime": "1/50",
+      "energyPrime": "81/100000",
+      "wrongPosition": "28000"
+    }
+  },
+  {
+    "values": [
+      2,
+      1,
+      -3,
+      1,
+      3,
+      -1,
+      1
+    ],
+    "expected": {
+      "massPrime": "20",
+      "initialVelocityPrime": "1/100",
+      "accelerationPrime": "-3/10",
+      "timePrime": "1/10",
+      "positionPrime": "-1/2000",
+      "finalVelocityPrime": "-1/50",
+      "forcePrime": "-6",
+      "energyPrime": "1/250",
+      "wrongPosition": "85"
+    }
+  },
+  {
+    "values": [
+      5,
+      3,
+      0,
+      2,
+      3,
+      -1,
+      2
+    ],
+    "expected": {
+      "massPrime": "50",
+      "initialVelocityPrime": "3/10",
+      "accelerationPrime": "0",
+      "timePrime": "1/50",
+      "positionPrime": "3/500",
+      "finalVelocityPrime": "3/10",
+      "forcePrime": "0",
+      "energyPrime": "9/4",
+      "wrongPosition": "60"
+    }
+  },
+  {
+    "values": [
+      2,
+      -2,
+      2,
+      4,
+      3,
+      -1,
+      3
+    ],
+    "expected": {
+      "massPrime": "20",
+      "initialVelocityPrime": "-2",
+      "accelerationPrime": "2000",
+      "timePrime": "1/250",
+      "positionPrime": "1/125",
+      "finalVelocityPrime": "6",
+      "forcePrime": "40000",
+      "energyPrime": "360",
+      "wrongPosition": "-998/125"
+    }
+  },
+  {
+    "values": [
+      5,
+      1,
+      -3,
+      1,
+      3,
+      0,
+      -3
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "1/1000000",
+      "accelerationPrime": "-3/1000000000",
+      "timePrime": "1000",
+      "positionPrime": "-1/2000",
+      "finalVelocityPrime": "-1/500000",
+      "forcePrime": "-3/200000000",
+      "energyPrime": "1/100000000000",
+      "wrongPosition": "-1499000000"
+    }
+  },
+  {
+    "values": [
+      1,
+      3,
+      2,
+      3,
+      3,
+      0,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "3/100000",
+      "accelerationPrime": "1/5000000",
+      "timePrime": "300",
+      "positionPrime": "9/500",
+      "finalVelocityPrime": "9/100000",
+      "forcePrime": "1/5000000",
+      "energyPrime": "81/20000000000",
+      "wrongPosition": "90900000"
+    }
+  },
+  {
+    "values": [
+      1,
+      3,
+      0,
+      4,
+      3,
+      0,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1",
+      "initialVelocityPrime": "3/10000",
+      "accelerationPrime": "0",
+      "timePrime": "40",
+      "positionPrime": "3/250",
+      "finalVelocityPrime": "3/10000",
+      "forcePrime": "0",
+      "energyPrime": "9/200000000",
+      "wrongPosition": "120000"
+    }
+  },
+  {
+    "values": [
+      2,
+      4,
+      0,
+      1,
+      3,
+      0,
+      0
+    ],
+    "expected": {
+      "massPrime": "2",
+      "initialVelocityPrime": "1/250",
+      "accelerationPrime": "0",
+      "timePrime": "1",
+      "positionPrime": "1/250",
+      "finalVelocityPrime": "1/250",
+      "forcePrime": "0",
+      "energyPrime": "1/62500",
+      "wrongPosition": "4000"
+    }
+  },
+  {
+    "values": [
+      5,
+      4,
+      2,
+      3,
+      3,
+      0,
+      1
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "1/25",
+      "accelerationPrime": "1/5",
+      "timePrime": "3/10",
+      "positionPrime": "21/1000",
+      "finalVelocityPrime": "1/10",
+      "forcePrime": "1",
+      "energyPrime": "1/40",
+      "wrongPosition": "1290"
+    }
+  },
+  {
+    "values": [
+      4,
+      4,
+      0,
+      1,
+      3,
+      0,
+      2
+    ],
+    "expected": {
+      "massPrime": "4",
+      "initialVelocityPrime": "2/5",
+      "accelerationPrime": "0",
+      "timePrime": "1/100",
+      "positionPrime": "1/250",
+      "finalVelocityPrime": "2/5",
+      "forcePrime": "0",
+      "energyPrime": "8/25",
+      "wrongPosition": "40"
+    }
+  },
+  {
+    "values": [
+      5,
+      3,
+      -1,
+      1,
+      3,
+      0,
+      3
+    ],
+    "expected": {
+      "massPrime": "5",
+      "initialVelocityPrime": "3",
+      "accelerationPrime": "-1000",
+      "timePrime": "1/1000",
+      "positionPrime": "1/400",
+      "finalVelocityPrime": "2",
+      "forcePrime": "-5000",
+      "energyPrime": "10",
+      "wrongPosition": "5999/2000"
+    }
+  },
+  {
+    "values": [
+      3,
+      0,
+      -2,
+      2,
+      3,
+      1,
+      -3
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-1/500000000",
+      "timePrime": "2000",
+      "positionPrime": "-1/250",
+      "finalVelocityPrime": "-1/250000",
+      "forcePrime": "-3/5000000000",
+      "energyPrime": "3/1250000000000",
+      "wrongPosition": "-4000000000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -4,
+      0,
+      1,
+      3,
+      1,
+      -2
+    ],
+    "expected": {
+      "massPrime": "3/10",
+      "initialVelocityPrime": "-1/25000",
+      "accelerationPrime": "0",
+      "timePrime": "100",
+      "positionPrime": "-1/250",
+      "finalVelocityPrime": "-1/25000",
+      "forcePrime": "0",
+      "energyPrime": "3/12500000000",
+      "wrongPosition": "-400000"
+    }
+  },
+  {
+    "values": [
+      1,
+      -3,
+      0,
+      2,
+      3,
+      1,
+      -1
+    ],
+    "expected": {
+      "massPrime": "1/10",
+      "initialVelocityPrime": "-3/10000",
+      "accelerationPrime": "0",
+      "timePrime": "20",
+      "positionPrime": "-3/500",
+      "finalVelocityPrime": "-3/10000",
+      "forcePrime": "0",
+      "energyPrime": "9/2000000000",
+      "wrongPosition": "-60000"
+    }
+  },
+  {
+    "values": [
+      2,
+      4,
+      -1,
+      2,
+      3,
+      1,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/5",
+      "initialVelocityPrime": "1/250",
+      "accelerationPrime": "-1/1000",
+      "timePrime": "2",
+      "positionPrime": "3/500",
+      "finalVelocityPrime": "1/500",
+      "forcePrime": "-1/5000",
+      "energyPrime": "1/2500000",
+      "wrongPosition": "6000"
+    }
+  },
+  {
+    "values": [
+      2,
+      5,
+      -2,
+      1,
+      3,
+      1,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/5",
+      "initialVelocityPrime": "1/20",
+      "accelerationPrime": "-1/5",
+      "timePrime": "1/10",
+      "positionPrime": "1/250",
+      "finalVelocityPrime": "3/100",
+      "forcePrime": "-1/25",
+      "energyPrime": "9/100000",
+      "wrongPosition": "490"
+    }
+  },
+  {
+    "values": [
+      5,
+      -3,
+      1,
+      3,
+      3,
+      1,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/2",
+      "initialVelocityPrime": "-3/10",
+      "accelerationPrime": "10",
+      "timePrime": "3/100",
+      "positionPrime": "-9/2000",
+      "finalVelocityPrime": "0",
+      "forcePrime": "5",
+      "energyPrime": "0",
+      "wrongPosition": "-1791/20"
+    }
+  },
+  {
+    "values": [
+      1,
+      5,
+      -3,
+      2,
+      3,
+      1,
+      3
+    ],
+    "expected": {
+      "massPrime": "1/10",
+      "initialVelocityPrime": "5",
+      "accelerationPrime": "-3000",
+      "timePrime": "1/500",
+      "positionPrime": "1/250",
+      "finalVelocityPrime": "-1",
+      "forcePrime": "-300",
+      "energyPrime": "1/20",
+      "wrongPosition": "4997/500"
+    }
+  },
+  {
+    "values": [
+      4,
+      -1,
+      -2,
+      0,
+      3,
+      2,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "-1/1000000",
+      "accelerationPrime": "-1/500000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "-1/1000000",
+      "forcePrime": "-1/12500000000",
+      "energyPrime": "1/50000000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      1,
+      3,
+      -3,
+      0,
+      3,
+      2,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/100",
+      "initialVelocityPrime": "3/100000",
+      "accelerationPrime": "-3/10000000",
+      "timePrime": "0",
+      "positionPrime": "0",
+      "finalVelocityPrime": "3/100000",
+      "forcePrime": "-3/1000000000",
+      "energyPrime": "9/2000000000000",
+      "wrongPosition": "0"
+    }
+  },
+  {
+    "values": [
+      3,
+      -3,
+      1,
+      5,
+      3,
+      2,
+      -1
+    ],
+    "expected": {
+      "massPrime": "3/100",
+      "initialVelocityPrime": "-3/10000",
+      "accelerationPrime": "1/100000",
+      "timePrime": "50",
+      "positionPrime": "-1/400",
+      "finalVelocityPrime": "1/5000",
+      "forcePrime": "3/10000000",
+      "energyPrime": "3/5000000000",
+      "wrongPosition": "1100000"
+    }
+  },
+  {
+    "values": [
+      4,
+      4,
+      -2,
+      1,
+      3,
+      2,
+      0
+    ],
+    "expected": {
+      "massPrime": "1/25",
+      "initialVelocityPrime": "1/250",
+      "accelerationPrime": "-1/500",
+      "timePrime": "1",
+      "positionPrime": "3/1000",
+      "finalVelocityPrime": "1/500",
+      "forcePrime": "-1/12500",
+      "energyPrime": "1/12500000",
+      "wrongPosition": "3000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -1,
+      1,
+      3,
+      3,
+      2,
+      1
+    ],
+    "expected": {
+      "massPrime": "3/100",
+      "initialVelocityPrime": "-1/100",
+      "accelerationPrime": "1/10",
+      "timePrime": "3/10",
+      "positionPrime": "3/2000",
+      "finalVelocityPrime": "1/50",
+      "forcePrime": "3/1000",
+      "energyPrime": "3/500000",
+      "wrongPosition": "-255"
+    }
+  },
+  {
+    "values": [
+      2,
+      0,
+      -3,
+      1,
+      3,
+      2,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/50",
+      "initialVelocityPrime": "0",
+      "accelerationPrime": "-30",
+      "timePrime": "1/100",
+      "positionPrime": "-3/2000",
+      "finalVelocityPrime": "-3/10",
+      "forcePrime": "-3/5",
+      "energyPrime": "9/10000",
+      "wrongPosition": "-3/20"
+    }
+  },
+  {
+    "values": [
+      3,
+      -5,
+      -2,
+      2,
+      3,
+      2,
+      3
+    ],
+    "expected": {
+      "massPrime": "3/100",
+      "initialVelocityPrime": "-5",
+      "accelerationPrime": "-2000",
+      "timePrime": "1/500",
+      "positionPrime": "-7/500",
+      "finalVelocityPrime": "-9",
+      "forcePrime": "-60",
+      "energyPrime": "243/200",
+      "wrongPosition": "-2501/250"
+    }
+  },
+  {
+    "values": [
+      4,
+      -2,
+      3,
+      4,
+      3,
+      3,
+      -3
+    ],
+    "expected": {
+      "massPrime": "1/250",
+      "initialVelocityPrime": "-1/500000",
+      "accelerationPrime": "3/1000000000",
+      "timePrime": "4000",
+      "positionPrime": "2/125",
+      "finalVelocityPrime": "1/100000",
+      "forcePrime": "3/250000000000",
+      "energyPrime": "1/5000000000000",
+      "wrongPosition": "23992000000"
+    }
+  },
+  {
+    "values": [
+      4,
+      3,
+      -2,
+      4,
+      3,
+      3,
+      -2
+    ],
+    "expected": {
+      "massPrime": "1/250",
+      "initialVelocityPrime": "3/100000",
+      "accelerationPrime": "-1/5000000",
+      "timePrime": "400",
+      "positionPrime": "-1/250",
+      "finalVelocityPrime": "-1/20000",
+      "forcePrime": "-1/1250000000",
+      "energyPrime": "1/200000000000",
+      "wrongPosition": "-158800000"
+    }
+  },
+  {
+    "values": [
+      3,
+      4,
+      2,
+      4,
+      3,
+      3,
+      -1
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "1/2500",
+      "accelerationPrime": "1/50000",
+      "timePrime": "40",
+      "positionPrime": "4/125",
+      "finalVelocityPrime": "3/2500",
+      "forcePrime": "3/50000000",
+      "energyPrime": "27/12500000000",
+      "wrongPosition": "1760000"
+    }
+  },
+  {
+    "values": [
+      3,
+      -4,
+      2,
+      2,
+      3,
+      3,
+      0
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "-1/250",
+      "accelerationPrime": "1/500",
+      "timePrime": "2",
+      "positionPrime": "-1/250",
+      "finalVelocityPrime": "0",
+      "forcePrime": "3/500000",
+      "energyPrime": "0",
+      "wrongPosition": "-4000"
+    }
+  },
+  {
+    "values": [
+      5,
+      1,
+      1,
+      5,
+      3,
+      3,
+      1
+    ],
+    "expected": {
+      "massPrime": "1/200",
+      "initialVelocityPrime": "1/100",
+      "accelerationPrime": "1/10",
+      "timePrime": "1/2",
+      "positionPrime": "7/400",
+      "finalVelocityPrime": "3/50",
+      "forcePrime": "1/2000",
+      "energyPrime": "9/1000000",
+      "wrongPosition": "625"
+    }
+  },
+  {
+    "values": [
+      2,
+      3,
+      3,
+      2,
+      3,
+      3,
+      2
+    ],
+    "expected": {
+      "massPrime": "1/500",
+      "initialVelocityPrime": "3/10",
+      "accelerationPrime": "30",
+      "timePrime": "1/50",
+      "positionPrime": "3/250",
+      "finalVelocityPrime": "9/10",
+      "forcePrime": "3/50",
+      "energyPrime": "81/100000",
+      "wrongPosition": "303/5"
+    }
+  },
+  {
+    "values": [
+      3,
+      5,
+      2,
+      1,
+      3,
+      3,
+      3
+    ],
+    "expected": {
+      "massPrime": "3/1000",
+      "initialVelocityPrime": "5",
+      "accelerationPrime": "2000",
+      "timePrime": "1/1000",
+      "positionPrime": "3/500",
+      "finalVelocityPrime": "7",
+      "forcePrime": "6",
+      "energyPrime": "147/2000",
+      "wrongPosition": "5001/1000"
+    }
+  }
+]

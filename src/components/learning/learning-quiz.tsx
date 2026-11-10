@@ -12,7 +12,7 @@ function validStudy(value: unknown): value is StudyState {
   return typeof s.complete === 'boolean' && !!s.answers && typeof s.answers === 'object' && !Array.isArray(s.answers)
     && Object.values(s.answers).every(n => Number.isInteger(n) && n >= 0 && n < 3);
 }
-export default function LearningQuiz({ unit }: { unit: LearningUnit }) {
+export default function LearningQuiz({ unit }: { unit: { id: string; questions: LearningUnit['questions'] } }) {
   const { language } = useLanguage(); const ko = language === 'ko';
   const [study, set, ready, storage] = useSavedState(`suanlab-learning:${unit.id}:study`, initial, validStudy);
   const [checked, setChecked] = useState<Record<string, boolean>>({});

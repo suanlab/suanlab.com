@@ -1,0 +1,2 @@
+/** Shared declaration only; no mathematical implementation. */
+export const graphGaussContract='Classical finite compact U(1) graph; fixed interior charges; anchors have no prescribed charge. Canonical electric momenta are real,not quantized. Only invariant closed/anchored path potentials are admitted. Empty charge levels have no physical phase-space dimension. A lift at fixed non-forest momenta is not an orthogonal projection. Hamiltonian vector fields are exact instantaneous derivatives,not time integration or a continuum Maxwell limit.';

@@ -1,0 +1,186 @@
+{
+  "finite-force-pulse-impulse-histories": [
+    {
+      "name": "zero",
+      "values": [
+        5,
+        0,
+        -30,
+        1,
+        100
+      ],
+      "key": "flat position meters",
+      "answer": "-30"
+    },
+    {
+      "name": "zero-time",
+      "values": [
+        1,
+        30,
+        30,
+        1,
+        0
+      ],
+      "key": "flat impulse N s",
+      "answer": "0"
+    },
+    {
+      "name": "short-switch",
+      "values": [
+        2,
+        -30,
+        10,
+        1,
+        1
+      ],
+      "key": "1{pulse finished}",
+      "answer": "1"
+    },
+    {
+      "name": "negative-work",
+      "values": [
+        1,
+        -10,
+        20,
+        10,
+        10
+      ],
+      "key": "flat work joules",
+      "answer": "-1.5"
+    },
+    {
+      "name": "long-pulse",
+      "values": [
+        1,
+        30,
+        -30,
+        50,
+        50
+      ],
+      "key": "flat impulse N s",
+      "answer": "15"
+    },
+    {
+      "name": "late-free",
+      "values": [
+        1,
+        20,
+        0,
+        20,
+        100
+      ],
+      "key": "flat position meters",
+      "answer": "36"
+    }
+  ],
+  "two-particle-momentum-center-of-mass": [
+    {
+      "name": "stationary",
+      "values": [
+        5,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        50,
+        0
+      ],
+      "key": "kinetic energy joules",
+      "answer": "0"
+    },
+    {
+      "name": "particle2",
+      "values": [
+        1,
+        1,
+        -10,
+        10,
+        0,
+        0,
+        10,
+        0,
+        0,
+        10,
+        2
+      ],
+      "key": "selected external force N",
+      "answer": "-1"
+    },
+    {
+      "name": "unequal-masses",
+      "values": [
+        1,
+        2,
+        -10,
+        10,
+        0,
+        0,
+        10,
+        0,
+        0,
+        10,
+        0
+      ],
+      "key": "center of mass meters",
+      "answer": "0.333"
+    },
+    {
+      "name": "opposed-external",
+      "values": [
+        1,
+        1,
+        -10,
+        10,
+        0,
+        0,
+        0,
+        10,
+        -10,
+        10,
+        0
+      ],
+      "key": "external work joules",
+      "answer": "1"
+    },
+    {
+      "name": "crossed-paths",
+      "values": [
+        1,
+        1,
+        -10,
+        10,
+        0,
+        0,
+        10,
+        0,
+        0,
+        30,
+        0
+      ],
+      "key": "total momentum kg m per s",
+      "answer": "0"
+    },
+    {
+      "name": "signed-extreme",
+      "values": [
+        5,
+        1,
+        -30,
+        30,
+        -30,
+        30,
+        -30,
+        -30,
+        30,
+        50,
+        1
+      ],
+      "key": "selected external force N",
+      "answer": "-6"
+    }
+  ]
+}

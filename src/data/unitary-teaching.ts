@@ -1,0 +1,8 @@
+import type {LearningUnit,LearningGuide} from './interactive-book';
+import {unitaryKinds as kinds,unitaryTitles as titles,unitaryText as t} from '@/lib/learning-unitary';
+import {unitarySteps as steps} from '@/lib/learning-unitary-concepts';
+const subtitles=[t('실제 시간의 스펙트럼 전파로 위상·보존량·ray 변화를 읽고, 재정규화하지 않은 Euler 오차와 비교합니다.','Read phase, conservation and ray motion through spectral propagation in physical time, then compare unnormalized Euler error.'),t('구간별 Hamiltonian의 정순·역순·상수 평균을 같은 시각에서 비교하고 교환자와 역전파를 구별합니다.','Compare ordered, reversed and constant-average Hamiltonian paths at the same time, distinguishing commutators from inverse propagation.')];
+export const unitaryTeaching:{unit:LearningUnit;guide:LearningGuide}[]=kinds.map((kind,i)=>({
+ unit:{id:kind,title:titles[kind],subtitle:subtitles[i],prerequisiteIds:i===0?['hermitian-spectrum-born-expectation','complex-state-rays-basis-amplitudes','eigenvalues']:[kinds[0],'hermitian-spectrum-born-expectation'],prerequisites:t('복소 내적·에너지 고유공간·행렬 합성과 미분방정식의 초기값 표기를 복습하세요.','Review complex inner products, energy eigenspaces, matrix composition and initial-value notation for differential equations.'),eyebrow:'QUANTUM DYNAMICS & UNITARY EVOLUTION',formula:steps[kind][0].formula,accent:'unitary',questions:steps[kind].map((s,j)=>({id:`${kind}-quiz-${j}`,question:s.question,options:s.options,answer:s.answer,explanation:s.solution}))},
+ guide:{intuition:subtitles[i],steps:steps[kind].map(s=>({title:s.title,explanation:s.explanation,formula:s.formula,diagram:s.action})),experiments:steps[kind].map(s=>({title:s.title,predict:s.predict,action:s.action,explain:s.solution,preset:s.presets[0]}))}
+}));

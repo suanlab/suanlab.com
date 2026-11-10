@@ -1,0 +1,226 @@
+{
+  "momentum-kinetic-invariant-constraints": [
+    {
+      "name": "zero-energy",
+      "values": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "key": "complete target solution count",
+      "answer": "1",
+      "checks": [
+        [
+          "initial kinetic energy joules",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "nonzero-input-tangent",
+      "values": [
+        1,
+        1,
+        10,
+        -10,
+        0,
+        20
+      ],
+      "key": "complete target solution count",
+      "answer": "1",
+      "checks": [
+        [
+          "1{momentum conserved}",
+          "0"
+        ],
+        [
+          "fixed-kinetic target feasibility gap",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "irrational-intersections",
+      "values": [
+        1,
+        1,
+        10,
+        0,
+        0,
+        -10
+      ],
+      "key": "complete target solution count",
+      "answer": "2"
+    },
+    {
+      "name": "kinetic-increase",
+      "values": [
+        1,
+        1,
+        10,
+        0,
+        10,
+        0
+      ],
+      "key": "updated kinetic energy joules",
+      "answer": "2.5",
+      "checks": [
+        [
+          "1{momentum conserved}",
+          "1"
+        ],
+        [
+          "1{kinetic energy conserved}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "large-impulse",
+      "values": [
+        1,
+        5,
+        -30,
+        30,
+        300,
+        20
+      ],
+      "key": "1{momentum balance holds}",
+      "answer": "1",
+      "checks": [
+        [
+          "1{kinetic work identity holds}",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "equal-velocities",
+      "values": [
+        5,
+        5,
+        30,
+        30,
+        0,
+        0
+      ],
+      "key": "complete target solution count",
+      "answer": "1"
+    }
+  ],
+  "circle-position-velocity-acceleration": [
+    {
+      "name": "origin-undefined",
+      "values": [
+        1,
+        0,
+        0,
+        10,
+        10,
+        0,
+        0
+      ],
+      "key": "1{radial projection available}",
+      "answer": "0",
+      "checks": [
+        [
+          "1{first derivative algebraically zero}",
+          "1"
+        ],
+        [
+          "1{position and velocity compatible}",
+          "0"
+        ],
+        [
+          "projected kinetic energy joules",
+          "\u2014"
+        ]
+      ]
+    },
+    {
+      "name": "position-angular-change",
+      "values": [
+        1,
+        20,
+        0,
+        0,
+        10,
+        0,
+        0
+      ],
+      "key": "original angular momentum kg m squared per s",
+      "answer": "2",
+      "checks": [
+        [
+          "projected angular momentum kg m squared per s",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "irrational-projection",
+      "values": [
+        2,
+        30,
+        40,
+        10,
+        -30,
+        20,
+        -10
+      ],
+      "key": "1{radial projection available}",
+      "answer": "1"
+    },
+    {
+      "name": "large-circle-compatible",
+      "values": [
+        5,
+        50,
+        0,
+        0,
+        30,
+        -18,
+        0
+      ],
+      "key": "1{all three local conditions compatible}",
+      "answer": "1"
+    },
+    {
+      "name": "zero-velocity",
+      "values": [
+        1,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "key": "1{all three local conditions compatible}",
+      "answer": "1",
+      "checks": [
+        [
+          "projected kinetic energy joules",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "negative-position",
+      "values": [
+        1,
+        -10,
+        0,
+        0,
+        -10,
+        10,
+        0
+      ],
+      "key": "1{all three local conditions compatible}",
+      "answer": "1"
+    }
+  ]
+}

@@ -42,8 +42,11 @@ export default function ModernHeader() {
     return () => observer.disconnect();
   }, [language]);
 
-  const isActive = useCallback((href: string) => pathname.replace(/\/$/, '') === href
-    || pathname.startsWith(`${href}/`), [pathname]);
+  const interactiveRoot = '/book/online/physics-math-for-ai';
+  const navigationPathname = pathname === interactiveRoot || pathname.startsWith(`${interactiveRoot}/`)
+    ? '/book/interactive/' : pathname;
+  const isActive = useCallback((href: string) => navigationPathname.replace(/\/$/, '') === href
+    || navigationPathname.startsWith(`${href}/`), [navigationPathname]);
 
   function openWithKeyboard(event: KeyboardEvent<HTMLElement>, key: string) {
     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;

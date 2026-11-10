@@ -20,6 +20,7 @@ export const mainNavigation = [
     icon: BookMarked,
     children: [
       { name: 'Online Book', href: '/book/online' },
+      { name: 'Interactive Book', href: '/book/interactive' },
       { name: 'Published Book', href: '/book/published' },
     ],
   },

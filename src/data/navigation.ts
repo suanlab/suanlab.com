@@ -36,6 +36,7 @@ export const navigation: NavItem[] = [
     icon: 'et-book-open',
     children: [
       { label: 'Online Book', href: '/book/online', icon: 'fa fa-globe' },
+      { label: 'Interactive Book', href: '/book/interactive', icon: 'fa fa-cubes' },
       { label: 'Published Book', href: '/book/published', icon: 'fa fa-book' },
     ],
   },

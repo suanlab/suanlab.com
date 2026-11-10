@@ -1,0 +1,1655 @@
+{
+  "provenance": "Independent SciPy Coulomb shell quadrature and five-point potential gradients; observer-centered Biot-Savart filament integration; no product code imports",
+  "spheres": [
+    {
+      "totalCharge": -2.0,
+      "radius": 0.5,
+      "observationRadius": 0.0,
+      "potentialOverK": -6.0,
+      "negativePotentialGradientOverK": -1.4802973661668752e-11,
+      "gaussPredictionOverK": -0.0,
+      "boundary": false,
+      "difference": 1.4802973661668752e-11
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 0.5,
+      "observationRadius": 0.1,
+      "potentialOverK": -5.919999999999999,
+      "negativePotentialGradientOverK": -1.6000000000460088,
+      "gaussPredictionOverK": -1.6,
+      "boundary": false,
+      "difference": 4.600875236349111e-11
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 0.5,
+      "observationRadius": 0.4,
+      "potentialOverK": -4.720000000000001,
+      "negativePotentialGradientOverK": -6.3999999999471875,
+      "gaussPredictionOverK": -6.4,
+      "boundary": false,
+      "difference": 5.2812865192208847e-11
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 0.5,
+      "observationRadius": 0.5,
+      "potentialOverK": -4.0,
+      "negativePotentialGradientOverK": -7.999960000049099,
+      "gaussPredictionOverK": -8.0,
+      "boundary": true,
+      "difference": 3.999995090087083e-05
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 0.5,
+      "observationRadius": 0.6,
+      "potentialOverK": -3.333333333333333,
+      "negativePotentialGradientOverK": -5.555555555517936,
+      "gaussPredictionOverK": -5.555555555555555,
+      "boundary": false,
+      "difference": 3.7619685144818504e-11
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 0.5,
+      "observationRadius": 1.0,
+      "potentialOverK": -2.0,
+      "negativePotentialGradientOverK": -1.9999999999982991,
+      "gaussPredictionOverK": -2.0,
+      "boundary": false,
+      "difference": 1.7008616737257398e-12
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 0.5,
+      "observationRadius": 2.0,
+      "potentialOverK": -1.0,
+      "negativePotentialGradientOverK": -0.4999999999810711,
+      "gaussPredictionOverK": -0.5,
+      "boundary": false,
+      "difference": 1.89289139918003e-11
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 1.0,
+      "observationRadius": 0.0,
+      "potentialOverK": -3.0,
+      "negativePotentialGradientOverK": -3.700743415417188e-12,
+      "gaussPredictionOverK": -0.0,
+      "boundary": false,
+      "difference": 3.700743415417188e-12
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 1.0,
+      "observationRadius": 0.2,
+      "potentialOverK": -2.9599999999999995,
+      "negativePotentialGradientOverK": -0.4000000000115022,
+      "gaussPredictionOverK": -0.4,
+      "boundary": false,
+      "difference": 1.1502188090872778e-11
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 1.0,
+      "observationRadius": 0.8,
+      "potentialOverK": -2.3600000000000003,
+      "negativePotentialGradientOverK": -1.5999999999867969,
+      "gaussPredictionOverK": -1.6,
+      "boundary": false,
+      "difference": 1.3203216298052212e-11
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 1.0,
+      "observationRadius": 1.0,
+      "potentialOverK": -2.0,
+      "negativePotentialGradientOverK": -1.9999900000122748,
+      "gaussPredictionOverK": -2.0,
+      "boundary": true,
+      "difference": 9.999987725217707e-06
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 1.0,
+      "observationRadius": 1.2,
+      "potentialOverK": -1.6666666666666665,
+      "negativePotentialGradientOverK": -1.388888888879484,
+      "gaussPredictionOverK": -1.3888888888888888,
+      "boundary": false,
+      "difference": 9.404921286204626e-12
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 1.0,
+      "observationRadius": 2.0,
+      "potentialOverK": -1.0,
+      "negativePotentialGradientOverK": -0.4999999999995748,
+      "gaussPredictionOverK": -0.5,
+      "boundary": false,
+      "difference": 4.2521541843143495e-13
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 1.0,
+      "observationRadius": 4.0,
+      "potentialOverK": -0.5,
+      "negativePotentialGradientOverK": -0.12499999999526777,
+      "gaussPredictionOverK": -0.125,
+      "boundary": false,
+      "difference": 4.732228497950075e-12
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 2.0,
+      "observationRadius": 0.0,
+      "potentialOverK": -1.5,
+      "negativePotentialGradientOverK": -9.25185853854297e-13,
+      "gaussPredictionOverK": -0.0,
+      "boundary": false,
+      "difference": 9.25185853854297e-13
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 2.0,
+      "observationRadius": 0.4,
+      "potentialOverK": -1.4799999999999998,
+      "negativePotentialGradientOverK": -0.10000000000287555,
+      "gaussPredictionOverK": -0.1,
+      "boundary": false,
+      "difference": 2.8755470227181945e-12
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 2.0,
+      "observationRadius": 1.6,
+      "potentialOverK": -1.1800000000000002,
+      "negativePotentialGradientOverK": -0.3999999999966992,
+      "gaussPredictionOverK": -0.4,
+      "boundary": false,
+      "difference": 3.300804074513053e-12
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 2.0,
+      "observationRadius": 2.0,
+      "potentialOverK": -1.0,
+      "negativePotentialGradientOverK": -0.4999975000030687,
+      "gaussPredictionOverK": -0.5,
+      "boundary": true,
+      "difference": 2.499996931304427e-06
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 2.0,
+      "observationRadius": 2.4,
+      "potentialOverK": -0.8333333333333333,
+      "negativePotentialGradientOverK": -0.347222222219871,
+      "gaussPredictionOverK": -0.3472222222222222,
+      "boundary": false,
+      "difference": 2.3512303215511565e-12
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 2.0,
+      "observationRadius": 4.0,
+      "potentialOverK": -0.5,
+      "negativePotentialGradientOverK": -0.1249999999998937,
+      "gaussPredictionOverK": -0.125,
+      "boundary": false,
+      "difference": 1.0630385460785874e-13
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 2.0,
+      "observationRadius": 8.0,
+      "potentialOverK": -0.25,
+      "negativePotentialGradientOverK": -0.031249999998816943,
+      "gaussPredictionOverK": -0.03125,
+      "boundary": false,
+      "difference": 1.1830571244875188e-12
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 0.5,
+      "observationRadius": 0.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 0.5,
+      "observationRadius": 0.1,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 0.5,
+      "observationRadius": 0.4,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 0.5,
+      "observationRadius": 0.5,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": true,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 0.5,
+      "observationRadius": 0.6,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 0.5,
+      "observationRadius": 1.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 0.5,
+      "observationRadius": 2.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 1.0,
+      "observationRadius": 0.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 1.0,
+      "observationRadius": 0.2,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 1.0,
+      "observationRadius": 0.8,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 1.0,
+      "observationRadius": 1.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": true,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 1.0,
+      "observationRadius": 1.2,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 1.0,
+      "observationRadius": 2.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 1.0,
+      "observationRadius": 4.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 2.0,
+      "observationRadius": 0.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 2.0,
+      "observationRadius": 0.4,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 2.0,
+      "observationRadius": 1.6,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 2.0,
+      "observationRadius": 2.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": true,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 2.0,
+      "observationRadius": 2.4,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 2.0,
+      "observationRadius": 4.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 2.0,
+      "observationRadius": 8.0,
+      "potentialOverK": 0.0,
+      "negativePotentialGradientOverK": -0.0,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 0.0
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 0.5,
+      "observationRadius": 0.0,
+      "potentialOverK": 3.0,
+      "negativePotentialGradientOverK": 7.401486830834376e-12,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 7.401486830834376e-12
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 0.5,
+      "observationRadius": 0.1,
+      "potentialOverK": 2.9599999999999995,
+      "negativePotentialGradientOverK": 0.8000000000230044,
+      "gaussPredictionOverK": 0.8,
+      "boundary": false,
+      "difference": 2.3004376181745556e-11
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 0.5,
+      "observationRadius": 0.4,
+      "potentialOverK": 2.3600000000000003,
+      "negativePotentialGradientOverK": 3.1999999999735937,
+      "gaussPredictionOverK": 3.2,
+      "boundary": false,
+      "difference": 2.6406432596104423e-11
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 0.5,
+      "observationRadius": 0.5,
+      "potentialOverK": 2.0,
+      "negativePotentialGradientOverK": 3.9999800000245496,
+      "gaussPredictionOverK": 4.0,
+      "boundary": true,
+      "difference": 1.9999975450435414e-05
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 0.5,
+      "observationRadius": 0.6,
+      "potentialOverK": 1.6666666666666665,
+      "negativePotentialGradientOverK": 2.777777777758968,
+      "gaussPredictionOverK": 2.7777777777777777,
+      "boundary": false,
+      "difference": 1.8809842572409252e-11
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 0.5,
+      "observationRadius": 1.0,
+      "potentialOverK": 1.0,
+      "negativePotentialGradientOverK": 0.9999999999991496,
+      "gaussPredictionOverK": 1.0,
+      "boundary": false,
+      "difference": 8.504308368628699e-13
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 0.5,
+      "observationRadius": 2.0,
+      "potentialOverK": 0.5,
+      "negativePotentialGradientOverK": 0.24999999999053554,
+      "gaussPredictionOverK": 0.25,
+      "boundary": false,
+      "difference": 9.46445699590015e-12
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 1.0,
+      "observationRadius": 0.0,
+      "potentialOverK": 1.5,
+      "negativePotentialGradientOverK": 1.850371707708594e-12,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 1.850371707708594e-12
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 1.0,
+      "observationRadius": 0.2,
+      "potentialOverK": 1.4799999999999998,
+      "negativePotentialGradientOverK": 0.2000000000057511,
+      "gaussPredictionOverK": 0.2,
+      "boundary": false,
+      "difference": 5.751094045436389e-12
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 1.0,
+      "observationRadius": 0.8,
+      "potentialOverK": 1.1800000000000002,
+      "negativePotentialGradientOverK": 0.7999999999933984,
+      "gaussPredictionOverK": 0.8,
+      "boundary": false,
+      "difference": 6.601608149026106e-12
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 1.0,
+      "observationRadius": 1.0,
+      "potentialOverK": 1.0,
+      "negativePotentialGradientOverK": 0.9999950000061374,
+      "gaussPredictionOverK": 1.0,
+      "boundary": true,
+      "difference": 4.999993862608854e-06
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 1.0,
+      "observationRadius": 1.2,
+      "potentialOverK": 0.8333333333333333,
+      "negativePotentialGradientOverK": 0.694444444439742,
+      "gaussPredictionOverK": 0.6944444444444444,
+      "boundary": false,
+      "difference": 4.702460643102313e-12
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 1.0,
+      "observationRadius": 2.0,
+      "potentialOverK": 0.5,
+      "negativePotentialGradientOverK": 0.2499999999997874,
+      "gaussPredictionOverK": 0.25,
+      "boundary": false,
+      "difference": 2.1260770921571748e-13
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 1.0,
+      "observationRadius": 4.0,
+      "potentialOverK": 0.25,
+      "negativePotentialGradientOverK": 0.062499999997633886,
+      "gaussPredictionOverK": 0.0625,
+      "boundary": false,
+      "difference": 2.3661142489750375e-12
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 2.0,
+      "observationRadius": 0.0,
+      "potentialOverK": 0.75,
+      "negativePotentialGradientOverK": 4.625929269271485e-13,
+      "gaussPredictionOverK": 0.0,
+      "boundary": false,
+      "difference": 4.625929269271485e-13
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 2.0,
+      "observationRadius": 0.4,
+      "potentialOverK": 0.7399999999999999,
+      "negativePotentialGradientOverK": 0.050000000001437776,
+      "gaussPredictionOverK": 0.05,
+      "boundary": false,
+      "difference": 1.4377735113590973e-12
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 2.0,
+      "observationRadius": 1.6,
+      "potentialOverK": 0.5900000000000001,
+      "negativePotentialGradientOverK": 0.1999999999983496,
+      "gaussPredictionOverK": 0.2,
+      "boundary": false,
+      "difference": 1.6504020372565265e-12
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 2.0,
+      "observationRadius": 2.0,
+      "potentialOverK": 0.5,
+      "negativePotentialGradientOverK": 0.24999875000153435,
+      "gaussPredictionOverK": 0.25,
+      "boundary": true,
+      "difference": 1.2499984656522134e-06
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 2.0,
+      "observationRadius": 2.4,
+      "potentialOverK": 0.41666666666666663,
+      "negativePotentialGradientOverK": 0.1736111111099355,
+      "gaussPredictionOverK": 0.1736111111111111,
+      "boundary": false,
+      "difference": 1.1756151607755783e-12
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 2.0,
+      "observationRadius": 4.0,
+      "potentialOverK": 0.25,
+      "negativePotentialGradientOverK": 0.06249999999994685,
+      "gaussPredictionOverK": 0.0625,
+      "boundary": false,
+      "difference": 5.315192730392937e-14
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 2.0,
+      "observationRadius": 8.0,
+      "potentialOverK": 0.125,
+      "negativePotentialGradientOverK": 0.015624999999408471,
+      "gaussPredictionOverK": 0.015625,
+      "boundary": false,
+      "difference": 5.915285622437594e-13
+    }
+  ],
+  "cylinders": [
+    {
+      "totalCurrent": -2.0,
+      "radius": 0.5,
+      "observationRadius": 0.0,
+      "biotSavartFieldOverMu0": -0.0,
+      "amperePredictionOverMu0": -0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 0.5,
+      "observationRadius": 0.1,
+      "biotSavartFieldOverMu0": -0.12732395447351627,
+      "amperePredictionOverMu0": -0.12732395447351627,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 0.5,
+      "observationRadius": 0.4,
+      "biotSavartFieldOverMu0": -0.5092958178940652,
+      "amperePredictionOverMu0": -0.5092958178940651,
+      "difference": 1.1102230246251565e-16
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 0.5,
+      "observationRadius": 0.5,
+      "biotSavartFieldOverMu0": -0.6366197723675814,
+      "amperePredictionOverMu0": -0.6366197723675814,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 0.5,
+      "observationRadius": 0.6,
+      "biotSavartFieldOverMu0": -0.5305164769729837,
+      "amperePredictionOverMu0": -0.5305164769729844,
+      "difference": 7.771561172376096e-16
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 0.5,
+      "observationRadius": 1.0,
+      "biotSavartFieldOverMu0": -0.31830988618379075,
+      "amperePredictionOverMu0": -0.3183098861837907,
+      "difference": 5.551115123125783e-17
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 0.5,
+      "observationRadius": 2.0,
+      "biotSavartFieldOverMu0": -0.15915494309189537,
+      "amperePredictionOverMu0": -0.15915494309189535,
+      "difference": 2.7755575615628914e-17
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 1.0,
+      "observationRadius": 0.0,
+      "biotSavartFieldOverMu0": -0.0,
+      "amperePredictionOverMu0": -0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 1.0,
+      "observationRadius": 0.2,
+      "biotSavartFieldOverMu0": -0.06366197723675814,
+      "amperePredictionOverMu0": -0.06366197723675814,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 1.0,
+      "observationRadius": 0.8,
+      "biotSavartFieldOverMu0": -0.2546479089470326,
+      "amperePredictionOverMu0": -0.25464790894703254,
+      "difference": 5.551115123125783e-17
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 1.0,
+      "observationRadius": 1.0,
+      "biotSavartFieldOverMu0": -0.3183098861837907,
+      "amperePredictionOverMu0": -0.3183098861837907,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 1.0,
+      "observationRadius": 1.2,
+      "biotSavartFieldOverMu0": -0.2652582384864918,
+      "amperePredictionOverMu0": -0.2652582384864922,
+      "difference": 3.885780586188048e-16
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 1.0,
+      "observationRadius": 2.0,
+      "biotSavartFieldOverMu0": -0.15915494309189537,
+      "amperePredictionOverMu0": -0.15915494309189535,
+      "difference": 2.7755575615628914e-17
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 1.0,
+      "observationRadius": 4.0,
+      "biotSavartFieldOverMu0": -0.07957747154594769,
+      "amperePredictionOverMu0": -0.07957747154594767,
+      "difference": 1.3877787807814457e-17
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 2.0,
+      "observationRadius": 0.0,
+      "biotSavartFieldOverMu0": -0.0,
+      "amperePredictionOverMu0": -0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 2.0,
+      "observationRadius": 0.4,
+      "biotSavartFieldOverMu0": -0.03183098861837907,
+      "amperePredictionOverMu0": -0.03183098861837907,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 2.0,
+      "observationRadius": 1.6,
+      "biotSavartFieldOverMu0": -0.1273239544735163,
+      "amperePredictionOverMu0": -0.12732395447351627,
+      "difference": 2.7755575615628914e-17
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 2.0,
+      "observationRadius": 2.0,
+      "biotSavartFieldOverMu0": -0.15915494309189535,
+      "amperePredictionOverMu0": -0.15915494309189535,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 2.0,
+      "observationRadius": 2.4,
+      "biotSavartFieldOverMu0": -0.1326291192432459,
+      "amperePredictionOverMu0": -0.1326291192432461,
+      "difference": 1.942890293094024e-16
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 2.0,
+      "observationRadius": 4.0,
+      "biotSavartFieldOverMu0": -0.07957747154594769,
+      "amperePredictionOverMu0": -0.07957747154594767,
+      "difference": 1.3877787807814457e-17
+    },
+    {
+      "totalCurrent": -2.0,
+      "radius": 2.0,
+      "observationRadius": 8.0,
+      "biotSavartFieldOverMu0": -0.03978873577297384,
+      "amperePredictionOverMu0": -0.039788735772973836,
+      "difference": 6.938893903907228e-18
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 0.5,
+      "observationRadius": 0.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 0.5,
+      "observationRadius": 0.1,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 0.5,
+      "observationRadius": 0.4,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 0.5,
+      "observationRadius": 0.5,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 0.5,
+      "observationRadius": 0.6,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 0.5,
+      "observationRadius": 1.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 0.5,
+      "observationRadius": 2.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 1.0,
+      "observationRadius": 0.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 1.0,
+      "observationRadius": 0.2,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 1.0,
+      "observationRadius": 0.8,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 1.0,
+      "observationRadius": 1.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 1.0,
+      "observationRadius": 1.2,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 1.0,
+      "observationRadius": 2.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 1.0,
+      "observationRadius": 4.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 2.0,
+      "observationRadius": 0.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 2.0,
+      "observationRadius": 0.4,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 2.0,
+      "observationRadius": 1.6,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 2.0,
+      "observationRadius": 2.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 2.0,
+      "observationRadius": 2.4,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 2.0,
+      "observationRadius": 4.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 0.0,
+      "radius": 2.0,
+      "observationRadius": 8.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 0.5,
+      "observationRadius": 0.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 0.5,
+      "observationRadius": 0.1,
+      "biotSavartFieldOverMu0": 0.06366197723675814,
+      "amperePredictionOverMu0": 0.06366197723675814,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 0.5,
+      "observationRadius": 0.4,
+      "biotSavartFieldOverMu0": 0.2546479089470326,
+      "amperePredictionOverMu0": 0.25464790894703254,
+      "difference": 5.551115123125783e-17
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 0.5,
+      "observationRadius": 0.5,
+      "biotSavartFieldOverMu0": 0.3183098861837907,
+      "amperePredictionOverMu0": 0.3183098861837907,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 0.5,
+      "observationRadius": 0.6,
+      "biotSavartFieldOverMu0": 0.2652582384864918,
+      "amperePredictionOverMu0": 0.2652582384864922,
+      "difference": 3.885780586188048e-16
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 0.5,
+      "observationRadius": 1.0,
+      "biotSavartFieldOverMu0": 0.15915494309189537,
+      "amperePredictionOverMu0": 0.15915494309189535,
+      "difference": 2.7755575615628914e-17
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 0.5,
+      "observationRadius": 2.0,
+      "biotSavartFieldOverMu0": 0.07957747154594769,
+      "amperePredictionOverMu0": 0.07957747154594767,
+      "difference": 1.3877787807814457e-17
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 1.0,
+      "observationRadius": 0.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 1.0,
+      "observationRadius": 0.2,
+      "biotSavartFieldOverMu0": 0.03183098861837907,
+      "amperePredictionOverMu0": 0.03183098861837907,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 1.0,
+      "observationRadius": 0.8,
+      "biotSavartFieldOverMu0": 0.1273239544735163,
+      "amperePredictionOverMu0": 0.12732395447351627,
+      "difference": 2.7755575615628914e-17
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 1.0,
+      "observationRadius": 1.0,
+      "biotSavartFieldOverMu0": 0.15915494309189535,
+      "amperePredictionOverMu0": 0.15915494309189535,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 1.0,
+      "observationRadius": 1.2,
+      "biotSavartFieldOverMu0": 0.1326291192432459,
+      "amperePredictionOverMu0": 0.1326291192432461,
+      "difference": 1.942890293094024e-16
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 1.0,
+      "observationRadius": 2.0,
+      "biotSavartFieldOverMu0": 0.07957747154594769,
+      "amperePredictionOverMu0": 0.07957747154594767,
+      "difference": 1.3877787807814457e-17
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 1.0,
+      "observationRadius": 4.0,
+      "biotSavartFieldOverMu0": 0.03978873577297384,
+      "amperePredictionOverMu0": 0.039788735772973836,
+      "difference": 6.938893903907228e-18
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 2.0,
+      "observationRadius": 0.0,
+      "biotSavartFieldOverMu0": 0.0,
+      "amperePredictionOverMu0": 0.0,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 2.0,
+      "observationRadius": 0.4,
+      "biotSavartFieldOverMu0": 0.015915494309189534,
+      "amperePredictionOverMu0": 0.015915494309189534,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 2.0,
+      "observationRadius": 1.6,
+      "biotSavartFieldOverMu0": 0.06366197723675815,
+      "amperePredictionOverMu0": 0.06366197723675814,
+      "difference": 1.3877787807814457e-17
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 2.0,
+      "observationRadius": 2.0,
+      "biotSavartFieldOverMu0": 0.07957747154594767,
+      "amperePredictionOverMu0": 0.07957747154594767,
+      "difference": 0.0
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 2.0,
+      "observationRadius": 2.4,
+      "biotSavartFieldOverMu0": 0.06631455962162296,
+      "amperePredictionOverMu0": 0.06631455962162305,
+      "difference": 9.71445146547012e-17
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 2.0,
+      "observationRadius": 4.0,
+      "biotSavartFieldOverMu0": 0.03978873577297384,
+      "amperePredictionOverMu0": 0.039788735772973836,
+      "difference": 6.938893903907228e-18
+    },
+    {
+      "totalCurrent": 1.0,
+      "radius": 2.0,
+      "observationRadius": 8.0,
+      "biotSavartFieldOverMu0": 0.01989436788648692,
+      "amperePredictionOverMu0": 0.019894367886486918,
+      "difference": 3.469446951953614e-18
+    }
+  ],
+  "vectorSpheres": [
+    {
+      "totalCharge": -2.0,
+      "radius": 0.5,
+      "observation": [
+        1.3971236258309356,
+        -1.8991124694307215,
+        -0.4006544814336186
+      ],
+      "backgroundField": [
+        -0.06740739920412275,
+        0.37635376968400935,
+        0.20745457442331838
+      ],
+      "totalPotential": 0.05572488916043927,
+      "negativeIndependentGradient": [
+        -0.2717093642542097,
+        0.654061770750484,
+        0.2660424447733141
+      ]
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 1.0,
+      "observation": [
+        1.579580966739404,
+        0.013845579634824912,
+        1.1836275794139737
+      ],
+      "backgroundField": [
+        -0.013444843405279627,
+        -0.41152654950583867,
+        0.4636294376987834
+      ],
+      "totalPotential": -1.5350572023076912,
+      "negativeIndependentGradient": [
+        -0.42421889928367923,
+        -0.4151271277693287,
+        0.1558240692534074
+      ]
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 2.0,
+      "observation": [
+        -1.4754006709996488,
+        -1.9707152314047511,
+        -1.4730233640005261
+      ],
+      "backgroundField": [
+        -0.1702815073830629,
+        -0.4325600723567634,
+        0.028864051151921366
+      ],
+      "totalPotential": -1.7583112249405302,
+      "negativeIndependentGradient": [
+        -0.04530896241944359,
+        -0.2656323335306631,
+        0.15363522837217683
+      ]
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 0.5,
+      "observation": [
+        -0.533106279336256,
+        -0.4407803251599316,
+        0.16792417681062854
+      ],
+      "backgroundField": [
+        0.31657789307449014,
+        0.34520011219084756,
+        -0.17234682962617165
+      ],
+      "totalPotential": 0.3498682798846757,
+      "negativeIndependentGradient": [
+        0.31657789307110157,
+        0.34520011219415125,
+        -0.17234682962672754
+      ]
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 1.0,
+      "observation": [
+        1.9756794557798099,
+        -1.4580896816414346,
+        0.0078008827768960565
+      ],
+      "backgroundField": [
+        -0.30112006999204466,
+        -0.12159351683122122,
+        -0.1331961549830495
+      ],
+      "totalPotential": 0.41866153135151934,
+      "negativeIndependentGradient": [
+        -0.30112006998914137,
+        -0.12159351682935099,
+        -0.13319615498307474
+      ]
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 2.0,
+      "observation": [
+        -1.4796158660511654,
+        -0.834637015312349,
+        -0.5163033327144011
+      ],
+      "backgroundField": [
+        0.02789151544724089,
+        0.41609885605944774,
+        -0.3255778466061644
+      ],
+      "totalPotential": 0.22046330881954823,
+      "negativeIndependentGradient": [
+        0.02789151544724255,
+        0.41609885605975444,
+        -0.32557784660653766
+      ]
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 0.5,
+      "observation": [
+        1.6885712106556316,
+        1.2463536621998852,
+        -0.5445000259586577
+      ],
+      "backgroundField": [
+        0.019069547536437192,
+        -0.28085990336856537,
+        -0.19352376812532657
+      ],
+      "totalPotential": 0.6736859436166265,
+      "negativeIndependentGradient": [
+        0.18472782972271207,
+        -0.1585856365865501,
+        -0.24694226679611295
+      ]
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 1.0,
+      "observation": [
+        -0.8763269299577114,
+        1.5215499574366436,
+        -1.6642618825412545
+      ],
+      "backgroundField": [
+        -0.015006601041824386,
+        -0.15623401880245702,
+        -0.04121816184921945
+      ],
+      "totalPotential": 0.5693184793976854,
+      "negativeIndependentGradient": [
+        -0.07689613422771449,
+        -0.04877638700255074,
+        -0.15875465135308425
+      ]
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 2.0,
+      "observation": [
+        0.30571804374719536,
+        -0.09351984183339512,
+        0.09565849160791551
+      ],
+      "backgroundField": [
+        0.11017057771485783,
+        0.4759240149682582,
+        -0.28053021063447037
+      ],
+      "totalPotential": 0.7807023000251894,
+      "negativeIndependentGradient": [
+        0.14838533318577612,
+        0.464234034742994,
+        -0.2685728991836759
+      ]
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 0.5,
+      "observation": [
+        -1.8076408252197198,
+        -1.94781389247813,
+        -1.054623910834469
+      ],
+      "backgroundField": [
+        0.44455003829415973,
+        -0.3424213452177932,
+        -0.4340681653586972
+      ],
+      "totalPotential": -1.0207147140719606,
+      "negativeIndependentGradient": [
+        0.5992563550697808,
+        -0.17571836481988787,
+        -0.3438085415715293
+      ]
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 1.0,
+      "observation": [
+        1.329016034237418,
+        -0.10654669310566112,
+        -0.34115491778624474
+      ],
+      "backgroundField": [
+        -0.05856351255069048,
+        0.21358113474506535,
+        0.07241708473523134
+      ],
+      "totalPotential": -1.3279466327350984,
+      "negativeIndependentGradient": [
+        -1.0782872220708541,
+        0.2953319837554572,
+        0.33417747687947136
+      ]
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 2.0,
+      "observation": [
+        0.7201260855089471,
+        1.0654670751383,
+        -0.6442318157905476
+      ],
+      "backgroundField": [
+        0.37536177638442947,
+        -0.21965787861569142,
+        -0.4606349359720012
+      ],
+      "totalPotential": -1.5744207129715908,
+      "negativeIndependentGradient": [
+        0.1953302550122826,
+        -0.486024647393853,
+        -0.2995769820287227
+      ]
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 0.5,
+      "observation": [
+        -0.4889221412615261,
+        -0.44268182971542336,
+        -1.3567226737828686
+      ],
+      "backgroundField": [
+        -0.46334783062801843,
+        0.0501102329109242,
+        -0.31257183279188505
+      ],
+      "totalPotential": -0.6284314166416778,
+      "negativeIndependentGradient": [
+        -0.4633478306222589,
+        0.050110232902948276,
+        -0.31257183279731476
+      ]
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 1.0,
+      "observation": [
+        -1.5094343142358202,
+        -1.8075698919113403,
+        0.4495545322014576
+      ],
+      "backgroundField": [
+        0.13830198790902504,
+        0.10706296940304949,
+        0.11709219020433592
+      ],
+      "totalPotential": 0.34964224151673284,
+      "negativeIndependentGradient": [
+        0.13830198790689324,
+        0.10706296940156862,
+        0.1170921902049482
+      ]
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 2.0,
+      "observation": [
+        -0.7032201600489629,
+        1.8577974690605408,
+        -1.411340330666142
+      ],
+      "backgroundField": [
+        -0.2630027181266069,
+        0.26228037976806573,
+        0.06832447677229025
+      ],
+      "totalPotential": -0.5757835496112595,
+      "negativeIndependentGradient": [
+        -0.26300271812699594,
+        0.26228037976958046,
+        0.06832447677236156
+      ]
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 0.5,
+      "observation": [
+        1.5800259430188635,
+        -1.7652586364409935,
+        -1.8944795540890085
+      ],
+      "backgroundField": [
+        0.31298907577517476,
+        0.43732785798392426,
+        -0.12694029774109072
+      ],
+      "totalPotential": 0.3666403873687397,
+      "negativeIndependentGradient": [
+        0.36959528047497686,
+        0.37408548392662644,
+        -0.19481215635663848
+      ]
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 1.0,
+      "observation": [
+        -1.6084715458698486,
+        1.214209595000106,
+        -0.2670238351300789
+      ],
+      "backgroundField": [
+        0.2728460634133967,
+        0.16136456791476184,
+        -0.29633935736344696
+      ],
+      "totalPotential": 0.6557069153254151,
+      "negativeIndependentGradient": [
+        0.08139896518488675,
+        0.3058849383147377,
+        -0.32812166556039907
+      ]
+    },
+    {
+      "totalCharge": 1.0,
+      "radius": 2.0,
+      "observation": [
+        -0.6055164775836128,
+        -1.418817836373222,
+        1.5437077330674773
+      ],
+      "backgroundField": [
+        0.23199247914474364,
+        0.09167147459935965,
+        0.43220527915917084
+      ],
+      "totalPotential": 0.061559731717093946,
+      "negativeIndependentGradient": [
+        0.17373625658817501,
+        -0.044831776259181735,
+        0.5807240801922418
+      ]
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 0.5,
+      "observation": [
+        -0.1644806102063101,
+        1.431156301209703,
+        0.3166933404346661
+      ],
+      "backgroundField": [
+        -0.3689565725693176,
+        0.18791209222554506,
+        -0.34238065890609715
+      ],
+      "totalPotential": -1.577141527163127,
+      "negativeIndependentGradient": [
+        -0.2664411906216912,
+        -0.7040807977679955,
+        -0.5397652546460888
+      ]
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 1.0,
+      "observation": [
+        0.13063014591356437,
+        -1.0216610131197168,
+        -1.6754421268428326
+      ],
+      "backgroundField": [
+        -0.4478601974608124,
+        0.37881684407431415,
+        -0.09131471152775128
+      ],
+      "totalPotential": -0.7243910343838593,
+      "negativeIndependentGradient": [
+        -0.48220413979468035,
+        0.6474215116643773,
+        0.3491754019114649
+      ]
+    },
+    {
+      "totalCharge": -2.0,
+      "radius": 2.0,
+      "observation": [
+        0.9872922512272471,
+        -1.4047138104350991,
+        -1.347709705450049
+      ],
+      "backgroundField": [
+        0.44986226455417355,
+        -0.4848978011782996,
+        0.4722745743457394
+      ],
+      "totalPotential": -1.4050849830800596,
+      "negativeIndependentGradient": [
+        0.25998250666782924,
+        -0.21473795955295746,
+        0.731471172165284
+      ]
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 0.5,
+      "observation": [
+        -1.1682042578766576,
+        -0.2688468617079489,
+        0.7130028600926321
+      ],
+      "backgroundField": [
+        0.15270098514996222,
+        0.2532583439066708,
+        -0.012108074309414518
+      ],
+      "totalPotential": 0.2551067436076337,
+      "negativeIndependentGradient": [
+        0.15270098515281677,
+        0.2532583439078991,
+        -0.012108074309384133
+      ]
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 1.0,
+      "observation": [
+        1.101182677344605,
+        -0.17443819898599466,
+        -0.329418037188538
+      ],
+      "backgroundField": [
+        -0.4893395750458197,
+        0.44695397225779565,
+        0.42527242241393737
+      ],
+      "totalPotential": 0.7569105159919272,
+      "negativeIndependentGradient": [
+        -0.4893395750415104,
+        0.4469539722537496,
+        0.4252724224167632
+      ]
+    },
+    {
+      "totalCharge": 0.0,
+      "radius": 2.0,
+      "observation": [
+        0.20805029716083556,
+        0.3460510549153488,
+        -1.144867928679691
+      ],
+      "backgroundField": [
+        -0.4695046648863874,
+        0.07322380360890934,
+        0.430337715583764
+      ],
+      "totalPotential": 0.5650212596373679,
+      "negativeIndependentGradient": [
+        -0.4695046648868957,
+        0.073223803607562,
+        0.4303377155826885
+      ]
+    }
+  ],
+  "boundaryConvergence": [
+    {
+      "step": 0.01,
+      "negativePotentialGradient": 0.9950006471235229,
+      "exactBoundaryFieldOverK": 1.0,
+      "difference": 0.0049993528764771256
+    },
+    {
+      "step": 0.005,
+      "negativePotentialGradient": 0.9975000820977502,
+      "exactBoundaryFieldOverK": 1.0,
+      "difference": 0.002499917902249793
+    },
+    {
+      "step": 0.0025,
+      "negativePotentialGradient": 0.998750010338904,
+      "exactBoundaryFieldOverK": 1.0,
+      "difference": 0.0012499896610960182
+    },
+    {
+      "step": 0.00125,
+      "negativePotentialGradient": 0.9993750012972018,
+      "exactBoundaryFieldOverK": 1.0,
+      "difference": 0.0006249987027981962
+    }
+  ],
+  "limits": [
+    "Uniform prescribed nonconducting sphere,not conductor equilibrium.",
+    "Infinite uniform steady current cylinder,not a finite open wire or a constitutive model.",
+    "k and mu0 are factored out.",
+    "Finite differences across the interface have reduced order; their observed differences are not certified bounds."
+  ]
+}

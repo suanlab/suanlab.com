@@ -1,0 +1,942 @@
+{
+  "date": "2026-11-08",
+  "scope": "Original11 introductory topics,31 authored units plus existing thermodynamics seed; research depth remains separate.",
+  "stage": "introductory-domain-audit-complete-thirty-two-readers-verified",
+  "authoredUnitCount": 31,
+  "existingSeedUnitCount": 1,
+  "unitCount": 32,
+  "manuscriptCount": 64,
+  "catalogAndFilePresenceChecked": true,
+  "wholeDomainAuditComplete": true,
+  "researchDepthComplete": false,
+  "units": [
+    {
+      "topic": "온도·열·일",
+      "id": "finite-body-thermal-contact-heat-entropy",
+      "existingSeed": false,
+      "topicEvidence": "docs/online-learning/physics-math-for-ai/temperature-heat-work-authoring-status.md",
+      "prerequisites": [
+        "thermodynamics",
+        "integration-fundamental-theorem",
+        "system-boundary-mass-balances"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md",
+        "en": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md"
+      },
+      "contentSha256": {
+        "ko": "bfbce40069eb907c65c398911804b21c69e41753b3a336a64045bb20850f5927",
+        "en": "ac6832c0f769f298d6c8fcc041e50ca6f2c27ad841e162172fa53ac14c1fef9f"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage2.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage1/independent-recompute.json",
+      "reviewLimit": "Introductory assumptions, selected independent calculations, teaching materials, prerequisites and actual reader controls checked. This is not exhaustive proof for all inputs or research-depth completion."
+    },
+    {
+      "topic": "온도·열·일",
+      "id": "ideal-gas-two-path-heat-work",
+      "existingSeed": false,
+      "topicEvidence": "docs/online-learning/physics-math-for-ai/temperature-heat-work-authoring-status.md",
+      "prerequisites": [
+        "finite-body-thermal-contact-heat-entropy",
+        "exponentials-logarithms"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md",
+        "en": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md"
+      },
+      "contentSha256": {
+        "ko": "2775f557c57463175f262902d76ef3470ab6f26041dcadfb603d21e273288d4e",
+        "en": "9a18abd589b5659dadfc1e3a0506780aa34a5f5ef67ecd6afa9ce180e299cdda"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage2.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage1/independent-recompute.json",
+      "reviewLimit": "Introductory assumptions, selected independent calculations, teaching materials, prerequisites and actual reader controls checked. This is not exhaustive proof for all inputs or research-depth completion."
+    },
+    {
+      "topic": "열역학 법칙",
+      "id": "carnot-cycle-engine-refrigerator",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/thermodynamic-laws-integrated-verification.json",
+      "prerequisites": [
+        "ideal-gas-two-path-heat-work",
+        "finite-body-thermal-contact-heat-entropy"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md",
+        "en": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md"
+      },
+      "contentSha256": {
+        "ko": "65e254a26d33b431e1d79fd6d0b2496c36dc8241c9ef473f0933b95508ef545b",
+        "en": "28714dbb65f26093e5c00521e111b8e6d4452bc518be87b244d30d3215e8dc47"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage2.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage2/law-independent-comparison.json",
+      "reviewLimit": "Introductory assumptions, selected independent calculations, teaching materials, prerequisites and actual reader controls checked. This is not exhaustive proof for all inputs or research-depth completion."
+    },
+    {
+      "topic": "열역학 법칙",
+      "id": "two-reservoir-cycle-entropy-admissibility",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/thermodynamic-laws-integrated-verification.json",
+      "prerequisites": [
+        "carnot-cycle-engine-refrigerator"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md",
+        "en": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md"
+      },
+      "contentSha256": {
+        "ko": "faf477ca33a6fb917cf05568d4118cbb04b5969b3d9e6fff5589bbd321f76791",
+        "en": "1ba3913e39f372c132f95e7da4a55f17105e66e06236218c6ffaebc2c730e019"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage2.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage2/law-independent-comparison.json",
+      "reviewLimit": "Introductory assumptions, selected independent calculations, teaching materials, prerequisites and actual reader controls checked. This is not exhaustive proof for all inputs or research-depth completion."
+    },
+    {
+      "topic": "열역학 법칙",
+      "id": "gapped-spectrum-low-temperature-entropy",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/thermodynamic-laws-integrated-verification.json",
+      "prerequisites": [
+        "two-reservoir-cycle-entropy-admissibility",
+        "probability-distributions",
+        "exponentials-logarithms"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md",
+        "en": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md"
+      },
+      "contentSha256": {
+        "ko": "07723d8e8729643d6d50079d1c510d2344ab9d9352fdda9522837d058c596add",
+        "en": "03951d879a75d0f28cdacb980160361538198dd4a09404d257e3091a5c8672b6"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage2.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage2/law-independent-comparison.json",
+      "reviewLimit": "Introductory assumptions, selected independent calculations, teaching materials, prerequisites and actual reader controls checked. This is not exhaustive proof for all inputs or research-depth completion."
+    },
+    {
+      "topic": "entropy·free energy",
+      "id": "finite-spectrum-helmholtz-kl-variational",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/entropy-free-energy-integrated-verification.json",
+      "prerequisites": [
+        "gapped-spectrum-low-temperature-entropy",
+        "cross-entropy-kl"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md",
+        "en": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md"
+      },
+      "contentSha256": {
+        "ko": "1988db280860ef74557a2bcaca959b7ae08a0b232ff1bd2a1b99394b47ac060b",
+        "en": "ca2682e88d8000119b077d1fcb6d881ae72a6b3fa16337e63f503f81b2875019"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage3.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage3/independent-comparison.json",
+      "reviewLimit": "Bilingual introductory assumptions, selected independent preparations, all controls and teaching flows plus actual reader layout checked. Not exhaustive over all possible inputs or research depth."
+    },
+    {
+      "topic": "entropy·free energy",
+      "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/entropy-free-energy-integrated-verification.json",
+      "prerequisites": [
+        "ideal-gas-two-path-heat-work",
+        "finite-body-thermal-contact-heat-entropy"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md",
+        "en": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md"
+      },
+      "contentSha256": {
+        "ko": "623093cfd35890f9b0304cf33bc15e99c744e18418c829ba61d59b5c93c99f44",
+        "en": "6e695972c365e36840c19e359f762a8084eac87e97e131743599ef329a69f44e"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage3.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage3/independent-comparison.json",
+      "reviewLimit": "Bilingual introductory assumptions, selected independent preparations, all controls and teaching flows plus actual reader layout checked. Not exhaustive over all possible inputs or research depth."
+    },
+    {
+      "topic": "미시·거시 상태",
+      "id": "binary-shell-multiplicity-block-counts",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/micro-macro-integrated-verification.json",
+      "prerequisites": [
+        "finite-spectrum-helmholtz-kl-variational",
+        "conditional-probability-independence"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md",
+        "en": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md"
+      },
+      "contentSha256": {
+        "ko": "d326602499c3b341b075be8838b03b3cfba783eb8623550b43488e5825da2bf7",
+        "en": "1f09442cec69f6771740ca5a56abd39faef9deee6fc7003961339c7b168e59a1"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage4.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage4/independent-comparison.json",
+      "reviewLimit": "Introductory bilingual assumptions, selected independent calculations, teaching and prerequisite sequence reviewed. Full reader matrix verified; not exhaustive or research-depth completion."
+    },
+    {
+      "topic": "미시·거시 상태",
+      "id": "finite-macro-partition-conditional-entropy",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/micro-macro-integrated-verification.json",
+      "prerequisites": [
+        "binary-shell-multiplicity-block-counts",
+        "cross-entropy-kl"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md",
+        "en": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md"
+      },
+      "contentSha256": {
+        "ko": "3f00318b01c7bd93e770bd745e1e535418629869402ad952d8ea2e0200ab9385",
+        "en": "dbde3b93ae3f9720100fcb6c640c6753ab672dff3bb85ad7a12210b396b15dff"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage4.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage4/independent-comparison.json",
+      "reviewLimit": "Introductory bilingual assumptions, selected independent calculations, teaching and prerequisite sequence reviewed. Full reader matrix verified; not exhaustive or research-depth completion."
+    },
+    {
+      "topic": "미시·거시 상태",
+      "id": "finite-noisy-macro-observation-channel",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/micro-macro-integrated-verification.json",
+      "prerequisites": [
+        "finite-macro-partition-conditional-entropy",
+        "conditional-entropy-mutual-information"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md",
+        "en": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md"
+      },
+      "contentSha256": {
+        "ko": "7a64dee8bedd8062881d6ce9f2410b4a64e6c76b4f60cded48dfc85671e70efc",
+        "en": "a97ed4d29978ba48e8f2703c0dfb18600002367ba2e15942a7658eca5e233e39"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage4.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage4/independent-comparison.json",
+      "reviewLimit": "Introductory bilingual assumptions, selected independent calculations, teaching and prerequisite sequence reviewed. Full reader matrix verified; not exhaustive or research-depth completion."
+    },
+    {
+      "topic": "ensemble",
+      "id": "finite-binary-reservoir-canonical-comparison",
+      "existingSeed": false,
+      "topicEvidence": null,
+      "prerequisites": [
+        "binary-shell-multiplicity-block-counts",
+        "cross-entropy-kl"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md",
+        "en": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md"
+      },
+      "contentSha256": {
+        "ko": "3916532391a89710021232e47249b076af621113990007c5a42547b904fb1ae9",
+        "en": "5d0a8f746486d28aebd5b5164617b2594bdefe3ea3af3082238ba0fdf44f0407"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage5.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage5/independent-comparison.json",
+      "reviewLimit": "Introductory bilingual mathematical and teaching review; full reader matrix verified. Research depth incomplete."
+    },
+    {
+      "topic": "ensemble",
+      "id": "canonical-binary-energy-fluctuations",
+      "existingSeed": false,
+      "topicEvidence": null,
+      "prerequisites": [
+        "finite-binary-reservoir-canonical-comparison",
+        "gapped-spectrum-low-temperature-entropy"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md",
+        "en": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md"
+      },
+      "contentSha256": {
+        "ko": "a20b9e72f85794d578ace76e22118bd1eee6898a00bc2fb84a2b5326a0b9652e",
+        "en": "2a7473a89a0f5288a92b80057cca25f82c120b7ff421d98f130d098342e4b113"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage5.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage5/independent-comparison.json",
+      "reviewLimit": "Introductory bilingual mathematical and teaching review; full reader matrix verified. Research depth incomplete."
+    },
+    {
+      "topic": "ensemble",
+      "id": "grand-canonical-finite-occupancy-fluctuations",
+      "existingSeed": false,
+      "topicEvidence": null,
+      "prerequisites": [
+        "canonical-binary-energy-fluctuations",
+        "conditional-probability-independence"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md",
+        "en": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md"
+      },
+      "contentSha256": {
+        "ko": "79fd2af07f305bd235b4e1d1324dde87a20b8bef4dcd1cc4333176f97af3d85b",
+        "en": "1ab612949a826ac3dea1558fa52f7c667648804503f57dbbd47508157d9eef11"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage5.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage5/independent-comparison.json",
+      "reviewLimit": "Introductory bilingual mathematical and teaching review; full reader matrix verified. Research depth incomplete."
+    },
+    {
+      "topic": "partition function",
+      "id": "finite-spectrum-partition-cumulant-generators",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/partition-integrated-verification.json",
+      "prerequisites": [
+        "canonical-binary-energy-fluctuations",
+        "stable-exponentials-logsumexp"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.ko.md",
+        "en": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.en.md"
+      },
+      "contentSha256": {
+        "ko": "4bb4d08e7209d1e79a3d182a534fffdf3ca91f86af1794b6ab11661640790308",
+        "en": "e009fc56a05155ca0af0942b3c31268f51ef0064bcbd6b3e1910aa19ab336770"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage6.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage6/independent-comparison.json",
+      "reviewLimit": "Introductory bilingual mathematical and teaching review. Full reader matrix verified. Research depth incomplete."
+    },
+    {
+      "topic": "partition function",
+      "id": "coupled-binary-sites-partition-factorization",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/partition-integrated-verification.json",
+      "prerequisites": [
+        "finite-spectrum-partition-cumulant-generators",
+        "cross-entropy-kl"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.ko.md",
+        "en": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.en.md"
+      },
+      "contentSha256": {
+        "ko": "4a2ac611c35b21482cff6e862e52de3a2cc65681ebbaf4d27c3777d256dc2fe7",
+        "en": "db01c9360f23c77e8d4ff7bf214ebfc46b9e376fdc5dad3c21a9d83a43265b13"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage6.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage6/independent-comparison.json",
+      "reviewLimit": "Introductory bilingual mathematical and teaching review. Full reader matrix verified. Research depth incomplete."
+    },
+    {
+      "topic": "partition function",
+      "id": "infinite-energy-ladder-normalization-cutoff",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/partition-integrated-verification.json",
+      "prerequisites": [
+        "finite-spectrum-partition-cumulant-generators",
+        "sequences-series"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.ko.md",
+        "en": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.en.md"
+      },
+      "contentSha256": {
+        "ko": "fb46a0950c5ba61d2aa4a304ed01b56ab05220e94791562d4c9c8fca8fb764b0",
+        "en": "ee3e1c2d3a2d8a927622c41b0d54884310e3b49a790b0860e28961a10b0bfc5e"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage6.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage6/independent-comparison.json",
+      "reviewLimit": "Introductory bilingual mathematical and teaching review. Full reader matrix verified. Research depth incomplete."
+    },
+    {
+      "topic": "Boltzmann·Gibbs 분포",
+      "id": "reference-measure-boltzmann-softmax-identifiability",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/boltzmann-gibbs-integration/verification.json",
+      "prerequisites": [
+        "finite-spectrum-partition-cumulant-generators",
+        "finite-macro-partition-conditional-entropy"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.ko.md",
+        "en": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.en.md"
+      },
+      "contentSha256": {
+        "ko": "273597601f2cc18ef81a4c16b19d30fd8824a0ed1fa211af07427d41a8a1a951",
+        "en": "b008dc6e7f1a3d555ae9f363465e9c4c81b66ca7acb047c70ed0450b5bcc8e32"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage7.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage7/independent-comparison.json",
+      "reviewLimit": "Selected introductory bilingual assumptions, models, finite-bit examples and teaching reviewed. Full reader matrix verified. Research depth incomplete."
+    },
+    {
+      "topic": "Boltzmann·Gibbs 분포",
+      "id": "finite-gibbs-conditionals-scan-support",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/boltzmann-gibbs-integration/verification.json",
+      "prerequisites": [
+        "reference-measure-boltzmann-softmax-identifiability",
+        "coupled-binary-sites-partition-factorization"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.ko.md",
+        "en": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.en.md"
+      },
+      "contentSha256": {
+        "ko": "920ba116208c2992905650b4bcbc366659807d018aeedd266d799d8643b73f57",
+        "en": "4a4b016de1dd21bdc3e5b9e2721f05a33b75befc3abb715d6a4d6a71da89f7e6"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage7.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage7/independent-comparison.json",
+      "reviewLimit": "Selected introductory bilingual assumptions, models, finite-bit examples and teaching reviewed. Full reader matrix verified. Research depth incomplete."
+    },
+    {
+      "topic": "Boltzmann·Gibbs 분포",
+      "id": "quadratic-gaussian-gibbs-normalizability",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/boltzmann-gibbs-integration/verification.json",
+      "prerequisites": [
+        "reference-measure-boltzmann-softmax-identifiability",
+        "quadratic-forms-orders"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.ko.md",
+        "en": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.en.md"
+      },
+      "contentSha256": {
+        "ko": "eb446c6bec89621ee3e991ea0ebe897d94229315e41fd60eb4b9bdee8083c402",
+        "en": "561530d879493f38e0408eb37ad25be67d44dad388c7a30e12c242d9e22a144e"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage7.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage7/independent-comparison.json",
+      "reviewLimit": "Selected introductory bilingual assumptions, models, finite-bit examples and teaching reviewed. Full reader matrix verified. Research depth incomplete."
+    },
+    {
+      "topic": "상전이·질서변수",
+      "id": "finite-curie-weiss-magnetization-symmetry",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/phase-transitions-integration/verification.json",
+      "prerequisites": [
+        "reference-measure-boltzmann-softmax-identifiability",
+        "coupled-binary-sites-partition-factorization"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.ko.md",
+        "en": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.en.md"
+      },
+      "contentSha256": {
+        "ko": "087a1af9e81504130c9b059eb159f1fe678f7f832590312fb90861b971da1836",
+        "en": "d1aa8390bfd0fc56f887b4e2aab07f6373086aa940998b811196f44f3ec6fed7"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage8.md",
+      "reviewLimit": "Selected introductory bilingual models and controls reviewed; full reader matrix verified. Full research depth remains incomplete."
+    },
+    {
+      "topic": "상전이·질서변수",
+      "id": "curie-weiss-variational-stability-limits",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/phase-transitions-integration/verification.json",
+      "prerequisites": [
+        "finite-curie-weiss-magnetization-symmetry"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.ko.md",
+        "en": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.en.md"
+      },
+      "contentSha256": {
+        "ko": "9bb8db5785e77ae769d89b2c7d537f15de00922f58789cba7e427a8297f6caec",
+        "en": "ac4d75c266edc9dbf81c4d5a1bea6a39f1f1953e7b1f222d635e0c82e3c9846f"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage8.md",
+      "reviewLimit": "Selected introductory bilingual models and controls reviewed; full reader matrix verified. Full research depth remains incomplete."
+    },
+    {
+      "topic": "상전이·질서변수",
+      "id": "landau-sixth-order-coexistence-stability",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/phase-transitions-integration/verification.json",
+      "prerequisites": [
+        "curie-weiss-variational-stability-limits"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.ko.md",
+        "en": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.en.md"
+      },
+      "contentSha256": {
+        "ko": "e2c5d6cf78cd5470aa3625d334862310432ee7b581fd43450f60d1c34a276044",
+        "en": "fad9d696cc1191b8b8aa998f5a3ca11ed667c2ab048d8bfc10a11ce8e321541c"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage8.md",
+      "reviewLimit": "Selected introductory bilingual models and controls reviewed; full reader matrix verified. Full research depth remains incomplete."
+    },
+    {
+      "topic": "상관·fluctuation",
+      "id": "binary-connected-correlations-field-hessian",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/correlations-integration/verification.json",
+      "prerequisites": [
+        "coupled-binary-sites-partition-factorization",
+        "reference-measure-boltzmann-softmax-identifiability"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.ko.md",
+        "en": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.en.md"
+      },
+      "contentSha256": {
+        "ko": "8a418f2a12d092ff4caea78b90a74e677cf9552f7524b65366616010508c9706",
+        "en": "ea5bbf70c8056936fd6fc0be8058d93621471312c0bce6752690b7ef09a7aa90"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage9.md",
+      "reviewLimit": "Selected introductory bilingual models and control semantics reviewed; full reader matrix verified. Full curriculum and research depth remain incomplete."
+    },
+    {
+      "topic": "상관·fluctuation",
+      "id": "periodic-ising-ring-correlation-length",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/correlations-integration/verification.json",
+      "prerequisites": [
+        "binary-connected-correlations-field-hessian",
+        "finite-curie-weiss-magnetization-symmetry"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.ko.md",
+        "en": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.en.md"
+      },
+      "contentSha256": {
+        "ko": "4b0221ed4cc62924eab793c07b220a3dde609810cebb37e8af79d9491c514b4b",
+        "en": "844d21fce5c5d31c200bde1fb304046c22cacef8f0a8619d9fc85b7ee564e5bf"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage9.md",
+      "reviewLimit": "Selected introductory bilingual models and control semantics reviewed; full reader matrix verified. Full curriculum and research depth remain incomplete."
+    },
+    {
+      "topic": "상관·fluctuation",
+      "id": "finite-correlated-average-ar1-uncertainty",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/correlations-integration/verification.json",
+      "prerequisites": [
+        "binary-connected-correlations-field-hessian",
+        "periodic-ising-ring-correlation-length"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.ko.md",
+        "en": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.en.md"
+      },
+      "contentSha256": {
+        "ko": "a718b1ef4c9b86e7b7c9c109e909095e772acea8a83e97e655d6aaeab7e3adfd",
+        "en": "ed4cd67f693f56ad3229cc64595ccd0edde216f4cd78ea873bd7234723285d85"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage9.md",
+      "reviewLimit": "Selected introductory bilingual models and control semantics reviewed; full reader matrix verified. Full curriculum and research depth remain incomplete."
+    },
+    {
+      "topic": "상세평형",
+      "id": "stationary-flux-three-state-cycle",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/detailed-balance-integration/verification.json",
+      "prerequisites": [
+        "stochastic-processes",
+        "finite-gibbs-conditionals-scan-support"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.ko.md",
+        "en": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.en.md"
+      },
+      "contentSha256": {
+        "ko": "5e1879b6bd55ccc27d71a398fa919e03ca96904ae4a3edf210dc7613085a7ef1",
+        "en": "d2185361b111b05b9bba4375542642ff8820fa697dc3086d07b80cb8ff10582d"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage10.md",
+      "reviewLimit": "Selected introductory exact finite models and bilingual manuscripts reviewed; full current reader matrix verified. Full curriculum and research depth remain incomplete."
+    },
+    {
+      "topic": "상세평형",
+      "id": "metropolis-hastings-proposal-balance",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/detailed-balance-integration/verification.json",
+      "prerequisites": [
+        "stationary-flux-three-state-cycle",
+        "reference-measure-boltzmann-softmax-identifiability",
+        "finite-gibbs-conditionals-scan-support"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.ko.md",
+        "en": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.en.md"
+      },
+      "contentSha256": {
+        "ko": "bf380b04692d01eccc7ade872c40223c0732f12dbd9f0415ad803cf2f3ec0a16",
+        "en": "7b63b7f733ab991c2cc4c33b4fa1c06ed818f40b085b64168de9206805d94946"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage10.md",
+      "reviewLimit": "Selected introductory exact finite models and bilingual manuscripts reviewed; full current reader matrix verified. Full curriculum and research depth remain incomplete."
+    },
+    {
+      "topic": "상세평형",
+      "id": "reversible-two-state-periodicity-mixing",
+      "existingSeed": false,
+      "topicEvidence": ".runtime/learning/detailed-balance-integration/verification.json",
+      "prerequisites": [
+        "stationary-flux-three-state-cycle",
+        "finite-correlated-average-ar1-uncertainty"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.ko.md",
+        "en": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.en.md"
+      },
+      "contentSha256": {
+        "ko": "6a5221c76efa732c71b201289fd024a7b87c7f2aed1c81c6a65f06692e23f02b",
+        "en": "f82d282b4f9debb0be0cc673315f5bef998a922ba9d52c51eb079cc223c7ad8b"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage10.md",
+      "reviewLimit": "Selected introductory exact finite models and bilingual manuscripts reviewed; full current reader matrix verified. Full curriculum and research depth remain incomplete."
+    },
+    {
+      "topic": "유한계와 열역학 극한",
+      "id": "boundary-growth-extensivity-additivity",
+      "existingSeed": false,
+      "topicEvidence": null,
+      "prerequisites": [
+        "finite-curie-weiss-magnetization-symmetry",
+        "system-boundary-mass-balances"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.ko.md",
+        "en": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.en.md"
+      },
+      "contentSha256": {
+        "ko": "5717437eb357f7d78652ff00fe41d261dc3b00d0777dd2042ea026ac910c4b42",
+        "en": "91cee8bb2d352358997a6eaf32691bf3c2f69578dcab5580e1a8aaef28a14305"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage11.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage11/independent-comparison.json",
+      "reviewLimit": "All44 current finite-size introductory preparations independently reviewed; actual24-case diagram checks passed. Full reader matrix and lifecycle verified. Full curriculum and research depth remain incomplete."
+    },
+    {
+      "topic": "유한계와 열역학 극한",
+      "id": "spatial-density-self-averaging-correlations",
+      "existingSeed": false,
+      "topicEvidence": null,
+      "prerequisites": [
+        "boundary-growth-extensivity-additivity",
+        "binary-connected-correlations-field-hessian",
+        "finite-correlated-average-ar1-uncertainty"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.ko.md",
+        "en": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.en.md"
+      },
+      "contentSha256": {
+        "ko": "87169cbf63ed0c25110b8070f927ecb1068de31846a7ff2c05b470a548213dd6",
+        "en": "ac24140fd2b4e1a4091037a98d698e1b234f10b61a5ca65d9e3ae815862b93ba"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage11.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage11/independent-comparison.json",
+      "reviewLimit": "All44 current finite-size introductory preparations independently reviewed; actual24-case diagram checks passed. Full reader matrix and lifecycle verified. Full curriculum and research depth remain incomplete."
+    },
+    {
+      "topic": "유한계와 열역학 극한",
+      "id": "two-phase-partition-zeros-rounding",
+      "existingSeed": false,
+      "topicEvidence": null,
+      "prerequisites": [
+        "spatial-density-self-averaging-correlations",
+        "finite-spectrum-partition-cumulant-generators",
+        "curie-weiss-variational-stability-limits"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.ko.md",
+        "en": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.en.md"
+      },
+      "contentSha256": {
+        "ko": "6bf2e4df0cdb337c2c207f76449e9cf50e6171cb34edf86ad06c4c927043f58c",
+        "en": "c1b8cd125800b5381367f54ae276aa5b75e8de704000b52f2d21967cdaffdab2"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage11.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage11/independent-comparison.json",
+      "reviewLimit": "All44 current finite-size introductory preparations independently reviewed; actual24-case diagram checks passed. Full reader matrix and lifecycle verified. Full curriculum and research depth remain incomplete."
+    },
+    {
+      "topic": "기존 입문 단원과의 연결",
+      "id": "thermodynamics",
+      "existingSeed": true,
+      "topicEvidence": null,
+      "prerequisites": [
+        "information-theory",
+        "mechanics-energy"
+      ],
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/thermodynamics.ko.md",
+        "en": "content/learning/physics-math-for-ai/thermodynamics.en.md"
+      },
+      "contentSha256": {
+        "ko": "cbd39803e0920a32e57a44e18331c4e0901034db8569609fb757d75723e6713a",
+        "en": "58c2b34a66bcbcc3e6ef4c94b171bc7fbd0144e1e2e485462f56e7e775bac21b"
+      },
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentCalculationsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true,
+        "actualBrowserChecked": true
+      },
+      "domainAuditEvidence": "thermodynamics-domain-audit-stage12.md",
+      "independentCalculationEvidence": ".runtime/learning/thermodynamics-domain-audit-stage12/independent-comparison.json",
+      "reviewLimit": "All3 seed presets and8 actual-input corners independently checked against120-digit microstate/entropy references; all8 bilingual/theme/layout teaching readers, controls/storage/quiz/client navigation verified. Rounded Number checks are not directed arithmetic or unbounded-input correctness proofs. Full curriculum and research depth remain incomplete."
+    }
+  ],
+  "bilingualReviewedUnitCount": 32,
+  "independentCalculationReviewedUnitCount": 32,
+  "verifiedIntroductoryUnitCount": 32,
+  "remainingUnitCount": 0,
+  "introductoryScopeOnly": true,
+  "wholeCurriculumComplete": false,
+  "crossUnitEvidence": ".runtime/learning/thermodynamics-domain-audit-stage12/cross-unit-review.json"
+}

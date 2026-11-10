@@ -1,0 +1,5526 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent Fraction energies and direct tiny-lattice edge enumeration; no TypeScript imports",
+  "caseCount": 27,
+  "exactObservationComparisons": 1188,
+  "enumeratedCases": 18,
+  "cases": [
+    {
+      "id": "square-antiparallel",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 3,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "6",
+        "siteCountTwo": "6",
+        "siteCount": "12",
+        "externalFaceCount": "14",
+        "interfaceFaceCount": "3"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "7",
+          "denominator": "6"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-11",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-11",
+          "denominator": "12"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "17",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "17",
+          "denominator": "12"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-15",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-15",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "6",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "36",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "36",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "66",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "11",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-5",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-5",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "24"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "11",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "11",
+          "denominator": "24"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-5",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "11",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "11",
+          "denominator": "24"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 12,
+        "allPairs": 66,
+        "nearestEdges": 17,
+        "interfaceEdges": 3
+      }
+    },
+    {
+      "id": "square-parallel",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 3,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": 1,
+        "spinTwo": 1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "6",
+        "siteCountTwo": "6",
+        "siteCount": "12",
+        "externalFaceCount": "14",
+        "interfaceFaceCount": "3"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "7",
+          "denominator": "6"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-17",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "-3",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "-3",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-17",
+          "denominator": "12"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "17",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "17",
+          "denominator": "12"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-15",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-15",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "-66",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "-36",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "-36",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "-11",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "-3",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "66",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "11",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-5",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-5",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "-11",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "-3",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "-3",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "-11",
+          "denominator": "24"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "11",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "11",
+          "denominator": "24"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-5",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "-1",
+          "denominator": "24"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 12,
+        "allPairs": 66,
+        "nearestEdges": 17,
+        "interfaceEdges": 3
+      }
+    },
+    {
+      "id": "cube-asymmetric",
+      "parameters": {
+        "dimension": 3,
+        "lengthOne": 1,
+        "lengthTwo": 2,
+        "width": 2,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "4",
+        "siteCountTwo": "8",
+        "siteCount": "12",
+        "externalFaceCount": "32",
+        "interfaceFaceCount": "4"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "8",
+          "denominator": "3"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "3"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "3"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "-1",
+          "denominator": "3"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-4",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-12",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-12",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "3"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "3"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "20",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "5",
+          "denominator": "3"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-6",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-28",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "-2",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "32",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "32",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "6"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "8",
+          "denominator": "3"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "8",
+          "denominator": "3"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "66",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "11",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-7",
+          "denominator": "3"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "-1",
+          "denominator": "6"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "8",
+          "denominator": "3"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "8",
+          "denominator": "3"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "72"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "2",
+          "denominator": "9"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "2",
+          "denominator": "9"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "11",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "11",
+          "denominator": "24"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-3",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-7",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-5",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "29",
+          "denominator": "6"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "29",
+          "denominator": "72"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "13",
+          "denominator": "6"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 12,
+        "allPairs": 66,
+        "nearestEdges": 20,
+        "interfaceEdges": 4
+      }
+    },
+    {
+      "id": "chain-antiparallel",
+      "parameters": {
+        "dimension": 1,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 1,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "2",
+        "siteCountTwo": "2",
+        "siteCount": "4",
+        "externalFaceCount": "2",
+        "interfaceFaceCount": "1"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "4"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "2",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "6",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "8"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "8"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "3",
+          "denominator": "8"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 4,
+        "allPairs": 6,
+        "nearestEdges": 3,
+        "interfaceEdges": 1
+      }
+    },
+    {
+      "id": "chain-parallel",
+      "parameters": {
+        "dimension": 1,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 1,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": 1,
+        "spinTwo": 1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "2",
+        "siteCountTwo": "2",
+        "siteCount": "4",
+        "externalFaceCount": "2",
+        "interfaceFaceCount": "1"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-3",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-3",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "4"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "-6",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "-4",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "-4",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "-3",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "6",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "-3",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "-3",
+          "denominator": "8"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "8"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "-1",
+          "denominator": "8"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 4,
+        "allPairs": 6,
+        "nearestEdges": 3,
+        "interfaceEdges": 1
+      }
+    },
+    {
+      "id": "two-sites-anti",
+      "parameters": {
+        "dimension": 1,
+        "lengthOne": 1,
+        "lengthTwo": 1,
+        "width": 1,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "1",
+        "siteCountTwo": "1",
+        "siteCount": "2",
+        "externalFaceCount": "2",
+        "interfaceFaceCount": "1"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 2,
+        "allPairs": 1,
+        "nearestEdges": 1,
+        "interfaceEdges": 1
+      }
+    },
+    {
+      "id": "two-sites-plus",
+      "parameters": {
+        "dimension": 1,
+        "lengthOne": 1,
+        "lengthTwo": 1,
+        "width": 1,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": 1,
+        "spinTwo": 1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "1",
+        "siteCountTwo": "1",
+        "siteCount": "2",
+        "externalFaceCount": "2",
+        "interfaceFaceCount": "1"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 2,
+        "allPairs": 1,
+        "nearestEdges": 1,
+        "interfaceEdges": 1
+      }
+    },
+    {
+      "id": "empty-internal-blocks",
+      "parameters": {
+        "dimension": 3,
+        "lengthOne": 1,
+        "lengthTwo": 1,
+        "width": 1,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "1",
+        "siteCountTwo": "1",
+        "siteCount": "2",
+        "externalFaceCount": "10",
+        "interfaceFaceCount": "1"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "5",
+          "denominator": "1"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 2,
+        "allPairs": 1,
+        "nearestEdges": 1,
+        "interfaceEdges": 1
+      }
+    },
+    {
+      "id": "thin-sheet",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 1,
+        "lengthTwo": 1,
+        "width": 1,
+        "growthMode": "fixed-thickness",
+        "scale": 8,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "8",
+        "siteCountTwo": "8",
+        "siteCount": "16",
+        "externalFaceCount": "20",
+        "interfaceFaceCount": "8"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "5",
+          "denominator": "4"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-6",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "8",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "8",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-3",
+          "denominator": "8"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "22",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "11",
+          "denominator": "8"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-28",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-28",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "8",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "64",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "64",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "120",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "15",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-7",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-7",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "32"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "15",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "15",
+          "denominator": "32"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-7",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-7",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "15",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "15",
+          "denominator": "32"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "7",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 16,
+        "allPairs": 120,
+        "nearestEdges": 22,
+        "interfaceEdges": 8
+      }
+    },
+    {
+      "id": "thin-cube",
+      "parameters": {
+        "dimension": 3,
+        "lengthOne": 1,
+        "lengthTwo": 1,
+        "width": 1,
+        "growthMode": "fixed-thickness",
+        "scale": 3,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "9",
+        "siteCountTwo": "9",
+        "siteCount": "18",
+        "externalFaceCount": "42",
+        "interfaceFaceCount": "9"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "7",
+          "denominator": "3"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-12",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-12",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-15",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "9",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "9",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-5",
+          "denominator": "6"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "33",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "11",
+          "denominator": "6"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-36",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-36",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "9",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "81",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "81",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "9",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "9",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "153",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "17",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-2",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-2",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "9",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "9",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "36"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "17",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "17",
+          "denominator": "36"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-4",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-4",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-8",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "17",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "17",
+          "denominator": "36"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 18,
+        "allPairs": 153,
+        "nearestEdges": 33,
+        "interfaceEdges": 9
+      }
+    },
+    {
+      "id": "unequal-slabs",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 1,
+        "lengthTwo": 4,
+        "width": 1,
+        "growthMode": "fixed-thickness",
+        "scale": 2,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "2",
+        "siteCountTwo": "8",
+        "siteCount": "10",
+        "externalFaceCount": "14",
+        "interfaceFaceCount": "2"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "7",
+          "denominator": "5"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "5"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "5"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "-3",
+          "denominator": "5"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-10",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-9",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "2",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "2",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-9",
+          "denominator": "10"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "5"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "5"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "13",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "13",
+          "denominator": "10"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-28",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "-13",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "16",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "16",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "-13",
+          "denominator": "10"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "8",
+          "denominator": "5"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "8",
+          "denominator": "5"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "45",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "9",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "10"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-14",
+          "denominator": "5"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "-13",
+          "denominator": "10"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "8",
+          "denominator": "5"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "8",
+          "denominator": "5"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "-13",
+          "denominator": "100"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "4",
+          "denominator": "25"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "4",
+          "denominator": "25"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "9",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "9",
+          "denominator": "20"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-7",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-4",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "27",
+          "denominator": "10"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "27",
+          "denominator": "100"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "11",
+          "denominator": "10"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 10,
+        "allPairs": 45,
+        "nearestEdges": 13,
+        "interfaceEdges": 2
+      }
+    },
+    {
+      "id": "unequal-spin-reversed",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 1,
+        "lengthTwo": 3,
+        "width": 2,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": -1,
+        "spinTwo": 1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "2",
+        "siteCountTwo": "6",
+        "siteCount": "8",
+        "externalFaceCount": "12",
+        "interfaceFaceCount": "2"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-6",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "2",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "2",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-3",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "10",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "5",
+          "denominator": "4"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-15",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "-4",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "12",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "12",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "28",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "7",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-1",
+          "denominator": "8"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-15",
+          "denominator": "8"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "16"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "16"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "3",
+          "denominator": "16"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "7",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "7",
+          "denominator": "16"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-3",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "5",
+          "denominator": "16"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 8,
+        "allPairs": 28,
+        "nearestEdges": 10,
+        "interfaceEdges": 2
+      }
+    },
+    {
+      "id": "zero-coupling",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 3,
+        "growthMode": "uniform-dilation",
+        "scale": 16,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 0,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "1536",
+        "siteCountTwo": "1536",
+        "siteCount": "3072",
+        "externalFaceCount": "224",
+        "interfaceFaceCount": "48"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "7",
+          "denominator": "96"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "64"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": null
+    },
+    {
+      "id": "fractional-coupling",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 2,
+        "growthMode": "uniform-dilation",
+        "scale": 2,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 7,
+        "couplingDenominator": 11
+      },
+      "counts": {
+        "siteCountOne": "16",
+        "siteCountTwo": "16",
+        "siteCount": "32",
+        "externalFaceCount": "24",
+        "interfaceFaceCount": "4"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "3",
+          "denominator": "4"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "8"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-168",
+          "denominator": "11"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-168",
+          "denominator": "11"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-28",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "28",
+          "denominator": "11"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "28",
+          "denominator": "11"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-7",
+          "denominator": "8"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "7",
+          "denominator": "88"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "7",
+          "denominator": "88"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "364",
+          "denominator": "11"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "91",
+          "denominator": "88"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-840",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-840",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "112",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "1792",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "1792",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "7",
+          "denominator": "22"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "56",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "56",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "3472",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "217",
+          "denominator": "22"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-105",
+          "denominator": "44"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-105",
+          "denominator": "44"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "7",
+          "denominator": "22"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "56",
+          "denominator": "11"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "56",
+          "denominator": "11"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "7",
+          "denominator": "704"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "7",
+          "denominator": "44"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "7",
+          "denominator": "44"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "217",
+          "denominator": "22"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "217",
+          "denominator": "704"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-105",
+          "denominator": "22"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-105",
+          "denominator": "22"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-105",
+          "denominator": "11"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "217",
+          "denominator": "22"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "217",
+          "denominator": "704"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "105",
+          "denominator": "22"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 32,
+        "allPairs": 496,
+        "nearestEdges": 52,
+        "interfaceEdges": 4
+      }
+    },
+    {
+      "id": "non-power-scale",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 3,
+        "growthMode": "uniform-dilation",
+        "scale": 7,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "294",
+        "siteCountTwo": "294",
+        "siteCount": "588",
+        "externalFaceCount": "98",
+        "interfaceFaceCount": "21"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "1",
+          "denominator": "6"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "28"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-553",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-553",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-1085",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "21",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "21",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-155",
+          "denominator": "84"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "28"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "28"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "1127",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "23",
+          "denominator": "12"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-43071",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-43071",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "294",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "86436",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "86436",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "147",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "147",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "172578",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "587",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-293",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-293",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "147",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "147",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "1176"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "587",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "587",
+          "denominator": "1176"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-293",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-293",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-293",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "587",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "587",
+          "denominator": "1176"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "293",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": null
+    },
+    {
+      "id": "uniform-16",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 3,
+        "growthMode": "uniform-dilation",
+        "scale": 16,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "1536",
+        "siteCountTwo": "1536",
+        "siteCount": "3072",
+        "externalFaceCount": "224",
+        "interfaceFaceCount": "48"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "7",
+          "denominator": "96"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "64"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-2992",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-2992",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-5936",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "48",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "48",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-371",
+          "denominator": "192"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "64"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "64"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "6032",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "377",
+          "denominator": "192"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-1178880",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-1178880",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "1536",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "2359296",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "2359296",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "768",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "768",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "4717056",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "3071",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-1535",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-1535",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "768",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "768",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "6144"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "3071",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "3071",
+          "denominator": "6144"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-1535",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-1535",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-1535",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "3071",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "3071",
+          "denominator": "6144"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "1535",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": null
+    },
+    {
+      "id": "fixed-16",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 3,
+        "growthMode": "fixed-thickness",
+        "scale": 16,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "96",
+        "siteCountTwo": "96",
+        "siteCount": "192",
+        "externalFaceCount": "104",
+        "interfaceFaceCount": "48"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "13",
+          "denominator": "24"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-142",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-142",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-236",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "48",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "48",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-59",
+          "denominator": "48"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "332",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "83",
+          "denominator": "48"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-4560",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-4560",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "96",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "9216",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "9216",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "48",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "48",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "18336",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "191",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-95",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-95",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "48",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "48",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "384"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "191",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "191",
+          "denominator": "384"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-95",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-95",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-95",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "191",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "191",
+          "denominator": "384"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "95",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": null
+    },
+    {
+      "id": "uniform-1024",
+      "parameters": {
+        "dimension": 3,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 3,
+        "growthMode": "uniform-dilation",
+        "scale": 1024,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "19327352832",
+        "siteCountTwo": "19327352832",
+        "siteCount": "38654705664",
+        "externalFaceCount": "69206016",
+        "interfaceFaceCount": "9437184"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "11",
+          "denominator": "6144"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4096"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-57960038400",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-57960038400",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-115910639616",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "9437184",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "9437184",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-36847",
+          "denominator": "12288"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4096"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4096"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "115929513984",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "36853",
+          "denominator": "12288"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-186773283736645533696",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-186773283736645533696",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "19327352832",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "373546567492618420224",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "373546567492618420224",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "9663676416",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "9663676416",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "747093134965909487616",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "38654705663",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-19327352831",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-19327352831",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "9663676416",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "9663676416",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "77309411328"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "38654705663",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "38654705663",
+          "denominator": "77309411328"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-19327352831",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-19327352831",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-19327352831",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "38654705663",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "38654705663",
+          "denominator": "77309411328"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "19327352831",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": null
+    },
+    {
+      "id": "slab-1024",
+      "parameters": {
+        "dimension": 3,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 3,
+        "growthMode": "fixed-thickness",
+        "scale": 1024,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "18874368",
+        "siteCountTwo": "18874368",
+        "siteCount": "37748736",
+        "externalFaceCount": "18923520",
+        "interfaceFaceCount": "9437184"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "385",
+          "denominator": "768"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-47173632",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-47173632",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-84910080",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "9437184",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "9437184",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-3455",
+          "denominator": "1536"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "103784448",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "4223",
+          "denominator": "1536"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-178120874262528",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-178120874262528",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "18874368",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "356241767399424",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "356241767399424",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "9437184",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "9437184",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "712483515924480",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "37748735",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-18874367",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-18874367",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "9437184",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "9437184",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "75497472"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "37748735",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "37748735",
+          "denominator": "75497472"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-18874367",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-18874367",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-18874367",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "37748735",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "37748735",
+          "denominator": "75497472"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "18874367",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": null
+    },
+    {
+      "id": "huge-uniform-balanced",
+      "parameters": {
+        "dimension": 3,
+        "lengthOne": 1000000,
+        "lengthTwo": 1000000,
+        "width": 1000000,
+        "growthMode": "uniform-dilation",
+        "scale": 1000000,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1000000,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "1000000000000000000000000000000000000",
+        "siteCountTwo": "1000000000000000000000000000000000000",
+        "siteCount": "2000000000000000000000000000000000000",
+        "externalFaceCount": "10000000000000000000000000",
+        "interfaceFaceCount": "1000000000000000000000000"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "1",
+          "denominator": "200000000000"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "2000000000000"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-2999999999997000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-2999999999997000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-5999999999993000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "1000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "1000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-5999999999993",
+          "denominator": "2000000"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2000000"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2000000"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "5999999999995000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1199999999999",
+          "denominator": "400000"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-499999999999999999999999999999999999500000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-499999999999999999999999999999999999500000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "1000000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "1000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "1000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "500000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "500000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "500000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "1999999999999999999999999999999999999000000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "999999999999999999999999999999999999500000",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-249999999999999999999999999999999999750000",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-249999999999999999999999999999999999750000",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "500000",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "500000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "500000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "4000000000000000000000000000000"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "250000",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "250000",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "999999999999999999999999999999999999500000",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1999999999999999999999999999999999999",
+          "denominator": "4000000000000000000000000000000"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-499999999999999999999999999999999999500000",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-499999999999999999999999999999999999500000",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-999999999999999999999999999999999999000000",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "999999999999999999999999999999999999500000",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "1999999999999999999999999999999999999",
+          "denominator": "4000000000000000000000000000000"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "499999999999999999999999999999999999500000",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": null
+    },
+    {
+      "id": "huge-uniform-biased",
+      "parameters": {
+        "dimension": 3,
+        "lengthOne": 999999,
+        "lengthTwo": 1000000,
+        "width": 1000000,
+        "growthMode": "uniform-dilation",
+        "scale": 1000000,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1000000
+      },
+      "counts": {
+        "siteCountOne": "999999000000000000000000000000000000",
+        "siteCountTwo": "1000000000000000000000000000000000000",
+        "siteCount": "1999999000000000000000000000000000000",
+        "externalFaceCount": "9999996000000000000000000",
+        "interfaceFaceCount": "1000000000000000000000000"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "2499999",
+          "denominator": "499999750000000000"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "1999999000000"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "999999",
+          "denominator": "1999999"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "-1",
+          "denominator": "1999999"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-2999996999997000002000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-2999999999997000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-5999996999993000002000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "1000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "1000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-2999998499996500001",
+          "denominator": "999999500000000000000000"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "1999999000000000000"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "1999999000000000000"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "5999996999995000002000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "2999998499997500001",
+          "denominator": "999999500000000000000000"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-499999000000499999999999999999999999500000500000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-499999999999999999999999999999999999500000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "-499999999999999999999999000000500000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "999999000000000000000000000000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "999999000000000000000000000000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "-999999999999999999999998000001",
+          "denominator": "3999998000000"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "999999000000000000000000000000000000",
+          "denominator": "1999999"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "999999000000000000000000000000000000",
+          "denominator": "1999999"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "1999998000000499999999999999999999999000000500000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1999998999999999999999999999999999999",
+          "denominator": "2000000"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-999998000000999999999999999999999999000001",
+          "denominator": "3999998000000"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-999999999999999999999999999999999999",
+          "denominator": "3999998"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "-999999999999999999999998000001",
+          "denominator": "3999998000000"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "999999000000000000000000000000000000",
+          "denominator": "1999999"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "999999000000000000000000000000000000",
+          "denominator": "1999999"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "-999999999999999999999998000001",
+          "denominator": "7999992000002000000000000000000000000000000000000"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "999999",
+          "denominator": "3999996000001"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "999999",
+          "denominator": "3999996000001"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "1999998999999999999999999999999999999",
+          "denominator": "2000000"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1999998999999999999999999999999999999",
+          "denominator": "3999998000000000000000000000000000000000000"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-999998999999999999999999999999999999",
+          "denominator": "2000000"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-999999999999999999999999999999999999",
+          "denominator": "2000000"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-999999499999999999999999999999999999",
+          "denominator": "1000000"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "3999995999999999999999999999999999998000001",
+          "denominator": "3999998000000"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "3999995999999999999999999999999999998000001",
+          "denominator": "7999992000002000000000000000000000000000000000000"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "1999997999999999999999999999999999998000001",
+          "denominator": "3999998000000"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": null
+    },
+    {
+      "id": "huge-slab",
+      "parameters": {
+        "dimension": 3,
+        "lengthOne": 999999,
+        "lengthTwo": 1000000,
+        "width": 1000000,
+        "growthMode": "fixed-thickness",
+        "scale": 1000000,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "999999000000000000000000000000",
+        "siteCountTwo": "1000000000000000000000000000000",
+        "siteCount": "1999999000000000000000000000000",
+        "externalFaceCount": "2000007999996000000000000",
+        "interfaceFaceCount": "1000000000000000000000000"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "500001999999",
+          "denominator": "499999750000000000"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "1999999"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "999999",
+          "denominator": "1999999"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "-1",
+          "denominator": "1999999"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-2999995999998000002000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-2999998999998000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-5999993999996000002000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "1000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "1000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-2999996999998000001",
+          "denominator": "999999500000000000"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "1999999"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "1999999"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "5999995999996000002000000000000",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "2999997999998000001",
+          "denominator": "999999500000000000"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-499999000000499999999999999999500000500000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-499999999999999999999999999999500000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "-499999999999999999000000500000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "999999000000000000000000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "999999000000000000000000000000000000000000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "-999999999999999998000001",
+          "denominator": "3999998"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "999999000000000000000000000000000000",
+          "denominator": "1999999"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "999999000000000000000000000000000000",
+          "denominator": "1999999"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "1999998000000499999999999999999000000500000000000000000000000",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1999998999999999999999999999999",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-999998000000999999999999999999000001",
+          "denominator": "3999998"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-499999999999999999999999999999500000",
+          "denominator": "1999999"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "-999999999999999998000001",
+          "denominator": "3999998"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "999999000000000000000000000000000000",
+          "denominator": "1999999"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "999999000000000000000000000000000000",
+          "denominator": "1999999"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "-999999999999999998000001",
+          "denominator": "7999992000002000000000000000000000000"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "999999000000",
+          "denominator": "3999996000001"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "999999000000",
+          "denominator": "3999996000001"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "1999998999999999999999999999999",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1999998999999999999999999999999",
+          "denominator": "3999998000000000000000000000000"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-999998999999999999999999999999",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-999999999999999999999999999999",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-999999499999999999999999999999",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "3999995999999999999999999999998000001",
+          "denominator": "3999998"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "3999995999999999999999999999998000001",
+          "denominator": "7999992000002000000000000000000000000"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "1999997999999999999999999999998000001",
+          "denominator": "3999998"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": null
+    },
+    {
+      "id": "global-flip",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 3,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": -1,
+        "spinTwo": 1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "6",
+        "siteCountTwo": "6",
+        "siteCount": "12",
+        "externalFaceCount": "14",
+        "interfaceFaceCount": "3"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "7",
+          "denominator": "6"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-11",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-11",
+          "denominator": "12"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "17",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "17",
+          "denominator": "12"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-15",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-15",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "6",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "36",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "36",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "66",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "11",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-5",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-5",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "24"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "11",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "11",
+          "denominator": "24"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-5",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "11",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "11",
+          "denominator": "24"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 12,
+        "allPairs": 66,
+        "nearestEdges": 17,
+        "interfaceEdges": 3
+      }
+    },
+    {
+      "id": "block-swap",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 3,
+        "lengthTwo": 1,
+        "width": 2,
+        "growthMode": "uniform-dilation",
+        "scale": 1,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "6",
+        "siteCountTwo": "2",
+        "siteCount": "8",
+        "externalFaceCount": "12",
+        "interfaceFaceCount": "2"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "3",
+          "denominator": "4"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-7",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-6",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "2",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "2",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-3",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "10",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "5",
+          "denominator": "4"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-15",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "-4",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "12",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "12",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "28",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "7",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-15",
+          "denominator": "8"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-1",
+          "denominator": "8"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "3",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "-1",
+          "denominator": "16"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "3",
+          "denominator": "16"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "3",
+          "denominator": "16"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "7",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "7",
+          "denominator": "16"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-3",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "5",
+          "denominator": "16"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 8,
+        "allPairs": 28,
+        "nearestEdges": 10,
+        "interfaceEdges": 2
+      }
+    },
+    {
+      "id": "coupling-rescaled",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 2,
+        "growthMode": "uniform-dilation",
+        "scale": 2,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 14,
+        "couplingDenominator": 22
+      },
+      "counts": {
+        "siteCountOne": "16",
+        "siteCountTwo": "16",
+        "siteCount": "32",
+        "externalFaceCount": "24",
+        "interfaceFaceCount": "4"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "3",
+          "denominator": "4"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "8"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-168",
+          "denominator": "11"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-168",
+          "denominator": "11"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-28",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "28",
+          "denominator": "11"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "28",
+          "denominator": "11"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-7",
+          "denominator": "8"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "7",
+          "denominator": "88"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "7",
+          "denominator": "88"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "364",
+          "denominator": "11"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "91",
+          "denominator": "88"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-840",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-840",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "112",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "1792",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "1792",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "7",
+          "denominator": "22"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "56",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "56",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "3472",
+          "denominator": "11"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "217",
+          "denominator": "22"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-105",
+          "denominator": "44"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-105",
+          "denominator": "44"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "7",
+          "denominator": "22"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "56",
+          "denominator": "11"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "56",
+          "denominator": "11"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "7",
+          "denominator": "704"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "7",
+          "denominator": "44"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "7",
+          "denominator": "44"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "217",
+          "denominator": "22"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "217",
+          "denominator": "704"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-105",
+          "denominator": "22"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-105",
+          "denominator": "22"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-105",
+          "denominator": "11"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "217",
+          "denominator": "22"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "217",
+          "denominator": "704"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "105",
+          "denominator": "22"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 32,
+        "allPairs": 496,
+        "nearestEdges": 52,
+        "interfaceEdges": 4
+      }
+    },
+    {
+      "id": "parallel-slab",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 2,
+        "lengthTwo": 2,
+        "width": 3,
+        "growthMode": "fixed-thickness",
+        "scale": 4,
+        "spinOne": 1,
+        "spinTwo": 1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "24",
+        "siteCountTwo": "24",
+        "siteCount": "48",
+        "externalFaceCount": "32",
+        "interfaceFaceCount": "12"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "2",
+          "denominator": "3"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "-34",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "-34",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "-80",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "-12",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "-12",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "-5",
+          "denominator": "3"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "80",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "5",
+          "denominator": "3"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "-276",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "-276",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "-1128",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "-576",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "-576",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "-47",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "-12",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "12",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "1128",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "47",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "-23",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "-23",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "-47",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "-12",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "-12",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "-47",
+          "denominator": "96"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "-1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "47",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "47",
+          "denominator": "96"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "-23",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "-23",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "-23",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "-1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "-1",
+          "denominator": "96"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "23",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 48,
+        "allPairs": 1128,
+        "nearestEdges": 80,
+        "interfaceEdges": 12
+      }
+    },
+    {
+      "id": "narrow-two-layers",
+      "parameters": {
+        "dimension": 2,
+        "lengthOne": 1,
+        "lengthTwo": 1,
+        "width": 1,
+        "growthMode": "fixed-thickness",
+        "scale": 1,
+        "spinOne": 1,
+        "spinTwo": -1,
+        "couplingNumerator": 1,
+        "couplingDenominator": 1
+      },
+      "counts": {
+        "siteCountOne": "1",
+        "siteCountTwo": "1",
+        "siteCount": "2",
+        "externalFaceCount": "6",
+        "interfaceFaceCount": "1"
+      },
+      "observations": {
+        "current.geometry.externalFacesPerSite": {
+          "numerator": "3",
+          "denominator": "1"
+        },
+        "current.geometry.interfaceFacesPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.blockFractionOne": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.geometry.magnetizationDensity": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.crossEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.cutDifference": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.nearest-neighbor.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.crossEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.cutDifference": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.energyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "current.modes.complete-unscaled.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.restrictedEnergyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.restrictedEnergyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.combinedEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.crossEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.cutDifference": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.modes.complete-kac.energyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.crossMagnitudePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergy": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.modes.complete-kac.maximumAbsoluteEnergyPerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.separatelyNormalizedKac.energyOne": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energyTwo": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.energySum": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparate": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "current.separatelyNormalizedKac.combinedMinusSeparatePerSite": {
+          "numerator": "1",
+          "denominator": "4"
+        },
+        "current.separatelyNormalizedKac.normalizationCounterterm": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "current.separatelyNormalizedKac.reconstructionResidual": {
+          "numerator": "0",
+          "denominator": "1"
+        }
+      },
+      "enumeration": {
+        "vertices": 2,
+        "allPairs": 1,
+        "nearestEdges": 1,
+        "interfaceEdges": 1
+      }
+    }
+  ]
+}

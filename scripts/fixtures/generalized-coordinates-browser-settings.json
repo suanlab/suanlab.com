@@ -1,0 +1,364 @@
+{
+  "polar-generalized-velocity-force-metric": [
+    {
+      "name": "origin",
+      "values": [
+        2,
+        0,
+        0,
+        10,
+        20,
+        30,
+        40,
+        5,
+        5,
+        50
+      ],
+      "key": "1{local chart regular}",
+      "answer": "0",
+      "checks": [
+        [
+          "local Jacobian rank",
+          "1"
+        ],
+        [
+          "physical configuration DOF",
+          "2"
+        ],
+        [
+          "radial coordinate acceleration m per s squared",
+          "\u2014"
+        ],
+        [
+          "Cartesian acceleration y m per s squared",
+          "2"
+        ]
+      ]
+    },
+    {
+      "name": "invalid-finite-target",
+      "values": [
+        2,
+        1,
+        0,
+        0,
+        0,
+        10,
+        20,
+        -10,
+        5,
+        100
+      ],
+      "key": "1{finite target in domain}",
+      "answer": "0",
+      "checks": [
+        [
+          "finite probe error meters",
+          "\u2014"
+        ],
+        [
+          "finite probe work joules",
+          "\u2014"
+        ],
+        [
+          "1{local chart regular}",
+          "1"
+        ],
+        [
+          "domain boundary epsilon",
+          "0.5"
+        ]
+      ]
+    },
+    {
+      "name": "non-grid-domain-edge",
+      "values": [
+        1,
+        1,
+        3,
+        0,
+        0,
+        0,
+        0,
+        -6,
+        4,
+        50
+      ],
+      "key": "domain boundary epsilon",
+      "answer": "0.833",
+      "checks": [
+        [
+          "1{finite target in domain}",
+          "1"
+        ],
+        [
+          "1{local chart regular}",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "periodic-angle",
+      "values": [
+        1,
+        2,
+        24,
+        10,
+        10,
+        10,
+        20,
+        0,
+        0,
+        0
+      ],
+      "key": "1{local chart regular}",
+      "answer": "1",
+      "checks": [
+        [
+          "local Jacobian rank",
+          "2"
+        ],
+        [
+          "kinetic energy joules",
+          "1"
+        ],
+        [
+          "Cartesian power watts",
+          "3"
+        ]
+      ]
+    },
+    {
+      "name": "zero-variation",
+      "values": [
+        4,
+        6,
+        6,
+        -20,
+        20,
+        -40,
+        40,
+        0,
+        0,
+        100
+      ],
+      "key": "finite probe error meters",
+      "answer": "0",
+      "checks": [
+        [
+          "finite probe work joules",
+          "0"
+        ],
+        [
+          "1{finite target in domain}",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "zero-epsilon",
+      "values": [
+        1,
+        2,
+        -12,
+        20,
+        -20,
+        40,
+        -40,
+        10,
+        10,
+        0
+      ],
+      "key": "finite probe error meters",
+      "answer": "0",
+      "checks": [
+        [
+          "finite probe work joules",
+          "0"
+        ],
+        [
+          "kinetic energy joules",
+          "4"
+        ]
+      ]
+    }
+  ],
+  "double-pendulum-generalized-mass-metric": [
+    {
+      "name": "zero-rates",
+      "values": [
+        1,
+        1,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        -10,
+        50
+      ],
+      "key": "Cartesian kinetic energy joules",
+      "answer": "0",
+      "checks": [
+        [
+          "Cartesian power watts",
+          "0"
+        ],
+        [
+          "finite tangent constraint1 m squared",
+          "0.25"
+        ]
+      ]
+    },
+    {
+      "name": "zero-epsilon",
+      "values": [
+        1,
+        1,
+        2,
+        2,
+        0,
+        6,
+        10,
+        10,
+        0,
+        0,
+        10,
+        10,
+        0
+      ],
+      "key": "finite probe error meters",
+      "answer": "0",
+      "checks": [
+        [
+          "finite probe work joules",
+          "0"
+        ],
+        [
+          "Cartesian kinetic energy joules",
+          "1.5"
+        ]
+      ]
+    },
+    {
+      "name": "zero-variation",
+      "values": [
+        2,
+        3,
+        4,
+        2,
+        3,
+        -4,
+        -10,
+        20,
+        10,
+        -20,
+        0,
+        0,
+        100
+      ],
+      "key": "finite probe error meters",
+      "answer": "0",
+      "checks": [
+        [
+          "finite probe work joules",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "unwrapped-relative-rates",
+      "values": [
+        1,
+        1,
+        2,
+        2,
+        12,
+        -12,
+        20,
+        -20,
+        30,
+        30,
+        10,
+        -10,
+        50
+      ],
+      "key": "relative angular rate2 rad per s",
+      "answer": "-4",
+      "checks": [
+        [
+          "physical configuration DOF",
+          "2"
+        ],
+        [
+          "constraint rank by assumptions",
+          "2"
+        ],
+        [
+          "Cartesian kinetic energy joules",
+          "2"
+        ]
+      ]
+    },
+    {
+      "name": "maximal-parameters",
+      "values": [
+        4,
+        4,
+        6,
+        6,
+        -12,
+        12,
+        -20,
+        20,
+        -30,
+        30,
+        -10,
+        10,
+        100
+      ],
+      "key": "Cartesian kinetic energy joules",
+      "answer": "72",
+      "checks": [
+        [
+          "analytic-form metric determinant",
+          "1,296"
+        ]
+      ]
+    },
+    {
+      "name": "unequal-aligned",
+      "values": [
+        2,
+        1,
+        2,
+        1,
+        6,
+        6,
+        0,
+        20,
+        0,
+        0,
+        10,
+        0,
+        50
+      ],
+      "key": "analytic-form metric determinant",
+      "answer": "0.5",
+      "checks": [
+        [
+          "Cartesian kinetic energy joules",
+          "0.5"
+        ],
+        [
+          "Cartesian power watts",
+          "-10"
+        ]
+      ]
+    }
+  ]
+}

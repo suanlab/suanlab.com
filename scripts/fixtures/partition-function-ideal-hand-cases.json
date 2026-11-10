@@ -1,0 +1,82 @@
+{
+  "contract": "Ideal algebraic logarithm-of-two hand cases. Exact rational weights are stipulated; this is not an oracle for rounded binary64 energies, temperatures or exp(log(2)).",
+  "threeLevel": {
+    "weights": [
+      "1",
+      "1/2",
+      "1/4"
+    ],
+    "Z": "7/4",
+    "probabilities": [
+      "4/7",
+      "2/7",
+      "1/7"
+    ],
+    "meanIndex": "4/7",
+    "varianceIndex": "26/49",
+    "thirdCumulantIndex": "114/343",
+    "invertedMeanIndex": "10/7",
+    "invertedThirdCumulantIndex": "-114/343",
+    "offsetInGapUnits": "1152921504606846976",
+    "shiftedMeanIndex": "8070450532247928836/7"
+  },
+  "coupledSpins": {
+    "states": [
+      [
+        -1,
+        -1
+      ],
+      [
+        -1,
+        1
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "weights": [
+      "2",
+      "1/2",
+      "1/2",
+      "2"
+    ],
+    "Z": "5",
+    "probabilities": [
+      "2/5",
+      "1/10",
+      "1/10",
+      "2/5"
+    ],
+    "meanAlignment": "3/5",
+    "varianceAlignment": "16/25",
+    "meanMagnetization": "0",
+    "varianceMagnetization": "16/5",
+    "alignmentMagnetizationCovariance": "0",
+    "mutualInformationApprox": 0.19274475702175753,
+    "logFactorizationDefectApprox": 0.22314355131420976
+  },
+  "ladderCutoff": {
+    "q": "1/2",
+    "cutoff": 2,
+    "omittedMass": "1/8",
+    "keptMass": "7/8",
+    "conditionedProbabilities": [
+      "4/7",
+      "2/7",
+      "1/7"
+    ],
+    "infiniteMeanIndex": "1",
+    "infiniteVarianceIndex": "2",
+    "cutoffMeanIndex": "4/7",
+    "cutoffVarianceIndex": "26/49",
+    "infiniteMeanEnergyInGapUnits": "3/2",
+    "cutoffMeanEnergyInGapUnits": "15/14",
+    "forwardKlApprox": 0.13353139262452263,
+    "reverseKlStatus": "infinite"
+  }
+}

@@ -1,0 +1,155 @@
+[
+  {
+    "id": "weak-short",
+    "input": {
+      "lambda": "1/100",
+      "amplitude": "1",
+      "horizon": "10",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "secular-growth",
+    "input": {
+      "lambda": "1/100",
+      "amplitude": "1",
+      "horizon": "100",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "naive-breakdown",
+    "input": {
+      "lambda": "1/100",
+      "amplitude": "1",
+      "horizon": "1000",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "first-frequency-drift",
+    "input": {
+      "lambda": "1/100",
+      "amplitude": "1",
+      "horizon": "10000",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "second-frequency-drift",
+    "input": {
+      "lambda": "1/100",
+      "amplitude": "1",
+      "horizon": "1000000",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "harmonic",
+    "input": {
+      "lambda": "0",
+      "amplitude": "1",
+      "horizon": "100",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "equilibrium",
+    "input": {
+      "lambda": "1",
+      "amplitude": "0",
+      "horizon": "100",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "amplitude-matters",
+    "input": {
+      "lambda": "1/100",
+      "amplitude": "4",
+      "horizon": "100",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "small-amplitude",
+    "input": {
+      "lambda": "1/100",
+      "amplitude": "1/10",
+      "horizon": "10000",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "tiny-coupling-long-time",
+    "input": {
+      "lambda": "1/999999999989",
+      "amplitude": "1",
+      "horizon": "999999999989",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "strong-coupling",
+    "input": {
+      "lambda": "1",
+      "amplitude": "1",
+      "horizon": "100",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "maximum-coupling",
+    "input": {
+      "lambda": "16",
+      "amplitude": "16",
+      "horizon": "100",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "negative-truncated-frequency",
+    "input": {
+      "lambda": "1",
+      "amplitude": "4",
+      "horizon": "100",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "initial-time",
+    "input": {
+      "lambda": "1/100",
+      "amplitude": "1",
+      "horizon": "0",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "equivalent-spelling",
+    "input": {
+      "lambda": "2/200",
+      "amplitude": "1",
+      "horizon": "100",
+      "probeFraction": "1"
+    }
+  },
+  {
+    "id": "fractional-time",
+    "input": {
+      "lambda": "1/100",
+      "amplitude": "1",
+      "horizon": "101/7",
+      "probeFraction": "1/4"
+    }
+  },
+  {
+    "id": "maximum-coprime",
+    "input": {
+      "lambda": "999999999983/62499999999",
+      "amplitude": "999999999979/62499999999",
+      "horizon": "999999999961",
+      "probeFraction": "999999999953/999999999989"
+    }
+  }
+]

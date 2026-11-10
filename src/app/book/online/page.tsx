@@ -1,5 +1,3 @@
-import { InteractiveBookEntry } from '@/components/learning/interactive-book';
-import '@/styles/interactive-book.css';
 import LocalizedContent from '@/components/localized-content';
 import { catalogEnglish } from '@/data/i18n/catalog';
 import { site } from '@/config/site';
@@ -50,7 +48,6 @@ export default async function OnlineBookPage() {
 
       <section className="py-16 md:py-20">
         <div className="container">
-          <InteractiveBookEntry />
           {books.length > 0 ? (
             <div className="bookshelf">
               {/* Bookshelf with books */}

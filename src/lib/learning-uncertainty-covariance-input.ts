@@ -1,0 +1,12 @@
+/** Dimensionless Hermitian observables and an exact finite ensemble, not an apparatus. */
+const rawKeys=['dimension',...Array.from({length:4},(_,i)=>`weight${i}`),...Array.from({length:4},(_,i)=>Array.from({length:4},(_,j)=>[`component${i}Real${j}`,`component${i}Imag${j}`]).flat()).flat()];
+export const uncertaintyCovarianceKeys=[...rawKeys,...['a','b'].flatMap(prefix=>[...Array.from({length:4},(_,i)=>Array.from({length:4-i},(_,k)=>`${prefix}Real${i}${i+k}`)).flat(),...Array.from({length:4},(_,i)=>Array.from({length:3-i},(_,k)=>`${prefix}Imag${i}${i+k+1}`)).flat(),`${prefix}Denominator`]),'mixUNumerator','mixUDenominator','mixVNumerator','mixVDenominator'] as readonly string[];
+export type UncertaintyCovarianceParameters=Record<string,number>;
+export function isUncertaintyCovarianceParameters(x:unknown):x is UncertaintyCovarianceParameters{
+ if(!x||typeof x!=='object'||Object.getPrototypeOf(x)!==Object.prototype||Reflect.ownKeys(x).length!==75)return false;const p=x as UncertaintyCovarianceParameters;
+ if(!uncertaintyCovarianceKeys.every(k=>Object.hasOwn(p,k)&&Number.isSafeInteger(p[k])&&Math.abs(p[k])<=1000000)||p.dimension<1||p.dimension>4||['aDenominator','bDenominator','mixUDenominator','mixVDenominator'].some(k=>p[k]<=0))return false;
+ const nonzero=(i:number)=>Array.from({length:p.dimension},(_,j)=>j).some(j=>p[`component${i}Real${j}`]!==0||p[`component${i}Imag${j}`]!==0);
+ if(!Array.from({length:4},(_,i)=>p[`weight${i}`]).some(w=>w>0)||!Array.from({length:4},(_,i)=>i).every(i=>p[`weight${i}`]>=0&&(p[`weight${i}`]===0||nonzero(i))&&Array.from({length:4-p.dimension},(_,j)=>j+p.dimension).every(j=>p[`component${i}Real${j}`]===0&&p[`component${i}Imag${j}`]===0)))return false;
+ return ['a','b'].every(prefix=>Array.from({length:4},(_,i)=>Array.from({length:4-i},(_,k)=>[i,i+k])).flat().every(([i,j])=>j<p.dimension||p[`${prefix}Real${i}${j}`]===0)&&Array.from({length:4},(_,i)=>Array.from({length:3-i},(_,k)=>[i,i+k+1])).flat().every(([i,j])=>j<p.dimension||p[`${prefix}Imag${i}${j}`]===0));
+}
+export function snapshotUncertaintyCovarianceParameters(x:UncertaintyCovarianceParameters):Readonly<UncertaintyCovarianceParameters>{if(!isUncertaintyCovarianceParameters(x))throw new RangeError('75 owned bounded integers; dimension1..4,nonnegative weights with positive sum,nonzero occupied vectors,zero inactive coordinates and positive denominators');return Object.freeze(Object.fromEntries(uncertaintyCovarianceKeys.map(k=>[k,x[k]+0])));}

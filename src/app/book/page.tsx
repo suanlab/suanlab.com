@@ -3,7 +3,7 @@ import { catalogEnglish } from '@/data/i18n/catalog';
 import { site } from '@/config/site';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Globe, BookOpen, ArrowRight } from 'lucide-react';
+import { Globe, BookOpen, ArrowRight, Orbit } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,10 +12,10 @@ const BASE_URL = site.url;
 
 export const metadata: Metadata = {
   title: 'Book',
-  description: '이수안 교수의 도서 - 온라인 도서와 출판 도서를 확인하세요',
+  description: '이수안 교수의 도서 - 온라인 도서, 인터랙티브 교재와 출판 도서를 확인하세요',
   openGraph: {
     title: 'Book | SuanLab',
-    description: '이수안 교수의 도서 - 온라인 도서와 출판 도서를 확인하세요',
+    description: '이수안 교수의 도서 - 온라인 도서, 인터랙티브 교재와 출판 도서를 확인하세요',
     url: `${BASE_URL}/book`,
     siteName: 'SuanLab',
     type: 'website',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Book | SuanLab',
-    description: '이수안 교수의 도서 - 온라인 도서와 출판 도서를 확인하세요',
+    description: '이수안 교수의 도서 - 온라인 도서, 인터랙티브 교재와 출판 도서를 확인하세요',
   },
   alternates: {
     canonical: `${BASE_URL}/book/`,
@@ -39,6 +39,14 @@ const bookCategories = [
     icon: Globe,
     color: 'text-blue-500',
     bgColor: 'bg-blue-500/10',
+  },
+  {
+    title: 'Interactive Book',
+    description: '시각화와 실험으로 수학·물리를 배우는 인터랙티브 교재입니다.',
+    href: '/book/interactive',
+    icon: Orbit,
+    color: 'text-primary',
+    bgColor: 'bg-primary/10',
   },
   {
     title: 'Published Book',
@@ -66,11 +74,11 @@ export default function BookPage() {
               Explore <span className="text-primary">Books</span>
             </h2>
             <p className="mt-4 text-muted-foreground">
-              온라인 도서와 출판 도서를 선택하여 살펴보세요
+              온라인 도서, 인터랙티브 교재와 출판 도서를 선택하여 살펴보세요
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+          <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
             {bookCategories.map((category) => (
               <Link key={category.href} href={category.href}>
                 <Card className="h-full transition-all hover:shadow-lg hover:border-primary/50 cursor-pointer group">
@@ -84,9 +92,9 @@ export default function BookPage() {
                     <p className="text-muted-foreground mb-6">
                       {category.description}
                     </p>
-                    <Button variant="outline" className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      View Books
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                    <Button asChild variant="outline" className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <span>View Books
+                      <ArrowRight className="ml-2 h-4 w-4" /></span>
                     </Button>
                   </CardContent>
                 </Card>

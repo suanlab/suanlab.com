@@ -10,7 +10,7 @@ import { getAllQTEntries } from '@/lib/qt';
 import { getAllBookPosts } from '@/lib/books';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ['', 'suan', 'research', 'publication', 'project', 'lecture', 'youtube', 'blog', 'qt', 'book', 'book/published', 'book/online', 'course', 'deadlines', 'prompts', 'contact', 'privacy', 'terms'];
+  const staticRoutes = ['', 'suan', 'research', 'publication', 'project', 'lecture', 'youtube', 'blog', 'qt', 'book', 'book/published', 'book/online', 'book/interactive', 'course', 'deadlines', 'prompts', 'contact', 'privacy', 'terms'];
   const entries = [
     { route: `book/online/${interactiveBook.slug}`, date: undefined },
     ...learningUnits.map(unit => ({ route: `book/online/${interactiveBook.slug}/${unit.id}`, date: undefined })),

@@ -1,0 +1,1882 @@
+{
+  "method": "Fraction anchors and independent mpmath microstate partition sums; for extremely small corrections, logarithmic asymptotics plus exact one-sided Fraction midpoint rounding.",
+  "ordinary": [
+    {
+      "energies": [
+        0.0,
+        4.550393873212011e-21
+      ],
+      "temperature": 150.0,
+      "copies": 16.0,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -2.181988358736934e-22,
+          "sign": -1,
+          "logMagnitude": -49.87663549360667
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 2.181988358736934e-22,
+          "sign": 1,
+          "logMagnitude": -49.87663549360667
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -3.491181373979094e-21,
+          "sign": -1,
+          "logMagnitude": -47.10404677136689
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 3.491181373979094e-21,
+          "sign": 1,
+          "logMagnitude": -47.10404677136689
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        4.550393873212011e-21
+      ],
+      "temperature": 300.0,
+      "copies": 16.0,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.1915638969454368e-21,
+          "sign": -1,
+          "logMagnitude": -48.17902030944152
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.1915638969454368e-21,
+          "sign": 1,
+          "logMagnitude": -48.17902030944152
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -1.906502235112699e-20,
+          "sign": -1,
+          "logMagnitude": -45.40643158720174
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.906502235112699e-20,
+          "sign": 1,
+          "logMagnitude": -45.40643158720174
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        4.550393873212011e-21
+      ],
+      "temperature": 600.0,
+      "copies": 16.0,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -3.775354822160767e-21,
+          "sign": -1,
+          "logMagnitude": -47.02579258196563
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 3.775354822160767e-21,
+          "sign": 1,
+          "logMagnitude": -47.02579258196563
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -6.040567715457227e-20,
+          "sign": -1,
+          "logMagnitude": -44.25320385972585
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 6.040567715457227e-20,
+          "sign": 1,
+          "logMagnitude": -44.25320385972585
+        }
+      }
+    },
+    {
+      "energies": [
+        -9.836495340251974e-21
+      ],
+      "temperature": 883.5189613990938,
+      "copies": 237876,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -9.836495340251974e-21,
+          "sign": -1,
+          "logMagnitude": -46.068187469861016
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -2.3398661655577785e-15,
+          "sign": -1,
+          "logMagnitude": -33.688682661382806
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        -9.929860683296229e-21,
+        8.041413218696158e-21
+      ],
+      "temperature": 445.92623236037645,
+      "copies": 497749,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.0253586465232071e-20,
+          "sign": -1,
+          "logMagnitude": -46.02665940944391
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 3.2372578193584178e-22,
+          "sign": 1,
+          "logMagnitude": -49.48214542647275
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -5.103712409482798e-15,
+          "sign": -1,
+          "logMagnitude": -32.908808196560166
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.611341842327833e-16,
+          "sign": 1,
+          "logMagnitude": -36.364294213589005
+        }
+      }
+    },
+    {
+      "energies": [
+        8.820456833064094e-21,
+        -1.969558399082873e-20,
+        -1.6940718759246894e-20
+      ],
+      "temperature": 407.9147118585405,
+      "copies": 250405,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -2.2410695356808877e-20,
+          "sign": -1,
+          "logMagnitude": -45.244748636680995
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 2.7151113659801455e-21,
+          "sign": 1,
+          "logMagnitude": -47.35545398155309
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -5.611750170821727e-15,
+          "sign": -1,
+          "logMagnitude": -32.81391375062116
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 6.798774615982584e-16,
+          "sign": 1,
+          "logMagnitude": -34.92461909549325
+        }
+      }
+    },
+    {
+      "energies": [
+        -7.618404834412513e-21,
+        1.414637054934328e-20,
+        1.9061148698757578e-20,
+        -1.442405554242264e-20
+      ],
+      "temperature": 974.3720818682477,
+      "copies": 623346,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -2.2372597137756285e-20,
+          "sign": -1,
+          "logMagnitude": -45.24645008497215
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 7.948541595333644e-21,
+          "sign": 1,
+          "logMagnitude": -46.28129848816504
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -1.3945868935431829e-14,
+          "sign": -1,
+          "logMagnitude": -31.903593064160344
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 4.954691609284846e-15,
+          "sign": 1,
+          "logMagnitude": -32.938441467353236
+        }
+      }
+    },
+    {
+      "energies": [
+        4.284610533531692e-21,
+        1.6235555191104758e-20,
+        4.586979108069474e-21,
+        4.816016643910795e-21,
+        1.531500044388593e-20,
+        -1.8344170269675247e-20,
+        -1.1167303757444421e-20,
+        1.447935584842919e-20
+      ],
+      "temperature": 958.2842450635774,
+      "copies": 684439,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -2.9637372545417294e-20,
+          "sign": -1,
+          "logMagnitude": -44.96525080194254
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.1293202275742046e-20,
+          "sign": 1,
+          "logMagnitude": -45.93008597669001
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -2.0284973627612868e-14,
+          "sign": -1,
+          "logMagnitude": -31.52889599834615
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 7.72950807240661e-15,
+          "sign": 1,
+          "logMagnitude": -32.493731173093614
+        }
+      }
+    },
+    {
+      "energies": [
+        5.185112057940516e-22,
+        -1.7397527095990214e-20,
+        3.800646783493936e-21,
+        -4.821849190424988e-21,
+        -1.1048270773996064e-20,
+        -2.786437155310659e-21,
+        -5.609936423790484e-21,
+        -4.659402957674662e-21,
+        -1.2006793762350995e-20,
+        1.1886991246493378e-20,
+        -1.650150362622294e-20,
+        1.6414526052006837e-20,
+        -1.807406135604834e-20,
+        -4.118504821178791e-22,
+        1.6795450078112702e-20,
+        1.0248256135769818e-20
+      ],
+      "temperature": 881.091835455876,
+      "copies": 858013,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -4.0308433985942896e-20,
+          "sign": -1,
+          "logMagnitude": -44.657726225770126
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 2.2234372629894555e-20,
+          "sign": 1,
+          "logMagnitude": -45.25264754474124
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -3.458516036958082e-14,
+          "sign": -1,
+          "logMagnitude": -30.995351695899657
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.907738076329372e-14,
+          "sign": 1,
+          "logMagnitude": -31.590273014870768
+        }
+      }
+    },
+    {
+      "energies": [
+        -3.1608071089609566e-21,
+        -8.826776665538966e-21,
+        -2.013205617728466e-20,
+        -7.155127730419643e-22,
+        -1.5900410621950197e-20,
+        1.8005949292014787e-20,
+        1.2432216340494675e-20,
+        1.0144745662695342e-20,
+        -8.133135675407979e-21,
+        -1.0195953646806169e-20,
+        -7.641632238088092e-21,
+        2.5078621608705993e-21,
+        1.5217633482849372e-20,
+        -9.249205162524256e-21,
+        1.1194578873516272e-20,
+        -1.1665057752327065e-20,
+        1.3889342713226453e-20,
+        1.0331034625723622e-20,
+        1.87644895244701e-20,
+        1.903366065595062e-20,
+        5.8546137568625635e-21,
+        1.720499255200657e-21,
+        1.583322828345786e-20,
+        -6.564617591916306e-21,
+        6.3366333016767706e-21,
+        5.6134952376292244e-21,
+        1.2806538153915918e-20,
+        -5.005526354043767e-21,
+        8.36115955537982e-21,
+        -1.8109441103814092e-20,
+        1.5573345833264848e-20,
+        1.4332320422848523e-20
+      ],
+      "temperature": 334.3808251569145,
+      "copies": 99391,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -2.4905130005896092e-20,
+          "sign": -1,
+          "logMagnitude": -45.13921314629122
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 4.773073828611431e-21,
+          "sign": 1,
+          "logMagnitude": -46.79129644700279
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -2.475345776416018e-15,
+          "sign": -1,
+          "logMagnitude": -33.6323963010054
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 4.744005808995186e-16,
+          "sign": 1,
+          "logMagnitude": -35.284479601716974
+        }
+      }
+    },
+    {
+      "energies": [
+        3.723767725663267e-21,
+        1.6190224678407737e-20
+      ],
+      "temperature": 643.2969702558681,
+      "copies": 443180,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": 1.7724358832875544e-21,
+          "sign": 1,
+          "logMagnitude": -47.78193214714454
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.9513318423757127e-21,
+          "sign": 1,
+          "logMagnitude": -47.68577481734488
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": 7.855081347553784e-16,
+          "sign": 1,
+          "logMagnitude": -34.78020086010134
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 8.647912459040683e-16,
+          "sign": 1,
+          "logMagnitude": -34.68404353030168
+        }
+      }
+    },
+    {
+      "energies": [
+        -1.5135906211977137e-20,
+        -1.4762961232104286e-20,
+        -9.512886508831166e-21
+      ],
+      "temperature": 701.2665948347053,
+      "copies": 869033,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -2.4091066363749824e-20,
+          "sign": -1,
+          "logMagnitude": -45.17244587140182
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 8.955160151772689e-21,
+          "sign": 1,
+          "logMagnitude": -46.162057033460485
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -2.09359316752886e-14,
+          "sign": -1,
+          "logMagnitude": -31.497309493191768
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 7.782329692175474e-15,
+          "sign": 1,
+          "logMagnitude": -32.48692065525043
+        }
+      }
+    },
+    {
+      "energies": [
+        1.467114376231463e-20,
+        -1.5486132446023216e-20,
+        1.1812127016972126e-20,
+        -1.5916697615900435e-20,
+        -8.81599520188753e-21
+      ],
+      "temperature": 111.68973953411458,
+      "copies": 742871,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.6794015665388717e-20,
+          "sign": -1,
+          "logMagnitude": -45.53326434031727
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 8.773180494882818e-22,
+          "sign": 1,
+          "logMagnitude": -48.485172649027774
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -1.2475787211362982e-14,
+          "sign": -1,
+          "logMagnitude": -32.01498665214875
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 6.517341367414094e-16,
+          "sign": 1,
+          "logMagnitude": -34.96689496085926
+        }
+      }
+    },
+    {
+      "energies": [
+        1.411510445839754e-21,
+        9.013616734416442e-21,
+        5.342331862851179e-21,
+        -1.4282356533335908e-20,
+        1.8852384606296466e-20,
+        -5.623756481529789e-21,
+        1.29743630440884e-20
+      ],
+      "temperature": 545.4562289691285,
+      "copies": 330968,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.781912231544528e-20,
+          "sign": -1,
+          "logMagnitude": -45.4740147848261
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 3.5367657821093735e-21,
+          "sign": 1,
+          "logMagnitude": -47.09107426420826
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -5.8975592744982936e-15,
+          "sign": -1,
+          "logMagnitude": -32.76423781187756
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.1705562973731751e-15,
+          "sign": 1,
+          "logMagnitude": -34.38129729125971
+        }
+      }
+    },
+    {
+      "energies": [
+        1.944746067982851e-20,
+        8.276734446571309e-21,
+        1.9626222867384343e-21,
+        8.393500149520663e-21,
+        7.514903623150712e-22,
+        -9.497077523780831e-21,
+        -1.286637763549868e-20,
+        5.710197975683169e-21,
+        1.030913930996877e-20
+      ],
+      "temperature": 1080.9809265958902,
+      "copies": 406489,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -3.22599839439312e-20,
+          "sign": -1,
+          "logMagnitude": -44.88045937788629
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.939360630843252e-20,
+          "sign": 1,
+          "logMagnitude": -45.389343512856655
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -1.311332861338465e-14,
+          "sign": -1,
+          "logMagnitude": -31.965147230553026
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 7.883287634708427e-15,
+          "sign": 1,
+          "logMagnitude": -32.474031365523395
+        }
+      }
+    },
+    {
+      "energies": [
+        1.1794031449221371e-20,
+        4.3644021833732365e-21,
+        1.0361160226437117e-20,
+        5.762886437752419e-21,
+        1.6836024844697913e-20,
+        -1.405565793898353e-21,
+        -1.4252835163782402e-20,
+        -9.675714671103551e-21,
+        -1.1289938013033045e-20,
+        1.3593546442854883e-20,
+        -3.993779574831498e-21,
+        8.938387392957772e-21
+      ],
+      "temperature": 1184.9206044732744,
+      "copies": 916783,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -4.1207803229572454e-20,
+          "sign": -1,
+          "logMagnitude": -44.63565931567713
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 2.695496806579005e-20,
+          "sign": 1,
+          "logMagnitude": -45.06011932869509
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -3.777861346821712e-14,
+          "sign": -1,
+          "logMagnitude": -30.907033233663856
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 2.47118564882592e-14,
+          "sign": 1,
+          "logMagnitude": -31.33149324668181
+        }
+      }
+    },
+    {
+      "energies": [
+        1.3328739672539251e-21,
+        -4.8329594574755224e-21,
+        4.089390071364453e-21,
+        -1.2371562473549351e-20,
+        -1.5425523716655803e-20,
+        1.0944393066435771e-20,
+        -1.2243158000604078e-20,
+        4.184666371506178e-21,
+        -1.5341658764781327e-20,
+        7.006479673201272e-22,
+        -1.3570843096041544e-20,
+        2.016818255217941e-20,
+        2.3187404263528525e-21,
+        1.2442583191346188e-20,
+        2.045881669920689e-20,
+        -8.095125969323267e-21,
+        -1.2984420413630294e-20,
+        1.0388370443752689e-20,
+        1.1257366113861003e-20,
+        1.9093664247634116e-21
+      ],
+      "temperature": 384.2799501350465,
+      "copies": 454881,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -2.4029233332330766e-20,
+          "sign": -1,
+          "logMagnitude": -45.17501580824101
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 8.603709615674963e-21,
+          "sign": 1,
+          "logMagnitude": -46.20209349196057
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -1.0930441687443952e-14,
+          "sign": -1,
+          "logMagnitude": -32.147224682976606
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 3.9136640336878425e-15,
+          "sign": 1,
+          "logMagnitude": -33.17430236669617
+        }
+      }
+    },
+    {
+      "energies": [
+        1.3273591848701535e-20,
+        1.033325039973478e-20,
+        1.1982910072713354e-20,
+        7.057231115013706e-21,
+        -1.6386780514747365e-20,
+        7.769334978407447e-22,
+        1.398178000848418e-21,
+        -6.889725262184243e-21,
+        -2.0351611356310513e-20,
+        2.307901647726258e-21,
+        -3.545912272138689e-21,
+        1.916668006141787e-20,
+        1.2209303241751813e-20,
+        1.2621114153536393e-20,
+        -7.9700344374269e-22,
+        8.868664150253452e-21,
+        1.7382128361549538e-20,
+        -7.300140931927451e-21,
+        3.2141627252118108e-21,
+        -9.06217118469999e-21,
+        1.4346066079856217e-20,
+        -5.728700557154732e-21,
+        -1.5840073659180793e-20,
+        7.531659967493017e-21
+      ],
+      "temperature": 969.8923791002829,
+      "copies": 239841,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -4.487452963787676e-20,
+          "sign": -1,
+          "logMagnitude": -44.550416587728655
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 2.4522918281566253e-20,
+          "sign": 1,
+          "logMagnitude": -45.15467883251175
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -1.0762752062878001e-14,
+          "sign": -1,
+          "logMagnitude": -32.16268510495462
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 5.8816012435691315e-15,
+          "sign": 1,
+          "logMagnitude": -32.76694734973771
+        }
+      }
+    },
+    {
+      "energies": [
+        -6.51335588014627e-21,
+        -8.88780105950042e-21,
+        1.670600262929135e-20,
+        -2.6625349298198573e-21,
+        -1.0218266869056174e-20,
+        4.118657822041123e-21,
+        1.646275770597514e-20,
+        1.0700147294525641e-20,
+        1.9480662538575127e-20,
+        8.04861896634984e-21,
+        -6.591466232133425e-21,
+        1.883473553184325e-20,
+        8.751250298538418e-21,
+        -1.4184988115708262e-20,
+        -1.8305105065887187e-20,
+        1.7844872668667705e-20,
+        9.362586925428864e-21,
+        -1.8851821749609243e-20,
+        9.60650430046542e-21,
+        -3.165670989804198e-21,
+        1.999608507382816e-20,
+        1.662086246050458e-20,
+        5.2148581910488336e-21,
+        2.9481725137492313e-21,
+        1.9053226731159718e-20,
+        -2.0282043378389227e-20,
+        1.1628516370256539e-20,
+        1.8940906386643e-20,
+        1.2523167470386792e-20,
+        -8.924819350519547e-21,
+        -1.486125572376152e-21,
+        1.588203878668092e-20
+      ],
+      "temperature": 699.525376784295,
+      "copies": 793434,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -3.738091043908922e-20,
+          "sign": -1,
+          "logMagnitude": -44.73312679482823
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.709886706069999e-20,
+          "sign": 1,
+          "logMagnitude": -45.515274745321456
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -2.9659285293328315e-14,
+          "sign": -1,
+          "logMagnitude": -31.14900115514233
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.3566822487439435e-14,
+          "sign": 1,
+          "logMagnitude": -31.93114910563556
+        }
+      }
+    },
+    {
+      "energies": [
+        -1.5709409532442208e-20,
+        -1.1921878922609824e-20,
+        -1.0310614616571526e-20,
+        -9.866092098522597e-21
+      ],
+      "temperature": 200.9179776140695,
+      "copies": 21927,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.687046180105272e-20,
+          "sign": -1,
+          "logMagnitude": -45.528722682592594
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.1610522686105119e-21,
+          "sign": 1,
+          "logMagnitude": -48.20496023083623
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -3.6991861591168296e-16,
+          "sign": -1,
+          "logMagnitude": -35.53324864944409
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 2.5458393093822693e-17,
+          "sign": 1,
+          "logMagnitude": -38.20948619768773
+        }
+      }
+    },
+    {
+      "energies": [
+        1.6226392723317133e-20,
+        -1.975016825587151e-20,
+        -1.5834517727737114e-20,
+        -1.4114078906780894e-20,
+        -1.9569890097317596e-22,
+        -1.808069721090653e-20,
+        -5.120700026867275e-21,
+        -2.0373090661206965e-20
+      ],
+      "temperature": 468.9543987630791,
+      "copies": 865666,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -2.871893329601486e-20,
+          "sign": -1,
+          "logMagnitude": -44.99673035088836
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 8.345842634807892e-21,
+          "sign": 1,
+          "logMagnitude": -46.23252342604656
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -2.4861004110627998e-14,
+          "sign": -1,
+          "logMagnitude": -31.32547591903125
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 7.224712210303609e-15,
+          "sign": 1,
+          "logMagnitude": -32.561268994189454
+        }
+      }
+    },
+    {
+      "energies": [
+        2.967771498437052e-22,
+        5.3237473070489154e-21,
+        2.070339279304827e-20
+      ],
+      "temperature": 575.107540897757,
+      "copies": 823643,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -3.472163206082752e-21,
+          "sign": -1,
+          "logMagnitude": -47.10950915082138
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 3.768940355926457e-21,
+          "sign": 1,
+          "logMagnitude": -47.027493063621925
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -2.8598229195476157e-15,
+          "sign": -1,
+          "logMagnitude": -33.488016688237906
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 3.1042613415763344e-15,
+          "sign": 1,
+          "logMagnitude": -33.40600060103845
+        }
+      }
+    },
+    {
+      "energies": [
+        -1.689643188358842e-20,
+        1.8029788136026492e-20,
+        -5.456236718848324e-21,
+        1.506179383409007e-20,
+        1.4839762661173478e-20
+      ],
+      "temperature": 391.22088317347277,
+      "copies": 649790,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.7543785650610424e-20,
+          "sign": -1,
+          "logMagnitude": -45.48958715965147
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 6.473537670220036e-22,
+          "sign": 1,
+          "logMagnitude": -48.789149306226705
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -1.1399776477910148e-14,
+          "sign": -1,
+          "logMagnitude": -32.10518264690332
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 4.206440042732277e-16,
+          "sign": 1,
+          "logMagnitude": -35.40474479347856
+        }
+      }
+    },
+    {
+      "energies": [
+        -1.05239769820714e-20,
+        -1.3177275604743362e-21,
+        9.979057604485541e-21,
+        -9.49535188376958e-21,
+        -1.5729527823216696e-20,
+        -2.508294915599e-21
+      ],
+      "temperature": 1024.5963798002226,
+      "copies": 197880,
+      "digits": 160,
+      "perCopy": {
+        "helmholtz": {
+          "value": -3.241129294693092e-20,
+          "sign": -1,
+          "logMagnitude": -44.87578004306055
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.6681765123714222e-20,
+          "sign": 1,
+          "logMagnitude": -45.53997073877855
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -6.4135466483386906e-15,
+          "sign": -1,
+          "logMagnitude": -32.680363977718905
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 3.3009876826805703e-15,
+          "sign": 1,
+          "logMagnitude": -33.3445546734369
+        }
+      }
+    }
+  ],
+  "limits": [
+    {
+      "energies": [
+        0.0
+      ],
+      "temperature": 5e-324,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        1.7976931348623157e+308
+      ],
+      "temperature": 300.0,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": 1.7976931348623157e+308,
+          "sign": 1,
+          "logMagnitude": 709.782712893384
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": 1419.565425786768
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        -1.7976931348623157e+308
+      ],
+      "temperature": 300.0,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.7976931348623157e+308,
+          "sign": -1,
+          "logMagnitude": 709.782712893384
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": 1419.565425786768
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        1.0
+      ],
+      "temperature": 5e-324,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": null
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": null
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        1.0,
+        2.0
+      ],
+      "temperature": 5e-324,
+      "copies": 3.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": 1.0,
+          "sign": 1,
+          "logMagnitude": 0.0
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": 3.0,
+          "sign": 1,
+          "logMagnitude": 1.0986122886681098
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        -1.0,
+        0.0
+      ],
+      "temperature": 5e-324,
+      "copies": 3.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.0,
+          "sign": -1,
+          "logMagnitude": 0.0
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -3.0,
+          "sign": -1,
+          "logMagnitude": 1.0986122886681098
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        0.0
+      ],
+      "temperature": 5e-324,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -797.4434883023534
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -797.4434883023534
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -8.499804963805494e-39,
+          "sign": -1,
+          "logMagnitude": -87.66077540896941
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 8.499804963805494e-39,
+          "sign": 1,
+          "logMagnitude": -87.66077540896941
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        0.0
+      ],
+      "temperature": 1.7976931348623157e+308,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.7203796773468958e+285,
+          "sign": -1,
+          "logMagnitude": 656.7792965124119
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.7203796773468958e+285,
+          "sign": 1,
+          "logMagnitude": 656.7792965124119
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": 1366.5620094057958
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": 1366.5620094057958
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        1.846595522342164e+288
+      ],
+      "temperature": 1.7976931348623157e+308,
+      "copies": 1.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.9041638089242057e-38,
+          "sign": -1,
+          "logMagnitude": -86.85419056700644
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.9041638089242057e-38,
+          "sign": 1,
+          "logMagnitude": -86.85419056700644
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -1.9041638089242057e-38,
+          "sign": -1,
+          "logMagnitude": -86.85419056700644
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.9041638089242057e-38,
+          "sign": 1,
+          "logMagnitude": -86.85419056700644
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        1.8515594888000728e+288
+      ],
+      "temperature": 1.7976931348623157e+308,
+      "copies": 1.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -2.577005484096782e-39,
+          "sign": -1,
+          "logMagnitude": -88.85419056700638
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 2.577005484096782e-39,
+          "sign": 1,
+          "logMagnitude": -88.85419056700638
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -2.577005484096782e-39,
+          "sign": -1,
+          "logMagnitude": -88.85419056700638
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 2.577005484096782e-39,
+          "sign": 1,
+          "logMagnitude": -88.85419056700638
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        2.481983228954521e+288
+      ],
+      "temperature": 1.7976931348623157e+308,
+      "copies": 1.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.259844485458184e-149,
+          "sign": -1,
+          "logMagnitude": -342.85419056700636
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.259844485458184e-149,
+          "sign": 1,
+          "logMagnitude": -342.85419056700636
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -1.259844485458184e-149,
+          "sign": -1,
+          "logMagnitude": -342.85419056700636
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.259844485458184e-149,
+          "sign": 1,
+          "logMagnitude": -342.85419056700636
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        4.141947e-18
+      ],
+      "temperature": 300.0,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -1046.9331209857341
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1046.9331209857341
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -3.7795334563746197e-147,
+          "sign": -1,
+          "logMagnitude": -337.1504080923501
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 3.7795334563746197e-147,
+          "sign": 1,
+          "logMagnitude": -337.1504080923501
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        6.2129205e-18
+      ],
+      "temperature": 300.0,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -1546.9331209857341
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -1546.9331209857341
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -837.1504080923503
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -837.1504080923503
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        4.141947e-17
+      ],
+      "temperature": 300.0,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -10046.933120985734
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -10046.933120985734
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -9337.15040809235
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -9337.15040809235
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        8.283894e-17
+      ],
+      "temperature": 300.0,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -20046.933120985734
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -20046.933120985734
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -19337.150408092348
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -19337.150408092348
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        1.7976931348623157e+308
+      ],
+      "temperature": 5e-324,
+      "copies": 1.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": null
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": null
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        -1.7976931348623157e+308,
+        1.7976931348623157e+308
+      ],
+      "temperature": 5e-324,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.7976931348623157e+308,
+          "sign": -1,
+          "logMagnitude": 709.782712893384
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": 1419.565425786768
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        5e-324,
+        1e-323
+      ],
+      "temperature": 5e-324,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": 5e-324,
+          "sign": 1,
+          "logMagnitude": -744.4400719213812
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -7.24297051603992e+22
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": 8.881784197001251e-16,
+          "sign": 1,
+          "logMagnitude": -34.657359027997266
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -7.24297051603992e+22
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "temperature": 1.7976931348623157e+308,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -8.601898386734479e+285,
+          "sign": -1,
+          "logMagnitude": 658.388734424846
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 8.601898386734479e+285,
+          "sign": 1,
+          "logMagnitude": 658.388734424846
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": 1368.1714473182299
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": 1368.1714473182299
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "temperature": 5e-324,
+      "copies": 1.7976931348623157e+308,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -797.4434883023534
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -797.4434883023534
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -8.499804963805494e-39,
+          "sign": -1,
+          "logMagnitude": -87.66077540896941
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 8.499804963805494e-39,
+          "sign": 1,
+          "logMagnitude": -87.66077540896941
+        }
+      }
+    },
+    {
+      "energies": [
+        1.0000000000000002,
+        2.0
+      ],
+      "temperature": 5e-324,
+      "copies": 3.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": 1.0000000000000002,
+          "sign": 1,
+          "logMagnitude": 2.2204460492503128e-16
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": 3.0000000000000004,
+          "sign": 1,
+          "logMagnitude": 1.09861228866811
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        -1.0000000000000002,
+        0.0
+      ],
+      "temperature": 5e-324,
+      "copies": 3.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.0000000000000002,
+          "sign": -1,
+          "logMagnitude": 2.2204460492503128e-16
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -3.000000000000001,
+          "sign": -1,
+          "logMagnitude": 1.09861228866811
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        5e-324
+      ],
+      "temperature": 1.7976931348623157e+308,
+      "copies": 1.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.7203796773468958e+285,
+          "sign": -1,
+          "logMagnitude": 656.7792965124119
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.7203796773468958e+285,
+          "sign": 1,
+          "logMagnitude": 656.7792965124119
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -1.7203796773468958e+285,
+          "sign": -1,
+          "logMagnitude": 656.7792965124119
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 1.7203796773468958e+285,
+          "sign": 1,
+          "logMagnitude": 656.7792965124119
+        }
+      }
+    },
+    {
+      "energies": [
+        0.0,
+        1.7976931348623157e+308
+      ],
+      "temperature": 1.7976931348623157e+308,
+      "copies": 0.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": -7.24297051603992e+22
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": -7.24297051603992e+22
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": 0.0,
+          "sign": 0,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        5.992310449541053e+307,
+        1.7976931348623157e+308
+      ],
+      "temperature": 5e-324,
+      "copies": 3.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": 5.992310449541053e+307,
+          "sign": 1,
+          "logMagnitude": 708.6841006047159
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": 1.7976931348623157e+308,
+          "sign": 1,
+          "logMagnitude": 709.782712893384
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        -5.992310449541053e+307,
+        0.0
+      ],
+      "temperature": 5e-324,
+      "copies": 3.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -5.992310449541053e+307,
+          "sign": -1,
+          "logMagnitude": 708.6841006047159
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": null,
+          "sign": -1,
+          "logMagnitude": 709.782712893384
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      }
+    },
+    {
+      "energies": [
+        -1.0000000000000007,
+        0.0
+      ],
+      "temperature": 5e-324,
+      "copies": 3.0,
+      "digits": 1000,
+      "perCopy": {
+        "helmholtz": {
+          "value": -1.0000000000000007,
+          "sign": -1,
+          "logMagnitude": 6.661338147750937e-16
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      },
+      "total": {
+        "helmholtz": {
+          "value": -3.000000000000002,
+          "sign": -1,
+          "logMagnitude": 1.0986122886681104
+        },
+        "centeredPartitionEnergyCorrection": {
+          "value": null,
+          "sign": 1,
+          "logMagnitude": null
+        }
+      }
+    }
+  ]
+}

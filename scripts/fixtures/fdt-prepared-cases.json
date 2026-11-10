@@ -1,0 +1,530 @@
+[
+  {
+    "label": "equilibrium reference",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 0,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "f9be08ba9d437520a53fd1b2c675b217ed68747c762968619c64a5864b020ff0"
+  },
+  {
+    "label": "twice the mobility",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 2,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 0,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "266ebd56737ea45bc8b3b3083653f06415dc79c75ee4505a1a8d36053f60c0c1"
+  },
+  {
+    "label": "twice the stiffness",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 2,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 0,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "e856ff42d3153e0aaf4ce39aef198c9047e7f4c9e9e3c492c71bb615fd8b0b4f"
+  },
+  {
+    "label": "threefold thermal energy",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 3,
+        "coefficientDenominator": 1,
+        "angularNumerator": 0,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "6c85e8f07379ff34b95364045aef7b6f72d27832760a4a09a072e25f88bea0ed"
+  },
+  {
+    "label": "counterclockwise driven background",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 1,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "ccec30d8920d9b5dbc837f07ce619908ae9ee2b2cf3e0bf16abb34ad510aebc2"
+  },
+  {
+    "label": "clockwise driven background",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": -1,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "eb7134e0df96e999f9fcf6dbae52285affd55aead575bcd21f6e7de46ff8689b"
+  },
+  {
+    "label": "transverse force and impulse",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 1,
+        "angularDenominator": 1,
+        "forceXNumerator": 0,
+        "forceYNumerator": 1,
+        "forceDenominator": 1,
+        "impulseXNumerator": 0,
+        "impulseYNumerator": 1,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "8e416d3ce0683e10c4bcb4001eebb042ce645185dafd09db1d4f13c63262d45b"
+  },
+  {
+    "label": "distinct force and impulse directions",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 1,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 0,
+        "impulseYNumerator": 1,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "651a0f06a3b38b3dc4cb00bb2c76f6c19d632503bb7d929846eed3061cd6ee24"
+  },
+  {
+    "label": "zero time equilibrium right limit",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 0,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 0,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "7a4e0ddd25d03e4298b7a43f2e2003ab9c1baba02518d0d35109b5423f96abe9"
+  },
+  {
+    "label": "zero time driven right limit",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 1,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 0,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "25d833baa11292f19e8291dbaf9b0c96e7dff853e69b741b73cb1513b388f39e"
+  },
+  {
+    "label": "short lag and dense records",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 1,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1000000,
+        "sampleSteps": 64
+      }
+    },
+    "resultSha256": "e1cd8fcd684a0f50be39e549aa4c8104c4b41038a2fcc7b6092b6d78ecca7cb3"
+  },
+  {
+    "label": "largest angle and both force components",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 4,
+        "angularDenominator": 1,
+        "forceXNumerator": 4,
+        "forceYNumerator": -4,
+        "forceDenominator": 1,
+        "impulseXNumerator": -4,
+        "impulseYNumerator": 4,
+        "impulseDenominator": 1,
+        "timeNumerator": 4,
+        "timeDenominator": 1,
+        "sampleSteps": 64
+      }
+    },
+    "resultSha256": "56165748d5c41f35957f35eca82d5155addcf678f81f7811841d34994c762527"
+  },
+  {
+    "label": "tiny damping and driven circulation",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1000000,
+        "angularNumerator": 4,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 64
+      }
+    },
+    "resultSha256": "f79bea32a983b76a46e0a398c3eba02d74a9eb1594fa35f15b24c32c939a2a6d"
+  },
+  {
+    "label": "positive response beyond linear display precision",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1000000,
+        "stiffnessNumerator": 1000000,
+        "thermalEnergyNumerator": 1000000,
+        "coefficientDenominator": 1,
+        "angularNumerator": 1,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "b31f872a6fd2058a486e856ea5253399669ecba761fd8749d52feb946d410237"
+  },
+  {
+    "label": "same Gaussian width different restoring force",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 2,
+        "thermalEnergyNumerator": 2,
+        "coefficientDenominator": 1,
+        "angularNumerator": 1,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "becd16c706d436054b0bb41dd281fc5c22e7b3f0bc89eff1b7ba9adec9a425c4"
+  },
+  {
+    "label": "near a zero diagonal response",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 355,
+        "angularDenominator": 226,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 16
+      }
+    },
+    "resultSha256": "da7aeb6ad7be2b36eff36faadcb6818f9af0e9fe8f83424071591608ed0db013"
+  },
+  {
+    "label": "rational angle is not exactly pi",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 355,
+        "angularDenominator": 113,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 16
+      }
+    },
+    "resultSha256": "4387760657b51c19d773095d2a4f3ca131ed798c5624469f387ecb4105996913"
+  },
+  {
+    "label": "zero applied force and impulse",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 1,
+        "angularDenominator": 1,
+        "forceXNumerator": 0,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 0,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "8e5229e4a9a532f37e1d400de4a82fa0d24e78281e1bf9750de767db16363e69"
+  },
+  {
+    "label": "same lag phase on a faster clock",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 2,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 2,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 2,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "33e62f8756e8f17556c05fff4a208e612132ea9972bea93b071e3919094a5888"
+  },
+  {
+    "label": "unequal coefficients and signed forcing",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 2,
+        "stiffnessNumerator": 3,
+        "thermalEnergyNumerator": 5,
+        "coefficientDenominator": 1,
+        "angularNumerator": -4,
+        "angularDenominator": 1,
+        "forceXNumerator": 3,
+        "forceYNumerator": -2,
+        "forceDenominator": 2,
+        "impulseXNumerator": -1,
+        "impulseYNumerator": 2,
+        "impulseDenominator": 3,
+        "timeNumerator": 1,
+        "timeDenominator": 1,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "422c97223ef736154890506fa4aab2d3da1b535729212fcf855f5926d1aea9c1"
+  },
+  {
+    "label": "negative component diagnostic",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 1,
+        "stiffnessNumerator": 1,
+        "thermalEnergyNumerator": 1,
+        "coefficientDenominator": 1,
+        "angularNumerator": 1,
+        "angularDenominator": 1,
+        "forceXNumerator": 1,
+        "forceYNumerator": 0,
+        "forceDenominator": 1,
+        "impulseXNumerator": 1,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 1,
+        "timeNumerator": 1,
+        "timeDenominator": 4,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "c831b8bc689cb7d5c4727338d6747c8b0acb05e81455bd34543e4dd3b2c9776e"
+  },
+  {
+    "label": "same exact preparation different integer encoding",
+    "input": {
+      "kind": "thermal-ou-fluctuation-response",
+      "parameters": {
+        "mobilityNumerator": 2,
+        "stiffnessNumerator": 2,
+        "thermalEnergyNumerator": 2,
+        "coefficientDenominator": 2,
+        "angularNumerator": 2,
+        "angularDenominator": 2,
+        "forceXNumerator": 2,
+        "forceYNumerator": 0,
+        "forceDenominator": 2,
+        "impulseXNumerator": 2,
+        "impulseYNumerator": 0,
+        "impulseDenominator": 2,
+        "timeNumerator": 2,
+        "timeDenominator": 2,
+        "sampleSteps": 8
+      }
+    },
+    "resultSha256": "be176780a36301a96c5af6215d953a41715355eb31bcc3889d854f8d32098c44"
+  }
+]

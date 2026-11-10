@@ -1,0 +1,54 @@
+{
+  "method": "Independent SymPy exact differentiation,integration and matrix identities",
+  "continuumEngineImplemented": false,
+  "gaussian": {
+    "energy": "alpha*hbar**2/(4*m) + m*omega**2/(4*alpha)",
+    "variance": "alpha**2*hbar**4/(8*m**2) - hbar**2*omega**2/4 + m**2*omega**4/(8*alpha**2)",
+    "normalization": "1",
+    "stationaryAlpha": "m*omega/hbar",
+    "groundEnergy": "hbar*omega/2",
+    "doubleAlphaEnergyInHbarOmega": "5/8",
+    "doubleAlphaVarianceInHbarOmegaSquared": "9/32",
+    "annihilationIdentity": true
+  },
+  "movingMetric": {
+    "correctDerivative": "4*q/(q**4 + 2*q**2 + 1)",
+    "atOne": "1",
+    "withoutOverlapDerivativeAtOne": "2"
+  },
+  "directionalPath": {
+    "firstAtZero": "-2",
+    "secondAtZero": "0",
+    "energyAtOne": "0"
+  },
+  "ritz": {
+    "minimum": "4/3 - sqrt(7)/3",
+    "coefficientRatio": "1/2 - sqrt(7)/2",
+    "fullResidualDirection": [
+      -1,
+      -1,
+      1
+    ],
+    "gramAfterChange": [
+      [
+        "8",
+        "6 + 4*I"
+      ],
+      [
+        "6 - 4*I",
+        "8"
+      ]
+    ],
+    "hamiltonianAfterChange": [
+      [
+        "12",
+        "12 + 6*I"
+      ],
+      [
+        "12 - 6*I",
+        "16"
+      ]
+    ],
+    "pencilFactor": 4
+  }
+}

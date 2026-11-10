@@ -1,0 +1,266 @@
+{
+  "polar-lagrange-newton-equivalence": [
+    {
+      "name": "off-grid-free",
+      "values": [
+        1,
+        0,
+        1,
+        0,
+        -3,
+        0,
+        0
+      ],
+      "key": "analytic origin event count",
+      "answer": "1",
+      "checks": [
+        [
+          "1{polar chart regular}",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "off-grid-harmonic",
+      "values": [
+        1,
+        2,
+        2,
+        0,
+        2,
+        0,
+        0
+      ],
+      "key": "analytic origin event count",
+      "answer": "1",
+      "checks": []
+    },
+    {
+      "name": "near-origin",
+      "values": [
+        1,
+        2,
+        2,
+        0,
+        0,
+        0,
+        19
+      ],
+      "key": "1{polar chart regular}",
+      "answer": "1",
+      "checks": []
+    },
+    {
+      "name": "at-origin",
+      "values": [
+        1,
+        2,
+        2,
+        0,
+        0,
+        0,
+        20
+      ],
+      "key": "1{polar chart regular}",
+      "answer": "0",
+      "checks": [
+        [
+          "query angular rate rad per s",
+          "\u2014"
+        ],
+        [
+          "query radius m",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "mass-frequency",
+      "values": [
+        4,
+        2,
+        2,
+        0,
+        0,
+        2,
+        40
+      ],
+      "key": "1{circular initial data}",
+      "answer": "1",
+      "checks": [
+        [
+          "query radius m",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "extreme",
+      "values": [
+        4,
+        4,
+        6,
+        4,
+        -4,
+        -4,
+        40
+      ],
+      "key": "1{polar chart regular}",
+      "answer": "1",
+      "checks": [
+        [
+          "analytic origin event count",
+          "0"
+        ]
+      ]
+    }
+  ],
+  "double-pendulum-lagrange-dynamics": [
+    {
+      "name": "downward-rest",
+      "values": [
+        2,
+        3,
+        2,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "key": "query rod1 signed tension N",
+      "answer": "50",
+      "checks": [
+        [
+          "query rod2 signed tension N",
+          "30"
+        ],
+        [
+          "query kinetic energy J",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "upright-equilibrium",
+      "values": [
+        1,
+        1,
+        2,
+        2,
+        12,
+        12,
+        0,
+        0,
+        40,
+        4
+      ],
+      "key": "maximum sampled energy error J",
+      "answer": "0",
+      "checks": [
+        [
+          "maximum sampled angle refinement gap rad",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "rest-horizontal",
+      "values": [
+        1,
+        1,
+        2,
+        2,
+        6,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "key": "query acceleration a rad per s squared",
+      "answer": "-10",
+      "checks": [
+        [
+          "query acceleration b rad per s squared",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "inertial-coupling",
+      "values": [
+        1,
+        1,
+        2,
+        2,
+        6,
+        0,
+        10,
+        -10,
+        0,
+        2
+      ],
+      "key": "query acceleration a rad per s squared",
+      "answer": "-10.5",
+      "checks": [
+        [
+          "query acceleration b rad per s squared",
+          "1"
+        ],
+        [
+          "query naive acceleration a rad per s squared",
+          "-10"
+        ]
+      ]
+    },
+    {
+      "name": "compression",
+      "values": [
+        4,
+        1,
+        1,
+        6,
+        12,
+        12,
+        0,
+        0,
+        0,
+        2
+      ],
+      "key": "query rod1 signed tension N",
+      "answer": "-50",
+      "checks": [
+        [
+          "query rod2 signed tension N",
+          "-10"
+        ]
+      ]
+    },
+    {
+      "name": "extreme",
+      "values": [
+        4,
+        4,
+        1,
+        6,
+        -12,
+        12,
+        -10,
+        10,
+        40,
+        1
+      ],
+      "key": "integration steps",
+      "answer": "800",
+      "checks": [
+        [
+          "RK4 step microseconds",
+          "2,500"
+        ]
+      ]
+    }
+  ]
+}

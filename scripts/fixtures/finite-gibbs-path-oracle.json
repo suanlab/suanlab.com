@@ -1,0 +1,1423 @@
+{
+  "scope": "Independent actual-input Decimal-CDF and integer LCG32-high-bits references; Q assumes iid grid draws, seeded trace is deterministic",
+  "cases": [
+    {
+      "id": "near-ideal-ln2-first-8-0",
+      "parameters": {
+        "couplingEnergy": 9.569929616929079e-24,
+        "firstFieldEnergy": 0,
+        "secondFieldEnergy": 0,
+        "temperature": 1,
+        "support": "full-product",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 0,
+        "bits": 8,
+        "steps": 32,
+        "mode": "first"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "observedCounts": [
+          30,
+          0,
+          3,
+          0
+        ],
+        "finalPrngState": 95141024,
+        "randomDrawCount": 32,
+        "coordinatesResampled": 32,
+        "quantizedKernel": {
+          "denominatorPower": 8,
+          "numerators": [
+            [
+              "205",
+              "0",
+              "51",
+              "0"
+            ],
+            [
+              "0",
+              "52",
+              "0",
+              "204"
+            ],
+            [
+              "205",
+              "0",
+              "51",
+              "0"
+            ],
+            [
+              "0",
+              "52",
+              "0",
+              "204"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 1,
+          "denominatorPower": 8
+        }
+      }
+    },
+    {
+      "id": "near-ideal-ln2-second-8-0",
+      "parameters": {
+        "couplingEnergy": 9.569929616929079e-24,
+        "firstFieldEnergy": 0,
+        "secondFieldEnergy": 0,
+        "temperature": 1,
+        "support": "full-product",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 0,
+        "bits": 8,
+        "steps": 32,
+        "mode": "second"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "observedCounts": [
+          30,
+          3,
+          0,
+          0
+        ],
+        "finalPrngState": 95141024,
+        "randomDrawCount": 32,
+        "coordinatesResampled": 32,
+        "quantizedKernel": {
+          "denominatorPower": 8,
+          "numerators": [
+            [
+              "205",
+              "51",
+              "0",
+              "0"
+            ],
+            [
+              "205",
+              "51",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "52",
+              "204"
+            ],
+            [
+              "0",
+              "0",
+              "52",
+              "204"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 1,
+          "denominatorPower": 8
+        }
+      }
+    },
+    {
+      "id": "near-ideal-ln2-random-8-0",
+      "parameters": {
+        "couplingEnergy": 9.569929616929079e-24,
+        "firstFieldEnergy": 0,
+        "secondFieldEnergy": 0,
+        "temperature": 1,
+        "support": "full-product",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 0,
+        "bits": 8,
+        "steps": 64,
+        "mode": "random"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          1,
+          1,
+          3,
+          3,
+          2,
+          3,
+          1,
+          1,
+          1,
+          3,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          2,
+          0,
+          1,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          1,
+          1,
+          3,
+          3,
+          3
+        ],
+        "observedCounts": [
+          14,
+          10,
+          7,
+          34
+        ],
+        "finalPrngState": 2065617536,
+        "randomDrawCount": 128,
+        "coordinatesResampled": 64,
+        "quantizedKernel": {
+          "denominatorPower": 9,
+          "numerators": [
+            [
+              "410",
+              "51",
+              "51",
+              "0"
+            ],
+            [
+              "205",
+              "103",
+              "0",
+              "204"
+            ],
+            [
+              "205",
+              "0",
+              "103",
+              "204"
+            ],
+            [
+              "0",
+              "52",
+              "52",
+              "408"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 1,
+          "denominatorPower": 8
+        }
+      }
+    },
+    {
+      "id": "near-ideal-ln2-random-8-1",
+      "parameters": {
+        "couplingEnergy": 9.569929616929079e-24,
+        "firstFieldEnergy": 0,
+        "secondFieldEnergy": 0,
+        "temperature": 1,
+        "support": "full-product",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 1,
+        "bits": 8,
+        "steps": 64,
+        "mode": "random"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          3,
+          3,
+          1,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          0,
+          2,
+          3,
+          3,
+          3,
+          2,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          3,
+          3,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          3,
+          3,
+          2,
+          3,
+          1,
+          0
+        ],
+        "observedCounts": [
+          30,
+          12,
+          5,
+          18
+        ],
+        "finalPrngState": 76067969,
+        "randomDrawCount": 128,
+        "coordinatesResampled": 64,
+        "quantizedKernel": {
+          "denominatorPower": 9,
+          "numerators": [
+            [
+              "410",
+              "51",
+              "51",
+              "0"
+            ],
+            [
+              "205",
+              "103",
+              "0",
+              "204"
+            ],
+            [
+              "205",
+              "0",
+              "103",
+              "204"
+            ],
+            [
+              "0",
+              "52",
+              "52",
+              "408"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 1,
+          "denominatorPower": 8
+        }
+      }
+    },
+    {
+      "id": "near-ideal-ln2-systematic-8-1",
+      "parameters": {
+        "couplingEnergy": 9.569929616929079e-24,
+        "firstFieldEnergy": 0,
+        "secondFieldEnergy": 0,
+        "temperature": 1,
+        "support": "full-product",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 1,
+        "bits": 8,
+        "steps": 64,
+        "mode": "systematic"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          3,
+          3,
+          2,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          3,
+          3,
+          3,
+          3,
+          0,
+          0,
+          0,
+          1,
+          2,
+          3,
+          2,
+          0,
+          0,
+          3,
+          0,
+          1,
+          0,
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          0,
+          3,
+          3,
+          3,
+          3,
+          2,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          3,
+          3,
+          2,
+          3,
+          0,
+          0
+        ],
+        "observedCounts": [
+          28,
+          5,
+          8,
+          24
+        ],
+        "finalPrngState": 76067969,
+        "randomDrawCount": 128,
+        "coordinatesResampled": 128,
+        "quantizedKernel": {
+          "denominatorPower": 16,
+          "numerators": [
+            [
+              "42025",
+              "10455",
+              "2652",
+              "10404"
+            ],
+            [
+              "10660",
+              "2652",
+              "10608",
+              "41616"
+            ],
+            [
+              "42025",
+              "10455",
+              "2652",
+              "10404"
+            ],
+            [
+              "10660",
+              "2652",
+              "10608",
+              "41616"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 2,
+          "denominatorPower": 8
+        }
+      }
+    },
+    {
+      "id": "near-ideal-ln2-blocked-8-0",
+      "parameters": {
+        "couplingEnergy": 9.569929616929079e-24,
+        "firstFieldEnergy": 0,
+        "secondFieldEnergy": 0,
+        "temperature": 1,
+        "support": "full-product",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 0,
+        "bits": 8,
+        "steps": 64,
+        "mode": "blocked"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          0,
+          3,
+          3,
+          0,
+          3,
+          0,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          0,
+          2,
+          3,
+          0,
+          0,
+          3,
+          2,
+          2,
+          0,
+          0,
+          0,
+          0,
+          3,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          3,
+          3,
+          0,
+          3,
+          2,
+          0,
+          0,
+          2,
+          3,
+          0,
+          0,
+          0,
+          1,
+          0,
+          2,
+          0,
+          0,
+          3,
+          1,
+          0,
+          3,
+          1,
+          1,
+          0,
+          1,
+          0,
+          3,
+          0,
+          1
+        ],
+        "observedCounts": [
+          30,
+          7,
+          8,
+          20
+        ],
+        "finalPrngState": 1956956480,
+        "randomDrawCount": 64,
+        "coordinatesResampled": 128,
+        "quantizedKernel": {
+          "denominatorPower": 8,
+          "numerators": [
+            [
+              "103",
+              "25",
+              "26",
+              "102"
+            ],
+            [
+              "103",
+              "25",
+              "26",
+              "102"
+            ],
+            [
+              "103",
+              "25",
+              "26",
+              "102"
+            ],
+            [
+              "103",
+              "25",
+              "26",
+              "102"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 3,
+          "denominatorPower": 8
+        }
+      }
+    },
+    {
+      "id": "near-ideal-ln2-random-32-4294967295",
+      "parameters": {
+        "couplingEnergy": 9.569929616929079e-24,
+        "firstFieldEnergy": 0,
+        "secondFieldEnergy": 0,
+        "temperature": 1,
+        "support": "full-product",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 4294967295,
+        "bits": 32,
+        "steps": 64,
+        "mode": "random"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          1,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          0,
+          0,
+          0,
+          2,
+          3,
+          3,
+          3,
+          1,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "observedCounts": [
+          24,
+          10,
+          4,
+          27
+        ],
+        "finalPrngState": 4055167103,
+        "randomDrawCount": 128,
+        "coordinatesResampled": 64,
+        "quantizedKernel": {
+          "denominatorPower": 33,
+          "numerators": [
+            [
+              "6871947674",
+              "858993459",
+              "858993459",
+              "0"
+            ],
+            [
+              "3435973837",
+              "1717986919",
+              "0",
+              "3435973836"
+            ],
+            [
+              "3435973837",
+              "0",
+              "1717986919",
+              "3435973836"
+            ],
+            [
+              "0",
+              "858993460",
+              "858993460",
+              "6871947672"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 1,
+          "denominatorPower": 32
+        }
+      }
+    },
+    {
+      "id": "fixed-zero-sum-uniform-random-8-1",
+      "parameters": {
+        "couplingEnergy": 4.141947e-23,
+        "firstFieldEnergy": 1.3806490000000001e-21,
+        "secondFieldEnergy": 1.3806490000000001e-21,
+        "temperature": 1,
+        "support": "fixed-zero-sum",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 1,
+        "bits": 8,
+        "steps": 64,
+        "mode": "random"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "observedCounts": [
+          65,
+          0
+        ],
+        "finalPrngState": 76067969,
+        "randomDrawCount": 128,
+        "coordinatesResampled": 64,
+        "quantizedKernel": {
+          "denominatorPower": 9,
+          "numerators": [
+            [
+              "512",
+              "0"
+            ],
+            [
+              "0",
+              "512"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 1,
+          "denominatorPower": 8
+        }
+      }
+    },
+    {
+      "id": "fixed-zero-sum-uniform-blocked-8-1",
+      "parameters": {
+        "couplingEnergy": 4.141947e-23,
+        "firstFieldEnergy": 1.3806490000000001e-21,
+        "secondFieldEnergy": 1.3806490000000001e-21,
+        "temperature": 1,
+        "support": "fixed-zero-sum",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 1,
+        "bits": 8,
+        "steps": 64,
+        "mode": "blocked"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "observedCounts": [
+          36,
+          29
+        ],
+        "finalPrngState": 2624141889,
+        "randomDrawCount": 64,
+        "coordinatesResampled": 128,
+        "quantizedKernel": {
+          "denominatorPower": 8,
+          "numerators": [
+            [
+              "128",
+              "128"
+            ],
+            [
+              "128",
+              "128"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 1,
+          "denominatorPower": 8
+        }
+      }
+    },
+    {
+      "id": "fixed-zero-sum-biased-blocked-16-1",
+      "parameters": {
+        "couplingEnergy": 4.141947e-23,
+        "firstFieldEnergy": 6.903245e-24,
+        "secondFieldEnergy": -3.4516225e-24,
+        "temperature": 1,
+        "support": "fixed-zero-sum",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 1,
+        "bits": 16,
+        "steps": 64,
+        "mode": "blocked"
+      },
+      "reference": {
+        "states": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        "observedCounts": [
+          15,
+          50
+        ],
+        "finalPrngState": 2624141889,
+        "randomDrawCount": 64,
+        "coordinatesResampled": 128,
+        "quantizedKernel": {
+          "denominatorPower": 16,
+          "numerators": [
+            [
+              "11956",
+              "53580"
+            ],
+            [
+              "11956",
+              "53580"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 1,
+          "denominatorPower": 16
+        }
+      }
+    },
+    {
+      "id": "rare-conditional-random-8-1",
+      "parameters": {
+        "couplingEnergy": 5.5225960000000006e-21,
+        "firstFieldEnergy": 0,
+        "secondFieldEnergy": 0,
+        "temperature": 1,
+        "support": "full-product",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 1,
+        "bits": 8,
+        "steps": 64,
+        "mode": "random"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "observedCounts": [
+          65,
+          0,
+          0,
+          0
+        ],
+        "finalPrngState": 76067969,
+        "randomDrawCount": 128,
+        "coordinatesResampled": 64,
+        "quantizedKernel": {
+          "denominatorPower": 9,
+          "numerators": [
+            [
+              "512",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "256",
+              "1",
+              "0",
+              "255"
+            ],
+            [
+              "256",
+              "0",
+              "1",
+              "255"
+            ],
+            [
+              "0",
+              "1",
+              "1",
+              "510"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 1,
+          "denominatorPower": 8
+        }
+      }
+    },
+    {
+      "id": "weak-interaction-systematic-8-1",
+      "parameters": {
+        "couplingEnergy": 1e-200,
+        "firstFieldEnergy": 0,
+        "secondFieldEnergy": 0,
+        "temperature": 1,
+        "support": "full-product",
+        "energyOffset": 0
+      },
+      "options": {
+        "seed": 1,
+        "bits": 8,
+        "steps": 64,
+        "mode": "systematic"
+      },
+      "reference": {
+        "states": [
+          0,
+          0,
+          3,
+          0,
+          3,
+          1,
+          0,
+          3,
+          1,
+          2,
+          3,
+          0,
+          0,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          3,
+          3,
+          0,
+          2,
+          0,
+          3,
+          0,
+          2,
+          2,
+          0,
+          0,
+          2,
+          1,
+          3,
+          0,
+          3,
+          0,
+          3,
+          2,
+          0,
+          3,
+          3,
+          2,
+          1,
+          2,
+          2,
+          3,
+          0,
+          0,
+          3,
+          0,
+          2,
+          0,
+          2,
+          0,
+          1,
+          3,
+          3,
+          0,
+          3,
+          2,
+          2,
+          3,
+          0,
+          2
+        ],
+        "observedCounts": [
+          21,
+          10,
+          16,
+          18
+        ],
+        "finalPrngState": 76067969,
+        "randomDrawCount": 128,
+        "coordinatesResampled": 128,
+        "quantizedKernel": {
+          "denominatorPower": 16,
+          "numerators": [
+            [
+              "16641",
+              "16383",
+              "16256",
+              "16256"
+            ],
+            [
+              "16512",
+              "16256",
+              "16384",
+              "16384"
+            ],
+            [
+              "16641",
+              "16383",
+              "16256",
+              "16256"
+            ],
+            [
+              "16512",
+              "16256",
+              "16384",
+              "16384"
+            ]
+          ]
+        },
+        "oneStepTVBound": {
+          "numerator": 2,
+          "denominatorPower": 8
+        }
+      }
+    }
+  ]
+}

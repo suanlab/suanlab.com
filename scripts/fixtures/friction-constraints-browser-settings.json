@@ -1,0 +1,212 @@
+{
+  "dry-friction-stopping-release": [
+    {
+      "name": "threshold-equality",
+      "values": [
+        1,
+        2,
+        2,
+        40,
+        0,
+        100
+      ],
+      "key": "1{sticking at query}",
+      "answer": "1",
+      "checks": [
+        [
+          "friction force N",
+          "-4"
+        ]
+      ]
+    },
+    {
+      "name": "threshold-excess",
+      "values": [
+        1,
+        2,
+        2,
+        41,
+        0,
+        10
+      ],
+      "key": "1{sticking at query}",
+      "answer": "0",
+      "checks": [
+        [
+          "query velocity m per s",
+          "2.1"
+        ]
+      ]
+    },
+    {
+      "name": "zero-friction",
+      "values": [
+        1,
+        0,
+        0,
+        0,
+        20,
+        100
+      ],
+      "key": "dissipated heat joules",
+      "answer": "0",
+      "checks": [
+        [
+          "query position meters",
+          "20"
+        ]
+      ]
+    },
+    {
+      "name": "late-event",
+      "values": [
+        4,
+        1,
+        0,
+        39,
+        20,
+        100
+      ],
+      "key": "first stopping time seconds",
+      "answer": "80",
+      "checks": [
+        [
+          "query velocity m per s",
+          "1.75"
+        ]
+      ]
+    },
+    {
+      "name": "negative-reversal",
+      "values": [
+        1,
+        2,
+        2,
+        -50,
+        10,
+        10
+      ],
+      "key": "friction force N",
+      "answer": "2"
+    },
+    {
+      "name": "event-time",
+      "values": [
+        1,
+        2,
+        2,
+        30,
+        -10,
+        2
+      ],
+      "key": "query velocity m per s",
+      "answer": "0",
+      "checks": [
+        [
+          "friction force N",
+          "-3"
+        ],
+        [
+          "1{sticking at query}",
+          "1"
+        ]
+      ]
+    }
+  ],
+  "circular-guide-reaction-work": [
+    {
+      "name": "stationary",
+      "values": [
+        4,
+        6,
+        0,
+        -24,
+        0,
+        100
+      ],
+      "key": "kinetic energy joules",
+      "answer": "0"
+    },
+    {
+      "name": "uniform",
+      "values": [
+        1,
+        1,
+        0,
+        6,
+        20,
+        100
+      ],
+      "key": "signed radial reaction N",
+      "answer": "-2"
+    },
+    {
+      "name": "turning",
+      "values": [
+        1,
+        2,
+        -10,
+        0,
+        10,
+        10
+      ],
+      "key": "1{query instant at rest}",
+      "answer": "1",
+      "checks": [
+        [
+          "tangential drive N",
+          "-1"
+        ],
+        [
+          "signed radial reaction N",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "many-turns",
+      "values": [
+        1,
+        1,
+        20,
+        0,
+        20,
+        100
+      ],
+      "key": "drive work joules",
+      "answer": "220",
+      "checks": [
+        [
+          "kinetic energy joules",
+          "220.5"
+        ]
+      ]
+    },
+    {
+      "name": "rotated-initial",
+      "values": [
+        2,
+        3,
+        -20,
+        24,
+        -20,
+        0
+      ],
+      "key": "kinetic energy joules",
+      "answer": "9"
+    },
+    {
+      "name": "short-query",
+      "values": [
+        4,
+        1,
+        1,
+        -6,
+        -1,
+        1
+      ],
+      "key": "drive torque N m",
+      "answer": "0.05"
+    }
+  ]
+}

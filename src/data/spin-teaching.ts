@@ -1,0 +1,8 @@
+import type {LearningUnit,LearningGuide} from './interactive-book';
+import {spinKinds as kinds,spinTitles as titles,spinText as t} from '@/lib/learning-spin';
+import {spinSteps as steps} from '@/lib/learning-spin-concepts';
+const subtitles=[t('반각·측정 확률·복소 진폭·Bloch 회전을 비교하고2π의 부호와4π의 복원을 구별합니다.','Compare half-angle, measurement probabilities, complex amplitudes and Bloch rotations; distinguish the2π sign from the4π return.'),t('일반 j의 ladder를 유도하고 유한 표현의 기저 무게·Casimir·작용 norm·같은 평균의 다른 상태를 탐구합니다.','Derive general-j ladders and explore finite representations, basis weights, Casimir, action norms and distinct states with the same means.')];
+export const spinTeaching:{unit:LearningUnit;guide:LearningGuide}[]=kinds.map((kind,i)=>({
+ unit:{id:kind,title:titles[kind],subtitle:subtitles[i],prerequisiteIds:i===0?['two-level-spectral-schrodinger-evolution','hermitian-spectrum-born-expectation','complex-state-rays-basis-amplitudes']:[kinds[0],'hermitian-spectrum-born-expectation','inner-products'],prerequisites:t('복소 내적·Hermitian 관측량·사영 측정·군 작용과 행렬 합성을 복습하세요.','Review complex inner products, Hermitian observables, projective measurement, group actions and matrix composition.'),eyebrow:'SPIN & ANGULAR MOMENTUM',formula:steps[kind][0].formula,accent:'spin',questions:steps[kind].map((s,j)=>({id:`${kind}-quiz-${j}`,question:s.question,options:s.options,answer:s.answer,explanation:s.solution}))},
+ guide:{intuition:subtitles[i],steps:steps[kind].map(s=>({title:s.title,explanation:s.explanation,formula:s.formula,diagram:s.action})),experiments:steps[kind].map(s=>({title:s.title,predict:s.predict,action:s.action,explain:s.solution,preset:s.presets[0]}))}
+}));

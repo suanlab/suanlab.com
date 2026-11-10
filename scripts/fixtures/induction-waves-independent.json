@@ -1,0 +1,5844 @@
+{
+  "provenance": "Independent vector edge/time SciPy quadrature,spacetime five-point differences,and160-digit mpmath cancellation references; no product imports.",
+  "movingLoops": [
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.096,
+        0.064,
+        0.0
+      ],
+      "magnetic": -1.399,
+      "electricTimeDerivative": [
+        0.030000000000006872,
+        0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.6399999999995297,
+      "electricCurlZ": 0.6399999999999462,
+      "conductionCurrent": [
+        -0.015,
+        -0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.27136,
+        0.27136000000000005,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.22384000000000004,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.5427200000000001,
+      "motionalCirculation": -0.22384000000000004,
+      "negativeFluxRate": 0.3188800000009095,
+      "flux": -1.186352,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.7202346666666666,
+      "integratedMotional": -0.2760426666666667,
+      "fluxChange": -0.44419200000000003
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.096,
+        0.064,
+        0.0
+      ],
+      "magnetic": -1.399,
+      "electricTimeDerivative": [
+        0.030000000000006872,
+        0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.6399999999995297,
+      "electricCurlZ": 0.6399999999999462,
+      "conductionCurrent": [
+        -0.03,
+        -0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.3072000000000001,
+        0.3071999999999999,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.6144000000000001,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.6143999999994968,
+      "flux": -1.3430400000000002,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.77952,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.77952
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.096,
+        0.064,
+        0.0
+      ],
+      "magnetic": -1.399,
+      "electricTimeDerivative": [
+        0.030000000000006872,
+        0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.6399999999995297,
+      "electricCurlZ": 0.6399999999999462,
+      "conductionCurrent": [
+        -0.06,
+        -0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.34304,
+        0.34303999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.22384000000000004,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.68608,
+      "motionalCirculation": 0.22384000000000004,
+      "negativeFluxRate": 0.9099199999995643,
+      "flux": -1.499728,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.8388053333333335,
+      "integratedMotional": 0.2760426666666667,
+      "fluxChange": -1.1148479999999998
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.075,
+        0.05,
+        0.0
+      ],
+      "magnetic": -1.35,
+      "electricTimeDerivative": [
+        3.4694469519536136e-14,
+        1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.500000000000315,
+      "electricCurlZ": 0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.21200000000000002,
+        0.21200000000000002,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.2160000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.42400000000000004,
+      "motionalCirculation": -0.2160000000000001,
+      "negativeFluxRate": 0.2079999999996899,
+      "flux": -1.1448000000000003,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.6272000000000002,
+      "integratedMotional": -0.2688000000000001,
+      "fluxChange": -0.35840000000000005
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.075,
+        0.05,
+        0.0
+      ],
+      "magnetic": -1.35,
+      "electricTimeDerivative": [
+        3.4694469519536136e-14,
+        1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.500000000000315,
+      "electricCurlZ": 0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.24,
+        0.24,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.48,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.47999999999881465,
+      "flux": -1.2960000000000003,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.672,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.6719999999999999
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.075,
+        0.05,
+        0.0
+      ],
+      "magnetic": -1.35,
+      "electricTimeDerivative": [
+        3.4694469519536136e-14,
+        1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.500000000000315,
+      "electricCurlZ": 0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.26799999999999996,
+        0.26799999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.21600000000000005,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.5359999999999999,
+      "motionalCirculation": 0.21600000000000005,
+      "negativeFluxRate": 0.7519999999994197,
+      "flux": -1.4472,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.7168000000000001,
+      "integratedMotional": 0.26880000000000004,
+      "fluxChange": -0.9856000000000003
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.054,
+        0.036,
+        0.0
+      ],
+      "magnetic": -1.3010000000000002,
+      "electricTimeDerivative": [
+        -0.03000000000002422,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.36000000000110016,
+      "electricCurlZ": 0.36000000000002463,
+      "conductionCurrent": [
+        0.015,
+        0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.15264,
+        0.15264,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.20816,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.30528,
+      "motionalCirculation": -0.20816,
+      "negativeFluxRate": 0.09711999999976553,
+      "flux": -1.1032480000000002,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.5341653333333334,
+      "integratedMotional": -0.26155733333333336,
+      "fluxChange": -0.27260799999999996
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.054,
+        0.036,
+        0.0
+      ],
+      "magnetic": -1.3010000000000002,
+      "electricTimeDerivative": [
+        -0.03000000000002422,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.36000000000110016,
+      "electricCurlZ": 0.36000000000002463,
+      "conductionCurrent": [
+        0.03,
+        0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.1728,
+        0.17279999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.3456,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.3455999999994278,
+      "flux": -1.2489600000000003,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.56448,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.5644800000000002
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.054,
+        0.036,
+        0.0
+      ],
+      "magnetic": -1.3010000000000002,
+      "electricTimeDerivative": [
+        -0.03000000000002422,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.36000000000110016,
+      "electricCurlZ": 0.36000000000002463,
+      "conductionCurrent": [
+        0.06,
+        0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.19296,
+        0.19295999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.20815999999999998,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.38591999999999993,
+      "motionalCirculation": 0.20815999999999998,
+      "negativeFluxRate": 0.5940800000007554,
+      "flux": -1.3946720000000001,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.5947946666666667,
+      "integratedMotional": 0.2615573333333334,
+      "fluxChange": -0.8563519999999999
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": -0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.020999999999999998,
+        0.013999999999999999,
+        0.0
+      ],
+      "magnetic": -1.049,
+      "electricTimeDerivative": [
+        0.030000000000018436,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.1399999999992148,
+      "electricCurlZ": 0.13999999999999835,
+      "conductionCurrent": [
+        -0.015,
+        -0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.059359999999999996,
+        0.059359999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.16784,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.11871999999999999,
+      "motionalCirculation": -0.16784,
+      "negativeFluxRate": -0.04912000000088327,
+      "flux": -0.889552,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.09303466666666668,
+      "integratedMotional": -0.2312426666666667,
+      "fluxChange": 0.138208
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.020999999999999998,
+        0.013999999999999999,
+        0.0
+      ],
+      "magnetic": -1.049,
+      "electricTimeDerivative": [
+        0.030000000000018436,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.1399999999992148,
+      "electricCurlZ": 0.13999999999999835,
+      "conductionCurrent": [
+        -0.03,
+        -0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0672,
+        0.0672,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.1344,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.1343999999986467,
+      "flux": -1.00704,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.10752000000000005,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.10752000000000006
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.020999999999999998,
+        0.013999999999999999,
+        0.0
+      ],
+      "magnetic": -1.049,
+      "electricTimeDerivative": [
+        0.030000000000018436,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.1399999999992148,
+      "electricCurlZ": 0.13999999999999835,
+      "conductionCurrent": [
+        -0.06,
+        -0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.07504,
+        0.07503999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.16784,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.15008,
+      "motionalCirculation": 0.16784,
+      "negativeFluxRate": 0.31791999999900933,
+      "flux": -1.1245279999999998,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.12200533333333335,
+      "integratedMotional": 0.23124266666666674,
+      "fluxChange": -0.35324800000000023
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.0,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": -1.0,
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.0,
+      "electricCurlZ": 0.0,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.16000000000000003,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.0,
+      "motionalCirculation": -0.16000000000000003,
+      "negativeFluxRate": -0.16000000000016,
+      "flux": -0.8480000000000001,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.0,
+      "integratedMotional": -0.22400000000000006,
+      "fluxChange": 0.22399999999999998
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": -1.0,
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.0,
+      "electricCurlZ": 0.0,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.0,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.0,
+      "flux": -0.96,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.0,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.0
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": -1.0,
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.0,
+      "electricCurlZ": 0.0,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.15999999999999998,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.0,
+      "motionalCirculation": 0.15999999999999998,
+      "negativeFluxRate": 0.16000000000016,
+      "flux": -1.0719999999999998,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.0,
+      "integratedMotional": 0.22400000000000006,
+      "fluxChange": -0.22399999999999998
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.020999999999999998,
+        -0.013999999999999999,
+        0.0
+      ],
+      "magnetic": -0.951,
+      "electricTimeDerivative": [
+        -0.030000000000018436,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.14000000000004748,
+      "electricCurlZ": -0.13999999999999835,
+      "conductionCurrent": [
+        0.015,
+        0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.059359999999999996,
+        -0.059359999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.15216000000000002,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.11871999999999999,
+      "motionalCirculation": -0.15216000000000002,
+      "negativeFluxRate": -0.2708800000000844,
+      "flux": -0.806448,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.09303466666666668,
+      "integratedMotional": -0.21675733333333339,
+      "fluxChange": 0.3097920000000002
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.020999999999999998,
+        -0.013999999999999999,
+        0.0
+      ],
+      "magnetic": -0.951,
+      "electricTimeDerivative": [
+        -0.030000000000018436,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.14000000000004748,
+      "electricCurlZ": -0.13999999999999835,
+      "conductionCurrent": [
+        0.03,
+        0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.0672,
+        -0.0672,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.1344,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.1343999999986467,
+      "flux": -0.91296,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.10752000000000005,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.10752000000000006
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.020999999999999998,
+        -0.013999999999999999,
+        0.0
+      ],
+      "magnetic": -0.951,
+      "electricTimeDerivative": [
+        -0.030000000000018436,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.14000000000004748,
+      "electricCurlZ": -0.13999999999999835,
+      "conductionCurrent": [
+        0.06,
+        0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.07504,
+        -0.07503999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.15216,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.15008,
+      "motionalCirculation": 0.15216,
+      "negativeFluxRate": 0.002080000000015403,
+      "flux": -1.019472,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.12200533333333335,
+      "integratedMotional": 0.21675733333333336,
+      "fluxChange": -0.09475199999999984
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.054,
+        -0.036,
+        0.0
+      ],
+      "magnetic": -0.6990000000000001,
+      "electricTimeDerivative": [
+        0.03000000000002422,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.35999999999961985,
+      "electricCurlZ": -0.36000000000002463,
+      "conductionCurrent": [
+        -0.015,
+        -0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.15264,
+        -0.15264,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.11184000000000005,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.30528,
+      "motionalCirculation": -0.11184000000000005,
+      "negativeFluxRate": -0.417119999999993,
+      "flux": -0.5927520000000002,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.5341653333333334,
+      "integratedMotional": -0.1864426666666667,
+      "fluxChange": 0.7206079999999997
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.054,
+        -0.036,
+        0.0
+      ],
+      "magnetic": -0.6990000000000001,
+      "electricTimeDerivative": [
+        0.03000000000002422,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.35999999999961985,
+      "electricCurlZ": -0.36000000000002463,
+      "conductionCurrent": [
+        -0.03,
+        -0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.1728,
+        -0.17279999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.3456,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.3455999999994278,
+      "flux": -0.6710400000000001,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.56448,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.5644799999999999
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.054,
+        -0.036,
+        0.0
+      ],
+      "magnetic": -0.6990000000000001,
+      "electricTimeDerivative": [
+        0.03000000000002422,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.35999999999961985,
+      "electricCurlZ": -0.36000000000002463,
+      "conductionCurrent": [
+        -0.06,
+        -0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.19296,
+        -0.19295999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.11184000000000002,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.38591999999999993,
+      "motionalCirculation": 0.11184000000000002,
+      "negativeFluxRate": -0.27407999999960275,
+      "flux": -0.749328,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.5947946666666667,
+      "integratedMotional": 0.1864426666666667,
+      "fluxChange": 0.4083519999999998
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.075,
+        -0.05,
+        0.0
+      ],
+      "magnetic": -0.65,
+      "electricTimeDerivative": [
+        -3.4694469519536136e-14,
+        -1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.4999999999996673,
+      "electricCurlZ": -0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.21200000000000002,
+        -0.21200000000000002,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.10400000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.42400000000000004,
+      "motionalCirculation": -0.10400000000000001,
+      "negativeFluxRate": -0.5280000000002875,
+      "flux": -0.5512,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.6272000000000002,
+      "integratedMotional": -0.17920000000000003,
+      "fluxChange": 0.8064
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.075,
+        -0.05,
+        0.0
+      ],
+      "magnetic": -0.65,
+      "electricTimeDerivative": [
+        -3.4694469519536136e-14,
+        -1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.4999999999996673,
+      "electricCurlZ": -0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.24,
+        -0.24,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.48,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.4799999999994623,
+      "flux": -0.6240000000000001,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.672,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.6719999999999999
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.075,
+        -0.05,
+        0.0
+      ],
+      "magnetic": -0.65,
+      "electricTimeDerivative": [
+        -3.4694469519536136e-14,
+        -1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.4999999999996673,
+      "electricCurlZ": -0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.26799999999999996,
+        -0.26799999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.10400000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.5359999999999999,
+      "motionalCirculation": 0.10400000000000001,
+      "negativeFluxRate": -0.4319999999998399,
+      "flux": -0.6968,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.7168000000000001,
+      "integratedMotional": 0.17920000000000003,
+      "fluxChange": 0.5375999999999997
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.096,
+        -0.064,
+        0.0
+      ],
+      "magnetic": -0.601,
+      "electricTimeDerivative": [
+        -0.030000000000006872,
+        -0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.640000000000455,
+      "electricCurlZ": -0.6399999999999462,
+      "conductionCurrent": [
+        0.015,
+        0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.27136,
+        -0.27136000000000005,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.09616,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.5427200000000001,
+      "motionalCirculation": -0.09616,
+      "negativeFluxRate": -0.6388799999995641,
+      "flux": -0.509648,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.7202346666666666,
+      "integratedMotional": -0.17195733333333335,
+      "fluxChange": 0.8921920000000001
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.096,
+        -0.064,
+        0.0
+      ],
+      "magnetic": -0.601,
+      "electricTimeDerivative": [
+        -0.030000000000006872,
+        -0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.640000000000455,
+      "electricCurlZ": -0.6399999999999462,
+      "conductionCurrent": [
+        0.03,
+        0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.3072000000000001,
+        -0.3071999999999999,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.6144000000000001,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.6143999999996818,
+      "flux": -0.57696,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.77952,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.7795200000000002
+    },
+    {
+      "magneticOffset": -1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.096,
+        -0.064,
+        0.0
+      ],
+      "magnetic": -0.601,
+      "electricTimeDerivative": [
+        -0.030000000000006872,
+        -0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.640000000000455,
+      "electricCurlZ": -0.6399999999999462,
+      "conductionCurrent": [
+        0.06,
+        0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.34304,
+        -0.34303999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.09616,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.68608,
+      "motionalCirculation": 0.09616,
+      "negativeFluxRate": -0.589920000000077,
+      "flux": -0.644272,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.8388053333333335,
+      "integratedMotional": 0.17195733333333335,
+      "fluxChange": 0.666848
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.096,
+        0.064,
+        0.0
+      ],
+      "magnetic": -0.39899999999999997,
+      "electricTimeDerivative": [
+        0.030000000000006872,
+        0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.6399999999997148,
+      "electricCurlZ": 0.6399999999999462,
+      "conductionCurrent": [
+        -0.015,
+        -0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.27136,
+        0.27136000000000005,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.06384,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.5427200000000001,
+      "motionalCirculation": -0.06384,
+      "negativeFluxRate": 0.4788799999998205,
+      "flux": -0.338352,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.7202346666666666,
+      "integratedMotional": -0.052042666666666675,
+      "fluxChange": -0.6681920000000001
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.096,
+        0.064,
+        0.0
+      ],
+      "magnetic": -0.39899999999999997,
+      "electricTimeDerivative": [
+        0.030000000000006872,
+        0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.6399999999997148,
+      "electricCurlZ": 0.6399999999999462,
+      "conductionCurrent": [
+        -0.03,
+        -0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.3072000000000001,
+        0.3071999999999999,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.6144000000000001,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.6144000000000519,
+      "flux": -0.38304,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.77952,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.7795200000000001
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.096,
+        0.064,
+        0.0
+      ],
+      "magnetic": -0.39899999999999997,
+      "electricTimeDerivative": [
+        0.030000000000006872,
+        0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.6399999999997148,
+      "electricCurlZ": 0.6399999999999462,
+      "conductionCurrent": [
+        -0.06,
+        -0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.34304,
+        0.34303999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.06384,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.68608,
+      "motionalCirculation": 0.06384,
+      "negativeFluxRate": 0.7499199999999594,
+      "flux": -0.42772799999999994,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.8388053333333335,
+      "integratedMotional": 0.052042666666666675,
+      "fluxChange": -0.8908480000000001
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.075,
+        0.05,
+        0.0
+      ],
+      "magnetic": -0.35,
+      "electricTimeDerivative": [
+        3.4694469519536136e-14,
+        1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.5000000000000374,
+      "electricCurlZ": 0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.21200000000000002,
+        0.21200000000000002,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.05600000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.42400000000000004,
+      "motionalCirculation": -0.05600000000000001,
+      "negativeFluxRate": 0.3680000000001737,
+      "flux": -0.2968,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.6272000000000002,
+      "integratedMotional": -0.044800000000000006,
+      "fluxChange": -0.5824
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.075,
+        0.05,
+        0.0
+      ],
+      "magnetic": -0.35,
+      "electricTimeDerivative": [
+        3.4694469519536136e-14,
+        1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.5000000000000374,
+      "electricCurlZ": 0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.24,
+        0.24,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.48,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.47999999999955484,
+      "flux": -0.336,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.672,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.672
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.075,
+        0.05,
+        0.0
+      ],
+      "magnetic": -0.35,
+      "electricTimeDerivative": [
+        3.4694469519536136e-14,
+        1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.5000000000000374,
+      "electricCurlZ": 0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.26799999999999996,
+        0.26799999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.05600000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.5359999999999999,
+      "motionalCirculation": 0.05600000000000001,
+      "negativeFluxRate": 0.5919999999996761,
+      "flux": -0.3752,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.7168000000000001,
+      "integratedMotional": 0.044800000000000006,
+      "fluxChange": -0.7616
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.054,
+        0.036,
+        0.0
+      ],
+      "magnetic": -0.301,
+      "electricTimeDerivative": [
+        -0.03000000000002422,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.35999999999998994,
+      "electricCurlZ": 0.36000000000002463,
+      "conductionCurrent": [
+        0.015,
+        0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.15264,
+        0.15264,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.048160000000000015,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.30528,
+      "motionalCirculation": -0.048160000000000015,
+      "negativeFluxRate": 0.2571199999999718,
+      "flux": -0.25524800000000003,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.5341653333333334,
+      "integratedMotional": -0.037557333333333345,
+      "fluxChange": -0.49660800000000005
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.054,
+        0.036,
+        0.0
+      ],
+      "magnetic": -0.301,
+      "electricTimeDerivative": [
+        -0.03000000000002422,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.35999999999998994,
+      "electricCurlZ": 0.36000000000002463,
+      "conductionCurrent": [
+        0.03,
+        0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.1728,
+        0.17279999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.3456,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.34560000000016794,
+      "flux": -0.28896,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.56448,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.5644800000000001
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.054,
+        0.036,
+        0.0
+      ],
+      "magnetic": -0.301,
+      "electricTimeDerivative": [
+        -0.03000000000002422,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.35999999999998994,
+      "electricCurlZ": 0.36000000000002463,
+      "conductionCurrent": [
+        0.06,
+        0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.19296,
+        0.19295999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.04816000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.38591999999999993,
+      "motionalCirculation": 0.04816000000000001,
+      "negativeFluxRate": 0.4340800000001791,
+      "flux": -0.32267199999999996,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.5947946666666667,
+      "integratedMotional": 0.03755733333333334,
+      "fluxChange": -0.632352
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": -0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.020999999999999998,
+        0.013999999999999999,
+        0.0
+      ],
+      "magnetic": -0.048999999999999995,
+      "electricTimeDerivative": [
+        0.030000000000018436,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.14000000000003593,
+      "electricCurlZ": 0.13999999999999835,
+      "conductionCurrent": [
+        -0.015,
+        -0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.059359999999999996,
+        0.059359999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.00784,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.11871999999999999,
+      "motionalCirculation": -0.00784,
+      "negativeFluxRate": 0.11088000000009206,
+      "flux": -0.041552000000000006,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.09303466666666668,
+      "integratedMotional": -0.00724266666666667,
+      "fluxChange": -0.08579200000000002
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.020999999999999998,
+        0.013999999999999999,
+        0.0
+      ],
+      "magnetic": -0.048999999999999995,
+      "electricTimeDerivative": [
+        0.030000000000018436,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.14000000000003593,
+      "electricCurlZ": 0.13999999999999835,
+      "conductionCurrent": [
+        -0.03,
+        -0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0672,
+        0.0672,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.1344,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.1344000000000345,
+      "flux": -0.04704,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.10752000000000005,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.10752000000000003
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.020999999999999998,
+        0.013999999999999999,
+        0.0
+      ],
+      "magnetic": -0.048999999999999995,
+      "electricTimeDerivative": [
+        0.030000000000018436,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.14000000000003593,
+      "electricCurlZ": 0.13999999999999835,
+      "conductionCurrent": [
+        -0.06,
+        -0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.07504,
+        0.07503999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.007839999999999996,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.15008,
+      "motionalCirculation": 0.007839999999999996,
+      "negativeFluxRate": 0.1579200000001099,
+      "flux": -0.05252799999999999,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.12200533333333335,
+      "integratedMotional": 0.00724266666666667,
+      "fluxChange": -0.12924800000000003
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.0,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": 0.0,
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.0,
+      "electricCurlZ": 0.0,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.0,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.0,
+      "flux": 0.0,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.0,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.0
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": 0.0,
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.0,
+      "electricCurlZ": 0.0,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.0,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.0,
+      "flux": 0.0,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.0,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.0
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": 0.0,
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.0,
+      "electricCurlZ": 0.0,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.0,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.0,
+      "flux": 0.0,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.0,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.0
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.020999999999999998,
+        -0.013999999999999999,
+        0.0
+      ],
+      "magnetic": 0.048999999999999995,
+      "electricTimeDerivative": [
+        -0.030000000000018436,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.14000000000003593,
+      "electricCurlZ": -0.13999999999999835,
+      "conductionCurrent": [
+        0.015,
+        0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.059359999999999996,
+        -0.059359999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.00784,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.11871999999999999,
+      "motionalCirculation": 0.00784,
+      "negativeFluxRate": -0.11088000000009206,
+      "flux": 0.041552000000000006,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.09303466666666668,
+      "integratedMotional": 0.00724266666666667,
+      "fluxChange": 0.08579200000000002
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.020999999999999998,
+        -0.013999999999999999,
+        0.0
+      ],
+      "magnetic": 0.048999999999999995,
+      "electricTimeDerivative": [
+        -0.030000000000018436,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.14000000000003593,
+      "electricCurlZ": -0.13999999999999835,
+      "conductionCurrent": [
+        0.03,
+        0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.0672,
+        -0.0672,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.1344,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.1344000000000345,
+      "flux": 0.04704,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.10752000000000005,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.10752000000000003
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.020999999999999998,
+        -0.013999999999999999,
+        0.0
+      ],
+      "magnetic": 0.048999999999999995,
+      "electricTimeDerivative": [
+        -0.030000000000018436,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.14000000000003593,
+      "electricCurlZ": -0.13999999999999835,
+      "conductionCurrent": [
+        0.06,
+        0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.07504,
+        -0.07503999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.007839999999999996,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.15008,
+      "motionalCirculation": -0.007839999999999996,
+      "negativeFluxRate": -0.1579200000001099,
+      "flux": 0.05252799999999999,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.12200533333333335,
+      "integratedMotional": -0.00724266666666667,
+      "fluxChange": 0.12924800000000003
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.054,
+        -0.036,
+        0.0
+      ],
+      "magnetic": 0.301,
+      "electricTimeDerivative": [
+        0.03000000000002422,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.35999999999998994,
+      "electricCurlZ": -0.36000000000002463,
+      "conductionCurrent": [
+        -0.015,
+        -0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.15264,
+        -0.15264,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.048160000000000015,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.30528,
+      "motionalCirculation": 0.048160000000000015,
+      "negativeFluxRate": -0.2571199999999718,
+      "flux": 0.25524800000000003,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.5341653333333334,
+      "integratedMotional": 0.037557333333333345,
+      "fluxChange": 0.49660800000000005
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.054,
+        -0.036,
+        0.0
+      ],
+      "magnetic": 0.301,
+      "electricTimeDerivative": [
+        0.03000000000002422,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.35999999999998994,
+      "electricCurlZ": -0.36000000000002463,
+      "conductionCurrent": [
+        -0.03,
+        -0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.1728,
+        -0.17279999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.3456,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.34560000000016794,
+      "flux": 0.28896,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.56448,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.5644800000000001
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.054,
+        -0.036,
+        0.0
+      ],
+      "magnetic": 0.301,
+      "electricTimeDerivative": [
+        0.03000000000002422,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.35999999999998994,
+      "electricCurlZ": -0.36000000000002463,
+      "conductionCurrent": [
+        -0.06,
+        -0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.19296,
+        -0.19295999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.04816000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.38591999999999993,
+      "motionalCirculation": -0.04816000000000001,
+      "negativeFluxRate": -0.4340800000001791,
+      "flux": 0.32267199999999996,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.5947946666666667,
+      "integratedMotional": -0.03755733333333334,
+      "fluxChange": 0.632352
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.075,
+        -0.05,
+        0.0
+      ],
+      "magnetic": 0.35,
+      "electricTimeDerivative": [
+        -3.4694469519536136e-14,
+        -1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.5000000000000374,
+      "electricCurlZ": -0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.21200000000000002,
+        -0.21200000000000002,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.05600000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.42400000000000004,
+      "motionalCirculation": 0.05600000000000001,
+      "negativeFluxRate": -0.3680000000001737,
+      "flux": 0.2968,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.6272000000000002,
+      "integratedMotional": 0.044800000000000006,
+      "fluxChange": 0.5824
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.075,
+        -0.05,
+        0.0
+      ],
+      "magnetic": 0.35,
+      "electricTimeDerivative": [
+        -3.4694469519536136e-14,
+        -1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.5000000000000374,
+      "electricCurlZ": -0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.24,
+        -0.24,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.48,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.47999999999955484,
+      "flux": 0.336,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.672,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.672
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.075,
+        -0.05,
+        0.0
+      ],
+      "magnetic": 0.35,
+      "electricTimeDerivative": [
+        -3.4694469519536136e-14,
+        -1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.5000000000000374,
+      "electricCurlZ": -0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.26799999999999996,
+        -0.26799999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.05600000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.5359999999999999,
+      "motionalCirculation": -0.05600000000000001,
+      "negativeFluxRate": -0.5919999999996761,
+      "flux": 0.3752,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.7168000000000001,
+      "integratedMotional": -0.044800000000000006,
+      "fluxChange": 0.7616
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.096,
+        -0.064,
+        0.0
+      ],
+      "magnetic": 0.39899999999999997,
+      "electricTimeDerivative": [
+        -0.030000000000006872,
+        -0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.6399999999997148,
+      "electricCurlZ": -0.6399999999999462,
+      "conductionCurrent": [
+        0.015,
+        0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.27136,
+        -0.27136000000000005,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.06384,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.5427200000000001,
+      "motionalCirculation": 0.06384,
+      "negativeFluxRate": -0.4788799999998205,
+      "flux": 0.338352,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.7202346666666666,
+      "integratedMotional": 0.052042666666666675,
+      "fluxChange": 0.6681920000000001
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.096,
+        -0.064,
+        0.0
+      ],
+      "magnetic": 0.39899999999999997,
+      "electricTimeDerivative": [
+        -0.030000000000006872,
+        -0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.6399999999997148,
+      "electricCurlZ": -0.6399999999999462,
+      "conductionCurrent": [
+        0.03,
+        0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.3072000000000001,
+        -0.3071999999999999,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.6144000000000001,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.6144000000000519,
+      "flux": 0.38304,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.77952,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.7795200000000001
+    },
+    {
+      "magneticOffset": 0.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.096,
+        -0.064,
+        0.0
+      ],
+      "magnetic": 0.39899999999999997,
+      "electricTimeDerivative": [
+        -0.030000000000006872,
+        -0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.6399999999997148,
+      "electricCurlZ": -0.6399999999999462,
+      "conductionCurrent": [
+        0.06,
+        0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.34304,
+        -0.34303999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.06384,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.68608,
+      "motionalCirculation": -0.06384,
+      "negativeFluxRate": -0.7499199999999594,
+      "flux": 0.42772799999999994,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.8388053333333335,
+      "integratedMotional": -0.052042666666666675,
+      "fluxChange": 0.8908480000000001
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.096,
+        0.064,
+        0.0
+      ],
+      "magnetic": 0.601,
+      "electricTimeDerivative": [
+        0.030000000000006872,
+        0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.640000000000455,
+      "electricCurlZ": 0.6399999999999462,
+      "conductionCurrent": [
+        -0.015,
+        -0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.27136,
+        0.27136000000000005,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.09616,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.5427200000000001,
+      "motionalCirculation": 0.09616,
+      "negativeFluxRate": 0.6388799999995641,
+      "flux": 0.509648,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.7202346666666666,
+      "integratedMotional": 0.17195733333333335,
+      "fluxChange": -0.8921920000000001
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.096,
+        0.064,
+        0.0
+      ],
+      "magnetic": 0.601,
+      "electricTimeDerivative": [
+        0.030000000000006872,
+        0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.640000000000455,
+      "electricCurlZ": 0.6399999999999462,
+      "conductionCurrent": [
+        -0.03,
+        -0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.3072000000000001,
+        0.3071999999999999,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.6144000000000001,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.6143999999996818,
+      "flux": 0.57696,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.77952,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.7795200000000002
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.096,
+        0.064,
+        0.0
+      ],
+      "magnetic": 0.601,
+      "electricTimeDerivative": [
+        0.030000000000006872,
+        0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.640000000000455,
+      "electricCurlZ": 0.6399999999999462,
+      "conductionCurrent": [
+        -0.06,
+        -0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.34304,
+        0.34303999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.09616,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.68608,
+      "motionalCirculation": -0.09616,
+      "negativeFluxRate": 0.589920000000077,
+      "flux": 0.644272,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.8388053333333335,
+      "integratedMotional": -0.17195733333333335,
+      "fluxChange": -0.666848
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.075,
+        0.05,
+        0.0
+      ],
+      "magnetic": 0.65,
+      "electricTimeDerivative": [
+        3.4694469519536136e-14,
+        1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.4999999999996673,
+      "electricCurlZ": 0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.21200000000000002,
+        0.21200000000000002,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.10400000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.42400000000000004,
+      "motionalCirculation": 0.10400000000000001,
+      "negativeFluxRate": 0.5280000000002875,
+      "flux": 0.5512,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.6272000000000002,
+      "integratedMotional": 0.17920000000000003,
+      "fluxChange": -0.8064
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.075,
+        0.05,
+        0.0
+      ],
+      "magnetic": 0.65,
+      "electricTimeDerivative": [
+        3.4694469519536136e-14,
+        1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.4999999999996673,
+      "electricCurlZ": 0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.24,
+        0.24,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.48,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.4799999999994623,
+      "flux": 0.6240000000000001,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.672,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.6719999999999999
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.075,
+        0.05,
+        0.0
+      ],
+      "magnetic": 0.65,
+      "electricTimeDerivative": [
+        3.4694469519536136e-14,
+        1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.4999999999996673,
+      "electricCurlZ": 0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.26799999999999996,
+        0.26799999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.10400000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.5359999999999999,
+      "motionalCirculation": -0.10400000000000001,
+      "negativeFluxRate": 0.4319999999998399,
+      "flux": 0.6968,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.7168000000000001,
+      "integratedMotional": -0.17920000000000003,
+      "fluxChange": -0.5375999999999997
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.054,
+        0.036,
+        0.0
+      ],
+      "magnetic": 0.6990000000000001,
+      "electricTimeDerivative": [
+        -0.03000000000002422,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.35999999999961985,
+      "electricCurlZ": 0.36000000000002463,
+      "conductionCurrent": [
+        0.015,
+        0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.15264,
+        0.15264,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.11184000000000005,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.30528,
+      "motionalCirculation": 0.11184000000000005,
+      "negativeFluxRate": 0.417119999999993,
+      "flux": 0.5927520000000002,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.5341653333333334,
+      "integratedMotional": 0.1864426666666667,
+      "fluxChange": -0.7206079999999997
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.054,
+        0.036,
+        0.0
+      ],
+      "magnetic": 0.6990000000000001,
+      "electricTimeDerivative": [
+        -0.03000000000002422,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.35999999999961985,
+      "electricCurlZ": 0.36000000000002463,
+      "conductionCurrent": [
+        0.03,
+        0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.1728,
+        0.17279999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.3456,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.3455999999994278,
+      "flux": 0.6710400000000001,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.56448,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.5644799999999999
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": -0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.054,
+        0.036,
+        0.0
+      ],
+      "magnetic": 0.6990000000000001,
+      "electricTimeDerivative": [
+        -0.03000000000002422,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.35999999999961985,
+      "electricCurlZ": 0.36000000000002463,
+      "conductionCurrent": [
+        0.06,
+        0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.19296,
+        0.19295999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.11184000000000002,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.38591999999999993,
+      "motionalCirculation": -0.11184000000000002,
+      "negativeFluxRate": 0.27407999999960275,
+      "flux": 0.749328,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.5947946666666667,
+      "integratedMotional": -0.1864426666666667,
+      "fluxChange": -0.4083519999999998
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": -0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.020999999999999998,
+        0.013999999999999999,
+        0.0
+      ],
+      "magnetic": 0.951,
+      "electricTimeDerivative": [
+        0.030000000000018436,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.14000000000004748,
+      "electricCurlZ": 0.13999999999999835,
+      "conductionCurrent": [
+        -0.015,
+        -0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.059359999999999996,
+        0.059359999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.15216000000000002,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.11871999999999999,
+      "motionalCirculation": 0.15216000000000002,
+      "negativeFluxRate": 0.2708800000000844,
+      "flux": 0.806448,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.09303466666666668,
+      "integratedMotional": 0.21675733333333339,
+      "fluxChange": -0.3097920000000002
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.020999999999999998,
+        0.013999999999999999,
+        0.0
+      ],
+      "magnetic": 0.951,
+      "electricTimeDerivative": [
+        0.030000000000018436,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.14000000000004748,
+      "electricCurlZ": 0.13999999999999835,
+      "conductionCurrent": [
+        -0.03,
+        -0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0672,
+        0.0672,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.1344,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": 0.1343999999986467,
+      "flux": 0.91296,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.10752000000000005,
+      "integratedMotional": 0.0,
+      "fluxChange": -0.10752000000000006
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        0.020999999999999998,
+        0.013999999999999999,
+        0.0
+      ],
+      "magnetic": 0.951,
+      "electricTimeDerivative": [
+        0.030000000000018436,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": -0.14000000000004748,
+      "electricCurlZ": 0.13999999999999835,
+      "conductionCurrent": [
+        -0.06,
+        -0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.07504,
+        0.07503999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.15216,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.15008,
+      "motionalCirculation": -0.15216,
+      "negativeFluxRate": -0.002080000000015403,
+      "flux": 1.019472,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.12200533333333335,
+      "integratedMotional": -0.21675733333333336,
+      "fluxChange": 0.09475199999999984
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.0,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": 1.0,
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.0,
+      "electricCurlZ": 0.0,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.16000000000000003,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.0,
+      "motionalCirculation": 0.16000000000000003,
+      "negativeFluxRate": 0.16000000000016,
+      "flux": 0.8480000000000001,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.0,
+      "integratedMotional": 0.22400000000000006,
+      "fluxChange": -0.22399999999999998
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": 1.0,
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.0,
+      "electricCurlZ": 0.0,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.0,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.0,
+      "flux": 0.96,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.0,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.0
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "magnetic": 1.0,
+      "electricTimeDerivative": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.0,
+      "electricCurlZ": 0.0,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.15999999999999998,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": 0.0,
+      "motionalCirculation": -0.15999999999999998,
+      "negativeFluxRate": -0.16000000000016,
+      "flux": 1.0719999999999998,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": 0.0,
+      "integratedMotional": -0.22400000000000006,
+      "fluxChange": 0.22399999999999998
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.020999999999999998,
+        -0.013999999999999999,
+        0.0
+      ],
+      "magnetic": 1.049,
+      "electricTimeDerivative": [
+        -0.030000000000018436,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.1399999999992148,
+      "electricCurlZ": -0.13999999999999835,
+      "conductionCurrent": [
+        0.015,
+        0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.059359999999999996,
+        -0.059359999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.16784,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.11871999999999999,
+      "motionalCirculation": 0.16784,
+      "negativeFluxRate": 0.04912000000088327,
+      "flux": 0.889552,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.09303466666666668,
+      "integratedMotional": 0.2312426666666667,
+      "fluxChange": -0.138208
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.020999999999999998,
+        -0.013999999999999999,
+        0.0
+      ],
+      "magnetic": 1.049,
+      "electricTimeDerivative": [
+        -0.030000000000018436,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.1399999999992148,
+      "electricCurlZ": -0.13999999999999835,
+      "conductionCurrent": [
+        0.03,
+        0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.0672,
+        -0.0672,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.1344,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.1343999999986467,
+      "flux": 1.00704,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.10752000000000005,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.10752000000000006
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.020999999999999998,
+        -0.013999999999999999,
+        0.0
+      ],
+      "magnetic": 1.049,
+      "electricTimeDerivative": [
+        -0.030000000000018436,
+        -0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.1399999999992148,
+      "electricCurlZ": -0.13999999999999835,
+      "conductionCurrent": [
+        0.06,
+        0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.07504,
+        -0.07503999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.16784,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.15008,
+      "motionalCirculation": -0.16784,
+      "negativeFluxRate": -0.31791999999900933,
+      "flux": 1.1245279999999998,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.12200533333333335,
+      "integratedMotional": -0.23124266666666674,
+      "fluxChange": 0.35324800000000023
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.054,
+        -0.036,
+        0.0
+      ],
+      "magnetic": 1.3010000000000002,
+      "electricTimeDerivative": [
+        0.03000000000002422,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.36000000000110016,
+      "electricCurlZ": -0.36000000000002463,
+      "conductionCurrent": [
+        -0.015,
+        -0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.15264,
+        -0.15264,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.20816,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.30528,
+      "motionalCirculation": 0.20816,
+      "negativeFluxRate": -0.09711999999976553,
+      "flux": 1.1032480000000002,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.5341653333333334,
+      "integratedMotional": 0.26155733333333336,
+      "fluxChange": 0.27260799999999996
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.054,
+        -0.036,
+        0.0
+      ],
+      "magnetic": 1.3010000000000002,
+      "electricTimeDerivative": [
+        0.03000000000002422,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.36000000000110016,
+      "electricCurlZ": -0.36000000000002463,
+      "conductionCurrent": [
+        -0.03,
+        -0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.1728,
+        -0.17279999999999998,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.3456,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.3455999999994278,
+      "flux": 1.2489600000000003,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.56448,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.5644800000000002
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": -0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.054,
+        -0.036,
+        0.0
+      ],
+      "magnetic": 1.3010000000000002,
+      "electricTimeDerivative": [
+        0.03000000000002422,
+        0.02000000000000265,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.36000000000110016,
+      "electricCurlZ": -0.36000000000002463,
+      "conductionCurrent": [
+        -0.06,
+        -0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.19296,
+        -0.19295999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.20815999999999998,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.38591999999999993,
+      "motionalCirculation": -0.20815999999999998,
+      "negativeFluxRate": -0.5940800000007554,
+      "flux": 1.3946720000000001,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.5947946666666667,
+      "integratedMotional": -0.2615573333333334,
+      "fluxChange": 0.8563519999999999
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.075,
+        -0.05,
+        0.0
+      ],
+      "magnetic": 1.35,
+      "electricTimeDerivative": [
+        -3.4694469519536136e-14,
+        -1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.500000000000315,
+      "electricCurlZ": -0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.21200000000000002,
+        -0.21200000000000002,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.2160000000000001,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.42400000000000004,
+      "motionalCirculation": 0.2160000000000001,
+      "negativeFluxRate": -0.2079999999996899,
+      "flux": 1.1448000000000003,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.6272000000000002,
+      "integratedMotional": 0.2688000000000001,
+      "fluxChange": 0.35840000000000005
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.075,
+        -0.05,
+        0.0
+      ],
+      "magnetic": 1.35,
+      "electricTimeDerivative": [
+        -3.4694469519536136e-14,
+        -1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.500000000000315,
+      "electricCurlZ": -0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.24,
+        -0.24,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.48,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.47999999999881465,
+      "flux": 1.2960000000000003,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.672,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.6719999999999999
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.0,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.075,
+        -0.05,
+        0.0
+      ],
+      "magnetic": 1.35,
+      "electricTimeDerivative": [
+        -3.4694469519536136e-14,
+        -1.1564823173178713e-14,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.500000000000315,
+      "electricCurlZ": -0.49999999999991596,
+      "conductionCurrent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.26799999999999996,
+        -0.26799999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.21600000000000005,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.5359999999999999,
+      "motionalCirculation": -0.21600000000000005,
+      "negativeFluxRate": -0.7519999999994197,
+      "flux": 1.4472,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.7168000000000001,
+      "integratedMotional": -0.26880000000000004,
+      "fluxChange": 0.9856000000000003
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": -0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 0.5,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.096,
+        -0.064,
+        0.0
+      ],
+      "magnetic": 1.399,
+      "electricTimeDerivative": [
+        -0.030000000000006872,
+        -0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.6399999999995297,
+      "electricCurlZ": -0.6399999999999462,
+      "conductionCurrent": [
+        0.015,
+        0.010000000000000002,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.27136,
+        -0.27136000000000005,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.22384000000000004,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.5427200000000001,
+      "motionalCirculation": 0.22384000000000004,
+      "negativeFluxRate": -0.3188800000009095,
+      "flux": 1.186352,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.7202346666666666,
+      "integratedMotional": 0.2760426666666667,
+      "fluxChange": 0.44419200000000003
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.0,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.096,
+        -0.064,
+        0.0
+      ],
+      "magnetic": 1.399,
+      "electricTimeDerivative": [
+        -0.030000000000006872,
+        -0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.6399999999995297,
+      "electricCurlZ": -0.6399999999999462,
+      "conductionCurrent": [
+        0.03,
+        0.020000000000000004,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.3072000000000001,
+        -0.3071999999999999,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.6144000000000001,
+      "motionalCirculation": 0.0,
+      "negativeFluxRate": -0.6143999999994968,
+      "flux": 1.3430400000000002,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.77952,
+      "integratedMotional": 0.0,
+      "fluxChange": 0.77952
+    },
+    {
+      "magneticOffset": 1.0,
+      "magneticRate": 0.5,
+      "magneticAcceleration": 0.2,
+      "widthRate": 0.2,
+      "initialWidth": 1.2,
+      "height": 0.8,
+      "permittivity": 2.0,
+      "permeability": 1.0,
+      "time": 0.7,
+      "point": [
+        0.2,
+        -0.3,
+        0.4
+      ],
+      "electric": [
+        -0.096,
+        -0.064,
+        0.0
+      ],
+      "magnetic": 1.399,
+      "electricTimeDerivative": [
+        -0.030000000000006872,
+        -0.02000000000002,
+        0.0
+      ],
+      "magneticTimeDerivative": 0.6399999999995297,
+      "electricCurlZ": -0.6399999999999462,
+      "conductionCurrent": [
+        0.06,
+        0.04000000000000001,
+        0.0
+      ],
+      "electricEdges": [
+        0.0,
+        -0.34304,
+        -0.34303999999999996,
+        0.0
+      ],
+      "motionalEdges": [
+        0.0,
+        -0.22384000000000004,
+        0.0,
+        0.0
+      ],
+      "electricCirculation": -0.68608,
+      "motionalCirculation": -0.22384000000000004,
+      "negativeFluxRate": -0.9099199999995643,
+      "flux": 1.499728,
+      "startTime": -0.3,
+      "endTime": 1.1,
+      "integratedElectric": -0.8388053333333335,
+      "integratedMotional": -0.2760426666666667,
+      "fluxChange": 1.1148479999999998
+    }
+  ],
+  "transversePulses": [
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 0.4,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.568671053718672,
+      "magnetic": 1.137342107437344,
+      "electricZ": 1.5105324864405263,
+      "magneticZ": -3.0210649728810526,
+      "electricT": 0.7552662432193842,
+      "magneticT": -1.5105324864387684,
+      "electricZZ": -0.4581578316176227,
+      "electricTT": -0.11453945821434293,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.6550964374155684,
+      "negativeMagneticFluxRate": -0.655096437416532
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 0.4,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.7640926456990225,
+      "magnetic": -0.39084318396070084,
+      "electricZ": 1.1000916723865235,
+      "magneticZ": -0.820881628107913,
+      "electricT": 0.20522040702723268,
+      "magneticT": -1.1000916723847656,
+      "electricZZ": 2.5215597998321884,
+      "electricTT": 0.6303899498516508,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.46823403267775193,
+      "negativeMagneticFluxRate": -0.46823403267749286
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.9595142376793728,
+      "magnetic": -1.9190284753587457,
+      "electricZ": 0.6896508583326132,
+      "magneticZ": 1.3793017166652264,
+      "electricT": -0.3448254291657515,
+      "magneticT": -0.689650858331503,
+      "electricZZ": 5.501277430828659,
+      "electricTT": 1.375319357612333,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.2813716279399353,
+      "negativeMagneticFluxRate": -0.28137162794021153
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 1.0,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.913645626396729,
+      "magnetic": 1.827291252793458,
+      "electricZ": 0.38829939121835333,
+      "magneticZ": -0.7765987824367067,
+      "electricT": 0.1941496956102869,
+      "magneticT": -0.3882993912205738,
+      "electricZZ": 0.7486183850602401,
+      "electricTT": 0.1871545963113193,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.2556274685510503,
+      "negativeMagneticFluxRate": -0.2556274685527882
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.9535274704328225,
+      "magnetic": -0.07976368807218692,
+      "electricZ": 0.25127073119098525,
+      "magneticZ": -0.27405732005455113,
+      "electricT": 0.06851433001423915,
+      "magneticT": -0.25127073119135535,
+      "electricZZ": 0.8644449309517613,
+      "electricTT": 0.21611123291835158,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.17217093274909678,
+      "negativeMagneticFluxRate": -0.17217093274921277
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.9934093144689159,
+      "magnetic": -1.9868186289378318,
+      "electricZ": 0.11424207116361716,
+      "magneticZ": 0.22848414232723432,
+      "electricT": -0.05712103558116095,
+      "magneticT": -0.1142420711623219,
+      "electricZZ": 0.9802714762604154,
+      "electricTT": 0.24506786908129463,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.08871439694714324,
+      "negativeMagneticFluxRate": -0.08871439694690951
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 0.4,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 0.4,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 1.0,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.568671053718672,
+      "magnetic": -1.137342107437344,
+      "electricZ": -1.5105324864405263,
+      "magneticZ": 3.0210649728810526,
+      "electricT": -0.7552662432193842,
+      "magneticT": 1.5105324864387684,
+      "electricZZ": 0.4581578316176227,
+      "electricTT": 0.11453945821434293,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.6550964374155684,
+      "negativeMagneticFluxRate": 0.655096437416532
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.7640926456990225,
+      "magnetic": 0.39084318396070084,
+      "electricZ": -1.1000916723865235,
+      "magneticZ": 0.820881628107913,
+      "electricT": -0.20522040702723268,
+      "magneticT": 1.1000916723847656,
+      "electricZZ": -2.5215597998321884,
+      "electricTT": -0.6303899498516508,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.46823403267775193,
+      "negativeMagneticFluxRate": 0.46823403267749286
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.9595142376793728,
+      "magnetic": 1.9190284753587457,
+      "electricZ": -0.6896508583326132,
+      "magneticZ": -1.3793017166652264,
+      "electricT": 0.3448254291657515,
+      "magneticT": 0.689650858331503,
+      "electricZZ": -5.501277430828659,
+      "electricTT": -1.375319357612333,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.2813716279399353,
+      "negativeMagneticFluxRate": 0.28137162794021153
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.913645626396729,
+      "magnetic": -1.827291252793458,
+      "electricZ": -0.38829939121835333,
+      "magneticZ": 0.7765987824367067,
+      "electricT": -0.1941496956102869,
+      "magneticT": 0.3882993912205738,
+      "electricZZ": -0.7486183850602401,
+      "electricTT": -0.1871545963113193,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.2556274685510503,
+      "negativeMagneticFluxRate": 0.2556274685527882
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.9535274704328225,
+      "magnetic": 0.07976368807218692,
+      "electricZ": -0.25127073119098525,
+      "magneticZ": 0.27405732005455113,
+      "electricT": -0.06851433001423915,
+      "magneticT": 0.25127073119135535,
+      "electricZZ": -0.8644449309517613,
+      "electricTT": -0.21611123291835158,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.17217093274909678,
+      "negativeMagneticFluxRate": 0.17217093274921277
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.9934093144689159,
+      "magnetic": 1.9868186289378318,
+      "electricZ": -0.11424207116361716,
+      "magneticZ": -0.22848414232723432,
+      "electricT": 0.05712103558116095,
+      "magneticT": 0.1142420711623219,
+      "electricZZ": -0.9802714762604154,
+      "electricTT": -0.24506786908129463,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.08871439694714324,
+      "negativeMagneticFluxRate": 0.08871439694690951
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 0.4,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.3495006001997565,
+      "magnetic": 0.3495006001997565,
+      "electricZ": 1.266939675723666,
+      "magneticZ": -1.266939675723666,
+      "electricT": 1.266939675723666,
+      "magneticT": -1.266939675723666,
+      "electricZZ": -2.4082775735197646,
+      "electricTT": -2.4082775735197646,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.6591342652521768,
+      "negativeMagneticFluxRate": -0.659134265252372
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 0.4,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.6722565396962195,
+      "magnetic": -0.3227559394964629,
+      "electricZ": 0.5090932779617622,
+      "magneticZ": -0.7578463977607937,
+      "electricT": 0.7578463977612563,
+      "magneticT": -0.5090932779619934,
+      "electricZZ": 1.8741810708378104,
+      "electricTT": 1.87418107098584,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.3195535274357297,
+      "negativeMagneticFluxRate": -0.31955352743559073
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.9950124791926823,
+      "magnetic": -0.9950124791926823,
+      "electricZ": -0.24875311979903147,
+      "magneticZ": -0.24875311979903147,
+      "electricT": 0.2487531197985689,
+      "magneticT": 0.2487531197985689,
+      "electricZZ": 6.156639714816059,
+      "electricTT": 6.156639714816059,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.020027210380717378,
+      "negativeMagneticFluxRate": 0.02002721038008026
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 1.0,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.8451847808236713,
+      "magnetic": 0.8451847808236713,
+      "electricZ": 0.4902071728785095,
+      "magneticZ": -0.4902071728785095,
+      "electricT": 0.4902071728785095,
+      "magneticT": -0.4902071728785095,
+      "electricZZ": 0.5608646202378184,
+      "electricTT": 0.5608646202378184,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.31772632087348707,
+      "negativeMagneticFluxRate": -0.31772632087451175
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.9221925503691775,
+      "magnetic": -0.0770077695455062,
+      "electricZ": 0.2251195800407705,
+      "magneticZ": -0.26508759283736893,
+      "electricT": 0.2650875928371839,
+      "magneticT": -0.22511958004095553,
+      "electricZZ": 0.7792331099173062,
+      "electricTT": 0.7792331096952616,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.15577456284167546,
+      "negativeMagneticFluxRate": -0.15577456284165378
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.9992003199146837,
+      "magnetic": -0.9992003199146837,
+      "electricZ": -0.03996801279622837,
+      "magneticZ": -0.03996801279622837,
+      "electricT": 0.039968012796598444,
+      "magneticT": 0.039968012796598444,
+      "electricZZ": 0.9976015994487645,
+      "electricTT": 0.9976015994487645,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.006177195190136164,
+      "negativeMagneticFluxRate": 0.006177195189434788
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 0.4,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 0.4,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 1.0,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.3495006001997565,
+      "magnetic": -0.3495006001997565,
+      "electricZ": -1.266939675723666,
+      "magneticZ": 1.266939675723666,
+      "electricT": -1.266939675723666,
+      "magneticT": 1.266939675723666,
+      "electricZZ": 2.4082775735197646,
+      "electricTT": 2.4082775735197646,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.6591342652521768,
+      "negativeMagneticFluxRate": 0.659134265252372
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.6722565396962195,
+      "magnetic": 0.3227559394964629,
+      "electricZ": -0.5090932779617622,
+      "magneticZ": 0.7578463977607937,
+      "electricT": -0.7578463977612563,
+      "magneticT": 0.5090932779619934,
+      "electricZZ": -1.8741810708378104,
+      "electricTT": -1.87418107098584,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.3195535274357297,
+      "negativeMagneticFluxRate": 0.31955352743559073
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.9950124791926823,
+      "magnetic": 0.9950124791926823,
+      "electricZ": 0.24875311979903147,
+      "magneticZ": 0.24875311979903147,
+      "electricT": -0.2487531197985689,
+      "magneticT": -0.2487531197985689,
+      "electricZZ": -6.156639714816059,
+      "electricTT": -6.156639714816059,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.020027210380717378,
+      "negativeMagneticFluxRate": -0.02002721038008026
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.8451847808236713,
+      "magnetic": -0.8451847808236713,
+      "electricZ": -0.4902071728785095,
+      "magneticZ": 0.4902071728785095,
+      "electricT": -0.4902071728785095,
+      "magneticT": 0.4902071728785095,
+      "electricZZ": -0.5608646202378184,
+      "electricTT": -0.5608646202378184,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.31772632087348707,
+      "negativeMagneticFluxRate": 0.31772632087451175
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.9221925503691775,
+      "magnetic": 0.0770077695455062,
+      "electricZ": -0.2251195800407705,
+      "magneticZ": 0.26508759283736893,
+      "electricT": -0.2650875928371839,
+      "magneticT": 0.22511958004095553,
+      "electricZZ": -0.7792331099173062,
+      "electricTT": -0.7792331096952616,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.15577456284167546,
+      "negativeMagneticFluxRate": 0.15577456284165378
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.9992003199146837,
+      "magnetic": 0.9992003199146837,
+      "electricZ": 0.03996801279622837,
+      "magneticZ": 0.03996801279622837,
+      "electricT": -0.039968012796598444,
+      "magneticT": -0.039968012796598444,
+      "electricZZ": -0.9976015994487645,
+      "electricTT": -0.9976015994487645,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.006177195190136164,
+      "negativeMagneticFluxRate": -0.006177195189434788
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 0.4,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.08413669343194795,
+      "magnetic": 0.042068346715973974,
+      "electricZ": 0.4680103572150355,
+      "magneticZ": -0.23400517860751774,
+      "electricT": 0.9360207144301982,
+      "magneticT": -0.4680103572150991,
+      "electricZZ": -2.0774532780651795,
+      "electricTT": -8.309813112819299,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.40207654398920883,
+      "negativeMagneticFluxRate": -0.4020765439892148
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 0.4,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.3830387223111481,
+      "magnetic": -0.14945101443960007,
+      "electricZ": -0.5118675180068125,
+      "magneticZ": -0.48993893761101653,
+      "electricT": 1.9597557504440661,
+      "magneticT": 0.5118675180069513,
+      "electricZZ": -0.5392583152843041,
+      "electricTT": -2.1570332611279643,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.07245299658959897,
+      "negativeMagneticFluxRate": 0.07245299658967252
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.6819407511903482,
+      "magnetic": -0.3409703755951741,
+      "electricZ": -1.4917453932292155,
+      "magneticZ": -0.7458726966146078,
+      "electricT": 2.9834907864579687,
+      "magneticT": 1.4917453932289844,
+      "electricZZ": 0.9989366472895611,
+      "electricTT": 3.995746590416497,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.5469825371684067,
+      "negativeMagneticFluxRate": 0.5469825371681956
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 1.0,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.6729730464438339,
+      "magnetic": 0.33648652322191697,
+      "electricZ": 0.5989460113353661,
+      "magneticZ": -0.29947300566768303,
+      "electricT": 1.197892022669992,
+      "magneticT": -0.598946011334996,
+      "electricZZ": 0.13991109643988567,
+      "electricTT": 0.5596443855004907,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.38549180511680886,
+      "negativeMagneticFluxRate": -0.38549180511669257
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.8067805549040881,
+      "magnetic": -0.06690375423012704,
+      "electricZ": 0.13487009457857635,
+      "magneticZ": -0.232037958378233,
+      "electricT": 0.9281518335120993,
+      "magneticT": -0.13487009457871513,
+      "electricZZ": 0.48263856118150683,
+      "electricTT": 1.9305542440783974,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.09843829098326776,
+      "negativeMagneticFluxRate": -0.09843829098325993
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": -1.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": -0.9405880633643421,
+      "magnetic": -0.47029403168217104,
+      "electricZ": -0.32920582217756583,
+      "magneticZ": -0.16460291108878292,
+      "electricT": 0.6584116443549466,
+      "magneticT": 0.3292058221774733,
+      "electricZZ": 0.825366025923128,
+      "electricTT": 3.301464102517526,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.18861522315027343,
+      "negativeMagneticFluxRate": 0.1886152231502421
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 0.4,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 0.4,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 1.0,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 0.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.0,
+      "magnetic": 0.0,
+      "electricZ": 0.0,
+      "magneticZ": 0.0,
+      "electricT": 0.0,
+      "magneticT": 0.0,
+      "electricZZ": 0.0,
+      "electricTT": 0.0,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.0,
+      "negativeMagneticFluxRate": -0.0
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.08413669343194795,
+      "magnetic": -0.042068346715973974,
+      "electricZ": -0.4680103572150355,
+      "magneticZ": 0.23400517860751774,
+      "electricT": -0.9360207144301982,
+      "magneticT": 0.4680103572150991,
+      "electricZZ": 2.0774532780651795,
+      "electricTT": 8.309813112819299,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.40207654398920883,
+      "negativeMagneticFluxRate": 0.4020765439892148
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.3830387223111481,
+      "magnetic": 0.14945101443960007,
+      "electricZ": 0.5118675180068125,
+      "magneticZ": 0.48993893761101653,
+      "electricT": -1.9597557504440661,
+      "magneticT": -0.5118675180069513,
+      "electricZZ": 0.5392583152843041,
+      "electricTT": 2.1570332611279643,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.07245299658959897,
+      "negativeMagneticFluxRate": -0.07245299658967252
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.6819407511903482,
+      "magnetic": 0.3409703755951741,
+      "electricZ": 1.4917453932292155,
+      "magneticZ": 0.7458726966146078,
+      "electricT": -2.9834907864579687,
+      "magneticT": -1.4917453932289844,
+      "electricZZ": -0.9989366472895611,
+      "electricTT": -3.995746590416497,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.5469825371684067,
+      "negativeMagneticFluxRate": -0.5469825371681956
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 0.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.6729730464438339,
+      "magnetic": -0.33648652322191697,
+      "electricZ": -0.5989460113353661,
+      "magneticZ": 0.29947300566768303,
+      "electricT": -1.197892022669992,
+      "magneticT": 0.598946011334996,
+      "electricZZ": -0.13991109643988567,
+      "electricTT": -0.5596443855004907,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.38549180511680886,
+      "negativeMagneticFluxRate": 0.38549180511669257
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.8067805549040881,
+      "magnetic": 0.06690375423012704,
+      "electricZ": -0.13487009457857635,
+      "magneticZ": 0.232037958378233,
+      "electricT": -0.9281518335120993,
+      "magneticT": 0.13487009457871513,
+      "electricZZ": -0.48263856118150683,
+      "electricTT": -1.9305542440783974,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": 0.09843829098326776,
+      "negativeMagneticFluxRate": 0.09843829098325993
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.27,
+      "time": 0.31,
+      "electric": 0.9405880633643421,
+      "magnetic": 0.47029403168217104,
+      "electricZ": 0.32920582217756583,
+      "magneticZ": 0.16460291108878292,
+      "electricT": -0.6584116443549466,
+      "magneticT": -0.3292058221774733,
+      "electricZZ": -0.825366025923128,
+      "electricTT": -3.301464102517526,
+      "span": 0.7,
+      "bottom": -0.2,
+      "top": 0.8,
+      "electricLine": -0.18861522315027343,
+      "negativeMagneticFluxRate": -0.1886152231502421
+    }
+  ],
+  "zeroBControls": [
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.7,
+      "time": 0.1,
+      "magneticMode": "zero-magnetic-negative-control",
+      "electricWaveResidual": -1.6537693436902146e-10,
+      "faradayResidual": -1.0848980806067257,
+      "ampereResidual": -2.1697961612151166
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.7,
+      "rightFraction": 1.0,
+      "z": 0.7,
+      "time": 0.1,
+      "magneticMode": "zero-magnetic-negative-control",
+      "electricWaveResidual": 1.434038096603807e-10,
+      "faradayResidual": -0.8619521871545502,
+      "ampereResidual": -1.7239043743089153
+    },
+    {
+      "permittivity": 4.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.7,
+      "time": 0.1,
+      "magneticMode": "zero-magnetic-negative-control",
+      "electricWaveResidual": -2.6136501296569747e-10,
+      "faradayResidual": -0.5262215716340483,
+      "ampereResidual": -1.0524431432693917
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.7,
+      "time": 0.1,
+      "magneticMode": "zero-magnetic-negative-control",
+      "electricWaveResidual": -4.163336342344337e-11,
+      "faradayResidual": -1.217446752593739,
+      "ampereResidual": -1.2174467525933226
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.7,
+      "rightFraction": 1.0,
+      "z": 0.7,
+      "time": 0.1,
+      "magneticMode": "zero-magnetic-negative-control",
+      "electricWaveResidual": -1.017704254202556e-10,
+      "faradayResidual": -0.848044070455393,
+      "ampereResidual": -0.848044070455763
+    },
+    {
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.7,
+      "time": 0.1,
+      "magneticMode": "zero-magnetic-negative-control",
+      "electricWaveResidual": -2.7755575615628914e-11,
+      "faradayResidual": -0.5011621268465511,
+      "ampereResidual": -0.5011621268469213
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.4,
+      "rightFraction": 1.0,
+      "z": 0.7,
+      "time": 0.1,
+      "magneticMode": "zero-magnetic-negative-control",
+      "electricWaveResidual": -2.118675013207394e-09,
+      "faradayResidual": -1.4307292555366944,
+      "ampereResidual": -0.7153646277681738
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 0.7,
+      "rightFraction": 1.0,
+      "z": 0.7,
+      "time": 0.1,
+      "magneticMode": "zero-magnetic-negative-control",
+      "electricWaveResidual": -9.251710508806354e-12,
+      "faradayResidual": -0.7906504376359312,
+      "ampereResidual": -0.3953252188179194
+    },
+    {
+      "permittivity": 0.25,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 1.0,
+      "z": 0.7,
+      "time": 0.1,
+      "magneticMode": "zero-magnetic-negative-control",
+      "electricWaveResidual": 4.5334092035886897e-10,
+      "faradayResidual": -0.44124845129213847,
+      "ampereResidual": -0.22062422564604608
+    }
+  ],
+  "tinyGaussianDifferences": [
+    {
+      "time": 1e-12,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 1.0,
+      "stableCB": 6.065306597126334e-13,
+      "naiveCB": 6.065703495039543e-13
+    },
+    {
+      "time": 1e-16,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 1.0,
+      "stableCB": 6.065306597126335e-17,
+      "naiveCB": 5.551115123125783e-17
+    },
+    {
+      "time": 1e-18,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 1.0,
+      "stableCB": 6.065306597126335e-19,
+      "naiveCB": 0.0
+    },
+    {
+      "time": 1e-50,
+      "permittivity": 1.0,
+      "permeability": 1.0,
+      "amplitude": 1.0,
+      "width": 1.0,
+      "rightFraction": 0.5,
+      "z": 1.0,
+      "stableCB": 6.065306597126335e-51,
+      "naiveCB": 0.0
+    }
+  ],
+  "tinyFluxChanges": [
+    {
+      "magneticOffset": 4.0,
+      "magneticRate": 1e-16,
+      "magneticAcceleration": 0.0,
+      "initialWidth": 1.0,
+      "widthRate": 0.0,
+      "height": 1.0,
+      "startTime": 0.0,
+      "endTime": 1.0,
+      "fluxChange": 1e-16
+    },
+    {
+      "magneticOffset": 4.0,
+      "magneticRate": 0.0,
+      "magneticAcceleration": 0.0,
+      "initialWidth": 1.0,
+      "widthRate": 1e-16,
+      "height": 1.0,
+      "startTime": 0.0,
+      "endTime": 1.0,
+      "fluxChange": 4e-16
+    }
+  ],
+  "limitations": [
+    "Prescribed bounded sources and loop geometry,not conductor dynamics or a finite isolated solenoid.",
+    "Plane pulses are infinite transversely; a scalar wave equation alone does not imply Maxwell compatibility.",
+    "Observed numerical differences are not certified error bounds."
+  ]
+}

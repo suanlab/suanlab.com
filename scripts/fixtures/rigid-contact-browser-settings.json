@@ -1,0 +1,300 @@
+{
+  "frictionless-rod-contact-impulse": [
+    {
+      "name": "opening",
+      "values": [
+        1,
+        2,
+        2,
+        0,
+        5,
+        10,
+        5
+      ],
+      "key": "1{impact active}",
+      "answer": "0",
+      "checks": [
+        [
+          "normal impulse N s",
+          "0"
+        ],
+        [
+          "active restitution residual",
+          "\u2014"
+        ]
+      ]
+    },
+    {
+      "name": "tangent",
+      "values": [
+        1,
+        2,
+        2,
+        0,
+        -10,
+        10,
+        5
+      ],
+      "key": "incoming contact normal speed m per s",
+      "answer": "0",
+      "checks": [
+        [
+          "normal impulse N s",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "vertical",
+      "values": [
+        4,
+        0,
+        6,
+        -20,
+        -20,
+        20,
+        10
+      ],
+      "key": "outgoing COM vertical speed m per s",
+      "answer": "2",
+      "checks": [
+        [
+          "normal impulse N s",
+          "16"
+        ],
+        [
+          "outgoing CCW omega rad per s",
+          "2"
+        ]
+      ]
+    },
+    {
+      "name": "rest",
+      "values": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "key": "normal impulse N s",
+      "answer": "0",
+      "checks": [
+        [
+          "energy loss joules",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "elastic",
+      "values": [
+        1,
+        2,
+        2,
+        10,
+        -10,
+        0,
+        10
+      ],
+      "key": "normal impulse N s",
+      "answer": "0.8",
+      "checks": [
+        [
+          "energy loss joules",
+          "0"
+        ],
+        [
+          "outgoing COM vertical speed m per s",
+          "-0.2"
+        ]
+      ]
+    },
+    {
+      "name": "plastic",
+      "values": [
+        1,
+        2,
+        2,
+        10,
+        -10,
+        0,
+        0
+      ],
+      "key": "outgoing contact normal speed m per s",
+      "answer": "0",
+      "checks": [
+        [
+          "energy loss joules",
+          "0.2"
+        ]
+      ]
+    }
+  ],
+  "driven-wheel-rolling-sliding": [
+    {
+      "name": "weak-torque",
+      "values": [
+        1,
+        2,
+        1,
+        0,
+        5,
+        0,
+        30,
+        0,
+        0,
+        10
+      ],
+      "key": "contact heat joules",
+      "answer": "1.5",
+      "checks": [
+        [
+          "total kinetic energy joules",
+          "4.5"
+        ],
+        [
+          "external work joules",
+          "6"
+        ]
+      ]
+    },
+    {
+      "name": "slip-reversal",
+      "values": [
+        1,
+        2,
+        2,
+        0,
+        5,
+        100,
+        0,
+        -10,
+        0,
+        10
+      ],
+      "key": "first zero slip event seconds",
+      "answer": "0.063",
+      "checks": [
+        [
+          "1{rolling at query}",
+          "0"
+        ],
+        [
+          "exact energy budget residual",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "late-event",
+      "values": [
+        4,
+        2,
+        1,
+        0,
+        10,
+        79,
+        0,
+        20,
+        0,
+        100
+      ],
+      "key": "first zero slip event seconds",
+      "answer": "80",
+      "checks": [
+        [
+          "1{event reached}",
+          "0"
+        ],
+        [
+          "contact heat joules",
+          "75"
+        ]
+      ]
+    },
+    {
+      "name": "event-time",
+      "values": [
+        1,
+        2,
+        2,
+        2,
+        5,
+        0,
+        0,
+        12,
+        0,
+        2
+      ],
+      "key": "first zero slip event seconds",
+      "answer": "0.2",
+      "checks": [
+        [
+          "friction force N",
+          "0"
+        ],
+        [
+          "COM speed m per s",
+          "0.8"
+        ]
+      ]
+    },
+    {
+      "name": "threshold",
+      "values": [
+        1,
+        2,
+        1,
+        0,
+        5,
+        30,
+        0,
+        0,
+        0,
+        0
+      ],
+      "key": "1{rolling at query}",
+      "answer": "1",
+      "checks": [
+        [
+          "friction force N",
+          "-1"
+        ],
+        [
+          "contact heat joules",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "many-turns",
+      "values": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        100,
+        0,
+        0,
+        100
+      ],
+      "key": "external work joules",
+      "answer": "200,000",
+      "checks": [
+        [
+          "unwrapped clockwise angle radians",
+          "20,000"
+        ],
+        [
+          "contact heat joules",
+          "0"
+        ]
+      ]
+    }
+  ]
+}

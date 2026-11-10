@@ -1,0 +1,198 @@
+{
+  "quartic-potential-work-allowed-states": [
+    {
+      "name": "empty",
+      "values": [
+        1,
+        1,
+        -2,
+        -11,
+        0,
+        10,
+        0
+      ],
+      "key": "allowed interval count",
+      "answer": "0"
+    },
+    {
+      "name": "isolated-origin",
+      "values": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "key": "1{stationary equilibrium state}",
+      "answer": "1"
+    },
+    {
+      "name": "common-offset",
+      "values": [
+        1,
+        1,
+        -2,
+        -5,
+        0,
+        10,
+        20
+      ],
+      "key": "endpoint work joules",
+      "answer": "0.75"
+    },
+    {
+      "name": "isolated-minima",
+      "values": [
+        1,
+        1,
+        -2,
+        -10,
+        0,
+        10,
+        0
+      ],
+      "key": "allowed interval count",
+      "answer": "2"
+    },
+    {
+      "name": "turning",
+      "values": [
+        1,
+        1,
+        -2,
+        0,
+        0,
+        20,
+        0
+      ],
+      "key": "1{query at energy boundary}",
+      "answer": "1",
+      "checks": [
+        [
+          "1{stationary equilibrium state}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "negative-roots",
+      "values": [
+        5,
+        5,
+        4,
+        -1,
+        -30,
+        30,
+        -20
+      ],
+      "key": "1{query allowed}",
+      "answer": "0"
+    }
+  ],
+  "damped-oscillator-work-power-heat": [
+    {
+      "name": "zero-time",
+      "values": [
+        1,
+        1,
+        2,
+        -10,
+        20,
+        -20,
+        0
+      ],
+      "key": "dissipated heat joules",
+      "answer": "0"
+    },
+    {
+      "name": "undamped",
+      "values": [
+        1,
+        1,
+        0,
+        0,
+        10,
+        0,
+        100
+      ],
+      "key": "1{undamped}",
+      "answer": "1",
+      "checks": [
+        [
+          "dissipated heat joules",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "critical-driven",
+      "values": [
+        1,
+        1,
+        2,
+        10,
+        0,
+        0,
+        10
+      ],
+      "key": "1{critical damping}",
+      "answer": "1",
+      "checks": [
+        [
+          "drive work joules",
+          "0.264"
+        ]
+      ]
+    },
+    {
+      "name": "strong-overdamping",
+      "values": [
+        1,
+        1,
+        10,
+        -20,
+        20,
+        -20,
+        100
+      ],
+      "key": "1{overdamped}",
+      "answer": "1"
+    },
+    {
+      "name": "equilibrium",
+      "values": [
+        1,
+        1,
+        2,
+        10,
+        10,
+        0,
+        100
+      ],
+      "key": "query position meters",
+      "answer": "1",
+      "checks": [
+        [
+          "dissipated heat joules",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "braking",
+      "values": [
+        1,
+        1,
+        1,
+        -10,
+        0,
+        20,
+        1
+      ],
+      "key": "drive work joules",
+      "answer": "-0.185"
+    }
+  ]
+}

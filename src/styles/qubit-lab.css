@@ -1,0 +1,25 @@
+.ai-qubit-lab { min-width: 0; max-width: 100%; margin: 2rem 0; padding: clamp(.75rem, 3vw, 1.5rem); border: 1px solid hsl(var(--border)); border-radius: 1rem; background: hsl(var(--card)); color: hsl(var(--foreground)); }
+.ai-qubit-lab h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+.ai-qubit-lab h3 { font-size: 1.2rem; font-weight: 600; margin: 1.5rem 0 .75rem; }
+.ai-qubit-lab p { margin: .75rem 0; line-height: 1.75; overflow-wrap: anywhere; }
+.ai-qubit-lab button { white-space: normal; height: auto; min-height: 40px; max-width: 100%; overflow-wrap: anywhere; }
+.qubit-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.qubit-field { display: flex; flex-direction: column; gap: .5rem; margin: 1rem 0; min-width: 0; }
+.qubit-field select, .qubit-field textarea { width: 100%; min-width: 0; max-width: 100%; border: 1px solid hsl(var(--border)); border-radius: .5rem; background: hsl(var(--background)); color: hsl(var(--foreground)); padding: .75rem; font-size: 16px; }
+.qubit-field textarea { min-height: 220px; font-family: monospace; }
+.qubit-field input[type=range] { width: 100%; accent-color: hsl(var(--primary)); }
+.qubit-table { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; margin: 1rem 0; border: 1px solid hsl(var(--border)); border-radius: .5rem; }
+.qubit-table table { min-width: 480px; width: 100%; border-collapse: collapse; font-size: 16px; }
+.qubit-table caption { text-align: left; padding: .75rem; font-weight: 600; }
+.qubit-table th, .qubit-table td { text-align: left; vertical-align: top; padding: .75rem; border-top: 1px solid hsl(var(--border)); overflow-wrap: anywhere; max-width: 22rem; }
+.qubit-table th { font-weight: 600; }
+.qubit-table code { white-space: normal; overflow-wrap: anywhere; }
+.qubit-value, .qubit-certificate { display: block; overflow-wrap: anywhere; }
+.qubit-value details { margin-top: .5rem; }
+.ai-qubit-lab summary { cursor: pointer; padding: .5rem 0; overflow-wrap: anywhere; }
+.ai-qubit-lab figure { margin: 1.5rem 0; }
+.ai-qubit-lab figcaption { font-weight: 600; margin: .75rem 0; }
+.qubit-status { padding: .75rem; border-inline-start: 3px solid hsl(var(--primary)); }
+.qubit-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+.qubit-scroll svg { display: block; min-width: 560px; width: 100%; }
+.qubit-table:focus-visible, .qubit-scroll:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }

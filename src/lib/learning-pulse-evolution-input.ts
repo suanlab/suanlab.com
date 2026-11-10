@@ -1,0 +1,9 @@
+/** Two Hermitian pulses in E0,T0 units; all stored fields are owned integers. */
+export const pulseEvolutionKeys=['stateReal0','stateImag0','stateReal1','stateImag1','axisAReal0','axisAImag0','axisAReal1','axisAImag1','axisBReal0','axisBImag0','axisBReal1','axisBImag1','aCenterNumerator','aCenterDenominator','aGapNumerator','aGapDenominator','bCenterNumerator','bCenterDenominator','bGapNumerator','bGapDenominator','durationANumerator','durationADenominator','durationBNumerator','durationBDenominator','hbarNumerator','hbarDenominator','sampleSteps'] as const;
+export type PulseEvolutionParameters=Record<typeof pulseEvolutionKeys[number],number>;
+export function isPulseEvolutionParameters(value:unknown):value is PulseEvolutionParameters{
+ if(!value||typeof value!=='object'||Object.getPrototypeOf(value)!==Object.prototype||Reflect.ownKeys(value).length!==pulseEvolutionKeys.length)return false;
+ const p=value as PulseEvolutionParameters;
+ return pulseEvolutionKeys.every(k=>Object.hasOwn(p,k)&&Number.isSafeInteger(p[k])&&Math.abs(p[k])<=1000000&&(!k.endsWith('Denominator')||p[k]>0))&&p.durationANumerator>=0&&p.durationBNumerator>=0&&p.hbarNumerator>0&&p.sampleSteps>=1&&p.sampleSteps<=16&&['state','axisA','axisB'].every(prefix=>[0,1].some(i=>p[`${prefix}Real${i}` as keyof PulseEvolutionParameters]!==0||p[`${prefix}Imag${i}` as keyof PulseEvolutionParameters]!==0));
+}
+export function snapshotPulseEvolutionParameters(p:PulseEvolutionParameters):Readonly<PulseEvolutionParameters>{if(!isPulseEvolutionParameters(p))throw new RangeError('Twenty-seven owned integers with magnitudes<=1e6; positive denominators/hbar,nonnegative durations,nonzero state/axes and1..16 sample intervals');return Object.freeze(Object.fromEntries(pulseEvolutionKeys.map(k=>[k,p[k]+0]))) as PulseEvolutionParameters;}

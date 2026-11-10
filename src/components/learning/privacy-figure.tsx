@@ -1,0 +1,42 @@
+'use client';
+import {useLanguage} from '@/components/language-provider';
+import type {PrivacyResult} from '@/lib/learning-privacy';
+import EvaluationGuaranteesFigure from './evaluation-guarantees-figure';
+import DROFigure from './dro-figure';
+import AdversarialFigure from './adversarial-perturbation-figure';
+import RobustStatisticsFigure from './robust-statistics-figure';
+import FairnessCompatibilityFigure from './fairness-compatibility-figure';
+import FairnessIdentificationFigure from './fairness-identification-figure';
+import PrivacyInferenceFigure from './privacy-inference-figure';
+import PrivacyNoiseFigure from './privacy-noise-figure';
+import PrivacyCompositionFigure from './privacy-composition-figure';
+import MeasureFigure from './measure-figure';
+const font={fontSize:11},fmt=(v:number)=>{if(v===0)return'0';const s=Number(v.toPrecision(4)).toString();return s.length>9||Math.abs(v)<.0001?v.toExponential(2):s;};
+export function PrivacyEventDrawing({result,label}:{result:PrivacyResult;label:string}){
+ const {language}=useLanguage(),ko=language==='ko',r=result.finiteDP!,P=r.rows[r.from],Q=r.rows[r.to],cell=250/(r.n+1),x=(y:number)=>55+cell*(y+.5),top=(p:number)=>280-150*p;
+ return <svg data-dp-event viewBox="0 0 350 560" role="img" aria-label={label}><g fill="currentColor" textAnchor="middle" style={font}><text x="175" y="24">{ko?'선택한 인접 입력과 출력 사건':'Selected neighboring inputs and output event'}</text><text x="175" y="51">{`n=${r.n} · p=${fmt(r.p)} · c:${r.from}→${r.to}`}</text><text x="175" y="79">{ko?'파랑 P · 주황 Q · 윤곽은 사건 S':'Blue P · orange Q · outline marks event S'}</text></g>
+ <path d="M55 130V280H305" fill="none" stroke="var(--learning-neutral)"/>
+ {P.map((v,y)=>{const a=v/r.D,b=Q[y]/r.D,selected=r.event.includes(y);return <g key={y} data-dp-output={y} data-dp-selected={selected?'true':'false'}>{selected&&<rect x={x(y)-cell*.45} y="120" width={cell*.9} height="166" rx="3" fill="none" stroke="currentColor" strokeWidth="1.5"/>}<rect x={x(y)-11} y={top(a)} width="10" height={150*a} fill="var(--learning-blue)"/><rect x={x(y)+1} y={top(b)} width="10" height={150*b} fill="var(--learning-orange)"/><text x={x(y)} y="305" textAnchor="middle" fill="currentColor" style={font}>{y}</text></g>;})}
+ <g fill="currentColor" textAnchor="middle" style={font}><text x="40" y="135">1</text><text x="40" y="284">0</text><text x="175" y="335">{ko?'출력 Y = 보고된 1의 개수':'Output Y = number of reported ones'}</text><text x="175" y="367">{`S={${r.event.join(', ')}} · mask ${r.requestedMask}→${r.effectiveMask}`}</text><text x="175" y="399">{`P(S)=${fmt(r.query.P)} · Q(S)=${fmt(r.query.Q)}`}</text><text x="175" y="431">{`αQ(S)+δ=${fmt(r.query.rightSide)}`}</text><text x="175" y="463">{`${ko?'선택 사건의 부등식 통과':'Selected-event inequality passes'}: ${Number(r.query.passes)}`}</text><text x="175" y="495">{`lower c ${r.requestedLower}→${r.lower} · ${ko?'한 비트 교체':'one bit replacement'}`}</text><text x="175" y="535">{ko?'이 사건 하나의 통과는 전체 DP가 아닙니다.':'One passing event does not establish global DP'}</text></g></svg>;
+}
+export function PrivacyCertificateDrawing({result,label}:{result:PrivacyResult;label:string}){
+ const {language}=useLanguage(),ko=language==='ko',r=result.finiteDP!,cell=250/r.profiles.length,x=(i:number)=>55+cell*(i+.5),height=(v:number)=>115*v;
+ return <svg data-dp-certificate viewBox="0 0 350 560" role="img" aria-label={label}><g fill="currentColor" textAnchor="middle" style={font}><text x="175" y="24">{ko?'모든 인접 쌍과 모든 사건의 보장':'All neighboring pairs and all output events'}</text><text x="175" y="51">{`α=e^ε=${fmt(r.alpha)} · δ=${fmt(r.delta)}`}</text><text x="175" y="79">{`${2*r.n} ${ko?'방향 쌍':'ordered pairs'} × ${2**(r.n+1)} ${ko?'사건':'events'}`}</text></g>
+ <path d="M55 105V220H305" fill="none" stroke="var(--learning-neutral)"/>
+ <path data-dp-budget-line d={`M55 ${220-height(r.delta)}H305`} stroke="var(--learning-orange)" strokeDasharray="4 3"/>
+ {r.profiles.map((v,i)=>{const worst=v.from===r.witness.from&&v.to===r.witness.to,selected=v.from===r.from&&v.to===r.to;return <g key={i} data-dp-pair={i} data-dp-worst={worst?'true':'false'}><rect x={x(i)-cell*.35} y={220-height(v.delta)} width={cell*.7} height={height(v.delta)} fill={worst?'var(--learning-orange)':'var(--learning-blue)'}/>{selected&&<rect data-dp-query-pair x={x(i)-cell*.42} y="100" width={cell*.84} height="124" fill="none" stroke="currentColor" strokeWidth="1.5"/>}<text x={x(i)} y="241" fill="currentColor" textAnchor="middle" style={{fontSize:9}}>{`${v.from}→${v.to}`}</text></g>;})}
+ <g fill="currentColor" textAnchor="middle" style={font}><text x="40" y="109">1</text><text x="40" y="224">0</text><text x="175" y="271">{`${ko?'정확한 필요 δ':'Exact required δ'} = ${r.witness.exactDelta.label}`}</text><text x="175" y="302">{`${ko?'전체 DP 주장 통과':'Global DP claim passes'}: ${Number(r.globalPass)}`}</text><text x="175" y="334">{`${ko?'최대 사건':'Maximizing event'} c:${r.witness.from}→${r.witness.to}, S={${r.witness.event.join(', ')}}`}</text><text x="175" y="366">{ko?'각 쌍에서 양의 원자 차이를 모두 더합니다.':'For each pair, sum all positive atom excesses'}</text><text x="175" y="400">{r.pureInfinite?(ko?'순수 ε = ∞ · 유한한 순수 보장 없음':'Pure ε = ∞ · no finite pure guarantee'):`${ko?'최소 순수 ε':'Minimum pure ε'} = ${fmt(r.pureEpsilon!)}`}</text><text x="175" y="432">{r.unbiasedEstimatorMSE===null?(ko?'p=1/2: 불편 개수 추정식 정의 불가':'p=1/2: unbiased count estimator unavailable'):`${ko?'불편 개수 추정의 MSE':'Unbiased count estimator MSE'} = ${fmt(r.unbiasedEstimatorMSE)}`}</text><text x="175" y="464">{ko?'기준선은 주장 δ · 막대는 쌍별 필요 δ':'Dashed: claimed δ · bars: required δ per pair'}</text><text x="175" y="496">{ko?'확률은 정수 가중치 / 100ⁿ':'Probabilities = integer weights / 100ⁿ'}</text><text x="175" y="535">{ko?'현재의 유한 모형·인접성·출력에 대한 인증':'Certificate for this finite model/adjacency/output'}</text></g></svg>;
+}
+export default function PrivacyFigure({result,label,axis}:{result:PrivacyResult;label:string;axis:string}){
+ const {language}=useLanguage(),ko=language==='ko';
+ if(result.evaluationStratified||result.evaluationSelection)return <EvaluationGuaranteesFigure result={result} label={label} axis={axis}/>;
+ if(result.droKL||result.droTransport)return <DROFigure result={result} label={label} axis={axis}/>;
+ if(result.adversarialAffine||result.adversarialRelu)return <AdversarialFigure result={result} label={label} axis={axis}/>;
+ if(result.robustSample||result.robustPopulation)return <RobustStatisticsFigure result={result} label={label} axis={axis}/>;
+ if(result.parity||result.calibration)return <FairnessCompatibilityFigure result={result} label={label} axis={axis}/>;
+ if(result.fairness)return <FairnessIdentificationFigure result={result} label={label} axis={axis}/>;
+ if(result.inference)return <PrivacyInferenceFigure result={result} label={label} axis={axis}/>;
+ if(result.noise)return <PrivacyNoiseFigure result={result} label={label} axis={axis}/>;
+ if(result.composition)return <PrivacyCompositionFigure result={result} label={label} axis={axis}/>;
+ return <div className="ai-game-figure"><figure className="ai-foundation-figure"><div className="ai-foundation-scroll" tabIndex={0} role="region" aria-label={ko?'인접 입력의 분포와 사건 · 작은 화면에서 가로 이동':'Neighboring distributions and event · Scroll horizontally on narrow screens'}><PrivacyEventDrawing result={result} label={label}/></div><figcaption>{ko?'한 사람의 비트 하나를 교체한 두 입력의 출력 분포입니다. 윤곽선이 사건 마스크 Σ2ʸ를 나타냅니다. 입력한 사건만 검사한 결과와 전체 정의는 다릅니다. 크기 n은 공개된 고정값이고 개인별 응답 벡터는 공개하지 않습니다.':'These output laws differ by replacing one individual bit. Outlines show the event mask Σ2ʸ. Checking only that event differs from the global definition. Size n is fixed and public; individual response vectors are not released.'}</figcaption></figure><figure className="ai-foundation-figure"><div className="ai-foundation-scroll" tabIndex={0} role="region" aria-label={ko?'모든 인접 쌍의 차등 프라이버시 인증 · 작은 화면에서 가로 이동':'All-neighbor differential privacy certificate · Scroll horizontally on narrow screens'}><PrivacyCertificateDrawing result={result} label={label}/></div><figcaption>{ko?'각 순서 있는 인접 쌍에서 P(y)−αQ(y)>0인 원자를 모두 모으면 전체 사건 중 최대 차이를 얻습니다. 이를 모든 쌍에 대해 최대화합니다. 정수 가중치와 정확한 비교를 사용하며, 이 유한 채널의 인증을 임의의 서비스 보장으로 확장하지 않습니다.':'For each ordered neighboring pair, collecting all atoms with P(y)−αQ(y)>0 maximizes the excess over every event. Maximize again over all pairs. Integer weights and exact comparisons certify this finite channel, not an arbitrary service.'}</figcaption></figure><MeasureFigure result={result} label={label} axis={axis} variant="privacy" wideLabels/></div>;
+}

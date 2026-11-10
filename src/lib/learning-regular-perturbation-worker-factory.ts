@@ -1,0 +1,2 @@
+export function createRegularPerturbationWorker():Worker{return new Worker(new URL('./learning-regular-perturbation.worker.ts',import.meta.url),{type:'module',name:'regular-perturbation-calculation'});}
+export function createRegularPerturbationValidationWorker():Worker{return new Worker(new URL('./learning-regular-perturbation-validation.worker.ts',import.meta.url),{type:'module',name:'regular-perturbation-validation'});}

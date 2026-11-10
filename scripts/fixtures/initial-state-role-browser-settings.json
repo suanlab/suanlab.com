@@ -1,0 +1,294 @@
+{
+  "inverted-spring-initial-state-sensitivity": [
+    {
+      "name": "identical-zero-state",
+      "values": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        20
+      ],
+      "key": "actual amplification",
+      "answer": "\u2014",
+      "checks": [
+        [
+          "1{same complete initial state}",
+          "1"
+        ],
+        [
+          "query state distance meters",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "fast-decaying-mode",
+      "values": [
+        1,
+        4,
+        10,
+        -20,
+        0,
+        0,
+        50
+      ],
+      "key": "A query position meters",
+      "answer": "4.540e-5",
+      "checks": [
+        [
+          "A numerical energy residual joules",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "free-shear",
+      "values": [
+        2,
+        0,
+        10,
+        0,
+        10,
+        10,
+        20
+      ],
+      "key": "query state distance meters",
+      "answer": "2.236",
+      "checks": [
+        [
+          "largest singular value",
+          "2.414"
+        ],
+        [
+          "B initial energy joules",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "projected-crossing",
+      "values": [
+        1,
+        1,
+        0,
+        10,
+        0,
+        -10,
+        0
+      ],
+      "key": "1{same initial position}",
+      "answer": "1",
+      "checks": [
+        [
+          "1{same complete initial state}",
+          "0"
+        ],
+        [
+          "A query velocity m per s",
+          "1"
+        ],
+        [
+          "B query velocity m per s",
+          "-1"
+        ]
+      ]
+    },
+    {
+      "name": "nonsquare-frequency",
+      "values": [
+        4,
+        3,
+        13,
+        -7,
+        -11,
+        19,
+        33
+      ],
+      "key": "A initial energy joules",
+      "answer": "-1.555",
+      "checks": [
+        [
+          "B initial energy joules",
+          "5.405"
+        ],
+        [
+          "analytic determinant",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "rounded-inverse",
+      "values": [
+        1,
+        1,
+        10,
+        -10,
+        10,
+        10,
+        50
+      ],
+      "key": "rounded initial recovery error meters",
+      "answer": "0.055",
+      "checks": [
+        [
+          "largest singular value",
+          "148.413"
+        ],
+        [
+          "1{same initial energy}",
+          "1"
+        ]
+      ]
+    }
+  ],
+  "nonlipschitz-newton-delayed-release": [
+    {
+      "name": "exact-release-join",
+      "values": [
+        4,
+        4,
+        10,
+        50,
+        10
+      ],
+      "key": "A exact acceleration m per s squared",
+      "answer": "0",
+      "checks": [
+        [
+          "A exact velocity m per s",
+          "0"
+        ],
+        [
+          "1{nonunique model constructed}",
+          "1"
+        ],
+        [
+          "1{distinct query states}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "just-after-release",
+      "values": [
+        4,
+        4,
+        10,
+        50,
+        11
+      ],
+      "key": "A exact acceleration m per s squared",
+      "answer": "0.48",
+      "checks": [
+        [
+          "A exact position meters",
+          "4.000e-4"
+        ],
+        [
+          "A exact velocity m per s",
+          "0.016"
+        ]
+      ]
+    },
+    {
+      "name": "maximal-polynomial",
+      "values": [
+        4,
+        4,
+        0,
+        50,
+        100
+      ],
+      "key": "A exact position meters",
+      "answer": "40,000",
+      "checks": [
+        [
+          "A exact velocity m per s",
+          "16,000"
+        ],
+        [
+          "A kinetic energy joules",
+          "5.120e8"
+        ],
+        [
+          "A exact energy joules",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "equal-waits",
+      "values": [
+        1,
+        1,
+        10,
+        10,
+        20
+      ],
+      "key": "1{distinct finite wait families}",
+      "answer": "0",
+      "checks": [
+        [
+          "1{nonunique model constructed}",
+          "1"
+        ],
+        [
+          "1{distinct query states}",
+          "0"
+        ],
+        [
+          "A exact position meters",
+          "0.25"
+        ]
+      ]
+    },
+    {
+      "name": "zero-coefficient",
+      "values": [
+        3,
+        0,
+        0,
+        50,
+        100
+      ],
+      "key": "1{nonunique model constructed}",
+      "answer": "0",
+      "checks": [
+        [
+          "1{locally Lipschitz at origin}",
+          "1"
+        ],
+        [
+          "A exact position meters",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "before-both-waits",
+      "values": [
+        1,
+        4,
+        50,
+        30,
+        0
+      ],
+      "key": "1{distinct query states}",
+      "answer": "0",
+      "checks": [
+        [
+          "1{distinct finite wait families}",
+          "1"
+        ],
+        [
+          "1{same complete initial state}",
+          "1"
+        ]
+      ]
+    }
+  ]
+}

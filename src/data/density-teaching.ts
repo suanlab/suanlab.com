@@ -1,0 +1,8 @@
+import type {LearningUnit,LearningGuide} from './interactive-book';
+import {densityKinds as kinds,densityTitles as titles,densityText as t} from '@/lib/learning-density';
+import {densitySteps as steps} from '@/lib/learning-density-concepts';
+const subtitles=[t('일반 밀도 연산자와 앙상블 비유일성을 유도하고 Gram·순도·측정 복원·조건부 혼합을 비교합니다.','Derive general density operators and nonunique ensembles; compare Gram, purity, tomography and conditional mixing.'),t('Bloch ball·일반 엔트로피·부분추적·purification을 배우고 부호 있는 dephasing·거리·기저 coherence를 실험합니다.','Learn the Bloch ball, general entropy, partial trace and purification; explore signed dephasing, distances and basis coherence.')];
+export const densityTeaching:{unit:LearningUnit;guide:LearningGuide}[]=kinds.map((kind,i)=>({
+ unit:{id:kind,title:titles[kind],subtitle:subtitles[i],prerequisiteIds:i===0?['hermitian-spectrum-born-expectation','degenerate-projectors-sequential-observation','complex-state-rays-basis-amplitudes']:[kinds[0],'spin-half-measurement-su2-rotation','two-level-spectral-schrodinger-evolution'],prerequisites:t('복소 내적·양의 행렬·Hermitian 스펙트럼·사영 측정·확률 혼합을 복습하세요.','Review complex inner products, positive matrices, Hermitian spectra, projective measurements and probability mixtures.'),eyebrow:'DENSITY MATRICES',formula:steps[kind][0].formula,accent:'density',questions:steps[kind].map((s,j)=>({id:`${kind}-quiz-${j}`,question:s.question,options:s.options,answer:s.answer,explanation:s.solution}))},
+ guide:{intuition:subtitles[i],steps:steps[kind].map(s=>({title:s.title,explanation:s.explanation,formula:s.formula,diagram:s.action})),experiments:steps[kind].map(s=>({title:s.title,predict:s.predict,action:s.action,explain:s.solution,preset:s.presets[0]}))}
+}));

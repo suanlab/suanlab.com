@@ -121,7 +121,7 @@ export default function ModernFooter() {
           <div className="flex gap-4 text-sm text-muted-foreground">
             <Link href="/privacy" className="hover:text-primary transition-colors">{t('footer.privacy') as string}</Link>
             <Link href="/terms" className="hover:text-primary transition-colors">{t('footer.terms') as string}</Link>
-            <Link href="/sitemap.xml" className="hover:text-primary transition-colors">{t('footer.sitemap') as string}</Link>
+            <a href="/sitemap.xml" className="hover:text-primary transition-colors">{t('footer.sitemap') as string}</a>
           </div>
         </div>
       </div>

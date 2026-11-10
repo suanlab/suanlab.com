@@ -1,0 +1,4025 @@
+{
+  "methods": {
+    "free": "Fraction Boole quadrature exact through degree five; direct prescribed derivatives",
+    "harmonic": "mpmath 60-digit direct Lagrangian/variation quadrature; independent differentiation"
+  },
+  "free": [
+    {
+      "p": [
+        1,
+        10,
+        0,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        0,
+        50,
+        50
+      ],
+      "exact": {
+        "action": "1/2",
+        "variedAction": "13/24",
+        "firstVariation": "0",
+        "secondVariation": "1/3",
+        "residualMeanSquare": "0"
+      },
+      "query": {
+        "position": "1/2",
+        "velocity": "1",
+        "acceleration": "0",
+        "kinetic": "1/2",
+        "canonicalMomentum": "1",
+        "cumulativeAction": "1/4",
+        "eulerLagrangeResidual": "0"
+      }
+    },
+    {
+      "p": [
+        1,
+        10,
+        0,
+        10,
+        0,
+        0,
+        -20,
+        0,
+        10,
+        0,
+        0,
+        50,
+        0
+      ],
+      "exact": {
+        "action": "-1/2",
+        "variedAction": "-9/8",
+        "firstVariation": "-1",
+        "secondVariation": "-1",
+        "residualMeanSquare": "0"
+      },
+      "query": {
+        "position": "0",
+        "velocity": "1",
+        "acceleration": "0",
+        "kinetic": "1/2",
+        "canonicalMomentum": "1",
+        "cumulativeAction": "0",
+        "eulerLagrangeResidual": "0"
+      }
+    },
+    {
+      "p": [
+        1,
+        10,
+        0,
+        10,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        50,
+        50
+      ],
+      "exact": {
+        "action": "2/3",
+        "variedAction": "83/120",
+        "firstVariation": "0",
+        "secondVariation": "1/5",
+        "residualMeanSquare": "4"
+      },
+      "query": {
+        "position": "3/4",
+        "velocity": "1",
+        "acceleration": "-2",
+        "kinetic": "1/2",
+        "canonicalMomentum": "1",
+        "cumulativeAction": "7/12",
+        "eulerLagrangeResidual": "-2"
+      }
+    },
+    {
+      "p": [
+        2,
+        25,
+        3,
+        11,
+        17,
+        -19,
+        -16,
+        2,
+        -10,
+        10,
+        7,
+        50,
+        79
+      ],
+      "exact": {
+        "action": "64/1875",
+        "variedAction": "10403/15000",
+        "firstVariation": "2491/1875",
+        "secondVariation": "-73/1875",
+        "residualMeanSquare": "87808/15625"
+      },
+      "query": {
+        "position": "5156041/5000000",
+        "velocity": "-8863/125000",
+        "acceleration": "1606/3125",
+        "kinetic": "78552769/15625000000",
+        "canonicalMomentum": "-5599191/3125000",
+        "cumulativeAction": "12430086394487/93750000000000",
+        "eulerLagrangeResidual": "3212/3125"
+      }
+    },
+    {
+      "p": [
+        1,
+        34,
+        4,
+        -19,
+        8,
+        -10,
+        25,
+        7,
+        5,
+        -3,
+        -7,
+        99,
+        36
+      ],
+      "exact": {
+        "action": "21017/4080",
+        "variedAction": "50708573/25500000",
+        "firstVariation": "-1987/680",
+        "secondVariation": "-234/425",
+        "residualMeanSquare": "9100/83521"
+      },
+      "query": {
+        "position": "-5599/31250",
+        "velocity": "-3073/4250",
+        "acceleration": "-82/289",
+        "kinetic": "9443329/36125000",
+        "canonicalMomentum": "-248833/212500",
+        "cumulativeAction": "-76377573/13281250000",
+        "eulerLagrangeResidual": "-82/289"
+      }
+    },
+    {
+      "p": [
+        3,
+        18,
+        -13,
+        0,
+        15,
+        12,
+        1,
+        6,
+        5,
+        2,
+        7,
+        15,
+        40
+      ],
+      "exact": {
+        "action": "13133/6000",
+        "variedAction": "5369243/2400000",
+        "firstVariation": "77/250",
+        "secondVariation": "1721/9000",
+        "residualMeanSquare": "1825/81"
+      },
+      "query": {
+        "position": "-597/1250",
+        "velocity": "266/225",
+        "acceleration": "-13/27",
+        "kinetic": "35378/16875",
+        "canonicalMomentum": "131209/37500",
+        "cumulativeAction": "15775219/11718750",
+        "eulerLagrangeResidual": "-13/9"
+      }
+    },
+    {
+      "p": [
+        2,
+        31,
+        -7,
+        -11,
+        18,
+        -6,
+        13,
+        -9,
+        7,
+        0,
+        5,
+        32,
+        1
+      ],
+      "exact": {
+        "action": "6907/7750",
+        "variedAction": "1110307/4843750",
+        "firstVariation": "-3521/1550",
+        "secondVariation": "4913/3875",
+        "residualMeanSquare": "691200/923521"
+      },
+      "query": {
+        "position": "-1700897/2500000",
+        "velocity": "48209/77500",
+        "acceleration": "-3564/4805",
+        "kinetic": "2324107681/6006250000",
+        "canonicalMomentum": "278718509/775000000",
+        "cumulativeAction": "-20060668018573/3875000000000000",
+        "eulerLagrangeResidual": "-7128/4805"
+      }
+    },
+    {
+      "p": [
+        3,
+        36,
+        4,
+        7,
+        -8,
+        -5,
+        22,
+        6,
+        -10,
+        6,
+        4,
+        36,
+        28
+      ],
+      "exact": {
+        "action": "574/1125",
+        "variedAction": "-564107/2812500",
+        "firstVariation": "-988/375",
+        "secondVariation": "917/250",
+        "residualMeanSquare": "3475/11664"
+      },
+      "query": {
+        "position": "11471/31250",
+        "velocity": "-49/1125",
+        "acceleration": "7/324",
+        "kinetic": "2401/843750",
+        "canonicalMomentum": "317293/468750",
+        "cumulativeAction": "-284497577/10986328125",
+        "eulerLagrangeResidual": "7/108"
+      }
+    },
+    {
+      "p": [
+        3,
+        32,
+        20,
+        -18,
+        -14,
+        12,
+        -24,
+        0,
+        3,
+        -6,
+        7,
+        -99,
+        99
+      ],
+      "exact": {
+        "action": "4061/500",
+        "variedAction": "601349891/80000000",
+        "firstVariation": "2589/4000",
+        "secondVariation": "291/4000",
+        "residualMeanSquare": "35325/16384"
+      },
+      "query": {
+        "position": "-275659/156250",
+        "velocity": "-44459/40000",
+        "acceleration": "-133/320",
+        "kinetic": "5929808043/3200000000",
+        "canonicalMomentum": "22492431/25000000",
+        "cumulativeAction": "256719530018259/31250000000000",
+        "eulerLagrangeResidual": "-399/320"
+      }
+    },
+    {
+      "p": [
+        3,
+        28,
+        -16,
+        -10,
+        -15,
+        3,
+        28,
+        -1,
+        10,
+        3,
+        -3,
+        95,
+        57
+      ],
+      "exact": {
+        "action": "-5529/3500",
+        "variedAction": "-12910481/5600000",
+        "firstVariation": "-9523/3500",
+        "secondVariation": "28839/7000",
+        "residualMeanSquare": "2025/1372"
+      },
+      "query": {
+        "position": "-8076779/5000000",
+        "velocity": "47559/140000",
+        "acceleration": "687/1960",
+        "kinetic": "6785575443/39200000000",
+        "canonicalMomentum": "-153294523/43750000",
+        "cumulativeAction": "20527630338573/109375000000000",
+        "eulerLagrangeResidual": "2061/1960"
+      }
+    },
+    {
+      "p": [
+        2,
+        15,
+        -14,
+        -2,
+        -6,
+        20,
+        -6,
+        -8,
+        9,
+        8,
+        6,
+        -69,
+        92
+      ],
+      "exact": {
+        "action": "806/375",
+        "variedAction": "19329091/30000000",
+        "firstVariation": "541/150",
+        "secondVariation": "18593/4500",
+        "residualMeanSquare": "26368/675"
+      },
+      "query": {
+        "position": "-3383/15625",
+        "velocity": "734/1875",
+        "acceleration": "-296/75",
+        "kinetic": "538756/3515625",
+        "canonicalMomentum": "213947/234375",
+        "cumulativeAction": "7845125062/3662109375",
+        "eulerLagrangeResidual": "-592/75"
+      }
+    },
+    {
+      "p": [
+        4,
+        11,
+        16,
+        20,
+        15,
+        19,
+        7,
+        -2,
+        -7,
+        3,
+        -4,
+        52,
+        39
+      ],
+      "exact": {
+        "action": "4773/1375",
+        "variedAction": "7953461/2750000",
+        "firstVariation": "-4099/2750",
+        "secondVariation": "3189/2200",
+        "residualMeanSquare": "8371200/14641"
+      },
+      "query": {
+        "position": "10067039/5000000",
+        "velocity": "77103/55000",
+        "acceleration": "-246/605",
+        "kinetic": "5944872609/1512500000",
+        "canonicalMomentum": "3859282003/550000000",
+        "cumulativeAction": "8095766787927117/5500000000000000",
+        "eulerLagrangeResidual": "-984/605"
+      }
+    },
+    {
+      "p": [
+        2,
+        24,
+        14,
+        -7,
+        0,
+        9,
+        5,
+        6,
+        -9,
+        10,
+        -8,
+        79,
+        21
+      ],
+      "exact": {
+        "action": "123/80",
+        "variedAction": "18939469/4500000",
+        "firstVariation": "12/5",
+        "secondVariation": "559/225",
+        "residualMeanSquare": "75/64"
+      },
+      "query": {
+        "position": "4362001/5000000",
+        "velocity": "-35069/40000",
+        "acceleration": "87/160",
+        "kinetic": "1229834761/1600000000",
+        "canonicalMomentum": "-13172499/10000000",
+        "cumulativeAction": "25845479303301/100000000000000",
+        "eulerLagrangeResidual": "87/80"
+      }
+    },
+    {
+      "p": [
+        1,
+        24,
+        -19,
+        11,
+        -9,
+        -13,
+        -5,
+        -1,
+        -1,
+        -5,
+        -10,
+        -66,
+        33
+      ],
+      "exact": {
+        "action": "1561/600",
+        "variedAction": "579751/240000",
+        "firstVariation": "77/240",
+        "secondVariation": "17/144",
+        "residualMeanSquare": "1225/1728"
+      },
+      "query": {
+        "position": "-5056319/5000000",
+        "velocity": "113471/120000",
+        "acceleration": "-71/480",
+        "kinetic": "12875667841/28800000000",
+        "canonicalMomentum": "43536707/30000000",
+        "cumulativeAction": "115307900507789/100000000000000",
+        "eulerLagrangeResidual": "-71/480"
+      }
+    },
+    {
+      "p": [
+        1,
+        8,
+        -3,
+        15,
+        8,
+        9,
+        25,
+        -2,
+        5,
+        -6,
+        -7,
+        14,
+        50
+      ],
+      "exact": {
+        "action": "11903/2400",
+        "variedAction": "8078027/1500000",
+        "firstVariation": "1177/400",
+        "secondVariation": "141/100",
+        "residualMeanSquare": "7675/256"
+      },
+      "query": {
+        "position": "4/5",
+        "velocity": "45/16",
+        "acceleration": "-5/2",
+        "kinetic": "2025/512",
+        "canonicalMomentum": "77/16",
+        "cumulativeAction": "10613/4800",
+        "eulerLagrangeResidual": "-5/2"
+      }
+    },
+    {
+      "p": [
+        3,
+        16,
+        -2,
+        6,
+        -16,
+        -19,
+        -12,
+        -4,
+        1,
+        -4,
+        -2,
+        76,
+        58
+      ],
+      "exact": {
+        "action": "15079/8000",
+        "variedAction": "1552993/500000",
+        "firstVariation": "2633/2000",
+        "secondVariation": "611/800",
+        "residualMeanSquare": "301275/4096"
+      },
+      "query": {
+        "position": "-31221/156250",
+        "velocity": "2237/20000",
+        "acceleration": "157/80",
+        "kinetic": "15012507/800000000",
+        "canonicalMomentum": "7191591/12500000",
+        "cumulativeAction": "161935521007/1953125000000",
+        "eulerLagrangeResidual": "471/80"
+      }
+    },
+    {
+      "p": [
+        3,
+        17,
+        16,
+        -6,
+        -20,
+        -20,
+        -10,
+        0,
+        0,
+        -10,
+        -4,
+        -50,
+        12
+      ],
+      "exact": {
+        "action": "1233/170",
+        "variedAction": "11227/1700",
+        "firstVariation": "124/85",
+        "secondVariation": "274/425",
+        "residualMeanSquare": "5760000/83521"
+      },
+      "query": {
+        "position": "20083/15625",
+        "velocity": "-3734/2125",
+        "acceleration": "-512/289",
+        "kinetic": "20914134/4515625",
+        "canonicalMomentum": "-1741661/265625",
+        "cumulativeAction": "9858197937/8300781250",
+        "eulerLagrangeResidual": "-1536/289"
+      }
+    },
+    {
+      "p": [
+        2,
+        26,
+        -4,
+        8,
+        -11,
+        18,
+        11,
+        -4,
+        -8,
+        5,
+        -5,
+        -9,
+        98
+      ],
+      "exact": {
+        "action": "23833/19500",
+        "variedAction": "66438547/48750000",
+        "firstVariation": "-2981/1950",
+        "secondVariation": "3674/4875",
+        "residualMeanSquare": "109300/28561"
+      },
+      "query": {
+        "position": "492693/625000",
+        "velocity": "321/1250",
+        "acceleration": "-1021/845",
+        "kinetic": "103041/1562500",
+        "canonicalMomentum": "8629623/6250000",
+        "cumulativeAction": "368472451776821/304687500000000",
+        "eulerLagrangeResidual": "-2042/845"
+      }
+    },
+    {
+      "p": [
+        4,
+        31,
+        -15,
+        13,
+        1,
+        -5,
+        -5,
+        -4,
+        7,
+        8,
+        -8,
+        -49,
+        70
+      ],
+      "exact": {
+        "action": "24331/4650",
+        "variedAction": "1307254763/372000000",
+        "firstVariation": "73597/18600",
+        "secondVariation": "34163/18600",
+        "residualMeanSquare": "486400/923521"
+      },
+      "query": {
+        "position": "439/1000",
+        "velocity": "263/310",
+        "acceleration": "100/961",
+        "kinetic": "69169/48050",
+        "canonicalMomentum": "196791/62000",
+        "cumulativeAction": "1490691587/372000000",
+        "eulerLagrangeResidual": "400/961"
+      }
+    },
+    {
+      "p": [
+        2,
+        20,
+        -17,
+        11,
+        -20,
+        -11,
+        17,
+        -10,
+        -5,
+        -2,
+        0,
+        63,
+        37
+      ],
+      "exact": {
+        "action": "9839/3000",
+        "variedAction": "19621817/12000000",
+        "firstVariation": "-55/24",
+        "secondVariation": "-607/600",
+        "residualMeanSquare": "763/100"
+      },
+      "query": {
+        "position": "-5317667/5000000",
+        "velocity": "92077/100000",
+        "acceleration": "571/1000",
+        "kinetic": "8478173929/10000000000",
+        "canonicalMomentum": "1676661/50000000",
+        "cumulativeAction": "-1420127840378861/1500000000000000",
+        "eulerLagrangeResidual": "571/500"
+      }
+    },
+    {
+      "p": [
+        4,
+        5,
+        2,
+        -9,
+        -19,
+        12,
+        -19,
+        10,
+        -10,
+        -6,
+        1,
+        47,
+        33
+      ],
+      "exact": {
+        "action": "60443/6000",
+        "variedAction": "85807397/3750000",
+        "firstVariation": "9751/500",
+        "secondVariation": "4122/125",
+        "residualMeanSquare": "203008/25"
+      },
+      "query": {
+        "position": "-1683247/2500000",
+        "velocity": "-8463/3125",
+        "acceleration": "3124/125",
+        "kinetic": "143244738/9765625",
+        "canonicalMomentum": "-238834307/25000000",
+        "cumulativeAction": "1218376800934029/125000000000000",
+        "eulerLagrangeResidual": "12496/125"
+      }
+    },
+    {
+      "p": [
+        4,
+        8,
+        -17,
+        -10,
+        -5,
+        -9,
+        -1,
+        10,
+        -9,
+        9,
+        0,
+        1,
+        96
+      ],
+      "exact": {
+        "action": "11597/6000",
+        "variedAction": "111432257/60000000",
+        "firstVariation": "-383/50",
+        "secondVariation": "19419/1000",
+        "residualMeanSquare": "1675/4"
+      },
+      "query": {
+        "position": "-168593/156250",
+        "velocity": "11579/5000",
+        "acceleration": "373/40",
+        "kinetic": "134073241/12500000",
+        "canonicalMomentum": "14642343/1562500",
+        "cumulativeAction": "46816917936/30517578125",
+        "eulerLagrangeResidual": "373/10"
+      }
+    },
+    {
+      "p": [
+        1,
+        9,
+        -6,
+        10,
+        -5,
+        -2,
+        12,
+        4,
+        -9,
+        10,
+        5,
+        -21,
+        47
+      ],
+      "exact": {
+        "action": "25069/13500",
+        "variedAction": "70744523/27000000",
+        "firstVariation": "-11173/3375",
+        "secondVariation": "4163/1350",
+        "residualMeanSquare": "14800/6561"
+      },
+      "query": {
+        "position": "38049/1250000",
+        "velocity": "12259/7500",
+        "acceleration": "464/405",
+        "kinetic": "150283081/112500000",
+        "canonicalMomentum": "15666191/9375000",
+        "cumulativeAction": "53809736033981/210937500000000",
+        "eulerLagrangeResidual": "464/405"
+      }
+    },
+    {
+      "p": [
+        2,
+        28,
+        8,
+        5,
+        10,
+        -18,
+        -14,
+        -4,
+        -3,
+        -10,
+        10,
+        -87,
+        25
+      ],
+      "exact": {
+        "action": "1721/2625",
+        "variedAction": "19636861/13125000",
+        "firstVariation": "-283/375",
+        "secondVariation": "1276/2625",
+        "residualMeanSquare": "6700/2401"
+      },
+      "query": {
+        "position": "173/160",
+        "velocity": "-1/112",
+        "acceleration": "-185/196",
+        "kinetic": "1/12544",
+        "canonicalMomentum": "-8577/5600",
+        "cumulativeAction": "-9019/43008",
+        "eulerLagrangeResidual": "-185/98"
+      }
+    },
+    {
+      "p": [
+        1,
+        11,
+        -10,
+        -13,
+        6,
+        7,
+        -27,
+        7,
+        -3,
+        -10,
+        5,
+        -32,
+        81
+      ],
+      "exact": {
+        "action": "-1583/2000",
+        "variedAction": "165367/750000",
+        "firstVariation": "-30673/11000",
+        "secondVariation": "3857/1650",
+        "residualMeanSquare": "73200/14641"
+      },
+      "query": {
+        "position": "-5419337/5000000",
+        "velocity": "-36281/55000",
+        "acceleration": "-1902/605",
+        "kinetic": "1316310961/6050000000",
+        "canonicalMomentum": "1246733089/550000000",
+        "cumulativeAction": "-1172628831129993/5500000000000000",
+        "eulerLagrangeResidual": "-1902/605"
+      }
+    },
+    {
+      "p": [
+        1,
+        14,
+        -18,
+        -8,
+        2,
+        9,
+        -22,
+        -2,
+        4,
+        6,
+        -3,
+        49,
+        33
+      ],
+      "exact": {
+        "action": "551/168",
+        "variedAction": "888071563/210000000",
+        "firstVariation": "6701/3500",
+        "secondVariation": "321/3500",
+        "residualMeanSquare": "6175/2401"
+      },
+      "query": {
+        "position": "-7467183/5000000",
+        "velocity": "68097/70000",
+        "acceleration": "359/490",
+        "kinetic": "4637201409/9800000000",
+        "canonicalMomentum": "745215591/175000000",
+        "cumulativeAction": "2141344125800847/1750000000000000",
+        "eulerLagrangeResidual": "359/490"
+      }
+    },
+    {
+      "p": [
+        2,
+        19,
+        -14,
+        -15,
+        -16,
+        10,
+        -3,
+        -3,
+        -2,
+        7,
+        1,
+        59,
+        36
+      ],
+      "exact": {
+        "action": "58841/114000",
+        "variedAction": "15799199/45600000",
+        "firstVariation": "-4937/14250",
+        "secondVariation": "91/456",
+        "residualMeanSquare": "889600/130321"
+      },
+      "query": {
+        "position": "-58411/31250",
+        "velocity": "-207/2375",
+        "acceleration": "488/361",
+        "kinetic": "42849/5640625",
+        "canonicalMomentum": "2294427/5937500",
+        "cumulativeAction": "71912283003/371093750000",
+        "eulerLagrangeResidual": "976/361"
+      }
+    },
+    {
+      "p": [
+        4,
+        15,
+        12,
+        -12,
+        14,
+        19,
+        -22,
+        -6,
+        -2,
+        10,
+        7,
+        55,
+        20
+      ],
+      "exact": {
+        "action": "10703/1125",
+        "variedAction": "418187/50000",
+        "firstVariation": "-3058/1125",
+        "secondVariation": "2566/1125",
+        "residualMeanSquare": "327424/2025"
+      },
+      "query": {
+        "position": "476/625",
+        "velocity": "-409/375",
+        "acceleration": "404/225",
+        "kinetic": "334562/140625",
+        "canonicalMomentum": "-56608/9375",
+        "cumulativeAction": "39780553/17578125",
+        "eulerLagrangeResidual": "1616/225"
+      }
+    },
+    {
+      "p": [
+        1,
+        29,
+        -13,
+        -3,
+        16,
+        5,
+        23,
+        -2,
+        10,
+        -2,
+        -9,
+        -56,
+        4
+      ],
+      "exact": {
+        "action": "-13153/8700",
+        "variedAction": "-14973581/27187500",
+        "firstVariation": "-20489/21750",
+        "secondVariation": "60139/21750",
+        "residualMeanSquare": "132400/707281"
+      },
+      "query": {
+        "position": "-38007/31250",
+        "velocity": "2609/3625",
+        "acceleration": "-44/841",
+        "kinetic": "6806881/26281250",
+        "canonicalMomentum": "-18828169/9062500",
+        "cumulativeAction": "-90129604769/424804687500",
+        "eulerLagrangeResidual": "-44/841"
+      }
+    },
+    {
+      "p": [
+        3,
+        18,
+        0,
+        -20,
+        9,
+        -19,
+        30,
+        -8,
+        -6,
+        5,
+        6,
+        -81,
+        54
+      ],
+      "exact": {
+        "action": "254/25",
+        "variedAction": "15441073/2000000",
+        "firstVariation": "841/300",
+        "secondVariation": "-463/900",
+        "residualMeanSquare": "9700/243"
+      },
+      "query": {
+        "position": "-558873/625000",
+        "velocity": "-37547/22500",
+        "acceleration": "-37/135",
+        "kinetic": "1409777209/337500000",
+        "canonicalMomentum": "-14416607/1875000",
+        "cumulativeAction": "2346494066937/781250000000",
+        "eulerLagrangeResidual": "-37/45"
+      }
+    },
+    {
+      "p": [
+        1,
+        22,
+        16,
+        19,
+        8,
+        4,
+        -17,
+        -7,
+        -10,
+        4,
+        -6,
+        -51,
+        95
+      ],
+      "exact": {
+        "action": "-431/528",
+        "variedAction": "-1046303581/660000000",
+        "firstVariation": "5411/4125",
+        "secondVariation": "-25381/33000",
+        "residualMeanSquare": "2800/14641"
+      },
+      "query": {
+        "position": "19401/10000",
+        "velocity": "-353/1100",
+        "acceleration": "-94/121",
+        "kinetic": "124609/2420000",
+        "canonicalMomentum": "-3980987/1100000",
+        "cumulativeAction": "-62998482761/66000000000",
+        "eulerLagrangeResidual": "-94/121"
+      }
+    },
+    {
+      "p": [
+        3,
+        25,
+        16,
+        17,
+        3,
+        16,
+        -17,
+        -2,
+        -7,
+        8,
+        10,
+        -67,
+        91
+      ],
+      "exact": {
+        "action": "507/10000",
+        "variedAction": "-24293441/20000000",
+        "firstVariation": "1899/1000",
+        "secondVariation": "31/1000",
+        "residualMeanSquare": "111888/15625"
+      },
+      "query": {
+        "position": "4557557/2500000",
+        "velocity": "-11997/31250",
+        "acceleration": "-4236/3125",
+        "kinetic": "431784027/1953125000",
+        "canonicalMomentum": "-106271269/25000000",
+        "cumulativeAction": "-52722066753993/125000000000000",
+        "eulerLagrangeResidual": "-12708/3125"
+      }
+    },
+    {
+      "p": [
+        3,
+        18,
+        -18,
+        8,
+        -6,
+        -16,
+        19,
+        -2,
+        -2,
+        8,
+        1,
+        -7,
+        12
+      ],
+      "exact": {
+        "action": "369/100",
+        "variedAction": "68083907/18000000",
+        "firstVariation": "-327/250",
+        "secondVariation": "323/900",
+        "residualMeanSquare": "6700/243"
+      },
+      "query": {
+        "position": "-111168/78125",
+        "velocity": "948/625",
+        "acceleration": "-254/135",
+        "kinetic": "1348056/390625",
+        "canonicalMomentum": "721404/390625",
+        "cumulativeAction": "-19637480619/122070312500",
+        "eulerLagrangeResidual": "-254/45"
+      }
+    },
+    {
+      "p": [
+        2,
+        37,
+        -4,
+        -3,
+        -8,
+        -19,
+        -6,
+        0,
+        1,
+        -2,
+        1,
+        98,
+        31
+      ],
+      "exact": {
+        "action": "30691/111000",
+        "variedAction": "28790609/92500000",
+        "firstVariation": "1759/55500",
+        "secondVariation": "427/55500",
+        "residualMeanSquare": "49600/50653"
+      },
+      "query": {
+        "position": "-1928421/5000000",
+        "velocity": "-37123/185000",
+        "acceleration": "-1366/6845",
+        "kinetic": "1378117129/34225000000",
+        "canonicalMomentum": "-157175269/925000000",
+        "cumulativeAction": "845146024864747/27750000000000000",
+        "eulerLagrangeResidual": "-2732/6845"
+      }
+    },
+    {
+      "p": [
+        3,
+        9,
+        -13,
+        9,
+        19,
+        -16,
+        -24,
+        8,
+        2,
+        -4,
+        8,
+        -71,
+        10
+      ],
+      "exact": {
+        "action": "53917/4500",
+        "variedAction": "960381/50000",
+        "firstVariation": "-10154/1125",
+        "secondVariation": "146/45",
+        "residualMeanSquare": "451600/729"
+      },
+      "query": {
+        "position": "-3969/5000",
+        "velocity": "1114/225",
+        "acceleration": "-1148/81",
+        "kinetic": "620498/16875",
+        "canonicalMomentum": "314221/18750",
+        "cumulativeAction": "3129750353/562500000",
+        "eulerLagrangeResidual": "-1148/27"
+      }
+    },
+    {
+      "p": [
+        1,
+        5,
+        -2,
+        -19,
+        0,
+        -17,
+        -10,
+        5,
+        -6,
+        -4,
+        -3,
+        83,
+        7
+      ],
+      "exact": {
+        "action": "1683/1000",
+        "variedAction": "143164231/30000000",
+        "firstVariation": "338/125",
+        "secondVariation": "3679/1500",
+        "residualMeanSquare": "13872/25"
+      },
+      "query": {
+        "position": "-1119119/5000000",
+        "velocity": "-33201/25000",
+        "acceleration": "-4386/125",
+        "kinetic": "1102306401/1250000000",
+        "canonicalMomentum": "-5521081/5000000",
+        "cumulativeAction": "281633254119/50000000000000",
+        "eulerLagrangeResidual": "-4386/125"
+      }
+    },
+    {
+      "p": [
+        4,
+        28,
+        -5,
+        15,
+        13,
+        -7,
+        -4,
+        3,
+        2,
+        3,
+        10,
+        63,
+        16
+      ],
+      "exact": {
+        "action": "1538/525",
+        "variedAction": "56681789/21000000",
+        "firstVariation": "-12/25",
+        "secondVariation": "127/350",
+        "residualMeanSquare": "7900/2401"
+      },
+      "query": {
+        "position": "9171/156250",
+        "velocity": "674/625",
+        "acceleration": "-341/490",
+        "kinetic": "908552/390625",
+        "canonicalMomentum": "1675829/390625",
+        "cumulativeAction": "930512238016/640869140625",
+        "eulerLagrangeResidual": "-682/245"
+      }
+    },
+    {
+      "p": [
+        4,
+        17,
+        20,
+        17,
+        9,
+        8,
+        -25,
+        8,
+        0,
+        -6,
+        2,
+        -91,
+        35
+      ],
+      "exact": {
+        "action": "13339/6800",
+        "variedAction": "-1974881/4250000",
+        "firstVariation": "1792/425",
+        "secondVariation": "1448/425",
+        "residualMeanSquare": "1747200/83521"
+      },
+      "query": {
+        "position": "40903/20000",
+        "velocity": "131/850",
+        "acceleration": "-36/289",
+        "kinetic": "17161/361250",
+        "canonicalMomentum": "-611511/136000",
+        "cumulativeAction": "-1160520641/5440000000",
+        "eulerLagrangeResidual": "-144/289"
+      }
+    },
+    {
+      "p": [
+        3,
+        35,
+        18,
+        7,
+        -14,
+        14,
+        11,
+        9,
+        -10,
+        2,
+        7,
+        18,
+        28
+      ],
+      "exact": {
+        "action": "-7643/14000",
+        "variedAction": "-21417629/35000000",
+        "firstVariation": "-1177/1750",
+        "secondVariation": "23791/7000",
+        "residualMeanSquare": "2304/1225"
+      },
+      "query": {
+        "position": "169621/156250",
+        "velocity": "-8891/21875",
+        "acceleration": "464/875",
+        "kinetic": "237149643/957031250",
+        "canonicalMomentum": "-275683/10937500",
+        "cumulativeAction": "-142062393149/488281250000",
+        "eulerLagrangeResidual": "1392/875"
+      }
+    },
+    {
+      "p": [
+        4,
+        38,
+        -15,
+        -5,
+        16,
+        13,
+        7,
+        -7,
+        -4,
+        6,
+        -10,
+        -46,
+        48
+      ],
+      "exact": {
+        "action": "34/75",
+        "variedAction": "163572557/285000000",
+        "firstVariation": "-821/3800",
+        "secondVariation": "3811/19000",
+        "residualMeanSquare": "305200/130321"
+      },
+      "query": {
+        "position": "-99003/156250",
+        "velocity": "10693/23750",
+        "acceleration": "-1/5",
+        "kinetic": "114340249/282031250",
+        "canonicalMomentum": "40297601/29687500",
+        "cumulativeAction": "213548398509/1159667968750",
+        "eulerLagrangeResidual": "-4/5"
+      }
+    },
+    {
+      "p": [
+        4,
+        6,
+        19,
+        18,
+        -14,
+        -4,
+        -5,
+        -2,
+        -9,
+        8,
+        -2,
+        14,
+        87
+      ],
+      "exact": {
+        "action": "8677/3600",
+        "variedAction": "20444407/9000000",
+        "firstVariation": "-583/450",
+        "secondVariation": "7843/1800",
+        "residualMeanSquare": "97600/81"
+      },
+      "query": {
+        "position": "1013239/625000",
+        "velocity": "13307/7500",
+        "acceleration": "572/45",
+        "kinetic": "177076249/28125000",
+        "canonicalMomentum": "23574283/3750000",
+        "cumulativeAction": "2701162528079/1562500000000",
+        "eulerLagrangeResidual": "2288/45"
+      }
+    },
+    {
+      "p": [
+        2,
+        28,
+        17,
+        -13,
+        -14,
+        13,
+        22,
+        -2,
+        -6,
+        0,
+        10,
+        41,
+        49
+      ],
+      "exact": {
+        "action": "1349/600",
+        "variedAction": "197763763/52500000",
+        "firstVariation": "6137/1750",
+        "secondVariation": "841/875",
+        "residualMeanSquare": "17575/9604"
+      },
+      "query": {
+        "position": "-631787/5000000",
+        "velocity": "-118939/140000",
+        "acceleration": "739/1960",
+        "kinetic": "14146485721/19600000000",
+        "canonicalMomentum": "-345995099/175000000",
+        "cumulativeAction": "-424488054663323/750000000000000",
+        "eulerLagrangeResidual": "739/980"
+      }
+    },
+    {
+      "p": [
+        3,
+        8,
+        -16,
+        7,
+        -5,
+        -20,
+        14,
+        -10,
+        -3,
+        3,
+        -5,
+        41,
+        38
+      ],
+      "exact": {
+        "action": "5063/500",
+        "variedAction": "474625487/40000000",
+        "firstVariation": "2033/500",
+        "secondVariation": "1727/2000",
+        "residualMeanSquare": "275625/256"
+      },
+      "query": {
+        "position": "-91339/125000",
+        "velocity": "1691/1000",
+        "acceleration": "-47/16",
+        "kinetic": "8578443/2000000",
+        "canonicalMomentum": "632813/156250",
+        "cumulativeAction": "418409550947/156250000000",
+        "eulerLagrangeResidual": "-141/16"
+      }
+    },
+    {
+      "p": [
+        4,
+        28,
+        12,
+        -15,
+        8,
+        -10,
+        -21,
+        -2,
+        -1,
+        1,
+        -6,
+        -33,
+        43
+      ],
+      "exact": {
+        "action": "195379/42000",
+        "variedAction": "2095951987/420000000",
+        "firstVariation": "-20899/21000",
+        "secondVariation": "3883/21000",
+        "residualMeanSquare": "1300/343"
+      },
+      "query": {
+        "position": "134697/500000",
+        "velocity": "-15293/14000",
+        "acceleration": "-61/196",
+        "kinetic": "233875849/98000000",
+        "canonicalMomentum": "-172730459/35000000",
+        "cumulativeAction": "314553189544231/105000000000000",
+        "eulerLagrangeResidual": "-61/49"
+      }
+    },
+    {
+      "p": [
+        2,
+        24,
+        -16,
+        -13,
+        -8,
+        15,
+        30,
+        -9,
+        5,
+        0,
+        7,
+        -97,
+        57
+      ],
+      "exact": {
+        "action": "-223/225",
+        "variedAction": "165528167/36000000",
+        "firstVariation": "-1149/200",
+        "secondVariation": "7/200",
+        "residualMeanSquare": "18475/5184"
+      },
+      "query": {
+        "position": "-1573609/1000000",
+        "velocity": "11179/24000",
+        "acceleration": "17/288",
+        "kinetic": "124970041/576000000",
+        "canonicalMomentum": "-11367731/3000000",
+        "cumulativeAction": "157119034093/2000000000000",
+        "eulerLagrangeResidual": "17/144"
+      }
+    },
+    {
+      "p": [
+        3,
+        17,
+        -14,
+        19,
+        -16,
+        -15,
+        -30,
+        2,
+        8,
+        7,
+        -7,
+        22,
+        79
+      ],
+      "exact": {
+        "action": "5633/680",
+        "variedAction": "4135299/531250",
+        "firstVariation": "-373/170",
+        "secondVariation": "-299/425",
+        "residualMeanSquare": "3351600/83521"
+      },
+      "query": {
+        "position": "797227/1000000",
+        "velocity": "42349/17000",
+        "acceleration": "842/289",
+        "kinetic": "5380313403/578000000",
+        "canonicalMomentum": "86388423/17000000",
+        "cumulativeAction": "257149594995421/34000000000000",
+        "eulerLagrangeResidual": "2526/289"
+      }
+    },
+    {
+      "p": [
+        2,
+        18,
+        -3,
+        10,
+        13,
+        6,
+        2,
+        -4,
+        10,
+        -5,
+        -7,
+        54,
+        17
+      ],
+      "exact": {
+        "action": "37337/27000",
+        "variedAction": "5823736/2109375",
+        "firstVariation": "12583/6750",
+        "secondVariation": "8597/3375",
+        "residualMeanSquare": "27700/6561"
+      },
+      "query": {
+        "position": "60693/1250000",
+        "velocity": "51649/45000",
+        "acceleration": "-28/405",
+        "kinetic": "2667619201/2025000000",
+        "canonicalMomentum": "129668737/56250000",
+        "cumulativeAction": "163815063505723/421875000000000",
+        "eulerLagrangeResidual": "-56/405"
+      }
+    },
+    {
+      "p": [
+        1,
+        32,
+        -11,
+        -4,
+        -8,
+        14,
+        26,
+        -5,
+        -8,
+        9,
+        -9,
+        26,
+        13
+      ],
+      "exact": {
+        "action": "-11461/9600",
+        "variedAction": "-163990181/120000000",
+        "firstVariation": "-6539/8000",
+        "secondVariation": "9417/8000",
+        "residualMeanSquare": "4075/16384"
+      },
+      "query": {
+        "position": "-3041629/2500000",
+        "velocity": "-8549/80000",
+        "acceleration": "977/1280",
+        "kinetic": "73085401/12800000000",
+        "canonicalMomentum": "-163507833/50000000",
+        "cumulativeAction": "277455769374121/750000000000000",
+        "eulerLagrangeResidual": "977/1280"
+      }
+    },
+    {
+      "p": [
+        3,
+        36,
+        -17,
+        6,
+        4,
+        12,
+        -4,
+        -2,
+        10,
+        5,
+        -5,
+        47,
+        74
+      ],
+      "exact": {
+        "action": "51343/18000",
+        "variedAction": "89235437/22500000",
+        "firstVariation": "4841/2250",
+        "secondVariation": "1043/1125",
+        "residualMeanSquare": "700/729"
+      },
+      "query": {
+        "position": "59307/312500",
+        "velocity": "14333/22500",
+        "acceleration": "-133/405",
+        "kinetic": "205434889/337500000",
+        "canonicalMomentum": "8602283/4687500",
+        "cumulativeAction": "23066441057893/8789062500000",
+        "eulerLagrangeResidual": "-133/135"
+      }
+    },
+    {
+      "p": [
+        2,
+        20,
+        9,
+        -19,
+        -18,
+        9,
+        21,
+        7,
+        10,
+        0,
+        8,
+        23,
+        83
+      ],
+      "exact": {
+        "action": "7481/1000",
+        "variedAction": "122660481/20000000",
+        "firstVariation": "-6009/1000",
+        "secondVariation": "1289/1000",
+        "residualMeanSquare": "567/100"
+      },
+      "query": {
+        "position": "-7970833/5000000",
+        "velocity": "-87503/100000",
+        "acceleration": "9/1000",
+        "kinetic": "7656775009/10000000000",
+        "canonicalMomentum": "-254890493/50000000",
+        "cumulativeAction": "3041832277991069/500000000000000",
+        "eulerLagrangeResidual": "9/500"
+      }
+    },
+    {
+      "p": [
+        1,
+        11,
+        -18,
+        -4,
+        -2,
+        -10,
+        -25,
+        10,
+        -6,
+        10,
+        -3,
+        28,
+        10
+      ],
+      "exact": {
+        "action": "3193/660",
+        "variedAction": "281669/93750",
+        "firstVariation": "-2357/330",
+        "secondVariation": "637/150",
+        "residualMeanSquare": "121600/14641"
+      },
+      "query": {
+        "position": "-803/500",
+        "velocity": "17/11",
+        "acceleration": "-40/11",
+        "kinetic": "289/242",
+        "canonicalMomentum": "12233/2200",
+        "cumulativeAction": "6586639/6600000",
+        "eulerLagrangeResidual": "-40/11"
+      }
+    },
+    {
+      "p": [
+        3,
+        33,
+        15,
+        -11,
+        20,
+        -12,
+        6,
+        -10,
+        7,
+        -1,
+        3,
+        -98,
+        50
+      ],
+      "exact": {
+        "action": "14428/4125",
+        "variedAction": "680938721/82500000",
+        "firstVariation": "-61153/16500",
+        "secondVariation": "3511/1500",
+        "residualMeanSquare": "332800/131769"
+      },
+      "query": {
+        "position": "7/10",
+        "velocity": "-32/33",
+        "acceleration": "-400/1089",
+        "kinetic": "512/363",
+        "canonicalMomentum": "-1369/550",
+        "cumulativeAction": "1367/4125",
+        "eulerLagrangeResidual": "-400/363"
+      }
+    },
+    {
+      "p": [
+        1,
+        25,
+        20,
+        1,
+        3,
+        15,
+        13,
+        0,
+        1,
+        -5,
+        -6,
+        20,
+        10
+      ],
+      "exact": {
+        "action": "-3551/2000",
+        "variedAction": "-169211/93750",
+        "firstVariation": "-31/200",
+        "secondVariation": "1187/15000",
+        "residualMeanSquare": "10944/15625"
+      },
+      "query": {
+        "position": "1729/1000",
+        "velocity": "-47/50",
+        "acceleration": "132/125",
+        "kinetic": "2209/5000",
+        "canonicalMomentum": "13077/10000",
+        "cumulativeAction": "-10180859/20000000",
+        "eulerLagrangeResidual": "132/125"
+      }
+    },
+    {
+      "p": [
+        4,
+        23,
+        -13,
+        0,
+        2,
+        11,
+        -3,
+        2,
+        -9,
+        -4,
+        2,
+        6,
+        45
+      ],
+      "exact": {
+        "action": "268423/138000",
+        "variedAction": "26948543/15000000",
+        "firstVariation": "-87451/34500",
+        "secondVariation": "136621/69000",
+        "residualMeanSquare": "2348800/279841"
+      },
+      "query": {
+        "position": "-27709/40000",
+        "velocity": "3707/4600",
+        "acceleration": "26/529",
+        "kinetic": "13741849/10580000",
+        "canonicalMomentum": "31567921/9200000",
+        "cumulativeAction": "711651718611/736000000000",
+        "eulerLagrangeResidual": "104/529"
+      }
+    },
+    {
+      "p": [
+        2,
+        21,
+        -8,
+        -11,
+        -10,
+        -10,
+        -10,
+        -6,
+        4,
+        -6,
+        4,
+        51,
+        91
+      ],
+      "exact": {
+        "action": "149/12600",
+        "variedAction": "17712143/31500000",
+        "firstVariation": "131/175",
+        "secondVariation": "227/175",
+        "residualMeanSquare": "640000/194481"
+      },
+      "query": {
+        "position": "-611029/500000",
+        "velocity": "5143/10500",
+        "acceleration": "692/441",
+        "kinetic": "26450449/110250000",
+        "canonicalMomentum": "23117609/10500000",
+        "cumulativeAction": "-946458825169/4500000000000",
+        "eulerLagrangeResidual": "1384/441"
+      }
+    },
+    {
+      "p": [
+        4,
+        22,
+        6,
+        4,
+        -8,
+        -2,
+        14,
+        -9,
+        9,
+        -8,
+        -8,
+        43,
+        84
+      ],
+      "exact": {
+        "action": "161/1650",
+        "variedAction": "593854/515625",
+        "firstVariation": "347/330",
+        "secondVariation": "5372/825",
+        "residualMeanSquare": "30400/14641"
+      },
+      "query": {
+        "position": "23922/78125",
+        "velocity": "1196/6875",
+        "acceleration": "302/605",
+        "kinetic": "2860832/47265625",
+        "canonicalMomentum": "4831994/4296875",
+        "cumulativeAction": "-599829657/671386718750",
+        "eulerLagrangeResidual": "1208/605"
+      }
+    },
+    {
+      "p": [
+        3,
+        12,
+        -14,
+        16,
+        -13,
+        5,
+        4,
+        8,
+        6,
+        2,
+        0,
+        89,
+        18
+      ],
+      "exact": {
+        "action": "3641/300",
+        "variedAction": "14197203/1250000",
+        "firstVariation": "-1327/1500",
+        "secondVariation": "8/375",
+        "residualMeanSquare": "1525/36"
+      },
+      "query": {
+        "position": "-137389/125000",
+        "velocity": "1759/1000",
+        "acceleration": "113/36",
+        "kinetic": "9282243/2000000",
+        "canonicalMomentum": "3023347/625000",
+        "cumulativeAction": "77168892267/156250000000",
+        "eulerLagrangeResidual": "113/12"
+      }
+    },
+    {
+      "p": [
+        1,
+        17,
+        -7,
+        -10,
+        9,
+        14,
+        -21,
+        -2,
+        1,
+        -2,
+        -1,
+        99,
+        56
+      ],
+      "exact": {
+        "action": "-10687/34000",
+        "variedAction": "48352991/340000000",
+        "firstVariation": "1697/4250",
+        "secondVariation": "6373/51000",
+        "residualMeanSquare": "267600/83521"
+      },
+      "query": {
+        "position": "-94507/156250",
+        "velocity": "1636/10625",
+        "acceleration": "-1404/1445",
+        "kinetic": "1338248/112890625",
+        "canonicalMomentum": "37828999/26562500",
+        "cumulativeAction": "162850180829/1037597656250",
+        "eulerLagrangeResidual": "-1404/1445"
+      }
+    },
+    {
+      "p": [
+        4,
+        5,
+        11,
+        17,
+        7,
+        10,
+        -20,
+        -1,
+        6,
+        -1,
+        -1,
+        43,
+        10
+      ],
+      "exact": {
+        "action": "91/75",
+        "variedAction": "9194501/5000000",
+        "firstVariation": "113/150",
+        "secondVariation": "2447/750",
+        "residualMeanSquare": "89344/25"
+      },
+      "query": {
+        "position": "1151/1000",
+        "velocity": "7/5",
+        "acceleration": "68/5",
+        "kinetic": "98/25",
+        "canonicalMomentum": "1649/500",
+        "cumulativeAction": "-16259/3000000",
+        "eulerLagrangeResidual": "272/5"
+      }
+    },
+    {
+      "p": [
+        4,
+        23,
+        20,
+        -6,
+        5,
+        3,
+        -20,
+        -5,
+        4,
+        -2,
+        4,
+        91,
+        41
+      ],
+      "exact": {
+        "action": "16571/1725",
+        "variedAction": "119497531/23000000",
+        "firstVariation": "-1934/345",
+        "secondVariation": "5753/3450",
+        "residualMeanSquare": "332800/279841"
+      },
+      "query": {
+        "position": "5209437/5000000",
+        "velocity": "-118729/115000",
+        "acceleration": "-338/2645",
+        "kinetic": "14096575441/6612500000",
+        "canonicalMomentum": "-357275051/57500000",
+        "cumulativeAction": "364620448165493/75000000000000",
+        "eulerLagrangeResidual": "-1352/2645"
+      }
+    },
+    {
+      "p": [
+        2,
+        33,
+        11,
+        15,
+        1,
+        -16,
+        2,
+        -2,
+        -5,
+        -9,
+        -9,
+        -48,
+        1
+      ],
+      "exact": {
+        "action": "7639/24750",
+        "variedAction": "5579029/15468750",
+        "firstVariation": "-123/5500",
+        "secondVariation": "1971/5500",
+        "residualMeanSquare": "1230400/1185921"
+      },
+      "query": {
+        "position": "2801283/2500000",
+        "velocity": "25037/41250",
+        "acceleration": "-4804/5445",
+        "kinetic": "626851369/1701562500",
+        "canonicalMomentum": "593182339/412500000",
+        "cumulativeAction": "107097054618811/6187500000000000",
+        "eulerLagrangeResidual": "-9608/5445"
+      }
+    },
+    {
+      "p": [
+        3,
+        39,
+        -9,
+        3,
+        16,
+        -15,
+        1,
+        7,
+        2,
+        -8,
+        -5,
+        34,
+        6
+      ],
+      "exact": {
+        "action": "19873/19500",
+        "variedAction": "32507621/39000000",
+        "firstVariation": "-23609/39000",
+        "secondVariation": "2729/7800",
+        "residualMeanSquare": "372400/257049"
+      },
+      "query": {
+        "position": "-41457/62500",
+        "velocity": "9001/9750",
+        "acceleration": "-1112/1521",
+        "kinetic": "81018001/63375000",
+        "canonicalMomentum": "21963559/8125000",
+        "cumulativeAction": "346887554037/1015625000000",
+        "eulerLagrangeResidual": "-1112/507"
+      }
+    },
+    {
+      "p": [
+        2,
+        7,
+        12,
+        -8,
+        20,
+        9,
+        -24,
+        7,
+        10,
+        -10,
+        -4,
+        -13,
+        64
+      ],
+      "exact": {
+        "action": "9251/1050",
+        "variedAction": "76970823/8750000",
+        "firstVariation": "292/2625",
+        "secondVariation": "202/2625",
+        "residualMeanSquare": "1028800/2401"
+      },
+      "query": {
+        "position": "34286/78125",
+        "velocity": "-13849/4375",
+        "acceleration": "-2756/245",
+        "kinetic": "191794801/19140625",
+        "canonicalMomentum": "-20191274/2734375",
+        "cumulativeAction": "269787917672/91552734375",
+        "eulerLagrangeResidual": "-5512/245"
+      }
+    },
+    {
+      "p": [
+        2,
+        8,
+        10,
+        -18,
+        -4,
+        -12,
+        8,
+        -9,
+        -9,
+        10,
+        4,
+        57,
+        27
+      ],
+      "exact": {
+        "action": "4171/375",
+        "variedAction": "36280073/3000000",
+        "firstVariation": "541/375",
+        "secondVariation": "137/150",
+        "residualMeanSquare": "175"
+      },
+      "query": {
+        "position": "342449/1250000",
+        "velocity": "-40039/10000",
+        "acceleration": "-157/40",
+        "kinetic": "1603121521/100000000",
+        "canonicalMomentum": "-24339477/3125000",
+        "cumulativeAction": "16497576818577/7812500000000",
+        "eulerLagrangeResidual": "-157/20"
+      }
+    },
+    {
+      "p": [
+        4,
+        14,
+        -18,
+        17,
+        -1,
+        -6,
+        -1,
+        -1,
+        10,
+        -5,
+        6,
+        -60,
+        58
+      ],
+      "exact": {
+        "action": "148051/8400",
+        "variedAction": "780644/65625",
+        "firstVariation": "28061/2625",
+        "secondVariation": "79841/21000",
+        "residualMeanSquare": "43600/2401"
+      },
+      "query": {
+        "position": "113909/625000",
+        "velocity": "1446/625",
+        "acceleration": "97/245",
+        "kinetic": "4181832/390625",
+        "canonicalMomentum": "57726091/6250000",
+        "cumulativeAction": "1621795853690099/164062500000000",
+        "eulerLagrangeResidual": "388/245"
+      }
+    },
+    {
+      "p": [
+        2,
+        35,
+        -8,
+        3,
+        -4,
+        -17,
+        -16,
+        -5,
+        -4,
+        -5,
+        4,
+        83,
+        35
+      ],
+      "exact": {
+        "action": "2536/2625",
+        "variedAction": "45943087/26250000",
+        "firstVariation": "449/525",
+        "secondVariation": "566/2625",
+        "residualMeanSquare": "56512/60025"
+      },
+      "query": {
+        "position": "-15599/40000",
+        "velocity": "719/7000",
+        "acceleration": "-226/1225",
+        "kinetic": "516961/49000000",
+        "canonicalMomentum": "145143/175000",
+        "cumulativeAction": "3378847127/6000000000",
+        "eulerLagrangeResidual": "-452/1225"
+      }
+    },
+    {
+      "p": [
+        4,
+        32,
+        14,
+        -14,
+        13,
+        -10,
+        -20,
+        7,
+        8,
+        -4,
+        -8,
+        -39,
+        39
+      ],
+      "exact": {
+        "action": "2581/480",
+        "variedAction": "93058967/24000000",
+        "firstVariation": "23/6",
+        "secondVariation": "-73/1200",
+        "residualMeanSquare": "11725/4096"
+      },
+      "query": {
+        "position": "83701/125000",
+        "velocity": "-14707/16000",
+        "acceleration": "-49/128",
+        "kinetic": "216295849/128000000",
+        "canonicalMomentum": "-2507983/500000",
+        "cumulativeAction": "622187019909/250000000000",
+        "eulerLagrangeResidual": "-49/32"
+      }
+    },
+    {
+      "p": [
+        1,
+        12,
+        14,
+        10,
+        -2,
+        -20,
+        -16,
+        -3,
+        6,
+        5,
+        -10,
+        81,
+        67
+      ],
+      "exact": {
+        "action": "5281/4500",
+        "variedAction": "299429/22500000",
+        "firstVariation": "-7319/4500",
+        "secondVariation": "539/1125",
+        "residualMeanSquare": "7525/324"
+      },
+      "query": {
+        "position": "117179/125000",
+        "velocity": "-821/1000",
+        "acceleration": "28/9",
+        "kinetic": "674041/2000000",
+        "canonicalMomentum": "-1450557/625000",
+        "cumulativeAction": "51653275939/43945312500",
+        "eulerLagrangeResidual": "28/9"
+      }
+    },
+    {
+      "p": [
+        3,
+        12,
+        -19,
+        10,
+        -10,
+        14,
+        -13,
+        -5,
+        10,
+        -9,
+        8,
+        -41,
+        52
+      ],
+      "exact": {
+        "action": "39347/3000",
+        "variedAction": "103451147/12000000",
+        "firstVariation": "303/25",
+        "secondVariation": "1129/200",
+        "residualMeanSquare": "1075/9"
+      },
+      "query": {
+        "position": "-49033/78125",
+        "velocity": "22729/7500",
+        "acceleration": "52/45",
+        "kinetic": "516607441/37500000",
+        "canonicalMomentum": "15480483/1562500",
+        "cumulativeAction": "4785426286433/732421875000",
+        "eulerLagrangeResidual": "52/15"
+      }
+    },
+    {
+      "p": [
+        3,
+        12,
+        -14,
+        7,
+        16,
+        -18,
+        -12,
+        -7,
+        8,
+        -8,
+        2,
+        -26,
+        65
+      ],
+      "exact": {
+        "action": "49627/6000",
+        "variedAction": "19858511/3000000",
+        "firstVariation": "21397/3000",
+        "secondVariation": "3599/600",
+        "residualMeanSquare": "7675/36"
+      },
+      "query": {
+        "position": "4123/20000",
+        "velocity": "321/400",
+        "acceleration": "1/36",
+        "kinetic": "309123/320000",
+        "canonicalMomentum": "54003/25000",
+        "cumulativeAction": "5699410483/750000000",
+        "eulerLagrangeResidual": "1/12"
+      }
+    },
+    {
+      "p": [
+        2,
+        27,
+        15,
+        1,
+        -1,
+        17,
+        -8,
+        -3,
+        -9,
+        -1,
+        5,
+        -34,
+        56
+      ],
+      "exact": {
+        "action": "18602/10125",
+        "variedAction": "7021471/4218750",
+        "firstVariation": "4684/10125",
+        "secondVariation": "-2732/10125",
+        "residualMeanSquare": "1388800/531441"
+      },
+      "query": {
+        "position": "115879/156250",
+        "velocity": "-3592/16875",
+        "acceleration": "-512/3645",
+        "kinetic": "12902464/284765625",
+        "canonicalMomentum": "-10747466/10546875",
+        "cumulativeAction": "2944770936352/2471923828125",
+        "eulerLagrangeResidual": "-1024/3645"
+      }
+    },
+    {
+      "p": [
+        2,
+        29,
+        -10,
+        9,
+        18,
+        20,
+        18,
+        -4,
+        10,
+        -10,
+        -2,
+        2,
+        27
+      ],
+      "exact": {
+        "action": "49941/29000",
+        "variedAction": "24034207/13593750",
+        "firstVariation": "657/290",
+        "secondVariation": "33703/10875",
+        "residualMeanSquare": "2438400/707281"
+      },
+      "query": {
+        "position": "-19597/62500",
+        "velocity": "7733/7250",
+        "acceleration": "192/841",
+        "kinetic": "59799289/52562500",
+        "canonicalMomentum": "14217683/9062500",
+        "cumulativeAction": "-220059482751/1132812500000",
+        "eulerLagrangeResidual": "384/841"
+      }
+    },
+    {
+      "p": [
+        2,
+        8,
+        -3,
+        4,
+        17,
+        -10,
+        16,
+        2,
+        3,
+        9,
+        6,
+        -99,
+        31
+      ],
+      "exact": {
+        "action": "796/375",
+        "variedAction": "877121/750000",
+        "firstVariation": "719/500",
+        "secondVariation": "24/25",
+        "residualMeanSquare": "14725/64"
+      },
+      "query": {
+        "position": "45239/125000",
+        "velocity": "5313/4000",
+        "acceleration": "-71/8",
+        "kinetic": "28227969/16000000",
+        "canonicalMomentum": "4044449/1250000",
+        "cumulativeAction": "3706062443741/1875000000000",
+        "eulerLagrangeResidual": "-71/4"
+      }
+    },
+    {
+      "p": [
+        2,
+        13,
+        -8,
+        10,
+        12,
+        3,
+        4,
+        -2,
+        5,
+        9,
+        -2,
+        9,
+        38
+      ],
+      "exact": {
+        "action": "9579/3250",
+        "variedAction": "15936981/5000000",
+        "firstVariation": "4241/1625",
+        "secondVariation": "4113/3250",
+        "residualMeanSquare": "273600/28561"
+      },
+      "query": {
+        "position": "46799/312500",
+        "velocity": "2127/1250",
+        "acceleration": "-984/845",
+        "kinetic": "4524129/1562500",
+        "canonicalMomentum": "2705549/781250",
+        "cumulativeAction": "10844221577463/6347656250000",
+        "eulerLagrangeResidual": "-1968/845"
+      }
+    },
+    {
+      "p": [
+        1,
+        37,
+        18,
+        4,
+        13,
+        -17,
+        8,
+        -2,
+        -4,
+        -9,
+        -3,
+        -3,
+        20
+      ],
+      "exact": {
+        "action": "-11279/13875",
+        "variedAction": "-113435471/138750000",
+        "firstVariation": "146/925",
+        "secondVariation": "854/4625",
+        "residualMeanSquare": "11200/50653"
+      },
+      "query": {
+        "position": "1182/625",
+        "velocity": "-138/925",
+        "acceleration": "-872/1369",
+        "kinetic": "9522/855625",
+        "canonicalMomentum": "157686/115625",
+        "cumulativeAction": "32677853/216796875",
+        "eulerLagrangeResidual": "-872/1369"
+      }
+    },
+    {
+      "p": [
+        3,
+        22,
+        -20,
+        13,
+        -18,
+        10,
+        -16,
+        -10,
+        2,
+        5,
+        -9,
+        -89,
+        45
+      ],
+      "exact": {
+        "action": "111603/11000",
+        "variedAction": "34120903/6875000",
+        "firstVariation": "10353/1375",
+        "secondVariation": "5272/1375",
+        "residualMeanSquare": "140400/14641"
+      },
+      "query": {
+        "position": "-3941/4000",
+        "velocity": "721/440",
+        "acceleration": "105/121",
+        "kinetic": "1559523/387200",
+        "canonicalMomentum": "357077/55000",
+        "cumulativeAction": "1862354493/440000000",
+        "eulerLagrangeResidual": "315/121"
+      }
+    },
+    {
+      "p": [
+        3,
+        31,
+        -8,
+        3,
+        6,
+        2,
+        2,
+        -3,
+        -8,
+        0,
+        1,
+        26,
+        24
+      ],
+      "exact": {
+        "action": "3673/6200",
+        "variedAction": "6851613/15500000",
+        "firstVariation": "-4839/7750",
+        "secondVariation": "1097/3100",
+        "residualMeanSquare": "172800/923521"
+      },
+      "query": {
+        "position": "-34807/78125",
+        "velocity": "8943/19375",
+        "acceleration": "-288/4805",
+        "kinetic": "239931747/750781250",
+        "canonicalMomentum": "15689108/12109375",
+        "cumulativeAction": "197935406172/946044921875",
+        "eulerLagrangeResidual": "-864/4805"
+      }
+    },
+    {
+      "p": [
+        4,
+        40,
+        -11,
+        14,
+        -18,
+        -2,
+        -12,
+        6,
+        1,
+        8,
+        -7,
+        -87,
+        79
+      ],
+      "exact": {
+        "action": "3219/1000",
+        "variedAction": "7382907/1250000",
+        "firstVariation": "-1331/500",
+        "secondVariation": "368/375",
+        "residualMeanSquare": "21/25"
+      },
+      "query": {
+        "position": "1392839/2500000",
+        "velocity": "88623/100000",
+        "acceleration": "537/2000",
+        "kinetic": "7854036129/5000000000",
+        "canonicalMomentum": "17977233/6250000",
+        "cumulativeAction": "78415613414787/31250000000000",
+        "eulerLagrangeResidual": "537/500"
+      }
+    },
+    {
+      "p": [
+        1,
+        5,
+        -2,
+        12,
+        -13,
+        10,
+        -2,
+        2,
+        -7,
+        8,
+        -3,
+        95,
+        80
+      ],
+      "exact": {
+        "action": "31/12",
+        "variedAction": "187143/400000",
+        "firstVariation": "-238/75",
+        "secondVariation": "2989/1500",
+        "residualMeanSquare": "7504/25"
+      },
+      "query": {
+        "position": "101/125",
+        "velocity": "107/25",
+        "acceleration": "-4",
+        "kinetic": "11449/1250",
+        "canonicalMomentum": "2574/625",
+        "cumulativeAction": "443071/234375",
+        "eulerLagrangeResidual": "-4"
+      }
+    },
+    {
+      "p": [
+        1,
+        8,
+        6,
+        0,
+        -7,
+        19,
+        -26,
+        0,
+        -7,
+        -8,
+        5,
+        93,
+        35
+      ],
+      "exact": {
+        "action": "3739/3000",
+        "variedAction": "121724447/60000000",
+        "firstVariation": "239/240",
+        "secondVariation": "-997/3000",
+        "residualMeanSquare": "7075/64"
+      },
+      "query": {
+        "position": "4043/40000",
+        "velocity": "-233/1600",
+        "acceleration": "241/32",
+        "kinetic": "54289/5120000",
+        "canonicalMomentum": "-20421/50000",
+        "cumulativeAction": "25798138807/24000000000",
+        "eulerLagrangeResidual": "241/32"
+      }
+    },
+    {
+      "p": [
+        4,
+        31,
+        8,
+        -7,
+        -12,
+        16,
+        -7,
+        -5,
+        1,
+        -5,
+        8,
+        -94,
+        9
+      ],
+      "exact": {
+        "action": "26587/12400",
+        "variedAction": "47948783/14531250",
+        "firstVariation": "-24921/31000",
+        "secondVariation": "10523/11625",
+        "residualMeanSquare": "5836800/923521"
+      },
+      "query": {
+        "position": "143521/312500",
+        "velocity": "-20611/19375",
+        "acceleration": "5136/4805",
+        "kinetic": "849626642/375390625",
+        "canonicalMomentum": "-443364057/96875000",
+        "cumulativeAction": "59777196573303/60546875000000",
+        "eulerLagrangeResidual": "20544/4805"
+      }
+    },
+    {
+      "p": [
+        2,
+        7,
+        9,
+        11,
+        -10,
+        -18,
+        11,
+        8,
+        7,
+        -3,
+        7,
+        10,
+        93
+      ],
+      "exact": {
+        "action": "1763/1050",
+        "variedAction": "1374703/840000",
+        "firstVariation": "-611/1400",
+        "secondVariation": "321/1400",
+        "residualMeanSquare": "1715200/2401"
+      },
+      "query": {
+        "position": "2300313/2500000",
+        "velocity": "53923/17500",
+        "acceleration": "5644/245",
+        "kinetic": "2907689929/306250000",
+        "canonicalMomentum": "1255584101/175000000",
+        "cumulativeAction": "711344026931613/875000000000000",
+        "eulerLagrangeResidual": "11288/245"
+      }
+    },
+    {
+      "p": [
+        1,
+        19,
+        -11,
+        9,
+        -15,
+        8,
+        -18,
+        -6,
+        -10,
+        -4,
+        2,
+        40,
+        100
+      ],
+      "exact": {
+        "action": "3123/1900",
+        "variedAction": "1827181/712500",
+        "firstVariation": "5959/2375",
+        "secondVariation": "-7378/7125",
+        "residualMeanSquare": "166800/130321"
+      },
+      "query": {
+        "position": "9/10",
+        "velocity": "27/19",
+        "acceleration": "-180/361",
+        "kinetic": "729/722",
+        "canonicalMomentum": "-189/950",
+        "cumulativeAction": "3123/1900",
+        "eulerLagrangeResidual": "-180/361"
+      }
+    }
+  ],
+  "harmonic": [
+    {
+      "p": [
+        1,
+        2,
+        10,
+        10,
+        0,
+        10,
+        0,
+        50,
+        0
+      ],
+      "numeric": {
+        "action": "1.850550825204254741031467062476778337871318638857648242",
+        "variedAction": "4.163739356709573167320800890572751260210466937429708546",
+        "firstVariation": "3.701101650408509482062934124953556675742637277715296485",
+        "secondVariation": "3.701101650408509482062934124953556675742637277715296485",
+        "residualMeanSquare": "27.39630685331318547274884356869831253898588347044277485"
+      },
+      "query": {
+        "position": "0.0",
+        "velocity": "3.141592653589793238462643383279502884197169399375105821",
+        "acceleration": "0.0",
+        "kinetic": "4.934802200544679309417245499938075567656849703620395313",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "0.0",
+        "cumulativeAction": "0.0"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        10,
+        10,
+        0,
+        10,
+        0,
+        50,
+        17
+      ],
+      "numeric": {
+        "action": "1.850550825204254741031467062476778337871318638857648242",
+        "variedAction": "4.163739356709573167320800890572751260210466937429708546",
+        "firstVariation": "3.701101650408509482062934124953556675742637277715296485",
+        "secondVariation": "3.701101650408509482062934124953556675742637277715296485",
+        "residualMeanSquare": "27.39630685331318547274884356869831253898588347044277485"
+      },
+      "query": {
+        "position": "0.5090414157503713002834427138653056527808394212203901511",
+        "velocity": "2.704100828671576760129887209161150888855991539595850105",
+        "acceleration": "-5.024037397226622540502565848584494736414963566680537653",
+        "kinetic": "3.656080645811154065358293062212555335090746070342996238",
+        "potential": "0.3196803886833813110147381094313800581415259083193497687",
+        "eulerLagrangeResidual": "-3.76802804791996690537692438643837105231122267501040324",
+        "cumulativeAction": "0.7447496759593269494645554546005330927822552241474539684"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        10,
+        10,
+        0,
+        10,
+        0,
+        50,
+        50
+      ],
+      "numeric": {
+        "action": "1.850550825204254741031467062476778337871318638857648242",
+        "variedAction": "4.163739356709573167320800890572751260210466937429708546",
+        "firstVariation": "3.701101650408509482062934124953556675742637277715296485",
+        "secondVariation": "3.701101650408509482062934124953556675742637277715296485",
+        "residualMeanSquare": "27.39630685331318547274884356869831253898588347044277485"
+      },
+      "query": {
+        "position": "1.0",
+        "velocity": "0.0",
+        "acceleration": "-9.869604401089358618834490999876151135313699407240790626",
+        "kinetic": "0.0",
+        "potential": "1.233700550136169827354311374984518891914212425905098828",
+        "eulerLagrangeResidual": "-7.40220330081701896412586824990711335148527455543059297",
+        "cumulativeAction": "0.9252754126021273705157335312383891689356593194288241212"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        10,
+        10,
+        0,
+        10,
+        0,
+        50,
+        100
+      ],
+      "numeric": {
+        "action": "1.850550825204254741031467062476778337871318638857648242",
+        "variedAction": "4.163739356709573167320800890572751260210466937429708546",
+        "firstVariation": "3.701101650408509482062934124953556675742637277715296485",
+        "secondVariation": "3.701101650408509482062934124953556675742637277715296485",
+        "residualMeanSquare": "27.39630685331318547274884356869831253898588347044277485"
+      },
+      "query": {
+        "position": "1.141993699424869800528748001203835499055637128603064112e-61",
+        "velocity": "-3.141592653589793238462643383279502884197169399375105821",
+        "acceleration": "1.074860177210734200286554494232036340731267551898084585e-137",
+        "kinetic": "4.934802200544679309417245499938075567656849703620395313",
+        "potential": "1.608930090732220477848499658956970970510766510342621279e-122",
+        "eulerLagrangeResidual": "2.817756510465003282962205155997959282944435385525345977e-61",
+        "cumulativeAction": "1.850550825204254741031467062476778337871318638857648242"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        20,
+        10,
+        0,
+        10,
+        0,
+        50,
+        0
+      ],
+      "numeric": {
+        "action": "1.659257503413174909164746323424106227757990515037168854e-61",
+        "variedAction": "3.733328930645657649539717456776250012454986595197353231e-61",
+        "firstVariation": "3.318515006826349818329492646848212455515981030074337708e-61",
+        "secondVariation": "3.318515006826349818329492646848212455515981030074337708e-61",
+        "residualMeanSquare": "5.506267940322891096301807269035756499359578853951499761e-122"
+      },
+      "query": {
+        "position": "0.0",
+        "velocity": "1.57079632679489661923132169163975144209858469968755291",
+        "acceleration": "0.0",
+        "kinetic": "1.233700550136169827354311374984518891914212425905098828",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "0.0",
+        "cumulativeAction": "0.0"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        20,
+        10,
+        0,
+        10,
+        0,
+        50,
+        17
+      ],
+      "numeric": {
+        "action": "1.659257503413174909164746323424106227757990515037168854e-61",
+        "variedAction": "3.733328930645657649539717456776250012454986595197353231e-61",
+        "firstVariation": "3.318515006826349818329492646848212455515981030074337708e-61",
+        "secondVariation": "3.318515006826349818329492646848212455515981030074337708e-61",
+        "residualMeanSquare": "5.506267940322891096301807269035756499359578853951499761e-122"
+      },
+      "query": {
+        "position": "0.5090414157503713002834427138653056527808394212203901511",
+        "velocity": "1.352050414335788380064943604580575444427995769797925052",
+        "acceleration": "-1.256009349306655635125641462146123684103740891670134413",
+        "kinetic": "0.9140201614527885163395732655531388337726865175857490596",
+        "potential": "0.3196803886833813110147381094313800581415259083193497687",
+        "eulerLagrangeResidual": "-1.555753819465285426786016013445031060147563042180291783e-61",
+        "cumulativeAction": "0.3441248285396829147913648431835846202753048444333230138"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        20,
+        10,
+        0,
+        10,
+        0,
+        50,
+        50
+      ],
+      "numeric": {
+        "action": "1.659257503413174909164746323424106227757990515037168854e-61",
+        "variedAction": "3.733328930645657649539717456776250012454986595197353231e-61",
+        "firstVariation": "3.318515006826349818329492646848212455515981030074337708e-61",
+        "secondVariation": "3.318515006826349818329492646848212455515981030074337708e-61",
+        "residualMeanSquare": "5.506267940322891096301807269035756499359578853951499761e-122"
+      },
+      "query": {
+        "position": "1.0",
+        "velocity": "0.0",
+        "acceleration": "-2.467401100272339654708622749969037783828424851810197657",
+        "kinetic": "0.0",
+        "potential": "1.233700550136169827354311374984518891914212425905098828",
+        "eulerLagrangeResidual": "-3.111507638930570853572032026890062120295126084360583567e-61",
+        "cumulativeAction": "8.296288973667723752033560700794080440719335899621936506e-62"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        20,
+        10,
+        0,
+        10,
+        0,
+        50,
+        100
+      ],
+      "numeric": {
+        "action": "1.659257503413174909164746323424106227757990515037168854e-61",
+        "variedAction": "3.733328930645657649539717456776250012454986595197353231e-61",
+        "firstVariation": "3.318515006826349818329492646848212455515981030074337708e-61",
+        "secondVariation": "3.318515006826349818329492646848212455515981030074337708e-61",
+        "residualMeanSquare": "5.506267940322891096301807269035756499359578853951499761e-122"
+      },
+      "query": {
+        "position": "1.141993699424869800528748001203835499055637128603064112e-61",
+        "velocity": "-1.57079632679489661923132169163975144209858469968755291",
+        "acceleration": "0.0",
+        "kinetic": "1.233700550136169827354311374984518891914212425905098828",
+        "potential": "1.608930090732220477848499658956970970510766510342621279e-122",
+        "eulerLagrangeResidual": "2.817756510465003282962205155997959282944435385525345977e-61",
+        "cumulativeAction": "1.658239878389418052900899505531255093536894066322033866e-61"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        25,
+        10,
+        0,
+        10,
+        0,
+        50,
+        0
+      ],
+      "numeric": {
+        "action": "-0.5551652475612764223094401187430335013613955916572944727",
+        "variedAction": "-1.249121807012871950196240267171825378063140081228912564",
+        "firstVariation": "-1.110330495122552844618880237486067002722791183314588945",
+        "secondVariation": "-1.110330495122552844618880237486067002722791183314588945",
+        "residualMeanSquare": "0.3945068186877098708075833473892557005613967219743759579"
+      },
+      "query": {
+        "position": "0.0",
+        "velocity": "1.256637061435917295385057353311801153678867759750042328",
+        "acceleration": "0.0",
+        "kinetic": "0.7895683520871486895067592799900920908250959525792632501",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "0.0",
+        "cumulativeAction": "0.0"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        25,
+        10,
+        0,
+        10,
+        0,
+        50,
+        17
+      ],
+      "numeric": {
+        "action": "-0.5551652475612764223094401187430335013613955916572944727",
+        "variedAction": "-1.249121807012871950196240267171825378063140081228912564",
+        "firstVariation": "-1.110330495122552844618880237486067002722791183314588945",
+        "secondVariation": "-1.110330495122552844618880237486067002722791183314588945",
+        "residualMeanSquare": "0.3945068186877098708075833473892557005613967219743759579"
+      },
+      "query": {
+        "position": "0.5090414157503713002834427138653056527808394212203901511",
+        "velocity": "1.081640331468630704051954883664460355542396615838340042",
+        "acceleration": "-0.8038459835562596064804105357735191578263941706688860246",
+        "kinetic": "0.5849729033297846504573268899540088536145193712548793981",
+        "potential": "0.3196803886833813110147381094313800581415259083193497687",
+        "eulerLagrangeResidual": "0.4521633657503960286452309263726045262773467210012483888",
+        "cumulativeAction": "0.2583498571677579958685441440768585405507502149624160287"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        25,
+        10,
+        0,
+        10,
+        0,
+        50,
+        50
+      ],
+      "numeric": {
+        "action": "-0.5551652475612764223094401187430335013613955916572944727",
+        "variedAction": "-1.249121807012871950196240267171825378063140081228912564",
+        "firstVariation": "-1.110330495122552844618880237486067002722791183314588945",
+        "secondVariation": "-1.110330495122552844618880237486067002722791183314588945",
+        "residualMeanSquare": "0.3945068186877098708075833473892557005613967219743759579"
+      },
+      "query": {
+        "position": "1.0",
+        "velocity": "0.0",
+        "acceleration": "-1.5791367041742973790135185599801841816501919051585265",
+        "kinetic": "0.0",
+        "potential": "1.233700550136169827354311374984518891914212425905098828",
+        "eulerLagrangeResidual": "0.8882643960980422756951041899888536021782329466516711564",
+        "cumulativeAction": "-0.2775826237806382111547200593715167506806977958286472364"
+      }
+    },
+    {
+      "p": [
+        1,
+        2,
+        25,
+        10,
+        0,
+        10,
+        0,
+        50,
+        100
+      ],
+      "numeric": {
+        "action": "-0.5551652475612764223094401187430335013613955916572944727",
+        "variedAction": "-1.249121807012871950196240267171825378063140081228912564",
+        "firstVariation": "-1.110330495122552844618880237486067002722791183314588945",
+        "secondVariation": "-1.110330495122552844618880237486067002722791183314588945",
+        "residualMeanSquare": "0.3945068186877098708075833473892557005613967219743759579"
+      },
+      "query": {
+        "position": "1.141993699424869800528748001203835499055637128603064112e-61",
+        "velocity": "-1.256637061435917295385057353311801153678867759750042328",
+        "acceleration": "0.0",
+        "kinetic": "0.7895683520871486895067592799900920908250959525792632501",
+        "potential": "1.608930090732220477848499658956970970510766510342621279e-122",
+        "eulerLagrangeResidual": "2.817756510465003282962205155997959282944435385525345977e-61",
+        "cumulativeAction": "-0.5551652475612764223094401187430335013613955916572944727"
+      }
+    },
+    {
+      "p": [
+        2,
+        2,
+        7,
+        -20,
+        20,
+        5,
+        8,
+        -58,
+        98
+      ],
+      "numeric": {
+        "action": "275.0799740932191237906584562965481552142432506218111787",
+        "variedAction": "180.0945346813316359733226252123994312889695306225928308",
+        "firstVariation": "187.8961186444533394769969204426421830067971645008491375",
+        "secondVariation": "83.20041261531182567968122932570595849386822479948960638",
+        "residualMeanSquare": "258286.2701241000210014622950727633939880786968572137198"
+      },
+      "query": {
+        "position": "0.249181590112822508932745019763320672432282639721951187",
+        "velocity": "-17.49270226770279232526278001318654610208568675441305158",
+        "acceleration": "-65.40692831086285040188574681344121684873286941973884225",
+        "kinetic": "305.994632626494413092202783667229434965639472357285415",
+        "potential": "0.1532045486912603725086591762639172716140657869350934912",
+        "eulerLagrangeResidual": "-129.5841947625017219820585205579682322233707566946885361",
+        "cumulativeAction": "270.6453266461744015252360561884694257001105791176515569"
+      }
+    },
+    {
+      "p": [
+        1,
+        1,
+        5,
+        3,
+        -5,
+        2,
+        4,
+        -82,
+        43
+      ],
+      "numeric": {
+        "action": "11.52122101258415597520507535313667580186385129242124168",
+        "variedAction": "30.48597799551654301226187045017657129164877899917817486",
+        "firstVariation": "-17.15152189826810102479331389072227389483733825114563646",
+        "secondVariation": "14.57617199985884651019118889544209070796641981206874266",
+        "residualMeanSquare": "15793.48766052249992857373066414162930571252137526571161"
+      },
+      "query": {
+        "position": "0.6878525347694694022664417598298833110880254135398179046",
+        "velocity": "6.187703214029654367457306402315046552823142108439684592",
+        "acceleration": "-151.9316078208197892052728809209101415441708142208986451",
+        "kinetic": "19.14383553245645732282515152414223707195364181086964082",
+        "potential": "0.1459286117979301942995319470277468996859613581121525842",
+        "eulerLagrangeResidual": "-151.5073057955409625624283486427030080330876488228637669",
+        "cumulativeAction": "5.530567045812549779205892875988621472150420293762362566"
+      }
+    },
+    {
+      "p": [
+        2,
+        2,
+        22,
+        9,
+        -20,
+        -8,
+        -9,
+        26,
+        48
+      ],
+      "numeric": {
+        "action": "69.51319396120888969586795287205953092460409392282985851",
+        "variedAction": "86.98133456313746481594595338578346808898068388981421721",
+        "firstVariation": "63.5835804988725898074840944724748478504673292903205335",
+        "secondVariation": "27.70442817223969734118745416806144151642261394973431932",
+        "residualMeanSquare": "2019.005842753812479258588728295759562328164627242593709"
+      },
+      "query": {
+        "position": "2.862798557042821767928386611907642330780160471001416563",
+        "velocity": "1.686177536053001105431479914554488400079732581159158421",
+        "acceleration": "-37.88662694314781250505632406963383906410271162190137624",
+        "kinetic": "2.843194683089769842726267155490914426073613226967503979",
+        "potential": "20.22187089507575256793476723686105006702150793094913826",
+        "eulerLagrangeResidual": "-61.64590926728457551448098538525457306178715671350527849",
+        "cumulativeAction": "35.61995668813580612319054494265804049815160740323778688"
+      }
+    },
+    {
+      "p": [
+        3,
+        0,
+        7,
+        17,
+        15,
+        1,
+        -2,
+        -81,
+        83
+      ],
+      "numeric": {
+        "action": "244.6956919727225983283894161469294327905275045895198876",
+        "variedAction": "290.6037021376155568984473975866608555023333004297205916",
+        "firstVariation": "-53.50735528876302279782413334932856222645069892925542918",
+        "secondVariation": "7.825186346577991476361632149901805542998718815740912568",
+        "residualMeanSquare": "338002.6489510972533727427504079170734505853538170945663"
+      },
+      "query": {
+        "position": "2.364630247324228545982888868634900110495102767436272912",
+        "velocity": "-5.932731805579728711656316229434392551435285288777564348",
+        "acceleration": "-289.2138311452652144245396885271768539106585465377769026",
+        "kinetic": "52.79596001540596193574943263918733191950691474420100145",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "-867.6414934357956432736190655815305617319756396133307079",
+        "cumulativeAction": "166.1130958455221175722715372740689629381941779785709345"
+      }
+    },
+    {
+      "p": [
+        1,
+        3,
+        24,
+        -17,
+        -1,
+        -1,
+        7,
+        46,
+        44
+      ],
+      "numeric": {
+        "action": "-6.596185608061388010254384818250561008767989103839261735",
+        "variedAction": "-6.72860280044267023839041423916556603650011457088640901",
+        "firstVariation": "-1.612035385511261907742966863313104685434570903182662469",
+        "secondVariation": "5.757269233968792527653453083261088162266324654223794532",
+        "residualMeanSquare": "21.77423894486921764459626881166502371068370491464272119"
+      },
+      "query": {
+        "position": "-1.585455533688569249990735156474288157322237983137979701",
+        "velocity": "-0.2065599739322890724226119200418812000615196611553222642",
+        "acceleration": "1.559248754414290285610029847693743627698585822724252838",
+        "kinetic": "0.02133351141545397056239122007263620639519914216755571788",
+        "potential": "6.97750905538429885760919234248574093667009202118828817",
+        "eulerLagrangeResidual": "-7.242649384161811498661324056266712534323373980393762939",
+        "cumulativeAction": "-2.281928879467016460709896061562368656187966702590412446"
+      }
+    },
+    {
+      "p": [
+        3,
+        1,
+        10,
+        -7,
+        19,
+        -1,
+        -2,
+        86,
+        58
+      ],
+      "numeric": {
+        "action": "242.2278502651109243273138811428979005356662532332718667",
+        "variedAction": "201.8315526660991537514902590316922515239733760312669682",
+        "firstVariation": "-49.30792673756736757478343987969375881258128513236203742",
+        "secondVariation": "5.431366671974487664927355828369344421652320205047197592",
+        "residualMeanSquare": "126590.0123409535361894850586697209101302200505548119156"
+      },
+      "query": {
+        "position": "-2.063048604890723677621905469030307381293094843692734346",
+        "velocity": "12.80513613220124499423752063004362571860803147164403181",
+        "acceleration": "129.7198795869981153257107728444605683002205320016829891",
+        "kinetic": "245.9572670463087907773457709511595988442851467358094139",
+        "potential": "3.938129032910742315886028714741024113922986330312116875",
+        "eulerLagrangeResidual": "385.3418624627773307821347831521777010387266623039279549",
+        "cumulativeAction": "127.7578021933709392495978233580460443127993605545667984"
+      }
+    },
+    {
+      "p": [
+        1,
+        3,
+        7,
+        -13,
+        10,
+        -10,
+        9,
+        -79,
+        2
+      ],
+      "numeric": {
+        "action": "35.06729925697859254031427806554433251966388977491759048",
+        "variedAction": "3.232572008380628420211074789773196963810186588574458395",
+        "firstVariation": "61.99257142966386513182032208484708537662352139285556962",
+        "secondVariation": "54.92518564600701597191107569702952056298310755972686401",
+        "residualMeanSquare": "15619.83670629576259536368058255510555460646354064102489"
+      },
+      "query": {
+        "position": "0.1057536391976172416435190425119709962793958702889757117",
+        "velocity": "7.402611088944318908595554415392853735209498490607122179",
+        "acceleration": "-32.32404522406824237290369608408806111356913519165000678",
+        "kinetic": "27.39932546708069749582337872346004646359975009057126315",
+        "potential": "0.03104437486980975973230424583654986017022531144487749633",
+        "eulerLagrangeResidual": "-31.73693777121173155266844698237441863692921341491533689",
+        "cumulativeAction": "0.3993086229974016454447303354283742031809282815042274548"
+      }
+    },
+    {
+      "p": [
+        1,
+        0,
+        24,
+        -11,
+        -13,
+        -5,
+        10,
+        -72,
+        54
+      ],
+      "numeric": {
+        "action": "16.88113586102992380429816064770483350435947336113476897",
+        "variedAction": "38.31791662019601072440667509943583377026082847366176621",
+        "firstVariation": "-22.92626855669715595833428638512897607473911424806975323",
+        "secondVariation": "19.01955014793261817171230036434466625034410823270360694",
+        "residualMeanSquare": "202.730087043603765527832181114821082049144295871278464"
+      },
+      "query": {
+        "position": "0.1173832602088012106044529760242315748649614873679187106",
+        "velocity": "-1.698841358271221618381943938822637277193813219861717204",
+        "acceleration": "-16.76986072082511724183554602296590360281965528967521264",
+        "kinetic": "1.443030980286404584527719986848178448275069363177527992",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "-16.76986072082511724183554602296590360281965528967521264",
+        "cumulativeAction": "8.487723162491471673084691897525079851717131154024509389"
+      }
+    },
+    {
+      "p": [
+        2,
+        1,
+        16,
+        -4,
+        15,
+        2,
+        9,
+        -8,
+        54
+      ],
+      "numeric": {
+        "action": "61.76028324036679772718418174310000024811738825323515244",
+        "variedAction": "56.04625603314731137609271550973970279602525135401428223",
+        "firstVariation": "73.20038844177950053624071112333144393283788007865313388",
+        "secondVariation": "44.37620878839802868993458015819314454215422095980640485",
+        "residualMeanSquare": "5230.164731271832785824029970598080710147781765177846296"
+      },
+      "query": {
+        "position": "-1.791510609358168237911331051447297502961947607318588318",
+        "velocity": "3.351085401729667249819217143094157085431015900512131658",
+        "acceleration": "49.92180240646275930637124777999670271886608664775486172",
+        "kinetic": "11.22977336968568533844641121040225539471859697815011299",
+        "potential": "1.979787288838579290750561592301131069054957031107611388",
+        "eulerLagrangeResidual": "97.63341718858556162025903665329646953522370343209063932",
+        "cumulativeAction": "30.98706147674005890955641286108618245128973195245848541"
+      }
+    },
+    {
+      "p": [
+        4,
+        3,
+        6,
+        -17,
+        -13,
+        -2,
+        -2,
+        -4,
+        20
+      ],
+      "numeric": {
+        "action": "282.4771250965451089164437306998719986312187812596880651",
+        "variedAction": "279.1203752596378606351730811438362541854073903294513208",
+        "firstVariation": "84.17127620062374675429348407727710893233366644475187606",
+        "secondVariation": "12.62651389712698612636225881917488935244465944166338481",
+        "residualMeanSquare": "797535.7821208457800451807718042874007682146437064262043"
+      },
+      "query": {
+        "position": "-2.235608400080903963338171256279620493043417368356823474",
+        "velocity": "-0.8909693549221850293528244713810198302824285103969780306",
+        "acceleration": "332.4575192367471774026131583582297456285451637931885184",
+        "kinetic": "1.587652782820909033184678686091894367930331854003209017",
+        "potential": "55.49370655967008157001611982803569067848606334728666441",
+        "eulerLagrangeResidual": "1280.184793311749343479562393198006909714913688376203758",
+        "cumulativeAction": "98.84892062520671451514496524168660393365485777588481946"
+      }
+    },
+    {
+      "p": [
+        3,
+        2,
+        12,
+        0,
+        2,
+        -1,
+        -8,
+        -74,
+        5
+      ],
+      "numeric": {
+        "action": "2.131834550635301461668250055973248645227759071964010775",
+        "variedAction": "33.4521950707226895324155251468362246764504177900924516",
+        "firstVariation": "-17.0546764050824116933460004477859891618220725757120862",
+        "secondVariation": "68.29766245553836164233467771914296585637079989810627113",
+        "residualMeanSquare": "631.2109099003357932921333558228091208982347551590015326"
+      },
+      "query": {
+        "position": "0.0907980999479093583120816732715742397966095406098043114",
+        "velocity": "1.39958977534537644392148995455885770379534707587369857",
+        "acceleration": "-5.600883292852735414688427896581207519090673776413920881",
+        "kinetic": "2.938277308876981955994062061521156776806864708076215305",
+        "potential": "0.03051297366126110104275488253729599595743090278556324721",
+        "eulerLagrangeResidual": "-16.13054388341587799430267234215387765498114047607209214",
+        "cumulativeAction": "0.2057141995319126394916979285568853096771088198160130441"
+      }
+    },
+    {
+      "p": [
+        2,
+        4,
+        21,
+        -10,
+        5,
+        -10,
+        -3,
+        42,
+        98
+      ],
+      "numeric": {
+        "action": "-5.316661894634446160741199020766617129439820216400544951",
+        "variedAction": "-14.64906175425163077208080490862130938322816790216533789",
+        "firstVariation": "-19.26217792279273157109198160142495496575390334313160971",
+        "secondVariation": "-14.08486544267842802132623146548992254162934559693329782",
+        "residualMeanSquare": "169.2441697806829898462383447038280287229141947941679943"
+      },
+      "query": {
+        "position": "0.03090013776354893919509714265801460154682824397715466037",
+        "velocity": "-0.7112029418046342193075452282097569997108378480903078471",
+        "acceleration": "-1.746596354678934209674756425811784299354190906433594814",
+        "kinetic": "0.505809624431565928048966526467253476289421304950694337",
+        "potential": "0.009423681006104290959712534187387700511709489179809002748",
+        "eulerLagrangeResidual": "-2.88324843802708821676719607634252773224898888116975132",
+        "cumulativeAction": "-5.339267027639631250754301139432183556088019698711864256"
+      }
+    },
+    {
+      "p": [
+        4,
+        2,
+        11,
+        -5,
+        18,
+        7,
+        3,
+        -85,
+        30
+      ],
+      "numeric": {
+        "action": "254.4049793906345216836848520868303229384062220547657897",
+        "variedAction": "193.7804397551771272303177518007125480689860651115348477",
+        "firstVariation": "79.89938242901890269877462188949738151593205355131782052",
+        "secondVariation": "20.17975205317279679056423064347404683494003757893205654",
+        "residualMeanSquare": "130517.301022174357047981570799497769898504992584430613"
+      },
+      "query": {
+        "position": "0.1517220926874316513329814423376647765182009668737458604",
+        "velocity": "-15.50689509531784588932287670898954369019661802687227777",
+        "acceleration": "-37.53359012936324885079802343193724217170860437023364704",
+        "kinetic": "480.9275909943853294986293708583976906038257446280525848",
+        "potential": "0.1135971402126154270915527458646613728188022008740318127",
+        "eulerLagrangeResidual": "-148.6369234837226323831601750488392146837154164103415512",
+        "cumulativeAction": "64.23146788174859853239317653313285682517351995910030204"
+      }
+    },
+    {
+      "p": [
+        1,
+        4,
+        19,
+        -15,
+        15,
+        3,
+        6,
+        -56,
+        77
+      ],
+      "numeric": {
+        "action": "8.122944148528149758001281737398069125182524972669887548",
+        "variedAction": "0.05361376891817025693511292026732722689357881806421770959",
+        "firstVariation": "15.64981613651682377836505934730361806995597257324457472",
+        "secondVariation": "4.429634291067868716953216947444414674020398510276096951",
+        "residualMeanSquare": "301.5773753266456661418371791243191874097643578427586546"
+      },
+      "query": {
+        "position": "0.2486530634263649225238456736695080450509980063886290958",
+        "velocity": "6.04267457164973820450397147976919670550794774692377575",
+        "acceleration": "-27.81429481443932333549700029477313657034483619337117766",
+        "kinetic": "18.256957989431173546874425996506588213729305316902871",
+        "potential": "0.305110657656591205111513628763058717251040234124073643",
+        "eulerLagrangeResidual": "-25.36018744530212066240688394871840693700449326048889129",
+        "cumulativeAction": "6.146765040334713021082860069689434805528884440440618077"
+      }
+    },
+    {
+      "p": [
+        4,
+        1,
+        24,
+        17,
+        20,
+        3,
+        3,
+        51,
+        60
+      ],
+      "numeric": {
+        "action": "149.728478500792963153465118128787796823465695807447621",
+        "variedAction": "173.7356477082358769675980694771733425350622471623594921",
+        "firstVariation": "45.32122340980233477768798267143128601336050767804971056",
+        "secondVariation": "6.869244663158193598708805735913801190178334787439590276",
+        "residualMeanSquare": "7041.258235740843831010203959657914456549444215109306991"
+      },
+      "query": {
+        "position": "0.441225573116814814260534957466804106594382802727483396",
+        "velocity": "5.666350705845472023618204689274293733960853529122633878",
+        "acceleration": "15.35843832438064217437595334159366014699858917158938744",
+        "kinetic": "64.2150606432709580397768090530569250870643075248569767",
+        "potential": "0.2401768309619723016201592591778086741638655398366207119",
+        "eulerLagrangeResidual": "62.52243376209929121893780053409317667360803775593159583",
+        "cumulativeAction": "80.76150522266505830406499665545916134271505408454323098"
+      }
+    },
+    {
+      "p": [
+        2,
+        4,
+        22,
+        0,
+        -8,
+        0,
+        0,
+        -66,
+        41
+      ],
+      "numeric": {
+        "action": "5.972007899422797360632942917743241996058907568599518401",
+        "variedAction": "5.972007899422797360632942917743241996058907568599518401",
+        "firstVariation": "0.0",
+        "secondVariation": "0.0",
+        "residualMeanSquare": "92.10970648442224317131025593211694136975811524443548029"
+      },
+      "query": {
+        "position": "0.529049492258921501254897389681859249756614134383010871",
+        "velocity": "2.570774646248109335553509869419889710243770147205624519",
+        "acceleration": "-9.709417928664190064049560820203114419696087470511905871",
+        "kinetic": "6.608882281792091694615297339619650546963726066884886883",
+        "potential": "2.762436789600109093616514337280835765789163824664900166",
+        "eulerLagrangeResidual": "-8.975817462942895703654705113787767996874605306073228539",
+        "cumulativeAction": "3.494263659592560451487177793341994766431295796385707328"
+      }
+    },
+    {
+      "p": [
+        3,
+        0,
+        19,
+        -9,
+        -16,
+        -6,
+        3,
+        95,
+        41
+      ],
+      "numeric": {
+        "action": "92.91713090762415910231681987383402812259147270895770649",
+        "variedAction": "69.05057691496488570723398916907101789906507622361061711",
+        "firstVariation": "-29.45297734430350703620608629963040891433088191529225413",
+        "secondVariation": "9.116397749427275987397121949885602759197653926161888184",
+        "residualMeanSquare": "7001.897404291502759938461817445756519659230806445097801"
+      },
+      "query": {
+        "position": "0.1938346674085942379329328589236227355379878557063929604",
+        "velocity": "5.538199829082589906648017450402311925654269502408931128",
+        "acceleration": "-23.67235973452172552621698681663675758485917867734110239",
+        "kinetic": "46.0074860202756420821357602600414920191645579504894369",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "-71.01707920356517657865096044991027275457753603202330717",
+        "cumulativeAction": "43.53644652372099938589425651734364142911078442558985994"
+      }
+    },
+    {
+      "p": [
+        2,
+        4,
+        13,
+        2,
+        -11,
+        10,
+        -3,
+        -50,
+        76
+      ],
+      "numeric": {
+        "action": "33.47124492561746908522043245823383178293405558590218129",
+        "variedAction": "24.80753536226505738916988258465985615220142520142878226",
+        "firstVariation": "17.26649329953656023601175606232179271311072812452902317",
+        "secondVariation": "-0.2437033086730526243573747393046341934181305776710995224",
+        "residualMeanSquare": "4411.680958864284361521663370481349453025480468797461595"
+      },
+      "query": {
+        "position": "-0.7106551458676304191368539285115537780209305927905277374",
+        "velocity": "-5.435663095534584535835063085696288892654203544054745308",
+        "acceleration": "43.74846213307131264535869950238947724999081752476233111",
+        "kinetic": "29.54643328815662189047849546978626967294030345697620362",
+        "potential": "4.98445357814703234501881314992137693428902181598179234",
+        "eulerLagrangeResidual": "73.46915395551869466980355231965333148014170326277103181",
+        "cumulativeAction": "28.35768632426918349250885621110760898612732515151921378"
+      }
+    },
+    {
+      "p": [
+        2,
+        4,
+        19,
+        -18,
+        -13,
+        -1,
+        5,
+        -30,
+        28
+      ],
+      "numeric": {
+        "action": "1.695234419102901150135071651478727327899803053448964222",
+        "variedAction": "8.195942859395785945722587580567153099869137297811969038",
+        "firstVariation": "-20.6394206141307097895868858367410059504957483446262281",
+        "secondVariation": "6.864050134526041304698892845913866373791327577225253018",
+        "residualMeanSquare": "1063.916367170133909085541525391398823662342788317849612"
+      },
+      "query": {
+        "position": "-2.013203613328650472928766299246888674676106423012839809",
+        "velocity": "3.753761530678223293258236454143028752535690286704875267",
+        "acceleration": "19.20182613208092175743889836514813640734356896697294484",
+        "kinetic": "14.09072562919971791442533954992946870357447127378010301",
+        "potential": "40.00139598671214542952868850590124604451129366196457952",
+        "eulerLagrangeResidual": "-1.335394220633052607778479487412611781308304625669930081",
+        "cumulativeAction": "0.5473670295845242223680161699126190669801335103131963036"
+      }
+    },
+    {
+      "p": [
+        1,
+        0,
+        22,
+        -13,
+        -19,
+        1,
+        -5,
+        30,
+        89
+      ],
+      "numeric": {
+        "action": "38.33444073059480427179123890633714156875252792494207086",
+        "variedAction": "44.22861334076355600877110072460408755472157518230721303",
+        "firstVariation": "18.88683387663009081149691232249027103621394295658351297",
+        "secondVariation": "5.069387715104988745128624922663659446774763786446406094",
+        "residualMeanSquare": "611.4680877565594219835799690028894290550697302595618153"
+      },
+      "query": {
+        "position": "-2.075769147626371706201664990209334721654530487855100154",
+        "velocity": "5.890030793674206400055142949888069136993532891842657502",
+        "acceleration": "30.91194348005234495091840811693261214560792203403786538",
+        "kinetic": "17.34623137521520088188974600779524084993578004307628689",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "30.91194348005234495091840811693261214560792203403786538",
+        "cumulativeAction": "29.24585958268054614229685388302360728867567919242563356"
+      }
+    },
+    {
+      "p": [
+        4,
+        4,
+        11,
+        -9,
+        3,
+        -2,
+        8,
+        8,
+        18
+      ],
+      "numeric": {
+        "action": "4.764327215434954024182831564485669320774158532040781657",
+        "variedAction": "7.679827018041436256428292183795702313777063021025863081",
+        "firstVariation": "32.87116607620997657814731020649660663575933558942487322",
+        "secondVariation": "89.31453640927628312302368837197014441942426307221611474",
+        "residualMeanSquare": "2925.953265762236230834019952114154612510156188471262028"
+      },
+      "query": {
+        "position": "-0.1846097050867536071292399782451424238213067983574361267",
+        "velocity": "-2.492411214922455864273898833082267466382008685685590117",
+        "acceleration": "-17.9159060629265684048583622720191713705683917860585358",
+        "kinetic": "12.42422732854246495584715931936964180205956624084234708",
+        "potential": "0.6727269063994088920910085719134309147110168061241085905",
+        "eulerLagrangeResidual": "-78.95172328293840144341491658766737410966049594347566346",
+        "cumulativeAction": "0.5621391876720671372945369779917744476649834535379280573"
+      }
+    },
+    {
+      "p": [
+        3,
+        0,
+        10,
+        1,
+        -17,
+        -3,
+        -1,
+        3,
+        99
+      ],
+      "numeric": {
+        "action": "192.6053298872588334465550918625830894056468439323040291",
+        "variedAction": "193.2727273412670975103986083957312145596434592567707622",
+        "firstVariation": "22.20660990245105689237760474972134005445582366629177891",
+        "secondVariation": "2.664793188294126827085312569966560806534698839955013469",
+        "residualMeanSquare": "102615.6069497698675067280684709163994460255251268904575"
+      },
+      "query": {
+        "position": "-0.1568430567336615120206352757235260735915864360609343172",
+        "velocity": "15.63701153964535697255362235417632470475156938048517215",
+        "acceleration": "14.17981972000092463227255852913134037153394992627774696",
+        "kinetic": "366.7741948365030860619100255785459680612611555562245593",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "42.53945916000277389681767558739402111460184977883324087",
+        "cumulativeAction": "188.9153615068051928680645814854969730047338094134177953"
+      }
+    },
+    {
+      "p": [
+        2,
+        4,
+        17,
+        15,
+        -5,
+        6,
+        1,
+        46,
+        80
+      ],
+      "numeric": {
+        "action": "-7.910197644990735951859996463136032895214656142567986605",
+        "variedAction": "-13.64915164119860654107164542619492343551003703058471836",
+        "firstVariation": "-11.64903601810929298158318011250088073706290462389920376",
+        "secondVariation": "-3.595438826820376348614235456601941410646925907590718609",
+        "residualMeanSquare": "405.1724149695000863031519471476586627759678631795509982"
+      },
+      "query": {
+        "position": "0.4061496202911329076948392652689180811936293394018438754",
+        "velocity": "-3.099182969576791055804282930825688882117577582529648126",
+        "acceleration": "11.60473018537000235711887583677188435587808752970721281",
+        "kinetic": "9.604935078914816994973012435000579608328643454278451085",
+        "potential": "1.628065406785307022963986410693907483688466420435866917",
+        "eulerLagrangeResidual": "31.22653253059227914657831362255920744584223627477763605",
+        "cumulativeAction": "-8.632728505426249258071208456989364653244239602212021491"
+      }
+    },
+    {
+      "p": [
+        3,
+        0,
+        16,
+        13,
+        4,
+        9,
+        -6,
+        31,
+        96
+      ],
+      "numeric": {
+        "action": "14.4805602072232933485712297638807904938430683490610975",
+        "variedAction": "13.44149905075641936466632390163836041685754632482551373",
+        "firstVariation": "-9.1602265847610609681057619592600527724630272623453588",
+        "secondVariation": "37.47365421038615850588720801515476134189420243686737691",
+        "residualMeanSquare": "979.8727915064408378314710895542731413480058418993814735"
+      },
+      "query": {
+        "position": "0.3101830247074667026478332467586457644853354360038344556",
+        "velocity": "-4.723150692109294880639758033907265746210510900619261362",
+        "acceleration": "-5.737407657358757656581252360228814250596750177748733631",
+        "kinetic": "33.4622286905587668693951097380860734523749399493041226",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "-17.21222297207627296974375708068644275179025053324620089",
+        "cumulativeAction": "12.22526127837705112276174428730729256478662392586212285"
+      }
+    },
+    {
+      "p": [
+        3,
+        2,
+        25,
+        -11,
+        -1,
+        8,
+        9,
+        -14,
+        23
+      ],
+      "numeric": {
+        "action": "-1.795034300448127098800523050602474987735179079691918795",
+        "variedAction": "-1.32174704425817796835896839833213903928856755547460874",
+        "firstVariation": "-1.032607360463974145495558620862042312532195800482567719",
+        "secondVariation": "33.54308425765232143593637197445408415225552164793373204",
+        "residualMeanSquare": "10.50352487710544880476812463349038344094687583549999634"
+      },
+      "query": {
+        "position": "-0.810151109283473246717269129434089410971654402000424913",
+        "velocity": "-0.8249786660522480386153431209031121727615228455930034839",
+        "acceleration": "2.324197986314268341505534474544946213304186848546816132",
+        "kinetic": "1.020884699162019885598101551353504165459411891883812999",
+        "potential": "2.429198896069932622179419963251236180832107839946741023",
+        "eulerLagrangeResidual": "0.9756907436441099021121133101092179343294104793366310259",
+        "cumulativeAction": "1.227999382947047371946144565682338914664457484005285027"
+      }
+    },
+    {
+      "p": [
+        4,
+        3,
+        23,
+        19,
+        -20,
+        -1,
+        2,
+        -66,
+        61
+      ],
+      "numeric": {
+        "action": "72.80117903550174210406312580123047515661737894909666875",
+        "variedAction": "84.73801987088579607375668236239743011271525859123932477",
+        "firstVariation": "-17.45959838129884412928937855951460364508556777584937277",
+        "secondVariation": "1.898557868350857871269819613807697659969719513691781436",
+        "residualMeanSquare": "4434.981259093256018637941833783879178589717128422520782"
+      },
+      "query": {
+        "position": "2.805756292513770997982710424014951272860722923480305684",
+        "velocity": "-7.933278451880763775347997606201068941939571878396719736",
+        "acceleration": "-20.43030302620114116255625466850950667087214470791906651",
+        "kinetic": "125.8738139901512959211101873970286128325749751373963175",
+        "potential": "87.40819640309187183335095273821790597363051457449458435",
+        "eulerLagrangeResidual": "-19.41487663560389342099156803114543404437156484616893246",
+        "cumulativeAction": "13.45185983892745874194116809954081756800765914303281077"
+      }
+    },
+    {
+      "p": [
+        1,
+        4,
+        24,
+        -18,
+        -17,
+        -2,
+        -1,
+        -91,
+        51
+      ],
+      "numeric": {
+        "action": "-6.228954077637521458311918132296835885274858538394843984",
+        "variedAction": "-4.187738739128130435000628868802220936968022764119578084",
+        "firstVariation": "-2.390911666163897125412655444719997612529743681404081529",
+        "secondVariation": "-0.3248744782025247212033019954125899748707426054883426915",
+        "residualMeanSquare": "152.3025383700194747673585537642365287280164534346774622"
+      },
+      "query": {
+        "position": "-0.1066564688330807806751908309118035890909022358221613587",
+        "velocity": "-0.5542463622740934764953667732107120069111440888302388964",
+        "acceleration": "-23.01705906432136454751432052670669681607529329307834453",
+        "kinetic": "0.1535945150470328342330531608363742781471423229017727418",
+        "potential": "0.05613634747940585766344145443543847402199059160799625039",
+        "eulerLagrangeResidual": "-24.0697162185209886295993877375519536525210018510079099",
+        "cumulativeAction": "-3.11448462986494146481579007366644220849685065657300267"
+      }
+    },
+    {
+      "p": [
+        4,
+        3,
+        17,
+        -10,
+        -6,
+        1,
+        -6,
+        -66,
+        65
+      ],
+      "numeric": {
+        "action": "11.78053398262968943612235730141099533895399597188391194",
+        "variedAction": "-2.345718936294922502534750611679186772936972779874344029",
+        "firstVariation": "31.55181899911194708930255139691289510077116430943902576",
+        "secondVariation": "30.75274389572669026759676771750380465848484707287190558",
+        "residualMeanSquare": "1863.133042461562486356788169417541556926680679622853344"
+      },
+      "query": {
+        "position": "-0.7971458451642293409536463797333261773821785837846922714",
+        "velocity": "-2.446466331734495105067717422238367362874388604942011088",
+        "acceleration": "0.1579833825107227505314666189578298500845461830345607433",
+        "kinetic": "11.97039502462087330240887871284998014936417160024396864",
+        "potential": "7.055500736093883414693188816706764492185304765791098483",
+        "eulerLagrangeResidual": "-17.06997328887880122458580791682161877325151237449735397",
+        "cumulativeAction": "6.536604340040198288923228867917090294052183213650025338"
+      }
+    },
+    {
+      "p": [
+        1,
+        3,
+        20,
+        19,
+        16,
+        -9,
+        4,
+        83,
+        61
+      ],
+      "numeric": {
+        "action": "15.75127177386354827074617048011484495251470714774334929",
+        "variedAction": "29.03323113687745842567868954336295735530769135007566745",
+        "firstVariation": "15.93324260500863332028093140792506148907205348056435137",
+        "secondVariation": "0.1665495742683829266928320356229100504084186774971883418",
+        "residualMeanSquare": "372.2263916349910711498498955119622326347256329936568373"
+      },
+      "query": {
+        "position": "0.9732071958124343169623166540998509228497010070869011397",
+        "velocity": "5.47887425516363616305119368233898551659184665366136287",
+        "acceleration": "13.67562716538463339059013657443058479273279351388938954",
+        "kinetic": "15.00903155194744447344155571011477435192204682545651762",
+        "potential": "2.629074539066830880468149880251480885455183605146975738",
+        "eulerLagrangeResidual": "19.07853530330089055338080339177013111127174578773813418",
+        "cumulativeAction": "8.995572938221354728030597876879732012079616791340678235"
+      }
+    },
+    {
+      "p": [
+        4,
+        0,
+        22,
+        17,
+        -8,
+        7,
+        -10,
+        -20,
+        40
+      ],
+      "numeric": {
+        "action": "38.8054900315558872967810668858766851456652272148331086",
+        "variedAction": "25.45281251364572048173607642586242321877991134405515895",
+        "firstVariation": "75.27816447739974437456489044450991638661994366068203032",
+        "secondVariation": "85.14776887848910299339938144438606752193364306792282095",
+        "residualMeanSquare": "1820.640513725480974643255039974329191550300786785763653"
+      },
+      "query": {
+        "position": "2.087024279535739575932911630456207858667809628128292171",
+        "velocity": "3.522824460770435622598293909708604624630762073470239091",
+        "acceleration": "-11.92682534239298321623290839338532639384824753607862429",
+        "kinetic": "24.82058436280502102576553625469885690705002217915182808",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "-47.70730136957193286493163357354130557539299014431449714",
+        "cumulativeAction": "17.38481118120522504495156237661821374151942567438267185"
+      }
+    },
+    {
+      "p": [
+        4,
+        3,
+        18,
+        -7,
+        -12,
+        1,
+        -1,
+        73,
+        24
+      ],
+      "numeric": {
+        "action": "54.46143663008340899081666357949714547935470438326371998",
+        "variedAction": "62.00303874435720189134665506321797902738312621512298392",
+        "firstVariation": "10.07659193783442711209060324167910930495708393647597943",
+        "secondVariation": "0.6969037329880319335854798922690326718324284414779469381",
+        "residualMeanSquare": "5531.522221172958039113605763406403867574387806353944659"
+      },
+      "query": {
+        "position": "-1.403798865481029148576209914010259905648664669436732581",
+        "velocity": "3.114449858375436826745318231992928900973247511770038122",
+        "acceleration": "26.8085444519050670163386011402367455586432100811185439",
+        "kinetic": "19.39959584066955701526161350093394208918933315730658243",
+        "potential": "21.88074183373604802039899881392069911583634921362814295",
+        "eulerLagrangeResidual": "76.06056402037968702764423207087891948926765015436827767",
+        "cumulativeAction": "11.98822088237329733654274299874595703083801691523236413"
+      }
+    },
+    {
+      "p": [
+        4,
+        0,
+        10,
+        -18,
+        9,
+        7,
+        -7,
+        -16,
+        87
+      ],
+      "numeric": {
+        "action": "103.9269343434709462563271902286958714548532547582455253",
+        "variedAction": "127.0518122393993570746011560210456886109386650173869874",
+        "firstVariation": "-136.7927169990985104570460452582834547354478737843573581",
+        "secondVariation": "96.72212313067571446457801179878628112607425419095974814",
+        "residualMeanSquare": "53652.92734152854242983133524493877527634995418851513027"
+      },
+      "query": {
+        "position": "0.1319264889161978203338273291522602173782965457168929208",
+        "velocity": "2.316503425040112026725611897242479900130093469951500741",
+        "acceleration": "-68.16213329845851110201694989736573206020474612304448552",
+        "kinetic": "10.73237623644513983917750393010788338278550185392478947",
+        "potential": "0.0",
+        "eulerLagrangeResidual": "-272.6485331938340444080677995894629282408189844921779421",
+        "cumulativeAction": "103.0223660576106650624637813604820320116045483864800554"
+      }
+    }
+  ]
+}

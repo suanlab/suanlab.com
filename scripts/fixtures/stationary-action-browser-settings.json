@@ -1,0 +1,300 @@
+{
+  "free-particle-action-boundary-gauge": [
+    {
+      "name": "orthogonal-direction",
+      "values": [
+        1,
+        10,
+        0,
+        10,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        50,
+        50
+      ],
+      "key": "1{directional first variation zero}",
+      "answer": "1",
+      "checks": [
+        [
+          "1{fixed-endpoint stationary}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "local-node",
+      "values": [
+        1,
+        10,
+        0,
+        10,
+        0,
+        10,
+        0,
+        0,
+        0,
+        10,
+        0,
+        50,
+        50
+      ],
+      "key": "query Newton residual N",
+      "answer": "0",
+      "checks": [
+        [
+          "1{fixed-endpoint stationary}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "free-endpoint",
+      "values": [
+        1,
+        10,
+        0,
+        10,
+        0,
+        0,
+        -20,
+        0,
+        10,
+        0,
+        0,
+        50,
+        50
+      ],
+      "key": "first variation Js",
+      "answer": "-1",
+      "checks": [
+        [
+          "1{direction fixes endpoints}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "gauge-momentum",
+      "values": [
+        1,
+        10,
+        0,
+        10,
+        0,
+        0,
+        -20,
+        0,
+        0,
+        10,
+        0,
+        50,
+        50
+      ],
+      "key": "query canonical momentum kg m per s",
+      "answer": "0",
+      "checks": [
+        [
+          "query mechanical momentum kg m per s",
+          "1"
+        ],
+        [
+          "query kinetic energy J",
+          "0.5"
+        ]
+      ]
+    },
+    {
+      "name": "rest-free-endpoints",
+      "values": [
+        1,
+        10,
+        0,
+        0,
+        0,
+        0,
+        30,
+        0,
+        0,
+        10,
+        0,
+        50,
+        50
+      ],
+      "key": "1{both-free-endpoint stationary}",
+      "answer": "1",
+      "checks": []
+    },
+    {
+      "name": "extreme",
+      "values": [
+        4,
+        5,
+        -20,
+        20,
+        20,
+        -20,
+        30,
+        10,
+        -10,
+        10,
+        -10,
+        -100,
+        100
+      ],
+      "key": "1{fixed-endpoint stationary}",
+      "answer": "0",
+      "checks": []
+    }
+  ],
+  "harmonic-action-stationary-saddle": [
+    {
+      "name": "critical-third-mode",
+      "values": [
+        1,
+        2,
+        20,
+        10,
+        10,
+        10,
+        0,
+        50,
+        50
+      ],
+      "key": "1{selected path stationary}",
+      "answer": "0",
+      "checks": [
+        [
+          "1{zero reference flat minimum}",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "critical-nonzero",
+      "values": [
+        1,
+        2,
+        20,
+        20,
+        0,
+        10,
+        0,
+        50,
+        50
+      ],
+      "key": "action Js",
+      "answer": "0",
+      "checks": [
+        [
+          "1{selected path stationary}",
+          "1"
+        ],
+        [
+          "whole-path RMS residual N",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "saddle-reference",
+      "values": [
+        1,
+        2,
+        25,
+        0,
+        0,
+        10,
+        0,
+        50,
+        50
+      ],
+      "key": "1{selected path stationary}",
+      "answer": "1",
+      "checks": [
+        [
+          "1{zero reference saddle}",
+          "1"
+        ],
+        [
+          "action Js",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "local-node",
+      "values": [
+        1,
+        2,
+        25,
+        10,
+        0,
+        10,
+        0,
+        50,
+        0
+      ],
+      "key": "query Newton residual N",
+      "answer": "0",
+      "checks": [
+        [
+          "1{selected path stationary}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "free-limit",
+      "values": [
+        1,
+        0,
+        20,
+        10,
+        0,
+        10,
+        0,
+        50,
+        50
+      ],
+      "key": "stiffness N per m",
+      "answer": "0",
+      "checks": [
+        [
+          "1{zero reference strict minimum}",
+          "1"
+        ],
+        [
+          "1{selected path stationary}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "extreme",
+      "values": [
+        4,
+        4,
+        25,
+        20,
+        -20,
+        10,
+        -10,
+        -100,
+        100
+      ],
+      "key": "1{zero reference saddle}",
+      "answer": "1",
+      "checks": [
+        [
+          "1{selected path stationary}",
+          "0"
+        ]
+      ]
+    }
+  ]
+}

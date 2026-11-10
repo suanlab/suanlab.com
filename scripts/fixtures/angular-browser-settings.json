@@ -1,0 +1,228 @@
+{
+  "fixed-origin-angular-momentum-torque": [
+    {
+      "name": "stationary",
+      "values": [
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        -20,
+        100
+      ],
+      "key": "angular momentum about O kg m squared per s",
+      "answer": "0"
+    },
+    {
+      "name": "instant-zero-torque",
+      "values": [
+        1,
+        10,
+        0,
+        0,
+        10,
+        -10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "key": "1{zero torque at query about O}",
+      "answer": "1",
+      "checks": [
+        [
+          "1{angular momentum conserved about O}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "straight-nonzero-L",
+      "values": [
+        1,
+        0,
+        10,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        20
+      ],
+      "key": "angular momentum about O kg m squared per s",
+      "answer": "-1"
+    },
+    {
+      "name": "coincident-points",
+      "values": [
+        1,
+        10,
+        0,
+        0,
+        10,
+        -10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10
+      ],
+      "key": "exact origin angular momentum residual",
+      "answer": "0"
+    },
+    {
+      "name": "extreme",
+      "values": [
+        1,
+        -20,
+        20,
+        20,
+        20,
+        -20,
+        20,
+        -20,
+        20,
+        20,
+        -20,
+        100
+      ],
+      "key": "exact angular balance residual O",
+      "answer": "0"
+    },
+    {
+      "name": "zero-radius-nonzero-v",
+      "values": [
+        1,
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "key": "angular momentum about O kg m squared per s",
+      "answer": "0"
+    }
+  ],
+  "central-harmonic-angular-momentum-area": [
+    {
+      "name": "stationary",
+      "values": [
+        4,
+        4,
+        0,
+        0,
+        0,
+        0,
+        20,
+        -20,
+        100
+      ],
+      "key": "1{stationary motion}",
+      "answer": "1"
+    },
+    {
+      "name": "clockwise-turns",
+      "values": [
+        1,
+        1,
+        10,
+        0,
+        0,
+        -10,
+        0,
+        0,
+        100
+      ],
+      "key": "signed swept area about center m squared",
+      "answer": "-5"
+    },
+    {
+      "name": "center-crossing",
+      "values": [
+        1,
+        1,
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        0
+      ],
+      "key": "1{radial motion}",
+      "answer": "1",
+      "checks": [
+        [
+          "1{stationary motion}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "circle",
+      "values": [
+        1,
+        4,
+        10,
+        0,
+        0,
+        20,
+        20,
+        -20,
+        10
+      ],
+      "key": "1{circular motion}",
+      "answer": "1"
+    },
+    {
+      "name": "near-circle",
+      "values": [
+        1,
+        4,
+        10,
+        0,
+        1,
+        20,
+        20,
+        -20,
+        10
+      ],
+      "key": "1{circular motion}",
+      "answer": "0"
+    },
+    {
+      "name": "extreme-ellipse",
+      "values": [
+        4,
+        1,
+        -20,
+        20,
+        20,
+        20,
+        -20,
+        20,
+        100
+      ],
+      "key": "signed swept area about center m squared",
+      "answer": "-40"
+    }
+  ]
+}

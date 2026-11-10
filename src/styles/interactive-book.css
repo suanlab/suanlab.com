@@ -81,6 +81,7 @@
 .ai-reader-columns { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 4rem; padding: 2.5rem 0 3rem; }
 .ai-theory, .ai-experiment-column { min-width: 0; }
 .ai-theory, .ai-lab, .ai-quiz { scroll-margin-top: 110px; }
+.ai-prose { overflow-wrap: anywhere; }
 .ai-prose h2 { margin: 2.5rem 0 1rem; }
 .ai-prose h2:first-child { margin-top: 0; }
 .ai-prose p { margin: 1rem 0; line-height: 1.85; }
@@ -94,7 +95,7 @@
 .ai-prose .katex { font-size: 1.08em; }
 .ai-prose img { max-width: 100%; height: auto; border: 1px solid hsl(var(--border)); border-radius: var(--radius); margin: 1.5rem 0; }
 .ai-prose blockquote { border-left: 3px solid hsl(var(--primary)); padding: .25rem 1rem; margin: 1.5rem 0; background: hsl(var(--muted)); }
-.ai-prose table { display: block; max-width: 100%; overflow-x: auto; font-size: .875rem; margin: 1.25rem 0; border-collapse: collapse; }
+.ai-prose table { position: relative; display: block; max-width: 100%; overflow-x: auto; font-size: .875rem; margin: 1.25rem 0; border-collapse: collapse; }
 .ai-prose td, .ai-prose th { padding: .625rem .75rem; border: 1px solid hsl(var(--border)); text-align: left; }
 .ai-lab { border: 1px solid hsl(var(--border) / .8); background: hsl(var(--card)); color: hsl(var(--card-foreground)); border-radius: .75rem; overflow: hidden; padding: 1.5rem; box-shadow: 0 1px 2px rgb(0 0 0 / .05); }
 .ai-lab-heading { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
@@ -157,7 +158,9 @@
 .ai-answer p { margin-top: .5rem; }
 .ai-completion { display: flex; align-items: baseline; gap: .625rem; font-size: .875rem; margin: 1.5rem 0 .625rem; font-weight: 600; }
 .ai-reader-bottom { display: flex; justify-content: space-between; gap: 2rem; padding: 1.75rem 0 3rem; border-top: 1px solid hsl(var(--border)); }
-.ai-reader-bottom a { display: flex; gap: .75rem; align-items: center; font-size: .875rem; max-width: 48%; color: hsl(var(--primary)); }
+.ai-reader-bottom a { display: flex; gap: .75rem; align-items: center; font-size: .875rem; min-width: 0; max-width: 48%; color: hsl(var(--primary)); }
+.ai-reader-bottom a span { min-width: 0; overflow-wrap: anywhere; }
+.ai-reader-bottom a svg { flex-shrink: 0; }
 @media (max-width: 1023px) {
   .ai-book-hero { gap: 2rem; }
   .ai-book-intro { grid-template-columns: 1fr; }
@@ -301,3 +304,21 @@
 .ai-curriculum-domain h3 { margin:1rem 0 .5rem; font-weight:600; }
 .ai-curriculum-domain a { color:hsl(var(--primary)); text-decoration:underline; text-underline-offset:3px; }
 @media(max-width:640px) { .ai-curriculum-grid { grid-template-columns:minmax(0,1fr); } }
+
+.ai-algorithm-figure .ai-discrete-table { max-height:24rem; overflow:auto; }
+
+.ai-learning-theory-figure .ai-discrete-table { max-height:24rem; overflow:auto; }
+
+.ai-causal-figure [data-causal-graph] { display:block; min-width:350px; width:100%; height:auto; }
+.ai-causal-figure [data-causal-graph][viewBox="0 0 600 225"] { min-width:600px; }
+.ai-causal-figure .ai-foundation-table { max-height:24rem; overflow:auto; }
+
+.ai-control-figure [data-control-phase], .ai-control-figure [data-control-blocks] { display:block; min-width:350px; width:100%; height:auto; }
+.ai-control-figure .ai-foundation-table { max-height:24rem; overflow:auto; }
+
+/* These readers keep at least 16px of rendered plot text at a 560px canvas.
+   Scoped important overrides WavePlot's shared inline 9px ticks. */
+[data-free-energy-view] .ai-foundation-scroll svg,
+[data-free-energy-concept] .ai-foundation-scroll svg { min-width:560px; }
+[data-free-energy-view] .ai-foundation-scroll text,
+[data-free-energy-concept] .ai-foundation-scroll text { font-size:10px !important; }

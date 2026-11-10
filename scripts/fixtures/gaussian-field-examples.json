@@ -1,0 +1,399 @@
+[
+  {
+    "id": "localized-source",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "zero-source",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "uniform-source",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "hotter",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "stiffness": "1",
+      "temperature": "2",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "independent-sites",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "stiffness": "0",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "open-boundary",
+    "input": {
+      "sites": 4,
+      "boundary": "open",
+      "constraint": "none",
+      "massSquared": "1",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "dirichlet-boundary",
+    "input": {
+      "sites": 4,
+      "boundary": "dirichlet",
+      "constraint": "none",
+      "massSquared": "1",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "massless-dirichlet",
+    "input": {
+      "sites": 3,
+      "boundary": "dirichlet",
+      "constraint": "none",
+      "massSquared": "0",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "id": "massless-periodic-constrained",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "mean-zero",
+      "massSquared": "0",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "massless-open-constrained",
+    "input": {
+      "sites": 4,
+      "boundary": "open",
+      "constraint": "mean-zero",
+      "massSquared": "0",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "massive-constrained",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "mean-zero",
+      "massSquared": "1",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "dirichlet-constrained",
+    "input": {
+      "sites": 3,
+      "boundary": "dirichlet",
+      "constraint": "mean-zero",
+      "massSquared": "0",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "id": "shifted-constrained-source",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "mean-zero",
+      "massSquared": "0",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "3",
+        "2",
+        "2",
+        "2"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "soft-mass",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1/999999999989",
+      "stiffness": "1",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        7,
+        0,
+        7
+      ]
+    }
+  },
+  {
+    "id": "stiff-coupling",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "1",
+      "stiffness": "16",
+      "temperature": "1",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "id": "equivalent-spelling",
+    "input": {
+      "sites": 4,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "2/2",
+      "stiffness": "3/3",
+      "temperature": "4/4",
+      "source": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "probes": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "id": "maximum-coprime",
+    "input": {
+      "sites": 8,
+      "boundary": "periodic",
+      "constraint": "none",
+      "massSquared": "999999999983/62499999999",
+      "stiffness": "999999999979/62499999999",
+      "temperature": "999999999961/62499999999",
+      "source": [
+        "16",
+        "-16",
+        "16",
+        "-16",
+        "16",
+        "-16",
+        "16",
+        "-16"
+      ],
+      "probes": [
+        0,
+        7,
+        7,
+        0
+      ]
+    }
+  }
+]

@@ -1,0 +1,650 @@
+{
+  "date": "2026-11-06",
+  "scope": "All22 introductory continuum units across the original11 topics; research-depth completion remains separate.",
+  "stage": "verified-introductory-whole-domain",
+  "unitCount": 22,
+  "manuscriptCount": 44,
+  "controlCount": 234,
+  "presetCount": 401,
+  "catalogAndFilePresenceChecked": true,
+  "wholeDomainAuditComplete": true,
+  "researchDepthComplete": false,
+  "units": [
+    {
+      "topic": "질량·운동량·에너지 보존",
+      "id": "moving-control-volume-mass-transport",
+      "prerequisites": [
+        "charge-continuity-surface-current",
+        "system-boundary-mass-balances"
+      ],
+      "controls": 10,
+      "presets": 14,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/moving-control-volume-mass-transport.ko.md",
+        "en": "content/learning/physics-math-for-ai/moving-control-volume-mass-transport.en.md"
+      },
+      "contentSha256": {
+        "ko": "5228213ee3cc5b989aedf6ba2c532d2ddad4564945335b1d849c87d222b658a9",
+        "en": "7742336d351c3b615e5ee7cc71eae2a5938719209642ba8c06026d9acfe11b75"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-conservation-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": "continuum-domain-audit-stage1.md"
+    },
+    {
+      "topic": "질량·운동량·에너지 보존",
+      "id": "compressible-flow-momentum-energy-balance",
+      "prerequisites": [
+        "moving-control-volume-mass-transport",
+        "rc-circuit-field-closure-approximation"
+      ],
+      "controls": 12,
+      "presets": 16,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/compressible-flow-momentum-energy-balance.ko.md",
+        "en": "content/learning/physics-math-for-ai/compressible-flow-momentum-energy-balance.en.md"
+      },
+      "contentSha256": {
+        "ko": "51d63d23612f4b697772b51d586f35e45910f606ad959f788383fad25c042946",
+        "en": "8eae86b3f949f2c7c52666bb80b581e144fc1ddab0c985894285e3e4db703ba6"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-conservation-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": "continuum-domain-audit-stage1.md"
+    },
+    {
+      "topic": "continuum 가정",
+      "id": "particle-kernel-continuum-fields",
+      "prerequisites": [
+        "moving-control-volume-mass-transport"
+      ],
+      "controls": 11,
+      "presets": 17,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/particle-kernel-continuum-fields.ko.md",
+        "en": "content/learning/physics-math-for-ai/particle-kernel-continuum-fields.en.md"
+      },
+      "contentSha256": {
+        "ko": "0096267b4847457d2278065c5c40cecc3603b0bee257a7cd3f6467e21a23426b",
+        "en": "271f32cd081cfbfe68070c8d9ba3c2e9cf0e8550d9cbbb9dbbb1e39c330ef6af"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-assumptions-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": "continuum-domain-audit-stage1.md"
+    },
+    {
+      "topic": "continuum 가정",
+      "id": "continuum-scale-separation-counting",
+      "prerequisites": [
+        "particle-kernel-continuum-fields",
+        "samples-parameters-estimators"
+      ],
+      "controls": 9,
+      "presets": 16,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/continuum-scale-separation-counting.ko.md",
+        "en": "content/learning/physics-math-for-ai/continuum-scale-separation-counting.en.md"
+      },
+      "contentSha256": {
+        "ko": "11da460300386a77cbde72dc00bf974b56113f3c0669813377736ae35768b7ab",
+        "en": "0c6142f1a0a9c94a77d295af4a1d58280bd2cdcdde66c3394214fa50c9053f5f"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-assumptions-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": "continuum-domain-audit-stage1.md"
+    },
+    {
+      "topic": "응력·변형",
+      "id": "cauchy-traction-stress-balance",
+      "prerequisites": [
+        "compressible-flow-momentum-energy-balance",
+        "continuum-scale-separation-counting"
+      ],
+      "controls": 17,
+      "presets": 21,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/cauchy-traction-stress-balance.ko.md",
+        "en": "content/learning/physics-math-for-ai/cauchy-traction-stress-balance.en.md"
+      },
+      "contentSha256": {
+        "ko": "ce087dcedfb78f4688b6e98c42aa2835061e344e451004d3283c962a370aeed3",
+        "en": "0ca27fcfc66a495f6cfccc440494746b1e2686f485ee2894db159a1a8d8b93bd"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-stress-strain-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": "continuum-domain-audit-stage2.md"
+    },
+    {
+      "topic": "응력·변형",
+      "id": "finite-deformation-small-strain-rotation",
+      "prerequisites": [
+        "cauchy-traction-stress-balance",
+        "particle-kernel-continuum-fields"
+      ],
+      "controls": 9,
+      "presets": 19,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/finite-deformation-small-strain-rotation.ko.md",
+        "en": "content/learning/physics-math-for-ai/finite-deformation-small-strain-rotation.en.md"
+      },
+      "contentSha256": {
+        "ko": "e109ef3f8d0f878fa0941367dc729f6c583b3891a780fa870705fcef7f06ee3b",
+        "en": "1aa62fa9210f46cb80d4a3fbfd4464e4fba50943efdb287e646df5f02e346fea"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-stress-strain-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": "continuum-domain-audit-stage2.md"
+    },
+    {
+      "topic": "Euler·Navier-Stokes",
+      "id": "linearized-euler-acoustic-characteristics",
+      "prerequisites": [
+        "compressible-flow-momentum-energy-balance",
+        "continuum-scale-separation-counting"
+      ],
+      "controls": 13,
+      "presets": 16,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/linearized-euler-acoustic-characteristics.ko.md",
+        "en": "content/learning/physics-math-for-ai/linearized-euler-acoustic-characteristics.en.md"
+      },
+      "contentSha256": {
+        "ko": "483cdbf8a2a669fbf548d72f1be674cf9eafdfd42319ee0ef120023a949ee058",
+        "en": "955c432ce8effd27254fba0f73dbfabc506afd4f6f1d2be10a1e3defbcb790d5"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-flow-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": "continuum-domain-audit-stage2-flow.md"
+    },
+    {
+      "topic": "Euler·Navier-Stokes",
+      "id": "taylor-green-navier-stokes-viscous-decay",
+      "prerequisites": [
+        "linearized-euler-acoustic-characteristics",
+        "finite-deformation-small-strain-rotation"
+      ],
+      "controls": 11,
+      "presets": 16,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/taylor-green-navier-stokes-viscous-decay.ko.md",
+        "en": "content/learning/physics-math-for-ai/taylor-green-navier-stokes-viscous-decay.en.md"
+      },
+      "contentSha256": {
+        "ko": "5ceaca9de43fcd8a9cbecd49ada362518c7b8ad65514c0e696a788a8c5d47db4",
+        "en": "ec6a8836467622b3f048cae8c148ea264b35c73649496eab75d940c42b4a5990"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-flow-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": "continuum-domain-audit-stage2-flow.md"
+    },
+    {
+      "topic": "열·물질 확산",
+      "id": "fourier-heat-diffusion-mode-budget",
+      "prerequisites": [
+        "taylor-green-navier-stokes-viscous-decay",
+        "continuum-scale-separation-counting"
+      ],
+      "controls": 11,
+      "presets": 18,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/fourier-heat-diffusion-mode-budget.ko.md",
+        "en": "content/learning/physics-math-for-ai/fourier-heat-diffusion-mode-budget.en.md"
+      },
+      "contentSha256": {
+        "ko": "8206a426d88f32a869d85486abb163e687efb592b6b4f580fd565917b616434a",
+        "en": "bffd636868b9dd9a69a20997e3cc82f5cd3723eb5d0d759993d6df016edc0434"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-diffusion-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage3-diffusion-verification.json"
+    },
+    {
+      "topic": "열·물질 확산",
+      "id": "gaussian-fick-diffusion-spreading",
+      "prerequisites": [
+        "fourier-heat-diffusion-mode-budget",
+        "moving-control-volume-mass-transport"
+      ],
+      "controls": 10,
+      "presets": 20,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/gaussian-fick-diffusion-spreading.ko.md",
+        "en": "content/learning/physics-math-for-ai/gaussian-fick-diffusion-spreading.en.md"
+      },
+      "contentSha256": {
+        "ko": "2009a0a394646375e8cb6190b389ce7c9c7cf06392a64bdfe9001347a84e64ab",
+        "en": "5abec547e1bd7d06979eb19be36584dfaec6ecc4127cb54c55b1acf032808b7e"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-diffusion-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage3-diffusion-verification.json"
+    },
+    {
+      "topic": "반응수송",
+      "id": "reversible-reaction-advection-diffusion-budget",
+      "prerequisites": [
+        "gaussian-fick-diffusion-spreading",
+        "moving-control-volume-mass-transport"
+      ],
+      "controls": 13,
+      "presets": 16,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/reversible-reaction-advection-diffusion-budget.ko.md",
+        "en": "content/learning/physics-math-for-ai/reversible-reaction-advection-diffusion-budget.en.md"
+      },
+      "contentSha256": {
+        "ko": "ecfb6ce2fea46c9d2e0ccfa3d6bac2a652f872e573ae185d58f5d17136ed95c3",
+        "en": "36842b94c1d646f3aed105afb11546b9fc65c087ab79d41e29c262edf9126368"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-reaction-transport-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage3-verification.json"
+    },
+    {
+      "topic": "반응수송",
+      "id": "fisher-kpp-reaction-diffusion-front",
+      "prerequisites": [
+        "reversible-reaction-advection-diffusion-budget",
+        "fourier-heat-diffusion-mode-budget"
+      ],
+      "controls": 11,
+      "presets": 18,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/fisher-kpp-reaction-diffusion-front.ko.md",
+        "en": "content/learning/physics-math-for-ai/fisher-kpp-reaction-diffusion-front.en.md"
+      },
+      "contentSha256": {
+        "ko": "2ffefd39341a0d05eac36f3f45df50726f976a255e86fd288a3eefb22a9b23d0",
+        "en": "3df986d63eb1a44ce46d8ebbfe030b726db5dee506fe04e8327bdd932cb6e154"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-reaction-transport-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage3-verification.json"
+    },
+    {
+      "topic": "구성방정식",
+      "id": "kelvin-voigt-maxwell-memory-dissipation",
+      "prerequisites": [
+        "reversible-reaction-advection-diffusion-budget",
+        "finite-deformation-small-strain-rotation"
+      ],
+      "controls": 8,
+      "presets": 20,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/kelvin-voigt-maxwell-memory-dissipation.ko.md",
+        "en": "content/learning/physics-math-for-ai/kelvin-voigt-maxwell-memory-dissipation.en.md"
+      },
+      "contentSha256": {
+        "ko": "aa39e5ed8476d91012dcca37fb65a2e1047db11ff8ddc480113eb998b8ae2c72",
+        "en": "c5d360b102bb8d97767c5b9ccd101e526e52fab7c55a922c3fea7b7e36d2333e"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-constitutive-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "partialAuditEvidence": ".runtime/learning/continuum-domain-audit-stage4-startup-verification.json",
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage4-verification.json",
+      "domainAuditReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage4.md"
+    },
+    {
+      "topic": "구성방정식",
+      "id": "neo-hookean-uniaxial-constitutive-objectivity",
+      "prerequisites": [
+        "kelvin-voigt-maxwell-memory-dissipation",
+        "cauchy-traction-stress-balance",
+        "finite-deformation-small-strain-rotation"
+      ],
+      "controls": 8,
+      "presets": 18,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/neo-hookean-uniaxial-constitutive-objectivity.ko.md",
+        "en": "content/learning/physics-math-for-ai/neo-hookean-uniaxial-constitutive-objectivity.en.md"
+      },
+      "contentSha256": {
+        "ko": "498bd21332b7cc0919fb40afe8de245f86f2c7a123fed0c596cc75c1c8b4d120",
+        "en": "3e0f5d8fe5aca2ae2b926a146a68052d579314122cd3e268a945128c9acfc3a3"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-constitutive-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage4-verification.json",
+      "domainAuditReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage4.md"
+    },
+    {
+      "topic": "무차원 수",
+      "id": "advection-diffusion-peclet-boundary-layer",
+      "prerequisites": [
+        "kelvin-voigt-maxwell-memory-dissipation",
+        "gaussian-fick-diffusion-spreading"
+      ],
+      "controls": 8,
+      "presets": 18,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/advection-diffusion-peclet-boundary-layer.ko.md",
+        "en": "content/learning/physics-math-for-ai/advection-diffusion-peclet-boundary-layer.en.md"
+      },
+      "contentSha256": {
+        "ko": "46501865809923810ea9b88f2d33207eb9de2389310e795009681867f72f8107",
+        "en": "52d588a8807f9678b1e96137d1016d4bfae5011480aa83f264d261fd8ed04e01"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-dimensionless-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage4-verification.json",
+      "domainAuditReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage4.md"
+    },
+    {
+      "topic": "무차원 수",
+      "id": "reaction-diffusion-damkohler-penetration",
+      "prerequisites": [
+        "advection-diffusion-peclet-boundary-layer",
+        "reversible-reaction-advection-diffusion-budget"
+      ],
+      "controls": 8,
+      "presets": 18,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/reaction-diffusion-damkohler-penetration.ko.md",
+        "en": "content/learning/physics-math-for-ai/reaction-diffusion-damkohler-penetration.en.md"
+      },
+      "contentSha256": {
+        "ko": "4b3c4332951316d9d2498cc1f9051a52070300c172d415e12d55a2abf2aede30",
+        "en": "0e29f82d88c4d22713897946f61bfb5e257e939ce49e187847c963ed28ff6f1d"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-dimensionless-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage4-verification.json",
+      "domainAuditReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage4.md"
+    },
+    {
+      "topic": "다중물리 결합",
+      "id": "thermoelastic-mode-reciprocal-energy-exchange",
+      "prerequisites": [
+        "reaction-diffusion-damkohler-penetration",
+        "kelvin-voigt-maxwell-memory-dissipation"
+      ],
+      "controls": 12,
+      "presets": 20,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/thermoelastic-mode-reciprocal-energy-exchange.ko.md",
+        "en": "content/learning/physics-math-for-ai/thermoelastic-mode-reciprocal-energy-exchange.en.md"
+      },
+      "contentSha256": {
+        "ko": "3e0ff9dd8998d6f504359051d415899d4847021294d7dd69e1d428b352b26064",
+        "en": "9cc966c7f409e84441ddc676897994d248561b8d550b7d0baec51767601f0221"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-multiphysics-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage5-verification.json",
+      "domainAuditReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage5.md"
+    },
+    {
+      "topic": "다중물리 결합",
+      "id": "thermoelectric-bar-seebeck-peltier-joule-balance",
+      "prerequisites": [
+        "thermoelastic-mode-reciprocal-energy-exchange",
+        "rc-circuit-field-closure-approximation"
+      ],
+      "controls": 10,
+      "presets": 20,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/thermoelectric-bar-seebeck-peltier-joule-balance.ko.md",
+        "en": "content/learning/physics-math-for-ai/thermoelectric-bar-seebeck-peltier-joule-balance.en.md"
+      },
+      "contentSha256": {
+        "ko": "97b337eeddfbcdca9afaaa26fa4f7c247c51d9b6ef12595f15bc562a7a0ddf71",
+        "en": "7b1a0b1df9ec4c5c38a0698ad5f2713d363b225c0e2ac5b27e90476e56f02bf5"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-multiphysics-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage5-verification.json",
+      "domainAuditReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage5.md"
+    },
+    {
+      "topic": "난류·폐쇄 문제",
+      "id": "reynolds-ensemble-stress-closure-defect",
+      "prerequisites": [
+        "taylor-green-navier-stokes-viscous-decay",
+        "thermoelectric-bar-seebeck-peltier-joule-balance"
+      ],
+      "controls": 13,
+      "presets": 20,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/reynolds-ensemble-stress-closure-defect.ko.md",
+        "en": "content/learning/physics-math-for-ai/reynolds-ensemble-stress-closure-defect.en.md"
+      },
+      "contentSha256": {
+        "ko": "390b93c7a2bea1bfa2a4ae3a2aef0731b708c4b9fcd14e4c12b47dedb88045ef",
+        "en": "c0c3449132c4f468cc14ac421b5fef971f82e06cb0fe2f3339878837f53894d9"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-turbulence-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage5-verification.json",
+      "domainAuditReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage5.md"
+    },
+    {
+      "topic": "난류·폐쇄 문제",
+      "id": "gaussian-filtered-burgers-subgrid-transfer",
+      "prerequisites": [
+        "reynolds-ensemble-stress-closure-defect",
+        "fourier-heat-diffusion-mode-budget"
+      ],
+      "controls": 11,
+      "presets": 20,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/gaussian-filtered-burgers-subgrid-transfer.ko.md",
+        "en": "content/learning/physics-math-for-ai/gaussian-filtered-burgers-subgrid-transfer.en.md"
+      },
+      "contentSha256": {
+        "ko": "9f8c5ffa1f658aed4c06cd37d80bfa07a3e735e0d56f23e7e8a8aa5d78ba8cc1",
+        "en": "72ec4d84f083d74fb94eb849b157a8f9671b22dfb2495cfc0e6dd5e9459c5968"
+      },
+      "existingTopicEvidence": ".runtime/learning/continuum-turbulence-integrated-verification.json",
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage5-verification.json",
+      "domainAuditReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage5.md"
+    },
+    {
+      "topic": "보존형 이산화",
+      "id": "nonuniform-volume-shared-flux-mass-norm",
+      "prerequisites": [
+        "finite-volume-boundary-conservation",
+        "gaussian-filtered-burgers-subgrid-transfer"
+      ],
+      "controls": 12,
+      "presets": 20,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/nonuniform-volume-shared-flux-mass-norm.ko.md",
+        "en": "content/learning/physics-math-for-ai/nonuniform-volume-shared-flux-mass-norm.en.md"
+      },
+      "contentSha256": {
+        "ko": "e9d859c80aae4c0779936d34cbab77fd72704bfd88e3e6a1b0521413c0637d86",
+        "en": "c334da6e6917b27b58ca74191fa0ec79d5cd2f3f7eb5db4cd9b54b1cc43c20e6"
+      },
+      "existingTopicEvidence": null,
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage6-verification.json",
+      "domainAuditReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage6.md"
+    },
+    {
+      "topic": "보존형 이산화",
+      "id": "godunov-burgers-conservative-shock-entropy",
+      "prerequisites": [
+        "nonuniform-volume-shared-flux-mass-norm",
+        "weak-entropy-riemann-solutions"
+      ],
+      "controls": 7,
+      "presets": 20,
+      "contentFiles": {
+        "ko": "content/learning/physics-math-for-ai/godunov-burgers-conservative-shock-entropy.ko.md",
+        "en": "content/learning/physics-math-for-ai/godunov-burgers-conservative-shock-entropy.en.md"
+      },
+      "contentSha256": {
+        "ko": "c7928a5135fe229710c839f5e8681b4722bf353126484f62445853167dae5e3a",
+        "en": "f8a4e5f01891dfed65391b84eb17588647599da002eced7a0f2d67100b26f6b8"
+      },
+      "existingTopicEvidence": null,
+      "domainAudit": {
+        "bilingualContentRead": true,
+        "assumptionsAndUnitsChecked": true,
+        "independentBudgetsChecked": true,
+        "controlAndFigureSemanticsChecked": true,
+        "prerequisiteSequenceReviewed": true
+      },
+      "domainAuditEvidence": ".runtime/learning/continuum-domain-audit-stage6-verification.json",
+      "domainAuditReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage6.md"
+    }
+  ],
+  "stage1Report": "continuum-domain-audit-stage1.md",
+  "auditedUnitCount": 22,
+  "nextAuditUnitIds": [],
+  "latestGlobalEnglishAudit": {
+    "routes": 587,
+    "states": 645,
+    "untranslatedStrings": 0,
+    "runtimeOrTitleErrors": 0,
+    "report": ".runtime/learning/continuum-domain-final/language-check.json",
+    "scope": "Selected UI routes and expanded states from check-language.cjs; blog/QT detail prose is sampled and explicitly marked original-language content is excluded."
+  },
+  "bilingualReadUnitCount": 22,
+  "stage2Report": "continuum-domain-audit-stage2.md",
+  "stage2Complete": true,
+  "stage2FlowReport": "continuum-domain-audit-stage2-flow.md",
+  "nextAuditPreparation": "docs/online-learning/physics-math-for-ai/continuum-domain-final-audit-preparation.md",
+  "stage3PartialReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage3-heat-totals.md",
+  "stage3Complete": true,
+  "stage3DiffusionReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage3-diffusion.md",
+  "stage3Report": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage3.md",
+  "stage4Complete": true,
+  "stage4PartialReport": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage4-startup.md",
+  "stage4Report": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage4.md",
+  "stage5Complete": true,
+  "stage5Report": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage5.md",
+  "nextAuditScope": "none-for-introductory-audit",
+  "stage6Complete": true,
+  "stage6Report": "docs/online-learning/physics-math-for-ai/continuum-domain-audit-stage6.md",
+  "finalDomainAuditPending": false,
+  "finalDomainReport": "docs/online-learning/physics-math-for-ai/continuum-domain-final-audit.md",
+  "finalDomainEvidence": ".runtime/learning/continuum-domain-final-verification.json"
+}

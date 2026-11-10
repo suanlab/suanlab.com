@@ -1,0 +1,8 @@
+import type {LearningUnit,LearningGuide} from './interactive-book';
+import {uncertaintyKinds as kinds,uncertaintyTitles as titles,uncertaintyText as t} from '@/lib/learning-uncertainty';
+import {uncertaintySteps as steps} from '@/lib/learning-uncertainty-concepts';
+const subtitles=[t('Gram 기하에서 불확정성 하한을 유도하고 공분산·포화·사영·ensemble 분해를 실험합니다.','Derive uncertainty from Gram geometry; explore covariance,saturation,projection and ensemble decompositions.'),t('같은 POVM의 세 instrument와 조건부 상태·읽기값 잡음·RMS 오차/교란을 비교합니다.','Compare three instruments for one POVM,conditional states,readout noise and RMS error/disturbance.')];
+export const uncertaintyTeaching:{unit:LearningUnit;guide:LearningGuide}[]=kinds.map((kind,i)=>({
+ unit:{id:kind,title:titles[kind],subtitle:subtitles[i],prerequisiteIds:i===0?['finite-ensemble-density-gram-tomography','hermitian-spectrum-born-expectation','complex-state-rays-basis-amplitudes']:[kinds[0],'qubit-density-spectrum-entropy-dephasing','degenerate-projectors-sequential-observation'],prerequisites:t('복소 내적·양의 행렬·Hermitian 스펙트럼·사영 측정·확률 혼합을 복습하세요.','Review complex inner products, positive matrices, Hermitian spectra, projective measurements and probability mixtures.'),eyebrow:'UNCERTAINTY & MEASUREMENT',formula:steps[kind][0].formula,accent:'uncertainty',questions:steps[kind].map((s,j)=>({id:`${kind}-quiz-${j}`,question:s.question,options:s.options,answer:s.answer,explanation:s.solution}))},
+ guide:{intuition:subtitles[i],steps:steps[kind].map(s=>({title:s.title,explanation:s.explanation,formula:s.formula,diagram:s.action})),experiments:steps[kind].map(s=>({title:s.title,predict:s.predict,action:s.action,explain:s.solution,preset:s.presets[0]}))}
+}));

@@ -1,0 +1,2 @@
+export function createNongaussianFieldWorker():Worker{return new Worker(new URL('./learning-nongaussian-field.worker.ts',import.meta.url),{type:'module',name:'nongaussian-field-calculation'});}
+export function createNongaussianFieldValidationWorker():Worker{return new Worker(new URL('./learning-nongaussian-field-validation.worker.ts',import.meta.url),{type:'module',name:'nongaussian-field-validation'});}

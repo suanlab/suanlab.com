@@ -1,0 +1,234 @@
+{
+  "isolated-central-pair-conservation": [
+    {
+      "name": "stationary",
+      "values": [
+        4,
+        4,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        -20,
+        100
+      ],
+      "key": "total energy joules",
+      "answer": "0"
+    },
+    {
+      "name": "coincident-translation",
+      "values": [
+        2,
+        3,
+        4,
+        10,
+        -10,
+        10,
+        -10,
+        20,
+        -20,
+        20,
+        -20,
+        0,
+        0,
+        100
+      ],
+      "key": "pair potential energy joules",
+      "answer": "0",
+      "checks": [
+        [
+          "total energy joules",
+          "20"
+        ]
+      ]
+    },
+    {
+      "name": "unequal-drift",
+      "values": [
+        1,
+        2,
+        1,
+        -10,
+        0,
+        10,
+        0,
+        10,
+        10,
+        10,
+        -5,
+        0,
+        10,
+        10
+      ],
+      "key": "comparison angular momentum kg m squared per s",
+      "answer": "1"
+    },
+    {
+      "name": "zero-time",
+      "values": [
+        1,
+        1,
+        1,
+        -10,
+        0,
+        10,
+        0,
+        0,
+        -10,
+        0,
+        10,
+        0,
+        0,
+        0
+      ],
+      "key": "total angular momentum kg m squared per s",
+      "answer": "2"
+    },
+    {
+      "name": "extreme",
+      "values": [
+        4,
+        1,
+        4,
+        -20,
+        20,
+        20,
+        -20,
+        20,
+        20,
+        -20,
+        20,
+        20,
+        -20,
+        100
+      ],
+      "key": "total energy joules",
+      "answer": "84"
+    },
+    {
+      "name": "reference-shift",
+      "values": [
+        1,
+        2,
+        1,
+        -10,
+        0,
+        10,
+        0,
+        10,
+        10,
+        10,
+        -5,
+        20,
+        -20,
+        10
+      ],
+      "key": "comparison angular momentum kg m squared per s",
+      "answer": "-8"
+    }
+  ],
+  "gyroscopic-force-energy-momentum": [
+    {
+      "name": "free",
+      "values": [
+        2,
+        0,
+        0,
+        10,
+        10,
+        0,
+        100
+      ],
+      "key": "1{guiding center defined}",
+      "answer": "0"
+    },
+    {
+      "name": "stationary",
+      "values": [
+        4,
+        20,
+        20,
+        -20,
+        0,
+        0,
+        100
+      ],
+      "key": "1{stationary motion}",
+      "answer": "1"
+    },
+    {
+      "name": "negative-orientation",
+      "values": [
+        1,
+        -10,
+        0,
+        0,
+        10,
+        0,
+        10
+      ],
+      "key": "kinetic energy joules",
+      "answer": "0.5",
+      "checks": [
+        [
+          "external work joules",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "low-frequency",
+      "values": [
+        4,
+        1,
+        -20,
+        20,
+        20,
+        -20,
+        100
+      ],
+      "key": "kinetic energy joules",
+      "answer": "16"
+    },
+    {
+      "name": "origin-centered",
+      "values": [
+        1,
+        10,
+        10,
+        0,
+        0,
+        10,
+        100
+      ],
+      "key": "1{mechanical angular momentum conserved}",
+      "answer": "1",
+      "checks": [
+        [
+          "1{linear momentum conserved}",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "zero-time",
+      "values": [
+        1,
+        1,
+        20,
+        -20,
+        20,
+        -20,
+        0
+      ],
+      "key": "modified angular invariant kg m squared per s",
+      "answer": "-0.4"
+    }
+  ]
+}

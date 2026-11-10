@@ -1,0 +1,206 @@
+[
+  {
+    "id": "left-layer",
+    "input": {
+      "epsilon": "1/10",
+      "drift": "1",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "thinner-left-layer",
+    "input": {
+      "epsilon": "1/100",
+      "drift": "1",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "right-layer",
+    "input": {
+      "epsilon": "1/10",
+      "drift": "-1",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "19/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "compatible-boundaries",
+    "input": {
+      "epsilon": "1/10",
+      "drift": "1",
+      "forcing": "1",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "forced-layer",
+    "input": {
+      "epsilon": "1/10",
+      "drift": "1",
+      "forcing": "1",
+      "left": "0",
+      "right": "0",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "negative-mismatch",
+    "input": {
+      "epsilon": "1/10",
+      "drift": "1",
+      "forcing": "0",
+      "left": "2",
+      "right": "0",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "no-thin-layer",
+    "input": {
+      "epsilon": "1/10",
+      "drift": "1/1000",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "zero-drift-forced",
+    "input": {
+      "epsilon": "1/10",
+      "drift": "0",
+      "forcing": "1",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "zero-drift-unforced",
+    "input": {
+      "epsilon": "1/10",
+      "drift": "0",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "tiny-diffusion",
+    "input": {
+      "epsilon": "1/999999999989",
+      "drift": "1",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "tiny-nonzero-drift",
+    "input": {
+      "epsilon": "1/10",
+      "drift": "1/999999999989",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "large-diffusion",
+    "input": {
+      "epsilon": "16",
+      "drift": "1",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "maximum-drift",
+    "input": {
+      "epsilon": "1/100",
+      "drift": "16",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "equivalent-spelling",
+    "input": {
+      "epsilon": "2/20",
+      "drift": "1",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 32
+    }
+  },
+  {
+    "id": "coarse-mesh",
+    "input": {
+      "epsilon": "1/100",
+      "drift": "1",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 4
+    }
+  },
+  {
+    "id": "fine-mesh",
+    "input": {
+      "epsilon": "1/100",
+      "drift": "1",
+      "forcing": "0",
+      "left": "0",
+      "right": "1",
+      "probe": "1/20",
+      "panels": 256
+    }
+  },
+  {
+    "id": "maximum-coprime",
+    "input": {
+      "epsilon": "1/999999999989",
+      "drift": "-999999999983/62499999999",
+      "forcing": "999999999979/62499999999",
+      "left": "-999999999961/62499999999",
+      "right": "999999999959/62499999999",
+      "probe": "999999999953/999999999989",
+      "panels": 256
+    }
+  }
+]
