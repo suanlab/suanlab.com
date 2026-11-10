@@ -24,7 +24,7 @@ export default function RealTimePhaseLab({language,embedded=false}:{language:'ko
     {!embedded&&<Concept language={language} selectedStep={model.step} onStep={step=>{if(ready)saved.update(p=>({...p,step}));}}/>}
     {saved.storage!=='available'&&<p role="status" data-real-time-storage={saved.storage}>{saved.storage==='corrupt'?t('저장된 입력이나 학습 선택을 읽을 수 없어 기본값으로 복원했습니다.','Saved input or learning choices were invalid; defaults were restored.'):t('이 브라우저에 저장할 수 없습니다. 현재 화면에서 실험을 계속할 수 있습니다.','This browser cannot save progress. You can continue experimenting in this session.')}</p>}
     <fieldset disabled={!ready} style={{border:0,padding:0}}><legend className="sr-only">{t('입력과 학습 활동','Model inputs and learning activities')}</legend>
-    <Lessons language={language} state={model.lesson} onState={lesson=>saved.update(p=>({...p,lesson}))} onApply={apply}/>
+    <Lessons language={language} questionsVisible={!embedded} state={model.lesson} onState={lesson=>saved.update(p=>({...p,lesson}))} onApply={apply}/>
     <label className="qubit-field">{t('전체 예제','All examples')}<select aria-label={t('전체 예제','All examples')} value={example?.id??'custom'} onChange={e=>{const found=realTimePhaseExamples.find(x=>x.id===e.target.value);if(found)apply(found.input);}}><option value="custom" disabled>{t('직접 입력 또는 안내의 추가 예제','Custom input or additional guide example')}</option>{realTimePhaseExamples.map(e=><option key={e.id} value={e.id}>{realTimePhaseExampleLabels[e.id][language]}</option>)}</select></label>
     <form onSubmit={e=>{e.preventDefault();const input=parseRealTimeDraft(draft);if(input)apply(input);else setInvalid(true);}}>
       <h3>{t('직접 입력','Edit parameters')}</h3>

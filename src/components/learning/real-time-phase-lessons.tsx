@@ -6,7 +6,7 @@ import {readRealTimePhaseInput,type RealTimePhaseInput} from '@/lib/learning-rea
 import {emptyRealTimeLesson,readRealTimeLesson,type RealTimeLessonState} from '@/lib/learning-real-time-phase-lesson-state';
 export const realTimeLessonLimits={guides:realTimePhaseGuides.length,options:realTimePhaseQuestions.map(q=>q.options.length)};
 /** Guide/answer changes are pure learning actions; only Apply requests a model. */
-export default function RealTimePhaseLessons({language,onApply,state,onState}:{language:'ko'|'en';onApply:(input:RealTimePhaseInput,id:string)=>void;state?:RealTimeLessonState;onState?:(value:RealTimeLessonState)=>void}){
+export default function RealTimePhaseLessons({language,onApply,state,onState,questionsVisible=true}:{language:'ko'|'en';onApply:(input:RealTimePhaseInput,id:string)=>void;state?:RealTimeLessonState;onState?:(value:RealTimeLessonState)=>void;questionsVisible?:boolean}){
   const id=useId(),t=(ko:string,en:string)=>language==='ko'?ko:en,[local,setLocal]=useState(()=>emptyRealTimeLesson(realTimeLessonLimits));
   const current=readRealTimeLesson(state??local,realTimeLessonLimits)??emptyRealTimeLesson(realTimeLessonLimits),set=onState??setLocal,guide=realTimePhaseGuides[current.guide];
   const choose=(name:string)=>{const prep=realTimePhaseGuidePreparations.find(p=>p.id===name),input=prep&&readRealTimePhaseInput(prep.input);if(input)onApply(input,name);};
@@ -21,9 +21,9 @@ export default function RealTimePhaseLessons({language,onApply,state,onState}:{l
       <Button type="button" variant="outline" aria-expanded={current.explanationOpen} aria-controls={`${id}-explanation`} onClick={()=>set({...current,explanationOpen:!current.explanationOpen})}>{current.explanationOpen?t('해설 숨기기','Hide explanation'):t('해설 보기','Show explanation')}</Button>
       {current.explanationOpen&&<p id={`${id}-explanation`} data-real-time-guide-explanation>{guide.explanation[language]}</p>}
     </section>
-    <section aria-labelledby={`${id}-questions`}><h2 id={`${id}-questions`}>{t('이해 확인과 해설','Check your understanding with explanations')}</h2>
+    {questionsVisible&&<section aria-labelledby={`${id}-questions`}><h2 id={`${id}-questions`}>{t('이해 확인과 해설','Check your understanding with explanations')}</h2>
       {realTimePhaseQuestions.map((q,i)=><fieldset key={q.id} className="information-question" data-real-time-question={q.id}><legend>{i+1}. {q.prompt[language]}</legend>{q.options.map((option,j)=><label key={j}><input type="radio" name={`${id}-question-${i}`} value={j} checked={current.answers[i]===j} onChange={()=>set({...current,answers:current.answers.map((v,k)=>k===i?j:v)})}/>{option[language]}</label>)}{current.answers[i]>=0&&<p role="status" data-real-time-answer={current.answers[i]===q.correct?'correct':'incorrect'}><strong>{current.answers[i]===q.correct?t('맞습니다. ','Correct. '):t('다시 생각해보세요. ','Think again. ')}</strong>{q.explanation[language]}</p>}</fieldset>)}
       <Button type="button" variant="outline" onClick={()=>set({...current,answers:current.answers.map(()=>-1)})}>{t('문제 다시 풀기','Reset answers')}</Button>
-    </section>
+    </section>}
   </div>;
 }

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-11",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "teaching-ui-and-storage-verified",
+  "stage": "reader-production-assets-and-preservation-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -127,12 +127,14 @@
     {
       "id": "reader-and-production-assets",
       "title": "실제 Interactive Book·선수/검색·생산 자산",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Actual Next14/Node20 static export verified:1839HTML,1836internal URLs,sitemap/canonicals/assets/fragments. Native reader8locale/theme/width cases,104concepts/64questions/48guides,24a11y;maximum961cell touch/keyboard/3D/reload/context recovery plus1a11y. Two production assets matchHTTP/disk hashes.38unique original+guide inputs accepted,38numeric and38attribution corruptions rejected,all38result hashes matchNode producer;whole-response validation remains independent mathematical gate. Earlier completednative recording was compared aftercorrecting Node reference tool path;no numerical domain relaxation."
     },
     {
       "id": "prior-content-preservation",
       "title": "기존600단원·범위·메뉴·자산 보존",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Exact600unit/guide order andvalue hashes,1200manuscript bytes,51domain scopes,book navigation andOnlineBookpage retained. All1202registered manuscripts renderstrictmath/English.931prior static assets,including65knownWorkers,retainbytes;4612prior output files backedup.4696verified candidate files installed withall hashes equal;1684runtime sources matchbuild snapshot. Existing4175homepage returnsHTTP200/601cards/newreader. Newscope audit remains separate."
     },
     {
       "id": "unit-scope-audit",
@@ -141,11 +143,11 @@
     }
   ],
   "requirementCount": 23,
-  "requirementsVerified": 20,
+  "requirementsVerified": 22,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-phase-state/verification.json",
-  "scopeNote": "20of23requirements verified. Unified bilingual lab,owned drafts andpersisted input/display/learning state,native reload/failure/maximum/3D/keyboard/touch/accessibility checks added. Actual reader/production assets,preservation andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
+  "evidence": ".runtime/learning/real-time-phase-reader-integration/verification.json",
+  "scopeNote": "22of23requirements verified. Actual601unit reader andtwoNextWorker assets tested with38uniqueinputs,38math/38attribution rejections andNode result agreement. Prior600units/1200manuscripts/51domain scopes/menu retained;931oldassets including65knownWorkers preserved and4612oldoutput files backedup. Final unit-scope andoriginal-topic audits remain;unitComplete andwholeGoalComplete remain false."
 }
