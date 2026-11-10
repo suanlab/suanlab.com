@@ -14314,7 +14314,30 @@
             "content/learning/physics-math-for-ai/finite-field-measure-and-thermal-free-energy.en.md"
           ],
           "originalTopicComplete": false,
-          "introductoryTopicAuditPending": true
+          "introductoryTopicAuditPending": true,
+          "nextPreparation": {
+            "unitId": "microscopic-blocks-and-local-order-parameters",
+            "status": "independent-foundation-and-bilingual-drafts-verified",
+            "registered": false,
+            "homepageIntegrated": false,
+            "actualBrowserVerified": false,
+            "originalTopicComplete": false,
+            "contract": "docs/online-learning/physics-math-for-ai/block-order-model-contract.md",
+            "report": "docs/online-learning/physics-math-for-ai/block-order-foundation.md",
+            "model": "src/lib/learning-block-order.ts",
+            "independentOracle": "scripts/learning/verify-block-order-foundation.py",
+            "evidence": ".runtime/learning/block-order-foundation/verification.json",
+            "modelsCompared": 24,
+            "profilesCompared": 2212,
+            "nonzeroHistogramCoefficientsCompared": 9549,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/microscopic-blocks-and-local-order-parameters.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/microscopic-blocks-and-local-order-parameters.en.md"
+            ],
+            "sectionsPerLocale": 20,
+            "explainedQuestionsPerLocale": 8,
+            "nextAction": "block-order-independent-browser-gate-and-worker-protocol"
+          }
         },
         {
           "title": "criticality·universality",
@@ -14477,7 +14500,7 @@
       "researchDepthComplete": false,
       "wholeDomainAuditComplete": false,
       "introductoryDomainAuditComplete": false,
-      "nextUnitId": null,
+      "nextUnitId": "microscopic-blocks-and-local-order-parameters",
       "lastIntegratedUnitPreparation": {
         "unitId": "finite-field-measure-and-thermal-free-energy",
         "status": "verified-introductory-unit",
@@ -14789,7 +14812,30 @@
         "id": "real-time-phase-and-classical-limit",
         "report": "docs/online-learning/physics-math-for-ai/real-time-phase-scope-audit.md"
       },
-      "previousIntegratedUnitPreparationRef": "docs/online-learning/physics-math-for-ai/thermal-field-prior-integration-history.json"
+      "previousIntegratedUnitPreparationRef": "docs/online-learning/physics-math-for-ai/thermal-field-prior-integration-history.json",
+      "nextUnitPreparation": {
+        "unitId": "microscopic-blocks-and-local-order-parameters",
+        "status": "independent-foundation-and-bilingual-drafts-verified",
+        "registered": false,
+        "homepageIntegrated": false,
+        "actualBrowserVerified": false,
+        "originalTopicComplete": false,
+        "contract": "docs/online-learning/physics-math-for-ai/block-order-model-contract.md",
+        "report": "docs/online-learning/physics-math-for-ai/block-order-foundation.md",
+        "model": "src/lib/learning-block-order.ts",
+        "independentOracle": "scripts/learning/verify-block-order-foundation.py",
+        "evidence": ".runtime/learning/block-order-foundation/verification.json",
+        "modelsCompared": 24,
+        "profilesCompared": 2212,
+        "nonzeroHistogramCoefficientsCompared": 9549,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/microscopic-blocks-and-local-order-parameters.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/microscopic-blocks-and-local-order-parameters.en.md"
+        ],
+        "sectionsPerLocale": 20,
+        "explainedQuestionsPerLocale": 8,
+        "nextAction": "block-order-independent-browser-gate-and-worker-protocol"
+      }
     },
     {
       "id": "relativity",
@@ -15105,12 +15151,12 @@
     "evidence": ".runtime/learning/thermodynamics-domain-audit-stage7/semantics-verification.json",
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
-  "authoredUnverifiedNewUnitCount": 0,
-  "authoredUnverifiedNewUnitCountDefinition": "All602registered units/1204manuscripts have their declared introductory unit contracts verified. Historical draft snapshots remain forlineage;there are noactive unregistered orunverified units. The46original introductory topics,domain audits andfullresearch depth remain incomplete. Statistical field theory hasone verified constituent unit andthree remaining treatments.",
+  "authoredUnverifiedNewUnitCount": 1,
+  "authoredUnverifiedNewUnitCountDefinition": "All602registered units/1204registered manuscripts meet their declared introductory unit contracts. One active unregistered unit has independently checked finite mathematics and bilingual drafts; its Worker, visual andactual-reader verification remain pending. Historical draft snapshots remain for lineage. The46original introductory topics,domain audits andfullresearch depth remain incomplete.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": null,
+  "nextAuthoringUnitId": "microscopic-blocks-and-local-order-parameters",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "statistical-field-order-parameter-primary-source-and-model-review",
-  "unregisteredDraftUnitCount": 0,
+  "nextAction": "block-order-independent-browser-gate-and-worker-protocol",
+  "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

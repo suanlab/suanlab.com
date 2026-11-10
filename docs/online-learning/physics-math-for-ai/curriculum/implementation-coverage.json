@@ -3,7 +3,7 @@
   "updated": "2026-11-11",
   "implementedUnitCount": 602,
   "curriculumComplete": false,
-  "scope": "602registered units,1869guides and1204registered bilingual manuscripts. Introductory316/362verified and46pending. Thefirst statistical-field-theory unit meets24requirements andis integrated into the homepage;three remaining treatments andtheoriginal topic audit arepending. Whole51-domain/509-topic scope,domain audits andresearch depth remain incomplete.",
+  "scope": "602registered units,1869guides and1204registered bilingual manuscripts. Introductory316/362verified and46pending. Thefirst statistical-field-theory unit meets24requirements andis integrated into the homepage;three remaining treatments andtheoriginal topic audit arepending. Whole51-domain/509-topic scope,domain audits andresearch depth remain incomplete. One active unregistered local-order-parameter unit now has independently verified finite mathematics and detailed bilingual drafts;its reader andWorker verification remain pending.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9492,7 +9492,7 @@
         ],
         "id": "finite-field-measure-and-thermal-free-energy"
       },
-      "nextUnitId": null,
+      "nextUnitId": "microscopic-blocks-and-local-order-parameters",
       "lastUnitPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
         "originalTopic": "path integral의 정의·근사",
@@ -9911,7 +9911,30 @@
         ],
         "id": "finite-field-measure-and-thermal-free-energy"
       },
-      "previousIntegratedUnitPreparationRef": "docs/online-learning/physics-math-for-ai/thermal-field-prior-integration-history.json"
+      "previousIntegratedUnitPreparationRef": "docs/online-learning/physics-math-for-ai/thermal-field-prior-integration-history.json",
+      "nextUnitPreparation": {
+        "unitId": "microscopic-blocks-and-local-order-parameters",
+        "status": "independent-foundation-and-bilingual-drafts-verified",
+        "registered": false,
+        "homepageIntegrated": false,
+        "actualBrowserVerified": false,
+        "originalTopicComplete": false,
+        "contract": "docs/online-learning/physics-math-for-ai/block-order-model-contract.md",
+        "report": "docs/online-learning/physics-math-for-ai/block-order-foundation.md",
+        "model": "src/lib/learning-block-order.ts",
+        "independentOracle": "scripts/learning/verify-block-order-foundation.py",
+        "evidence": ".runtime/learning/block-order-foundation/verification.json",
+        "modelsCompared": 24,
+        "profilesCompared": 2212,
+        "nonzeroHistogramCoefficientsCompared": 9549,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/microscopic-blocks-and-local-order-parameters.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/microscopic-blocks-and-local-order-parameters.en.md"
+        ],
+        "sectionsPerLocale": 20,
+        "explainedQuestionsPerLocale": 8,
+        "nextAction": "block-order-independent-browser-gate-and-worker-protocol"
+      }
     },
     {
       "id": "relativity",
