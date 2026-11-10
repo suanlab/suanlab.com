@@ -3,7 +3,7 @@
   "updated": "2026-11-10",
   "implementedUnitCount": 600,
   "curriculumComplete": false,
-  "scope": "600 registered units,1857 guides and1200 registered bilingual manuscripts; no unregistered drafts. Saddle fluctuation has actual production reader, Worker assets, prior-content preservation and20/20 unit scope audit verified locally. Public Pages deployment is separately pending confirmation. The fourth path-integral treatment and topic audit remain; introductory scope stays315/362 verified and47 pending. Whole51-domain/509-topic scope, domain audits and research depth remain incomplete.",
+  "scope": "600registered units,1857guides and1200registered bilingual manuscripts;no unregistered drafts. Real-time phase/classical limit has only primary-source andfinite mathematical foundations verified:62models/41191exact checks/13uncertifiedDecimal diagnostics. Manuscripts,production numerics andwire costs,validator,Workers,UI,reader andunit/topic audits remain. Introductory315/362verified and47pending;whole51-domain/509-topic scope,domain audits andresearch depth remain incomplete.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9033,8 +9033,8 @@
         "euclidean-quantum-kernels-and-time-slicing",
         "saddle-fluctuation-and-nongaussian-approximation"
       ],
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-reader-integration-status.md",
-      "currentPreparationEvidence": ".runtime/learning/saddle-fluctuation-reader-integration/verification.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/real-time-phase-foundation-status.md",
+      "currentPreparationEvidence": ".runtime/learning/real-time-phase-foundation/verification.json",
       "lastIntegratedPreparation": {
         "id": "saddle-fluctuation-and-nongaussian-approximation",
         "originalTopic": "path integral의 정의·근사",
@@ -9604,15 +9604,48 @@
         "priorWorkerAssetsPreserved": 65,
         "allRegisteredManuscriptsVerified": 1198
       },
-      "nextAction": "real-time-phase-primary-source-audit-and-model-contract",
+      "nextAction": "real-time-phase-bilingual-manuscripts-and-production-numerical-contract",
       "nextUnitPreparation": {
         "id": "real-time-phase-and-classical-limit",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "not-started",
+        "stage": "primary-sources-and-finite-identities-verified",
+        "registeredUnitCount": 0,
         "readerRegistered": false,
+        "homepageIntegrated": false,
         "unitComplete": false,
         "originalTopicComplete": false,
-        "researchDepthComplete": false
+        "researchDepthComplete": false,
+        "primarySourceAuditComplete": true,
+        "mathematicalContractSpecified": true,
+        "modelFinalized": false,
+        "productionContractFinalized": false,
+        "productionCalculatorImplemented": false,
+        "bilingualManuscriptsAuthored": false,
+        "independentResponseValidatorComplete": false,
+        "workersVerified": false,
+        "teachingUiVerified": false,
+        "derivationChecksPassed": 41204,
+        "exactChecksPassed": 41191,
+        "finiteModels": 62,
+        "decimalDiagnosticChecksPassed": 13,
+        "decimalPrecision": {
+          "contour": 65,
+          "branch": 75
+        },
+        "decimalContourRows": 6,
+        "decimalBranchRows": 3,
+        "decimalQuadratureCertified": false,
+        "requirementsVerified": 7,
+        "requirementCount": 23,
+        "primarySourceAudit": "docs/online-learning/physics-math-for-ai/real-time-phase-primary-source-audit.md",
+        "modelContract": "docs/online-learning/physics-math-for-ai/real-time-phase-model-contract.md",
+        "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/real-time-phase-acceptance-matrix.json",
+        "report": "docs/online-learning/physics-math-for-ai/real-time-phase-foundation-status.md",
+        "evidence": ".runtime/learning/real-time-phase-foundation/verification.json",
+        "nextStage": "bilingual-manuscripts-and-production-numerical-contract",
+        "minimumIntervalsProposed": 2,
+        "maximumIntervalsProposed": 32,
+        "workingPrecisionAndWireBudgetFinalized": false
       },
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",

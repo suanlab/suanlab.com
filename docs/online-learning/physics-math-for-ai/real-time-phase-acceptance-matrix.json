@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-11-10",
+  "unitId": "real-time-phase-and-classical-limit",
+  "stage": "primary-sources-and-finite-identities-verified",
+  "requirements": [
+    {
+      "id": "primary-source-audit",
+      "title": "직접 읽은 자료·표기/추출 확인·범위",
+      "completionVerified": true,
+      "evidenceReason": "Wipf§3.1,Horvathy§§2–3 and direct PDF4/5 images;DLMF9.2/9.5/9.6/9.7/10.32.9 read. Timed-out Tong material excluded."
+    },
+    {
+      "id": "real-action-and-normalization",
+      "title": "유한 실시간 작용·양끝·전체 정규화",
+      "completionVerified": true,
+      "evidenceReason": "Exact quadratic action/gradient,endpoint forcing,determinant andsymplectic generating action across62models;unitarity from the finite split-operator definition."
+    },
+    {
+      "id": "signature-and-caustics",
+      "title": "정상/최소·signature·영 pivot·초점",
+      "completionVerified": true,
+      "evidenceReason": "Exact Sturm versus dense1x1/2x2congruence,full inverse/zero-leading pivots,null vector/rank/endpoint compatibility,affine stationary families andparity caustics checked."
+    },
+    {
+      "id": "regulator-and-branches",
+      "title": "Abel 조절자·복소 응답·제곱근 branch",
+      "completionVerified": true,
+      "evidenceReason": "Exact complex inverse/mean/completed squares andpositive-real pivots;N4principal determinant root sign counterexample andAbel phase limit are separately marked Decimal diagnostics."
+    },
+    {
+      "id": "packet-and-classical-families",
+      "title": "Gaussian packet·불확실성·두 고전극한",
+      "completionVerified": true,
+      "evidenceReason": "Exact covariance/Mobius transport,detSigma=hbar^2/4,caustic finite variance,central action andprefactor square;fixed-variance ensemble separated fromhbar-scaled localized family."
+    },
+    {
+      "id": "fold-and-airy-identities",
+      "title": "Fold 간섭·Airy·합류·비실수 정상점",
+      "completionVerified": true,
+      "evidenceReason": "Exact stationary actions/uniform scaling/Airy ODE coefficients/Gaussian-moment versus DLMF coefficients;first omitted160term atx64 <2^-540. Actual Airy function production enclosures remain separate."
+    },
+    {
+      "id": "distinct-limits-and-scope",
+      "title": "작은ℏ·N정련·조절자·초점·해석 한계",
+      "completionVerified": true,
+      "evidenceReason": "Fixed-time map refinements checked;stationary phase,actual densities,complex moments andcanonical fold distinguished. No general nonlinear real-time measure/convergence theorem claimed."
+    },
+    {
+      "id": "owned-input-and-budget",
+      "title": "세 mode 소유 입력·전체 한도·전송 비용",
+      "completionVerified": false
+    },
+    {
+      "id": "chain-numerics",
+      "title": "전체 사슬·signature/초점·조절자 생산 수치",
+      "completionVerified": false
+    },
+    {
+      "id": "packet-numerics",
+      "title": "정규화 packet·complex width/phase·두 족 생산 수치",
+      "completionVerified": false
+    },
+    {
+      "id": "fold-numerics",
+      "title": "전체 물리 u/ℏ의 Airy 구간·scaled/log 표현",
+      "completionVerified": false
+    },
+    {
+      "id": "independent-references",
+      "title": "독립 고정밀 기준·최대/경계 격자",
+      "completionVerified": false
+    },
+    {
+      "id": "independent-response-validator",
+      "title": "전체 응답 독립 검산·변조/귀속 거부",
+      "completionVerified": false
+    },
+    {
+      "id": "workers-and-lifecycle",
+      "title": "실제 계산/검산 Worker·복사/취소/복구/기한",
+      "completionVerified": false
+    },
+    {
+      "id": "bilingual-manuscripts",
+      "title": "한영 상세 이론·직관·손계산·실행Python",
+      "completionVerified": false
+    },
+    {
+      "id": "concept-graphics",
+      "title": "한영 개념 단계·기준 그림·compact 표지",
+      "completionVerified": false
+    },
+    {
+      "id": "interactive-views",
+      "title": "위상/모드·행렬/Three.js·packet·fold/Airy",
+      "completionVerified": false
+    },
+    {
+      "id": "guided-experiments",
+      "title": "예측·조작·설명과 명시 예제",
+      "completionVerified": false
+    },
+    {
+      "id": "explained-questions",
+      "title": "개념·한계 해설 문제",
+      "completionVerified": false
+    },
+    {
+      "id": "storage-and-accessibility",
+      "title": "모형/학습 저장·한영/명암/모바일·접근성",
+      "completionVerified": false
+    },
+    {
+      "id": "reader-and-production-assets",
+      "title": "실제 Interactive Book·선수/검색·생산 자산",
+      "completionVerified": false
+    },
+    {
+      "id": "prior-content-preservation",
+      "title": "기존600단원·범위·메뉴·자산 보존",
+      "completionVerified": false
+    },
+    {
+      "id": "unit-scope-audit",
+      "title": "전체 단원 요건·증거·원래 범위 감사",
+      "completionVerified": false
+    }
+  ],
+  "requirementCount": 23,
+  "requirementsVerified": 7,
+  "unitComplete": false,
+  "originalTopicComplete": false,
+  "wholeGoalComplete": false,
+  "researchDepthComplete": false,
+  "evidence": ".runtime/learning/real-time-phase-foundation/verification.json",
+  "scopeNote": "Fourth path-integral treatment;only primary sources andfinite mathematical identities verified. No registered unit ormanuscript. Production input/precision/wire costs,actual numeric enclosures,independent response validator,Workers,teaching UI,reader andunit/topic audits remain."
+}

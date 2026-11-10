@@ -13929,7 +13929,49 @@
             "allRegisteredManuscriptsVerified": 1198
           },
           "nextPlannedUnitId": "real-time-phase-and-classical-limit",
-          "coverageLevel": "introductory-partial"
+          "coverageLevel": "introductory-partial",
+          "realTimePreparation": {
+            "id": "real-time-phase-and-classical-limit",
+            "originalTopic": "path integral의 정의·근사",
+            "stage": "primary-sources-and-finite-identities-verified",
+            "registeredUnitCount": 0,
+            "readerRegistered": false,
+            "homepageIntegrated": false,
+            "unitComplete": false,
+            "originalTopicComplete": false,
+            "researchDepthComplete": false,
+            "primarySourceAuditComplete": true,
+            "mathematicalContractSpecified": true,
+            "modelFinalized": false,
+            "productionContractFinalized": false,
+            "productionCalculatorImplemented": false,
+            "bilingualManuscriptsAuthored": false,
+            "independentResponseValidatorComplete": false,
+            "workersVerified": false,
+            "teachingUiVerified": false,
+            "derivationChecksPassed": 41204,
+            "exactChecksPassed": 41191,
+            "finiteModels": 62,
+            "decimalDiagnosticChecksPassed": 13,
+            "decimalPrecision": {
+              "contour": 65,
+              "branch": 75
+            },
+            "decimalContourRows": 6,
+            "decimalBranchRows": 3,
+            "decimalQuadratureCertified": false,
+            "requirementsVerified": 7,
+            "requirementCount": 23,
+            "primarySourceAudit": "docs/online-learning/physics-math-for-ai/real-time-phase-primary-source-audit.md",
+            "modelContract": "docs/online-learning/physics-math-for-ai/real-time-phase-model-contract.md",
+            "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/real-time-phase-acceptance-matrix.json",
+            "report": "docs/online-learning/physics-math-for-ai/real-time-phase-foundation-status.md",
+            "evidence": ".runtime/learning/real-time-phase-foundation/verification.json",
+            "nextStage": "bilingual-manuscripts-and-production-numerical-contract",
+            "minimumIntervalsProposed": 2,
+            "maximumIntervalsProposed": 32,
+            "workingPrecisionAndWireBudgetFinalized": false
+          }
         },
         {
           "title": "statistical field theory",
@@ -13958,8 +14000,8 @@
         }
       ],
       "verification": null,
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-reader-integration-status.md",
-      "currentPreparationEvidence": ".runtime/learning/saddle-fluctuation-reader-integration/verification.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/real-time-phase-foundation-status.md",
+      "currentPreparationEvidence": ".runtime/learning/real-time-phase-foundation/verification.json",
       "lastIntegratedPreparation": {
         "id": "saddle-fluctuation-and-nongaussian-approximation",
         "originalTopic": "path integral의 정의·근사",
@@ -14253,15 +14295,48 @@
         "matrix": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit-matrix.json",
         "evidence": ".runtime/learning/correlation-function-topic-audit/verification.json"
       },
-      "nextAction": "real-time-phase-primary-source-audit-and-model-contract",
+      "nextAction": "real-time-phase-bilingual-manuscripts-and-production-numerical-contract",
       "nextUnitPreparation": {
         "id": "real-time-phase-and-classical-limit",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "not-started",
+        "stage": "primary-sources-and-finite-identities-verified",
+        "registeredUnitCount": 0,
         "readerRegistered": false,
+        "homepageIntegrated": false,
         "unitComplete": false,
         "originalTopicComplete": false,
-        "researchDepthComplete": false
+        "researchDepthComplete": false,
+        "primarySourceAuditComplete": true,
+        "mathematicalContractSpecified": true,
+        "modelFinalized": false,
+        "productionContractFinalized": false,
+        "productionCalculatorImplemented": false,
+        "bilingualManuscriptsAuthored": false,
+        "independentResponseValidatorComplete": false,
+        "workersVerified": false,
+        "teachingUiVerified": false,
+        "derivationChecksPassed": 41204,
+        "exactChecksPassed": 41191,
+        "finiteModels": 62,
+        "decimalDiagnosticChecksPassed": 13,
+        "decimalPrecision": {
+          "contour": 65,
+          "branch": 75
+        },
+        "decimalContourRows": 6,
+        "decimalBranchRows": 3,
+        "decimalQuadratureCertified": false,
+        "requirementsVerified": 7,
+        "requirementCount": 23,
+        "primarySourceAudit": "docs/online-learning/physics-math-for-ai/real-time-phase-primary-source-audit.md",
+        "modelContract": "docs/online-learning/physics-math-for-ai/real-time-phase-model-contract.md",
+        "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/real-time-phase-acceptance-matrix.json",
+        "report": "docs/online-learning/physics-math-for-ai/real-time-phase-foundation-status.md",
+        "evidence": ".runtime/learning/real-time-phase-foundation/verification.json",
+        "nextStage": "bilingual-manuscripts-and-production-numerical-contract",
+        "minimumIntervalsProposed": 2,
+        "maximumIntervalsProposed": 32,
+        "workingPrecisionAndWireBudgetFinalized": false
       },
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
@@ -14730,5 +14805,5 @@
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
   "nextAuthoringUnitId": "real-time-phase-and-classical-limit",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "real-time-phase-primary-source-audit-and-model-contract"
+  "nextAction": "real-time-phase-bilingual-manuscripts-and-production-numerical-contract"
 }
