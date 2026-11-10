@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 612,
+  "implementedUnitCount": 613,
   "curriculumComplete": false,
-  "scope": "612 registered units, 1893 guided experiments and 1224 bilingual manuscript files. Introductory scope: 324 of 362 original topics verified, 38 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "613 registered units, 1895 guided experiments and 1226 bilingual manuscript files. Introductory scope: 325 of 362 original topics verified, 37 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9994,10 +9994,11 @@
       "implementedUnitIds": [
         "special-relativity-lorentz-boosts",
         "minkowski-metric-and-proper-time",
-        "light-cones-and-causal-order"
+        "light-cones-and-causal-order",
+        "relativistic-kinematics-four-momentum"
       ],
-      "nextUnitId": "relativistic-kinematics-four-momentum",
-      "nextAction": "four-momentum-reader-integration",
+      "nextUnitId": "curvature-covariant-derivatives-and-holonomy",
+      "nextAction": "rotational-curvature-reader-integration",
       "lorentzBoostDraft": {
         "unitId": "special-relativity-lorentz-boosts",
         "status": "registered-and-verified",
@@ -10013,48 +10014,48 @@
           "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
-      "currentPreparationEvidence": "scripts/learning-causal-relay.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
+      "currentPreparationEvidence": "scripts/learning-four-momentum.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "light-cones-and-causal-order",
+        "unitId": "relativistic-kinematics-four-momentum",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-causal-relay.ts",
-        "lab": "src/components/learning/causal-relay-lab.tsx",
-        "tests": "scripts/learning-causal-relay.test.ts",
+        "model": "src/lib/learning-four-momentum.ts",
+        "lab": "src/components/learning/four-momentum-lab.tsx",
+        "tests": "scripts/learning-four-momentum.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
-          "content/learning/physics-math-for-ai/light-cones-and-causal-order.en.md"
+          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
+          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "light-cones-and-causal-order",
+        "unitId": "relativistic-kinematics-four-momentum",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-causal-relay.ts",
-        "lab": "src/components/learning/causal-relay-lab.tsx",
-        "tests": "scripts/learning-causal-relay.test.ts",
+        "model": "src/lib/learning-four-momentum.ts",
+        "lab": "src/components/learning/four-momentum-lab.tsx",
+        "tests": "scripts/learning-four-momentum.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
-          "content/learning/physics-math-for-ai/light-cones-and-causal-order.en.md"
+          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
+          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "causal structure",
+        "originalTopic": "상대론적 운동학",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "light-cones-and-causal-order"
+          "relativistic-kinematics-four-momentum"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -10062,12 +10063,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
-          "content/learning/physics-math-for-ai/light-cones-and-causal-order.en.md"
+          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
+          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-causal-relay.test.ts"
+        "evidence": "scripts/learning-four-momentum.test.ts"
       },
       "topicEvidence": [
         {
@@ -10180,6 +10181,43 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "상대론적 운동학",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "relativistic-kinematics-four-momentum"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
+            "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-four-momentum.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "relativistic-kinematics-four-momentum",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-four-momentum.ts",
+            "lab": "src/components/learning/four-momentum-lab.tsx",
+            "tests": "scripts/learning-four-momentum.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
+              "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "minkowskiMetricDraft": {
@@ -10214,14 +10252,29 @@
       },
       "fourMomentumDraft": {
         "unitId": "relativistic-kinematics-four-momentum",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/relativistic-kinematics-four-momentum.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/relativistic-kinematics-four-momentum.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "four-momentum-reader-integration"
+        "nextAction": "rotational-curvature-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
+          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.en.md"
+        ]
+      },
+      "rotationalCurvatureDraft": {
+        "unitId": "curvature-covariant-derivatives-and-holonomy",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/curvature-covariant-derivatives-and-holonomy.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/curvature-covariant-derivatives-and-holonomy.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "rotational-curvature-reader-integration"
       }
     },
     {
@@ -10265,7 +10318,7 @@
     "research-methods"
   ],
   "nextDomain": "relativity",
-  "nextTopic": "상대론적 운동학",
+  "nextTopic": "곡률·공변 미분",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",
