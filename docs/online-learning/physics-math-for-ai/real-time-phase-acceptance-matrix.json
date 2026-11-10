@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-11",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "interactive-views-in-progress",
+  "stage": "interactive-views-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -103,8 +103,8 @@
     {
       "id": "interactive-views",
       "title": "위상/모드·행렬/Three.js·packet·fold/Airy",
-      "completionVerified": false,
-      "evidenceReason": "Partial only:matrix heat map/Three.js,all25chain/packet inputs gated before352projection combinations and78672cell checks;Node20/24each26tests,native8states/context-loss/touch/keyboard/maximum31x31 andforced-WebGL fallback verified. Phase/mode,packet density/phase/classical-family andfold/Airy views remain;this requirement is not complete."
+      "completionVerified": true,
+      "evidenceReason": "Matrix evidence retained. Chain phasors/delta/family paths/allmode signs,fixed-time refinement withuncertified continuous diagnostics,65sample packet density/complex waves andindependently gated width-family comparisons,cubic/complex saddles and33sample Airy/scaled/log views implemented. Node20/24each33whole-gated example/SSR/graph tests and4curve tests pass;native8states/24a11y,318tracked ports released,extreme shadow/minwidth/input replacement andsweep cancel/resume verified. Additional zero-guide native/a11y probe passed. Fixed sweep window isnot aninput limit;raw intervals retained. Reader/production assets andfull learning flow remain separate."
     },
     {
       "id": "guided-experiments",
@@ -138,11 +138,11 @@
     }
   ],
   "requirementCount": 23,
-  "requirementsVerified": 16,
+  "requirementsVerified": 17,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-phase-concepts/verification.json",
-  "scopeNote": "16of23requirements verified:foundations,bilingual manuscripts,producer,independent whole-response gate,actual Worker lifecycle,shared messageerror compatibility andbilingual reference graphics. Interactive views,guides/questions,full storage/accessibility,reader/production assets andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
+  "evidence": ".runtime/learning/real-time-phase-waves/verification.json",
+  "scopeNote": "17of23requirements verified:foundations,bilingual manuscripts,producer,independent whole-response gate,actual Worker lifecycle,common messageerror compatibility,bilingual reference graphics andall interactive result views. Guides/questions,full storage/accessibility,reader/production assets andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
 }
