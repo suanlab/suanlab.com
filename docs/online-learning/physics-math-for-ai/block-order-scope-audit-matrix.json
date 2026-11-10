@@ -1,0 +1,266 @@
+{
+  "unitId": "microscopic-blocks-and-local-order-parameters",
+  "status": "verified-introductory-unit",
+  "unitComplete": true,
+  "originalTopicComplete": false,
+  "wholeObjectiveComplete": false,
+  "requirements": [
+    {
+      "id": "geometry",
+      "requirement": "1/2차원·열린/주기 경계·길이2 평행 edge",
+      "manuscriptSections": [
+        3
+      ],
+      "status": "satisfied",
+      "reason": "독립 행 transfer와 Gray 열거를 대조하고 주기 축과 전치 좌표를 포함했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-foundation/verification.json"
+    },
+    {
+      "id": "profile",
+      "requirement": "블록 프로필·2/v 간격·전체 합 구별",
+      "manuscriptSections": [
+        2,
+        7
+      ],
+      "status": "satisfied",
+      "reason": "k와m을 분리하고 전체 자화0과 개별 프로필의 확률을 다르게 계산한다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-foundation/verification.json"
+    },
+    {
+      "id": "weights",
+      "requirement": "활동도·결합·블록 외부장 조건",
+      "manuscriptSections": [
+        4,
+        5
+      ],
+      "status": "satisfied",
+      "reason": "양의 유리수 활동도 범위와 블록 외부장 소거를 수치 대조했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-protocol/models.json"
+    },
+    {
+      "id": "restricted-sums",
+      "requirement": "정확한 제한 합과 퇴화도",
+      "manuscriptSections": [
+        5,
+        6
+      ],
+      "status": "satisfied",
+      "reason": "2212프로필의9549개 비영 계수와 전체 확률·모멘트를 독립 대조했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-foundation/verification.json"
+    },
+    {
+      "id": "global-spatial",
+      "requirement": "같은 전체 자화의 공간 구조",
+      "manuscriptSections": [
+        7
+      ],
+      "status": "satisfied",
+      "reason": "P(k)=1/9,전체합확률7/27,조건부2/7·3/7·2/7을 원고 코드로 확인했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-foundation/python-exercise.json"
+    },
+    {
+      "id": "measure",
+      "requirement": "counting measure·절대 Z·유효 자유에너지",
+      "manuscriptSections": [
+        8
+      ],
+      "status": "satisfied",
+      "reason": "Z²와 로그 baseline을 보존하고 실제 자산의 전체 응답을 대조했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/production-workers.json"
+    },
+    {
+      "id": "hidden-entropy",
+      "requirement": "숨긴 엔트로피와 분해",
+      "manuscriptSections": [
+        9
+      ],
+      "status": "satisfied",
+      "reason": "미시·프로필·평균 조건부 엔트로피를 서로 다른2048bit 식으로 검산한다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-protocol/models.json"
+    },
+    {
+      "id": "boundary",
+      "requirement": "경계 조건부 평균과 블록 평균",
+      "manuscriptSections": [
+        10
+      ],
+      "status": "satisfied",
+      "reason": "조건부·프로필·앙상블 모드를 구별하며1/3·2/3 반례는 선행 실제 화면과 수학 검사도 통과했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "local-reference",
+      "requirement": "명시적 평균곱 기준·로그 잔차",
+      "manuscriptSections": [
+        11
+      ],
+      "status": "satisfied",
+      "reason": "Rpower=9/8,b=2를 확인하고 KL·일반 부호 주장과 구별했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-foundation/verification.json"
+    },
+    {
+      "id": "gradient",
+      "requirement": "gradient 전개의 가정과 범위",
+      "manuscriptSections": [
+        12
+      ],
+      "status": "satisfied",
+      "reason": "경계 degree 항과 척도·느린 변화·절단 가정을 한영 본문에 설명한다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-foundation/manuscripts.json"
+    },
+    {
+      "id": "locality",
+      "requirement": "비이웃 cross ratio·조건부 독립 반례",
+      "manuscriptSections": [
+        13,
+        14
+      ],
+      "status": "satisfied",
+      "reason": "열린 끝 쌍 OR16/25와 주기 이웃 판정을 구별한다. 전체 자화는 추가 고정하지 않는다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-foundation/verification.json"
+    },
+    {
+      "id": "symmetry",
+      "requirement": "유한 부피 대칭과 임계 주장 한계",
+      "manuscriptSections": [
+        17
+      ],
+      "status": "satisfied",
+      "reason": "무자기장 평균0을 확인하고 유한 계산을 임계점·자발 대칭 깨짐으로 표시하지 않는다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-protocol/models.json"
+    },
+    {
+      "id": "independent-math",
+      "requirement": "독립 계산과 최대 입력",
+      "manuscriptSections": [
+        20
+      ],
+      "status": "satisfied",
+      "reason": "Python24모형·예제9·최대활동도1의34응답이 실제 Next 자산과 일치했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/production-workers.json"
+    },
+    {
+      "id": "logarithms",
+      "requirement": "초월함수 구간과 정확값 구별",
+      "manuscriptSections": [
+        8,
+        9,
+        11
+      ],
+      "status": "satisfied",
+      "reason": "512bit dyadic 구간을2048bit 산술로 검사하고 거짓 구간66건을 거부했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/../block-order-protocol/observation-mutations.json"
+    },
+    {
+      "id": "bilingual",
+      "requirement": "상세 한영 원고",
+      "manuscriptSections": [
+        1,
+        20
+      ],
+      "status": "satisfied",
+      "reason": "원고 각20절·display9식·손계산·해설8문제를 등록하고 strict KaTeX와영어를 검사했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/registered-manuscripts.json"
+    },
+    {
+      "id": "python",
+      "requirement": "원고의 실제 실행 예제",
+      "manuscriptSections": [
+        15
+      ],
+      "status": "satisfied",
+      "reason": "한영 동일 Fraction 코드가1/9·7/27·16/25와무결합 후속 계산을 재현한다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/registered-manuscripts.json"
+    },
+    {
+      "id": "concepts",
+      "requirement": "개념도6개",
+      "manuscriptSections": [
+        16
+      ],
+      "status": "satisfied",
+      "reason": "실제 reader8상태의48개념 조작과 step reload 복원을 확인했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "experiments",
+      "requirement": "예측·해설6안내",
+      "manuscriptSections": [
+        16
+      ],
+      "status": "satisfied",
+      "reason": "실제 reader8상태의48안내와 해설을 조작했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "quiz",
+      "requirement": "문제8개·공통 학습 표시",
+      "manuscriptSections": [
+        19
+      ],
+      "status": "satisfied",
+      "reason": "64문제의 정오답·해설 및답변/완료 복원을 확인하고 embedded 중복을 제거했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "visuals",
+      "requirement": "공간 지도·고정 단위3D·정확값",
+      "manuscriptSections": [
+        16
+      ],
+      "status": "satisfied",
+      "reason": "실제 reader의2D/3D·키보드 시점·표를 확인했다. 모드와 재생은 이미 검산된 값을 탐색한다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "accessibility",
+      "requirement": "한영·반응형·접근성·대체 화면",
+      "manuscriptSections": [
+        16
+      ],
+      "status": "satisfied",
+      "reason": "8상태 axe0·영어한글혼입0·넘침0에 더해 실제 Next의 WebGL 없는 화면과 동작 줄이기도 검사했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/reader-fallback.json"
+    },
+    {
+      "id": "persistence",
+      "requirement": "적용 입력·미완성 편집·학습 복원",
+      "manuscriptSections": [
+        16
+      ],
+      "status": "satisfied",
+      "reason": "저장 손상/차단·모드/배치/페이지·학습을 복원하고 첫 쓰기와 계산 모두 저장된x=2임을 확인했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "worker-lifetime",
+      "requirement": "귀속·변조·취소·가시성·수명",
+      "manuscriptSections": [
+        20
+      ],
+      "status": "satisfied",
+      "reason": "실제 reader의 취소/재시도와 visibility 모사를 확인했다. 독립 Node112검사와 실제 변조3건도 통과했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "production",
+      "requirement": "실제 Next Worker URL과옵션",
+      "manuscriptSections": [
+        20
+      ],
+      "status": "satisfied",
+      "reason": "실제 reader factory가 만든 두 URL/옵션으로34모형·3변조를 검사하고71probe Worker를 종료했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/production-workers.json"
+    },
+    {
+      "id": "preservation-export",
+      "requirement": "기존602단원·1204원고·메뉴·출력 보존",
+      "manuscriptSections": [
+        20
+      ],
+      "status": "satisfied",
+      "reason": "보존 hash를 대조하고1841HTML의 링크·fragment·sitemap·canonical을 검사했다. 이전 출력은 백업했다.",
+      "evidence": ".runtime/learning/block-order-reader-integration/homepage-installation.json"
+    }
+  ]
+}

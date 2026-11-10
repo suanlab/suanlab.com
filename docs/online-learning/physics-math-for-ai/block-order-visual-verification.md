@@ -50,3 +50,5 @@ node --import tsx scripts/check-block-order-visuals.ts
 새6개 테스트는 Node20·24에서 통과했다. 전체 TypeScript와 신규 파일 lint도 통과했다. `.runtime/learning/block-order-visuals/verification.json`, `source-hashes.json`,8개의 axe 결과와 screenshot이 근거다. 최종 QA 중 해당24개 소스 hash가 유지되었음을 대조했다.
 
 격리 preview는 esbuild의 Worker URL adapter를 사용한다. 이를 실제 Next 생산 자산, 기존 홈페이지 reader, 등록 또는 공개 배포 완료로 표시하지 않는다. 다음 단계는 reader/표지/안내/문제 등록 준비, 원고 연결, 저장·언어·반응형·접근성·실제 Worker URL 검증과 단원 범위 감사다. 통계장론 원주제와 전체 교육과정 목표는 계속 진행 중이다.
+
+후속 관찰: [실제 reader 통합](block-order-reader-integration.md)에서 Next 생산 자산과 등록 단원을 별도로 확인했다. 위 결과는 등록 전 격리 preview 범위의 기록이다.

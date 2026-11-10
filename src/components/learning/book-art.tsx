@@ -1,4 +1,6 @@
 'use client';
+import {isBlockOrderTeachingId} from '@/lib/learning-block-order-teaching';
+import BlockOrderCover from './block-order-cover';
 import {isThermalFieldTeachingId} from '@/lib/learning-thermal-field-teaching';
 import ThermalFieldCover from './thermal-field-cover';
 
@@ -195,6 +197,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if(isBlockOrderTeachingId(kind)) return <BlockOrderCover/>;
   if(isThermalFieldTeachingId(kind)) return <ThermalFieldCover />;
   if(isRealTimePhaseTeachingId(kind)) return <RealTimePhaseCover />;
   if(isSaddleFluctuationTeachingId(kind)) return <SaddleFluctuationCover/>;

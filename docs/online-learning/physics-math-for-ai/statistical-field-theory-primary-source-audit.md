@@ -37,3 +37,7 @@ Cambridge PDF의 실패한 요청은 읽은 자료에 포함하지 않는다. �
 첫 문단의601은 검토 시작 시점의 등록 수다. 이후 첫 처리 `finite-field-measure-and-thermal-free-energy`가 검증·통합되어 현재602단원이며 미완료 원주제46개는 유지한다. 두 번째 처리 ID는 `microscopic-blocks-and-local-order-parameters`로 확정했다. [새 모형 계약](block-order-model-contract.md)과 [기반 검증 기록](block-order-foundation.md)을 따른다. 한영 활성 초안 한 단원이 생겼지만 등록 수에는 더하지 않는다.
 
 Kadanoff 원문 PDF의 pp.264–265를 텍스트와 p.265 이미지에서 확인했다. 두 값의 셀 변수와 최근접 셀 상호작용을 유지하는 것은 명시적인 모형 가정이다. 이 검토로 이후 페이지의 임계 scaling 유도 전체를 검증했다고 주장하지 않는다. 이 단원의 작은 유한 반례는 그 가정과 정확한 주변화를 구별하기 위한 독립 유도다.
+
+## 후속 관찰: 두 번째 처리 등록
+
+두 번째 처리의 [실제 reader와 범위 검토](block-order-reader-integration.md)가 완료되어 현재603단원이다. 첫 번째 측도/열 자유에너지와 두 번째 국소 질서변수를 검증했다. 다음은 상호작용 scalar Gibbs 장의 일차 자료·안정화·적분/꼬리 오차 범위를 고정하는 일이다. 연결 생성함수·Legendre 유효 작용과 원주제 감사도 남았다. 검증316/362, 미완료46 원주제와 전체 연구 심화 범위는 그대로다.

@@ -1,6 +1,6 @@
 # 미시상태에서 국소 질서변수로: 유한 모형 계약
 
-2026-11-11. 신규 단원 ID는 `microscopic-blocks-and-local-order-parameters`다. 수학 기반·한영 원고·독립 계산 Worker·격리 React 시각화를 검증했고 **실제 reader와 생산 자산을 준비 중**이다. 앞선 측도·열 자유에너지 단원은 602번째 등록 단원으로 검증되었다. 이 준비는 등록 수·완료 원주제 수에 더하지 않는다.
+2026-11-11. `microscopic-blocks-and-local-order-parameters`의 수학 계약이다. 수학 기반·한영 원고·독립 계산 Worker·시각화·실제 reader/생산 자산을 검증하여 **603번째 입문 단원으로 등록했다**. 통계장론 원주제 전체는 진행 중이다.
 
 ## 근거와 기존 단원과의 차이
 
@@ -58,6 +58,6 @@ dbar=a/b를 기약분수로 놓으면 `Rpower=[Q_k/ΠQ_b]^b/x^a`, `ln(w_k/wref)=
 
 생산 기반은 Gray-code 단일 스핀 flip으로 incident edge와 개수를 갱신한다. 독립 Python은 짧은 축의 행별 상태를 연결하는 정수 다항식 transfer로 모든 n(k,d)를 만든다. 별도 직접 열거로 선택 프로필의 미시 평균도 대조한다. 1/2차원·전치·주기 길이2·한 블록 wrap·홀수 블록·16스핀·활동도 경계를 포함한다.
 
-## 남은 구현
+## 구현 상태
 
-독립 브라우저 검산기·응답 attribution·bounded codec·Worker 취소/오류 수명과 한영 상세 원고의 실행 예제를 확인했다. [계산 응답 검증](block-order-producer-verification.md)에 계약과 증거를 기록한다. 기존 테마의 공간/미시 배치 그림·실험·해설 문제와 저장을 격리 React 화면에서 검사했고 [시각화 검증](block-order-visual-verification.md)에 범위를 기록했다. 실제 reader의 연결·저장 복원·접근성·모바일·영어 점검과 Next 생산 Worker 자산 검증 후 등록한다. 연속체 극한·임계 지수·RG·일반 gauge/fermion 이론은 이번 유한 단원 완료 범위에 넣지 않는다.
+독립 브라우저 검산기·응답 attribution·bounded codec·Worker 취소/오류 수명과 한영 상세 원고의 실행 예제를 확인했다. [계산 응답 검증](block-order-producer-verification.md)과 [시각화 검증](block-order-visual-verification.md)에 준비 단계 증거가 있다. [실제 reader 검토](block-order-reader-integration.md)는 Next 자산, 저장 복원, 접근성, 모바일, 영어, 보존과 설치를 포함한다. 연속체 극한·임계 지수·RG·일반 gauge/fermion 이론은 이번 유한 단원 완료 범위에 넣지 않는다.

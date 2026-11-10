@@ -3193,7 +3193,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "euclidean-quantum-kernels-and-time-slicing",
       "saddle-fluctuation-and-nongaussian-approximation",
       "real-time-phase-and-classical-limit",
-      "finite-field-measure-and-thermal-free-energy"
+      "finite-field-measure-and-thermal-free-energy",
+      "microscopic-blocks-and-local-order-parameters"
     ]
   },
   {
