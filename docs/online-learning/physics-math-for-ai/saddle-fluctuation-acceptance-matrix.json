@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "saddle-fluctuation-and-nongaussian-approximation",
-  "stage": "independent-validation-and-local-module-workers-verified",
+  "stage": "bilingual-teaching-ui-and-local-browser-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -80,27 +80,32 @@
     {
       "id": "concept-graphics",
       "title": "한영 개념 단계·기준 그림·compact 표지",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "10 bilingual concept steps,20 reference diagrams with SVG text bounds checked and compact cover component prepared."
     },
     {
       "id": "interactive-views",
       "title": "정상 경로/요동·행렬·보정·여러 우물 시각화",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Stationary path/Gaussian widths, coordinate slice versus marginal, full H/R/C heat map andThree.js bars, corrections/conditional bounds, scalar well/degeneracy; all32 examples applied in local actual browser."
     },
     {
       "id": "guided-experiments",
       "title": "예측·조작·설명 안내와 실제 예제 입력",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "7 bilingual prediction explanations;56 guide checks and56 named example applications in8 locale/theme/viewport cases."
     },
     {
       "id": "explained-questions",
       "title": "개념과 한계를 확인하는 해설 문제",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "8 bilingual explained questions,64 actual browser answer/explanation checks and stored progress."
     },
     {
       "id": "storage-and-accessibility",
       "title": "입력/학습 저장·한영/명암/모바일·접근성",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "8 locale/theme/320-1440px cases,23 accessibility passes,6 storage cases,maximum32-interval cancellation/retry/typing/reload,actual Chromium touch/image rotation andWebGL loss recovery;144/144 teaching and9/9+2/2 maximum/reload workers released."
     },
     {
       "id": "reader-and-production-assets",
@@ -119,12 +124,12 @@
     }
   ],
   "requirementCount": 20,
-  "requirementsVerified": 12,
+  "requirementsVerified": 17,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/saddle-fluctuation-validation/verification.json",
-  "scopeNote": "Third of four path-integral treatments. Manuscripts, production numerics, independent response verification and local module Workers/hook verified. Teaching UI, storage, actual reader, production assets and scope audit remain; general shifted-cubic higher-order error is not certified.",
+  "evidence": ".runtime/learning/saddle-fluctuation-teaching/verification.json",
+  "scopeNote": "Third of four path-integral treatments. Bilingual teaching UI, local browser, storage and accessibility verified. Actual reader registration, production assets, prior-content preservation and unit scope audit remain. Original topic and whole goal remain incomplete.",
   "manuscriptEvidence": ".runtime/learning/saddle-fluctuation-manuscripts/verification.json"
 }
