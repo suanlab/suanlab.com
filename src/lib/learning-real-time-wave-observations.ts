@@ -40,6 +40,11 @@ function scaledPositive(x:I) {
   const s=commonScale([x]),range=ctx.observe(s.normalize(x));
   return{scalePowerOfTwo:s.exponent,lower:range.lower,upper:range.upper};
 }
+/** Displayed dyadic ranges, including observation rounding, determine whether
+ * the raw complex value can establish nonzero magnitude. */
+export function realTimeRawValueRequiresScale(value:{real:{lower:string;upper:string};imaginary:{lower:string;upper:string}}) {
+  return[value.real,value.imaginary].every(r=>BigInt(r.lower.split('/')[0])<=Z&&BigInt(r.upper.split('/')[0])>=Z);
+}
 export function observeRealTimeChainWave(r:ReturnType<typeof buildRealTimeChainExact>) {
   let unregulated;
   if(r.inertia.zero) {
@@ -62,8 +67,9 @@ export function observeRealTimeChainWave(r:ReturnType<typeof buildRealTimeChainE
     if(r.regulator.exponent.re.n>Z)throw Error('Abel Gaussian exponent cannot amplify its centered integral');
     const decay=ctx.from(neg(r.regulator.exponent.re)),scaled=scale(unit,amplitude),raw=scale(scaled,ctx.expNegative(decay));
     const logMagnitude=ctx.sub(ctx.divideInteger(ctx.log(amplitudeSquared),2),decay);
-    regulated={kind:'abel-regulated-kernel' as const,scaledAmplitude:scaledPositive(amplitude),unitPhase:observeComplex(unit),scaledValue:scaledComplex(scaled),value:scaledComplex(raw),negativeExponential:ctx.observe(decay),
-      logMagnitude:ctx.observe(logMagnitude),rawValueRequiresScaledRepresentation:raw.real.lower<=Z&&raw.real.upper>=Z&&raw.imaginary.lower<=Z&&raw.imaginary.upper>=Z,
+    const value=scaledComplex(raw);
+    regulated={kind:'abel-regulated-kernel' as const,scaledAmplitude:scaledPositive(amplitude),unitPhase:observeComplex(unit),scaledValue:scaledComplex(scaled),value,negativeExponential:ctx.observe(decay),
+      logMagnitude:ctx.observe(logMagnitude),rawValueRequiresScaledRepresentation:realTimeRawValueRequiresScale(value),
       branch:'product-of-positive-real-pivot-square-roots' as const};
   }
   return{unregulated,regulated,workingBits:ctx.workBits,observationBits:512};

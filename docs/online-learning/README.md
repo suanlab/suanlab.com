@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-10 Abel 검산 진행: [독립 조절 파동·raw 격자 검사](physics-math-for-ai/real-time-phase-abel-validator-status.md)를 추가했다. 양의 실수부 pivot별 branch·전체 진폭/위상·scaled/log/raw 표현을 검산한다. Node20/24에서 새25검사+기존경계1검사,17조절입력+2추가경계를 확인했다. raw 표시 플래그는 최종 관찰 반올림까지 반영한다. packet·Airy 전체 검산과 Worker·화면·reader는 남으며 13/23요건·입문47개 미완료를 유지한다.
+
 2026-11-10 파동 검산 진행: [독립 수치 연산·무조절 사슬 파동 검사](physics-math-for-ai/real-time-phase-unregulated-validator-status.md)를 추가했다. 생산 산술을 import하지 않는 로그/감쇠/π·큰 위상 halving/doubling을 구현하고 모든 무조절 진폭·위상·값·로그 및 초점 delta 표현을 검산한다. Node20/24에서 수치33·파동24검사,17예제와53primitive 변조를 확인했다. Abel·packet·Airy 전체 검산과 Worker·화면·reader는 남으며 13/23요건·입문47개 미완료를 유지한다.
 
 2026-11-10 행렬 검산 진행: [실시간 packed 역행렬·복소 응답 독립 검사](physics-math-for-ai/real-time-phase-matrix-validator-status.md)를 추가했다. 모든 upper-triangle 성분의 정확한 값 포함·512비트 구간 폭·공유 척도·특이 역행렬 부재·ℏ 배율을 확인한다. 생산 packing의 바이트 일치를 요구하지 않고 올바른 더 좁은 구간도 허용한다. 전체 진폭/위상/Airy 응답·Worker·화면·reader는 미완료이며 13/23요건과 입문47개 미완료 수치는 유지한다.
