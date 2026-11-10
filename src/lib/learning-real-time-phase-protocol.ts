@@ -4,6 +4,15 @@ export type RealTimePhaseResult=ReturnType<typeof import('./learning-real-time-p
 export interface RealTimePhaseUnverifiedSuccess {
   version:1;requestId:number;ok:true;kind:'real-time-phase';input:RealTimePhaseInput;inputKey:string;result:unknown;
 }
+type DeepReadonly<T>=T extends readonly(infer V)[]?readonly DeepReadonly<V>[]:T extends object?{readonly[K in keyof T]:DeepReadonly<T[K]>}:T;
+/** Only the independent whole-response gate constructs these. A transport
+ * claim orsuccessful attribution header alone never narrows unknown result.
+ */
+export type RealTimePhaseValidatedSuccess=DeepReadonly<Omit<RealTimePhaseUnverifiedSuccess,'result'>&{result:RealTimePhaseResult}>;
+export interface RealTimePhaseValidationReceipt {
+  readonly version:1;readonly requestId:number;readonly phase:'validated';readonly kind:'real-time-phase';
+  readonly inputKey:string;readonly fullResponseValidated:true;readonly response:RealTimePhaseValidatedSuccess;
+}
 export interface RealTimePhaseFailure {version:1;requestId:number|null;ok:false;error:'invalid-request'|'invalid-input'|'resource-limit'|'calculation-failed';}
 export function realTimePhaseData(value:unknown,keys:readonly string[]):Record<string,unknown>|null {
   try {

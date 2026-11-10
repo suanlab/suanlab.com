@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "independent-mode-numerical-observations-verified",
+  "stage": "independent-whole-response-validation-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -79,8 +79,8 @@
     {
       "id": "independent-response-validator",
       "title": "전체 응답 독립 검산·변조/귀속 거부",
-      "completionVerified": false,
-      "evidenceReason": "Independent exact cores,request-attribution metadata,packed matrices andentire chain/packet/fold numerical observation checks implemented. Fold50tests onNode20/24 cover40reference cases+2quantum boundaries and191primitive mutations. Independent positive-Gamma origin width<2^-2400,exact central terms andfactorial-form asymptotics checked. Fold terms are valid truncation witnesses,not execution transcripts. Three-mode top-level response composition/validated receipt remains pending;partial scopes allsetfullResponseValidated=false. Workers remain separate."
+      "completionVerified": true,
+      "evidenceReason": "Whole successful envelopes validated independently forchain/packet/fold against exact owned requests. Node20/24:46tests,32complete producer examples,1342primitive whole-envelope and96attribution corruption rejections,lateN32 fields andcoordinated/foreign-model changes. Reader protocol remains metadata-only;receipts contain recursively frozen owned responses onlyafter allmath gates. Uniformheader+producer wire caps remain belowprior limits. Component numerical contracts,including validtruncation witnesses andraw threshold band,are explicit. Actual Worker lifecycle remains separate."
     },
     {
       "id": "workers-and-lifecycle",
@@ -135,11 +135,11 @@
     }
   ],
   "requirementCount": 23,
-  "requirementsVerified": 13,
+  "requirementsVerified": 14,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-exact-check/verification.json",
-  "scopeNote": "13of23requirements verified:primary-source/mathematical foundations,bilingual manuscripts andcomplete finite numerical producer including full input/precision/wire accounting andindependent references. Independent whole-response validator,actual Workers,teaching UI,reader andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
+  "evidence": ".runtime/learning/real-time-whole-response/verification.json",
+  "scopeNote": "14of23requirements verified:primary-source/mathematical foundations,bilingual manuscripts,complete finite numerical producer andindependent whole-response validator withattribution/ownership/wire accounting. Actual Workers,teaching UI,reader andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
 }
