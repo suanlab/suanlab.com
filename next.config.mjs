@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',  // Static HTML export for GitHub Pages
+  // Check production sources here; npm run typecheck also checks all CLI/test code.
+  typescript: { tsconfigPath: 'tsconfig.next.json' },
   images: {
     unoptimized: true,  // Required for static export
     remotePatterns: [
