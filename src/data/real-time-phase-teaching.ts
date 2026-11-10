@@ -1,0 +1,112 @@
+interface Text { ko: string; en: string; }
+export interface RealTimePhaseConceptStep {
+  id: string; title: Text; body: Text; formula: string; diagram: Text; examples: readonly string[];
+}
+const t = (ko: string, en: string): Text => ({ko, en});
+/** Fixed teaching references, independent of the learner's current calculation. */
+export const realTimePhaseSteps: readonly RealTimePhaseConceptStep[] = [
+  {
+    id: 'amplitudes', title: t('확률 대신 위상 화살표를 더한다', 'Add phase arrows before taking probabilities'),
+    body: t('복소수 exp(iS/ℏ)는 길이가1이고 방향이 S/ℏ인 화살표입니다. 네 화살표1, i, −1, −i는 각각 길이가1이어도 합이0입니다. 양의 가중치를 더하는 Euclidean 적분과 다른 출발점입니다. 먼저 진폭을 더하고, 정규화된 파동함수에 대해서만 절댓값 제곱으로 Born 밀도를 구합니다. 아래 네 항의 유한 합은 무한 구간 적분이나 실제 경로들의 표본 추정이 아닙니다.',
+      'The complex number exp(iS/hbar) is an arrow of unit length and angle S/hbar. The four arrows 1, i, −1 and −i each have length one but sum to zero. This differs from adding positive Euclidean weights. Add amplitudes first; the squared magnitude gives a Born density for a normalized wavefunction. The four-term illustration is neither an integral over an infinite interval nor a sample estimate of a path integral.'),
+    formula: '1+i−1−i=0; |1+i−1−i|²=0 ≠ |1|²+|i|²+|−1|²+|−i|²=4',
+    diagram: t('설명용 네 단위 화살표의 정확한 닫힌 정사각형입니다. 화살표의 색뿐 아니라 순서와 수식으로도 구별합니다.', 'An exact closed square formed by four illustrative unit arrows. Order and equations identify the arrows as well as color.'),
+    examples: ['harmonic-four'],
+  },
+  {
+    id: 'cancellation', title: t('빠른 회전과 정상점 근처를 비교한다', 'Compare rapid rotation with a stationary neighborhood'),
+    body: t('위상 기울기가0이 아닌 구간에서는 가까운 위치에서도 방향이 빠르게 바뀌어 상쇄가 생깁니다. 정상점에서는 위상 변화가 이차 이상에서 시작하므로 작은 이웃의 방향이 더 잘 정렬됩니다. 이것은 어느 한 경로를 확률적으로 선택한다는 뜻이 아닙니다. 매끄러운 compact 지지 진폭과 경계 항의 소실, 위상 기울기의 양의 하계가 있어야 비정상 위상의 부분적분 오차식을 쓸 수 있습니다.',
+      'Where the phase gradient stays away from zero, nearby positions can point in rapidly changing directions and cancel. At a stationary point, phase changes start at quadratic or higher order, so a small neighborhood aligns more closely. This does not select a single path probabilistically. Integration-by-parts bounds require a smooth compactly supported amplitude, vanishing boundary terms and a positive lower bound on the phase-gradient magnitude.'),
+    formula: 'I=∫g(x)e^(iφ(x)/ℏ)dx; |I|≤ℏ∫|(g/φ′)′|dx when φ′≠0 on supp(g)',
+    diagram: t('ℏ=1/4, x=−1,−1/2,0,1/2,1에서 φ=x와 φ=x²/2의 다섯 위상만 비교합니다. 유한 화살표를 적분값으로 표시하지 않습니다.', 'Five phases at hbar=1/4 and x=−1,−1/2,0,1/2,1 compare φ=x with φ=x²/2. The finite arrows are not displayed as integral values.'),
+    examples: ['negative-mode-hand'],
+  },
+  {
+    id: 'stationary-not-minimum', title: t('정상 작용은 최소 작용과 다르다', 'Stationary action need not be a minimum'),
+    body: t('고정한 양끝 사이의 내부 좌표를 벡터 q로 묶으면 정상 경로는 Hq=f를 풉니다. 실시간 작용의 Hessian에는 음의 방향이 있을 수 있습니다. 손계산 예에서는 S(q)=−q²/2−q−1/4이므로 q*=−1은 최대점입니다. 그래도 진동 적분의 정상 기여는 남습니다. H⁻¹에 iℏ를 곱한 연결 이차 응답을 양의 위치 공분산이나 Gaussian 확률의 폭으로 해석하면 안 됩니다.',
+      'Collect the interior positions into a vector q: a stationary path solves Hq=f. A real-time action Hessian may have negative directions. In the hand example S(q)=−q²/2−q−1/4, q*=−1 is a maximum, yet it contributes to the oscillatory integral. The connected quadratic response i hbar H⁻¹ is not a positive position covariance or the width of a Gaussian probability distribution.'),
+    formula: 'N=2, δ=m=ℏ=1, ω²=3, a=0, b=1: H=−1; q*=−1; S*=1/4',
+    diagram: t('아래로 열린 정확한 이차 작용과 q*=−1을 표시합니다. 기준의 ℏ=1은 실험 예제에 저장된 ℏ와 독립적입니다.', 'The exact downward quadratic action and q*=−1 are shown. The reference hbar=1 is independent of the stored experiment preset.'),
+    examples: ['negative-mode-hand'],
+  },
+  {
+    id: 'zero-pivot', title: t('pivot0과 특이 행렬을 구별한다', 'Distinguish a zero pivot from a singular matrix'),
+    body: t('대각 원소나 무pivot 소거의 첫 pivot이0이어도 행렬 전체가 특이라는 결론은 나오지 않습니다. H=[[0,−1],[−1,0]]는 determinant가−1이고 자기 자신이 역행렬입니다. (1,1) 방향의 고유값은−1, (1,−1) 방향은+1이므로 음의 방향 하나를 유지해야 합니다. pivot을 작은 수로 대체하거나 음의 모드를 삭제하면 원래 작용과 위상이 바뀝니다.',
+      'A zero diagonal entry or first unpivoted elimination pivot does not imply that the full matrix is singular. H=[[0,−1],[−1,0]] has determinant −1 and is its own inverse. Its (1,1) direction has eigenvalue −1 and its (1,−1) direction has eigenvalue +1. Keep the negative mode. Replacing the pivot by a tiny number or deleting negative modes changes the action and its phase.'),
+    formula: 'H=[[0,−1],[−1,0]]; det H=−1; H⁻¹=H; inertia=(1 positive,1 negative,0 zero)',
+    diagram: t('H의 고유 방향을 서로 교차하는 두 축으로 그립니다. 이는 Hessian 모드의 그림이며 실제 입자 경로나 확률 타원이 아닙니다.', 'Crossing axes represent the Hessian eigen-directions. They are modes of the action, not particle paths or probability ellipses.'),
+    examples: ['zero-leading-pivot-invertible'],
+  },
+  {
+    id: 'maslov-branch', title: t('행렬식 크기와 위상 가지를 함께 보존한다', 'Preserve phase branches as well as determinant magnitude'),
+    body: t('음의 Hessian 방향 하나가 더해지면 유한 사슬 커널의 Maslov 인자는 −π/2만큼 회전합니다. determinant의 절댓값은 크기만 알려주므로 이 정보를 복원하지 못합니다. 자유 N=4 기준에서 세 양의 Hessian 모드에 대한 sqrt(−iλ)의 위상 합은 −3π/4이지만, 그 곱을 먼저 만든 뒤 주 제곱근을 취하면 +π/4입니다. 두 값은 부호가 반대입니다. 작은 양의 Abel 조절자로 연속 연결한 가지를 보존해야 합니다.',
+      'Each additional negative Hessian direction rotates the finite-chain kernel by a Maslov factor of −π/2. An absolute determinant gives magnitude, not this phase. For the free N=4 reference, the phases of the three sqrt(−iλ) factors add to −3π/4. Taking the principal square root after multiplying instead gives +π/4: the signs differ. Preserve the branch obtained by continuation from a positive Abel regulator.'),
+    formula: 'K_N=√[s/(2πℏ|θ_d|)] exp(iS*/ℏ−iπ/4−iπν/2); ∏sqrt(p_j) ≠ sqrt_principal(∏p_j) in general',
+    diagram: t('자유 N=4의 조절자 제거 극한에서 −3π/4와 +π/4인 두 화살표를 표시합니다. 유한 조절자에서 정확히 이 각도라고 주장하지 않습니다.', 'Opposite arrows at −3π/4 and +π/4 show the free N=4 regulator-removal limit. These are not asserted to be the exact angles at finite damping.'),
+    examples: ['regulated-free-branch'],
+  },
+  {
+    id: 'caustic', title: t('초점에서는 커널이 분포가 된다', 'At a focus the kernel is a distribution'),
+    body: t('N=2, δ=m=1, ω²=2이면 H=0이고 map은−I입니다. a+b=0이면 모든 내부 q가 정상이고, a+b≠0이면 정상 경로가 없습니다. 이 차이를 작은 분모나 잘린 높이로 덮지 않습니다. 전체 커널은 −iδ(b+a)라는 분포로 초기 파동함수에 작용합니다. 같은 map으로 정규화된 Gaussian 파동묶음을 전파하면 폭이 유한하게 유지됩니다. 아래 점선은 delta의 유한 높이를 뜻하지 않습니다.',
+      'For N=2, δ=m=1 and ω²=2, H=0 and the map is −I. If a+b=0 every interior q is stationary; otherwise no stationary path exists. Do not hide the distinction with a small denominator or clipped height. The full kernel acts on an initial wavefunction as the distribution −iδ(b+a). A normalized Gaussian packet remains finite under the same map. The dashed constraint below is not a finite-height delta peak.'),
+    formula: 'H=0; f=a+b; M=−I; K_N(b,a)=−iδ(b+a); ψ_out(b)=−iψ_in(−b)',
+    diagram: t('b=−a라는 지지 조건과 호환/비호환 양끝을 비교합니다. 커널의 점별 값이나 delta 높이는 그리지 않습니다.', 'Compare compatible and incompatible endpoints with the support condition b=−a. No pointwise kernel value or delta height is plotted.'),
+    examples: ['caustic-compatible', 'caustic-incompatible', 'harmonic-parity'],
+  },
+  {
+    id: 'abel', title: t('조절자는 확률 해석을 주지 않는다', 'A regulator does not turn the problem into probability'),
+    body: t('양의 ε는 먼 내부 좌표를 감쇠시켜 진동 적분을 다루기 쉽게 하지만 복소 위상은 그대로 남습니다. Cε=εI−iH로 구한 연결 평균과 이차 응답도 일반적인 양의 확률 모멘트가 아닙니다. ε>0인 전파를 유니터리라고 부르지 않습니다. 여기서 기준 순서는 N을 고정하고 ε를 제거한 뒤 필요하면 N을 정련하는 것입니다. 조절자 제거·격자 정련·초점 접근을 서로 바꿀 수 있다고 가정하지 마세요.',
+      'Positive ε damps distant interior coordinates and makes the oscillatory integral easier to handle, but leaves a complex phase. The connected mean and quadratic response from Cε=εI−iH are not ordinary positive-probability moments. Propagation at ε>0 is not called unitary. The prescribed order here removes ε at fixed N, followed by refinement if needed. Do not assume regulator removal, refinement and approach to a focus can be interchanged.'),
+    formula: 'e^(iS/ℏ) → e^(iS/ℏ−ε||q||²/(2ℏ)); Cε=εI−iH; connected response=ℏCε⁻¹',
+    diagram: t('ℏ=1, ε=1인 다섯 좌표에서 감쇠 크기만 그립니다. 곡선은 정규화된 밀도가 아니며 실제 조절 적분을 수치 적분한 값도 아닙니다.', 'Only damping magnitudes at five positions with hbar=ε=1 are drawn. The curve is not a normalized density or a numerical evaluation of the regulated integral.'),
+    examples: ['regulated-free-branch', 'regulated-singular-thirty-two'],
+  },
+  {
+    id: 'packet', title: t('파동묶음의 밀도와 복소 응답을 구별한다', 'Separate packet densities from complex responses'),
+    body: t('초기 상태를 정규화한 Gaussian으로 주면 실제 Born 밀도의 평균과 양의 공분산을 계산할 수 있습니다. 같은 유한 symplectic map M이 평균을 Mμ₀로, 대칭화 공분산을 MΣ₀Mᵀ로 옮깁니다. 자유 기준 m=τ=ℏ=σ²=1, χ=0, q₀=0, p₀=1에서는 중심이1로 이동하고 위치 분산은5/4가 됩니다. 위치와 운동량의 상관을 포함해야 detΣ=ℏ²/4라는 순수 Gaussian 불확실성 포화를 확인할 수 있습니다.',
+      'A normalized Gaussian initial state gives a genuine Born density with a mean and positive covariance. The finite symplectic map sends μ₀ to Mμ₀ and the symmetrized covariance to MΣ₀Mᵀ. In the free reference m=τ=hbar=σ²=1, χ=0, q₀=0 and p₀=1, the center moves to 1 and the position variance becomes 5/4. Include position-momentum correlation when checking the pure Gaussian relation detΣ=hbar²/4.'),
+    formula: 'Σ₀=[[1,0],[0,1/4]]; M=[[1,1],[0,1]]; Σ_t=[[5/4,1/4],[1/4,1/4]]; detΣ_t=1/4',
+    diagram: t('같은 축에서 정규화된 두 Gaussian 밀도 ρ₀=N(0,1)와 ρ_t=N(1,5/4)를 비교합니다. 그린 유한 창 밖에도 꼬리가 있습니다.', 'On shared axes, compare normalized Gaussian densities ρ₀=N(0,1) and ρ_t=N(1,5/4). Both have tails outside the displayed finite window.'),
+    examples: ['fixed-width-free', 'harmonic-parity'],
+  },
+  {
+    id: 'classical-families', title: t('ℏ를 줄일 때 무엇을 고정하는가?', 'What stays fixed as hbar decreases?'),
+    body: t('자유 m=τ=1, χ=0 기준에서 초기 위치 분산을1로 고정하면 나중 분산은1+ℏ²/4입니다. ℏ를 줄여도 위치 폭이1 근처에 남아 고전 ensemble을 이룹니다. 반대로 σ²=ℏr, r=1인 족은 분산이5ℏ/4이므로 중심 궤적 주변으로 수축합니다. 단, χ=−1인 고정 폭 족에서는 한 시각의 위치 분산만0으로 가고 운동량 분산은 남을 수 있습니다. 위치 초점 하나만으로 위상공간 한 점을 결론내리지 마세요.',
+      'For free m=τ=1 and χ=0, fixing the initial position variance at 1 gives the later variance 1+hbar²/4. Reducing hbar leaves a spread near one: a classical ensemble. The family σ²=hbar r with r=1 instead has variance 5hbar/4 and contracts around its central trajectory. With χ=−1, a fixed-width family can focus in position at one instant while retaining momentum variance. A position focus alone does not establish a point in phase space.'),
+    formula: 'ℏ=1/2,1/8: fixed σ²=1 → Σ_qq=17/16,257/256; σ²=ℏ → Σ_qq=5/8,5/32',
+    diagram: t('네 분산을 같은 눈금의 선분으로 비교합니다. 길이는 표준편차가 아니라 분산입니다. 이 비교는 χ=0이고 아래 주의문은 별도의 χ=−1 경우입니다.', 'Four variances use the same linear scale. Segment length is variance, not standard deviation. The plotted comparison has χ=0; the focusing caution concerns a separate χ=−1 case.'),
+    examples: ['fixed-width-free', 'scaled-width-free', 'chirp-focus-ensemble', 'chirp-focus-localized'],
+  },
+  {
+    id: 'limits', title: t('작은 ℏ와 시간 정련을 따로 검증한다', 'Verify small hbar and time refinement separately'),
+    body: t('ℏ→0은 같은 유한 사슬의 위상과 초기 상태 족을 바꾸는 극한입니다. N을 늘리고 총시간 τ를 고정하는 것은 δ=τ/N을 줄여 시간 분할을 정련하는 다른 절차입니다. 유니터리 인자들의 유한 곱이 정확해도 원래 연속 Hamiltonian의 전파와 같지는 않습니다. ω²<0인 물리적인 역진동자와, ω²>0인데 v=ω²δ²>4가 된 거친 격자의 hyperbolic map도 구별해야 합니다.',
+      'Taking hbar to zero changes phases and the chosen state family at fixed finite N. Increasing N at fixed total time τ reduces δ=τ/N and refines the splitting: a different operation. An exactly unitary product of finite steps need not equal propagation by the original continuous Hamiltonian. Distinguish a physical inverted oscillator with ω²<0 from a coarse discretization with ω²>0 but v=ω²δ²>4, whose map is hyperbolic.'),
+    formula: 'ℏ→0 at fixed N ≠ N→∞ at fixed τ; δ=τ/N; v=ω²δ²',
+    diagram: t('서로 독립적인 두 극한 축과 물리 역진동자/거친 격자의 구분입니다. 화살표 길이는 오차 크기나 일반적인 수렴률을 뜻하지 않습니다.', 'Independent limit axes and a physical-inversion versus coarse-grid distinction. Arrow lengths do not represent errors or a general convergence rate.'),
+    examples: ['physical-inverted', 'coarse-positive-hyperbolic', 'harmonic-four'],
+  },
+  {
+    id: 'fold-interference', title: t('두 정상 기여는 복소수로 합친다', 'Add two stationary contributions as complex amplitudes'),
+    body: t('별도 canonical fold의 위상은 φ_u(x)=x³/3−ux입니다. u>0이면 ±√u에 두 정상점이 있고 곡률의 부호가 서로 반대입니다. 따라서 작용뿐 아니라 ±π/4라는 국소 Fresnel 위상도 함께 더합니다. 두 진폭의 절댓값을 더하거나 확률을 더하면 간섭을 잃습니다. 첫 정상 위상식은 분리된 정상점에 대한 점근 근사이며 합류 u=0까지 균일한 오차를 보장하지 않습니다.',
+      'The separate canonical fold has phase φ_u(x)=x³/3−ux. For u>0, stationary points at ±√u have opposite curvature signs. Add their actions together with their local Fresnel phases ±π/4. Adding magnitudes or probabilities loses interference. The leading stationary-phase expression is asymptotic for separated stationary points and carries no uniform error guarantee through the merger u=0.'),
+    formula: 'J_sp=2√(πℏ/√u) cos(2u^(3/2)/(3ℏ)−π/4), u>0',
+    diagram: t('u=ℏ=1에서 x=±1, 작용 ∓2/3, 곡률 ±2인 두 정상점을 표시합니다. 곡선은 위상 함수이며 Airy 값이나 확률밀도가 아닙니다.', 'At u=hbar=1, mark x=±1 with actions ∓2/3 and curvatures ±2. The curve is a phase function, not an Airy value or a probability density.'),
+    examples: ['two-real-stationary-points'],
+  },
+  {
+    id: 'fold-merger', title: t('합류에서는 Airy 척도로 바꾼다', 'Use the Airy scale at a merger'),
+    body: t('u=0이면 두 정상점이 합쳐져 곡률이0이 되고 첫 Gaussian 근사는 쓸 수 없습니다. x=ℏ^(1/3)y로 바꾸면 정확한 canonical 적분은2πℏ^(1/3)Ai(−u/ℏ^(2/3))입니다. u<0에서 실수 정상점이 없어도 진폭은 일반적으로0이 아니며 지수적으로 작을 수 있습니다. 아주 작은 양수를 화면의 underflow0과 구별해야 합니다. 이 fold는 조화계의 delta 초점을 푸는 공식이나 일반 비선형 다변수 전파 전체가 아닙니다.',
+      'At u=0 the stationary points merge, curvature vanishes and the leading Gaussian approximation fails. Scaling x=hbar^(1/3)y gives the exact canonical integral 2πhbar^(1/3)Ai(−u/hbar^(2/3)). For u<0 there is no real stationary point, but the amplitude is generally nonzero and can be exponentially small. Distinguish a tiny positive value from display underflow. This fold is neither a resolution formula for the harmonic delta focus nor a complete nonlinear multidimensional propagator.'),
+    formula: 'J=2πℏ^(1/3)Ai(−u/ℏ^(2/3)); u=0: J=2πℏ^(1/3)Ai(0)>0',
+    diagram: t('같은 축에서 u=1,0,−1의 위상 곡선과 실수 정상점을 비교합니다. u=0의 한 점은 퇴화 정상점이며 u<0의 곡선에도 진동 적분은 존재합니다.', 'Phase curves for u=1,0,−1 share axes. The one point at u=0 is degenerate; the curve with no real stationary points still has an oscillatory integral.'),
+    examples: ['two-real-stationary-points', 'merging-stationary-points', 'no-real-stationary-points', 'maximum-negative-physical-control'],
+  },
+  {
+    id: 'ai-interpretation', title: t('AI에서 가져올 도구와 해석의 경계를 구별한다', 'Separate transferable AI tools from their interpretations'),
+    body: t('Hessian·선형 응답·모드·점근 전개는 최적화와 불확실성 연구에도 쓰입니다. 하지만 양의 posterior에 대한 Laplace 근사와 복소 진폭의 정상 위상 근사는 같은 확률모형이 아닙니다. 진폭들이 강하게 상쇄하면 각 항을 정확히 구해도 작은 총합의 상대 오차는 민감해집니다. 계산된 모드·branch·조건과 scaled/log 표현을 함께 읽으세요. 이 단원의 유한 모형과 검산이 일반 sign problem을 해결하거나 임의 연구 모형의 오차를 인증하는 것은 아닙니다.',
+      'Hessians, linear response, modes and asymptotic expansions also support optimization and uncertainty research. But a Laplace approximation to a positive posterior and stationary phase for a complex amplitude are different probabilistic objects. Strong cancellation makes relative error in a small total sensitive even when individual terms are accurate. Read modes, branches, conditions and scaled/log representations together. This finite model and its verification do not solve the general sign problem or certify arbitrary research models.'),
+    formula: 'positive posterior → probability moments; complex amplitude → interference; validated finite model ≠ general research theorem',
+    diagram: t('양의 밀도·복소 진폭·별도의 정규화된 파동묶음이라는 세 상자를 구분합니다. 연결선은 방법의 비교이며 동등성 표시가 아닙니다.', 'Separate positive densities, complex amplitudes and a normalized packet. Connections compare methods and do not assert equivalence.'),
+    examples: ['harmonic-four', 'fixed-width-free', 'merging-stationary-points'],
+  },
+];

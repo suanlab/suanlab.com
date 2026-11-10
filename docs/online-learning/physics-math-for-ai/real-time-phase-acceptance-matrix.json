@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-11",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "actual-workers-and-lifecycle-verified",
+  "stage": "concept-graphics-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -97,7 +97,8 @@
     {
       "id": "concept-graphics",
       "title": "한영 개념 단계·기준 그림·compact 표지",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "13bilingual reference steps,26detailed SVGs andcompact cover implemented. Node20/24each4tests coverindependent Fraction/Python references,SSR/language andreader graph separation. Chromium104concept/accessibility states,12keyboard/15storage checks andcontrolled-state/language preservation pass. Existing siteCSS/tokens reused;26reference/8cover screenshots inspected with text bounds. Fixed illustrations are separate fromcurrent input andnumerical certificates;full teaching lab andproduction reader remain."
     },
     {
       "id": "interactive-views",
@@ -136,11 +137,11 @@
     }
   ],
   "requirementCount": 23,
-  "requirementsVerified": 15,
+  "requirementsVerified": 16,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-phase-worker/verification.json",
-  "scopeNote": "15of23requirements verified:foundations,bilingual manuscripts,complete producer,independent whole-response gate andactual Worker/controller/hook lifecycle. SharedWorker messageerror compatibility audit verified;teaching UI,reader/production assets andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
+  "evidence": ".runtime/learning/real-time-phase-concepts/verification.json",
+  "scopeNote": "16of23requirements verified:foundations,bilingual manuscripts,producer,independent whole-response gate,actual Worker lifecycle,shared messageerror compatibility andbilingual reference graphics. Interactive views,guides/questions,full storage/accessibility,reader/production assets andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
 }
