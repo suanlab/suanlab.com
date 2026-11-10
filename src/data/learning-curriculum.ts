@@ -3199,7 +3199,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "connected-generators-and-legendre-effective-actions",
       "criticality-universality-and-finite-size-scaling",
       "renormalization-and-real-space-coarse-graining",
-      "effective-theory-heavy-mode-matching"
+      "effective-theory-heavy-mode-matching",
+      "scale-separation-memory-and-adiabatic-elimination"
     ]
   },
   {

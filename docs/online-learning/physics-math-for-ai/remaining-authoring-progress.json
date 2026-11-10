@@ -14521,36 +14521,73 @@
         },
         {
           "title": "scale separation",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "scale-separation-memory-and-adiabatic-elimination"
+          ],
           "preparation": {
             "unitId": "scale-separation-memory-and-adiabatic-elimination",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/scale-separation-memory-and-adiabatic-elimination.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/scale-separation-memory-and-adiabatic-elimination.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "scale-separation-reader-integration"
+            "nextAction": "special-relativity-lorentz-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.ko.md",
+              "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.ko.md",
+            "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-slow-fast-memory.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "scale-separation-memory-and-adiabatic-elimination",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-slow-fast-memory.ts",
+            "lab": "src/components/learning/slow-fast-memory-lab.tsx",
+            "tests": "scripts/learning-slow-fast-memory.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.ko.md",
+              "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         }
       ],
       "verification": null,
-      "currentPreparationReport": "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
-      "currentPreparationEvidence": "scripts/learning-heavy-mode-matching.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.ko.md",
+      "currentPreparationEvidence": "scripts/learning-slow-fast-memory.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "effective-theory-heavy-mode-matching",
+        "unitId": "scale-separation-memory-and-adiabatic-elimination",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-heavy-mode-matching.ts",
-        "lab": "src/components/learning/heavy-mode-matching-lab.tsx",
-        "tests": "scripts/learning-heavy-mode-matching.test.ts",
+        "model": "src/lib/learning-slow-fast-memory.ts",
+        "lab": "src/components/learning/slow-fast-memory-lab.tsx",
+        "tests": "scripts/learning-slow-fast-memory.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
-          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.en.md"
+          "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.ko.md",
+          "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
@@ -14559,30 +14596,30 @@
       "researchDepthComplete": false,
       "wholeDomainAuditComplete": false,
       "introductoryDomainAuditComplete": false,
-      "nextUnitId": "scale-separation-memory-and-adiabatic-elimination",
+      "nextUnitId": null,
       "lastIntegratedUnitPreparation": {
-        "unitId": "effective-theory-heavy-mode-matching",
+        "unitId": "scale-separation-memory-and-adiabatic-elimination",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-heavy-mode-matching.ts",
-        "lab": "src/components/learning/heavy-mode-matching-lab.tsx",
-        "tests": "scripts/learning-heavy-mode-matching.test.ts",
+        "model": "src/lib/learning-slow-fast-memory.ts",
+        "lab": "src/components/learning/slow-fast-memory-lab.tsx",
+        "tests": "scripts/learning-slow-fast-memory.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
-          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.en.md"
+          "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.ko.md",
+          "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "effective theory",
+        "originalTopic": "scale separation",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "effective-theory-heavy-mode-matching"
+          "scale-separation-memory-and-adiabatic-elimination"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -14590,14 +14627,14 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
-          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.en.md"
+          "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.ko.md",
+          "content/learning/physics-math-for-ai/scale-separation-memory-and-adiabatic-elimination.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-heavy-mode-matching.test.ts"
+        "evidence": "scripts/learning-slow-fast-memory.test.ts"
       },
-      "nextAction": "scale-separation-reader-integration",
+      "nextAction": "field-multiscale-domain-audit",
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
         "originalTopic": "path integral의 정의·근사",
@@ -14935,13 +14972,24 @@
     {
       "id": "relativity",
       "title": "상대론과 시공간 기하",
-      "status": "not-started",
+      "status": "in-progress",
       "existingSeedUnitIds": [],
       "topics": [
         {
           "title": "특수상대론·Lorentz",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "special-relativity-lorentz-boosts",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/special-relativity-lorentz-boosts.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/special-relativity-lorentz-boosts.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "special-relativity-lorentz-reader-integration"
+          }
         },
         {
           "title": "Minkowski metric",
@@ -14989,7 +15037,9 @@
           "unitIds": []
         }
       ],
-      "verification": null
+      "verification": null,
+      "nextUnitId": "special-relativity-lorentz-boosts",
+      "nextAction": "special-relativity-lorentz-reader-integration"
     },
     {
       "id": "matter-computation",
@@ -15178,14 +15228,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 608,
-  "verifiedNewUnitCount": 455,
-  "remainingForwardDomainCount": 5,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 42,
-  "nextDomain": "field-multiscale",
-  "nextTopic": "scale separation",
+  "implementedUnitCount": 609,
+  "verifiedNewUnitCount": 456,
+  "remainingForwardDomainCount": 4,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 41,
+  "nextDomain": "relativity",
+  "nextTopic": "특수상대론·Lorentz",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 320,
+  "verifiedOriginalScopeTopicCount": 321,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -15247,11 +15297,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers scale separation and fast-mode memory. All 608 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers special relativity and Lorentz boosts. All 609 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "scale-separation-memory-and-adiabatic-elimination",
+  "nextAuthoringUnitId": "special-relativity-lorentz-boosts",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "scale-separation-reader-integration",
+  "nextAction": "special-relativity-lorentz-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

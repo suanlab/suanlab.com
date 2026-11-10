@@ -1,4 +1,5 @@
 'use client';
+import { slowFastMemoryId } from '@/data/slow-fast-memory-reader';
 import { heavyModeMatchingId } from '@/data/heavy-mode-matching-reader';
 import { isingDecimationId } from '@/data/ising-decimation-reader';
 import { isingCriticalityId } from '@/data/ising-criticality-reader';
@@ -203,6 +204,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === slowFastMemoryId) return <span className="ai-concept-equation" aria-hidden="true">ẋ = −x + y</span>;
   if (kind === heavyModeMatchingId) return <span className="ai-concept-equation" aria-hidden="true">Qₗ = Q₁₁ − Q₁₂²/Q₂₂</span>;
   if (kind === isingDecimationId) return <span className="ai-concept-equation" aria-hidden="true">tanh K′ = (tanh K)²</span>;
   if (kind === isingCriticalityId) return <span className="ai-concept-equation" aria-hidden="true">Uₗ = 1 − ⟨M⁴⟩/(3⟨M²⟩²)</span>;
