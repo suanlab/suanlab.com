@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "independent-exact-core-and-attribution-foundations-verified",
+  "stage": "independent-exact-and-matrix-observations-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -80,7 +80,7 @@
       "id": "independent-response-validator",
       "title": "전체 응답 독립 검산·변조/귀속 거부",
       "completionVerified": false,
-      "evidenceReason": "Finite exact subrecord andrequest attribution verified independently;whole wave/Airy/packed-observation semantic verification is still pending. Exact-only contexts explicitly setfullResponseValidated=false;no validated whole-response receipt orWorker is shipped."
+      "evidenceReason": "Finite exact subrecord,request attribution andall packed matrix observations verified independently.17chain cases cover2537real and2988complex scalar components;23matrix tests pass onNode20/24. Whole wave/Airy semantic verification is still pending. Partial contexts explicitly setfullResponseValidated=false;no validated whole-response receipt orWorker is shipped."
     },
     {
       "id": "workers-and-lifecycle",

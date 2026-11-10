@@ -13934,7 +13934,7 @@
           "realTimePreparation": {
             "id": "real-time-phase-and-classical-limit",
             "originalTopic": "path integral의 정의·근사",
-            "stage": "independent-exact-core-and-attribution-foundations-verified",
+            "stage": "independent-exact-and-matrix-observations-verified",
             "registeredUnitCount": 0,
             "readerRegistered": false,
             "homepageIntegrated": false,
@@ -13966,7 +13966,7 @@
             "primarySourceAudit": "docs/online-learning/physics-math-for-ai/real-time-phase-primary-source-audit.md",
             "modelContract": "docs/online-learning/physics-math-for-ai/real-time-phase-model-contract.md",
             "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/real-time-phase-acceptance-matrix.json",
-            "report": "docs/online-learning/physics-math-for-ai/real-time-phase-exact-validator-foundation-status.md",
+            "report": "docs/online-learning/physics-math-for-ai/real-time-phase-matrix-validator-status.md",
             "evidence": ".runtime/learning/real-time-exact-check/verification.json",
             "nextStage": "independent-wave-and-airy-response-validation",
             "workingPrecisionAndWireBudgetFinalized": true,
@@ -14022,7 +14022,15 @@
             "primitiveExactCoreMutationRejections": 502,
             "maximumExactCoreLateMutationRejections": 7,
             "coordinatedModelMutationRejections": 1,
-            "rawScaledRepresentationBoundaryFixed": true
+            "rawScaledRepresentationBoundaryFixed": true,
+            "matrixObservationCheckerImplemented": true,
+            "matrixObservationCheckerScope": "finite-matrix-observations-only",
+            "matrixObservationStatus": "docs/online-learning/physics-math-for-ai/real-time-phase-matrix-validator-status.md",
+            "matrixObservationChecksPassed": 23,
+            "matrixObservationChainCases": 17,
+            "matrixRealComponentsVerified": 2537,
+            "matrixComplexComponentsVerified": 2988,
+            "matrixObservationEvidence": ".runtime/learning/real-time-matrix-check/verification.json"
           }
         },
         {
@@ -14351,7 +14359,7 @@
       "nextUnitPreparation": {
         "id": "real-time-phase-and-classical-limit",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "independent-exact-core-and-attribution-foundations-verified",
+        "stage": "independent-exact-and-matrix-observations-verified",
         "registeredUnitCount": 0,
         "readerRegistered": false,
         "homepageIntegrated": false,
@@ -14383,7 +14391,7 @@
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/real-time-phase-primary-source-audit.md",
         "modelContract": "docs/online-learning/physics-math-for-ai/real-time-phase-model-contract.md",
         "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/real-time-phase-acceptance-matrix.json",
-        "report": "docs/online-learning/physics-math-for-ai/real-time-phase-exact-validator-foundation-status.md",
+        "report": "docs/online-learning/physics-math-for-ai/real-time-phase-matrix-validator-status.md",
         "evidence": ".runtime/learning/real-time-exact-check/verification.json",
         "nextStage": "independent-wave-and-airy-response-validation",
         "workingPrecisionAndWireBudgetFinalized": true,
@@ -14439,7 +14447,15 @@
         "primitiveExactCoreMutationRejections": 502,
         "maximumExactCoreLateMutationRejections": 7,
         "coordinatedModelMutationRejections": 1,
-        "rawScaledRepresentationBoundaryFixed": true
+        "rawScaledRepresentationBoundaryFixed": true,
+        "matrixObservationCheckerImplemented": true,
+        "matrixObservationCheckerScope": "finite-matrix-observations-only",
+        "matrixObservationStatus": "docs/online-learning/physics-math-for-ai/real-time-phase-matrix-validator-status.md",
+        "matrixObservationChecksPassed": 23,
+        "matrixObservationChainCases": 17,
+        "matrixRealComponentsVerified": 2537,
+        "matrixComplexComponentsVerified": 2988,
+        "matrixObservationEvidence": ".runtime/learning/real-time-matrix-check/verification.json"
       },
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
