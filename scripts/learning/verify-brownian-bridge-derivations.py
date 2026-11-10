@@ -83,6 +83,6 @@ for n in range(2, 17):
 
 out = Path('.runtime/learning/brownian-bridge-foundation')
 out.mkdir(parents=True, exist_ok=True)
-summary = {'status': 'passed', 'arithmetic': 'Python Fraction, incidence construction and exact Gauss-Jordan elimination', 'checksPassed': len(checks), 'finiteModels': 62, 'coarseningPairs': 15, 'maximumIntervals': 32, 'manuscriptsAuthored': False, 'productionCalculatorImplemented': False, 'continuumMeasureExistenceProvedByThisScript': False, 'checks': checks}
+summary = {'status': 'passed', 'arithmetic': 'Python Fraction, incidence construction and exact Gauss-Jordan elimination', 'checksPassed': len(checks), 'finiteModels': 62, 'coarseningPairs': 15, 'maximumIntervals': 32, 'manuscriptsCheckedByThisScript': False, 'productionCalculatorCheckedByThisScript': False, 'continuumMeasureExistenceProvedByThisScript': False, 'checks': checks}
 (out / 'derivations.json').write_text(json.dumps(summary, indent=2) + '\n')
 print(json.dumps({key: value for key, value in summary.items() if key != 'checks'}))

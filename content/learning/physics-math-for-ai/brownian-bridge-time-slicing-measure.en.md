@@ -141,6 +141,8 @@ W_N(j)=\log\mathbb E[e^{j^Tx}]=j^T\mu+\frac12j^TCj,
 \qquad \nabla W_N=\mu+Cj,\qquad \nabla^2 W_N=C.
 $$
 
+The experiment uses a point source at one selected grid index, from 0 through N, with rational strength |j|≤16 and at most 12 digits in its numerator and denominator. A source at a fixed endpoint contributes only the constant ja or jb to W; its covariance response is zero.
+
 Here j is an auxiliary tilt, not the physical energy source J of the preceding Gaussian-field chapter. A positive exponential tilt changes the mean and leaves Gaussian covariance unchanged. For a source of strength 2 at the middle of the four-interval example, W=2 and the tilted interior mean becomes (3/4,3/2,5/4). The endpoints remain 0 and 1, so the tilted mean can rise above the final endpoint without violating the conditioning.
 
 ## 15. Separate the three meanings of a limit

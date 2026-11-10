@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-11-10",
+  "unitId": "brownian-bridge-time-slicing-measure",
+  "stage": "native-workers-and-hook-verified-teaching-pending",
+  "requirements": [
+    {
+      "id": "owned-input",
+      "title": "일곱 소유 필드·정확한 경계·원래 표기",
+      "completionVerified": true,
+      "evidenceReason": "Numerics input, descriptor and spelling tests; 16 preparations include minimum/maximum fractions."
+    },
+    {
+      "id": "time-and-units",
+      "title": "구간 수와 내부 자유도·물리 시간·단위",
+      "completionVerified": true,
+      "evidenceReason": "Bilingual sections2,6,14 and explicit N2 endpoint-forcing test."
+    },
+    {
+      "id": "normalized-law",
+      "title": "증분 밀도·끝점 커널·조건부 법칙",
+      "completionVerified": true,
+      "evidenceReason": "Bilingual sections3–5,9; independent Gaussian determinant/prefactor reconstruction."
+    },
+    {
+      "id": "precision-and-green",
+      "title": "고정끝 간선·양의 정밀도·전체 공분산",
+      "completionVerified": true,
+      "evidenceReason": "47 incidence/Gauss-Jordan references, exact Q C residuals, earlier pinned-Gaussian comparison."
+    },
+    {
+      "id": "point-source",
+      "title": "점 원천·양끝 상수·평균 이동·공분산 유지",
+      "completionVerified": true,
+      "evidenceReason": "47 source-inclusive references plus fixed-endpoint and translated-source tests."
+    },
+    {
+      "id": "area-functional",
+      "title": "사다리꼴 면적·정련 분산과 차이",
+      "completionVerified": true,
+      "evidenceReason": "Independent increment-weight reference, worked5/32→21/128,15 explicit matrix coarsenings."
+    },
+    {
+      "id": "increments-and-action",
+      "title": "증분 제약·기대 제곱 합·거칠기·기대 작용",
+      "completionVerified": true,
+      "evidenceReason": "Covariance differencing and independent increment reference; manuscript section12–13."
+    },
+    {
+      "id": "refinement-scope",
+      "title": "물리적 원천 시각·정련 주변분포·해석적 비교 범위",
+      "completionVerified": true,
+      "evidenceReason": "Analytic comparisons through256 intervals; full matrix only input≤32; explicit fine-matrix tests through32."
+    },
+    {
+      "id": "arithmetic-and-wire",
+      "title": "정확분수·전체 크기·기존 wire 한도",
+      "completionVerified": true,
+      "evidenceReason": "Maximum32-interval outputs138008/88123bytes pass existing bounded wire copy; no input cap reduced."
+    },
+    {
+      "id": "independent-result",
+      "title": "생산 산술과 분리한 전체 수치 출력 검산",
+      "completionVerified": true,
+      "evidenceReason": "52 tests; independent dependency graph excludes producer and its arithmetic."
+    },
+    {
+      "id": "mutation-rejection",
+      "title": "개별 항목·최대 입력 변조 거부",
+      "completionVerified": true,
+      "evidenceReason": "798 individual small-result leaf mutations and54 selected maximum-input mutations rejected; not all maximum leaves."
+    },
+    {
+      "id": "request-attribution",
+      "title": "version·requestId·kind·입력 귀속",
+      "completionVerified": true,
+      "evidenceReason": "54 complete-envelope/hostile-input/bundle/SSR tests; raw fractions and nested inputs must match."
+    },
+    {
+      "id": "native-workers",
+      "title": "실제 계산·검산 Worker",
+      "completionVerified": true,
+      "evidenceReason": "63 native module Worker requests,63 dimension mutations and63 attribution errors rejected; two Workers terminated."
+    },
+    {
+      "id": "lifecycle-hook",
+      "title": "취소·교체·기한·숨김·오류복구와 종료",
+      "completionVerified": true,
+      "evidenceReason": "18 controller tests and native React hook18created/18terminated,0active; visibility event simulation explicitly labeled."
+    },
+    {
+      "id": "bilingual-manuscripts",
+      "title": "일반 대학원생용 한영 이론·계산·해설",
+      "completionVerified": true,
+      "evidenceReason": "20sections,12display equations,8worked questions per language and executed standard-library Python exercise."
+    },
+    {
+      "id": "concept-graphics",
+      "title": "8개념과 설명 그림",
+      "completionVerified": false,
+      "evidenceReason": "Pending theme-matched graphics and learning controls."
+    },
+    {
+      "id": "interactive-views",
+      "title": "위치/증분·면적/정련의2D·Three.js 표시",
+      "completionVerified": false,
+      "evidenceReason": "Pending actual UI with exact tables and clearly labeled approximate plots."
+    },
+    {
+      "id": "guides-quiz",
+      "title": "6예측 안내·8해설 퀴즈·16예제",
+      "completionVerified": false,
+      "evidenceReason": "Manuscript comparisons exist; interactive teaching data and UI pending."
+    },
+    {
+      "id": "storage-recovery",
+      "title": "입력·표시 선택·학습 진행 저장과 복원",
+      "completionVerified": false,
+      "evidenceReason": "Pending owned storage schema, invalid saved values and reload checks."
+    },
+    {
+      "id": "locale-accessibility",
+      "title": "한영·명암·320/1440px·키보드·터치·접근성",
+      "completionVerified": false,
+      "evidenceReason": "Pending actual teaching UI and reader checks."
+    },
+    {
+      "id": "reader-production",
+      "title": "실제 reader등록·생산 Next 자산·기존 내용 보존",
+      "completionVerified": false,
+      "evidenceReason": "Pending registry append, production assets, navigation and prior-reader regression checks."
+    }
+  ],
+  "requirementCount": 21,
+  "requirementsVerified": 15,
+  "unitComplete": false,
+  "originalTopicComplete": false,
+  "wholeGoalComplete": false,
+  "researchDepthComplete": false,
+  "scopeNote": "First treatment of four declared path-integral introductory treatments; a registered unit alone cannot complete the original topic.",
+  "evidence": ".runtime/learning/brownian-bridge-worker/verification.json"
+}
