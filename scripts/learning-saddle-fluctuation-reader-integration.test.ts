@@ -1,3 +1,4 @@
+import {assertPreservedLearningFile} from './learning/assert-manuscript-preservation';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
@@ -17,10 +18,10 @@ test('Saddle-fluctuation unit appends with valid metadata,prerequisites,ten conc
  assert(unit.prerequisiteIds.every(prior=>learningUnits.findIndex(u=>u.id===prior)>=0&&learningUnits.findIndex(u=>u.id===prior)<599));assert(curriculumDomains.find(d=>d.id==='field-multiscale')!.unitIds.includes(unit.id));
  const content=await getLearningContent(id as LearningUnitId);for(const lang of ['ko','en']as const){assert.equal(content.outline[lang].length,28);assert(!content[lang].includes('katex-error'));assert(!/<h1/.test(content[lang]));assert(content[lang].includes('<math'));}assert(!/[가-힣]/.test(content.en));
 });
-test('all599 earlier units,guides and51 domain scopes retain exact content and order',()=>{
+test('all599 earlier units/guides/scopes retain content and order with declared wording corrections',()=>{
  assert(learningUnits.length>=600);assert.equal(new Set(learningUnits.map(u=>u.id)).size,learningUnits.length);assert.deepEqual(learningUnits.slice(0,599).map(u=>u.id),before.unitOrder);assert.deepEqual(Object.keys(learningGuides).slice(0,599),before.guideOrder);assert.equal(learningUnits[599].id,id);assert.equal(Object.keys(learningGuides)[599],id);
  for(const unit of learningUnits.slice(0,599)){assert.equal(hash(unit),before.units[unit.id as keyof typeof before.units]);assert.equal(hash(learningGuides[unit.id]),before.guides[unit.id as keyof typeof before.guides]);}
- for(const [path,expected]of Object.entries({...before.manuscripts,...before.preservedFiles}))assert.equal(createHash('sha256').update(readFileSync(path)).digest('hex'),expected,path);
+ for(const [path,expected]of Object.entries({...before.manuscripts,...before.preservedFiles}))assertPreservedLearningFile(path,expected);
  assert(learningUnits.reduce((n,u)=>n+learningGuides[u.id].experiments.length,0)>=1857);for(const domain of curriculumDomains)assert.equal(hash({...domain,unitIds:domain.unitIds.filter(unitId=>before.unitOrder.includes(unitId))}),before.domains[domain.id as keyof typeof before.domains]);
 });
 test('reader dispatches saddle-fluctuation concepts,cover and embedded lazy experiment without duplicate quizzes',()=>{

@@ -17,7 +17,7 @@ $$
 
 Here m>0 is mass, ℏ>0 has units of action, τ>0 has units of time and ω²≥0 has units of inverse time squared. The exponent τH/ℏ is dimensionless. A one-dimensional position kernel has units of inverse length. It is not a dimensionless probability of arriving at an exact position.
 
-The planned exact calculator accepts rational m,ℏ,τ≤16, rational 0≤ω²≤16 and |a|,|b|≤16, with at most12 digits in each numerator and denominator. We enter ω², rather than approximating its square root before constructing the matrix. These are computational bounds, not limits on the physical theory.
+The exact calculator accepts rational m,ℏ,τ≤16, rational 0≤ω²≤16 and |a|,|b|≤16, with at most12 digits in each numerator and denominator. We enter ω², rather than approximating its square root before constructing the matrix. These are computational bounds, not limits on the physical theory.
 
 ## 3. Read Euclidean evolution as spectral filtering
 
@@ -189,7 +189,7 @@ For the comparison m=ℏ=τ=ω²=1,a=1/3,b=4/3, compare log(K_N/Kτ) at N=4,8,�
 
 An80-digit Decimal comparison gives error-halving ratios near4 for the symmetric rule and near2 for the right rule. These are numerical observations for this particular example. They are not certified error intervals or a proof that every observable has the same leading coefficient. Special endpoints may cancel a leading term.
 
-Only the input range through32 intervals is planned for full matrices. Rows through256 intervals in this analytic comparison use the scalar recurrence; a row at N=256 is not a full matrix calculation over its255 interior coordinates. Unlike the free bridge, the potential-weighted finite laws generally change their old-time marginals under refinement.
+Full matrices are computed for the input range through32 intervals. Rows through256 intervals in this analytic comparison use the scalar recurrence; a row at N=256 is not a full matrix calculation over its255 interior coordinates. Unlike the free bridge, the potential-weighted finite laws generally change their old-time marginals under refinement.
 
 ## 18. Close and integrate the endpoints to obtain a trace
 

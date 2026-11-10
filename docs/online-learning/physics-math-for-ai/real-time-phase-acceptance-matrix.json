@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-11",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "reader-production-assets-and-preservation-verified",
+  "stage": "unit-scope-and-original-introductory-topic-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -92,7 +92,7 @@
       "id": "bilingual-manuscripts",
       "title": "한영 상세 이론·직관·손계산·실행Python",
       "completionVerified": true,
-      "evidenceReason": "KO/EN33sections,22matching display equations,2tables,6prediction comparisons,8explained questions andidentical exact Fraction exercise;strict renderer andexecutable exercise tests passed onNode20/24."
+      "evidenceReason": "KO/EN33sections,22matching display equations,2tables,6prediction comparisons,8explained questions andidentical exact Fraction exercise;strict renderer andexecutable exercise tests passed onNode20/24. Current audit addsfourworked comparisons andone4construction table:34sections,24displayequations,3tables perlocale;existing8questions/identical executablePython retained."
     },
     {
       "id": "concept-graphics",
@@ -134,20 +134,21 @@
       "id": "prior-content-preservation",
       "title": "기존600단원·범위·메뉴·자산 보존",
       "completionVerified": true,
-      "evidenceReason": "Exact600unit/guide order andvalue hashes,1200manuscript bytes,51domain scopes,book navigation andOnlineBookpage retained. All1202registered manuscripts renderstrictmath/English.931prior static assets,including65knownWorkers,retainbytes;4612prior output files backedup.4696verified candidate files installed withall hashes equal;1684runtime sources matchbuild snapshot. Existing4175homepage returnsHTTP200/601cards/newreader. Newscope audit remains separate."
+      "evidenceReason": "Exact600unit/guide order andvalue hashes,1200manuscript bytes,51domain scopes,book navigation andOnlineBookpage retained. All1202registered manuscripts renderstrictmath/English.931prior static assets,including65knownWorkers,retainbytes;4612prior output files backedup.4696verified candidate files installed withall hashes equal;1684runtime sources matchbuild snapshot. Existing4175homepage returnsHTTP200/601cards/newreader. Newscope audit remains separate. Subsequent topic review explicitly updates onlytwo Euclidean manuscript plan statements perlocale;historical fixtures remainunchanged andexact reverse replacements mustrecovereach oldwhole-filehash."
     },
     {
       "id": "unit-scope-audit",
       "title": "전체 단원 요건·증거·원래 범위 감사",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Allprior22requirements reviewed againstoriginal contract,actual code/math/manuscripts andraw logs. Independent62model derivation rerun:41191exactchecks/13uncertified Decimal diagnostics. New16model dense Fraction synthesis,4712covarianceentries;20related Node20/24tests. Fouractualreaders32states/312concepts/256questions/200guides/32a11y plus8tablewordbounds/8a11y. MathWorker dependencies19/19/21/37unchanged fromprevious production candidates;recorded63/71/54/38executions notrerun orrecounted. Explicit editorial correction reversals preserveallother1200baseline manuscriptbytes. Joint24requirement original-topic review complete;research scope remains separate."
     }
   ],
   "requirementCount": 23,
-  "requirementsVerified": 22,
-  "unitComplete": false,
-  "originalTopicComplete": false,
+  "requirementsVerified": 23,
+  "unitComplete": true,
+  "originalTopicComplete": true,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-phase-reader-integration/verification.json",
-  "scopeNote": "22of23requirements verified. Actual601unit reader andtwoNextWorker assets tested with38uniqueinputs,38math/38attribution rejections andNode result agreement. Prior600units/1200manuscripts/51domain scopes/menu retained;931oldassets including65knownWorkers preserved and4612oldoutput files backedup. Final unit-scope andoriginal-topic audits remain;unitComplete andwholeGoalComplete remain false."
+  "evidence": ".runtime/learning/real-time-phase-scope-audit/verification.json",
+  "scopeNote": "All23requirements verified for thedeclared finite teaching unit.34bilingual sections/24equations/3tables includefourcrosscomparisons. Original introductory path-integral topic verifiedjointly acrossitsfourplannedunits,notby thisunit alone. New16dense Fraction models/4712covarianceentries and32readerstates plus8table rechecks supplement unchanged priornumerical/Worker proof. Whole goal,domain audits andresearch depth remain incomplete."
 }

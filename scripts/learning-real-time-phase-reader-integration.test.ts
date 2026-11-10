@@ -1,3 +1,4 @@
+import {assertPreservedLearningFile} from './learning/assert-manuscript-preservation';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
@@ -14,12 +15,12 @@ const hash=(value:unknown)=>createHash('sha256').update(JSON.stringify(value)).d
 test('phase unit appends after600 with prerequisites,13concepts,6guides and8questions',async()=>{
  const unit=learningUnits.find(u=>u.id===id);assert(unit);assert.equal(learningUnits.indexOf(unit),600);assert.deepEqual(unit,reader.unit);assert.deepEqual(learningGuides[id],reader.guide);assert.equal(unit.questions.length,8);assert.equal(reader.guide.steps.length,13);assert.equal(reader.guide.experiments.length,6);
  assert(unit.prerequisiteIds.every(prior=>learningUnits.findIndex(u=>u.id===prior)>=0&&learningUnits.findIndex(u=>u.id===prior)<600));assert(curriculumDomains.find(d=>d.id==='field-multiscale')!.unitIds.includes(id));
- const content=await getLearningContent(id);for(const language of ['ko','en']as const){assert.equal(content.outline[language].length,33);assert(!content[language].includes('katex-error'));assert(!/<h1/.test(content[language]));assert(content[language].includes('<math'));}assert(!/[가-힣]/.test(content.en));
+ const content=await getLearningContent(id);for(const language of ['ko','en']as const){assert.equal(content.outline[language].length,34);assert(!content[language].includes('katex-error'));assert(!/<h1/.test(content[language]));assert(content[language].includes('<math'));}assert(!/[가-힣]/.test(content.en));
 });
-test('earlier600 units/guides,1200manuscripts,51domain scopes andbook menu remain unchanged',()=>{
+test('earlier600 units/guides/scopes/menu andmanuscript substance survive declared wording corrections',()=>{
  assert.equal(before.unitOrder.length,600);assert(learningUnits.length>=601);assert.equal(new Set(learningUnits.map(u=>u.id)).size,learningUnits.length);assert.deepEqual(learningUnits.slice(0,600).map(u=>u.id),before.unitOrder);assert.deepEqual(Object.keys(learningGuides).slice(0,600),before.guideOrder);
  for(const unit of learningUnits.slice(0,600)){assert.equal(hash(unit),before.units[unit.id]);assert.equal(hash(learningGuides[unit.id]),before.guides[unit.id]);}
- for(const[p,h]of Object.entries({...before.manuscripts,...before.preservedFiles}))assert.equal(createHash('sha256').update(readFileSync(p)).digest('hex'),h,p);
+ for(const[p,h]of Object.entries({...before.manuscripts,...before.preservedFiles}))assertPreservedLearningFile(p,h);
  assert.equal(learningUnits.reduce((n,u)=>n+learningGuides[u.id].experiments.length,0),1863);for(const domain of curriculumDomains)assert.equal(hash({...domain,unitIds:domain.unitIds.filter(prior=>before.unitOrder.includes(prior))}),before.domains[domain.id]);
 });
 test('reader dispatches phase cover/concepts/lazy lab and excludes duplicate embedded questions',()=>{

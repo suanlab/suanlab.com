@@ -322,3 +322,7 @@
 [data-free-energy-concept] .ai-foundation-scroll svg { min-width:560px; }
 [data-free-energy-view] .ai-foundation-scroll text,
 [data-free-energy-concept] .ai-foundation-scroll text { font-size:10px !important; }
+
+/* Keep names legible in the four-construction comparison without widening the page. */
+.ai-prose table.ai-path-integral-comparison th:first-child,
+.ai-prose table.ai-path-integral-comparison td:first-child { min-width: 8rem; }

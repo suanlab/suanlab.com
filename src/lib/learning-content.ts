@@ -36,6 +36,7 @@ export async function getLearningContent(unitId: string): Promise<LearningConten
           if (node.tagName === 'table') {
             node.properties.tabIndex = 0;
             node.properties.ariaLabel = locale === 'ko' ? `표 ${++table}. 필요하면 좌우 화살표로 스크롤하세요.` : `Table ${++table}. Use arrow keys to scroll if needed.`;
+            if (unitId === 'real-time-phase-and-classical-limit' && table === 3) node.properties.className = ['ai-path-integral-comparison'];
           }
           if (Array.isArray(node.properties.className) && node.properties.className.includes('katex-display')) {
             node.properties.tabIndex = 0; node.properties.role = 'region';

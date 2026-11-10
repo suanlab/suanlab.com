@@ -289,7 +289,7 @@ $$
 
 Ai satisfies y″=zy with two initial values. Its coefficients obey a₂=0 and (n+2)(n+1)a_{n+2}=a_{n−1}, leaving two series with powers spaced by three. Once absolute term ratios decrease below one, a geometric tail bound becomes available.
 
-For large positive z, however, two large series cancel to give a small Ai value, consuming precision. Evaluate the scaled value exp(ζ)Ai(z), with ζ=2z³ᐟ²/3, and retain the exponential scale or log magnitude separately. For large negative arguments use sine/cosine asymptotic series with their applicable remainder conditions. The Γ constants and π also require certification. These formulas are not a claim that production numerics are already implemented.
+For large positive z, however, two large series cancel to give a small Ai value, consuming precision. Evaluate the scaled value exp(ζ)Ai(z), with ζ=2z³ᐟ²/3, and retain the exponential scale or log magnitude separately. For large negative arguments use sine/cosine asymptotic series with their applicable remainder conditions. The Γ constants and π also require certification. A numerical implementation must also control truncation, rounding and range reduction; formulas alone do not certify a computed value.
 
 $$
 \operatorname{Ai}(z)=\sum_{n=0}^{\infty}a_nz^n,\quad
@@ -301,7 +301,7 @@ $$
 
 Truncating a directly oscillatory integral and refining its grid does not control the infinite tail or aliasing. Numerical integration on a deformed contour also needs justified contour deformation and separate tail and rounding bounds. Small ℏ can additionally cause phase loss through subtraction of large numbers.
 
-The mathematical foundation distinguishes 41,191 exact rational checks across 62 finite models from 13 Decimal diagnostics. The latter observe grid or branch agreement; they are not certified integration errors. A live calculator is not connected yet. Underflow must not be reported as exact zero, and an enclosure containing zero cannot promise relative accuracy or a finite log magnitude.
+The mathematical foundation distinguishes 41,191 exact rational checks across 62 finite models from 13 Decimal diagnostics. The latter observe grid or branch agreement; they are not certified integration errors. The live experiment uses certified production calculations and an independent response check; the Decimal diagnostics are a separate comparison. Underflow must not be reported as exact zero, and an enclosure containing zero cannot promise relative accuracy or a finite log magnitude.
 
 ## 28. State which limit is being taken
 
@@ -396,10 +396,45 @@ Research must account for multiple stationary points, symmetry, degeneracy, canc
 7. **Is vanishing final position variance sufficient?** No. The free χ=−1 counterexample retains momentum variance σ². Inspect the full phase-space covariance.
 8. **Does the fold integral vanish without real stationary points?** No. For u<0 its positive-argument Ai value is positive and exponentially small. Distinguish underflow from exact zero.
 
-## 33. Sources and the boundary of this manuscript
+## 33. Compare the four path-integral constructions
+
+Use the same grid and endpoints to compare objects, rather than comparing pictures with different meanings. The [Brownian bridge](/book/online/physics-math-for-ai/brownian-bridge-time-slicing-measure/), [Euclidean kernel](/book/online/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing/) and [saddle approximation](/book/online/physics-math-for-ai/saddle-fluctuation-and-nongaussian-approximation/) chapters each provide an experiment. All four constructions retain the integration measure and normalization; they answer different questions.
+
+| Construction | What is combined? | Meaning after the calculation | What must not be inferred? |
+|---|---|---|---|
+| Brownian bridge | Positive Gaussian increment densities, conditioned on endpoints | A normalized probability law over interior positions | The mean path is not a typical smooth trajectory |
+| Euclidean kernel | Positive potential-weighted free kernels | A kernel of the declared finite operator product; conditioning gives an interior probability law | Positivity alone does not conserve endpoint mass or identify a partition function |
+| Saddle approximation | Gaussian fluctuations and corrections around stationary paths | A local approximation, with a full ratio bound only under stated remainder conditions | A mode or local width is not automatically the actual mean or covariance |
+| Real-time kernel | Complex amplitudes, including negative-mode and branch phases | An amplitude propagator; apply it to a normalized state before forming a Born density | A formal complex response is not a probability covariance |
+
+**Worked comparison 1: make the free positive laws agree.** Set ω²=λ=0, use the same τ,m,ℏ,a,b,N, and choose D=ℏ/(2m) in the bridge. Here L is the pinned chain matrix and H₀=(m/δ)L. The Euclidean quadratic law and the saddle calculation at λ=0 have the same interior mean and covariance as the bridge. For real time, the stationary path agrees, but the corresponding connected response contains i:
+
+$$
+D=\frac{\hbar}{2m},\qquad Q_E=\frac{m}{\hbar\delta}L,\qquad
+C_B=C_E=\hbar H_0^{-1},\qquad C_{\mathrm{osc}}=i\hbar H_0^{-1}.
+$$
+
+For N=4,τ=m=ℏ=1,a=0,b=1, both positive laws have mean (1/4,1/2,3/4) and middle variance1/4. Their free kernel is exp(−1/2)/√(2π). The real-time free kernel instead is exp(i/2−iπ/4)/√(2π), and its middle connected response is i/4. Equal magnitudes of normalization factors do not turn a complex amplitude into the same positive law. The expression i/4 is not a variance that can be estimated by unweighted Brownian samples.
+
+**Worked comparison 2: keep the observation fixed when testing refinement.** For that bridge, midpoint variance stays1/4 when N goes from4 to8 because the old-time marginal is unchanged. The trapezoidal area is a different observable on the finer grid: its variance changes from5/64 to21/256, a difference of1/256; the limiting variance is1/12. At N=4 the mean path has dimensionless action1/2, while the expected action of the full bridge is2. A smooth minimum-action path therefore does not describe the typical fluctuations. This exact marginal consistency of the free bridge is stronger than, and different from, a convergence plot for a potential-weighted kernel.
+
+**Worked comparison 3: identify the Hessian and its units before comparing colors.** Set N=2,τ=m=ℏ=ω²=1,a=0,b=1 and λ=0. The Euclidean precision has a plus sign for the potential; the real-action Hessian has a minus sign. Completing the square gives:
+
+$$
+Q_E=\frac92,\quad \mu_E=\frac49,\quad C_E=\frac29,\quad A_{E,\min}=\frac{49}{72};\qquad
+H_R=\frac72,\quad q_R^*=\frac47,\quad i\hbar H_R^{-1}=\frac{2i}{7},\quad S_R^*=\frac{17}{56}.
+$$
+
+These are two different finite integrals, not a numerical disagreement. In general Q_E is the Hessian of S_E/ℏ, whereas H_R is the Hessian of S_R. Restoring a general ℏ changes which matrix includes the action scale. Analytic continuation requires a declared operator, contour, convergence conditions and branch prescription; changing a sign in a covariance heat map is not a proof of Wick rotation.
+
+**Worked comparison 4: know what the non-Gaussian calculation certifies.** In the saddle chapter's N=2,τ=m=ℏ=ω²=λ=1,a=0,b=37/32 example, the stationary coordinate is1/2 and its local Hessian is39/8, giving local Gaussian variance8/39. Setting λ=0 instead gives the Gaussian mean37/72. The local variance8/39 is not the actual quartic variance, and the shifted cubic remainder prevents using the zero-saddle global ratio bound. Read the residual certificate, local covariance and ratio applicability as separate statements.
+
+Before using any of these tools in AI research, state the object, measure, endpoints, units and observable, then state what is held fixed in a limit. A finite unitary map need not equal the exact continuous dynamics. The harmonic delta caustic and a finite canonical Airy merger also require different interpretations. These distinctions remain necessary even when all numerical checks pass.
+
+## 34. Sources and the boundary of this manuscript
 
 [Evans–Zworski, Lemma3.13/Theorem3.15](https://math.mit.edu/~vwg/semiclassicalEvansZworski.pdf#page=38) provides conditions for nonstationary and stationary phase. [Wipf§3.1](https://www.tpi.uni-jena.de/~wipf/lectures/pfad/pfad3.pdf) discusses finite quadratic path integrals; our symmetric endpoint convention is derived explicitly. [Horváthy§§2–3](https://arxiv.org/pdf/quant-ph/0702236#page=2) treats Maslov phases and distributional harmonic caustics.
 
 For Airy equations and initial values, integrals, asymptotics and remainder conditions, see [DLMF9.2](https://dlmf.nist.gov/9.2), [9.5](https://dlmf.nist.gov/9.5) and [9.7](https://dlmf.nist.gov/9.7). Positivity at positive argument follows from the modified-Bessel connection in [9.6.2](https://dlmf.nist.gov/9.6#E2) and the positive integral representation in [10.32.9](https://dlmf.nist.gov/10.32#E9).
 
-This manuscript supplies theory, finite hand calculations and an executable exercise. Certified production computation across the full input range, independent validation, Workers, visualizations, storage, the actual reader and unit/topic audits remain separate stages. Neither the new unit nor the original path-integral topic is counted complete.
+The experiments combine the declared finite models with independently checked calculations, reference diagrams and executable hand cases. Their certificates concern the specified model and numerical quantities. They do not construct a general nonlinear real-time measure or prove unrestricted continuum convergence, Wick rotation or a solution to the sign problem. When extending the model, revisit the measure, operator domain, boundary conditions, branch prescription and approximation error.

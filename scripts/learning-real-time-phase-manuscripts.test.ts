@@ -16,17 +16,17 @@ test('real-time manuscripts render bilingual math and preserve the distinctions 
   const rows = [];
   for (const language of ['ko', 'en'] as const) {
     const raw = source(language), html = rendered[language], headings = rendered.outline[language];
-    assert.equal(headings.length, 33);
-    assert.equal(new Set(headings.map(heading => heading.id)).size, 33);
-    assert.equal(equations(raw).length, 22);
+    assert.equal(headings.length, 34);
+    assert.equal(new Set(headings.map(heading => heading.id)).size, 34);
+    assert.equal(equations(raw).length, 24);
     const questions = raw.split(/^## 32\./m)[1].split(/^## 33\./m)[0];
     assert.equal((questions.match(/^\d+\. \*\*/gm) ?? []).length, 8);
-    assert.equal((raw.match(/^\|---\|/gm) ?? []).length, 2);
+    assert.equal((raw.match(/^\|---\|/gm) ?? []).length, 3);
     assert(!/\[\[(?:MATH|PYTHON)/.test(raw));
     assert(!html.includes('katex-error'));
     assert(!/<h1(?:\s|>)/.test(html));
     assert(html.includes('<math') && html.includes('tabindex="0"') && html.includes('language-python'));
-    rows.push({ language, sections: headings.length, displayEquations: 22, explainedQuestions: 8, tables: 2, predictionComparisons: 6 });
+    rows.push({ language, sections: headings.length, displayEquations: 24, explainedQuestions: 8, tables: 3, predictionComparisons: 6 });
   }
   assert(!/[가-힣]/.test(rendered.en));
   assert.deepEqual(equations(source('en')), equations(source('ko')));
