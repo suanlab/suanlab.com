@@ -46,7 +46,30 @@ jobs:
         run: python -m pip install -r scripts/learning/requirements-ci.txt
 
       - name: Validate and build
-        run: npm run check
+        run: |
+          set -o pipefail
+          npm run check 2>&1 | tee "$RUNNER_TEMP/site-validation.log"
+
+      - name: Report validation failures
+        if: failure()
+        run: |
+          python - <<'PY'
+          import os, pathlib, re
+          path = pathlib.Path(os.environ['RUNNER_TEMP']) / 'site-validation.log'
+          if path.exists():
+              lines = path.read_text(errors='replace').splitlines()
+              failures = [i for i, line in enumerate(lines) if re.match(r'\s*(?:not ok\b|✖)', line) or re.search(r'error TS\d+|Error:|AssertionError', line)]
+              if not failures:
+                  failures = [max(0, len(lines) - 30)]
+              for index in failures[:25]:
+                  message = '\n'.join(lines[max(0, index - 2):index + 25])[:6000]
+                  escaped = message.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+                  print(f'::error title=Site validation failed::{escaped}')
+              with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+                  summary.write('### Site validation failures\n\n```text\n')
+                  summary.write('\n'.join(lines[i] for i in failures[:50]).replace('```', "'''"))
+                  summary.write('\n```\n')
+          PY
 
       - name: Upload artifact
         if: github.event_name != 'pull_request'
