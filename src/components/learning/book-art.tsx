@@ -1,4 +1,5 @@
 'use client';
+import { causalRelayId } from '@/data/causal-relay-reader';
 import { minkowskiPathId } from '@/data/minkowski-path-reader';
 import { lorentzBoostId } from '@/data/lorentz-boost-reader';
 import { slowFastMemoryId } from '@/data/slow-fast-memory-reader';
@@ -206,6 +207,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === causalRelayId) return <span className="ai-concept-equation" aria-hidden="true">Δct ≥ |Δx|</span>;
   if (kind === minkowskiPathId) return <span className="ai-concept-equation" aria-hidden="true">s² = (Δct)² − (Δx)²</span>;
   if (kind === lorentzBoostId) return <span className="ai-concept-equation" aria-hidden="true">ct′ = γ(ct − βx)</span>;
   if (kind === slowFastMemoryId) return <span className="ai-concept-equation" aria-hidden="true">ẋ = −x + y</span>;

@@ -1,4 +1,6 @@
 'use client';
+import { causalRelayId } from '@/data/causal-relay-reader';
+import { CausalRelayConcept } from './causal-relay-lab';
 import { minkowskiPathId } from '@/data/minkowski-path-reader';
 import { MinkowskiPathConcept } from './minkowski-path-lab';
 import { lorentzBoostId } from '@/data/lorentz-boost-reader';
@@ -267,6 +269,7 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === causalRelayId) return <CausalRelayConcept language={language}/>;
   if (kind === minkowskiPathId) return <MinkowskiPathConcept language={language}/>;
   if (kind === lorentzBoostId) return <LorentzBoostConcept language={language}/>;
   if (kind === slowFastMemoryId) return <SlowFastMemoryConcept language={language}/>;

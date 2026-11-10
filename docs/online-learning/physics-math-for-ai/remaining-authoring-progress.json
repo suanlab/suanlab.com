@@ -15083,24 +15083,72 @@
         },
         {
           "title": "causal structure",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "light-cones-and-causal-order"
+          ],
           "preparation": {
             "unitId": "light-cones-and-causal-order",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/light-cones-and-causal-order.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/light-cones-and-causal-order.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "causal-relay-reader-integration"
+            "nextAction": "four-momentum-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
+              "content/learning/physics-math-for-ai/light-cones-and-causal-order.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
+            "content/learning/physics-math-for-ai/light-cones-and-causal-order.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-causal-relay.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "light-cones-and-causal-order",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-causal-relay.ts",
+            "lab": "src/components/learning/causal-relay-lab.tsx",
+            "tests": "scripts/learning-causal-relay.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
+              "content/learning/physics-math-for-ai/light-cones-and-causal-order.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "상대론적 운동학",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "relativistic-kinematics-four-momentum",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/relativistic-kinematics-four-momentum.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/relativistic-kinematics-four-momentum.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "four-momentum-reader-integration"
+          }
         },
         {
           "title": "곡률·공변 미분",
@@ -15134,50 +15182,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "light-cones-and-causal-order",
-      "nextAction": "causal-relay-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
-      "currentPreparationEvidence": "scripts/learning-minkowski-path.test.ts",
+      "nextUnitId": "relativistic-kinematics-four-momentum",
+      "nextAction": "four-momentum-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
+      "currentPreparationEvidence": "scripts/learning-causal-relay.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "minkowski-metric-and-proper-time",
+        "unitId": "light-cones-and-causal-order",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-minkowski-path.ts",
-        "lab": "src/components/learning/minkowski-path-lab.tsx",
-        "tests": "scripts/learning-minkowski-path.test.ts",
+        "model": "src/lib/learning-causal-relay.ts",
+        "lab": "src/components/learning/causal-relay-lab.tsx",
+        "tests": "scripts/learning-causal-relay.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
-          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.en.md"
+          "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
+          "content/learning/physics-math-for-ai/light-cones-and-causal-order.en.md"
         ],
-        "sectionsPerLocale": 7,
+        "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "minkowski-metric-and-proper-time",
+        "unitId": "light-cones-and-causal-order",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-minkowski-path.ts",
-        "lab": "src/components/learning/minkowski-path-lab.tsx",
-        "tests": "scripts/learning-minkowski-path.test.ts",
+        "model": "src/lib/learning-causal-relay.ts",
+        "lab": "src/components/learning/causal-relay-lab.tsx",
+        "tests": "scripts/learning-causal-relay.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
-          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.en.md"
+          "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
+          "content/learning/physics-math-for-ai/light-cones-and-causal-order.en.md"
         ],
-        "sectionsPerLocale": 7,
+        "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "Minkowski metric",
+        "originalTopic": "causal structure",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "minkowski-metric-and-proper-time"
+          "light-cones-and-causal-order"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -15185,12 +15233,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
-          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.en.md"
+          "content/learning/physics-math-for-ai/light-cones-and-causal-order.ko.md",
+          "content/learning/physics-math-for-ai/light-cones-and-causal-order.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-minkowski-path.test.ts"
+        "evidence": "scripts/learning-causal-relay.test.ts"
       }
     },
     {
@@ -15380,14 +15428,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 611,
-  "verifiedNewUnitCount": 458,
+  "implementedUnitCount": 612,
+  "verifiedNewUnitCount": 459,
   "remainingForwardDomainCount": 4,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 39,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 38,
   "nextDomain": "relativity",
-  "nextTopic": "causal structure",
+  "nextTopic": "상대론적 운동학",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 323,
+  "verifiedOriginalScopeTopicCount": 324,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -15449,11 +15497,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers causal structure. All 611 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 상대론적 운동학. All 612 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "light-cones-and-causal-order",
+  "nextAuthoringUnitId": "relativistic-kinematics-four-momentum",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "causal-relay-reader-integration",
+  "nextAction": "four-momentum-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }
