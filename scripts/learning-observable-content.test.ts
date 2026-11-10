@@ -16,7 +16,7 @@ for(const [family,kind] of kinds.entries())test(`registered observable reader ha
 test('registered lab and fixed comparisons render on the server without creating a Worker',async()=>{
  createRequire(`${process.cwd()}/package.json`).extensions['.css']=()=>{};
  const React=await import('react');(globalThis as typeof globalThis&{React?:typeof React}).React=React;
- const{renderToStaticMarkup}=await import('react-dom/server'),{LanguageProvider}=await import('../src/components/language-provider'),{default:Lab}=await import('../src/components/learning/observable-lab'),{default:Concept}=await import('../src/components/learning/observable-concept');
+ const{renderToStaticMarkup}=await import('react-dom/server'),{LanguageProvider}=createRequire(`${process.cwd()}/package.json`)('./src/components/language-provider') as typeof import('../src/components/language-provider'),{default:Lab}=await import('../src/components/learning/observable-lab'),{default:Concept}=await import('../src/components/learning/observable-concept');
  const prior=(globalThis as any).Worker;(globalThis as any).Worker=class{constructor(){throw Error('SSR must not create Worker');}};
  try{for(const kind of kinds){const html=renderToStaticMarkup(React.createElement(LanguageProvider,null,React.createElement(Lab,{kind}),React.createElement(Concept,{kind,language:'ko'})));assert(html.includes('data-observable-lab'));assert(html.includes('data-observable-concept'));assert(!html.includes('data-observable-result='));assert(!html.includes('NaN'));}}finally{if(prior===undefined)delete(globalThis as any).Worker;else(globalThis as any).Worker=prior;}
 });
@@ -31,6 +31,6 @@ test('previous552 units, guides and curriculum retain their content and order as
 });
 
 test('the full registered reader and cover select dedicated Observable teaching without SSR side effects',async()=>{
- const React=await import('react'),{renderToStaticMarkup}=await import('react-dom/server'),{LanguageProvider}=await import('../src/components/language-provider'),{InteractiveBookReader}=await import('../src/components/learning/interactive-book'),{default:BookArt}=await import('../src/components/learning/book-art');
+ const React=await import('react'),{renderToStaticMarkup}=await import('react-dom/server'),{LanguageProvider}=createRequire(`${process.cwd()}/package.json`)('./src/components/language-provider') as typeof import('../src/components/language-provider'),{InteractiveBookReader}=await import('../src/components/learning/interactive-book'),{default:BookArt}=await import('../src/components/learning/book-art');
  for(const kind of kinds){const unit=learningUnits.find(u=>u.id===kind)!;const html=await getLearningContent(kind);const rendered=renderToStaticMarkup(React.createElement(LanguageProvider,null,React.createElement(InteractiveBookReader,{unit,html})));assert(rendered.includes(`data-observable-lab="${kind}"`));assert(rendered.includes(`data-observable-concept="${kind}"`));assert(rendered.includes('id="check"'));assert.match(rendered,/href="\/book\/interactive\/?"/);assert(!rendered.includes('<canvas'));assert(renderToStaticMarkup(React.createElement(BookArt,{kind})).includes(`data-observable-cover="${kind}"`));}
 });

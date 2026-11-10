@@ -65,7 +65,7 @@ test('registered cover and concept SSR preserve diagrams without touching Worker
   Object.defineProperty(globalThis, 'React', { configurable: true, value: React });
   let reads = 0; Object.defineProperty(globalThis, 'Worker', { configurable: true, get() { reads++; throw Error('SSR Worker'); } });
   try {
-    const { LanguageProvider } = await import('../src/components/language-provider');
+    const { LanguageProvider } = createRequire(`${process.cwd()}/package.json`)('./src/components/language-provider') as typeof import('../src/components/language-provider');
     const { default: Concept } = await import('../src/components/learning/concept-walkthrough');
     const { default: Art } = await import('../src/components/learning/book-art');
     for (const kind of ids) {

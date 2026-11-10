@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -13,7 +14,7 @@ for(const kind of kinds)test(`registered coarse reader has full bilingual theory
  const html=await getLearningContent(kind);assert.equal(html.outline.ko.length,14);assert.equal(html.outline.en.length,14);assert(!/[가-힣]/.test(html.en));assert(!html.ko.includes('katex-error'));assert(!html.en.includes('katex-error'));assert.equal((html.en.match(/katex-display/g)||[]).length,10);
 });
 test('registered lab and fixed comparisons render on the server without creating a Worker',async()=>{
- const React=await import('react'),{renderToStaticMarkup}=await import('react-dom/server'),{LanguageProvider}=await import('../src/components/language-provider'),{default:Lab}=await import('../src/components/learning/coarse-lab'),{default:Concept}=await import('../src/components/learning/coarse-concept');
+ const React=await import('react'),{renderToStaticMarkup}=await import('react-dom/server'),{LanguageProvider}=createRequire(`${process.cwd()}/package.json`)('./src/components/language-provider') as typeof import('../src/components/language-provider'),{default:Lab}=await import('../src/components/learning/coarse-lab'),{default:Concept}=await import('../src/components/learning/coarse-concept');
  const prior=(globalThis as any).Worker;(globalThis as any).Worker=class{constructor(){throw Error('SSR must not create Worker');}};
  try{for(const kind of kinds){const html=renderToStaticMarkup(React.createElement(LanguageProvider,null,React.createElement(Lab,{kind}),React.createElement(Concept,{kind,language:'ko'})));assert(html.includes('data-coarse-lab'));assert(html.includes('data-coarse-concept'));assert(!html.includes('data-coarse-result='));assert(!html.includes('NaN'));}}finally{if(prior===undefined)delete(globalThis as any).Worker;else(globalThis as any).Worker=prior;}
 });
