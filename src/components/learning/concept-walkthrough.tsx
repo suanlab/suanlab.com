@@ -1,4 +1,6 @@
 'use client';
+import {isEuclideanKernelTeachingId} from '@/lib/learning-euclidean-kernel-teaching';
+import EuclideanKernelConcept from './euclidean-kernel-concept';
 import {isBrownianBridgeTeachingId} from '@/lib/learning-brownian-bridge-teaching';
 import BrownianBridgeConcept from './brownian-bridge-concept';
 import {isSpatialSpectrumTeachingId} from '@/lib/learning-spatial-spectrum-teaching';
@@ -240,6 +242,7 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if(isEuclideanKernelTeachingId(kind)) return <EuclideanKernelConcept language={language}/>;
   if(isBrownianBridgeTeachingId(kind)) return <BrownianBridgeConcept language={language}/>;
   if(isSpatialSpectrumTeachingId(kind)) return <SpatialSpectrumConcept language={language}/>;
   if(isNongaussianFieldTeachingId(kind)) return <NongaussianFieldConcept language={language}/>;

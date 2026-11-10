@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "euclidean-quantum-kernels-and-time-slicing",
-  "stage": "bilingual-teaching-visualization-and-storage-verified-reader-pending",
+  "stage": "actual-reader-and-production-assets-verified",
   "requirements": [
     {
       "id": "owned-input",
@@ -114,16 +114,19 @@
     {
       "id": "reader-and-production-assets",
       "title": "실제 교재 등록·검색·생산 자산·기존 보존",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "599th reader,1198 strict bilingual manuscripts,8 actual reader states,7 maximum/storage flows,71 production calculation/validation requests with independent Python whole-response hashes and mutation/attribution rejection;598 previous entries and65 prior Worker assets preserved.",
+      "readerEvidence": ".runtime/learning/euclidean-kernel-reader-integration/verification.json"
     }
   ],
   "requirementCount": 18,
-  "requirementsVerified": 17,
-  "unitComplete": false,
+  "requirementsVerified": 18,
+  "unitComplete": true,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
   "evidence": ".runtime/learning/euclidean-kernel-worker/verification.json",
-  "scopeNote": "Second of four planned path-integral treatments. Standalone bilingual teaching and native Workers are verified;actual reader registration and production assets remain. Approximate Mehler plots are not certified decimal bounds.",
-  "teachingEvidence": ".runtime/learning/euclidean-kernel-teaching/verification.json"
+  "scopeNote": "Second of four planned path-integral treatments. Registered bilingual reader and production Next Worker assets verified. Saddle/non-Gaussian and real-time treatments plus original-topic audit remain. Approximate Mehler plots are not certified decimal bounds.",
+  "teachingEvidence": ".runtime/learning/euclidean-kernel-teaching/verification.json",
+  "readerEvidence": ".runtime/learning/euclidean-kernel-reader-integration/verification.json"
 }
