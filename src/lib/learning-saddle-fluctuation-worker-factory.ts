@@ -1,0 +1,2 @@
+export function createSaddleFluctuationWorker():Worker{return new Worker(new URL('./learning-saddle-fluctuation.worker.ts',import.meta.url),{type:'module',name:'saddle-fluctuation-calculation'});}
+export function createSaddleFluctuationValidationWorker():Worker{return new Worker(new URL('./learning-saddle-fluctuation-validation.worker.ts',import.meta.url),{type:'module',name:'saddle-fluctuation-validation'});}
