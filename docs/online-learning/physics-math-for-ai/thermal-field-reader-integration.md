@@ -28,6 +28,8 @@ Node20/Next14 정적 빌드의 실제 페이지를 한영×명암×320/1440px **
 
 직전 준비 커밋의 CI는 공통 `learning-worker-message-error.test.ts`가 새 제어기를 발견했으나 대표 입력 fixture가 없어 실패했다. `worker-messageerror-inputs.json`에 유효한 thermal-field 입력을 추가해 기존 항목을 보존했다. 전체 제어기의 EventTarget·재시도·교체·취소·오류·deadline 공통70검사는 Node20/24에서 통과했다. 새 제어기를 추가할 때 이 공통 목록도 함께 등록해야 한다. 전체 CI와 공개 배포 성공 여부는 이 로컬 검증과 별도로 추적한다.
 
+후속 관찰: `f04715ac`의 고정 worktree에서 실행한 Node20 `npm run check`가 종료 코드0으로 완료됐다. 테스트 **26,380개 전부 통과**했고 lint·콘텐츠·빌드·전체 타입·1840HTML export 검사도 통과했다. 로그는 `.runtime/learning/thermal-field-reader-integration/full-check-isolated-node20.log`다. 이 결과는 해당 고정 커밋의 증거이며, 이후 추가한 국소 질서변수 코드의 전체 CI 통과나 공개 배포 성공을 대신하지 않는다.
+
 기존 홈페이지4754파일을 백업하고 새4559파일을 반영했다. 기존 정적 자산491개 중 새 출력에 없는259개도 보존해 설치본은4818파일이다. 후보/설치본·백업의 hash와 이전 HTML 경로 보존을 확인했다. 기존 로컬 홈페이지 서버에서 새 reader HTTP200도 확인했다. 공개 GitHub Pages 배포 성공은 commit/push와 별도로 확인한다.
 
 ## 재현과 다음 순서

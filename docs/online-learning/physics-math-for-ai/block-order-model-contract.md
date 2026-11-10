@@ -1,6 +1,6 @@
 # 미시상태에서 국소 질서변수로: 유한 모형 계약
 
-2026-11-11. 신규 단원 ID는 `microscopic-blocks-and-local-order-parameters`다. 수학 기반·한영 원고·독립 계산 Worker를 검증했고 **시각화와 실제 reader를 준비 중**이다. 앞선 측도·열 자유에너지 단원은 602번째 등록 단원으로 검증되었다. 이 준비는 등록 수·완료 원주제 수에 더하지 않는다.
+2026-11-11. 신규 단원 ID는 `microscopic-blocks-and-local-order-parameters`다. 수학 기반·한영 원고·독립 계산 Worker·격리 React 시각화를 검증했고 **실제 reader와 생산 자산을 준비 중**이다. 앞선 측도·열 자유에너지 단원은 602번째 등록 단원으로 검증되었다. 이 준비는 등록 수·완료 원주제 수에 더하지 않는다.
 
 ## 근거와 기존 단원과의 차이
 
@@ -60,4 +60,4 @@ dbar=a/b를 기약분수로 놓으면 `Rpower=[Q_k/ΠQ_b]^b/x^a`, `ln(w_k/wref)=
 
 ## 남은 구현
 
-독립 브라우저 검산기·응답 attribution·bounded codec·Worker 취소/오류 수명과 한영 상세 원고의 실행 예제를 확인했다. [계산 응답 검증](block-order-producer-verification.md)에 계약과 증거를 기록한다. 기존 테마의 공간/미시 배치 그림·실험·해설 문제, 저장 상태와 실제 reader 접근성·모바일·영어 잔류 한글 점검이 남았다. 모든 절차 후 등록한다. 연속체 극한·임계 지수·RG·일반 gauge/fermion 이론은 이번 유한 단원 완료 범위에 넣지 않는다.
+독립 브라우저 검산기·응답 attribution·bounded codec·Worker 취소/오류 수명과 한영 상세 원고의 실행 예제를 확인했다. [계산 응답 검증](block-order-producer-verification.md)에 계약과 증거를 기록한다. 기존 테마의 공간/미시 배치 그림·실험·해설 문제와 저장을 격리 React 화면에서 검사했고 [시각화 검증](block-order-visual-verification.md)에 범위를 기록했다. 실제 reader의 연결·저장 복원·접근성·모바일·영어 점검과 Next 생산 Worker 자산 검증 후 등록한다. 연속체 극한·임계 지수·RG·일반 gauge/fermion 이론은 이번 유한 단원 완료 범위에 넣지 않는다.

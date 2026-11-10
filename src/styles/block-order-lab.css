@@ -1,0 +1,18 @@
+.block-order-lab { min-width: 0; }
+.block-order-lab .block-order-controls { border: 0; padding: 0; min-width: 0; max-width: 100%; }
+.block-order-lab .block-order-exact, .block-order-lab .block-order-formula { overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.block-order-lab button { min-height: 44px; height: auto; white-space: normal; }
+.block-order-lab .scalar-inputs { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.block-order-lab .scalar-inputs input, .block-order-lab select { width: 100%; min-width: 0; max-width: 100%; }
+.block-order-lab .scalar-check input { width: 18px; height: 18px; }
+.block-order-lab fieldset { min-width: 0; }
+.block-order-concept-svg { display: block; min-width: 640px; max-width: none; color: hsl(var(--foreground)); }
+.block-order-grid-svg { display: block; max-width: none; color: hsl(var(--foreground)); }
+.block-order-lab .block-order-profiles { min-width: 600px; }
+.block-order-lab .block-order-profiles td { max-width: 340px; overflow-wrap: anywhere; }
+.block-order-lab h4 { margin-block: 1.4rem .6rem; font-weight: 600; }
+.block-order-lab details { margin-block: 1rem; }
+.block-order-lab summary { cursor: pointer; padding-block: .7rem; }
+@media (prefers-reduced-motion: reduce) {
+  .block-order-lab .information-step { animation: none !important; transition: none !important; }
+}

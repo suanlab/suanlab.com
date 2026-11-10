@@ -4,7 +4,7 @@ Suppose a city dashboard replaces every street measurement with one neighborhood
 
 Spatial coarse-graining raises the same question. We replace microscopic spins by block averages, then ask which statistical law those averages obey. The answer requires summing the hidden states with their actual weights. Counting how many states were hidden is sufficient only when those weights are equal.
 
-This preparation draft extends the earlier chapters on multiplicity and conditional entropy. Its finite calculation foundation has independent checks. Interactive controls, visual experiments and the published reader remain pending. You need basic probability, logarithms and finite sums; no quantum spin algebra is used.
+This preparation draft extends the earlier chapters on multiplicity and conditional entropy. Its finite calculations and an isolated interactive preview have independent checks. Connection to the published reader and production assets remains pending. You need basic probability, logarithms and finite sums; no quantum spin algebra is used.
 
 ## 2. Three distinct meanings of magnetization
 
@@ -211,7 +211,7 @@ After running the assertions, compute a fresh set of weights with `chain_weights
 | Exact versus local reference | Change x and block size | Exact residual operands, not rounded equality |
 | Open versus periodic | Change the coarse graph | Whether witness blocks are actually neighbors |
 
-The planned lattice view will use the existing site's theme. A numerical table must remain available when animation is paused or WebGL is unavailable. Selected-state examples are the smallest numeric masks, not random draws. A profile selector must not suggest that an ensemble mean is an individual configuration.
+The experimental lattice view uses the existing site's theme; it is currently verified in an isolated preview. A numerical table must remain available when animation is paused or WebGL is unavailable. Selected-state examples are the smallest numeric masks, not random draws. A profile selector must not suggest that an ensemble mean is an individual configuration.
 
 ## 17. Finite symmetry and uncertainty
 
