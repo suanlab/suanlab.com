@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "brownian-bridge-time-slicing-measure",
-  "stage": "native-workers-and-hook-verified-teaching-pending",
+  "stage": "bilingual-teaching-and-visualization-verified-reader-pending",
   "requirements": [
     {
       "id": "owned-input",
@@ -97,32 +97,37 @@
     {
       "id": "concept-graphics",
       "title": "8개념과 설명 그림",
-      "completionVerified": false,
-      "evidenceReason": "Pending theme-matched graphics and learning controls."
+      "completionVerified": true,
+      "evidenceReason": "Eight bilingual steps and sixteen actual reference images;64 native concept selections verified.",
+      "teachingEvidence": ".runtime/learning/brownian-bridge-teaching/verification.json"
     },
     {
       "id": "interactive-views",
       "title": "위치/증분·면적/정련의2D·Three.js 표시",
-      "completionVerified": false,
-      "evidenceReason": "Pending actual UI with exact tables and clearly labeled approximate plots."
+      "completionVerified": true,
+      "evidenceReason": "Full33x33 position heat map, increments/precision, approximate mean/pointwise-sigma plot, exact tables and event-driven Three.js; N2 one-entry precision and N32 touch verified.",
+      "teachingEvidence": ".runtime/learning/brownian-bridge-teaching/verification.json"
     },
     {
       "id": "guides-quiz",
       "title": "6예측 안내·8해설 퀴즈·16예제",
-      "completionVerified": false,
-      "evidenceReason": "Manuscript comparisons exist; interactive teaching data and UI pending."
+      "completionVerified": true,
+      "evidenceReason": "Six guides, eight explained quizzes, sixteen examples;48 guide and64 question checks across8 locale/theme/viewport states.",
+      "teachingEvidence": ".runtime/learning/brownian-bridge-teaching/verification.json"
     },
     {
       "id": "storage-recovery",
       "title": "입력·표시 선택·학습 진행 저장과 복원",
-      "completionVerified": false,
-      "evidenceReason": "Pending owned storage schema, invalid saved values and reload checks."
+      "completionVerified": true,
+      "evidenceReason": "Owned versioned input/display/learning schema; selected concept, guide, explanation and answer restore after reload; malformed and unavailable storage checked in both languages.",
+      "teachingEvidence": ".runtime/learning/brownian-bridge-teaching/verification.json"
     },
     {
       "id": "locale-accessibility",
       "title": "한영·명암·320/1440px·키보드·터치·접근성",
-      "completionVerified": false,
-      "evidenceReason": "Pending actual teaching UI and reader checks."
+      "completionVerified": true,
+      "evidenceReason": "Eight locale/theme/viewport states and7 storage/maximum flows;15 accessibility checks, no English Hangul or document overflow; all106+16 measured Workers terminated.",
+      "teachingEvidence": ".runtime/learning/brownian-bridge-teaching/verification.json"
     },
     {
       "id": "reader-production",
@@ -132,11 +137,12 @@
     }
   ],
   "requirementCount": 21,
-  "requirementsVerified": 15,
+  "requirementsVerified": 20,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
   "scopeNote": "First treatment of four declared path-integral introductory treatments; a registered unit alone cannot complete the original topic.",
-  "evidence": ".runtime/learning/brownian-bridge-worker/verification.json"
+  "evidence": ".runtime/learning/brownian-bridge-worker/verification.json",
+  "teachingEvidence": ".runtime/learning/brownian-bridge-teaching/verification.json"
 }
