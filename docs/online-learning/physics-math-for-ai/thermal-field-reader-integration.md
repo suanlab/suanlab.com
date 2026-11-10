@@ -26,12 +26,15 @@ Node20/Next14 정적 빌드의 실제 페이지를 한영×명암×320/1440px **
 
 정적 **1840HTML**의 내부 링크·자산·fragment·sitemap·canonical 검사를 통과했다. 발견한 `visual-intuition` 앵커 누락을 수정하고 다시 빌드·검사했다. 최종 빌드의 런타임 소스1709파일은 현재 checkout과 byte가 같다. 입력·정규화·저장·등록의 새6검사는 Node20/24에서 통과했고, 과거 phase의 보존 검사도 통과했다. TypeScript와 ESLint도 통과했다.
 
+직전 준비 커밋의 CI는 공통 `learning-worker-message-error.test.ts`가 새 제어기를 발견했으나 대표 입력 fixture가 없어 실패했다. `worker-messageerror-inputs.json`에 유효한 thermal-field 입력을 추가해 기존 항목을 보존했다. 전체 제어기의 EventTarget·재시도·교체·취소·오류·deadline 공통70검사는 Node20/24에서 통과했다. 새 제어기를 추가할 때 이 공통 목록도 함께 등록해야 한다. 전체 CI와 공개 배포 성공 여부는 이 로컬 검증과 별도로 추적한다.
+
 기존 홈페이지4754파일을 백업하고 새4559파일을 반영했다. 기존 정적 자산491개 중 새 출력에 없는259개도 보존해 설치본은4818파일이다. 후보/설치본·백업의 hash와 이전 HTML 경로 보존을 확인했다. 기존 로컬 홈페이지 서버에서 새 reader HTTP200도 확인했다. 공개 GitHub Pages 배포 성공은 commit/push와 별도로 확인한다.
 
 ## 재현과 다음 순서
 
 ```bash
 node --import tsx --test scripts/learning-thermal-field-state.test.ts scripts/learning-thermal-field-reader-integration.test.ts
+node --import tsx --test scripts/learning-worker-message-error.test.ts
 node --import tsx scripts/check-thermal-field-reader.ts
 node --import tsx scripts/check-thermal-field-production-workers.ts
 ```

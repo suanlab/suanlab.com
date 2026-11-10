@@ -1106,5 +1106,42 @@
       "pathNumerator": 1,
       "pathDenominator": 3
     }
+  },
+  "learning-thermal-field": {
+    "shape": [
+      2
+    ],
+    "boundary": "open",
+    "constraint": "none",
+    "spacing": "1",
+    "temperature": "2",
+    "referenceScale": "1",
+    "mass": {
+      "value": "1",
+      "first": "0",
+      "second": "0"
+    },
+    "stiffness": {
+      "value": "1",
+      "first": "0",
+      "second": "0"
+    },
+    "backgroundDensity": {
+      "value": "0",
+      "first": "0",
+      "second": "0"
+    },
+    "sourceDensity": [
+      {
+        "value": "1",
+        "first": "0",
+        "second": "0"
+      },
+      {
+        "value": "0",
+        "first": "0",
+        "second": "0"
+      }
+    ]
   }
 }
