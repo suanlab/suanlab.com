@@ -18,6 +18,8 @@ assert input_value_chars + 16 * 32 + 16 * 8 < input_key_chars
 # plus fixed labels. Producer root/exact input copies are already inits cap.
 header_value_chars = input_value_chars + 2 * input_key_chars + 256
 assert header_value_chars < 8192
+handoff_value_chars = 2 * input_value_chars + input_key_chars + 256
+assert handoff_value_chars <= header_value_chars
 reserve = 16384
 caps = {mode: producer[mode + 'StringCharactersUpper'] + reserve
         for mode in ('chain', 'packet', 'fold')}
@@ -31,6 +33,7 @@ files = ['src/lib/learning-real-time-phase-validation.ts', 'src/lib/learning-rea
 result = dict(scope='whole successful producer envelope andvalidation receipt',
               inputValueCharactersUpper=input_value_chars, inputKeyCharactersUpper=input_key_chars,
               headerValueCharactersUpper=header_value_chars, reservedHeaderCharacters=reserve,
+              validationHandoffHeaderCharactersUpper=handoff_value_chars,
               totalStringCharactersUpperByMode=caps, singleStringCharactersUpper=single,
               nodesUpper=nodes, depthUpper=depth, arrayLengthUpper=producer['arrayLengthUpper'],
               existingLimitsUnchanged=True, workerRuntimeDeadlineProved=False,

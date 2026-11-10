@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-11-10",
+  "updated": "2026-11-11",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "independent-whole-response-validation-verified",
+  "stage": "actual-workers-and-lifecycle-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -85,7 +85,8 @@
     {
       "id": "workers-and-lifecycle",
       "title": "실제 계산/검산 Worker·복사/취소/복구/기한",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Actual browser module calculation/independent-validation Workers,controller andSSR-safe hook verified.37Node20/24tests;native32full inputs,32math+32attribution rejections. MaxN32calculation/verification started beforecancel;typing,retry,ownership,visibility-event simulation,error/unmount andtwoactual spinning-Worker deadlines checked. Native asynchronous errors/native clone/invalidURL andsynthetic messageerror events recover. EventTarget listeners fix absentIDL property andremove onrelease.50tracked native ports released. Nextproduction assets/reader remain separate;45legacy static candidates requirefollow-up."
     },
     {
       "id": "bilingual-manuscripts",
@@ -135,11 +136,11 @@
     }
   ],
   "requirementCount": 23,
-  "requirementsVerified": 14,
+  "requirementsVerified": 15,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-whole-response/verification.json",
-  "scopeNote": "14of23requirements verified:primary-source/mathematical foundations,bilingual manuscripts,complete finite numerical producer andindependent whole-response validator withattribution/ownership/wire accounting. Actual Workers,teaching UI,reader andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
+  "evidence": ".runtime/learning/real-time-phase-worker/verification.json",
+  "scopeNote": "15of23requirements verified:foundations,bilingual manuscripts,complete producer,independent whole-response gate andactual Worker/controller/hook lifecycle. SharedWorker messageerror compatibility audit,teaching UI,reader/production assets andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
 }

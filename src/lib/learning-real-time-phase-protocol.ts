@@ -14,6 +14,10 @@ export interface RealTimePhaseValidationReceipt {
   readonly inputKey:string;readonly fullResponseValidated:true;readonly response:RealTimePhaseValidatedSuccess;
 }
 export interface RealTimePhaseFailure {version:1;requestId:number|null;ok:false;error:'invalid-request'|'invalid-input'|'resource-limit'|'calculation-failed';}
+export interface RealTimePhaseStarted {version:1;requestId:number;phase:'started';kind:'real-time-phase';}
+export interface RealTimePhaseVerificationStarted {version:1;requestId:number;phase:'verification-started';kind:'real-time-phase';}
+export interface RealTimePhaseValidationRejection {version:1;requestId:number|null;phase:'rejected';error:'invalid-request'|'invalid-input'|'invalid-response'|'resource-limit';}
+export type RealTimePhaseValidationOutcome=RealTimePhaseValidationReceipt|RealTimePhaseValidationRejection;
 export function realTimePhaseData(value:unknown,keys:readonly string[]):Record<string,unknown>|null {
   try {
     if(!value||typeof value!=='object'||Object.getPrototypeOf(value)!==Object.prototype||Reflect.ownKeys(value).length!==keys.length)return null;

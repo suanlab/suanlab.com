@@ -1,5 +1,7 @@
 # 남은 입문 집필 순서
 
+2026-11-11 Worker 수명 검증: [실제 계산/검산Worker·controller/hook 검사](real-time-phase-workers-status.md)를 완료해 **15/23요건**을 검증했다. Node20/24의37검사와 native32입력·최대모형 취소/재시도·타이핑·두 무한루프 기한·오류복구를 확인했다. messageerror는 EventTarget listener로 수정했다. 기존controller45정적후보의 공통호환성 점검, 학습UI·reader·범위 감사와 입문47미완료는 남으며 등록 수치는 유지한다.
+
 2026-11-10 전체 응답 검산 완료: [세mode 전체 gate·불변 receipt 검사](real-time-phase-whole-response-validator-status.md)를 추가했다. 모든 수치·최상위 필드·요청 귀속을 확인한 뒤에만 검산 완료 응답을 발급한다. Node20/24에서46검사,32전체 예제,1342primitive+96귀속 변조를 확인해 **14/23요건**을 검증했다. 실제Worker·화면·reader·범위 감사와 입문47개 미완료는 남으며 등록 수치는 유지한다.
 
 2026-11-10 Airy 검산 진행: [독립 Gamma·중앙/점근·전체fold 관찰값 검사](real-time-phase-airy-validator-status.md)를 추가했다. 양의 불완전Gamma 급수로 원점2400bit를 인증하고 exact 항·factorial 계수로 생산 산술 없이 대조한다. Node20/24에서50검사,40기준+2문턱 입력,191primitive 변조를 확인했다. 각mode 수치 검사는 준비되었으나 전체 응답 gate·Worker·화면·reader는 남으며 13/23요건·입문47개 미완료를 유지한다.
