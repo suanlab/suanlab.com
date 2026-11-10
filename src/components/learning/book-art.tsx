@@ -1,4 +1,6 @@
 'use client';
+import { scalarGibbsUnitId } from '@/lib/learning-scalar-gibbs-input';
+import '@/styles/scalar-gibbs-lab.css';
 import {isBlockOrderTeachingId} from '@/lib/learning-block-order-teaching';
 import BlockOrderCover from './block-order-cover';
 import {isThermalFieldTeachingId} from '@/lib/learning-thermal-field-teaching';
@@ -197,6 +199,9 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === scalarGibbsUnitId) return <div className="scalar-gibbs-cover" aria-hidden="true">
+    <span>x₂</span><div/><span>x₁</span>
+  </div>;
   if(isBlockOrderTeachingId(kind)) return <BlockOrderCover/>;
   if(isThermalFieldTeachingId(kind)) return <ThermalFieldCover />;
   if(isRealTimePhaseTeachingId(kind)) return <RealTimePhaseCover />;

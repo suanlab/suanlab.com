@@ -3194,7 +3194,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "saddle-fluctuation-and-nongaussian-approximation",
       "real-time-phase-and-classical-limit",
       "finite-field-measure-and-thermal-free-energy",
-      "microscopic-blocks-and-local-order-parameters"
+      "microscopic-blocks-and-local-order-parameters",
+      "finite-quartic-scalar-gibbs-fields"
     ]
   },
   {
