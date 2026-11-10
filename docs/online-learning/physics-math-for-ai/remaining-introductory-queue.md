@@ -1,5 +1,7 @@
 # 남은 입문 집필 순서
 
+2026-11-10 packet 검산 진행: [독립 정규화·branch·전체65표본 검사](real-time-phase-packet-validator-status.md)를 추가했다. 물리 밀도·covariance에서 파동/위상을 별도로 계산하고 N2…32·두 폭 족을 유지한다. Node20/24에서22검사,15모형/975표본,70primitive+65위치 변조를 확인했다. 음의B·α실수부 양/음/0·초점 양쪽을 포함한다. Airy·전체 응답 gate·Worker·화면·reader는 남으며 13/23요건·입문47개 미완료를 유지한다.
+
 2026-11-10 Abel 검산 진행: [독립 조절 파동·raw 격자 검사](real-time-phase-abel-validator-status.md)를 추가했다. 양의 실수부 pivot별 branch·전체 진폭/위상·scaled/log/raw 표현을 검산한다. Node20/24에서 새25검사+기존경계1검사,17조절입력+2추가경계를 확인했다. raw 표시 플래그는 최종 관찰 반올림까지 반영한다. packet·Airy 전체 검산과 Worker·화면·reader는 남으며 13/23요건·입문47개 미완료를 유지한다.
 
 2026-11-10 파동 검산 진행: [독립 수치 연산·무조절 사슬 파동 검사](real-time-phase-unregulated-validator-status.md)를 추가했다. 생산 산술을 import하지 않는 로그/감쇠/π·큰 위상 halving/doubling을 구현하고 모든 무조절 진폭·위상·값·로그 및 초점 delta 표현을 검산한다. Node20/24에서 수치33·파동24검사,17예제와53primitive 변조를 확인했다. Abel·packet·Airy 전체 검산과 Worker·화면·reader는 남으며 13/23요건·입문47개 미완료를 유지한다.
