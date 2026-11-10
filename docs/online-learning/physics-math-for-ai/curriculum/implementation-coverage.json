@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 606,
+  "implementedUnitCount": 607,
   "curriculumComplete": false,
-  "scope": "606 registered units, 1881 guided experiments and 1212 bilingual manuscript files. Introductory scope: 318 of 362 original topics verified, 44 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "607 registered units, 1883 guided experiments and 1214 bilingual manuscript files. Introductory scope: 319 of 362 original topics verified, 43 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9037,23 +9037,23 @@
         "microscopic-blocks-and-local-order-parameters",
         "finite-quartic-scalar-gibbs-fields",
         "connected-generators-and-legendre-effective-actions",
-        "criticality-universality-and-finite-size-scaling"
+        "criticality-universality-and-finite-size-scaling",
+        "renormalization-and-real-space-coarse-graining"
       ],
-      "currentPreparationReport": "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
-      "currentPreparationEvidence": "scripts/learning-ising-cylinder.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
+      "currentPreparationEvidence": "scripts/learning-ising-decimation.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "criticality-universality-and-finite-size-scaling",
+        "unitId": "renormalization-and-real-space-coarse-graining",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-ising-cylinder.ts",
-        "worker": "src/lib/learning-ising-cylinder.worker.ts",
-        "lab": "src/components/learning/ising-criticality-lab.tsx",
-        "tests": "scripts/learning-ising-cylinder.test.ts",
+        "model": "src/lib/learning-ising-decimation.ts",
+        "lab": "src/components/learning/ising-decimation-lab.tsx",
+        "tests": "scripts/learning-ising-decimation.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
-          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.en.md"
+          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
+          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.en.md"
         ],
         "sectionsPerLocale": 7,
         "guidedExperiments": 2,
@@ -9368,14 +9368,51 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "renormalization·coarse graining",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "renormalization-and-real-space-coarse-graining"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
+            "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-ising-decimation.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "renormalization-and-real-space-coarse-graining",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-ising-decimation.ts",
+            "lab": "src/components/learning/ising-decimation-lab.tsx",
+            "tests": "scripts/learning-ising-decimation.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
+              "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.en.md"
+            ],
+            "sectionsPerLocale": 7,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "criticality·universality",
+        "originalTopic": "renormalization·coarse graining",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "criticality-universality-and-finite-size-scaling"
+          "renormalization-and-real-space-coarse-graining"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -9383,33 +9420,32 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
-          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.en.md"
+          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
+          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-ising-cylinder.test.ts"
+        "evidence": "scripts/learning-ising-decimation.test.ts"
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "criticality-universality-and-finite-size-scaling",
+        "unitId": "renormalization-and-real-space-coarse-graining",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-ising-cylinder.ts",
-        "worker": "src/lib/learning-ising-cylinder.worker.ts",
-        "lab": "src/components/learning/ising-criticality-lab.tsx",
-        "tests": "scripts/learning-ising-cylinder.test.ts",
+        "model": "src/lib/learning-ising-decimation.ts",
+        "lab": "src/components/learning/ising-decimation-lab.tsx",
+        "tests": "scripts/learning-ising-decimation.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
-          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.en.md"
+          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
+          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.en.md"
         ],
         "sectionsPerLocale": 7,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
-      "nextUnitId": "renormalization-and-real-space-coarse-graining",
-      "nextAction": "renormalization-coarse-graining-reader-integration",
+      "nextUnitId": "effective-theory-heavy-mode-matching",
+      "nextAction": "effective-theory-reader-integration",
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
         "originalTopic": "path integral의 정의·근사",
@@ -9831,14 +9867,29 @@
       },
       "renormalizationDraft": {
         "unitId": "renormalization-and-real-space-coarse-graining",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/renormalization-and-real-space-coarse-graining.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/renormalization-and-real-space-coarse-graining.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "renormalization-coarse-graining-reader-integration"
+        "nextAction": "effective-theory-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
+          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.en.md"
+        ]
+      },
+      "effectiveTheoryDraft": {
+        "unitId": "effective-theory-heavy-mode-matching",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/effective-theory-heavy-mode-matching.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/effective-theory-heavy-mode-matching.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "effective-theory-reader-integration"
       }
     },
     {
@@ -9888,7 +9939,7 @@
     "research-methods"
   ],
   "nextDomain": "field-multiscale",
-  "nextTopic": "renormalization·coarse graining",
+  "nextTopic": "effective theory",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

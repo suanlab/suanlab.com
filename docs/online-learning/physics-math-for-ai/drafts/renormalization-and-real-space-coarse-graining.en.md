@@ -66,7 +66,13 @@ assert tv > 0
 print(K_new, c4, tv)
 ```
 
-## 6. What to inspect
+## 6. Blocking, rescaling and projection
+
+Decimation keeps a subset of the original spins. A block-spin map instead assigns a new variable, such as the sign of the total magnetization, to an entire block. Specify the rule at ties before forming the marginal. For a field in Fourier coordinates one may keep low momenta and integrate out a shell of high momenta. Both choices need a length rescaling before successive effective models can be compared on the same grid. Field normalization may also be rescaled to keep a chosen coefficient fixed.
+
+An exact flow acts on every coupling allowed by the model and its symmetries. In a numerical flow the four-spin example shows how truncation creates a measurable error. Check which observables or probability differences the chosen projection controls before iterating it. [Tong, Statistical Field Theory §§3.1–3.3](https://davidtong.org/teaching/statistical-field-theory/sfthtml/S3)
+
+## 7. What to inspect
 
 - At weak coupling, expand $\log\cosh(2K)$ and predict how quickly $K$ shrinks after one step.
 - Compare aligned and opposed retained spins across one bond and check how $A$ recovers the local weights.

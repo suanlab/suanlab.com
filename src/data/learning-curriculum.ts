@@ -3197,7 +3197,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "microscopic-blocks-and-local-order-parameters",
       "finite-quartic-scalar-gibbs-fields",
       "connected-generators-and-legendre-effective-actions",
-      "criticality-universality-and-finite-size-scaling"
+      "criticality-universality-and-finite-size-scaling",
+      "renormalization-and-real-space-coarse-graining"
     ]
   },
   {

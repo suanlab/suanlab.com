@@ -1,4 +1,5 @@
 'use client';
+import { isingDecimationId } from '@/data/ising-decimation-reader';
 import { isingCriticalityId } from '@/data/ising-criticality-reader';
 import { legendreResponseUnitId } from '@/data/legendre-response-reader';
 import { scalarGibbsUnitId } from '@/lib/learning-scalar-gibbs-input';
@@ -201,6 +202,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === isingDecimationId) return <span className="ai-concept-equation" aria-hidden="true">tanh K′ = (tanh K)²</span>;
   if (kind === isingCriticalityId) return <span className="ai-concept-equation" aria-hidden="true">Uₗ = 1 − ⟨M⁴⟩/(3⟨M²⟩²)</span>;
   if (kind === legendreResponseUnitId) return <span className="ai-concept-equation" aria-hidden="true">W(h) ⇄ Γ(m)</span>;
   if (kind === scalarGibbsUnitId) return <div className="scalar-gibbs-cover" aria-hidden="true">
