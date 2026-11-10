@@ -62,12 +62,12 @@ jobs:
               if not failures:
                   failures = [max(0, len(lines) - 30)]
               for index in failures[:25]:
-                  message = '\n'.join(lines[max(0, index - 2):index + 25])[:6000]
+                  message = '\n'.join(lines[max(0, index - 2):index + 25])[:6000] or 'Validation failed before producing log output.'
                   escaped = message.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
                   print(f'::error title=Site validation failed::{escaped}')
               with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
                   summary.write('### Site validation failures\n\n```text\n')
-                  summary.write('\n'.join(lines[i] for i in failures[:50]).replace('```', "'''"))
+                  summary.write('\n'.join(lines[i] for i in failures[:50] if i < len(lines)).replace('```', "'''"))
                   summary.write('\n```\n')
           PY
 
