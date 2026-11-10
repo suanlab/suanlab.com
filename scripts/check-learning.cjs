@@ -8,6 +8,7 @@ const units = ['vectors-and-forces', 'linear-transforms', 'gradients'];
 const algebraUnits = ['inner-products', 'least-squares', 'eigenvalues'];
 const calculusUnits = ['chain-rule', 'jacobians', 'backpropagation'];
 const allUnits = [units[0], algebraUnits[0], units[1], algebraUnits[1], algebraUnits[2], units[2], ...calculusUnits];
+const legendreUnit = 'connected-generators-and-legendre-effective-actions';
 (async () => {
   fs.mkdirSync('.runtime/learning', { recursive: true });
   const browser = await chromium.launch({ executablePath: process.env.SUANLAB_BROWSER_PATH || '/usr/bin/google-chrome', args: ['--no-sandbox', '--enable-unsafe-swiftshader', '--disable-gpu-rasterization'] });
@@ -65,8 +66,11 @@ const allUnits = [units[0], algebraUnits[0], units[1], algebraUnits[1], algebraU
       const ctx = await context(lang); const page = await ctx.newPage();
       for (const width of [320, 768, 1440]) {
         await page.setViewportSize({ width, height: 1000 });
-        for (const route of [root, ...allUnits.map(id => root + id + '/')]) {
+        for (const route of [root, ...[...allUnits, legendreUnit].map(id => root + id + '/')]) {
           await go(page, route, lang);
+          if (route.endsWith(legendreUnit + '/')) {
+            await page.locator('[data-waves-plot="legendre-generator"]').waitFor();
+          }
           assert.equal(await page.locator('main h1').count(), 1, route);
           assert.ok((await page.locator('main h1').innerText()).length > 5);
           const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth); assert.ok(overflow <= 1, `${route}: ${width}px overflow ${overflow}`);

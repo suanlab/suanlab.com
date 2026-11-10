@@ -3195,7 +3195,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "real-time-phase-and-classical-limit",
       "finite-field-measure-and-thermal-free-energy",
       "microscopic-blocks-and-local-order-parameters",
-      "finite-quartic-scalar-gibbs-fields"
+      "finite-quartic-scalar-gibbs-fields",
+      "connected-generators-and-legendre-effective-actions"
     ]
   },
   {

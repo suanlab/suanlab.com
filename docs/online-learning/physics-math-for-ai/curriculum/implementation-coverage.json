@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 604,
+  "implementedUnitCount": 605,
   "curriculumComplete": false,
-  "scope": "604 registered units, 1877 guided experiments and 1208 bilingual manuscript files. Introductory scope: 316 of 362 original topics verified and 46 pending. Three statistical field theory constituent units are verified. The connected-generators and Legendre effective action reader and original-topic audit remain pending. The full 51-domain, 509-topic curriculum, domain audits and research depth remain incomplete.",
+  "scope": "605 registered units, 1879 guided experiments and 1210 bilingual manuscript files. Introductory scope: 317 of 362 original topics verified, 45 pending. Statistical field theory is verified at the introductory level. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9035,27 +9035,34 @@
         "real-time-phase-and-classical-limit",
         "finite-field-measure-and-thermal-free-energy",
         "microscopic-blocks-and-local-order-parameters",
-        "finite-quartic-scalar-gibbs-fields"
+        "finite-quartic-scalar-gibbs-fields",
+        "connected-generators-and-legendre-effective-actions"
       ],
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/scalar-gibbs-model-contract.md",
-      "currentPreparationEvidence": "scripts/learning-scalar-gibbs.test.ts",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md",
+      "currentPreparationEvidence": "scripts/learning-legendre-response.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "finite-quartic-scalar-gibbs-fields",
+        "unitId": "connected-generators-and-legendre-effective-actions",
         "status": "verified-introductory-unit",
         "registered": true,
+        "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "originalTopicComplete": false,
-        "report": "docs/online-learning/physics-math-for-ai/scalar-gibbs-model-contract.md",
-        "model": "src/lib/learning-scalar-gibbs.ts",
-        "worker": "src/lib/learning-scalar-gibbs.worker.ts",
-        "lab": "src/components/learning/scalar-gibbs-lab.tsx",
-        "tests": "scripts/learning-scalar-gibbs.test.ts",
-        "sectionsPerLocale": 12,
+        "report": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md",
+        "model": "src/lib/learning-legendre-response.ts",
+        "worker": "src/lib/learning-legendre-response.worker.ts",
+        "lab": "src/components/learning/legendre-response-lab.tsx",
+        "tests": "scripts/learning-legendre-response.test.ts",
+        "comparedSourceValues": 147,
+        "sectionsPerLocale": 9,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.ko.md",
-          "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.en.md"
+          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.ko.md",
+          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.en.md"
+        ],
+        "nextAction": "criticality-universality-browser-experiment-and-verification",
+        "historicalDraftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.en.md"
         ]
       },
       "researchDepthComplete": false,
@@ -9220,17 +9227,18 @@
         },
         {
           "originalTopic": "statistical field theory",
-          "stage": "three-introductory-units-verified-topic-incomplete",
+          "stage": "introductory-topic-verified",
           "unitIds": [
             "finite-field-measure-and-thermal-free-energy",
             "microscopic-blocks-and-local-order-parameters",
-            "finite-quartic-scalar-gibbs-fields"
+            "finite-quartic-scalar-gibbs-fields",
+            "connected-generators-and-legendre-effective-actions"
           ],
-          "registeredUnitCount": 3,
+          "registeredUnitCount": 4,
           "homepageIntegrated": true,
           "actualBrowserVerified": true,
-          "originalTopicComplete": false,
-          "report": "docs/online-learning/physics-math-for-ai/thermal-field-reader-integration.md",
+          "originalTopicComplete": true,
+          "report": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md",
           "evidence": ".runtime/learning/thermal-field-reader-integration/verification.json",
           "preparation": {
             "unitId": "finite-field-measure-and-thermal-free-energy",
@@ -9288,7 +9296,7 @@
           "nativeWorkersVerified": true,
           "productionNextAssetsVerified": true,
           "isolatedReactPreviewVerified": true,
-          "originalTopicAuditPending": true,
+          "originalTopicAuditPending": false,
           "matrix": "docs/online-learning/physics-math-for-ai/thermal-field-scope-audit-matrix.json",
           "contentFiles": [
             "content/learning/physics-math-for-ai/finite-field-measure-and-thermal-free-energy.ko.md",
@@ -9296,38 +9304,49 @@
             "content/learning/physics-math-for-ai/microscopic-blocks-and-local-order-parameters.ko.md",
             "content/learning/physics-math-for-ai/microscopic-blocks-and-local-order-parameters.en.md",
             "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.ko.md",
-            "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.en.md"
+            "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.en.md",
+            "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.ko.md",
+            "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.en.md"
           ],
           "latestUnitPreparation": {
-            "unitId": "finite-quartic-scalar-gibbs-fields",
+            "unitId": "connected-generators-and-legendre-effective-actions",
             "status": "verified-introductory-unit",
             "registered": true,
+            "homepageIntegrated": true,
             "actualBrowserVerified": true,
-            "originalTopicComplete": false,
-            "report": "docs/online-learning/physics-math-for-ai/scalar-gibbs-model-contract.md",
-            "model": "src/lib/learning-scalar-gibbs.ts",
-            "worker": "src/lib/learning-scalar-gibbs.worker.ts",
-            "lab": "src/components/learning/scalar-gibbs-lab.tsx",
-            "tests": "scripts/learning-scalar-gibbs.test.ts",
-            "sectionsPerLocale": 12,
+            "report": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md",
+            "model": "src/lib/learning-legendre-response.ts",
+            "worker": "src/lib/learning-legendre-response.worker.ts",
+            "lab": "src/components/learning/legendre-response-lab.tsx",
+            "tests": "scripts/learning-legendre-response.test.ts",
+            "comparedSourceValues": 147,
+            "sectionsPerLocale": 9,
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2,
             "contentFiles": [
-              "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.ko.md",
-              "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.en.md"
+              "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.ko.md",
+              "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.en.md"
+            ],
+            "nextAction": "criticality-universality-browser-experiment-and-verification",
+            "historicalDraftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.en.md"
             ]
-          }
+          },
+          "coverageLevel": "introductory",
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false
         }
       ],
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "path integral의 정의·근사",
+        "originalTopic": "statistical field theory",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "brownian-bridge-time-slicing-measure",
-          "euclidean-quantum-kernels-and-time-slicing",
-          "saddle-fluctuation-and-nongaussian-approximation",
-          "real-time-phase-and-classical-limit"
+          "finite-field-measure-and-thermal-free-energy",
+          "microscopic-blocks-and-local-order-parameters",
+          "finite-quartic-scalar-gibbs-fields",
+          "connected-generators-and-legendre-effective-actions"
         ],
         "registeredUnitCount": 4,
         "originalTopicComplete": true,
@@ -9336,42 +9355,45 @@
         "actualBrowserVerified": true,
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "remainingPlannedTreatments": [],
-        "report": "docs/online-learning/physics-math-for-ai/path-integrals-introductory-audit.md",
-        "matrix": "docs/online-learning/physics-math-for-ai/path-integrals-introductory-audit-matrix.json",
-        "evidence": ".runtime/learning/path-integral-topic-audit/verification.json",
+        "report": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
-          "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md",
-          "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.ko.md",
-          "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.en.md",
-          "content/learning/physics-math-for-ai/saddle-fluctuation-and-nongaussian-approximation.ko.md",
-          "content/learning/physics-math-for-ai/saddle-fluctuation-and-nongaussian-approximation.en.md",
-          "content/learning/physics-math-for-ai/real-time-phase-and-classical-limit.ko.md",
-          "content/learning/physics-math-for-ai/real-time-phase-and-classical-limit.en.md"
+          "content/learning/physics-math-for-ai/finite-field-measure-and-thermal-free-energy.ko.md",
+          "content/learning/physics-math-for-ai/finite-field-measure-and-thermal-free-energy.en.md",
+          "content/learning/physics-math-for-ai/microscopic-blocks-and-local-order-parameters.ko.md",
+          "content/learning/physics-math-for-ai/microscopic-blocks-and-local-order-parameters.en.md",
+          "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.ko.md",
+          "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.en.md",
+          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.ko.md",
+          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.en.md"
         ]
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "finite-quartic-scalar-gibbs-fields",
+        "unitId": "connected-generators-and-legendre-effective-actions",
         "status": "verified-introductory-unit",
         "registered": true,
+        "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "originalTopicComplete": false,
-        "report": "docs/online-learning/physics-math-for-ai/scalar-gibbs-model-contract.md",
-        "model": "src/lib/learning-scalar-gibbs.ts",
-        "worker": "src/lib/learning-scalar-gibbs.worker.ts",
-        "lab": "src/components/learning/scalar-gibbs-lab.tsx",
-        "tests": "scripts/learning-scalar-gibbs.test.ts",
-        "sectionsPerLocale": 12,
+        "report": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md",
+        "model": "src/lib/learning-legendre-response.ts",
+        "worker": "src/lib/learning-legendre-response.worker.ts",
+        "lab": "src/components/learning/legendre-response-lab.tsx",
+        "tests": "scripts/learning-legendre-response.test.ts",
+        "comparedSourceValues": 147,
+        "sectionsPerLocale": 9,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.ko.md",
-          "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.en.md"
+          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.ko.md",
+          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.en.md"
+        ],
+        "nextAction": "criticality-universality-browser-experiment-and-verification",
+        "historicalDraftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.en.md"
         ]
       },
-      "nextUnitId": "connected-generators-and-legendre-effective-actions",
-      "nextAction": "statistical-field-connected-generator-reader-and-verification",
+      "nextUnitId": "criticality-universality-and-finite-size-scaling",
+      "nextAction": "criticality-universality-browser-experiment-and-verification",
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
         "originalTopic": "path integral의 정의·근사",
@@ -9746,16 +9768,16 @@
         ]
       },
       "statisticalFieldTheoryProgress": {
-        "status": "in-progress",
+        "status": "verified-introductory",
         "verifiedConstituentUnits": [
           "finite-field-measure-and-thermal-free-energy",
           "microscopic-blocks-and-local-order-parameters",
-          "finite-quartic-scalar-gibbs-fields"
+          "finite-quartic-scalar-gibbs-fields",
+          "connected-generators-and-legendre-effective-actions"
         ],
-        "remainingPlannedTreatments": [
-          "connected generators and Legendre effective actions"
-        ],
-        "originalTopicComplete": false
+        "remainingPlannedTreatments": [],
+        "originalTopicComplete": true,
+        "audit": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md"
       },
       "scalarGibbsPreparation": {
         "unitId": "finite-quartic-scalar-gibbs-fields",
@@ -9776,16 +9798,16 @@
           "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.en.md"
         ]
       },
-      "connectedGeneratorDraft": {
-        "unitId": "connected-generators-and-legendre-effective-actions",
+      "criticalityDraft": {
+        "unitId": "criticality-universality-and-finite-size-scaling",
         "status": "bilingual-draft",
         "registered": false,
         "draftFiles": [
-          "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.ko.md",
-          "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.en.md"
+          "docs/online-learning/physics-math-for-ai/drafts/criticality-universality-and-finite-size-scaling.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/criticality-universality-and-finite-size-scaling.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "statistical-field-connected-generator-reader-and-verification"
+        "nextAction": "criticality-universality-browser-experiment-and-verification"
       }
     },
     {
@@ -9835,7 +9857,7 @@
     "research-methods"
   ],
   "nextDomain": "field-multiscale",
-  "nextTopic": "statistical field theory",
+  "nextTopic": "criticality·universality",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

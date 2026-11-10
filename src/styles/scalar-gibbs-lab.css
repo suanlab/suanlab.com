@@ -1,4 +1,4 @@
-.scalar-gibbs { display: grid; gap: 1rem; }
+.scalar-gibbs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 .scalar-gibbs h2 { font-size: 1.25rem; font-weight: 650; }
 .scalar-gibbs-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 .scalar-gibbs-actions [aria-pressed="true"] { border-color: hsl(var(--primary)); }

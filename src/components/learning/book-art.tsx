@@ -1,4 +1,5 @@
 'use client';
+import { legendreResponseUnitId } from '@/data/legendre-response-reader';
 import { scalarGibbsUnitId } from '@/lib/learning-scalar-gibbs-input';
 import '@/styles/scalar-gibbs-lab.css';
 import {isBlockOrderTeachingId} from '@/lib/learning-block-order-teaching';
@@ -199,6 +200,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === legendreResponseUnitId) return <span className="ai-concept-equation" aria-hidden="true">W(h) ⇄ Γ(m)</span>;
   if (kind === scalarGibbsUnitId) return <div className="scalar-gibbs-cover" aria-hidden="true">
     <span>x₂</span><div/><span>x₁</span>
   </div>;

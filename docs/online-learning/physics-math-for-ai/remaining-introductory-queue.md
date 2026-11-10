@@ -118,17 +118,16 @@
 
 2026-11-10 진행: [게이지 궤도·트리·앵커의 한영 학습 화면](gauge-orbits-teaching-status.md)을 검증했다.9개념·7안내·8해설 퀴즈·17예제와2D/Three.js·복소 경로·정확 정상형/변환/앵커 표·입력/저장을 연결했다. 새8/관련200검사·한영/명암/320·1440px8조합·16axe·368Worker 종료,저장5상황/20종료와모바일터치/입력2흐름/20종료를 확인했다. 다음은 실제Interactive Book reader·생산자산 검증이다. 미등록1초안은 완료 수치에서 제외한다.588등록 단원·1782안내·312/362입문 검증·50미완료와전체51영역509주제·영역 감사·연구 심화를 유지한다. commit/push·공개 배포는 하지 않았다.
 
-2026-11-11. 원래 362개 입문 원주제 중 **316개 검증·46개 미완료**다. 다음 목록은 입문 집필 대기열이며 전체51영역509주제·영역 감사·연구 깊이의 남은 범위를 대체하지 않는다.
+2026-11-11. 원래 362개 입문 원주제 중 **317개 검증·45개 미완료**다. 다음 목록은 입문 집필 대기열이며 전체51영역509주제·영역 감사·연구 깊이의 남은 범위를 대체하지 않는다.
 
-고전장·게이지·섭동·상관함수에 이어 [경로적분 네 단원의 입문 범위](path-integrals-introductory-audit.md)를 확인했다. 601등록 단원·1863안내 실험이다. 다음은 statistical field theory의 일차 자료·범위 검토이며 전체 영역 감사·연구 심화는 별도로 남아 있다.
+경로적분에 이어 [통계장론 네 단원의 입문 범위](statistical-field-theory-introductory-audit.md)를 확인했다. 교재에 605개 단원과 1,879개 안내 실험이 있다. 다음은 임계성·보편성이다.
 
-## 장이론·임계현상·다중스케일 (5개)
+## 장이론·임계현상·다중스케일 (4개)
 
-1. statistical field theory
-2. criticality·universality
-3. renormalization·coarse graining
-4. effective theory
-5. scale separation
+1. criticality·universality
+2. renormalization·coarse graining
+3. effective theory
+4. scale separation
 ## 상대론과 시공간 기하 (10개)
 
 1. 특수상대론·Lorentz

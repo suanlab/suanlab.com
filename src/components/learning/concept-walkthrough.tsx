@@ -1,4 +1,6 @@
 'use client';
+import { legendreResponseUnitId } from '@/data/legendre-response-reader';
+import { LegendreResponseConcept } from './legendre-response-lab';
 import { scalarGibbsUnitId } from '@/lib/learning-scalar-gibbs-input';
 import { ScalarGibbsConcept } from './scalar-gibbs-lab';
 import {isBlockOrderTeachingId} from '@/lib/learning-block-order-teaching';
@@ -253,6 +255,7 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === legendreResponseUnitId) return <LegendreResponseConcept language={language}/>;
   if (kind === scalarGibbsUnitId) return <ScalarGibbsConcept language={language}/>;
   if(isBlockOrderTeachingId(kind)) return <BlockOrderReaderConcept language={language}/>;
   if(isThermalFieldTeachingId(kind)) return <ThermalFieldConcept language={language}/>;
