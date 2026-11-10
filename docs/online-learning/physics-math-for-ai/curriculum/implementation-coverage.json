@@ -9031,8 +9031,8 @@
         "spatial-spectra-decay-and-correlation-length",
         "brownian-bridge-time-slicing-measure"
       ],
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/brownian-bridge-reader-integration-status.md",
-      "currentPreparationEvidence": ".runtime/learning/brownian-bridge-reader-integration/verification.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/euclidean-kernels-foundation-status.md",
+      "currentPreparationEvidence": ".runtime/learning/euclidean-kernel-foundation/derivations.json",
       "lastIntegratedPreparation": {
         "id": "brownian-bridge-time-slicing-measure",
         "originalTopic": "path integral의 정의·근사",
@@ -9501,7 +9501,33 @@
         "maximumReaderWorkersTerminated": 8,
         "maximumReaderNormalExitVerified": true
       },
-      "nextAction": "euclidean-quantum-kernels-primary-source-and-exact-finite-model"
+      "nextAction": "euclidean-quantum-kernels-bilingual-detailed-manuscripts",
+      "nextUnitPreparation": {
+        "id": "euclidean-quantum-kernels-and-time-slicing",
+        "originalTopic": "path integral의 정의·근사",
+        "stage": "primary-source-and-exact-finite-identities-verified",
+        "registeredUnitCount": 0,
+        "readerRegistered": false,
+        "homepageIntegrated": false,
+        "originalTopicComplete": false,
+        "researchDepthComplete": false,
+        "productionCalculatorImplemented": false,
+        "bilingualManuscriptsAuthored": false,
+        "independentResponseValidatorComplete": false,
+        "workersVerified": false,
+        "teachingUiVerified": false,
+        "primarySourceAudit": "docs/online-learning/physics-math-for-ai/euclidean-kernels-primary-source-audit.md",
+        "report": "docs/online-learning/physics-math-for-ai/euclidean-kernels-foundation-status.md",
+        "evidence": ".runtime/learning/euclidean-kernel-foundation/derivations.json",
+        "minimumIntervals": 2,
+        "maximumIntervals": 32,
+        "derivationChecksPassed": 1054,
+        "finiteModels": 93,
+        "decimalPrecision": 80,
+        "decimalComparisonRows": 7,
+        "decimalComparisonsAreCertifiedBounds": false,
+        "nextStage": "bilingual-detailed-manuscripts-and-explained-examples"
+      }
     },
     {
       "id": "relativity",
