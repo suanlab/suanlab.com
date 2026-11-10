@@ -3190,7 +3190,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "interacting-nongaussian-connected-correlations",
       "spatial-spectra-decay-and-correlation-length",
       "brownian-bridge-time-slicing-measure",
-      "euclidean-quantum-kernels-and-time-slicing"
+      "euclidean-quantum-kernels-and-time-slicing",
+      "saddle-fluctuation-and-nongaussian-approximation"
     ]
   },
   {

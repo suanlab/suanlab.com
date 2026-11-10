@@ -1,6 +1,6 @@
 # 안장점·요동·비가우스 근사: 유한 수학 모형 계약
 
-2026-11-10. 예정 ID는 `saddle-fluctuation-and-nongaussian-approximation`이다. 이 문서는 [일차 자료 검토](saddle-fluctuation-primary-source-audit.md) 이후 직접 유도한 수학 계약이다. 생산 입력·정상점/잔차·Gaussian 행렬·보정 구간을 구현하고 독립 기준 54개와 대조했다. 별도 산술의 독립 전체 응답 검산과 로컬 실제 module Worker/hook도 확인했다. 기존 599단원은 유지하며, 한영 학습 화면과 로컬 브라우저/저장/접근성도 검증했다. 실제 reader 등록·생산 자산·단원 범위 감사가 다음 단계다.
+2026-11-10. 예정 ID는 `saddle-fluctuation-and-nongaussian-approximation`이다. 이 문서는 [일차 자료 검토](saddle-fluctuation-primary-source-audit.md) 이후 직접 유도한 수학 계약이다. 생산 입력·정상점/잔차·Gaussian 행렬·보정 구간을 구현하고 독립 기준 54개와 대조했다. 별도 산술의 독립 전체 응답 검산과 로컬 실제 module Worker/hook도 확인했다. 기존 599단원을 보존하고 한영 학습 화면·실제600번째 reader·생산 Worker 자산·20요건 범위 감사를 검증했다. 다음은 실시간 위상·고전극한이며 원주제와 전체 교육과정은 미완료다.
 
 ## 1. 주 모형과 단위
 

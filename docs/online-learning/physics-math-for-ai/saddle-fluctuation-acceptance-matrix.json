@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "saddle-fluctuation-and-nongaussian-approximation",
-  "stage": "bilingual-teaching-ui-and-local-browser-verified",
+  "stage": "actual-reader-production-assets-and-unit-scope-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -110,26 +110,30 @@
     {
       "id": "reader-and-production-assets",
       "title": "실제 Interactive Book·생산 자산·검색/선수",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "600th actual reader,1857guides,1200strict bilingual manuscripts; Node20production build/1838HTML export;8reader locale/theme/viewport cases,80concepts/64questions,15accessibility checks,production54full responses and54action/54request-attribution rejections."
     },
     {
       "id": "prior-content-preservation",
       "title": "기존 단원/범위/메뉴/자산 보존 검증",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Exact599unit/guide/order and51domain scope hashes,1198prior manuscript bytes,unchanged navigation andOnline Book page;4547prior output files backed up byte-identically,65priorWorker assets preserved in local production output."
     },
     {
       "id": "unit-scope-audit",
       "title": "단원 전체 증거와 범위 감사",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "All20requirements cross-checked against original contract,source,independent references and actual production reader; mathematical,approximate,conditional and unavailable quantities distinguished; fourth path-integral treatment/topic audit and whole curriculum explicitly remain."
     }
   ],
   "requirementCount": 20,
-  "requirementsVerified": 17,
-  "unitComplete": false,
+  "requirementsVerified": 20,
+  "unitComplete": true,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/saddle-fluctuation-teaching/verification.json",
-  "scopeNote": "Third of four path-integral treatments. Bilingual teaching UI, local browser, storage and accessibility verified. Actual reader registration, production assets, prior-content preservation and unit scope audit remain. Original topic and whole goal remain incomplete.",
-  "manuscriptEvidence": ".runtime/learning/saddle-fluctuation-manuscripts/verification.json"
+  "evidence": ".runtime/learning/saddle-fluctuation-reader-integration/verification.json",
+  "scopeNote": "Finite unit complete and locally integrated into actual production reader. Third of four path-integral treatments; real-time phase/classical limit and topic audit remain. Public Pages publication is separately pending remote verification. Whole curriculum and research depth are not complete.",
+  "manuscriptEvidence": ".runtime/learning/saddle-fluctuation-manuscripts/verification.json",
+  "scopeAudit": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-scope-audit.md"
 }

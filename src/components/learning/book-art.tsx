@@ -1,4 +1,6 @@
 'use client';
+import {isSaddleFluctuationTeachingId} from '@/lib/learning-saddle-fluctuation-teaching';
+import SaddleFluctuationCover from './saddle-fluctuation-cover';
 import {isEuclideanKernelTeachingId} from '@/lib/learning-euclidean-kernel-teaching';
 import EuclideanKernelCover from './euclidean-kernel-cover';
 import {isBrownianBridgeTeachingId} from '@/lib/learning-brownian-bridge-teaching';
@@ -188,6 +190,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if(isSaddleFluctuationTeachingId(kind)) return <SaddleFluctuationCover/>;
   if(isEuclideanKernelTeachingId(kind)) return <EuclideanKernelCover/>;
   if(isBrownianBridgeTeachingId(kind)) return <BrownianBridgeCover/>;
   if(isSpatialSpectrumTeachingId(kind)) return <SpatialSpectrumCover/>;
