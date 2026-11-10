@@ -2,33 +2,118 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "euclidean-quantum-kernels-and-time-slicing",
-  "stage": "bilingual-manuscripts-and-finite-derivations-verified",
+  "stage": "exact-production-numerics-and-independent-response-validation-verified",
   "requirements": [
-    { "id": "owned-input", "title": "정확한 유리수·입력 소유권·경계·표기", "completionVerified": false },
-    { "id": "units-and-action", "title": "Hamiltonian·단위·사다리꼴 potential 규약", "completionVerified": true, "evidenceReason": "Bilingual sections2,5–8; independently constructed exact incidence model." },
-    { "id": "pinned-gaussian-identities", "title": "평균·공분산·행렬식·최소 작용", "completionVerified": true, "evidenceReason": "93 models,N2–32; exact incidence/Gauss-Jordan against determinant recurrences and direct action." },
-    { "id": "kernel-and-continuum", "title": "정규화 커널·Mehler·수정된 계·오차 구분", "completionVerified": true, "evidenceReason": "Bilingual sections6,12,14–17;7 refinement rows,35 Decimal identities; no certified decimal bound claimed." },
-    { "id": "boundary-rules", "title": "대칭/오른쪽 분할·대각 상쇄", "completionVerified": true, "evidenceReason": "Exact direct-action endpoint differences and bilingual section16 plus explained question6." },
-    { "id": "trace-and-free-limit", "title": "주기 사슬·열적 trace·자유 발산", "completionVerified": true, "evidenceReason": "Independent periodic incidence determinants,N2 parallel edges;free zero trace curvature;sections18–19." },
-    { "id": "probability-interpretation", "title": "고정끝·열적 밀도·양성·질량·Born 구분", "completionVerified": true, "evidenceReason": "Sections3,9,19–20 and exact endpoint-mass coefficients for93 models." },
-    { "id": "bilingual-manuscripts", "title": "상세 한영 원고·손계산·해설 문제", "completionVerified": true, "evidenceReason": "24sections,15display equations,8explained questions and6prediction comparisons per language;2tests on Node20/24." },
-    { "id": "published-exercise", "title": "본문 코드 실행·정확한 작은 예제", "completionVerified": true, "evidenceReason": "Executed identical standard-library Python in both manuscripts;output4/9 2/9 49/72 16/17 -1/8." },
-    { "id": "production-calculator", "title": "전체 범위 생산 계산기·보증 범위", "completionVerified": false },
-    { "id": "independent-validator", "title": "별도 산술·구성의 전체 응답 검산", "completionVerified": false },
-    { "id": "hostile-wire-and-mutations", "title": "최대 wire·변조·입력 귀속·소유 복사", "completionVerified": false },
-    { "id": "workers-and-lifecycle", "title": "실제 Worker·취소·교체·숨김·오류복구", "completionVerified": false },
-    { "id": "concept-and-cover", "title": "8개념·한영 기준 그림·표지", "completionVerified": false },
-    { "id": "interactive-views", "title": "경로·행렬·분할 오차·trace 시각화", "completionVerified": false },
-    { "id": "guides-and-quiz", "title": "예측 안내·해설 퀴즈·입력 예제 UI", "completionVerified": false },
-    { "id": "storage-and-accessibility", "title": "입력/학습 저장·접근성·한영·명암·모바일", "completionVerified": false },
-    { "id": "reader-and-production-assets", "title": "실제 교재 등록·검색·생산 자산·기존 보존", "completionVerified": false }
+    {
+      "id": "owned-input",
+      "title": "정확한 유리수·입력 소유권·경계·표기",
+      "completionVerified": true,
+      "evidenceReason": "Eight owned descriptor fields;exact rational signs/ranges;negative-zero/accessor/symbol/extra fields rejected;raw spellings frozen."
+    },
+    {
+      "id": "units-and-action",
+      "title": "Hamiltonian·단위·사다리꼴 potential 규약",
+      "completionVerified": true,
+      "evidenceReason": "Bilingual sections2,5–8; independently constructed exact incidence model."
+    },
+    {
+      "id": "pinned-gaussian-identities",
+      "title": "평균·공분산·행렬식·최소 작용",
+      "completionVerified": true,
+      "evidenceReason": "93 models,N2–32; exact incidence/Gauss-Jordan against determinant recurrences and direct action."
+    },
+    {
+      "id": "kernel-and-continuum",
+      "title": "정규화 커널·Mehler·수정된 계·오차 구분",
+      "completionVerified": true,
+      "evidenceReason": "Bilingual sections6,12,14–17;7 refinement rows,35 Decimal identities; no certified decimal bound claimed."
+    },
+    {
+      "id": "boundary-rules",
+      "title": "대칭/오른쪽 분할·대각 상쇄",
+      "completionVerified": true,
+      "evidenceReason": "Exact direct-action endpoint differences and bilingual section16 plus explained question6."
+    },
+    {
+      "id": "trace-and-free-limit",
+      "title": "주기 사슬·열적 trace·자유 발산",
+      "completionVerified": true,
+      "evidenceReason": "Independent periodic incidence determinants,N2 parallel edges;free zero trace curvature;sections18–19."
+    },
+    {
+      "id": "probability-interpretation",
+      "title": "고정끝·열적 밀도·양성·질량·Born 구분",
+      "completionVerified": true,
+      "evidenceReason": "Sections3,9,19–20 and exact endpoint-mass coefficients for93 models."
+    },
+    {
+      "id": "bilingual-manuscripts",
+      "title": "상세 한영 원고·손계산·해설 문제",
+      "completionVerified": true,
+      "evidenceReason": "24sections,15display equations,8explained questions and6prediction comparisons per language;2tests on Node20/24."
+    },
+    {
+      "id": "published-exercise",
+      "title": "본문 코드 실행·정확한 작은 예제",
+      "completionVerified": true,
+      "evidenceReason": "Executed identical standard-library Python in both manuscripts;output4/9 2/9 49/72 16/17 -1/8."
+    },
+    {
+      "id": "production-calculator",
+      "title": "전체 범위 생산 계산기·보증 범위",
+      "completionVerified": true,
+      "evidenceReason": "51 complete Python references and free-bridge/mass/hbar/reversal/refinement comparisons;all three maxima preserve1089 position entries and unchanged wire budgets."
+    },
+    {
+      "id": "independent-validator",
+      "title": "별도 산술·구성의 전체 응답 검산",
+      "completionVerified": true,
+      "evidenceReason": "57 tests;different Rational arithmetic,incidence/LDL solves and Gaussian convolution;bundle excludes producer and its arithmetic;all51 references accepted."
+    },
+    {
+      "id": "hostile-wire-and-mutations",
+      "title": "최대 wire·변조·입력 귀속·소유 복사",
+      "completionVerified": false,
+      "numericalSubgateVerified": true,
+      "evidenceReason": "455 individual small-leaf and87 selected maximum mutations rejected;owned/canonical/bounded snapshots verified. Full Worker request/version/kind attribution remains pending."
+    },
+    {
+      "id": "workers-and-lifecycle",
+      "title": "실제 Worker·취소·교체·숨김·오류복구",
+      "completionVerified": false
+    },
+    {
+      "id": "concept-and-cover",
+      "title": "8개념·한영 기준 그림·표지",
+      "completionVerified": false
+    },
+    {
+      "id": "interactive-views",
+      "title": "경로·행렬·분할 오차·trace 시각화",
+      "completionVerified": false
+    },
+    {
+      "id": "guides-and-quiz",
+      "title": "예측 안내·해설 퀴즈·입력 예제 UI",
+      "completionVerified": false
+    },
+    {
+      "id": "storage-and-accessibility",
+      "title": "입력/학습 저장·접근성·한영·명암·모바일",
+      "completionVerified": false
+    },
+    {
+      "id": "reader-and-production-assets",
+      "title": "실제 교재 등록·검색·생산 자산·기존 보존",
+      "completionVerified": false
+    }
   ],
   "requirementCount": 18,
-  "requirementsVerified": 8,
+  "requirementsVerified": 11,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/euclidean-kernel-foundation/verification.json",
+  "evidence": ".runtime/learning/euclidean-kernel-numerics/verification.json",
   "scopeNote": "Second of four planned path-integral treatments. Finite mathematical identities and manuscript evidence do not verify any unimplemented production system or UI."
 }
