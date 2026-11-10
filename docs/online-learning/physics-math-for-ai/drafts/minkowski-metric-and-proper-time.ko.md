@@ -1,6 +1,6 @@
 ## 1. 시간 방향을 가진 쌍선형 형식
 
-관성 좌표 $X=(ct,x,y,z)$에서 $\eta=\operatorname{diag}(1,-1,-1,-1)$로 둡니다. 두 변위의 민코프스키 곱은 $U^\mathsf T\eta V$입니다. 대칭이고 쌍선형이며 비퇴화합니다. 한 변위를 자기 자신과 곱한 값은 양수, 0 또는 음수일 수 있습니다. 로런츠 변환 $\Lambda$는 $\Lambda^\mathsf T\eta\Lambda=\eta$를 만족해 이 곱을 보존합니다. 전체 부호를 반대로 쓰는 문헌도 있습니다. [Minkowski, Space and Time](https://www.gutenberg.org/files/66944/66944-h/66944-h.htm#SPACE_AND_TIME)
+관성 좌표 $X=(ct,x,y,z)$에서 $\eta=\operatorname{diag}(1,-1,-1,-1)$로 둡니다. 두 변위의 민코프스키 곱은 $U^\mathsf T\eta V$입니다. 대칭이고 쌍선형이며 비퇴화합니다. 한 변위를 자기 자신과 곱한 값은 양수, 0 또는 음수일 수 있습니다. 로런츠 변환 $\Lambda$는 $\Lambda^\mathsf T\eta\Lambda=\eta$를 만족해 이 곱을 보존합니다. 전체 부호를 반대로 쓰는 문헌도 있습니다. [Minkowski, Space and Time](https://www.gutenberg.org/files/66944/66944-h/66944-h.htm)
 
 ## 2. 간격의 부호 읽기
 

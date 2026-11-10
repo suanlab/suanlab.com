@@ -3257,7 +3257,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
-      "special-relativity-lorentz-boosts"
+      "special-relativity-lorentz-boosts",
+      "minkowski-metric-and-proper-time"
     ]
   },
   {

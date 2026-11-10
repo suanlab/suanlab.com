@@ -1,6 +1,6 @@
 ## 1. A bilinear form with a time direction
 
-In inertial coordinates $X=(ct,x,y,z)$ use $\eta=\operatorname{diag}(1,-1,-1,-1)$. The Minkowski product of two displacements is $U^\mathsf T\eta V$. It is symmetric, bilinear and nondegenerate. Its squared value on a displacement can be positive, zero or negative. A Lorentz transformation $\Lambda$ satisfies $\Lambda^\mathsf T\eta\Lambda=\eta$, so it preserves this product. Some references use the opposite overall sign. [Minkowski, Space and Time](https://www.gutenberg.org/files/66944/66944-h/66944-h.htm#SPACE_AND_TIME)
+In inertial coordinates $X=(ct,x,y,z)$ use $\eta=\operatorname{diag}(1,-1,-1,-1)$. The Minkowski product of two displacements is $U^\mathsf T\eta V$. It is symmetric, bilinear and nondegenerate. Its squared value on a displacement can be positive, zero or negative. A Lorentz transformation $\Lambda$ satisfies $\Lambda^\mathsf T\eta\Lambda=\eta$, so it preserves this product. Some references use the opposite overall sign. [Minkowski, Space and Time](https://www.gutenberg.org/files/66944/66944-h/66944-h.htm)
 
 ## 2. Read the sign of a separation
 

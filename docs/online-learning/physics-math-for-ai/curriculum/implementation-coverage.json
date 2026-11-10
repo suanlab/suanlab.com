@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 610,
+  "implementedUnitCount": 611,
   "curriculumComplete": false,
-  "scope": "610 registered units, 1889 guided experiments and 1220 bilingual manuscript files. Introductory scope: 322 of 362 original topics verified, 40 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "611 registered units, 1891 guided experiments and 1222 bilingual manuscript files. Introductory scope: 323 of 362 original topics verified, 39 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9992,10 +9992,11 @@
       "topicCount": 10,
       "status": "partially-authored",
       "implementedUnitIds": [
-        "special-relativity-lorentz-boosts"
+        "special-relativity-lorentz-boosts",
+        "minkowski-metric-and-proper-time"
       ],
-      "nextUnitId": "minkowski-metric-and-proper-time",
-      "nextAction": "minkowski-path-reader-integration",
+      "nextUnitId": "light-cones-and-causal-order",
+      "nextAction": "causal-relay-reader-integration",
       "lorentzBoostDraft": {
         "unitId": "special-relativity-lorentz-boosts",
         "status": "registered-and-verified",
@@ -10011,48 +10012,48 @@
           "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
-      "currentPreparationEvidence": "scripts/learning-lorentz-boost.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
+      "currentPreparationEvidence": "scripts/learning-minkowski-path.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "special-relativity-lorentz-boosts",
+        "unitId": "minkowski-metric-and-proper-time",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-lorentz-boost.ts",
-        "lab": "src/components/learning/lorentz-boost-lab.tsx",
-        "tests": "scripts/learning-lorentz-boost.test.ts",
+        "model": "src/lib/learning-minkowski-path.ts",
+        "lab": "src/components/learning/minkowski-path-lab.tsx",
+        "tests": "scripts/learning-minkowski-path.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
-          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
+          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
+          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.en.md"
         ],
         "sectionsPerLocale": 7,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "special-relativity-lorentz-boosts",
+        "unitId": "minkowski-metric-and-proper-time",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-lorentz-boost.ts",
-        "lab": "src/components/learning/lorentz-boost-lab.tsx",
-        "tests": "scripts/learning-lorentz-boost.test.ts",
+        "model": "src/lib/learning-minkowski-path.ts",
+        "lab": "src/components/learning/minkowski-path-lab.tsx",
+        "tests": "scripts/learning-minkowski-path.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
-          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
+          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
+          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.en.md"
         ],
         "sectionsPerLocale": 7,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "특수상대론·Lorentz",
+        "originalTopic": "Minkowski metric",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "special-relativity-lorentz-boosts"
+          "minkowski-metric-and-proper-time"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -10060,12 +10061,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
-          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
+          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
+          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-lorentz-boost.test.ts"
+        "evidence": "scripts/learning-minkowski-path.test.ts"
       },
       "topicEvidence": [
         {
@@ -10104,18 +10105,70 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "Minkowski metric",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "minkowski-metric-and-proper-time"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
+            "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-minkowski-path.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "minkowski-metric-and-proper-time",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-minkowski-path.ts",
+            "lab": "src/components/learning/minkowski-path-lab.tsx",
+            "tests": "scripts/learning-minkowski-path.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
+              "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.en.md"
+            ],
+            "sectionsPerLocale": 7,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "minkowskiMetricDraft": {
         "unitId": "minkowski-metric-and-proper-time",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/minkowski-metric-and-proper-time.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/minkowski-metric-and-proper-time.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "minkowski-path-reader-integration"
+        "nextAction": "causal-relay-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.ko.md",
+          "content/learning/physics-math-for-ai/minkowski-metric-and-proper-time.en.md"
+        ]
+      },
+      "causalRelayDraft": {
+        "unitId": "light-cones-and-causal-order",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/light-cones-and-causal-order.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/light-cones-and-causal-order.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "causal-relay-reader-integration"
       }
     },
     {
@@ -10159,7 +10212,7 @@
     "research-methods"
   ],
   "nextDomain": "relativity",
-  "nextTopic": "Minkowski metric",
+  "nextTopic": "causal structure",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",
