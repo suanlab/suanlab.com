@@ -14361,24 +14361,73 @@
         },
         {
           "title": "criticality·universality",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "criticality-universality-and-finite-size-scaling"
+          ],
           "preparation": {
             "unitId": "criticality-universality-and-finite-size-scaling",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/criticality-universality-and-finite-size-scaling.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/criticality-universality-and-finite-size-scaling.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "criticality-universality-browser-experiment-and-verification"
+            "nextAction": "renormalization-coarse-graining-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
+              "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
+            "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-ising-cylinder.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "criticality-universality-and-finite-size-scaling",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-ising-cylinder.ts",
+            "worker": "src/lib/learning-ising-cylinder.worker.ts",
+            "lab": "src/components/learning/ising-criticality-lab.tsx",
+            "tests": "scripts/learning-ising-cylinder.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
+              "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.en.md"
+            ],
+            "sectionsPerLocale": 7,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "renormalization·coarse graining",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "renormalization-and-real-space-coarse-graining",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/renormalization-and-real-space-coarse-graining.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/renormalization-and-real-space-coarse-graining.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "renormalization-coarse-graining-reader-integration"
+          }
         },
         {
           "title": "effective theory",
@@ -14392,92 +14441,69 @@
         }
       ],
       "verification": null,
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md",
-      "currentPreparationEvidence": "scripts/learning-legendre-response.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
+      "currentPreparationEvidence": "scripts/learning-ising-cylinder.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "connected-generators-and-legendre-effective-actions",
+        "unitId": "criticality-universality-and-finite-size-scaling",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "report": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md",
-        "model": "src/lib/learning-legendre-response.ts",
-        "worker": "src/lib/learning-legendre-response.worker.ts",
-        "lab": "src/components/learning/legendre-response-lab.tsx",
-        "tests": "scripts/learning-legendre-response.test.ts",
-        "comparedSourceValues": 147,
-        "sectionsPerLocale": 9,
-        "guidedExperiments": 2,
-        "explainedQuestionsPerLocale": 2,
+        "model": "src/lib/learning-ising-cylinder.ts",
+        "worker": "src/lib/learning-ising-cylinder.worker.ts",
+        "lab": "src/components/learning/ising-criticality-lab.tsx",
+        "tests": "scripts/learning-ising-cylinder.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.ko.md",
-          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.en.md"
+          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
+          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.en.md"
         ],
-        "nextAction": "criticality-universality-browser-experiment-and-verification",
-        "historicalDraftFiles": [
-          "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.ko.md",
-          "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.en.md"
-        ]
+        "sectionsPerLocale": 7,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
       },
       "researchDepthComplete": false,
       "wholeDomainAuditComplete": false,
       "introductoryDomainAuditComplete": false,
-      "nextUnitId": "criticality-universality-and-finite-size-scaling",
+      "nextUnitId": "renormalization-and-real-space-coarse-graining",
       "lastIntegratedUnitPreparation": {
-        "unitId": "connected-generators-and-legendre-effective-actions",
+        "unitId": "criticality-universality-and-finite-size-scaling",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "report": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md",
-        "model": "src/lib/learning-legendre-response.ts",
-        "worker": "src/lib/learning-legendre-response.worker.ts",
-        "lab": "src/components/learning/legendre-response-lab.tsx",
-        "tests": "scripts/learning-legendre-response.test.ts",
-        "comparedSourceValues": 147,
-        "sectionsPerLocale": 9,
-        "guidedExperiments": 2,
-        "explainedQuestionsPerLocale": 2,
+        "model": "src/lib/learning-ising-cylinder.ts",
+        "worker": "src/lib/learning-ising-cylinder.worker.ts",
+        "lab": "src/components/learning/ising-criticality-lab.tsx",
+        "tests": "scripts/learning-ising-cylinder.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.ko.md",
-          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.en.md"
+          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
+          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.en.md"
         ],
-        "nextAction": "criticality-universality-browser-experiment-and-verification",
-        "historicalDraftFiles": [
-          "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.ko.md",
-          "docs/online-learning/physics-math-for-ai/drafts/connected-generators-and-legendre-effective-actions.en.md"
-        ]
+        "sectionsPerLocale": 7,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "statistical field theory",
+        "originalTopic": "criticality·universality",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "finite-field-measure-and-thermal-free-energy",
-          "microscopic-blocks-and-local-order-parameters",
-          "finite-quartic-scalar-gibbs-fields",
-          "connected-generators-and-legendre-effective-actions"
+          "criticality-universality-and-finite-size-scaling"
         ],
-        "registeredUnitCount": 4,
+        "registeredUnitCount": 1,
         "originalTopicComplete": true,
         "originalTopicAuditPending": false,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.ko.md",
+          "content/learning/physics-math-for-ai/criticality-universality-and-finite-size-scaling.en.md"
+        ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "report": "docs/online-learning/physics-math-for-ai/statistical-field-theory-introductory-audit.md",
-        "contentFiles": [
-          "content/learning/physics-math-for-ai/finite-field-measure-and-thermal-free-energy.ko.md",
-          "content/learning/physics-math-for-ai/finite-field-measure-and-thermal-free-energy.en.md",
-          "content/learning/physics-math-for-ai/microscopic-blocks-and-local-order-parameters.ko.md",
-          "content/learning/physics-math-for-ai/microscopic-blocks-and-local-order-parameters.en.md",
-          "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.ko.md",
-          "content/learning/physics-math-for-ai/finite-quartic-scalar-gibbs-fields.en.md",
-          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.ko.md",
-          "content/learning/physics-math-for-ai/connected-generators-and-legendre-effective-actions.en.md"
-        ]
+        "evidence": "scripts/learning-ising-cylinder.test.ts"
       },
-      "nextAction": "criticality-universality-browser-experiment-and-verification",
+      "nextAction": "renormalization-coarse-graining-reader-integration",
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
         "originalTopic": "path integral의 정의·근사",
@@ -15058,14 +15084,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 605,
-  "verifiedNewUnitCount": 452,
+  "implementedUnitCount": 606,
+  "verifiedNewUnitCount": 453,
   "remainingForwardDomainCount": 5,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 45,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 44,
   "nextDomain": "field-multiscale",
-  "nextTopic": "criticality·universality",
+  "nextTopic": "renormalization·coarse graining",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 317,
+  "verifiedOriginalScopeTopicCount": 318,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -15127,11 +15153,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers criticality, universality and finite-size scaling. All 605 registered units are verified in their declared introductory scopes. The remaining 45 original introductory topics, domain audits and research depth are open.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers renormalization and real-space coarse graining. All 606 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "criticality-universality-and-finite-size-scaling",
+  "nextAuthoringUnitId": "renormalization-and-real-space-coarse-graining",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "criticality-universality-browser-experiment-and-verification",
+  "nextAction": "renormalization-coarse-graining-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }
