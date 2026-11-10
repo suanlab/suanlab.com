@@ -224,7 +224,7 @@ The bounded preparations use 3–8 sites, nonnegative rational m²,κ≤16, posi
 
 The calculation returns exact fractions for precision, reduced factors, mean, response, connected/raw two-point functions, selected fourth moments and source log ratios. Positive factor pivots and projected residuals are exact algebraic checks. The absolute normalization remains an analytic expression with π and a square root.
 
-The independent reference constructs the precision from incidence outer products and uses a bordered inverse for constrained cases, rather than the production basis solve. It also uses a separate determinant algorithm and recursive Gaussian moments. A future heat map or spatial drawing is a floating projection of these rational results, not another proof. A finite ring's matrix is not by itself a fitted infinite-system correlation length.
+The independent reference constructs the precision from incidence outer products and uses a bordered inverse for constrained cases, rather than the production basis solve. It also uses a separate determinant algorithm and recursive Gaussian moments. The heat map and spatial drawings are floating projections of these rational results, not additional proofs. A finite ring's matrix is not by itself a fitted infinite-system correlation length.
 
 ## 19. Worked questions with explanations
 
@@ -241,4 +241,4 @@ The independent reference constructs the precision from incidence outer products
 
 The source-dependent Gaussian construction, connected two-point functions and Green-function interpretation are discussed in [David Tong's Statistical Field Theory, §2.2](https://davidtong.org/teaching/statistical-field-theory/sfthtml/S2). Our finite matrices, constraint basis, induced measure and rational verification are derived explicitly for the declared lattice model.
 
-This chapter supplies the Gaussian starting point for correlation functions. Interacting non-Gaussian connected correlations, spatial decay, momentum spectra, finite-size limits and the definition of correlation length require subsequent treatments. It does not define a continuum path-integral measure, prove critical scaling, or replace quantum time-ordered correlators with a classical covariance.
+This chapter supplies the Gaussian starting point for correlation functions. Continue with [interacting non-Gaussian connected correlations](/book/online/physics-math-for-ai/interacting-nongaussian-connected-correlations/) and [spatial spectra, decay and correlation length](/book/online/physics-math-for-ai/spatial-spectra-decay-and-correlation-length/) for higher connected quantities, finite-size effects and physical-spacing limits. It does not define a continuum path-integral measure, prove critical scaling, or replace quantum time-ordered correlators with a classical covariance.

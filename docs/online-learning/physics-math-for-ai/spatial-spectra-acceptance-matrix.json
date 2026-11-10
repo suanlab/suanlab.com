@@ -568,18 +568,21 @@
       "title": "세 상관함수 처리의 원주제 감사",
       "designStatus": "specified",
       "derivationChecks": [],
-      "implementationStatus": "not-started",
-      "completionVerified": false
+      "implementationStatus": "introductory-topic-audit-verified",
+      "completionVerified": true,
+      "integrationEvidence": ".runtime/learning/correlation-function-topic-audit/verification.json",
+      "report": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit.md"
     }
   ],
   "requirementCount": 25,
   "derivationEvidence": ".runtime/learning/spatial-spectrum-foundation/derivations.json",
   "scopeNote": "All24 unit implementation/integration requirements are verified. The25th requirement is the separate three-treatment original-topic audit and remains pending. Unit/topic/whole-goal completion are not declared before that audit.",
-  "unitComplete": false,
-  "originalTopicComplete": false,
+  "unitComplete": true,
+  "originalTopicComplete": true,
   "wholeGoalComplete": false,
   "workerEvidence": ".runtime/learning/spatial-spectrum-worker/verification.json",
   "teachingEvidence": ".runtime/learning/spatial-spectrum-teaching/verification.json",
-  "integratedRequirementsVerified": 24,
-  "integrationEvidence": ".runtime/learning/spatial-spectrum-reader-integration/verification.json"
+  "integratedRequirementsVerified": 25,
+  "integrationEvidence": ".runtime/learning/spatial-spectrum-reader-integration/verification.json",
+  "originalTopicAuditReport": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit.md"
 }

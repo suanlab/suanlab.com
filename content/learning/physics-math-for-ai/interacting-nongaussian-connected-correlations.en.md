@@ -218,7 +218,7 @@ All probabilities, moments, cumulants and response values are reduced rational n
 
 The producer forms common-denominator integers and a Walsh transform. A separate Python Fraction reference directly sums each rational weight, multiplies spin products, and constructs cumulants from labeled set partitions. It also computes centered products directly. Agreement is checked across named examples, seeded inputs and extreme factors.
 
-Normalization, positivity, spin diagonals, spin reversal, repeated indices and transform inversion are additional checks. Passing a finite reference collection is not a formal proof for every admissible input and does not validate an unimplemented browser worker or reader integration.
+Normalization, positivity, spin diagonals, spin reversal, repeated indices and transform inversion are additional checks. Passing a finite reference collection is not a formal proof for every admissible input. Browser Workers and reader integration require separate transport, lifecycle and accessibility checks.
 
 ## 19. How to use the idea in AI research
 
@@ -226,7 +226,7 @@ A pairwise feature representation cannot distinguish the independent reference f
 
 For an energy-based model, compare sufficient statistics and higher held-out moments in addition to matching training pair correlations. In finite data, estimating a fourth cumulant also introduces sampling uncertainty and sensitivity to preprocessing. This calculator supplies population values, so those empirical uncertainties require a separate experiment.
 
-The next spatial-spectrum chapter asks a different question: how covariance varies with separation and wave number. Higher-order dependence and spatial decay should be studied together without treating either one as a substitute for the other.
+The [spatial-spectrum chapter](/book/online/physics-math-for-ai/spatial-spectra-decay-and-correlation-length/) asks a different question: how covariance varies with separation and wave number. Higher-order dependence and spatial decay should be studied together without treating either one as a substitute for the other.
 
 ## 20. Worked review questions
 

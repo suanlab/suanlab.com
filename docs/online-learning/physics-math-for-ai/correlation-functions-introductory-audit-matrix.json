@@ -1,0 +1,513 @@
+{
+  "scope": "Original field-multiscale correlation function introductory topic only",
+  "updated": "2026-11-10",
+  "status": "introductory-topic-verified",
+  "unitIds": [
+    "finite-gaussian-field-sources-connected-correlations",
+    "interacting-nongaussian-connected-correlations",
+    "spatial-spectra-decay-and-correlation-length"
+  ],
+  "requirements": [
+    {
+      "id": "state-space-measure",
+      "reviewReason": "The real-field Lebesgue/induced measure and binary counting measure define different distributions. Boundary and constraint are part of each declared ensemble, not display settings.",
+      "sources": [
+        {
+          "unitId": "finite-gaussian-field-sources-connected-correlations",
+          "sections": [
+            2,
+            3,
+            13
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "interacting-nongaussian-connected-correlations",
+          "sections": [
+            2,
+            4
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            2,
+            4
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "positive-precision-zero-modes",
+      "reviewReason": "Positive precision is required only on the integration space. A mean-zero constraint removes a single constant null mode; it does not rescue K=0. Pinned massless fields and an unpinned stationary infinite field are distinguished.",
+      "sources": [
+        {
+          "unitId": "finite-gaussian-field-sources-connected-correlations",
+          "sections": [
+            3,
+            12,
+            15
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            4,
+            13
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "complete-square-mean-covariance",
+      "reviewReason": "Completing the square gives the projected mean and C=T G. The projected Green identity replaces an invalid full inverse in constrained ensembles; the four-site fractions can be checked directly.",
+      "sources": [
+        {
+          "unitId": "finite-gaussian-field-sources-connected-correlations",
+          "sections": [
+            5,
+            6,
+            8,
+            9
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "physical-auxiliary-source",
+      "reviewReason": "Log-generating derivatives use dimensionless auxiliary sources. Physical mean response is C/T; a density source coupled with spacing a gives a C/T. The synthesis table explicitly reconciles the different letters h.",
+      "sources": [
+        {
+          "unitId": "finite-gaussian-field-sources-connected-correlations",
+          "sections": [
+            7,
+            8
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "interacting-nongaussian-connected-correlations",
+          "sections": [
+            7,
+            8,
+            9
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            5,
+            22
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "wick-and-nonzero-means",
+      "reviewReason": "Wick factorization applies to centered Gaussian fields and includes all three pairings with repeated insertions. Subtracting raw pair products from raw fourth moments fails at nonzero mean; exact wrong and correct values are exposed.",
+      "sources": [
+        {
+          "unitId": "finite-gaussian-field-sources-connected-correlations",
+          "sections": [
+            10,
+            11
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "interacting-nongaussian-connected-correlations",
+          "sections": [
+            9,
+            12
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "induced-measure-projection",
+      "reviewReason": "For B columns e_i-e_last, det(B^T B)=n enters the induced Euclidean measure. The restricted determinant is det(B^T K B)/n. Projected and ambient source residuals are not conflated.",
+      "sources": [
+        {
+          "unitId": "finite-gaussian-field-sources-connected-correlations",
+          "sections": [
+            12,
+            13
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "conditioning-versus-centering",
+      "reviewReason": "The pinned three-site example gives conditional variance3/10 versus sample-centered11/36, difference1/180. Projection of samples changes covariance differently from conditioning the original law.",
+      "sources": [
+        {
+          "unitId": "finite-gaussian-field-sources-connected-correlations",
+          "sections": [
+            14
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            22
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "positive-binary-weights",
+      "reviewReason": "Positive rational Boltzmann factors define finite exact counting weights. Factor inputs are not energy coefficients; integer rescaling preserves normalized probabilities without asserting logarithms are rational.",
+      "sources": [
+        {
+          "unitId": "interacting-nongaussian-connected-correlations",
+          "sections": [
+            2,
+            3,
+            4,
+            5,
+            18
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "repeated-insertions",
+      "reviewReason": "s_i^2=1 simplifies a spin product but does not remove cumulant slot multiplicities. Independent spins have repeated fourth cumulant-2 while an independent Gaussian has repeated fourth moment3.",
+      "sources": [
+        {
+          "unitId": "finite-gaussian-field-sources-connected-correlations",
+          "sections": [
+            10
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "interacting-nongaussian-connected-correlations",
+          "sections": [
+            6,
+            10
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "nonlinear-source-responses",
+      "reviewReason": "Third and fourth cumulants generate successive nonlinear mean responses with T^-2 and T^-3. Derivatives of interaction parameters use their own sufficient statistics rather than reusing single-spin susceptibilities.",
+      "sources": [
+        {
+          "unitId": "interacting-nongaussian-connected-correlations",
+          "sections": [
+            7,
+            8,
+            9,
+            12,
+            16
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "same-two-point-different-law",
+      "reviewReason": "An independent Gaussian, independent spins and positive four-body spins share mean0 and C=I. Their repeated or mixed fourth structure differs; the pure four-body mixed cumulant is3/5.",
+      "sources": [
+        {
+          "unitId": "interacting-nongaussian-connected-correlations",
+          "sections": [
+            10,
+            11
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            22
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "finite-volume-symmetry",
+      "reviewReason": "Finite positive sums remain analytic. Zero finite-volume magnetization under spin-flip symmetry is not proof against ordering in a specified infinite-volume/source limit, and frustration is not a critical exponent.",
+      "sources": [
+        {
+          "unitId": "interacting-nongaussian-connected-correlations",
+          "sections": [
+            13,
+            14,
+            15
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "temperature-path",
+      "reviewReason": "Fixed K,J Gaussian heating scales C but not mean or susceptibility. Fixed spin factors keep the law unchanged; fixed-energy heating changes factors by their declared powers. These are different experiments.",
+      "sources": [
+        {
+          "unitId": "finite-gaussian-field-sources-connected-correlations",
+          "sections": [
+            16
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "interacting-nongaussian-connected-correlations",
+          "sections": [
+            3,
+            17
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            22
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "full-fourier-boundary-mixing",
+      "reviewReason": "A complete unitary DFT exists for every boundary but diagonalizes the periodic precision only in the declared setting. Full off-diagonal covariance in Fourier space is retained for open and pinned chains.",
+      "sources": [
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            3,
+            6,
+            7,
+            8,
+            10
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "spacing-source-normalization",
+      "reviewReason": "Physical K=a m^2 I+(c^2/a)L, nodal/density source factors and a times Fourier power are tracked separately. Twenty-four common finite models agree exactly with the earlier Gaussian calculator after coefficient conversion.",
+      "sources": [
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            2,
+            5,
+            9,
+            10,
+            22
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "signed-wave-refinement",
+      "reviewReason": "Fixed physical box length and signed wave are preserved across refinement. Negative alias7 moves to15,31,63, retaining q=-1; keeping array index7 would change the physical wave. Refinement symbols do not pretend to solve a64-site matrix.",
+      "sources": [
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            9,
+            16,
+            22
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "infinite-decay-finite-images",
+      "reviewReason": "The infinite recurrence defines r and xi under its existence assumptions. Periodic images and mean-zero subtraction change finite curves; massless positive local ratios and constrained uncoupled negative entries do not establish an infinite decay length.",
+      "sources": [
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            21
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    },
+    {
+      "id": "ai-evidence-limits",
+      "reviewReason": "AI kernel/precision/response connections, executable exercises and explained questions accompany each model. Exact rational finite results, certified arithmetic enclosures and reference comparisons have distinct guarantees; interacting continuum, critical scaling and quantum time ordering remain future scope.",
+      "sources": [
+        {
+          "unitId": "finite-gaussian-field-sources-connected-correlations",
+          "sections": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "interacting-nongaussian-connected-correlations",
+          "sections": [
+            18,
+            19,
+            20,
+            21
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
+            "en": "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
+          }
+        },
+        {
+          "unitId": "spatial-spectra-decay-and-correlation-length",
+          "sections": [
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "files": {
+            "ko": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.ko.md",
+            "en": "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
+          }
+        }
+      ],
+      "substantiveReview": "satisfied"
+    }
+  ],
+  "requirementCount": 18,
+  "topicComplete": true,
+  "wholeCurriculumComplete": false,
+  "researchDepthComplete": false,
+  "evidence": {
+    "synthesisTests": "scripts/learning-correlation-synthesis.test.ts",
+    "actualReaders": "scripts/check-correlation-topic-readers.ts",
+    "runtimeRoot": ".runtime/learning/correlation-function-topic-audit/"
+  }
+}

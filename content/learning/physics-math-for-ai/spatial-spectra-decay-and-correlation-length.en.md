@@ -281,6 +281,21 @@ An attractive plot is weaker evidence than a verified matrix. A finite example i
 
 ## 22. Research connections and further reading
 
+The three correlation chapters use different state spaces and source letters. Classify the coupling in the energy before differentiating: the first chapter's auxiliary h is not the spin chapter's physical h or this chapter's density source h.
+
+| Treatment | State space and measure | Source convention | What is held fixed when changing T? |
+|---|---|---|---|
+| [Finite Gaussian field](/book/online/physics-math-for-ai/finite-gaussian-field-sources-connected-correlations/) | Real site values; Lebesgue or induced hyperplane measure | Energy source −Jᵀφ; auxiliary h is dimensionless | Fixed K,J gives unchanged mean and C proportional to T |
+| [Non-Gaussian spins](/book/online/physics-math-for-ai/interacting-nongaussian-connected-correlations/) | Binary configurations; counting measure | Energy source −hᵀs; dimensionless factors pᵢ=exp(hᵢ/T) and auxiliary t | Fixed q,r,p rescales physical energies and leaves the distribution unchanged; fixed-energy heating changes those factors |
+| Physical-spacing Gaussian chain | Real values at spacing a; declared boundary and constraint | Calculator source is zero; an energy source J would give C/T, a density source coupled as −a hᵀφ would give a C/T | Fixed a,m²,c² gives C proportional to T and unchanged ξ when the infinite length exists |
+
+Four bridges make these distinctions concrete:
+
+- **Convert coefficients before comparing calculators.** At a=1/2,m²=2,c²=1, use M=1 and κ=2 in the first Gaussian calculator. Keeping its mass input at2 would compare a different precision. A unit density source corresponds to a nodal source J₀=1/2; its mean response is a Cᵢ₀/T. The spatial calculator itself keeps J=0.
+- **Match a distributional hypothesis, not only a covariance.** At C=I and zero mean, an independent Gaussian has repeated fourth moment3, an independent unbiased spin has1, and a positive four-body spin distribution can have mixed fourth cumulant3/5. Equal covariance does not make their source-dependent families identical.
+- **Declare the operation used to remove a total.** The three-site massless pinned Gaussian has conditional variance3/10 but sample-centered variance11/36, differing by1/180. A negative cross covariance can arise from a total constraint without negative local stiffness.
+- **State the limit before fitting a length.** The finite massless ring starts with21/32 and7/32, so a local positive ratio exists, yet there is no stationary infinite field covariance. A fixed-length refinement also preserves signed physical q, not a fixed array index. Neither a favorable local fit nor an unchanged array label supplies the missing limit.
+
 This example connects local quadratic regularization to nonlocal Gaussian kernels, Fourier preconditioning, mesh consistency and constraints in inverse problems. A research extension should compare full operators and noise models, rather than infer a physical mechanism from a covariance plot alone. Interactions, higher dimensions and genuine critical behavior require further analysis beyond this Gaussian chain.
 
 For the continuum Gaussian Green function and correlation-length discussion, read [David Tong, Statistical Field Theory, sections 2.2.1–2.2.3](https://davidtong.org/teaching/statistical-field-theory/sfthtml/S2). The finite-spacing factors, constrained finite examples and numerical conventions above are derived for this chapter's declared model. They are not a transcription of a continuum formula into every finite boundary geometry.

@@ -12098,7 +12098,7 @@
         },
         {
           "title": "correlation function",
-          "status": "in-progress",
+          "status": "verified",
           "unitIds": [
             "finite-gaussian-field-sources-connected-correlations",
             "interacting-nongaussian-connected-correlations",
@@ -12132,7 +12132,7 @@
             "content/learning/physics-math-for-ai/spatial-spectra-decay-and-correlation-length.en.md"
           ],
           "preparedContentFiles": [],
-          "originalTopicComplete": false,
+          "originalTopicComplete": true,
           "remainingPlannedTreatments": [],
           "preparation": {
             "originalTopic": "correlation function",
@@ -13479,12 +13479,54 @@
             "maximumReaderWorkersTerminated": 8,
             "maximumReaderNormalExitVerified": true
           },
-          "originalTopicAuditPending": true
+          "originalTopicAuditPending": false,
+          "verified": true,
+          "coverageLevel": "introductory",
+          "introductoryAuditReport": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit.md",
+          "introductoryAuditMatrix": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit-matrix.json",
+          "introductoryAuditEvidence": ".runtime/learning/correlation-function-topic-audit/verification.json"
         },
         {
           "title": "path integral의 정의·근사",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "plannedUnitIds": [
+            "brownian-bridge-time-slicing-measure"
+          ],
+          "preparedUnitIds": [],
+          "preparation": {
+            "id": "brownian-bridge-time-slicing-measure",
+            "originalTopic": "path integral의 정의·근사",
+            "stage": "scope-and-exact-derivations-verified",
+            "registeredUnitCount": 0,
+            "readerRegistered": false,
+            "homepageIntegrated": false,
+            "originalTopicComplete": false,
+            "researchDepthComplete": false,
+            "productionCalculatorImplemented": false,
+            "bilingualManuscriptsAuthored": false,
+            "independentResponseValidatorComplete": false,
+            "workersVerified": false,
+            "teachingUiVerified": false,
+            "scopeAuditComplete": true,
+            "modelFinalized": true,
+            "primarySourceAudit": "docs/online-learning/physics-math-for-ai/path-integrals-primary-source-audit.md",
+            "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-scope-status.md",
+            "evidence": ".runtime/learning/brownian-bridge-foundation/derivations.json",
+            "minimumIntervals": 2,
+            "maximumIntervals": 32,
+            "derivationChecksPassed": 695,
+            "finiteModels": 62,
+            "coarseningPairs": 15,
+            "nextStage": "bilingual-manuscripts-and-numerical-foundation"
+          },
+          "originalTopicComplete": false,
+          "remainingPlannedTreatments": [
+            "brownian-bridge-time-slicing-measure",
+            "euclidean-quantum-kernels-and-time-slicing",
+            "saddle-fluctuation-and-nongaussian-approximation",
+            "real-time-phase-and-classical-limit"
+          ]
         },
         {
           "title": "statistical field theory",
@@ -13513,8 +13555,8 @@
         }
       ],
       "verification": null,
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/spatial-spectra-scope-status.md",
-      "currentPreparationEvidence": ".runtime/learning/spatial-spectrum-foundation/verification.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/brownian-bridge-scope-status.md",
+      "currentPreparationEvidence": ".runtime/learning/brownian-bridge-foundation/derivations.json",
       "lastIntegratedPreparation": {
         "originalTopic": "correlation function",
         "stage": "two-constituents-reader-verified",
@@ -13544,43 +13586,32 @@
       "researchDepthComplete": false,
       "wholeDomainAuditComplete": false,
       "introductoryDomainAuditComplete": false,
-      "nextUnitId": "spatial-spectra-decay-and-correlation-length",
+      "nextUnitId": "brownian-bridge-time-slicing-measure",
       "nextUnitPreparation": {
-        "originalTopic": "correlation function",
-        "treatment": "spatial-spectra-decay-and-correlation-length",
-        "stage": "scope-and-derivations-verified",
-        "unitId": "spatial-spectra-decay-and-correlation-length",
+        "id": "brownian-bridge-time-slicing-measure",
+        "originalTopic": "path integral의 정의·근사",
+        "stage": "scope-and-exact-derivations-verified",
         "registeredUnitCount": 0,
         "readerRegistered": false,
         "homepageIntegrated": false,
-        "actualBrowserVerified": false,
-        "actualReaderVerified": false,
-        "productionAssetsVerified": false,
+        "originalTopicComplete": false,
+        "researchDepthComplete": false,
+        "productionCalculatorImplemented": false,
+        "bilingualManuscriptsAuthored": false,
         "independentResponseValidatorComplete": false,
         "workersVerified": false,
         "teachingUiVerified": false,
-        "originalTopicComplete": false,
         "scopeAuditComplete": true,
-        "researchDepthComplete": false,
         "modelFinalized": true,
-        "productionCalculatorImplemented": false,
-        "bilingualManuscriptsAuthored": false,
-        "report": "docs/online-learning/physics-math-for-ai/spatial-spectra-scope-status.md",
-        "primarySourceAudit": "docs/online-learning/physics-math-for-ai/spatial-spectra-primary-source-audit.md",
-        "modelContract": "docs/online-learning/physics-math-for-ai/spatial-spectra-model-contract.md",
-        "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/spatial-spectra-acceptance-matrix.json",
-        "evidence": ".runtime/learning/spatial-spectrum-foundation/verification.json",
-        "contentFiles": [],
-        "minimumSites": 3,
-        "maximumSites": 16,
-        "derivationChecksPassed": 114,
-        "symbolicChecks": 8,
-        "exactFractionChecks": 86,
-        "integerAliasMappings": 399,
-        "highPrecisionCrossChecks": 19,
-        "finalImplementationRequirements": 25,
-        "finalImplementationRequirementsComplete": 0,
-        "nextStage": "bilingual-manuscript-and-exact-numerical-foundation"
+        "primarySourceAudit": "docs/online-learning/physics-math-for-ai/path-integrals-primary-source-audit.md",
+        "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-scope-status.md",
+        "evidence": ".runtime/learning/brownian-bridge-foundation/derivations.json",
+        "minimumIntervals": 2,
+        "maximumIntervals": 32,
+        "derivationChecksPassed": 695,
+        "finiteModels": 62,
+        "coarseningPairs": 15,
+        "nextStage": "bilingual-manuscripts-and-numerical-foundation"
       },
       "lastIntegratedUnitPreparation": {
         "originalTopic": "correlation function",
@@ -13686,32 +13717,25 @@
         "maximumReaderWorkersTerminated": 8
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "대칭·gauge",
+        "originalTopic": "correlation function",
         "stage": "introductory-topic-verified",
+        "coverageLevel": "introductory",
         "unitIds": [
-          "graph-u1-local-frames-wilson-loops",
-          "gauge-orbits-tree-fixing-boundary-anchors",
-          "graph-gauss-constraints-physical-phase-space"
+          "finite-gaussian-field-sources-connected-correlations",
+          "interacting-nongaussian-connected-correlations",
+          "spatial-spectra-decay-and-correlation-length"
         ],
         "registeredUnitCount": 3,
+        "originalTopicComplete": true,
+        "originalTopicAuditPending": false,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "originalTopicComplete": true,
-        "coverageLevel": "introductory",
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "remainingPlannedUnitIds": [],
-        "report": "docs/online-learning/physics-math-for-ai/gauge-symmetry-introductory-audit.md",
-        "integrationReport": "docs/online-learning/physics-math-for-ai/graph-gauss-reader-integration-status.md",
-        "evidence": ".runtime/learning/graph-gauss-reader-integration/verification.json",
-        "contentFiles": [
-          "content/learning/physics-math-for-ai/graph-u1-local-frames-wilson-loops.ko.md",
-          "content/learning/physics-math-for-ai/graph-u1-local-frames-wilson-loops.en.md",
-          "content/learning/physics-math-for-ai/gauge-orbits-tree-fixing-boundary-anchors.ko.md",
-          "content/learning/physics-math-for-ai/gauge-orbits-tree-fixing-boundary-anchors.en.md",
-          "content/learning/physics-math-for-ai/graph-gauss-constraints-physical-phase-space.ko.md",
-          "content/learning/physics-math-for-ai/graph-gauss-constraints-physical-phase-space.en.md"
-        ]
+        "remainingPlannedTreatments": [],
+        "report": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit.md",
+        "matrix": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit-matrix.json",
+        "evidence": ".runtime/learning/correlation-function-topic-audit/verification.json"
       }
     },
     {
@@ -13963,11 +13987,11 @@
   "implementedUnitCount": 597,
   "verifiedNewUnitCount": 444,
   "remainingForwardDomainCount": 5,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 48,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 47,
   "nextDomain": "field-multiscale",
-  "nextTopic": "correlation function",
+  "nextTopic": "path integral의 정의·근사",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 314,
+  "verifiedOriginalScopeTopicCount": 315,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -14029,9 +14053,9 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 0,
-  "authoredUnverifiedNewUnitCountDefinition": "All authored bilingual manuscripts are now registered and reader-verified. The three correlation treatments await the original-topic audit; whole-domain audits and research depth remain incomplete.",
+  "authoredUnverifiedNewUnitCountDefinition": "All597 registered bilingual units are reader-verified; the correlation-function introductory topic audit is complete. The next time-slicing model has no authored manuscripts or registered reader yet. Whole-domain audits and research depth remain incomplete.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": null,
+  "nextAuthoringUnitId": "brownian-bridge-time-slicing-measure",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "correlation-function-introductory-topic-audit"
+  "nextAction": "brownian-bridge-bilingual-manuscripts-and-numerical-foundation"
 }
