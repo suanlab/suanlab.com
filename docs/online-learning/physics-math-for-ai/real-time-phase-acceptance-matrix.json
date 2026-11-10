@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "primary-sources-and-finite-identities-verified",
+  "stage": "bilingual-manuscripts-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
       "title": "직접 읽은 자료·표기/추출 확인·범위",
       "completionVerified": true,
-      "evidenceReason": "Wipf§3.1,Horvathy§§2–3 and direct PDF4/5 images;DLMF9.2/9.5/9.6/9.7/10.32.9 read. Timed-out Tong material excluded."
+      "evidenceReason": "Evans–Zworski Lemma3.13/Theorem3.15;Wipf§3.1;Horvathy§§2–3 withactual PDF4/5 images;DLMF9.2/9.5/9.6/9.7/10.32.9 read. Unread Tong material excluded."
     },
     {
       "id": "real-action-and-normalization",
@@ -84,7 +84,8 @@
     {
       "id": "bilingual-manuscripts",
       "title": "한영 상세 이론·직관·손계산·실행Python",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "KO/EN33sections,22matching display equations,2tables,6prediction comparisons,8explained questions andidentical exact Fraction exercise;strict renderer andexecutable exercise tests passed onNode20/24."
     },
     {
       "id": "concept-graphics",
@@ -128,11 +129,11 @@
     }
   ],
   "requirementCount": 23,
-  "requirementsVerified": 7,
+  "requirementsVerified": 8,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-phase-foundation/verification.json",
-  "scopeNote": "Fourth path-integral treatment;only primary sources andfinite mathematical identities verified. No registered unit ormanuscript. Production input/precision/wire costs,actual numeric enclosures,independent response validator,Workers,teaching UI,reader andunit/topic audits remain."
+  "evidence": ".runtime/learning/real-time-phase-manuscripts/verification.json",
+  "scopeNote": "Fourth path-integral treatment:primary sources,finite mathematical identities andbilingual draft manuscripts verified. Production inputs/precision/wire costs,numerics,independent response validator,Workers,teaching UI,reader andunit/topic audits remain;no newregistered unit."
 }
