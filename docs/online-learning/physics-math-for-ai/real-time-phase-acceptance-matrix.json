@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-11",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "concept-graphics-verified",
+  "stage": "interactive-views-in-progress",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -103,7 +103,8 @@
     {
       "id": "interactive-views",
       "title": "위상/모드·행렬/Three.js·packet·fold/Airy",
-      "completionVerified": false
+      "completionVerified": false,
+      "evidenceReason": "Partial only:matrix heat map/Three.js,all25chain/packet inputs gated before352projection combinations and78672cell checks;Node20/24each26tests,native8states/context-loss/touch/keyboard/maximum31x31 andforced-WebGL fallback verified. Phase/mode,packet density/phase/classical-family andfold/Airy views remain;this requirement is not complete."
     },
     {
       "id": "guided-experiments",

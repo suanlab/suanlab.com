@@ -13934,7 +13934,7 @@
           "realTimePreparation": {
             "id": "real-time-phase-and-classical-limit",
             "originalTopic": "path integral의 정의·근사",
-            "stage": "concept-graphics-verified",
+            "stage": "interactive-views-in-progress",
             "registeredUnitCount": 0,
             "readerRegistered": false,
             "homepageIntegrated": false,
@@ -13966,9 +13966,9 @@
             "primarySourceAudit": "docs/online-learning/physics-math-for-ai/real-time-phase-primary-source-audit.md",
             "modelContract": "docs/online-learning/physics-math-for-ai/real-time-phase-model-contract.md",
             "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/real-time-phase-acceptance-matrix.json",
-            "report": "docs/online-learning/physics-math-for-ai/real-time-phase-concepts-status.md",
-            "evidence": ".runtime/learning/real-time-phase-concepts/verification.json",
-            "nextStage": "real-time-interactive-views",
+            "report": "docs/online-learning/physics-math-for-ai/real-time-phase-matrix-status.md",
+            "evidence": ".runtime/learning/real-time-phase-matrix/verification.json",
+            "nextStage": "real-time-wave-packet-fold-views",
             "workingPrecisionAndWireBudgetFinalized": true,
             "bilingualDraftFiles": 2,
             "sectionsPerLanguage": 33,
@@ -14120,7 +14120,18 @@
             "conceptAccessibilityCases": 104,
             "conceptKeyboardChecks": 12,
             "conceptStorageChecks": 15,
-            "conceptControlledStateVerified": true
+            "conceptControlledStateVerified": true,
+            "conceptEvidence": ".runtime/learning/real-time-phase-concepts/verification.json",
+            "matrixViewsVerified": true,
+            "matrixInputsVerified": 25,
+            "matrixTestsPerNodeVersion": 26,
+            "matrixProjectionModelsVerified": 352,
+            "matrixProjectionCellsChecked": 78672,
+            "matrixNativeStates": 8,
+            "matrixMaximumDimension": 31,
+            "matrixMaximumCells": 961,
+            "matrixWebGLFallbackVerified": true,
+            "allInteractiveViewsComplete": false
           }
         },
         {
@@ -14445,11 +14456,11 @@
         "matrix": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit-matrix.json",
         "evidence": ".runtime/learning/correlation-function-topic-audit/verification.json"
       },
-      "nextAction": "real-time-interactive-views",
+      "nextAction": "real-time-wave-packet-fold-views",
       "nextUnitPreparation": {
         "id": "real-time-phase-and-classical-limit",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "concept-graphics-verified",
+        "stage": "interactive-views-in-progress",
         "registeredUnitCount": 0,
         "readerRegistered": false,
         "homepageIntegrated": false,
@@ -14481,9 +14492,9 @@
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/real-time-phase-primary-source-audit.md",
         "modelContract": "docs/online-learning/physics-math-for-ai/real-time-phase-model-contract.md",
         "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/real-time-phase-acceptance-matrix.json",
-        "report": "docs/online-learning/physics-math-for-ai/real-time-phase-concepts-status.md",
-        "evidence": ".runtime/learning/real-time-phase-concepts/verification.json",
-        "nextStage": "real-time-interactive-views",
+        "report": "docs/online-learning/physics-math-for-ai/real-time-phase-matrix-status.md",
+        "evidence": ".runtime/learning/real-time-phase-matrix/verification.json",
+        "nextStage": "real-time-wave-packet-fold-views",
         "workingPrecisionAndWireBudgetFinalized": true,
         "bilingualDraftFiles": 2,
         "sectionsPerLanguage": 33,
@@ -14635,7 +14646,18 @@
         "conceptAccessibilityCases": 104,
         "conceptKeyboardChecks": 12,
         "conceptStorageChecks": 15,
-        "conceptControlledStateVerified": true
+        "conceptControlledStateVerified": true,
+        "conceptEvidence": ".runtime/learning/real-time-phase-concepts/verification.json",
+        "matrixViewsVerified": true,
+        "matrixInputsVerified": 25,
+        "matrixTestsPerNodeVersion": 26,
+        "matrixProjectionModelsVerified": 352,
+        "matrixProjectionCellsChecked": 78672,
+        "matrixNativeStates": 8,
+        "matrixMaximumDimension": 31,
+        "matrixMaximumCells": 961,
+        "matrixWebGLFallbackVerified": true,
+        "allInteractiveViewsComplete": false
       },
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
@@ -15104,5 +15126,5 @@
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
   "nextAuthoringUnitId": "real-time-phase-and-classical-limit",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "real-time-interactive-views"
+  "nextAction": "real-time-wave-packet-fold-views"
 }

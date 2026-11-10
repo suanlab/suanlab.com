@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-11 행렬 화면 진행: [검산 응답의 열지도·Three.js·전체 구간 표](physics-math-for-ai/real-time-phase-matrix-status.md)를 연결했다. Node20/24각26검사·25입력/352표시조합·실제Worker8브라우저 상태·최대31×31·context손실/터치·WebGL차단 대체를 확인했다. 위상·packet·fold 그림이 남으므로 **16/23요건·600등록 단원·입문47미완료**를 유지한다.
+
 2026-11-11 개념 그림 완료: [실시간 위상·고전극한의13단계 한영 설명·기준 SVG·표지](physics-math-for-ai/real-time-phase-concepts-status.md)를 구현해 **16/23요건**을 검증했다. Node20/24각4검사와 Chromium104개념/접근성 상태,키보드12·저장15검사를 통과했다. 다음은 실제 계산 실험·Three.js 행렬·안내/문제·reader이며 **600등록 단원·입문47미완료**를 유지한다.
 
 2026-11-11 공통 오류 처리 완료: [Worker 이벤트 호환성 점검](worker-messageerror-compatibility-follow-up.md)에서 기존45개와 신규1개 controller의66등록 경로를 공통화했다. 신규68·기존415·선택 회귀93검사와 실제 native port132개 해제를 확인했다. 다음은 실시간 경로적분 학습UI·reader 통합이며 **15/23요건·입문47미완료·600등록 단원**을 유지한다.
