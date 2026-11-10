@@ -1,3 +1,4 @@
+import { bindWorkerMessageError, clearWorkerMessageError } from './learning-worker-message-error';
 import { isCurrentInput, currentInputKey, currentRecord, snapshotCurrentInput, isCurrentSuccessForInput,
   type CurrentInput, type CurrentSuccess } from './learning-probability-current-protocol';
 export type CurrentWorkerPort = Pick<Worker, 'postMessage' | 'terminate' | 'onmessage' | 'onerror' | 'onmessageerror'>;
@@ -21,7 +22,7 @@ export class CurrentCalculationController {
   private publish(state: CurrentCalculationState) { this.state = Object.freeze(state); this.notify(this.state); }
   private stop() {
     const port = this.worker; this.worker = null; this.active = null;
-    if (port) { port.onmessage = null; port.onerror = null; port.onmessageerror = null; port.terminate(); }
+    if (port) { port.onmessage = null; port.onerror = null; clearWorkerMessageError(port); port.terminate(); }
   }
   run(value: unknown): number | null {
     if (this.disposed) return null;
@@ -59,7 +60,7 @@ export class CurrentCalculationController {
       this.stop(); this.publish({ status: 'ready', requestId: id, input, inputKey, response: message as unknown as CurrentSuccess });
     };
     port.onerror = event => { event.preventDefault(); fail('worker-failed'); };
-    port.onmessageerror = () => fail('invalid-response');
+    bindWorkerMessageError(port, () => fail('invalid-response'));
     try { port.postMessage({ version: 1, requestId: id, input }); }
     catch { fail('worker-failed'); }
     return id;

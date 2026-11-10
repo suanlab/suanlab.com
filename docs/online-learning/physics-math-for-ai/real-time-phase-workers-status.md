@@ -20,7 +20,7 @@ reader hook/controller는 계산·검산 엔진이나 BigInt 연산을 import하
 
 Chromium에서 속성 대입만 한 messageerror가 전달되지 않는 것을 추가 오류 검사로 재현했다. EventTarget listener 등록으로 바꾸고 port 해제 시 listener를 제거한다. 실제 EventTarget이 없는 최소 test port에만 속성 fallback을 쓴다. 양쪽 port에서 listener 제거 후의 늦은 이벤트도 무시함을 확인했다.
 
-처음 실패한 native 오류 로그와 진단 상태를 보존한다. 수정 후 비동기 script 오류2개·실제 native DataCloneError1개·잘못된 URL constructor 실패1개·native port의 synthetic messageerror2개 모두 오류 상태와 정상 재시도로 복구했다. synthetic messageerror를 실제 decode 손상 유발로 부르지 않는다. [기존 controller45개 정적 후보의 공통 후속 점검](../worker-messageerror-compatibility-follow-up.md)은 별도로 남는다.
+처음 실패한 native 오류 로그와 진단 상태를 보존한다. 수정 후 비동기 script 오류2개·실제 native DataCloneError1개·잘못된 URL constructor 실패1개·native port의 synthetic messageerror2개 모두 오류 상태와 정상 재시도로 복구했다. synthetic messageerror를 실제 decode 손상 유발로 부르지 않는다. [기존 controller45개와 신규1개의 공통 후속 점검](../worker-messageerror-compatibility-follow-up.md)은 이후 완료했다. 46개 controller/66등록 경로와 실제 native port132개의 이벤트 등록·해제를 추가 확인했다.
 
 ## 실행한 검사
 
@@ -37,4 +37,4 @@ node --import tsx scripts/check-real-time-phase-hook-native.ts
 node --import tsx scripts/check-real-time-phase-errors-native.ts
 ```
 
-증거는 `.runtime/learning/real-time-phase-worker/verification.json`, native report·dependency graph·양쪽 Node 로그다. 기존 root out/preview 서버는 변경하지 않았다. 공통 오류 호환성 점검 후 기존 스타일의 개념도·위상/행렬·packet/fold 실험·설명·문제·접근성, Interactive Book reader 등록과 생산 build/보존 감사를 진행한다. 등록600단원·1857안내·1200원고, 미등록1단원/2원고, 입문315/362 검증·47미완료와 전체51영역509주제·영역 감사·연구 심화는 유지한다.
+증거는 `.runtime/learning/real-time-phase-worker/verification.json`, native report·dependency graph·양쪽 Node 로그다. 기존 root out/preview 서버는 변경하지 않았다. 공통 오류 호환성 점검을 마쳤으며 다음은 기존 스타일의 개념도·위상/행렬·packet/fold 실험·설명·문제·접근성, Interactive Book reader 등록과 생산 build/보존 감사를 진행한다. 등록600단원·1857안내·1200원고, 미등록1단원/2원고, 입문315/362 검증·47미완료와 전체51영역509주제·영역 감사·연구 심화는 유지한다.

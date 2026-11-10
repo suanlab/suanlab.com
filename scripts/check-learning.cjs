@@ -29,7 +29,7 @@ const allUnits = [units[0], algebraUnits[0], units[1], algebraUnits[1], algebraU
     await page.evaluate(() => document.fonts.ready);
   }
   async function readout(page) { return page.locator('[data-testid="lab-readout"]').innerText(); }
-  async function ready(page) { await page.waitForFunction(() => !document.querySelector('.ai-presets')?.disabled); }
+  async function ready(page) { await page.waitForFunction(() => { const presets = document.querySelector('.ai-presets'); return presets !== null && !presets.disabled; }); }
   async function guidedLearning(page, kind) {
     const intuition = page.locator('.ai-intuition');
     const steps = intuition.locator('.ai-concept-steps button'); const count = await steps.count();

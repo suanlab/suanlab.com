@@ -1,3 +1,4 @@
+import { bindWorkerMessageError, clearWorkerMessageError } from './learning-worker-message-error';
 import { isBoltzmannGibbsInput, boltzmannGibbsInputKey, boltzmannRecord, snapshotBoltzmannGibbsInput, isBoltzmannGibbsSuccessForInput,
   type BoltzmannGibbsInput, type BoltzmannGibbsSuccess } from './learning-boltzmann-gibbs-protocol';
 export type BoltzmannGibbsWorkerPort = Pick<Worker, 'postMessage' | 'terminate' | 'onmessage' | 'onerror' | 'onmessageerror'>;
@@ -21,7 +22,7 @@ export class BoltzmannGibbsCalculationController {
   private publish(state: BoltzmannGibbsCalculationState) { this.state = Object.freeze(state); this.notify(this.state); }
   private stop() {
     const port = this.worker; this.worker = null; this.active = null;
-    if (port) { port.onmessage = null; port.onerror = null; port.onmessageerror = null; port.terminate(); }
+    if (port) { port.onmessage = null; port.onerror = null; clearWorkerMessageError(port); port.terminate(); }
   }
   run(value: unknown): number | null {
     if (this.disposed) return null;
@@ -56,7 +57,7 @@ export class BoltzmannGibbsCalculationController {
       this.stop(); this.publish({ status: 'ready', requestId: id, input, inputKey, response: message as unknown as BoltzmannGibbsSuccess });
     };
     port.onerror = event => { event.preventDefault(); fail('worker-failed'); };
-    port.onmessageerror = () => fail('invalid-response');
+    bindWorkerMessageError(port, () => fail('invalid-response'));
     try { port.postMessage({ version: 1, requestId: id, input }); }
     catch { fail('worker-failed'); }
     return id;

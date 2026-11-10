@@ -1,3 +1,4 @@
+import { bindWorkerMessageError, clearWorkerMessageError } from './learning-worker-message-error';
 import { manyBodyData, readManyBodyInput, manyBodyInputKey, type ManyBodyInput } from './learning-many-body-input';
 import type { ManyBodySuccess } from './learning-many-body-protocol';
 import { manyBodySuccessHeader } from './learning-many-body-validation-protocol';
@@ -27,7 +28,7 @@ export class ManyBodyCalculationController {
   constructor(private readonly factories: { calculate: () => ManyBodyWorkerPort; validate: () => ManyBodyWorkerPort }, private readonly notify: (state: ManyBodyCalculationState) => void, private readonly copyOptions: Omit<ManyBodyCopyOptions, 'active'> = {}) {}
   getSnapshot() { return this.state; }
   private publish(state: ManyBodyCalculationState) { this.state = Object.freeze(state); this.notify(this.state); }
-  private release(port: ManyBodyWorkerPort | null) { if (port) { port.onmessage = null; port.onerror = null; port.onmessageerror = null; try { port.terminate(); } catch { /* Keep releasing the other port. */ } } }
+  private release(port: ManyBodyWorkerPort | null) { if (port) { port.onmessage = null; port.onerror = null; clearWorkerMessageError(port); try { port.terminate(); } catch { /* Keep releasing the other port. */ } } }
   private stop() { const a = this.calculation, b = this.validation; this.calculation = null; this.validation = null; this.active = null; this.release(a); this.release(b); }
   private current(t: Token) { return !this.disposed && this.active === t; }
   private fail(t: Token, error: 'unavailable' | 'worker-failed' | 'invalid-response') {
@@ -58,7 +59,7 @@ export class ManyBodyCalculationController {
       if (this.current(t)) void this.validate(t, message);
     };
     port.onerror = event => { if (this.current(t) && this.calculation === port) { event.preventDefault(); this.fail(t, 'worker-failed'); } };
-    port.onmessageerror = () => { if (this.current(t) && this.calculation === port) this.fail(t, 'invalid-response'); };
+    bindWorkerMessageError(port, () => { if (this.current(t) && this.calculation === port) this.fail(t, 'invalid-response'); });
     try { port.postMessage({ version: 1, requestId: id, input }); } catch { this.fail(t, 'worker-failed'); }
     return id;
   }
@@ -76,7 +77,7 @@ export class ManyBodyCalculationController {
         t.accepting = true; this.validation = null; this.release(port); void this.accept(t, receipt.response);
       };
       port.onerror = event => { if (this.current(t) && this.validation === port) { event.preventDefault(); this.fail(t, 'worker-failed'); } };
-      port.onmessageerror = () => { if (this.current(t) && this.validation === port) this.fail(t, 'invalid-response'); };
+      bindWorkerMessageError(port, () => { if (this.current(t) && this.validation === port) this.fail(t, 'invalid-response'); });
       try { port.postMessage({ version: 1, requestId: t.id, input: t.input, response: owned }); } catch { this.fail(t, 'worker-failed'); }
     } catch { if (this.current(t)) this.fail(t, 'invalid-response'); }
   }

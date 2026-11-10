@@ -1,3 +1,4 @@
+import { bindWorkerMessageError, clearWorkerMessageError } from './learning-worker-message-error';
 import { readNongaussianFieldInput, type NongaussianFieldInput } from './learning-nongaussian-field-input';
 import { nongaussianFieldInputKey } from './learning-nongaussian-field-protocol';
 import { nongaussianFieldData } from './learning-nongaussian-field-protocol';
@@ -30,7 +31,7 @@ export class NongaussianFieldCalculationController {
   constructor(private readonly factories: { calculate: () => NongaussianFieldWorkerPort; validate: () => NongaussianFieldWorkerPort }, private readonly notify: (state: NongaussianFieldCalculationState) => void, private readonly copyOptions: Omit<QubitCopyOptions, 'active'> = {}, private readonly timeoutMilliseconds = 30000) { if (!Number.isInteger(timeoutMilliseconds) || timeoutMilliseconds < 10 || timeoutMilliseconds > 120000) throw new RangeError('Worker deadline10..120000ms required'); }
   getSnapshot() { return this.state; }
   private publish(state: NongaussianFieldCalculationState) { this.state = Object.freeze(state); this.notify(this.state); }
-  private release(port: NongaussianFieldWorkerPort | null) { if (port) { port.onmessage = null; port.onerror = null; port.onmessageerror = null; try { port.terminate(); } catch { /* Keep releasing the other port. */ } } }
+  private release(port: NongaussianFieldWorkerPort | null) { if (port) { port.onmessage = null; port.onerror = null; clearWorkerMessageError(port); try { port.terminate(); } catch { /* Keep releasing the other port. */ } } }
   private stop() { if (this.deadline !== null) clearTimeout(this.deadline); this.deadline = null; const a = this.calculation, b = this.validation; this.calculation = null; this.validation = null; this.active = null; this.release(a); this.release(b); }
   private current(t: Token) { return !this.disposed && this.active === t; }
   private fail(t: Token, error: 'invalid-input' | 'unavailable' | 'worker-failed' | 'invalid-response' | 'resource-limit' | 'timeout') {
@@ -62,7 +63,7 @@ export class NongaussianFieldCalculationController {
       if (this.current(t)) void this.validate(t, message);
     };
     port.onerror = event => { if (this.current(t) && this.calculation === port) { event.preventDefault(); this.fail(t, 'worker-failed'); } };
-    port.onmessageerror = () => { if (this.current(t) && this.calculation === port) this.fail(t, 'invalid-response'); };
+    bindWorkerMessageError(port, () => { if (this.current(t) && this.calculation === port) this.fail(t, 'invalid-response'); });
     try { port.postMessage({ version: 1, requestId: id, input }); } catch { this.fail(t, 'worker-failed'); }
     return id;
   }
@@ -81,7 +82,7 @@ export class NongaussianFieldCalculationController {
         t.accepting = true; this.validation = null; this.release(port); void this.accept(t, receipt.response);
       };
       port.onerror = event => { if (this.current(t) && this.validation === port) { event.preventDefault(); this.fail(t, 'worker-failed'); } };
-      port.onmessageerror = () => { if (this.current(t) && this.validation === port) this.fail(t, 'invalid-response'); };
+      bindWorkerMessageError(port, () => { if (this.current(t) && this.validation === port) this.fail(t, 'invalid-response'); });
       try { port.postMessage({ version: 1, requestId: t.id, input: t.input, response: owned }); } catch { this.fail(t, 'worker-failed'); }
     } catch (error) { if (this.current(t)) this.fail(t, error instanceof QubitWireLimit ? 'resource-limit' : 'invalid-response'); }
   }

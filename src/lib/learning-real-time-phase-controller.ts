@@ -1,3 +1,4 @@
+import { bindWorkerMessageError, clearWorkerMessageError } from './learning-worker-message-error';
 import {readRealTimePhaseInput,type RealTimePhaseInput} from './learning-real-time-phase-input';
 import {realTimePhaseData,realTimePhaseInputKey,realTimePhaseUnverifiedHeader,type RealTimePhaseValidatedSuccess} from './learning-real-time-phase-protocol';
 import {snapshotQubitWireInTasks,QubitWireLimit,type QubitCopyOptions} from './learning-qubit-wire';
@@ -31,7 +32,6 @@ export class RealTimePhaseCalculationController {
   private disposed=false;
   private deadline:ReturnType<typeof setTimeout>|null=null;
   private state:RealTimePhaseCalculationState=idleRealTimePhaseState();
-  private readonly messageErrorListeners=new WeakMap<RealTimePhaseWorkerPort,EventListener>();
   constructor(private readonly factories:{calculate:()=>RealTimePhaseWorkerPort;validate:()=>RealTimePhaseWorkerPort},
     private readonly notify:(state:RealTimePhaseCalculationState)=>void,
     private readonly copyOptions:Omit<QubitCopyOptions,'active'>={},private readonly timeoutMilliseconds=120000) {
@@ -41,16 +41,8 @@ export class RealTimePhaseCalculationController {
   private publish(state:RealTimePhaseCalculationState){this.state=Object.freeze(state);this.notify(this.state);}
   private current(t:Token){return !this.disposed&&this.active===t;}
   private release(port:RealTimePhaseWorkerPort|null) {
-    if(!port)return;port.onmessage=null;port.onerror=null;port.onmessageerror=null;
-    const listener=this.messageErrorListeners.get(port);
-    if(listener){port.removeEventListener?.('messageerror',listener);this.messageErrorListeners.delete(port);}
+    if(!port)return;port.onmessage=null;port.onerror=null;clearWorkerMessageError(port);
     try{port.terminate();}catch{/* Still release the other port anddeadline. */}
-  }
-  private bindMessageError(port:RealTimePhaseWorkerPort,callback:()=>void) {
-    // EventTarget works even when a browser lacks the onmessageerror IDL
-    // attribute. Property fallback supports minimal injected test ports.
-    if(port.addEventListener&&port.removeEventListener){const listener:EventListener=()=>callback();port.addEventListener('messageerror',listener);this.messageErrorListeners.set(port,listener);}
-    else port.onmessageerror=callback;
   }
   private stop() {
     if(this.deadline!==null)clearTimeout(this.deadline);this.deadline=null;
@@ -88,7 +80,7 @@ export class RealTimePhaseCalculationController {
       if(this.current(t))void this.validate(t,message);
     };
     port.onerror=event=>{if(this.current(t)&&this.calculation===port){event.preventDefault();this.fail(t,'worker-failed');}};
-    this.bindMessageError(port,()=>{if(this.current(t)&&this.calculation===port)this.fail(t,'invalid-response');});
+    bindWorkerMessageError(port,()=>{if(this.current(t)&&this.calculation===port)this.fail(t,'invalid-response');});
     try{port.postMessage({version:1,requestId:id,input});}catch{this.fail(t,'worker-failed');}
     return id;
   }
@@ -113,7 +105,7 @@ export class RealTimePhaseCalculationController {
         t.accepting=true;this.validation=null;this.release(port);void this.accept(t,receipt.response);
       };
       port.onerror=event=>{if(this.current(t)&&this.validation===port){event.preventDefault();this.fail(t,'worker-failed');}};
-      this.bindMessageError(port,()=>{if(this.current(t)&&this.validation===port)this.fail(t,'invalid-response');});
+      bindWorkerMessageError(port,()=>{if(this.current(t)&&this.validation===port)this.fail(t,'invalid-response');});
       try{port.postMessage({version:1,requestId:t.id,input:t.input,response:owned});}catch{this.fail(t,'worker-failed');}
     }catch(error){if(this.current(t))this.fail(t,error instanceof QubitWireLimit?'resource-limit':'invalid-response');}
   }

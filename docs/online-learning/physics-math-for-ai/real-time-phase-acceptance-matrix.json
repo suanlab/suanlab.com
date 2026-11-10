@@ -86,7 +86,7 @@
       "id": "workers-and-lifecycle",
       "title": "실제 계산/검산 Worker·복사/취소/복구/기한",
       "completionVerified": true,
-      "evidenceReason": "Actual browser module calculation/independent-validation Workers,controller andSSR-safe hook verified.37Node20/24tests;native32full inputs,32math+32attribution rejections. MaxN32calculation/verification started beforecancel;typing,retry,ownership,visibility-event simulation,error/unmount andtwoactual spinning-Worker deadlines checked. Native asynchronous errors/native clone/invalidURL andsynthetic messageerror events recover. EventTarget listeners fix absentIDL property andremove onrelease.50tracked native ports released. Nextproduction assets/reader remain separate;45legacy static candidates requirefollow-up."
+      "evidenceReason": "Actual browser module calculation/independent-validation Workers,controller andSSR-safe hook verified.37Node20/24tests;native32full inputs,32math+32attribution rejections. MaxN32calculation/verification started beforecancel;typing,retry,ownership,visibility-event simulation,error/unmount andtwoactual spinning-Worker deadlines checked. Native asynchronous errors/native clone/invalidURL andsynthetic messageerror events recover. EventTarget listeners fix absentIDL property andremove onrelease.50tracked native ports released. Nextproduction assets/reader remain separate;Shared follow-up completed:46controllers/66registrations use one EventTarget helper;68new/415controller/93legacy regression tests pass onNode24;132native ports released. Synthetic registration/handoff probes are not numerical or damaged-clone evidence."
     },
     {
       "id": "bilingual-manuscripts",
@@ -142,5 +142,5 @@
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
   "evidence": ".runtime/learning/real-time-phase-worker/verification.json",
-  "scopeNote": "15of23requirements verified:foundations,bilingual manuscripts,complete producer,independent whole-response gate andactual Worker/controller/hook lifecycle. SharedWorker messageerror compatibility audit,teaching UI,reader/production assets andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
+  "scopeNote": "15of23requirements verified:foundations,bilingual manuscripts,complete producer,independent whole-response gate andactual Worker/controller/hook lifecycle. SharedWorker messageerror compatibility audit verified;teaching UI,reader/production assets andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
 }

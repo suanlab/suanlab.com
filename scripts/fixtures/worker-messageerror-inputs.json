@@ -1,0 +1,1110 @@
+{
+  "learning-boltzmann-gibbs": {
+    "kind": "reference-measure-boltzmann-softmax-identifiability",
+    "parameters": {
+      "energyLevels": [
+        0,
+        9.569929616929079e-24,
+        1.9139859233858158e-23
+      ],
+      "referenceWeights": [
+        1,
+        2,
+        1
+      ],
+      "energyOffset": 0,
+      "temperature": 1
+    }
+  },
+  "learning-boundary-layer": {
+    "epsilon": "1/10",
+    "drift": "1",
+    "forcing": "0",
+    "left": "0",
+    "right": "1",
+    "probe": "1/20",
+    "panels": 32
+  },
+  "learning-brownian-bridge": {
+    "intervals": 4,
+    "time": "1",
+    "diffusion": "1",
+    "start": "0",
+    "end": "1",
+    "probe": 2,
+    "source": "0"
+  },
+  "learning-coarse": {
+    "kind": "markov-partition-lumpability-memory",
+    "parameters": {
+      "weight01": 1,
+      "weight02": 1,
+      "weight10": 1,
+      "weight12": 3,
+      "weight20": 1,
+      "weight21": 3,
+      "transitionDenominator": 4,
+      "initialWeights": [
+        1,
+        0,
+        0
+      ],
+      "liftNumerator": 1,
+      "liftDenominator": 2,
+      "steps": 8,
+      "memoryDepth": 1
+    }
+  },
+  "learning-correlations": {
+    "kind": "binary-connected-correlations-field-hessian",
+    "parameters": {
+      "couplingK": 0,
+      "fieldOne": 0,
+      "fieldTwo": 0,
+      "probeOne": 1,
+      "probeTwo": 1
+    }
+  },
+  "learning-cycle-reversal": {
+    "kind": "continuous-cycle-path-reversal",
+    "parameters": {
+      "clockwise01": 1,
+      "clockwise12": 1,
+      "clockwise20": 1,
+      "counter10": 1,
+      "counter21": 1,
+      "counter02": 1,
+      "rateDenominator": 1,
+      "states": [
+        0,
+        1,
+        2,
+        0
+      ],
+      "dwellNumerators": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "timeDenominator": 4
+    }
+  },
+  "learning-density": {
+    "kind": "finite-ensemble-density-gram-tomography",
+    "parameters": {
+      "dimension": 2,
+      "weight0": 2,
+      "weight1": 3,
+      "weight2": 0,
+      "weight3": 0,
+      "component0Real0": 1,
+      "component0Imag0": 0,
+      "component0Real1": 0,
+      "component0Imag1": 0,
+      "component0Real2": 0,
+      "component0Imag2": 0,
+      "component0Real3": 0,
+      "component0Imag3": 0,
+      "component1Real0": 1,
+      "component1Imag0": 0,
+      "component1Real1": 1,
+      "component1Imag1": 0,
+      "component1Real2": 0,
+      "component1Imag2": 0,
+      "component1Real3": 0,
+      "component1Imag3": 0,
+      "component2Real0": 0,
+      "component2Imag0": 0,
+      "component2Real1": 0,
+      "component2Imag1": 0,
+      "component2Real2": 0,
+      "component2Imag2": 0,
+      "component2Real3": 0,
+      "component2Imag3": 0,
+      "component3Real0": 0,
+      "component3Imag0": 0,
+      "component3Real1": 0,
+      "component3Imag1": 0,
+      "component3Real2": 0,
+      "component3Imag2": 0,
+      "component3Real3": 0,
+      "component3Imag3": 0,
+      "probeReal0": 1,
+      "probeImag0": 0,
+      "probeReal1": 0,
+      "probeImag1": 0,
+      "probeReal2": 0,
+      "probeImag2": 0,
+      "probeReal3": 0,
+      "probeImag3": 0,
+      "centerNumerator": 0,
+      "centerDenominator": 1,
+      "gapNumerator": 1,
+      "gapDenominator": 1
+    }
+  },
+  "learning-detailed-balance": {
+    "kind": "stationary-flux-three-state-cycle",
+    "parameters": {
+      "forwardWeight": 2,
+      "backwardWeight": 1,
+      "stayWeight": 1,
+      "initialWeights": [
+        1,
+        0,
+        0
+      ],
+      "stepCount": 3
+    }
+  },
+  "learning-duffing-secular": {
+    "lambda": "1/100",
+    "amplitude": "1",
+    "horizon": "100",
+    "probeFraction": "1"
+  },
+  "learning-ensemble": {
+    "kind": "finite-binary-reservoir-canonical-comparison",
+    "parameters": {
+      "subsystemSites": 2,
+      "reservoirSites": 2,
+      "totalExcitations": 2
+    }
+  },
+  "learning-entropy-production": {
+    "kind": "stationary-jump-path-entropy-production",
+    "parameters": {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "d": 1,
+      "e": 1,
+      "f": 1,
+      "rateDenominator": 1,
+      "timeNumerator": 4,
+      "timeDenominator": 1,
+      "sampleSteps": 16,
+      "initialState": 0,
+      "pathCode": 0,
+      "jumpCount": 3,
+      "tiltNumerator": 1,
+      "tiltDenominator": 4
+    }
+  },
+  "learning-euclidean-kernel": {
+    "intervals": 2,
+    "time": "1",
+    "mass": "1",
+    "hbar": "1",
+    "omegaSquared": "1",
+    "start": "0",
+    "end": "1",
+    "probe": 1
+  },
+  "learning-field-balance": {
+    "field": {
+      "boundary": "periodic",
+      "spacing": "1",
+      "speed": "1",
+      "quadratic": "0",
+      "quartic": "0",
+      "position": [
+        "1",
+        "0",
+        "-1"
+      ],
+      "velocity": [
+        "1",
+        "0",
+        "0"
+      ]
+    },
+    "share": "1/2"
+  },
+  "learning-field-modes": {
+    "boundary": "periodic",
+    "length": "4",
+    "speed": "1",
+    "quadratic": "0",
+    "quartic": "0",
+    "background": "0",
+    "position": [
+      "1",
+      "0",
+      "-1",
+      "0"
+    ],
+    "velocity": [
+      "1",
+      "0",
+      "0",
+      "0"
+    ],
+    "selectedBasis": 1
+  },
+  "learning-finite-size": {
+    "kind": "boundary-growth-extensivity-additivity",
+    "parameters": {
+      "dimension": 2,
+      "lengthOne": 2,
+      "lengthTwo": 2,
+      "width": 3,
+      "growthMode": "uniform-dilation",
+      "scale": 1,
+      "spinOne": 1,
+      "spinTwo": -1,
+      "couplingNumerator": 1,
+      "couplingDenominator": 1
+    }
+  },
+  "learning-fluctuation-dissipation": {
+    "kind": "thermal-ou-fluctuation-response",
+    "parameters": {
+      "mobilityNumerator": 1,
+      "stiffnessNumerator": 1,
+      "thermalEnergyNumerator": 1,
+      "coefficientDenominator": 1,
+      "angularNumerator": 0,
+      "angularDenominator": 1,
+      "forceXNumerator": 1,
+      "forceYNumerator": 0,
+      "forceDenominator": 1,
+      "impulseXNumerator": 1,
+      "impulseYNumerator": 0,
+      "impulseDenominator": 1,
+      "timeNumerator": 1,
+      "timeDenominator": 1,
+      "sampleSteps": 8
+    }
+  },
+  "learning-fokker-planck": {
+    "kind": "ornstein-uhlenbeck-density-euler-moments",
+    "parameters": {
+      "relaxationNumerator": 2,
+      "diffusionNumerator": 1,
+      "coefficientDenominator": 2,
+      "initialMeanNumerator": 8,
+      "initialVarianceNumerator": 1,
+      "initialDenominator": 4,
+      "timeNumerator": 1,
+      "timeDenominator": 1,
+      "eulerSteps": 8
+    }
+  },
+  "learning-gauge-orbits": {
+    "sites": 3,
+    "edges": [
+      {
+        "from": 0,
+        "to": 1
+      },
+      {
+        "from": 1,
+        "to": 2
+      },
+      {
+        "from": 2,
+        "to": 0
+      }
+    ],
+    "leftLinks": [
+      {
+        "cayley": "0",
+        "minusOne": false
+      },
+      {
+        "cayley": "0",
+        "minusOne": false
+      },
+      {
+        "cayley": "0",
+        "minusOne": false
+      }
+    ],
+    "rightLinks": [
+      {
+        "cayley": "-1",
+        "minusOne": false
+      },
+      {
+        "cayley": "-1",
+        "minusOne": false
+      },
+      {
+        "cayley": "0",
+        "minusOne": true
+      }
+    ],
+    "leftMatter": [
+      {
+        "real": "1",
+        "imaginary": "0"
+      },
+      {
+        "real": "1",
+        "imaginary": "0"
+      },
+      {
+        "real": "1",
+        "imaginary": "0"
+      }
+    ],
+    "rightMatter": [
+      {
+        "real": "1",
+        "imaginary": "0"
+      },
+      {
+        "real": "0",
+        "imaginary": "1"
+      },
+      {
+        "real": "-1",
+        "imaginary": "0"
+      }
+    ],
+    "forestEdges": [
+      0,
+      1
+    ],
+    "roots": [
+      0
+    ],
+    "anchors": []
+  },
+  "learning-gaussian-field": {
+    "sites": 4,
+    "boundary": "periodic",
+    "constraint": "none",
+    "massSquared": "1",
+    "stiffness": "1",
+    "temperature": "1",
+    "source": [
+      "1",
+      "0",
+      "0",
+      "0"
+    ],
+    "probes": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "learning-graph-gauge": {
+    "matter": [
+      {
+        "real": "1",
+        "imaginary": "0"
+      },
+      {
+        "real": "1",
+        "imaginary": "0"
+      },
+      {
+        "real": "1",
+        "imaginary": "0"
+      }
+    ],
+    "frames": [
+      {
+        "cayley": "0",
+        "minusOne": false
+      },
+      {
+        "cayley": "1",
+        "minusOne": false
+      },
+      {
+        "cayley": "0",
+        "minusOne": true
+      }
+    ],
+    "edges": [
+      {
+        "from": 0,
+        "to": 1,
+        "cayley": "0",
+        "minusOne": false,
+        "weight": "1"
+      },
+      {
+        "from": 1,
+        "to": 2,
+        "cayley": "0",
+        "minusOne": false,
+        "weight": "1"
+      },
+      {
+        "from": 2,
+        "to": 0,
+        "cayley": "0",
+        "minusOne": false,
+        "weight": "1"
+      }
+    ],
+    "walks": [
+      {
+        "start": 0,
+        "steps": [
+          {
+            "edge": 0,
+            "forward": true
+          },
+          {
+            "edge": 1,
+            "forward": true
+          },
+          {
+            "edge": 2,
+            "forward": true
+          }
+        ]
+      }
+    ],
+    "quadratic": "0",
+    "quartic": "0",
+    "loopCoupling": "1"
+  },
+  "learning-graph-gauss": {
+    "sites": 3,
+    "edges": [
+      {
+        "from": 0,
+        "to": 1
+      },
+      {
+        "from": 1,
+        "to": 2
+      },
+      {
+        "from": 2,
+        "to": 0
+      }
+    ],
+    "links": [
+      {
+        "cayley": "1",
+        "minusOne": false
+      },
+      {
+        "cayley": "0",
+        "minusOne": false
+      },
+      {
+        "cayley": "0",
+        "minusOne": false
+      }
+    ],
+    "frames": [
+      {
+        "cayley": "0",
+        "minusOne": false
+      },
+      {
+        "cayley": "1",
+        "minusOne": false
+      },
+      {
+        "cayley": "0",
+        "minusOne": true
+      }
+    ],
+    "electric": [
+      "1",
+      "1",
+      "1"
+    ],
+    "charges": [
+      "0",
+      "0",
+      "0"
+    ],
+    "forestEdges": [
+      0,
+      1
+    ],
+    "roots": [
+      0
+    ],
+    "anchors": [],
+    "electricWeights": [
+      "1",
+      "1",
+      "1"
+    ],
+    "magneticTerms": [
+      {
+        "start": 0,
+        "steps": [
+          {
+            "edge": 0,
+            "forward": true
+          },
+          {
+            "edge": 1,
+            "forward": true
+          },
+          {
+            "edge": 2,
+            "forward": true
+          }
+        ],
+        "weight": "1"
+      }
+    ]
+  },
+  "learning-hilbert": {
+    "kind": "complex-state-rays-basis-amplitudes",
+    "parameters": {
+      "stateReal0": 1,
+      "stateImag0": 0,
+      "stateReal1": 1,
+      "stateImag1": 0,
+      "referenceReal0": 1,
+      "referenceImag0": 0,
+      "referenceReal1": -1,
+      "referenceImag1": 0,
+      "basisReal0": 1,
+      "basisImag0": 0,
+      "basisReal1": 1,
+      "basisImag1": 0,
+      "phaseA": 1,
+      "phaseB": 1,
+      "scaleNumerator": 1,
+      "scaleDenominator": 1
+    }
+  },
+  "learning-linear-response": {
+    "kind": "markov-perturbation-linear-response",
+    "parameters": {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "d": 1,
+      "e": 1,
+      "f": 1,
+      "rateDenominator": 1,
+      "kineticNumerator": 0,
+      "kineticDenominator": 1,
+      "frequencyNumerator": 1,
+      "frequencyDenominator": 2,
+      "timeNumerator": 4,
+      "timeDenominator": 1,
+      "sampleSteps": 16,
+      "amplitudeNumerator": 1,
+      "amplitudeDenominator": 10
+    }
+  },
+  "learning-many-body": {
+    "kind": "boson-coherent",
+    "parameters": {
+      "modes": 1,
+      "cutoff0": 0,
+      "cutoff1": 0,
+      "hDenominator": 7,
+      "offset": -2,
+      "onsite0": -1,
+      "onsite1": 0,
+      "selfDensity0": 1,
+      "selfDensity1": 0,
+      "driveReal0": -2,
+      "driveImag0": 0,
+      "driveReal1": 0,
+      "driveImag1": 0,
+      "hoppingReal": 0,
+      "hoppingImag": 0,
+      "crossDensity": 0,
+      "leftMode": 0,
+      "rightMode": 0,
+      "leftCreation": 0,
+      "rightCreation": 1,
+      "alphaReal0": -3,
+      "alphaImag0": 0,
+      "alphaDenominator0": 3,
+      "alphaReal1": 0,
+      "alphaImag1": 0,
+      "alphaDenominator1": 1
+    }
+  },
+  "learning-master-equation": {
+    "kind": "two-state-continuous-time-generator-euler",
+    "parameters": {
+      "forwardNumerator": 2,
+      "backwardNumerator": 1,
+      "rateDenominator": 1,
+      "timeNumerator": 1,
+      "timeDenominator": 1,
+      "initialOneNumerator": 0,
+      "initialDenominator": 1,
+      "eulerSteps": 8
+    }
+  },
+  "learning-micro-macro": {
+    "kind": "binary-shell-multiplicity-block-counts",
+    "parameters": {
+      "sites": 4,
+      "excitations": 2,
+      "blockASites": 2,
+      "energyGap": 1e-21
+    }
+  },
+  "learning-nongaussian-field": {
+    "sites": 4,
+    "boundary": "periodic",
+    "pairFactor": "2",
+    "fourBodyFactor": "1",
+    "temperature": "1",
+    "sourceFactors": [
+      "1",
+      "1",
+      "1",
+      "1"
+    ],
+    "probes": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "learning-observable": {
+    "kind": "hermitian-spectrum-born-expectation",
+    "parameters": {
+      "stateReal0": 1,
+      "stateImag0": 0,
+      "stateReal1": 0,
+      "stateImag1": 1,
+      "axisReal0": 1,
+      "axisImag0": 0,
+      "axisReal1": 0,
+      "axisImag1": 0,
+      "basisReal0": 1,
+      "basisImag0": 0,
+      "basisReal1": 0,
+      "basisImag1": 0,
+      "centerNumerator": 0,
+      "centerDenominator": 1,
+      "gapNumerator": 1,
+      "gapDenominator": 1
+    }
+  },
+  "learning-partition": {
+    "kind": "finite-spectrum-partition-cumulant-generators",
+    "parameters": {
+      "energyLevels": [
+        0,
+        9.569929616929079e-24,
+        1.9139859233858158e-23
+      ],
+      "energyOffset": 0,
+      "temperature": 1
+    }
+  },
+  "learning-phase-transitions": {
+    "kind": "finite-curie-weiss-magnetization-symmetry",
+    "parameters": {
+      "spinCount": 2,
+      "couplingK": 0,
+      "fieldB": 0
+    }
+  },
+  "learning-probability-current": {
+    "kind": "stationary-gaussian-circulating-current",
+    "parameters": {
+      "relaxationNumerator": 1,
+      "diffusionNumerator": 1,
+      "coefficientDenominator": 1,
+      "angularNumerator": 1,
+      "angularDenominator": 1,
+      "probeXNumerator": 1,
+      "probeYNumerator": 0,
+      "spaceDenominator": 1,
+      "timeNumerator": 1,
+      "timeDenominator": 1,
+      "eulerSteps": 8
+    }
+  },
+  "learning-quantum-information": {
+    "kind": "discrimination",
+    "bloch0": [
+      "0",
+      "0",
+      "1"
+    ],
+    "bloch1": [
+      "24/25",
+      "0",
+      "-7/25"
+    ],
+    "prior": "1/2"
+  },
+  "learning-quartic-asymptotic": {
+    "coupling": "1/10",
+    "order": 12
+  },
+  "learning-qubit": {
+    "kind": "circuit",
+    "sites": 1,
+    "gates": [
+      {
+        "gate": "H",
+        "target": 0
+      },
+      {
+        "gate": "Z",
+        "target": 0
+      },
+      {
+        "gate": "H",
+        "target": 0
+      }
+    ],
+    "input": [
+      {
+        "real": [
+          "1",
+          "0"
+        ],
+        "imaginary": [
+          "0",
+          "0"
+        ]
+      },
+      {
+        "real": [
+          "0",
+          "0"
+        ],
+        "imaginary": [
+          "0",
+          "0"
+        ]
+      }
+    ]
+  },
+  "learning-real-time-phase": {
+    "mode": "chain",
+    "intervals": 4,
+    "time": "1",
+    "mass": "1",
+    "hbar": "1/2",
+    "omegaSquared": "1",
+    "start": "0",
+    "end": "1",
+    "damping": "0",
+    "probe": 2
+  },
+  "learning-regular-perturbation": {
+    "stiffness": "1",
+    "coupling": "1/10",
+    "source": "1",
+    "order": 4
+  },
+  "learning-saddle-fluctuation": {
+    "mode": "chain",
+    "intervals": 2,
+    "time": "1",
+    "mass": "1",
+    "hbar": "1",
+    "omegaSquared": "1",
+    "quartic": "1",
+    "start": "0",
+    "end": "37/32",
+    "probe": 1
+  },
+  "learning-scalar-field": {
+    "boundary": "periodic",
+    "spacing": "1",
+    "speed": "1",
+    "quadratic": "0",
+    "quartic": "0",
+    "position": [
+      "1",
+      "0",
+      "-1"
+    ],
+    "velocity": [
+      "1",
+      "0",
+      "0"
+    ]
+  },
+  "learning-spatial-spectrum": {
+    "sites": 8,
+    "boundary": "periodic",
+    "constraint": "none",
+    "massSquared": "1",
+    "speedSquared": "1",
+    "spacing": "1",
+    "temperature": "1",
+    "origin": 0,
+    "selectedMode": 1
+  },
+  "learning-spin": {
+    "kind": "spin-half-measurement-su2-rotation",
+    "parameters": {
+      "stateReal0": 1,
+      "stateImag0": 0,
+      "stateReal1": 0,
+      "stateImag1": 0,
+      "axisReal0": 1,
+      "axisImag0": 0,
+      "axisReal1": 0,
+      "axisImag1": 0,
+      "rotationReal0": 1,
+      "rotationImag0": 0,
+      "rotationReal1": 1,
+      "rotationImag1": 0,
+      "turnNumerator": 1,
+      "turnDenominator": 1,
+      "hbarNumerator": 1,
+      "hbarDenominator": 1,
+      "sampleSteps": 4
+    }
+  },
+  "learning-synchronization": {
+    "kind": "hopf-amplitude-critical-relaxation",
+    "parameters": {
+      "muNumerator": -1,
+      "muDenominator": 1,
+      "gNumerator": 1,
+      "gDenominator": 1,
+      "shearNumerator": 0,
+      "shearDenominator": 1,
+      "omegaNumerator": 2,
+      "omegaDenominator": 1,
+      "xNumerator": 1,
+      "xDenominator": 1,
+      "yNumerator": 0,
+      "yDenominator": 1,
+      "timeNumerator": 4,
+      "timeDenominator": 1,
+      "sampleSteps": 8
+    }
+  },
+  "learning-thermal": {
+    "kind": "driven-two-state-heat-work",
+    "parameters": {
+      "r0Numerator": 1,
+      "r0Denominator": 1,
+      "r1Numerator": 3,
+      "r1Denominator": 1,
+      "r2Numerator": 2,
+      "r2Denominator": 1,
+      "clock1Numerator": 1,
+      "clock1Denominator": 1,
+      "clock2Numerator": 2,
+      "clock2Denominator": 1,
+      "time1Numerator": 1,
+      "time1Denominator": 1,
+      "time2Numerator": 1,
+      "time2Denominator": 1,
+      "temperatureNumerator": 300,
+      "temperatureDenominator": 1,
+      "initialOneNumerator": 1,
+      "initialDenominator": 2
+    }
+  },
+  "learning-uncertainty": {
+    "kind": "finite-state-covariance-uncertainty",
+    "parameters": {
+      "dimension": 2,
+      "weight0": 1,
+      "weight1": 0,
+      "weight2": 0,
+      "weight3": 0,
+      "component0Real0": 5,
+      "component0Imag0": 0,
+      "component0Real1": 3,
+      "component0Imag1": 4,
+      "component0Real2": 0,
+      "component0Imag2": 0,
+      "component0Real3": 0,
+      "component0Imag3": 0,
+      "component1Real0": 0,
+      "component1Imag0": 0,
+      "component1Real1": 0,
+      "component1Imag1": 0,
+      "component1Real2": 0,
+      "component1Imag2": 0,
+      "component1Real3": 0,
+      "component1Imag3": 0,
+      "component2Real0": 0,
+      "component2Imag0": 0,
+      "component2Real1": 0,
+      "component2Imag1": 0,
+      "component2Real2": 0,
+      "component2Imag2": 0,
+      "component2Real3": 0,
+      "component2Imag3": 0,
+      "component3Real0": 0,
+      "component3Imag0": 0,
+      "component3Real1": 0,
+      "component3Imag1": 0,
+      "component3Real2": 0,
+      "component3Imag2": 0,
+      "component3Real3": 0,
+      "component3Imag3": 0,
+      "aReal00": 0,
+      "aReal01": 1,
+      "aReal02": 0,
+      "aReal03": 0,
+      "aReal11": 0,
+      "aReal12": 0,
+      "aReal13": 0,
+      "aReal22": 0,
+      "aReal23": 0,
+      "aReal33": 0,
+      "aImag01": 0,
+      "aImag02": 0,
+      "aImag03": 0,
+      "aImag12": 0,
+      "aImag13": 0,
+      "aImag23": 0,
+      "aDenominator": 1,
+      "bReal00": 0,
+      "bReal01": 0,
+      "bReal02": 0,
+      "bReal03": 0,
+      "bReal11": 0,
+      "bReal12": 0,
+      "bReal13": 0,
+      "bReal22": 0,
+      "bReal23": 0,
+      "bReal33": 0,
+      "bImag01": -1,
+      "bImag02": 0,
+      "bImag03": 0,
+      "bImag12": 0,
+      "bImag13": 0,
+      "bImag23": 0,
+      "bDenominator": 1,
+      "mixUNumerator": 1,
+      "mixUDenominator": 1,
+      "mixVNumerator": 1,
+      "mixVDenominator": 1
+    }
+  },
+  "learning-unitary": {
+    "kind": "two-level-spectral-schrodinger-evolution",
+    "parameters": {
+      "stateReal0": 1,
+      "stateImag0": 0,
+      "stateReal1": 0,
+      "stateImag1": 0,
+      "axisReal0": 1,
+      "axisImag0": 0,
+      "axisReal1": 1,
+      "axisImag1": 0,
+      "centerNumerator": 0,
+      "centerDenominator": 1,
+      "gapNumerator": 1,
+      "gapDenominator": 1,
+      "timeNumerator": 1,
+      "timeDenominator": 1,
+      "hbarNumerator": 1,
+      "hbarDenominator": 1,
+      "sampleSteps": 4,
+      "eulerSteps": 16
+    }
+  },
+  "learning-tensor": {
+    "kind": "bipartite-pure-schmidt-partial-trace",
+    "parameters": {
+      "dimensionA": 1,
+      "dimensionB": 1,
+      "stateReal00": 2,
+      "stateImag00": -2,
+      "stateReal01": 0,
+      "stateImag01": 0,
+      "stateReal02": 0,
+      "stateImag02": 0,
+      "stateReal03": 0,
+      "stateImag03": 0,
+      "stateReal10": 0,
+      "stateImag10": 0,
+      "stateReal11": 0,
+      "stateImag11": 0,
+      "stateReal12": 0,
+      "stateImag12": 0,
+      "stateReal13": 0,
+      "stateImag13": 0,
+      "stateReal20": 0,
+      "stateImag20": 0,
+      "stateReal21": 0,
+      "stateImag21": 0,
+      "stateReal22": 0,
+      "stateImag22": 0,
+      "stateReal23": 0,
+      "stateImag23": 0,
+      "stateReal30": 0,
+      "stateImag30": 0,
+      "stateReal31": 0,
+      "stateImag31": 0,
+      "stateReal32": 0,
+      "stateImag32": 0,
+      "stateReal33": 0,
+      "stateImag33": 0,
+      "aProbeReal0": 1,
+      "aProbeImag0": 1,
+      "aProbeReal1": 0,
+      "aProbeImag1": 0,
+      "aProbeReal2": 0,
+      "aProbeImag2": 0,
+      "aProbeReal3": 0,
+      "aProbeImag3": 0,
+      "bProbeReal0": 1,
+      "bProbeImag0": 1,
+      "bProbeReal1": 0,
+      "bProbeImag1": 0,
+      "bProbeReal2": 0,
+      "bProbeImag2": 0,
+      "bProbeReal3": 0,
+      "bProbeImag3": 0
+    }
+  },
+  "learning-quantum-variational": {
+    "kind": "finite-state-rayleigh-energy-variance",
+    "parameters": {
+      "dimension": 1,
+      "hDenominator": 1,
+      "hReal00": -3,
+      "hReal01": 0,
+      "hImag01": 0,
+      "hReal02": 0,
+      "hImag02": 0,
+      "hReal03": 0,
+      "hImag03": 0,
+      "hReal11": 0,
+      "hReal12": 0,
+      "hImag12": 0,
+      "hReal13": 0,
+      "hImag13": 0,
+      "hReal22": 0,
+      "hReal23": 0,
+      "hImag23": 0,
+      "hReal33": 0,
+      "stateReal0": 2,
+      "stateImag0": -1,
+      "stateReal1": 0,
+      "stateImag1": 0,
+      "stateReal2": 0,
+      "stateImag2": 0,
+      "stateReal3": 0,
+      "stateImag3": 0,
+      "directionReal0": 1,
+      "directionImag0": 2,
+      "directionReal1": 0,
+      "directionImag1": 0,
+      "directionReal2": 0,
+      "directionImag2": 0,
+      "directionReal3": 0,
+      "directionImag3": 0,
+      "pathNumerator": 1,
+      "pathDenominator": 3
+    }
+  }
+}

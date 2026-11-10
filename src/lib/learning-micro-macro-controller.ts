@@ -1,3 +1,4 @@
+import { bindWorkerMessageError, clearWorkerMessageError } from './learning-worker-message-error';
 import { isMicroMacroInput, microMacroInputKey, microMacroRecord, snapshotMicroMacroInput,
   type MicroMacroInput, type MicroMacroSuccess } from './learning-micro-macro-protocol';
 export type MicroMacroWorkerPort = Pick<Worker, 'postMessage' | 'terminate' | 'onmessage' | 'onerror' | 'onmessageerror'>;
@@ -26,7 +27,7 @@ export class MicroMacroCalculationController {
   private publish(state: MicroMacroCalculationState) { this.state = Object.freeze(state); this.notify(this.state); }
   private stop() {
     const port = this.worker; this.worker = null; this.active = null;
-    if (port) { port.onmessage = null; port.onerror = null; port.onmessageerror = null; port.terminate(); }
+    if (port) { port.onmessage = null; port.onerror = null; clearWorkerMessageError(port); port.terminate(); }
   }
   run(value: unknown): number | null {
     if (this.disposed) return null;
@@ -61,7 +62,7 @@ export class MicroMacroCalculationController {
       this.stop(); this.publish({ status: 'ready', requestId: id, input, inputKey, response: message as unknown as MicroMacroSuccess });
     };
     port.onerror = event => { event.preventDefault(); fail('worker-failed'); };
-    port.onmessageerror = () => fail('invalid-response');
+    bindWorkerMessageError(port, () => fail('invalid-response'));
     try { port.postMessage({ version: 1, requestId: id, input }); }
     catch { fail('worker-failed'); }
     return id;

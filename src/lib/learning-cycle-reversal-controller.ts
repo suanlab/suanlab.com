@@ -1,3 +1,4 @@
+import { bindWorkerMessageError, clearWorkerMessageError } from './learning-worker-message-error';
 import { isReversalInput, reversalInputKey, reversalRecord, snapshotReversalInput, isReversalSuccessForInput,
   type ReversalInput, type ReversalSuccess } from './learning-cycle-reversal-protocol';
 export type ReversalWorkerPort = Pick<Worker, 'postMessage' | 'terminate' | 'onmessage' | 'onerror' | 'onmessageerror'>;
@@ -21,7 +22,7 @@ export class ReversalCalculationController {
   private publish(state: ReversalCalculationState) { this.state = Object.freeze(state); this.notify(this.state); }
   private stop() {
     const port = this.worker; this.worker = null; this.active = null;
-    if (port) { port.onmessage = null; port.onerror = null; port.onmessageerror = null; port.terminate(); }
+    if (port) { port.onmessage = null; port.onerror = null; clearWorkerMessageError(port); port.terminate(); }
   }
   run(value: unknown): number | null {
     if (this.disposed) return null;
@@ -59,7 +60,7 @@ export class ReversalCalculationController {
       this.stop(); this.publish({ status: 'ready', requestId: id, input, inputKey, response: message as unknown as ReversalSuccess });
     };
     port.onerror = event => { event.preventDefault(); fail('worker-failed'); };
-    port.onmessageerror = () => fail('invalid-response');
+    bindWorkerMessageError(port, () => fail('invalid-response'));
     try { port.postMessage({ version: 1, requestId: id, input }); }
     catch { fail('worker-failed'); }
     return id;
