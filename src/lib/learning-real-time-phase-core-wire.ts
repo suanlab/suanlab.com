@@ -19,7 +19,8 @@ export function realTimeChainCoreWire(r:ReturnType<typeof buildRealTimeChainExac
     map:matrix(r.map.total),refinements:r.refinements.map(row=>({multiplier:row.multiplier,intervals:row.intervals,map:matrix(row.map)})),
     regulator:r.regulator?{layout:'symmetric-complex-continuant' as const,dimension:r.d,
       continuants:r.regulator.theta.map(complex),distancePowers:r.regulator.distancePowers.map(complex),
-      determinant:complex(r.regulator.determinant),pivots:r.regulator.pivots.map(complex),
+      determinant:complex(r.regulator.determinant),pivotLayout:'successive-continuant-ratios' as const,
+      pivotRootBranch:'positive-real-part-per-ratio' as const,
       mean:r.regulator.mean.map(complex),exponent:complex(r.regulator.exponent)}:null};
 }
 export function realTimePacketCoreWire(r:ReturnType<typeof buildRealTimePacketExact>) {

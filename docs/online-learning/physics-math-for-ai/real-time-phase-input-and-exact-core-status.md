@@ -1,5 +1,7 @@
 # 실시간 위상·고전극한: 입력·큰 위상·정확한 유한 계산
 
+이전 exact core 단계의 기록이다. 후속 [세 모드 수치 producer](real-time-phase-numerics-status.md)에서 실제 진폭/위상·Airy·전체 응답과 전송 상계를 검증했고, pivot 중복 전송은 ratio 인수로 바꾸었다. 아래 수치와 미완료 표시는 당시 단계의 증거다.
+
 2026-11-10. [상세 한영 원고](real-time-phase-manuscript-status.md) 다음으로 reader용 소유 입력, 큰 유리수 위상, 유한 이차 사슬/파동묶음의 정확한 계산과 손실 없는 행렬 전송을 구현했다. **전체 생산 계산기 완료가 아니다.** Airy 인증 계산, 실제 kernel/packet 진폭·위상 관찰, 전체 응답 정밀도/비용과 독립 응답 검산·Worker·화면·reader가 남는다.
 
 ## 입력과 교육 예제

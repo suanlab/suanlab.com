@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "owned-inputs-adaptive-phase-and-exact-core-verified",
+  "stage": "three-mode-numerical-producer-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -49,27 +49,32 @@
     {
       "id": "owned-input-and-budget",
       "title": "세 mode 소유 입력·전체 한도·전송 비용",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Owned3-mode inputs retainN2..32/12digit fractions/independent physicalu,hbar. Full response32profiles onNode20/24,max1379949string chars and1431270bytes. Rational-height accounting caps chain1619514chars andsingle22041;prior limits unchanged. Worker deadlines remain separate."
     },
     {
       "id": "chain-numerics",
       "title": "전체 사슬·signature/초점·조절자 생산 수치",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Exact finite core plus certified quadratic kernel amplitude/phase/log,parity-delta atcaustics,Abel pivot-root branch/scaled damping andall symmetric inverse/complex-response observations verified. Allfour Fresnel quadrants checked atzero action."
     },
     {
       "id": "packet-numerics",
       "title": "정규화 packet·complex width/phase·두 족 생산 수치",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Full symmetrized covariance/Mobius width,normalization,metaplectic/center phase andall65samples per8families verified against independent Gaussian formulas;520samples,caustic parity andboth width families retained."
     },
     {
       "id": "fold-numerics",
       "title": "전체 물리 u/ℏ의 Airy 구간·scaled/log 표현",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Certified Gamma origin computation,central ODE andreal-axis asymptotics withanalytic tails,physicalu/hbar extrema,central/asymptotic overlap atboth signs64/68/72,stationary interference andscaled/exponent/log representations verified."
     },
     {
       "id": "independent-references",
       "title": "독립 고정밀 기준·최대/경계 격자",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Independent exact dense Python references retained.25wave/40Airy mpmath diagnostic cases atmultiple precisions coverextrema,caustics/near-caustics,zero pivot,underflow,zeros andoverlap.4031symmetric observations checked against independently reconstructed exact factors;mpmath cells are explicitly not certified reference intervals."
     },
     {
       "id": "independent-response-validator",
@@ -129,11 +134,11 @@
     }
   ],
   "requirementCount": 23,
-  "requirementsVerified": 8,
+  "requirementsVerified": 13,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-phase-core/verification.json",
-  "scopeNote": "8of23requirements verified. Owned3-mode inputs,adaptive phase rotation,exact finite chain/packet cores andall matrix cells reconstructed from lossless transport factors verified. Core-only wire measured;full production observations/Airy,response budget,independent response validator,Workers,teaching UI,reader andunit/topic audits remain;no newregistered unit."
+  "evidence": ".runtime/learning/real-time-phase-numerics/verification.json",
+  "scopeNote": "13of23requirements verified:primary-source/mathematical foundations,bilingual manuscripts andcomplete finite numerical producer including full input/precision/wire accounting andindependent references. Independent whole-response validator,actual Workers,teaching UI,reader andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
 }

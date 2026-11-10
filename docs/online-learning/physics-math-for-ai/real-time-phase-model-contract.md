@@ -1,6 +1,6 @@
 # 실시간 위상·고전극한: 유한 수학 모형 계약
 
-2026-11-10. `real-time-phase-and-classical-limit`의 [자료 검토](real-time-phase-primary-source-audit.md) 이후 직접 유도한 계약이다. 이 문서는 수학 설계 기준이며 후속 [한영 원고](real-time-phase-manuscript-status.md)와 [소유 입력·큰 위상·정확한 유한 core](real-time-phase-input-and-exact-core-status.md)를 구현했다. 전체 생산 관찰/Airy·응답 비용·독립 응답 검산·Worker·화면·reader는 남으며 `modelFinalized=false`다. 기존600단원에 이 준비 작업을 새 단원으로 세지 않는다.
+2026-11-10. `real-time-phase-and-classical-limit`의 [자료 검토](real-time-phase-primary-source-audit.md) 이후 직접 유도한 계약이다. 이 문서는 수학 설계 기준이며 후속 [한영 원고](real-time-phase-manuscript-status.md)와 [소유 입력·큰 위상·정확한 유한 core](real-time-phase-input-and-exact-core-status.md)를 구현했다. 후속 [세 모드 수치 producer](real-time-phase-numerics-status.md)와 [정밀도/전송 계약](real-time-phase-producer-budget.md)을 구현·검증했다. 물리 모형은 확정했으며 독립 전체 응답 검산·Worker·화면·reader는 남는다. 기존600단원에 이 준비 작업을 새 단원으로 세지 않는다.
 
 ## 1. 실시간 양끝 작용과 유니터리 유한 분할
 
@@ -160,7 +160,7 @@ K≥1에서 cos의 전역 Taylor 부등식과 Gaussian 모멘트는
 
 를 준다. R의 부호는 첫 생략항의 부호다. `c_k=(3/2)^k u_k`는 DLMF의 계수와 독립하게 대조했다.
 
-Ai(−x)의 두 sin/cos 계열은 DLMF9.7.9/§9.7(iii)의 조건에 맞춰 각각 첫 생략항으로 감싼다. 중앙 경로/큰 인수 경로의 경계 후보는 |z|64이며, x64의160번째 생략항이2^−540보다 작음을 정확분수로 확인했다. **전체 생산판의 정밀도·상수 인증·겹침 대조·비용 검증은 아직 완료하지 않았다.**
+Ai(−x)의 두 sin/cos 계열은 DLMF9.7.9/§9.7(iii)의 조건에 맞춰 각각 첫 생략항으로 감싼다. 중앙 경로/큰 인수 경로의 경계 후보는 |z|64이며, x64의160번째 생략항이2^−540보다 작음을 정확분수로 확인했다. 후속 producer에서는 Gamma 적분의 원점 상수·중앙/실수 점근 구간·겹침과 전송 비용을 검증했다. 정확한 구현/정밀도와 이후 남는 독립 응답 검산·실제 Worker 비용은 [수치 단계 기록](real-time-phase-numerics-status.md)을 따른다.
 
 u<0의 작은 진폭은 `J=e^(−ζ) J_scaled`와 ζ, 필요하면 log 크기로 보존한다. underflow를 정확한0으로 부르지 않는다. 진동 영역에서 구간이0을 포함하면 상쇄를 미해결로 표시하며 상대 오차나 log 크기를 거짓 보증하지 않는다.
 
@@ -174,7 +174,7 @@ packet의 width는 fixed-variance에서는σ², hbar-scaled-variance에서는 r=
 
 입력 모듈과 reader에는 정확 산술 엔진을 가져오지 않는다. 전체 Hessian/역응답·조절한 복소 응답은 공통 determinant/정수 cofactor·대칭 dictionary 등 손실 없는 표현으로 보존할 수 있다. 모든 성분의 실제 귀속/대칭/경계/공통 척도를 검산한다. 특이점에서 역행렬을 만들어내지 않는다.
 
-기존 wire 한도(단일문자열65536자·전체문자열2000000자·배열256·node100000·깊이32)를 유지하고 최대 원래 입력으로 실제 비용을 측정해야 한다. 아직 wire 표현/계산 budget을 확정하지 않았다. 큰 작용/ℏ 때문에 이전 위상 엔진의±2^64 radian 한도를 조용히 적용하거나 입력을 줄이지 않는다. 정확한 위상과 인증된π/argument reduction의 적응 정밀도를 준비한다. 4096/8192비트 작업과512비트 관찰은 검토안이며 생산 검증이 아니다.
+기존 wire 한도(단일문자열65536자·전체문자열2000000자·배열256·node100000·깊이32)를 유지하고 최대 원래 입력으로 실제 비용을 측정해야 한다. 후속 producer는 exact continuant 인수·공통 binary scale의 전체 행렬 관찰로 이 한도를 유지했다. chain/packet8192·Airy4096작업과512관찰,1024위상과 적응 π reduction을 사용한다. [생산 계약](real-time-phase-producer-budget.md)의 상계와 실제32입력 측정을 따른다. 큰 작용/ℏ 때문에 이전±2^64 한도를 적용하거나 입력을 줄이지 않았다. 실제 검산/Worker 기한은 별도 검증으로 남는다.
 
 ## 11. 독립 검증과 교육 산출물
 
