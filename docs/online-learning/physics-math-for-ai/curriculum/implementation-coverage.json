@@ -9608,7 +9608,7 @@
       "nextUnitPreparation": {
         "id": "real-time-phase-and-classical-limit",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "independent-exact-and-matrix-observations-verified",
+        "stage": "independent-unregulated-wave-observations-verified",
         "registeredUnitCount": 0,
         "readerRegistered": false,
         "homepageIntegrated": false,
@@ -9640,9 +9640,9 @@
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/real-time-phase-primary-source-audit.md",
         "modelContract": "docs/online-learning/physics-math-for-ai/real-time-phase-model-contract.md",
         "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/real-time-phase-acceptance-matrix.json",
-        "report": "docs/online-learning/physics-math-for-ai/real-time-phase-matrix-validator-status.md",
-        "evidence": ".runtime/learning/real-time-exact-check/verification.json",
-        "nextStage": "independent-wave-and-airy-response-validation",
+        "report": "docs/online-learning/physics-math-for-ai/real-time-phase-unregulated-validator-status.md",
+        "evidence": ".runtime/learning/real-time-unregulated-wave-check/verification.json",
+        "nextStage": "independent-abel-packet-and-airy-response-validation",
         "workingPrecisionAndWireBudgetFinalized": true,
         "bilingualDraftFiles": 2,
         "sectionsPerLanguage": 33,
@@ -9704,7 +9704,15 @@
         "matrixObservationChainCases": 17,
         "matrixRealComponentsVerified": 2537,
         "matrixComplexComponentsVerified": 2988,
-        "matrixObservationEvidence": ".runtime/learning/real-time-matrix-check/verification.json"
+        "matrixObservationEvidence": ".runtime/learning/real-time-matrix-check/verification.json",
+        "independentCheckerIntervalImplemented": true,
+        "independentCheckerIntervalTestsPassed": 33,
+        "unregulatedWaveObservationCheckComplete": true,
+        "unregulatedWaveObservationTestsPassed": 24,
+        "unregulatedWaveChainCases": 17,
+        "unregulatedPrimitiveMutationRejections": 53,
+        "independentWavePartialScope": "unregulated-chain-wave-only",
+        "unregulatedWaveStatus": "docs/online-learning/physics-math-for-ai/real-time-phase-unregulated-validator-status.md"
       },
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
