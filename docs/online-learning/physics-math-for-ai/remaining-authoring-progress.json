@@ -14256,11 +14256,11 @@
           "unitIds": [],
           "preparation": {
             "unitId": "finite-field-measure-and-thermal-free-energy",
-            "status": "producer-and-native-workers-verified",
+            "status": "bilingual-visual-lab-verified-unregistered",
             "primarySourceAudit": "docs/online-learning/physics-math-for-ai/statistical-field-theory-primary-source-audit.md",
             "contract": "docs/online-learning/physics-math-for-ai/thermal-field-model-contract.md",
-            "report": "docs/online-learning/physics-math-for-ai/thermal-field-producer-verification.md",
-            "evidence": ".runtime/learning/thermal-field-workers/native-verification.json",
+            "report": "docs/online-learning/physics-math-for-ai/thermal-field-visual-verification.md",
+            "evidence": ".runtime/learning/thermal-field-visuals/verification.json",
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/finite-field-measure-and-thermal-free-energy.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/finite-field-measure-and-thermal-free-energy.en.md"
@@ -14274,7 +14274,7 @@
             "homepageIntegrated": false,
             "actualBrowserVerified": false,
             "originalTopicComplete": false,
-            "nextAction": "thermal-field-concepts-visualizations-guided-experiments-and-quiz",
+            "nextAction": "thermal-field-reader-storage-preservation-and-production-integration",
             "foundationReport": "docs/online-learning/physics-math-for-ai/thermal-field-foundation.md",
             "foundationModelsCompared": 52,
             "nativeWorkersVerified": true,
@@ -14283,7 +14283,16 @@
             "producer": "src/lib/learning-thermal-field-evaluator.ts",
             "independentGate": "src/lib/learning-thermal-field-validation-evaluator.ts",
             "controller": "src/lib/learning-thermal-field-controller.ts",
-            "hook": "src/components/learning/use-thermal-field-calculation.ts"
+            "hook": "src/components/learning/use-thermal-field-calculation.ts",
+            "producerVerificationReport": "docs/online-learning/physics-math-for-ai/thermal-field-producer-verification.md",
+            "visualLab": "src/components/learning/thermal-field-lab.tsx",
+            "concept": "src/components/learning/thermal-field-concept.tsx",
+            "teaching": "src/data/thermal-field-teaching.ts",
+            "isolatedReactPreviewVerified": true,
+            "previewStates": 8,
+            "conceptSteps": 6,
+            "guidedExperiments": 6,
+            "explainedQuestions": 8
           }
         },
         {
@@ -14308,8 +14317,8 @@
         }
       ],
       "verification": null,
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/thermal-field-producer-verification.md",
-      "currentPreparationEvidence": ".runtime/learning/thermal-field-workers/native-verification.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/thermal-field-visual-verification.md",
+      "currentPreparationEvidence": ".runtime/learning/thermal-field-visuals/verification.json",
       "lastIntegratedPreparation": {
         "id": "saddle-fluctuation-and-nongaussian-approximation",
         "originalTopic": "path integral의 정의·근사",
@@ -14764,7 +14773,7 @@
           "content/learning/physics-math-for-ai/real-time-phase-and-classical-limit.en.md"
         ]
       },
-      "nextAction": "thermal-field-concepts-visualizations-guided-experiments-and-quiz",
+      "nextAction": "thermal-field-reader-storage-preservation-and-production-integration",
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
         "originalTopic": "path integral의 정의·근사",
@@ -14935,11 +14944,11 @@
       },
       "statisticalFieldTheoryPreparation": {
         "unitId": "finite-field-measure-and-thermal-free-energy",
-        "status": "producer-and-native-workers-verified",
+        "status": "bilingual-visual-lab-verified-unregistered",
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/statistical-field-theory-primary-source-audit.md",
         "contract": "docs/online-learning/physics-math-for-ai/thermal-field-model-contract.md",
-        "report": "docs/online-learning/physics-math-for-ai/thermal-field-producer-verification.md",
-        "evidence": ".runtime/learning/thermal-field-workers/native-verification.json",
+        "report": "docs/online-learning/physics-math-for-ai/thermal-field-visual-verification.md",
+        "evidence": ".runtime/learning/thermal-field-visuals/verification.json",
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/finite-field-measure-and-thermal-free-energy.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/finite-field-measure-and-thermal-free-energy.en.md"
@@ -14953,7 +14962,7 @@
         "homepageIntegrated": false,
         "actualBrowserVerified": false,
         "originalTopicComplete": false,
-        "nextAction": "thermal-field-concepts-visualizations-guided-experiments-and-quiz",
+        "nextAction": "thermal-field-reader-storage-preservation-and-production-integration",
         "foundationReport": "docs/online-learning/physics-math-for-ai/thermal-field-foundation.md",
         "foundationModelsCompared": 52,
         "nativeWorkersVerified": true,
@@ -14962,7 +14971,16 @@
         "producer": "src/lib/learning-thermal-field-evaluator.ts",
         "independentGate": "src/lib/learning-thermal-field-validation-evaluator.ts",
         "controller": "src/lib/learning-thermal-field-controller.ts",
-        "hook": "src/components/learning/use-thermal-field-calculation.ts"
+        "hook": "src/components/learning/use-thermal-field-calculation.ts",
+        "producerVerificationReport": "docs/online-learning/physics-math-for-ai/thermal-field-producer-verification.md",
+        "visualLab": "src/components/learning/thermal-field-lab.tsx",
+        "concept": "src/components/learning/thermal-field-concept.tsx",
+        "teaching": "src/data/thermal-field-teaching.ts",
+        "isolatedReactPreviewVerified": true,
+        "previewStates": 8,
+        "conceptSteps": 6,
+        "guidedExperiments": 6,
+        "explainedQuestions": 8
       }
     },
     {
@@ -15280,11 +15298,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One unregistered bilingual draft for finite-field-measure-and-thermal-free-energy has exact mathematical checks and independently validated producer/native-Worker responses. All601registered units/1202registered manuscripts retain prior introductory verification. Actual reader,visualization,Next assets andunit audit remain pending;the46original introductory topics are not yet complete.",
+  "authoredUnverifiedNewUnitCountDefinition": "One unregistered bilingual thermal-field draft has exact math,independent producer/native-Worker verification andan8-state isolatedReact visual lab with6concepts/6guides/8questions verified. The actualreader,storage,Next production assets,preservation andunit audit remain pending. All601registered units/1202registered manuscripts retain prior introductory verification;46original introductory topics remain unfinished.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
   "nextAuthoringUnitId": "finite-field-measure-and-thermal-free-energy",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "thermal-field-concepts-visualizations-guided-experiments-and-quiz",
+  "nextAction": "thermal-field-reader-storage-preservation-and-production-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

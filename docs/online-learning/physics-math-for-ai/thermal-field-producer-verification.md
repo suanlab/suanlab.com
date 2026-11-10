@@ -2,6 +2,8 @@
 
 2026-11-11. [첫 수학 기반](thermal-field-foundation.md) 다음 단계다. 한영 21절 초안은 등록 전 상태로 유지하고, 계산·입력·구간 관측·Worker를 구현했다. 이 보고서는 실제 교재 reader나 홈페이지 새 단원의 완료 보고가 아니다.
 
+후속 [시각화·안내 실험·해설 검증](thermal-field-visual-verification.md)도 진행했다. 아래는 계산·Worker 단계의 기록이다.
+
 ## 실제 구현
 
 `learning-thermal-field-input.ts`는 descriptor로 필드를 읽고 분수를 기약형으로 정규화·동결한다. 1/2차원과 평균 영 제약, 온도 경로 jet, 기준 측도를 포함한 14개 명시적 예를 제공한다. 수학적 발산은 입력 오류와 별개인 결과다.

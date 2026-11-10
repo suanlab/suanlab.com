@@ -4,7 +4,7 @@ import {Button} from '@/components/ui/button';
 import type {GaussianFieldView} from '@/lib/learning-gaussian-field-view';
 import {readLabPalette} from './lab-palette';
 import type {GaussianMatrixRenderer} from './gaussian-field-matrix-engine';
-export default function GaussianFieldMatrixPlot({model:m,language}:{model:GaussianFieldView;language:'ko'|'en'}){
+export default function GaussianFieldMatrixPlot({model:m,language}:{model:Pick<GaussianFieldView,'n'|'points'|'maximum'>;language:'ko'|'en'}){
  const t=(ko:string,en:string)=>language==='ko'?ko:en,id=useId(),frame=useRef<HTMLElement>(null),host=useRef<HTMLDivElement>(null),renderer=useRef<GaussianMatrixRenderer>();
  const latest=useRef(m);latest.current=m;
  const[flat,setFlat]=useState(true),[visible,setVisible]=useState(false),[state,setState]=useState<'loading'|'2d'|'3d'>('loading'),[attempt,setAttempt]=useState(0);

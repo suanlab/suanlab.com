@@ -1,0 +1,52 @@
+'use client';
+import React, { useId, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { thermalFieldLabels, thermalFieldExperiments, thermalFieldQuestions } from '@/data/thermal-field-teaching';
+import { thermalFieldDefault, thermalFieldExamples, type ThermalFieldInput } from '@/lib/learning-thermal-field-input';
+import { thermalFieldInputKey } from '@/lib/learning-thermal-field-protocol';
+import { thermalDraft, parseThermalDraft } from '@/lib/learning-thermal-field-view';
+import { useThermalFieldCalculation } from './use-thermal-field-calculation';
+import ThermalFieldConcept from './thermal-field-concept';
+import ThermalFieldResultView from './thermal-field-result';
+import '@/styles/thermal-field-lab.css';
+
+export default function ThermalFieldLab({ language }: { language: 'ko' | 'en' }) {
+  const id = useId(), t = (ko: string, en: string) => language === 'ko' ? ko : en;
+  const [input, setInput] = useState<ThermalFieldInput>(thermalFieldDefault), [draft, setDraft] = useState(() => thermalDraft(thermalFieldDefault));
+  const [running, setRunning] = useState(true), [invalid, setInvalid] = useState(false), [guide, setGuide] = useState(0), [explain, setExplain] = useState(false), [answers, setAnswers] = useState<Record<number, number>>({});
+  const calculation = useThermalFieldCalculation(input, running), key = thermalFieldInputKey(input), currentGuide = thermalFieldExperiments[guide];
+  const example = thermalFieldExamples.find(x => thermalFieldInputKey(x.input) === key);
+  const choose = (value: ThermalFieldInput) => { setInput(value); setDraft(thermalDraft(value)); setInvalid(false); setRunning(true); calculation.retry(); };
+  const derivatives = { value: t('값', 'Value'), first: t('1차 온도 미분', 'First temperature derivative'), second: t('2차 온도 미분', 'Second temperature derivative') };
+  return <section className="ai-qubit-lab scalar-lab information-lab thermal-field-lab" lang={language} aria-labelledby={`${id}-title`} data-thermal-status={calculation.status}>
+    <h2 id={`${id}-title`}>{t('유한 장의 측도와 열 자유에너지', 'Finite field measure and thermal free energy')}</h2>
+    <p>{t('같은 확률 그림이 같은 절대 자유에너지나 같은 열 미분을 뜻하는지 실험해 보세요. 유한 Gaussian 장을 계산하며 온도 경로와 기준 측도를 명시합니다.', 'Explore whether identical probability plots imply identical absolute free energies or thermal derivatives. This finite Gaussian experiment states its local temperature path and reference measure.')}</p>
+    <ThermalFieldConcept language={language}/>
+    <h3>{t('먼저 예측하고 비교하기', 'Predict first, then compare')}</h3>
+    <label className="qubit-field" htmlFor={`${id}-guide`}>{t('안내 실험', 'Guided experiment')}<select id={`${id}-guide`} aria-label={t('안내 실험', 'Guided experiment')} value={guide} onChange={e => { setGuide(Number(e.target.value)); setExplain(false); }}>{thermalFieldExperiments.map((g, i) => <option key={i} value={i}>{g.title[language]}</option>)}</select></label>
+    <p>{currentGuide.predict[language]}</p><div className="qubit-actions" role="group" aria-label={t('안내 예제', 'Guided examples')}>{currentGuide.examples.map(ex => <Button variant="outline" key={ex} aria-pressed={example?.id === ex} onClick={() => choose(thermalFieldExamples.find(x => x.id === ex)!.input)}>{thermalFieldLabels[ex][language]}</Button>)}</div>
+    <Button variant="outline" aria-expanded={explain} onClick={() => setExplain(x => !x)}>{t('해설 보기', 'Show explanation')}</Button>{explain && <p data-thermal-guide-explanation>{currentGuide.explanation[language]}</p>}
+    <label className="qubit-field" htmlFor={`${id}-example`}>{t('전체 예제', 'All examples')}<select id={`${id}-example`} aria-label={t('전체 예제', 'All examples')} value={example?.id ?? 'custom'} onChange={e => { const chosen = thermalFieldExamples.find(x => x.id === e.target.value); if (chosen) choose(chosen.input); }}><option value="custom" disabled>{t('직접 입력', 'Custom input')}</option>{thermalFieldExamples.map(x => <option key={x.id} value={x.id}>{thermalFieldLabels[x.id][language]}</option>)}</select></label>
+    <form onSubmit={e => { e.preventDefault(); const parsed = parseThermalDraft(draft); if (parsed) choose(parsed); else setInvalid(true); }}>
+      <h3>{t('공간과 온도 경로 직접 입력', 'Edit geometry and the thermal path')}</h3>
+      <p>{t('정수 또는 분수를 사용하며 분자·분모는 각각18자리 이내입니다. 소수·지수 표기는 받지 않습니다. 각 축2점 이상, 전체32점 이하입니다. T,a,φ*>0, κ≥0이며 음의 r도 입력할 수 있습니다. 모든 미분은 현재 T에서의 국소 값입니다.', 'Use integers or fractions with at most18 numerator/denominator digits; decimals and exponent notation are not accepted. Each axis has at least2 sites; at most32 sites total. T,a,φ*>0 and κ≥0; negative r is allowed. Derivatives specify a local path at the current T.')}</p>
+      <div className="scalar-inputs">
+        <label className="qubit-field" htmlFor={`${id}-shape`}>{t('격자 축 길이', 'Grid axis lengths')}<input id={`${id}-shape`} value={draft.shape} maxLength={12} onChange={e => setDraft(d => ({ ...d, shape: e.target.value }))}/></label>
+        <label className="qubit-field" htmlFor={`${id}-boundary`}>{t('경계조건', 'Boundary condition')}<select id={`${id}-boundary`} aria-label={t('경계조건', 'Boundary condition')} value={draft.boundary} onChange={e => setDraft(d => ({ ...d, boundary: e.target.value as ThermalFieldInput['boundary'] }))}><option value="open">{t('열린 경계', 'Open')}</option><option value="periodic">{t('주기 경계', 'Periodic')}</option><option value="dirichlet">{t('바깥 영점 고정', 'Fixed-zero exterior')}</option></select></label>
+        <label className="qubit-field" htmlFor={`${id}-constraint`}>{t('적분 공간', 'Integration space')}<select id={`${id}-constraint`} aria-label={t('적분 공간', 'Integration space')} value={draft.constraint} onChange={e => setDraft(d => ({ ...d, constraint: e.target.value as ThermalFieldInput['constraint'] }))}><option value="none">{t('전체 공간', 'Full space')}</option><option value="mean-zero">{t('평균 영 제약', 'Mean-zero constraint')}</option></select></label>
+        {(['spacing', 'temperature', 'referenceScale'] as const).map((field, i) => <label className="qubit-field" key={field} htmlFor={`${id}-${field}`}>{[t('격자 간격 a', 'Lattice spacing a'), t('온도 T', 'Temperature T'), t('기준 척도 φ*', 'Reference scale φ*')][i]}<input id={`${id}-${field}`} value={draft[field]} maxLength={38} autoComplete="off" spellCheck={false} onChange={e => setDraft(d => ({ ...d, [field]: e.target.value }))}/></label>)}
+      </div>
+      <p>{t('격자는 예를 들어2 또는2,3으로 적습니다. 축 길이를 바꾸면 아래 원천 벡터 세 개의 길이도 맞추세요. a·경계·제약·φ*는 온도 미분에서 고정합니다.', 'For example, enter2 or2,3 for the grid. If its size changes, update all three source vectors below. Spacing, boundary, constraint and reference scale stay fixed during thermal differentiation.')}</p>
+      {(['mass', 'stiffness', 'backgroundDensity'] as const).map((field, i) => <fieldset key={field} className="thermal-jet"><legend>{[t('이차 계수 r(T)', 'Quadratic coefficient r(T)'), t('강성 κ(T)', 'Stiffness κ(T)'), t('배경 밀도 f₀(T)', 'Background density f₀(T)')][i]}</legend><div className="scalar-inputs">{(['value', 'first', 'second'] as const).map(part => <label className="qubit-field" key={part} htmlFor={`${id}-${field}-${part}`}>{derivatives[part]}<input id={`${id}-${field}-${part}`} aria-label={`${['r', 'κ', 'f₀'][i]}: ${derivatives[part]}`} value={draft[field][part]} maxLength={38} spellCheck={false} autoComplete="off" onChange={e => setDraft(d => ({ ...d, [field]: { ...d[field], [part]: e.target.value } }))}/></label>)}</div></fieldset>)}
+      <fieldset className="thermal-jet"><legend>{t('위치별 원천 밀도 j(T)', 'Site source density j(T)')}</legend><p>{t('각 벡터를 쉼표로 나누세요. J=a^d j이므로 j는 에너지 밀도 계수입니다.', 'Separate vector entries with commas. J=a^d j, so j is an energy-density coefficient.')}</p>{(['value', 'first', 'second'] as const).map(part => <label className="qubit-field" key={part} htmlFor={`${id}-source-${part}`}>{derivatives[part]}<textarea id={`${id}-source-${part}`} aria-label={`j: ${derivatives[part]}`} value={draft.source[part]} maxLength={1280} rows={2} spellCheck={false} onChange={e => setDraft(d => ({ ...d, source: { ...d.source, [part]: e.target.value } }))}/></label>)}</fieldset>
+      <p>{t('입력 적용 전 결과는 마지막으로 적용한 모형의 값입니다. 이 화면의 상태는 현재 세션에서 유지됩니다.', 'Until you apply, results belong to the last applied model. This screen keeps state within the current session.')}</p>
+      {invalid && <p role="alert">{t('분수·양수 조건·격자와 세 원천 벡터의 길이를 확인하세요. 결과는 이전 적용 입력의 값입니다.', 'Check fractions, positivity conditions, grid size and all three source-vector lengths. Results still belong to the previous applied input.')}</p>}
+      <div className="qubit-actions"><Button type="submit">{t('입력 적용', 'Apply input')}</Button><Button type="button" variant="outline" onClick={() => choose(thermalFieldDefault)}>{t('첫 예제로 초기화', 'Reset to first example')}</Button></div>
+    </form>
+    <div className="qubit-actions">{calculation.status === 'pending' && <Button variant="outline" onClick={() => { setRunning(false); calculation.cancel(); }}>{t('계산 취소', 'Cancel calculation')}</Button>}{(calculation.error || !running) && <Button onClick={() => { setRunning(true); calculation.retry(); }}>{t('다시 계산', 'Recalculate')}</Button>}</div>
+    <p role={calculation.error ? 'alert' : 'status'} aria-live="polite">{calculation.error ? t('계산을 완료하지 못했습니다. 다시 계산하거나 다른 예제를 선택하세요.', 'Calculation could not finish. Recalculate or choose another example.') : !running ? t('계산을 취소했습니다.', 'Calculation cancelled.') : calculation.status === 'ready' ? t('현재 입력의 계산과 독립 검산을 완료했습니다.', 'Calculation and independent checks for the current input are complete.') : calculation.phase === 'validating' ? t('결과를 독립 검산하고 있습니다.', 'Independently checking the result.') : t('현재 입력을 계산하고 있습니다.', 'Calculating the current input.')}</p>
+    {calculation.response && <ThermalFieldResultView key={key} result={calculation.response.result} input={input} language={language}/>}
+    <h3>{t('이해 확인과 해설', 'Check your understanding')}</h3>
+    {thermalFieldQuestions.map((q, i) => <fieldset className="information-question" key={i}><legend>{i + 1}. {q.prompt[language]}</legend>{q.options.map((option, j) => <label key={j}><input type="radio" name={`${id}-quiz-${i}`} checked={answers[i] === j} onChange={() => setAnswers(a => ({ ...a, [i]: j }))}/>{option[language]}</label>)}{answers[i] !== undefined && <p role="status" data-thermal-answer={answers[i] === q.correct ? 'correct' : 'incorrect'}><strong>{answers[i] === q.correct ? t('맞습니다. ', 'Correct. ') : t('다시 생각해보세요. ', 'Think again. ')}</strong>{q.explanation[language]}</p>}</fieldset>)}
+  </section>;
+}

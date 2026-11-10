@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import type { GaussianFieldView } from '@/lib/learning-gaussian-field-view';
 import type { LabPalette } from './lab-palette';
+export type MatrixBarsModel = Pick<GaussianFieldView, 'n' | 'points'>;
 
 /** Event-driven discrete matrix bars; horizontal axes are site pair indices, not physical two-dimensional space. */
-export function createGaussianMatrixPlot(host: HTMLElement, initial: GaussianFieldView, palette: LabPalette, label: string, onFailure: () => void) {
+export function createGaussianMatrixPlot(host: HTMLElement, initial: MatrixBarsModel, palette: LabPalette, label: string, onFailure: () => void) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75)); renderer.setClearColor(0, 0);
   const canvas = renderer.domElement; canvas.tabIndex = 0; canvas.setAttribute('role', 'img'); canvas.setAttribute('aria-label', label);
@@ -31,7 +32,7 @@ export function createGaussianMatrixPlot(host: HTMLElement, initial: GaussianFie
     const mesh = node as THREE.Mesh; mesh.geometry?.dispose();
     (Array.isArray(mesh.material) ? mesh.material : mesh.material ? [mesh.material] : []).forEach(material => material.dispose());
   });
-  function update(model: GaussianFieldView, p: LabPalette) {
+  function update(model: MatrixBarsModel, p: LabPalette) {
     scene.remove(content); release(content); content = new THREE.Group(); scene.add(content);
     const line=(points:THREE.Vector3[],color:string)=>content.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),new THREE.LineBasicMaterial({color})));
     const spacing=6/(model.n-1),width=Math.min(.48,spacing*.6);

@@ -1,0 +1,16 @@
+.thermal-field-lab { min-width: 0; }
+.thermal-field-lab .thermal-formula, .thermal-field-lab .thermal-exact { overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.thermal-field-lab .thermal-jet { min-width: 0; margin-block: 1rem; padding: .8rem; border: 1px solid hsl(var(--border)); border-radius: .5rem; }
+.thermal-field-lab .thermal-jet legend { font-weight: 600; padding-inline: .25rem; }
+.thermal-concept-svg { display: block; min-width: 640px; max-width: none; color: hsl(var(--foreground)); }
+.thermal-grid-svg { display: block; max-width: none; color: hsl(var(--foreground)); }
+.thermal-matrix { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.thermal-matrix th { padding: .6rem; font-size: 14px; }
+.thermal-matrix td { padding: 3px; }
+.thermal-matrix button { width: 100%; min-height: 44px; padding: 7px; border: 2px solid transparent; border-radius: .35rem; font-size: 14px; color: inherit; }
+.thermal-field-lab .thermal-matrix button[aria-pressed=true] { border-color: hsl(var(--primary)); color: hsl(var(--foreground)); }
+.thermal-field-lab .scalar-check input[type=checkbox] { width: 18px; height: 18px; padding: 0; }
+.thermal-matrix button:focus-visible { outline: 3px solid hsl(var(--ring)); outline-offset: 1px; }
+.thermal-field-lab details { margin-block: 1rem; }
+.thermal-field-lab summary { cursor: pointer; padding-block: .6rem; }
+.thermal-field-lab h4 { margin-block: 1.2rem .6rem; font-weight: 600; }
