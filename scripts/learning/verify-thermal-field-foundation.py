@@ -6,6 +6,8 @@ partition function itself; the producer instead uses LDL and Gaussian moments.
 from fractions import Fraction as F
 from itertools import product
 import json
+import sys
+from decimal import Decimal, localcontext
 
 
 class Taylor:
@@ -174,10 +176,41 @@ def cases():
     return [dict(input=x, expected=oracle(x)) for x in rows]
 
 
+def observation_diagnostic(exact):
+    """High-precision Decimal cross-check, not an interval proof."""
+    if exact['kind'] != 'normalizable':
+        return None
+    with localcontext() as ctx:
+        ctx.prec = 230
+        # Independent Gauss-Legendre pi iteration, rather than producer/checker arctangents.
+        a, b, t, p = Decimal(1), Decimal(1)/Decimal(2).sqrt(), Decimal(1)/4, Decimal(1)
+        for _ in range(9):
+            next_a = (a+b)/2
+            b = (a*b).sqrt()
+            t -= p*(a-next_a)**2
+            a = next_a
+            p *= 2
+        pi = (a+b)**2/(4*t)
+        def decimal(s):
+            q = F(s)
+            return Decimal(q.numerator)/Decimal(q.denominator)
+        form = exact['logPartition']
+        T = decimal(form['temperature'])
+        log_z = Decimal(form['dimension'])/2*((2*pi).ln()+T.ln())-decimal(form['restrictedDeterminant']).ln()/2
+        log_z -= Decimal(form['dimension'])*decimal(form['referenceScale']).ln()
+        log_z += decimal(form['constant'])
+        return dict(logPartition=str(log_z), freeEnergy=str(-T*log_z),
+                    thermodynamicEntropy=str(log_z+decimal(exact['thermalEnergy'])/T),
+                    gibbsEntropy=str(log_z+decimal(exact['expectedEnergy'])/T))
+
+
 if __name__ == '__main__':
     # Guard the independent Taylor implementation before it generates references.
     t = Taylor(2, 1)
     assert ((t*t)/t).v == t.v
     assert (1/t).v == (F(1, 2), F(-1, 4), F(1, 8))
-    rows = cases()
+    rows = [dict(input=x, expected=oracle(x)) for x in json.load(sys.stdin)] if '--inputs' in sys.argv else cases()
+    if '--observations' in sys.argv:
+        for row in rows:
+            row['observationDiagnostic'] = observation_diagnostic(row['expected'])
     print(json.dumps(dict(method='Fraction Taylor-ring Gauss-Jordan and absolute log-Z derivatives', cases=rows), indent=2))

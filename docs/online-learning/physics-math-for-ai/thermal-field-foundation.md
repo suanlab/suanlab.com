@@ -2,6 +2,8 @@
 
 2026-11-11. `finite-field-measure-and-thermal-free-energy`는 **등록 전 준비 단계**다. [일차 자료 검토](statistical-field-theory-primary-source-audit.md)와 [모형 계약](thermal-field-model-contract.md)에 따라 기존 상관함수를 반복하는 대신 절대 측도·자유에너지·온도 경로를 추가했다.
 
+후속 단계에서 [생산 응답·독립 구간·실제 Worker 검증](thermal-field-producer-verification.md)을 진행했다. 아래는 첫 수학 기반 단계의 기록이며, 최신 다음 순서는 개념 그림·조작 시각화·안내 실험·해설 문제다. 실제 reader와 Next 자산 검증은 남아 있다.
+
 ## 작성한 내용
 
 - [한국어 초안](drafts/finite-field-measure-and-thermal-free-energy.ko.md), [영어 초안](drafts/finite-field-measure-and-thermal-free-energy.en.md): 각각 21절, display 수식 9개, 비교표 1개, 해설 문제 8개, 동일한 실행 실습을 포함한다.

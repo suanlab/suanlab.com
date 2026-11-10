@@ -1,19 +1,7 @@
-/** Finite Gaussian field foundation. Exact thermal observables; not yet a reader/Worker API. */
+/** Finite Gaussian calculation engine. Worker-side; reader registration is separate. */
 import { f, zero, one, two, add, sub, mul, div, neg, sum, type F } from './learning-quantum-hilbert-core';
-
-export interface ThermalJetInput { value: string; first: string; second: string }
-export interface ThermalFieldInput {
-  shape: number[];
-  boundary: 'open' | 'periodic' | 'dirichlet';
-  constraint: 'none' | 'mean-zero';
-  spacing: string;
-  temperature: string;
-  referenceScale: string;
-  mass: ThermalJetInput;
-  stiffness: ThermalJetInput;
-  backgroundDensity: ThermalJetInput;
-  sourceDensity: ThermalJetInput[];
-}
+import { readThermalFieldInput, type ThermalJetInput } from './learning-thermal-field-input';
+export type { ThermalFieldInput, ThermalJetInput } from './learning-thermal-field-input';
 type Matrix = F[][];
 type Jet = { value: F; first: F; second: F };
 const integer = (n: number) => f(BigInt(n));
@@ -27,35 +15,20 @@ const trace = (a: Matrix) => sum(a.map((row, i) => row[i]));
 const scale = (a: Matrix, x: F): Matrix => a.map(row => row.map(v => mul(v, x)));
 const wire = (a: Matrix) => a.map(row => row.map(text));
 
-function record(value: unknown): Record<string, unknown> {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new RangeError('Field object required');
-  return value as Record<string, unknown>;
-}
-function rational(value: unknown): F {
-  if (typeof value !== 'string' || !/^-?(?:0|[1-9][0-9]{0,17})(?:\/[1-9][0-9]{0,17})?$/.test(value)) {
-    throw new RangeError('Bounded rational field coefficient required');
-  }
+function rational(value: string): F {
   const [n, d = '1'] = value.split('/');
   return f(BigInt(n), BigInt(d));
 }
-function jet(value: unknown): Jet {
-  const v = record(value);
+function jet(v: ThermalJetInput): Jet {
   return { value: rational(v.value), first: rational(v.first), second: rational(v.second) };
 }
 function readInput(value: unknown) {
-  const v = record(value), shape = v.shape;
-  if (!Array.isArray(shape) || shape.length < 1 || shape.length > 2 ||
-    !Array.from(shape).every(n => Number.isInteger(n) && n >= 2 && n <= 32)) throw new RangeError('One or two finite spatial axes required');
-  const dimensions = shape as number[], sites = dimensions.reduce((a, b) => a * b, 1);
-  if (sites > 32) throw new RangeError('At most 32 field sites');
-  if (!['open', 'periodic', 'dirichlet'].includes(v.boundary as string) ||
-    !['none', 'mean-zero'].includes(v.constraint as string)) throw new RangeError('Declared boundary and constraint required');
+  const v = readThermalFieldInput(value);
+  if (!v) throw new RangeError('Invalid bounded finite thermal field input');
+  const dimensions = v.shape, sites = dimensions.reduce((a, b) => a * b, 1);
   const spacing = rational(v.spacing), temperature = rational(v.temperature), referenceScale = rational(v.referenceScale);
-  if ([spacing, temperature, referenceScale].some(x => x.n <= BigInt(0))) throw new RangeError('Positive spacing, temperature and reference scale required');
   const mass = jet(v.mass), stiffness = jet(v.stiffness), background = jet(v.backgroundDensity);
-  if (stiffness.value.n < BigInt(0)) throw new RangeError('Nonnegative stiffness required');
-  if (!Array.isArray(v.sourceDensity) || v.sourceDensity.length !== sites) throw new RangeError('One source jet per site required');
-  return { dimensions, sites, boundary: v.boundary as ThermalFieldInput['boundary'], constrained: v.constraint === 'mean-zero',
+  return { dimensions, sites, boundary: v.boundary, constrained: v.constraint === 'mean-zero',
     spacing, temperature, referenceScale, mass, stiffness, background, source: Array.from(v.sourceDensity, jet) };
 }
 
