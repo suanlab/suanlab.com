@@ -3256,7 +3256,9 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Effective approximations"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "special-relativity-lorentz-boosts"
+    ]
   },
   {
     "id": "matter-computation",

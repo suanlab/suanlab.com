@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 609,
+  "implementedUnitCount": 610,
   "curriculumComplete": false,
-  "scope": "609 registered units, 1887 guided experiments and 1218 bilingual manuscript files. Introductory scope: 321 of 362 original topics verified, 41 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "610 registered units, 1889 guided experiments and 1220 bilingual manuscript files. Introductory scope: 322 of 362 original topics verified, 40 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9990,20 +9990,132 @@
     {
       "id": "relativity",
       "topicCount": 10,
-      "status": "planned",
-      "implementedUnitIds": [],
-      "nextUnitId": "special-relativity-lorentz-boosts",
-      "nextAction": "special-relativity-lorentz-reader-integration",
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "special-relativity-lorentz-boosts"
+      ],
+      "nextUnitId": "minkowski-metric-and-proper-time",
+      "nextAction": "minkowski-path-reader-integration",
       "lorentzBoostDraft": {
         "unitId": "special-relativity-lorentz-boosts",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/special-relativity-lorentz-boosts.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/special-relativity-lorentz-boosts.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "special-relativity-lorentz-reader-integration"
+        "nextAction": "minkowski-path-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
+          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
+        ]
+      },
+      "currentPreparationReport": "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
+      "currentPreparationEvidence": "scripts/learning-lorentz-boost.test.ts",
+      "lastIntegratedPreparation": {
+        "unitId": "special-relativity-lorentz-boosts",
+        "status": "verified-introductory-unit",
+        "registered": true,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "model": "src/lib/learning-lorentz-boost.ts",
+        "lab": "src/components/learning/lorentz-boost-lab.tsx",
+        "tests": "scripts/learning-lorentz-boost.test.ts",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
+          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
+        ],
+        "sectionsPerLocale": 7,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
+      },
+      "lastIntegratedUnitPreparation": {
+        "unitId": "special-relativity-lorentz-boosts",
+        "status": "verified-introductory-unit",
+        "registered": true,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "model": "src/lib/learning-lorentz-boost.ts",
+        "lab": "src/components/learning/lorentz-boost-lab.tsx",
+        "tests": "scripts/learning-lorentz-boost.test.ts",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
+          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
+        ],
+        "sectionsPerLocale": 7,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
+      },
+      "lastCompletedIntroductoryTopic": {
+        "originalTopic": "특수상대론·Lorentz",
+        "stage": "introductory-topic-verified",
+        "coverageLevel": "introductory",
+        "unitIds": [
+          "special-relativity-lorentz-boosts"
+        ],
+        "registeredUnitCount": 1,
+        "originalTopicComplete": true,
+        "originalTopicAuditPending": false,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
+          "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
+        ],
+        "researchDepthComplete": false,
+        "wholeDomainAuditComplete": false,
+        "evidence": "scripts/learning-lorentz-boost.test.ts"
+      },
+      "topicEvidence": [
+        {
+          "originalTopic": "특수상대론·Lorentz",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "special-relativity-lorentz-boosts"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
+            "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-lorentz-boost.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "special-relativity-lorentz-boosts",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-lorentz-boost.ts",
+            "lab": "src/components/learning/lorentz-boost-lab.tsx",
+            "tests": "scripts/learning-lorentz-boost.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.ko.md",
+              "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
+            ],
+            "sectionsPerLocale": 7,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        }
+      ],
+      "minkowskiMetricDraft": {
+        "unitId": "minkowski-metric-and-proper-time",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/minkowski-metric-and-proper-time.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/minkowski-metric-and-proper-time.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "minkowski-path-reader-integration"
       }
     },
     {
@@ -10047,7 +10159,7 @@
     "research-methods"
   ],
   "nextDomain": "relativity",
-  "nextTopic": "특수상대론·Lorentz",
+  "nextTopic": "Minkowski metric",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",
