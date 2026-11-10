@@ -1,6 +1,6 @@
 # 실시간 위상·고전극한: 유한 수학 모형 계약
 
-2026-11-10. `real-time-phase-and-classical-limit`의 [자료 검토](real-time-phase-primary-source-audit.md) 이후 직접 유도한 계약이다. **수학 기반만 검증했다.** 생산 입력/전송·정밀도·독립 기준/검산·Worker·원고·화면·reader는 미구현이며 `modelFinalized=false`다. 기존600단원에 이 준비 작업을 새 단원으로 세지 않는다.
+2026-11-10. `real-time-phase-and-classical-limit`의 [자료 검토](real-time-phase-primary-source-audit.md) 이후 직접 유도한 계약이다. 이 문서는 수학 설계 기준이며 후속 [한영 원고](real-time-phase-manuscript-status.md)와 [소유 입력·큰 위상·정확한 유한 core](real-time-phase-input-and-exact-core-status.md)를 구현했다. 전체 생산 관찰/Airy·응답 비용·독립 응답 검산·Worker·화면·reader는 남으며 `modelFinalized=false`다. 기존600단원에 이 준비 작업을 새 단원으로 세지 않는다.
 
 ## 1. 실시간 양끝 작용과 유니터리 유한 분할
 
