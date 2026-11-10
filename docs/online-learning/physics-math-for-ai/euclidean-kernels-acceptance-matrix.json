@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "euclidean-quantum-kernels-and-time-slicing",
-  "stage": "native-workers-request-attribution-and-react-lifecycle-verified",
+  "stage": "bilingual-teaching-visualization-and-storage-verified-reader-pending",
   "requirements": [
     {
       "id": "owned-input",
@@ -86,22 +86,30 @@
     {
       "id": "concept-and-cover",
       "title": "8개념·한영 기준 그림·표지",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Eight bilingual steps,16 final real screenshots,compact cover SSR and all SVG label bounds checked.",
+      "teachingEvidence": ".runtime/learning/euclidean-kernel-teaching/verification.json"
     },
     {
       "id": "interactive-views",
       "title": "경로·행렬·분할 오차·trace 시각화",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Pinned/free/Mehler mean display,pointwise sigma,complete2D/Three.js matrices,approximate thermal density and refinement log diagnostics;6independent80-digit display references.",
+      "teachingEvidence": ".runtime/learning/euclidean-kernel-teaching/verification.json"
     },
     {
       "id": "guides-and-quiz",
       "title": "예측 안내·해설 퀴즈·입력 예제 UI",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Six prediction-led guides,eight explained quizzes and20named inputs;48guide and64wrong/correct question checks across8states.",
+      "teachingEvidence": ".runtime/learning/euclidean-kernel-teaching/verification.json"
     },
     {
       "id": "storage-and-accessibility",
       "title": "입력/학습 저장·접근성·한영·명암·모바일",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Owned versioned input/display/learning state;8locale/theme/viewport states,7storage/maximum flows,physical-pair correction/reload;18main-scope accessibility checks.",
+      "teachingEvidence": ".runtime/learning/euclidean-kernel-teaching/verification.json"
     },
     {
       "id": "reader-and-production-assets",
@@ -110,11 +118,12 @@
     }
   ],
   "requirementCount": 18,
-  "requirementsVerified": 13,
+  "requirementsVerified": 17,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
   "evidence": ".runtime/learning/euclidean-kernel-worker/verification.json",
-  "scopeNote": "Second of four planned path-integral treatments. Finite mathematical identities and manuscript evidence do not verify any unimplemented production system or UI."
+  "scopeNote": "Second of four planned path-integral treatments. Standalone bilingual teaching and native Workers are verified;actual reader registration and production assets remain. Approximate Mehler plots are not certified decimal bounds.",
+  "teachingEvidence": ".runtime/learning/euclidean-kernel-teaching/verification.json"
 }
