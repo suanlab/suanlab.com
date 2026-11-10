@@ -37,3 +37,7 @@ node --import tsx --test scripts/learning-block-order-foundation.test.ts scripts
 Node20·24에서 각각8개 테스트가 통과했다. 신규 TypeScript 세 파일의 ESLint와 저장소 전체 TypeScript 검사도 통과했다. 앞선 `f04715a`의 전체 `npm run check`는 별도 고정 worktree에서 계속 실행 중이며, 그 결과를 이 새 준비 코드의 전체 CI 통과로 간주하지 않는다.
 
 독립 브라우저 검산기와 bounded 응답 codec, Worker 요청 attribution·취소·오류 처리, 기존 홈페이지 테마의 실제 시각화·조작·해설 문제, 상태 복원, 실제 reader의 한영·두 테마·모바일·접근성 검사가 남았다. 이 단계에서는 생산 브라우저 계산·단원 등록·공개 배포 완료를 주장하지 않는다. 통계장론 원주제와 나머지 교육과정 목표는 계속 진행 중이다.
+
+## 후속 관찰
+
+위 문단은 기반 검증 당시 상태다. 이후 [독립 계산 응답·실제 module Worker](block-order-producer-verification.md)를 검증했다. 시각화와 실제 reader·Next 생산 자산 검사는 계속 남아 있으며 단원은 등록하지 않았다.

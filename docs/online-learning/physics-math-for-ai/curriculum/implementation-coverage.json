@@ -3,7 +3,7 @@
   "updated": "2026-11-11",
   "implementedUnitCount": 602,
   "curriculumComplete": false,
-  "scope": "602registered units,1869guides and1204registered bilingual manuscripts. Introductory316/362verified and46pending. Thefirst statistical-field-theory unit meets24requirements andis integrated into the homepage;three remaining treatments andtheoriginal topic audit arepending. Whole51-domain/509-topic scope,domain audits andresearch depth remain incomplete. One active unregistered local-order-parameter unit now has independently verified finite mathematics and detailed bilingual drafts;its reader andWorker verification remain pending.",
+  "scope": "602registered units,1869guides and1204registered bilingual manuscripts. Introductory316/362verified and46pending. Thefirst statistical-field-theory unit meets24requirements andis integrated into the homepage;three remaining treatments andtheoriginal topic audit arepending. Whole51-domain/509-topic scope,domain audits andresearch depth remain incomplete. One active unregistered local-order-parameter unit has independently verified finite mathematics,detailed bilingual drafts andnative module Workers;visuals,Next production assets andactual-reader verification remain pending.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9914,17 +9914,17 @@
       "previousIntegratedUnitPreparationRef": "docs/online-learning/physics-math-for-ai/thermal-field-prior-integration-history.json",
       "nextUnitPreparation": {
         "unitId": "microscopic-blocks-and-local-order-parameters",
-        "status": "independent-foundation-and-bilingual-drafts-verified",
+        "status": "independent-mathematics-and-native-workers-verified",
         "registered": false,
         "homepageIntegrated": false,
         "actualBrowserVerified": false,
         "originalTopicComplete": false,
         "contract": "docs/online-learning/physics-math-for-ai/block-order-model-contract.md",
-        "report": "docs/online-learning/physics-math-for-ai/block-order-foundation.md",
+        "report": "docs/online-learning/physics-math-for-ai/block-order-producer-verification.md",
         "model": "src/lib/learning-block-order.ts",
         "independentOracle": "scripts/learning/verify-block-order-foundation.py",
         "evidence": ".runtime/learning/block-order-foundation/verification.json",
-        "modelsCompared": 24,
+        "modelsCompared": 34,
         "profilesCompared": 2212,
         "nonzeroHistogramCoefficientsCompared": 9549,
         "draftFiles": [
@@ -9933,7 +9933,24 @@
         ],
         "sectionsPerLocale": 20,
         "explainedQuestionsPerLocale": 8,
-        "nextAction": "block-order-independent-browser-gate-and-worker-protocol"
+        "nextAction": "block-order-bilingual-visuals-and-guided-experiments",
+        "foundationReport": "docs/online-learning/physics-math-for-ai/block-order-foundation.md",
+        "foundationModelsCompared": 24,
+        "namedExamples": 9,
+        "maximumStressModels": 1,
+        "producer": "src/lib/learning-block-order-evaluator.ts",
+        "independentGate": "src/lib/learning-block-order-validation-evaluator.ts",
+        "controller": "src/lib/learning-block-order-controller.ts",
+        "hook": "src/components/learning/use-block-order-calculation.ts",
+        "nativeWorkersVerified": true,
+        "productionNextAssetsVerified": false,
+        "nativeWorkerModels": 34,
+        "nativeWorkerPortsClosed": 90,
+        "protocolEvidence": ".runtime/learning/block-order-protocol/models.json",
+        "nativeWorkerEvidence": ".runtime/learning/block-order-workers/verification.json",
+        "exactLeafMutationsRejected": 187,
+        "observationMutationsRejected": 66,
+        "maximumProfileCount": 625
       }
     },
     {

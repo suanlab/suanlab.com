@@ -1,15 +1,9 @@
-/** Exact finite spatial blocking. Foundation only; no registered reader or Worker yet. */
+/** Exact finite spatial blocking producer. Isolated Worker; reader registration is separate. */
 import { markovFraction as fraction, type MarkovFraction as Fraction } from './learning-finite-markov-exact';
 
-export type BlockOrderInput = {
-  shape: number[];
-  blockShape: number[];
-  boundary: 'open' | 'periodic';
-  disagreementActivity: string;
-  blockUpActivities: string[];
-  selectedUpCounts: number[];
-  witnessPair: number[];
-};
+import { readBlockOrderInput, type BlockOrderInput } from './learning-block-order-input';
+export { readBlockOrderInput } from './learning-block-order-input';
+export type { BlockOrderInput } from './learning-block-order-input';
 const z = BigInt(0), o = BigInt(1);
 const q = (n: number) => fraction(BigInt(n));
 const plus = (a: Fraction, b: Fraction) => fraction(a.n * b.d + b.n * a.d, a.d * b.d);
@@ -20,30 +14,6 @@ const power = (a: Fraction, p: number) => p >= 0 ? fraction(a.n ** BigInt(p), a.
 const wire = (a: Fraction) => a.d === o ? String(a.n) : `${a.n}/${a.d}`;
 const product = (xs: number[]) => xs.reduce((a, b) => a * b, 1);
 const parse = (s: string) => { const [n, d = '1'] = s.split('/'); return fraction(BigInt(n), BigInt(d)); };
-
-/** JSON values only. Activities specify exp(-2J/T), exp(2H_b/T), not J or H. */
-export function readBlockOrderInput(value: unknown): BlockOrderInput | null {
-  try {
-    if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
-    const keys = ['shape', 'blockShape', 'boundary', 'disagreementActivity', 'blockUpActivities', 'selectedUpCounts', 'witnessPair'];
-    const descriptors = Object.getOwnPropertyDescriptors(value);
-    if (Reflect.ownKeys(value).length !== keys.length || keys.some(key => !descriptors[key] || !('value' in descriptors[key]))) return null;
-    const v = Object.fromEntries(keys.map(key => [key, descriptors[key].value])) as BlockOrderInput;
-    const integers = (xs: unknown, length: number, low: number, high: number): xs is number[] =>
-      Array.isArray(xs) && xs.length === length && Array.from(xs).every(x => Number.isInteger(x) && x >= low && x <= high);
-    if (!Array.isArray(v.shape) || ![1, 2].includes(v.shape.length) || !integers(v.shape, v.shape.length, 2, 16)) return null;
-    const n = product(v.shape);
-    if (n > 16 || !integers(v.blockShape, v.shape.length, 1, 16) || v.shape.some((s, i) => s % v.blockShape[i] !== 0)) return null;
-    const volume = product(v.blockShape), blocks = n / volume;
-    if (blocks > 4 || !['open', 'periodic'].includes(v.boundary)) return null;
-    const activity = (x: unknown): x is string => typeof x === 'string' && /^[1-9]\d{0,5}(\/[1-9]\d{0,5})?$/.test(x);
-    if (!activity(v.disagreementActivity) || !Array.isArray(v.blockUpActivities) || v.blockUpActivities.length !== blocks || !Array.from(v.blockUpActivities).every(activity)) return null;
-    if (!integers(v.selectedUpCounts, blocks, 0, volume) || !integers(v.witnessPair, blocks === 1 ? 0 : 2, 0, blocks - 1)) return null;
-    if (blocks > 1 && v.witnessPair[0] >= v.witnessPair[1]) return null;
-    return { shape: [...v.shape], blockShape: [...v.blockShape], boundary: v.boundary, disagreementActivity: v.disagreementActivity,
-      blockUpActivities: [...v.blockUpActivities], selectedUpCounts: [...v.selectedUpCounts], witnessPair: [...v.witnessPair] };
-  } catch { return null; }
-}
 
 function geometry(input: BlockOrderInput) {
   const n = product(input.shape), volume = product(input.blockShape), blocks = n / volume;

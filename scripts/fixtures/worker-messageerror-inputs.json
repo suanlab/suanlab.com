@@ -1143,5 +1143,27 @@
         "second": "0"
       }
     ]
+  },
+  "learning-block-order": {
+    "shape": [
+      4
+    ],
+    "blockShape": [
+      2
+    ],
+    "boundary": "open",
+    "disagreementActivity": "1/2",
+    "blockUpActivities": [
+      "1",
+      "1"
+    ],
+    "selectedUpCounts": [
+      1,
+      1
+    ],
+    "witnessPair": [
+      0,
+      1
+    ]
   }
 }
