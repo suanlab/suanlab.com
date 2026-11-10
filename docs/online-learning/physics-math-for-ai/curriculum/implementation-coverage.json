@@ -3,7 +3,7 @@
   "updated": "2026-11-10",
   "implementedUnitCount": 600,
   "curriculumComplete": false,
-  "scope": "600registered units,1857guides and1200registered bilingual manuscripts;1unregistered draft unit/2draft manuscripts (1202Markdown files total). Real-time phase/classical limit:three-mode numerical producer verified with72new tests onNode20/24,25wave and40Airy diagnostic cases,520packet samples,4031symmetric matrix observations and32full response profiles;13of23unit requirements. Input/precision/wire limits retained;independent full-response validator,Workers,teaching UI,reader andunit/topic audits remain. Introductory315/362verified and47pending;whole51-domain/509-topic scope,domain audits andresearch depth remain incomplete.",
+  "scope": "600registered units,1857guides and1200registered bilingual manuscripts;1unregistered draft unit/2draft manuscripts. Real-time numerical producer remains13of23requirements. Independent finite exact-core andrequest-attribution foundations verified with41new checks,25reference cases,186chain/62packet grid cases and502primitive/7maximum-late mutations rejected. Whole wave/Airy observation validation,actual Workers,UI,reader andunit/topic audits remain. Introductory315/362verified and47pending;whole51-domain/509-topic scope,domain audits andresearch depth remain incomplete.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9604,11 +9604,11 @@
         "priorWorkerAssetsPreserved": 65,
         "allRegisteredManuscriptsVerified": 1198
       },
-      "nextAction": "real-time-phase-independent-response-validator-and-workers",
+      "nextAction": "real-time-phase-independent-wave-airy-response-validation",
       "nextUnitPreparation": {
         "id": "real-time-phase-and-classical-limit",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "three-mode-numerical-producer-verified",
+        "stage": "independent-exact-core-and-attribution-foundations-verified",
         "registeredUnitCount": 0,
         "readerRegistered": false,
         "homepageIntegrated": false,
@@ -9640,9 +9640,9 @@
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/real-time-phase-primary-source-audit.md",
         "modelContract": "docs/online-learning/physics-math-for-ai/real-time-phase-model-contract.md",
         "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/real-time-phase-acceptance-matrix.json",
-        "report": "docs/online-learning/physics-math-for-ai/real-time-phase-numerics-status.md",
-        "evidence": ".runtime/learning/real-time-phase-numerics/verification.json",
-        "nextStage": "independent-full-response-validator-and-worker-contract",
+        "report": "docs/online-learning/physics-math-for-ai/real-time-phase-exact-validator-foundation-status.md",
+        "evidence": ".runtime/learning/real-time-exact-check/verification.json",
+        "nextStage": "independent-wave-and-airy-response-validation",
         "workingPrecisionAndWireBudgetFinalized": true,
         "bilingualDraftFiles": 2,
         "sectionsPerLanguage": 33,
@@ -9684,7 +9684,19 @@
         "airyComplexStationaryPointsVerified": true,
         "minimumIntervals": 2,
         "maximumIntervals": 32,
-        "workerProtocolFinalized": false
+        "workerProtocolFinalized": false,
+        "numericalProducerReport": "docs/online-learning/physics-math-for-ai/real-time-phase-numerics-status.md",
+        "exactCoreResponseVerificationComplete": true,
+        "wholeResultNumericalVerificationComplete": false,
+        "requestAttributionContractVerified": true,
+        "newValidationFoundationTestsPassed": 41,
+        "exactCoreReferenceCases": 25,
+        "exactCoreGridChainCases": 186,
+        "exactCoreGridPacketCases": 62,
+        "primitiveExactCoreMutationRejections": 502,
+        "maximumExactCoreLateMutationRejections": 7,
+        "coordinatedModelMutationRejections": 1,
+        "rawScaledRepresentationBoundaryFixed": true
       },
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",

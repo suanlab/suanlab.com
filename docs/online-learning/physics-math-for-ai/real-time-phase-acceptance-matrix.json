@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "three-mode-numerical-producer-verified",
+  "stage": "independent-exact-core-and-attribution-foundations-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -79,7 +79,8 @@
     {
       "id": "independent-response-validator",
       "title": "전체 응답 독립 검산·변조/귀속 거부",
-      "completionVerified": false
+      "completionVerified": false,
+      "evidenceReason": "Finite exact subrecord andrequest attribution verified independently;whole wave/Airy/packed-observation semantic verification is still pending. Exact-only contexts explicitly setfullResponseValidated=false;no validated whole-response receipt orWorker is shipped."
     },
     {
       "id": "workers-and-lifecycle",
@@ -139,6 +140,6 @@
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-phase-numerics/verification.json",
+  "evidence": ".runtime/learning/real-time-exact-check/verification.json",
   "scopeNote": "13of23requirements verified:primary-source/mathematical foundations,bilingual manuscripts andcomplete finite numerical producer including full input/precision/wire accounting andindependent references. Independent whole-response validator,actual Workers,teaching UI,reader andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
 }

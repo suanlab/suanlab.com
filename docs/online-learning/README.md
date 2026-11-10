@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-10 검산 기반 진행: [실시간 exact 자료·요청 귀속 검사](physics-math-for-ai/real-time-phase-exact-validator-foundation-status.md)를 추가했다. 생산 산술을 import하지 않는 정수 격자/Green residual·congruence·직접 canonical flow로25기준 및N2…32의186chain/62packet 사례를 확인했다. 새41검사와502개 primitive·최대7후반부 변조 거부를 확인했다. 작은prefactor와decay를 곱한 뒤의scaled 표시 경계도 수정했다. 전체 wave/Airy 관찰값 검산·Worker·화면·reader는 남아13/23요건과 등록600단원·1857안내·1200원고, 미등록1초안/2원고·입문315/362검증·47미완료를 유지한다.
+
 2026-11-10 수치 producer 검증: [실시간 위상·고전극한의 세 모드 계산](physics-math-for-ai/real-time-phase-numerics-status.md)을 연결했다. 새72검사가 Node20/24에서 통과했고40Airy·25wave 기준,520packet표본·4031대칭 행렬 성분과32전체 응답을 확인했다. 최대1431270bytes·1379949문자이며 기존N32/12자리·wire한도를 유지한다. 23요건 중13개를 확인했다. 다음은 독립 전체 응답 검산과Worker다. 등록600단원·1857안내·1200원고, 미등록1초안/2원고, 입문315/362검증·47미완료·전체51영역509주제의 남은 범위는 유지한다.
 
 2026-11-10 수치 기반 진행: [실시간 위상·고전극한의 입력·큰 위상·정확한 유한 core](physics-math-for-ai/real-time-phase-input-and-exact-core-status.md)를 구현했다. 세 mode·32예제와N2…32/12자리 입력을 유지한다. ±2⁶⁴를 넘는 위상 구간, 전체 사슬/Abel·packet 계산과손실 없는 행렬 인수 전송을 준비했고 core 최대1156385bytes를 측정했다. [Airy 원점 상수](physics-math-for-ai/real-time-airy-origin-certificate.md)는 양의Gamma적분 경계로1536bit reference를 인증했다. 전체 생산 관찰/Airy·응답 비용·독립 응답 검산/Worker·화면·reader는 남으며 등록600단원·1857안내·1200원고, 미등록1초안/2원고, 입문315/362검증·47미완료를 유지한다.

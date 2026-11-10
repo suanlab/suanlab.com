@@ -63,7 +63,7 @@ export function observeRealTimeChainWave(r:ReturnType<typeof buildRealTimeChainE
     const decay=ctx.from(neg(r.regulator.exponent.re)),scaled=scale(unit,amplitude),raw=scale(scaled,ctx.expNegative(decay));
     const logMagnitude=ctx.sub(ctx.divideInteger(ctx.log(amplitudeSquared),2),decay);
     regulated={kind:'abel-regulated-kernel' as const,scaledAmplitude:scaledPositive(amplitude),unitPhase:observeComplex(unit),scaledValue:scaledComplex(scaled),value:scaledComplex(raw),negativeExponential:ctx.observe(decay),
-      logMagnitude:ctx.observe(logMagnitude),rawValueRequiresScaledRepresentation:ctx.expNegative(decay).lower===Z,
+      logMagnitude:ctx.observe(logMagnitude),rawValueRequiresScaledRepresentation:raw.real.lower<=Z&&raw.real.upper>=Z&&raw.imaginary.lower<=Z&&raw.imaginary.upper>=Z,
       branch:'product-of-positive-real-pivot-square-roots' as const};
   }
   return{unregulated,regulated,workingBits:ctx.workBits,observationBits:512};
