@@ -3198,7 +3198,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "finite-quartic-scalar-gibbs-fields",
       "connected-generators-and-legendre-effective-actions",
       "criticality-universality-and-finite-size-scaling",
-      "renormalization-and-real-space-coarse-graining"
+      "renormalization-and-real-space-coarse-graining",
+      "effective-theory-heavy-mode-matching"
     ]
   },
   {

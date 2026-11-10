@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 607,
+  "implementedUnitCount": 608,
   "curriculumComplete": false,
-  "scope": "607 registered units, 1883 guided experiments and 1214 bilingual manuscript files. Introductory scope: 319 of 362 original topics verified, 43 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "608 registered units, 1885 guided experiments and 1216 bilingual manuscript files. Introductory scope: 320 of 362 original topics verified, 42 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9038,24 +9038,25 @@
         "finite-quartic-scalar-gibbs-fields",
         "connected-generators-and-legendre-effective-actions",
         "criticality-universality-and-finite-size-scaling",
-        "renormalization-and-real-space-coarse-graining"
+        "renormalization-and-real-space-coarse-graining",
+        "effective-theory-heavy-mode-matching"
       ],
-      "currentPreparationReport": "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
-      "currentPreparationEvidence": "scripts/learning-ising-decimation.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
+      "currentPreparationEvidence": "scripts/learning-heavy-mode-matching.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "renormalization-and-real-space-coarse-graining",
+        "unitId": "effective-theory-heavy-mode-matching",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-ising-decimation.ts",
-        "lab": "src/components/learning/ising-decimation-lab.tsx",
-        "tests": "scripts/learning-ising-decimation.test.ts",
+        "model": "src/lib/learning-heavy-mode-matching.ts",
+        "lab": "src/components/learning/heavy-mode-matching-lab.tsx",
+        "tests": "scripts/learning-heavy-mode-matching.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
-          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.en.md"
+          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
+          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.en.md"
         ],
-        "sectionsPerLocale": 7,
+        "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
@@ -9405,14 +9406,51 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "effective theory",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "effective-theory-heavy-mode-matching"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
+            "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-heavy-mode-matching.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "effective-theory-heavy-mode-matching",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-heavy-mode-matching.ts",
+            "lab": "src/components/learning/heavy-mode-matching-lab.tsx",
+            "tests": "scripts/learning-heavy-mode-matching.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
+              "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "renormalization·coarse graining",
+        "originalTopic": "effective theory",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "renormalization-and-real-space-coarse-graining"
+          "effective-theory-heavy-mode-matching"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -9420,32 +9458,32 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
-          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.en.md"
+          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
+          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-ising-decimation.test.ts"
+        "evidence": "scripts/learning-heavy-mode-matching.test.ts"
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "renormalization-and-real-space-coarse-graining",
+        "unitId": "effective-theory-heavy-mode-matching",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-ising-decimation.ts",
-        "lab": "src/components/learning/ising-decimation-lab.tsx",
-        "tests": "scripts/learning-ising-decimation.test.ts",
+        "model": "src/lib/learning-heavy-mode-matching.ts",
+        "lab": "src/components/learning/heavy-mode-matching-lab.tsx",
+        "tests": "scripts/learning-heavy-mode-matching.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.ko.md",
-          "content/learning/physics-math-for-ai/renormalization-and-real-space-coarse-graining.en.md"
+          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
+          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.en.md"
         ],
-        "sectionsPerLocale": 7,
+        "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
-      "nextUnitId": "effective-theory-heavy-mode-matching",
-      "nextAction": "effective-theory-reader-integration",
+      "nextUnitId": "scale-separation-memory-and-adiabatic-elimination",
+      "nextAction": "scale-separation-reader-integration",
       "euclideanKernelPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
         "originalTopic": "path integral의 정의·근사",
@@ -9882,14 +9920,29 @@
       },
       "effectiveTheoryDraft": {
         "unitId": "effective-theory-heavy-mode-matching",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/effective-theory-heavy-mode-matching.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/effective-theory-heavy-mode-matching.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "effective-theory-reader-integration"
+        "nextAction": "scale-separation-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.ko.md",
+          "content/learning/physics-math-for-ai/effective-theory-heavy-mode-matching.en.md"
+        ]
+      },
+      "scaleSeparationDraft": {
+        "unitId": "scale-separation-memory-and-adiabatic-elimination",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/scale-separation-memory-and-adiabatic-elimination.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/scale-separation-memory-and-adiabatic-elimination.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "scale-separation-reader-integration"
       }
     },
     {
@@ -9939,7 +9992,7 @@
     "research-methods"
   ],
   "nextDomain": "field-multiscale",
-  "nextTopic": "effective theory",
+  "nextTopic": "scale separation",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",
