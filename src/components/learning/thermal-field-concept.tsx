@@ -1,7 +1,9 @@
 'use client';
-import React, { useId, useState } from 'react';
+import React, { useId } from 'react';
 import { Button } from '@/components/ui/button';
 import { thermalFieldSteps } from '@/data/thermal-field-teaching';
+import { useSavedState } from './use-saved-state';
+const validConcept=(v:unknown):v is {step:number;motion:boolean}=>!!v&&typeof v==='object'&&Object.keys(v).length===2&&Number.isInteger((v as {step:number}).step)&&(v as {step:number}).step>=0&&(v as {step:number}).step<thermalFieldSteps.length&&typeof (v as {motion:boolean}).motion==='boolean';
 
 function Graphic({ step, language }: { step: number; language: 'ko' | 'en' }) {
   const t = (ko: string, en: string) => language === 'ko' ? ko : en;
@@ -16,13 +18,16 @@ function Graphic({ step, language }: { step: number; language: 'ko' | 'en' }) {
     {step === 5 && <>{[0, 1, 2, 3].map((k, i) => <g key={k}><rect x={60 + i * 145} y={65} width={105} height={75} rx={8} stroke={k % 2 ? orange : blue} fill="none" strokeWidth={2}/>{text(80 + i * 145, 110, `k=${k}`)}</g>)}<path d="M255 150V185H545V150" stroke={orange} fill="none" strokeWidth={2}/>{text(75, 35, 'N=4')}{text(220, 220, t('공액 쌍 → 실수 두 좌표', 'Conjugate pair → two real coordinates'))}{text(70, 165, 'real', blue)}{text(365, 165, 'real', blue)}</>}
   </svg>;
 }
-export default function ThermalFieldConcept({ language }: { language: 'ko' | 'en' }) {
-  const [step, setStep] = useState(0), [motion, setMotion] = useState(true), id = useId(), current = thermalFieldSteps[step];
+export default function ThermalFieldConcept({ language, selectedStep, onStep, selectedMotion, onMotion }: { language: 'ko' | 'en';selectedStep?:number;onStep?:(value:number)=>void;selectedMotion?:boolean;onMotion?:(value:boolean)=>void }) {
+  const [saved,setSaved,restored]=useSavedState('suanlab-learning:thermal-field-concept-v1',{step:0,motion:true},validConcept);
+  const step=selectedStep??saved.step,motion=selectedMotion??saved.motion,ready=onStep?true:restored;
+  const setStep=onStep??((step:number)=>setSaved(p=>({...p,step}))),setMotion=onMotion??((motion:boolean)=>setSaved(p=>({...p,motion})));
+  const id = useId(), current = thermalFieldSteps[step];
   const t = (ko: string, en: string) => language === 'ko' ? ko : en;
-  return <section className="ai-intuition thermal-concept" aria-labelledby={id} data-thermal-concept={step}>
+  return <section id="visual-intuition" className="ai-intuition thermal-concept" aria-labelledby={id} data-thermal-concept={step}>
     <h2 id={id}>{t('그림으로 측도와 열 자유에너지 이해하기', 'Understand measure and thermal free energy visually')}</h2>
     <p>{t('각 그림은 고정된 설명 기준입니다. 아래에서 직접 적용한 입력의 계산 결과와 구별해 읽으세요.', 'Each diagram is a fixed teaching reference. Distinguish it from the computed result of your applied input below.')}</p>
-    <div className="ai-concept-steps" role="group" aria-label={t('개념 단계', 'Concept steps')}>{thermalFieldSteps.map((s, i) => <Button key={s.id} variant="outline" aria-pressed={step === i} onClick={() => setStep(i)}>{i + 1}. {s.title[language]}</Button>)}</div>
+    <div className="ai-concept-steps" role="group" aria-label={t('개념 단계', 'Concept steps')}>{thermalFieldSteps.map((s, i) => <Button key={s.id} disabled={!ready} variant="outline" aria-pressed={step === i} onClick={() => setStep(i)}>{i + 1}. {s.title[language]}</Button>)}</div>
     <label className="scalar-check"><input type="checkbox" checked={motion} onChange={e => setMotion(e.target.checked)}/>{t('개념 전환 효과', 'Animate concept transitions')}</label>
     <article className="information-step" key={step} style={!motion ? { animation: 'none' } : undefined} aria-live="polite"><h3>{current.title[language]}</h3><p>{current.body[language]}</p><p className="thermal-formula">{current.formula}</p>
       <figure><div className="qubit-scroll" role="region" tabIndex={0} aria-label={t('개념 그림 · 좌우 이동 가능', 'Concept diagram; scroll horizontally')}><Graphic step={step} language={language}/></div><figcaption>{current.caption[language]}</figcaption></figure>

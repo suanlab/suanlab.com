@@ -2,6 +2,8 @@
 
 2026-11-11. [생산 계산·독립 Worker 검산](thermal-field-producer-verification.md) 다음 단계다. `finite-field-measure-and-thermal-free-energy`의 한영 실험 화면을 작성했다. 등록 전의 격리 React 화면을 확인한 결과이며, 실제 교재 reader와 Next 생산 자산 검증은 아직 남는다.
 
+후속 [실제 reader 등록·저장·생산 자산 검토](thermal-field-reader-integration.md)를 통과해602번째 단원으로 홈페이지에 반영했다. 아래는 등록 전 시각화 단계의 기록이다.
+
 ## 학습 내용과 시각화
 
 한영 개념 6단계는 최솟값/적분 부피, 평균 영 평면의 유도 거리, 유효 에너지/U, 두 엔트로피, 기준 측도/좌표 변환, 실수 Fourier 모드 수를 설명한다. SVG는 **고정된 설명 기준**으로 명시한다. 현재 적용한 입력의 검산 결과와 혼동하지 않도록 제목·본문·그림 설명에 구분을 넣었다.

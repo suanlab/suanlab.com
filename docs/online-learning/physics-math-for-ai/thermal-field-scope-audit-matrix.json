@@ -1,0 +1,277 @@
+{
+  "unitId": "finite-field-measure-and-thermal-free-energy",
+  "unitComplete": true,
+  "coverageLevel": "introductory-unit",
+  "originalTopicComplete": false,
+  "wholeObjectiveComplete": false,
+  "requirements": [
+    {
+      "id": "geometry",
+      "requirement": "유한 격자·cell 부피·경계·2점 주기 중복",
+      "manuscriptSections": [
+        2,
+        3,
+        4
+      ],
+      "status": "satisfied",
+      "reason": "1/2차원 52Fraction 기준과66생산 응답이 일치한다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "measure",
+      "requirement": "기준 측도와 유도 공간의 차원",
+      "manuscriptSections": [
+        5,
+        6,
+        7
+      ],
+      "status": "satisfied",
+      "reason": "평균 영의 Gram determinant=N을 유지하고 제한 determinant를 따로 검사한다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "positivity",
+      "requirement": "양의 정부호와 정규화 불가능 분기",
+      "manuscriptSections": [
+        6,
+        17
+      ],
+      "status": "satisfied",
+      "reason": "영모드와 음의 방향에 유한 관측을 만들지 않으며 영 pivot을 singular와 동일시하지 않는다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "absolute-z",
+      "requirement": "원천·배경을 포함한 절대 분배함수",
+      "manuscriptSections": [
+        8,
+        9
+      ],
+      "status": "satisfied",
+      "reason": "determinant와 최소 에너지·기준 척도의 피연산자 전부를 독립 재구성한다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "thermal-u",
+      "requirement": "온도 경로와 내부 에너지",
+      "manuscriptSections": [
+        10,
+        12,
+        13
+      ],
+      "status": "satisfied",
+      "reason": "모멘트 U와 log Z 미분 U를 비교하며 K=T I에서U=0을 확인한다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "thermal-cv",
+      "requirement": "열용량 보정과 가정",
+      "manuscriptSections": [
+        11,
+        12,
+        13
+      ],
+      "status": "satisfied",
+      "reason": "E_TT항과 온도 의존 source를 유지한다. K=T² I의 음의 family 미분은 고정 Hamiltonian과 구별한다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "entropy",
+      "requirement": "열역학 S와 Gibbs SG",
+      "manuscriptSections": [
+        14
+      ],
+      "status": "satisfied",
+      "reason": "두 관측의 구간을 각각 검사하며 SG와S를 같은 값으로 표시하지 않는다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "reference-transform",
+      "requirement": "기준 척도·좌표 변환·온도 배경",
+      "manuscriptSections": [
+        15
+      ],
+      "status": "satisfied",
+      "reason": "확률 불변/정규화 변화와 일관된 좌표 변환의 Z 불변을 구별한다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "fourier-reality",
+      "requirement": "실수 Fourier 자유도와 Jacobian",
+      "manuscriptSections": [
+        16
+      ],
+      "status": "satisfied",
+      "reason": "공액 쌍의 두 실수 좌표·영/Nyquist 모드를 설명하고 determinant중복을 검산했다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/../thermal-field-foundation/verification.json"
+    },
+    {
+      "id": "limits",
+      "requirement": "부피 변경·정련·연속체 주장의 경계",
+      "manuscriptSections": [
+        2,
+        20,
+        21
+      ],
+      "status": "satisfied",
+      "reason": "유한 결과로 임계 지수·연속체·상호작용 오차를 증명했다고 표시하지 않는다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/preservation.json"
+    },
+    {
+      "id": "independent-math",
+      "requirement": "독립 수학과 전체 결과 재구성",
+      "manuscriptSections": [
+        12,
+        21
+      ],
+      "status": "satisfied",
+      "reason": "Fraction/Taylor Gauss–Jordan과 생산 LDL·모멘트의 다른 유도를 대조한다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "intervals",
+      "requirement": "초월함수의 포함 구간과 작은 양수",
+      "manuscriptSections": [
+        8,
+        15
+      ],
+      "status": "satisfied",
+      "reason": "61정상화 모형의512bit 구간은 독립2048bit 검산을 통과한다. tiny determinant를 영으로 반올림하지 않는다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "ownership",
+      "requirement": "입력 귀속·변조·자원 경계",
+      "manuscriptSections": [
+        21
+      ],
+      "status": "satisfied",
+      "reason": "요청ID·전체 thermal jet key를 검사하고 실제 자산에서도 수학·구간·귀속 변조3개를 거부했다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "bilingual",
+      "requirement": "상세 한영 원고와 수식",
+      "manuscriptSections": [
+        1,
+        21
+      ],
+      "status": "satisfied",
+      "reason": "각21절·display9식·손계산2개·해설8문제를 등록하고 strict KaTeX와영어를 확인했다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/preservation.json"
+    },
+    {
+      "id": "python",
+      "requirement": "실행 실습",
+      "manuscriptSections": [
+        18
+      ],
+      "status": "satisfied",
+      "reason": "한영 동일 NumPy 코드가 세 온도 경로와 자유도 배율을 재현한다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/../thermal-field-foundation/python-exercise.json"
+    },
+    {
+      "id": "concepts",
+      "requirement": "고정 기준 개념도6개",
+      "manuscriptSections": [
+        1,
+        7,
+        13,
+        14,
+        15,
+        16
+      ],
+      "status": "satisfied",
+      "reason": "실제 reader8상태에서 모든 단계를 조작하고 고정 설명 기준과 live값을 구별했다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "experiments",
+      "requirement": "예측·비교·해설6안내",
+      "manuscriptSections": [
+        9,
+        13,
+        15,
+        17,
+        18
+      ],
+      "status": "satisfied",
+      "reason": "실제 reader의 모든 안내와 해설을 확인했다. 14예제의 조작은 선행8상태 시각화 검사도 통과했다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/../thermal-field-visuals/verification.json"
+    },
+    {
+      "id": "quiz",
+      "requirement": "문제8개와 학습 표시",
+      "manuscriptSections": [
+        19
+      ],
+      "status": "satisfied",
+      "reason": "reader8상태에서 정오답·해설·답변/완료 표시의 reload 복원을 확인했다. embedded 중복 문제는 없다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "visuals",
+      "requirement": "행렬·공간·Three.js·정확값",
+      "manuscriptSections": [
+        2,
+        8,
+        17
+      ],
+      "status": "satisfied",
+      "reason": "물리 격자와 행렬 두 첨자를 구별하고 표현 한계·상대 척도·정확 분수를 유지한다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/../thermal-field-visuals/verification.json"
+    },
+    {
+      "id": "accessibility",
+      "requirement": "언어·반응형·키보드·대체 화면",
+      "manuscriptSections": [
+        19,
+        20
+      ],
+      "status": "satisfied",
+      "reason": "reader 한영×명암×320/1440의 axe0·가로넘침0·영어한글혼입0; 선행 모션 감소/WebGL 대체 검사도 통과했다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "persistence",
+      "requirement": "입력·미완성 편집·표시·학습 복원",
+      "manuscriptSections": [
+        10,
+        20
+      ],
+      "status": "satisfied",
+      "reason": "정상 입력과 미완성 편집을 분리해 복원한다. 손상/차단을 처리하고 처음쓰기/계산 전T=3복원을 확인했다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "worker-lifetime",
+      "requirement": "SSR·취소·시간 초과·가시성",
+      "manuscriptSections": [
+        21
+      ],
+      "status": "satisfied",
+      "reason": "복원 전Worker를 시작하지 않는다. 실제 reader취소/재시도와 visibilitychange 모사, 독립 제어기 timeout을 확인했다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/reader-browser.json"
+    },
+    {
+      "id": "production",
+      "requirement": "실제 Next Worker 자산",
+      "manuscriptSections": [
+        21
+      ],
+      "status": "satisfied",
+      "reason": "실제 reader factory의URL/옵션으로66모형·3변조를 재검증하고135검사Worker를 종료했다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/production-workers.json"
+    },
+    {
+      "id": "preservation-export",
+      "requirement": "기존601단원·원고·메뉴·출력 보존",
+      "manuscriptSections": [
+        21
+      ],
+      "status": "satisfied",
+      "reason": "601단원/안내/1202원고/menu hash가 같고1840HTML의링크·자산·fragment·sitemap·canonical이 통과했다.",
+      "evidence": ".runtime/learning/thermal-field-reader-integration/homepage-installation.json"
+    }
+  ]
+}

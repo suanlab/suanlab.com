@@ -1,4 +1,7 @@
 'use client';
+import {isThermalFieldTeachingId} from '@/lib/learning-thermal-field-teaching';
+import ThermalFieldCover from './thermal-field-cover';
+
 import {isRealTimePhaseTeachingId} from '@/lib/learning-real-time-phase-teaching';
 import RealTimePhaseCover from './real-time-phase-cover';
 import {isSaddleFluctuationTeachingId} from '@/lib/learning-saddle-fluctuation-teaching';
@@ -192,6 +195,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if(isThermalFieldTeachingId(kind)) return <ThermalFieldCover />;
   if(isRealTimePhaseTeachingId(kind)) return <RealTimePhaseCover />;
   if(isSaddleFluctuationTeachingId(kind)) return <SaddleFluctuationCover/>;
   if(isEuclideanKernelTeachingId(kind)) return <EuclideanKernelCover/>;

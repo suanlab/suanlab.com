@@ -83,7 +83,7 @@ createRoot(document.getElementById('root')).render(<Preview/>);`, loader: 'tsx',
       await lab.getByRole('button', { name: t('재생 일시정지', 'Pause entries'), exact: true }).click();
       assert.equal(await page.evaluate(() => (window as unknown as { thermalPorts: { created: number } }).thermalPorts.created), before);
       await lab.getByRole('button', { name: t('3D 행렬 보기', 'Show 3D matrix'), exact: true }).click();
-      await lab.locator('[data-gaussian-matrix-plot="3d"]').waitFor();
+      await lab.locator('[data-thermal-matrix-plot="3d"]').waitFor();
       await lab.locator('canvas').focus(); await page.keyboard.press('ArrowRight'); await page.keyboard.press('Home');
       await page.screenshot({ path: `${root}/${language}-${dark ? 'dark' : 'light'}-${width}.png`, fullPage: true });
       await page.screenshot({ path: `${root}/${language}-${dark ? 'dark' : 'light'}-${width}-3d.png` });

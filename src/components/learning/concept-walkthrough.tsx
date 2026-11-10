@@ -1,4 +1,7 @@
 'use client';
+import {isThermalFieldTeachingId} from '@/lib/learning-thermal-field-teaching';
+import ThermalFieldConcept from './thermal-field-concept';
+
 import {isRealTimePhaseTeachingId} from '@/lib/learning-real-time-phase-teaching';
 import RealTimePhaseConcept from './real-time-phase-concept';
 import {isSaddleFluctuationTeachingId} from '@/lib/learning-saddle-fluctuation-teaching';
@@ -246,6 +249,7 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if(isThermalFieldTeachingId(kind)) return <ThermalFieldConcept language={language}/>;
   if(isRealTimePhaseTeachingId(kind)) return <RealTimePhaseConcept language={language}/>;
   if(isSaddleFluctuationTeachingId(kind)) return <SaddleFluctuationConcept language={language}/>;
   if(isEuclideanKernelTeachingId(kind)) return <EuclideanKernelConcept language={language}/>;

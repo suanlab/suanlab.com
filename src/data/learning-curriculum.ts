@@ -3192,7 +3192,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "brownian-bridge-time-slicing-measure",
       "euclidean-quantum-kernels-and-time-slicing",
       "saddle-fluctuation-and-nongaussian-approximation",
-      "real-time-phase-and-classical-limit"
+      "real-time-phase-and-classical-limit",
+      "finite-field-measure-and-thermal-free-energy"
     ]
   },
   {

@@ -1,13 +1,16 @@
 'use client';
-import React, { useEffect, useId, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import type { ThermalFieldInput } from '@/lib/learning-thermal-field-input';
 import type { ThermalFieldResult } from '@/lib/learning-thermal-field-protocol';
 import { thermalApprox, thermalMatrixView, thermalProjection, type ThermalMatrix, type ThermalScale } from '@/lib/learning-thermal-field-view';
-import GaussianFieldMatrixPlot from './gaussian-field-matrix-plot';
+import ThermalFieldMatrixPlot from './thermal-field-matrix-plot';
+import type { ThermalDisplay } from '@/lib/learning-thermal-field-state';
 
-export default function ThermalFieldResultView({ result, input, language }: { result: ThermalFieldResult; input: ThermalFieldInput; language: 'ko' | 'en' }) {
-  const [kind, setKind] = useState<ThermalMatrix>('covariance'), [scale, setScale] = useState<ThermalScale>('linear'), [selected, setSelected] = useState(0);
+export default function ThermalFieldResultView({ result, input, language, display, onDisplay }: { result: ThermalFieldResult; input: ThermalFieldInput; display: ThermalDisplay; onDisplay:(value:ThermalDisplay|((previous:ThermalDisplay)=>ThermalDisplay))=>void; language: 'ko' | 'en' }) {
+  const {kind,scale,selected}=display;
+  const setKind=(kind:ThermalMatrix)=>onDisplay(p=>({...p,kind})),setScale=(scale:ThermalScale)=>onDisplay(p=>({...p,scale}));
+  const setSelected=useCallback((value:number|((previous:number)=>number))=>onDisplay(p=>({...p,selected:typeof value==='function'?value(p.selected):value})),[onDisplay]);
   const [playing, setPlaying] = useState(false), [reduced, setReduced] = useState(false), buttons = useRef<(HTMLButtonElement | null)[]>([]), id = useId();
   const t = (ko: string, en: string) => language === 'ko' ? ko : en, r = result.exact;
   useEffect(() => {
@@ -20,7 +23,7 @@ export default function ThermalFieldResultView({ result, input, language }: { re
     if (!playing || reduced || r.kind !== 'normalizable') return;
     const timer = setInterval(() => { if (document.visibilityState === 'hidden') { setPlaying(false); return; } setSelected(i => (i + 1) % (r.sites * r.sites)); }, 1100);
     return () => clearInterval(timer);
-  }, [playing, reduced, r]);
+  }, [playing, reduced, r, setSelected]);
   const table = (caption: string, rows: (string | number)[][]) => <div className="qubit-scroll" role="region" tabIndex={0} aria-label={caption}><table className="scalar-table"><caption>{caption}</caption><thead><tr><th scope="col">{t('양', 'Quantity')}</th><th scope="col">{t('검증된 값', 'Verified value')}</th></tr></thead><tbody>{rows.map((row, i) => <tr key={i}><th scope="row">{row[0]}</th><td className="thermal-exact">{row[1]}</td></tr>)}</tbody></table></div>;
   if (r.kind !== 'normalizable') return <section data-thermal-result="not-normalizable"><h3>{t('선언한 공간에서 정규화 불가능', 'Not normalizable on the declared space')}</h3><p>{t('이 결과는 입력 문법 오류와 다릅니다. 평평하거나 음의 이차 방향 때문에 전체 Gaussian 적분이 유한하지 않습니다. 평균 영 제약을 택하면 다른 앙상블을 정의합니다.', 'This differs from an input syntax error. A flat or negative quadratic direction makes the full Gaussian integral divergent. Choosing mean zero defines another ensemble.')}</p>{table(t('양의 정부호 검사', 'Positivity check'), [['q', r.dimension], [t('실패 pivot 첨자', 'Failed pivot index'), r.failedPivotIndex], [t('실패 pivot', 'Failed pivot'), r.failedPivot]])}<p>{t('영 pivot만으로 전체 행렬이 특이라고 단정하지 마세요. 이 분기에는 Z·F·공분산의 유한 값을 표시하지 않습니다.', 'A zero pivot alone does not establish whole-matrix singularity. This branch has no finite Z,F or covariance values.')}</p></section>;
   const m = thermalMatrixView(r, kind, scale, selected), names = { covariance: 'Cφ = T G', inverseOnSpace: 'G', precision: 'K' };
@@ -51,7 +54,7 @@ export default function ThermalFieldResultView({ result, input, language }: { re
     <p>{t('행렬에서 클릭하거나 화살표·Home·End로 이동하세요. 선택과 재생은 검증된 결과를 탐색하며 계산을 다시 시작하지 않습니다.', 'Click an entry or navigate with arrows, Home and End. Selection and playback inspect the verified result without restarting calculation.')}</p>
     <Button variant="outline" disabled={reduced} onClick={() => setPlaying(x => !x)}>{playing ? t('재생 일시정지', 'Pause entries') : t('성분 순서대로 보기', 'Play entries')}</Button>
     {!m.available && <p role="status">{t('이 척도에서 일부 값의 그림 근사를 만들 수 없습니다. 정확한 값은 유지되며 3D는 생략합니다.', 'Some values cannot be projected at this scale. Exact values remain available;3D is omitted.')}</p>}
-    {m.available && <GaussianFieldMatrixPlot model={m} language={language}/>}
+    {m.available && <ThermalFieldMatrixPlot model={m} language={language} flat={display.flat} onFlat={flat=>onDisplay(p=>({...p,flat}))}/>}
     <h4>{t('실제 공간 격자와 평균', 'Physical lattice and mean field')}</h4>
     <p>{t('아래 이웃선은 내부 edge만 보입니다. 주기 연결과 외부 영점 비용은 선택한 경계조건의 K에 포함됩니다. 막대는 평균 μ이며 시간 경로나 표본이 아닙니다.', 'Neighbor lines below show internal edges only. Periodic connections and exterior-zero costs remain included in K for the chosen boundary. Bars show mean μ, not a trajectory or sample.')}</p>
     {meanAvailable ? <div className="qubit-scroll" role="region" tabIndex={0} aria-label={t('공간 격자 · 좌우 이동 가능', 'Spatial lattice; scroll horizontally')}><svg width={width} height={height} role="img" aria-label={t('격자점과 위치별 평균 막대', 'Lattice sites and mean bars')} className="thermal-grid-svg">{r.mean.map((_, i) => { const p = pos(i); return <g key={i}>{[i % nx < nx - 1 ? i + 1 : -1, Math.floor(i / nx) < ny - 1 ? i + nx : -1].filter(j => j >= 0).map(j => { const end = pos(j); return <line key={j} x1={p.x} y1={p.y} x2={end.x} y2={end.y} stroke="var(--learning-neutral)" opacity={.4}/>; })}<line x1={p.x} x2={p.x} y1={p.y} y2={p.y - 28 * mean[i]! / maxMean} stroke={mean[i]! < 0 ? 'var(--learning-orange)' : 'var(--learning-blue)'} strokeWidth={8}/><circle cx={p.x} cy={p.y} r={i === m.row ? 7 : 4} fill={i === m.row ? 'var(--learning-orange)' : 'var(--learning-blue)'}/><text x={p.x} y={p.y + 25} fill="currentColor" fontSize={13} textAnchor="middle">{i}</text></g>; })}</svg></div> : <p role="status">{t('이 척도에서 평균 그림을 표시할 수 없습니다.', 'The mean cannot be projected at this scale.')}</p>}
