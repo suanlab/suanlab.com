@@ -3,7 +3,7 @@
   "updated": "2026-11-10",
   "implementedUnitCount": 599,
   "curriculumComplete": false,
-  "scope": "599 registered bilingual units and1850 guided experiments;1198 registered manuscripts. One unregistered saddle-fluctuation bilingual draft adds2manuscripts with28sections,24equations,6comparisons and8explained questions per language;2tests pass onNode20/24 andstandard-library Python executes.26finite mathematical models/4728derivation checks are separate.Production numerics,input/wire costs,validator,Workers,UI andreader remain. Original introductory coverage315/362 verified with47pending. Full51-domain509-topic coverage,whole-domain audits and research depth remain incomplete.",
+  "scope": "599 registered units, 1850 guides and 1198 registered bilingual manuscripts; saddle fluctuation has one unregistered bilingual draft and verified production numerics with 54 independent references. Independent response validation, Workers, teaching UI and reader integration remain. Introductory original scope stays 315/362 verified and 47 pending; whole 51-domain/509-topic scope, audits and research depth remain incomplete.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9553,7 +9553,7 @@
       "nextUnitPreparation": {
         "id": "saddle-fluctuation-and-nongaussian-approximation",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "bilingual-manuscripts-authored-numerics-pending",
+        "stage": "production-numerics-and-certified-references-verified",
         "registeredUnitCount": 0,
         "readerRegistered": false,
         "homepageIntegrated": false,
@@ -9562,9 +9562,9 @@
         "researchDepthComplete": false,
         "primarySourceAuditComplete": true,
         "mathematicalContractSpecified": true,
-        "modelFinalized": false,
+        "modelFinalized": true,
         "productionContractFinalized": false,
-        "productionCalculatorImplemented": false,
+        "productionCalculatorImplemented": true,
         "bilingualManuscriptsAuthored": true,
         "independentResponseValidatorComplete": false,
         "workersVerified": false,
@@ -9576,14 +9576,14 @@
         "decimalPrecision": 80,
         "decimalRows": 18,
         "decimalQuadratureCertified": false,
-        "requirementsVerified": 5,
+        "requirementsVerified": 10,
         "requirementCount": 20,
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-primary-source-audit.md",
         "modelContract": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-model-contract.md",
         "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-acceptance-matrix.json",
-        "report": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-manuscript-status.md",
-        "evidence": ".runtime/learning/saddle-fluctuation-manuscripts/verification.json",
-        "nextStage": "production-numerics-and-budget-validation",
+        "report": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-numerics-status.md",
+        "evidence": ".runtime/learning/saddle-fluctuation-numerics/verification.json",
+        "nextStage": "independent-response-validator",
         "bilingualDraftFiles": 2,
         "sectionsPerLanguage": 28,
         "displayEquationsPerLanguage": 24,
@@ -9597,7 +9597,23 @@
         "contentFiles": [
           "content/learning/physics-math-for-ai/saddle-fluctuation-and-nongaussian-approximation.ko.md",
           "content/learning/physics-math-for-ai/saddle-fluctuation-and-nongaussian-approximation.en.md"
-        ]
+        ],
+        "productionNumericalContractSpecified": true,
+        "preparedExamples": 32,
+        "independentReferenceCases": 54,
+        "numericsTestsPassed": 91,
+        "relatedTestsPassed": 93,
+        "node20RelatedTestsPassed": 93,
+        "node24RelatedTestsPassed": 93,
+        "minimumIntervals": 2,
+        "maximumIntervals": 32,
+        "workingPrecisionBits": 768,
+        "observationPrecisionBits": 512,
+        "stationaryRadiusTargetBits": 672,
+        "maximumOutputBytes": 1546741,
+        "maximumOutputStringChars": 1468138,
+        "maximumFullMatrixEntries": 1089,
+        "ratioCertificateCondition": "quartic-zero or certified-zero-stationary-path"
       }
     },
     {

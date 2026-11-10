@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "saddle-fluctuation-and-nongaussian-approximation",
-  "stage": "bilingual-manuscripts-authored-numerics-pending",
+  "stage": "production-numerics-and-certified-references-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -31,27 +31,32 @@
     {
       "id": "owned-input-and-budget",
       "title": "생산 입력 소유권·전체 한도·전송 비용",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Owned immutable descriptor-only inputs, 32 examples and 54 bounded snapshots; maximum 1546741 bytes / 1468138 string characters under unchanged wire limits."
     },
     {
       "id": "stationary-solver",
       "title": "일반 양끝 정상점 반복·잔차 인증·최대 입력",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Exact quadratic solve or 768-bit safeguarded normalized Newton; exact residual and strong-convexity location/action certificates; maximum N32 and extreme fractions independently checked."
     },
     {
       "id": "gaussian-numerics",
       "title": "전체 Gaussian 행렬·작용·determinant·앞 인자 구간",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "All Hessian, inverse curvature, covariance, LDL pivots, factored determinant and squared prefactor enclose independently certified reference intervals."
     },
     {
       "id": "nongaussian-numerics",
       "title": "삼차/사차 보정·조건에 맞는 경계·well 계산",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Cubic/quartic coefficients and Gaussian moments, conditional zero-saddle ratio bounds, quadratic exactness and three scalar well regimes independently verified. General shifted-cubic remainder is explicitly uncertified."
     },
     {
       "id": "independent-reference",
       "title": "생산 입력 격자의 독립 전체 기준",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "54 Python-only references: 350-digit dense Newton and Gauss-Jordan, exact Fraction certificates, Gaussian generating-function enumeration; 93 related tests pass on Node20 and Node24."
     },
     {
       "id": "independent-validator",
@@ -112,12 +117,12 @@
     }
   ],
   "requirementCount": 20,
-  "requirementsVerified": 5,
+  "requirementsVerified": 10,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/saddle-fluctuation-scope/verification.json",
-  "scopeNote": "Third of four path-integral treatments. Mathematical identities and qualitative regimes only;production solver,input/wire limits,manuscripts,Workers,UI andreader remain. General cubic corrections lack the zero-saddle nonnegative-remainder bound.",
+  "evidence": ".runtime/learning/saddle-fluctuation-numerics/verification.json",
+  "scopeNote": "Third of four path-integral treatments. Manuscripts and production numerics independently verified. Independent response validator, actual Workers, teaching UI, reader and scope audit remain; no general quartic higher-order error guarantee.",
   "manuscriptEvidence": ".runtime/learning/saddle-fluctuation-manuscripts/verification.json"
 }

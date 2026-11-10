@@ -258,7 +258,9 @@ $$
 
 This is a finite-dimensional bound on the actual ratio, not just on its first coefficient. At ε=0 the ratio is exactly1. For large ε the interval can widen to nearly[0,1]; validity does not imply useful accuracy.
 
-The condition is essential. In a general shifted problem B₃ can be negative, and the preceding nonnegative-u Taylor bound does not apply to its full remainder. Do not copy the zero-endpoint error bars to a nonzero-endpoint graph.
+Zero endpoints are a convenient sufficient condition. At N=2, opposite endpoints also give the exact stationary point zero, so the same argument applies. What matters is certifying a zero stationary path and its nonnegative shifted remainder.
+
+The condition on that remainder is essential. In a general shifted problem B₃ can be negative, and the preceding nonnegative-u Taylor bound does not apply to its full remainder. Do not copy the zero-endpoint error bars to a nonzero-endpoint graph.
 
 ## 17. Check the zero-endpoint bound by hand
 
@@ -523,7 +525,7 @@ The benchmark is useful for checking whether an implementation distinguishes opt
 
 ## 28. State the limits before continuing
 
-The exact action and polynomial identities belong to a finite grid. The general chain's Gaussian approximation and first coefficient do not evaluate its complete quartic integral. The certified ratio bracket requires zero endpoints. The scalar double well illustrates multiple minima and degeneracy; it does not supply a quantum tunneling calculation. Decimal quadrature checks are not certified tail or interval analyses.
+The exact action and polynomial identities belong to a finite grid. The general chain's Gaussian approximation and first coefficient do not evaluate its complete quartic integral. The certified ratio bracket requires the zero-saddle nonnegative-remainder condition. The scalar double well illustrates multiple minima and degeneracy; it does not supply a quantum tunneling calculation. Decimal quadrature checks are not certified tail or interval analyses.
 
 The next path-integral treatment concerns real-time phases and the classical limit, where oscillation and stationary phase introduce different issues. Continuum interacting limits, multiple quantum classical paths, instantons and renormalization require additional analysis.
 
