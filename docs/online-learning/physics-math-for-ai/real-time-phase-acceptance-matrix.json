@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-11",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "guided-experiments-and-questions-verified",
+  "stage": "teaching-ui-and-storage-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -121,7 +121,8 @@
     {
       "id": "storage-and-accessibility",
       "title": "모형/학습 저장·한영/명암/모바일·접근성",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Applied input andunfinished draft stored separately;concept/guide/prediction/answer,matrix/table/3D andwave preferences restored after strict owned validation. No stored result/receipt/run flag;read precedes write/calculation. Node20/24each17tests,32input round trips;native8locale/theme/width contexts,24reloads/24a11y,4maximum restores/4storage failures,real error/cancel/unmount/reentry. Maximum961cell table and3D preference restore,touch/keyboard pixel changes andcontext loss recovery pass;33a11y scans overall. Actual production reader remains separate."
     },
     {
       "id": "reader-and-production-assets",
@@ -140,11 +141,11 @@
     }
   ],
   "requirementCount": 23,
-  "requirementsVerified": 19,
+  "requirementsVerified": 20,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-phase-lessons/verification.json",
-  "scopeNote": "19of23requirements verified:previous foundations andviews retained;6guides with17explicit preparations and8explained questions verified. Full input/display/learning persistence andaccessibility,reader/production assets,preservation andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
+  "evidence": ".runtime/learning/real-time-phase-state/verification.json",
+  "scopeNote": "20of23requirements verified. Unified bilingual lab,owned drafts andpersisted input/display/learning state,native reload/failure/maximum/3D/keyboard/touch/accessibility checks added. Actual reader/production assets,preservation andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
 }
