@@ -3188,7 +3188,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "duffing-secular-frequency-long-time",
       "finite-gaussian-field-sources-connected-correlations",
       "interacting-nongaussian-connected-correlations",
-      "spatial-spectra-decay-and-correlation-length"
+      "spatial-spectra-decay-and-correlation-length",
+      "brownian-bridge-time-slicing-measure"
     ]
   },
   {

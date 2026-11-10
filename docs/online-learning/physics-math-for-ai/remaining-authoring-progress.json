@@ -13489,7 +13489,9 @@
         {
           "title": "path integral의 정의·근사",
           "status": "in-progress",
-          "unitIds": [],
+          "unitIds": [
+            "brownian-bridge-time-slicing-measure"
+          ],
           "plannedUnitIds": [
             "brownian-bridge-time-slicing-measure"
           ],
@@ -13499,10 +13501,10 @@
           "preparation": {
             "id": "brownian-bridge-time-slicing-measure",
             "originalTopic": "path integral의 정의·근사",
-            "stage": "bilingual-teaching-and-visualization-verified-reader-pending",
-            "registeredUnitCount": 0,
-            "readerRegistered": false,
-            "homepageIntegrated": false,
+            "stage": "actual-reader-and-production-assets-verified",
+            "registeredUnitCount": 1,
+            "readerRegistered": true,
+            "homepageIntegrated": true,
             "originalTopicComplete": false,
             "researchDepthComplete": false,
             "productionCalculatorImplemented": true,
@@ -13513,14 +13515,14 @@
             "scopeAuditComplete": true,
             "modelFinalized": true,
             "primarySourceAudit": "docs/online-learning/physics-math-for-ai/path-integrals-primary-source-audit.md",
-            "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-teaching-status.md",
-            "evidence": ".runtime/learning/brownian-bridge-teaching/verification.json",
+            "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-reader-integration-status.md",
+            "evidence": ".runtime/learning/brownian-bridge-reader-integration/verification.json",
             "minimumIntervals": 2,
             "maximumIntervals": 32,
             "derivationChecksPassed": 695,
             "finiteModels": 62,
             "coarseningPairs": 15,
-            "nextStage": "actual-reader-registration-and-production-assets",
+            "nextStage": "next-path-integral-treatment",
             "bilingualDraftFiles": 2,
             "sectionsPerLanguage": 20,
             "displayEquationsPerLanguage": 12,
@@ -13533,9 +13535,9 @@
             ],
             "workerImplemented": true,
             "actualModuleWorkersVerified": true,
-            "workerVerificationScope": "native-module-workers-and-React-hook; production-Next-assets-and-reader-pending",
-            "actualReaderVerified": false,
-            "productionNextAssetsVerified": false,
+            "workerVerificationScope": "native-module-workers-and-React-hook-and-production-Next-assets",
+            "actualReaderVerified": true,
+            "productionNextAssetsVerified": true,
             "teachingUiImplemented": true,
             "modelContract": "docs/online-learning/physics-math-for-ai/brownian-bridge-model-contract.md",
             "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/brownian-bridge-acceptance-matrix.json",
@@ -13543,8 +13545,8 @@
             "independentResultTestsPassed": 52,
             "workerProtocolTestsPassed": 54,
             "controllerTestsPassed": 18,
-            "relatedTestsPassed": 194,
-            "node20RelatedTestsPassed": 194,
+            "relatedTestsPassed": 200,
+            "node20RelatedTestsPassed": 200,
             "teachingExamples": 16,
             "independentReferenceCases": 47,
             "individualSmallLeafMutationsRejected": 798,
@@ -13585,11 +13587,20 @@
             "maximumInputReloadVerified": true,
             "learningProgressReloadVerified": true,
             "fullSignedFractionInputLengthRetained": true,
-            "webglContextLossRecoveryVerified": true
+            "webglContextLossRecoveryVerified": true,
+            "newReaderIntegrationTestsPassed": 6,
+            "readerBrowserCases": 8,
+            "readerConceptChecks": 64,
+            "readerQuizChecks": 64,
+            "readerAccessibilityCases": 15,
+            "productionInputRequests": 63,
+            "productionMutationRejections": 63,
+            "productionAttributionRejections": 63,
+            "priorWorkerAssetsPreserved": 63,
+            "allRegisteredManuscriptsVerified": 1196
           },
           "originalTopicComplete": false,
           "remainingPlannedTreatments": [
-            "brownian-bridge-time-slicing-measure",
             "euclidean-quantum-kernels-and-time-slicing",
             "saddle-fluctuation-and-nongaussian-approximation",
             "real-time-phase-and-classical-limit"
@@ -13597,7 +13608,13 @@
           "preparedContentFiles": [
             "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
             "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md"
-          ]
+          ],
+          "verifiedUnitIds": [
+            "brownian-bridge-time-slicing-measure"
+          ],
+          "readerRegistered": true,
+          "actualReaderVerified": true,
+          "homepageIntegrated": true
         },
         {
           "title": "statistical field theory",
@@ -13626,8 +13643,8 @@
         }
       ],
       "verification": null,
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/brownian-bridge-teaching-status.md",
-      "currentPreparationEvidence": ".runtime/learning/brownian-bridge-teaching/verification.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/brownian-bridge-reader-integration-status.md",
+      "currentPreparationEvidence": ".runtime/learning/brownian-bridge-reader-integration/verification.json",
       "lastIntegratedPreparation": {
         "originalTopic": "correlation function",
         "stage": "two-constituents-reader-verified",
@@ -13657,14 +13674,14 @@
       "researchDepthComplete": false,
       "wholeDomainAuditComplete": false,
       "introductoryDomainAuditComplete": false,
-      "nextUnitId": "brownian-bridge-time-slicing-measure",
-      "nextUnitPreparation": {
+      "nextUnitId": "euclidean-quantum-kernels-and-time-slicing",
+      "lastIntegratedUnitPreparation": {
         "id": "brownian-bridge-time-slicing-measure",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "bilingual-teaching-and-visualization-verified-reader-pending",
-        "registeredUnitCount": 0,
-        "readerRegistered": false,
-        "homepageIntegrated": false,
+        "stage": "actual-reader-and-production-assets-verified",
+        "registeredUnitCount": 1,
+        "readerRegistered": true,
+        "homepageIntegrated": true,
         "originalTopicComplete": false,
         "researchDepthComplete": false,
         "productionCalculatorImplemented": true,
@@ -13675,14 +13692,14 @@
         "scopeAuditComplete": true,
         "modelFinalized": true,
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/path-integrals-primary-source-audit.md",
-        "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-teaching-status.md",
-        "evidence": ".runtime/learning/brownian-bridge-teaching/verification.json",
+        "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-reader-integration-status.md",
+        "evidence": ".runtime/learning/brownian-bridge-reader-integration/verification.json",
         "minimumIntervals": 2,
         "maximumIntervals": 32,
         "derivationChecksPassed": 695,
         "finiteModels": 62,
         "coarseningPairs": 15,
-        "nextStage": "actual-reader-registration-and-production-assets",
+        "nextStage": "next-path-integral-treatment",
         "bilingualDraftFiles": 2,
         "sectionsPerLanguage": 20,
         "displayEquationsPerLanguage": 12,
@@ -13695,9 +13712,9 @@
         ],
         "workerImplemented": true,
         "actualModuleWorkersVerified": true,
-        "workerVerificationScope": "native-module-workers-and-React-hook; production-Next-assets-and-reader-pending",
-        "actualReaderVerified": false,
-        "productionNextAssetsVerified": false,
+        "workerVerificationScope": "native-module-workers-and-React-hook-and-production-Next-assets",
+        "actualReaderVerified": true,
+        "productionNextAssetsVerified": true,
         "teachingUiImplemented": true,
         "modelContract": "docs/online-learning/physics-math-for-ai/brownian-bridge-model-contract.md",
         "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/brownian-bridge-acceptance-matrix.json",
@@ -13705,8 +13722,8 @@
         "independentResultTestsPassed": 52,
         "workerProtocolTestsPassed": 54,
         "controllerTestsPassed": 18,
-        "relatedTestsPassed": 194,
-        "node20RelatedTestsPassed": 194,
+        "relatedTestsPassed": 200,
+        "node20RelatedTestsPassed": 200,
         "teachingExamples": 16,
         "independentReferenceCases": 47,
         "individualSmallLeafMutationsRejected": 798,
@@ -13747,110 +13764,17 @@
         "maximumInputReloadVerified": true,
         "learningProgressReloadVerified": true,
         "fullSignedFractionInputLengthRetained": true,
-        "webglContextLossRecoveryVerified": true
-      },
-      "lastIntegratedUnitPreparation": {
-        "originalTopic": "correlation function",
-        "treatment": "interacting-nongaussian-connected-correlations",
-        "stage": "actual-reader-and-production-assets-verified",
-        "unitId": "interacting-nongaussian-connected-correlations",
-        "registeredUnitCount": 1,
-        "readerRegistered": true,
-        "homepageIntegrated": true,
-        "actualBrowserVerified": true,
-        "actualReaderVerified": true,
-        "productionAssetsVerified": true,
-        "independentResponseValidatorComplete": true,
-        "workersVerified": true,
-        "teachingUiVerified": true,
-        "originalTopicComplete": false,
-        "scopeAuditComplete": true,
-        "researchDepthComplete": false,
-        "modelFinalized": true,
-        "report": "docs/online-learning/physics-math-for-ai/nongaussian-field-reader-integration-status.md",
-        "primarySourceAudit": "docs/online-learning/physics-math-for-ai/nongaussian-correlations-primary-source-audit.md",
-        "evidence": ".runtime/learning/nongaussian-field-reader-integration/verification.json",
-        "contentFiles": [
-          "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.ko.md",
-          "content/learning/physics-math-for-ai/interacting-nongaussian-connected-correlations.en.md"
-        ],
-        "sectionsPerLanguage": 21,
-        "displayEquationsPerLanguage": 12,
-        "explainedExercisesPerLanguage": 8,
-        "teachingExamples": 17,
-        "independentReferenceCases": 36,
-        "independentlyEnumeratedStates": 2688,
-        "referenceArithmetic": "Direct Python Fraction state sums, spin-product moments and labelled set-partition cumulants; no Walsh transform",
-        "referenceIsGeneralFormalProof": false,
-        "unitTestsPassed": 134,
-        "minimumSites": 4,
-        "maximumSites": 8,
-        "maximumOutputBytes": 810635,
-        "boltzmannFactorsAreNotPhysicalEnergies": true,
-        "fourBodyInteractionSites": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "remainingCorrelationTreatmentsAfterThisUnit": [
-          "spatial-spectra-decay-and-correlation-length"
-        ],
-        "nextStage": "spatial-spectra-decay-and-correlation-length-scope-audit",
-        "foundationTestsPassed": 53,
-        "newWorkerControllerTestsPassed": 63,
-        "actualModuleWorkersVerified": true,
-        "individualLeafMutationsRejected": 3987,
-        "mutationPreparations": [
-          {
-            "preparation": "default",
-            "leaves": 273
-          },
-          {
-            "preparation": "four-body",
-            "leaves": 273
-          },
-          {
-            "preparation": "maximum",
-            "leaves": 3441
-          }
-        ],
-        "nativeWorkerInputs": 53,
-        "nativeRequestsIncludeRepeatedExamples": true,
-        "nativeMutationRejections": 53,
-        "nativeAttributionRejections": 53,
-        "nativeHookWorkersCreated": 17,
-        "nativeHookWorkersTerminated": 17,
-        "nativeHookActiveWorkers": 0,
-        "nativeHookErrorRetryVerified": true,
-        "independentRationalEnumerationAndPartitionCumulantsVerified": true,
-        "newTeachingTestsPassed": 10,
-        "conceptSteps": 8,
-        "guidedExperiments": 6,
-        "explainedQuestions": 8,
-        "teachingBrowserCases": 8,
-        "teachingAccessibilityCases": 24,
-        "storageMaximumReferenceCases": 8,
-        "visibleExactCounterexampleCases": 3,
-        "actualThreeDimensionalMatrixVerified": true,
-        "displayControlsDoNotCalculate": true,
-        "maximumInputReloadVerified": true,
         "webglContextLossRecoveryVerified": true,
-        "productionNextAssetsVerified": true,
         "newReaderIntegrationTestsPassed": 6,
-        "priorRegistryRegressionTestsPassed": 2,
         "readerBrowserCases": 8,
         "readerConceptChecks": 64,
         "readerQuizChecks": 64,
-        "readerAccessibilityCases": 8,
-        "referenceDiagramCases": 16,
-        "productionInputRequests": 53,
-        "productionMutationRejections": 53,
-        "productionAttributionRejections": 53,
-        "priorWorkerAssetsPreserved": 58,
-        "maximumReaderPageHeight": 39536,
-        "maximumReaderWorkersCreated": 8,
-        "maximumReaderWorkersTerminated": 8
+        "readerAccessibilityCases": 15,
+        "productionInputRequests": 63,
+        "productionMutationRejections": 63,
+        "productionAttributionRejections": 63,
+        "priorWorkerAssetsPreserved": 63,
+        "allRegisteredManuscriptsVerified": 1196
       },
       "lastCompletedIntroductoryTopic": {
         "originalTopic": "correlation function",
@@ -13873,7 +13797,7 @@
         "matrix": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit-matrix.json",
         "evidence": ".runtime/learning/correlation-function-topic-audit/verification.json"
       },
-      "nextAction": "brownian-bridge-actual-reader-registration-and-production-assets"
+      "nextAction": "euclidean-quantum-kernels-primary-source-and-exact-finite-model"
     },
     {
       "id": "relativity",
@@ -14121,8 +14045,8 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 597,
-  "verifiedNewUnitCount": 444,
+  "implementedUnitCount": 598,
+  "verifiedNewUnitCount": 445,
   "remainingForwardDomainCount": 5,
   "remainingScopeTopicsWithoutNewVerifiedUnit": 47,
   "nextDomain": "field-multiscale",
@@ -14189,10 +14113,10 @@
     "evidence": ".runtime/learning/thermodynamics-domain-audit-stage7/semantics-verification.json",
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
-  "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One unregistered Brownian-bridge bilingual draft is excluded from597 registered units and1194 registered manuscripts. Its exact model, independent verification, Workers, bilingual teaching graphics/UI and local storage/recovery are verified; actual reader registration and production Next assets remain. Whole-domain audits and research depth remain incomplete.",
+  "authoredUnverifiedNewUnitCount": 0,
+  "authoredUnverifiedNewUnitCountDefinition": "All598 registered bilingual units are verified within their declared introductory treatment. Path integrals have one registered treatment and three remaining treatments; original-topic, domain and research-depth audits remain separate.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "brownian-bridge-time-slicing-measure",
+  "nextAuthoringUnitId": "euclidean-quantum-kernels-and-time-slicing",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "brownian-bridge-actual-reader-registration-and-production-assets"
+  "nextAction": "euclidean-quantum-kernels-primary-source-and-exact-finite-model"
 }

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "brownian-bridge-time-slicing-measure",
-  "stage": "bilingual-teaching-and-visualization-verified-reader-pending",
+  "stage": "actual-reader-and-production-assets-verified",
   "requirements": [
     {
       "id": "owned-input",
@@ -132,17 +132,19 @@
     {
       "id": "reader-production",
       "title": "실제 reader등록·생산 Next 자산·기존 내용 보존",
-      "completionVerified": false,
-      "evidenceReason": "Pending registry append, production assets, navigation and prior-reader regression checks."
+      "completionVerified": true,
+      "evidenceReason": "Append-only598th registry entry;200 related checks on Node20/24;1196 manuscripts,8 actual reader states and7 maximum/storage flows;63 production requests and63 each mutation/attribution rejections;63 prior assets retained and4541 adopted output files hash-match.",
+      "readerEvidence": ".runtime/learning/brownian-bridge-reader-integration/verification.json"
     }
   ],
   "requirementCount": 21,
-  "requirementsVerified": 20,
-  "unitComplete": false,
+  "requirementsVerified": 21,
+  "unitComplete": true,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
   "scopeNote": "First treatment of four declared path-integral introductory treatments; a registered unit alone cannot complete the original topic.",
   "evidence": ".runtime/learning/brownian-bridge-worker/verification.json",
-  "teachingEvidence": ".runtime/learning/brownian-bridge-teaching/verification.json"
+  "teachingEvidence": ".runtime/learning/brownian-bridge-teaching/verification.json",
+  "readerEvidence": ".runtime/learning/brownian-bridge-reader-integration/verification.json"
 }

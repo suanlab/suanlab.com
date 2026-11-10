@@ -1,10 +1,12 @@
 'use client';
-import { useId, useState } from 'react';
+import { useId } from 'react';
 import { Button } from '@/components/ui/button';
 import { brownianBridgeSteps } from '@/data/brownian-bridge-teaching';
 import BrownianBridgeGraphic from './brownian-bridge-graphic';
+import { useSavedState } from './use-saved-state';
+const validStep = (value: unknown): value is number => typeof value === 'number' && Number.isInteger(value) && value >= 0 && value < 8;
 export default function BrownianBridgeConcept({ language, selectedStep, onStep }: { language: 'ko' | 'en'; selectedStep?: number; onStep?: (step: number) => void }) {
-  const id = useId(), [localStep, setLocalStep] = useState(0), step = Math.max(0, Math.min(7, selectedStep ?? localStep)), setStep = onStep ?? setLocalStep, current = brownianBridgeSteps[step], t = (ko: string, en: string) => language === 'ko' ? ko : en;
+  const id = useId(), [localStep, setLocalStep] = useSavedState('suanlab-learning:brownian-bridge-time-slicing-measure:concept', 0, validStep), step = Math.max(0, Math.min(7, selectedStep ?? localStep)), setStep = onStep ?? setLocalStep, current = brownianBridgeSteps[step], t = (ko: string, en: string) => language === 'ko' ? ko : en;
   return <section id="visual-intuition" className="ai-intuition" aria-labelledby={id} data-brownian-concept={step}>
     <h2 id={id}>{t('그림으로 시간 분할과 bridge 이해하기', 'Understand time slicing and bridges visually')}</h2>
     <p>{t('고정된 양끝 사이의 불확실성을 유한 적분에서 시작해 살펴보세요. 같은 시각의 법칙과 격자에 의존하는 관측량을 구분합니다.', 'Start with finite integrals for uncertainty between fixed endpoints. Separate laws at the same times from observables that depend on the grid.')}</p>
