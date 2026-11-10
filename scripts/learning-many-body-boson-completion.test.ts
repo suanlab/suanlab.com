@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {build} from 'esbuild';
@@ -6,6 +7,8 @@ import {bosonLadderCameraDistance} from '../src/components/learning/many-body-bo
 import {bosonTeachingInput as preset} from '../src/lib/learning-many-body-boson-teaching';
 import {evaluateManyBodyRequest} from '../src/lib/learning-many-body-evaluator';
 import {readFileSync,writeFileSync} from 'node:fs';
+ensureTestArtifactDirectory('.runtime/learning/many-body-boson-completion', { recursive: true });
+
 const runtime='.runtime/learning/many-body-boson-completion';
 test('camera encloses both ladders and labels across narrow and wide aspect ratios',()=>{for(const aspect of[.3,.5,1,2,4]){const halfHeight=bosonLadderCameraDistance(aspect)*Math.tan(42*Math.PI/360);assert(halfHeight>=2.3);assert(halfHeight*aspect>=3);}});
 test('ladder renders on server without WebGL or timers and distinguishes blocked zero from vacuum',async()=>{const response=evaluateManyBodyRequest({version:1,requestId:1,input:preset(0)});assert(response.ok&&response.kind==='boson-fock');const bundle=await build({stdin:{contents:"import {renderToString} from 'react-dom/server';import {createElement} from 'react';import Ladder from './src/components/learning/many-body-boson-ladder';export const render=(response)=>renderToString(createElement(Ladder,{response,language:'en'}));",resolveDir:process.cwd(),loader:'tsx'},jsx:'automatic',bundle:true,write:false,platform:'node',format:'cjs',packages:'external'});const mod={exports:{} as {render:(r:unknown)=>string}};new Function('require','module','exports',bundle.outputFiles[0].text)(createRequire(import.meta.url),mod,mod.exports);const html=mod.exports.render(response);assert(html.includes('1 |0'));assert(html.includes('data-boson-zero="false"'));assert(!html.includes('<canvas'));assert(html.includes('disabled=""'));assert(html.includes('zero vector'));});

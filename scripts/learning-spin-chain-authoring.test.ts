@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -13,6 +14,8 @@ import { visit } from 'unist-util-visit';
 import type { Root, Element } from 'hast';
 import { spinChainModel as model, createSpinChainParameters as create, type SpinChainParameters as P } from '../src/lib/learning-spin-chain';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/spin-chain-manuscripts', { recursive: true });
+
 const id = 'finite-spin-chain-local-hamiltonians', base = 'docs/online-learning/physics-math-for-ai', runtime = '.runtime/learning/spin-chain-manuscripts';
 const sources = { ko: readFileSync(`${base}/${id}-chapter.ko.md`, 'utf8'), en: readFileSync(`${base}/${id}-chapter.en.md`, 'utf8') };
 const references = JSON.parse(readFileSync('scripts/fixtures/spin-chain-authoring-reference.json', 'utf8'));

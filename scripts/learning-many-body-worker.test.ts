@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -7,6 +8,8 @@ import { manyBodyKinds as kinds, snapshotManyBodyInput as snapshot, readManyBody
 import { evaluateManyBodyRequest as evaluate } from '../src/lib/learning-many-body-evaluator';
 import { isMasterObservation } from '../src/lib/learning-master-equation-protocol';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/many-body-worker', { recursive: true });
+
 const runtime = '.runtime/learning/many-body-worker';
 const preparations = kinds.flatMap(kind => {
   const refs = JSON.parse(readFileSync(`scripts/fixtures/${kind}-reference.json`, 'utf8')) as { cases: { label: string; input: Record<string, number>; expected: unknown }[] };

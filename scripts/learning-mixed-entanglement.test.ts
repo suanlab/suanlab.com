@@ -1,9 +1,12 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test from 'node:test';import assert from 'node:assert/strict';import{readFileSync,writeFileSync}from'node:fs';
 import{mixedEntanglementModel as model,isMixedEntanglementParameters as valid,type MixedEntanglementParameters as P}from'../src/lib/learning-mixed-entanglement';
 import{mixedEntanglementKeys as keys}from'../src/lib/learning-mixed-entanglement-input';
 import{tensorPureModel}from'../src/lib/learning-tensor-pure';
 import{isMasterObservation}from'../src/lib/learning-master-equation-protocol';
 import type{PartitionObservation as Q}from'../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/quantum-mixed-entanglement', { recursive: true });
+
 const refs=JSON.parse(readFileSync('scripts/fixtures/mixed-entanglement-reference.json','utf8'))as{cases:{label:string;input:P;expected:any}[]};
 type F={n:bigint;d:bigint};const fraction=(n:bigint,d=BigInt(1)):F=>({n,d}),le=(a:F,b:F)=>a.n*b.d<=b.n*a.d,eq=(a:F,b:F)=>a.n*b.d===b.n*a.d;
 function parse(s:string):F{if(s.includes('/')){const[n,d]=s.split('/');return fraction(BigInt(n),BigInt(d));}const m=/^(-?)(\d+)(?:\.(\d*))?(?:e([+-]?\d+))?$/i.exec(s);assert(m,s);const n=BigInt(m[1]+m[2]+(m[3]||'')),k=Number(m[4]||0)-(m[3]||'').length;return k>=0?fraction(n*BigInt(10)**BigInt(k)):fraction(n,BigInt(10)**BigInt(-k));}

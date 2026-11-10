@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -5,6 +6,8 @@ import { schmidtModel as model, createSchmidtParameters as create, snapshotSchmi
 import { mpsModel, createMpsParameters } from '../src/lib/learning-mps';
 import { isMasterObservation } from '../src/lib/learning-master-equation-protocol';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/schmidt-foundation', { recursive: true });
+
 
 const references = JSON.parse(readFileSync('scripts/fixtures/schmidt-reference.json', 'utf8')) as { cases: { label: string; input: P; expected: unknown }[] };
 type F = { n: bigint; d: bigint };

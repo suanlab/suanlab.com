@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -12,6 +13,8 @@ import { manyBodyKinds, snapshotManyBodyInput, type ManyBodyInput } from '../src
 import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import { useManyBodyCalculation } from '../src/components/learning/use-many-body-calculation';
+ensureTestArtifactDirectory('.runtime/learning/many-body-controller', { recursive: true });
+
 const runtime='.runtime/learning/many-body-controller';
 const refs=manyBodyKinds.map(kind=>({kind,...JSON.parse(readFileSync(`scripts/fixtures/${kind}-reference.json`,'utf8')).cases[0]}));
 const input=(i=0)=>snapshotManyBodyInput({kind:refs[i].kind,parameters:refs[i].input});

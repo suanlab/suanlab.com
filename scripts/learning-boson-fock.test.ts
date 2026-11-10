@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -6,6 +7,8 @@ import { f } from '../src/lib/learning-quantum-hilbert-core';
 import { bReal, bOne, bZero, bObserve, bSign, bAdd, bSub, bMul, bDiv, bEqual, bComplex, bNormalized, type BosonReal } from '../src/lib/learning-boson-algebraic';
 import { isMasterObservation } from '../src/lib/learning-master-equation-protocol';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/boson-fock-foundation', { recursive: true });
+
 
 const references = JSON.parse(readFileSync('scripts/fixtures/boson-fock-reference.json', 'utf8')) as { cases: { label: string; input: P; expected: unknown }[] };
 type F = { n: bigint; d: bigint };

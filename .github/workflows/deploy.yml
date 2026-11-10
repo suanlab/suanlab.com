@@ -35,6 +35,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Setup Python for textbook exercises
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: scripts/learning/requirements-ci.txt
+
+      - name: Install textbook exercise dependencies
+        run: python -m pip install -r scripts/learning/requirements-ci.txt
+
       - name: Validate and build
         run: npm run check
 

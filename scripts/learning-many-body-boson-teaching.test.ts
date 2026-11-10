@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test,{after} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
@@ -8,6 +9,8 @@ import {bosonCoherentModel as coherent} from '../src/lib/learning-boson-coherent
 import {manyBodyInputKey,parseManyBodyStoredInput} from '../src/lib/learning-many-body-input';
 import {manyBodyBosonUnit as unit,manyBodyBosonGuide as guide} from '../src/data/many-body-boson-teaching';
 import {getLearningContent} from '../src/lib/learning-content';
+ensureTestArtifactDirectory('.runtime/learning/many-body-boson-teaching', { recursive: true });
+
 const runtime=process.env.BOSON_TEACHING_RUNTIME??'.runtime/learning/many-body-boson-teaching';let traceChecks=0;
 test('six raw preparations match independent hand calculations of energy,variance and boundary CCR',()=>{
  const expected=[[0,0,1],[3,0,-3],[1.5,2.25,-1],[0,0,0],[-3,0,-3],[0,1,1]];

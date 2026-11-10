@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test,{after} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
@@ -9,6 +10,8 @@ import {manyBodySchmidtUnit as unit,manyBodySchmidtGuide as guide} from '../src/
 import {manyBodyInputKey,parseManyBodyStoredInput,readManyBodyInput} from '../src/lib/learning-many-body-input';
 import {getLearningContent} from '../src/lib/learning-content';
 import {schmidtSpectrumCameraDistance} from '../src/components/learning/many-body-schmidt-spectrum-engine';
+ensureTestArtifactDirectory('.runtime/learning/many-body-schmidt-teaching', { recursive: true });
+
 const runtime='.runtime/learning/many-body-schmidt-teaching',results=presets.map(p=>model(p.input.parameters)),selected=(i:number)=>results[i].cuts[results[i].selectedCutIndex];let groupChecks=0;
 const near=(actual:number|null,expected:number,tolerance=1e-13)=>{assert(actual!==null);assert(Math.abs(actual-expected)<tolerance,`${actual} versus ${expected}`);};
 test('unequal2/1 separates retained weight,unnormalized error,fidelity squared and normalized distance',()=>{const c=selected(0),tr=c.truncation;assert.equal(c.schmidtRank,2);near(c.purity.value,17/25);near(tr.retainedWeight.value,.8);near(tr.optimalUnnormalizedSquaredError.value,.2);near(tr.optimalNormalizedFidelitySquared!.value,.8);near(tr.optimalNormalizedDistanceSquared!.value,2-4/Math.sqrt(5));assert(tr.chosen);near(tr.chosen.directSquaredError.value,.2);near(tr.chosen.directRetainedNormSquared.value,.8);});

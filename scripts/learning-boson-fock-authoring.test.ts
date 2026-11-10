@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -15,6 +16,8 @@ import { bosonFockModel as model, createBosonFockParameters as create } from '..
 import { bosonCoherentModel as coherent, createBosonCoherentParameters as prepare } from '../src/lib/learning-boson-coherent';
 import { isMasterObservation } from '../src/lib/learning-master-equation-protocol';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/boson-fock-manuscripts', { recursive: true });
+
 const id = 'boson-fock-cutoff-boundary-algebra', base = 'docs/online-learning/physics-math-for-ai', runtime = '.runtime/learning/boson-fock-manuscripts';
 const sources = { ko: readFileSync(`${base}/${id}-chapter.ko.md`, 'utf8'), en: readFileSync(`${base}/${id}-chapter.en.md`, 'utf8') };
 const references = JSON.parse(readFileSync('scripts/fixtures/boson-fock-authoring-reference.json', 'utf8'));

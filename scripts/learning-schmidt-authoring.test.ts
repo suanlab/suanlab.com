@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -14,6 +15,8 @@ import type { Root, Element } from 'hast';
 import { schmidtModel as model } from '../src/lib/learning-schmidt';
 import { isMasterObservation } from '../src/lib/learning-master-equation-protocol';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/schmidt-manuscripts', { recursive: true });
+
 const id = 'schmidt-cuts-bond-rank-truncation', base = 'docs/online-learning/physics-math-for-ai', runtime = '.runtime/learning/schmidt-manuscripts';
 const sources = { ko: readFileSync(`${base}/${id}-chapter.ko.md`, 'utf8'), en: readFileSync(`${base}/${id}-chapter.en.md`, 'utf8') };
 const references = JSON.parse(readFileSync('scripts/fixtures/schmidt-authoring-reference.json', 'utf8'));

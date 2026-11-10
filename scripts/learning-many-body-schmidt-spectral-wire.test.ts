@@ -1,9 +1,12 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { build } from 'esbuild';
 import { schmidtSpectrumCertificate as spectrum, schmidtLogCertificate as logarithm } from '../src/lib/learning-many-body-schmidt-spectral-wire';
 import { f, zero, one, int, add, sub, mul, div, neg, eq, le, point, radd, rmul, type F, type Range } from '../src/lib/learning-tensor-wire-math';
+ensureTestArtifactDirectory('.runtime/learning/many-body-schmidt-spectral', { recursive: true });
+
 const runtime = '.runtime/learning/many-body-schmidt-spectral';
 const refs = JSON.parse(readFileSync('scripts/fixtures/schmidt-reference.json','utf8')) as {cases:{label:string;expected:{cuts:{characteristicPolynomial:string[];schmidtRank:number;spectrum:{weight:string;multiplicity:number;zeroWeight:boolean}[];entropyNats:string;entropyBits:string}[]}}[]};
 const logs = JSON.parse(readFileSync('scripts/fixtures/schmidt-wire-log-reference.json','utf8')) as {cases:{numerator:string;denominator:string;logarithm:string}[]};

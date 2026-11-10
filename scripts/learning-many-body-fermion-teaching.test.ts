@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test,{after}from'node:test';
 import assert from'node:assert/strict';
 import {readFileSync,writeFileSync}from'node:fs';
@@ -9,6 +10,8 @@ import {createFermionFockParameters as create}from'../src/lib/learning-fermion-f
 import {manyBodyInputKey,parseManyBodyInputDraft,parseManyBodyStoredInput}from'../src/lib/learning-many-body-input';
 import {getLearningContent}from'../src/lib/learning-content';
 import {fermionOrderCameraDistance}from'../src/components/learning/many-body-fermion-order-engine';
+ensureTestArtifactDirectory('.runtime/learning/many-body-fermion-teaching', { recursive: true });
+
 const runtime='.runtime/learning/many-body-fermion-teaching',results=presets.map(p=>model(p.input.parameters));let presetChecks=0,traceChecks=0;
 test('eight fixed experiments match independently hand-computed energies,number moments and parity',()=>{
  const expected=[[0,0,0,0,1],[0,1,1,0,-1],[0,1,0,0,1],[1,0,1,1,1],[.5,.25,.5,.25,0],[-1,0,2,0,1],[1,0,1,0,-1],[1,0,3,0,-1]];

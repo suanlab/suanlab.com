@@ -1,5 +1,8 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test from 'node:test';import assert from 'node:assert/strict';import{readFileSync,writeFileSync}from'node:fs';
 import{readNongaussianFieldInput,nongaussianFieldDefault,nongaussianFieldExamples}from'../src/lib/learning-nongaussian-field-input';import{calculateNongaussianField}from'../src/lib/learning-nongaussian-field';import{getLearningContent}from'../src/lib/learning-content';import{learningUnits}from'../src/data/interactive-book';import fixture from'./fixtures/nongaussian-field-reference.json';
+ensureTestArtifactDirectory('.runtime/learning/nongaussian-field-foundation', { recursive: true });
+
 const example=(id:string)=>nongaussianFieldExamples.find(c=>c.id===id)!.input,result=(id:string)=>calculateNongaussianField(example(id));
 const fraction=(s:string)=>{const[n,d='1']=s.split('/');return[BigInt(n),BigInt(d)]as const;},equalProduct=(a:string,b:string,c:string,d:string)=>{const[an,ad]=fraction(a),[bn,bd]=fraction(b),[cn,cd]=fraction(c),[dn,dd]=fraction(d);return an*bn*cd*dd===cn*dn*ad*bd;};
 for(const c of fixture.cases)test('independent direct-state/partition reference: '+c.id,()=>{const{input,contract,...actual}=calculateNongaussianField(c.input);assert.deepEqual(input,c.input);assert(contract.includes('four-body interaction acts on sites0,1,2,3 only'));assert.deepEqual(actual,c.expected);});

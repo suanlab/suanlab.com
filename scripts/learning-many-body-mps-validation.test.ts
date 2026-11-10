@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -9,6 +10,8 @@ import { snapshotManyBodyInput as snapshot, type ManyBodyInput } from '../src/li
 import { isMasterObservation } from '../src/lib/learning-master-equation-protocol';
 import { exact as exactObservation } from '../src/lib/learning-quantum-hilbert-core';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/many-body-mps-response', { recursive: true });
+
 const runtime = '.runtime/learning/many-body-mps-response';
 const refs = JSON.parse(readFileSync('scripts/fixtures/mps-reference.json', 'utf8')) as { cases: { label: string; input: Record<string, number>; expected: unknown }[] };
 function preparation(label: string) { const r = refs.cases.find(r => r.label === label); assert(r); const input = snapshot({ kind: 'mps', parameters: r.input }); const packet = evaluate({ version: 1, requestId: 7, input }); assert(packet.ok && packet.kind === 'mps'); return { input, packet }; }

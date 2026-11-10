@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test,{after} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
@@ -9,6 +10,8 @@ import {mpsModel as model,createMpsParameters} from '../src/lib/learning-mps';
 import {manyBodyMpsUnit as unit,manyBodyMpsGuide as guide} from '../src/data/many-body-mps-teaching';
 import {manyBodyInputKey,parseManyBodyStoredInput,snapshotManyBodyInput} from '../src/lib/learning-many-body-input';
 import {getLearningContent} from '../src/lib/learning-content';
+ensureTestArtifactDirectory('.runtime/learning/many-body-mps-teaching', { recursive: true });
+
 const runtime='.runtime/learning/many-body-mps-teaching',results=presets.map(p=>model(p.input.parameters));let prefixCoordinates=0;
 test('eight teaching preparations preserve hand-calculated norms,ranks and complex phase',()=>{
  const norms=[2,2,0,0,2,1,2,2],ranks=[[2,2],[2,2],[0],[0],[1],[1,1],[],[2,2,2]];

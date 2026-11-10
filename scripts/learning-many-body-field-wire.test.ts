@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -7,6 +8,8 @@ import { matchManyBodyExpected } from '../src/lib/learning-many-body-wire-match'
 import { snapshotManyBodyWire } from '../src/lib/learning-many-body-owned-wire';
 import { bObserve, bNormalized, bComplex } from '../src/lib/learning-boson-algebraic';
 import { exact } from '../src/lib/learning-quantum-hilbert-core';
+ensureTestArtifactDirectory('.runtime/learning/many-body-boson-response', { recursive: true });
+
 
 const runtime = '.runtime/learning/many-body-boson-response';
 const refs = JSON.parse(readFileSync('scripts/fixtures/boson-algebraic-reference.json', 'utf8'));

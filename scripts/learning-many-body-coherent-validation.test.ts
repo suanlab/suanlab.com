@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -11,6 +12,8 @@ import { coherentExpCertificate } from '../src/lib/learning-many-body-coherent-w
 import { f as wf } from '../src/lib/learning-tensor-wire-math';
 import { exact as exactObservation } from '../src/lib/learning-quantum-hilbert-core';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/many-body-coherent-response', { recursive: true });
+
 const runtime = '.runtime/learning/many-body-coherent-response';
 const refs = JSON.parse(readFileSync('scripts/fixtures/boson-coherent-reference.json', 'utf8')) as { cases: { label: string; input: Record<string, number>; expected: unknown }[] };
 function preparation(label: string) { const r = refs.cases.find(r => r.label === label); assert(r); const input = snapshot({ kind: 'boson-coherent', parameters: r.input }); const packet = evaluate({ version: 1, requestId: 7, input }); assert(packet.ok && packet.kind === 'boson-coherent'); return { input, packet }; }

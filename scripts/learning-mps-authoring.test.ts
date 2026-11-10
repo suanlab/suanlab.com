@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -14,6 +15,8 @@ import type { Root, Element } from 'hast';
 import { mpsModel as model } from '../src/lib/learning-mps';
 import { isMasterObservation } from '../src/lib/learning-master-equation-protocol';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/mps-manuscripts', { recursive: true });
+
 const id = 'matrix-product-state-contraction-gauge', base = 'docs/online-learning/physics-math-for-ai', runtime = '.runtime/learning/mps-manuscripts';
 const sources = { ko: readFileSync(`${base}/${id}-chapter.ko.md`, 'utf8'), en: readFileSync(`${base}/${id}-chapter.en.md`, 'utf8') };
 const references = JSON.parse(readFileSync('scripts/fixtures/mps-authoring-reference.json', 'utf8'));

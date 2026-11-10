@@ -1,9 +1,12 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { spinChainModel as model, createSpinChainParameters as create, snapshotSpinChainParameters as snapshot, isSpinChainParameters as valid, spinChainParameterKeys as keys, spinChainEdges as edges, type SpinChainParameters as P } from '../src/lib/learning-spin-chain';
 import { isMasterObservation } from '../src/lib/learning-master-equation-protocol';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/spin-chain-foundation', { recursive: true });
+
 
 const references = JSON.parse(readFileSync('scripts/fixtures/spin-chain-reference.json', 'utf8')) as { cases: { label: string; input: P; expected: unknown }[] };
 type F = { n: bigint; d: bigint };

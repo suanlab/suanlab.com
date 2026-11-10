@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -10,6 +11,8 @@ import { exact as exactObservation } from '../src/lib/learning-quantum-hilbert-c
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
 import { f as rational, zero, one, int, add, sub, mul, div, le as rationalLe, c, type Range } from '../src/lib/learning-tensor-wire-math';
 import { wireRange, wireAdd, wireSub, wireMul, wireDiv, wireSquare, wireSqrt, wireSpectralProjector } from '../src/lib/learning-many-body-schmidt-interval-wire';
+ensureTestArtifactDirectory('.runtime/learning/many-body-schmidt-response', { recursive: true });
+
 const runtime = '.runtime/learning/many-body-schmidt-response';
 const refs = JSON.parse(readFileSync('scripts/fixtures/schmidt-reference.json', 'utf8')) as { cases: { label: string; input: Record<string, number>; expected: unknown }[] };
 function preparation(label: string) { const r = refs.cases.find(r => r.label === label); assert(r); const input = snapshot({ kind: 'schmidt', parameters: r.input }); const packet = evaluate({ version: 1, requestId: 7, input }); assert(packet.ok && packet.kind === 'schmidt'); return { input, packet }; }

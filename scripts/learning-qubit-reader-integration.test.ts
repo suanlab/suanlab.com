@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -10,6 +11,8 @@ import { qubitTeaching } from '../src/data/qubit-teaching';
 import { qubitTeachingIds as ids } from '../src/lib/learning-qubit-teaching-input';
 import { getLearningContent } from '../src/lib/learning-content';
 import before from './fixtures/pre-qubit-registry-hashes.json';
+ensureTestArtifactDirectory('.runtime/learning/quantum-qubit-reader-integration', { recursive: true });
+
 const hash = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 for (const [index, id] of ids.entries()) test(`registered qubit reader: ${id}`, async () => {
   const unit = learningUnits.find(unit => unit.id === id); assert(unit);

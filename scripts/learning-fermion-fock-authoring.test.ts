@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -13,6 +14,8 @@ import { visit } from 'unist-util-visit';
 import type { Root, Element } from 'hast';
 import { fermionFockModel as model, createFermionFockParameters as create, type FermionFockParameters as P } from '../src/lib/learning-fermion-fock';
 import type { PartitionObservation as Q } from '../src/lib/learning-partition-exact-core';
+ensureTestArtifactDirectory('.runtime/learning/fermion-fock-manuscripts', { recursive: true });
+
 const id = 'fermion-fock-parity-operator-algebra', base = 'docs/online-learning/physics-math-for-ai', runtime = '.runtime/learning/fermion-fock-manuscripts';
 const sources = { ko: readFileSync(`${base}/${id}-chapter.ko.md`, 'utf8'), en: readFileSync(`${base}/${id}-chapter.en.md`, 'utf8') };
 const references = JSON.parse(readFileSync('scripts/fixtures/fermion-fock-authoring-reference.json', 'utf8'));

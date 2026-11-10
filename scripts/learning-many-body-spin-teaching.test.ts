@@ -1,3 +1,4 @@
+import { mkdirSync as ensureTestArtifactDirectory } from 'node:fs';
 import test,{after}from'node:test';
 import assert from'node:assert/strict';
 import {readFileSync,writeFileSync}from'node:fs';
@@ -8,6 +9,8 @@ import {spinChainModel as model}from'../src/lib/learning-spin-chain';
 import {snapshotManyBodyInput,manyBodyInputKey,parseManyBodyInputDraft,parseManyBodyStoredInput}from'../src/lib/learning-many-body-input';
 import {getLearningContent}from'../src/lib/learning-content';
 import {spinGraphCameraDistance}from'../src/components/learning/many-body-spin-graph-engine';
+ensureTestArtifactDirectory('.runtime/learning/many-body-spin-teaching', { recursive: true });
+
 const runtime='.runtime/learning/many-body-spin-teaching';
 const results=presets.map(p=>model(p.input.parameters));
 let presetChecks=0;
