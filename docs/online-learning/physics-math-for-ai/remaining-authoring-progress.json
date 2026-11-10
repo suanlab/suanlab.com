@@ -13497,25 +13497,26 @@
             "euclidean-quantum-kernels-and-time-slicing"
           ],
           "preparedUnitIds": [
-            "brownian-bridge-time-slicing-measure"
+            "brownian-bridge-time-slicing-measure",
+            "euclidean-quantum-kernels-and-time-slicing"
           ],
           "preparation": {
             "id": "euclidean-quantum-kernels-and-time-slicing",
             "originalTopic": "path integral의 정의·근사",
-            "stage": "primary-source-and-exact-finite-identities-verified",
+            "stage": "bilingual-manuscripts-and-finite-derivations-verified",
             "registeredUnitCount": 0,
             "readerRegistered": false,
             "homepageIntegrated": false,
             "originalTopicComplete": false,
             "researchDepthComplete": false,
             "productionCalculatorImplemented": false,
-            "bilingualManuscriptsAuthored": false,
+            "bilingualManuscriptsAuthored": true,
             "independentResponseValidatorComplete": false,
             "workersVerified": false,
             "teachingUiVerified": false,
             "primarySourceAudit": "docs/online-learning/physics-math-for-ai/euclidean-kernels-primary-source-audit.md",
-            "report": "docs/online-learning/physics-math-for-ai/euclidean-kernels-foundation-status.md",
-            "evidence": ".runtime/learning/euclidean-kernel-foundation/derivations.json",
+            "report": "docs/online-learning/physics-math-for-ai/euclidean-kernels-manuscript-status.md",
+            "evidence": ".runtime/learning/euclidean-kernel-foundation/verification.json",
             "minimumIntervals": 2,
             "maximumIntervals": 32,
             "derivationChecksPassed": 1054,
@@ -13523,7 +13524,17 @@
             "decimalPrecision": 80,
             "decimalComparisonRows": 7,
             "decimalComparisonsAreCertifiedBounds": false,
-            "nextStage": "bilingual-detailed-manuscripts-and-explained-examples"
+            "nextStage": "production-exact-calculator-and-independent-response-validation",
+            "bilingualDraftFiles": 2,
+            "sectionsPerLanguage": 24,
+            "displayEquationsPerLanguage": 15,
+            "explainedQuestionsPerLanguage": 8,
+            "predictionComparisons": 6,
+            "manuscriptTestsPassed": 2,
+            "node20ManuscriptTestsPassed": 2,
+            "pythonExerciseExecuted": true,
+            "decimalIdentityChecks": 35,
+            "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/euclidean-kernels-acceptance-matrix.json"
           },
           "originalTopicComplete": false,
           "remainingPlannedTreatments": [
@@ -13533,7 +13544,9 @@
           ],
           "preparedContentFiles": [
             "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
-            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md"
+            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md",
+            "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.ko.md",
+            "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.en.md"
           ],
           "verifiedUnitIds": [
             "brownian-bridge-time-slicing-measure"
@@ -13569,8 +13582,8 @@
         }
       ],
       "verification": null,
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/euclidean-kernels-foundation-status.md",
-      "currentPreparationEvidence": ".runtime/learning/euclidean-kernel-foundation/derivations.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/euclidean-kernels-manuscript-status.md",
+      "currentPreparationEvidence": ".runtime/learning/euclidean-kernel-foundation/verification.json",
       "lastIntegratedPreparation": {
         "originalTopic": "correlation function",
         "stage": "two-constituents-reader-verified",
@@ -13723,24 +13736,24 @@
         "matrix": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit-matrix.json",
         "evidence": ".runtime/learning/correlation-function-topic-audit/verification.json"
       },
-      "nextAction": "euclidean-quantum-kernels-bilingual-detailed-manuscripts",
+      "nextAction": "euclidean-kernels-exact-numerics-and-independent-validation",
       "nextUnitPreparation": {
         "id": "euclidean-quantum-kernels-and-time-slicing",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "primary-source-and-exact-finite-identities-verified",
+        "stage": "bilingual-manuscripts-and-finite-derivations-verified",
         "registeredUnitCount": 0,
         "readerRegistered": false,
         "homepageIntegrated": false,
         "originalTopicComplete": false,
         "researchDepthComplete": false,
         "productionCalculatorImplemented": false,
-        "bilingualManuscriptsAuthored": false,
+        "bilingualManuscriptsAuthored": true,
         "independentResponseValidatorComplete": false,
         "workersVerified": false,
         "teachingUiVerified": false,
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/euclidean-kernels-primary-source-audit.md",
-        "report": "docs/online-learning/physics-math-for-ai/euclidean-kernels-foundation-status.md",
-        "evidence": ".runtime/learning/euclidean-kernel-foundation/derivations.json",
+        "report": "docs/online-learning/physics-math-for-ai/euclidean-kernels-manuscript-status.md",
+        "evidence": ".runtime/learning/euclidean-kernel-foundation/verification.json",
         "minimumIntervals": 2,
         "maximumIntervals": 32,
         "derivationChecksPassed": 1054,
@@ -13748,7 +13761,17 @@
         "decimalPrecision": 80,
         "decimalComparisonRows": 7,
         "decimalComparisonsAreCertifiedBounds": false,
-        "nextStage": "bilingual-detailed-manuscripts-and-explained-examples"
+        "nextStage": "production-exact-calculator-and-independent-response-validation",
+        "bilingualDraftFiles": 2,
+        "sectionsPerLanguage": 24,
+        "displayEquationsPerLanguage": 15,
+        "explainedQuestionsPerLanguage": 8,
+        "predictionComparisons": 6,
+        "manuscriptTestsPassed": 2,
+        "node20ManuscriptTestsPassed": 2,
+        "pythonExerciseExecuted": true,
+        "decimalIdentityChecks": 35,
+        "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/euclidean-kernels-acceptance-matrix.json"
       }
     },
     {
@@ -14065,10 +14088,10 @@
     "evidence": ".runtime/learning/thermodynamics-domain-audit-stage7/semantics-verification.json",
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
-  "authoredUnverifiedNewUnitCount": 0,
-  "authoredUnverifiedNewUnitCountDefinition": "All598 registered bilingual units are verified within their declared introductory treatment. Path integrals have one registered treatment and three remaining treatments; original-topic, domain and research-depth audits remain separate.",
+  "authoredUnverifiedNewUnitCount": 1,
+  "authoredUnverifiedNewUnitCountDefinition": "One unregistered Euclidean-kernel bilingual draft has24sections,15display equations,8explained questions and6prediction comparisons per language;exact finite identities and Python exercise verified. It is excluded from598 registered units and1196 registered manuscripts. Production calculator,independent response validation,Workers,teaching UI and reader remain.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
   "nextAuthoringUnitId": "euclidean-quantum-kernels-and-time-slicing",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "euclidean-quantum-kernels-bilingual-detailed-manuscripts"
+  "nextAction": "euclidean-kernels-exact-numerics-and-independent-validation"
 }

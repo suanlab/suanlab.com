@@ -145,9 +145,17 @@ with localcontext() as context:
         theta = 2 * ((1 + u * u / 4).sqrt() + u / 2).ln()
         # Decimal cross-check of exact recurrence against a separate hyperbolic form.
         ds = recurrence(n, F(1, n * n))
-        relative = abs(dec(ds[n - 1]) / (sinh(n * theta) / sinh(theta)) - 1)
-        assert relative < Decimal('1e-70')
-        row = {'intervals': n, 'logSymmetricKernelRatio': str(log_symmetric_ratio), 'logRightKernelRatio': str(log_primitive_ratio), 'hyperbolicRelativeResidual': str(relative)}
+        hyperbolic_s = n * sinh(theta) / sinh(n * theta)
+        comparisons_to_check = {
+            'determinant': (dec(ds[n - 1]), sinh(n * theta) / sinh(theta)),
+            'prefactorSquareWithoutPi': (dec(p), hyperbolic_s / 2),
+            'diagonalExponentCoefficient': (dec(g), hyperbolic_s * cosh(n * theta) / 2),
+            'crossExponentCoefficient': (dec(h), hyperbolic_s),
+            'trace': ((dec(p) / dec(2 * g - h)).sqrt(), 1 / (2 * sinh(n * theta / 2))),
+        }
+        residuals = {key: abs(left / right - 1) for key, (left, right) in comparisons_to_check.items()}
+        assert all(value < Decimal('1e-70') for value in residuals.values()), residuals
+        row = {'intervals': n, 'logSymmetricKernelRatio': str(log_symmetric_ratio), 'logRightKernelRatio': str(log_primitive_ratio), 'hyperbolicRelativeResiduals': {key: str(value) for key, value in residuals.items()}}
         if previous:
             symmetric_ratio = abs(previous[0] / log_symmetric_ratio)
             right_ratio = abs(previous[1] / log_primitive_ratio)
@@ -157,7 +165,7 @@ with localcontext() as context:
         previous = log_symmetric_ratio, log_primitive_ratio
         comparisons.append(row)
 
-report = {'unitId': 'euclidean-quantum-kernels-and-time-slicing', 'exactChecksPassed': len(checks), 'finiteModels': len(models), 'exactIntervalRange': [2, 32], 'decimalPrecision': 80, 'decimalComparisonRows': comparisons, 'decimalComparisonsAreCertifiedBounds': False, 'productionCalculatorChecked': False, 'manuscriptsChecked': False, 'readerRegistered': False, 'models': models, 'checks': checks}
+report = {'unitId': 'euclidean-quantum-kernels-and-time-slicing', 'exactChecksPassed': len(checks), 'finiteModels': len(models), 'exactIntervalRange': [2, 32], 'decimalPrecision': 80, 'decimalIdentityChecks': 5 * len(comparisons), 'decimalComparisonRows': comparisons, 'decimalComparisonsAreCertifiedBounds': False, 'productionCalculatorChecked': False, 'manuscriptsChecked': False, 'readerRegistered': False, 'models': models, 'checks': checks}
 output = Path('.runtime/learning/euclidean-kernel-foundation')
 output.mkdir(parents=True, exist_ok=True)
 (output / 'derivations.json').write_text(json.dumps(report, indent=2) + '\n')
