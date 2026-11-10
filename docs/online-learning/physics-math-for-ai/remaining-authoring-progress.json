@@ -13493,32 +13493,44 @@
           "plannedUnitIds": [
             "brownian-bridge-time-slicing-measure"
           ],
-          "preparedUnitIds": [],
+          "preparedUnitIds": [
+            "brownian-bridge-time-slicing-measure"
+          ],
           "preparation": {
             "id": "brownian-bridge-time-slicing-measure",
             "originalTopic": "path integral의 정의·근사",
-            "stage": "scope-and-exact-derivations-verified",
+            "stage": "bilingual-manuscripts-and-derivations-verified-numerical-model-pending",
             "registeredUnitCount": 0,
             "readerRegistered": false,
             "homepageIntegrated": false,
             "originalTopicComplete": false,
             "researchDepthComplete": false,
             "productionCalculatorImplemented": false,
-            "bilingualManuscriptsAuthored": false,
+            "bilingualManuscriptsAuthored": true,
             "independentResponseValidatorComplete": false,
             "workersVerified": false,
             "teachingUiVerified": false,
             "scopeAuditComplete": true,
             "modelFinalized": true,
             "primarySourceAudit": "docs/online-learning/physics-math-for-ai/path-integrals-primary-source-audit.md",
-            "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-scope-status.md",
-            "evidence": ".runtime/learning/brownian-bridge-foundation/derivations.json",
+            "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-manuscript-status.md",
+            "evidence": ".runtime/learning/brownian-bridge-numerics/verification.json",
             "minimumIntervals": 2,
             "maximumIntervals": 32,
             "derivationChecksPassed": 695,
             "finiteModels": 62,
             "coarseningPairs": 15,
-            "nextStage": "bilingual-manuscripts-and-numerical-foundation"
+            "nextStage": "exact-numerical-foundation",
+            "bilingualDraftFiles": 2,
+            "sectionsPerLanguage": 20,
+            "displayEquationsPerLanguage": 12,
+            "explainedQuestionsPerLanguage": 8,
+            "manuscriptTestsPassed": 2,
+            "pythonExerciseExecuted": true,
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
+              "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md"
+            ]
           },
           "originalTopicComplete": false,
           "remainingPlannedTreatments": [
@@ -13526,6 +13538,10 @@
             "euclidean-quantum-kernels-and-time-slicing",
             "saddle-fluctuation-and-nongaussian-approximation",
             "real-time-phase-and-classical-limit"
+          ],
+          "preparedContentFiles": [
+            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
+            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md"
           ]
         },
         {
@@ -13555,8 +13571,8 @@
         }
       ],
       "verification": null,
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/brownian-bridge-scope-status.md",
-      "currentPreparationEvidence": ".runtime/learning/brownian-bridge-foundation/derivations.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/brownian-bridge-manuscript-status.md",
+      "currentPreparationEvidence": ".runtime/learning/brownian-bridge-numerics/verification.json",
       "lastIntegratedPreparation": {
         "originalTopic": "correlation function",
         "stage": "two-constituents-reader-verified",
@@ -13590,28 +13606,38 @@
       "nextUnitPreparation": {
         "id": "brownian-bridge-time-slicing-measure",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "scope-and-exact-derivations-verified",
+        "stage": "bilingual-manuscripts-and-derivations-verified-numerical-model-pending",
         "registeredUnitCount": 0,
         "readerRegistered": false,
         "homepageIntegrated": false,
         "originalTopicComplete": false,
         "researchDepthComplete": false,
         "productionCalculatorImplemented": false,
-        "bilingualManuscriptsAuthored": false,
+        "bilingualManuscriptsAuthored": true,
         "independentResponseValidatorComplete": false,
         "workersVerified": false,
         "teachingUiVerified": false,
         "scopeAuditComplete": true,
         "modelFinalized": true,
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/path-integrals-primary-source-audit.md",
-        "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-scope-status.md",
-        "evidence": ".runtime/learning/brownian-bridge-foundation/derivations.json",
+        "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-manuscript-status.md",
+        "evidence": ".runtime/learning/brownian-bridge-numerics/verification.json",
         "minimumIntervals": 2,
         "maximumIntervals": 32,
         "derivationChecksPassed": 695,
         "finiteModels": 62,
         "coarseningPairs": 15,
-        "nextStage": "bilingual-manuscripts-and-numerical-foundation"
+        "nextStage": "exact-numerical-foundation",
+        "bilingualDraftFiles": 2,
+        "sectionsPerLanguage": 20,
+        "displayEquationsPerLanguage": 12,
+        "explainedQuestionsPerLanguage": 8,
+        "manuscriptTestsPassed": 2,
+        "pythonExerciseExecuted": true,
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
+          "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md"
+        ]
       },
       "lastIntegratedUnitPreparation": {
         "originalTopic": "correlation function",
@@ -13736,7 +13762,8 @@
         "report": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit.md",
         "matrix": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit-matrix.json",
         "evidence": ".runtime/learning/correlation-function-topic-audit/verification.json"
-      }
+      },
+      "nextAction": "brownian-bridge-exact-numerical-foundation"
     },
     {
       "id": "relativity",
@@ -14052,10 +14079,10 @@
     "evidence": ".runtime/learning/thermodynamics-domain-audit-stage7/semantics-verification.json",
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
-  "authoredUnverifiedNewUnitCount": 0,
-  "authoredUnverifiedNewUnitCountDefinition": "All597 registered bilingual units are reader-verified; the correlation-function introductory topic audit is complete. The next time-slicing model has no authored manuscripts or registered reader yet. Whole-domain audits and research depth remain incomplete.",
+  "authoredUnverifiedNewUnitCount": 1,
+  "authoredUnverifiedNewUnitCountDefinition": "One unregistered Brownian-bridge bilingual draft is excluded from597 registered units and1194 registered manuscripts. Its20-section manuscripts and finite derivations are verified; numerical model, Worker, teaching UI and actual reader remain. Whole-domain audits and research depth remain incomplete.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
   "nextAuthoringUnitId": "brownian-bridge-time-slicing-measure",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "brownian-bridge-bilingual-manuscripts-and-numerical-foundation"
+  "nextAction": "brownian-bridge-exact-numerical-foundation"
 }

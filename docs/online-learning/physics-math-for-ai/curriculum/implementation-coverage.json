@@ -3,7 +3,7 @@
   "updated": "2026-11-10",
   "implementedUnitCount": 597,
   "curriculumComplete": false,
-  "scope": "597 registered bilingual units and1838 guided experiments. Original introductory coverage315/362 verified with47pending. The three correlation-function treatments and their original introductory-topic audit are verified. Brownian-bridge time slicing has a declared scope and695 exact finite derivation checks; manuscripts, production numerical model, independent response verification, Workers, teaching UI and reader remain. Full51-domain509-topic coverage, whole-domain audits and research depth remain incomplete.",
+  "scope": "597 registered bilingual units and1838 guided experiments. Original introductory coverage315/362 verified with47pending. Correlation-function introductory audit is verified. One unregistered Brownian-bridge bilingual draft has20sections,12display equations and8explained questions per language, two successful manuscript/exercise checks and695 exact finite derivation checks. Production numerical model, independent response verification, Workers, teaching UI and reader remain. Full51-domain509-topic coverage, whole-domain audits and research depth remain incomplete.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9030,8 +9030,8 @@
         "interacting-nongaussian-connected-correlations",
         "spatial-spectra-decay-and-correlation-length"
       ],
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/brownian-bridge-scope-status.md",
-      "currentPreparationEvidence": ".runtime/learning/brownian-bridge-foundation/derivations.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/brownian-bridge-manuscript-status.md",
+      "currentPreparationEvidence": ".runtime/learning/brownian-bridge-numerics/verification.json",
       "lastIntegratedPreparation": {
         "originalTopic": "correlation function",
         "treatment": "spatial-spectra-decay-and-correlation-length",
@@ -9510,30 +9510,40 @@
       "nextUnitPreparation": {
         "id": "brownian-bridge-time-slicing-measure",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "scope-and-exact-derivations-verified",
+        "stage": "bilingual-manuscripts-and-derivations-verified-numerical-model-pending",
         "registeredUnitCount": 0,
         "readerRegistered": false,
         "homepageIntegrated": false,
         "originalTopicComplete": false,
         "researchDepthComplete": false,
         "productionCalculatorImplemented": false,
-        "bilingualManuscriptsAuthored": false,
+        "bilingualManuscriptsAuthored": true,
         "independentResponseValidatorComplete": false,
         "workersVerified": false,
         "teachingUiVerified": false,
         "scopeAuditComplete": true,
         "modelFinalized": true,
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/path-integrals-primary-source-audit.md",
-        "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-scope-status.md",
-        "evidence": ".runtime/learning/brownian-bridge-foundation/derivations.json",
+        "report": "docs/online-learning/physics-math-for-ai/brownian-bridge-manuscript-status.md",
+        "evidence": ".runtime/learning/brownian-bridge-numerics/verification.json",
         "minimumIntervals": 2,
         "maximumIntervals": 32,
         "derivationChecksPassed": 695,
         "finiteModels": 62,
         "coarseningPairs": 15,
-        "nextStage": "bilingual-manuscripts-and-numerical-foundation"
+        "nextStage": "exact-numerical-foundation",
+        "bilingualDraftFiles": 2,
+        "sectionsPerLanguage": 20,
+        "displayEquationsPerLanguage": 12,
+        "explainedQuestionsPerLanguage": 8,
+        "manuscriptTestsPassed": 2,
+        "pythonExerciseExecuted": true,
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
+          "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md"
+        ]
       },
-      "nextAction": "brownian-bridge-bilingual-manuscripts-and-numerical-foundation"
+      "nextAction": "brownian-bridge-exact-numerical-foundation"
     },
     {
       "id": "relativity",
