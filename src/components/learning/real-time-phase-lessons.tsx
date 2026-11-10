@@ -10,7 +10,7 @@ export default function RealTimePhaseLessons({language,onApply,state,onState}:{l
   const id=useId(),t=(ko:string,en:string)=>language==='ko'?ko:en,[local,setLocal]=useState(()=>emptyRealTimeLesson(realTimeLessonLimits));
   const current=readRealTimeLesson(state??local,realTimeLessonLimits)??emptyRealTimeLesson(realTimeLessonLimits),set=onState??setLocal,guide=realTimePhaseGuides[current.guide];
   const choose=(name:string)=>{const prep=realTimePhaseGuidePreparations.find(p=>p.id===name),input=prep&&readRealTimePhaseInput(prep.input);if(input)onApply(input,name);};
-  return <div data-real-time-lessons>
+  return <div className="information-lab" data-real-time-lessons>
     <section aria-labelledby={`${id}-guides`}><h2 id={`${id}-guides`}>{t('먼저 예측하고 비교하기','Predict first, then compare')}</h2>
       <p>{t('안내 선택·예측 작성·문제 풀이는 계산을 시작하지 않습니다. 예제 적용 버튼만 실제 입력을 바꾸며, 결과는 계산·독립 검산 후 나타납니다.','Choosing a guide, writing a prediction or answering a question does not start a calculation. Only Apply changes the model input; results appear after calculation and independent verification.')}</p>
       <label className="qubit-field">{t('안내 실험','Guided experiment')}<select aria-label={t('안내 실험','Guided experiment')} value={current.guide} onChange={e=>set({...current,guide:Number(e.target.value),explanationOpen:false})}>{realTimePhaseGuides.map((g,i)=><option key={g.id} value={i}>{i+1}. {g.title[language]}</option>)}</select></label>

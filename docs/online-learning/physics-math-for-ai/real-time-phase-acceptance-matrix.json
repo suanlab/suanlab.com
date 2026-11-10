@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-11",
   "unitId": "real-time-phase-and-classical-limit",
-  "stage": "interactive-views-verified",
+  "stage": "guided-experiments-and-questions-verified",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -109,12 +109,14 @@
     {
       "id": "guided-experiments",
       "title": "예측·조작·설명과 명시 예제",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Six bilingual prediction/observation/explanation guides,17valid preparations and18button bindings;eight explained3option questions. Node20/24each22tests,independent Fraction hand checks. Native8contexts,48guides/192choices/39applications,94ports released;learning controls do notcalculate,locale preserves predictions/answers. Final styled8contexts rechecked. Full persistence andproduction reader remain separate."
     },
     {
       "id": "explained-questions",
       "title": "개념·한계 해설 문제",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "Six bilingual prediction/observation/explanation guides,17valid preparations and18button bindings;eight explained3option questions. Node20/24each22tests,independent Fraction hand checks. Native8contexts,48guides/192choices/39applications,94ports released;learning controls do notcalculate,locale preserves predictions/answers. Final styled8contexts rechecked. Full persistence andproduction reader remain separate."
     },
     {
       "id": "storage-and-accessibility",
@@ -138,11 +140,11 @@
     }
   ],
   "requirementCount": 23,
-  "requirementsVerified": 17,
+  "requirementsVerified": 19,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/real-time-phase-waves/verification.json",
-  "scopeNote": "17of23requirements verified:foundations,bilingual manuscripts,producer,independent whole-response gate,actual Worker lifecycle,common messageerror compatibility,bilingual reference graphics andall interactive result views. Guides/questions,full storage/accessibility,reader/production assets andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
+  "evidence": ".runtime/learning/real-time-phase-lessons/verification.json",
+  "scopeNote": "19of23requirements verified:previous foundations andviews retained;6guides with17explicit preparations and8explained questions verified. Full input/display/learning persistence andaccessibility,reader/production assets,preservation andunit/topic audits remain. No newregistered unit;original topic andwhole goal incomplete."
 }
