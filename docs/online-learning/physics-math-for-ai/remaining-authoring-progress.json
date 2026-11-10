@@ -13504,6 +13504,70 @@
             "euclidean-quantum-kernels-and-time-slicing"
           ],
           "preparation": {
+            "id": "saddle-fluctuation-and-nongaussian-approximation",
+            "originalTopic": "path integral의 정의·근사",
+            "stage": "mathematical-foundation-verified-production-pending",
+            "registeredUnitCount": 0,
+            "readerRegistered": false,
+            "homepageIntegrated": false,
+            "unitComplete": false,
+            "originalTopicComplete": false,
+            "researchDepthComplete": false,
+            "primarySourceAuditComplete": true,
+            "mathematicalContractSpecified": true,
+            "modelFinalized": false,
+            "productionContractFinalized": false,
+            "productionCalculatorImplemented": false,
+            "bilingualManuscriptsAuthored": false,
+            "independentResponseValidatorComplete": false,
+            "workersVerified": false,
+            "teachingUiVerified": false,
+            "derivationChecksPassed": 4728,
+            "exactChecksPassed": 4701,
+            "finiteModels": 26,
+            "decimalChecksPassed": 27,
+            "decimalPrecision": 80,
+            "decimalRows": 18,
+            "decimalQuadratureCertified": false,
+            "requirementsVerified": 4,
+            "requirementCount": 20,
+            "primarySourceAudit": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-primary-source-audit.md",
+            "modelContract": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-model-contract.md",
+            "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-acceptance-matrix.json",
+            "report": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-foundation-status.md",
+            "evidence": ".runtime/learning/saddle-fluctuation-scope/verification.json",
+            "nextStage": "bilingual-manuscripts-and-production-numerics"
+          },
+          "originalTopicComplete": false,
+          "remainingPlannedTreatments": [
+            "saddle-fluctuation-and-nongaussian-approximation",
+            "real-time-phase-and-classical-limit"
+          ],
+          "preparedContentFiles": [
+            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
+            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md",
+            "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.ko.md",
+            "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.en.md"
+          ],
+          "verifiedUnitIds": [
+            "brownian-bridge-time-slicing-measure",
+            "euclidean-quantum-kernels-and-time-slicing"
+          ],
+          "readerRegistered": true,
+          "actualReaderVerified": true,
+          "homepageIntegrated": true,
+          "preparedNumericalUnitIds": [
+            "brownian-bridge-time-slicing-measure",
+            "euclidean-quantum-kernels-and-time-slicing"
+          ],
+          "registeredUnitCount": 2,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
+            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md",
+            "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.ko.md",
+            "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.en.md"
+          ],
+          "lastIntegratedPreparation": {
             "id": "euclidean-quantum-kernels-and-time-slicing",
             "originalTopic": "path integral의 정의·근사",
             "stage": "actual-reader-and-production-assets-verified",
@@ -13623,36 +13687,7 @@
             "productionAttributionRejections": 71,
             "priorWorkerAssetsPreserved": 65,
             "allRegisteredManuscriptsVerified": 1198
-          },
-          "originalTopicComplete": false,
-          "remainingPlannedTreatments": [
-            "saddle-fluctuation-and-nongaussian-approximation",
-            "real-time-phase-and-classical-limit"
-          ],
-          "preparedContentFiles": [
-            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
-            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md",
-            "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.ko.md",
-            "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.en.md"
-          ],
-          "verifiedUnitIds": [
-            "brownian-bridge-time-slicing-measure",
-            "euclidean-quantum-kernels-and-time-slicing"
-          ],
-          "readerRegistered": true,
-          "actualReaderVerified": true,
-          "homepageIntegrated": true,
-          "preparedNumericalUnitIds": [
-            "brownian-bridge-time-slicing-measure",
-            "euclidean-quantum-kernels-and-time-slicing"
-          ],
-          "registeredUnitCount": 2,
-          "contentFiles": [
-            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.ko.md",
-            "content/learning/physics-math-for-ai/brownian-bridge-time-slicing-measure.en.md",
-            "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.ko.md",
-            "content/learning/physics-math-for-ai/euclidean-quantum-kernels-and-time-slicing.en.md"
-          ]
+          }
         },
         {
           "title": "statistical field theory",
@@ -13681,8 +13716,8 @@
         }
       ],
       "verification": null,
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/euclidean-kernels-reader-integration-status.md",
-      "currentPreparationEvidence": ".runtime/learning/euclidean-kernel-reader-integration/verification.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-foundation-status.md",
+      "currentPreparationEvidence": ".runtime/learning/saddle-fluctuation-scope/verification.json",
       "lastIntegratedPreparation": {
         "originalTopic": "correlation function",
         "stage": "two-constituents-reader-verified",
@@ -13855,7 +13890,42 @@
         "matrix": "docs/online-learning/physics-math-for-ai/correlation-functions-introductory-audit-matrix.json",
         "evidence": ".runtime/learning/correlation-function-topic-audit/verification.json"
       },
-      "nextAction": "saddle-fluctuation-primary-source-audit-and-model-contract"
+      "nextAction": "saddle-fluctuation-bilingual-manuscripts-and-production-numerics",
+      "nextUnitPreparation": {
+        "id": "saddle-fluctuation-and-nongaussian-approximation",
+        "originalTopic": "path integral의 정의·근사",
+        "stage": "mathematical-foundation-verified-production-pending",
+        "registeredUnitCount": 0,
+        "readerRegistered": false,
+        "homepageIntegrated": false,
+        "unitComplete": false,
+        "originalTopicComplete": false,
+        "researchDepthComplete": false,
+        "primarySourceAuditComplete": true,
+        "mathematicalContractSpecified": true,
+        "modelFinalized": false,
+        "productionContractFinalized": false,
+        "productionCalculatorImplemented": false,
+        "bilingualManuscriptsAuthored": false,
+        "independentResponseValidatorComplete": false,
+        "workersVerified": false,
+        "teachingUiVerified": false,
+        "derivationChecksPassed": 4728,
+        "exactChecksPassed": 4701,
+        "finiteModels": 26,
+        "decimalChecksPassed": 27,
+        "decimalPrecision": 80,
+        "decimalRows": 18,
+        "decimalQuadratureCertified": false,
+        "requirementsVerified": 4,
+        "requirementCount": 20,
+        "primarySourceAudit": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-primary-source-audit.md",
+        "modelContract": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-model-contract.md",
+        "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-acceptance-matrix.json",
+        "report": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-foundation-status.md",
+        "evidence": ".runtime/learning/saddle-fluctuation-scope/verification.json",
+        "nextStage": "bilingual-manuscripts-and-production-numerics"
+      }
     },
     {
       "id": "relativity",
@@ -14172,9 +14242,9 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 0,
-  "authoredUnverifiedNewUnitCountDefinition": "No unregistered draft units. All599 registered units have1198 bilingual manuscripts; topic audits and research depth remain separate.",
+  "authoredUnverifiedNewUnitCountDefinition": "No unregistered manuscript units. All599 registered units have1198 bilingual manuscripts. The next saddle-fluctuation treatment has a mathematical contract and verified derivations only;no new student manuscripts orreader yet.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
   "nextAuthoringUnitId": "saddle-fluctuation-and-nongaussian-approximation",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "saddle-fluctuation-primary-source-audit-and-model-contract"
+  "nextAction": "saddle-fluctuation-bilingual-manuscripts-and-production-numerics"
 }
