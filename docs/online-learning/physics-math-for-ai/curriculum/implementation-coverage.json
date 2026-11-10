@@ -3,7 +3,7 @@
   "updated": "2026-11-10",
   "implementedUnitCount": 599,
   "curriculumComplete": false,
-  "scope": "599 registered bilingual units and1850 guided experiments;1198 registered manuscripts,no unregistered manuscript drafts. Euclidean reader and production assets verified. Next saddle-fluctuation treatment has26finite mathematical models,4701exact/27Decimal checks,18quadrature rows and a contract;production solver,input/wire limits,manuscripts,Workers,UI andreader remain. Original introductory coverage315/362 verified with47pending. Full51-domain509-topic coverage,whole-domain audits and research depth remain incomplete.",
+  "scope": "599 registered bilingual units and1850 guided experiments;1198 registered manuscripts. One unregistered saddle-fluctuation bilingual draft adds2manuscripts with28sections,24equations,6comparisons and8explained questions per language;2tests pass onNode20/24 andstandard-library Python executes.26finite mathematical models/4728derivation checks are separate.Production numerics,input/wire costs,validator,Workers,UI andreader remain. Original introductory coverage315/362 verified with47pending. Full51-domain509-topic coverage,whole-domain audits and research depth remain incomplete.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9032,8 +9032,8 @@
         "brownian-bridge-time-slicing-measure",
         "euclidean-quantum-kernels-and-time-slicing"
       ],
-      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-foundation-status.md",
-      "currentPreparationEvidence": ".runtime/learning/saddle-fluctuation-scope/verification.json",
+      "currentPreparationReport": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-manuscript-status.md",
+      "currentPreparationEvidence": ".runtime/learning/saddle-fluctuation-manuscripts/verification.json",
       "lastIntegratedPreparation": {
         "id": "brownian-bridge-time-slicing-measure",
         "originalTopic": "path integral의 정의·근사",
@@ -9549,11 +9549,11 @@
         "priorWorkerAssetsPreserved": 65,
         "allRegisteredManuscriptsVerified": 1198
       },
-      "nextAction": "saddle-fluctuation-bilingual-manuscripts-and-production-numerics",
+      "nextAction": "saddle-fluctuation-production-numerics-and-budget-validation",
       "nextUnitPreparation": {
         "id": "saddle-fluctuation-and-nongaussian-approximation",
         "originalTopic": "path integral의 정의·근사",
-        "stage": "mathematical-foundation-verified-production-pending",
+        "stage": "bilingual-manuscripts-authored-numerics-pending",
         "registeredUnitCount": 0,
         "readerRegistered": false,
         "homepageIntegrated": false,
@@ -9565,7 +9565,7 @@
         "modelFinalized": false,
         "productionContractFinalized": false,
         "productionCalculatorImplemented": false,
-        "bilingualManuscriptsAuthored": false,
+        "bilingualManuscriptsAuthored": true,
         "independentResponseValidatorComplete": false,
         "workersVerified": false,
         "teachingUiVerified": false,
@@ -9576,14 +9576,28 @@
         "decimalPrecision": 80,
         "decimalRows": 18,
         "decimalQuadratureCertified": false,
-        "requirementsVerified": 4,
+        "requirementsVerified": 5,
         "requirementCount": 20,
         "primarySourceAudit": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-primary-source-audit.md",
         "modelContract": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-model-contract.md",
         "acceptanceMatrix": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-acceptance-matrix.json",
-        "report": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-foundation-status.md",
-        "evidence": ".runtime/learning/saddle-fluctuation-scope/verification.json",
-        "nextStage": "bilingual-manuscripts-and-production-numerics"
+        "report": "docs/online-learning/physics-math-for-ai/saddle-fluctuation-manuscript-status.md",
+        "evidence": ".runtime/learning/saddle-fluctuation-manuscripts/verification.json",
+        "nextStage": "production-numerics-and-budget-validation",
+        "bilingualDraftFiles": 2,
+        "sectionsPerLanguage": 28,
+        "displayEquationsPerLanguage": 24,
+        "explainedQuestionsPerLanguage": 8,
+        "predictionComparisons": 6,
+        "tablesPerLanguage": 4,
+        "manuscriptTestsPassed": 2,
+        "node20ManuscriptTestsPassed": 2,
+        "pythonExerciseExecuted": true,
+        "mathAndCodeIdenticalAcrossLocales": true,
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/saddle-fluctuation-and-nongaussian-approximation.ko.md",
+          "content/learning/physics-math-for-ai/saddle-fluctuation-and-nongaussian-approximation.en.md"
+        ]
       }
     },
     {

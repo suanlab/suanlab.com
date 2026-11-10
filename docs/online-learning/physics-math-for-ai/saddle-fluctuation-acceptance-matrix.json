@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "saddle-fluctuation-and-nongaussian-approximation",
-  "stage": "mathematical-foundation-verified-production-pending",
+  "stage": "bilingual-manuscripts-authored-numerics-pending",
   "requirements": [
     {
       "id": "primary-source-audit",
@@ -66,7 +66,9 @@
     {
       "id": "bilingual-manuscripts",
       "title": "한영 상세 이론·직관·유도·손계산·Python",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "28sections,24display equations,4tables,6prediction comparisons and8explained questions per language;identical standard-library Python exercise executed;strict renderer and2tests pass onNode20/24.",
+      "manuscriptEvidence": ".runtime/learning/saddle-fluctuation-manuscripts/verification.json"
     },
     {
       "id": "concept-graphics",
@@ -110,11 +112,12 @@
     }
   ],
   "requirementCount": 20,
-  "requirementsVerified": 4,
+  "requirementsVerified": 5,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
   "evidence": ".runtime/learning/saddle-fluctuation-scope/verification.json",
-  "scopeNote": "Third of four path-integral treatments. Mathematical identities and qualitative regimes only;production solver,input/wire limits,manuscripts,Workers,UI andreader remain. General cubic corrections lack the zero-saddle nonnegative-remainder bound."
+  "scopeNote": "Third of four path-integral treatments. Mathematical identities and qualitative regimes only;production solver,input/wire limits,manuscripts,Workers,UI andreader remain. General cubic corrections lack the zero-saddle nonnegative-remainder bound.",
+  "manuscriptEvidence": ".runtime/learning/saddle-fluctuation-manuscripts/verification.json"
 }
