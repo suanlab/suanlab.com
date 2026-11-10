@@ -1,0 +1,2 @@
+export function createEuclideanKernelWorker():Worker{return new Worker(new URL('./learning-euclidean-kernel.worker.ts',import.meta.url),{type:'module',name:'euclidean-kernel-calculation'});}
+export function createEuclideanKernelValidationWorker():Worker{return new Worker(new URL('./learning-euclidean-kernel-validation.worker.ts',import.meta.url),{type:'module',name:'euclidean-kernel-validation'});}

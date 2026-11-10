@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-11-10",
   "unitId": "euclidean-quantum-kernels-and-time-slicing",
-  "stage": "exact-production-numerics-and-independent-response-validation-verified",
+  "stage": "native-workers-request-attribution-and-react-lifecycle-verified",
   "requirements": [
     {
       "id": "owned-input",
@@ -73,14 +73,15 @@
     {
       "id": "hostile-wire-and-mutations",
       "title": "최대 wire·변조·입력 귀속·소유 복사",
-      "completionVerified": false,
+      "completionVerified": true,
       "numericalSubgateVerified": true,
-      "evidenceReason": "455 individual small-leaf and87 selected maximum mutations rejected;owned/canonical/bounded snapshots verified. Full Worker request/version/kind attribution remains pending."
+      "evidenceReason": "Owned bounded snapshots,canonical raw input,version/requestId/kind/inputKey/nested attribution;57 envelope tests;71 native numerical mutations and71 mismatched request IDs rejected."
     },
     {
       "id": "workers-and-lifecycle",
       "title": "실제 Worker·취소·교체·숨김·오류복구",
-      "completionVerified": false
+      "completionVerified": true,
+      "evidenceReason": "24 controller tests;71 actual module Worker requests;19/19 normal hook Workers and7/7 active-cancel Workers closed. Mixed maximum input typing/cancel/retry checked;visibility events simulated,not physical tab automation."
     },
     {
       "id": "concept-and-cover",
@@ -109,11 +110,11 @@
     }
   ],
   "requirementCount": 18,
-  "requirementsVerified": 11,
+  "requirementsVerified": 13,
   "unitComplete": false,
   "originalTopicComplete": false,
   "wholeGoalComplete": false,
   "researchDepthComplete": false,
-  "evidence": ".runtime/learning/euclidean-kernel-numerics/verification.json",
+  "evidence": ".runtime/learning/euclidean-kernel-worker/verification.json",
   "scopeNote": "Second of four planned path-integral treatments. Finite mathematical identities and manuscript evidence do not verify any unimplemented production system or UI."
 }

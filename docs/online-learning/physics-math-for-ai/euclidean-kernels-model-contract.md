@@ -1,6 +1,6 @@
 # Euclidean 양자 커널: 정확한 유한 모형 계약
 
-2026-11-10. `euclidean-quantum-kernels-and-time-slicing`의 생산 수치 모형과 독립 응답 검산의 계약이다. [한영 원고](euclidean-kernels-manuscript-status.md)의 사다리꼴 potential 규칙을 사용한다. 실제 Worker와 학습 화면은 이후 단계다.
+2026-11-10. `euclidean-quantum-kernels-and-time-slicing`의 생산 수치 모형과 독립 응답 검산의 계약이다. [한영 원고](euclidean-kernels-manuscript-status.md)의 사다리꼴 potential 규칙을 사용한다. [실제 Worker와 수명 관리](euclidean-kernels-worker-status.md)를 검증했으며 학습 화면·실제 reader는 이후 단계다.
 
 ## 입력과 소유권
 
@@ -12,7 +12,7 @@
 
 분자·분모는 각각12자리 이내다. 분모는 양수이며 소수·지수·공백·선행0·양수 부호·음의0을 거부한다. 분모가 생략되면1이다. 입력 범위 판정에서 쓰는12자리 정수와 분모의16배는 안전한 JavaScript 정수 범위 안에 있다. 산술 모형은 정규화된 정확분수를 사용하지만 반환한 입력은 원래 철자를 보존한다.
 
-descriptor로 자체 필드만 복사하며 getter·누락·추가·symbol 필드는 거부한다. 호출자가 나중에 원본을 수정해도 소유 입력에 반영되지 않는다. 원래 표기를 포함한 입력 귀속과 Worker requestId/version/kind의 전송 검증은 구별하며, 후자는 아직 구현하지 않았다.
+descriptor로 자체 필드만 복사하며 getter·누락·추가·symbol 필드는 거부한다. 호출자가 나중에 원본을 수정해도 소유 입력에 반영되지 않는다. 원래 표기를 포함한 입력 귀속과 Worker requestId/version/kind의 전송 검증을 모두 수행한다. 필드 삽입 순서는 정규화하지만`1`과`2/2` 같은 원래 분수 표기는 구별한다.
 
 ## 생산 수치 경로
 
@@ -36,4 +36,12 @@ N,2N,4N,8N에서 같은 물리 시각의 평균/분산·커널·trace·오른쪽
 
 모든 결과 필드와 저장 인덱스·원래 입력 표기를 재구성한 예상값과 대조한다. 검산 결과는 동결한 소유 snapshot이다. 캐시는 소유 입력4개로 제한한다. 별도 Python 기준은 발생 행렬·Gauss–Jordan·주기 사슬 행렬식·Gaussian 합성을 사용하며 TypeScript 수치 모듈을 실행하지 않는다.
 
-실제 검증 결과·비용·변조 범위는 [수치 구현 상태](euclidean-kernels-numerics-status.md)에 기록한다. Worker·전송 수명·실제 브라우저·UI·교재 등록은 별도 통과 조건이다.
+수치 검증 결과·비용·변조 범위는 [수치 구현 상태](euclidean-kernels-numerics-status.md)에 기록한다. [Worker 상태](euclidean-kernels-worker-status.md)는 전체201검사와 실제 브라우저 모듈 Worker를 포함한다. UI·교재 등록·생산 Next 자산은 별도 통과 조건이다.
+
+## Worker와 화면 연결
+
+요청은`version:1,requestId,input`,계산 성공은`version:1,requestId,ok:true,kind:'euclidean-kernel',input,inputKey,result`다. requestId는 양의 안전 정수다. 검산 Worker는 원래 요청·성공 응답의 입력과 중첩 결과의 입력까지 대조하고 전체 결과를 재구성한다. 승인 receipt도 같은 requestId/kind/inputKey에 귀속한다.
+
+Controller는 계산 Worker를 종료한 뒤 독립 검산 Worker를 만들며,두 번의 큰 소유 복사는 작업을 나누어 이벤트 루프에 양보한다. 취소·교체·dispose 시 활성 token이 바뀌면 복사도 중단한다. 기본 전체 기한은120초이고10…120000ms 범위로 설정한다. 입력 한도를 줄이지 않고 실제 최대 사례를 이 기한 안에 확인했다.
+
+React hook은 새 입력과 일치하지 않는 이전 응답을 렌더 시점부터 숨긴다. 비활성·숨김·unmount에서 종료하고,복귀·retry 시 새 요청을 만든다. 잘못된 입력은 Worker 없이 오류를 보고한다. main-thread controller/hook에는 수치 계산기나 독립 산술을 포함하지 않는다. 실제 브라우저 검사에서는 visibility 상태/이벤트를 모의했으며 물리적 탭 숨김 자동화로 표현하지 않는다.
