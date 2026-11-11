@@ -1,4 +1,5 @@
 'use client';
+import { memoryRooflineId } from '@/data/memory-roofline-reader';
 import { photodiodeNoiseId } from '@/data/photodiode-noise-reader';
 import { photonicInterferometerId } from '@/data/photonic-interferometer-reader';
 import { photodiodeBandwidthId } from '@/data/photodiode-bandwidth-reader';
@@ -219,6 +220,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === memoryRooflineId) return <span className="ai-concept-equation" aria-hidden="true">P_roof = min(P, BI)</span>;
   if (kind === photodiodeNoiseId) return <span className="ai-concept-equation" aria-hidden="true">B_eq = 1/(4RC)</span>;
   if (kind === photonicInterferometerId) return <span className="ai-concept-equation" aria-hidden="true">M = R(θ)DR(−θ)</span>;
   if (kind === photodiodeBandwidthId) return <span className="ai-concept-equation" aria-hidden="true">f_c = 1/(2πRC)</span>;

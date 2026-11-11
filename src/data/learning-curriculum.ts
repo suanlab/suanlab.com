@@ -3328,7 +3328,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "electronic-bands-in-a-dimerized-chain",
       "photodiode-circuits-and-sensor-bandwidth",
       "photonic-interferometers-and-matrix-products",
-      "photodiode-noise-and-equivalent-bandwidth"
+      "photodiode-noise-and-equivalent-bandwidth",
+      "memory-traffic-and-the-roofline"
     ]
   },
   {

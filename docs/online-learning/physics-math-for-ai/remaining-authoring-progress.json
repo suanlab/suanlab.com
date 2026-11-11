@@ -15839,24 +15839,72 @@
         },
         {
           "title": "지연·대역폭·메모리 이동",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "memory-traffic-and-the-roofline"
+          ],
           "preparation": {
             "unitId": "memory-traffic-and-the-roofline",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/memory-traffic-and-the-roofline.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/memory-traffic-and-the-roofline.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "memory-roofline-reader-integration"
+            "nextAction": "task-energy-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
+              "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
+            "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-memory-roofline.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "memory-traffic-and-the-roofline",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-memory-roofline.ts",
+            "lab": "src/components/learning/memory-roofline-lab.tsx",
+            "tests": "scripts/learning-memory-roofline.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
+              "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "에너지·열 비용",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "energy-per-task-and-thermal-cost",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/energy-per-task-and-thermal-cost.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/energy-per-task-and-thermal-cost.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "task-energy-reader-integration"
+          }
         },
         {
           "title": "Landauer 원리의 조건",
@@ -15875,50 +15923,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "memory-traffic-and-the-roofline",
-      "nextAction": "memory-roofline-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/photodiode-noise-and-equivalent-bandwidth.ko.md",
-      "currentPreparationEvidence": "scripts/learning-photodiode-noise.test.ts",
+      "nextUnitId": "energy-per-task-and-thermal-cost",
+      "nextAction": "task-energy-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
+      "currentPreparationEvidence": "scripts/learning-memory-roofline.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "photodiode-noise-and-equivalent-bandwidth",
+        "unitId": "memory-traffic-and-the-roofline",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-photodiode-noise.ts",
-        "lab": "src/components/learning/photodiode-noise-lab.tsx",
-        "tests": "scripts/learning-photodiode-noise.test.ts",
+        "model": "src/lib/learning-memory-roofline.ts",
+        "lab": "src/components/learning/memory-roofline-lab.tsx",
+        "tests": "scripts/learning-memory-roofline.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/photodiode-noise-and-equivalent-bandwidth.ko.md",
-          "content/learning/physics-math-for-ai/photodiode-noise-and-equivalent-bandwidth.en.md"
+          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
+          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "photodiode-noise-and-equivalent-bandwidth",
+        "unitId": "memory-traffic-and-the-roofline",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-photodiode-noise.ts",
-        "lab": "src/components/learning/photodiode-noise-lab.tsx",
-        "tests": "scripts/learning-photodiode-noise.test.ts",
+        "model": "src/lib/learning-memory-roofline.ts",
+        "lab": "src/components/learning/memory-roofline-lab.tsx",
+        "tests": "scripts/learning-memory-roofline.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/photodiode-noise-and-equivalent-bandwidth.ko.md",
-          "content/learning/physics-math-for-ai/photodiode-noise-and-equivalent-bandwidth.en.md"
+          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
+          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "잡음·비이상성",
+        "originalTopic": "지연·대역폭·메모리 이동",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "photodiode-noise-and-equivalent-bandwidth"
+          "memory-traffic-and-the-roofline"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -15926,12 +15974,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/photodiode-noise-and-equivalent-bandwidth.ko.md",
-          "content/learning/physics-math-for-ai/photodiode-noise-and-equivalent-bandwidth.en.md"
+          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
+          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-photodiode-noise.test.ts"
+        "evidence": "scripts/learning-memory-roofline.test.ts"
       }
     },
     {
@@ -16062,14 +16110,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 624,
-  "verifiedNewUnitCount": 471,
+  "implementedUnitCount": 625,
+  "verifiedNewUnitCount": 472,
   "remainingForwardDomainCount": 3,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 26,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 25,
   "nextDomain": "matter-computation",
-  "nextTopic": "지연·대역폭·메모리 이동",
+  "nextTopic": "에너지·열 비용",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 336,
+  "verifiedOriginalScopeTopicCount": 337,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -16131,11 +16179,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 지연·대역폭·메모리 이동. All 624 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 에너지·열 비용. All 625 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "memory-traffic-and-the-roofline",
+  "nextAuthoringUnitId": "energy-per-task-and-thermal-cost",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "memory-roofline-reader-integration",
+  "nextAction": "task-energy-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }
