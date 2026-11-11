@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 620,
+  "implementedUnitCount": 621,
   "curriculumComplete": false,
-  "scope": "620 registered units, 1909 guided experiments and 1240 bilingual manuscript files. Introductory scope: 332 of 362 original topics verified, 30 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "621 registered units, 1911 guided experiments and 1242 bilingual manuscript files. Introductory scope: 333 of 362 original topics verified, 29 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -10589,10 +10589,11 @@
       "topicCount": 10,
       "status": "partially-authored",
       "implementedUnitIds": [
-        "lattice-vibrations-and-phonon-dispersion"
+        "lattice-vibrations-and-phonon-dispersion",
+        "electronic-bands-in-a-dimerized-chain"
       ],
-      "nextUnitId": "electronic-bands-in-a-dimerized-chain",
-      "nextAction": "electronic-bands-reader-integration",
+      "nextUnitId": "photodiode-circuits-and-sensor-bandwidth",
+      "nextAction": "photodiode-bandwidth-reader-integration",
       "phononDraft": {
         "unitId": "lattice-vibrations-and-phonon-dispersion",
         "status": "registered-and-verified",
@@ -10608,48 +10609,48 @@
           "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
-      "currentPreparationEvidence": "scripts/learning-phonon-dispersion.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
+      "currentPreparationEvidence": "scripts/learning-electronic-bands.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "lattice-vibrations-and-phonon-dispersion",
+        "unitId": "electronic-bands-in-a-dimerized-chain",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-phonon-dispersion.ts",
-        "lab": "src/components/learning/phonon-dispersion-lab.tsx",
-        "tests": "scripts/learning-phonon-dispersion.test.ts",
+        "model": "src/lib/learning-electronic-bands.ts",
+        "lab": "src/components/learning/electronic-bands-lab.tsx",
+        "tests": "scripts/learning-electronic-bands.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
-          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
+          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
+          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "lattice-vibrations-and-phonon-dispersion",
+        "unitId": "electronic-bands-in-a-dimerized-chain",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-phonon-dispersion.ts",
-        "lab": "src/components/learning/phonon-dispersion-lab.tsx",
-        "tests": "scripts/learning-phonon-dispersion.test.ts",
+        "model": "src/lib/learning-electronic-bands.ts",
+        "lab": "src/components/learning/electronic-bands-lab.tsx",
+        "tests": "scripts/learning-electronic-bands.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
-          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
+          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
+          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "고체·격자·phonon",
+        "originalTopic": "전자·band",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "lattice-vibrations-and-phonon-dispersion"
+          "electronic-bands-in-a-dimerized-chain"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -10657,12 +10658,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
-          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
+          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
+          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-phonon-dispersion.test.ts"
+        "evidence": "scripts/learning-electronic-bands.test.ts"
       },
       "topicEvidence": [
         {
@@ -10701,18 +10702,70 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "전자·band",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "electronic-bands-in-a-dimerized-chain"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
+            "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-electronic-bands.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "electronic-bands-in-a-dimerized-chain",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-electronic-bands.ts",
+            "lab": "src/components/learning/electronic-bands-lab.tsx",
+            "tests": "scripts/learning-electronic-bands.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
+              "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "electronicBandsDraft": {
         "unitId": "electronic-bands-in-a-dimerized-chain",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/electronic-bands-in-a-dimerized-chain.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/electronic-bands-in-a-dimerized-chain.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "electronic-bands-reader-integration"
+        "nextAction": "photodiode-bandwidth-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
+          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
+        ]
+      },
+      "photodiodeDraft": {
+        "unitId": "photodiode-circuits-and-sensor-bandwidth",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/photodiode-circuits-and-sensor-bandwidth.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/photodiode-circuits-and-sensor-bandwidth.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "photodiode-bandwidth-reader-integration"
       }
     },
     {
@@ -10750,7 +10803,7 @@
     "research-methods"
   ],
   "nextDomain": "matter-computation",
-  "nextTopic": "전자·band",
+  "nextTopic": "반도체·회로·센서",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

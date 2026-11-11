@@ -3324,7 +3324,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
-      "lattice-vibrations-and-phonon-dispersion"
+      "lattice-vibrations-and-phonon-dispersion",
+      "electronic-bands-in-a-dimerized-chain"
     ]
   },
   {

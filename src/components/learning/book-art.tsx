@@ -1,4 +1,5 @@
 'use client';
+import { electronicBandsId } from '@/data/electronic-bands-reader';
 import { phononDispersionId } from '@/data/phonon-dispersion-reader';
 import { weakFieldClockId } from '@/data/weak-field-clock-reader';
 import { rindlerObservablesId } from '@/data/rindler-observables-reader';
@@ -215,6 +216,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === electronicBandsId) return <span className="ai-concept-equation" aria-hidden="true">H(q)ψ = Eψ</span>;
   if (kind === phononDispersionId) return <span className="ai-concept-equation" aria-hidden="true">D(q)v = ω²v</span>;
   if (kind === weakFieldClockId) return <span className="ai-concept-equation" aria-hidden="true">dτ/dt = √(1−3M/r)</span>;
   if (kind === rindlerObservablesId) return <span className="ai-concept-equation" aria-hidden="true">T = ρ sinh η</span>;
