@@ -29,6 +29,52 @@ $$
 
 실험은 이 식의 각 연산에도 선택한 bit 수의 반올림을 적용합니다. 위 예에서는 1.5를 복원하지만 모든 입력을 정확하게 더한다는 보장은 없습니다. 처음부터 표현하지 못한 입력 정보도 복원할 수 없습니다. 주황 오차가 0이면 저장된 입력에서 출발한 기준값과 맞는다는 뜻입니다.
 
+## 한 번의 반올림에서 합의 조건수까지
+
+범위 실패가 없고 정규화된 반올림 fl(a+b)=(a+b)(1+δ), |δ|≤u를 가정하자. 순차 덧셈을 전개하면 각 저장 입력에 이런 인자의 곱이 붙는다. ku<1이면 그 곱과 1의 차이는 γₖ=ku/(1−ku) 이하다. 상한은 (1+u)ᵏ≤1/(1−ku)의 귀납으로, 하한도 같은 방식으로 얻는다. 저장된 n개 항에 대해
+
+$$
+|\widehat S-S|\le\gamma_{n-1}\sum_i|x_i|,\qquad
+\frac{|\widehat S-S|}{|S|}\le\gamma_{n-1}
+\frac{\sum_i|x_i|}{|\sum_i x_i|}\quad(S\ne0).
+$$
+
+마지막 비율은 입력 성분의 상대 섭동에 대한 합의 조건수다. 각 연산이 상대 상계를 만족해도 상쇄로 합의 조건수가 커질 수 있다. 저장 입력에 대한 정리이므로 소수 표현 오차를 없애거나 보상 합의 정확성을 무조건 보장하지 않는다.
+
+p=4에서 (1,d,−1)을 순차 합산하면 absorption이 드러난다.
+
+| d | 합의 조건수 | 절대 오차 |
+|---|---:|---:|
+| 1/8 | 17 | 0 |
+| 1/32 | 65 | 1/32 |
+| 1/128 | 257 | 1/128 |
+
+```python
+from fractions import Fraction as F
+def rounding(x, p):
+    if not x: return x
+    sign, a = (1 if x > 0 else -1), abs(x)
+    e = a.numerator.bit_length()-a.denominator.bit_length()
+    if a < F(2)**e: e -= 1
+    step = F(2)**(e-p+1)
+    scaled = a/step
+    k = scaled.numerator//scaled.denominator
+    remainder = scaled-k
+    if remainder > F(1, 2) or (remainder == F(1, 2) and k % 2): k += 1
+    return sign*k*step
+for d in (F(1, 8), F(1, 32), F(1, 128)):
+    terms = (F(1), d, F(-1))
+    value = terms[0]
+    for x in terms[1:]: value = rounding(value+x, 4)
+    condition = sum(map(abs, terms))/abs(sum(terms))
+    bound = F(1, 7)*sum(map(abs, terms))  # gamma_2, u=1/16.
+    error = abs(value-d)
+    assert error <= bound
+    print(d, condition, error)
+```
+
+독립 유리수 반올림은 부동소수점 로그로 binade를 판정하지 않는다. 사이트 helper도 binary64 경계에서 반올림된 로그를 보정한다. Helper의 53-bit 지원이 실습의 3–24-bit 조절기를 늘린 것은 아니다.
+
 ## 직접 풀기: 중간 값과 경계
 
 p=4에서 1.0625와 1.1875를 반올림하세요. 간격은 0.125입니다. 첫 값은 유효 정수 8이 짝수여서 1로, 둘째는 10이 짝수여서 1.25로 갑니다. 1.9375는 다음 binade의 경계인 2로 갑니다.

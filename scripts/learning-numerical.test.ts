@@ -84,3 +84,22 @@ for(const kind of numericalKinds)test(`${kind}: meaningful guides and finite geo
 for(const kind of numericalKinds)for(const lang of ['ko','en'] as const)test(`${kind}.${lang}: detailed bilingual theory, equations and explained exercises`,async()=>{
  const source=await fs.readFile(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8'),rendered=await getLearningContent(kind);assert.ok(rendered.outline[lang].length>=4);assert.ok(rendered[lang].length>4000);assert.ok(rendered[lang].includes('katex'));assert.ok(!rendered[lang].includes('katex-error'));assert.ok(source.includes(lang==='ko'?'직접 풀기':'Exercise'));assert.ok(source.includes('https://'));if(lang==='en'){assert.ok(!/[가-힣]/.test(source));assert.ok(source.split(/\s+/).length>=350);}
 });
+
+test('binary64 precision preserves represented neighbors just below binade boundaries',()=>{
+ for(const e of [-20,-1,0,1,20,100,900]){const power=2**e,below=power-2**(e-53);assert.equal(roundBinary(below,53),below);assert.equal(roundBinary(-below,53),-below);}
+ assert.equal(roundBinary(Number.MAX_VALUE,53),Number.MAX_VALUE);
+});
+test('finite exponentials with an overflowing sum do not become a zero probability vector',()=>{
+ const r=stableExponential(709,0,1);assert.ok(r.scaled.every(x=>Number.isFinite(Math.exp(x))));assert.equal(r.overflow,true);assert.equal(r.naive,null);vector(r.probability,[1/3,1/3,1/3]);
+});
+test('relative logits and leading-class loss retain a small tail before absolute-logit cancellation',()=>{
+ const r=stableExponential(1000,50,1),expected=Math.log1p(Math.exp(-50)+Math.exp(-100));assert.equal(r.logValue-1000,0);assert.equal(r.loss[0],expected);assert.ok(r.loss[0]>0);
+ const tiny=stableExponential(1000,1e-14,1);assert.ok(tiny.scaled.every(x=>x===1000));assert.deepEqual(tiny.probability,stableExponential(0,1e-14,1).probability);assert.ok(tiny.probability[0]>tiny.probability[2]);
+});
+test('centered data and residual errors retain requested perturbations rather than rounded target differences',()=>{
+ const r=conditioning(0,14,24,1),expected=1e-14/Math.SQRT2;assert.equal(r.dataForwardError,expected);assert.equal(r.result.residual,1e-14);assert.equal(r.result.numericalError,1e-14/Math.hypot(...r.target));assert.ok(r.result.numericalError<=r.condition*r.result.backward*(1+1e-14));
+});
+
+test('new class-loss readout preserves the indexed conceptual reference statistics',()=>{
+ const r=evaluateNumerical('stable-exponentials-logsumexp',[1000,1,1]);assert.deepEqual(Object.keys(r.stats).slice(0,4),['stable log-sum-exp','naive log-sum-exp when finite','1{naive exponential sum overflowed}','1{all naive exponentials underflowed}']);assert.equal(Object.keys(r.stats).at(-1),'first-class stable cross entropy');
+});

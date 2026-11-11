@@ -36,6 +36,58 @@ The scalar identity w(Jv)=(wJ)v compares forward and reverse products. At (x,y)=
 
 The lower plot compares F along the selected input direction with its first-order tangent. A tangent agrees locally, not necessarily over a finite step. Curvature explains their separation away from zero.
 
+## Differentiate the reverse calculation to obtain a Hessian action
+
+At a smooth point, a direction v can be propagated through the reverse-gradient program itself. This forward-over-reverse operation computes Hv without storing the whole Hessian. For this function the independent matrix is
+
+$$
+H=\begin{pmatrix}
+2-y^2\sin(xy)&\cos(xy)-xy\sin(xy)\\
+\cos(xy)-xy\sin(xy)&-x^2\sin(xy)
+\end{pmatrix}.
+$$
+
+In the program below each tape value and each reverse adjoint is a dual number with a value and a tangent. Reverse accumulation therefore differentiates both the local partials and the child adjoints. Omitting either term would miss a Hessian contribution. Shared parents, including both square inputs, still receive separate additions.
+
+At x=y=0 the gradient is zero, but the Hessian is not:
+
+| v | Hv |
+|---|---|
+| (1,0) | (2,1) |
+| (0,1) | (1,0) |
+| (1,−1) | (1,1) |
+
+```python
+from math import sin, cos
+class D:
+    def __init__(self, value, tangent=0.): self.v, self.t = value, tangent
+    def __add__(self, other): return D(self.v+other.v, self.t+other.t)
+    def __mul__(self, other): return D(self.v*other.v, self.t*other.v+self.v*other.t)
+def sine(x): return D(sin(x.v), cos(x.v)*x.t)
+def cosine(x): return D(cos(x.v), -sin(x.v)*x.t)
+def hvp(x, y, vx, vy):
+    values, parents = [D(x, vx), D(y, vy)], [[], []]
+    def node(value, edges):
+        values.append(value); parents.append(edges); return len(values)-1
+    a = node(values[0]*values[1], [(0, values[1]), (1, values[0])])
+    b = node(sine(values[a]), [(a, cosine(values[a]))])
+    c = node(values[0]*values[0], [(0, values[0]), (0, values[0])])
+    node(values[b]+values[c], [(b, D(1)), (c, D(1))])
+    bars = [D(0) for _ in values]; bars[-1] = D(1)
+    for i in range(len(values)-1, -1, -1):
+        for parent, partial in parents[i]: bars[parent] = bars[parent]+partial*bars[i]
+    return (bars[0].t, bars[1].t)
+for x, y in ((0., 0.), (1., .5)):
+    for vx, vy in ((1., 0.), (0., 1.), (1., -1.)):
+        actual = hvp(x, y, vx, vy)
+        cross = cos(x*y)-x*y*sin(x*y)
+        expected = ((2-y*y*sin(x*y))*vx+cross*vy, cross*vx-x*x*sin(x*y)*vy)
+        assert max(abs(a-b) for a, b in zip(actual, expected)) < 1e-14
+        print((x, y), (vx, vy), actual)
+```
+
+The code also checks a nonzero point against the displayed analytic matrix. It is an extra second-order tape example, not a new mode in the existing first-order UI. Hessian symmetry relies on smoothness; custom derivative rules or branch conventions at nonsmooth points require separate reasoning.
+
 ## Exercise: remove a path on paper
 
 Pretend the square node sends only one x contribution. At (1,0) the resulting x derivative would be one rather than two, and JVP/VJP consistency against the correct tape would fail. List the contributions separately, then verify the true directional derivative with a moderate centered difference. Agreement near a smooth point provides evidence, while the next unit explains why finite-difference checks alone are insufficient at a kink.

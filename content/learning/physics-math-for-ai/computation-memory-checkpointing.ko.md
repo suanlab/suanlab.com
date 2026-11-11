@@ -33,6 +33,37 @@ $$
 
 L=16, W=8, B=4, 값당 4 byte에서 full tape는 608 byte, checkpoint는 320 byte입니다. Dense 곱셈은 2048에서 2816으로 늘고 forward 재계산은 12회입니다. 실제 두 역전파의 gradient는 일치합니다. 파랑·주황은 block별 저장 비율과 곱셈 수 비율입니다.
 
+## 미분할 함수를 바꾸지 않고 일정 최적화하기
+
+균일 chain의 1≤B≤L에서 저장 벡터 수는 ceil(L/B)+B+2다. Ceiling을 무시하면 AM–GM으로 L/B+B≥2√L이다. √L 근처 정수 B를 택하면 저장량은 full tape의 O(WL) 대신 O(W√L)이다. 유한 최적값은 ceiling에 영향받으므로 실제 일정은 허용한 B를 열거하자. 재계산은 L−ceil(L/B)로 남아 최소 메모리와 최소 작업은 다르다.
+
+| L | 한 최소 B | 저장 벡터 |
+|---|---:|---:|
+| 4 | 2 | 6 |
+| 16 | 4 | 10 |
+| 32 | 4 | 14 |
+
+```python
+from math import ceil
+from fractions import Fraction as F
+for L in (4, 16, 32):
+    vectors, B = min((ceil(L/b)+b+2, b) for b in range(1, L+1))
+    assert vectors <= L+3
+    print(L, B, vectors, "recomputed:", L-ceil(L/B))
+theta, x = F(2), F(3)
+original_mask, changed_mask = F(1), F(0)
+correct = original_mask**2*theta*x*x
+wrong = changed_mask**2*theta*x*x
+assert correct == 18 and wrong == 0
+print("same forward mask:", correct, "changed mask:", wrong)
+```
+
+재계산은 같은 수학적 함수를 재현해야 한다. 무작위 mask·변경 가능한 상태·외부 효과를 일관되게 재생하거나 저장해야 한다. F=(mθx)²/2에서 forward mask m=1,θ=2,x=3이면 gradient는 18이다. Mask 0으로 재계산하면 잘못된 0이 나온다. Mask를 저장하거나 같은 난수 상태를 재생해야 원래 프로그램을 미분한다.
+
+실제 chain은 결정론적이고 두 reverse 일정을 직접 비교한다. Byte 선택은 용량 추정이며 JavaScript 산술을 바꾸지 않는다. 제곱근 일정도 균일 chain 모형이지 임의의 분기 신경망 전체에 보편적으로 최적인 메모리 계획은 아니다.
+
+![결정론적 균일 chain의 block checkpoint 저장량은 깊이의 제곱근 규모로, full tape는 깊이에 비례하여 증가합니다.](/assets/learning/numerical-checkpoint-depth-ko.svg)
+
 ## 직접 풀기: 양 끝과 중간 선택
 
 B=1이면 모든 층을 저장해 재계산이 0이고 full tape와 같은 저장량입니다. 한 block이 전체 chain을 포함해도 내부를 한꺼번에 복원하므로 peak 저장은 full tape와 같습니다. 중간 block 크기가 유용할 수 있는 이유를 식으로 설명하세요. 8 byte를 선택하면 메모리 추정만 두 배이고 gradient·연산 수는 같습니다. 빠르다고 주장하려면 별도 timing 실험에 무엇을 통제해야 할지도 적으세요.

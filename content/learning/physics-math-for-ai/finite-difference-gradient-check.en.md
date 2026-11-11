@@ -34,6 +34,42 @@ $$
 
 No classical derivative exists. A symmetric stencil can therefore hide a kink rather than validate a gradient. At a nonzero x, a sufficiently large step can cross the kink and invalidate the local smooth approximation even though the derivative at x exists.
 
+## Bound the checker and test more than one direction
+
+Suppose |f‴|≤M₃ on the central stencil and each function evaluation has absolute error at most ε. With exact argument positions and arithmetic for the remaining operations, Taylor's formula gives
+
+$$
+|\widehat D_c(h)-f'(x)|\le M_3h^2/6+\varepsilon/h,
+\qquad h_{balance}=(3\varepsilon/M_3)^{1/3}\quad(M_3>0).
+$$
+
+The two function errors contribute at most 2ε to the numerator. Argument rounding and subsequent arithmetic introduce additional errors, so the expression is not an automatic binary64 certificate. It explains why blindly decreasing h fails and why the represented stencil must be inspected.
+
+A direction check has a second limitation: an incorrect gradient can differ by e perpendicular to the tested v, making e·v=0. For an isotropic random unit direction in d dimensions, E[(e·v)²]=‖e‖²/d because E[vvᵀ]=I/d. Several directions provide stronger evidence, not a finite proof at every point.
+
+For F=(x²+2y²)/2 at (1,1), the true gradient is (1,2) and the wrong gradient (1,3):
+
+| v | Central check | Wrong dot v | Discrepancy |
+|---|---:|---:|---:|
+| (1,0) | 1 | 1 | 0 |
+| (0,1) | 2 | 3 | 1 |
+| (1,1) | 3 | 4 | 1 |
+
+```python
+from fractions import Fraction as F
+f = lambda x, y: (x*x+2*y*y)/2
+h = F(1, 10)
+for vx, vy in ((1, 0), (0, 1), (1, 1)):
+    check = (f(1+h*vx, 1+h*vy)-f(1-h*vx, 1-h*vy))/(2*h)
+    proposed = vx+3*vy
+    assert check == vx+2*vy
+    print((vx, vy), check, proposed, abs(check-proposed))
+```
+
+These exact rational central differences have no polynomial truncation error. One false pass still occurs, so agreement in a single direction cannot certify a vector gradient. The original scalar kink experiment remains a separate differentiability failure.
+
+![Assumed central-difference truncation and evaluation error budgets compete, giving a finite balancing step rather than monotonic improvement.](/assets/learning/numerical-difference-budget-en.svg)
+
 ## Exercise: diagnose before changing the code
 
 Use exp(0.5) with h=10^-4 and add gradient bias 0.25. The centered check discrepancy is approximately 0.25, identifying the injected error. Next use exp at one with h=10^-18: a large discrepancy now comes from the checker arithmetic rather than a wrong analytic derivative. Finally use |x| at zero and obtain exact agreement. Explain why these three outcomes require different diagnoses and why testing only one step at one point is inadequate.

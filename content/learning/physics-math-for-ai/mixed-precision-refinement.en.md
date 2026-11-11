@@ -29,6 +29,37 @@ If delta is too small for the selected precision, fl(1+delta)=1 and the second p
 
 For this SPD matrix, the determinant is delta. Computing the small eigenvalue as delta/lambda_max avoids cancellation when estimating its condition number. A sufficient convergence theorem for a particular refinement algorithm needs explicit precision and factor-error assumptions; the success of the worked example is not a theorem for every ill-conditioned matrix.
 
+## Derive a contraction criterion and its failure case
+
+To isolate factor quality, first suppose B=A+E is fixed, residuals and updates are exact, and correction solves with B are exact. With e=x−x*, one refinement step gives
+
+$$
+e^+=(I-B^{-1}A)e=B^{-1}Ee.
+$$
+
+Thus q=‖B⁻¹E‖<1 proves contraction. If η=‖A⁻¹E‖<1, the Neumann bound only gives q≤η/(1−η); η<1/2 is a sufficient contraction condition. Merely being invertible, or having η<1, is insufficient. A scalar counterexample has A=1,E=−3/4, B=1/4 and error factor −3.
+
+If an inexact residual adds ξ, the new error also includes B⁻¹ξ. When that contribution is bounded by δ and q<1, iteration yields ‖eₖ‖≤qᵏ‖e₀‖+δ(1−qᵏ)/(1−q). Correction and update roundoff require their own terms. More accurate residuals reduce one source of error, but cannot repair an unstable correction map by themselves.
+
+| E, A=1 | Signed factor | Behavior |
+|---|---:|---|
+| 1/4 | 1/5 | contracts |
+| −1/4 | −1/3 | contracts |
+| −3/4 | −3 | diverges |
+
+```python
+from fractions import Fraction as F
+for E in (F(1, 4), F(-1, 4), F(-3, 4)):
+    B, x = 1+E, F(0)
+    factor = E/B
+    for k in range(1, 6):
+        x += (1-x)/B
+        assert x-1 == -factor**k
+    print(E, factor, "fifth error:", abs(x-1))
+```
+
+This exact fixed-factor model is distinct from the lab's nonlinear rounding of factors and rhs solves. The toy example's successful correction is therefore evidence for its stated calculation, not a claim that every mixed-precision algorithm satisfies this simple bound.
+
 ## Exercise: expose a false stopping criterion
 
 Start with k=3, p=4 and zero corrections. Verify (2,0) by rounding the rhs before elimination. Perform one high-residual correction and then repeat with low-residual evaluation. Explain why stopping solely on the low computed residual would accept a wrong original-system solution. Finally choose k=6 and p=3: show how the rounded zero pivot prevents the correction process from starting at all.

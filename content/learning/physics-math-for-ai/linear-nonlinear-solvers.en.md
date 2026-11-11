@@ -31,6 +31,37 @@ At a=2, initial upper endpoint two, four updates leave [1.375,1.5]. The midpoint
 
 For any positive estimate, z²-a=(z-sqrt(a))(z+sqrt(a)). Thus the same residual can imply different root errors at different scales. In a multidimensional problem, the inverse Jacobian plays the corresponding conditioning role. Stopping on residual alone requires a reason that residual meaningfully controls the desired error.
 
+## A global proof for this positive square-root iteration
+
+For r=√a>0 and x>0, subtract r from the Newton update and use a=r²:
+
+$$
+x^+-r=\frac{(x-r)^2}{2x}\ge0.
+$$
+
+After one update every positive start is above the root. Above the root, x⁺≤x and x⁺≥r. The decreasing bounded sequence has a positive limit, and the update equation forces that limit to equal r. Moreover x≥r gives |x⁺−r|≤|x−r|²/(2r), an explicit quadratic-error bound. This global scalar argument is much stronger than the local Newton claim, but relies on this particular function and the positive branch.
+
+An upper estimate x≥r also gives a lower estimate a/x≤r. Exact rational arithmetic can preserve the enclosure [a/x,x] without computing r:
+
+| Start x₀, a=2 | First upper | First lower |
+|---|---:|---:|
+| 1/4 | 33/8 | 16/33 |
+| 1 | 3/2 | 4/3 |
+| 4 | 9/4 | 8/9 |
+
+```python
+from fractions import Fraction as F
+for start in (F(1, 4), F(1), F(4)):
+    a, x = F(2), start
+    for k in range(4):
+        x = (x+a/x)/2
+        lower = a/x
+        assert lower*lower <= a <= x*x
+        if k == 0: print(start, x, lower)
+```
+
+The inequalities in the program are exact. In binary64, a rigorous enclosure would require directed rounding or a separately justified rounding margin. The lab's ordinary Newton mode therefore continues to report no bracket certificate. Its bisection enclosure has its own stated model. For linear elimination, pivoting controls small divisors; it does not remove data conditioning or make every finite computed residual an exact certificate.
+
 ## Exercise: compare stopping evidence
 
 For a=1 and start one, choose zero iterations and Newton. The initial estimate is already exact. Now choose bisection: its iteration-zero midpoint is one half, because the initial bracket is [0,1]. Explain why both are legitimate initial states. For a=2 reproduce the four bisection intervals by hand and verify that every interval contains sqrt(2).

@@ -36,6 +36,58 @@ w(Jv)=(wJ)v는 다른 방향으로 전달한 두 결과의 일치 조건입니�
 
 아래 그림은 방향을 따라간 실제 함수와 일차 tangent를 비교합니다. 접선의 일치는 국소적인 것이며 큰 보폭에서의 오차는 곡률과 관련됩니다.
 
+## Reverse 계산을 미분하여 Hessian action 얻기
+
+매끄러운 점에서는 gradient를 구하는 reverse 프로그램 자체에 방향 v를 전달할 수 있다. 이 forward-over-reverse는 전체 Hessian을 저장하지 않고 Hv를 구한다. 이 함수의 독립적인 행렬식은
+
+$$
+H=\begin{pmatrix}
+2-y^2\sin(xy)&\cos(xy)-xy\sin(xy)\\
+\cos(xy)-xy\sin(xy)&-x^2\sin(xy)
+\end{pmatrix}.
+$$
+
+아래에서는 tape의 값과 reverse adjoint를 모두 값·tangent를 갖는 dual number로 계산한다. 따라서 역전파 중 local partial과 자식 adjoint를 모두 미분한다. 어느 항을 빠뜨려도 Hessian 기여를 잃는다. Square의 두 인자를 포함한 공유 부모에도 각각 더해야 한다.
+
+x=y=0에서는 gradient가 0이지만 Hessian은 0이 아니다.
+
+| v | Hv |
+|---|---|
+| (1,0) | (2,1) |
+| (0,1) | (1,0) |
+| (1,−1) | (1,1) |
+
+```python
+from math import sin, cos
+class D:
+    def __init__(self, value, tangent=0.): self.v, self.t = value, tangent
+    def __add__(self, other): return D(self.v+other.v, self.t+other.t)
+    def __mul__(self, other): return D(self.v*other.v, self.t*other.v+self.v*other.t)
+def sine(x): return D(sin(x.v), cos(x.v)*x.t)
+def cosine(x): return D(cos(x.v), -sin(x.v)*x.t)
+def hvp(x, y, vx, vy):
+    values, parents = [D(x, vx), D(y, vy)], [[], []]
+    def node(value, edges):
+        values.append(value); parents.append(edges); return len(values)-1
+    a = node(values[0]*values[1], [(0, values[1]), (1, values[0])])
+    b = node(sine(values[a]), [(a, cosine(values[a]))])
+    c = node(values[0]*values[0], [(0, values[0]), (0, values[0])])
+    node(values[b]+values[c], [(b, D(1)), (c, D(1))])
+    bars = [D(0) for _ in values]; bars[-1] = D(1)
+    for i in range(len(values)-1, -1, -1):
+        for parent, partial in parents[i]: bars[parent] = bars[parent]+partial*bars[i]
+    return (bars[0].t, bars[1].t)
+for x, y in ((0., 0.), (1., .5)):
+    for vx, vy in ((1., 0.), (0., 1.), (1., -1.)):
+        actual = hvp(x, y, vx, vy)
+        cross = cos(x*y)-x*y*sin(x*y)
+        expected = ((2-y*y*sin(x*y))*vx+cross*vy, cross*vx-x*x*sin(x*y)*vy)
+        assert max(abs(a-b) for a, b in zip(actual, expected)) < 1e-14
+        print((x, y), (vx, vy), actual)
+```
+
+비영 점에서도 위 해석 행렬과 비교한다. 기존 일차 미분 UI에 새 모드를 추가한 것이 아니라 별도의 이차 tape 예제다. Hessian 대칭성에는 매끄러움이 필요하며 custom 미분이나 비매끄러운 branch 관례에는 별도 분석이 필요하다.
+
 ## 직접 풀기: 경로 하나를 지워 보기
 
 Square node에서 x의 기여 하나를 빠뜨리면 (1,0)에서 x 미분은 2가 아니라 1이 됩니다. 두 부모 기여를 각각 적고 정확한 JVP와 VJP를 다시 구하세요. 매끄러운 점에서는 적당한 중앙 차분으로 방향 미분을 검산할 수 있습니다. 다만 다음 단원처럼 꺾인 점에서는 차분의 일치만으로 미분값을 증명하지 못합니다.
