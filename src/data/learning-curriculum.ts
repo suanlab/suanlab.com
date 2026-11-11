@@ -3261,7 +3261,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "minkowski-metric-and-proper-time",
       "light-cones-and-causal-order",
       "relativistic-kinematics-four-momentum",
-      "curvature-covariant-derivatives-and-holonomy"
+      "curvature-covariant-derivatives-and-holonomy",
+      "geodesics-straight-lines-and-great-circles"
     ]
   },
   {

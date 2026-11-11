@@ -15242,24 +15242,72 @@
         },
         {
           "title": "geodesic",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "geodesics-straight-lines-and-great-circles"
+          ],
           "preparation": {
             "unitId": "geodesics-straight-lines-and-great-circles",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/geodesics-straight-lines-and-great-circles.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/geodesics-straight-lines-and-great-circles.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "great-circle-geodesic-reader-integration"
+            "nextAction": "einstein-fluid-curvature-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
+              "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
+            "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-great-circle-geodesic.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "geodesics-straight-lines-and-great-circles",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-great-circle-geodesic.ts",
+            "lab": "src/components/learning/great-circle-geodesic-lab.tsx",
+            "tests": "scripts/learning-great-circle-geodesic.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
+              "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "Einstein 방정식의 구조",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "einstein-equations-trace-and-sources",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/einstein-equations-trace-and-sources.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/einstein-equations-trace-and-sources.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "einstein-fluid-curvature-reader-integration"
+          }
         },
         {
           "title": "시공간의 관측",
@@ -15278,50 +15326,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "geodesics-straight-lines-and-great-circles",
-      "nextAction": "great-circle-geodesic-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
-      "currentPreparationEvidence": "scripts/learning-rotational-curvature.test.ts",
+      "nextUnitId": "einstein-equations-trace-and-sources",
+      "nextAction": "einstein-fluid-curvature-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
+      "currentPreparationEvidence": "scripts/learning-great-circle-geodesic.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "curvature-covariant-derivatives-and-holonomy",
+        "unitId": "geodesics-straight-lines-and-great-circles",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-rotational-curvature.ts",
-        "lab": "src/components/learning/rotational-curvature-lab.tsx",
-        "tests": "scripts/learning-rotational-curvature.test.ts",
+        "model": "src/lib/learning-great-circle-geodesic.ts",
+        "lab": "src/components/learning/great-circle-geodesic-lab.tsx",
+        "tests": "scripts/learning-great-circle-geodesic.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
-          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.en.md"
+          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
+          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "curvature-covariant-derivatives-and-holonomy",
+        "unitId": "geodesics-straight-lines-and-great-circles",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-rotational-curvature.ts",
-        "lab": "src/components/learning/rotational-curvature-lab.tsx",
-        "tests": "scripts/learning-rotational-curvature.test.ts",
+        "model": "src/lib/learning-great-circle-geodesic.ts",
+        "lab": "src/components/learning/great-circle-geodesic-lab.tsx",
+        "tests": "scripts/learning-great-circle-geodesic.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
-          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.en.md"
+          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
+          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "곡률·공변 미분",
+        "originalTopic": "geodesic",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "curvature-covariant-derivatives-and-holonomy"
+          "geodesics-straight-lines-and-great-circles"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -15329,12 +15377,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
-          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.en.md"
+          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
+          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-rotational-curvature.test.ts"
+        "evidence": "scripts/learning-great-circle-geodesic.test.ts"
       }
     },
     {
@@ -15524,14 +15572,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 614,
-  "verifiedNewUnitCount": 461,
+  "implementedUnitCount": 615,
+  "verifiedNewUnitCount": 462,
   "remainingForwardDomainCount": 4,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 36,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 35,
   "nextDomain": "relativity",
-  "nextTopic": "geodesic",
+  "nextTopic": "Einstein 방정식의 구조",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 326,
+  "verifiedOriginalScopeTopicCount": 327,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -15593,11 +15641,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers geodesic. All 614 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers Einstein 방정식의 구조. All 615 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "geodesics-straight-lines-and-great-circles",
+  "nextAuthoringUnitId": "einstein-equations-trace-and-sources",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "great-circle-geodesic-reader-integration",
+  "nextAction": "einstein-fluid-curvature-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }
