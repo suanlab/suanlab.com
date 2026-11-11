@@ -73,7 +73,7 @@ For a proposed optimization guarantee, inspect every use of smoothness, convexit
 
 ## Exercises and reference
 
-1. Prove directly that the sum of two even integers is even.
+1. Prove directly that the sum of two even integers is even. **Explanation.** Let the integers be $m=2a$ and $n=2b$ for integers $a,b$. Then $m+n=2(a+b)$. Since $a+b$ is an integer, the sum satisfies the definition of an even integer. The proof covers arbitrary even inputs.
 2. Explain why n=3 is not a counterexample to “n² even implies n even.” **Answer:** its square does not satisfy the premise.
 3. Find the missing case in the division x²=x by x. **Answer:** x=0.
 4. Choose a research claim and write a counterexample specification: which assumptions must hold, and which conclusion must fail?
