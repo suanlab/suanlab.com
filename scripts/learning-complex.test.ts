@@ -71,3 +71,39 @@ test('complex examples reject malformed inputs, fractional modes and singular co
 test('nonzero powers below numeric range are not fabricated as zero or undefined phase',()=>{
  const r=evaluate('complex-polar-maps',[1e-200,45,2]);assert.equal(r.warning,'numeric-range');assert.equal(r.stats['w (Re,Im)'],null);assert.equal(r.stats['|w|'],null);close(r.stats['arg(w) [degrees]'] as number,90);assert.equal(r.curves.length,1);
 });
+
+// A closed-form aliasing identity checks the production midpoint nodes independently.
+test('near-contour midpoint sums match the shifted-node residue filter at several radii and orientations',()=>{
+ for(const rho of [.5,.99,1.01,1.5])for(const radius of [.25,.5,1])for(const panels of [32,128,512])for(const direction of [-1,1]){
+  const normalized=1/(1+rho**panels);
+  vector(circleQuadrature(radius,rho*radius,1,direction,panels)!,[0,2*Math.PI*direction*normalized],1e-10);
+ }
+ assert.equal(circleQuadrature(1,1,1),null);
+});
+
+test('exact imaginary-axis essential probes keep unit modulus at tiny nonzero radii',()=>{
+ for(const radius of [.1,.001,1e-100,1e-200])for(const angle of [-90,90]){
+  const result=evaluate('analytic-functions-singularities',[2,radius,angle]);
+  assert.equal(result.warning,undefined);
+  const value=result.stats['f(z) (Re,Im)'] as number[];
+  assert.ok(value.every(Number.isFinite));close(Math.hypot(...value),1);
+ }
+});
+test('essential underflow is a numeric representation limit while the origin is outside the domain',()=>{
+ for(const angle of [-180,180]){
+  const underflow=evaluate('analytic-functions-singularities',[2,.001,angle]);
+  assert.equal(underflow.warning,'numeric-range');assert.equal(underflow.stats['f(z) (Re,Im)'],null);
+  const origin=evaluate('analytic-functions-singularities',[2,0,angle]);
+  assert.equal(origin.warning,'function-domain');assert.equal(origin.stats['f(z) (Re,Im)'],null);
+ }
+});
+test('near-quadrant probes are not snapped to a mathematically different axis',()=>{
+ for(const [angle,larger] of [[90-1e-6,true],[90+1e-6,false]] as const){
+  const result=evaluate('analytic-functions-singularities',[2,1e-4,angle]);
+  assert.equal(result.warning,undefined);
+  const magnitude=Math.hypot(...result.stats['f(z) (Re,Im)'] as number[]);
+  assert(larger?magnitude>1:magnitude<1);
+  const extreme=evaluate('analytic-functions-singularities',[2,1e-200,angle]);
+  assert.equal(extreme.warning,'numeric-range');assert.equal(extreme.stats['f(z) (Re,Im)'],null);
+ }
+});

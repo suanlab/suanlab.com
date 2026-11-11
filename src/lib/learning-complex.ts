@@ -8,6 +8,13 @@ export const complexMultiply=([a,b]:Complex,[c,d]:Complex):Complex=>[a*c-b*d,a*d
 export function complexReciprocal([x,y]:Complex):Complex|null {const scale=Math.max(Math.abs(x),Math.abs(y));if(scale===0)return null;const a=x/scale,b=y/scale,denom=a*a+b*b;return [a/denom/scale,-b/denom/scale];}
 export function complexPower(z:Complex,n:number):Complex{if(!Number.isInteger(n)||n<0||n>4||!z.every(Number.isFinite))throw new Error('Use a finite complex value and power 0–4.');let result:Complex=[1,0];for(let i=0;i<n;i++)result=complexMultiply(result,z);return result;}
 const polar=(r:number,t:number):Complex=>[r*Math.cos(t),r*Math.sin(t)];
+// Degree controls specify exact quadrants; nearby angles remain distinct.
+function polarDegrees(radius:number,degrees:number):Complex{
+ if(degrees===90)return [0,radius];
+ if(degrees===-90)return [0,-radius];
+ if(degrees===180||degrees===-180)return [-radius,0];
+ return polar(radius,degrees*Math.PI/180);
+}
 const sample=(n:number,f:(i:number)=>Vec2)=>Array.from({length:n},(_,i)=>f(i));
 function bound(x:number,lo:number,hi:number){if(x<lo||x>hi)throw new Error('Parameter outside the complex example domain.');}
 function mode(x:number,lo:number,hi:number){bound(x,lo,hi);if(!Number.isInteger(x))throw new Error('Use an integer mode or power.');}
@@ -40,8 +47,8 @@ function evaluateRaw(kind:ComplexKind,p:number[]):FoundationResult{
   return {statement:`f(z)=1/(z−(${a}))^${c}; CCW circle |z|=${b}`,stats:{'residue at pole':c===1?1:0,'winding about pole':on?null:inside?1:0,'numeric integral (Re,Im)':numeric,'analytic integral (Re,Im)':analytic,'distance pole to contour':Math.abs(Math.abs(a)-b),'error norm':numeric&&analytic?Math.hypot(numeric[0]-analytic[0],numeric[1]-analytic[1]):null},curves:[sample(81,i=>polar(b,i/80*2*Math.PI)),[[a,0]]],holes:[[a,0]],warning:on?'function-domain':undefined};
  }
  if(kind==='analytic-functions-singularities'){
-  mode(a,0,2);bound(b,0,1);bound(c,-180,180);const theta=c*Math.PI/180,z=polar(b,theta),value=singularValue(a,z),curve=(part:number)=>sample(91,i=>{const r=.1+i*.01;return [r,singularValue(a,polar(r,theta))![part]];});
-  return {statement:`f(z)=${a===0?'sin(z)/z, extended at 0':a===1?'1/z':'exp(1/z)'}; z=r·exp(iθ), r=${b}, θ=${c}°`,stats:{'f(z) (Re,Im)':value,'value at zero after removable extension':a===0?1:null,'Laurent residue':a===0?0:1,'singularity type code':a},curves:[curve(0),curve(1)],warning:value===null?'function-domain':undefined};
+  mode(a,0,2);bound(b,0,1);bound(c,-180,180);const z=polarDegrees(b,c),value=singularValue(a,z),underflow=a===2&&b>0&&value!==null&&value.every(x=>x===0),curve=(part:number)=>sample(91,i=>{const r=.1+i*.01;return [r,singularValue(a,polarDegrees(r,c))![part]];});
+  return {statement:`f(z)=${a===0?'sin(z)/z, extended at 0':a===1?'1/z':'exp(1/z)'}; z=r·exp(iθ), r=${b}, θ=${c}°`,stats:{'f(z) (Re,Im)':underflow?null:value,'value at zero after removable extension':a===0?1:null,'Laurent residue':a===0?0:1,'singularity type code':a},curves:[curve(0),curve(1)],warning:underflow?'numeric-range':value===null?'function-domain':undefined};
  }
  if(kind==='analytic-continuation-branches'){
   bound(a,-170,170);mode(b,-2,2);bound(c,.25,2);const principal=a*Math.PI/180,lift=principal+2*Math.PI*b,z=polar(c,principal),root=polar(Math.sqrt(c),lift/2),path=sample(161,i=>polar(c,lift*i/160)),rootPath=sample(161,i=>polar(Math.sqrt(c),lift*i/320));

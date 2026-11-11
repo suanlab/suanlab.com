@@ -40,6 +40,12 @@ The graph samples radii 0.1 through one at the selected angle. The separate prob
 
 Do not replace a large but finite mathematical value by a claim of infinity. The reciprocal calculation scales components to reduce avoidable underflow in x²+y².
 
+## Exact axes and underflow in a finite representation
+
+At an exactly selected ±90 degrees, z is purely imaginary. Then exp(1/z) has magnitude one even for a tiny nonzero radius. The calculator constructs these quadrant coordinates exactly; otherwise the small floating-point residue of cos(π/2), magnified by 1/r, could create a false overflow. Nearby angles retain their own nonzero real components rather than being snapped to the axis.
+
+On the negative real axis, exp(1/z)=exp(−1/r) is strictly positive for r>0. At r=0.001, exp(−1000) is below binary64's smallest positive value. The lab reports a numeric representation limit rather than a mathematical zero. At r=0, the issue is instead the missing function value. Very large imaginary phases are also numerically sensitive; preserving unit modulus is not a claim of arbitrary-precision phase accuracy.
+
 ## Exercises and answers
 
 1. The sine quotient’s extended value and residue are **one and zero**.

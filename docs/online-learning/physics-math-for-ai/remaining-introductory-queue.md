@@ -8,9 +8,11 @@
 
 다음 작업은 전체 **51영역·509개 원주제**의 내용 대조, 영역별 감사와 연구 심화다. 논리·기초수학의 20개 원주제 대조와 브라우저 검증 결과는 [검토 기록](logic-elementary-topic-review.md)에 정리했다. 역문제·연구 방법의 출처와 재현 범위는 [근거 기록](research-methods-source-review.md)을 따른다.
 
-이후 이산수학 9개·선형대수 11개·해석학 9개 원주제를 대조했다. 순열 불변 표현·SVD 과제 손실·Taylor 반례·봉우리 표본 추출을 증명·비교표·Python 검산으로 확장했다. 초기 영역의 원주제 대조는 49개이며, 다른 10영역의 98개가 남아 있다. [이산수학](discrete-topic-review.md)·[선형대수](linear-algebra-topic-review.md)·[해석학 검토 기록](analysis-topic-review.md)에 확인 범위와 후속 연구 과제를 정리했다.
+이후 이산수학 9개·선형대수 11개·해석학 9개 원주제를 대조했다. 순열 불변 표현·SVD 과제 손실·Taylor 반례·봉우리 표본 추출을 증명·비교표·Python 검산으로 확장했다. 이 단계까지 초기 영역의 49개 원주제를 대조했다. [이산수학](discrete-topic-review.md)·[선형대수](linear-algebra-topic-review.md)·[해석학 검토 기록](analysis-topic-review.md)에 확인 범위와 후속 연구 과제를 정리했다.
 
-행렬 미적분 심화에서는 암묵함수·고계 미분·trace/logdet의 세 한영 단원에 고정점 민감도, 확률적 trace 분산, Cholesky 인자 미분의 유도·비교표·실행 코드를 추가했다. [예제·출처·검증 범위](matrix-calculus-research-examples.md)에 기록했다. 이후 전미분 반례와 계량 최급강하를 보강하고 [행렬 미적분 10개 원주제 대조](matrix-calculus-topic-review.md)를 마쳤다. 초기 15영역의 대조는 **59/147개**이며 다른 **9영역·88개**가 남아 있다. 다음은 복소해석의 9개 원주제다. 영역 전체의 일반 증명과 연구 심화는 계속 진행한다.
+행렬 미적분 심화에서는 암묵함수·고계 미분·trace/logdet의 세 한영 단원에 고정점 민감도, 확률적 trace 분산, Cholesky 인자 미분의 유도·비교표·실행 코드를 추가했다. [예제·출처·검증 범위](matrix-calculus-research-examples.md)에 기록했다. 이후 전미분 반례와 계량 최급강하를 보강하고 [행렬 미적분 10개 원주제 대조](matrix-calculus-topic-review.md)를 마쳤다. 이 단계까지 초기 15영역의 59개 원주제를 대조했다.
+
+복소해석에서는 CR 충분성의 증명·반례, 켤레 경로의 Wirtinger gradient, 중점 구적의 정확한 오차와 대각 스펙트럼 필터를 보강하고 [9개 원주제 대조](complex-analysis-topic-review.md)를 마쳤다. 현재 초기 15영역의 대조는 **68/147개**이며 다른 **8영역·79개**가 남아 있다. 다음은 텐서 방법의 10개 원주제다. 전체 **51영역·509개 원주제**의 일반 증명과 연구 심화는 계속 진행한다.
 
 ## 이전 작업 기록
 

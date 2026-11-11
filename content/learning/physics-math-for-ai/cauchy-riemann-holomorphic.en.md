@@ -40,6 +40,64 @@ The plot shows images of horizontal and vertical input lines through the probe. 
 
 Complex networks need not use only holomorphic operations. Nonconstant real-valued objectives cannot be holomorphic on an open domain; optimize them with real or Wirtinger derivatives instead.
 
+## Prove when CR is sufficient
+
+Assume f is differentiable as a real map at p. Its real differential can be written uniquely as the sum of a complex-linear and a conjugate-linear part:
+
+$$
+f(p+h)-f(p)=a h+b\bar h+o(|h|),\qquad
+a=\tfrac12(f_x-if_y),\quad b=\tfrac12(f_x+if_y).
+$$
+
+This follows by substituting dx=(h+conj h)/2 and dy=(h−conj h)/(2i) into fₓdx+fᵧdy. Dividing by h gives a+b·conj(h)/h+o(1). The real and imaginary approaches yield a+b and a−b. Thus b=0 is necessary; if b=0 the remainder divided by h tends to zero for every approach, so it is sufficient too.
+
+Writing f=u+iv, the condition b=0 is exactly uₓ=vᵧ and uᵧ=−vₓ. The coefficient a is the complex derivative. This proof uses real differentiability, not only existence of coordinate partials. It also identifies a and b as the two Wirtinger derivatives introduced later.
+
+## A continuous counterexample with CR at one point
+
+Use a real-valued complex function, with f(0)=0:
+
+$$
+f(x+iy)=\begin{cases}\dfrac{x^3y}{x^4+y^2}&(x,y)\ne(0,0),\\0&(x,y)=(0,0).\end{cases}
+$$
+
+The estimate |f(x+iy)|≤|x|/2 proves continuity at zero. Both coordinate partials of its real part are zero there, and the imaginary part is identically zero. CR therefore holds at zero. Nevertheless:
+
+| Approach h | Quotient f(h)/h | Limit |
+|---|---|---|
+| t, real t→0 | 0 | 0 |
+| it, real t→0 | 0 | 0 |
+| t+it², real t→0 | 1/[2(1+it)] | 1/2 |
+
+Two coordinate tests agree but the complex limit fails along a curved approach. There is no contradiction with the sufficient condition: this function is not real differentiable at zero, as the [total-differentiability example](/book/online/physics-math-for-ai/jacobians/) establishes. Its y partial at (x,0), x≠0, is 1/x, so nearby continuity of partials also fails.
+
+## Check the counterexample in Python
+
+The following standard-library code evaluates exact rational real and imaginary parts of the quotient, including negative t. The finite checks illustrate the formulas; the distinct limits above prove failure of complex differentiability. The interactive lab retains its original three C¹ models rather than displaying this additional function.
+
+```python
+from fractions import Fraction as Q
+
+def f(x, y):
+    return Q(0) if x == 0 and y == 0 else x**3 * y / (x**4 + y**2)
+
+def quotient(x, y):
+    value = f(x, y)
+    denominator = x*x + y*y
+    assert denominator > 0
+    return (value*x/denominator, -value*y/denominator)
+
+for t in [Q(1, 2), Q(1, 8), Q(1, 32), Q(-1, 16)]:
+    assert quotient(t, Q(0)) == (0, 0)
+    assert quotient(Q(0), t) == (0, 0)
+    curved = quotient(t, t*t)
+    assert curved == (1/(2*(1+t*t)), -t/(2*(1+t*t)))
+    assert abs(f(t, t*t)) <= abs(t)/2
+    print(t, curved)
+```
+
+Research exercise: before applying a holomorphic-layer argument, identify which regularity hypothesis justifies the first-order real expansion. Testing only real and imaginary perturbations can reject many wrong derivatives but cannot prove complex differentiability for every function.
+
 ## Exercises and answers
 
 1. The derivative of z² at i is **2i**.
