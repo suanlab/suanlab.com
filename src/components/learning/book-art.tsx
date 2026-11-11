@@ -1,4 +1,6 @@
 'use client';
+import { baselineBudgetsId } from '@/data/baseline-budgets-reader';
+import { aggregationProofId } from '@/data/aggregation-proof-reader';
 import { contributionEvidenceId } from '@/data/contribution-evidence-reader';
 import { researchHypothesesId } from '@/data/research-hypotheses-reader';
 import { modelDiscrepancyId } from '@/data/model-discrepancy-reader';
@@ -236,6 +238,8 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === baselineBudgetsId) return <span className="ai-concept-equation" aria-hidden="true">L_A(b) = 0.3 + 0.4/√b</span>;
+  if (kind === aggregationProofId) return <span className="ai-concept-equation" aria-hidden="true">d̄_weighted = d̄ + Cov(n,d)/n̄</span>;
   if (kind === contributionEvidenceId) return <span className="ai-concept-equation" aria-hidden="true">I = Δ_long − Δ_short</span>;
   if (kind === researchHypothesesId) return <span className="ai-concept-equation" aria-hidden="true">Δ = E[L_B − L_C]</span>;
   if (kind === modelDiscrepancyId) return <span className="ai-concept-equation" aria-hidden="true">y = m(θ) + δ + ε</span>;

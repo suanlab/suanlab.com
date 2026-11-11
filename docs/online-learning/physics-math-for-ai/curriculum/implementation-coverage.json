@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 642,
+  "implementedUnitCount": 644,
   "curriculumComplete": false,
-  "scope": "642 registered units, 1953 guided experiments and 1284 bilingual manuscript files. Introductory scope: 354 of 362 original topics verified, 8 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "644 registered units, 1957 guided experiments and 1288 bilingual manuscript files. Introductory scope: 356 of 362 original topics verified, 6 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -11839,10 +11839,12 @@
       "implementedUnitIds": [
         "research-methods",
         "hypotheses-and-testable-research-questions",
-        "related-work-and-contribution-evidence"
+        "related-work-and-contribution-evidence",
+        "assumptions-and-aggregation-counterexamples",
+        "baselines-and-matched-compute-budgets"
       ],
-      "nextUnitId": "assumptions-and-aggregation-counterexamples",
-      "nextAction": "aggregation-proof-reader-integration",
+      "nextUnitId": "ablations-and-randomized-negative-controls",
+      "nextAction": "randomized-controls-reader-integration",
       "researchHypothesesDraft": {
         "unitId": "hypotheses-and-testable-research-questions",
         "status": "registered-and-verified",
@@ -11858,48 +11860,48 @@
           "content/learning/physics-math-for-ai/hypotheses-and-testable-research-questions.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
-      "currentPreparationEvidence": "scripts/learning-contribution-evidence.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
+      "currentPreparationEvidence": "scripts/learning-baseline-budgets.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "related-work-and-contribution-evidence",
+        "unitId": "baselines-and-matched-compute-budgets",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-contribution-evidence.ts",
-        "lab": "src/components/learning/contribution-evidence-lab.tsx",
-        "tests": "scripts/learning-contribution-evidence.test.ts",
+        "model": "src/lib/learning-baseline-budgets.ts",
+        "lab": "src/components/learning/baseline-budgets-lab.tsx",
+        "tests": "scripts/learning-baseline-budgets.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
-          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.en.md"
+          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
+          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "related-work-and-contribution-evidence",
+        "unitId": "baselines-and-matched-compute-budgets",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-contribution-evidence.ts",
-        "lab": "src/components/learning/contribution-evidence-lab.tsx",
-        "tests": "scripts/learning-contribution-evidence.test.ts",
+        "model": "src/lib/learning-baseline-budgets.ts",
+        "lab": "src/components/learning/baseline-budgets-lab.tsx",
+        "tests": "scripts/learning-baseline-budgets.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
-          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.en.md"
+          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
+          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "선행 연구와 새 기여",
+        "originalTopic": "기준선·공정 비교",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "related-work-and-contribution-evidence"
+          "baselines-and-matched-compute-budgets"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -11907,12 +11909,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
-          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.en.md"
+          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
+          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-contribution-evidence.test.ts"
+        "evidence": "scripts/learning-baseline-budgets.test.ts"
       },
       "topicEvidence": [
         {
@@ -11988,6 +11990,80 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "가정·정리·증명·반례",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "assumptions-and-aggregation-counterexamples"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/assumptions-and-aggregation-counterexamples.ko.md",
+            "content/learning/physics-math-for-ai/assumptions-and-aggregation-counterexamples.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-aggregation-proof.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "assumptions-and-aggregation-counterexamples",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-aggregation-proof.ts",
+            "lab": "src/components/learning/aggregation-proof-lab.tsx",
+            "tests": "scripts/learning-aggregation-proof.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/assumptions-and-aggregation-counterexamples.ko.md",
+              "content/learning/physics-math-for-ai/assumptions-and-aggregation-counterexamples.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        },
+        {
+          "originalTopic": "기준선·공정 비교",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "baselines-and-matched-compute-budgets"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
+            "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-baseline-budgets.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "baselines-and-matched-compute-budgets",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-baseline-budgets.ts",
+            "lab": "src/components/learning/baseline-budgets-lab.tsx",
+            "tests": "scripts/learning-baseline-budgets.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
+              "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "contributionEvidenceDraft": {
@@ -12007,14 +12083,44 @@
       },
       "aggregationProofDraft": {
         "unitId": "assumptions-and-aggregation-counterexamples",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/assumptions-and-aggregation-counterexamples.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/assumptions-and-aggregation-counterexamples.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "aggregation-proof-reader-integration"
+        "nextAction": "baseline-budgets-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/assumptions-and-aggregation-counterexamples.ko.md",
+          "content/learning/physics-math-for-ai/assumptions-and-aggregation-counterexamples.en.md"
+        ]
+      },
+      "baselineBudgetsDraft": {
+        "unitId": "baselines-and-matched-compute-budgets",
+        "status": "registered-and-verified",
+        "registered": true,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/baselines-and-matched-compute-budgets.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/baselines-and-matched-compute-budgets.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "randomized-controls-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
+          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.en.md"
+        ]
+      },
+      "randomizedControlsDraft": {
+        "unitId": "ablations-and-randomized-negative-controls",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/ablations-and-randomized-negative-controls.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/ablations-and-randomized-negative-controls.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "randomized-controls-reader-integration"
       }
     }
   ],
@@ -12036,7 +12142,7 @@
     "research-methods"
   ],
   "nextDomain": "research-methods",
-  "nextTopic": "가정·정리·증명·반례",
+  "nextTopic": "ablation·negative control",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

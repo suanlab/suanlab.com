@@ -1,4 +1,8 @@
 'use client';
+import { baselineBudgetsId } from '@/data/baseline-budgets-reader';
+import { BaselineBudgetsConcept } from './baseline-budgets-lab';
+import { aggregationProofId } from '@/data/aggregation-proof-reader';
+import { AggregationProofConcept } from './aggregation-proof-lab';
 import { contributionEvidenceId } from '@/data/contribution-evidence-reader';
 import { ContributionEvidenceConcept } from './contribution-evidence-lab';
 import { researchHypothesesId } from '@/data/research-hypotheses-reader';
@@ -329,6 +333,8 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === baselineBudgetsId) return <BaselineBudgetsConcept language={language}/>;
+  if (kind === aggregationProofId) return <AggregationProofConcept language={language}/>;
   if (kind === contributionEvidenceId) return <ContributionEvidenceConcept language={language}/>;
   if (kind === researchHypothesesId) return <ResearchHypothesesConcept language={language}/>;
   if (kind === modelDiscrepancyId) return <ModelDiscrepancyConcept language={language}/>;

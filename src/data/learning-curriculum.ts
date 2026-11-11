@@ -3464,7 +3464,9 @@ export const curriculumDomains:CurriculumDomain[] = [
     "unitIds": [
       "research-methods",
       "hypotheses-and-testable-research-questions",
-      "related-work-and-contribution-evidence"
+      "related-work-and-contribution-evidence",
+      "assumptions-and-aggregation-counterexamples",
+      "baselines-and-matched-compute-budgets"
     ]
   }
 ];
