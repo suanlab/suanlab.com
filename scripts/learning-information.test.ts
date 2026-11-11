@@ -87,3 +87,50 @@ test('structural equality cases display exact zeros without clipping genuinely s
  assert.equal(evaluate('data-processing-information',[.2,.1,1]).stats['information lost (bits)'],0);
  assert.equal(evaluate('fano-error-bounds',[3,2/3]).stats['I(X;Y) (bits)'],0);
 });
+
+
+test('rare nonzero inputs retain channel information and the data-processing loss',()=>{
+ for(const p of [1e-100,1e-200,1e-300])for(const e of [.1,.3,.9]){
+  const firstOrder=(1-2*e)*Math.log2((1-e)/e);
+  const actual=bernoulliChannelInformation(p,e);
+  assert.ok(actual>0);close(actual/p,firstOrder,1e-12);
+ }
+ const p=1e-200,r=evaluate('data-processing-information',[p,.1,.2]);
+ assert.ok(num(r,'I(X;Z) (bits)')>0);
+ assert.ok(num(r,'information lost (bits)')>0);
+ assert.ok(num(r,'I(X;Z) (bits)')<num(r,'I(X;Y) (bits)'));
+});
+test('almost fair noise retains its positive quadratic information at balanced and skewed inputs',()=>{
+ // For delta=e-1/2, Taylor gives 8*p*(1-p)*delta^2/ln(2) with relative error O(delta^2).
+ // Dyadic deltas are exactly represented, unlike decimal offsets near 1/2.
+ for(const p of [.1,.3,.5,.9,1e-100])for(const delta of [2**-25,2**-40,2**-50]){
+  const leading=8*p*(1-p)*delta*delta/Math.LN2,actual=bernoulliChannelInformation(p,.5+delta);
+  assert.ok(actual>0);close(actual/leading,1,1e-12);
+ }
+});
+
+test('rare input complements retain precision under exact bit relabeling',()=>{
+ // Independent 750-digit joint-law evaluation using the exact binary64 inputs.
+ const reference=3.020681117426717e-11;
+ close(bernoulliChannelInformation(1-2**-40,1e-10)/reference,1,1e-12);
+ close(bernoulliChannelInformation(2**-40,1e-10)/reference,1,1e-12);
+});
+
+test('conversion to bits precedes rare weighting at the subnormal boundary',()=>{
+ // 750-digit joint-law value rounds to two binary64 subnormal units.
+ assert.equal(bernoulliChannelInformation(1e-300,.5+2**-40),2*Number.MIN_VALUE);
+});
+
+test('composing almost fair channels preserves information before the effective flip rounds to one half',()=>{
+ const e1=.5-2**-30,e2=.5-2**-35,contrast=(1-2*e1)*(1-2*e2);
+ const r=evaluate('data-processing-information',[.5,e1,e2]);
+ assert.equal(r.stats['effective flip probability'],.5);
+ const leading=contrast*contrast/(2*Math.LN2);
+ close(num(r,'I(X;Z) (bits)')/leading,1,1e-12);
+});
+test('unrepresentable positive channel information is withheld rather than labeled independent',()=>{
+ const r=evaluate('conditional-entropy-mutual-information',[1e-300,.5+2**-50]);
+ assert.equal(r.stats['I(X;Y) (bits)'],null);assert.equal(r.warning,'numeric-range');assert.deepEqual(r.dots,[]);
+ const d=evaluate('data-processing-information',[1e-300,.5-2**-30,.5-2**-35]);
+ assert.equal(d.stats['I(X;Z) (bits)'],null);assert.equal(d.warning,'numeric-range');assert.deepEqual(d.dots,[]);
+});

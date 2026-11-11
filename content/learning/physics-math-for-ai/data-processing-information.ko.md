@@ -33,6 +33,85 @@ $$
 
 고정된 전처리나 표현의 후처리에 이 결과를 연결할 수 있지만, Z가 X 또는 추가 라벨·데이터를 다시 받는다면 같은 Markov 가정이 아닙니다. 예를 들어 Y는 잡음인데 Z=X로 원본을 직접 복사하면 I(X;Z)>I(X;Y)가 가능하며 부등식의 반례가 아니라 조건 위반입니다. 정보량 보존과 특정 과제의 예측 편의성·계산 비용도 서로 다른 질문입니다.
 
+## 등호는 역함수보다 약한 조건이다
+
+유한 변수의 Markov 사슬 X→Y→Z를 유지합니다. 위 연쇄법칙에서 정보 손실은 I(X;Y|Z)입니다. 조건부 상호정보량을 사후분포 사이의 KL 평균으로 다시 쓰면 무엇을 보존해야 하는지 보입니다. 합은 p(y,z)>0인 쌍에만 적용하며 로그 밑은 2입니다.
+
+$$
+I(X;Y)-I(X;Z)=\sum_{y,z}p(y,z)
+D_{\rm KL}\!\left(P_{X\mid Y=y}\Vert P_{X\mid Z=z}\right).
+$$
+
+원래 정의에는 P(X|y,z)가 들어가지만 Markov 조건 때문에 P(X|y)로 바뀝니다. 각 KL은 비음수이고, 활성 쌍에서 두 사후가 같을 때만 0입니다. 따라서 등호는 P(X|y)=P(X|z)가 거의 확실하게 성립하는 것과 동치입니다. 즉 X→Z→Y도 성립합니다. Y 전체를 되찾을 필요 없이, X에 관한 사후를 보존하면 됩니다. 이 결론은 고정한 결합분포에 대한 것이며 모든 모수·사전에서의 충분성을 자동으로 뜻하지 않습니다.
+
+## 같은 사후를 가진 관측 상태 합치기
+
+Y의 세 상태 a,b,c에 질량 (1/4,1/4,1/2)을 주고 P(X=1|Y)=(1/5,1/5,4/5)로 둡니다. 이로부터 P(X=1)=1/2와 유효한 결합분포가 정해집니다. X를 원천으로 읽으면 P(Y|X)는 결합 질량을 P(X)로 나누어 얻습니다. 후처리는 Y만 사용하는 결정적 함수입니다.
+
+- 보존 병합: a,b를 z=0으로, c를 z=1로 보냅니다. 합친 두 상태의 사후가 같아 결과 사후는 (1/5,4/5)입니다.
+- 손실 병합: a,c를 z=0으로, b를 z=1로 보냅니다. 첫 사후는 (1/4×1/5+1/2×4/5)/(3/4)=3/5로 바뀝니다.
+
+![같은 사후 1/5인 a,b는 정보 손실 없이 합치지만, 사후가 다른 a,c를 합치면 3/5로 바뀌며 정보가 줄어듭니다.](/assets/learning/information-posterior-merges-ko.svg)
+
+| 처리 | I(X;Z) | 손실 |
+|---|---|---|
+| 원래 Y | 0.27807 | 0 |
+| a,b 병합 | 0.27807 | 0 |
+| a,c 병합 | 0.09131 | 0.18677 |
+
+정보량 단위는 bits입니다. 보존 병합에서도 a와 b를 되찾을 수 없어 Y의 원시 상태 정보는 줄었습니다. 보존되는 대상은 X에 대한 정보입니다. 다른 목표 변수로 바꾸면 같은 병합이 정보를 잃을 수 있습니다. 두 경우 모두 원래 Markov 조건은 만족합니다.
+
+## 사후가 달라지면 버린 정보가 남는다
+
+손실 병합에서 z=0만 관측하면 X=1의 확률은 3/5입니다. 여기에 원래 관측 a인지 c인지까지 알려주면 각각 1/5와 4/5로 다시 달라집니다. 이것이 I(X;Y|Z)>0의 직관입니다. 반면 보존 병합의 z=0 안에서는 a인지 b인지 알아도 사후가 바뀌지 않습니다.
+
+코드는 분수 결합 질량을 구성하고, 엔트로피 차이로 구한 손실을 사후 KL 평균과 별도로 비교합니다. 고정한 세 상태의 실행 예제이며 위 XOR 조절기를 새 병합 모형으로 바꾸지는 않습니다.
+
+```python
+from fractions import Fraction as Q
+from math import log2, isclose
+
+py, posterior = [Q(1, 4), Q(1, 4), Q(1, 2)], [Q(1, 5), Q(1, 5), Q(4, 5)]
+joint = [[py[y]*(posterior[y] if x else 1-posterior[y])
+          for y in range(3)] for x in range(2)]
+def entropy(mass):
+    return -sum(float(v)*log2(float(v)) for v in mass if v)
+def mi(table):
+    px = [sum(row) for row in table]
+    pz = [sum(row[z] for row in table) for z in range(len(table[0]))]
+    return entropy(px)+entropy(pz)-entropy([v for row in table for v in row])
+def kl(p, q):
+    return sum(float(a)*log2(float(a/b)) for a, b in zip(p, q) if a)
+
+base = mi(joint)
+for mapping in [[0, 1, 2], [0, 0, 1], [0, 1, 0]]:
+    out = [[sum(joint[x][y] for y in range(3) if mapping[y] == z)
+            for z in range(max(mapping)+1)] for x in range(2)]
+    pz = [sum(row[z] for row in out) for z in range(len(out[0]))]
+    post = [out[1][z]/pz[z] for z in range(len(pz))]
+    gap = sum(float(py[y])*kl([1-posterior[y], posterior[y]],
+                               [1-post[mapping[y]], post[mapping[y]]])
+              for y in range(3))
+    assert isclose(base-mi(out), gap, abs_tol=1e-12)
+    if mapping == [0, 0, 1]:
+        assert post == [Q(1, 5), Q(4, 5)] and gap == 0
+    if mapping == [0, 1, 0]:
+        assert post == [Q(3, 5), Q(1, 5)] and gap > .18
+    print("map, posterior, retained bits, loss:", mapping, post, mi(out), gap)
+```
+
+## 연구에 적용하기 전에 묻기
+
+1. 비가역 처리이면 반드시 X 정보를 잃나요? **아니요. 같은 X 사후를 가진 상태는 합칠 수 있습니다.**
+2. 보존할 대상을 어떻게 명시하나요? **원천·목표 X, 관측 Y, 후처리 Z와 결합분포를 기록합니다.**
+3. 정보 손실 0이면 모든 과제와 계산 비용도 같은가요? **아니요. 여기서는 지정한 X의 분포적 정보만 비교합니다.**
+
+배경은 [MIT 6.441, Chapter 3 §3.1–3.2](https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/486b7d83cc428acf75b74323ecafcc11_MIT6_441S16_chapter_3.pdf)를 참고하세요. 세 상태의 병합과 수치는 위 결합분포에서 직접 계산했습니다.
+
+## 작은 합성 정보와 표시 정밀도
+
+두 채널의 대비 1−2ε는 합성에서 곱해집니다. 계산은 이 곱을 유지해, 합성 반전확률이 0.5로 반올림되어도 작은 양의 정보를 버리지 않습니다. 예를 들어 p=.5, ε₁=.5−2⁻³⁰, ε₂=.5−2⁻³⁵이면 최종 정보는 약 8.48×10⁻³⁹ bits입니다. 표시된 반전확률 0.5만으로 정확한 독립을 판정하지 마세요. 수학적으로 양수인 정보가 숫자 표현 범위 아래이면 선택 정보량과 점을 보류하고 수치 범위 안내를 표시합니다.
+
 ## 확인 문제와 해설
 
 1. 두 번 모두 반전되면 최종 비트는? **원래 비트입니다.**

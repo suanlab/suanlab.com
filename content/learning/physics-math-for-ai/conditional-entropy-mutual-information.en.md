@@ -30,6 +30,17 @@ A deterministic input p=0 or one contains no new source information. Noise can m
 
 A column with p(y)=0 has no ratio-defined conditional probability and is shown as a dash. Its weight in conditional entropy is zero. High mutual information also does not establish causation or task usefulness. State the variables, distribution and observation mechanism being analyzed.
 
+## Small positive information and entropy cancellation
+
+The entropy difference above is mathematically correct, but subtracting nearly equal floating-point values can erase a small positive result. The lab evaluates the same information as an average of KL divergences from conditional channel laws to the output law.
+
+$$
+I(X;Y)=(1-p)D_{\rm KL}(\operatorname{Ber}(\varepsilon)\Vert P_Y)
++pD_{\rm KL}(\operatorname{Ber}(1-\varepsilon)\Vert P_Y).
+$$
+
+Within each KL, nearby probabilities also cancel linear terms, so computation uses log1p and a series beginning at quadratic order. For fixed 0<ε<1 as p decreases to zero, I/p tends to (1−2ε)log₂((1−ε)/ε). At ε=.1,p=10⁻³⁰⁰ approximately 2.53594×10⁻³⁰⁰ bits remains positive. Exact independence at ε=.5 and deterministic inputs still give zero. This improvement does not remove every JavaScript precision or representable-range limit.
+
 ## Exercises with explanations
 
 1. What is mutual information under independence? **Zero.**

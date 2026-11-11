@@ -14,7 +14,31 @@ const logSumExp=(v:number[])=>{const max=Math.max(...v);return max+Math.log(v.re
 export function renyiEntropy(p:number[],alpha:number):number{distribution(p);if(!Number.isFinite(alpha)||alpha<0||alpha>8)throw new Error('Use a Rényi order in [0,8].');const positive=p.filter(v=>v>0);if(alpha===0)return Math.log2(positive.length);if(alpha===1)return finiteEntropy(p);const delta=alpha-1,logSum=Math.abs(delta)<.1?Math.log1p(positive.reduce((s,v)=>s+v*Math.expm1(delta*Math.log(v)),0)):logSumExp(positive.map(v=>alpha*Math.log(v)));return Math.max(0,-logSum/(delta*Math.LN2));}
 export function renyiDivergence(p:number[],q:number[],alpha:number):number{distribution(p);distribution(q);if(p.length!==q.length||q.some(v=>v<=0)||!Number.isFinite(alpha)||alpha<0||alpha>8)throw new Error('Use the same alphabet, positive proposal masses, and an order in [0,8].');if(alpha===0)return -Math.log2(q.reduce((s,v,i)=>s+(p[i]>0?v:0),0));if(alpha===1)return finiteKL(p,q);const positive=p.map((v,i)=>({p:v,q:q[i]})).filter(v=>v.p>0),delta=alpha-1,logSum=Math.abs(delta)<.1?Math.log1p(positive.reduce((s,v)=>s+v.p*Math.expm1(delta*(Math.log(v.p)-Math.log(v.q))),0)):logSumExp(positive.map(v=>alpha*Math.log(v.p)+(1-alpha)*Math.log(v.q)));return Math.max(0,logSum/(delta*Math.LN2));}
 export function isPrefixFree(words:string[]):boolean{return words.length>0&&words.every((w,i)=>/^[01]*$/.test(w)&&words.every((v,j)=>i===j||!v.startsWith(w)));}
-export function bernoulliChannelInformation(p:number,error:number):number{probability(p);probability(error);if(p===0||p===1||error===.5)return 0;if(error===0||error===1)return binaryEntropy(p);return Math.max(0,binaryEntropy(p*(1-error)+(1-p)*error)-binaryEntropy(error));}
+// (1+x)log(1+x)-x has no linear term. Evaluate its small values without cancellation.
+function logRemainder(x:number):number{
+ let power=x*x,total=0;
+ for(let k=2;k<=24;k++){total+=(k%2===0?1:-1)*power/(k*(k-1));power*=x;}
+ return total;
+}
+function binaryDivergenceNats(a:number,b:number,delta:number):number{
+ if(delta===0)return 0;
+ const u=delta/b,v=-delta/(1-b);
+ if(Math.abs(u)<.1&&Math.abs(v)<.1)return b*logRemainder(u)+(1-b)*logRemainder(v);
+ return Math.max(0,(a===0?0:a*(Math.log(a)-Math.log(b)))+(a===1?0:(1-a)*(Math.log1p(-a)-Math.log1p(-b))));
+}
+function channelInformation(p:number,flip:number,contrast:number):number{
+ if(p===0||p===1||contrast===0)return 0;
+ if(flip===0)return binaryEntropy(p);
+ const rare=Math.min(p,1-p),output=flip+rare*contrast;
+ // Algebraic conditional-minus-marginal differences survive marginal rounding.
+ return (1-rare)*(binaryDivergenceNats(flip,output,-rare*contrast)/Math.LN2)+rare*(binaryDivergenceNats(1-flip,output,(1-rare)*contrast)/Math.LN2);
+}
+export function bernoulliChannelInformation(p:number,error:number):number{
+ probability(p);probability(error);
+ // Input/output bit relabeling preserves MI and avoids a tiny complement of one.
+ const flip=Math.min(error,1-error);
+ return channelInformation(p,flip,1-2*flip);
+}
 const indexed=(v:number[]):Vec2[]=>v.map((x,i)=>[i,x]);
 const unitGrid=()=>Array.from({length:101},(_,i)=>i/100);
 export function evaluateInformation(kind:InformationKind,p:number[]):InformationResult{
@@ -25,8 +49,8 @@ export function evaluateInformation(kind:InformationKind,p:number[]):Information
   return {plot:'continuous',statement:`X~Bernoulli(${a}); selected outcome x=${b}; all information values in bits. A zero-probability outcome has infinite surprisal but contributes zero to expected entropy.`,stats:{'selected outcome probability':selected,'selected surprisal (bits)':surprise,'entropy H(X) (bits)':binaryEntropy(a)},curves:[unitGrid().map(x=>[x,binaryEntropy(x)])],dots:[[a,binaryEntropy(a)]],bounds:[0,1,0,1.05],table:{headers:['outcome','probability','surprisal (bits)','entropy contribution'],rows:mass.map((v,i)=>[i,v,v===0?'∞':-Math.log2(v),v===0?0:-v*Math.log2(v)])}};
  }
  if(kind==='conditional-entropy-mutual-information'){
-  const mass=[1-a,a],py=[(1-a)*(1-b)+a*b,a*(1-b)+(1-a)*b],joint=mass.flatMap((v,x)=>[0,1].map(y=>[x,y,v*(x===y?1-b:b)])),HX=binaryEntropy(a),HY=binaryEntropy(py[1]),conditional=binaryEntropy(b),mi=bernoulliChannelInformation(a,b);
-  return {plot:'continuous',statement:`X~Bernoulli(${a}); Y=X XOR independent Bernoulli(${b}) noise. Conditional entropy averages over observed Y; null Y columns have no ratio-defined posterior.`,stats:{'H(X) (bits)':HX,'H(Y) (bits)':HY,'H(Y|X) (bits)':conditional,'H(X,Y) (bits)':HX+conditional,'H(X|Y) (bits)':Math.max(0,HX-mi),'I(X;Y) (bits)':mi},curves:[unitGrid().map(e=>[e,bernoulliChannelInformation(a,e)]),[[0,HX],[1,HX]]],curveColors:['blue','orange'],dots:[[b,mi]],bounds:[0,1,0,1.05],table:{headers:['x','y','joint mass','P(y)','P(x|y)'],rows:joint.map(([x,y,v])=>[x,y,v,py[y],py[y]>0?v/py[y]:'—'])}};
+  const mass=[1-a,a],py=[(1-a)*(1-b)+a*b,a*(1-b)+(1-a)*b],joint=mass.flatMap((v,x)=>[0,1].map(y=>[x,y,v*(x===y?1-b:b)])),HX=binaryEntropy(a),HY=binaryEntropy(py[1]),conditional=binaryEntropy(b),mi=bernoulliChannelInformation(a,b),underflow=mi===0&&a>0&&a<1&&b!==.5;
+  return {plot:'continuous',warning:underflow?'numeric-range':undefined,statement:`X~Bernoulli(${a}); Y=X XOR independent Bernoulli(${b}) noise. Conditional entropy averages over observed Y; null Y columns have no ratio-defined posterior.`,stats:{'H(X) (bits)':HX,'H(Y) (bits)':HY,'H(Y|X) (bits)':conditional,'H(X,Y) (bits)':HX+conditional,'H(X|Y) (bits)':Math.max(0,HX-mi),'I(X;Y) (bits)':underflow?null:mi},curves:[unitGrid().map(e=>[e,bernoulliChannelInformation(a,e)]),[[0,HX],[1,HX]]],curveColors:['blue','orange'],dots:underflow?[]:[[b,mi]],bounds:[0,1,0,1.05],table:{headers:['x','y','joint mass','P(y)','P(x|y)'],rows:joint.map(([x,y,v])=>[x,y,v,py[y],py[y]>0?v/py[y]:'—'])}};
  }
  if(kind==='cross-entropy-kl'){
   const P=[1-a,a],Q=[1-b,b],H=binaryEntropy(a),CE=finiteCrossEntropy(P,Q),KL=finiteKL(P,Q),grid=Array.from({length:199},(_,i)=>(i+1)/200),curve=grid.map(q=>[q,finiteCrossEntropy(P,[1-q,q])] as Vec2);
@@ -37,8 +61,8 @@ export function evaluateInformation(kind:InformationKind,p:number[]):Information
   return {plot:'continuous',statement:`f(t)=−log₂(t) convex on t>0; weights (${a},${1-a}), values (${b},${c}). Chord average lies above f(E[X]); negative f values for t>1 are valid function values.`,stats:{'mean E[X]':mean,'f(E[X])':transformed,'E[f(X)]':expected,'Jensen gap':gap},curves:[grid.map(x=>[x,f(x)]),[[b,f(b)],[c,f(c)]]],curveColors:['blue','orange'],dots:[[b,f(b)],[c,f(c)],[mean,expected],[mean,transformed]],dotColors:['blue','blue','orange','blue'],bounds:[0,4.1,-2.1,3.5],table:{headers:['value','weight','f(value)'],rows:[[b,a,f(b)],[c,1-a,f(c)]]}};
  }
  if(kind==='data-processing-information'){
-  const effective=b+c-2*b*c,Ixy=bernoulliChannelInformation(a,b),Ixz=c===0||c===1?Ixy:bernoulliChannelInformation(a,effective),rows:(number|string)[][]=[];for(let x=0;x<2;x++)for(let y=0;y<2;y++)for(let z=0;z<2;z++)rows.push([x,y,z,(x?a:1-a)*(x===y?1-b:b)*(y===z?1-c:c)]);
-  return {plot:'continuous',statement:`Markov chain X→Y→Z: X~Bernoulli(${a}), two INDEPENDENT XOR noises with rates ${b} and ${c}; Z has no additional access to X.`,stats:{'I(X;Y) (bits)':Ixy,'I(X;Z) (bits)':Ixz,'information lost (bits)':Math.max(0,Ixy-Ixz),'effective flip probability':effective},curves:[unitGrid().map(e=>[e,bernoulliChannelInformation(a,b+e-2*b*e)]),[[0,Ixy],[1,Ixy]]],curveColors:['blue','orange'],dots:[[c,Ixz]],bounds:[0,1,0,1.05],table:{headers:['x','y','z','joint mass P(x,y,z)'],rows}};
+  const finalAt=(e:number)=>{const flip=Math.min(e,1-e);return channelInformation(a,b+flip-2*b*flip,(1-2*b)*(1-2*flip));},effective=b+c-2*b*c,Ixy=bernoulliChannelInformation(a,b),Ixz=c===0||c===1?Ixy:finalAt(c),underflowXY=Ixy===0&&a>0&&a<1&&b!==.5,underflowXZ=Ixz===0&&a>0&&a<1&&b!==.5&&c!==.5,rows:(number|string)[][]=[];for(let x=0;x<2;x++)for(let y=0;y<2;y++)for(let z=0;z<2;z++)rows.push([x,y,z,(x?a:1-a)*(x===y?1-b:b)*(y===z?1-c:c)]);
+  return {plot:'continuous',warning:underflowXY||underflowXZ?'numeric-range':undefined,statement:`Markov chain X→Y→Z: X~Bernoulli(${a}), two INDEPENDENT XOR noises with rates ${b} and ${c}; Z has no additional access to X.`,stats:{'I(X;Y) (bits)':underflowXY?null:Ixy,'I(X;Z) (bits)':underflowXZ?null:Ixz,'information lost (bits)':underflowXY||underflowXZ?null:Math.max(0,Ixy-Ixz),'effective flip probability':effective},curves:[unitGrid().map(e=>[e,finalAt(e)]),[[0,Ixy],[1,Ixy]]],curveColors:['blue','orange'],dots:underflowXZ?[]:[[c,Ixz]],bounds:[0,1,0,1.05],table:{headers:['x','y','z','joint mass P(x,y,z)'],rows}};
  }
  if(kind==='coding-compression-mdl'){
   const counts=(a===0?[4,2,1,1]:a===1?[2,2,2,2]:[8,0,0,0]).map(v=>v*c),N=8*c,P=counts.map(v=>v/N),codebooks=[['0','10','110','111'],['00','01','10','11'],['0','01','10','11']],words=codebooks[b],valid=isPrefixFree(words),average=P.reduce((s,v,i)=>s+v*words[i].length,0),data=codebooks.slice(0,2).map(code=>counts.reduce((s,v,i)=>s+v*code[i].length,0)),totals=[data[0]+2,data[1]+1];

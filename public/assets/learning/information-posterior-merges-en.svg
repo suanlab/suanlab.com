@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="610" viewBox="0 0 440 610" role="img" aria-labelledby="title desc"><title id="title">Posterior-preserving and lossy merges</title><desc id="desc">Three Y states have posterior success probabilities 1/5, 1/5, 4/5. Merging a with b preserves these posteriors. Merging a with c changes their posterior to 3/5 and loses 0.18677 bits.</desc>
+<rect width="440" height="610" rx="12" fill="#fff"/>
+<defs><marker id="blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#2563eb"/></marker><marker id="orange" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#ea580c"/></marker></defs>
+<g font-family="system-ui,sans-serif" fill="#0f172a"><text x="20" y="28" font-size="21">Merge a,b: zero loss</text><text x="20" y="55" font-size="18">Numbers are P(X=1 | state)</text><text x="20" y="327" font-size="21">Merge a,c: loss 0.18677 bits</text>
+<path d="M150 100L276 130" fill="none" stroke="#2563eb" stroke-width="2.5" marker-end="url(#blue)"/>
+<path d="M150 160L276 130" fill="none" stroke="#2563eb" stroke-width="2.5" marker-end="url(#blue)"/>
+<path d="M150 220L276 220" fill="none" stroke="#2563eb" stroke-width="2.5" marker-end="url(#blue)"/>
+<rect x="20" y="78" width="130" height="44" rx="8" fill="#f8fafc" stroke="#2563eb"/><text x="85" y="107" text-anchor="middle" font-size="21">a: 1/5</text>
+<rect x="20" y="138" width="130" height="44" rx="8" fill="#f8fafc" stroke="#2563eb"/><text x="85" y="167" text-anchor="middle" font-size="21">b: 1/5</text>
+<rect x="20" y="198" width="130" height="44" rx="8" fill="#f8fafc" stroke="#2563eb"/><text x="85" y="227" text-anchor="middle" font-size="21">c: 4/5</text>
+<rect x="280" y="108" width="140" height="44" rx="8" fill="#f8fafc" stroke="#2563eb"/><text x="350" y="137" text-anchor="middle" font-size="21">0: 1/5</text>
+<rect x="280" y="198" width="140" height="44" rx="8" fill="#f8fafc" stroke="#2563eb"/><text x="350" y="227" text-anchor="middle" font-size="21">1: 4/5</text>
+<path d="M150 390L276 420" fill="none" stroke="#ea580c" stroke-width="2.5" marker-end="url(#orange)"/>
+<path d="M150 450L276 510" fill="none" stroke="#ea580c" stroke-width="2.5" marker-end="url(#orange)"/>
+<path d="M150 510L276 420" fill="none" stroke="#ea580c" stroke-width="2.5" marker-end="url(#orange)"/>
+<rect x="20" y="368" width="130" height="44" rx="8" fill="#f8fafc" stroke="#ea580c"/><text x="85" y="397" text-anchor="middle" font-size="21">a: 1/5</text>
+<rect x="20" y="428" width="130" height="44" rx="8" fill="#f8fafc" stroke="#ea580c"/><text x="85" y="457" text-anchor="middle" font-size="21">b: 1/5</text>
+<rect x="20" y="488" width="130" height="44" rx="8" fill="#f8fafc" stroke="#ea580c"/><text x="85" y="517" text-anchor="middle" font-size="21">c: 4/5</text>
+<rect x="280" y="398" width="140" height="44" rx="8" fill="#f8fafc" stroke="#ea580c"/><text x="350" y="427" text-anchor="middle" font-size="21">0: 3/5</text>
+<rect x="280" y="488" width="140" height="44" rx="8" fill="#f8fafc" stroke="#ea580c"/><text x="350" y="517" text-anchor="middle" font-size="21">1: 1/5</text>
+<text x="20" y="587" font-size="18">P(Y=a,b,c) = (1/4, 1/4, 1/2)</text></g></svg>
