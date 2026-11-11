@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 616,
+  "implementedUnitCount": 617,
   "curriculumComplete": false,
-  "scope": "616 registered units, 1901 guided experiments and 1232 bilingual manuscript files. Introductory scope: 328 of 362 original topics verified, 34 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "617 registered units, 1903 guided experiments and 1234 bilingual manuscript files. Introductory scope: 329 of 362 original topics verified, 33 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9998,10 +9998,11 @@
         "relativistic-kinematics-four-momentum",
         "curvature-covariant-derivatives-and-holonomy",
         "geodesics-straight-lines-and-great-circles",
-        "einstein-equations-trace-and-sources"
+        "einstein-equations-trace-and-sources",
+        "spacetime-observation-and-redshift"
       ],
-      "nextUnitId": "spacetime-observation-and-redshift",
-      "nextAction": "schwarzschild-redshift-reader-integration",
+      "nextUnitId": "accelerated-coordinates-and-invariant-readings",
+      "nextAction": "rindler-observables-reader-integration",
       "lorentzBoostDraft": {
         "unitId": "special-relativity-lorentz-boosts",
         "status": "registered-and-verified",
@@ -10017,48 +10018,48 @@
           "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
-      "currentPreparationEvidence": "scripts/learning-einstein-fluid-curvature.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
+      "currentPreparationEvidence": "scripts/learning-schwarzschild-redshift.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "einstein-equations-trace-and-sources",
+        "unitId": "spacetime-observation-and-redshift",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-einstein-fluid-curvature.ts",
-        "lab": "src/components/learning/einstein-fluid-curvature-lab.tsx",
-        "tests": "scripts/learning-einstein-fluid-curvature.test.ts",
+        "model": "src/lib/learning-schwarzschild-redshift.ts",
+        "lab": "src/components/learning/schwarzschild-redshift-lab.tsx",
+        "tests": "scripts/learning-schwarzschild-redshift.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
-          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
+          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
+          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.en.md"
         ],
-        "sectionsPerLocale": 6,
+        "sectionsPerLocale": 5,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "einstein-equations-trace-and-sources",
+        "unitId": "spacetime-observation-and-redshift",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-einstein-fluid-curvature.ts",
-        "lab": "src/components/learning/einstein-fluid-curvature-lab.tsx",
-        "tests": "scripts/learning-einstein-fluid-curvature.test.ts",
+        "model": "src/lib/learning-schwarzschild-redshift.ts",
+        "lab": "src/components/learning/schwarzschild-redshift-lab.tsx",
+        "tests": "scripts/learning-schwarzschild-redshift.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
-          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
+          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
+          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.en.md"
         ],
-        "sectionsPerLocale": 6,
+        "sectionsPerLocale": 5,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "Einstein 방정식의 구조",
+        "originalTopic": "시공간의 관측",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "einstein-equations-trace-and-sources"
+          "spacetime-observation-and-redshift"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -10066,12 +10067,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
-          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
+          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
+          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-einstein-fluid-curvature.test.ts"
+        "evidence": "scripts/learning-schwarzschild-redshift.test.ts"
       },
       "topicEvidence": [
         {
@@ -10332,6 +10333,43 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "시공간의 관측",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "spacetime-observation-and-redshift"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
+            "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-schwarzschild-redshift.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "spacetime-observation-and-redshift",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-schwarzschild-redshift.ts",
+            "lab": "src/components/learning/schwarzschild-redshift-lab.tsx",
+            "tests": "scripts/learning-schwarzschild-redshift.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
+              "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.en.md"
+            ],
+            "sectionsPerLocale": 5,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "minkowskiMetricDraft": {
@@ -10426,14 +10464,29 @@
       },
       "redshiftDraft": {
         "unitId": "spacetime-observation-and-redshift",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/spacetime-observation-and-redshift.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/spacetime-observation-and-redshift.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "schwarzschild-redshift-reader-integration"
+        "nextAction": "rindler-observables-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
+          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.en.md"
+        ]
+      },
+      "rindlerDraft": {
+        "unitId": "accelerated-coordinates-and-invariant-readings",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/accelerated-coordinates-and-invariant-readings.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/accelerated-coordinates-and-invariant-readings.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "rindler-observables-reader-integration"
       }
     },
     {
@@ -10477,7 +10530,7 @@
     "research-methods"
   ],
   "nextDomain": "relativity",
-  "nextTopic": "시공간의 관측",
+  "nextTopic": "좌표와 물리량",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

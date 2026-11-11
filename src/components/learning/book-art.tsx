@@ -1,4 +1,5 @@
 'use client';
+import { schwarzschildRedshiftId } from '@/data/schwarzschild-redshift-reader';
 import { einsteinFluidCurvatureId } from '@/data/einstein-fluid-curvature-reader';
 import { greatCircleGeodesicId } from '@/data/great-circle-geodesic-reader';
 import { rotationalCurvatureId } from '@/data/rotational-curvature-reader';
@@ -211,6 +212,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === schwarzschildRedshiftId) return <span className="ai-concept-equation" aria-hidden="true">ω = −g(u,k)</span>;
   if (kind === einsteinFluidCurvatureId) return <span className="ai-concept-equation" aria-hidden="true">Gμν + Λgμν = κTμν</span>;
   if (kind === greatCircleGeodesicId) return <span className="ai-concept-equation" aria-hidden="true">∇Ẋ Ẋ = 0</span>;
   if (kind === rotationalCurvatureId) return <span className="ai-concept-equation" aria-hidden="true">K = −f″/f</span>;
