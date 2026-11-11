@@ -81,6 +81,37 @@ $$
 
 H=0,1,2,3의 가지치기하지 않은 계획 수는 M_H=2+M_(H-1)²에 따라 2,6,38,1446개입니다. 테스트에서는 이 계획들을 별도로 열거한 값과 실제 Bayes 관측 트리 재귀를 비교합니다. 작은 모형이므로 정확히 열거할 수 있으며 일반 POMDP에는 더 효율적인 표현과 근사가 필요합니다.
 
+## 연구 확장: 좋은 정보라도 비용을 지불할 가치는 별개다
+
+대칭 이진 센서의 정확도가 $\eta_2\ge\eta_1\ge1/2$이면 더 좋은 센서의 관측을 독립적으로 $\nu=(\eta_2-\eta_1)/(2\eta_2-1)$의 확률로 뒤집어 나쁜 센서를 흉내 낼 수 있다. $\eta_2=1/2$이면 둘 다 무정보 센서다. 같은 관측 비용·시간 범위에서는 좋은 센서가 나쁜 센서의 정책을 모방할 수 있으므로 최적 기대 비용이 더 커지지 않는다.
+
+사후확률은 $E[b_Y]=b$인 martingale이다. 유한 시간 POMDP 비용은 계획별 affine 비용의 오목한 아래 포락선이므로 $E[V(b_Y)]\le V(b)$다. 이는 **무료** 정보의 이점을 증명하며, 유료 관측이 언제나 이득이라는 뜻은 아니다. 엔트로피 감소와 의사결정 개선도 서로 다른 양이다.
+
+| 사전 $b$, 정확도 4/5 | 관측 없는 오판 확률 | 무료 관측 한 번 후 오판 확률 |
+|---|---:|---:|
+| 1/2 | 1/2 | 1/5 |
+| 4/5 | 1/5 | 1/5 |
+| 99/100 | 1/100 | 1/100 |
+
+```python
+from fractions import Fraction as F
+eta=F(4,5)
+for b in [F(1,2),F(4,5),F(99,100)]:
+    mass_one=b*eta+(1-b)*(1-eta)
+    post_one=b*eta/mass_one
+    post_zero=b*(1-eta)/(1-mass_one)
+    assert mass_one*post_one+(1-mass_one)*post_zero==b
+    error=mass_one*min(post_one,1-post_one)+(1-mass_one)*min(post_zero,1-post_zero)
+    assert error<=min(b,1-b)
+    print(b,min(b,1-b),error)
+better,worse=F(9,10),F(3,5)
+flip=(better-worse)/(2*better-1)
+assert flip==F(3,8)
+assert better*(1-flip)+(1-better)*flip==worse
+```
+
+**연습:** 사전이 99/100이면 어느 관측을 받아도 최적 종단 행동은 바뀌지 않는다. 정보가 믿음을 바꾸어도 최소 의사결정 비용은 같을 수 있다.
+
 ## 사후확률과 한 번 관측의 손계산 문제
 
 b=0.5,eta=0.8,c=0.05,H=1로 놓습니다. 두 관측의 확률, 사후 belief와 즉시 추측·한 번 관측 중 최적 선택을 먼저 직접 계산해 보세요.

@@ -65,6 +65,37 @@ The lower time plot shows **executed receding-horizon** trajectories. Both compa
 
 No disturbance or model mismatch is added in this lab. Replanning is a feedback procedure, but its existence alone does not guarantee robustness or stability. Terminal invariant sets, suitable terminal costs and local feedback conditions can support such guarantees in appropriately formulated MPC. They are not assumed for the arbitrary parameters here.
 
+## Research extension: why MPC needs a terminal certificate
+
+An input-feasible plan today need not remain feasible tomorrow when state or terminal constraints are added. Suppose a terminal set $X_f$ is invariant under an admissible feedback $\kappa$, and $V_f(f(x,\kappa(x)))-V_f(x)\le-\ell(x,\kappa(x))$ there. Shift the optimal plan by one step and append $\kappa$ at its terminal state. This is a feasible candidate at the next state, so optimality gives $V_N(x^+)\le V_N(x)-\ell(x,u_0^*)$. Positive stage cost and suitable bounds on $V_N$ then yield stability for the exact nominal model.
+
+For the auxiliary integrator $x^+=x+u$, take $\ell=x^2+u^2$, $\kappa=-x/2$, $X_f=[-1,1]$, $|u|\le1/2$, and $V_f=5x^2/3$. The terminal decrease is exactly $-5x^2/4=-\ell(x,\kappa(x))$.
+
+| Initial state | Feasible two-input candidate | Terminal state |
+|---|---|---:|
+| 1 | (-1/2, -1/2) | 0 |
+| 3/2 | (-1/2, -1/2) | 1/2 |
+| 2 | (-1/2, -1/2) | 1 |
+
+```python
+from fractions import Fraction as F
+def cost(x,us):
+    J=F(0)
+    for u in us:
+        J+=x*x+u*u; x+=u
+    return J+F(5,3)*x*x,x
+for x in [F(1),F(3,2),F(2)]:
+    us=[F(-1,2),F(-1,2)]
+    J,end=cost(x,us)
+    tail=-end/2
+    shifted,_=cost(x+us[0],[us[1],tail])
+    assert abs(end)<=1 and abs(tail)<=F(1,2)
+    assert shifted==J-(x*x+us[0]**2)
+    print(x,end,shifted)
+```
+
+The code verifies feasible candidates, not optimality of those initial plans. The native arbitrary terminal weight and input-only MPC do not acquire this certificate. Its Riccati recursion divides before multiplying tiny penalties; `expandedP` and `expandedK` retain the former arithmetic for comparison, without a numerical floor.
+
 ## Worked exercise and solution
 
 Set a=q=r=p=1,H=1,x0=1. Then J=1+u²+(1+u)²=1.5+2*(u+0.5)². With U=2, the optimum is u=-0.5, the next state is 0.5 and the cost is 1.5. With U=0.2, the minimum moves to u=-0.2, the next state is 0.8 and the cost is 1.68. The derivative there is positive, consistent with a lower-bound optimum.

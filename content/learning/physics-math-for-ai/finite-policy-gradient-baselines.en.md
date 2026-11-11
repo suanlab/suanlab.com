@@ -50,6 +50,35 @@ Scale zero gives 83/160; scale one gives 3/32. Completing the square gives the m
 
 Blue circles represent path estimates, with area proportional to path probability. Equal estimates may overlap. An outline identifies the selected positive-mass path; the orange point is the directly computed gradient. A zero-probability selected path has no distribution marker and its sample readout is unavailable. The lower blue curve varies baseline scale; the orange horizontal curve is full-return variance. Neither curve is a training trajectory.
 
+## Research extension: an unbiased gradient does not certify a finite update
+
+For a finite-horizon MDP with $V_H^\pi=0$, define $A_t^\pi=Q_t^\pi-V_t^\pi$. Telescoping the old value function along a **new-policy** trajectory yields
+
+$$J(\pi')-J(\pi)=E_{\pi'}\sum_{t=0}^{H-1}\gamma^t A_t^\pi(s_t,a_t).$$
+
+Replacing new-policy state occupancy by old occupancy gives a surrogate, not this identity. Consider a separate two-stage MDP: at the start, safe terminates with zero reward; go reaches a state where good pays +1 and bad -1. Old probabilities are go=1/100, good=9/10; new probabilities are go=1/2, good=1/10. The change in visitation overwhelms the positive old-occupancy surrogate.
+
+| Quantity | Exact value |
+|---|---:|
+| Old expected reward | 1/125 |
+| Old-occupancy advantage surrogate | 47/125 |
+| Actual reward improvement | -51/125 |
+
+```python
+from fractions import Fraction as F
+p,q=F(1,100),F(9,10); newp,newq=F(1,2),F(1,10)
+old=p*(2*q-1); new=newp*(2*newq-1)
+first=(newp-p)*(2*q-1)
+terminal=2*(newq-q)
+surrogate=first+p*terminal
+identity=first+newp*terminal
+assert old==F(1,125) and surrogate==F(47,125)
+assert identity==new-old==F(-51,125)
+print(old,surrogate,identity)
+```
+
+The native nonnegative-reward model remains unchanged. Baselines and reward-to-go can preserve gradient means and reduce variance; these properties alone do not prove monotonic improvement under an arbitrary finite parameter step. Controlling occupancy change requires additional assumptions or a suitable bound.
+
 ## Exercise and solution
 
 Exercise: set gamma=0. Which gradient coordinate must vanish? Can changing the terminal logit still change the expected immediate reward?

@@ -41,6 +41,37 @@ $$
 
 If the feasible interval is nonempty, the constrained optimum is min(hi,max(lo,u0)). This projection works here because a scalar convex objective decreases toward its unconstrained minimizer and increases afterward. It is not a rule that arbitrary multidimensional constrained problems can be solved by clipping an unconstrained optimum. Infeasibility leaves the input, cost and successor readouts unavailable.
 
+## Research extension: compute the set that stays safe forever
+
+One-step feasibility asks whether one input protects the next state. Recursive safety instead uses $\operatorname{Pre}(K)=\{x:\exists u\ \forall w,\ f(x,u,w)\in K\}$ and $K_{j+1}=K_0\cap\operatorname{Pre}(K_j)$. These sets describe states safe for increasing horizons; under the usual compactness and continuity conditions their intersection is a controlled invariant kernel.
+
+For the auxiliary scalar model $x^+=2x+u+w$, $|u|\le1/2$, $|w|\le1/10$, $K_0=[-1,1]$, symmetry gives radii $r_{j+1}=\min(1,(r_j+1/2-1/10)/2)$ while $r_j\ge1/10$. They decrease to $r_*=2/5$. Saturating $u=-2x$ to the actuator interval preserves this limiting set. Outside it, the adversary can increase the outward excess until safety fails.
+
+| Horizon | Safe radius |
+|---|---:|
+| 1 | 7/10 |
+| 2 | 11/20 |
+| Infinite | 2/5 |
+
+![Nested safe-set radii converge from one to two fifths; one-step safety at radius seven tenths is visibly wider than the invariant kernel.](/assets/learning/control-invariant-kernel-en.svg)
+
+```python
+from fractions import Fraction as F
+r=F(1); radii=[r]
+for j in range(10):
+    r=min(F(1),(r+F(1,2)-F(1,10))/2); radii.append(r)
+assert radii[1]==F(7,10) and radii[2]==F(11,20)
+limit=F(2,5)
+for x in [-limit,-limit/2,F(0),limit/2,limit]:
+    u=max(F(-1,2),min(F(1,2),-2*x))
+    assert abs(2*x+u)+F(1,10)<=limit
+assert 2*F(3,5)-F(1,2)+F(1,10)==F(4,5)
+assert 2*F(4,5)-F(1,2)+F(1,10)>1
+print(radii[:4],limit)
+```
+
+At $x=0.6$, one-step feasibility holds, but even the strongest inward input permits successor 0.8, from which one-step feasibility fails. The native lab remains a one-step optimizer. Its unconstrained input now uses a factored expression to preserve tiny penalties; `expandedUnconstrained` records the cancellation-prone subtraction for comparison.
+
 ## Work an exact example
 
 Choose a=x=q=U=1, d=1/4 and L=1/2. The robust interval is [-1,-3/4]. The unconstrained robust input is -5/8, outside that interval, so u*=-3/4. Its successor interval is [0,1/2] and its worst cost is

@@ -37,6 +37,41 @@ $$
 
 아래 그래프는 예산에 따른 기대 총보상을 비교합니다. 파랑은 Bayesian 최적값, 주황은 적응형 greedy입니다. 실제 누적 보상의 표본 경로가 아닙니다. 차이가 작더라도 실제 값의 차이이므로 Q와 전체 우위를 수치로 함께 표시합니다. 가상 보상만 바꾸면 밀도 비교가 바뀌며 처음의 의사결정 문제는 바뀌지 않습니다.
 
+## 연구 확장: 완전한 정보로 탐색 가치의 상한 구하기
+
+$H$번 내내 사전 평균이 가장 큰 팔만 선택하면 하한이 된다. 반대로 첫 선택 전에 잠재 평균 둘을 모두 알려주는 정책은 상한이다. 명시한 사전에서 Bernoulli 평균을 한 번 뽑아 고정하면
+
+$$H\max_a E[\theta_a]\le V_H\le H E[\max_a\theta_a]$$
+
+다. 상한 정책은 학습자보다 엄밀히 많은 정보를 가지며 관측 보상만으로 실행할 수 없다. 독립 균등 사전 둘에서는 $P(\max\theta_a\le x)=x^2$이므로 $E\max\theta_a=\int_0^1(1-x^2)dx=2/3$다.
+
+| 남은 선택 수 | 한 팔 고정 하한 | 정확한 Bayesian 가치 | 완전 정보 상한 |
+|---|---:|---:|---:|
+| 1 | 1/2 | 1/2 | 2/3 |
+| 2 | 1 | 13/12 | 4/3 |
+| 3 | 3/2 | 5/3 | 2 |
+
+```python
+from fractions import Fraction as F
+from functools import lru_cache
+@lru_cache(None)
+def V(h,counts):
+    if h==0:return F(0)
+    values=[]
+    for arm in range(2):
+        a,b=counts[2*arm:2*arm+2]; mean=F(a,a+b)
+        win=list(counts); lose=list(counts)
+        win[2*arm]+=1; lose[2*arm+1]+=1
+        values.append(mean*(1+V(h-1,tuple(win)))+(1-mean)*V(h-1,tuple(lose)))
+    return max(values)
+for h,expected in [(1,F(1,2)),(2,F(13,12)),(3,F(5,3))]:
+    value=V(h,(1,1,1,1))
+    assert value==expected and F(h,2)<=value<=F(2*h,3)
+    print(h,value)
+```
+
+**연습:** 가치에서 한 팔 고정 하한을 빼 학습의 이점을 제한해보자. 이는 유한 시간의 사전 평균 보상에 대한 결과이며 고정 평균 regret 정리나 무한 시간 index 정책의 결과가 아니다.
+
 ## 손계산 문제: 두 균등 사전
 
 두 arm에 Beta(1,1) 사전을 주고 두 번 뽑을 수 있다고 합시다. 첫 선택이 arm0이고 두 번째는 사후 평균이 높은 쪽을 선택할 때 기대 총보상을 구하세요.

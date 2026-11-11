@@ -36,6 +36,35 @@ $$
 
 여기서는 b0=lambda*J, b1(s)=lambda*V1(s)를 사용하며 V1(0)=1-p, V1(1)=q입니다. Actor의 score 추정 안에서는 baseline과 return을 고정된 값으로 취급합니다. 이 경로를 통해 baseline까지 역전파하면 별도의 미분 항이 생겨 위에서 증명한 추정량과 달라집니다. Critic을 별도로 학습할 수는 있지만 임의의 근사 critic이 일반적인 수렴 정리의 조건을 자동으로 만족하는 것은 아닙니다.
 
+## 연구 확장: 불편 gradient가 유한 업데이트를 인증하지는 않는다
+
+$V_H^\pi=0$인 유한 시간 MDP에서 $A_t^\pi=Q_t^\pi-V_t^\pi$라 하자. **새 정책**의 경로를 따라 기존 가치함수 항을 망원합으로 소거하면
+
+$$J(\pi')-J(\pi)=E_{\pi'}\sum_{t=0}^{H-1}\gamma^t A_t^\pi(s_t,a_t)$$
+
+다. 새 정책의 상태 방문 확률을 기존 확률로 바꾸면 이 항등식이 아니라 surrogate가 된다. 별도 두 단계 MDP를 보자. 시작에서 safe는 보상 0으로 종료하고, go는 good이면 +1, bad면 -1인 상태로 간다. 기존 확률은 go=1/100·good=9/10이고 새 확률은 go=1/2·good=1/10이다. 기존 방문 확률로는 양의 개선처럼 보이지만 방문 분포 변화가 이를 압도한다.
+
+| 양 | 정확한 값 |
+|---|---:|
+| 기존 기대 보상 | 1/125 |
+| 기존 방문 확률의 advantage surrogate | 47/125 |
+| 실제 보상 개선 | -51/125 |
+
+```python
+from fractions import Fraction as F
+p,q=F(1,100),F(9,10); newp,newq=F(1,2),F(1,10)
+old=p*(2*q-1); new=newp*(2*newq-1)
+first=(newp-p)*(2*q-1)
+terminal=2*(newq-q)
+surrogate=first+p*terminal
+identity=first+newp*terminal
+assert old==F(1,125) and surrogate==F(47,125)
+assert identity==new-old==F(-51,125)
+print(old,surrogate,identity)
+```
+
+기존 비음수 보상 실습은 그대로다. Baseline과 reward-to-go는 gradient 평균을 보존하고 분산을 줄일 수 있지만 임의의 유한 모수 업데이트가 단조 개선한다는 증명은 아니다. 방문 분포 변화를 통제하려면 추가 가정이나 적절한 상한이 필요하다.
+
 ## 손계산으로 보는 분산
 
 p=q=1/2, alpha=4/5, gamma=1이면 J=1, 경사는 (-3/8,1/8)입니다. 전체 return을 모든 score에 곱한 추정량의 공분산 trace는 139/160입니다. 남은 보상과 baseline을 사용한 추정량의 분산은

@@ -32,6 +32,36 @@ $$
 
 p0=.8, p1=.6, b0=.5, b1=0, alpha=.8, gamma=0으로 설정해 봅시다. 목표 가치와 인증된 PDIS 평균은 .2입니다. 전체 경로 support는 실패하므로 전체 IS 평균은 제공하지 않습니다. 관측 가능한 경로에만 전체 비율을 적용한 진단값은 .176입니다. 이미 받은 보상에 미래 선택의 가중치를 더할 필요가 없음을 보여 줍니다.
 
+## 연구 확장: 이중 강건 추정기의 망원합
+
+목표 정책 예측을 $\widehat V_t(s)=E_\pi\widehat Q_t(s,a)$, $\widehat V_H=0$, 누적 우도비를 $\rho_{0:t}$라 하면 보조 추정기는
+
+$$Z_{DR}=\widehat V_0(s_0)+\sum_{t=0}^{H-1}\gamma^t\rho_{0:t}[r_t+\gamma\widehat V_{t+1}(s_{t+1})-\widehat Q_t(s_t,a_t)]$$
+
+다. 비율이 정확하고 Support가 있으면 가중 기대가 목표 정책의 기대가 되고 예측 항이 망원합으로 소거되어 임의의 고정 예측에서도 평균이 $J(\pi)$다. 예측이 모두 참 목표 $Q$이면 시간 잔차의 조건부 평균이 0이어서 적절한 유한 predictable 가중치가 틀려도 평균은 보존된다. 데이터로 맞춘 nuisance에는 의존성 분석이 필요하며 표본 분할을 쓰기도 한다. 알려지지 않은 보상의 Support 부재가 해결되는 것은 아니다.
+
+| 예측 | 비율 | 평균의 보장 |
+|---|---|---|
+| 임의의 고정값 | Support가 있는 정확한 비율 | 목표 가치 |
+| 정확한 목표 $Q$ | 틀려도 유한하고 predictable | 목표 가치 |
+| 틀림 | 틀림 | 일반적인 일치 보장 없음 |
+
+```python
+from fractions import Fraction as F
+pi=[F(1,5),F(4,5)]; behavior=[F(1,2)]*2
+reward=[F(1),F(0)]; truth=sum(p*r for p,r in zip(pi,reward))
+def mean(qhat,fitted_behavior):
+    vhat=sum(p*q for p,q in zip(pi,qhat))
+    return sum(behavior[a]*(vhat+pi[a]/fitted_behavior[a]*(reward[a]-qhat[a])) for a in range(2))
+wrong=[F(1,3),F(2,3)]; wrong_b=[F(1,4),F(3,4)]
+assert mean(wrong,behavior)==truth
+assert mean(reward,wrong_b)==truth
+assert mean(wrong,wrong_b)!=truth
+print(truth,mean(wrong,wrong_b))
+```
+
+코드는 별도의 한 단계 Bernoulli 행동 예제로 두 소거 경로를 확인한다. 기존 조절기는 IS·PDIS·clipping을 유지한다. 분산은 $\sum_{i<j}B_iB_j(X_i-X_j)^2$에서 보상 성분을 먼저 빼도록 바꾸었다. $1+\gamma$가 1로 반올림돼도 표현 가능한 $\gamma^2/4$는 보존한다. 이전 중심화 계산은 `expandedFullVariance`·`expandedPdisVariance`에 남기며 표현 불가능한 분산은 계속 미정이다.
+
 ## Clipping의 손계산 예제
 
 p0=4/5, p1=3/5, b0=b1=1/2, alpha=4/5, gamma=1에서 목표 가치와 두 중요도 평균은 모두 84/125입니다. 한 경로 추정의 분산은 전체 IS가 7184/15625, PDIS가 6994/15625입니다. 이 예제의 크기 순서를 모든 문제의 분산 정리로 일반화하지 않습니다.

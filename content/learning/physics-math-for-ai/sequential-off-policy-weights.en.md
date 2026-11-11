@@ -44,6 +44,36 @@ Blue bars show raw path ratios, orange bars their explicit clipping. A dash mean
 
 The model calculates moments with log-scaled terms, avoiding unnecessary overflow from first forming a huge ratio. A genuinely nonrepresentable variance remains unavailable; clipping is never used as a hidden numerical fallback. The lower blue curve is the observed-support clipped diagnostic mean versus cap, while orange is the known target value. Neither is a sampled training curve.
 
+## Research extension: telescope a doubly robust estimator
+
+With target-value predictions $\widehat V_t(s)=E_\pi\widehat Q_t(s,a)$, $\widehat V_H=0$, and cumulative likelihood ratios $\rho_{0:t}$, the auxiliary estimator is
+
+$$Z_{DR}=\widehat V_0(s_0)+\sum_{t=0}^{H-1}\gamma^t\rho_{0:t}[r_t+\gamma\widehat V_{t+1}(s_{t+1})-\widehat Q_t(s_t,a_t)].$$
+
+Correct ratios and support turn each weighted expectation into a target expectation; the prediction terms telescope, leaving $J(\pi)$ for any fixed predictions. If all predictions equal the true target $Q$, each temporal residual has zero conditional mean, so suitable finite predictable weights can also be wrong without changing the mean. Data-fitted nuisance functions require their own dependence analysis, often sample splitting. Neither claim repairs missing support with unknown rewards.
+
+| Predictions | Ratios | Mean guarantee |
+|---|---|---|
+| Arbitrary fixed | Correct with support | Target value |
+| Exact target $Q$ | Wrong but finite and predictable | Target value |
+| Wrong | Wrong | No general equality |
+
+```python
+from fractions import Fraction as F
+pi=[F(1,5),F(4,5)]; behavior=[F(1,2)]*2
+reward=[F(1),F(0)]; truth=sum(p*r for p,r in zip(pi,reward))
+def mean(qhat,fitted_behavior):
+    vhat=sum(p*q for p,q in zip(pi,qhat))
+    return sum(behavior[a]*(vhat+pi[a]/fitted_behavior[a]*(reward[a]-qhat[a])) for a in range(2))
+wrong=[F(1,3),F(2,3)]; wrong_b=[F(1,4),F(3,4)]
+assert mean(wrong,behavior)==truth
+assert mean(reward,wrong_b)==truth
+assert mean(wrong,wrong_b)!=truth
+print(truth,mean(wrong,wrong_b))
+```
+
+The code uses a separate one-step Bernoulli-action example to verify both cancellation routes. The native controls still show IS, PDIS and clipping. Their variance now uses $\sum_{i<j}B_iB_j(X_i-X_j)^2$, subtracting reward components before adding them. This preserves a representable $\gamma^2/4$ even if $1+\gamma$ rounds to 1. Former centered results remain in `expandedFullVariance` and `expandedPdisVariance`; unrepresentable variance remains undefined.
+
 ## Exercise and solution
 
 Exercise: if the target never visits state one, must a zero behavior probability for one action at that state invalidate full support?

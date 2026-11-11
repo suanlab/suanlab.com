@@ -106,6 +106,35 @@ $$
 
 The proposed feedback makes the square vanish and attains the lower bound. This is a sufficiency argument over all admissible finite-cost controls, not just a test of one plotted trajectory. Pontryagin conditions alone are generally necessary conditions and can identify nonoptimal candidates in other problems. Here linear dynamics, convex cost and this verification identity establish the stronger result.
 
+## Research extension: when the value has a corner
+
+The native quadratic problem has a smooth value, but this is special. In an auxiliary bounded integrator $\dot x=u$, $|u|\le1$, with remaining time $\tau$, zero running cost, and terminal cost $|x(T)|$, the exact value is
+
+$$V(x,t)=\max(|x|-(T-t),0).$$
+
+The triangle inequality gives $|x(T)|\ge\max(|x|-\tau,0)$. A constant control $u=-\operatorname{sign}(x)\min(1,|x|/\tau)$ attains the bound. There are corners at $x=\pm\tau$; forcing a single classical gradient there is incorrect. Away from corners, $V_t-|V_x|=0$. Viscosity solutions extend HJB through such corners using smooth test functions touching from above or below; uniqueness additionally needs a comparison principle and correct terminal data.
+
+| $x$, with $\tau=1$ | Value | An optimal constant input |
+|---|---:|---:|
+| -3/2 | 1/2 | 1 |
+| 0 | 0 | 0 |
+| 3/2 | 1/2 | -1 |
+
+![Exact nonsmooth value curves at three remaining times; the flat reachable region widens with time and meets linear tails at genuine corners.](/assets/learning/control-nonsmooth-value-en.svg)
+
+```python
+from fractions import Fraction as F
+for x in [F(-2),F(-1),F(-1,2),F(0),F(1,2),F(1),F(2)]:
+    for tau in [F(1,4),F(1,2),F(1)]:
+        sign=(x>0)-(x<0)
+        u=-sign*min(F(1),abs(x)/tau)
+        assert abs(u)<=1
+        assert abs(x+tau*u)==max(abs(x)-tau,0)
+print('21 bounded-input optimality checks passed')
+```
+
+A sampled neural PDE residual cannot by itself certify a global viscosity solution. This auxiliary terminal-absolute-value problem does not replace the native smooth quadratic costate calculation.
+
 ## Worked exercise and solution
 
 Set q=0,r=p=T=x0=1. The optimal input is constant -0.5, so x(t)=1-t/2 and x(T)=0.5. Running cost is 0.25 and terminal cost is 0.25, giving J=0.5. The costate is constant 1, consistent with lambda(T)=2*1*0.5. At t=0.5, P=2/3, x=0.75 and V_x=2*(2/3)*0.75=1. The Hamiltonian is -0.25, illustrating why imposing H(T)=0 would be wrong for this fixed-time problem.

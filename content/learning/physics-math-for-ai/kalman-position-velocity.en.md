@@ -43,6 +43,32 @@ On a dropped step, m+=m- and P+=P-. The process and potential sensor noise draws
 
 Every available update reduces uncertainty relative to that step's predicted covariance. Posterior uncertainty across different times need not decrease because dynamics and process noise intervene. Realized squared error need not decrease either; it is one random path, not the covariance itself.
 
+## Research extension: check calibration across a whole trajectory
+
+For the correctly specified linear Gaussian model, innovation $\nu_t=y_t-H\hat x_t^-$ has conditional variance $S_t$. Standardized innovations $\nu_t/\sqrt{S_t}$ are independent standard normals under a fixed observation schedule and known parameters. Thus normalized innovation squared has expectation one; an individual trajectory need not average to one. Persistent correlation suggests a mismatched motion/noise model, not merely a poor random seed.
+
+The innovation log likelihood is $-\tfrac12\sum_t[\log(2\pi S_t)+\nu_t^2/S_t]$. Fitting parameters on the same innovations changes the reference distribution. Data-dependent missingness also needs its own analysis.
+
+A 95% ellipse at each time is not a 95% simultaneous trajectory statement. For $M$ two-dimensional Gaussian errors, the union bound gives simultaneous coverage at least $1-\delta$ using squared Mahalanobis threshold $h=-2\log(\delta/M)$, without assuming errors at different times are independent.
+
+| $M$ | Threshold for $\delta=0.05$ |
+|---|---:|
+| 1 | $2\log20$ |
+| 4 | $2\log80$ |
+| 24 | $2\log480$ |
+
+```python
+from math import log,exp,isclose
+delta=.05
+for M in [1,4,24]:
+    h=-2*log(delta/M)
+    marginal_tail=exp(-h/2) # Exact survival function for chi-square(2).
+    assert isclose(M*marginal_tail,delta,rel_tol=1e-14)
+    print(M,h,1-M*marginal_tail)
+```
+
+The code checks the exact chi-square-two tail and its union bound. This auxiliary certificate does not relabel the native pointwise ellipse as simultaneous.
+
 ## Worked exercise and solution
 
 Choose q=0,R=1,dt=1,p0=1 and one step. Compute covariance without using the realized measurement.

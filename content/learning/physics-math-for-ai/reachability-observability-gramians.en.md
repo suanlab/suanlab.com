@@ -49,6 +49,40 @@ At b=0, only the first coordinate is reachable. If target x2 is nonzero, no fini
 
 A small nonzero b still gives structural rank two, but a poorly conditioned Gramian and high control energy. The code uses a scaled-coordinate energy calculation to avoid unnecessary division by b² during matrix inversion. A finite mathematical energy that exceeds machine representation also remains unavailable, separately from the structural reachability flag.
 
+## Research extension: separate coordinates from weak dynamics
+
+A small Gramian eigenvalue depends on state units. Under $z=Tx$, $W_c'=TW_cT^\top$ but $W_o'=T^{-\top}W_oT^{-1}$. Therefore $W_c'W_o'=T(W_cW_o)T^{-1}$: the square roots of its eigenvalues, Hankel singular values, are coordinate invariant. Rescaling position from meters to millimeters must not change this input-output diagnostic.
+
+For an auxiliary infinite-horizon version with $b=c=s$, stability gives
+
+$$W_c=W_o=W=\begin{pmatrix}1/2&s/3\\s/3&s^2/4\end{pmatrix},\qquad\det W=s^2/72.$$
+
+Here the Hankel singular values are the positive eigenvalues of $W$, and the smaller is asymptotic to $s^2/36$ as $s\to0$. A nonzero channel can be structurally reachable yet practically weak. The existing finite-horizon controls remain a different experiment.
+
+| $s$ | Product of Hankel singular values |
+|---|---:|
+| 1 | 1/72 |
+| 1/10 | 1/7200 |
+| 1/100 | 1/720000 |
+
+```python
+from fractions import Fraction as F
+from math import sqrt
+for s in [F(1),F(1,10),F(1,100)]:
+    a,b,d=F(1,2),s/3,s*s/4
+    determinant=a*d-b*b
+    assert determinant==s*s/72
+    # T=diag(2,1/2): transformed controllability/observability Gramians.
+    C=((4*a,b),(b,d/4)); O=((a/4,b),(b,4*d))
+    product_trace=sum(C[i][j]*O[j][i] for i in range(2) for j in range(2))
+    assert product_trace==a*a+2*b*b+d*d
+    large=(float(a+d)+sqrt(float((a-d)**2+4*b*b)))/2
+    small=float(determinant)/large
+    print(s,determinant,large,small)
+```
+
+**Research limit:** discarding a physical coordinate is not automatically balanced truncation. Neither a small singular value nor structural rank alone certifies closed-loop stability after model reduction.
+
 ## Exercise and explained solution
 
 Hold T fixed and target (0,1). Compare b=1 with b=0.1, keeping c=1.

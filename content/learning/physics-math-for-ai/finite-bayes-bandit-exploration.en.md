@@ -37,6 +37,41 @@ The native plot shows Beta densities for the selected arm before and after the s
 
 The lower plot compares total expected rewards across budgets. Blue is the Bayesian optimum, orange adaptive greedy. These are not empirical cumulative reward paths. Their small difference is a real value difference, so the readouts show both action Q values and the total advantage without visually exaggerating it. Changing the hypothetical outcome changes the density comparison, not the initial decision problem.
 
+## Research extension: bound exploration with perfect information
+
+A useful lower bound commits to the arm with the largest prior mean for all $H$ pulls. An upper bound reveals both latent means before any pull. For fixed latent Bernoulli means drawn from the stated prior,
+
+$$H\max_a E[\theta_a]\le V_H\le H E[\max_a\theta_a].$$
+
+The upper policy has strictly more information than a learner; it is not executable from observed rewards. For two independent uniform priors, $P(\max\theta_a\le x)=x^2$, so $E\max\theta_a=\int_0^1(1-x^2)dx=2/3$.
+
+| Horizon | Commitment lower bound | Exact Bayesian value | Perfect-information upper bound |
+|---|---:|---:|---:|
+| 1 | 1/2 | 1/2 | 2/3 |
+| 2 | 1 | 13/12 | 4/3 |
+| 3 | 3/2 | 5/3 | 2 |
+
+```python
+from fractions import Fraction as F
+from functools import lru_cache
+@lru_cache(None)
+def V(h,counts):
+    if h==0:return F(0)
+    values=[]
+    for arm in range(2):
+        a,b=counts[2*arm:2*arm+2]; mean=F(a,a+b)
+        win=list(counts); lose=list(counts)
+        win[2*arm]+=1; lose[2*arm+1]+=1
+        values.append(mean*(1+V(h-1,tuple(win)))+(1-mean)*V(h-1,tuple(lose)))
+    return max(values)
+for h,expected in [(1,F(1,2)),(2,F(13,12)),(3,F(5,3))]:
+    value=V(h,(1,1,1,1))
+    assert value==expected and F(h,2)<=value<=F(2*h,3)
+    print(h,value)
+```
+
+**Exercise:** subtract the commitment value to bound the value of learning. This is a finite-horizon prior-averaged reward statement, not a fixed-mean regret theorem or an infinite-horizon index policy.
+
 ## Worked exercise: two uniform arms
 
 Give both arms Beta(1,1) priors and allow two pulls. Compute the expected reward if the first pull is arm0 and the second uses the best posterior mean.

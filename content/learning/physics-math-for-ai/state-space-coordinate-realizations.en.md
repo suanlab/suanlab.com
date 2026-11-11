@@ -42,6 +42,33 @@ The block diagram distinguishes current state, next state and current output. It
 
 Changing s often changes the state columns substantially while the output curves overlap. Overlap is the expected invariant, not an inactive control. This also explains why arbitrary distances or penalties in latent coordinates are not automatically physical quantities: a coordinate change can alter them unless the metric is transformed too.
 
+## Research extension: certify the smallest hidden state
+
+A coordinate change preserves every Markov parameter $CA^kB$, not just the plotted trajectory. For this discrete model, the strictly proper transfer function is $0.2/[(z-0.8)(z-0.5)]$; add $D$ for feedthrough. An impulse first produces $y_0=D$, then $y_1=CB$. This indexing matters when comparing learned simulators.
+
+The two-step Hankel matrix factors as $H_2=\mathcal O_2\mathcal C_2$. Its nonzero determinant $-1/25$ implies rank two. Any realization producing these parameters needs at least two states, and the existing two-state realization attains that bound. Extra states invisible to both input and output can reproduce the same observations; output agreement alone does not identify latent dimension.
+
+| $k$ | $CA^kB$ |
+|---|---:|
+| 0 | 0 |
+| 1 | 1/5 |
+| 2 | 13/50 |
+
+The exact-fraction check below verifies the Hankel certificate. **Exercise:** append a decoupled third state with zero input and output coefficients. Its pole cannot be identified from this transfer function, even with infinitely many noiseless input-output measurements.
+
+```python
+from fractions import Fraction as F
+A=((F(4,5),F(1,5)),(F(0),F(1,2)))
+b=(F(0),F(1)); marks=[]
+for k in range(3):
+    marks.append(b[0])
+    b=tuple(sum(A[i][j]*b[j] for j in range(2)) for i in range(2))
+assert marks==[0,F(1,5),F(13,50)]
+det=marks[0]*marks[2]-marks[1]**2
+assert det==F(-1,25)
+print(marks,det)
+```
+
 ## Worked exercise and solution
 
 Choose s=2, zero initial state and unit impulse, with D=0. Compute the first state update and the next output.

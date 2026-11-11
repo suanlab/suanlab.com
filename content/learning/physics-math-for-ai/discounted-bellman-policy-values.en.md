@@ -78,6 +78,35 @@ $$
 
 The lab displays actual maximum value error and this residual certificate separately. It can be conservative, especially near gamma=1. It bounds the error of the supplied **value vector**, not directly the loss of its greedy policy. The maximum greedy stationary policy loss is independently computed from that policy's exact value minus V*. Gamma=1 is excluded because this generic contraction argument and denominator no longer apply.
 
+## Research extension: a value bound is not a policy-loss bound
+
+Let $T$ be the discounted minimum-cost Bellman operator, $\pi$ greedy for $V$, and $r=\|TV-V\|_\infty$ over **all** states. Since $T_\pi V=TV$, contraction gives $\|V-V^*\|_\infty\le r/(1-\gamma)$ and $\|V^\pi-V\|_\infty\le r/(1-\gamma)$. Their sum bounds greedy policy loss by $2r/(1-\gamma)$. This certificate assumes the exact transition model and a global residual.
+
+Alternatively, writing $e=\|V-V^*\|_\infty$ and comparing the greedy and optimal actions gives $\|V^\pi-V^*\|_\infty\le2\gamma e/(1-\gamma)$, hence $2\gamma r/(1-\gamma)^2$. Both bounds are valid; use the tighter one. A residual measured only on sampled states gives neither global certificate.
+
+| $\gamma$ | Value-error multiplier of $r$ | Policy-loss multiplier of $e$ |
+|---|---:|---:|
+| 0 | 1 | 0 |
+| 1/2 | 2 | 2 |
+| 9/10 | 10 | 18 |
+
+```python
+from fractions import Fraction as F
+# State 1 is terminal. At state 0: pay 1 to stay, or pay 3 to exit.
+for g in [F(0),F(1,2),F(9,10)]:
+    V=F(-2); candidates=[1+g*V,F(3)]
+    residual=abs(min(candidates)-V)
+    policies=[1/(1-g),F(3)]
+    greedy=0 if candidates[0]<=candidates[1] else 1
+    optimum=min(policies); loss=policies[greedy]-optimum
+    e=abs(V-optimum)
+    assert loss<=2*residual/(1-g)
+    assert loss<=2*g*e/(1-g)
+    print(g,loss,residual)
+```
+
+The exact rational example below uses a separate two-state cost model. Its policy values are solved from linear equations rather than obtained by stopping value iteration. **Exercise:** why can a greedy policy be optimal at $\gamma=0$ even when the supplied $V$ is poor?
+
 ## Worked exercise and solution
 
 Set gamma=0.5,p=0.5,c=3 and V0=0. The first backup gives V1=(1,2,3,0): at S2 the reliable action costs 3 instead of 4. To compute V2(S1), compare action 0's 2+0.5*(0.5*2+0.5*3)=3.25 with action 1's 3+0.5*3=4.5. Thus V2(S1)=3.25. Applying the same old vector to every state gives V2=(1.75,3.25,3,0).

@@ -58,6 +58,31 @@ At a=b the second term becomes kt exp(-at)x2(0). The implementation uses an expm
 
 The blue phase curve is the actual trajectory. Its orange contour is the initial level V=V(0), computed from P; the orange point is the initial state and blue point the terminal state. This contour is a mathematical sublevel boundary, not a physical resource limit or probabilistic confidence ellipse.
 
+## Research extension: stability can fail under switching
+
+Each fixed matrix can be stable while alternating between them grows the state. Consider the auxiliary matrices $A_U=[[-1,4],[0,-1]]$ and $A_L=A_U^\top$. Both have eigenvalues $-1$. With residence time $\tau$ in each mode, the period map is
+
+$$e^{A_L\tau}e^{A_U\tau}=e^{-2\tau}\begin{pmatrix}1&4\tau\\4\tau&1+16\tau^2\end{pmatrix}.$$
+
+Its spectral radius exceeds one for the cases below. Each mode transfers energy into a direction that the other mode then amplifies. Choosing a different Lyapunov metric after every switch does not prove stability unless the jumps between metrics are controlled. A common positive-definite $P$ with both $A_i^\top P+PA_i\prec0$ would certify arbitrary switching and therefore cannot exist here.
+
+| $\tau$ | Period spectral radius |
+|---|---|
+| 1/4 | $e^{-1/2}(3+\sqrt5)/2$ |
+| 1/2 | $e^{-1}(3+2\sqrt2)$ |
+| 1 | $e^{-2}(9+4\sqrt5)$ |
+
+```python
+from math import exp,sqrt
+for t in [.25,.5,1]:
+    trace=2+16*t*t
+    radius=exp(-2*t)*(trace+sqrt(trace*trace-4))/2
+    assert radius>1
+    print(t,radius)
+```
+
+**Exercise:** compare decay at switching instants with transient Euclidean growth in one fixed mode. They are different phenomena; the native lab keeps its matrix fixed throughout a trajectory.
+
 ## Exercise and solution
 
 Set k=0,a=1,b=2,x(0)=(1,1). Compute P and both initial derivatives. Then restore coupling and compare their roles.

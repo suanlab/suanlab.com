@@ -43,6 +43,32 @@ $$
 
 사용 가능한 측정은 그 단계의 예측 공분산에 비해 불확실성을 줄인다. 그러나 다음 시점까지 동역학과 과정 잡음이 작용하므로 시간 전체에서 posterior가 항상 줄지는 않는다. 한 실현의 제곱 오차도 공분산 자체가 아니어서 증가할 수 있다.
 
+## 연구 확장: 경로 전체에서 불확실성의 보정 확인하기
+
+모형이 정확한 선형 Gaussian 계이고 관측 일정과 모수가 고정되어 있으면 innovation $\nu_t=y_t-H\hat x_t^-$의 조건부 분산은 $S_t$다. 표준화한 $\nu_t/\sqrt{S_t}$는 독립인 표준정규 변수가 된다. 정규화한 innovation 제곱의 기댓값은 1이지만 한 경로의 평균이 반드시 1인 것은 아니다. 지속적인 상관은 무작위 seed보다 운동·잡음 모형의 불일치를 먼저 의심할 근거다.
+
+Innovation 로그우도는 $-\tfrac12\sum_t[\log(2\pi S_t)+\nu_t^2/S_t]$다. 같은 innovation으로 모수를 맞추면 기준 분포가 달라지고, 데이터에 의존하는 관측 누락도 별도 분석이 필요하다.
+
+각 시점의 95% 타원이 경로 전체의 동시 95% 보장은 아니다. 이차원 Gaussian 오차 $M$개에 Mahalanobis 거리 제곱 문턱 $h=-2\log(\delta/M)$를 쓰면 union bound로 동시 포함 확률이 적어도 $1-\delta$다. 시간 사이 오차의 독립성은 필요 없다.
+
+| $M$ | $\delta=0.05$일 때 문턱 |
+|---|---:|
+| 1 | $2\log20$ |
+| 4 | $2\log80$ |
+| 24 | $2\log480$ |
+
+```python
+from math import log,exp,isclose
+delta=.05
+for M in [1,4,24]:
+    h=-2*log(delta/M)
+    marginal_tail=exp(-h/2) # Exact survival function for chi-square(2).
+    assert isclose(M*marginal_tail,delta,rel_tol=1e-14)
+    print(M,h,1-M*marginal_tail)
+```
+
+코드는 자유도 2인 카이제곱 꼬리와 union bound를 확인한다. 이 보조 인증이 기존 시점별 타원의 의미를 동시 보장으로 바꾸지는 않는다.
+
 ## 확인 문제와 풀이
 
 q=0,R=1,dt=1,p0=1에서 한 단계의 공분산을 관측 숫자 없이 계산하라.

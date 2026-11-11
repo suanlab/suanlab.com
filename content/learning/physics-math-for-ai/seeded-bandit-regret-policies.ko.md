@@ -64,6 +64,42 @@ $$
 
 위 막대는 세 정책의 마지막 pseudo-regret를 비교하며 파랑 테두리는 선택 정책입니다. 아래 파랑 계단은 그 정책의 누적 pseudo-regret, 주황은 UCB1입니다. 표시할 때 번호 붙은 round 사이의 값을 유지하며 결정과 증가는 정수 round에서 일어납니다. UCB1을 선택하면 두 경로가 겹칩니다. 표에서 행동 전 score, 선택, 보상, count와 두 성능 양을 확인하세요. 한 seed로 기대 성능의 순위를 증명하지 않습니다.
 
+## 연구 확장: 학습 regret와 보상 잡음을 분리하기
+
+실현 shortfall을 $S_T=T\mu_*-\sum_tY_t$, pseudo-regret을 $R_T=\sum_t(\mu_*-\mu_{A_t})$라 하자. 차이는 $S_T-R_T=\sum_t(\mu_{A_t}-Y_t)$다. 매번 행동을 먼저 정하고 독립 Bernoulli 보상을 받으면 조건부 증분 평균이 0인 martingale이 된다. 조건부 증분 범위 길이는 1이므로 Hoeffding-Azuma에서
+
+$$P\left(|S_T-R_T|\ge\sqrt{(T/2)\log(2/\delta)}\right)\le\delta$$
+
+다. 이는 무작위 pseudo-regret 주위의 보상 잡음 상한이며 pseudo-regret 자체의 상한은 아니다. 세 정책과 모든 $t\le T_{max}$를 동시에 보려면 문턱을 $\sqrt{(t/2)\log(6T_{max}/\delta)}$로 바꾼다. 보상 스트림을 공유하는 정책들의 독립성은 union bound에 필요 없다.
+
+| $T$, $\delta=0.05$ | 고정 시점 문턱 |
+|---|---|
+| 2 | $\sqrt{\log40}$ |
+| 8 | $2\sqrt{\log40}$ |
+| 32 | $4\sqrt{\log40}$ |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+from math import sqrt,log
+mu=[F(1,4),F(3,4)]; delta=.05
+for T in [2,4,8]:
+    expected=F(0); tail=F(0); total=F(0)
+    threshold=sqrt(T/2*log(2/delta))
+    for rewards in product([0,1],repeat=T):
+        arm=0; mass=F(1); gap=F(0)
+        for y in rewards:
+            mass*=mu[arm] if y else 1-mu[arm]
+            gap+=mu[arm]-y
+            if not y:arm=1-arm
+        total+=mass; expected+=mass*gap
+        if abs(gap)>=threshold:tail+=mass
+    assert total==1 and expected==0 and float(tail)<=delta
+    print(T,expected,float(tail))
+```
+
+정확 열거는 성공하면 유지하는 별도의 적응 정책을 확인한다. 유한한 결정론적 seed 집합은 이상적 IID 확률공간과 같지 않으며 한 seed에서 더 좋은 경로가 기대 정책 우월성을 증명하지 않는다.
+
 ## 손계산 문제: 결정론적 UCB 선택
 
 mu0=1,mu1=0,T=4로 놓습니다. 처음에는 arm0에서 1, arm1에서 0을 받습니다. Round 3 직전 m=2이고 두 count가 1이므로 score는 1+sqrt(2*ln(2))와 sqrt(2*ln(2))입니다. 따라서 arm0을 택합니다. Round 4 직전 count는 2와 1이며 score는 1+sqrt(ln(3))와 sqrt(2*ln(3))으로 다시 arm0을 택합니다.

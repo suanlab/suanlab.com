@@ -2,7 +2,18 @@
 export interface ControlPlan {states:number[];inputs:number[];cost:number;gradient:number[];kktResidual:number;}
 const check=(v:number,lo:number,hi:number)=>{if(!Number.isFinite(v)||v<lo||v>hi)throw new Error('Use the stated LQR/MPC parameter domain.');};
 function solve(A:number[][],b:number[]){const M=A.map((r,i)=>[...r,b[i]]),n=b.length;for(let k=0;k<n;k++){let pivot=k;for(let i=k+1;i<n;i++)if(Math.abs(M[i][k])>Math.abs(M[pivot][k]))pivot=i;[M[k],M[pivot]]=[M[pivot],M[k]];const scale=M[k][k];if(!(Math.abs(scale)>1e-14))throw new Error('Positive-definite control Hessian required.');for(let j=k;j<=n;j++)M[k][j]/=scale;for(let i=0;i<n;i++)if(i!==k){const f=M[i][k];for(let j=k;j<=n;j++)M[i][j]-=f*M[k][j];}}return M.map(r=>r[n]);}
-export function scalarRiccati(a:number,q:number,r:number,p:number,H:number){const P=Array(H+1).fill(0) as number[],K=Array(H).fill(0) as number[];P[H]=p;for(let t=H-1;t>=0;t--){K[t]=a*P[t+1]/(r+P[t+1]);P[t]=q+a*a*r*P[t+1]/(r+P[t+1]);}return {P,K};}
+export function scalarRiccati(a:number,q:number,r:number,p:number,H:number){
+ const P=Array(H+1).fill(0) as number[],K=Array(H).fill(0) as number[],expandedP=Array(H+1).fill(0) as number[],expandedK=Array(H).fill(0) as number[];
+ P[H]=expandedP[H]=p;
+ for(let t=H-1;t>=0;t--){
+  expandedK[t]=a*expandedP[t+1]/(r+expandedP[t+1]);
+  expandedP[t]=q+a*a*r*expandedP[t+1]/(r+expandedP[t+1]);
+  // Divide before multiplying subnormal terminal penalties. No numerical floor.
+  K[t]=a*(P[t+1]/(r+P[t+1]));
+  P[t]=q+a*a*(r/(r+P[t+1]))*P[t+1];
+ }
+ return {P,K,expandedP,expandedK};
+}
 export function controlPlanCost(a:number,q:number,r:number,p:number,x0:number,inputs:number[]){const states=[x0];let cost=0;for(const u of inputs){const x=states.at(-1)!;cost+=q*x*x+r*u*u;states.push(a*x+u);}cost+=p*states.at(-1)!**2;return {states,cost};}
 export function scalarBoxPlan(a:number,q:number,r:number,p:number,H:number,x0:number,bound:number):ControlPlan{
  const Hmat=Array.from({length:H},(_,i)=>Array.from({length:H},(_,j)=>i===j?r:0)),f=Array(H).fill(0) as number[];

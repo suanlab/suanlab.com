@@ -81,6 +81,37 @@ Taking the minimum over the finite set of plans gives a piecewise-linear, **conc
 
 For H=0,1,2,3 the unpruned plan counts are 2,6,38,1446, from M_H=2+M_(H-1)². Tests compare this independently enumerated collection with the production Bayesian observation-tree recursion. The small example is exactly enumerable; general POMDPs require much more careful representations and approximations.
 
+## Research extension: better information need not justify its price
+
+For symmetric binary sensors with accuracies $\eta_2\ge\eta_1\ge1/2$, an observation from the better sensor can be flipped independently with probability $\nu=(\eta_2-\eta_1)/(2\eta_2-1)$ to emulate the worse sensor. When $\eta_2=1/2$, both are uninformative. Thus, at equal cost and horizon, the better sensor can achieve no larger optimal expected cost: it can always emulate the worse policy.
+
+The posterior is a martingale, $E[b_Y]=b$. Finite-horizon POMDP cost is a concave lower envelope of affine plan costs, so $E[V(b_Y)]\le V(b)$. This proves the benefit of **free** information, not that paying to observe is worthwhile. Entropy reduction and decision improvement are different quantities.
+
+| Prior $b$, accuracy 4/5 | Error without observation | Error after one free observation |
+|---|---:|---:|
+| 1/2 | 1/2 | 1/5 |
+| 4/5 | 1/5 | 1/5 |
+| 99/100 | 1/100 | 1/100 |
+
+```python
+from fractions import Fraction as F
+eta=F(4,5)
+for b in [F(1,2),F(4,5),F(99,100)]:
+    mass_one=b*eta+(1-b)*(1-eta)
+    post_one=b*eta/mass_one
+    post_zero=b*(1-eta)/(1-mass_one)
+    assert mass_one*post_one+(1-mass_one)*post_zero==b
+    error=mass_one*min(post_one,1-post_one)+(1-mass_one)*min(post_zero,1-post_zero)
+    assert error<=min(b,1-b)
+    print(b,min(b,1-b),error)
+better,worse=F(9,10),F(3,5)
+flip=(better-worse)/(2*better-1)
+assert flip==F(3,8)
+assert better*(1-flip)+(1-better)*flip==worse
+```
+
+**Exercise:** with prior 99/100, neither possible observation changes the optimal terminal action. Information can change beliefs while leaving the minimum decision cost unchanged.
+
 ## Worked exercise: posterior and one-listen solution
 
 Set b=0.5,eta=0.8,c=0.05,H=1. Before reading the solution, compute the observation probabilities, posterior beliefs and optimal choice between guessing and one listen.

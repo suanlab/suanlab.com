@@ -78,6 +78,35 @@ $$
 
 를 얻습니다. 화면은 실제 최대 값 오차와 residual 인증을 따로 표시합니다. gamma가 1에 가까우면 경계가 느슨해질 수 있습니다. 이 식은 현재 **값 벡터**의 오차를 제한하며 greedy 정책 손실을 바로 제한하는 같은 식은 아닙니다. 정책 손실은 그 정책을 별도로 평가한 값과 V*의 최대 차이로 계산합니다. gamma=1에서는 이 일반적인 수축 논증과 분모를 쓸 수 없으므로 실습 범위에서 제외합니다.
 
+## 연구 확장: 가치 오차와 정책 손실의 보장은 다르다
+
+할인 최소비용 Bellman 연산자를 $T$, $V$에 대한 탐욕 정책을 $\pi$, **모든** 상태의 잔차를 $r=\|TV-V\|_\infty$라 하자. $T_\pi V=TV$이므로 수축성에서 $\|V-V^*\|_\infty\le r/(1-\gamma)$와 $\|V^\pi-V\|_\infty\le r/(1-\gamma)$를 얻는다. 둘을 더하면 탐욕 정책 손실은 $2r/(1-\gamma)$ 이하다. 정확한 전이 모형과 전역 잔차가 가정이다.
+
+다르게 $e=\|V-V^*\|_\infty$라 두고 탐욕 행동과 최적 행동을 비교하면 $\|V^\pi-V^*\|_\infty\le2\gamma e/(1-\gamma)$이고, 잔차로는 $2\gamma r/(1-\gamma)^2$다. 둘 다 유효하므로 더 작은 상한을 쓰자. 일부 표본 상태에서만 측정한 잔차로는 이 전역 인증을 얻지 못한다.
+
+| $\gamma$ | $r$에 대한 가치 오차 배율 | $e$에 대한 정책 손실 배율 |
+|---|---:|---:|
+| 0 | 1 | 0 |
+| 1/2 | 2 | 2 |
+| 9/10 | 10 | 18 |
+
+```python
+from fractions import Fraction as F
+# State 1 is terminal. At state 0: pay 1 to stay, or pay 3 to exit.
+for g in [F(0),F(1,2),F(9,10)]:
+    V=F(-2); candidates=[1+g*V,F(3)]
+    residual=abs(min(candidates)-V)
+    policies=[1/(1-g),F(3)]
+    greedy=0 if candidates[0]<=candidates[1] else 1
+    optimum=min(policies); loss=policies[greedy]-optimum
+    e=abs(V-optimum)
+    assert loss<=2*residual/(1-g)
+    assert loss<=2*g*e/(1-g)
+    print(g,loss,residual)
+```
+
+아래 정확 분수 예제는 별도의 두 상태 비용 모형이다. 반복을 적당히 중단하는 대신 선형 방정식으로 정책 가치를 구한다. **연습:** $\gamma=0$이면 주어진 $V$가 부정확해도 탐욕 정책이 최적인 이유는 무엇인가?
+
 ## 손계산 문제와 해설
 
 gamma=0.5,p=0.5,c=3,V0=0으로 놓습니다. 첫 갱신은 V1=(1,2,3,0)입니다. S2에서는 행동 1의 비용 3이 행동 0의 4보다 작습니다. V2(S1)을 구하려면 행동 0의 2+0.5*(0.5*2+0.5*3)=3.25와 행동 1의 3+0.5*3=4.5를 비교합니다. 따라서 V2(S1)=3.25입니다. 모든 상태에서 같은 이전 벡터를 사용하면 V2=(1.75,3.25,3,0)을 얻습니다.

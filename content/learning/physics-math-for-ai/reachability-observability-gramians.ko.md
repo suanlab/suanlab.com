@@ -49,6 +49,40 @@ b=0이면 첫 좌표만 도달할 수 있다. 목표 x2가 비영이면 유한 �
 
 작은 비영 b도 구조적 rank는 2다. 하지만 Gramian의 조건이 나쁘고 입력 에너지는 커진다. 계산은 스케일된 좌표를 사용해 불필요하게 b²로 행렬을 직접 나누지 않는다. 수학적으로 유한해도 기계 수로 표현하지 못하는 큰 에너지는 미정일 수 있으므로 구조적 도달 표시와 함께 읽는다.
 
+## 연구 확장: 좌표의 크기와 약한 동역학 구분하기
+
+작은 Gramian 고유값은 상태의 단위에 의존한다. $z=Tx$이면 $W_c'=TW_cT^\top$, $W_o'=T^{-\top}W_oT^{-1}$다. 따라서 $W_c'W_o'=T(W_cW_o)T^{-1}$이고, 그 고유값의 제곱근인 Hankel 특잇값은 좌표에 불변이다. 위치 단위를 미터에서 밀리미터로 바꾸어도 입출력 진단은 같아야 한다.
+
+보조 예제로 $b=c=s$인 무한 시간 모형을 보자. 안정성으로부터
+
+$$W_c=W_o=W=\begin{pmatrix}1/2&s/3\\s/3&s^2/4\end{pmatrix},\qquad\det W=s^2/72$$
+
+를 얻는다. 이때 Hankel 특잇값은 $W$의 양의 고유값이며 작은 값은 $s\to0$에서 $s^2/36$에 점근한다. 채널이 0이 아니어 구조적으로 도달 가능해도 실제로는 매우 약할 수 있다. 기존 조절기의 유한 시간 실험과 이 무한 시간 예제를 구분하자.
+
+| $s$ | Hankel 특잇값의 곱 |
+|---|---:|
+| 1 | 1/72 |
+| 1/10 | 1/7200 |
+| 1/100 | 1/720000 |
+
+```python
+from fractions import Fraction as F
+from math import sqrt
+for s in [F(1),F(1,10),F(1,100)]:
+    a,b,d=F(1,2),s/3,s*s/4
+    determinant=a*d-b*b
+    assert determinant==s*s/72
+    # T=diag(2,1/2): transformed controllability/observability Gramians.
+    C=((4*a,b),(b,d/4)); O=((a/4,b),(b,4*d))
+    product_trace=sum(C[i][j]*O[j][i] for i in range(2) for j in range(2))
+    assert product_trace==a*a+2*b*b+d*d
+    large=(float(a+d)+sqrt(float((a-d)**2+4*b*b)))/2
+    small=float(determinant)/large
+    print(s,determinant,large,small)
+```
+
+**연구 한계:** 물리 좌표 하나를 버리는 것이 곧 balanced truncation은 아니다. 작은 특잇값이나 구조적 랭크만으로 축소 모형의 폐루프 안정성을 인증할 수 없다.
+
 ## 확인 문제와 풀이
 
 T와 목표 (0,1)을 유지하고 b=1과 b=0.1을 비교하라. c=1은 고정한다.

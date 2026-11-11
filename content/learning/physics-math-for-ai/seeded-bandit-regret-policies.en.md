@@ -64,6 +64,42 @@ This can be negative when observed rewards exceed the expected benchmark. It is 
 
 The native bars compare final pseudo-regret for all three policies. The blue outline identifies the selected one. The lower blue staircase is its cumulative pseudo-regret; orange is UCB1. Values are held between numbered rounds for display, with decisions and jumps at the integer rounds. If UCB1 is selected, both paths overlap. The table exposes pre-action scores, actions, rewards, counts and both performance quantities. One seed does not establish an expected ranking.
 
+## Research extension: separate learning regret from reward noise
+
+Let $S_T=T\mu_* -\sum_tY_t$ be realized shortfall and $R_T=\sum_t(\mu_*-\mu_{A_t})$ pseudo-regret. Their difference is $S_T-R_T=\sum_t(\mu_{A_t}-Y_t)$, a martingale with zero conditional increments when actions are chosen before each independent Bernoulli reward. Conditional increments have range length one; Hoeffding-Azuma gives
+
+$$P\left(|S_T-R_T|\ge\sqrt{(T/2)\log(2/\delta)}\right)\le\delta.$$
+
+This bounds reward noise around random pseudo-regret, not pseudo-regret itself. For all prefixes $t\le T_{max}$ and three policies, replace the threshold by $\sqrt{(t/2)\log(6T_{max}/\delta)}$. The union bound needs no independence between policies sharing reward streams.
+
+| $T$, $\delta=0.05$ | Fixed-time threshold |
+|---|---|
+| 2 | $\sqrt{\log40}$ |
+| 8 | $2\sqrt{\log40}$ |
+| 32 | $4\sqrt{\log40}$ |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+from math import sqrt,log
+mu=[F(1,4),F(3,4)]; delta=.05
+for T in [2,4,8]:
+    expected=F(0); tail=F(0); total=F(0)
+    threshold=sqrt(T/2*log(2/delta))
+    for rewards in product([0,1],repeat=T):
+        arm=0; mass=F(1); gap=F(0)
+        for y in rewards:
+            mass*=mu[arm] if y else 1-mu[arm]
+            gap+=mu[arm]-y
+            if not y:arm=1-arm
+        total+=mass; expected+=mass*gap
+        if abs(gap)>=threshold:tail+=mass
+    assert total==1 and expected==0 and float(tail)<=delta
+    print(T,expected,float(tail))
+```
+
+The exact enumeration checks a separate adaptive stay-on-success policy. A finite set of deterministic seeds is not the ideal IID probability space, and one visually superior seeded path does not establish expected policy superiority.
+
 ## Worked exercise: deterministic UCB decisions
 
 Set mu0=1,mu1=0,T=4. Initial rewards are 1 from arm0 and 0 from arm1. Before round three, m=2 and both counts are one. UCB scores are 1+sqrt(2*ln(2)) and sqrt(2*ln(2)), so choose arm0. Before round four, counts are 2 and 1; scores are 1+sqrt(ln(3)) and sqrt(2*ln(3)), again favoring arm0.
