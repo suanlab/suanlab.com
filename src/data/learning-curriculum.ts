@@ -3394,7 +3394,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       }
     ],
     "unitIds": [
-      "inverse-problems"
+      "inverse-problems",
+      "forward-and-inverse-maps-for-cooling"
     ]
   },
   {

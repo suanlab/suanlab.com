@@ -16173,24 +16173,72 @@
       "topics": [
         {
           "title": "forward·inverse map",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "forward-and-inverse-maps-for-cooling"
+          ],
           "preparation": {
             "unitId": "forward-and-inverse-maps-for-cooling",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/forward-and-inverse-maps-for-cooling.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/forward-and-inverse-maps-for-cooling.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "cooling-inverse-reader-integration"
+            "nextAction": "ill-posedness-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+              "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+            "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-cooling-inverse.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "forward-and-inverse-maps-for-cooling",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-cooling-inverse.ts",
+            "lab": "src/components/learning/cooling-inverse-lab.tsx",
+            "tests": "scripts/learning-cooling-inverse.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+              "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "ill-posedness",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "ill-posedness-and-singular-modes",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/ill-posedness-and-singular-modes.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/ill-posedness-and-singular-modes.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "ill-posedness-reader-integration"
+          }
         },
         {
           "title": "식별 가능성",
@@ -16239,8 +16287,64 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "forward-and-inverse-maps-for-cooling",
-      "nextAction": "cooling-inverse-reader-integration"
+      "nextUnitId": "ill-posedness-and-singular-modes",
+      "nextAction": "ill-posedness-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+      "currentPreparationEvidence": "scripts/learning-cooling-inverse.test.ts",
+      "lastIntegratedPreparation": {
+        "unitId": "forward-and-inverse-maps-for-cooling",
+        "status": "verified-introductory-unit",
+        "registered": true,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "model": "src/lib/learning-cooling-inverse.ts",
+        "lab": "src/components/learning/cooling-inverse-lab.tsx",
+        "tests": "scripts/learning-cooling-inverse.test.ts",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+        ],
+        "sectionsPerLocale": 6,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
+      },
+      "lastIntegratedUnitPreparation": {
+        "unitId": "forward-and-inverse-maps-for-cooling",
+        "status": "verified-introductory-unit",
+        "registered": true,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "model": "src/lib/learning-cooling-inverse.ts",
+        "lab": "src/components/learning/cooling-inverse-lab.tsx",
+        "tests": "scripts/learning-cooling-inverse.test.ts",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+        ],
+        "sectionsPerLocale": 6,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
+      },
+      "lastCompletedIntroductoryTopic": {
+        "originalTopic": "forward·inverse map",
+        "stage": "introductory-topic-verified",
+        "coverageLevel": "introductory",
+        "unitIds": [
+          "forward-and-inverse-maps-for-cooling"
+        ],
+        "registeredUnitCount": 1,
+        "originalTopicComplete": true,
+        "originalTopicAuditPending": false,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+        ],
+        "researchDepthComplete": false,
+        "wholeDomainAuditComplete": false,
+        "evidence": "scripts/learning-cooling-inverse.test.ts"
+      }
     },
     {
       "id": "research-methods",
@@ -16304,14 +16408,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 629,
-  "verifiedNewUnitCount": 476,
+  "implementedUnitCount": 630,
+  "verifiedNewUnitCount": 477,
   "remainingForwardDomainCount": 2,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 21,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 20,
   "nextDomain": "inverse-problems",
-  "nextTopic": "forward·inverse map",
+  "nextTopic": "ill-posedness",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 341,
+  "verifiedOriginalScopeTopicCount": 342,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -16373,11 +16477,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers forward·inverse map. All 629 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers ill-posedness. All 630 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "forward-and-inverse-maps-for-cooling",
+  "nextAuthoringUnitId": "ill-posedness-and-singular-modes",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "cooling-inverse-reader-integration",
+  "nextAction": "ill-posedness-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

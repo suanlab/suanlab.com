@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 629,
+  "implementedUnitCount": 630,
   "curriculumComplete": false,
-  "scope": "629 registered units, 1927 guided experiments and 1258 bilingual manuscript files. Introductory scope: 341 of 362 original topics verified, 21 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "630 registered units, 1929 guided experiments and 1260 bilingual manuscript files. Introductory scope: 342 of 362 original topics verified, 20 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -11186,20 +11186,131 @@
       "topicCount": 11,
       "status": "partially-authored",
       "implementedUnitIds": [
-        "inverse-problems"
+        "inverse-problems",
+        "forward-and-inverse-maps-for-cooling"
       ],
-      "nextUnitId": "forward-and-inverse-maps-for-cooling",
-      "nextAction": "cooling-inverse-reader-integration",
+      "nextUnitId": "ill-posedness-and-singular-modes",
+      "nextAction": "ill-posedness-reader-integration",
       "coolingInverseDraft": {
         "unitId": "forward-and-inverse-maps-for-cooling",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/forward-and-inverse-maps-for-cooling.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/forward-and-inverse-maps-for-cooling.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "cooling-inverse-reader-integration"
+        "nextAction": "ill-posedness-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+        ]
+      },
+      "currentPreparationReport": "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+      "currentPreparationEvidence": "scripts/learning-cooling-inverse.test.ts",
+      "lastIntegratedPreparation": {
+        "unitId": "forward-and-inverse-maps-for-cooling",
+        "status": "verified-introductory-unit",
+        "registered": true,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "model": "src/lib/learning-cooling-inverse.ts",
+        "lab": "src/components/learning/cooling-inverse-lab.tsx",
+        "tests": "scripts/learning-cooling-inverse.test.ts",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+        ],
+        "sectionsPerLocale": 6,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
+      },
+      "lastIntegratedUnitPreparation": {
+        "unitId": "forward-and-inverse-maps-for-cooling",
+        "status": "verified-introductory-unit",
+        "registered": true,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "model": "src/lib/learning-cooling-inverse.ts",
+        "lab": "src/components/learning/cooling-inverse-lab.tsx",
+        "tests": "scripts/learning-cooling-inverse.test.ts",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+        ],
+        "sectionsPerLocale": 6,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
+      },
+      "lastCompletedIntroductoryTopic": {
+        "originalTopic": "forward·inverse map",
+        "stage": "introductory-topic-verified",
+        "coverageLevel": "introductory",
+        "unitIds": [
+          "forward-and-inverse-maps-for-cooling"
+        ],
+        "registeredUnitCount": 1,
+        "originalTopicComplete": true,
+        "originalTopicAuditPending": false,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+        ],
+        "researchDepthComplete": false,
+        "wholeDomainAuditComplete": false,
+        "evidence": "scripts/learning-cooling-inverse.test.ts"
+      },
+      "topicEvidence": [
+        {
+          "originalTopic": "forward·inverse map",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "forward-and-inverse-maps-for-cooling"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+            "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-cooling-inverse.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "forward-and-inverse-maps-for-cooling",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-cooling-inverse.ts",
+            "lab": "src/components/learning/cooling-inverse-lab.tsx",
+            "tests": "scripts/learning-cooling-inverse.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
+              "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        }
+      ],
+      "illPosednessDraft": {
+        "unitId": "ill-posedness-and-singular-modes",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/ill-posedness-and-singular-modes.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/ill-posedness-and-singular-modes.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "ill-posedness-reader-integration"
       }
     },
     {
@@ -11229,7 +11340,7 @@
     "research-methods"
   ],
   "nextDomain": "inverse-problems",
-  "nextTopic": "forward·inverse map",
+  "nextTopic": "ill-posedness",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",
