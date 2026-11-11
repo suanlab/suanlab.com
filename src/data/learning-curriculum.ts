@@ -3331,7 +3331,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "photodiode-noise-and-equivalent-bandwidth",
       "memory-traffic-and-the-roofline",
       "energy-per-task-and-thermal-cost",
-      "landauer-erasure-and-its-assumptions"
+      "landauer-erasure-and-its-assumptions",
+      "energy-bounds-and-system-measurements"
     ]
   },
   {

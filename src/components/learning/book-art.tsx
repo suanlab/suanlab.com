@@ -1,4 +1,5 @@
 'use client';
+import { energyMeasurementId } from '@/data/energy-measurement-reader';
 import { landauerErasureId } from '@/data/landauer-erasure-reader';
 import { taskEnergyId } from '@/data/task-energy-reader';
 import { memoryRooflineId } from '@/data/memory-roofline-reader';
@@ -222,6 +223,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === energyMeasurementId) return <span className="ai-concept-equation" aria-hidden="true">SE = s_d / √n</span>;
   if (kind === landauerErasureId) return <span className="ai-concept-equation" aria-hidden="true">Q ≥ kᵦT[h(p) − h(ε)]</span>;
   if (kind === taskEnergyId) return <span className="ai-concept-equation" aria-hidden="true">E = ∫P(t) dt</span>;
   if (kind === memoryRooflineId) return <span className="ai-concept-equation" aria-hidden="true">P_roof = min(P, BI)</span>;

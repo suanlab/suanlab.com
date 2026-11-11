@@ -15998,71 +15998,119 @@
         },
         {
           "title": "하한과 실제 시스템 측정",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "energy-bounds-and-system-measurements"
+          ],
           "preparation": {
             "unitId": "energy-bounds-and-system-measurements",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/energy-bounds-and-system-measurements.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/energy-bounds-and-system-measurements.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "energy-measurement-reader-integration"
+            "nextAction": "physical-validation-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
+              "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
+            "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-energy-measurement.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "energy-bounds-and-system-measurements",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-energy-measurement.ts",
+            "lab": "src/components/learning/energy-measurement-lab.tsx",
+            "tests": "scripts/learning-energy-measurement.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
+              "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "물리적 구현의 검증",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "physical-computing-validation-by-ablation",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/physical-computing-validation-by-ablation.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/physical-computing-validation-by-ablation.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "physical-validation-reader-integration"
+          }
         }
       ],
       "verification": null,
-      "nextUnitId": "energy-bounds-and-system-measurements",
-      "nextAction": "energy-measurement-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/landauer-erasure-and-its-assumptions.ko.md",
-      "currentPreparationEvidence": "scripts/learning-landauer-erasure.test.ts",
+      "nextUnitId": "physical-computing-validation-by-ablation",
+      "nextAction": "physical-validation-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
+      "currentPreparationEvidence": "scripts/learning-energy-measurement.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "landauer-erasure-and-its-assumptions",
+        "unitId": "energy-bounds-and-system-measurements",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-landauer-erasure.ts",
-        "lab": "src/components/learning/landauer-erasure-lab.tsx",
-        "tests": "scripts/learning-landauer-erasure.test.ts",
+        "model": "src/lib/learning-energy-measurement.ts",
+        "lab": "src/components/learning/energy-measurement-lab.tsx",
+        "tests": "scripts/learning-energy-measurement.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/landauer-erasure-and-its-assumptions.ko.md",
-          "content/learning/physics-math-for-ai/landauer-erasure-and-its-assumptions.en.md"
+          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
+          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "landauer-erasure-and-its-assumptions",
+        "unitId": "energy-bounds-and-system-measurements",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-landauer-erasure.ts",
-        "lab": "src/components/learning/landauer-erasure-lab.tsx",
-        "tests": "scripts/learning-landauer-erasure.test.ts",
+        "model": "src/lib/learning-energy-measurement.ts",
+        "lab": "src/components/learning/energy-measurement-lab.tsx",
+        "tests": "scripts/learning-energy-measurement.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/landauer-erasure-and-its-assumptions.ko.md",
-          "content/learning/physics-math-for-ai/landauer-erasure-and-its-assumptions.en.md"
+          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
+          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "Landauer 원리의 조건",
+        "originalTopic": "하한과 실제 시스템 측정",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "landauer-erasure-and-its-assumptions"
+          "energy-bounds-and-system-measurements"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -16070,12 +16118,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/landauer-erasure-and-its-assumptions.ko.md",
-          "content/learning/physics-math-for-ai/landauer-erasure-and-its-assumptions.en.md"
+          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
+          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-landauer-erasure.test.ts"
+        "evidence": "scripts/learning-energy-measurement.test.ts"
       }
     },
     {
@@ -16206,14 +16254,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 627,
-  "verifiedNewUnitCount": 474,
+  "implementedUnitCount": 628,
+  "verifiedNewUnitCount": 475,
   "remainingForwardDomainCount": 3,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 23,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 22,
   "nextDomain": "matter-computation",
-  "nextTopic": "하한과 실제 시스템 측정",
+  "nextTopic": "물리적 구현의 검증",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 339,
+  "verifiedOriginalScopeTopicCount": 340,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -16275,11 +16323,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 하한과 실제 시스템 측정. All 627 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 물리적 구현의 검증. All 628 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "energy-bounds-and-system-measurements",
+  "nextAuthoringUnitId": "physical-computing-validation-by-ablation",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "energy-measurement-reader-integration",
+  "nextAction": "physical-validation-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }
