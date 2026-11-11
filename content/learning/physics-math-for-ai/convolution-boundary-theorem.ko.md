@@ -25,6 +25,53 @@ $$
 
 같은 방법으로 선형 출력을 얻으려면 두 입력을 최소 4+2−1=5 길이로 zero padding해야 합니다. 실험은 radix-two FFT를 쓰기 위해 길이 8을 택합니다. 역변환하면 선형 출력 다섯 점 뒤에 0 세 점이 나옵니다. 길이 4로만 padding하면 앞서 본 wrap이 생깁니다. 재구성 오차는 선택한 경계의 참조 출력과 복소수 역변환값을 비교합니다.
 
+## 합과 적분을 교환할 수 있는 적분 가능성부터 명시하기
+
+f,h∈L¹(R)이면 Tonelli로 ∫∫|f(u)h(t−u)|du dt=‖f‖₁‖h‖₁입니다. 따라서 convolution은 거의 모든 곳에서 존재하고 L¹에 속하며, Fourier 변환에 t=u+v를 대입하는 Fubini 교환이 정당화됩니다. 실습의 각주파수 관례에서는 추가 배율 없이 F(f*h)=F(f)F(h)입니다. 시간 함수의 곱을 변환하는 convolution 공식은 다르며 별도 가정이 필요합니다.
+
+h∈L¹,f∈L²이면 가중 Cauchy–Schwarz로 |h*f(t)|²≤‖h‖₁∫|h(u)||f(t−u)|²du입니다. 다시 적분하면 Young 경계를 얻습니다.
+
+$$
+\|h*f\|_2\le\|h\|_1\|f\|_2.
+$$
+
+유한 지지의 이산 impulse response에는 대응하는 합의 논증이 성립합니다. 임의의 비적분 kernel에는 다른 연산자·분포 틀이 필요하며 형식적인 순서 교환만으로 정리를 증명하지 못합니다.
+
+## 잘라낸 Toeplitz 연산자와 circulant 연산자 비교하기
+
+S를 네 좌표의 순환 한 칸 이동으로 둡니다. h=[1,r]의 주기 연산자 C=I+rS는 S와 가환하고 DFT 모드로 대각화됩니다. 0으로 연장한 출력을 네 위치로 자른 행렬 T는 아래쪽 두 대각선의 Toeplitz 행렬이며 맨 위 오른쪽 wrap 원소가 없습니다. 다른 경계의 유한 연산자이지 같은 출력의 두 알고리즘이 아닙니다.
+
+| r | 0 연장 후 crop 출력 | 주기 출력 | ‖TS−ST‖F |
+|---|---|---|---|
+| 0 | (1,0,0,2) | (1,0,0,2) | 0 |
+| 1/2 | (1,1/2,0,2) | (2,1/2,0,2) | .707107 |
+| 1 | (1,1,0,2) | (3,1,0,2) | 1.414214 |
+
+여기서 x=(1,0,0,2), ‖TS−ST‖F=√2|r|이고 CS−SC=0입니다. 코드는 행렬과 commutator를 정확분수로 만듭니다. 유한 crop이 순환 이동 등변성을 깨뜨린다는 내용이며, 모든 정수 위의 완전한 0 연장 convolution이 보통의 평행이동 등변성을 깨뜨린다는 뜻은 아닙니다.
+
+**확인 문제:** 전체 선형 convolution에 FFT를 쓰는 데 zero-padding이면 충분한 이유는? **해설:** 주기가 입력 길이+필터 길이−1 이상이면 비영 출력이 다른 출력 index로 감기지 않기 때문입니다.
+
+```python
+from fractions import Fraction as F
+from math import sqrt
+
+N=4
+S=[[F(int(i==(j+1)%N)) for j in range(N)] for i in range(N)]
+x=list(map(F,[1,0,0,2]))
+def matmul(A,B): return [[sum(a*b for a,b in zip(row,col)) for col in zip(*B)] for row in A]
+for r in [F(0),F(1,2),F(1)]:
+    T=[[F(i==j)+r*int(i==j+1) for j in range(N)] for i in range(N)]
+    C=[[F(i==j)+r*int(i==(j+1)%N) for j in range(N)] for i in range(N)]
+    def commutator(A):
+        AS,SA=matmul(A,S),matmul(S,A)
+        return sum((AS[i][j]-SA[i][j])**2 for i in range(N) for j in range(N))
+    assert commutator(C)==0 and commutator(T)==2*r*r
+    T_y=[sum(a*b for a,b in zip(row,x)) for row in T]
+    C_y=[sum(a*b for a,b in zip(row,x)) for row in C]
+    print('r, cropped, periodic, cropped commutator norm:',str(r),
+          [str(v) for v in T_y],[str(v) for v in C_y],round(sqrt(float(2*r*r)),6))
+```
+
 ## 직접 풀기와 연구에서 확인할 것
 
 r=−1일 때 첫 출력을 예측하세요. 선형 index 0은 1이고, 순환 index 0은 마지막 기여 −2가 더해져 −1입니다. 두 모드를 바꿔 표로 검산하세요. r=0이면 공통 index의 값은 같아지지만 출력 길이는 여전히 다릅니다.

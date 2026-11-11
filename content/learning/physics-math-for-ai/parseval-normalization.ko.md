@@ -28,6 +28,58 @@ $$
 
 입력은 cos(2πcn/N)+d입니다. 한 완전 주기에서는 cosine의 합이 0이므로 d=1을 더하면 에너지는 N만큼 늘어납니다. N=8이면 4+8=12입니다. 주기 수가 일반적인 분수일 때는 교차항이 0이 아닐 수 있으므로 실제 표본 제곱합으로 계산해야 합니다.
 
+## 모든 Fourier 적분의 존재를 주장하지 않고 항등식 확장하기
+
+Schwartz 함수 f,g에서는 g의 Fourier 역변환과 Fubini로 교차 내적 항등식을 얻습니다.
+
+$$
+\int_{\mathbb R}f\overline g
+=\frac1{2\pi}\int_{\mathbb R}F\overline G,
+\qquad \|f\|_2^2=\frac1{2\pi}\|F\|_2^2.
+$$
+
+빠른 감소가 순서 교환을 정당화합니다. 역변환은 Gaussian 주파수 cutoff를 넣어 근사항등원과의 convolution으로 바꾼 뒤 극한을 보내 얻을 수 있습니다. 따라서 f↦F/√(2π)는 조밀한 부분공간의 등거리 사상입니다. L² 완비화로 확장하고 역도 같이 확장하면 L²의 Plancherel을 얻습니다. 임의의 L² 대표에서 절대 수렴 적분으로 변환을 계산할 수 있다는 뜻은 아닙니다.
+
+원 위에서도 삼각다항식의 완전성이 Bessel 부등식을 Parseval로 강화합니다. Fejér 근사는 연속 주기 함수에서 조밀성을 증명하고, 그 함수들은 원의 L²에 조밀합니다. 유한 직교 DFT 항등식과 무한 차원의 완전성 정리를 구별해야 합니다.
+
+## Real spectrum의 생략된 켤레 bin에 가중치 주기
+
+실수 벡터와 짝수 N에서는 X[N−k]=conj(X[k])입니다. 0부터 N/2까지만 저장하면
+
+$$
+\sum_n|x[n]|^2=\frac1N\left(|X[0]|^2+|X[N/2]|^2
++2\sum_{k=1}^{N/2-1}|X[k]|^2\right).
+$$
+
+DC와 Nyquist는 하나씩만 있고 내부 bin에만 2를 곱합니다. x[n]=1+cos(2πn/N)에서 저장 원소를 그대로 합하면 cosine 기여의 절반을 놓칩니다.
+
+| N | 시간 에너지 | 비가중 저장 spectrum / N | 올바른 가중 에너지 |
+|---|---|---|---|
+| 4 | 6 | 5 | 6 |
+| 8 | 12 | 10 | 12 |
+| 16 | 24 | 20 | 24 |
+
+코드는 직접 복소 합으로 가중치를 확인합니다. 실수 잔차 벡터의 시간 MSE에는 가중 raw spectrum 합을 N이 아니라 N²로 나눕니다. 이 켤레 계산 외에 다른 주파수 가중치를 주면 좌표만 바꾼 것이 아니라 손실 자체를 바꾼 것입니다.
+
+**확인 문제:** 저장한 real spectrum 전체에 2를 곱해도 되나요? **해설:** 아닙니다. 짝 없는 DC와 짝수 N의 Nyquist를 중복 계산합니다. 홀수 N에는 별도 끝점 규칙이 필요합니다.
+
+```python
+from cmath import exp
+from math import cos, pi
+
+for N in [4,8,16]:
+    x=[1+cos(2*pi*n/N) for n in range(N)]
+    X=[sum(v*exp(-2j*pi*k*n/N) for n,v in enumerate(x)) for k in range(N)]
+    time=sum(v*v for v in x)
+    wrong=sum(abs(v)**2 for v in X[:N//2+1])/N
+    corrected=(abs(X[0])**2+abs(X[N//2])**2+
+               2*sum(abs(X[k])**2 for k in range(1,N//2)))/N
+    assert abs(time-1.5*N)<1e-12 and abs(corrected-time)<1e-12
+    print('N, time energy, unweighted rFFT energy, corrected:',N,
+          round(time,6),round(wrong,6),round(corrected,6))
+# For time MSE rather than total energy, divide the corrected expression once more by N.
+```
+
 ## 직접 풀기와 연구에서의 사용
 
 c=0, d=−1이면 입력 전체가 0이므로 양쪽 에너지도 0입니다. 이어 c=1.25에서 leakage가 생겨도 Parseval이 유지되는지 확인하세요. 봉우리가 정수 bin에 놓여야만 성립하는 정리가 아닙니다.

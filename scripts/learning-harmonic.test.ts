@@ -83,3 +83,24 @@ for(const kind of harmonicKinds)test(`${kind}: presets expose finite geometry an
 for(const kind of harmonicKinds)for(const lang of ['ko','en'])test(`${kind}.${lang}: explanatory source includes math, exercises and primary further reading`,async()=>{
  const text=await fs.readFile(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8');const tree=remark().use(remarkMath).parse(text);assert.ok(tree.children.filter(n=>n.type==='heading').length>=4);assert.ok(tree.children.some(n=>n.type==='math'));const rendered=await getLearningContent(kind);assert.ok(rendered[lang as 'ko'|'en'].length>4000);assert.ok(!rendered[lang as 'ko'|'en'].includes('katex-error'));assert.ok(text.includes('https://'));assert.ok(text.includes(lang==='ko'?'직접 풀기':'Exercise'));if(lang==='en'){assert.ok(!/[가-힣]/.test(text));assert.ok(text.split(/\s+/).length>=350);}
 });
+
+
+test('tiny signed aliases and quarter-phase tones do not vanish in an offset modulo',()=>{
+ const r=sampledAlias(1e-20,8,1);assert.equal(r.alias,1e-20);assert.ok(r.samples[1]<0);assert.ok(Math.abs(r.samples[1]/(-2*Math.PI*1e-20/8)-1)<1e-12);
+ assert.ok((evaluate('dft-fft-algorithms',[3,1e-20,1]).stats['maximum two-sided normalized amplitude'] as number)>0);
+ const left=sampledAlias(4-2**-51,8,0);assert.equal(left.alias,4-2**-51);assert.ok(left.alias>0);
+ assert.equal(sampledAlias(4,8,0).alias,-4);assert.ok(sampledAlias(4,8,1).samples.every(x=>x===0));
+});
+
+test('FIR response resolves the positive near-Nyquist gain separately from its exact zero',()=>{
+ const omega=Math.PI-2**-51,[re,im]=firResponse(.5,omega);assert.ok(re>0&&im<0);assert.ok(Math.hypot(re,im)>0);assert.deepEqual(firResponse(.5,Math.PI),[0,0]);
+ for(const t of [0,-Math.PI,Math.PI])assert.equal(squarePartial(12,t),0);
+});
+
+test('inverse-model errors use independent mode amplitudes rather than FFT subtraction noise',()=>{
+ const tiny=deconvolutionExperiment(0,1e-100,0,0);assert.ok(Math.abs(tiny.mse!/1e-200-1)<1e-12);assert.equal(tiny.residualMSE,0);
+ assert.equal(deconvolutionExperiment(0,0,0,0).mse,0);
+ const range=evaluate('inverse-filtering-regularization',[0,1e-200,0,0]);assert.equal(range.warning,'numeric-range');assert.equal(range.stats['reconstruction MSE'],null);assert.equal(range.stats['observation residual MSE'],0);
+ const regularized=evaluate('inverse-filtering-regularization',[0,0,1e-200,1]);assert.equal(regularized.warning,'numeric-range');assert.equal(regularized.stats['reconstruction MSE'],null);assert.equal(regularized.stats['observation residual MSE'],null);
+ assert.equal(deconvolutionExperiment(.5,0,Number.MIN_VALUE,1).mse,.25);
+});

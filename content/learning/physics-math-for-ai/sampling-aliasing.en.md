@@ -31,6 +31,54 @@ The ideal sampling theorem concerns an entire band-limited signal under suitable
 
 Before downsampling audio, images or sensor streams, suppress out-of-band components with an anti-alias filter. Filtering after the sample ambiguity has occurred cannot generally identify which original frequency generated the data.
 
+## Prove sinc reconstruction in a specified function space
+
+Let f∈L²(R) have Fourier transform supported in [−πf_s,πf_s] in the angular convention. This compactly supported L² transform is also L¹, so its inverse defines a continuous representative of f; arbitrary null-set changes are not the samples. Expand F in the orthogonal exponentials e^(−iωn/f_s) on that band. Its coefficient is f(n/f_s)/f_s by inverse Fourier transformation. Inverting the expansion yields
+
+$$
+f(t)=\sum_{n\in\mathbb Z}f(n/f_s)\operatorname{sinc}(f_st-n),
+\qquad \operatorname{sinc}(u)=\frac{\sin(\pi u)}{\pi u},\quad\operatorname{sinc}(0)=1.
+$$
+
+Convergence of the band expansion in L² gives L² convergence in time by Plancherel. Cauchy–Schwarz on the fixed finite band also controls point evaluation of the inverse error, yielding uniform convergence for symmetric partial sums. The complete infinite sample sequence and the exact band restriction matter.
+
+At the critical rate f_s=2B this theorem remains injective for this L² bandlimited class: band endpoints have measure zero. The live Nyquist sine counterexample has infinite energy on R and lies outside that class. Allowing pure tones or spectral point masses at the boundary changes the problem. A strict guard band is a useful sufficient engineering condition, but it is not the necessity statement for every version of a sampling theorem.
+
+## Truncate a genuine critical-rate reconstruction
+
+The separate signal f(t)=sinc(2t−.3) is L², has B=1 Hz and is sampled at f_s=2 Hz. At t=.25 its exact value is about .935489284. The code compares an independently integrated rectangular spectrum with the sinc formula, then truncates to n=−N,…,N.
+
+| Half-count N | Reconstructed value | Absolute truncation error |
+|---|---|---|
+| 4 | .898916028 | .036573255 |
+| 16 | .925550542 | .009938742 |
+| 64 | .932947512 | .002541772 |
+| 256 | .934850136 | .000639147 |
+
+These counts exceed the live one-second tone table; no finite table is being called an exact infinite reconstruction. In the live alias calculation, reducing f modulo f_s before selecting its signed representative preserves tiny frequencies such as 10⁻²⁰ Hz. Quarter-turn phase is applied as an exact rotation, avoiding loss of a tiny sinusoidal component when adding it to π/2. Exact Nyquist quarter-phase samples remain zero.
+
+**Exercise:** Does an L² function have well-defined sample values without any other assumption? **Explanation:** No. Here compact spectral support selects its continuous inverse-transform representative.
+
+```python
+from math import sin, cos, pi
+
+def sinc(u): return 1.0 if u==0 else sin(pi*u)/(pi*u)
+def simpson(f,a,b,n=10000):
+    h=(b-a)/n
+    return h*(f(a)+f(b)+sum((4 if j%2 else 2)*f(a+j*h) for j in range(1,n)))/3
+
+# f(t)=sinc(2t-0.3), band limit B=1 Hz, sampling rate fs=2 Hz.
+t=.25
+truth=sinc(2*t-.3)
+# Inverse Fourier integral in cycles per second: spectrum is a shifted rectangle / 2.
+reference=simpson(lambda nu:.5*cos(2*pi*nu*(t-.15)),-1,1)
+assert abs(reference-truth)<1e-12
+for N in [4,16,64,256]:
+    recovered=sum(sinc(n-.3)*sinc(2*t-n) for n in range(-N,N+1))
+    print('half-count, value, error:',N,round(recovered,9),round(abs(recovered-truth),9))
+# sinc is L2 but not L1; use the L2 bandlimited theorem and its continuous representative.
+```
+
 ## Exercise
 
 Predict the signed alias of 9 Hz at eight samples/s: it is +1 Hz. Test phase zero and then a quarter turn. Explain why increasing the display resolution does not resolve the ambiguity, whereas increasing the actual sampling rate can. In research reports distinguish sample rate, observation duration, DFT bin spacing and plot pixel count; these are four different quantities.

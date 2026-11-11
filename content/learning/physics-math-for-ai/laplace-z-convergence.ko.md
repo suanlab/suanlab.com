@@ -32,6 +32,57 @@ $$
 
 기하급수의 공비 조건 때문에 수렴 영역이 수직 반평면 대신 원 안팎이 됩니다. a=0.5, z=0.25이면 anti-causal 합은 −1입니다. 음의 시간 급수를 −Σₘ≥₁(z/a)ᵐ으로 쓰면 z=0에서 값 0도 정의됩니다. causal 급수는 그곳에서 수렴하지 않습니다.
 
+## 고리 모양 ROC에서 양방향 안정 응답 유도하기
+
+같은 두 극점의 유리식에도 세 가지 sidedness가 가능합니다.
+
+$$
+H(z)=\frac z{z-1/2}+\frac z{z-2}.
+$$
+
+두 기하 항이 모두 오른쪽 신호이면 ROC는 |z|>2이고 오른쪽으로 자랍니다. 둘 다 음수 부호의 왼쪽 신호이면 ROC는 |z|<1/2이며 한 꼬리가 왼쪽으로 자랍니다. 가운데 1/2<|z|<2에서는 첫 항이 오른쪽, 두 번째 항이 음수 왼쪽 신호입니다.
+
+$$
+h[n]=(1/2)^n u[n]-2^n u[-n-1],
+\qquad \sum_{n\in\mathbb Z}|h[n]|=3.
+$$
+
+단위원이 가운데 ROC에 들어가므로 보통의 연속 주파수 응답이 존재합니다. 단위원 밖 극점이 하나 있어도 이 시스템은 안정이고 비인과적입니다. “모든 극점이 단위원 안”이라는 익숙한 규칙은 인과적 유리 시스템을 전제하며 그 가정을 지우면 결론이 달라집니다.
+
+| 양쪽 꼬리 절단 N | 부분 DC 합 | 부분 절댓값 합 |
+|---|---|---|
+| 1 | 1/2 | 3/2 |
+| 2 | 3/4 | 9/4 |
+| 4 | 15/16 | 45/16 |
+| 8 | 255/256 | 765/256 |
+
+코드는 오른쪽 n=0,…,N−1과 왼쪽 n=−1,…,−N을 합합니다. DC gain은 1, 절댓값 합은 3으로 가며 같은 양이 아닙니다. 이 두 극점 예제는 실습의 한 극점 제어와 별도입니다.
+
+## Bounded-input bounded-output 안정성의 의미 증명하기
+
+이산 impulse response가 절대 합 가능하면 |(h*x)[n]|≤‖h‖₁‖x‖∞로 BIBO 안정입니다. 반대로 유한 지지의 유계 시험 입력을 늘려 가며 x[−k]=sign(h[k])를 고르면 0에서의 출력은 해당 |h[k]|의 합입니다. 이 합들이 유계가 아니면 공통 BIBO gain이 없습니다. 복소 h에는 sign 대신 켤레 위상을 씁니다.
+
+연속 시간의 보통 impulse-response 함수에는 ∫|h|를 쓰는 대응 논증이 있습니다. 초기조건·unilateral 변환·분포 impulse에는 각각의 정식화가 필요합니다. 잘라 그린 꼬리나 ROC 밖의 유한 유리식 값으로 적분 가능성을 판단하지 마세요.
+
+**확인 문제:** H에 z=1을 대입하면 세 ROC 모두의 안정성이 증명되나요? **해설:** 아닙니다. 단위원은 가운데 고리에만 들어갑니다. 해석적 연장은 원래의 수렴 합과 다릅니다.
+
+```python
+from fractions import Fraction as F
+
+# h[n]=(1/2)^n for n>=0, and -2^n for n<=-1.
+# Its Z transform has ROC 1/2<|z|<2 and includes z=1.
+for N in [1,2,4,8]:
+    causal=sum((F(1,2)**n for n in range(N)),F(0))
+    anticausal=-sum((F(1,2)**m for m in range(1,N+1)),F(0))
+    dc=causal+anticausal
+    absolute_sum=causal-anticausal
+    assert dc==1-F(1,2)**N
+    assert absolute_sum==3*(1-F(1,2)**N)
+    print(N,str(dc),str(absolute_sum))
+print('limits: DC gain 1; absolute impulse-response sum 3')
+# Changing the ROC changes sidedness even though z/(z-1/2)+z/(z-2) stays the same.
+```
+
 ## 직접 풀기와 시스템 해석
 
 a=1.5, z=1에서 어느 쪽 변환이 존재할까요? 1<1.5이므로 anti-causal 쪽만 존재하고 값은 −2입니다. 두 모드의 readout을 확인한 뒤 z=1.5의 극점으로 옮겨 보세요.
