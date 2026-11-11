@@ -39,6 +39,43 @@ Control은 a·b·a+b를 모두 (0,1)에 두어 음의 r와 1보다 큰 초기값
 
 r=1, a=0.2, b=0.3, t=1에서 0.5를 진화한 값과 둘의 해를 더한 값은 다릅니다. r=0에서는 모든 상태가 그대로여서 우연히 덧셈이 보존되지만 일반적인 logistic 계가 선형이라는 뜻은 아닙니다.
 
+## 시간 합성과 선형 중첩을 구분하기
+
+잘 정의된 자율계의 흐름은 공통 정의역에서 Sₜ(Sₛ(a))=Sₜ₊ₛ(a)를 만족한다. 로지스틱 흐름도 그렇다. 초기 시각을 옮긴 뒤 유일성을 적용하면 증명된다. Sₜ(a+b)=Sₜ(a)+Sₜ(b)라는 가법성은 별도 성질이다. 강제 선형식의 상수변화법은 Sₜ(a)=eʳᵗa+fI(r,t)를 주므로 보정식은 Sₜ(a+b)=Sₜ(a)+Sₜ(b)−Sₜ(0)다. 상태에 상수 성분을 추가하면 동차 행렬 [[r,f],[0,0]]로도 표현된다.
+
+로지스틱에서는 E=eʳᵗ, q=expm1(rt), s=a+b라 두고 분모를 통분하면
+
+$$
+S_t(s)-S_t(a)-S_t(b)=
+-\frac{Eabq(2+sq)}{(1+sq)(1+aq)(1+bq)}.
+$$
+
+양의 a,b,s<1, t>0에서 부호는 r과 반대다. r=0 근처에서는 −2abrt+O((rt)²)이지만 따로 반올림한 세 흐름의 차이는 0이 될 수 있다. 실제 analytic 진단은 이제 이 인수분해를 쓰고 expanded floating 차이는 산술 비교로 유지한다.
+
+| 흐름 | 시간 합성 | 초기값 가법성의 차이 |
+|---|---|---|
+| 동차 선형 | 성립 | 0 |
+| 상수 강제 affine | 성립 | −fI(r,t) |
+| 로지스틱 | 공통 정의역에서 성립 | 위의 인수분해 식 |
+
+```python
+from decimal import Decimal as D, localcontext
+from math import exp, expm1
+with localcontext() as ctx:
+    ctx.prec = 90
+    for rate in ('-1', '-1e-20', '1e-20', '1'):
+        r, a, b = D(rate), D('.2'), D('.3')
+        E = r.exp()
+        flow = lambda x: x*E/(1+x*(E-1))
+        reference = flow(a+b)-flow(a)-flow(b)
+        q, s = expm1(float(r)), .5
+        stable = -exp(float(r))*.2*.3*q*(2+s*q)/((1+s*q)*(1+.2*q)*(1+.3*q))
+        assert stable != 0 and abs(D(stable)/reference-1) < D('2e-14')
+        print(rate, stable, 'relative error:', float(abs(D(stable)/reference-1)))
+```
+
+고정밀 Decimal 뺄셈으로 양·음의 작은 성장률을 독립 검산한다. 흐름의 semigroup 성질은 해법의 일관성을 검사하는 데 유용하지만 학습한 벡터장의 선형성을 증명하지는 않는다.
+
 ## 직접 풀기: Forcing을 세어 보기
 
 r=1, f=1/2에서 세 해를 쓰고 초기값 항을 소거하면 defect는 -(e^t-1)/2입니다. r=0에서는 -t/2가 됩니다. 두 해를 뺄 때는 f가 사라지고 더할 때는 사라지지 않는 이유를 설명하세요. 동차 예제의 해석적 0과 전개 뺄셈의 작은 반올림 나머지도 구별하세요.

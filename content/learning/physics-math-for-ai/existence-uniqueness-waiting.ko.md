@@ -30,6 +30,42 @@ c 이전에는 상태와 도함수가 모두 0이고 이후에는 도함수 2(t-
 
 양의 작은 h에서 |f(h)-f(0)|/|h|=2/sqrt(h)는 무한히 커집니다. 따라서 0 근처에서 유한한 Lipschitz 상수를 둘 수 없습니다. 다만 충분조건이 실패했다는 사실만으로 임의의 문제가 비유일하다고 결론내릴 수는 없습니다. 여기서는 같은 초기값의 서로 다른 해를 구성했기 때문에 결론이 강합니다.
 
+## 국소 정리·정량적 상계·유한 시간 탈출
+
+(0,y₀) 주변 닫힌 직사각형에서 f가 연속이고 |f|≤M, 상태에 대한 Lipschitz 상수가 L이라고 하자. Mh가 직사각형 안에 머물고 Lh<1인 h를 고른다. Picard 사상 $T[y](t)=y_0+\int_0^t f(s,y(s))\,ds$는 연속함수의 닫힌 공을 자신으로 보내고 supremum 거리를 최대 Lh배로 줄인다. 완비공간 고정점 정리로 이 공 안의 국소 해와 유일성을 얻는다. 이어 붙이면 공통 존재 구간의 유일성이 나오지만 모든 시간의 존재가 자동으로 나오지는 않는다.
+
+미분 가능한 근사 v의 잔차를 ρ=v′−f(t,v)라 하자. 같은 L이 유효한 공통 정의역에서는 Gronwall로
+
+$$
+|v(t)-y(t)|\le e^{Lt}|v(0)-y_0|+
+\int_0^t e^{L(t-s)}|\rho(s)|\,ds.
+$$
+
+잔차가 전 구간에서 ε 이하면 기여는 ε(expm1(Lt))/L이고 L=0의 극한은 εt다. Neural ODE의 모형 섭동도 이렇게 제한할 수 있다. 유한 시각의 표본 잔차만으로는 충분하지 않다.
+
+| L=1, 구간 h | Picard 거리 배율 Lh | 엄격한 수축 논증 |
+|---|---:|---|
+| 1/4 | 1/4 | 적용 가능 |
+| 1/2 | 1/2 | 적용 가능 |
+| 1 | 1 | 이 상계로 판정 불가 |
+
+```python
+from fractions import Fraction as F
+from math import exp, factorial
+for T in (F(1, 4), F(1, 2), F(1)):
+    coefficients = [F(1)]
+    for iteration in range(8):
+        coefficients = [F(1)] + [a/F(i+1) for i, a in enumerate(coefficients)]
+    value = sum(a*T**i for i, a in enumerate(coefficients))
+    error = abs(float(value)-exp(float(T)))
+    bound = exp(float(T))*float(T)**9/factorial(9)
+    assert error <= bound + 1e-15
+    print(T, error, bound)
+assert F(1)/(1-F(3, 4)) == 4  # y'=y^2 before its pole.
+```
+
+y′=y의 Picard 다항식과 Taylor 나머지를 검산한다. h=1에서 수축 상계가 실패해도 비유일성을 뜻하지 않는다. 반대로 y′=y², y(0)=1은 국소 Lipschitz이지만 해 1/(1−t)가 t=1에서 탈출한다. 국소 유일성과 유한한 최대 존재 시간은 양립한다. 앞의 대기 해는 정리의 가정 실패만으로 추측한 것이 아니라 실제 서로 다른 해를 구성한 비유일성 증명이다.
+
 ## 직접 풀기: 무엇이 갈라졌는가
 
 기다리는 시간을 1, 질의 시간을 1/2로 두면 두 해는 0과 1/4이고 초기값은 같습니다. 선형 모형 epsilon=0.1에서는 t=1의 해가 다르지만 초기값부터 0.1만큼 다릅니다. 어느 비교가 유일성을 반박하는지 설명하고 출발 순간 c에서 기다리는 해의 ODE 잔차도 직접 검산하세요.

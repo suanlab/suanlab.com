@@ -39,6 +39,43 @@ The controls restrict a and b so each and their sum remain strictly between zero
 
 At r=1, a=0.2, b=0.3 and t=1, evolving 0.5 differs from adding the evolutions of 0.2 and 0.3. At r=0 every state stays constant, so this special logistic parameter happens to preserve addition without making the general family linear.
 
+## Flow composition does not imply linear superposition
+
+Every well-defined autonomous flow satisfies Sₜ(Sₛ(a))=Sₜ₊ₛ(a) on its common domain, including the logistic flow. This follows from uniqueness after shifting the initial time. Additivity Sₜ(a+b)=Sₜ(a)+Sₜ(b) is a different property. For the forced linear equation, variation of constants gives Sₜ(a)=eʳᵗa+fI(r,t), so the corrected identity is Sₜ(a+b)=Sₜ(a)+Sₜ(b)−Sₜ(0). Equivalently, augment the state by a constant component and use the homogeneous matrix [[r,f],[0,0]].
+
+For logistic dynamics set E=eʳᵗ, q=expm1(rt), s=a+b. Clearing denominators gives an exact nonlinear defect:
+
+$$
+S_t(s)-S_t(a)-S_t(b)=
+-\frac{Eabq(2+sq)}{(1+sq)(1+aq)(1+bq)}.
+$$
+
+For positive a,b,s<1 and t>0 its sign is opposite the sign of r. Near r=0 it is −2abrt+O((rt)²), although three separately rounded flows can have a zero difference. The live analytic diagnostic now uses this factorization; the expanded floating difference remains visible as an arithmetic comparison.
+
+| Family | Composition in time | Initial-data additivity defect |
+|---|---|---|
+| Homogeneous linear | yes | 0 |
+| Constant forced affine | yes | −fI(r,t) |
+| Logistic | yes on common domain | factored expression above |
+
+```python
+from decimal import Decimal as D, localcontext
+from math import exp, expm1
+with localcontext() as ctx:
+    ctx.prec = 90
+    for rate in ('-1', '-1e-20', '1e-20', '1'):
+        r, a, b = D(rate), D('.2'), D('.3')
+        E = r.exp()
+        flow = lambda x: x*E/(1+x*(E-1))
+        reference = flow(a+b)-flow(a)-flow(b)
+        q, s = expm1(float(r)), .5
+        stable = -exp(float(r))*.2*.3*q*(2+s*q)/((1+s*q)*(1+.2*q)*(1+.3*q))
+        assert stable != 0 and abs(D(stable)/reference-1) < D('2e-14')
+        print(rate, stable, 'relative error:', float(abs(D(stable)/reference-1)))
+```
+
+High-precision Decimal subtraction independently checks both signs and small rates. A flow's semigroup property is useful for solver consistency, but cannot establish linearity of a learned vector field.
+
 ## Exercise: locate the extra forcing
 
 Take r=1 and f=1/2. Write out the three forced solutions and cancel their initial-value terms. The defect is -(e^t-1)/2. At r=0 it becomes -t/2. Explain why subtracting two forced solutions removes f, while adding them does not. Finally compare with the homogeneous preset and distinguish its analytic zero from any displayed expanded rounding remainder.

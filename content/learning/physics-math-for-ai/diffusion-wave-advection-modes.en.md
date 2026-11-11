@@ -34,6 +34,36 @@ For u_t+c u_x=0, the exact field is M+A cos(k(x-ct)). The shape shifts with unch
 
 The readout checks the selected PDE at x=0.37 using separately evaluated time and spatial derivatives. The mass is 2pi M in every model because the mean velocity and net periodic boundary flux are zero in this experiment.
 
+## Energy estimates and why backward heat is ill-posed
+
+For smooth periodic heat solutions, integration by parts gives d(‖u−M‖²/2)/dt=−ν‖uₓ‖². Applied to a difference of two solutions, this proves L² contraction and uniqueness. For wave solutions, multiplying uₜₜ=c²uₓₓ by uₜ gives conservation of (‖uₜ‖²+c²‖uₓ‖²)/2. The mean displacement requires its own initial value, since the gradient does not control constant modes. For advection, d‖u‖²/dt=−c∫(u²)ₓ=0. Periodicity removes boundary terms in each argument.
+
+These identities extend the single-mode lab to finite Fourier sums by orthogonality, and to energy solutions through justified approximation. Forward heat is stable, but reconstructing an earlier state multiplies mode k by e^(νk²T). Take ν=T=1 and initial uₖ(x,0)=cos(kx). At T its L² norm is √πe⁻ᵏ²→0 while its initial norm stays √π. Therefore the inverse is not continuous in the L² norm, even though every individual finite mode can be reversed exactly.
+
+| k | log of backward amplification at νT=1 |
+|---|---:|
+| 1 | 1 |
+| 2 | 4 |
+| 4 | 16 |
+
+```python
+from math import exp, pi, fsum
+modes = [(1, 1.), (2, .5), (4, -.25)]
+nu, T = .2, .7
+initial_energy = pi/2*fsum(a*a for k, a in modes)
+final_energy = pi/2*fsum(a*a*exp(-2*nu*k*k*T) for k, a in modes)
+dissipation = -nu*pi*fsum(k*k*a*a*exp(-2*nu*k*k*T) for k, a in modes)
+assert 0 < final_energy < initial_energy and dissipation < 0
+for k in (1, 2, 4):
+    terminal_norm = pi**.5*exp(-k*k)
+    log_inverse_gain = k*k
+    assert abs(terminal_norm*exp(log_inverse_gain)-pi**.5) < 1e-14
+    print(k, terminal_norm, log_inverse_gain)
+print('energy:', initial_energy, final_energy, 'derivative:', dissipation)
+```
+
+The code compares exact finite-mode energy factors and logarithmic amplification, avoiding overflow. Diffusion-model reverse dynamics includes a distribution-dependent score and is not simply unrestricted backward heat applied to noisy observations. Inverse PDE learning requires regularization or information about admissible states; a low forward residual alone cannot stabilize inversion.
+
 ## Exercise: compare the right invariant
 
 Use A=1, M=0, k=2, nu=0.2 and t=0.5 in heat mode. The amplitude is exp(-0.4). In wave mode use k=c=1 and t=pi/2; compute kinetic energy to explain how total energy remains pi/2 despite near-zero displacement. Finally set transport mean M=0.5: mass is pi even though the moving cosine changes sign relative to its mean. State which invariant each comparison actually tests.

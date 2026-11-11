@@ -32,6 +32,44 @@ The lower graph deliberately plots current position against initial label, with 
 
 For b zero, all Burgers characteristics are parallel. For negative b, the Jacobian grows rather than shrinks over positive time, and this affine profile has no positive-time gradient breakdown. In constant-speed transport the Jacobian is always one regardless of b. Distinguishing equations is as important as inspecting a plotted intersection.
 
+## Invertibility, slope blow-up, and inverse sensitivity
+
+For C¹ bounded Burgers initial data with bounded derivative, X(ξ,t)=ξ+tu₀(ξ) has Jacobian 1+tu₀′(ξ). While this remains uniformly positive, the inverse map exists globally on the real line: bounded u₀ makes X proper and the positive derivative makes it strictly increasing. Along each characteristic,
+
+$$
+u_x(X(\xi,t),t)=\frac{u_0'(\xi)}{1+tu_0'(\xi)},\qquad
+\frac d{dt}u_x=-u_x^2.
+$$
+
+If m=inf u₀′<0, the first loss of a uniform gradient bound is T*=−1/m. If the infimum is attained, a characteristic has infinite slope at that time. For u₀(ξ)=−tanh ξ, m=−1 at ξ=0, so T*=1 although the transported values remain between −1 and 1. With nonnegative initial slope there is no forward compression breakdown of this kind.
+
+The inverse derivative ∂ξ/∂x=1/(1+tu₀′) also measures sensitivity: a position error δx near the compressive center creates about δx/(1−t) label error. Thus an apparently accurate characteristic position can reconstruct a poor Eulerian field near breakdown. The affine live lab has the same Jacobian exactly, but is not globally bounded initial data; its explicit formula supplies its own pre-breakdown inverse.
+
+| t at the tanh center | Jacobian | Inverse sensitivity |
+|---|---:|---:|
+| 1/2 | 1/2 | 2 |
+| 9/10 | 1/10 | 10 |
+| 99/100 | 1/100 | 100 |
+
+```python
+from math import tanh, cosh
+for t in (.5, .9, .99):
+    slope0 = -1.
+    J = 1+t*slope0
+    slope = slope0/J
+    slope_time_derivative = -slope0**2/J**2
+    assert abs(slope_time_derivative+slope*slope) < 1e-9
+    for xi in (-1., 0., 1.):
+        u0 = -tanh(xi)
+        derivative = -1/cosh(xi)**2
+        assert 1+t*derivative > 0
+        position = xi+t*u0
+        assert abs(position-xi) <= t
+    print(t, J, 1/J, slope)
+```
+
+The derivative and Riccati identities are analytic; the code verifies representative values before T*. After breakdown a crossed label plot is not a single-valued classical solution. Entropy selection, not numerical inversion of a folded map, supplies the physical continuation.
+
 ## Exercise: compute and interpret the crossing
 
 Choose a=1/2, b=1, mode Burgers. At label zero and t=1/2, position is 1/4, carried value is 1/2 and gradient is -2. At t=1, the current-position map collapses to X=1/2 for every label. Explain why the carried values can no longer define one classical value at that position. Then switch to constant speed 1/2 and verify the same initial labels remain ordered for every displayed time.

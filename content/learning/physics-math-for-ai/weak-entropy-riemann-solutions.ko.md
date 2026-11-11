@@ -43,6 +43,43 @@ $$
 
 Jump는 열린/닫힌 끝점을 둔 별도 수평 선분으로 그립니다. 대각 연결선으로 이어 그리면 실제로 없는 매끄러운 전이와 중간 상태를 암시하기 때문입니다.
 
+## 소멸 점성이 압축 jump를 선택하는 이유
+
+움직이는 step은 분포 의미에서 uₜ=−s[u]δ, f(u)ₓ=[f]δ이므로 Rankine–Hugoniot 조건을 준다. Entropy 쌍에도 같은 계산을 적용하면 ηₜ+qₓ=([q]−s[η])δ다. η=u²/2, q=u³/3에서 팽창 jump의 계수가 양수이므로 보존만으로 충분하지 않은 이유를 알 수 있다.
+
+양의 점성을 더한 uₜ+(u²/2)ₓ=εuₓₓ, ε>0에서 L>R을 잇는 U(z), z=x−st를 찾자. 한 번 적분하고 양 끝 극한을 적용하면
+
+$$
+s=(L+R)/2,\quad \varepsilon U'=\tfrac12(U-L)(U-R),
+\quad U(z)=s-\tfrac{L-R}{2}\tanh\!\left(\frac{(L-R)z}{4\varepsilon}\right).
+$$
+
+U는 L에서 R로 감소하며 폭은 ε/(L−R)에 비례한다. L<R인 증가 연결에서는 같은 ODE의 두 상태 사이 U′가 음수라 증가하는 연결 profile이 없다. 양의 점성은 팽창 shock를 배제한다. 일반 볼록 entropy에서는 ηₜ+qₓ=ε(η′uₓ)ₓ−εη″uₓ²로 소산 부호가 드러난다. 정당한 극한을 위해 compactness와 초기 데이터 가정이 필요하므로 이 진행파 계산만으로 완전한 소멸 점성 수렴 정리를 증명한 것은 아니다.
+
+| L=1,R=0의 ε | z=0의 profile | 중앙 기울기 |
+|---|---:|---:|
+| 1/2 | 1/2 | −1/4 |
+| 1/4 | 1/2 | −1/2 |
+| 1/8 | 1/2 | −1 |
+
+```python
+from math import tanh
+L, R = 1., 0.
+s, jump = (L+R)/2, L-R
+for eps in (.5, .25, .125):
+    k = jump/(4*eps)
+    for z in (-1., 0., 1.):
+        h = tanh(k*z)
+        U = s-jump*h/2
+        first = -jump*k*(1-h*h)/2
+        second = jump*k*k*h*(1-h*h)
+        assert abs(eps*first-(U-L)*(U-R)/2) < 1e-14
+        assert abs((U-s)*first-eps*second) < 1e-14
+    print(eps, s, -jump*jump/(8*eps))
+```
+
+매끄러운 점성 profile은 보조 해석 예제이고 실제 비점성 jump 실습은 분리된 두 선분을 유지한다. 아래 계산은 적분한 profile ODE와 매끄러운 PDE 잔차를 검산하며, 불연속을 가짜 대각 연결선으로 대체하지 않는다.
+
 ## 직접 풀기: 보존하지만 틀린 선택
 
 uL=0, uR=1에서 두 mode 모두 RH defect가 0이지만 candidate의 entropy 계수는 +1/12입니다. 상태 2와 1, t=2에서는 shock가 관측 창을 지나 질량이 6에서 8이 됩니다. 누적 유입-유출이 2인지 확인하고 창의 질량이 일정해야 한다는 검사가 왜 잘못인지 설명하세요.

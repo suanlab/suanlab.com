@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg role="img" aria-labelledby="title desc" xmlns:xlink="http://www.w3.org/1999/xlink" width="440" height="460" viewBox="0 0 440 460" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<title id="title">안정한 계의 과도 증폭</title><desc id="desc">고유값이 모두 -1인 행렬 [[-1,K],[0,-1]]에서 초기값 (0,1)의 정확한 Euclidean 반지름을 비교합니다.</desc>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-12T02:24:34.891262</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.6.3, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 460
+L 440 460
+L 440 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 79.2 349.6
+L 418 349.6
+L 418 82.8
+L 79.2 82.8
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 94.6 349.6
+L 94.6 82.8
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="m7353de15a4" d="M 0 0
+L 0 3.5
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m7353de15a4" x="94.6" y="349.6" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="94.6" y="364.559375" transform="rotate(-0 94.6 364.559375)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 156.2 349.6
+L 156.2 82.8
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m7353de15a4" x="156.2" y="349.6" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="156.2" y="364.559375" transform="rotate(-0 156.2 364.559375)">1</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 217.8 349.6
+L 217.8 82.8
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m7353de15a4" x="217.8" y="349.6" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="217.8" y="364.559375" transform="rotate(-0 217.8 364.559375)">2</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 279.4 349.6
+L 279.4 82.8
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m7353de15a4" x="279.4" y="349.6" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="279.4" y="364.559375" transform="rotate(-0 279.4 364.559375)">3</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 341 349.6
+L 341 82.8
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m7353de15a4" x="341" y="349.6" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="341" y="364.559375" transform="rotate(-0 341 364.559375)">4</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 402.6 349.6
+L 402.6 82.8
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m7353de15a4" x="402.6" y="349.6" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="402.6" y="364.559375" transform="rotate(-0 402.6 364.559375)">5</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="fill: #0f172a; font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="248.6" y="378.809375" transform="rotate(-0 248.6 378.809375)">시간 t</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_13">
+      <path d="M 79.2 349.6
+L 418 349.6
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14">
+      <defs>
+       <path id="mfab51e5816" d="M 0 0
+L -3.5 0
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#mfab51e5816" x="79.2" y="349.6" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="72.2" y="353.579687" transform="rotate(-0 72.2 353.579687)">0.0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_15">
+      <path d="M 79.2 319.955556
+L 418 319.955556
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#mfab51e5816" x="79.2" y="319.955556" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="72.2" y="323.935243" transform="rotate(-0 72.2 323.935243)">0.2</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_17">
+      <path d="M 79.2 290.311111
+L 418 290.311111
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#mfab51e5816" x="79.2" y="290.311111" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="72.2" y="294.290799" transform="rotate(-0 72.2 294.290799)">0.4</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_19">
+      <path d="M 79.2 260.666667
+L 418 260.666667
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#mfab51e5816" x="79.2" y="260.666667" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="72.2" y="264.646354" transform="rotate(-0 72.2 264.646354)">0.6</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_21">
+      <path d="M 79.2 231.022222
+L 418 231.022222
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_22">
+      <g>
+       <use xlink:href="#mfab51e5816" x="79.2" y="231.022222" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="72.2" y="235.00191" transform="rotate(-0 72.2 235.00191)">0.8</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_23">
+      <path d="M 79.2 201.377778
+L 418 201.377778
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_24">
+      <g>
+       <use xlink:href="#mfab51e5816" x="79.2" y="201.377778" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="72.2" y="205.357465" transform="rotate(-0 72.2 205.357465)">1.0</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_25">
+      <path d="M 79.2 171.733333
+L 418 171.733333
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_26">
+      <g>
+       <use xlink:href="#mfab51e5816" x="79.2" y="171.733333" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="72.2" y="175.713021" transform="rotate(-0 72.2 175.713021)">1.2</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_27">
+      <path d="M 79.2 142.088889
+L 418 142.088889
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_28">
+      <g>
+       <use xlink:href="#mfab51e5816" x="79.2" y="142.088889" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_15">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="72.2" y="146.068576" transform="rotate(-0 72.2 146.068576)">1.4</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_29">
+      <path d="M 79.2 112.444444
+L 418 112.444444
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_30">
+      <g>
+       <use xlink:href="#mfab51e5816" x="79.2" y="112.444444" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_16">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="72.2" y="116.424132" transform="rotate(-0 72.2 116.424132)">1.6</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_31">
+      <path d="M 79.2 82.8
+L 418 82.8
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_32">
+      <g>
+       <use xlink:href="#mfab51e5816" x="79.2" y="82.8" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_17">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="72.2" y="86.779688" transform="rotate(-0 72.2 86.779688)">1.8</text>
+     </g>
+    </g>
+    <g id="text_18">
+     <text style="fill: #0f172a; font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="52.029687" y="216.2" transform="rotate(-90 52.029687 216.2)">Euclidean 반지름</text>
+    </g>
+   </g>
+   <g id="line2d_33">
+    <path d="M 94.6 201.377778
+L 98.706667 210.937076
+L 102.813333 219.879866
+L 106.92 228.245908
+L 111.026667 236.0724
+L 115.133333 243.394137
+L 119.24 250.243673
+L 123.346667 256.651462
+L 127.453333 262.645994
+L 131.56 268.25392
+L 135.666667 273.500174
+L 139.773333 278.408081
+L 143.88 282.999462
+L 147.986667 287.294732
+L 152.093333 291.312986
+L 156.2 295.072092
+L 161.333333 299.431903
+L 166.466667 303.443122
+L 171.6 307.133622
+L 176.733333 310.529046
+L 181.866667 313.652987
+L 187 316.527152
+L 192.133333 319.171511
+L 198.293333 322.067164
+L 204.453333 324.68726
+L 210.613333 327.058021
+L 216.773333 329.203174
+L 223.96 331.449236
+L 231.146667 333.447966
+L 238.333333 335.226599
+L 246.546667 337.020783
+L 254.76 338.591005
+L 264 340.12447
+L 274.266667 341.579137
+L 284.533333 342.810486
+L 295.826667 343.947794
+L 308.146667 344.972365
+L 322.52 345.935424
+L 337.92 346.746025
+L 356.4 347.485724
+L 377.96 348.110095
+L 402.6 348.601287
+L 402.6 348.601287
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #2563eb; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_34">
+    <path d="M 94.6 201.377778
+L 96.653333 205.918849
+L 98.706667 209.709946
+L 100.76 212.826947
+L 102.813333 215.346798
+L 104.866667 217.345746
+L 106.92 218.897643
+L 108.973333 220.072506
+L 111.026667 220.935386
+L 113.08 221.545622
+L 115.133333 221.956438
+L 118.213333 222.299934
+L 122.32 222.448909
+L 133.613333 222.625153
+L 137.72 222.965209
+L 141.826667 223.548322
+L 145.933333 224.395639
+L 150.04 225.511591
+L 154.146667 226.889235
+L 158.253333 228.514137
+L 162.36 230.367181
+L 167.493333 232.970959
+L 172.626667 235.85197
+L 178.786667 239.611389
+L 184.946667 243.62969
+L 193.16 249.271272
+L 205.48 258.056827
+L 223.96 271.235772
+L 234.226667 278.274089
+L 243.466667 284.329511
+L 251.68 289.451516
+L 259.893333 294.306677
+L 268.106667 298.883063
+L 276.32 303.175551
+L 284.533333 307.184403
+L 292.746667 310.914068
+L 300.96 314.372175
+L 309.173333 317.568703
+L 317.386667 320.515303
+L 325.6 323.224739
+L 333.813333 325.710443
+L 343.053333 328.256545
+L 352.293333 330.556476
+L 361.533333 332.629502
+L 371.8 334.689401
+L 382.066667 336.516586
+L 393.36 338.285053
+L 402.6 339.563054
+L 402.6 339.563054
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #ea580c; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_35">
+    <path d="M 94.6 201.377778
+L 95.626667 203.504096
+L 96.653333 204.968357
+L 97.68 205.814442
+L 98.706667 206.091503
+L 99.733333 205.852315
+L 100.76 205.151556
+L 101.786667 204.044154
+L 102.813333 202.583848
+L 103.84 200.822039
+L 105.893333 196.58308
+L 107.946667 191.666946
+L 111.026667 183.609689
+L 117.186667 167.250797
+L 120.266667 159.677906
+L 123.346667 152.767465
+L 125.4 148.574532
+L 127.453333 144.729439
+L 129.506667 141.237915
+L 131.56 138.100191
+L 133.613333 135.312392
+L 135.666667 132.8676
+L 137.72 130.75667
+L 139.773333 128.968852
+L 141.826667 127.492274
+L 143.88 126.31431
+L 145.933333 125.421868
+L 147.986667 124.80161
+L 150.04 124.440127
+L 152.093333 124.324065
+L 154.146667 124.440233
+L 156.2 124.775675
+L 158.253333 125.317731
+L 160.306667 126.05408
+L 162.36 126.972773
+L 165.44 128.667532
+L 168.52 130.709369
+L 171.6 133.063112
+L 174.68 135.695708
+L 177.76 138.576201
+L 181.866667 142.752783
+L 185.973333 147.25579
+L 191.106667 153.256993
+L 197.266667 160.874935
+L 204.453333 170.151398
+L 216.773333 186.50473
+L 230.12 204.143125
+L 239.36 215.973416
+L 246.546667 224.84923
+L 253.733333 233.388122
+L 260.92 241.557226
+L 267.08 248.248305
+L 273.24 254.643412
+L 279.4 260.738452
+L 285.56 266.532759
+L 291.72 272.028484
+L 297.88 277.23007
+L 304.04 282.143803
+L 310.2 286.777423
+L 316.36 291.139792
+L 322.52 295.240612
+L 328.68 299.090192
+L 334.84 302.699238
+L 341 306.078691
+L 348.186667 309.745923
+L 355.373333 313.133133
+L 362.56 316.257542
+L 369.746667 319.13597
+L 376.933333 321.784717
+L 384.12 324.219474
+L 392.333333 326.759256
+L 400.546667 329.060405
+L 402.6 329.600778
+L 402.6 329.600778
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke: #64748b; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_36">
+    <path d="M 79.2 201.377778
+L 418 201.377778
+" clip-path="url(#pcb35cc7a37)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #64748b"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 79.2 349.6
+L 79.2 82.8
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 79.2 349.6
+L 418 349.6
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="legend_1">
+    <g id="patch_5">
+     <path d="M 363.063438 131.175
+L 411.7 131.175
+Q 413.5 131.175 413.5 129.375
+L 413.5 89.1
+Q 413.5 87.3 411.7 87.3
+L 363.063438 87.3
+Q 361.263438 87.3 361.263438 89.1
+L 361.263438 129.375
+Q 361.263438 131.175 363.063438 131.175
+z
+" style="fill: #ffffff; opacity: 0.8; stroke: #cccccc; stroke-linejoin: miter"/>
+    </g>
+    <g id="line2d_37">
+     <path d="M 364.863438 94.913438
+L 373.863438 94.913438
+L 382.863438 94.913438
+" style="fill: none; stroke: #2563eb; stroke-width: 1.5; stroke-linecap: square"/>
+    </g>
+    <g id="text_19">
+     <text style="fill: #0f172a; font: 9px 'Noto Sans CJK JP'; text-anchor: start" x="390.063438" y="98.063438" transform="rotate(-0 390.063438 98.063438)">K = 0</text>
+    </g>
+    <g id="line2d_38">
+     <path d="M 364.863438 108.638438
+L 373.863438 108.638438
+L 382.863438 108.638438
+" style="fill: none; stroke: #ea580c; stroke-width: 1.5; stroke-linecap: square"/>
+    </g>
+    <g id="text_20">
+     <text style="fill: #0f172a; font: 9px 'Noto Sans CJK JP'; text-anchor: start" x="390.063438" y="111.788438" transform="rotate(-0 390.063438 111.788438)">K = 2</text>
+    </g>
+    <g id="line2d_39">
+     <path d="M 364.863438 122.363438
+L 373.863438 122.363438
+L 382.863438 122.363438
+" style="fill: none; stroke: #64748b; stroke-width: 1.5; stroke-linecap: square"/>
+    </g>
+    <g id="text_21">
+     <text style="fill: #0f172a; font: 9px 'Noto Sans CJK JP'; text-anchor: start" x="390.063438" y="125.513438" transform="rotate(-0 390.063438 125.513438)">K = 4</text>
+    </g>
+   </g>
+  </g>
+  <g id="text_22">
+   <text style="fill: #0f172a; font: 700 14px 'Noto Sans CJK JP'; text-anchor: middle" x="220" y="24.971563" transform="rotate(-0 220 24.971563)">안정한 계의 과도 증폭</text>
+  </g>
+  <g id="text_23">
+   <text style="fill: #0f172a; font: 9px 'Noto Sans CJK JP'" transform="translate(26.4 429.660594)">모든 궤적은 결국 0으로 감쇠합니다.</text>
+   <text style="fill: #0f172a; font: 9px 'Noto Sans CJK JP'" transform="translate(26.4 443.9)">K=4에서는 먼저 초기 반지름 1을 넘습니다.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pcb35cc7a37">
+   <rect x="79.2" y="82.8" width="338.8" height="266.8"/>
+  </clipPath>
+ </defs>
+</svg>

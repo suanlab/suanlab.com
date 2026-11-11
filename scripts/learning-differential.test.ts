@@ -7,6 +7,38 @@ import {getLearningContent} from '../src/lib/learning-content';
 const close=(a:number,b:number,tol=1e-9)=>assert.ok(Math.abs(a-b)<=tol*(1+Math.max(Math.abs(a),Math.abs(b))),`${a} != ${b}`);
 const vector=(a:number[],b:number[],tol=1e-9)=>{assert.equal(a.length,b.length);a.forEach((v,i)=>close(v,b[i],tol));};
 const integrate=(f:(x:number)=>number,a:number,b:number,N=4000)=>{let s=f(a)+f(b);for(let i=1;i<N;i++)s+=(i%2?4:2)*f(a+(b-a)*i/N);return s*(b-a)/(3*N);};
+test('logistic superposition retains tiny signed nonlinear effects instead of subtracting rounded flows',()=>{
+ for(const r of [-1e-20,1e-20,-1e-100,1e-100]){
+  const q=odeFlow(r,.2,.3,1,2,0),leading=-2*.2*.3*r;
+  assert.ok(q.defect!==0);assert.ok(Math.abs(q.defect/leading-1)<1e-14);
+ }
+ assert.equal(odeFlow(0,.2,.3,1,2,0).defect,0);
+ for(const r of [-2,-.1,.1,2])close(odeFlow(r,.2,.3,1.7,2,0).defect,odeFlow(r,.2,.3,1.7,2,0).expandedDefect,1e-14);
+});
+test('structured phase isolation is independent of determinant underflow',()=>{
+ for(const tiny of [Number.MIN_VALUE,1e-200]){
+  assert.equal(phaseFlow(tiny,0,1,0,1,0).isolated,true);
+  assert.equal(phaseFlow(0,tiny,1,0,1,0).classification,'center');
+  assert.equal(phaseFlow(0,tiny,1,0,1,0).isolated,true);
+  const diagonal=phaseFlow(-tiny,tiny,1,0,1,1);
+  assert.equal(diagonal.isolated,true);assert.equal(diagonal.stable,true);
+  assert.equal(phaseFlow(0,tiny,1,0,1,1).isolated,false);
+ }
+ assert.equal(evaluateDifferential('phase-portraits-fixed-points',[-1e-200,0,1,0,1,0]).stats['equilibrium class code'],0);
+});
+test('principal type uses the exact sign of stored coefficients through underflow and rounded cancellation',()=>{
+ for(const tiny of [Number.MIN_VALUE,1e-200]){
+  assert.equal(principalSymbol(tiny,0,tiny,0,0).type,'elliptic');
+  assert.equal(principalSymbol(-tiny,0,-tiny,0,0).type,'elliptic');
+  assert.equal(principalSymbol(tiny,0,-tiny,0,0).type,'hyperbolic');
+  assert.equal(principalSymbol(0,tiny,0,0,0).type,'hyperbolic');
+  assert.equal(principalSymbol(tiny,tiny,tiny,0,0).type,'parabolic rank one');
+ }
+ // Both products round to 1, but (1+2^-52)(1-2^-52)-1 is strictly negative.
+ const a=1+2**-52,c=1-2**-52;
+ assert.equal(a*c-1,0);assert.equal(principalSymbol(a,1,c,0,0).type,'hyperbolic');
+ assert.equal(principalSymbol(0,-0,0,0,0).type,'zero principal part');
+});
 test('IVP derivatives and BVP boundary data follow separate equations and independent polynomial coefficients',()=>{
  const r=initialBoundary(1,1,2,0,0,.5);close(r.ivp,Math.exp(-.5));close(r.bvpQuery,.25);for(const force of [-2,0,2])for(const left of [-1,.3,1])for(const right of [-1,.2,1]){const q=initialBoundary(.7,.8,force,left,right,.37);close(q.bvp(0),left);close(q.bvp(1),right);const h=1e-3,x=.37;close((q.bvp(x+h)-2*q.bvp(x)+q.bvp(x-h))/(h*h),-force,1e-8);close((q.ode(x+1e-5)-q.ode(x-1e-5))/2e-5,-.7*q.ode(x),1e-9);}
 });
