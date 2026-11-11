@@ -3260,7 +3260,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "special-relativity-lorentz-boosts",
       "minkowski-metric-and-proper-time",
       "light-cones-and-causal-order",
-      "relativistic-kinematics-four-momentum"
+      "relativistic-kinematics-four-momentum",
+      "curvature-covariant-derivatives-and-holonomy"
     ]
   },
   {

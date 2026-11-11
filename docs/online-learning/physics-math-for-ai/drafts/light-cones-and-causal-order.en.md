@@ -4,7 +4,7 @@ In flat spacetime, an event $B$ can be reached from an earlier event $A$ by a si
 $$
 \Delta ct \geq \|\Delta\mathbf{x}\|,\qquad B\ne A .
 $$
-Equality is the light cone. A strictly larger time separation allows a subluminal straight path. The condition expresses possible influence under a speed limit. The actual transmission also requires a sender, receiver and a physical channel. [Tong, The Einstein Equations §4.2](https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S4.html)
+Equality is the light cone. A strictly larger time separation allows a subluminal straight path. The condition expresses possible influence under a speed limit. The actual transmission also requires a sender, receiver and a physical channel. [Tong, The Einstein Equations §4.2](https://davidtong.org/teaching/general-relativity/grhtml/S4)
 
 ## 2. Separate clock order from causal order
 

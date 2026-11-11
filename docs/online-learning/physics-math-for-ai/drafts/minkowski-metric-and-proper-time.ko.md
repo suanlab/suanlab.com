@@ -13,7 +13,7 @@ $$
 d\tau=\sqrt{dt^2-d\mathbf{x}^2/c^2}
       =dt\sqrt{1-v(t)^2/c^2}.
 $$
-미래 방향의 직선 구간마다 좌표 시간에 제곱근 인자를 곱합니다. 각 구간의 고유 시간을 더하면 시계의 전체 경과 시간을 얻습니다. 빛꼴 구간의 극한 경로 길이는 0입니다. 공간꼴 구간은 시계가 따르는 궤적이 될 수 없습니다. [Tong, Geodesics in Spacetime §1](https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S1.html)
+미래 방향의 직선 구간마다 좌표 시간에 제곱근 인자를 곱합니다. 각 구간의 고유 시간을 더하면 시계의 전체 경과 시간을 얻습니다. 빛꼴 구간의 극한 경로 길이는 0입니다. 공간꼴 구간은 시계가 따르는 궤적이 될 수 없습니다. [Tong, Geodesics in Spacetime §1](https://davidtong.org/teaching/general-relativity/grhtml/S1)
 
 ## 4. 같은 두 사건을 잇는 경로 비교하기
 

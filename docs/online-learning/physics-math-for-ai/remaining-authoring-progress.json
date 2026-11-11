@@ -15189,24 +15189,72 @@
         },
         {
           "title": "곡률·공변 미분",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "curvature-covariant-derivatives-and-holonomy"
+          ],
           "preparation": {
             "unitId": "curvature-covariant-derivatives-and-holonomy",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/curvature-covariant-derivatives-and-holonomy.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/curvature-covariant-derivatives-and-holonomy.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "rotational-curvature-reader-integration"
+            "nextAction": "great-circle-geodesic-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
+              "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
+            "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-rotational-curvature.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "curvature-covariant-derivatives-and-holonomy",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-rotational-curvature.ts",
+            "lab": "src/components/learning/rotational-curvature-lab.tsx",
+            "tests": "scripts/learning-rotational-curvature.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
+              "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "geodesic",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "geodesics-straight-lines-and-great-circles",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/geodesics-straight-lines-and-great-circles.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/geodesics-straight-lines-and-great-circles.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "great-circle-geodesic-reader-integration"
+          }
         },
         {
           "title": "Einstein 방정식의 구조",
@@ -15230,50 +15278,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "curvature-covariant-derivatives-and-holonomy",
-      "nextAction": "rotational-curvature-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
-      "currentPreparationEvidence": "scripts/learning-four-momentum.test.ts",
+      "nextUnitId": "geodesics-straight-lines-and-great-circles",
+      "nextAction": "great-circle-geodesic-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
+      "currentPreparationEvidence": "scripts/learning-rotational-curvature.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "relativistic-kinematics-four-momentum",
+        "unitId": "curvature-covariant-derivatives-and-holonomy",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-four-momentum.ts",
-        "lab": "src/components/learning/four-momentum-lab.tsx",
-        "tests": "scripts/learning-four-momentum.test.ts",
+        "model": "src/lib/learning-rotational-curvature.ts",
+        "lab": "src/components/learning/rotational-curvature-lab.tsx",
+        "tests": "scripts/learning-rotational-curvature.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
-          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.en.md"
+          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
+          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "relativistic-kinematics-four-momentum",
+        "unitId": "curvature-covariant-derivatives-and-holonomy",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-four-momentum.ts",
-        "lab": "src/components/learning/four-momentum-lab.tsx",
-        "tests": "scripts/learning-four-momentum.test.ts",
+        "model": "src/lib/learning-rotational-curvature.ts",
+        "lab": "src/components/learning/rotational-curvature-lab.tsx",
+        "tests": "scripts/learning-rotational-curvature.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
-          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.en.md"
+          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
+          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "상대론적 운동학",
+        "originalTopic": "곡률·공변 미분",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "relativistic-kinematics-four-momentum"
+          "curvature-covariant-derivatives-and-holonomy"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -15281,12 +15329,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.ko.md",
-          "content/learning/physics-math-for-ai/relativistic-kinematics-four-momentum.en.md"
+          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.ko.md",
+          "content/learning/physics-math-for-ai/curvature-covariant-derivatives-and-holonomy.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-four-momentum.test.ts"
+        "evidence": "scripts/learning-rotational-curvature.test.ts"
       }
     },
     {
@@ -15476,14 +15524,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 613,
-  "verifiedNewUnitCount": 460,
+  "implementedUnitCount": 614,
+  "verifiedNewUnitCount": 461,
   "remainingForwardDomainCount": 4,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 37,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 36,
   "nextDomain": "relativity",
-  "nextTopic": "곡률·공변 미분",
+  "nextTopic": "geodesic",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 325,
+  "verifiedOriginalScopeTopicCount": 326,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -15545,11 +15593,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 곡률·공변 미분. All 613 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers geodesic. All 614 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "curvature-covariant-derivatives-and-holonomy",
+  "nextAuthoringUnitId": "geodesics-straight-lines-and-great-circles",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "rotational-curvature-reader-integration",
+  "nextAction": "great-circle-geodesic-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

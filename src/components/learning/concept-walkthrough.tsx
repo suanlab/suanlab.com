@@ -1,4 +1,6 @@
 'use client';
+import { rotationalCurvatureId } from '@/data/rotational-curvature-reader';
+import { RotationalCurvatureConcept } from './rotational-curvature-lab';
 import { fourMomentumId } from '@/data/four-momentum-reader';
 import { FourMomentumConcept } from './four-momentum-lab';
 import { causalRelayId } from '@/data/causal-relay-reader';
@@ -271,6 +273,7 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === rotationalCurvatureId) return <RotationalCurvatureConcept language={language}/>;
   if (kind === fourMomentumId) return <FourMomentumConcept language={language}/>;
   if (kind === causalRelayId) return <CausalRelayConcept language={language}/>;
   if (kind === minkowskiPathId) return <MinkowskiPathConcept language={language}/>;

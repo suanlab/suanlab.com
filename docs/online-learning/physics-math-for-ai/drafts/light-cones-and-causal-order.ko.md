@@ -4,7 +4,7 @@
 $$
 \Delta ct \geq \|\Delta\mathbf{x}\|,\qquad B\ne A .
 $$
-등호는 빛의 원뿔 경계입니다. 시간차가 더 크면 빛보다 느린 직선 경로가 가능합니다. 이 조건은 속력 제한 아래 영향이 전달될 수 있는지를 나타냅니다. 실제 전달에는 송신기, 수신기와 물리적 채널도 필요합니다. [Tong, The Einstein Equations §4.2](https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S4.html)
+등호는 빛의 원뿔 경계입니다. 시간차가 더 크면 빛보다 느린 직선 경로가 가능합니다. 이 조건은 속력 제한 아래 영향이 전달될 수 있는지를 나타냅니다. 실제 전달에는 송신기, 수신기와 물리적 채널도 필요합니다. [Tong, The Einstein Equations §4.2](https://davidtong.org/teaching/general-relativity/grhtml/S4)
 
 ## 2. 좌표 시간의 순서와 인과 순서 구분하기
 

@@ -1,4 +1,5 @@
 'use client';
+import { rotationalCurvatureId } from '@/data/rotational-curvature-reader';
 import { fourMomentumId } from '@/data/four-momentum-reader';
 import { causalRelayId } from '@/data/causal-relay-reader';
 import { minkowskiPathId } from '@/data/minkowski-path-reader';
@@ -208,6 +209,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === rotationalCurvatureId) return <span className="ai-concept-equation" aria-hidden="true">K = −f″/f</span>;
   if (kind === fourMomentumId) return <span className="ai-concept-equation" aria-hidden="true">W² = Eₜₒₜ² − |pₜₒₜ|²</span>;
   if (kind === causalRelayId) return <span className="ai-concept-equation" aria-hidden="true">Δct ≥ |Δx|</span>;
   if (kind === minkowskiPathId) return <span className="ai-concept-equation" aria-hidden="true">s² = (Δct)² − (Δx)²</span>;

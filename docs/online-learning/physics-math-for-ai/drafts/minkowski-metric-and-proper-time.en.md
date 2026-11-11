@@ -13,7 +13,7 @@ $$
 d\tau=\sqrt{dt^2-d\mathbf{x}^2/c^2}
       =dt\sqrt{1-v(t)^2/c^2}.
 $$
-For each straight future-directed segment, multiply its coordinate duration by the factor under the square root. Add the resulting proper times across the segments. Null segments contribute zero in the limiting path-length formula. A spacelike segment cannot represent a clock trajectory. [Tong, Geodesics in Spacetime §1](https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S1.html)
+For each straight future-directed segment, multiply its coordinate duration by the factor under the square root. Add the resulting proper times across the segments. Null segments contribute zero in the limiting path-length formula. A spacelike segment cannot represent a clock trajectory. [Tong, Geodesics in Spacetime §1](https://davidtong.org/teaching/general-relativity/grhtml/S1)
 
 ## 4. Compare two routes between fixed events
 
