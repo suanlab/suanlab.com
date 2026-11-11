@@ -1,4 +1,5 @@
 'use client';
+import { photonicInterferometerId } from '@/data/photonic-interferometer-reader';
 import { photodiodeBandwidthId } from '@/data/photodiode-bandwidth-reader';
 import { electronicBandsId } from '@/data/electronic-bands-reader';
 import { phononDispersionId } from '@/data/phonon-dispersion-reader';
@@ -217,6 +218,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === photonicInterferometerId) return <span className="ai-concept-equation" aria-hidden="true">M = R(θ)DR(−θ)</span>;
   if (kind === photodiodeBandwidthId) return <span className="ai-concept-equation" aria-hidden="true">f_c = 1/(2πRC)</span>;
   if (kind === electronicBandsId) return <span className="ai-concept-equation" aria-hidden="true">H(q)ψ = Eψ</span>;
   if (kind === phononDispersionId) return <span className="ai-concept-equation" aria-hidden="true">D(q)v = ω²v</span>;

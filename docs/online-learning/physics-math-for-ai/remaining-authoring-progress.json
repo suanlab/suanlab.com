@@ -15733,24 +15733,72 @@
         },
         {
           "title": "analog·photonic computing",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "photonic-interferometers-and-matrix-products"
+          ],
           "preparation": {
             "unitId": "photonic-interferometers-and-matrix-products",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/photonic-interferometers-and-matrix-products.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/photonic-interferometers-and-matrix-products.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "photonic-interferometer-reader-integration"
+            "nextAction": "photodiode-noise-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.ko.md",
+              "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.ko.md",
+            "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-photonic-interferometer.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "photonic-interferometers-and-matrix-products",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-photonic-interferometer.ts",
+            "lab": "src/components/learning/photonic-interferometer-lab.tsx",
+            "tests": "scripts/learning-photonic-interferometer.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.ko.md",
+              "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "잡음·비이상성",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "photodiode-noise-and-equivalent-bandwidth",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/photodiode-noise-and-equivalent-bandwidth.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/photodiode-noise-and-equivalent-bandwidth.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "photodiode-noise-reader-integration"
+          }
         },
         {
           "title": "지연·대역폭·메모리 이동",
@@ -15779,50 +15827,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "photonic-interferometers-and-matrix-products",
-      "nextAction": "photonic-interferometer-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
-      "currentPreparationEvidence": "scripts/learning-photodiode-bandwidth.test.ts",
+      "nextUnitId": "photodiode-noise-and-equivalent-bandwidth",
+      "nextAction": "photodiode-noise-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.ko.md",
+      "currentPreparationEvidence": "scripts/learning-photonic-interferometer.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "photodiode-circuits-and-sensor-bandwidth",
+        "unitId": "photonic-interferometers-and-matrix-products",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-photodiode-bandwidth.ts",
-        "lab": "src/components/learning/photodiode-bandwidth-lab.tsx",
-        "tests": "scripts/learning-photodiode-bandwidth.test.ts",
+        "model": "src/lib/learning-photonic-interferometer.ts",
+        "lab": "src/components/learning/photonic-interferometer-lab.tsx",
+        "tests": "scripts/learning-photonic-interferometer.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
-          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
+          "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.ko.md",
+          "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "photodiode-circuits-and-sensor-bandwidth",
+        "unitId": "photonic-interferometers-and-matrix-products",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-photodiode-bandwidth.ts",
-        "lab": "src/components/learning/photodiode-bandwidth-lab.tsx",
-        "tests": "scripts/learning-photodiode-bandwidth.test.ts",
+        "model": "src/lib/learning-photonic-interferometer.ts",
+        "lab": "src/components/learning/photonic-interferometer-lab.tsx",
+        "tests": "scripts/learning-photonic-interferometer.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
-          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
+          "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.ko.md",
+          "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "반도체·회로·센서",
+        "originalTopic": "analog·photonic computing",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "photodiode-circuits-and-sensor-bandwidth"
+          "photonic-interferometers-and-matrix-products"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -15830,12 +15878,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
-          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
+          "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.ko.md",
+          "content/learning/physics-math-for-ai/photonic-interferometers-and-matrix-products.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-photodiode-bandwidth.test.ts"
+        "evidence": "scripts/learning-photonic-interferometer.test.ts"
       }
     },
     {
@@ -15966,14 +16014,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 622,
-  "verifiedNewUnitCount": 469,
+  "implementedUnitCount": 623,
+  "verifiedNewUnitCount": 470,
   "remainingForwardDomainCount": 3,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 28,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 27,
   "nextDomain": "matter-computation",
-  "nextTopic": "analog·photonic computing",
+  "nextTopic": "잡음·비이상성",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 334,
+  "verifiedOriginalScopeTopicCount": 335,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -16035,11 +16083,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers analog·photonic computing. All 622 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 잡음·비이상성. All 623 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "photonic-interferometers-and-matrix-products",
+  "nextAuthoringUnitId": "photodiode-noise-and-equivalent-bandwidth",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "photonic-interferometer-reader-integration",
+  "nextAction": "photodiode-noise-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }
