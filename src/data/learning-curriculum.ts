@@ -3323,7 +3323,9 @@ export const curriculumDomains:CurriculumDomain[] = [
         "en": "Verification of physical implementations"
       }
     ],
-    "unitIds": []
+    "unitIds": [
+      "lattice-vibrations-and-phonon-dispersion"
+    ]
   },
   {
     "id": "inverse-problems",

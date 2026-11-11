@@ -1,4 +1,6 @@
 'use client';
+import { phononDispersionId } from '@/data/phonon-dispersion-reader';
+import { PhononDispersionConcept } from './phonon-dispersion-lab';
 import { weakFieldClockId } from '@/data/weak-field-clock-reader';
 import { WeakFieldClockConcept } from './weak-field-clock-lab';
 import { rindlerObservablesId } from '@/data/rindler-observables-reader';
@@ -283,6 +285,7 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === phononDispersionId) return <PhononDispersionConcept language={language}/>;
   if (kind === weakFieldClockId) return <WeakFieldClockConcept language={language}/>;
   if (kind === rindlerObservablesId) return <RindlerObservablesConcept language={language}/>;
   if (kind === schwarzschildRedshiftId) return <SchwarzschildRedshiftConcept language={language}/>;

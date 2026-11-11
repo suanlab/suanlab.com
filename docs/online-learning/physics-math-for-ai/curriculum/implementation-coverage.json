@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 619,
+  "implementedUnitCount": 620,
   "curriculumComplete": false,
-  "scope": "619 registered units, 1907 guided experiments and 1238 bilingual manuscript files. Introductory scope: 331 of 362 original topics verified, 31 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "620 registered units, 1909 guided experiments and 1240 bilingual manuscript files. Introductory scope: 332 of 362 original topics verified, 30 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -10587,20 +10587,132 @@
     {
       "id": "matter-computation",
       "topicCount": 10,
-      "status": "planned",
-      "implementedUnitIds": [],
-      "nextUnitId": "lattice-vibrations-and-phonon-dispersion",
-      "nextAction": "phonon-dispersion-reader-integration",
+      "status": "partially-authored",
+      "implementedUnitIds": [
+        "lattice-vibrations-and-phonon-dispersion"
+      ],
+      "nextUnitId": "electronic-bands-in-a-dimerized-chain",
+      "nextAction": "electronic-bands-reader-integration",
       "phononDraft": {
         "unitId": "lattice-vibrations-and-phonon-dispersion",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/lattice-vibrations-and-phonon-dispersion.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/lattice-vibrations-and-phonon-dispersion.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "phonon-dispersion-reader-integration"
+        "nextAction": "electronic-bands-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
+          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
+        ]
+      },
+      "currentPreparationReport": "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
+      "currentPreparationEvidence": "scripts/learning-phonon-dispersion.test.ts",
+      "lastIntegratedPreparation": {
+        "unitId": "lattice-vibrations-and-phonon-dispersion",
+        "status": "verified-introductory-unit",
+        "registered": true,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "model": "src/lib/learning-phonon-dispersion.ts",
+        "lab": "src/components/learning/phonon-dispersion-lab.tsx",
+        "tests": "scripts/learning-phonon-dispersion.test.ts",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
+          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
+        ],
+        "sectionsPerLocale": 6,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
+      },
+      "lastIntegratedUnitPreparation": {
+        "unitId": "lattice-vibrations-and-phonon-dispersion",
+        "status": "verified-introductory-unit",
+        "registered": true,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "model": "src/lib/learning-phonon-dispersion.ts",
+        "lab": "src/components/learning/phonon-dispersion-lab.tsx",
+        "tests": "scripts/learning-phonon-dispersion.test.ts",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
+          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
+        ],
+        "sectionsPerLocale": 6,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
+      },
+      "lastCompletedIntroductoryTopic": {
+        "originalTopic": "고체·격자·phonon",
+        "stage": "introductory-topic-verified",
+        "coverageLevel": "introductory",
+        "unitIds": [
+          "lattice-vibrations-and-phonon-dispersion"
+        ],
+        "registeredUnitCount": 1,
+        "originalTopicComplete": true,
+        "originalTopicAuditPending": false,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
+          "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
+        ],
+        "researchDepthComplete": false,
+        "wholeDomainAuditComplete": false,
+        "evidence": "scripts/learning-phonon-dispersion.test.ts"
+      },
+      "topicEvidence": [
+        {
+          "originalTopic": "고체·격자·phonon",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "lattice-vibrations-and-phonon-dispersion"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
+            "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-phonon-dispersion.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "lattice-vibrations-and-phonon-dispersion",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-phonon-dispersion.ts",
+            "lab": "src/components/learning/phonon-dispersion-lab.tsx",
+            "tests": "scripts/learning-phonon-dispersion.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.ko.md",
+              "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        }
+      ],
+      "electronicBandsDraft": {
+        "unitId": "electronic-bands-in-a-dimerized-chain",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/electronic-bands-in-a-dimerized-chain.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/electronic-bands-in-a-dimerized-chain.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "electronic-bands-reader-integration"
       }
     },
     {
@@ -10638,7 +10750,7 @@
     "research-methods"
   ],
   "nextDomain": "matter-computation",
-  "nextTopic": "고체·격자·phonon",
+  "nextTopic": "전자·band",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",
