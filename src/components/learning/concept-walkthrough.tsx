@@ -1,4 +1,6 @@
 'use client';
+import { rindlerObservablesId } from '@/data/rindler-observables-reader';
+import { RindlerObservablesConcept } from './rindler-observables-lab';
 import { schwarzschildRedshiftId } from '@/data/schwarzschild-redshift-reader';
 import { SchwarzschildRedshiftConcept } from './schwarzschild-redshift-lab';
 import { einsteinFluidCurvatureId } from '@/data/einstein-fluid-curvature-reader';
@@ -279,6 +281,7 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === rindlerObservablesId) return <RindlerObservablesConcept language={language}/>;
   if (kind === schwarzschildRedshiftId) return <SchwarzschildRedshiftConcept language={language}/>;
   if (kind === einsteinFluidCurvatureId) return <EinsteinFluidCurvatureConcept language={language}/>;
   if (kind === greatCircleGeodesicId) return <GreatCircleGeodesicConcept language={language}/>;

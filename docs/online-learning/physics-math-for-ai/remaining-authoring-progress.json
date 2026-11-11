@@ -15401,71 +15401,119 @@
         },
         {
           "title": "좌표와 물리량",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "accelerated-coordinates-and-invariant-readings"
+          ],
           "preparation": {
             "unitId": "accelerated-coordinates-and-invariant-readings",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/accelerated-coordinates-and-invariant-readings.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/accelerated-coordinates-and-invariant-readings.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "rindler-observables-reader-integration"
+            "nextAction": "weak-field-clock-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
+              "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
+            "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-rindler-observables.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "accelerated-coordinates-and-invariant-readings",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-rindler-observables.ts",
+            "lab": "src/components/learning/rindler-observables-lab.tsx",
+            "tests": "scripts/learning-rindler-observables.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
+              "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "유효 근사",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "weak-field-orbital-clock-approximation",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/weak-field-orbital-clock-approximation.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/weak-field-orbital-clock-approximation.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "weak-field-clock-reader-integration"
+          }
         }
       ],
       "verification": null,
-      "nextUnitId": "accelerated-coordinates-and-invariant-readings",
-      "nextAction": "rindler-observables-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
-      "currentPreparationEvidence": "scripts/learning-schwarzschild-redshift.test.ts",
+      "nextUnitId": "weak-field-orbital-clock-approximation",
+      "nextAction": "weak-field-clock-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
+      "currentPreparationEvidence": "scripts/learning-rindler-observables.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "spacetime-observation-and-redshift",
+        "unitId": "accelerated-coordinates-and-invariant-readings",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-schwarzschild-redshift.ts",
-        "lab": "src/components/learning/schwarzschild-redshift-lab.tsx",
-        "tests": "scripts/learning-schwarzschild-redshift.test.ts",
+        "model": "src/lib/learning-rindler-observables.ts",
+        "lab": "src/components/learning/rindler-observables-lab.tsx",
+        "tests": "scripts/learning-rindler-observables.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
-          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.en.md"
+          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
+          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
         ],
-        "sectionsPerLocale": 5,
+        "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "spacetime-observation-and-redshift",
+        "unitId": "accelerated-coordinates-and-invariant-readings",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-schwarzschild-redshift.ts",
-        "lab": "src/components/learning/schwarzschild-redshift-lab.tsx",
-        "tests": "scripts/learning-schwarzschild-redshift.test.ts",
+        "model": "src/lib/learning-rindler-observables.ts",
+        "lab": "src/components/learning/rindler-observables-lab.tsx",
+        "tests": "scripts/learning-rindler-observables.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
-          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.en.md"
+          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
+          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
         ],
-        "sectionsPerLocale": 5,
+        "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "시공간의 관측",
+        "originalTopic": "좌표와 물리량",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "spacetime-observation-and-redshift"
+          "accelerated-coordinates-and-invariant-readings"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -15473,12 +15521,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.ko.md",
-          "content/learning/physics-math-for-ai/spacetime-observation-and-redshift.en.md"
+          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
+          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-schwarzschild-redshift.test.ts"
+        "evidence": "scripts/learning-rindler-observables.test.ts"
       }
     },
     {
@@ -15668,14 +15716,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 617,
-  "verifiedNewUnitCount": 464,
+  "implementedUnitCount": 618,
+  "verifiedNewUnitCount": 465,
   "remainingForwardDomainCount": 4,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 33,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 32,
   "nextDomain": "relativity",
-  "nextTopic": "좌표와 물리량",
+  "nextTopic": "유효 근사",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 329,
+  "verifiedOriginalScopeTopicCount": 330,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -15737,11 +15785,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 좌표와 물리량. All 617 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 유효 근사. All 618 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "accelerated-coordinates-and-invariant-readings",
+  "nextAuthoringUnitId": "weak-field-orbital-clock-approximation",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "rindler-observables-reader-integration",
+  "nextAction": "weak-field-clock-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

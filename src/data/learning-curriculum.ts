@@ -3264,7 +3264,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "curvature-covariant-derivatives-and-holonomy",
       "geodesics-straight-lines-and-great-circles",
       "einstein-equations-trace-and-sources",
-      "spacetime-observation-and-redshift"
+      "spacetime-observation-and-redshift",
+      "accelerated-coordinates-and-invariant-readings"
     ]
   },
   {
