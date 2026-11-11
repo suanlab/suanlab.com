@@ -102,3 +102,31 @@ for(const kind of symmetryKinds)test(`${kind}: guided presets keep finite geomet
 for(const kind of symmetryKinds)for(const lang of ['ko','en'] as const)test(`${kind}.${lang}: detailed theory, valid equations, explained exercise and primary reading`,async()=>{
  const source=await fs.readFile(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8'),rendered=await getLearningContent(kind);assert.ok(rendered.outline[lang].length>=4);assert.ok(rendered[lang].length>4000);assert.ok(rendered[lang].includes('katex'));assert.ok(!rendered[lang].includes('katex-error'));assert.ok(source.includes(lang==='ko'?'직접 풀기':'Exercise'));assert.ok(source.includes('https://'));if(lang==='en'){assert.ok(!/[가-힣]/.test(source));assert.ok(source.split(/\s+/).length>=350);}
 });
+
+test('analytic equivariance defect retains anisotropy below rounded matrix entries',()=>{
+ for(const c of [1e-20,-1e-100]){
+  const r=equivarianceExample(Math.PI/2,1,0,c);
+  assert.equal(r.global,false);assert.ok(r.error>0);
+  assert.ok(Math.abs(r.error/(Math.sqrt(5)*Math.abs(c))-1)<3e-16);
+ }
+ assert.equal(equivarianceExample(Math.PI,1,0,1e-20).error,0);
+});
+test('rotation coefficients agree with high-precision Taylor references across the former cutoff',()=>{
+ // Independently summed at 100 decimal digits from the exact binary64 inputs.
+ for(const [theta,A,B,C] of [[1e-4,.9999999983333333,.49999999958333335,.16666666658333334],[.001,.9999998333333416,.4999999583333347,.16666665833333352],[.099999,.9983341997681272,.49958348052516105,.16658335483771256]]){
+  const r=rotationCoefficients(theta);close(r.A,A,2e-16);close(r.B,B,1e-16);close(r.C,C,5e-17);
+ }
+});
+test('near-full-turn twist retains both tiny transverse translation components',()=>{
+ const theta=2*Math.PI-2**-48,r=expTwist([0,0,theta],[1,0,0],1);
+ const expected=[-6.044136616964859e-16,1.1476736673972552e-30];
+ expected.forEach((x,i)=>assert.ok(Math.abs(r.t[i]/x-1)<1e-14));
+ assert.deepEqual(expTwist([0,0,2*Math.PI],[1,0,1],1).t,[0,0,1]);
+});
+
+test('a zero Lie generator gives the exact identity commutator and zero displayed quotient error',()=>{
+ for(const [a,b] of [[0,1],[1,0],[0,0],[0,-2]])for(const h of [.1,.05,.5,1e-6]){
+  const r=lieCommutator(a,b,h);assert.deepEqual(r.K,identity(3));assert.equal(r.error,0);
+  assert.equal(evaluate('lie-brackets-commutators',[a,b,h]).stats['scaled matrix discrepancy to bracket'],0);
+ }
+});

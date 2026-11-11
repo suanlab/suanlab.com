@@ -34,6 +34,50 @@ trace·determinant·고유값은 유지됩니다. 고유값 s±√(a²+b²)로 P
 
 연속 SO2에서는 비영 weight의 두 배 각도 평면이 실수 불가약입니다. 물리 π/2를 생성자로 하는 C4에 제한하면 이 평면의 생성자는 −I뿐입니다. 모든 직선이 불변이므로 alternating 1차원 character 두 복사본으로 나뉩니다. 앞 단원의 한 배 각도 C4 불가약 평면과 다릅니다.
 
+## 두 Index의 곱에서 Scalar·Vector·고차 Block으로
+
+전체 tensor product는 대칭 tensor만 포함하지 않습니다. 3차원의 모든 실수 행렬은 scalar 항등·반대칭·대칭 traceless 부분으로 유일하게 나뉩니다.
+
+$$
+T=\frac{\operatorname{tr}T}{3}I+\frac{T-T^T}{2}
++\left(\frac{T+T^T}{2}-\frac{\operatorname{tr}T}{3}I\right).
+$$
+
+Frobenius 직교인 세 block의 차원은 1,3,5입니다. 직교 g의 켤레 작용은 각 block을 보존합니다. 반대칭 부분을 A=hat(a)로 쓰면 SO3에서 a는 벡터로 변하지만 O3에서는 a'=det(g)ga인 axial vector입니다. 이 추가 determinant 때문에 벡터·tensor channel을 섞을 때 반사를 명시적으로 처리해야 합니다. proper 회전의 익숙한 3⊗3 분해이며 반사의 parity는 따로 정한 것입니다.
+
+5차원 block은 SO3에서 불가약입니다. 비영 불변 부분공간의 tensor 하나를 proper 회전으로 대각화하세요. 부호 있는 순열 켤레 행렬들의 차로 비영 대각 차이를 얻고, 축 순열로 traceless 대각 공간 전체를 생성합니다. 대각 차이를 45도 회전하면 비대각 대칭 기저 tensor가 됩니다. 축을 순열하면 비대각 기저 세 개를 모두 얻으므로 불변 부분공간은 다섯 차원 전체를 포함합니다.
+
+2차원에서는 대응하는 반대칭 직선이 J로 생성됩니다. 회전에서는 trivial이지만 반사에서 부호가 바뀝니다. 대칭 trace 직선은 둘 다에서 불변입니다. 실습은 대칭 2×2 tensor의 3차원 공간을 다루며, 아래 코드는 별도의 3×3 확장입니다.
+
+| 3차원 Block | 차원 | SO3 변환 |
+|---|---:|---|
+| Scalar 항등 | 1 | Scalar |
+| 반대칭 | 3 | Axial vector, proper 회전에서는 보통 벡터와 같음 |
+| 대칭 Traceless | 5 | Rank-two 불가약 Block |
+
+정확분수로 복원·직교성과 axial 반사 법칙을 확인하세요. Covariance tensor의 양성은 별도 제약이며 표현 분해만으로 따라오지 않습니다.
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+T=[[F(v) for v in row] for row in [[1,2,0],[0,-1,3],[4,0,2]]]
+scalar=sum(T[i][i] for i in range(3))/3
+C=[[scalar*int(i==j) for j in range(3)] for i in range(3)]
+A=[[(T[i][j]-T[j][i])/2 for j in range(3)] for i in range(3)]
+S=[[(T[i][j]+T[j][i])/2-C[i][j] for j in range(3)] for i in range(3)]
+assert [[C[i][j]+A[i][j]+S[i][j] for j in range(3)] for i in range(3)]==T
+def inner(X,Y): return sum(X[i][j]*Y[i][j] for i in range(3) for j in range(3))
+assert inner(C,A)==inner(C,S)==inner(A,S)==0
+axial=[A[2][1],A[0][2],A[1][0]]
+# Reflect z: g=diag(1,1,-1), det(g)=-1.
+signs=[1,1,-1]; reflected=[[signs[i]*A[i][j]*signs[j] for j in range(3)] for i in range(3)]
+axial_after=[reflected[2][1],reflected[0][2],reflected[1][0]]
+assert axial_after==[-signs[i]*axial[i] for i in range(3)]
+print('block squared norms:',inner(C,C),inner(A,A),inner(S,S))
+print('axial before/after:',axial,axial_after)
+```
+
 ## 직접 풀기와 풀이
 
 T=[[1,1],[1,−1]],θ=0에서 반사를 켜면 scalar 0, 계수 (1,1)→(1,−1)이고 trace 0·determinant −2는 같습니다. 고유값 ±√2라 covariance가 될 수 없는 이유를 설명하세요. 이어 항등 tensor를 택해 모든 각도에서 불변인지 확인하세요.

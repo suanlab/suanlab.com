@@ -33,6 +33,54 @@ a=b=1,h=0.1에서 scaled [1,0] 성분은 약 0.99665, bracket은 1입니다. 전
 
 h=0에서 quotient는 정의되지 않지만 극한과 bracket은 존재합니다. 아주 작은 양수 h에서는 K−I의 소거 오차가 h⁻²로 증폭됩니다. 구현은 h<10⁻⁶의 scaled 값을 숨기고 정밀도 한계를 명시합니다. 이 기준은 수치 표시 정책이며 수학적 정의역 제한이 아닙니다. 기준 곡선은 h≥0.01을 씁니다.
 
+## Bracket·나머지항·부동소수점 오차 구별하기
+
+행렬 곱의 결합법칙은 Jacobi 항등식을 보장합니다. 중첩 교환자 세 개를 전개하면 모든 삼차 단항식이 반대 부호와 상쇄됩니다. 따라서 skew 행렬은 임의 비가환 연산을 붙인 벡터 공간이 아니라 Lie algebra를 이룹니다.
+
+고정된 유계 행렬에서 지수 급수를 한 차수 더 곱하면 다음과 같습니다.
+
+$$
+K(h)=I+h^2[A,B]+\frac{h^3}{2}[A+B,[A,B]]+O(h^4).
+$$
+
+이차항은 h의 짝함수, 삼차항은 홀함수입니다. 따라서 K(h)와 K(−h)를 평균하면 삼차항이 지워집니다. 항등을 빼고 h²로 나눈 중심 quotient의 truncation 오차는 O(h²)이고, 한쪽 quotient는 일반적으로 O(h)입니다. 중심 계산은 별도의 Python 비교이며 실습의 한쪽 quotient와 작은 h 정밀도 정책은 유지합니다.
+
+| 계산량 | 수학적 극한 | Truncation 차수 |
+|---|---|---|
+| (K(h)−I)/h² | [A,B] | O(h) |
+| (K(h)+K(−h)−2I)/(2h²) | [A,B] | O(h²) |
+| 극도로 작은 h의 계산된 quotient | 극한만으로 정확성 보장 불가 | Roundoff가 지배할 수 있음 |
+
+코드는 실습의 Rodrigues 함수를 호출하지 않고 행렬 지수 급수를 독립 합산합니다. h를 절반으로 줄여 오차 비가 점근 구간에서 약 2와 4가 되는지 확인하세요. 부동소수점 차분에서는 h를 무한히 줄여도 정확도가 단조롭게 좋아지지 않습니다.
+
+생성자 하나가 0이면 모든 h에서 group commutator는 정확히 항등입니다. 구현은 이 항등식을 직접 평가해 회전과 그 역의 행렬 곱 roundoff가 가짜 scaled 오차로 확대되지 않게 합니다. h=0과 작은 h의 표시 정책은 별도로 유지합니다.
+
+## Python으로 계산 재현하기
+
+```python
+from math import sqrt
+I=[[float(i==j) for j in range(3)] for i in range(3)]
+A=[[0,0,0],[0,0,-1],[0,1,0]]; B=[[0,0,1],[0,0,0],[-1,0,0]]
+def mm(A,B): return [[sum(A[i][k]*B[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
+def exp(M):
+    total=[r[:] for r in I]; term=[r[:] for r in I]
+    for k in range(1,45):
+        term=[[v/k for v in row] for row in mm(term,M)]
+        total=[[total[i][j]+term[i][j] for j in range(3)] for i in range(3)]
+    return total
+def K(h):
+    out=I
+    for M,s in [(A,h),(B,h),(A,-h),(B,-h)]: out=mm(out,exp([[s*v for v in row] for row in M]))
+    return out
+AB,BA=mm(A,B),mm(B,A); C=[[AB[i][j]-BA[i][j] for j in range(3)] for i in range(3)]
+for h in [.1,.05,.025,.0125]:
+    plus,minus=K(h),K(-h)
+    forward=sqrt(sum(((plus[i][j]-I[i][j])/h**2-C[i][j])**2 for i in range(3) for j in range(3)))
+    centered=sqrt(sum(((plus[i][j]+minus[i][j]-2*I[i][j])/(2*h*h)-C[i][j])**2 for i in range(3) for j in range(3)))
+    assert centered < forward
+    print(h, round(forward,9), round(centered,9))
+```
+
 ## 직접 풀기와 연구 연결
 
 b=0이면 B=0이라 모든 허용 a에서 K=I, bracket=0입니다. 확인한 뒤 비영 a,b의 h=0.1과 0.05를 비교해 group 효과의 이차항과 scaled 오차의 일차항을 설명하세요.

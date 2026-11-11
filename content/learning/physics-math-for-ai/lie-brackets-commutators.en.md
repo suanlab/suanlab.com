@@ -33,6 +33,54 @@ The 3D drawing shows reference vectors and their actual transformation under K. 
 
 At h=0, (K−I)/h² is undefined even though its limit and the bracket exist. Very small positive h introduces subtraction cancellation amplified by h⁻². This implementation hides the scaled quotient below 10⁻⁶ and explicitly labels the precision limit; that threshold is a numerical display policy, not a new mathematical domain restriction. The reference curve uses h≥0.01.
 
+## Separate the bracket, the remainder and floating-point error
+
+Associativity of matrix multiplication implies the Jacobi identity: expanding the three nested commutators cancels every cubic monomial with its negative. Thus the skew matrices form a Lie algebra, not merely a vector space with an arbitrary noncommutative operation.
+
+For fixed bounded matrices, multiplying the exponential series one order further gives
+
+$$
+K(h)=I+h^2[A,B]+\frac{h^3}{2}[A+B,[A,B]]+O(h^4).
+$$
+
+The quadratic term is even in h and the cubic term odd. Hence averaging K(h) and K(−h) cancels the cubic term. After subtracting identity and dividing by h², this centered quotient has O(h²) truncation error, whereas the one-sided quotient generally has O(h) error. This centered construction is a separate Python comparison; the lab retains its original one-sided quotient and explicit small-h precision policy.
+
+| Quantity | Mathematical limiting value | Truncation order |
+|---|---|---|
+| (K(h)−I)/h² | [A,B] | O(h) |
+| (K(h)+K(−h)−2I)/(2h²) | [A,B] | O(h²) |
+| Computed quotient at extremely small h | Not certified by a limit alone | Roundoff may dominate |
+
+The code independently sums matrix exponentials rather than calling the lab's Rodrigues helper. Halve h and inspect the error ratios: roughly two versus four in the asymptotic window. Decreasing h indefinitely does not monotonically improve a floating-point difference quotient.
+
+If either generator is zero, the group commutator is exactly identity for every h. The implementation evaluates this known identity directly, rather than turning roundoff in a rotation times its inverse into a spurious scaled defect. The h=0 and small-h display policies remain separate.
+
+## Reproduce the calculation in Python
+
+```python
+from math import sqrt
+I=[[float(i==j) for j in range(3)] for i in range(3)]
+A=[[0,0,0],[0,0,-1],[0,1,0]]; B=[[0,0,1],[0,0,0],[-1,0,0]]
+def mm(A,B): return [[sum(A[i][k]*B[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
+def exp(M):
+    total=[r[:] for r in I]; term=[r[:] for r in I]
+    for k in range(1,45):
+        term=[[v/k for v in row] for row in mm(term,M)]
+        total=[[total[i][j]+term[i][j] for j in range(3)] for i in range(3)]
+    return total
+def K(h):
+    out=I
+    for M,s in [(A,h),(B,h),(A,-h),(B,-h)]: out=mm(out,exp([[s*v for v in row] for row in M]))
+    return out
+AB,BA=mm(A,B),mm(B,A); C=[[AB[i][j]-BA[i][j] for j in range(3)] for i in range(3)]
+for h in [.1,.05,.025,.0125]:
+    plus,minus=K(h),K(-h)
+    forward=sqrt(sum(((plus[i][j]-I[i][j])/h**2-C[i][j])**2 for i in range(3) for j in range(3)))
+    centered=sqrt(sum(((plus[i][j]+minus[i][j]-2*I[i][j])/(2*h*h)-C[i][j])**2 for i in range(3) for j in range(3)))
+    assert centered < forward
+    print(h, round(forward,9), round(centered,9))
+```
+
 ## Exercise and research connection
 
 Set b=0. Then B=0, K=I and the bracket is zero for all permitted a. Verify the matrix and plot. Next compare h=0.1 and 0.05 for nonzero a,b and explain the second-order group effect versus first-order scaled error.

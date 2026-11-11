@@ -38,6 +38,49 @@ $$
 
 Consequently R=I and J=I at zero angular generator, giving pure translation p=tv. Series also prevent subtractive cancellation for small nonzero angles. The implementation is checked against an independently summed four-by-four matrix exponential and a separate integration of exp(sΩ)v.
 
+## Derive the Jacobian and identify its singular directions
+
+![A full-turn twist closes its transverse origin path while naive translation does not; the two transverse Jacobian singular values vanish at two pi.](/assets/learning/symmetry-twist-en.svg)
+
+For Ω=hat(ω), the identity Ω³=−‖ω‖²Ω reduces the exponential power series to a combination of I,Ω,Ω². Integrating that series term by term yields J in the displayed translation formula. This establishes the formula for arbitrary axes, not just a z-axis example.
+
+Let n be the unit rotation axis and split a vector into parallel and perpendicular parts. The translation Jacobian acts as
+
+$$
+Jv=v_\parallel+\frac{\sin\theta}{\theta}v_\perp
++\frac{1-\cos\theta}{\theta}(n\times v),\qquad
+\sigma(J)=\left\{1,\frac{2|\sin(\theta/2)|}{|\theta|},\frac{2|\sin(\theta/2)|}{|\theta|}\right\}.
+$$
+
+At θ=0 use the continuous limit. At a nonzero full turn 2πk, only the parallel direction survives and J has rank one. Losing transverse translation there is a genuine singularity of these exponential coordinates, distinct from choosing a principal rotation-logarithm branch at π. The group itself has not become singular.
+
+The implementation uses longer small-angle series and a half-angle expression for 1−cosθ. Away from zero it evaluates translation in axis components, avoiding cancellation against identity near a full turn. At θ=2π−2⁻⁴⁸, a unit transverse generator has components about −6.0441×10⁻¹⁶ and 1.1477×10⁻³⁰. Both should survive. The code below independently sums sine and cosine at 100 decimal digits from the exact binary64 input; nominal exact quarter/full turns in the lab use its explicit cardinal-angle convention.
+
+| Angle | J's singular values | Interpretation |
+|---|---|---|
+| 0 | 1,1,1 | Pure-translation limit |
+| π | 1,2/π,2/π | Invertible J despite log branch choice |
+| 2π | 1,0,0 | Rank-one translation Jacobian |
+
+## Reproduce the calculation in Python
+
+```python
+from decimal import Decimal as D, localcontext
+from math import pi
+with localcontext() as ctx:
+    ctx.prec=100
+    for value in [1e-4,.001,2*pi-2**-48]:
+        x=D.from_float(value); sine=x; term=x
+        for k in range(1,200):
+            term *= -x*x/D(2*k*(2*k+1)); sine += term
+        cosine=D(1); term=D(1)
+        for k in range(1,200):
+            term *= -x*x/D((2*k-1)*(2*k)); cosine += term
+        A=sine/x; B=(1-cosine)/(x*x); C=(x-sine)/(x*x*x)
+        print('angle:',value,'A,B,C:',*[float(v) for v in [A,B,C]])
+        print('transverse translation:',float(A),float((1-cosine)/x))
+```
+
 ## Exercise and explained answer
 
 Set ω=0 with v=(1,0,0): the curved path becomes the straight unit translation. Next set ω=(0,0,2π) and v=0. The generator is nonzero but its time-one rotation is identity. Thus exponential coordinates are not globally one-to-one. For this same full rotation with v=(1,0,0), the transverse translation averages to zero; it does not become one unit forward.

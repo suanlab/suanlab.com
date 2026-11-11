@@ -42,6 +42,8 @@
 
 미분기하·위상의 10개 원주제를 한영 증명·정확분수·구적·독립 chain 계산·시각화로 보강했다. 원의 동일 끝점 현 길이와 적도 근처 holonomy 계산도 수정했다. [검토 기록](geometry-topology-topic-review.md)을 포함해 누적 21영역·205개 원주제를 대조했다. 다음은 군·대칭·표현론 10개이며 입문 362/362와 전체 51영역·509개 심화의 상태를 구별한다.
 
+군·대칭·표현론의 10개 원주제를 Burnside·표현 사영·Lie commutator·SE3 adjoint/Jacobian·비가환 gauge·affine bias·chirality margin·tensor parity의 한영 논증과 실행 코드로 보강했다. 작은 비등방 오차와 지수 계수·full-turn 병진의 소거 문제를 수정하고 [검토 기록](symmetry-groups-topic-review.md)을 연결했다. 누적 22영역·215개 원주제이며 다음은 볼록해석과 제약 최적화 10개다. 입문 362/362와 전체 연구 심화의 완료 여부는 구별한다.
+
 ## 이전 작업 기록
 
 아래 수치는 각 작업 시점의 기록이다.

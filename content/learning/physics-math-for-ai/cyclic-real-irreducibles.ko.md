@@ -34,6 +34,46 @@ $$
 
 정규직교성으로 Σxₙ²=a₀²+a₂²+a_c²+a_s²입니다. x=(1,0,0,0)이면 scalar 계수는 각각 0.5, 평면은 (1/√2,0)입니다. 에너지는 1/4,1/4,1/2로 합이 1입니다. 한 칸 이동하면 평면은 (0,1/√2), alternating 계수는 −0.5이고 전체 복원값은 (0,1,0,0)입니다.
 
+## 불변 보완공간과 사영을 구성하기
+
+유한 실수 표현에서는 임의의 양의 정부호 내적을 군 전체에 평균해 직교 표현으로 만들 수 있습니다. 평균도 양의 정부호이고 합의 index를 바꾸면 불변성이 증명됩니다. 불변 부분공간의 직교 여공간도 이 평균 metric에서는 불변입니다. 차원에 대한 귀납법으로 완전 가약성을 얻습니다. 군의 차수로 나누는 단계가 핵심이므로 표수가 군 차수를 나누는 체에서는 같은 증명이 실패합니다.
+
+C4 regular 예제는 원래 Euclidean metric부터 불변입니다. 다음 사영으로 상수·교대·나머지 평면 block을 분리합니다.
+
+$$
+E_0=\frac{I+P+P^2+P^3}{4},\quad
+E_2=\frac{I-P+P^2-P^3}{4},\quad
+E_{cs}=I-E_0-E_2.
+$$
+
+각 사영은 멱등이며 서로 곱하면 0이고 합은 항등입니다. trace는 rank인 1,1,2입니다. sine/cosine 기저부터 고르지 않아도 분해를 구성할 수 있습니다. 평면에서 교환하는 연산자는 aI+bJ이므로 실수 대수로 보면 복소수의 복사본입니다. 따라서 실수 불가약성만으로 모든 교환 연산자가 실수 scalar라고 결론내릴 수 없습니다. 대수적으로 닫힌 체의 익숙한 Schur 보조정리에는 다른 가정이 있습니다.
+
+| 사영 | Rank | 한 칸 이동이 상에서 하는 작용 |
+|---|---:|---|
+| E₀ | 1 | +1 |
+| E₂ | 1 | -1 |
+| Ecs | 2 | Quarter-turn |
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+n=4
+I=[[F(i==j) for j in range(n)] for i in range(n)]
+P=[[F(i==(j+1)%n) for j in range(n)] for i in range(n)]
+def mm(A,B): return [[sum(A[i][k]*B[k][j] for k in range(n)) for j in range(n)] for i in range(n)]
+powers=[I,P]
+for _ in range(2): powers.append(mm(powers[-1],P))
+E0=[[sum(M[i][j] for M in powers)/4 for j in range(n)] for i in range(n)]
+E2=[[sum((-1)**k*M[i][j] for k,M in enumerate(powers))/4 for j in range(n)] for i in range(n)]
+Ecs=[[I[i][j]-E0[i][j]-E2[i][j] for j in range(n)] for i in range(n)]
+for a,A in enumerate([E0,E2,Ecs]):
+    assert mm(A,A)==A
+    for b,B in enumerate([E0,E2,Ecs]):
+        if a!=b: assert all(x==0 for row in mm(A,B) for x in row)
+    print('rank:', sum(A[i][i] for i in range(n)))
+```
+
 ## 직접 풀기와 연구 연결
 
 상수 신호 (1,1,1,1)은 a₀=2만 남아 에너지가 4입니다. 교대 신호 (1,−1,1,−1)은 a₂=2만 남고 한 칸 후 부호가 바뀝니다. 직접 확인하세요.

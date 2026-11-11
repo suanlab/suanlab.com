@@ -31,6 +31,41 @@ At h=0, the vectors span a plane and volume vanishes. There is no nonzero-volume
 
 The determinant computed by expanding nearly canceling Gram entries may show a tiny negative floating-point residue when the exact determinant is zero. The readout separates that expanded result from the stable identity detG=χ². This does not make an exact Gram matrix indefinite or justify interpreting roundoff as negative squared volume. The raw discrepancy remains visible rather than being silently clamped. The transformed-volume readout likewise uses the known orthogonal determinant law and exposes the expanded floating-point determinant separately, avoiding an invented orientation at near-degeneracy.
 
+## Rank determines when a reflection ambiguity is real
+
+For full-span triples in three dimensions, an orthogonal map carrying V to W is determined uniquely, so its determinant decides whether the configurations share an SO(3) orbit. If the span has dimension below three, reflect in a complementary direction while fixing that span pointwise. Composing with this reflection reverses the determinant without changing any input vector's image. Consequently equal full Gram matrices already determine the SO(3) orbit for rank-deficient ordered configurations. There are no two nonzero-volume chirality classes at degeneracy.
+
+Handedness also has a conditioning requirement. If V is invertible and a perturbation E satisfies the bound below, the whole path V+tE stays invertible: a hypothetical null vector would contradict the smallest-singular-value bound. Its determinant cannot change sign along the path.
+
+$$
+\|E\|_2<\sigma_{\min}(V)\quad\Longrightarrow\quad
+\operatorname{sign}\det(V+E)=\operatorname{sign}\det V.
+$$
+
+For V=diag(1,1,h), a mirror changes h to −h at cost 2|h| and leaves the Gram matrix exactly unchanged. As h tends to zero, opposite handedness becomes arbitrarily close in coordinates. A reliable orientation classifier therefore needs a rank margin and a noise model, not just a mathematically nonzero determinant. Binary64 squared volumes may underflow for extremely small h; a zero rounded square alone is not a rank proof.
+
+| h | Smallest singular value | Mirror displacement | Gram diagonal |
+|---:|---:|---:|---|
+| 1 | 1 | 2 | 1,1,1 |
+| 0.1 | 0.1 | 0.2 | 1,1,0.01 |
+| 0.001 | 0.001 | 0.002 | 1,1,0.000001 |
+
+The exact-rational example isolates conditioning without mixing it with Gram determinant cancellation.
+
+## Reproduce the calculation in Python
+
+```python
+from fractions import Fraction as F
+for h in [F(1),F(1,10),F(1,1000)]:
+    gram=[F(1),F(1),h*h]
+    displacement=2*h
+    for perturb in [h/2,-h/2]: assert h+perturb > 0
+    assert (-h)*(-h)==h*h
+    print('h:',h,'sigma_min:',h,'mirror cost:',displacement,'Gram:',gram)
+# A reflection of the unused z direction fixes every vector in the xy plane.
+for v in [(1,0,0),(0,1,0),(3,4,0)]: assert (v[0],v[1],-v[2])==v
+```
+
 ## Exercise and explained answer
 
 Compare proper and reflected transforms at h=1. All six Gram entries agree, but volume changes from +1 to −1. Next set h=0 and explain why rank drops to two, the stable Gram determinant becomes zero and orientation sign disappears. Vary the rotations without changing h and check the same invariants.

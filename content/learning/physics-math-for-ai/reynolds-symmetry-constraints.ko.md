@@ -31,6 +31,49 @@ $$
 
 제곱 Frobenius 거리는 2와 4입니다. 파랑은 원래 단위원의 상, 주황은 사영 후 상입니다. 표에는 행렬·모든 원소의 최대 교환자 norm·멱등 오차가 있습니다. C4에서 D4로 바꾸는 것은 수치 허용 오차 조정이 아니라 실제 모형 제약 추가입니다.
 
+## Bias와 다른 Feature 종류까지 제약 확장하기
+
+입력·출력 표현이 다르면 선형 조건은 Wρᵢₙ(g)=ρₒᵤₜ(g)W입니다. ρₒᵤₜ(g)⁻¹Wρᵢₙ(g)를 평균하면 이 intertwiner 공간에 사영됩니다. 같은 index 변경 증명을 적용합니다. 보통 Frobenius metric에서의 직교성에는 직교 표현이 추가로 필요하며 일반 표현에서는 호환되는 불변 내적을 사용해야 합니다.
+
+Affine 층 f(x)=Wx+b에는 가중치만 사영할 때 놓치기 쉬운 두 번째 조건이 있습니다.
+
+$$
+W\rho_{\rm in}(g)=\rho_{\rm out}(g)W,\qquad
+\rho_{\rm out}(g)b=b.
+$$
+
+평면 C4 또는 SO2 벡터 출력에는 모든 회전에 고정되는 비영 bias가 없어 허용 bias가 0입니다. 반면 trivial scalar 출력은 어떤 scalar bias도 유지할 수 있습니다. b에 출력 군 작용을 평균하면 고정 벡터 사영을 얻습니다.
+
+정확 계산 코드는 D4에서 shear 행렬과 비영 벡터 bias를 함께 사영한 뒤 모든 원소에서 affine 사상을 확인합니다. W를 완벽하게 사영해도 원래 bias를 유지하면 조건이 깨집니다. 뒤에 호환되는 방사형 비선형을 붙일 수 있지만 임의의 좌표별 비선형은 여전히 별도 검사해야 합니다.
+
+| 출력 표현 | 고정 Bias 공간 | 예 |
+|---|---:|---|
+| Trivial scalar | 1차원 | 임의 scalar 상수 |
+| 평면 C4 벡터 | 0차원 | b=0 |
+| 평면 D4 벡터 | 0차원 | b=0 |
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+I=[[1,0],[0,1]]; R=[[0,-1],[1,0]]; S=[[1,0],[0,-1]]
+def mm(A,B): return [[sum(A[i][k]*B[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
+def mv(A,x): return [sum(A[i][j]*x[j] for j in range(2)) for i in range(2)]
+def tr(A): return list(map(list,zip(*A)))
+rotations=[I]
+for _ in range(3): rotations.append(mm(rotations[-1],R))
+group=rotations+[mm(M,S) for M in rotations]
+W=[[1,2],[0,1]]; b=[1,-2]
+conjugates=[mm(mm(tr(g),W),g) for g in group]
+projected=[[sum(F(M[i][j],8) for M in conjugates) for j in range(2)] for i in range(2)]
+bias=[sum(F(mv(g,b)[i],8) for g in group) for i in range(2)]
+assert projected==I and bias==[0,0]
+for g in group:
+    assert mm(projected,g)==mm(g,projected) and mv(g,bias)==bias
+assert mv(R,b)!=b
+print('projected weight:',projected,'projected bias:',bias)
+```
+
 ## 직접 풀기와 풀이
 
 W=diag(1,−1)은 trace 0이므로 D4 사영도 0입니다. 주황 상이 원점으로 줄고 모든 교환자가 0인지 확인하세요. 이어 (1,−1)을 π/2 회전해 ReLU 전후를 비교하면 다릅니다. 선형 층이 등변이어도 임의의 pointwise 비선형이 자동으로 SO2 등변은 아닙니다.

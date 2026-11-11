@@ -31,6 +31,41 @@ h=0이면 span은 평면이고 부피는 0입니다. 비영 부피의 handedness
 
 서로 상쇄하는 Gram 성분으로 determinant를 전개하면 정확한 값 0에도 작은 음수 roundoff가 나올 수 있습니다. 수치 표는 그 raw 전개값과 안정적인 detG=χ²를 구별합니다. 정확한 Gram이 indefinite하거나 제곱 부피가 음수라는 뜻이 아닙니다. 오차를 숨기려고 raw 값을 몰래 0으로 clamp하지 않습니다. 변환 부피도 알려진 직교 determinant 법칙으로 안정적으로 구하고 전개 부동소수점 값은 따로 보여, 퇴화 근처의 가짜 방향 판정을 피합니다.
 
+## Rank가 반사 모호성의 존재를 결정합니다
+
+3차원을 모두 생성하는 triple에서는 V를 W로 보내는 직교 사상이 유일하므로 그 행렬식이 같은 SO3 궤도인지 결정합니다. span 차원이 3보다 작으면 그 span을 점별로 고정하면서 보완 방향을 반사할 수 있습니다. 이 반사를 합성하면 입력 벡터의 상은 유지한 채 행렬식 부호를 뒤집습니다. 따라서 rank가 부족한 ordered 구성에서는 전체 Gram만 같아도 SO3 궤도가 같습니다. 퇴화점에는 비영 부피의 두 chirality 류가 존재하지 않습니다.
+
+Handedness에는 조건수 가정도 필요합니다. 가역 V와 아래 조건을 만족하는 섭동 E에서는 V+tE 전체가 가역입니다. 영벡터가 생긴다고 가정하면 최소 특이값 하한과 모순되기 때문입니다. 따라서 경로를 따라 determinant 부호가 바뀌지 않습니다.
+
+$$
+\|E\|_2<\sigma_{\min}(V)\quad\Longrightarrow\quad
+\operatorname{sign}\det(V+E)=\operatorname{sign}\det V.
+$$
+
+V=diag(1,1,h)의 거울상은 h를 −h로 바꾸므로 비용은 2|h|이고 Gram은 정확히 같습니다. h가 0으로 가면 반대 handedness도 좌표상 임의로 가까워집니다. 따라서 신뢰할 방향 분류에는 수학적으로 비영인 determinant뿐 아니라 rank margin과 잡음 모형도 필요합니다. 극도로 작은 h의 제곱 부피는 binary64에서 underflow할 수 있으므로 반올림된 제곱 0만으로 rank를 판정할 수 없습니다.
+
+| h | 최소 특이값 | 거울상 변위 | Gram 대각 |
+|---:|---:|---:|---|
+| 1 | 1 | 2 | 1,1,1 |
+| 0.1 | 0.1 | 0.2 | 1,1,0.01 |
+| 0.001 | 0.001 | 0.002 | 1,1,0.000001 |
+
+정확 유리수 예제는 Gram determinant 소거 오차와 섞지 않고 조건수 효과만 분리합니다.
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+for h in [F(1),F(1,10),F(1,1000)]:
+    gram=[F(1),F(1),h*h]
+    displacement=2*h
+    for perturb in [h/2,-h/2]: assert h+perturb > 0
+    assert (-h)*(-h)==h*h
+    print('h:',h,'sigma_min:',h,'mirror cost:',displacement,'Gram:',gram)
+# A reflection of the unused z direction fixes every vector in the xy plane.
+for v in [(1,0,0),(0,1,0),(3,4,0)]: assert (v[0],v[1],-v[2])==v
+```
+
 ## 직접 풀기와 풀이
 
 h=1에서 proper·반사 경우를 비교하면 여섯 Gram 성분은 같고 부피만 +1에서 −1로 바뀝니다. h=0이면 rank 2, 안정적 Gram determinant 0, 방향 부호 미정의입니다. 회전만 바꿔 같은 불변량이 유지되는지 확인하세요.
