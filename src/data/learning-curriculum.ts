@@ -3468,7 +3468,9 @@ export const curriculumDomains:CurriculumDomain[] = [
       "assumptions-and-aggregation-counterexamples",
       "baselines-and-matched-compute-budgets",
       "ablations-and-randomized-negative-controls",
-      "seeds-uncertainty-and-paired-sign-tests"
+      "seeds-uncertainty-and-paired-sign-tests",
+      "availability-leakage-and-reproducible-evaluation",
+      "dimensions-limits-and-convergence-checks"
     ]
   }
 ];

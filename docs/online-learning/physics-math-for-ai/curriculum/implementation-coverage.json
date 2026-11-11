@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 646,
+  "implementedUnitCount": 648,
   "curriculumComplete": false,
-  "scope": "646 registered units, 1961 guided experiments and 1292 bilingual manuscript files. Introductory scope: 358 of 362 original topics verified, 4 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "648 registered units, 1965 guided experiments and 1296 bilingual manuscript files. Introductory scope: 360 of 362 original topics verified, 2 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -11843,10 +11843,12 @@
         "assumptions-and-aggregation-counterexamples",
         "baselines-and-matched-compute-budgets",
         "ablations-and-randomized-negative-controls",
-        "seeds-uncertainty-and-paired-sign-tests"
+        "seeds-uncertainty-and-paired-sign-tests",
+        "availability-leakage-and-reproducible-evaluation",
+        "dimensions-limits-and-convergence-checks"
       ],
-      "nextUnitId": "availability-leakage-and-reproducible-evaluation",
-      "nextAction": "availability-leakage-reader-integration",
+      "nextUnitId": "theorems-evidence-and-working-hypotheses",
+      "nextAction": "evidence-roles-reader-integration",
       "researchHypothesesDraft": {
         "unitId": "hypotheses-and-testable-research-questions",
         "status": "registered-and-verified",
@@ -11862,48 +11864,48 @@
           "content/learning/physics-math-for-ai/hypotheses-and-testable-research-questions.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
-      "currentPreparationEvidence": "scripts/learning-paired-sign-test.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
+      "currentPreparationEvidence": "scripts/learning-dimension-convergence.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "seeds-uncertainty-and-paired-sign-tests",
+        "unitId": "dimensions-limits-and-convergence-checks",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-paired-sign-test.ts",
-        "lab": "src/components/learning/paired-sign-test-lab.tsx",
-        "tests": "scripts/learning-paired-sign-test.test.ts",
+        "model": "src/lib/learning-dimension-convergence.ts",
+        "lab": "src/components/learning/dimension-convergence-lab.tsx",
+        "tests": "scripts/learning-dimension-convergence.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
-          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.en.md"
+          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
+          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "seeds-uncertainty-and-paired-sign-tests",
+        "unitId": "dimensions-limits-and-convergence-checks",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-paired-sign-test.ts",
-        "lab": "src/components/learning/paired-sign-test-lab.tsx",
-        "tests": "scripts/learning-paired-sign-test.test.ts",
+        "model": "src/lib/learning-dimension-convergence.ts",
+        "lab": "src/components/learning/dimension-convergence-lab.tsx",
+        "tests": "scripts/learning-dimension-convergence.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
-          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.en.md"
+          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
+          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "seed·불확실성·검정",
+        "originalTopic": "단위·극한·보존·수렴 검사",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "seeds-uncertainty-and-paired-sign-tests"
+          "dimensions-limits-and-convergence-checks"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -11911,12 +11913,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
-          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.en.md"
+          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
+          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-paired-sign-test.test.ts"
+        "evidence": "scripts/learning-dimension-convergence.test.ts"
       },
       "topicEvidence": [
         {
@@ -12140,6 +12142,80 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "누출·식별·재현",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "availability-leakage-and-reproducible-evaluation"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/availability-leakage-and-reproducible-evaluation.ko.md",
+            "content/learning/physics-math-for-ai/availability-leakage-and-reproducible-evaluation.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-availability-leakage.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "availability-leakage-and-reproducible-evaluation",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-availability-leakage.ts",
+            "lab": "src/components/learning/availability-leakage-lab.tsx",
+            "tests": "scripts/learning-availability-leakage.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/availability-leakage-and-reproducible-evaluation.ko.md",
+              "content/learning/physics-math-for-ai/availability-leakage-and-reproducible-evaluation.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        },
+        {
+          "originalTopic": "단위·극한·보존·수렴 검사",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "dimensions-limits-and-convergence-checks"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
+            "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-dimension-convergence.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "dimensions-limits-and-convergence-checks",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-dimension-convergence.ts",
+            "lab": "src/components/learning/dimension-convergence-lab.tsx",
+            "tests": "scripts/learning-dimension-convergence.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
+              "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "contributionEvidenceDraft": {
@@ -12219,14 +12295,44 @@
       },
       "availabilityLeakageDraft": {
         "unitId": "availability-leakage-and-reproducible-evaluation",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/availability-leakage-and-reproducible-evaluation.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/availability-leakage-and-reproducible-evaluation.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "availability-leakage-reader-integration"
+        "nextAction": "dimension-convergence-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/availability-leakage-and-reproducible-evaluation.ko.md",
+          "content/learning/physics-math-for-ai/availability-leakage-and-reproducible-evaluation.en.md"
+        ]
+      },
+      "dimensionConvergenceDraft": {
+        "unitId": "dimensions-limits-and-convergence-checks",
+        "status": "registered-and-verified",
+        "registered": true,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/dimensions-limits-and-convergence-checks.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/dimensions-limits-and-convergence-checks.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "evidence-roles-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
+          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.en.md"
+        ]
+      },
+      "evidenceRolesDraft": {
+        "unitId": "theorems-evidence-and-working-hypotheses",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/theorems-evidence-and-working-hypotheses.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/theorems-evidence-and-working-hypotheses.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "evidence-roles-reader-integration"
       }
     }
   ],
@@ -12248,7 +12354,7 @@
     "research-methods"
   ],
   "nextDomain": "research-methods",
-  "nextTopic": "누출·식별·재현",
+  "nextTopic": "이론·경험·가설 구분",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

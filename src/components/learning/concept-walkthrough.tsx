@@ -1,4 +1,8 @@
 'use client';
+import { dimensionConvergenceId } from '@/data/dimension-convergence-reader';
+import { DimensionConvergenceConcept } from './dimension-convergence-lab';
+import { availabilityLeakageId } from '@/data/availability-leakage-reader';
+import { AvailabilityLeakageConcept } from './availability-leakage-lab';
 import { pairedSignTestId } from '@/data/paired-sign-test-reader';
 import { PairedSignTestConcept } from './paired-sign-test-lab';
 import { randomizedControlsId } from '@/data/randomized-controls-reader';
@@ -337,6 +341,8 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === dimensionConvergenceId) return <DimensionConvergenceConcept language={language}/>;
+  if (kind === availabilityLeakageId) return <AvailabilityLeakageConcept language={language}/>;
   if (kind === pairedSignTestId) return <PairedSignTestConcept language={language}/>;
   if (kind === randomizedControlsId) return <RandomizedControlsConcept language={language}/>;
   if (kind === baselineBudgetsId) return <BaselineBudgetsConcept language={language}/>;
