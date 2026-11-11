@@ -52,6 +52,33 @@ A negative cycle explains the selected conjunction of theory literals. A learned
 
 A minimum input UNSAT core is instead a smallest subset of the three asserted clauses whose conjunction has no model in the relevant background. The lab enumerates all eight subsets, breaking equal-size ties by subset mask. Boolean and SMT cores can differ. The first experiment has no Boolean core but SMT core {C1,C2,C3}; the third has core {C1,C2} in both checks. The fixed atom meanings are background assumptions, outside this input-clause core. Industrial solver cores are not necessarily minimum cardinality.
 
+## Research extension: when real feasibility also gives an integer witness
+
+For non-strict difference constraints with integer bounds, a real solution exists exactly when an integer solution exists. The negative-cycle criterion is independent of the real/integer choice, and shortest-path potentials with integer edge weights are integers. This special structure explains why no separate integrality search is needed after the Boolean assignment is fixed.
+
+For the all-positive conjunction in this lab, summing the three constraints proves necessity of $a+b+c\ge0$. Sufficiency is constructive: choose $x=0$, $y=-a$, $z=-a-b$. The first two constraints are equalities, and the third holds exactly when that sum is nonnegative. If the sum is negative, adding the rows with nonnegative multipliers $(1,1,1)$ gives the contradiction $0\le a+b+c<0$: a small dual infeasibility certificate.
+
+| $(a,b,c)$, all atoms true | Sum | Status |
+|---|---:|---|
+| (0,0,-1) | -1 | UNSAT |
+| (0,0,0) | 0 | Integer witness exists |
+| (1,-1,1) | 1 | Integer witness exists |
+
+```python
+from itertools import product
+for a,b,c in product(range(-2,3),repeat=3):
+    total=a+b+c
+    if total>=0:
+        x,y,z=0,-a,-a-b
+        assert x-y<=a and y-z<=b and z-x<=c
+    else:
+        # Adding the three asserted inequalities yields 0 <= total < 0.
+        assert total<0
+print('125 threshold triples classified by a constructive witness or summed contradiction')
+```
+
+This equivalence applies to the **translated** non-strict difference constraints. Negating an original real-valued atom still introduces strictness; the integer $-k-1$ translation cannot be reused unchanged. General integer linear systems also lack this property: $2x=1$ is real-feasible and integer-infeasible. Checking an encoding's domain is part of checking its certificate.
+
 ## Exercise and solution
 
 Exercise: choose bounds (−1,−1,−1), clauses ¬P,¬Q,¬R and assignment0. Does the integer negation create an inconsistency?

@@ -71,6 +71,44 @@ The first diagram shows the original flow reduction, with blue current flow and 
 
 The lower plot uses actual completed augmentation counts. Blue follows the feasible matching history and ends when the algorithm terminates. Orange is the queried valid cut bound. The selected blue dot need not meet that bound, especially for a loose queried set. Neither curve is a training-loss trajectory.
 
+## Research extension: a Hall deficit explains every unmatched task
+
+For a left subset $S$, at most $|N(S)|$ of its tasks can be matched. Thus every matching leaves at least $|S|-|N(S)|$ left vertices unmatched. Define $d=\max_{S\subseteq L}(|S|-|N(S)|)$, including the empty set so $d\ge0$. The exact identity is
+
+$$\nu(G)=|L|-d.$$
+
+To prove attainability, use a terminal residual search. Its reachable left and right sets satisfy $N(S_L)=S_R$; every reachable right vertex is matched, and its partner is reachable too. Counting reachable matched pairs leaves exactly the globally unmatched left vertices in $|S_L|-|S_R|$. This realizes the deficit lower bound. Hall's perfect-matching criterion is precisely $d=0$.
+
+| Neighbor masks | Maximum deficit | Maximum matching |
+|---|---:|---:|
+| (7,7,7) | 0 | 3 |
+| (1,1,2) | 1 | 2 |
+| (0,0,0) | 3 | 0 |
+
+![Counts of all 512 labeled three-by-three bipartite graphs grouped by maximum Hall deficit; deficit zero means a perfect matching exists.](/assets/learning/combinatorial-hall-deficit-en.svg)
+
+```python
+from itertools import product
+from collections import Counter
+def matching(masks,i=0,used=0):
+    if i==3:return 0
+    return max([matching(masks,i+1,used)]+[1+matching(masks,i+1,used|(1<<j)) for j in range(3) if masks[i]&(1<<j) and not used&(1<<j)])
+histogram=Counter()
+for masks in product(range(8),repeat=3):
+    deficit=0
+    for subset in range(8):
+        neighbors=0
+        for i in range(3):
+            if subset&(1<<i):neighbors|=masks[i]
+        deficit=max(deficit,subset.bit_count()-neighbors.bit_count())
+    assert matching(masks)==3-deficit
+    histogram[deficit]+=1
+assert dict(histogram)=={0:247,1:231,2:33,3:1}
+print(sorted(histogram.items()))
+```
+
+The code compares two independent finite calculations on all 512 graphs: recursive matching and exhaustive subset deficits. The histogram counts equally listed labeled graphs; it is not an empirical distribution of real assignment systems. **Exercise:** find the deficient set for (1,1,2), then explain why simply adding an edge outside that set need not repair its bottleneck.
+
 ## Exercises and solutions
 
 Exercise: on the complete three-by-three graph at prefix zero with query mask zero, what are the queried cut capacity and the reachable-cut certificate?

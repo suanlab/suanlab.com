@@ -64,6 +64,37 @@ At prefix4, the search has found (0,0,1), value5. It still has an upper bound11/
 
 Use values (1,1,2), capacity7. The initial witness (1,0,1) has value3; root bound is10/3. After branching on x1, both child bounds are3. N2 fixes x1=1 and has fractional LP allocation (1,1,1/2), value3. Its floored candidate is worse, but its upper bound cannot improve L=3, so the node is bound-pruned. The different integer allocation (0,1,1) also has value3 and lies in that excluded branch. The optimal value and a witness are certified; uniqueness and complete enumeration are not.
 
+## Research extension: exploit the objective lattice before the gap is zero
+
+The native objective uses integer values and binary decisions, so every feasible objective is an integer. If $L$ is a witnessed incumbent and $U$ a sound real upper bound, then
+
+$$L\le\mathrm{OPT}\le\lfloor U\rfloor.$$
+
+Thus $U<L+1$ already certifies $\mathrm{OPT}=L$. An additive gap below one can prove exact optimality even when the real bounds do not meet. For twelfths this is the exact comparison `upper12 < 12*(L+1)`, with no epsilon. An approximate bound rounded in the wrong direction would invalidate it.
+
+For the existing $(3,4,5)$, capacity-four example, the prefix-four witness has value five and global upper bound $11/2$. The strengthened certificate is already conclusive. The native indicator deliberately still uses equality of real bounds; this auxiliary certificate does not rewrite its trace or borrow a future incumbent.
+
+| Processed prefix | $L$ | $U$ | Integer-lattice certificate |
+|---|---:|---:|---|
+| 0 | 3 | 17/3 | Not yet |
+| 1 | 3 | 11/2 | Not yet |
+| 4 | 5 | 11/2 | Exact optimum 5 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+values=[3,4,5]; weights=[2,3,4]
+optimum=max(sum(v*z for v,z in zip(values,x)) for x in product([0,1],repeat=3) if sum(w*z for w,z in zip(weights,x))<=4)
+assert optimum==5
+for prefix,L,U in [(0,3,F(17,3)),(1,3,F(11,2)),(4,5,F(11,2))]:
+    assert L<=optimum<=U
+    certificate=U<L+1
+    if certificate:assert optimum==L
+    print(prefix,L,U,certificate)
+```
+
+If objective coefficients share a known positive lattice spacing, the next feasible objective level can give a stronger stopping rule. Learned real scores generally do not lie on that lattice. Exact-value certification still does not establish uniqueness or enumerate all optimal decisions.
+
 ## Exercise and solution
 
 Exercise: use values (3,4,5), capacity1 and prefix3. Can a zero gap coexist with an unfinished frontier?

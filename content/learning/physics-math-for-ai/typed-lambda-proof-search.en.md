@@ -78,6 +78,39 @@ Choose empty context0, goal4 and candidate0. Identity infers P→P, so its local
 
 Boolean assignments P=true,Q=false make P→Q false. With bits P=1,Q=2,R=4, the two countermodel masks are1 and5. This semantic refutation is independent of the search miss. Conversely, finding no Boolean countermodel does not construct a proof term. The lab's classical truth table is a necessary semantic check, not a complete constructive proof-search oracle. Goal9 illustrates a classically valid formula for which this bounded search returns no term; the miss alone makes no nonexistence claim.
 
+## Research extension: a semantic refutation of Peirce's type
+
+A bounded search miss is not a nonexistence proof. A separate Kripke countermodel can prove more. For implication-only constructive logic, take two worlds $w_0\le w_1$. Atom $P$ holds only at $w_1$; $Q$ holds nowhere. Implication at a world requires that every accessible future world satisfying its premise also satisfies its conclusion.
+
+At both worlds $P\to Q$ fails because $w_1$ satisfies $P$ but not $Q$. Therefore $(P\to Q)\to P$ holds vacuously at $w_0$, while $P$ itself fails there. Consequently $((P\to Q)\to P)\to P$ fails at $w_0$. Soundness of the simply typed implication rules now proves that no closed term in this constructive fragment has that type, regardless of search budget. Adding a classical axiom changes the system. Soundness follows by induction on the three typing rules: a variable uses a forced assumption; application uses implication at the current world; lambda introduction checks its body at every future world, where the context remains true by persistence.
+
+| Evidence | Result | What it establishes |
+|---|---|---|
+| All four Boolean assignments to P,Q | Formula true | Classical validity |
+| Native budget-nine search | No term | Bounded search miss |
+| Two-world Kripke model | Formula false at root | No closed constructive proof |
+
+```python
+from functools import lru_cache
+from itertools import product
+P,Q='P','Q'; imp=lambda a,b:(a,b)
+peirce=imp(imp(imp(P,Q),P),P)
+truth=[set(),{'P'}]
+@lru_cache(None)
+def force(world,A):
+    if isinstance(A,str):return A in truth[world]
+    return all(not force(future,A[0]) or force(future,A[1]) for future in range(world,2))
+assert truth[0]<=truth[1]
+assert not force(0,peirce) and force(1,peirce)
+assert all(force(w,imp(P,P)) for w in range(2))
+for p,q in product([False,True],repeat=2):
+    implies=lambda a,b:not a or b
+    assert implies(implies(implies(p,q),p),p)
+print([force(w,peirce) for w in range(2)])
+```
+
+**Exercise:** verify $P\to P$ at both worlds. Persistence of atomic truth toward future worlds, and checking all future worlds in implication, are essential. Evaluating implication only at the current world would accidentally collapse this test back to Boolean logic.
+
 ## Exercise and solution
 
 Exercise: use context1 and candidate2, which applies f to itself. Which premise fails?

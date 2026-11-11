@@ -56,6 +56,38 @@ The native diagram uses equal axis scales. Blue shading or a blue segment is the
 
 The lower horizontal axis varies C, not optimization iterations. Blue is the LP value. Orange is the integer value: right-open horizontal segments plus closed dots in at-most mode, and only isolated feasible loads in exact mode. Missing exact-load capacities are not joined by fictitious integer values. The current LP value also has a blue marker. Very small positive exact fractions can round to zero in a floating display; the exact fraction in the model statement preserves that distinction. A ratio beyond the display range is marked separately from a zero denominator.
 
+## Research extension: certify the relaxation without trusting its solver
+
+For the at-most model, introduce a resource price $\lambda\ge0$ and upper-bound prices $\beta_i\ge0$ satisfying $w_i\lambda+\beta_i\ge v_i$. For every feasible relaxed point,
+
+$$v^Tx\le\lambda w^Tx+\beta^Tx\le C\lambda+\sum_i\beta_i.$$
+
+This is weak duality, proved by multiplying inequalities rather than by trusting an optimizer. The dual minimizes that final expression. If a feasible primal point reaches the dual bound, both are optimal. A learned proposal for either side becomes a certificate only after its feasibility is checked.
+
+For values $(3,4)$ and weights $(2,3)$, the examples below exhibit matching primal and dual values. At capacity three or four, take $\lambda=4/3$ and $\beta=(1/3,0)$. At capacity one, take $\lambda=3/2$, $\beta=(0,0)$.
+
+| Capacity | Primal LP point | Certified LP value | Integer optimum |
+|---|---|---:|---:|
+| 1 | (1/2, 0) | 3/2 | 0 |
+| 3 | (1, 1/3) | 13/3 | 4 |
+| 4 | (1, 2/3) | 17/3 | 4 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+values=[F(3),F(4)]; weights=[F(2),F(3)]
+for C,x,price,beta in [(1,[F(1,2),F(0)],F(3,2),[F(0),F(0)]),(3,[F(1),F(1,3)],F(4,3),[F(1,3),F(0)]),(4,[F(1),F(2,3)],F(4,3),[F(1,3),F(0)])]:
+    assert sum(w*z for w,z in zip(weights,x))<=C
+    assert all(w*price+b>=v for w,b,v in zip(weights,beta,values))
+    primal=sum(v*z for v,z in zip(values,x)); dual=C*price+sum(beta)
+    assert primal==dual
+    integer=max(sum(v*z for v,z in zip(values,y)) for y in product([0,1],repeat=2) if sum(w*z for w,z in zip(weights,y))<=C)
+    assert integer<=dual
+    print(C,primal,integer)
+```
+
+Complementary slackness explains the prices: a positive resource price requires a tight resource constraint; positive $\beta_i$ requires $x_i=1$; an item strictly below its reduced-value threshold stays unselected. This certifies the LP, not an integral solution. In exact-load mode the resource multiplier is unrestricted in sign; importing the nonnegative-price dual unchanged would describe a different problem.
+
 ## Exercises and solutions
 
 Exercise: with values (3,4), C=1 and at-most mode, compute the values and decide whether the multiplicative gap is defined.

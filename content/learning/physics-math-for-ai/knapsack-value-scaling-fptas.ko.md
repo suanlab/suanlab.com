@@ -69,6 +69,42 @@ PTAS는 ε를 고정했을 때 입력 크기에 대해 다항 시간입니다. F
 
 곡선의 주황 값은 (1−ε)에 별도 열거한 OPT를 곱한 교육용 기준입니다. 이 작은 예제에서는 열여섯 부분집합으로 OPT를 알 수 있지만 실제 큰 문제에서는 보통 미리 알지 못합니다. 근사 알고리즘 자체는 비교용 OPT를 참조하지 않습니다.
 
+## 연구 확장: 학습한 가치의 보장이 참 가치의 보장은 아니다
+
+비음수 예측 가치 $\widehat v_i$를 최적화하고 모든 가능한 물건에 $|v_i-\widehat v_i|\le\delta$를 가정하자. 실행 가능한 집합에 최대 $k$개 물건이 있고 반환 집합이 $\widehat v(S)\ge(1-\epsilon)\widehat{\mathrm{OPT}}$를 만족하면, 참 최적 집합 $O$와 비교하여
+
+$$v(S)\ge(1-\epsilon)v(O)-(2-\epsilon)k\delta$$
+
+를 얻는다. 선택한 예측 가치에서 최대 $k\delta$를 빼고 예측 최적값과 비교한 뒤, $O$의 예측 가치에서 추가로 $(1-\epsilon)k\delta$를 빼면 된다. 물건마다 성립하는 결정적 경계가 필요하며 평균 예측 오차로 이를 대신할 수 없다. 무게와 실행 가능성은 계속 정확하게 유지한다.
+
+참 가치 $(6,6,5,5)$, 무게 $(2,3,4,5)$, 용량 5이면 $k=2$, $\mathrm{OPT}=12$다. $\epsilon=1/4$에서:
+
+| 물건별 균일 오차 $\delta$ | 보수적인 참 가치 하한 |
+|---|---:|
+| 0 | 9 |
+| 1/2 | 29/4 |
+| 1 | 11/2 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+true=[6,6,5,5]; weights=[2,3,4,5]; eps=F(1,4)
+sets=[x for x in product([0,1],repeat=4) if sum(w*z for w,z in zip(weights,x))<=5]
+value=lambda v,x:sum(a*z for a,z in zip(v,x))
+assert max(value(true,x) for x in sets)==12
+for delta in [F(0),F(1,2),F(1)]:
+    lower=9-F(7,2)*delta; count=0
+    for signs in product([-1,1],repeat=4):
+        predicted=[v+s*delta for v,s in zip(true,signs)]
+        best=max(value(predicted,x) for x in sets)
+        for x in sets:
+            if value(predicted,x)>=(1-eps)*best:
+                assert value(true,x)>=lower;count+=1
+    print(delta,lower,count)
+```
+
+열거는 극단 오차 패턴들에서 예측 근사 부등식을 만족하는 모든 실행 가능 집합을 확인한다. 이는 보조 강건성 정리이며 기존 조절기에 새 예측기를 넣은 것은 아니다. 알고리즘의 축소 오차와 통계적인 점수 오차도 분리한다. epsilon만 줄여도 뒤의 오차가 없어지지는 않는다.
+
 ## 연습 문제와 해설: 잘못된 스케일
 
 문제: 가치 (1,0,0,20), 용량 2, ε=0.9를 사용하세요. 가치 20인 물건을 스케일을 정하기 전에 제외해야 하는 이유는 무엇인가요?

@@ -105,6 +105,41 @@ $$
 
 최소 비용을 뺀 지수 계산은 큰 양수 지수를 피하지만, 아주 작은 양의 확률이 부동소수점에서 0이 되는 underflow까지 없애지는 않습니다. 양의 온도에서는 로그 확률을 유한한 값으로 보존하고 underflow 개수를 별도로 셉니다. 해석적 극한에서 질량이 정확히 0인 경우 로그 확률은 —입니다. 수치는 반올림해서 표시하므로 평균이 1처럼 보여도 실제 계산값이 정확히 1인 것은 아닐 수 있습니다. 수치적 집합 소속 표시는 계산한 숫자에 대한 진단이며 실수 연산 전체에 대한 증명은 아닙니다.
 
+## 연구 확장: 온도 감소와 동률 접근의 순서는 바꿀 수 없다
+
+선택지가 0,1이면 양의 온도에서 선택지 1의 정확한 확률은 $p_1=\sigma((2t-1)/\tau)$다. 목표가 $t=1/2+\kappa\tau$ 경로로 동률에 접근하면 모든 양의 온도에서
+
+$$p_1=\sigma(2\kappa)$$
+
+다. 따라서 이 경로로 온도를 내리면 0과 1 사이의 어떤 확률로도 수렴할 수 있으며 고정 목표의 hard 결정과 같지 않다. 동률 밖의 목표를 고정한 채 온도를 내리면 유일 최적점에 집중한다. 차이는 Gibbs 공식의 오류가 아니라 극한을 취하는 순서와 결합에 있다.
+
+| 결합 경로의 $\kappa$ | 선택지 1의 극한 확률 |
+|---|---:|
+| -1 | $1/(1+e^2)$ |
+| 0 | 1/2 |
+| 1 | $1/(1+e^{-2})$ |
+
+![온도 세 가지에서 동률 경계를 가로지르는 이진 Gibbs 확률. 냉각하면 전이 구간이 좁아지며 그 안에서 접근하는 목표 경로는 hard 결정에 수렴하지 않을 수 있다.](/assets/learning/combinatorial-gibbs-boundary-ko.svg)
+
+```python
+from fractions import Fraction as F
+from math import exp,isclose,log1p
+for kappa in [-1,0,1]:
+    expected=1/(1+exp(-2*kappa))
+    for tau in [F(1,8),F(1,16),F(1,32)]:
+        target=F(1,2)+kappa*tau
+        p=1/(1+exp(-float((2*target-1)/tau)))
+        assert isclose(p,expected,rel_tol=1e-15)
+    print(kappa,expected)
+w=exp(-300)
+assert 1+w==1 and log1p(w)>0
+entropy=log1p(w)+300*w/(1+w)
+assert isclose(entropy,301*w,rel_tol=1e-14)
+print('Rare entropy:',entropy)
+```
+
+간극 $\Delta$인 희귀 선택지의 정규화는 $\log(1+e^{-\Delta/\tau})$다. `log(1+w)`는 0이 되어도 `log1p(w)`는 양수를 보존할 수 있다. 실습은 이 항을 로그 확률과 엔트로피에 보존하고 반올림된 총비용과 별도로 `expectedExcess`·`softMinimumCorrection`을 제공한다. 이전 계산은 `expandedEntropy`에 남긴다. 평균 오차도 목표에서의 가중 편차를 보상 합산한 다음 제곱하고, 반올림된 평균에서 계산한 값은 `expandedMeanLoss`에 남긴다. 유일 최적점과 불규칙한 동률 근처 모두에서 표현 가능한 작은 오차를 보존한다. 비용 차이 결과창은 분산 항등식을 사용하며, 반올림한 총비용끼리의 뺄셈은 `expandedCostGap`에 보존한다. 이 뺄셈은 차이 자체가 표현 가능해도 0이 될 수 있다. 표현 범위 밖 확률이나 총합을 복구하는 것은 아니며 Gibbs 평균이 실행 가능한 이산 결정이 되는 것도 아니다.
+
 ## 연습 문제와 해설
 
 문제: Z={0,1,3}, 목표 1.25, 온도 0.1에서 먼저 정확 최적 선택을 계산하세요. 온도를 올렸을 때 평균을 정수로 반올림하면 언제나 가능한 최적해가 될까요?

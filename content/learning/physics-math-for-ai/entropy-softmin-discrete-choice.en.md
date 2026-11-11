@@ -103,6 +103,41 @@ The probability bars are located at the actual option values, including the wide
 
 Minimum-cost shifting prevents large positive exponentials. Very small positive probabilities can still underflow to floating-point zero. We retain finite log probabilities at positive temperature and report an underflow count. Analytical-limit zero mass instead has an unavailable log probability. Labels are rounded; a mean displayed near1 is not necessarily exactly1 or a mathematical discrete choice. Numerical membership is a diagnostic of the computed number, not proof about all real arithmetic.
 
+## Research extension: cooling and approaching a tie do not commute
+
+For binary options $0,1$, the exact positive-temperature probability of option one is $p_1=\sigma((2t-1)/\tau)$. If the target approaches the tie on the path $t=1/2+\kappa\tau$, then
+
+$$p_1=\sigma(2\kappa)$$
+
+at every positive temperature. Hence cooling along that path can converge to any probability strictly between zero and one, rather than to a fixed-target hard decision. At a fixed target away from the tie, cooling instead concentrates on the unique minimizer. The difference is the order and coupling of limits, not a failure of the Gibbs formula.
+
+| Coupled path parameter $\kappa$ | Limiting option-one probability |
+|---|---:|
+| -1 | $1/(1+e^2)$ |
+| 0 | 1/2 |
+| 1 | $1/(1+e^{-2})$ |
+
+![Binary Gibbs probabilities across the decision boundary at three temperatures. Cooling narrows the transition region; target paths approaching inside that region need not converge to a hard decision.](/assets/learning/combinatorial-gibbs-boundary-en.svg)
+
+```python
+from fractions import Fraction as F
+from math import exp,isclose,log1p
+for kappa in [-1,0,1]:
+    expected=1/(1+exp(-2*kappa))
+    for tau in [F(1,8),F(1,16),F(1,32)]:
+        target=F(1,2)+kappa*tau
+        p=1/(1+exp(-float((2*target-1)/tau)))
+        assert isclose(p,expected,rel_tol=1e-15)
+    print(kappa,expected)
+w=exp(-300)
+assert 1+w==1 and log1p(w)>0
+entropy=log1p(w)+300*w/(1+w)
+assert isclose(entropy,301*w,rel_tol=1e-14)
+print('Rare entropy:',entropy)
+```
+
+For a rare alternative with gap $\Delta$, normalization is $\log(1+e^{-\Delta/\tau})$. Ordinary `log(1+w)` can become zero while `log1p(w)` remains positive. The lab now preserves that normalization in log probabilities and entropy, and exposes `expectedExcess` and `softMinimumCorrection` separately from rounded total costs. `expandedEntropy` records the former calculation. The mean loss is computed from a compensated sum of weighted deviations from the target, before squaring; `expandedMeanLoss` retains the result from subtracting the rounded mean. This preserves small representable losses both near a unique minimizer and near an irregular tie. The cost-difference readout uses the variance identity; `expandedCostGap` retains subtraction of the rounded totals, which can be zero even when that difference is representable. This does not recover a probability or final total outside the representable range, nor make a Gibbs mean an executable discrete decision.
+
 ## Exercise and explained solution
 
 Exercise: with Z={0,1,3}, target1.25 and tau0.1, identify the exact choice before using the controls. Then raise the temperature. Does rounding the mean to an integer always produce an allowed, optimal choice?

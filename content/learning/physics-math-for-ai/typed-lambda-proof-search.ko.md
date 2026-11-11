@@ -78,6 +78,39 @@ $$
 
 P가 참이고 Q가 거짓인 Boolean 배정은 P→Q를 거짓으로 만듭니다. P=1,Q=2,R=4 비트로 나타내면 반례는 1과 5입니다. 이는 탐색 실패와 별개의 의미적 반박입니다. 반대로 Boolean 반례가 없다는 사실이 증명 항을 만들어주지는 않습니다. 이 진리표는 필요한 의미적 검사이지 구성적 증명 탐색의 완전한 oracle이 아닙니다. 목표 9는 Boolean에서는 타당하지만 이 한도 안에서 항을 못 찾는 예입니다. 그 탐색 실패만으로 증명 부재를 주장하지 않습니다.
 
+## 연구 확장: Peirce 타입에 대한 의미적 반박
+
+한도 안의 탐색 실패는 증명 부재의 증명이 아니다. 별도의 Kripke 반모형은 더 강한 결론을 줄 수 있다. 함의만의 구성적 논리에서 두 세계 $w_0\le w_1$를 두고 $P$는 $w_1$에서만, $Q$는 어디서도 성립하지 않게 하자. 한 세계의 함의는 접근 가능한 모든 미래 세계에서 전제가 성립하면 결론도 성립해야 한다.
+
+$w_1$에서 $P$는 참이고 $Q$는 거짓이므로 $P\to Q$는 두 세계 모두에서 실패한다. 따라서 $(P\to Q)\to P$는 $w_0$에서 공허하게 성립하지만 $P$ 자체는 거짓이다. 결국 $((P\to Q)\to P)\to P$는 $w_0$에서 실패한다. 단순 타입의 구성적 함의 규칙의 건전성으로 이제 탐색 한도와 무관하게 이 타입의 닫힌 항이 없다고 증명할 수 있다. 고전 공리를 더하면 체계가 바뀐다. 건전성도 세 타입 규칙에 대한 귀납으로 확인한다. 변수는 성립하는 가정을 쓰고, 적용은 현재 세계의 함의를 쓴다. λ 도입은 모든 미래 세계에서 본문을 검사하며 문맥은 진실의 보존으로 그곳에서도 성립한다.
+
+| 근거 | 결과 | 입증하는 범위 |
+|---|---|---|
+| P,Q의 Boolean 배정 네 개 | 식이 모두 참 | 고전적 타당성 |
+| 기존 한도 9 탐색 | 항 없음 | 제한된 탐색 실패 |
+| 두 세계 Kripke 모형 | 루트에서 식이 거짓 | 닫힌 구성적 증명 부재 |
+
+```python
+from functools import lru_cache
+from itertools import product
+P,Q='P','Q'; imp=lambda a,b:(a,b)
+peirce=imp(imp(imp(P,Q),P),P)
+truth=[set(),{'P'}]
+@lru_cache(None)
+def force(world,A):
+    if isinstance(A,str):return A in truth[world]
+    return all(not force(future,A[0]) or force(future,A[1]) for future in range(world,2))
+assert truth[0]<=truth[1]
+assert not force(0,peirce) and force(1,peirce)
+assert all(force(w,imp(P,P)) for w in range(2))
+for p,q in product([False,True],repeat=2):
+    implies=lambda a,b:not a or b
+    assert implies(implies(implies(p,q),p),p)
+print([force(w,peirce) for w in range(2)])
+```
+
+**연습:** $P\to P$가 두 세계에서 모두 성립함을 확인하자. 원자 진실의 미래 방향 보존과 함의를 검사할 때 모든 미래 세계를 살피는 것이 핵심이다. 현재 세계만 검사하면 이 시험을 다시 Boolean 논리로 축소하는 실수를 한다.
+
 ## 연습 문제와 해설
 
 문제: 문맥 1에서 후보 2인 f를 f에 적용한 항을 검사하세요. 무엇이 맞지 않나요?

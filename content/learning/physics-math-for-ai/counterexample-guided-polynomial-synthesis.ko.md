@@ -80,6 +80,37 @@ $$
 
 유한 영역이라는 가정을 기억해야 합니다. 실습 밖에서 모든 정수 x와 다른 정수 상수 c를 합성한다고 합시다. 그런 c는 없지만 유한한 예제 집합에는 그 밖의 c를 계속 고를 수 있습니다. 반례마다 일부 후보를 제거한다는 이유만으로 무한 문법의 CEGIS가 종료하지는 않습니다. 실제 검증기의 unknown이나 시간 초과도 반례가 없다는 증명과 구분해야 합니다.
 
+## 연구 확장: 정확한 식별과 안정적인 식별은 다르다
+
+서로 다른 정확한 표본 세 개는 이차 다항식을 정하지만 잡음이 있으면 보간이 오차를 증폭할 수 있다. 절점 $-1,0,1$의 Lagrange 기저는 $L_{-1}(x)=x(x-1)/2$, $L_0(x)=1-x^2$, $L_1(x)=x(x+1)/2$다. 측정값마다 참값과의 차이가 $\delta$ 이하면
+
+$$|\widehat p(x)-p(x)|\le\delta\sum_i|L_i(x)|$$
+
+다. 보간 오차를 $\sum_i e_iL_i(x)$로 쓰고 삼각부등식을 적용하면 된다. 고정한 조회점에서는 각 기저의 부호에 맞춰 절점 오차를 주어 상한을 달성할 수 있다. 따라서 잡음 없는 식별이 유일해도 외삽은 불안정할 수 있다.
+
+| 조회 $x$ | 최악 오차 증폭 |
+|---|---:|
+| 0 | 1 |
+| 2 | 7 |
+| 3 | 17 |
+
+```python
+from fractions import Fraction as F
+delta=F(1,100); node_errors=[delta,-delta,delta]
+for x,expected in [(F(0),1),(F(2),7),(F(3),17)]:
+    basis=[x*(x-1)/2,1-x*x,x*(x+1)/2]
+    amplification=sum(map(abs,basis))
+    error=sum(e*l for e,l in zip(node_errors,basis))
+    assert amplification==expected and abs(error)==delta*amplification
+    print(x,amplification,error)
+for h in [F(1),F(1,10),F(1,100)]:
+    quadratic_error=(delta-2*(-delta)+delta)/(2*h*h)
+    assert quadratic_error==2*delta/(h*h)
+print('Exact sharp extrapolation and coefficient-error checks passed')
+```
+
+가까운 절점 $0,h,2h$에서는 이차 계수 오차가 최대 $2\delta/h^2$, 일차 계수 오차가 최대 $4\delta/h$다. 절점 간격을 작게 만들면 다른 조건수 문제가 생긴다. 이 보조 분석은 실수 계수·잡음 데이터를 허용하며 기존 유한 정수 DSL과 정확 검증기는 그대로다. 유한 검증 결과가 잡음을 추정하거나 영역 밖 안정성을 인증해주지는 않는다.
+
 ## 연습 문제와 해설: 일반화에는 어떤 추가 추론이 필요할까?
 
 문제: 후보와 명세가 모두 차수 2 이하의 다항식임을 안다면, 서로 다른 세 점에서 일치하는 것으로 무엇을 알 수 있나요? x²를 abs(x)의 전체 구현이라고 말하는 데도 같은 논리를 쓸 수 있을까요?

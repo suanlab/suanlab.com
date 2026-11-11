@@ -56,6 +56,38 @@ C=4이면 LP 해는 (1,2/3), 값은 17/3입니다. 좌표별 가까운 이진값
 
 아래 가로축은 반복 횟수가 아니라 C입니다. 파랑은 LP 값입니다. 이하 모드의 정수 값은 오른쪽 열린 수평 구간과 닫힌 점으로 표시합니다. 정확 모드에서는 정수 해가 있는 적재량만 주황 점으로 표시하고 불가능한 구간을 가짜 값으로 잇지 않습니다. 현재 LP 값에는 파란 점도 있습니다. 아주 작은 양의 정확한 분수는 소수 화면에서 0으로 반올림될 수 있으며 문장의 정확한 분수 표기가 이를 구분합니다. 비율 자체가 표시 범위를 넘는 경우와 분모 0인 경우도 따로 표시합니다.
 
+## 연구 확장: 최적화기를 믿지 않고 완화 해 인증하기
+
+이하 모형에서 자원 가격 $\lambda\ge0$와 상한 가격 $\beta_i\ge0$가 $w_i\lambda+\beta_i\ge v_i$를 만족한다고 하자. 실행 가능한 모든 완화 점에 대해
+
+$$v^Tx\le\lambda w^Tx+\beta^Tx\le C\lambda+\sum_i\beta_i$$
+
+다. 부등식에 값을 곱해 얻은 약한 쌍대성이며 최적화기의 출력을 믿는 논증이 아니다. 마지막 식을 최소화하는 것이 쌍대 문제다. 실행 가능한 원문제 점이 이 상한을 달성하면 둘 다 최적이다. 학습 모델이 어느 쪽 후보를 제안해도 실행 가능성을 확인해야 인증서가 된다.
+
+가치 $(3,4)$, 무게 $(2,3)$에서 아래 예제는 원문제와 쌍대 값을 일치시킨다. 용량 3·4에는 $\lambda=4/3$, $\beta=(1/3,0)$, 용량 1에는 $\lambda=3/2$, $\beta=(0,0)$를 쓴다.
+
+| 용량 | LP 점 | 인증한 LP 값 | 정수 최적값 |
+|---|---|---:|---:|
+| 1 | (1/2, 0) | 3/2 | 0 |
+| 3 | (1, 1/3) | 13/3 | 4 |
+| 4 | (1, 2/3) | 17/3 | 4 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+values=[F(3),F(4)]; weights=[F(2),F(3)]
+for C,x,price,beta in [(1,[F(1,2),F(0)],F(3,2),[F(0),F(0)]),(3,[F(1),F(1,3)],F(4,3),[F(1,3),F(0)]),(4,[F(1),F(2,3)],F(4,3),[F(1,3),F(0)])]:
+    assert sum(w*z for w,z in zip(weights,x))<=C
+    assert all(w*price+b>=v for w,b,v in zip(weights,beta,values))
+    primal=sum(v*z for v,z in zip(values,x)); dual=C*price+sum(beta)
+    assert primal==dual
+    integer=max(sum(v*z for v,z in zip(values,y)) for y in product([0,1],repeat=2) if sum(w*z for w,z in zip(weights,y))<=C)
+    assert integer<=dual
+    print(C,primal,integer)
+```
+
+상보적 느슨함으로 가격을 해석할 수 있다. 자원 가격이 양수이면 자원 제약이 등호이고, $\beta_i$가 양수이면 $x_i=1$이어야 한다. 조정 가치가 기준보다 엄격히 낮은 물건은 선택하지 않는다. 이는 LP의 인증이며 정수 해의 인증은 아니다. 정확 적재량 모드에서는 자원 승수의 부호가 자유로우므로 음이 아닌 가격을 그대로 강제하면 다른 문제를 기술하게 된다.
+
 ## 문제와 해설
 
 문제: 가치 (3,4), C=1의 이하 모드에서 두 최적값과 비율을 구하세요.

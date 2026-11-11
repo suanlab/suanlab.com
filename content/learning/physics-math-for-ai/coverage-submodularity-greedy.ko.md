@@ -85,6 +85,46 @@ k=0에서는 greedy와 가능한 최적값이 모두 0이고 계수 식을 계�
 
 아래 곡선은 시간 대신 센서 예산을 바꿉니다. 파랑은 greedy, 주황은 독립 최적값입니다. 관측 비율, 일반 보장 계수, 보장 가치를 별도 readout으로 제공합니다. 한 예제에서 관측 비율과 경계가 같다고 모든 예제가 최악 경계에 도달하는 것은 아닙니다.
 
+## 연구 확장: 부정확한 한계 이득의 손실 정량화하기
+
+학습한 선택 점수가 한계 이득을 근사한다고 하자. 적응적으로 질의한 모든 추정값에 동시에 절대오차 $\eta$ 이하를 가정한다. 추정 점수가 가장 큰 원소를 선택하면 참 이득은 참 최대 이득보다 최대 $2\eta$ 작다. 최선 점수가 아래로, 선택 점수가 위로 각각 한 번씩 틀릴 수 있기 때문이다.
+
+$D_i=f(O)-f(G_i)$라 두면 간극 재귀는 $D_{i+1}\le(1-1/k)D_i+2\eta$가 된다. 이를 풀면
+
+$$f(G_k)\ge\alpha_k f(O)-2k\alpha_k\eta\ge\alpha_k f(O)-2k\eta,\qquad\alpha_k=1-(1-1/k)^k$$
+
+다. 첫 경계가 더 정확하고 둘째는 보고하기 쉽다. 기존 네 대상 예제의 $k=2$, $f(O)=4$에는 다음의 보수적 보장이 나온다. 음의 하한을 0으로 바꿀 수 있는 것도 이 커버리지 목적이 비음수이기 때문이다.
+
+| 균일 오차 $\eta$ | 보수적 보장 가치 |
+|---|---:|
+| 0 | 3 |
+| 1/4 | 2 |
+| 1/2 | 1 |
+
+```python
+from fractions import Fraction as F
+from itertools import permutations
+masks=[3,5,10,1]
+def value(S):
+    union=0
+    for i in S:union|=masks[i]
+    return union.bit_count()
+for eta in [F(0),F(1,4),F(1,2)]:
+    lower=F(3)-4*eta; tested=0
+    for order in permutations(range(4),2):
+        S=[]; valid=True
+        for chosen in order:
+            best=max(value(S+[i])-value(S) for i in range(4) if i not in S)
+            if value(S+[chosen])-value(S)<best-2*eta:valid=False
+            S.append(chosen)
+        if valid:
+            assert value(S)>=lower; tested+=1
+    assert tested>0
+    print(eta,lower,tested)
+```
+
+정확 열거는 오차 조건과 양립하는 모든 두 단계 선택 순서를 검사한다. 이는 부정확한 oracle의 보조 분석이며 기존 실습은 정확한 이득을 쓴다. 검증 데이터의 평균제곱오차만으로 적응 질의 전체의 균일 경계를 확보할 수 없다. 확률적 oracle에는 먼저 이 질의들을 함께 덮는 사건의 보장이 필요하며 그 사건 위에서 이 결정적 논증을 적용한다.
+
 ## 문제와 해설
 
 문제: 모든 대상 mask가 0이고 k=2이면 최적값·비율·보장은 무엇일까요?

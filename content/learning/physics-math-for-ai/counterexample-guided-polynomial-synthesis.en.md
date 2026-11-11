@@ -80,6 +80,37 @@ A successful refinement adds a previously unseen input from D. Thus there can be
 
 The finite-domain assumption matters. Outside this panel, consider synthesizing an integer constant c satisfying c≠x for every integer x. No such constant exists, yet any finite example set allows another c outside that set. An unbounded CEGIS process need not terminate merely because each new counterexample eliminates some candidates. A real verifier can also return unknown or time out; either result must stay distinct from a proof of no counterexample.
 
+## Research extension: exact identification is different from stable identification
+
+Three distinct exact samples identify a quadratic polynomial, but noisy samples can be amplified by interpolation. At nodes $-1,0,1$, the Lagrange basis is $L_{-1}(x)=x(x-1)/2$, $L_0(x)=1-x^2$, $L_1(x)=x(x+1)/2$. If each measured value differs from truth by at most $\delta$, then
+
+$$|\widehat p(x)-p(x)|\le\delta\sum_i|L_i(x)|.$$
+
+This follows directly by expressing the interpolated error as $\sum_i e_iL_i(x)$ and applying the triangle inequality. The bound is sharp at a fixed probe: choose each node error to match that basis sign. Extrapolation can therefore be fragile even when exact noiseless identification is unique.
+
+| Probe $x$ | Worst-case amplification |
+|---|---:|
+| 0 | 1 |
+| 2 | 7 |
+| 3 | 17 |
+
+```python
+from fractions import Fraction as F
+delta=F(1,100); node_errors=[delta,-delta,delta]
+for x,expected in [(F(0),1),(F(2),7),(F(3),17)]:
+    basis=[x*(x-1)/2,1-x*x,x*(x+1)/2]
+    amplification=sum(map(abs,basis))
+    error=sum(e*l for e,l in zip(node_errors,basis))
+    assert amplification==expected and abs(error)==delta*amplification
+    print(x,amplification,error)
+for h in [F(1),F(1,10),F(1,100)]:
+    quadratic_error=(delta-2*(-delta)+delta)/(2*h*h)
+    assert quadratic_error==2*delta/(h*h)
+print('Exact sharp extrapolation and coefficient-error checks passed')
+```
+
+For nearby nodes $0,h,2h$, the fitted quadratic coefficient has error at most $2\delta/h^2$, while the linear coefficient has error at most $4\delta/h$. Small spacing creates a different conditioning problem. This auxiliary analysis allows real coefficients and noisy data; the native finite integer DSL and exact verifier remain unchanged. A finite verification result neither estimates noise nor supplies an out-of-domain stability certificate.
+
 ## Exercise and solution: what extra reasoning would justify generalization?
 
 Exercise: if the candidate and specification are both known polynomials of degree at most two, what does agreement at three distinct inputs imply? Can the same reasoning justify x squared as a global implementation of absolute value?

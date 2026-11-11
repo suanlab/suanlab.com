@@ -73,6 +73,44 @@ $$
 
 아래 가로축은 실제 완료한 증대 수입니다. 파랑은 가능한 매칭 이력이며 종료하면 끝납니다. 주황은 조회 집합에서 만든 유효 컷 상한입니다. 조회 집합이 느슨하면 선택한 파란 점과 주황 상한이 만나지 않을 수 있습니다. 최적화 학습 손실의 시간 변화가 아닙니다.
 
+## 연구 확장: Hall 결핍으로 남는 작업 수 설명하기
+
+왼쪽 부분집합 $S$의 작업은 최대 $|N(S)|$개만 배정할 수 있다. 따라서 어떤 매칭도 적어도 $|S|-|N(S)|$개의 왼쪽 정점을 남긴다. 빈 집합도 포함하여 $d=\max_{S\subseteq L}(|S|-|N(S)|)\ge0$라 하면 정확한 관계는
+
+$$\nu(G)=|L|-d$$
+
+다. 달성 가능성은 종료 잔여 탐색에서 보인다. 도달한 왼쪽·오른쪽 집합은 $N(S_L)=S_R$이고, 도달한 오른쪽은 모두 매칭되어 그 짝도 도달 가능하다. 도달한 매칭 쌍을 세어 빼면 $|S_L|-|S_R|$에는 전체의 미배정 왼쪽 정점 수만 남는다. 따라서 결핍 하한을 실제로 달성한다. Hall의 완전 매칭 조건은 정확히 $d=0$이다.
+
+| 이웃 mask | 최대 결핍 | 최대 매칭 |
+|---|---:|---:|
+| (7,7,7) | 0 | 3 |
+| (1,1,2) | 1 | 2 |
+| (0,0,0) | 3 | 0 |
+
+![이름 붙인 3×3 이분 그래프 512개를 최대 Hall 결핍별로 센 그림. 결핍 0일 때 완전 매칭이 존재한다.](/assets/learning/combinatorial-hall-deficit-ko.svg)
+
+```python
+from itertools import product
+from collections import Counter
+def matching(masks,i=0,used=0):
+    if i==3:return 0
+    return max([matching(masks,i+1,used)]+[1+matching(masks,i+1,used|(1<<j)) for j in range(3) if masks[i]&(1<<j) and not used&(1<<j)])
+histogram=Counter()
+for masks in product(range(8),repeat=3):
+    deficit=0
+    for subset in range(8):
+        neighbors=0
+        for i in range(3):
+            if subset&(1<<i):neighbors|=masks[i]
+        deficit=max(deficit,subset.bit_count()-neighbors.bit_count())
+    assert matching(masks)==3-deficit
+    histogram[deficit]+=1
+assert dict(histogram)=={0:247,1:231,2:33,3:1}
+print(sorted(histogram.items()))
+```
+
+코드는 재귀적 매칭과 부분집합 결핍이라는 독립 유한 계산 둘을 512개 그래프에서 비교한다. 막대는 이름 붙인 그래프를 한 번씩 열거한 개수이며 실제 배정 시스템의 경험 분포가 아니다. **연습:** (1,1,2)의 결핍 집합을 찾고 그 집합 밖에 간선 하나를 추가하는 것으로 병목이 해결되지 않을 수 있는 이유를 설명하자.
+
 ## 문제와 해설
 
 문제: 완전한 3×3 그래프에서 prefix 0, 조회 mask 0이면 조회 컷 용량과 도달 컷 인증은 무엇일까요?

@@ -68,6 +68,42 @@ At epsilon0.1, K=19/40 and scores become (0,0,6,40). The DP now returns mask12 w
 
 The plot compares FPTAS values with (1−epsilon) times an independently enumerated OPT. Such a numerical theorem line is available here because there are sixteen subsets. The approximation algorithm never consults that reference, and a large real application normally does not know OPT in advance.
 
+## Research extension: a guarantee on learned values is not the true-value guarantee
+
+Suppose nonnegative predicted values $\widehat v_i$ are optimized, while true values satisfy $|v_i-\widehat v_i|\le\delta$ on every eligible item. Assume every feasible set has at most $k$ items and the returned set satisfies $\widehat v(S)\ge(1-\epsilon)\widehat{\mathrm{OPT}}$. Comparing with the true optimum set $O$ gives
+
+$$v(S)\ge(1-\epsilon)v(O)-(2-\epsilon)k\delta.$$
+
+Indeed, subtract at most $k\delta$ from the selected predicted value, compare predicted optima, and subtract another $(1-\epsilon)k\delta$ from the predicted value of $O$. A deterministic bound on every item is essential; average prediction error does not imply it. Weights and feasibility remain exact throughout.
+
+For true values $(6,6,5,5)$, weights $(2,3,4,5)$ and capacity five, $k=2$ and $\mathrm{OPT}=12$. At $\epsilon=1/4$:
+
+| Uniform item error $\delta$ | Conservative true-value bound |
+|---|---:|
+| 0 | 9 |
+| 1/2 | 29/4 |
+| 1 | 11/2 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+true=[6,6,5,5]; weights=[2,3,4,5]; eps=F(1,4)
+sets=[x for x in product([0,1],repeat=4) if sum(w*z for w,z in zip(weights,x))<=5]
+value=lambda v,x:sum(a*z for a,z in zip(v,x))
+assert max(value(true,x) for x in sets)==12
+for delta in [F(0),F(1,2),F(1)]:
+    lower=9-F(7,2)*delta; count=0
+    for signs in product([-1,1],repeat=4):
+        predicted=[v+s*delta for v,s in zip(true,signs)]
+        best=max(value(predicted,x) for x in sets)
+        for x in sets:
+            if value(predicted,x)>=(1-eps)*best:
+                assert value(true,x)>=lower;count+=1
+    print(delta,lower,count)
+```
+
+The enumeration checks every feasible subset meeting the predicted approximation inequality for extremal error patterns. This is an auxiliary robustness theorem, not a new score predictor in the native panel. It also separates algorithmic scaling error from statistical score error; decreasing epsilon alone does not remove the latter.
+
 ## Exercise and solution: an invalid scale
 
 Exercise: use values (1,0,0,20), capacity2 and epsilon0.9. Why must the value20 item be excluded before scaling?

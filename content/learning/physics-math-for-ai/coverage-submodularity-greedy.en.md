@@ -85,6 +85,46 @@ The matrix shows which sensor covers each target. Left A/B markers indicate sens
 
 The lower curves vary sensor budget, not training time. Blue is greedy value and orange is the independent optimum. The instance ratio, generic guarantee factor and guaranteed value have separate readouts. Their equality in one example is not evidence that every instance attains the worst-case bound.
 
+## Research extension: quantify an inaccurate marginal oracle
+
+A learned selection score may approximate marginal gain. Assume every queried estimate has absolute error at most $\eta$, simultaneously for all adaptive queries. If greedy chooses the largest estimated gain, its true gain is at least the best true gain minus $2\eta$: one error can lower the best score and another can raise the selected score.
+
+The usual gap recurrence becomes $D_{i+1}\le(1-1/k)D_i+2\eta$, where $D_i=f(O)-f(G_i)$. Unrolling it yields
+
+$$f(G_k)\ge\alpha_k f(O)-2k\alpha_k\eta\ge\alpha_k f(O)-2k\eta,\qquad\alpha_k=1-(1-1/k)^k.$$
+
+The first bound is sharper; the second is easier to report. With the native four-target example, $k=2$ and $f(O)=4$, the latter gives the following conservative guarantees. Negative bounds can be replaced by zero only because this coverage objective is nonnegative.
+
+| Uniform error $\eta$ | Conservative guaranteed value |
+|---|---:|
+| 0 | 3 |
+| 1/4 | 2 |
+| 1/2 | 1 |
+
+```python
+from fractions import Fraction as F
+from itertools import permutations
+masks=[3,5,10,1]
+def value(S):
+    union=0
+    for i in S:union|=masks[i]
+    return union.bit_count()
+for eta in [F(0),F(1,4),F(1,2)]:
+    lower=F(3)-4*eta; tested=0
+    for order in permutations(range(4),2):
+        S=[]; valid=True
+        for chosen in order:
+            best=max(value(S+[i])-value(S) for i in range(4) if i not in S)
+            if value(S+[chosen])-value(S)<best-2*eta:valid=False
+            S.append(chosen)
+        if valid:
+            assert value(S)>=lower; tested+=1
+    assert tested>0
+    print(eta,lower,tested)
+```
+
+The exact enumeration checks every two-step choice sequence compatible with the error condition. This is an auxiliary imperfect-oracle analysis; native gains remain exact. Mean squared prediction error on held-out data does not establish the required uniform bound over adaptive queries. A probabilistic oracle must supply a joint event covering those queries before this deterministic argument applies.
+
 ## Exercises and solutions
 
 Exercise: all sensor masks are zero and k=2. What are the optimum, ratio and guarantee? Solution: both values are zero, the ratio is unavailable, the finite-k factor is 3/4 and its guaranteed value is zero. Greedy may still select two zero-gain sensors; the representative exact optimum is empty.
