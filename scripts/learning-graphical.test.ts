@@ -18,6 +18,26 @@ test('active paths do not force dependence at unfaithful or degenerate settings'
  for(const condition of [1,2]){const r=evaluate('d-separation-colliders',[2,condition,.5]);assert.equal(r.stats['1{graph d-separates A,C}'],0);assert.equal(r.stats['I(A;C | selected event) (bits)'],0);}
  const deterministic=evaluate('d-separation-colliders',[2,1,0]);assert.equal(deterministic.stats['I(A;C | selected event) (bits)'],0);assert.equal(deterministic.table.rows[0][2],1);
 });
+test('weak active paths retain positive information without entropy cancellation',()=>{
+ for(const epsilon of [.5-2**-20,.5-2**-30,.5-2**-50]){
+  const contrast=1-2*epsilon;
+  for(const shape of [0,1]){
+   const value=num(evaluate('d-separation-colliders',[shape,0,epsilon]),'I(A;C | selected event) (bits)');
+   assert.ok(value>0);close(value/(contrast**4/(2*Math.LN2)),1,1e-10);
+  }
+  for(const evidence of [1,2]){
+   const value=num(evaluate('d-separation-colliders',[2,evidence,epsilon]),'I(A;C | selected event) (bits)');
+   assert.ok(value>0);close(value/(contrast**2/(8*Math.LN2)),1,1e-5);
+  }
+ }
+});
+test('stable information agrees with direct joint KL away from independence and across its branch',()=>{
+ for(const epsilon of [.45-1e-8,.45,.45+1e-8,.46,.49])for(const [shape,evidence] of [[0,0],[1,0],[2,1],[2,2]]){
+  const out=evaluate('d-separation-colliders',[shape,evidence,epsilon]);
+  const direct=out.table.rows.reduce((sum,row)=>{const p=Number(row[2]),q=Number(row[3]);return sum+p*Math.log(p/q)/Math.LN2;},0);
+  close(num(out,'I(A;C | selected event) (bits)'),direct,1e-14);
+ }
+});
 test('factor multiplication respects arbitrary scope ordering and sum-out agrees with direct sums',()=>{
  const f={scope:[1,0],values:[1,2,3,4]},g={scope:[1,2],values:[5,6,7,8]},p=multiplyFactors([f,g]);assert.deepEqual(p.scope,[0,1,2]);for(let mask=0;mask<8;mask++){const [a,b,c]=bits(mask,3);assert.equal(p.values[mask],f.values[b+2*a]*g.values[b+2*c]);}const result=sumOut(p,1);assert.deepEqual(result.scope,[0,2]);for(let a=0;a<2;a++)for(let c=0;c<2;c++)assert.equal(result.values[a+2*c],p.values[a+4*c]+p.values[a+2+4*c]);assert.deepEqual(multiplyFactors([]),{scope:[],values:[1]});
 });

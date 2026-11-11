@@ -96,7 +96,7 @@
 .ai-prose img { max-width: 100%; height: auto; border: 1px solid hsl(var(--border)); border-radius: var(--radius); margin: 1.5rem 0; }
 .ai-prose blockquote { border-left: 3px solid hsl(var(--primary)); padding: .25rem 1rem; margin: 1.5rem 0; background: hsl(var(--muted)); }
 .ai-prose table { position: relative; display: block; max-width: 100%; overflow-x: auto; font-size: .875rem; margin: 1.25rem 0; border-collapse: collapse; }
-.ai-prose td, .ai-prose th { padding: .625rem .75rem; border: 1px solid hsl(var(--border)); text-align: left; }
+.ai-prose td, .ai-prose th { padding: .625rem .75rem; border: 1px solid hsl(var(--border)); text-align: left; overflow-wrap: normal; }
 .ai-lab { border: 1px solid hsl(var(--border) / .8); background: hsl(var(--card)); color: hsl(var(--card-foreground)); border-radius: .75rem; overflow: hidden; padding: 1.5rem; box-shadow: 0 1px 2px rgb(0 0 0 / .05); }
 .ai-lab-heading { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
 .ai-lab h2 { font-size: 1.25rem; margin-top: .5rem; }

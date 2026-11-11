@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="480" viewBox="0 0 440 480" role="img" aria-labelledby="title desc"><title id="title">노드 주변만으로 순환을 알 수 없다</title><desc id="desc">J=.7,h=0인 삼각형에서 모든 노드 주변은 1/2이다. 정확한 간선 상관은 .794288, BP pair 상관은 .604368, 노드 부호 평균의 곱은 0이며 같은 0에서 1 척도로 비교한다.</desc>
+<rect width="440" height="480" rx="12" fill="#fff"/>
+<g font-family="system-ui,sans-serif">
+<text x="20" y="35" font-size="22" fill="#0f172a" text-anchor="start">노드 주변만으로 순환을 알 수 없다</text>
+<text x="20" y="67" font-size="18" fill="#0f172a" text-anchor="start">J = .7, h = 0;  P(Xᵢ=1) = 1/2</text>
+<text x="35" y="130" font-size="20" fill="#0f172a" text-anchor="start">정확한 간선 상관</text>
+<text x="405" y="130" font-size="18" fill="#0f172a" text-anchor="end">0.794288</text>
+<path d="M35 178H405" stroke="#cbd5e1"/>
+<rect x="35" y="145" width="293.886560" height="33" rx="3" fill="#2563eb"/>
+<text x="35" y="218" font-size="20" fill="#0f172a" text-anchor="start">BP pair 상관</text>
+<text x="405" y="218" font-size="18" fill="#0f172a" text-anchor="end">0.604368</text>
+<path d="M35 266H405" stroke="#cbd5e1"/>
+<rect x="35" y="233" width="223.616160" height="33" rx="3" fill="#ea580c"/>
+<text x="35" y="306" font-size="20" fill="#0f172a" text-anchor="start">노드 부호 평균의 곱</text>
+<text x="405" y="306" font-size="18" fill="#0f172a" text-anchor="end">0</text>
+<path d="M35 354H405" stroke="#cbd5e1"/>
+<circle cx="35" cy="354" r="4" fill="#64748b"/>
+<path d="M35 390H405M35 385V395M220 385V395M405 385V395" stroke="#475569"/>
+<text x="35" y="420" font-size="18" fill="#0f172a" text-anchor="middle">0</text>
+<text x="220" y="420" font-size="18" fill="#0f172a" text-anchor="middle">.5</text>
+<text x="405" y="420" font-size="18" fill="#0f172a" text-anchor="middle">1</text>
+<text x="220" y="457" font-size="18" fill="#0f172a" text-anchor="middle">주변·pair·독립 곱을 구분</text>
+</g></svg>

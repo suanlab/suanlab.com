@@ -26,6 +26,26 @@ Variable elimination and message passing repeatedly apply these operations to av
 
 Positive J favors matching neighboring spins; negative J favors opposite spins. At J=0, pair factors equal one. If h also vanishes, every assignment is equally weighted and Z=8. A drawn interaction can become ineffective at special parameter values.
 
+## The distributive law justifies the algorithm
+
+Assume finite variables and nonnegative factors. Let F_v contain the factors involving variable v. Every other factor is independent of x_v and can move outside its sum:
+
+$$
+\sum_{x_v}\prod_{f\in F} f(x_{S_f})
+=\left(\prod_{g\notin F_v}g(x_{S_g})\right)
+\underbrace{\sum_{x_v}\prod_{f\in F_v}f(x_{S_f})}_{\tau(x_{\cup_{f\in F_v}S_f\setminus\{v\}})}.
+$$
+
+Replacing the selected product by τ preserves exactly the unnormalized marginal weight of every remaining assignment. Repetition gives variable elimination. Correctness comes from this invariant; intermediate tables need not be probability distributions. These are finite sums, so no additional theorem about exchanging improper integrals is needed here.
+
+## What does message normalization preserve?
+
+If K=sum τ is finite and positive, storing τ/K preserves final marginal ratios. Recovering the original Z also requires retaining the removed scale K. For example, τ=(2,6) has total eight, while its normalized table (1/4,3/4) totals one. The normalized table alone cannot recover eight. When successive elimination steps divide an entire outgoing message by a single common scale, restore the product of those scales to the final scalar. Arbitrarily changing scale separately for each separator assignment is a different operation and can change the law.
+
+If all assignment weights vanish, Z=0 and the conditional law is undefined. Conflicting evidence factors 1{A=0} and 1{A=1} provide a simple example. Replacing their zero product with a uniform distribution would invent a probability law for impossible evidence.
+
+**Exercise:** Multiply τ by a positive constant three while holding other factors fixed. What changes? **Explanation:** The normalized marginal stays the same, while the raw weight sum becomes three times larger. This is the same cancellation illustrated by the screen's factor scale.
+
 ## Experiment and exercises
 
 Read mask bits from lowest to highest as A,B,C. Compare the orange point with the table and multiply the three factors manually. The selected mask changes the highlighted assignment, not the model.

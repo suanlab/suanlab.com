@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="610" viewBox="0 0 440 610" role="img" aria-labelledby="title desc"><title id="title">Keep shared variables connected</title><desc id="desc">The invalid AB–BC–AC cluster path loses A in its middle cluster. AB–ABC–AC restores running intersection. With the same two equality factors, the original and repaired normalizers are two while the invalid tree gives four.</desc>
+<rect width="440" height="610" rx="12" fill="#fff"/>
+<g font-family="system-ui,sans-serif">
+<text x="20" y="35" font-size="22" fill="#0f172a" text-anchor="start">Keep shared variables connected</text>
+<text x="20" y="66" font-size="17" fill="#0f172a" text-anchor="start">Cluster paths and running intersection</text>
+<text x="25" y="110" font-size="21" fill="#9a3412" text-anchor="start">Invalid cluster path</text>
+<rect x="25" y="145" width="100" height="60" rx="8" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+<text x="75" y="184" font-size="26" fill="#2563eb" text-anchor="middle">AB</text>
+<path d="M125 175H170" stroke="#64748b" stroke-width="2"/>
+<rect x="170" y="145" width="100" height="60" rx="8" fill="#fff" stroke="#c2410c" stroke-width="3"/>
+<text x="220" y="184" font-size="26" fill="#c2410c" text-anchor="middle">BC</text>
+<path d="M270 175H315" stroke="#64748b" stroke-width="2"/>
+<rect x="315" y="145" width="100" height="60" rx="8" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+<text x="365" y="184" font-size="26" fill="#2563eb" text-anchor="middle">AC</text>
+<text x="147" y="235" font-size="18" fill="#475569" text-anchor="middle">B</text>
+<text x="292" y="235" font-size="18" fill="#475569" text-anchor="middle">C</text>
+<rect x="25" y="355" width="100" height="60" rx="8" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+<text x="75" y="394" font-size="26" fill="#2563eb" text-anchor="middle">AB</text>
+<path d="M125 385H170" stroke="#64748b" stroke-width="2"/>
+<rect x="170" y="355" width="100" height="60" rx="8" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+<text x="220" y="394" font-size="26" fill="#2563eb" text-anchor="middle">ABC</text>
+<path d="M270 385H315" stroke="#64748b" stroke-width="2"/>
+<rect x="315" y="355" width="100" height="60" rx="8" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+<text x="365" y="394" font-size="26" fill="#2563eb" text-anchor="middle">AC</text>
+<text x="147" y="445" font-size="18" fill="#475569" text-anchor="middle">AB</text>
+<text x="292" y="445" font-size="18" fill="#475569" text-anchor="middle">AC</text>
+<text x="220" y="265" font-size="19" fill="#9a3412" text-anchor="middle">A is missing from the middle cluster.</text>
+<text x="25" y="320" font-size="21" fill="#1d4ed8" text-anchor="start">Repaired cluster path</text>
+<text x="220" y="475" font-size="19" fill="#1d4ed8" text-anchor="middle">A occurs along the entire path.</text>
+<text x="25" y="520" font-size="20" fill="#9a3412" text-anchor="start">Invalid tree sum: Z = 4</text>
+<text x="25" y="551" font-size="20" fill="#1d4ed8" text-anchor="start">Original and repaired: Z = 2</text>
+<text x="25" y="584" font-size="17" fill="#0f172a" text-anchor="start">Each original factor is assigned once.</text>
+</g></svg>
