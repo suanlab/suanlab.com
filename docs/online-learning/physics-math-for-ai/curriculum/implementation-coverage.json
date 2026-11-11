@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 625,
+  "implementedUnitCount": 626,
   "curriculumComplete": false,
-  "scope": "625 registered units, 1919 guided experiments and 1250 bilingual manuscript files. Introductory scope: 337 of 362 original topics verified, 25 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "626 registered units, 1921 guided experiments and 1252 bilingual manuscript files. Introductory scope: 338 of 362 original topics verified, 24 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -10594,10 +10594,11 @@
         "photodiode-circuits-and-sensor-bandwidth",
         "photonic-interferometers-and-matrix-products",
         "photodiode-noise-and-equivalent-bandwidth",
-        "memory-traffic-and-the-roofline"
+        "memory-traffic-and-the-roofline",
+        "energy-per-task-and-thermal-cost"
       ],
-      "nextUnitId": "energy-per-task-and-thermal-cost",
-      "nextAction": "task-energy-reader-integration",
+      "nextUnitId": "landauer-erasure-and-its-assumptions",
+      "nextAction": "landauer-erasure-reader-integration",
       "phononDraft": {
         "unitId": "lattice-vibrations-and-phonon-dispersion",
         "status": "registered-and-verified",
@@ -10613,48 +10614,48 @@
           "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
-      "currentPreparationEvidence": "scripts/learning-memory-roofline.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+      "currentPreparationEvidence": "scripts/learning-task-energy.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "memory-traffic-and-the-roofline",
+        "unitId": "energy-per-task-and-thermal-cost",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-memory-roofline.ts",
-        "lab": "src/components/learning/memory-roofline-lab.tsx",
-        "tests": "scripts/learning-memory-roofline.test.ts",
+        "model": "src/lib/learning-task-energy.ts",
+        "lab": "src/components/learning/task-energy-lab.tsx",
+        "tests": "scripts/learning-task-energy.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "memory-traffic-and-the-roofline",
+        "unitId": "energy-per-task-and-thermal-cost",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-memory-roofline.ts",
-        "lab": "src/components/learning/memory-roofline-lab.tsx",
-        "tests": "scripts/learning-memory-roofline.test.ts",
+        "model": "src/lib/learning-task-energy.ts",
+        "lab": "src/components/learning/task-energy-lab.tsx",
+        "tests": "scripts/learning-task-energy.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "지연·대역폭·메모리 이동",
+        "originalTopic": "에너지·열 비용",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "memory-traffic-and-the-roofline"
+          "energy-per-task-and-thermal-cost"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -10662,12 +10663,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-memory-roofline.test.ts"
+        "evidence": "scripts/learning-task-energy.test.ts"
       },
       "topicEvidence": [
         {
@@ -10891,6 +10892,43 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "에너지·열 비용",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "energy-per-task-and-thermal-cost"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+            "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-task-energy.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "energy-per-task-and-thermal-cost",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-task-energy.ts",
+            "lab": "src/components/learning/task-energy-lab.tsx",
+            "tests": "scripts/learning-task-energy.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+              "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "electronicBandsDraft": {
@@ -10970,14 +11008,29 @@
       },
       "taskEnergyDraft": {
         "unitId": "energy-per-task-and-thermal-cost",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/energy-per-task-and-thermal-cost.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/energy-per-task-and-thermal-cost.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "task-energy-reader-integration"
+        "nextAction": "landauer-erasure-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
+        ]
+      },
+      "landauerErasureDraft": {
+        "unitId": "landauer-erasure-and-its-assumptions",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/landauer-erasure-and-its-assumptions.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/landauer-erasure-and-its-assumptions.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "landauer-erasure-reader-integration"
       }
     },
     {
@@ -11015,7 +11068,7 @@
     "research-methods"
   ],
   "nextDomain": "matter-computation",
-  "nextTopic": "에너지·열 비용",
+  "nextTopic": "Landauer 원리의 조건",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

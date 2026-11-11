@@ -3329,7 +3329,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "photodiode-circuits-and-sensor-bandwidth",
       "photonic-interferometers-and-matrix-products",
       "photodiode-noise-and-equivalent-bandwidth",
-      "memory-traffic-and-the-roofline"
+      "memory-traffic-and-the-roofline",
+      "energy-per-task-and-thermal-cost"
     ]
   },
   {

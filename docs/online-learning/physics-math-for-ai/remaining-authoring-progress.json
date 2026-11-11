@@ -15892,24 +15892,72 @@
         },
         {
           "title": "에너지·열 비용",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "energy-per-task-and-thermal-cost"
+          ],
           "preparation": {
             "unitId": "energy-per-task-and-thermal-cost",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/energy-per-task-and-thermal-cost.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/energy-per-task-and-thermal-cost.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "task-energy-reader-integration"
+            "nextAction": "landauer-erasure-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+              "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+            "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-task-energy.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "energy-per-task-and-thermal-cost",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-task-energy.ts",
+            "lab": "src/components/learning/task-energy-lab.tsx",
+            "tests": "scripts/learning-task-energy.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+              "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "Landauer 원리의 조건",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "landauer-erasure-and-its-assumptions",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/landauer-erasure-and-its-assumptions.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/landauer-erasure-and-its-assumptions.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "landauer-erasure-reader-integration"
+          }
         },
         {
           "title": "하한과 실제 시스템 측정",
@@ -15923,50 +15971,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "energy-per-task-and-thermal-cost",
-      "nextAction": "task-energy-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
-      "currentPreparationEvidence": "scripts/learning-memory-roofline.test.ts",
+      "nextUnitId": "landauer-erasure-and-its-assumptions",
+      "nextAction": "landauer-erasure-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+      "currentPreparationEvidence": "scripts/learning-task-energy.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "memory-traffic-and-the-roofline",
+        "unitId": "energy-per-task-and-thermal-cost",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-memory-roofline.ts",
-        "lab": "src/components/learning/memory-roofline-lab.tsx",
-        "tests": "scripts/learning-memory-roofline.test.ts",
+        "model": "src/lib/learning-task-energy.ts",
+        "lab": "src/components/learning/task-energy-lab.tsx",
+        "tests": "scripts/learning-task-energy.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "memory-traffic-and-the-roofline",
+        "unitId": "energy-per-task-and-thermal-cost",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-memory-roofline.ts",
-        "lab": "src/components/learning/memory-roofline-lab.tsx",
-        "tests": "scripts/learning-memory-roofline.test.ts",
+        "model": "src/lib/learning-task-energy.ts",
+        "lab": "src/components/learning/task-energy-lab.tsx",
+        "tests": "scripts/learning-task-energy.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "지연·대역폭·메모리 이동",
+        "originalTopic": "에너지·열 비용",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "memory-traffic-and-the-roofline"
+          "energy-per-task-and-thermal-cost"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -15974,12 +16022,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.ko.md",
-          "content/learning/physics-math-for-ai/memory-traffic-and-the-roofline.en.md"
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.ko.md",
+          "content/learning/physics-math-for-ai/energy-per-task-and-thermal-cost.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-memory-roofline.test.ts"
+        "evidence": "scripts/learning-task-energy.test.ts"
       }
     },
     {
@@ -16110,14 +16158,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 625,
-  "verifiedNewUnitCount": 472,
+  "implementedUnitCount": 626,
+  "verifiedNewUnitCount": 473,
   "remainingForwardDomainCount": 3,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 25,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 24,
   "nextDomain": "matter-computation",
-  "nextTopic": "에너지·열 비용",
+  "nextTopic": "Landauer 원리의 조건",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 337,
+  "verifiedOriginalScopeTopicCount": 338,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -16179,11 +16227,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 에너지·열 비용. All 625 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers Landauer 원리의 조건. All 626 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "energy-per-task-and-thermal-cost",
+  "nextAuthoringUnitId": "landauer-erasure-and-its-assumptions",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "task-energy-reader-integration",
+  "nextAction": "landauer-erasure-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

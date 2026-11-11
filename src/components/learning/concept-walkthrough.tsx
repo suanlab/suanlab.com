@@ -1,4 +1,6 @@
 'use client';
+import { taskEnergyId } from '@/data/task-energy-reader';
+import { TaskEnergyConcept } from './task-energy-lab';
 import { memoryRooflineId } from '@/data/memory-roofline-reader';
 import { MemoryRooflineConcept } from './memory-roofline-lab';
 import { photodiodeNoiseId } from '@/data/photodiode-noise-reader';
@@ -295,6 +297,7 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === taskEnergyId) return <TaskEnergyConcept language={language}/>;
   if (kind === memoryRooflineId) return <MemoryRooflineConcept language={language}/>;
   if (kind === photodiodeNoiseId) return <PhotodiodeNoiseConcept language={language}/>;
   if (kind === photonicInterferometerId) return <PhotonicInterferometerConcept language={language}/>;
