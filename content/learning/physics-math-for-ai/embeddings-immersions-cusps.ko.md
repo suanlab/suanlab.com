@@ -20,7 +20,7 @@ $$
 figure-eight는 f(θ)=(sinθ,sin2θ)입니다. θ=0과 π가 같은 원점으로 가므로 단사가 아닙니다. 하지만 다음 도함수는 어디서도 0이 아닙니다.
 
 $$
-f'(\theta)=(\cos\theta,2\cos2\theta).
+f'(\theta)=(\cos\theta,2\cos2\theta)
 $$
 
 cosθ=0이면 cos2θ=−1이기 때문입니다. 따라서 모든 점에서 immersion이지만 embedding은 아닙니다. 교차하는 두 가지는 서로 다른 원공간 점과 접방향입니다. 상의 교차점에 하나의 접공간을 억지로 주면 이 원공간 정보를 잃습니다.
@@ -34,6 +34,43 @@ c'(u)=(2u,3u^2),\qquad c'(0)=(0,0).
 $$
 
 원점에서 rank가 떨어지므로 이 매개화는 위상적 embedding이지만 smooth embedding은 아닙니다. 실험은 영도함수를 정규화해 가짜 방향을 만들지 않고 그 점에서 접선분을 생략합니다.
+
+## 전역 가정을 Rank로 대체할 수 없는 이유
+
+Compact 다양체에서 Hausdorff 다양체로 가는 단사 immersion은 embedding입니다. 필요한 연결 고리는 위상입니다. compact 원공간의 닫힌 부분은 compact이고 그 상도 compact이므로 목표에서 닫힙니다. 따라서 상으로 가는 연속 전단사의 역함수도 연속입니다. 더 일반적으로 보통의 다양체에서 proper 단사 immersion도 embedding입니다. properness는 원공간에서 무한히 멀어지는 부분이 상에서는 국소적으로 축적되는 현상을 막습니다.
+
+Properness가 없는 반례는 실수선을 두 원의 곱에 무리수 비율로 감는 사상입니다.
+
+$$
+f(t)=(\cos t,\sin t,\cos(\sqrt2t),\sin(\sqrt2t)).
+$$
+
+같은 상을 가지려면 각변위가 2π의 정수배인 동시에 무리수 배율에서도 맞아야 하므로 단사입니다. 속력은 √3이므로 immersion입니다. √2의 유리 근사 p/q를 쓰면 t=2πq는 무한히 커지지만 f(t)는 f(0)에 접근합니다. 상 위의 역함수는 f(0)에서 연속일 수 없습니다. 따라서 단사성과 full rank만으로 전역 embedding을 보장하지 못합니다.
+
+아래 Pell 근사는 이 재방문을 정량적으로 보여줍니다. 수학적 공식에서 첫 원은 정확히 돌아오므로 그 오차를 0으로 두고, 두 번째 원은 작은 위상 q√2−p로 평가합니다. 이 확장 예제는 실습에 새 선택 곡선을 추가한 것이 아닙니다.
+
+| p/q | q | f(0)까지의 대략적 거리 |
+|---|---:|---:|
+| 3/2 | 2 | 1.027 |
+| 17/12 | 12 | 0.185 |
+| 99/70 | 70 | 0.032 |
+
+## Python으로 계산 재현하기
+
+```python
+from decimal import Decimal, localcontext
+from math import pi, sin
+with localcontext() as ctx:
+    ctx.prec = 60
+    root2 = Decimal(2).sqrt()
+    p, q = 3, 2
+    for _ in range(6):
+        error = Decimal(q)*root2-Decimal(p)
+        distance = 2*abs(sin(pi*float(error)))
+        assert p*p-2*q*q == 1
+        print(p, q, round(distance, 9))
+        p, q = 3*p+4*q, 2*p+3*q
+```
 
 ## 직접 풀기와 풀이
 

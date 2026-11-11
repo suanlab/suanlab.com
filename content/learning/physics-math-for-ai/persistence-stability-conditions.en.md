@@ -37,6 +37,39 @@ The implementation solves this finite matching exactly using assignment states, 
 
 For δ=0.1 and ε=1.05, the reference square already has its cycle, while the perturbed quadrilateral has not completed the final side. Thus β₁ values are one and zero even though H₁ bottleneck distance is only about 0.1045. Stable birth/death locations do not make an indicator evaluated near a birth continuous.
 
+## What a bottleneck certificate actually preserves
+
+![H1 intervals for three square perturbations remain close while their alive indicators disagree at threshold epsilon 1.05.](/assets/learning/geometry-persistence-en.svg)
+
+For every simplex, the difference of its maximum edge lengths is at most the maximum pairwise distortion D. The two inclusion maps shift filtration by D and compose to the usual structure maps shifted by 2D. Applying homology gives a D-interleaving. The algebraic stability theorem for these finite persistence modules then provides a diagram matching of cost at most D. The final step is a theorem about modules, not a consequence of merely seeing nearby plotted points. See [Chazal, de Silva, Glisse and Oudot](https://arxiv.org/abs/1207.3674).
+
+A bar with lifetime greater than 2D cannot match the diagonal at that cost, because diagonal distance is half its lifetime. It must match an actual bar. For a matched pair with endpoint shifts at most D, its alive/dead status at ε agrees if ε lies more than D from both original endpoints. This statement is per matched feature; short unmatched features can still change the total Betti number.
+
+For one finite H₁ bar per diagram, the exact bottleneck distance is the smaller of direct endpoint matching and deleting both bars to the diagonal. The code independently evaluates this formula for perturbed rectangles, without using a persistence library or an assignment solver.
+
+| Perturbation δ | Reference H₁ | Perturbed H₁ |
+|---:|---|---|
+| 0 | [1,√2) | [1,√2) |
+| 0.1 | [1,√2) | [√1.22,√2) |
+| 0.25 | [1,√2) | [√1.625,√2) |
+
+## Reproduce the calculation in Python
+
+```python
+from math import hypot, sqrt
+for delta in [0, .1, .25]:
+    P = [(0,0),(1,0),(1,1),(0,1)]
+    Q = [(0,0),(1,0),(1+delta,1-delta),(0,1)]
+    birth = max(hypot(Q[(i+1)%4][0]-Q[i][0],Q[(i+1)%4][1]-Q[i][1]) for i in range(4))
+    death = min(hypot(Q[2][0]-Q[0][0],Q[2][1]-Q[0][1]), sqrt(2))
+    distortion = max(abs(hypot(P[i][0]-P[j][0],P[i][1]-P[j][1])-hypot(Q[i][0]-Q[j][0],Q[i][1]-Q[j][1])) for i in range(4) for j in range(4))
+    direct = max(abs(birth-1), abs(death-sqrt(2)))
+    diagonal = max((sqrt(2)-1)/2, max(0,death-birth)/2)
+    bottleneck = min(direct,diagonal)
+    assert bottleneck <= distortion+1e-12
+    print(delta, round(birth,9), round(death,9), round(bottleneck,9))
+```
+
 ## Exercise and limits
 
 Set δ=0: distortion, both diagram distances and labeled displacement vanish. Then double scale while fixing δ and doubling ε. Every distance bound and finite persistence coordinate doubles, while the rescaled Betti pattern is unchanged. Explain why a long feature, with lifetime greater than twice a proposed bottleneck error, cannot disappear into the diagonal within that error.

@@ -35,6 +35,41 @@ $$
 
 The sign and frame convention are explicit. A partial open path has a transported angle, but no closed-loop holonomy is reported. The full-cap area readout always refers to the complete cap, not an open-path swept region.
 
+## Connection coefficients and the boundary term
+
+Inserting the sphere metric into the Levi-Civita formula yields the only nonzero coordinate Christoffel symbols (including the symmetric partner):
+
+$$
+\Gamma^\theta_{\phi\phi}=-\sin\theta\cos\theta,\qquad
+\Gamma^\phi_{\theta\phi}=\Gamma^\phi_{\phi\theta}=\cot\theta.
+$$
+
+The radius cancels from these coefficients; it does not cancel from Gaussian curvature. Passing to the orthonormal frame gives the transport equation already used. Its skew-symmetric generator preserves vector length because the derivative of the squared length is zero. Integrating that two-component ODE by RK4 below provides a check independent of evaluating a single final angle.
+
+Gauss–Bonnet also contains a boundary contribution. For the positively oriented north cap, the integrated geodesic curvature of its latitude boundary is 2πcosθ. Together with the cap curvature integral, their sum is 2π, the Euler-characteristic term for a disk. A latitude generally is not geodesic, so dropping this boundary term would be incorrect. At θ=π/3 the two contributions are both π.
+
+| Colatitude | Cap curvature integral | Boundary geodesic curvature integral |
+|---|---:|---:|
+| π/3 | π | π |
+| π/2 | 2π | 0 |
+| 2π/3 | 3π | -π |
+
+## Reproduce the calculation in Python
+
+```python
+from math import pi, cos, sin, hypot
+for theta in [pi/3, pi/2, 2*pi/3]:
+    c, z, n = cos(theta), complex(1, 0), 2000
+    h = 2*pi/n
+    def f(w): return -1j*c*w
+    for _ in range(n):
+        k1=f(z); k2=f(z+h*k1/2); k3=f(z+h*k2/2); k4=f(z+h*k3)
+        z += h*(k1+2*k2+2*k3+k4)/6
+    expected = complex(cos(-2*pi*c), sin(-2*pi*c))
+    assert abs(z-expected) < 1e-10 and abs(hypot(z.real,z.imag)-1) < 1e-10
+    print(round(2*pi*(1-c), 9), round(2*pi*c, 9), round(abs(z-expected), 12))
+```
+
 ## Exercise and research connection
 
 Double R at fixed θ=π/3. Curvature becomes one quarter and cap area quadruples; their product and the holonomy stay fixed. Verify each quantity. Then use half a longitude loop and explain why comparing endpoint component angles now depends on the chosen frame trivialization.

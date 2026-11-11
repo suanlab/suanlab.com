@@ -31,6 +31,41 @@ $$
 
 diagram은 birth와 death를 좌표로 그리고 수명 0 쌍은 생략합니다. 무한 H₀는 표에 별도로 기록합니다. death 임계값에서는 이미 해당 interval이 살아 있지 않습니다. 같은 filtration 값의 순서가 수명 0 pairing을 바꿀 수 있어도 의미 있는 persistent module은 바꾸지 않습니다.
 
+## Chain 전수 조사로 몫공간 계산하기
+
+체 위의 유한 chain complex에서 rank–nullity에 따라 cycle 공간의 차원은 nₖ−rank∂ₖ입니다. ∂²=0이므로 boundary의 상은 그 cycle 공간 안에 들어가고, 몫을 취하면 rank∂ₖ₊₁만큼 뺍니다. 이것이 앞의 Betti 공식입니다. GF(2)에서는 chain을 모두 열거하는 독립 방법도 가능합니다. 경계 rank가 r이면 그 상의 원소 수는 2ʳ입니다. 서로 다른 boundary mask를 세면 persistence 열 축약을 재사용하지 않고 rank를 구합니다.
+
+코드는 정사각형의 모든 coface를 포함해 이 계산을 수행합니다. 마지막 threshold에는 간선 6개, 삼각형 4개, 사면체 1개가 있습니다. 경계 rank는 3, 3, 1이므로 Betti는 (1,0,0)입니다. 사면체를 빼면 꼭짓점이 평면에 그려져 있어도 추상 경계 표면의 2-cycle이 남습니다.
+
+| Threshold | 개수 n₀,n₁,n₂,n₃ | Betti β₀,β₁,β₂ |
+|---|---|---|
+| 0.9 | 4,0,0,0 | 4,0,0 |
+| 1 | 4,4,0,0 | 1,1,0 |
+| √2 | 4,6,4,1 | 1,0,0 |
+
+Chain 전수 조사는 지수적으로 커지므로 여기서는 꼭짓점 네 개이기에 가능합니다. 실제 대규모 계산은 희소 축약과 skeleton 차원 제한을 사용합니다. 일반적으로 Hₖ 계산에는 k+1차원 simplex까지 필요합니다. graph만 남기면 full Rips homology가 아니라 graph homology를 계산하게 됩니다.
+
+## Python으로 계산 재현하기
+
+```python
+from itertools import combinations
+from math import dist, log2, sqrt
+points = [(0,0),(1,0),(1,1),(0,1)]
+for eps in [.9, 1, sqrt(2)]:
+    groups = [[s for s in combinations(range(4),d+1)
+               if all(dist(points[i],points[j]) <= eps for i,j in combinations(s,2))]
+              for d in range(4)]
+    ranks = [0]
+    for d in range(1,4):
+        columns = [sum(1 << groups[d-1].index(face) for face in combinations(s,d)) for s in groups[d]]
+        image = {0}
+        for col in columns:
+            image |= {x ^ col for x in image}
+        ranks.append(int(log2(len(image))))
+    betti = [len(groups[d])-ranks[d]-ranks[d+1] for d in range(3)]
+    print(round(eps,6), list(map(len,groups)), betti)
+```
+
 ## 직접 풀기와 해석
 
 가로 1, 세로 2로 바꾸면 구멍은 2에서 태어나 √5에서 죽고 수명은 약 0.236입니다. 숫자와 실제 채워진 simplex를 확인하세요. 모든 거리를 s배 하면 birth·death도 s배이고 Betti 패턴은 재조정한 threshold에서 같습니다.

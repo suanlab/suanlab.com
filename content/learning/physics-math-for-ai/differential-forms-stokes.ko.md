@@ -27,6 +27,42 @@ angular form α=(−y dx+x dy)/(x²+y²)는 원점을 뺀 평면에서만 매끄
 
 Stokes와 모순되지 않습니다. form이 disk 내부 원점에 정의되지 않아 정리의 가정이 실패합니다. disk가 원점을 피하면 두 적분은 0입니다. 경계 자체가 원점을 통과하면 이 실험은 보통 선적분 값을 정의하지 않습니다. principal value 같은 별도 정규화를 몰래 적용하지 않습니다.
 
+## Potential을 구성하려면 정의역 가정이 필요합니다
+
+원점을 포함하는 별 모양 열린 영역에서 연속 미분 가능한 closed 1-form은 potential을 가집니다. 방사 선분으로 적분해 F를 정의하세요. 적분 안 미분과 closedness 항등식을 적용하면 다음과 같습니다.
+
+$$
+F(x)=\int_0^1\alpha_{tx}(x)\,dt,\qquad
+\partial_jF(x)=\int_0^1\frac{d}{dt}\big[t\alpha_j(tx)\big]dt=\alpha_j(x).
+$$
+
+선분 전체가 정의역에 있어야 합니다. 원점을 뺀 평면에서는 그 선분이 제외점을 지날 수 있어 이 증명으로 전역 각도 potential을 만들 수 없습니다. 대신 angular form의 폐곡선 적분은 winding number의 2π배를 기록합니다. 적절히 자른 slit 영역에는 국소 각도가 있지만 punctured plane 전체에는 단일값 전역 각도가 없습니다.
+
+수치 코드는 중심을 옮긴 원에서 angular form을 직접 적분하고 방향도 뒤집습니다. 특이점을 지나는 경계에는 principal value를 부여하지 않고 그 경우를 제외합니다. 분할 수를 늘려 이 예제의 구적 수렴을 확인할 수 있지만, 제안한 spanning surface 전체의 매끄러움 확인을 대신할 수는 없습니다.
+
+| 중심 x | 반지름 | 방향 | Angular form 적분 |
+|---:|---:|---|---:|
+| 0 | 1 | 반시계 | 2π |
+| 0 | 1 | 시계 | -2π |
+| 2 | 1 | 반시계 | 0 |
+
+## Python으로 계산 재현하기
+
+```python
+from math import pi, sin, cos
+n = 20000
+for center, sign in [(0,1),(0,-1),(2,1)]:
+    total = 0.0
+    for i in range(n):
+        t = sign*2*pi*(i+.5)/n
+        x, y = center+cos(t), sin(t)
+        dx, dy = -sin(t), cos(t)
+        total += (-y*dx+x*dy)/(x*x+y*y)*sign*2*pi/n
+    expected = sign*2*pi if center < 1 else 0
+    assert abs(total-expected) < 1e-10
+    print(center, sign, round(total, 9))
+```
+
 ## 직접 풀기와 풀이
 
 angular form에서 R=0.5, 중심 (1,0)을 택하세요. disk가 원점을 피하므로 적분은 0이고 Stokes가 적용됩니다. 중심을 (0,0)으로 옮기면 경계 적분은 2π이고 disk Stokes가 실패합니다. 중심 (0.5,0)에서는 경계가 제외점을 지나 적분이 정의되지 않습니다. 세 상태를 모두 확인하세요.

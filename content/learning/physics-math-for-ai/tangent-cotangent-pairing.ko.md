@@ -28,6 +28,37 @@ $$
 
 metric 제곱 노름도 gᵤᵤ(vᵘ)²=a²로 유지됩니다. a=1,b=2,s=2이면 새 성분은 2와 1이고 pairing은 2, 제곱 노름은 1입니다. 새 벡터 성분만 제곱하면 4가 되어 틀립니다.
 
+## 연쇄법칙이 반대 방향의 성분 변환을 설명합니다
+
+가역 Jacobian J를 가진 매끄러운 국소 좌표 변화에서 곡선의 속도는 J로 변환됩니다. 모든 속도에 대한 평가값을 유지하려면 covector는 역전치로 변환되어야 합니다. 길이 보존을 요구하면 metric의 규칙도 나옵니다.
+
+$$
+v'=Jv,\qquad \alpha'=J^{-T}\alpha,\qquad
+g'=J^{-T}gJ^{-1},\qquad
+\operatorname{grad}'f=J\operatorname{grad}f.
+$$
+
+모두 국소 명제입니다. 다른 점의 벡터를 더하려면 여전히 운반 규칙이 필요합니다. 1차원에서 u=θ+(1/2)sinθ로 두면 J=1+(1/2)cosθ는 1/2에서 3/2 사이입니다. 따라서 각도 이웃에서 유효한 증가 좌표 변화입니다. a=b=1, θ=0이면 J=3/2, 벡터 성분 3/2, covector 성분 2/3, metric 4/9입니다. pairing과 길이 제곱은 모두 1입니다.
+
+코드는 세 국소 Jacobian을 정확분수로 검사합니다. covector 성분을 그대로 최적화 이동으로 쓰면 metric을 반영하지 않는 한 gradient 변환 법칙에 어긋납니다. 보통 Euclidean gradient descent가 매개화에 의존하는 기하적 이유입니다.
+
+| J | 벡터 성분 | Covector 성분 | Metric |
+|---:|---:|---:|---:|
+| 3/2 | 3/2 | 2/3 | 4/9 |
+| 1 | 1 | 1 | 1 |
+| 1/2 | 1/2 | 2 | 4 |
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+for j in [F(3, 2), F(1), F(1, 2)]:
+    v, alpha, g = j, 1/j, 1/j**2
+    grad = alpha/g
+    assert alpha*v == 1 and g*v*v == 1 and grad == j
+    print(j, v, alpha, g)
+```
+
 ## 직접 풀기와 풀이
 
 a=−2,b=0.5,s=2에서 vᵘ=−4, αᵤ=0.25, pairing −1, 제곱 노름 4를 예상한 뒤 수치로 확인하세요. θ를 옮기면 물리적 접화살표는 회전하지만 이 스칼라들은 유지됩니다. 이어 a=0이면 b와 무관하게 모든 covector가 영벡터에 0을 주는지도 확인하세요.

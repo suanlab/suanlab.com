@@ -28,6 +28,37 @@ $$
 
 Thus the metric squared norm is gᵤᵤ(vᵘ)²=a². At a=1,b=2,s=2, the new components are two and one, pairing remains two, and squared norm remains one. Simply squaring the vector's new component would incorrectly give four.
 
+## The chain rule explains reciprocal transformation
+
+For a smooth local coordinate change with invertible Jacobian J, a curve's velocity transforms by J. A covector must transform by the inverse transpose so that its value on every velocity stays the same. The metric follows from the same requirement on lengths:
+
+$$
+v'=Jv,\qquad \alpha'=J^{-T}\alpha,\qquad
+g'=J^{-T}gJ^{-1},\qquad
+\operatorname{grad}'f=J\operatorname{grad}f.
+$$
+
+These statements are local; vectors at different points still require a transport rule before addition. In one dimension take u=θ+(1/2)sinθ. Then J=1+(1/2)cosθ lies between 1/2 and 3/2, so this is a valid increasing coordinate change on an angle neighborhood. For a=b=1 at θ=0, J=3/2, vector component is 3/2, covector component 2/3 and metric 4/9. Pairing and squared length both remain one.
+
+The code uses three local Jacobians and exact fractions. Multiplying a covector component directly into an optimization step fails the gradient transformation law unless the metric is accounted for. This is the geometric reason that ordinary Euclidean gradient descent depends on parameterization.
+
+| J | Vector component | Covector component | Metric |
+|---:|---:|---:|---:|
+| 3/2 | 3/2 | 2/3 | 4/9 |
+| 1 | 1 | 1 | 1 |
+| 1/2 | 1/2 | 2 | 4 |
+
+## Reproduce the calculation in Python
+
+```python
+from fractions import Fraction as F
+for j in [F(3, 2), F(1), F(1, 2)]:
+    v, alpha, g = j, 1/j, 1/j**2
+    grad = alpha/g
+    assert alpha*v == 1 and g*v*v == 1 and grad == j
+    print(j, v, alpha, g)
+```
+
 ## Exercise and explained answer
 
 Set a=−2,b=0.5,s=2. Predict vᵘ=−4, αᵤ=0.25, pairing −1 and squared norm four. Check each readout. Move θ around the circle: the physical arrow rotates with its tangent space, but these scalar quantities stay fixed. Then set a=0: every covector evaluates the zero vector to zero, regardless of b.

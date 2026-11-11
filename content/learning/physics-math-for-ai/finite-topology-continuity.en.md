@@ -28,6 +28,30 @@ $$
 
 The indiscrete source has one connected component; the discrete three-point source has three. The chain topology with open masks {0,4,6,7} is connected despite having more open sets than the indiscrete space. Counting opens alone therefore does not determine component count.
 
+## Why the finite component algorithm works
+
+In a finite space, intersect all open neighborhoods of x to obtain its smallest open neighborhood U(x). Draw an undirected edge whenever y belongs to U(x) or conversely. Every open-and-closed set must contain both ends of each edge: openness propagates membership forward, and openness of its complement prevents propagation across the boundary. Conversely, each graph component and its complement are unions of smallest neighborhoods and hence open. The graph components are therefore precisely the connected components. This proves the finite algorithm without assuming a distance.
+
+Finiteness matters: in an arbitrary space, being inseparable by clopen sets defines a quasi-component, which need not equal a connected component. Nor does connectedness generally imply path connectedness. The classroom model should not be transferred to every population space.
+
+The following exhaustive check counts continuous binary maps independently by testing both label fibers. For a discrete target, these fibers must be complementary open sets. For the three source topologies, the counts are 2, 8, 2. Explain why changing the target to indiscrete makes all eight maps continuous.
+
+| Source topology | Open masks | Continuous maps to discrete Y |
+|---|---|---:|
+| Indiscrete | 0, 7 | 2 |
+| Discrete | 0 through 7 | 8 |
+| Chain | 0, 4, 6, 7 | 2 |
+
+## Reproduce the calculation in Python
+
+```python
+topologies = [{0, 7}, set(range(8)), {0, 4, 6, 7}]
+for opens in topologies:
+    continuous = [m for m in range(8) if m in opens and (7 ^ m) in opens]
+    print(sorted(opens), len(continuous), continuous)
+assert [sum(m in o and (7 ^ m) in o for m in range(8)) for o in topologies] == [2, 8, 2]
+```
+
 ## Exercise and explained answer
 
 Can a continuous map from the indiscrete source reach both values of the discrete target? No. A continuous image of a connected space is connected: a separation of the image would pull back to a separation of X. Thus any such map must be constant. Enumerate all eight function masks to verify the finite claim, then give the preimage argument for a general connected source.

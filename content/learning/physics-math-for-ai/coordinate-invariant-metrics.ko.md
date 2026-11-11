@@ -34,6 +34,40 @@ $$
 
 앞 예제에서 αᵤ=(2,2), gradient 성분은 (−1.5,4)입니다. 서로 연관되어도 tensor 종류가 다릅니다. αᵤ·vᵘ=3은 물리 좌표의 a+2b와 같습니다. αᵤ를 그대로 벡터로 쓰면 잘못된 metric을 사용한 셈입니다.
 
+## 평평한 평면도 비선형 좌표에서는 Connection이 0이 아닐 수 있습니다
+
+평면 전체의 가역 매끄러운 좌표 x=u, y=v+u²를 택하세요. Jacobian과 유도 metric은 다음과 같습니다.
+
+$$
+J=\begin{pmatrix}1&0\\2u&1\end{pmatrix},\qquad
+g=J^TJ=\begin{pmatrix}1+4u^2&2u\\2u&1\end{pmatrix},\qquad
+\Gamma^v_{uu}=2.
+$$
+
+나머지 Christoffel 기호는 모두 0입니다. 계수는 좌표 기저의 변화를 나타내므로 평면은 여전히 평평합니다. 실제 직선 (x,y)=(t,0)은 새 좌표에서 (u,v)=(t,−t²)입니다. 좌표 가속도가 0이 아니어도 v''+2(u')²=0으로 geodesic 방정식을 만족합니다. Connection 계수 자체는 tensor가 아니지만 curvature는 tensor입니다.
+
+f=x+2y에서 df 성분은 (1+4u,2), metric으로 올린 gradient는 (1,2−2u)입니다. 후자에 J를 곱하면 물리 gradient (1,2)를 복구합니다. 정확분수 코드는 세 점에서 이 항등식과 길이 불변성을 검사합니다. 상수 Jacobian 실습의 개념을 확장한 별도 예제이며 제어 항목에 비선형 chart를 추가했다고 해석하면 안 됩니다.
+
+| u | df 성분 | Gradient 성분 |
+|---:|---|---|
+| 0 | (1,2) | (1,2) |
+| 1 | (5,2) | (1,0) |
+| 2 | (9,2) | (1,-2) |
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+for u in map(F,[0,1,2]):
+    g = [[1+4*u*u,2*u],[2*u,1]]
+    alpha, grad = [1+4*u,2], [1,2-2*u]
+    assert [sum(g[i][j]*grad[j] for j in range(2)) for i in range(2)] == alpha
+    assert [grad[0],2*u*grad[0]+grad[1]] == [1,2]
+    v = [F(1),1-2*u]
+    assert sum(v[i]*g[i][j]*v[j] for i in range(2) for j in range(2)) == 2
+    print(u, tuple(alpha), tuple(grad))
+```
+
 ## 직접 풀기와 풀이
 
 s=1,k=1,vˣ=(1,0)에서 vᵘ=(1,0), αᵤ=(1,3), gradient 성분 (−1,2)를 구하세요. 마지막 값에 A를 곱하면 물리 gradient (1,2)입니다. pairing과 벡터 제곱 노름은 모두 1입니다. shear만 바꿔 반복해도 물리 스칼라는 유지됩니다.

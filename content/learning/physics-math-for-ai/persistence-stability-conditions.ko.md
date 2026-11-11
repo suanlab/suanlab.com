@@ -37,6 +37,39 @@ $$
 
 δ=0.1, ε=1.05에서 기준 정사각형에는 이미 cycle이 있지만 변형 사각형의 마지막 변은 아직 들어오지 않았습니다. β₁은 1과 0이며 H₁ bottleneck 거리는 약 0.1045입니다. 생성·소멸 위치의 안정성이 birth 근처에서 읽는 indicator의 연속성을 뜻하지는 않습니다.
 
+## Bottleneck 보증이 실제로 보존하는 것
+
+![정사각형의 세 변형에서 H1 구간은 가깝게 유지되지만 임계값 epsilon 1.05에서는 생존 판정이 달라집니다.](/assets/learning/geometry-persistence-ko.svg)
+
+각 simplex에서 최대 간선 길이의 차이는 최대 쌍별 왜곡 D 이하입니다. 양쪽 포함 사상은 filtration을 D만큼 옮기고, 합성하면 2D만큼 옮기는 원래 구조 사상입니다. Homology를 적용하면 D-interleaving이 됩니다. 이 유한 persistence module의 대수적 안정성 정리를 적용해 비용 D 이하인 diagram matching을 얻습니다. 마지막 단계는 module에 대한 정리이며 그림의 점들이 가까워 보인다는 사실만으로 나오지 않습니다. [Chazal·de Silva·Glisse·Oudot](https://arxiv.org/abs/1207.3674)를 참고하세요.
+
+수명이 2D보다 긴 bar는 대각선까지 거리가 수명 절반이므로 그 비용 안에서 대각선에 대응될 수 없습니다. 실제 bar와 짝지어져야 합니다. 끝점 이동이 D 이하인 쌍에서 ε가 기준 bar의 양 끝점으로부터 D보다 멀면 해당 feature의 생존 여부는 같습니다. 이는 짝지은 feature별 명제이며 짧은 미대응 feature가 전체 Betti 수를 바꿀 수는 있습니다.
+
+두 diagram에 유한 H₁ bar가 하나씩이면 정확 bottleneck 거리는 직접 끝점 matching과 두 bar 모두 대각선으로 보내는 비용 중 작은 값입니다. 코드는 persistence 라이브러리나 assignment solver 없이 변형 사각형의 이 공식을 독립 계산합니다.
+
+| 변형 δ | 기준 H₁ | 변형 H₁ |
+|---:|---|---|
+| 0 | [1,√2) | [1,√2) |
+| 0.1 | [1,√2) | [√1.22,√2) |
+| 0.25 | [1,√2) | [√1.625,√2) |
+
+## Python으로 계산 재현하기
+
+```python
+from math import hypot, sqrt
+for delta in [0, .1, .25]:
+    P = [(0,0),(1,0),(1,1),(0,1)]
+    Q = [(0,0),(1,0),(1+delta,1-delta),(0,1)]
+    birth = max(hypot(Q[(i+1)%4][0]-Q[i][0],Q[(i+1)%4][1]-Q[i][1]) for i in range(4))
+    death = min(hypot(Q[2][0]-Q[0][0],Q[2][1]-Q[0][1]), sqrt(2))
+    distortion = max(abs(hypot(P[i][0]-P[j][0],P[i][1]-P[j][1])-hypot(Q[i][0]-Q[j][0],Q[i][1]-Q[j][1])) for i in range(4) for j in range(4))
+    direct = max(abs(birth-1), abs(death-sqrt(2)))
+    diagonal = max((sqrt(2)-1)/2, max(0,death-birth)/2)
+    bottleneck = min(direct,diagonal)
+    assert bottleneck <= distortion+1e-12
+    print(delta, round(birth,9), round(death,9), round(bottleneck,9))
+```
+
 ## 직접 풀기와 적용 한계
 
 δ=0이면 변위·왜곡·두 diagram 거리가 모두 0입니다. 이어 δ를 고정하고 scale과 ε를 두 배로 하세요. 거리 상계와 유한 persistence 좌표는 두 배이고 재조정한 Betti 패턴은 같습니다. 수명이 bottleneck 오차 두 배보다 긴 feature가 왜 그 오차 안에서 대각선으로 사라질 수 없는지도 설명하세요.

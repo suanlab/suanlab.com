@@ -35,6 +35,41 @@ $$
 
 부호와 frame 관례를 명시했습니다. 열린 부분 경로에도 운반 각은 있지만 폐곡선 holonomy 값은 주지 않습니다. full-cap 면적은 언제나 전체 cap이며 열린 경로가 쓸고 간 영역이 아닙니다.
 
+## Connection 계수와 경계항
+
+구면 metric을 Levi-Civita 공식에 대입하면 대칭 쌍을 포함해 0이 아닌 좌표 Christoffel 기호는 다음과 같습니다.
+
+$$
+\Gamma^\theta_{\phi\phi}=-\sin\theta\cos\theta,\qquad
+\Gamma^\phi_{\theta\phi}=\Gamma^\phi_{\phi\theta}=\cot\theta.
+$$
+
+이 계수에서 반지름은 상쇄되지만 Gaussian 곡률에서는 상쇄되지 않습니다. 정규직교 frame으로 옮기면 앞의 운반 방정식이 나옵니다. 생성 행렬이 반대칭이라 길이 제곱의 미분이 0이고 벡터 길이가 보존됩니다. 아래에서는 두 성분 ODE를 RK4로 적분해 최종 각도 공식을 한 번 평가하는 것과 독립적으로 검산합니다.
+
+Gauss–Bonnet에는 경계 기여도 있습니다. 양의 방향 북극 cap에서 위도 경계의 geodesic curvature 적분은 2πcosθ입니다. 이를 cap 곡률 적분에 더하면 disk의 Euler characteristic에 해당하는 2π입니다. 위도선은 일반적으로 geodesic이 아니므로 경계항을 생략하면 틀립니다. θ=π/3에서는 두 기여가 각각 π입니다.
+
+| Colatitude | Cap 곡률 적분 | 경계 Geodesic curvature 적분 |
+|---|---:|---:|
+| π/3 | π | π |
+| π/2 | 2π | 0 |
+| 2π/3 | 3π | -π |
+
+## Python으로 계산 재현하기
+
+```python
+from math import pi, cos, sin, hypot
+for theta in [pi/3, pi/2, 2*pi/3]:
+    c, z, n = cos(theta), complex(1, 0), 2000
+    h = 2*pi/n
+    def f(w): return -1j*c*w
+    for _ in range(n):
+        k1=f(z); k2=f(z+h*k1/2); k3=f(z+h*k2/2); k4=f(z+h*k3)
+        z += h*(k1+2*k2+2*k3+k4)/6
+    expected = complex(cos(-2*pi*c), sin(-2*pi*c))
+    assert abs(z-expected) < 1e-10 and abs(hypot(z.real,z.imag)-1) < 1e-10
+    print(round(2*pi*(1-c), 9), round(2*pi*c, 9), round(abs(z-expected), 12))
+```
+
 ## 직접 풀기와 연구 연결
 
 θ=π/3을 고정하고 R을 두 배로 하세요. 곡률은 1/4, cap 면적은 네 배가 되어 곱과 holonomy는 같습니다. 각각 확인한 뒤 반 바퀴만 이동하면 끝점의 성분 각 비교가 왜 frame 선택에 의존하는지 설명하세요.

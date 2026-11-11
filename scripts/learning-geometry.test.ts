@@ -94,3 +94,19 @@ for(const kind of geometryKinds)test(`${kind}: presets preserve finite geometry 
 for(const kind of geometryKinds)for(const lang of ['ko','en'] as const)test(`${kind}.${lang}: substantive theory, valid math, explained exercise and further reading`,async()=>{
  const source=await fs.readFile(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8'),rendered=await getLearningContent(kind);assert.ok(rendered.outline[lang].length>=4);assert.ok(rendered[lang].length>4000);assert.ok(rendered[lang].includes('katex'));assert.ok(!rendered[lang].includes('katex-error'));assert.ok(source.includes(lang==='ko'?'직접 풀기':'Exercise'));assert.ok(source.includes('https://'));if(lang==='en'){assert.ok(!/[가-힣]/.test(source));assert.ok(source.split(/\s+/).length>=350);}
 });
+
+// The input interval identifies 0 and 2pi as the same physical endpoint.
+test('coincident circle endpoints have exactly zero chord for every winding',()=>{
+ for(const R of [.5,1,2])for(const start of [0,.7,2*Math.PI])for(const winding of [-1,0,1]){
+  const r=circleGeodesic(R,start,2*Math.PI,winding);
+  assert.equal(r.chord,0);assert.equal(r.distance,0);
+ }
+});
+test('holonomy wrapping preserves the small rotation near the equator',()=>{
+ for(const theta of [Math.PI/2-Number.EPSILON,Math.PI/2+Number.EPSILON]){
+  const r=sphereTransport(1,theta,2*Math.PI,0);
+  assert.equal(r.loopHolonomy,-2*Math.PI*Math.cos(theta));
+  assert.ok(Math.abs(r.loopHolonomy!)>0);
+ }
+ assert.equal(sphereTransport(1,Math.PI/2,1,0).loopHolonomy,null);
+});

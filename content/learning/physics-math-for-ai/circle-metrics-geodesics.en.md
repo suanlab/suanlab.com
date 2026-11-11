@@ -27,6 +27,38 @@ In this constant metric coordinate the geodesic equation is θ̈=0. Every consta
 
 For a quarter circle with R=1, shortest distance is π/2≈1.571, while the chord is √2≈1.414. With one extra positive winding the selected length becomes 5π/2≈7.854, although the endpoints and shortest distance are unchanged. Blue draws the entire circle, orange the selected arc; overlapping windings can trace the same visible curve multiple times, so inspect length and energy as well.
 
+## Prove length and energy minimality on each lift
+
+Every continuous circle path on an interval has an angle lift after its starting angle is chosen. For an absolutely continuous lift ending with displacement Δ=δ+2πm, the triangle inequality and Cauchy–Schwarz give
+
+$$
+L\ge R\left|\int_0^1\dot\theta\,dt\right|=R|\Delta|,
+\qquad E\ge\frac{L^2}{2}\ge\frac{R^2\Delta^2}{2}.
+$$
+
+A monotone lift attains the length bound; constant speed additionally attains the energy bound. Minimizing over integer m gives the intrinsic distance, with two minimizers at antipodes. A nonuniform monotone parameterization has the same length but larger energy. Thus energy also measures how the path is traversed, even when its trace is unchanged.
+
+Compare θ(t)=Δt and θ(t)=Δt². The latter has energy 2R²Δ²/3, which is 4/3 times the constant-speed minimum. Numerical quadrature independently integrates their velocities below. Both parameterizations cover the same quarter circle. In the interactive model, separation 2π identifies the endpoints exactly; its chord is now computed from the principal displacement so it is zero rather than a sine-rounding artifact.
+
+| Parameterization | Length, R=1 and Δ=π/2 | Energy |
+|---|---:|---:|
+| Constant speed | π/2 | π²/8 |
+| Quadratic time | π/2 | π²/6 |
+
+## Reproduce the calculation in Python
+
+```python
+from math import pi
+n, delta = 4000, pi/2
+def simpson(f):
+    return (f(0)+f(1)+sum((4 if i%2 else 2)*f(i/n) for i in range(1,n)))/(3*n)
+for speed in [lambda t: delta, lambda t: 2*delta*t]:
+    length = simpson(lambda t: abs(speed(t)))
+    energy = simpson(lambda t: speed(t)**2/2)
+    print(round(length, 9), round(energy, 9))
+    assert abs(length-delta) < 1e-11
+```
+
 ## Exercise and explained answer
 
 At R=2 and opposite endpoints, predict intrinsic distance 2π, chord four, and constant-speed energy 2π² on [0,1]. Both shortest directions have the same energy. Set separation zero and winding one: the path is a full loop of length 4π, but the endpoint distance is zero. This illustrates why distance is an infimum over paths rather than the length of whichever path was selected.

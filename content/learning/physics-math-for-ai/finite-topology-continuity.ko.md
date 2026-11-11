@@ -28,6 +28,30 @@ $$
 
 indiscrete 원공간의 연결 성분은 1개, 세 점 discrete 공간은 3개입니다. 열린 mask가 {0,4,6,7}인 chain 위상은 indiscrete보다 열린집합이 많아도 연결입니다. 열린집합 개수만으로 연결 성분 수를 정할 수 없습니다.
 
+## 유한 연결 성분 알고리즘이 맞는 이유
+
+유한 공간에서는 x를 포함하는 열린 이웃을 모두 교차해 최소 열린 이웃 U(x)를 얻습니다. y가 U(x)에 속하거나 그 반대이면 무방향 간선을 그립니다. 열린 동시에 닫힌 집합은 각 간선 양 끝을 함께 포함해야 합니다. 열림은 소속을 이웃으로 전파하고, 여집합의 열림은 경계를 넘는 전파를 막기 때문입니다. 역으로 각 graph 성분과 그 여집합은 최소 이웃들의 합집합이므로 열립니다. 따라서 graph 성분이 정확히 연결 성분입니다. 거리를 가정하지 않고 유한 알고리즘을 증명한 것입니다.
+
+유한성은 중요합니다. 일반 공간에서 clopen 집합으로 분리되지 않는 점들의 모임은 quasi-component이며 연결 성분과 다를 수 있습니다. 연결성이 경로 연결성을 항상 뜻하지도 않습니다. 교실의 유한 모형을 모든 모집단 공간에 그대로 옮기면 안 됩니다.
+
+아래 전수 검사는 두 label의 fiber가 모두 열리는지 독립적으로 확인해 연속 이진 사상을 셉니다. 목표가 discrete이면 두 fiber는 서로 여집합인 열린집합이어야 합니다. 세 원공간의 결과는 2, 8, 2입니다. 목표를 indiscrete로 바꾸면 여덟 함수가 모두 연속인 이유도 설명하세요.
+
+| 원공간 위상 | 열린 mask | Discrete Y로 가는 연속 사상 |
+|---|---|---:|
+| Indiscrete | 0, 7 | 2 |
+| Discrete | 0부터 7 | 8 |
+| Chain | 0, 4, 6, 7 | 2 |
+
+## Python으로 계산 재현하기
+
+```python
+topologies = [{0, 7}, set(range(8)), {0, 4, 6, 7}]
+for opens in topologies:
+    continuous = [m for m in range(8) if m in opens and (7 ^ m) in opens]
+    print(sorted(opens), len(continuous), continuous)
+assert [sum(m in o and (7 ^ m) in o for m in range(8)) for o in topologies] == [2, 8, 2]
+```
+
 ## 직접 풀기와 풀이
 
 indiscrete 원공간에서 discrete 목표의 두 값을 모두 찍는 연속 함수가 있을까요? 없습니다. 연결 공간의 연속상은 연결이어야 합니다. 상이 두 열린 부분으로 분리된다면 그 역상들이 X도 분리하기 때문입니다. 따라서 이 경우 연속 함수는 상수입니다. 함수 mask 8개로 유한 예제를 확인한 뒤 일반적인 역상 논증도 설명하세요.
