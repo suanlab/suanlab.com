@@ -41,14 +41,29 @@ $$
 
 ## 절단이 최적 근사인 이유
 
-랭크가 최대 $k$인 행렬 중 절단 SVD는 스펙트럼·Frobenius 오차를 최소화합니다.
+$0\le k\le\min(m,n)$으로 두고 마지막 인덱스 이후의 특잇값은 0으로 정합니다. 랭크가 최대 $k$인 행렬 중 절단 SVD는 스펙트럼·Frobenius 오차를 최소화합니다. $k=\min(m,n)$에서는 원래 행렬 전체를 남겨 오차 0을 얻습니다.
 
 $$
 \lVert A-A_k\rVert_2=\sigma_{k+1},\qquad
 \lVert A-A_k\rVert_F^2=\sum_{i>k}\sigma_i^2.
 $$
 
-스펙트럼 결과의 하한을 생각해봅시다. 랭크 $k$인 변환은 앞의 $k+1$개 오른쪽 특이벡터가 만드는 공간에서 어떤 0이 아닌 벡터를 0으로 보내야 합니다. 그 공간에서 $A$는 적어도 $\sigma_{k+1}$만큼 늘립니다. 절단은 이 하한을 달성합니다. Frobenius 결과는 직교 특이 성분의 분해와 투영 논증으로 얻습니다. 대각 예제 하나의 검산만으로 전체 최소화 정리를 증명한 것은 아닙니다.
+$k<\min(m,n)$에서 스펙트럼 결과의 하한을 생각해봅시다. 랭크 $k$인 변환은 앞의 $k+1$개 오른쪽 특이벡터가 만드는 공간에서 어떤 0이 아닌 벡터를 0으로 보내야 합니다. 그 공간에서 $A$는 적어도 $\sigma_{k+1}$만큼 늘립니다. 절단은 이 하한을 달성합니다. Frobenius 결과는 직교 특이 성분의 분해와 투영 논증으로 얻습니다. 대각 예제 하나의 검산만으로 전체 최소화 정리를 증명한 것은 아닙니다.
+
+Frobenius 하한을 증명하겠습니다. 랭크가 최대 $k$인 임의의 후보 $B$의 열공간으로 가는 직교 투영을 $P$라고 합시다. $PB=B$이므로
+
+$$
+A-B=(I-P)A+(PA-B)
+$$
+
+의 두 항에서 같은 위치의 열벡터들은 서로 직교합니다. 따라서
+
+$$
+\|A-B\|_F^2\ge\|(I-P)A\|_F^2
+=\|A\|_F^2-\operatorname{tr}(PAA^T)
+$$
+
+입니다. 출력 공간의 기저를 완성하는 영 고유값까지 포함해 $AA^T=\sum_i\sigma_i^2u_iu_i^T$로 쓰면 $\operatorname{tr}(PAA^T)=\sum_i\sigma_i^2\|Pu_i\|^2$입니다. 각 가중치는 $[0,1]$에 있고 합은 $\operatorname{rank}(P)\le k$입니다. 이 가중합은 가장 큰 $k$개의 제곱 특잇값의 합 이하입니다. 가용 가중치를 큰 계수부터 배분하면 최대가 되기 때문입니다. 따라서 모든 후보의 제곱 오차가 $\sum_{i>k}\sigma_i^2$ 이상이고, $A_k$가 이를 달성합니다. 유한 실수 행렬과 가중치 없는 유클리드 노름에서의 최소화 증명입니다.
 
 어떤 노름과 랭크 제약에서 최적인지 명시해야 합니다. 의미 보존이나 임의의 과제 손실에 대한 보편적 보장은 아닙니다.
 
@@ -85,11 +100,93 @@ $A=\operatorname{diag}(-3,1)$에서 특잇값이 여전히 3과 1인 이유를 �
 
 연구 비교에서는 랭크를 바꾸며 실제 과제 오차, 저장량, 추론 비용을 측정합니다. 원본 모형과 비용을 맞춘 기준선을 비교하세요. Frobenius 노름에서 최적이라는 정리만으로 새 압축 방법의 미관측 데이터 성능을 입증할 수는 없습니다.
 
+## 실제 층 입력에 대한 손실 유도하기
+
+원래 변환과 압축 변환을 $A,B\in\mathbb R^{m\times n}$라고 합시다. 입력 $x$의 이차 모멘트 $M=\mathbb E[xx^T]$가 유한하면 출력 제곱오차는
+
+$$
+\mathcal L(B)=\mathbb E\|(A-B)x\|^2
+=\operatorname{tr}((A-B)M(A-B)^T)
+=\|(A-B)M^{1/2}\|_F^2
+$$
+
+입니다. 제곱 노름을 성분별로 전개하여 $x_ix_j$의 기댓값을 취하면 trace 식을 얻습니다. 마지막 등식에는 $M$의 대칭 제곱근을 사용합니다. 여기의 $M$은 중심화하지 않은 이차 모멘트입니다. 평균 $\mu$, 공분산 $C$에 대해 $M=C+\mu\mu^T$이므로 공분산으로 바꾸려면 중심화하거나 평균과 편향을 명시적으로 처리해야 합니다.
+
+$M$이 양의 정부호이면 오른쪽에 $M^{1/2}$를 곱하는 연산은 가역이며 랭크를 보존합니다. $D=BM^{1/2}$로 두면 랭크가 최대 $k$인 행렬에서 $\mathcal L$을 최소화하는 문제는 $AM^{1/2}$의 Frobenius 근사 문제가 됩니다. 그 절단 SVD를 $D_k$라고 하면 최소화 해 하나는
+
+$$
+B_{\mathrm{task}}=D_kM^{-1/2}
+$$
+
+입니다. 변수 변환으로 이 선형·제곱오차 과제의 전역 최적성을 증명했습니다. 이차 모멘트가 특이하면 관측되는 지지 공간에서 별도 논증이 필요합니다. 분류 손실이나 뒤에 연결되는 비선형층에는 목적함수를 다시 확인해야 합니다.
+
+## 보존할 방향이 뒤바뀌는 예제 계산하기
+
+$A=\operatorname{diag}(3,1)$을 유지합니다. 네 입력 $(\pm0.1,\pm10)$에 각각 확률 1/4을 줍니다. 평균은 0이고 $M=\operatorname{diag}(0.01,100)$입니다. 이 집단에서는 두 번째 입력 좌표가 훨씬 크므로 그 방향을 버리면 출력 오차가 커질 수 있습니다.
+
+| 랭크 1 변환 B | 행렬 제곱오차 | 기대 출력 제곱오차 |
+|---|---|---|
+| diag(3,0), 일반 SVD | 1 | 100 |
+| diag(0,1), 과제 가중 SVD | 9 | 0.09 |
+
+첫 변환의 잔차 출력은 $(0,x_2)$이므로 기대 제곱 길이는 100입니다. 둘째의 잔차는 $(3x_1,0)$이므로 $9\times0.01=0.09$입니다. 또한 $AM^{1/2}=\operatorname{diag}(0.3,10)$의 가장 큰 특이 방향은 두 번째 축입니다. 앞의 최소화 증명으로 이 분포에서 모든 랭크 1 변환 중 표의 둘째 행이 최적임을 확인할 수 있습니다.
+
+$M=I$로 바꾸면 과제 오차가 행렬의 제곱 Frobenius 오차와 같아져 일반 SVD가 다시 최적입니다. 대조 조건으로 사용할 수 있습니다. 어떤 입력 분포와 출력 지표를 나타내는 실험인지에 따라 결론이 달라집니다.
+
+## 네 입력에서 비교 재현하기
+
+다음 NumPy 예제는 직접 예측한 오차와 trace 식을 비교합니다. 유한 모집단의 네 입력을 같은 가중치로 모두 사용하므로 이차 모멘트를 정확히 알고 있습니다. 실제 자료에서는 허용된 학습·보정 데이터에서 통계량을 추정하고 별도 데이터에서 평가하세요.
+
+```python
+from itertools import product
+import numpy as np
+
+matrix = np.diag([3., 1.])
+inputs = np.array(list(product([-.1, .1], [-10., 10.])))
+second_moment = inputs.T @ inputs / len(inputs)
+root = np.diag([.1, 10.])
+assert np.allclose(root @ root.T, second_moment)
+
+def truncate_rank_one(value):
+    left, singular, right = np.linalg.svd(value, full_matrices=False)
+    return singular[0] * np.outer(left[:, 0], right[0])
+
+ordinary = truncate_rank_one(matrix)
+weighted = truncate_rank_one(matrix @ root) @ np.linalg.inv(root)
+for name, approximation, expected in [
+    ("ordinary", ordinary, [1., 100.]),
+    ("weighted", weighted, [9., .09]),
+]:
+    squared_matrix_error = np.linalg.norm(matrix - approximation, "fro")**2
+    output_errors = inputs @ (matrix - approximation).T
+    task_error = np.mean(np.sum(output_errors**2, axis=1))
+    trace_error = np.trace(
+        (matrix - approximation) @ second_moment @ (matrix - approximation).T
+    )
+    assert np.isclose(task_error, trace_error)
+    assert np.allclose([squared_matrix_error, task_error], expected)
+    assert np.linalg.matrix_rank(approximation) == 1
+    print(name, round(squared_matrix_error, 2), round(task_error, 2))
+```
+
+출력은 `ordinary 1.0 100.0`, `weighted 9.0 0.09`입니다. 실습의 잔차 노름과 비교할 때 제곱오차와 그 제곱근을 구분하세요. 위 실습은 단위원을 변환하여 가중치 없는 SVD를 보여 줍니다. 표와 코드는 지정한 비균등 입력 집단을 다룹니다.
+
+## 랭크 제약을 학습할 갱신과 연결하기
+
+LoRA는 기저 가중치를 고정하고 갱신의 인자를 학습합니다. $W_0\in\mathbb R^{d\times n}$에서 $L\in\mathbb R^{d\times r}$, $R\in\mathbb R^{r\times n}$로 두고 $\Delta W=LR$로 씁니다. 원 논문의 §4.1에서 이 매개화와 순전파 연산을 확인할 수 있습니다. [Hu 외, LoRA, arXiv v2, 2021-10-16, §4.1](https://arxiv.org/pdf/2106.09685v2)
+
+$LR$의 모든 열이 $L$의 $r$개 열이 생성하는 공간에 있으므로 $\operatorname{rank}(\Delta W)\le r$입니다. 합 $W_0+LR$은 완전 랭크일 수 있습니다. 예를 들어 $I_2+\operatorname{diag}(1,0)=\operatorname{diag}(2,1)$의 랭크는 2이고 갱신의 랭크는 1입니다. 인자의 스칼라 원소 수는 $r(d+n)$, 밀집 갱신의 원소 수는 $dn$입니다. 실제 절약에는 그에 맞는 차원 부등식이 필요합니다.
+
+고정된 목표 갱신의 SVD 근사와 명시한 과제 손실로 최적화한 인자를 비교하는 연구를 설계할 수 있습니다. 기저 가중치·보정 분포·랭크·매개변수 수·최적화 예산·미관측 평가를 기록하세요. 네 입력의 계산은 합성 선형 모형에서 목적함수에 따른 최적성을 확인합니다. 원 논문의 언어모형 학습 실험 재현은 후속 연구 과제입니다.
+
 ## 연습과 근거
 
 1. diag(4,2)의 랭크 1 스펙트럼·Frobenius 오차를 구하세요. **답:** 둘 다 2입니다.
 2. 특잇값이 같을 때 개별 방향이 유일하지 않은 이유를 원으로 설명하세요.
 3. 의사역행렬을 고르기 전에 데이터가 결정하지 못하는 성분을 적으세요.
 4. 비대칭 행렬에서 전체 재구성과 랭크 1 잔차를 독립적으로 확인하세요.
+
+5. $M=I$에서 과제 손실과 행렬 제곱 Frobenius 오차가 같은 이유는? **이차 모멘트 가중치가 항등이므로 trace가 행렬 성분 제곱의 합이 됩니다.**
+6. 랭크 1 갱신으로 랭크 2 가중치를 만들 수 있나요? **그렇습니다.** $I_2+\operatorname{diag}(1,0)$이 예입니다.
 
 배경은 [MIT 18.06, Lecture 29: Singular value decomposition](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/resources/lecture-29-singular-value-decomposition/)을 참고하세요. 위 수치는 이 교재의 직접 계산 예제입니다.
