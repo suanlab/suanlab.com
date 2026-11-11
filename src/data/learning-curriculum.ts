@@ -3330,7 +3330,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "photonic-interferometers-and-matrix-products",
       "photodiode-noise-and-equivalent-bandwidth",
       "memory-traffic-and-the-roofline",
-      "energy-per-task-and-thermal-cost"
+      "energy-per-task-and-thermal-cost",
+      "landauer-erasure-and-its-assumptions"
     ]
   },
   {
