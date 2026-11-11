@@ -35,6 +35,40 @@ With a=b=0.5 and squared cost, the monotone map and optimal plan both cost 0.5. 
 
 More subtly, choose a=0.4,b=0.6. A deterministic map exists, but it must swap the targets: cost 0.4·4+0.6·1=2.2. The optimal coupling is [[0.4,0],[0.2,0.4]], with cost 0.6. Splitting improves the atomic problem even though a map is feasible.
 
+## Existence of a plan and loss of determinism in a limit
+
+For finite probability marginals, the product matrix aᵢbⱼ is feasible. Every feasible entry lies between zero and min(aᵢ,bⱼ); the equality constraints and nonnegativity define a closed bounded set. It is compact in finite dimensions, so a continuous linear cost attains its minimum. A deterministic map instead belongs to a finite list of assignments whose feasible subset may be empty. Existence of the relaxed optimum therefore requires no map-existence assumption here.
+
+The atomic obstruction can appear in a limit even when every approximating source has a map. Let μₑ be uniform on [0,e], with e>0, and ν=(δ₀+δ₂)/2. Send the lower half interval to zero and the upper half to two. This monotone map is optimal for squared cost. Direct integration gives
+
+$$
+\int|x-T_e(x)|^2d\mu_e(x)
+=\frac1e\left[\int_0^{e/2}x^2dx+\int_{e/2}^e(2-x)^2dx\right]
+=2-\frac32e+\frac13e^2.
+$$
+
+As e→0, the source converges to δ₀, and the cost tends to two. The limiting optimal plan splits mass from zero equally between the targets. No deterministic map from δ₀ can do this. Convergence of optimal costs and plans need not preserve the property of being a map. The limiting random target choice is encoded in a coupling rather than a function of the collapsed source position.
+
+| e | Squared cost |
+|---|---:|
+| 1/2 | 4/3 |
+| 1/4 | 79/48 |
+| 1/8 | 349/192 |
+
+```python
+from fractions import Fraction as F
+for e in (F(1, 2), F(1, 4), F(1, 8)):
+    low, high = e/2, e
+    first = low**3/3
+    antiderivative = lambda x: 4*x-2*x*x+x**3/3
+    second = antiderivative(high)-antiderivative(low)
+    value = (first+second)/e
+    assert value == 2-F(3, 2)*e+e*e/3
+    print(e, value)
+```
+
+This continuum-to-atom example is separate from the lab's fixed source positions. It motivates checking source regularity before transferring a map theorem to empirical atomic data.
+
 ## Exercise and assumptions
 
 Reproduce all three cases and check every row and column sum. Explain why sending every source to its nearest target fails when target capacities disagree.

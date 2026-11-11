@@ -4,8 +4,8 @@ For positive marginals, the experiment minimizes
 
 $$
 J_\epsilon(\gamma)=\langle C,\gamma\rangle+
-\epsilon\sum_{ij}\gamma_{ij}(\log\gamma_{ij}-1)
-\quad\text{over }\Pi(a,b).
+\epsilon\sum_{ij}\gamma_{ij}(\log\gamma_{ij}-1),
+\qquad\gamma\in\Pi(a,b).
 $$
 
 This entropy convention matters: the regularized value can be negative and is not a Wasserstein metric. Its transport-cost term can exceed the unregularized optimum because entropy rewards spreading mass. Sending ε toward zero and solving each regularized problem accurately are separate operations.
@@ -41,6 +41,49 @@ A stable positive quadratic root determines the small off-diagonal mass directly
 Using the feasible reference γ*, its primal–dual gap equals ε times the sum of scalar generalized KL terms γ*log(γ*/γ_raw)−γ*+γ_raw. These terms are evaluated with stable local remainders when masses nearly agree. This avoids subtracting nearly equal objective values and preserves very small positive residuals.
 
 At a=b=0.5,L=1,ε=0.5, one complete cycle solves the symmetric scaling. Reference transport cost is approximately 0.119203, while the regularized objective is approximately −0.910038. Neither value should be mislabeled as unregularized W₂.
+
+## Distinguish a regularized optimizer certificate from transport bias
+
+Finite costs, strictly positive marginals and ε>0 give a unique entropic optimizer. The feasible set is compact and the entropy term extends continuously at zero. Strict convexity gives uniqueness. An optimizer cannot have a zero entry: blending toward the positive product coupling would have an entropy directional derivative of −∞ at that entry, outweighing finite cost derivatives.
+
+At the interior optimum P*, stationarity makes ∇Jε(P*) a sum of row and column potentials. For any feasible probability plan P, their pairing with P−P* vanishes. Expanding the objective gives
+
+$$
+J_\epsilon(P)-J_\epsilon(P^*)
+=\epsilon\sum_{ij}P_{ij}\log(P_{ij}/P^*_{ij}),\qquad
+\|P-P^*\|_1\le\sqrt{2G/\epsilon},
+$$
+
+where G is any valid regularized primal–dual gap for P. The second bound uses Pinsker's inequality for the flattened probability matrices and Jε(P)−Jε(P*)≤G. It is not a bound obtained by applying probability Pinsker directly to an infeasible raw matrix with mass different from one.
+
+For equal half marginals, L=1,ε=1/2, write s=1/[2(1+exp2)] for the optimal off-diagonal mass. A feasible symmetric plan with off-diagonal r has L1 error 4|r−s|:
+
+| r | L1 error |
+|---|---:|
+| 0 | 4s |
+| s | 0 |
+| 1/4 | 1−4s |
+
+```python
+from decimal import Decimal as D, localcontext
+with localcontext() as ctx:
+    ctx.prec = 80
+    eps = D('0.5')
+    s = 1/(2*(1+D(2).exp()))
+    reference = (D('0.5')-s, s, s, D('0.5')-s)
+    def objective(P):
+        return P[1]+P[2]+eps*sum(x*(x.ln()-1) if x else D(0) for x in P)
+    for r in (D(0), s, D('0.25')):
+        P = (D('0.5')-r, r, r, D('0.5')-r)
+        gap = objective(P)-objective(reference)
+        kl = sum(x*(x/y).ln() if x else D(0) for x, y in zip(P, reference))
+        error = sum(abs(x-y) for x, y in zip(P, reference))
+        assert abs(gap-eps*kl) < D('1e-75')
+        assert error*error <= 2*kl+D('1e-75')
+        print("r,L1,gap:", r, error, gap)
+```
+
+A different small quantity is the reference's excess unregularized cost. In the two-atom family it is exactly 2Ls. The lab evaluates this product directly: at L=3,ε=0.05 it retains about 2.63×10⁻²⁶ even when subtracting two rounded transport costs gives zero. The absolute costs remain separate diagnostics. Neither a small optimizer gap nor this specialized formula is a universal entropy-bias estimate.
 
 ## Exercise and explained answer
 

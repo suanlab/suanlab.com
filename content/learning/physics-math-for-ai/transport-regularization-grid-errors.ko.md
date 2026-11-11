@@ -35,6 +35,45 @@ $$
 
 파란 선은 가능 보정 후 초과 비용, 주황 선은 인증이다. 초과는 s²와의 상쇄를 피하려고 Σγᵢⱼ(xᵢ−xⱼ)²로 계산한다. 정규화 목적·쌍대와 안정적인 generalized-KL gap도 함께 표시한다.
 
+## 제곱 비용 인증을 거리 오차 예산으로 바꾸기
+
+균등 주변에서 H(P)=H(X)+H(Y|X)≥log N이고 H(P)≤H(X)+H(Y)=2log N이다. 가능한 permutation 최적해 P₀는 H(P₀)=log N이다. 가능하게 보정한 P의 정규화 gap이 G이면 Jε(P)≤Jε(P₀)+G다. Entropy 관례의 상수를 소거하면
+
+$$
+\langle C,P\rangle-OT_N
+\le\epsilon[H(P)-H(P_0)]+G
+\le\epsilon\log N+G=:B.
+$$
+
+각 주변 근사의 검증된 W₂ 오차 합을 δ라 하자. 삼각부등식으로 |W₂(μ,ν)−W₂(μ_N,ν_N)|≤δ다. 가능 계획의 제곱 비용 c≥OT_N과 |√c−√OT_N|≤√B를 결합하면
+
+$$
+|\sqrt{c}-W_2(\mu,\nu)|\le\delta+\sqrt B.
+$$
+
+비용 단위에서 거리 단위로 명시적으로 바꾸었다. δ를 B에 직접 더하면 단위가 섞인다. Midpoint 가족에서는 δ=1/(√3N)이다. 거리 허용 오차 τ를 위해 δ≤τ/2, εlog N≤τ²/8, G≤τ²/8을 택하면 충분하다. 마지막은 정지 조건이지 특정 반복 수가 이를 만족한다는 주장이 아니다.
+
+| τ | N | ε 예산 |
+|---|---:|---|
+| 1/2 | 4 | τ²/(8log N) |
+| 1/4 | 8 | τ²/(8log N) |
+| 1/8 | 16 | τ²/(8log N) |
+
+```python
+from math import log, sqrt
+for tau, N in ((.5, 4), (.25, 8), (.125, 16)):
+    delta = 1/(sqrt(3)*N)
+    epsilon_budget = tau*tau/(8*log(N))
+    gap_target = tau*tau/8
+    bound = delta+sqrt(epsilon_budget*log(N)+gap_target)
+    assert delta <= tau/2 and bound <= tau
+    assert epsilon_budget < .05
+    print(tau, N, "epsilon budget:", epsilon_budget,
+          "gap target:", gap_target, "distance bound:", bound)
+```
+
+계산한 ε 예산은 실습 최솟값 ε=0.05보다 작다. 프로그램은 별도의 이론적 정확도 예산 예제이며 조절기를 바꾸지 않고 이 허용 오차를 달성했다고 주장하지 않는다. 실제 평행 이동 쌍의 격자 오차는 여전히 0이라 주변 상계가 보수적일 수 있다. 일반 비균등 주변에는 별도 entropy·가능성 분석이 필요하다.
+
 ## 직접 풀기와 풀이
 
 N=8,s=0.5,ε=0.1,20회에서 주변 양자화 거리는 약 0.036084, 실제 pair 오차 0, 초과 비용 약 0.038481이다. 정규화 상한은 약 0.207944, gap은 약 5.71×10⁻⁸이다.

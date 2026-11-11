@@ -42,6 +42,49 @@ $$
 
 a=b=0.5,L=1,ε=0.5에서는 대칭성 때문에 한 cycle로 맞는다. 기준 수송 비용은 약 0.119203, 정규화 목적값은 약 −0.910038이다. 어느 것도 원래 W₂라고 부르면 안 된다.
 
+## 정규화 해의 인증과 수송 비용 편향 구별하기
+
+유한 비용·엄격히 양의 주변 질량·ε>0에서는 엔트로피 최적해가 유일하다. 가능집합은 compact하고 entropy 항은 0에서도 연속 확장된다. 엄격 볼록성으로 유일성이 따른다. 최적해에 0 원소가 있다면 양의 곱 coupling 방향으로 혼합할 때 그 원소의 entropy 방향 미분이 −∞여서 유한 비용 미분보다 우세하므로 최적일 수 없다.
+
+내부 최적점 P*의 ∇Jε(P*)는 행·열 potential의 합이다. 가능한 확률 계획 P와의 차이 P−P*에 대한 내적은 주변 보존으로 0이다. 목적을 전개하면
+
+$$
+J_\epsilon(P)-J_\epsilon(P^*)
+=\epsilon\sum_{ij}P_{ij}\log(P_{ij}/P^*_{ij}),\qquad
+\|P-P^*\|_1\le\sqrt{2G/\epsilon},
+$$
+
+여기서 G는 P의 유효한 정규화 원·쌍대 gap이다. 두 번째 상계는 확률 행렬을 펼친 Pinsker 부등식과 Jε(P)−Jε(P*)≤G를 사용한다. 총질량이 1이 아닌 불가능 raw 행렬에 확률 Pinsker를 그대로 적용한 식은 아니다.
+
+절반 질량·L=1·ε=1/2에서 최적 off-diagonal 질량을 s=1/[2(1+exp2)]라 하자. Off-diagonal이 r인 대칭 가능 계획의 L1 오차는 4|r−s|다.
+
+| r | L1 오차 |
+|---|---:|
+| 0 | 4s |
+| s | 0 |
+| 1/4 | 1−4s |
+
+```python
+from decimal import Decimal as D, localcontext
+with localcontext() as ctx:
+    ctx.prec = 80
+    eps = D('0.5')
+    s = 1/(2*(1+D(2).exp()))
+    reference = (D('0.5')-s, s, s, D('0.5')-s)
+    def objective(P):
+        return P[1]+P[2]+eps*sum(x*(x.ln()-1) if x else D(0) for x in P)
+    for r in (D(0), s, D('0.25')):
+        P = (D('0.5')-r, r, r, D('0.5')-r)
+        gap = objective(P)-objective(reference)
+        kl = sum(x*(x/y).ln() if x else D(0) for x, y in zip(P, reference))
+        error = sum(abs(x-y) for x, y in zip(P, reference))
+        assert abs(gap-eps*kl) < D('1e-75')
+        assert error*error <= 2*kl+D('1e-75')
+        print("r,L1,gap:", r, error, gap)
+```
+
+별도의 작은 양인 기준 해의 비정규화 수송 초과 비용은 이 두 원자 가족에서 정확히 2Ls다. 실습은 이 곱을 직접 계산하여 L=3,ε=0.05의 약 2.63×10⁻²⁶을 보존한다. 반올림된 두 절대 비용을 빼면 0일 수 있어 절대 비용은 별도 진단으로 남긴다. 작은 최적화 gap도 이 특수 공식도 보편적인 entropy 편향 추정량은 아니다.
+
 ## 직접 풀기와 풀이
 
 같은 대칭 예에서 ε=0.05이면 작은 기준 질량은 약 1.030577×10⁻⁹로 여전히 양수다. 다음 비대칭 초기 kernel을 선택하자. Raw 목적값이 진짜 최솟값보다 낮을 수 있는 이유는 불가능성이다. 먼저 행·열 오차를 확인한다.

@@ -33,6 +33,48 @@ Optimal 모드는 단조 coupling, product 모드는 독립 출발·도착 추�
 
 중간 분포와 출발 거리는 √0.5로 t·0이 아니다. 주변 질량을 맞추고 입자를 직선으로 움직여도 최적 coupling 없이는 geodesic을 보장하지 못한다.
 
+## 전체 일정 속도 geodesic 항등식 증명하기
+
+최적 coupling의 X,Y에서 E|X−Y|²=D²라고 하자. 같은 무작위 끝점으로 Xₛ=(1−s)X+sY와 Xₜ=(1−t)X+tY를 연결하면 0≤s≤t≤1에서 W₂(μₛ,μₜ)≤(t−s)D다. 끝점 삼각부등식으로 반대쪽 상계를 얻는다.
+
+$$
+D\le W_2(\mu_0,\mu_s)+W_2(\mu_s,\mu_t)+W_2(\mu_t,\mu_1)
+\le sD+W_2(\mu_s,\mu_t)+(1-t)D.
+$$
+
+따라서 W₂(μₛ,μₜ)=(t−s)D다. D를 진짜 끝점 거리로 식별하려면 끝점 coupling이 최적이어야 한다. 더 큰 선택 비용으로는 같은 역방향 상계를 얻을 수 없다.
+
+최적인지와 관계없이 모든 coupling에서 이차 모멘트를 전개하고 같은 평균 제곱을 빼면 다음 진단을 얻는다.
+
+$$
+\operatorname{Var}(\mu_{mix,t})-\operatorname{Var}(\mu_t)
+=t(1-t)\mathbb E|X-Y|^2.
+$$
+
+이는 선택한 coupling 비용을 측정하며 그 비용의 최적성까지 판정하지는 않는다. 같은 대칭 ±1 끝점의 최적 대각 coupling 비용은 0, product 비용은 2다. 두 경우 모두 mixture 분산은 1이다.
+
+| t | 최적 분산 | Product 분산 | Product 차이 |
+|---|---:|---:|---:|
+| 1/4 | 1 | 5/8 | 3/8 |
+| 1/2 | 1 | 1/2 | 1/2 |
+| 3/4 | 1 | 5/8 | 3/8 |
+
+```python
+from fractions import Fraction as F
+atoms = (F(-1), F(1))
+for t in (F(1, 4), F(1, 2), F(3, 4)):
+    positions = [(1-t)*x+t*y for x in atoms for y in atoms]
+    mean = sum(positions)/4
+    variance = sum((z-mean)**2 for z in positions)/4
+    coupling_cost = sum((x-y)**2 for x in atoms for y in atoms)/4
+    deficit = 1-variance
+    assert mean == 0 and coupling_cost == 2
+    assert deficit == t*(1-t)*coupling_cost
+    print(t, F(1), variance, deficit)
+```
+
+Product로 연결한 원자를 직접 전개한다. 비geodesic 경로에서도 올바른 분산 항등식은 성립하므로, 이 검사는 수송 최적성 인증을 보완하지만 대체하지 않는다.
+
 ## 직접 풀기와 표현 방식
 
 두 중간점 예제의 질량을 직접 계산하자. t=0과 1에서는 겹친 원자가 합쳐져 끝점 법칙을 되찾아야 한다. 구현은 같은 위치를 합하고 0 질량을 제외하여 하나의 원자를 여러 확률 줄기로 잘못 표시하지 않는다.

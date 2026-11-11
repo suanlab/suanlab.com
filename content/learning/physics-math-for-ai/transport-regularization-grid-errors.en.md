@@ -35,6 +35,45 @@ The εlog N term bounds the transport-cost bias of the exact regularized optimiz
 
 Blue plots corrected excess transport cost and orange its certificate. The excess is evaluated as Σγᵢⱼ(xᵢ−xⱼ)², avoiding cancellation against the translation cost s². The feasible regularized objective and dual are also shown with the stable generalized-KL gap.
 
+## Derive a distance budget from squared-cost certificates
+
+For uniform marginals, H(P)=H(X)+H(Y|X)≥log N and H(P)≤H(X)+H(Y)=2log N. A feasible permutation optimizer P₀ has H(P₀)=log N. If the corrected feasible P has regularized gap G, then Jε(P)≤Jε(P₀)+G. Canceling the entropy convention's constant gives
+
+$$
+\langle C,P\rangle-OT_N
+\le\epsilon[H(P)-H(P_0)]+G
+\le\epsilon\log N+G=:B.
+$$
+
+Now suppose each marginal approximation has a verified W₂ error, whose sum is δ. Triangle inequalities give |W₂(μ,ν)−W₂(μ_N,ν_N)|≤δ. Since a feasible plan's squared cost c is at least OT_N, use |√c−√OT_N|≤√B to obtain
+
+$$
+|\sqrt{c}-W_2(\mu,\nu)|\le\delta+\sqrt B.
+$$
+
+This explicitly converts cost units to distance units. Adding δ directly to B would mix dimensions. For the midpoint family, δ=1/(√3N). To target distance tolerance τ, it is sufficient to choose δ≤τ/2, εlog N≤τ²/8 and G≤τ²/8. The last is a stopping requirement, not a statement that a chosen iteration count meets it.
+
+| τ | N | ε budget |
+|---|---:|---|
+| 1/2 | 4 | τ²/(8log N) |
+| 1/4 | 8 | τ²/(8log N) |
+| 1/8 | 16 | τ²/(8log N) |
+
+```python
+from math import log, sqrt
+for tau, N in ((.5, 4), (.25, 8), (.125, 16)):
+    delta = 1/(sqrt(3)*N)
+    epsilon_budget = tau*tau/(8*log(N))
+    gap_target = tau*tau/8
+    bound = delta+sqrt(epsilon_budget*log(N)+gap_target)
+    assert delta <= tau/2 and bound <= tau
+    assert epsilon_budget < .05
+    print(tau, N, "epsilon budget:", epsilon_budget,
+          "gap target:", gap_target, "distance bound:", bound)
+```
+
+The computed ε budgets lie below this lab's minimum ε=0.05; the program is a separate theoretical accuracy-budget example. It does not claim these tolerances are attainable with the unchanged controls. Actual translation-pair grid error is still zero, so the marginal bound can be conservative. General nonuniform marginals need their own entropy and feasibility analysis.
+
 ## Exercise and explained answer
 
 At N=8,s=0.5,ε=0.1 and twenty iterations, each marginal quantization distance is approximately 0.036084, actual pair error zero and corrected excess cost approximately 0.038481. The regularization bound is approximately 0.207944 and the regularized gap about 5.71×10⁻⁸.

@@ -33,6 +33,46 @@ For equal half masses, translating both atoms by one gives W₁=W₂=1. Doubling
 
 Keep support ±1 but change left mass from 0.25 to 0.75. Half the mass must move distance two. W₁ is one, squared W₂ cost is two, and W₂ is √2. The distinction concerns how long moves are weighted, not a different normalization of total mass.
 
+## Prove the metric inequality and identify a missing moment condition
+
+In one dimension the quantile formula makes the triangle inequality an Lp Minkowski inequality: Qμ−Qλ=(Qμ−Qν)+(Qν−Qλ). Taking norms gives Wₚ(μ,λ)≤Wₚ(μ,ν)+Wₚ(ν,λ), assuming finite pth moments. The root in Wₚ is essential for this argument.
+
+For squared cost, uncrossing ordered points explains monotonicity. If x₁<x₂ and y₁<y₂, replacing two crossed edges by ordered edges changes cost by
+
+$$
+(x_1-y_2)^2+(x_2-y_1)^2
+-(x_1-y_1)^2-(x_2-y_2)^2
+=2(x_2-x_1)(y_2-y_1)>0.
+$$
+
+Move the same positive mass on the two edges so marginals stay fixed. A crossed support cannot be optimal. For absolute cost the gain can be zero, so monotone optimality does not imply uniqueness.
+
+Weak convergence alone does not control a Wasserstein distance. Let μₙ=(1−n⁻²)δ₀+n⁻²δₙ. For every bounded continuous f, |∫f dμₙ−f(0)|≤2‖f‖∞/n², proving weak convergence to δ₀. Yet
+
+$$
+W_1(\mu_n,\delta_0)=1/n,\qquad
+W_2^2(\mu_n,\delta_0)=1.
+$$
+
+| n | Tail mass | W₁ | W₂² |
+|---|---:|---:|---:|
+| 2 | 1/4 | 1/2 | 1 |
+| 4 | 1/16 | 1/4 | 1 |
+| 8 | 1/64 | 1/8 | 1 |
+
+```python
+from fractions import Fraction as F
+for n in (2, 4, 8):
+    tail = F(1, n*n)
+    w1, w2_squared = tail*n, tail*n*n
+    bounded_test = tail*F(n, 1+n)  # f(x)=x/(1+x), x>=0.
+    assert w1 == F(1, n) and w2_squared == 1
+    assert bounded_test <= tail
+    print(n, tail, w1, w2_squared, "bounded test:", bounded_test)
+```
+
+The rare far-away atom escapes bounded tests while retaining a second-moment cost. This separate family explains why weak distributional similarity is insufficient for squared-transport claims in empirical generative evaluation.
+
 ## Exercise and explained answer
 
 Recompute the last example by integrating the two step quantiles. Their difference is two on a probability interval of length 0.5 and zero elsewhere. Verify the lower bound |EμX−EνY|≤Wₚ, obtained from Jensen and the coupling marginal constraints.

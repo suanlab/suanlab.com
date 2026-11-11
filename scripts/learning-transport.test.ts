@@ -90,3 +90,17 @@ for(const kind of transportKinds)test(`${kind}: meaningful guides and finite geo
 for(const kind of transportKinds)for(const lang of ['ko','en'] as const)test(`${kind}.${lang}: detailed bilingual theory, valid equations and explained exercises`,async()=>{
  const source=await fs.readFile(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8'),rendered=await getLearningContent(kind);assert.ok(rendered.outline[lang].length>=4);assert.ok(rendered[lang].length>4000);assert.ok(rendered[lang].includes('katex'));assert.ok(!rendered[lang].includes('katex-error'));assert.ok(source.includes(lang==='ko'?'직접 풀기':'Exercise'));assert.ok(source.includes('https://'));if(lang==='en'){assert.ok(!/[가-힣]/.test(source));assert.ok(source.split(/\s+/).length>=350);}
 });
+
+test('small entropic cost bias is retained independently of rounded absolute cost subtraction',()=>{
+ const r=entropicTwoPlan(.5,.5,3,.05),expected=3/(1+Math.exp(60));assert.ok(r.excess>0);assert.ok(Math.abs(r.excess/expected-1)<2e-14);
+ const optimum=dualTransport(.5,.5,3,1,0).optimum;assert.equal(r.transportCost-optimum,0);
+});
+test('JKO dissipation retains small mean energy at an equilibrium scale',()=>{
+ for(const m0 of [-1e-20,1e-20])for(const h of [.05,.5,1])for(const steps of [0,1,4,12]){const r=jkoGaussian(m0,1,1,h,steps),expected=(m0-r.last.m)*(m0+r.last.m)/2;assert.equal(r.last.s,1);assert.equal(r.history[0].energy-r.last.energy,0);assert.equal(r.energyDrop,Math.abs(expected));if(steps){assert.ok(r.energyDrop>0);assert.ok(r.dissipation<=r.energyDrop*(1+2e-14));}else assert.equal(r.energyDrop,0);}
+});
+
+test('near-equilibrium scale energy retains relative accuracy beyond a rounded-square difference',()=>{
+ const s0=1+1e-8,r=jkoGaussian(0,s0,1,.5,12);
+ const gap=(s:number)=>{const u=s-1;let value=u*u;for(let k=3;k<=12;k++)value+=(k%2===0?1:-1)*u**k/k;return value;};
+ const expected=gap(s0)-gap(r.last.s);assert.ok(expected>0);assert.ok(Math.abs(r.energyDrop/expected-1)<2e-14);
+});

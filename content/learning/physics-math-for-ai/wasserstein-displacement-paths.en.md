@@ -33,6 +33,48 @@ Use μ=ν=(δ₋₁+δ₁)/2 and the product coupling. A quarter of mass follows
 
 The selected coupling costs two, while optimal cost is zero. Its intermediate distance from the source is √0.5, not t·0. Thus correct marginals and straight particle tracks are insufficient for a geodesic claim.
 
+## Prove the full constant-speed geodesic identity
+
+Let an optimal coupling of X,Y have E|X−Y|²=D². Couple Xₛ=(1−s)X+sY and Xₜ=(1−t)X+tY using those same random endpoints. This constructs an upper bound W₂(μₛ,μₜ)≤(t−s)D for 0≤s≤t≤1. The endpoint triangle inequality gives the reverse bound:
+
+$$
+D\le W_2(\mu_0,\mu_s)+W_2(\mu_s,\mu_t)+W_2(\mu_t,\mu_1)
+\le sD+W_2(\mu_s,\mu_t)+(1-t)D.
+$$
+
+Hence W₂(μₛ,μₜ)=(t−s)D. Optimality of the endpoint coupling is needed to identify D as the true endpoint distance; a larger selected coupling cost would not produce the same reverse bound.
+
+For any coupling, optimal or otherwise, expand the second moments and subtract the common mean square. A useful diagnostic is
+
+$$
+\operatorname{Var}(\mu_{mix,t})-\operatorname{Var}(\mu_t)
+=t(1-t)\mathbb E|X-Y|^2.
+$$
+
+It measures the selected coupling's cost, not whether that cost is optimal. For identical symmetric ±1 endpoints the optimal diagonal coupling costs zero, while the product coupling costs two. Mixture variance stays one in both cases:
+
+| t | Optimal variance | Product variance | Product deficit |
+|---|---:|---:|---:|
+| 1/4 | 1 | 5/8 | 3/8 |
+| 1/2 | 1 | 1/2 | 1/2 |
+| 3/4 | 1 | 5/8 | 3/8 |
+
+```python
+from fractions import Fraction as F
+atoms = (F(-1), F(1))
+for t in (F(1, 4), F(1, 2), F(3, 4)):
+    positions = [(1-t)*x+t*y for x in atoms for y in atoms]
+    mean = sum(positions)/4
+    variance = sum((z-mean)**2 for z in positions)/4
+    coupling_cost = sum((x-y)**2 for x in atoms for y in atoms)/4
+    deficit = 1-variance
+    assert mean == 0 and coupling_cost == 2
+    assert deficit == t*(1-t)*coupling_cost
+    print(t, F(1), variance, deficit)
+```
+
+The program expands the product-coupled atoms directly. A correct variance identity can hold for a nongeodesic path, so it complements rather than replaces a transport-optimality certificate.
+
 ## Exercise and representation details
 
 Compare the two midpoint presets and independently compute their atomic masses. Then set t=0 and t=1: all coincident atoms must combine back into the endpoint laws. The implementation merges equal positions and excludes zero masses, avoiding multiple probability stems that would misrepresent one atom.
