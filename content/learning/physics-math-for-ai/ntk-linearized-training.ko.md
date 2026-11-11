@@ -30,6 +30,50 @@ NTK 극한을 사용하려면 폭을 보내는 방식, 파라미터화, 초기�
 
 Kernel 관점은 일부 학습 메커니즘을 분석하기 좋지만 feature learning이 크게 일어나는 영역을 같은 고정 kernel로 설명하는 데에는 한계가 있습니다.
 
+## 고유방향의 안정 조건과 영공간 한계를 유도하기
+
+고정한 훈련 Jacobian J₀와 n개 입력에서 ‖r‖²/(2n)의 parameter GD는 δ_{t+1}=δ_t−ηJ₀ᵀr_t/n입니다. J₀를 곱하면 앞의 잔차 갱신을 얻습니다. K₀는 PSD이므로 고유값 μ_j≥0인 기저에서 각 잔차는
+
+$$
+r_{t,j}=\left(1-\frac{\eta\mu_j}{n}\right)^t r_{0,j}.
+$$
+
+양의 고유성분은 0<η<2n/μ_max에서 수축합니다. 상한 경계에서는 최상위 성분이 크기를 줄이지 않고 진동하고, 그 위에서는 그 성분이 커집니다. 고유값 0인 성분은 그대로입니다. range K₀에서 완벽히 수렴해도 훈련 손실이 0일 필요는 없습니다. 엄격 안정 조건에서 한계 손실은 ‖P_ker K₀ r₀‖²/(2n)입니다.
+
+다음 별도 n=2 예제는 J₀=diag(1,0), r₀=(1,1)입니다. 기존 tanh 네트워크의 학습률 제어 최대 .5를 바꾼 것이 아닙니다.
+
+| η | 4단계 뒤 첫 잔차 | 4단계 뒤 손실 |
+|---|---|---|
+| 1 | 1/16 | .250977 |
+| 4 | 1 | .5 |
+| 5 | 81/16 | 6.657227 |
+
+![고정 kernel의 잔차가 안정 범위에서 수축하고 경계에서 진동하며 범위 밖에서는 증가하는 세 곡선. 영공간 잔차는 세 경우 모두 1로 남는다.](/assets/learning/approximation-ntk-stability-ko.svg)
+
+## 무한 폭 정리가 추가하는 내용을 명시하기
+
+원 논문의 고정 깊이 설정은 명시된 1/√width 파라미터화와 독립 Gaussian 초기화를 사용합니다. 학습 정리는 Lipschitz이고 두 번 미분 가능하며 2차 도함수가 유계인 활성화와, 확률적으로 유계인 유한 시간 학습 방향 적분을 가정합니다. 부록의 명제는 은닉 폭을 순차적으로 무한대로 보내 고정 시간 구간 전체의 kernel 수렴을 얻습니다. 해당 결과의 가정이지 모든 NTK 극한의 보편적인 정의는 아닙니다.
+
+유한 실습은 tanh와 bounded seed 초기화를 쓰고 이산 GD 경로를 비교합니다. 위 유한 갱신은 무한 폭 없이 정확하지만, 비선형 모형으로 옮기려면 변하는 Jacobian과 Taylor 나머지를 제어해야 합니다. 매끄러움만으로 전역 frozen feature 정확도나 일반화를 증명하지 못합니다.
+
+**확인 문제:** K₀가 singular일 때 η를 줄이면 영공간 잔차를 없앨 수 있나요? **해설:** 아닙니다. J₀ᵀ가 그 잔차를 0으로 보내므로 고정 특징 GD로는 갱신할 수 없습니다.
+
+```python
+from fractions import Fraction as F
+
+# Separate frozen-Jacobian example: J=diag(1,0), K=diag(1,0), n=2.
+# Loss is sum r_i^2/(2n); the second residual lies in ker K.
+for eta in [F(1),F(4),F(5)]:
+    r=[F(1),F(1)]
+    for t in range(4):
+        r=[r[0]-eta*r[0]/2,r[1]]
+    assert r[0]==(1-eta/2)**4 and r[1]==1
+    loss=sum(v*v for v in r)/4
+    print(str(eta),str(r[0]),round(float(loss),6))
+# Positive-eigenvalue stability: 0<eta<4. At 4 the component oscillates;
+# above 4 it grows. No step size removes a nonzero nullspace residual.
+```
+
 ## 확인 문제와 해설
 
 1. η=0이면? **두 모형 모두 변하지 않고 drift도 0입니다.** 단계 수만 늘려 학습을 만들 수 없습니다.

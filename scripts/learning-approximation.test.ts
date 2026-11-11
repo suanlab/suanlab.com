@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {evaluateApproximation as evaluate,approximationKinds,quadraticApproximation,reluQuadratic,cholesky,solveCholesky,fitRbf,rbfKernel,fourierFeatureMap,networkJacobian,trainTangentNetwork,normalizedVanishingPolynomial,finiteRiskErrors} from '../src/lib/learning-approximation';
+import {evaluateApproximation as evaluate,approximationKinds,quadraticApproximation,quadraticApproximationError,reluQuadratic,cholesky,solveCholesky,fitRbf,rbfKernel,fourierFeatureMap,networkJacobian,trainTangentNetwork,normalizedVanishingPolynomial,finiteRiskErrors} from '../src/lib/learning-approximation';
 import {approximationLabs,learningGuides,learningUnits} from '../src/data/interactive-book';
 const close=(a:number,b:number,tol=1e-10)=>assert.ok(Math.abs(a-b)<tol,`${a} != ${b}`);
 const dot=(a:number[],b:number[])=>a.reduce((s,x,i)=>s+x*b[i],0);
@@ -77,4 +77,56 @@ for(const kind of approximationKinds)test(`${kind}: authored presets and guides 
 
 test('regularized representer and initial NTK plots include observations outside the predicted range',()=>{
  for(const [kind,values] of [['representer-span-penalty',[1,0,0]],['ntk-linearized-training',[2,.1,0,1]]] as const){const r=evaluate(kind,[...values]);assert.ok(r.bounds![3]>=1);for(const [x,y] of r.dots!){assert.ok(x>=r.bounds![0]&&x<=r.bounds![1]);assert.ok(y>=r.bounds![2]&&y<=r.bounds![3]);}}
+});
+
+
+test('GP conditional variances retain positive noise and near-observation uncertainty',()=>{
+ for(const anchor of [-1,0,1])for(const length of [.2,1,2]){
+  const noisy=fitRbf(length,1e-30,0);assert.ok(Math.abs(noisy.variance(anchor)/1e-30-1)<1e-11);
+  const near=fitRbf(length,0,0).variance(anchor===0?1e-100:anchor+1e-8);assert.ok(near>0);
+  assert.equal(fitRbf(length,0,0).variance(anchor),0);
+ }
+ assert.ok(fitRbf(.2,0,0).variance(1e-162)>0);
+ const under=evaluate('gaussian-process-posteriors',[1,0,0,1e-200]);assert.equal(under.warning,'numeric-range');assert.equal(under.stats['latent posterior variance'],null);assert.equal(under.stats['latent interval half-width (2 sd)'],null);
+});
+
+test('RKHS slope cost scales before squaring and separates membership from finite-number range',()=>{
+ const small=evaluate('rkhs-mercer-features',[1e-300,0,1e-200,.5]);assert.ok(Math.abs((small.stats['target squared RKHS norm (∞ if outside)'] as number)/1e-100-1)<1e-12);
+ for(const values of [[1e-320,0,1,.5],[1,0,1e-200,.5]]){const r=evaluate('rkhs-mercer-features',values);assert.equal(r.stats['1{target in RKHS}'],1);assert.equal(r.stats['target squared RKHS norm (∞ if outside)'],null);assert.equal(r.warning,'numeric-range');}
+ assert.equal(evaluate('rkhs-mercer-features',[0,0,1,.5]).stats['target squared RKHS norm (∞ if outside)'],Infinity);
+ assert.equal(evaluate('rkhs-mercer-features',[1,0,0,.5]).stats['target squared RKHS norm (∞ if outside)'],0);
+});
+
+test('anchored GP conditioning preserves prior variance bounds throughout the stated length and query range',()=>{
+ for(const length of [.2,.25,.5,.8,1,1.5,1.9,2])for(const noise of [0,1e-30,.1,1]){
+  const model=fitRbf(length,noise,0);
+  for(let i=0;i<=120;i++){const variance=model.variance(-1.5+i/40);assert.ok(variance>=0&&variance<=1+1e-12,`${length}, ${noise}, ${i}: ${variance}`);}
+ }
+});
+
+
+test('quadratic query errors remain positive when the interpolated height rounds to the target',()=>{
+ const x=1-2**-53;
+ for(const mode of [0,1]){
+  const expected=mode===0?x*2**-57:(x-15/16)*2**-53;
+  const result=evaluate('polynomial-spline-approximation',[mode,16,x]);
+  assert.ok(Math.abs((result.stats['error at query'] as number)/expected-1)<1e-12);
+  assert.ok(quadraticApproximationError(mode,16,x).positive);
+  const tiny=evaluate('polynomial-spline-approximation',[mode,16,Number.MIN_VALUE]);assert.equal(tiny.warning,'numeric-range');assert.equal(tiny.stats['error at query'],null);assert.deepEqual(tiny.dots,[]);
+  assert.equal(evaluate('polynomial-spline-approximation',[mode,16,1]).stats['error at query'],0);
+ }
+ const bits=new DataView(new ArrayBuffer(8));
+ for(let n=1;n<=16;n++)for(let j=1;j<n;j++){
+  const knot=j/n;bits.setFloat64(0,knot);const encoding=bits.getBigUint64(0);
+  for(const offset of [BigInt(-1),BigInt(0),BigInt(1)]){bits.setBigUint64(0,encoding+offset);const q=bits.getFloat64(0);assert.ok(quadraticApproximationError(1,n,q).error>=0);}
+  assert.equal(quadraticApproximationError(1,n,knot).error,0);
+ }
+});
+
+test('finite-risk optimization tracks the analytic displacement before rounding the current constant',()=>{
+ const initial=.5+2**-53,r=finiteRiskErrors(12,initial,.5,16);
+ assert.equal(r.current,.5);assert.equal(r.empiricalOptimization,2**-138);assert.ok(Math.abs(r.signedOptimization/2**-69-1)<1e-12);
+ const tiny=evaluate('approximation-estimation-optimization-errors',[8,Number.MIN_VALUE,.5,16]);assert.equal(tiny.warning,'numeric-range');assert.equal(tiny.stats['empirical optimization excess'],null);assert.equal(tiny.stats['signed population difference to ERM'],null);
+ const fixed=evaluate('approximation-estimation-optimization-errors',[8,0,.5,16]);assert.equal(fixed.stats['empirical optimization excess'],0);assert.equal(fixed.warning,undefined);
+ assert.equal(finiteRiskErrors(12,-.5,0,0).signedOptimization,0); // Equal population risks at opposite constants.
 });

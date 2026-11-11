@@ -5,7 +5,7 @@
 RBF kernel은 이상적인 독립 주파수 ω~N(0,ℓ⁻²)에 대해 E cos(ω(x−z))입니다. Gaussian 특성함수에서 이 식이 나옵니다.
 
 $$
-k(x,z)=\exp\!\left(-\frac{(x-z)^2}{2\ell^2}\right)=E_\omega\cos(\omega(x-z)).
+k(x,z)=\exp\!\left(-\frac{(x-z)^2}{2\ell^2}\right)=E_\omega\cos(\omega(x-z)),\quad\omega\sim N(0,\ell^{-2}).
 $$
 
 ## 짝지은 cos와 sin 특징
@@ -30,6 +30,60 @@ seed는 재현 가능한 작은 의사난수 발생기의 고정 실행입니다
 ## 계산과 학습의 새로운 교환
 
 특징 차원은 계산·저장 비용뿐 아니라 근사된 함수 공간을 바꿉니다. kernel ridge를 특징 ridge로 바꿀 때 정규화와 데이터 오차도 함께 달라질 수 있습니다. 특징 수가 충분한지 평가하려면 목표 kernel, 입력 영역, 표본 크기, 요구 오차와 확률 조건을 명시해야 합니다.
+
+## 확률 공간을 명시하고 오차 명제를 유도하기
+
+d=x−z를 고정하고 이상적인 독립 ω_j∼N(0,ℓ⁻²)를 뽑습니다. u=d²/ℓ²라 두면 특성함수와 cos²t=(1+cos2t)/2로
+
+$$
+E\widetilde k=k,\qquad
+E(\widetilde k-k)^2=\frac{(1-e^{-u})^2}{2m}.
+$$
+
+독립성 때문에 한 주파수의 분산을 m으로 나눕니다. d=0이면 분산은 정확히 0이고 짝지은 특징의 대각은 매 실현에서 정확합니다. 아래 d=ℓ의 값은 주파수에 대한 기대 제곱 오차이며 실습 seed의 오차 보장이 아닙니다.
+
+| 주파수 수 m | 이상적 기대 제곱 오차 |
+|---|---|
+| 4 | .04994705 |
+| 16 | .01248676 |
+| 64 | .00312169 |
+| 256 | .00078042 |
+
+Cosine은 [−1,1]에 있어 한 쌍의 절대 오차 꼬리에 Hoeffding의 2exp(−mε²/2)를 적용합니다. 고정한 n개 입력의 모든 Gram 원소에는 union bound 2n²exp(−mε²/2)를 얻습니다. n=3,ε=.2,δ=.05이면 이 보수적인 경계를 만족하는 충분한 m은 295입니다. 실습 최대 32를 넘는 별도 이론 비교입니다. 연속 영역 supremum이나 고정 의사난수 실행의 보장은 이 유한 집합 명제로 나오지 않습니다. 코드는 Gaussian cosine 모멘트를 독립 적분합니다.
+
+## Kernel 오차를 정규화된 훈련 예측으로 연결하기
+
+PSD Gram G,G̃와 λ>0에서 smoother의 resolvent 항등식은
+
+$$
+\widetilde S-S=\lambda(\widetilde G+\lambda I)^{-1}
+(\widetilde G-G)(G+\lambda I)^{-1},
+\qquad\|\widetilde S-S\|_{\rm op}\le\frac{\|\widetilde G-G\|_{\rm op}}\lambda.
+$$
+
+두 역행렬 노름이 각각 1/λ 이하이므로 훈련 예측 차이는 ‖G̃−G‖op‖y‖/λ 이하입니다. 원소별 오차 ε라면 nε‖y‖/λ가 충분한 경계입니다. 약한 정규화에서는 근사에 민감해집니다. 이 경계는 해당 훈련 입력의 예측을 제어하며 자료 밖 절편이나 모집단 일반화까지 제어하지는 않습니다. λ=0에는 이 논증으로 경계를 주지 못합니다.
+
+**확인 문제:** 근사 Gram이 PSD이면 예측 오차도 작은가요? **해설:** 아닙니다. PSD는 유효한 이차형식을 보존하고, 가까움과 정규화된 해의 안정성에는 위의 추가 추정이 필요합니다.
+
+```python
+from math import exp, cos, sqrt, pi, ceil, log
+
+def simpson(f,a,b,n=20000):
+    h=(b-a)/n
+    return h*(f(a)+f(b)+sum((4 if i%2 else 2)*f(a+i*h) for i in range(1,n)))/3
+
+# Independent integration of the first and second moments at gap/length=1.
+density=lambda w: exp(-w*w/2)/sqrt(2*pi)
+first=simpson(lambda w: cos(w)*density(w),-10,10)
+second=simpson(lambda w: cos(w)**2*density(w),-10,10)
+var=(1-exp(-1))**2/2
+assert abs(first-exp(-.5))<1e-11
+assert abs(second-first*first-var)<1e-11
+for m in [4,16,64,256]: print(m,round(var/m,8))
+n,epsilon,delta=3,.2,.05
+print('sufficient ideal iid frequencies:',ceil(2/epsilon**2*log(2*n*n/delta)))
+# This bound is for n^2 fixed pairs, not all points in a continuum or a fixed PRNG seed.
+```
 
 ## 확인 문제와 해설
 

@@ -38,6 +38,78 @@ $$
 
 이 경계를 근사 초과 위험에 더하면 총 위험의 비음수 상계가 되지만 세 양의 정확한 합 항등식은 아닙니다. 파랑은 모집단, 주황은 경험 위험, 점은 현재 cₜ의 모집단 위험입니다. 표는 정확한 부호 있는 합과 비음수 경험 최적화 초과량을 따로 보여 줍니다.
 
+## 경험 위험을 끼워 비교 경계를 증명하기
+
+Δ=sup_H|R−R_n|이고 R_n(h_t)≤inf_H R_n+ε_opt라 합시다. 모집단 함수족 최소해 h_H와의 차이에 R_n(h_t), R_n(h_H)를 더하고 뺍니다. 경험 위험 차이는 ε_opt 이하이고 두 편차는 각각 Δ 이하이므로
+
+$$
+R(h_t)-R(h_H)\le2\Delta+\varepsilon_{\rm opt}.
+$$
+
+최소값이 달성되지 않으면 ε-최소해를 쓰고 ε를 0으로 보냅니다. 이 증명이 모집단의 최적화 차이를 비음수로 만든 것은 아닙니다. 실습의 상수족에서는 [−1,1] 위 R(c)−R_n(c)=2μc라서 Δ=2|μ|입니다. 유효하지만 느슨할 수 있습니다. 근사 초과량 1을 더하면 총 위험의 상계이며 세 양수 항의 정확한 분해는 아닙니다.
+
+## 모든 훈련 자료에 대해 최적화 경로를 평균하기
+
+결정적인 초기값 c₀와 고정 η에서 γ=(1−η)ᵗ라 두면 c_t=γc₀+(1−γ)μ입니다. 독립 공정 부호 열여섯 개에서 Eμ=0,Eμ²=1/16이므로
+
+$$
+E R(c_t)=1+\gamma^2c_0^2+\frac{(1-\gamma)^2}{16},
+\qquad E\varepsilon_{\rm opt}=\gamma^2\left(c_0^2+\frac1{16}\right).
+$$
+
+교차항은 이 기대값에서 사라지며 모든 자료 실현에서 사라지는 것은 아닙니다. c₀=1,η=1/2인 표는 정확한 이항 확률을 평균합니다. ERM 기대 위험은 17/16=1.0625입니다.
+
+| 단계 t | 기대 모집단 위험 | 기대 경험 최적화 초과량 |
+|---|---|---|
+| 0 | 2 | 1.0625 |
+| 1 | 1.265625 | .265625 |
+| 4 | 1.058838 | .0041503906 |
+| 16 | 1.062498 | 2.4738256×10⁻¹⁰ |
+
+![고정한 이진 자료 모형과 초기 상수 1에서 기대 위험이 감소한 뒤 ERM 위험에 아래쪽에서 접근하고, 경험 최적화 초과량은 계속 줄어드는 비교 그림.](/assets/learning/approximation-expected-risk-ko.svg)
+
+연속 γ의 최선은 1/(16c₀²+1)이며 여기서는 1/17로 t=4에 가깝습니다. 이 정확한 분포와 초기화의 조기 종료 교환 관계이지 미지의 모집단에서 최선 중단 시간을 아는 알고리즘이 아닙니다. c₀=0이면 이미 모집단 최선 상수에서 시작하므로 교환 관계가 완전히 바뀝니다. 코드는 특정 K가 전형적이라 가정하지 않고 모든 count K에서 GD를 반복한 뒤 C(16,K)/2¹⁶로 평균합니다.
+
+**확인 문제:** 여기서 t=16의 기대 최적화 초과량은 0인가요? **해설:** 아닙니다. 작지만 양수이며 소수 여섯 자리 반올림으로 표시하면 가려집니다.
+
+실습에서도 작은 초과량을 반올림된 c_t−μ로 다시 구하지 않고 해석적인 변위를 유지합니다.
+
+$$
+d_t=(c_0-\mu)(1-\eta)^t,\qquad
+\varepsilon_{\rm opt}=d_t^2,\qquad
+R(c_t)-R(\mu)=d_t(2\mu+d_t).
+$$
+
+K=12,c₀=.5+2⁻⁵³,η=.5,t=16이면 c_t의 binary64 값은 .5로 반올림되어도 변위는 2⁻⁶⁹, 경험 초과량은 2⁻¹³⁸로 양수입니다. 현재 상수나 위험의 표시 자릿수가 이 차이를 해상하지 못하는 것과 정확한 최적화를 구별합니다. 양의 경험 초과량 또는 0이 아닌 모집단 차이를 수치 범위 때문에 잃으면 —·안내로 표시합니다. 초기값이 이미 ERM인 경우의 실제 0과, 서로 반대인 상수의 같은 모집단 위험은 유지합니다.
+
+```python
+from fractions import Fraction as F
+from math import comb
+
+eta=F(1,2)
+c0=F(1)
+for steps in [0,1,4,16]:
+    expected_risk=F(0)
+    expected_empirical_excess=F(0)
+    for k in range(17):
+        mu=F(2*k,16)-1
+        c=c0
+        for _ in range(steps): c-=eta*(c-mu)
+        probability=F(comb(16,k),2**16)
+        expected_risk+=probability*(1+c*c)
+        expected_empirical_excess+=probability*(c-mu)**2
+    gamma=(1-eta)**steps
+    assert expected_risk==1+gamma**2*c0*c0+(1-gamma)**2/16
+    assert expected_empirical_excess==gamma**2*(c0*c0+F(1,16))
+    print(steps,round(float(expected_risk),6),format(float(expected_empirical_excess),'.8g'))
+
+mu=F(1,2)
+initial=F.from_float(.5+2**-53)
+displacement=(initial-mu)*F(1,2)**16
+assert displacement==F(1,2**69) and displacement**2==F(1,2**138)
+print('Analytic displacement and empirical excess:',float(displacement),float(displacement**2))
+```
+
 ## 확인 문제와 해설
 
 1. K=8이면 ERM 추정 초과 위험은? **0입니다.** 표본 평균이 모집단 최선과 같습니다.

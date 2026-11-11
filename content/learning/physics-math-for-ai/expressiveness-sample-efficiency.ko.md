@@ -30,6 +30,51 @@ Representer 단원의 관측 직교 방향과 비슷하지만 현재는 모집�
 
 유한 표본을 정확히 맞추는 능력 자체를 나쁜 것으로 일반화하지도 않습니다. 이 실험은 보간만으로 충분한 보장이 되지 않는다는 점을 보여 줍니다. 표본 분할과 독립 시험 자료, 함수족의 복잡도 분석이 별도로 필요합니다.
 
+## 고정 함수족과 유계 손실의 표본 보장을 추가하기
+
+소멸 다항식 반례는 n과 함께 대안 함수족도 키웁니다. 다른 질문을 위해 iid 표본 전에 M개 예측기의 유한 함수족 H를 고정하고 각 손실이 [0,1]에 있다고 합시다. 각 예측기의 Hoeffding과 union bound로 확률 1−δ 이상에서
+
+$$
+\sup_{h\in H}|R(h)-R_n(h)|\le
+\sqrt{\frac{\log(2M/\delta)}{2n}}=:\Delta_n.
+$$
+
+경험 최소해 ĥ와 모집단 함수족 최소해 h_H 사이에 경험 위험을 끼웁니다. ERM 차이는 비양수이고 두 편차에 각각 Δ_n을 쓰면 R(ĥ)−R(h_H)≤2Δ_n입니다. 제곱 손실을 유계로 쓰려면 대상과 예측에도 경계가 필요하며 기존 정규화 다항식이 자동으로 단위 손실 가정을 만족하지는 않습니다.
+
+## 고정한 유한 분류 문제를 전수 계산하기
+
+같은 확률의 네 입력 기호와 M=16개 모든 이진 label 함수를 고정합니다. 참 label은 (0,0,1,1)이고 잡음은 없습니다. ERM은 사전순으로 첫 일관 label 함수를 고르며, 이는 보지 못한 기호에 0을 주는 것과 같습니다. 알고리즘과 함수족은 n과 함께 바뀌지 않습니다. 양의 label 기호 하나를 못 볼 확률은 (3/4)ⁿ이므로 기대 분류 오차는 (1/2)(3/4)ⁿ입니다.
+
+| iid 관측 수 n | 정확한 기대 분류 오차 | 소수 |
+|---|---|---|
+| 1 | 3/8 | .375 |
+| 2 | 9/32 | .28125 |
+| 4 | 81/512 | .158203 |
+| 6 | 729/8192 | .088989 |
+
+코드는 서로 다른 표본 집합만 세지 않고 4ⁿ개의 입력 열 전체를 열거해 열여섯 가설에서 ERM을 풉니다. 반복 관측도 iid 확률에 중요합니다. 표본마다 더 높은 차수의 반례를 새로 만드는 것과 달리 실제 고정 함수족 학습 곡선입니다. 별도 분류 예제이며 기존 회귀 MSE와 같은 오차가 아닙니다.
+
+**확인 문제:** Label을 본 뒤 고른 함수족에도 이 union bound를 바로 쓰나요? **해설:** 아닙니다. 선택 절차까지 포함하는 균일 경계나 유효한 자료 의존 분석이 필요합니다.
+
+```python
+from itertools import product
+from fractions import Fraction as F
+
+# A separate fixed classification class: all 16 labelings of four equally likely inputs.
+H=list(product([0,1],repeat=4))
+truth=(0,0,1,1)
+for n in [1,2,4,6]:
+    total=F(0)
+    for sample in product(range(4),repeat=n):
+        # Lexicographic tie-breaking fills unseen labels with zero.
+        fitted=min(H,key=lambda h:sum(h[x]!=truth[x] for x in sample))
+        assert all(fitted[x]==truth[x] for x in sample)
+        total+=F(sum(a!=b for a,b in zip(fitted,truth)),4)
+    expected=total/4**n
+    assert expected==F(1,2)*F(3,4)**n
+    print(n,str(expected),round(float(expected),6))
+```
+
 ## 확인 문제와 해설
 
 1. A=0이면? **두 함수가 같고 두 위험도 0입니다.**

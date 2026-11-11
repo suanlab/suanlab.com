@@ -34,6 +34,51 @@ $$
 
 이 실험은 유한 RKHS에서 정리의 직교 논증을 그대로 계산합니다. 실제 무한 차원 kernel 회귀에서도 같은 논증이 유한 관측 span으로 문제를 줄이지만, 수치 조건과 통계적 일반화는 별도 과제입니다.
 
+## Representer 축소·존재·유일성을 분리하기
+
+L:Rⁿ→[0,∞)가 하반연속이고 달성 가능한 평가 벡터 중 적어도 한 곳에서 유한하다고 합시다. λ>0에서 L(f(x₁),…,f(x_n))+λ‖f‖²를 최소화할 때 직교 사영으로 유한 차원인 닫힌 kernel 절편 span에 제한할 수 있습니다. L≥0이고 제곱 벌점이 coercive이므로 그 안의 최소화 열은 유계입니다. 수렴 부분열과 하반연속성으로 최소값이 달성됩니다. L이 볼록이면 엄격 볼록인 Hilbert 제곱 노름 덕분에 최소 함수도 유일합니다.
+
+이는 representer 명제에 존재 논증을 더한 것입니다. 예를 들어 정규화 없는 상수족 t>0에서 관측값 0의 제곱 손실은 infimum 0이지만 최소해가 없습니다. 닫힘과 coercivity를 임의로 지울 수 없습니다. 벌점이 비감소이면 최소해가 있을 때 span 최소해를 고를 수 있고, 엄격 증가이면 모든 최소해의 직교 성분이 0입니다.
+
+## 함수가 유일해도 계수는 여러 개일 수 있다
+
+상수 kernel k=1과 관측 두 개를 쓰고 두 label을 모두 1로 둡니다. 합 손실과 λ=1/2에서 함수는 상수 t이며 목적함수는 2(t−1)²+λt²입니다. 미분하면 t=4/5, 목적함수 2/5입니다. 그러나 f=α₁k(·,x₁)+α₂k(·,x₂)는 α₁+α₂에만 의존합니다.
+
+| 계수 (α₁,α₂) | 함수 t | 목적함수 | (K+λI)α=y의 해 |
+|---|---|---|---|
+| (4/5,0) | 4/5 | 2/5 | 아니요 |
+| (0,4/5) | 4/5 | 2/5 | 아니요 |
+| (2/5,2/5) | 4/5 | 2/5 | 예 |
+
+K가 singular일 때 계수 정상 조건은
+
+$$
+K\big((K+\lambda I)\alpha-y\big)=0.
+$$
+
+가역 선형계 (K+λI)α=y를 풀면 유효한 표준 계수 하나를 선택합니다. 충분조건이지만 처음 두 행처럼 같은 최소 함수를 나타내는 모든 계수의 필요조건은 아닙니다. 코드는 세 경우를 정확히 확인합니다. 이 상수 kernel 예제는 기존 세 특징·평균 손실 실습과 별도입니다.
+
+**확인 문제:** λI를 더했는데 함수 표현은 왜 일대일이 아니죠? **해설:** 함수로 가는 사상 α↦∑α_i k_i에는 원래 Gram 영공간이 남습니다. 계수를 정하는 선형계의 선택 관례는 다른 사상입니다.
+
+```python
+from fractions import Fraction as F
+
+lam=F(1,2)
+t=F(2)/(2+lam)
+coefficients=[(t,F(0)),(F(0),t),(t/2,t/2)]
+for alpha in coefficients:
+    fitted=sum(alpha)
+    objective=2*(fitted-1)**2+lam*fitted**2
+    assert fitted==F(4,5) and objective==F(2,5)
+    # K alpha depends only on the sum; K is the all-ones matrix.
+    stationarity=[fitted-1+lam*a for a in alpha]
+    assert sum(stationarity)==0  # K(K+lambda I)alpha=K y.
+    canonical=all(v==0 for v in stationarity)
+    print(tuple(str(x) for x in alpha),str(fitted),str(objective),canonical)
+# For the separate unregularized class g_t=t, t>0, with zero labels,
+# inf_t g_t(0)^2=0 is approached but not attained: the class is not closed.
+```
+
 ## 확인 문제와 해설
 
 1. c를 2배로 하면 추가 비용은? **4배입니다.** 제곱 노름 벌점입니다.

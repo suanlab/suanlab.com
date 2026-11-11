@@ -34,6 +34,51 @@ It does not establish accurate extrapolation. Derivative or integral observation
 
 This finite RKHS exposes the same orthogonal argument used in infinite-dimensional kernel regression. Numerical conditioning and statistical generalization remain separate.
 
+## Separate representer reduction, existence and uniqueness
+
+Let L:Rⁿ→[0,∞) be lower semicontinuous and finite somewhere on the attainable evaluation vectors. With λ>0, minimizing L(f(x₁),…,f(x_n))+λ‖f‖² can first be restricted to the finite-dimensional closed section span by orthogonal projection. A minimizing sequence there is bounded because L≥0 and the quadratic penalty is coercive. A convergent subsequence and lower semicontinuity give an attained minimum. If L is convex, the strictly convex squared Hilbert norm makes the minimizing function unique.
+
+These assumptions add an existence proof to the representer statement. For example, the unregularized restricted class of constants t>0 with a zero label has infimum squared loss zero but no minimizer. Closedness and coercivity cannot simply be omitted. A nondecreasing penalty allows a span minimizer when a minimizer exists; a strictly increasing penalty forces every minimizer to have zero complement.
+
+## A unique function may still have several coefficient vectors
+
+Use the constant kernel k=1 with two observations, both labeled one, and sum loss with λ=1/2. Every function is a constant t, so its objective is 2(t−1)²+λt². Differentiation gives t=4/5 and objective 2/5. But f=α₁k(·,x₁)+α₂k(·,x₂) depends only on α₁+α₂.
+
+| Coefficients (α₁,α₂) | Function t | Objective | Solves (K+λI)α=y |
+|---|---|---|---|
+| (4/5,0) | 4/5 | 2/5 | No |
+| (0,4/5) | 4/5 | 2/5 | No |
+| (2/5,2/5) | 4/5 | 2/5 | Yes |
+
+For singular K, the coefficient stationarity condition is
+
+$$
+K\big((K+\lambda I)\alpha-y\big)=0.
+$$
+
+Solving the invertible system (K+λI)α=y selects one valid canonical coefficient vector. It is sufficient, but the first two rows show it is not necessary for every representation of the same minimizing function. The code checks all three exactly. This constant-kernel example is separate from the live three-feature, mean-loss experiment.
+
+**Exercise:** Why does λI not make the function's representation injective? **Explanation:** The function map α↦∑α_i k_i still has the original Gram nullspace. The chosen coefficient-solving convention is a different map.
+
+```python
+from fractions import Fraction as F
+
+lam=F(1,2)
+t=F(2)/(2+lam)
+coefficients=[(t,F(0)),(F(0),t),(t/2,t/2)]
+for alpha in coefficients:
+    fitted=sum(alpha)
+    objective=2*(fitted-1)**2+lam*fitted**2
+    assert fitted==F(4,5) and objective==F(2,5)
+    # K alpha depends only on the sum; K is the all-ones matrix.
+    stationarity=[fitted-1+lam*a for a in alpha]
+    assert sum(stationarity)==0  # K(K+lambda I)alpha=K y.
+    canonical=all(v==0 for v in stationarity)
+    print(tuple(str(x) for x in alpha),str(fitted),str(objective),canonical)
+# For the separate unregularized class g_t=t, t>0, with zero labels,
+# inf_t g_t(0)^2=0 is approached but not attained: the class is not closed.
+```
+
 ## Exercises with explanations
 
 1. Double c: added cost? **Four times larger**, because the penalty is quadratic.
