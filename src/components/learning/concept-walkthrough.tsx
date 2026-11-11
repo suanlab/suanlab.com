@@ -1,4 +1,6 @@
 'use client';
+import { physicalValidationId } from '@/data/physical-validation-reader';
+import { PhysicalValidationConcept } from './physical-validation-lab';
 import { energyMeasurementId } from '@/data/energy-measurement-reader';
 import { EnergyMeasurementConcept } from './energy-measurement-lab';
 import { landauerErasureId } from '@/data/landauer-erasure-reader';
@@ -301,6 +303,7 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === physicalValidationId) return <PhysicalValidationConcept language={language}/>;
   if (kind === energyMeasurementId) return <EnergyMeasurementConcept language={language}/>;
   if (kind === landauerErasureId) return <LandauerErasureConcept language={language}/>;
   if (kind === taskEnergyId) return <TaskEnergyConcept language={language}/>;

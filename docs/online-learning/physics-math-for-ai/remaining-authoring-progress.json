@@ -16051,66 +16051,103 @@
         },
         {
           "title": "물리적 구현의 검증",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "physical-computing-validation-by-ablation"
+          ],
           "preparation": {
             "unitId": "physical-computing-validation-by-ablation",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/physical-computing-validation-by-ablation.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/physical-computing-validation-by-ablation.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "physical-validation-reader-integration"
+            "nextAction": "cooling-inverse-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.ko.md",
+              "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.ko.md",
+            "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-physical-validation.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "physical-computing-validation-by-ablation",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-physical-validation.ts",
+            "lab": "src/components/learning/physical-validation-lab.tsx",
+            "tests": "scripts/learning-physical-validation.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.ko.md",
+              "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         }
       ],
       "verification": null,
-      "nextUnitId": "physical-computing-validation-by-ablation",
-      "nextAction": "physical-validation-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
-      "currentPreparationEvidence": "scripts/learning-energy-measurement.test.ts",
+      "nextUnitId": null,
+      "nextAction": "matter-computation-domain-audit",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.ko.md",
+      "currentPreparationEvidence": "scripts/learning-physical-validation.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "energy-bounds-and-system-measurements",
+        "unitId": "physical-computing-validation-by-ablation",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-energy-measurement.ts",
-        "lab": "src/components/learning/energy-measurement-lab.tsx",
-        "tests": "scripts/learning-energy-measurement.test.ts",
+        "model": "src/lib/learning-physical-validation.ts",
+        "lab": "src/components/learning/physical-validation-lab.tsx",
+        "tests": "scripts/learning-physical-validation.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
-          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.en.md"
+          "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.ko.md",
+          "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "energy-bounds-and-system-measurements",
+        "unitId": "physical-computing-validation-by-ablation",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-energy-measurement.ts",
-        "lab": "src/components/learning/energy-measurement-lab.tsx",
-        "tests": "scripts/learning-energy-measurement.test.ts",
+        "model": "src/lib/learning-physical-validation.ts",
+        "lab": "src/components/learning/physical-validation-lab.tsx",
+        "tests": "scripts/learning-physical-validation.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
-          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.en.md"
+          "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.ko.md",
+          "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "하한과 실제 시스템 측정",
+        "originalTopic": "물리적 구현의 검증",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "energy-bounds-and-system-measurements"
+          "physical-computing-validation-by-ablation"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -16118,26 +16155,37 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.ko.md",
-          "content/learning/physics-math-for-ai/energy-bounds-and-system-measurements.en.md"
+          "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.ko.md",
+          "content/learning/physics-math-for-ai/physical-computing-validation-by-ablation.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-energy-measurement.test.ts"
+        "evidence": "scripts/learning-physical-validation.test.ts"
       }
     },
     {
       "id": "inverse-problems",
       "title": "역문제·동화·실험 설계",
-      "status": "not-started",
+      "status": "in-progress",
       "existingSeedUnitIds": [
         "inverse-problems"
       ],
       "topics": [
         {
           "title": "forward·inverse map",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "forward-and-inverse-maps-for-cooling",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/forward-and-inverse-maps-for-cooling.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/forward-and-inverse-maps-for-cooling.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "cooling-inverse-reader-integration"
+          }
         },
         {
           "title": "ill-posedness",
@@ -16190,7 +16238,9 @@
           "unitIds": []
         }
       ],
-      "verification": null
+      "verification": null,
+      "nextUnitId": "forward-and-inverse-maps-for-cooling",
+      "nextAction": "cooling-inverse-reader-integration"
     },
     {
       "id": "research-methods",
@@ -16254,14 +16304,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 628,
-  "verifiedNewUnitCount": 475,
-  "remainingForwardDomainCount": 3,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 22,
-  "nextDomain": "matter-computation",
-  "nextTopic": "물리적 구현의 검증",
+  "implementedUnitCount": 629,
+  "verifiedNewUnitCount": 476,
+  "remainingForwardDomainCount": 2,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 21,
+  "nextDomain": "inverse-problems",
+  "nextTopic": "forward·inverse map",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 340,
+  "verifiedOriginalScopeTopicCount": 341,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -16323,11 +16373,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 물리적 구현의 검증. All 628 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers forward·inverse map. All 629 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "physical-computing-validation-by-ablation",
+  "nextAuthoringUnitId": "forward-and-inverse-maps-for-cooling",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "physical-validation-reader-integration",
+  "nextAction": "cooling-inverse-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

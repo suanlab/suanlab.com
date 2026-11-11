@@ -1,4 +1,5 @@
 'use client';
+import { physicalValidationId } from '@/data/physical-validation-reader';
 import { energyMeasurementId } from '@/data/energy-measurement-reader';
 import { landauerErasureId } from '@/data/landauer-erasure-reader';
 import { taskEnergyId } from '@/data/task-energy-reader';
@@ -223,6 +224,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === physicalValidationId) return <span className="ai-concept-equation" aria-hidden="true">r = ỹ(x) − M_fit x</span>;
   if (kind === energyMeasurementId) return <span className="ai-concept-equation" aria-hidden="true">SE = s_d / √n</span>;
   if (kind === landauerErasureId) return <span className="ai-concept-equation" aria-hidden="true">Q ≥ kᵦT[h(p) − h(ε)]</span>;
   if (kind === taskEnergyId) return <span className="ai-concept-equation" aria-hidden="true">E = ∫P(t) dt</span>;

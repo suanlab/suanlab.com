@@ -3332,7 +3332,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "memory-traffic-and-the-roofline",
       "energy-per-task-and-thermal-cost",
       "landauer-erasure-and-its-assumptions",
-      "energy-bounds-and-system-measurements"
+      "energy-bounds-and-system-measurements",
+      "physical-computing-validation-by-ablation"
     ]
   },
   {
