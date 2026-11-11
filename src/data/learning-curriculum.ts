@@ -3262,7 +3262,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "light-cones-and-causal-order",
       "relativistic-kinematics-four-momentum",
       "curvature-covariant-derivatives-and-holonomy",
-      "geodesics-straight-lines-and-great-circles"
+      "geodesics-straight-lines-and-great-circles",
+      "einstein-equations-trace-and-sources"
     ]
   },
   {

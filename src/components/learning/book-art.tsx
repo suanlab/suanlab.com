@@ -1,4 +1,5 @@
 'use client';
+import { einsteinFluidCurvatureId } from '@/data/einstein-fluid-curvature-reader';
 import { greatCircleGeodesicId } from '@/data/great-circle-geodesic-reader';
 import { rotationalCurvatureId } from '@/data/rotational-curvature-reader';
 import { fourMomentumId } from '@/data/four-momentum-reader';
@@ -210,6 +211,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === einsteinFluidCurvatureId) return <span className="ai-concept-equation" aria-hidden="true">Gμν + Λgμν = κTμν</span>;
   if (kind === greatCircleGeodesicId) return <span className="ai-concept-equation" aria-hidden="true">∇Ẋ Ẋ = 0</span>;
   if (kind === rotationalCurvatureId) return <span className="ai-concept-equation" aria-hidden="true">K = −f″/f</span>;
   if (kind === fourMomentumId) return <span className="ai-concept-equation" aria-hidden="true">W² = Eₜₒₜ² − |pₜₒₜ|²</span>;

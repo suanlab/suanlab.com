@@ -15295,24 +15295,72 @@
         },
         {
           "title": "Einstein 방정식의 구조",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "einstein-equations-trace-and-sources"
+          ],
           "preparation": {
             "unitId": "einstein-equations-trace-and-sources",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/einstein-equations-trace-and-sources.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/einstein-equations-trace-and-sources.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "einstein-fluid-curvature-reader-integration"
+            "nextAction": "schwarzschild-redshift-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+              "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+            "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-einstein-fluid-curvature.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "einstein-equations-trace-and-sources",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-einstein-fluid-curvature.ts",
+            "lab": "src/components/learning/einstein-fluid-curvature-lab.tsx",
+            "tests": "scripts/learning-einstein-fluid-curvature.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+              "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "시공간의 관측",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "spacetime-observation-and-redshift",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/spacetime-observation-and-redshift.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/spacetime-observation-and-redshift.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "schwarzschild-redshift-reader-integration"
+          }
         },
         {
           "title": "좌표와 물리량",
@@ -15326,50 +15374,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "einstein-equations-trace-and-sources",
-      "nextAction": "einstein-fluid-curvature-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
-      "currentPreparationEvidence": "scripts/learning-great-circle-geodesic.test.ts",
+      "nextUnitId": "spacetime-observation-and-redshift",
+      "nextAction": "schwarzschild-redshift-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+      "currentPreparationEvidence": "scripts/learning-einstein-fluid-curvature.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "geodesics-straight-lines-and-great-circles",
+        "unitId": "einstein-equations-trace-and-sources",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-great-circle-geodesic.ts",
-        "lab": "src/components/learning/great-circle-geodesic-lab.tsx",
-        "tests": "scripts/learning-great-circle-geodesic.test.ts",
+        "model": "src/lib/learning-einstein-fluid-curvature.ts",
+        "lab": "src/components/learning/einstein-fluid-curvature-lab.tsx",
+        "tests": "scripts/learning-einstein-fluid-curvature.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "geodesics-straight-lines-and-great-circles",
+        "unitId": "einstein-equations-trace-and-sources",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-great-circle-geodesic.ts",
-        "lab": "src/components/learning/great-circle-geodesic-lab.tsx",
-        "tests": "scripts/learning-great-circle-geodesic.test.ts",
+        "model": "src/lib/learning-einstein-fluid-curvature.ts",
+        "lab": "src/components/learning/einstein-fluid-curvature-lab.tsx",
+        "tests": "scripts/learning-einstein-fluid-curvature.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "geodesic",
+        "originalTopic": "Einstein 방정식의 구조",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "geodesics-straight-lines-and-great-circles"
+          "einstein-equations-trace-and-sources"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -15377,12 +15425,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-great-circle-geodesic.test.ts"
+        "evidence": "scripts/learning-einstein-fluid-curvature.test.ts"
       }
     },
     {
@@ -15572,14 +15620,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 615,
-  "verifiedNewUnitCount": 462,
+  "implementedUnitCount": 616,
+  "verifiedNewUnitCount": 463,
   "remainingForwardDomainCount": 4,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 35,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 34,
   "nextDomain": "relativity",
-  "nextTopic": "Einstein 방정식의 구조",
+  "nextTopic": "시공간의 관측",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 327,
+  "verifiedOriginalScopeTopicCount": 328,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -15641,11 +15689,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers Einstein 방정식의 구조. All 615 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 시공간의 관측. All 616 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "einstein-equations-trace-and-sources",
+  "nextAuthoringUnitId": "spacetime-observation-and-redshift",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "einstein-fluid-curvature-reader-integration",
+  "nextAction": "schwarzschild-redshift-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

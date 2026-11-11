@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 615,
+  "implementedUnitCount": 616,
   "curriculumComplete": false,
-  "scope": "615 registered units, 1899 guided experiments and 1230 bilingual manuscript files. Introductory scope: 327 of 362 original topics verified, 35 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "616 registered units, 1901 guided experiments and 1232 bilingual manuscript files. Introductory scope: 328 of 362 original topics verified, 34 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -9997,10 +9997,11 @@
         "light-cones-and-causal-order",
         "relativistic-kinematics-four-momentum",
         "curvature-covariant-derivatives-and-holonomy",
-        "geodesics-straight-lines-and-great-circles"
+        "geodesics-straight-lines-and-great-circles",
+        "einstein-equations-trace-and-sources"
       ],
-      "nextUnitId": "einstein-equations-trace-and-sources",
-      "nextAction": "einstein-fluid-curvature-reader-integration",
+      "nextUnitId": "spacetime-observation-and-redshift",
+      "nextAction": "schwarzschild-redshift-reader-integration",
       "lorentzBoostDraft": {
         "unitId": "special-relativity-lorentz-boosts",
         "status": "registered-and-verified",
@@ -10016,48 +10017,48 @@
           "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
-      "currentPreparationEvidence": "scripts/learning-great-circle-geodesic.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+      "currentPreparationEvidence": "scripts/learning-einstein-fluid-curvature.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "geodesics-straight-lines-and-great-circles",
+        "unitId": "einstein-equations-trace-and-sources",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-great-circle-geodesic.ts",
-        "lab": "src/components/learning/great-circle-geodesic-lab.tsx",
-        "tests": "scripts/learning-great-circle-geodesic.test.ts",
+        "model": "src/lib/learning-einstein-fluid-curvature.ts",
+        "lab": "src/components/learning/einstein-fluid-curvature-lab.tsx",
+        "tests": "scripts/learning-einstein-fluid-curvature.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "geodesics-straight-lines-and-great-circles",
+        "unitId": "einstein-equations-trace-and-sources",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-great-circle-geodesic.ts",
-        "lab": "src/components/learning/great-circle-geodesic-lab.tsx",
-        "tests": "scripts/learning-great-circle-geodesic.test.ts",
+        "model": "src/lib/learning-einstein-fluid-curvature.ts",
+        "lab": "src/components/learning/einstein-fluid-curvature-lab.tsx",
+        "tests": "scripts/learning-einstein-fluid-curvature.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "geodesic",
+        "originalTopic": "Einstein 방정식의 구조",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "geodesics-straight-lines-and-great-circles"
+          "einstein-equations-trace-and-sources"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -10065,12 +10066,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.ko.md",
-          "content/learning/physics-math-for-ai/geodesics-straight-lines-and-great-circles.en.md"
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-great-circle-geodesic.test.ts"
+        "evidence": "scripts/learning-einstein-fluid-curvature.test.ts"
       },
       "topicEvidence": [
         {
@@ -10294,6 +10295,43 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "Einstein 방정식의 구조",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "einstein-equations-trace-and-sources"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+            "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-einstein-fluid-curvature.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "einstein-equations-trace-and-sources",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-einstein-fluid-curvature.ts",
+            "lab": "src/components/learning/einstein-fluid-curvature-lab.tsx",
+            "tests": "scripts/learning-einstein-fluid-curvature.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+              "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "minkowskiMetricDraft": {
@@ -10373,14 +10411,29 @@
       },
       "einsteinEquationDraft": {
         "unitId": "einstein-equations-trace-and-sources",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/einstein-equations-trace-and-sources.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/einstein-equations-trace-and-sources.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "einstein-fluid-curvature-reader-integration"
+        "nextAction": "schwarzschild-redshift-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.ko.md",
+          "content/learning/physics-math-for-ai/einstein-equations-trace-and-sources.en.md"
+        ]
+      },
+      "redshiftDraft": {
+        "unitId": "spacetime-observation-and-redshift",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/spacetime-observation-and-redshift.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/spacetime-observation-and-redshift.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "schwarzschild-redshift-reader-integration"
       }
     },
     {
@@ -10424,7 +10477,7 @@
     "research-methods"
   ],
   "nextDomain": "relativity",
-  "nextTopic": "Einstein 방정식의 구조",
+  "nextTopic": "시공간의 관측",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",
