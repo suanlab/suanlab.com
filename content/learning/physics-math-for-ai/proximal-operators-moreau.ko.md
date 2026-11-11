@@ -39,6 +39,46 @@ $$
 
 두 근접점의 부분경사 단조성을 합치면 ‖P(y)−P(z)‖²≤(P(y)−P(z))(y−z)를 얻는다. 이를 firm nonexpansiveness라고 하며 Lipschitz 상수 1을 준다. 항상 엄격한 수축이라는 뜻은 아니다. 항등함수인 경우 두 점 사이 거리가 그대로다.
 
+## Moreau 분해로 원문제 단계와 쌍대 투영 연결하기
+
+![Soft threshold와 배율을 반영한 쌍대 clipping 투영의 합이 입력임을 확인하고, 절댓값 벌점의 모서리를 매끄럽게 만드는 Moreau envelope를 비교합니다.](/assets/learning/convex-moreau-ko.svg)
+
+p=proxηf(y), s=(y−p)/η로 두면 최적성에서 s∈∂f(p)입니다. Fenchel 등호에 따라 p∈∂f*(s)와 동치이며, 이를 정리하면 쌍대 proximal 문제의 최적성 조건이 됩니다.
+
+$$
+\operatorname{prox}_{\eta f}(y)+\eta\operatorname{prox}_{f^*/\eta}(y/\eta)=y.
+$$
+
+f=λ|x|의 conjugate는 [−λ,λ]의 indicator입니다. 따라서 soft threshold와 배율을 반영한 clipping 투영의 합이 입력입니다. 문턱을 외우는 데 그치지 않고 두 배율을 독립 검산할 수 있습니다.
+
+강볼록성은 비팽창성을 강화합니다. f가 μ-강볼록이면 p,q에서 ∂f의 강단조성으로 (p−q)·(y−z)≥(1+ημ)‖p−q‖²입니다. Cauchy–Schwarz를 적용하면 수축률 1/(1+ημ)를 얻습니다. 절댓값은 강볼록이 아니며 같은 바깥 구간의 두 입력 사이에서는 proximal map이 거리를 유지합니다.
+
+| λ=4/5, η=3/4에서 y | Primal prox p | 배율을 반영한 쌍대 항 ηs |
+|---:|---:|---:|
+| -2 | -7/5 | -3/5 |
+| -3/5 | 0 | -3/5 |
+| 0 | 0 | 0 |
+| 3/5 | 0 | 3/5 |
+| 2 | 7/5 | 3/5 |
+
+Envelope 도함수는 이제 각 proximal 해석 공식으로 계산합니다. Ridge에서 y=1,η=1,λ=10⁻²⁰이면 점은 1로 반올림되지만 도함수는 약 10⁻²⁰입니다. 그 반올림 점을 y에서 빼면 잘못된 0을 얻습니다.
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+lam,eta=F(4,5),F(3,4)
+def clip(y): return max(-lam,min(lam,y))
+for y in [F(-2),-F(3,5),F(0),F(3,5),F(2)]:
+    p=(1 if y>=0 else -1)*max(abs(y)-eta*lam,0)
+    s=clip(y/eta)
+    assert p+eta*s==y and lam*abs(p)==s*p
+    print(y,p,eta*s)
+tiny=F(1,10**20); p=1/(1+tiny); derivative=tiny*p
+assert 1-p==derivative and derivative>0
+print('rounded ridge point:',float(p),'analytic derivative:',float(derivative))
+```
+
 ## 직접 풀기
 
 각 모드에서 λ=0으로 두자. 절댓값과 ridge 벌점은 사라져 항등사상이 된다. 지시함수는 {0}으로의 투영이 된다. 이 singleton의 법선 원뿔은 실수 전체이므로 임의의 용수철 힘을 상쇄한다. 같은 숫자 매개변수가 모드마다 무엇을 뜻하는지 먼저 읽어야 한다.

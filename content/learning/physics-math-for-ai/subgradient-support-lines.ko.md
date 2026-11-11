@@ -32,6 +32,42 @@ $$
 
 γ=0에서는 |v|≤1일 때 0, 밖에서는 +∞입니다. 유효 subgradient이면 최소 잔차가 0입니다. 잘못된 기울기는 γ>0에서 유한 음수일 수도 있고 γ=0,|v|>1에서는 −∞일 수도 있습니다. 해석적으로 유한한 값이 숫자 표현 범위를 넘으면 숨기며 수학적 무한대로 바꾸지 않습니다.
 
+## Fenchel 등호와 합 규칙의 Qualification
+
+f*의 정의에서 모든 유한 정의역 점 u에 대해 f(u)+f*(v)≥vu입니다. 등호가 성립하는 것은 v가 u에서 f를 전역 지지할 때와 정확히 같습니다. supremum 부등식을 정리하면 subgradient 정의가 돌아오기 때문입니다. 따라서 Fenchel 간극은 그림의 질의점 하나에서 기울기가 다른지만이 아니라 전역 지지 실패를 측정합니다.
+
+유한 차원의 proper 볼록함수 합 규칙에는 다음 유용한 qualification이 있습니다.
+
+$$
+\operatorname{ri}(\operatorname{dom}f)\cap\operatorname{ri}(\operatorname{dom}g)\ne\varnothing
+\quad\Longrightarrow\quad
+\partial(f+g)(u)=\partial f(u)+\partial g(u).
+$$
+
+조건이 없어도 지지 부등식을 더하면 오른쪽에서 왼쪽으로의 포함은 얻지만 등호는 실패할 수 있습니다. x≥0에서 f(x)=−√x, 밖에서는 +∞로 두고 g를 {0}의 indicator로 둡니다. 합은 {0}의 indicator이므로 원점 부분미분은 R 전체입니다. 하지만 x=1/n²의 기울기 비가 −n이므로 모든 유한 지지 기울기가 배제되어 ∂f(0)은 공집합입니다. 오른쪽 합도 공집합이고 두 relative interior는 만나지 않습니다.
+
+| n | 질의 x | (f(x)−f(0))/x |
+|---:|---:|---:|
+| 1 | 1 | -1 |
+| 4 | 1/16 | -4 |
+| 16 | 1/256 | -16 |
+
+따라서 제약 최적성은 먼저 0∈∂(f+I_C)로 쓰고, 그 뒤 별도의 부분경사와 normal로 나누는 가정을 확인해야 합니다. 미분 계산 규칙에도 정의역 조건이 필요합니다.
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+for n in [1,4,16,64]:
+    x=F(1,n*n); value=-F(1,n)
+    assert value/x == -n
+    print(n,x,value/x)
+# Any proposed finite slope fails for a sufficiently large n.
+for slope in [-100,-1,0,10]:
+    n=max(1,1-slope)
+    assert -n < slope
+```
+
 ## 직접 풀기와 풀이
 
 u=1,γ=1,v=2이면 유일한 subgradient가 2입니다. x=−1에서 함수값은 1.5, 직선은 1.5+2(−2)=−2.5라 잔차는 4입니다. conjugate는 0.5, 전역 최소는 2−1.5−0.5=0입니다. 확인한 뒤 v를 바꾸어 질의 잔차 하나가 양수여도 전역 지지를 보장하지 않음을 설명하세요.

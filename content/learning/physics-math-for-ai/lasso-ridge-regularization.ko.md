@@ -33,6 +33,55 @@ y=(2,0.25)로 고정하자. ridge에서 λ=1이면 (1,0.125)다. lasso에서 λ=
 
 등고선 반지름을 λ로 읽으면 안 된다. 반지름은 해에서 달성한 벌점 값에 따라 결정되고, 그 해는 y와 λ에 의존한다. 적절한 볼록 조건 아래 벌점형 최적해를 같은 벌점 값의 제약형 해로 해석할 수 있지만 λ와 반지름 사이에 보편적인 일대일 공식이 있는 것은 아니다.
 
+## 상관 설계의 Lasso에는 쌍대 인증이 필요합니다
+
+λ>0에서 P(w)=‖Xw−y‖²/2+λ‖w‖₁의 잔차 쌍대를 정리하면 다음과 같습니다.
+
+$$
+D(\theta)=y^T\theta-\tfrac12\|\theta\|^2,\qquad
+\|X^T\theta\|_\infty\le\lambda.
+$$
+
+임의의 후보 w에서 r=y−Xw를 max(1,‖Xᵀr‖∞/λ)로 나누면 쌍대 가능 θ를 얻습니다. D는 1-강오목이므로 최적 쌍대점은 θ를 중심으로 반지름 R=√(2(P(w)−D(θ))) 안에 있습니다. KKT와 합치면 계수가 0이라는 충분 인증을 얻습니다.
+
+$$
+|x_j^T\theta|+\|x_j\|_2R<\lambda\quad\Longrightarrow\quad w_j^*=0.
+$$
+
+엄격한 margin이 중요하고 부동소수점 구현에서는 가능성과 간극의 신뢰할 수 있는 상계가 필요합니다. 이는 최적화 screening 규칙이지 인과성·통계적 변수 선택 보장이 아닙니다.
+
+예제는 상관된 열 X=[[1,1],[0,1]], y=(2,−1/2),λ=1/2입니다. w=(3/2,0) 근처에서는 둘째 열을 안전하게 제외하지만 나쁜 반복점에서는 상계가 느슨해 결론을 낼 수 없습니다. 기존 제어는 항등 설계를 유지하며 좌표별 닫힌 공식을 이 행렬에 그대로 적용하면 안 됩니다.
+
+| 둘째를 0으로 고정한 후보 첫 계수 | 둘째 계수의 0 인증? |
+|---:|---|
+| 0 | 아직 불가 |
+| 1 | 아직 불가 |
+| 1.49 | 가능 |
+| 1.5 | 가능 |
+
+간극 기반 screening의 연구 전개는 [Fercoq·Gramfort·Salmon의 Mind the Duality Gap](https://proceedings.mlr.press/v37/fercoq15.html)을 참고하세요. 여기의 두 열 유리수 예제는 별도로 구성했습니다.
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+from math import sqrt
+lam=F(1,2); y=[F(2),-F(1,2)]
+for w1 in [F(0),F(1),F(149,100),F(3,2)]:
+    r=[y[0]-w1,y[1]]
+    scale=max(F(1),abs(r[0])/lam,abs(r[0]+r[1])/lam)
+    theta=[a/scale for a in r]
+    assert max(abs(theta[0]),abs(sum(theta)))<=lam
+    primal=sum(a*a for a in r)/2+lam*abs(w1)
+    dual=sum(y[i]*theta[i] for i in range(2))-sum(a*a for a in theta)/2
+    gap=primal-dual
+    assert gap>=0
+    radius=sqrt(float(2*gap))
+    safe=abs(float(sum(theta)))+sqrt(2)*radius<float(lam)
+    print(w1,'gap:',float(gap),'radius:',radius,'screen second:',safe)
+    assert safe==(w1>=F(149,100))
+```
+
 ## 직접 풀기와 일반화의 한계
 
 λ=0에서 모든 모드가 y를 되돌려주는지 확인하자. elastic net의 α를 0과 1로 바꾸면 같은 λ의 ridge와 lasso가 각각 재현된다. 둘째 관측값을 λα 양쪽으로 움직이면 해는 연속적으로 0에 도달하지만 공식의 구간이 바뀐다. 이 변화를 부분경사 조건으로 설명하자.

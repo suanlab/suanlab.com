@@ -36,6 +36,46 @@ $$
 
 실습은 모든 현재 가능점에 대해 정확한 중심점에서 얻은 쌍대 하한을 사용한다. 현재 인증 간극은 cx_current+λU이며 일반적으로 2/t와 다르다. 두 숫자를 별도로 표시하는 이유다. 간극은 목적 오차의 상한이지 오차 자체가 아니다.
 
+## 중심 간극 m/t와 Newton Damping의 이유
+
+볼록·미분 가능한 부등식 문제의 정확한 barrier 정상점에서는 λᵢ=−1/(tfᵢ(xₜ))입니다. 등식 승수까지 포함한 정상성에 의해 xₜ는 볼록 Lagrangian의 전역 최소점입니다. 따라서 쌍대 하한이 유효하고 로그 부등식 항 m개의 상보성을 더하면 간극 m/t입니다. 유한 번 수행한 근사 barrier 해는 그 정상성을 자동으로 만족하지 않습니다.
+
+구간에서 φ=−log x−log(1−x)의 도함수는 다음 scalar self-concordance 부등식을 만족합니다.
+
+$$
+|\phi^{(3)}(x)|\le2\phi''(x)^{3/2},\qquad
+\delta_N=\frac{|B_t'(x)|}{\sqrt{B_t''(x)}},\qquad
+\alpha=\frac1{1+\delta_N}.
+$$
+
+a=1/x,b=1/(1−x)로 두면 도함수 부등식은 |a³−b³|≤(a²+b²)³ᐟ²로 줄어듭니다. 선형 목적은 이차·삼차 도함수를 바꾸지 않습니다. δN이 Newton 변위와 각 경계까지 거리의 비를 제한하므로 이 damping은 엄격한 내부를 유지합니다. Self-concordant 감소 하한은 δN−log(1+δN)입니다. 단순 보폭 시행착오를 넘어 원리 있는 감쇠 규칙을 설명합니다.
+
+| Newton decrement δN | 감쇠 α |
+|---:|---:|
+| 0.1 | 10/11 |
+| 1 | 1/2 |
+| 10 | 1/11 |
+
+Python 비교는 이 decrement 규칙을 사용하며 기존 실습은 fraction-to-boundary와 Armijo 이력을 유지합니다. 서로 다른 알고리즘이 같은 barrier 최소점을 풉니다. 이 scalar 유도만으로 모든 원뿔 solver나 임의 barrier의 복잡도를 증명한 것은 아닙니다.
+
+## Python으로 계산 재현하기
+
+```python
+from math import log,log1p,sqrt
+c,t,x=1.0,16.0,.5
+def value(z): return t*c*z-log(z)-log1p(-z)
+for k in range(16):
+    g=t*c-1/x+1/(1-x); H=1/x**2+1/(1-x)**2
+    decrement=abs(g)/sqrt(H)
+    if decrement<1e-8: break
+    alpha=1/(1+decrement); nxt=x-alpha*g/H
+    assert 0<nxt<1
+    decrease=value(x)-value(nxt)
+    assert decrease+1e-12>=decrement-log1p(decrement)
+    print(k,round(x,9),round(decrement,9),round(alpha,9))
+    x=nxt
+```
+
 ## 직접 풀기와 종료 판단
 
 c=1, t=1이면 중심점은 약 0.381966, 중심 간극은 2다. t=16에서는 중심점 약 0.058609, 간극 0.125다. 이제 t=256, 시작점 0.5, 반복 0회로 두자. 현재 간극은 약 0.503922인데 중심 간극은 0.0078125다. t를 키우는 일만으로 내부 장벽 문제가 풀리지 않았음을 확인한다.

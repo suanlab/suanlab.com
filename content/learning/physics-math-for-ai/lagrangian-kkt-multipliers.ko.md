@@ -32,6 +32,42 @@ x=1을 유지하고 λ=0으로 바꾸면 활성 제약 때문에 상보성은 �
 
 비볼록 min −x² on [−1,1]에서 내부 stationary point 0은 최소가 아닙니다. 적절한 qualification이 없으면 볼록 최적점에도 승수가 없을 수 있으며 다음 x²≤0 예제에서 확인합니다.
 
+## 승수는 단위를 갖는 값 함수의 기울기입니다
+
+제약 경계 b를 매개변수로 생각하세요. 정확한 최적값은 b의 연속 미분 가능한 볼록함수입니다.
+
+$$
+v(b)=\frac12\max(a-b,0)^2,\qquad v'(b)=-\lambda^*(b),\qquad
+\lambda^*(b)=\max(a-b,0).
+$$
+
+제약이 묶이면 b를 완화할 때 비용은 일차적으로 λ*의 비율로 줄어듭니다. b=a에서도 도함수는 0으로 연속이지만 이차 미분은 바뀝니다. 활성 집합의 공식을 그 전환점 너머로 미분할 때 주의해야 합니다. 승수는 명시한 최적화 문제의 민감도이지 관측 세계에서 변수의 인과 효과가 아닙니다.
+
+제약 배율도 승수를 바꿉니다. κ>0에서 g를 κg로 바꾸면 대응 승수는 λ/κ가 되어 Lagrangian 기여와 정상성의 힘을 유지합니다. 목적 배율도 영향을 줍니다. 관례와 물리 단위를 고정한 뒤 승수 숫자를 비교하세요.
+
+| a=2일 때 b | 최적값 | λ* | 값의 도함수 |
+|---:|---:|---:|---:|
+| 1 | 1/2 | 1 | -1 |
+| 2 | 0 | 0 | 0 |
+| 3 | 0 | 0 | 0 |
+
+정확분수 예제는 일차 민감도 예측과 이차 나머지를 분리합니다. 실습의 정상성 합도 보상 합산합니다. x가 작고 −a+λ가 상쇄되면 x−a+λ 계산에서 x가 사라질 수 있지만 이 잔차는 인증에 중요합니다.
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+a,b=F(2),F(1)
+def value(bound): return max(a-bound,0)**2/2
+lam=max(a-b,0)
+for step in [F(1,10),F(1,100),-F(1,100)]:
+    actual=value(b+step)-value(b)
+    linear=-lam*step
+    assert actual-linear == step*step/2
+    print(step,'change:',actual,'linear:',linear,'remainder:',actual-linear)
+for scale in [F(1),F(2),F(10)]: assert (lam/scale)*scale==lam
+```
+
 ## 직접 풀기와 풀이
 
 a=0,b=1,x=0,λ=0이면 slack 1이고 나머지 잔차·gap은 0입니다. 이어 a=b=1,x=1,λ=0이면 제약이 활성으로 바뀌어도 승수는 0입니다.

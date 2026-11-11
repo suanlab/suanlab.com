@@ -96,3 +96,32 @@ for(const kind of convexKinds)test(`${kind}: meaningful guided presets and finit
 for(const kind of convexKinds)for(const lang of ['ko','en'] as const)test(`${kind}.${lang}: detailed bilingual theory, valid equations and explained exercises`,async()=>{
  const source=await fs.readFile(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8'),rendered=await getLearningContent(kind);assert.ok(rendered.outline[lang].length>=4);assert.ok(rendered[lang].length>4000);assert.ok(rendered[lang].includes('katex'));assert.ok(!rendered[lang].includes('katex-error'));assert.ok(source.includes(lang==='ko'?'직접 풀기':'Exercise'));assert.ok(source.includes('https://'));if(lang==='en'){assert.ok(!/[가-힣]/.test(source));assert.ok(source.split(/\s+/).length>=350);}
 });
+
+test('Jensen gaps retain curvature for adjacent inputs and tiny mixture weights',()=>{
+ const delta=2**-52;
+ assert.equal(jensenExample(0,1,1,1+delta,.5,0).gap,delta*delta/4);
+ const gap=jensenExample(2,1,1,1+delta,.5,0).gap!;
+ assert.ok(gap>0&&Math.abs(gap/(delta*delta/8)-1)<1e-15);
+ assert.equal(jensenExample(2,1,Number.MIN_VALUE,Number.MIN_VALUE,.5,0).gap,0);
+ assert.equal(jensenExample(1,0,1,1+delta,.5,0).gap,0);
+ assert.equal(jensenExample(1,0,-Number.MIN_VALUE,Number.MIN_VALUE,.5,0).gap,Number.MIN_VALUE);
+ const tiny=jensenExample(2,1,1,2,1e-20,0).gap!;
+ assert.ok(Math.abs(tiny/((1-Math.log(2))*1e-20)-1)<1e-14);
+ close(jensenExample(2,1,Number.MIN_VALUE,.25,Number.MIN_VALUE,0).gap!,Math.log1p(.25),1e-14);
+});
+test('near-boundary objective excess is not lost in subtraction of equal rounded heights',()=>{
+ const r=boxOptimality(1,-1,0,-1e-20);assert.equal(r.value-r.optimumValue,0);assert.equal(r.excess,1e-20);
+ assert.equal(evaluate('constrained-first-order-optimality',[1,-1,0,-1e-20]).stats['feasible objective excess'],1e-20);
+});
+test('analytic Moreau derivatives retain penalties below the input rounding scale',()=>{
+ for(const mode of [0,2]){const r=proximalExample(mode,1,1e-20,1);assert.equal(r.point,1);assert.equal(r.subgradient,1e-20);assert.equal(r.violation,0);}
+});
+test('compensated KKT stationarity retains a small residual after large-term cancellation',()=>{
+ const r=scalarKKT(1,0,-1e-20,1);assert.equal(r.stationarity,-1e-20);assert.equal(r.certifiedGap,1e-20);
+ const s=scalarKKT(1,1,1e-20,1);assert.equal(s.stationarity,1e-20);
+});
+test('underflowed positive gaps never become zero optimality certificates',()=>{
+ const r=scalarKKT(0,1,1e-200,0);assert.equal(r.numericNote,true);assert.equal(r.certifiedGap,null);assert.equal(r.distanceBound,null);assert.equal(r.suboptimality,null);
+ const view=evaluate('primal-dual-gap-certificates',[0,1,1e-200,0]);assert.equal(view.numericNote,true);assert.equal(view.stats['stable gap decomposition'],null);assert.equal(view.stats['certified primal suboptimality upper bound'],null);
+ assert.equal(scalarKKT(0,1,0,0).certifiedGap,0);
+});

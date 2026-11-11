@@ -31,6 +31,41 @@ The negative logarithm is convex on positive inputs because its second derivativ
 
 One negative gap disproves convexity, but a positive gap at one pair cannot prove it. The definition quantifies over every pair in the domain and every t in [0,1]. Analytic expansion, a valid second-derivative criterion, or a composition theorem can supply a proof under their respective assumptions. Sampling more points is useful for debugging, not a replacement for those hypotheses.
 
+## Epigraphs and separation turn pictures into certificates
+
+The epigraph consists of points (x,r) with r≥f(x). It is convex exactly when the extended-valued function f is convex: combine two epigraph points for one direction of the proof, and choose their heights f(x),f(y) for the other. Closedness is an additional condition, equivalent to lower semicontinuity for a proper function. Convexity alone does not guarantee attainment of an infimum.
+
+A nonempty closed convex set C in finite-dimensional Euclidean space has a unique closest point q to any p. Existence follows from restricting the continuous squared distance to a sufficiently large compact ball; strict convexity gives uniqueness. Differentiating toward every x in C yields a separating hyperplane:
+
+$$
+\langle p-q,x-q\rangle\le0\quad(x\in C),\qquad
+\langle p-q,p-q\rangle>0\quad(p\notin C).
+$$
+
+The normal is the residual p−q. For the triangle with vertices (0,0),(1,0),(0,1), take p=(2,1/2),q=(1,0). Checking the three vertices suffices for the inequality on every convex combination. This supplies an actual certificate instead of guessing a separating line from a drawing.
+
+| Triangle vertex x | (p−q)·(x−q) |
+|---|---:|
+| (0,0) | -1 |
+| (1,0) | 0 |
+| (0,1) | -1/2 |
+
+Numerically, subtracting nearly identical chord heights can invent a negative log Jensen gap. The lab now uses the exact quadratic identity, sign-aware absolute-value geometry and a local logarithm series. Displayed heights remain separately rounded. For x=1,y=1+2⁻⁵²,t=1/2, the quadratic gap is 2⁻¹⁰⁶ and the negative-log gap is approximately 2⁻¹⁰⁷, both positive. This does not turn a finite example into a global convexity proof.
+
+## Reproduce the calculation in Python
+
+```python
+from fractions import Fraction as F
+p,q=(F(2),F(1,2)),(F(1),F(0))
+normal=[p[i]-q[i] for i in range(2)]
+for x in [(0,0),(1,0),(0,1)]:
+    product=sum(normal[i]*(x[i]-q[i]) for i in range(2))
+    assert product <= 0
+    print(x,product)
+delta=F(1,2**52)
+print('adjacent-input quadratic gap:',delta*delta/4)
+```
+
 ## Exercise and explained answer
 
 Keep the convex quadratic and select the two-interval set. At x=−1,y=1,t=1/2, the function passes the chord test while the set fails segment membership. Next choose −log with x=0,y=1. The endpoint-domain indicator is false and the gap is undefined. Explain why interpolating a plotted line cannot create the missing logarithm value.

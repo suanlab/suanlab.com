@@ -32,6 +32,42 @@ $$
 
 For γ=0 the conjugate is zero on [−1,1] and positive infinity outside. A valid subgradient makes this infimum zero. An invalid slope can give a finite negative residual when γ>0, or an unbounded negative residual when γ=0 and |v|>1. The interface distinguishes these cases and hides a finite analytic value that exceeds numerical representation range instead of relabeling it mathematical infinity.
 
+## Fenchel equality and the qualification behind a sum rule
+
+From the definition of f*, the inequality f(u)+f*(v)≥vu holds for every finite u in the domain. Equality holds exactly when v supports f at u: rearranging the supremum inequality recovers the global subgradient definition. Thus a Fenchel gap measures a global support failure, not just a slope mismatch at one plotted query.
+
+For proper convex functions in finite dimensions, the sum rule has a useful qualification:
+
+$$
+\operatorname{ri}(\operatorname{dom}f)\cap\operatorname{ri}(\operatorname{dom}g)\ne\varnothing
+\quad\Longrightarrow\quad
+\partial(f+g)(u)=\partial f(u)+\partial g(u).
+$$
+
+Without it the inclusion from right to left still follows by adding support inequalities, but equality may fail. Take f(x)=−√x for x≥0 and +∞ otherwise, and g the indicator of {0}. Their sum is the indicator of {0}, so its subdifferential at zero is all of R. Yet ∂f(0) is empty: the slope quotient at x=1/n² is −n, ruling out every finite supporting slope. The right-hand sum is empty. Their relative interiors do not meet.
+
+| n | Query x | (f(x)−f(0))/x |
+|---:|---:|---:|
+| 1 | 1 | -1 |
+| 4 | 1/16 | -4 |
+| 16 | 1/256 | -16 |
+
+This is why constrained optimality should first be stated as 0∈∂(f+I_C), before replacing that set with separate subgradients and normals. A calculus identity needs its own domain hypotheses.
+
+## Reproduce the calculation in Python
+
+```python
+from fractions import Fraction as F
+for n in [1,4,16,64]:
+    x=F(1,n*n); value=-F(1,n)
+    assert value/x == -n
+    print(n,x,value/x)
+# Any proposed finite slope fails for a sufficiently large n.
+for slope in [-100,-1,0,10]:
+    n=max(1,1-slope)
+    assert -n < slope
+```
+
 ## Exercise and explained answer
 
 Choose u=1,γ=1,v=2. The only subgradient is 1+1=2. At x=−1, f(−1)=f(1)=1.5 and the line value is 1.5+2(−2)=−2.5, giving residual four. The conjugate is 0.5 and the global minimum residual is 2−1.5−0.5=0. Verify each number, then perturb v and see why a single positive query residual need not certify support everywhere.

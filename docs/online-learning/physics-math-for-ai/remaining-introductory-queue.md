@@ -44,6 +44,8 @@
 
 군·대칭·표현론의 10개 원주제를 Burnside·표현 사영·Lie commutator·SE3 adjoint/Jacobian·비가환 gauge·affine bias·chirality margin·tensor parity의 한영 논증과 실행 코드로 보강했다. 작은 비등방 오차와 지수 계수·full-turn 병진의 소거 문제를 수정하고 [검토 기록](symmetry-groups-topic-review.md)을 연결했다. 누적 22영역·215개 원주제이며 다음은 볼록해석과 제약 최적화 10개다. 입문 362/362와 전체 연구 심화의 완료 여부는 구별한다.
 
+볼록해석·제약 최적화 10개 원주제를 분리·부분미분 calculus·사영 경사·승수 민감도·perturbation duality·SDP·Moreau·lasso screening·barrier·근사 인증의 한영 논증과 독립 예제로 보강했다. 작은 Jensen 간극·목적 초과·proximal 도함수·KKT 잔차와 underflow 인증도 보완했다. [검토 기록](convex-optimization-topic-review.md)을 포함해 누적 23영역·225개 원주제이며 다음은 비볼록·확률·대규모 최적화다. 입문 362/362 및 650개 단원·1,969개 안내 실험과 전체 연구 심화 완료 여부는 구별한다.
+
 ## 이전 작업 기록
 
 아래 수치는 각 작업 시점의 기록이다.
