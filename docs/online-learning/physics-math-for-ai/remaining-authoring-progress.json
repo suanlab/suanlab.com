@@ -16385,39 +16385,231 @@
         },
         {
           "title": "Bayesian inverse problem",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "gaussian-bayesian-inversion"
+          ],
           "preparation": {
             "unitId": "gaussian-bayesian-inversion",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/gaussian-bayesian-inversion.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/gaussian-bayesian-inversion.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "gaussian-bayesian-reader-integration"
+            "nextAction": "discrete-adjoint-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/gaussian-bayesian-inversion.ko.md",
+              "content/learning/physics-math-for-ai/gaussian-bayesian-inversion.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/gaussian-bayesian-inversion.ko.md",
+            "content/learning/physics-math-for-ai/gaussian-bayesian-inversion.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-gaussian-bayesian.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "gaussian-bayesian-inversion",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-gaussian-bayesian.ts",
+            "lab": "src/components/learning/gaussian-bayesian-lab.tsx",
+            "tests": "scripts/learning-gaussian-bayesian.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/gaussian-bayesian-inversion.ko.md",
+              "content/learning/physics-math-for-ai/gaussian-bayesian-inversion.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "sensitivity·adjoint",
-          "status": "not-started",
-          "unitIds": []
+          "status": "verified",
+          "unitIds": [
+            "discrete-adjoint-for-terminal-control"
+          ],
+          "preparation": {
+            "unitId": "discrete-adjoint-for-terminal-control",
+            "status": "registered-and-verified",
+            "registered": true,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/discrete-adjoint-for-terminal-control.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/discrete-adjoint-for-terminal-control.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "kalman-assimilation-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/discrete-adjoint-for-terminal-control.ko.md",
+              "content/learning/physics-math-for-ai/discrete-adjoint-for-terminal-control.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/discrete-adjoint-for-terminal-control.ko.md",
+            "content/learning/physics-math-for-ai/discrete-adjoint-for-terminal-control.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-discrete-adjoint.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "discrete-adjoint-for-terminal-control",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-discrete-adjoint.ts",
+            "lab": "src/components/learning/discrete-adjoint-lab.tsx",
+            "tests": "scripts/learning-discrete-adjoint.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/discrete-adjoint-for-terminal-control.ko.md",
+              "content/learning/physics-math-for-ai/discrete-adjoint-for-terminal-control.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         },
         {
           "title": "data assimilation",
-          "status": "not-started",
-          "unitIds": []
+          "status": "verified",
+          "unitIds": [
+            "scalar-kalman-data-assimilation"
+          ],
+          "preparation": {
+            "unitId": "scalar-kalman-data-assimilation",
+            "status": "registered-and-verified",
+            "registered": true,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/scalar-kalman-data-assimilation.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/scalar-kalman-data-assimilation.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "optimal-sensor-allocation-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/scalar-kalman-data-assimilation.ko.md",
+              "content/learning/physics-math-for-ai/scalar-kalman-data-assimilation.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/scalar-kalman-data-assimilation.ko.md",
+            "content/learning/physics-math-for-ai/scalar-kalman-data-assimilation.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-kalman-assimilation.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "scalar-kalman-data-assimilation",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-kalman-assimilation.ts",
+            "lab": "src/components/learning/kalman-assimilation-lab.tsx",
+            "tests": "scripts/learning-kalman-assimilation.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/scalar-kalman-data-assimilation.ko.md",
+              "content/learning/physics-math-for-ai/scalar-kalman-data-assimilation.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         },
         {
           "title": "optimal experimental design",
-          "status": "not-started",
-          "unitIds": []
+          "status": "verified",
+          "unitIds": [
+            "optimal-sensor-allocation"
+          ],
+          "preparation": {
+            "unitId": "optimal-sensor-allocation",
+            "status": "registered-and-verified",
+            "registered": true,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/optimal-sensor-allocation.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/optimal-sensor-allocation.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "uncertainty-propagation-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
+              "content/learning/physics-math-for-ai/optimal-sensor-allocation.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
+            "content/learning/physics-math-for-ai/optimal-sensor-allocation.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-optimal-sensor-allocation.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "optimal-sensor-allocation",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-optimal-sensor-allocation.ts",
+            "lab": "src/components/learning/optimal-sensor-allocation-lab.tsx",
+            "tests": "scripts/learning-optimal-sensor-allocation.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
+              "content/learning/physics-math-for-ai/optimal-sensor-allocation.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         },
         {
           "title": "uncertainty propagation",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "correlation-in-measurement-uncertainty",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/correlation-in-measurement-uncertainty.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/correlation-in-measurement-uncertainty.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "uncertainty-propagation-reader-integration"
+          }
         },
         {
           "title": "관측·방정식 잔차",
@@ -16431,50 +16623,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "gaussian-bayesian-inversion",
-      "nextAction": "gaussian-bayesian-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
-      "currentPreparationEvidence": "scripts/learning-tikhonov-noise-gain.test.ts",
+      "nextUnitId": "correlation-in-measurement-uncertainty",
+      "nextAction": "uncertainty-propagation-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
+      "currentPreparationEvidence": "scripts/learning-optimal-sensor-allocation.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "tikhonov-regularization-and-noise-gain",
+        "unitId": "optimal-sensor-allocation",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-tikhonov-noise-gain.ts",
-        "lab": "src/components/learning/tikhonov-noise-gain-lab.tsx",
-        "tests": "scripts/learning-tikhonov-noise-gain.test.ts",
+        "model": "src/lib/learning-optimal-sensor-allocation.ts",
+        "lab": "src/components/learning/optimal-sensor-allocation-lab.tsx",
+        "tests": "scripts/learning-optimal-sensor-allocation.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
-          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
+          "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
+          "content/learning/physics-math-for-ai/optimal-sensor-allocation.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "tikhonov-regularization-and-noise-gain",
+        "unitId": "optimal-sensor-allocation",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-tikhonov-noise-gain.ts",
-        "lab": "src/components/learning/tikhonov-noise-gain-lab.tsx",
-        "tests": "scripts/learning-tikhonov-noise-gain.test.ts",
+        "model": "src/lib/learning-optimal-sensor-allocation.ts",
+        "lab": "src/components/learning/optimal-sensor-allocation-lab.tsx",
+        "tests": "scripts/learning-optimal-sensor-allocation.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
-          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
+          "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
+          "content/learning/physics-math-for-ai/optimal-sensor-allocation.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "regularization",
+        "originalTopic": "optimal experimental design",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "tikhonov-regularization-and-noise-gain"
+          "optimal-sensor-allocation"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -16482,12 +16674,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
-          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
+          "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
+          "content/learning/physics-math-for-ai/optimal-sensor-allocation.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-tikhonov-noise-gain.test.ts"
+        "evidence": "scripts/learning-optimal-sensor-allocation.test.ts"
       }
     },
     {
@@ -16552,14 +16744,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 633,
-  "verifiedNewUnitCount": 480,
+  "implementedUnitCount": 637,
+  "verifiedNewUnitCount": 484,
   "remainingForwardDomainCount": 2,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 17,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 13,
   "nextDomain": "inverse-problems",
-  "nextTopic": "Bayesian inverse problem",
+  "nextTopic": "uncertainty propagation",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 345,
+  "verifiedOriginalScopeTopicCount": 349,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -16621,11 +16813,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers Bayesian inverse problem. All 633 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers uncertainty propagation. All 637 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "gaussian-bayesian-inversion",
+  "nextAuthoringUnitId": "correlation-in-measurement-uncertainty",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "gaussian-bayesian-reader-integration",
+  "nextAction": "uncertainty-propagation-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

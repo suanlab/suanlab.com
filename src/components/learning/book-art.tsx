@@ -1,4 +1,8 @@
 'use client';
+import { optimalSensorAllocationId } from '@/data/optimal-sensor-allocation-reader';
+import { kalmanAssimilationId } from '@/data/kalman-assimilation-reader';
+import { discreteAdjointId } from '@/data/discrete-adjoint-reader';
+import { gaussianBayesianId } from '@/data/gaussian-bayesian-reader';
 import { tikhonovNoiseGainId } from '@/data/tikhonov-noise-gain-reader';
 import { sensorIdentifiabilityId } from '@/data/sensor-identifiability-reader';
 import { illPosednessId } from '@/data/ill-posedness-reader';
@@ -227,6 +231,10 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === optimalSensorAllocationId) return <span className="ai-concept-equation" aria-hidden="true">Σ = diag(σₐ²/nₐ, σᵦ²/nᵦ)</span>;
+  if (kind === kalmanAssimilationId) return <span className="ai-concept-equation" aria-hidden="true">m⁺ = m⁻ + K(y − m⁻)</span>;
+  if (kind === discreteAdjointId) return <span className="ai-concept-equation" aria-hidden="true">pₙ = apₙ₊₁</span>;
+  if (kind === gaussianBayesianId) return <span className="ai-concept-equation" aria-hidden="true">v⁻¹ = v₀⁻¹ + s²/r</span>;
   if (kind === tikhonovNoiseGainId) return <span className="ai-concept-equation" aria-hidden="true">x̂ = sy/(s² + λ)</span>;
   if (kind === sensorIdentifiabilityId) return <span className="ai-concept-equation" aria-hidden="true">b = (y₁ − y₂)/(1 − r)</span>;
   if (kind === illPosednessId) return <span className="ai-concept-equation" aria-hidden="true">x̂₂ = 1 + δ/s</span>;

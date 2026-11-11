@@ -3398,7 +3398,11 @@ export const curriculumDomains:CurriculumDomain[] = [
       "forward-and-inverse-maps-for-cooling",
       "ill-posedness-and-singular-modes",
       "parameter-identifiability-and-sensor-design",
-      "tikhonov-regularization-and-noise-gain"
+      "tikhonov-regularization-and-noise-gain",
+      "gaussian-bayesian-inversion",
+      "discrete-adjoint-for-terminal-control",
+      "scalar-kalman-data-assimilation",
+      "optimal-sensor-allocation"
     ]
   },
   {

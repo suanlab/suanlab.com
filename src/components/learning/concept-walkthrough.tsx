@@ -1,4 +1,12 @@
 'use client';
+import { optimalSensorAllocationId } from '@/data/optimal-sensor-allocation-reader';
+import { OptimalSensorAllocationConcept } from './optimal-sensor-allocation-lab';
+import { kalmanAssimilationId } from '@/data/kalman-assimilation-reader';
+import { KalmanAssimilationConcept } from './kalman-assimilation-lab';
+import { discreteAdjointId } from '@/data/discrete-adjoint-reader';
+import { DiscreteAdjointConcept } from './discrete-adjoint-lab';
+import { gaussianBayesianId } from '@/data/gaussian-bayesian-reader';
+import { GaussianBayesianConcept } from './gaussian-bayesian-lab';
 import { tikhonovNoiseGainId } from '@/data/tikhonov-noise-gain-reader';
 import { TikhonovNoiseGainConcept } from './tikhonov-noise-gain-lab';
 import { sensorIdentifiabilityId } from '@/data/sensor-identifiability-reader';
@@ -311,6 +319,10 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === optimalSensorAllocationId) return <OptimalSensorAllocationConcept language={language}/>;
+  if (kind === kalmanAssimilationId) return <KalmanAssimilationConcept language={language}/>;
+  if (kind === discreteAdjointId) return <DiscreteAdjointConcept language={language}/>;
+  if (kind === gaussianBayesianId) return <GaussianBayesianConcept language={language}/>;
   if (kind === tikhonovNoiseGainId) return <TikhonovNoiseGainConcept language={language}/>;
   if (kind === sensorIdentifiabilityId) return <SensorIdentifiabilityConcept language={language}/>;
   if (kind === illPosednessId) return <IllPosednessConcept language={language}/>;
