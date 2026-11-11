@@ -23,6 +23,44 @@ $$
 
 Oracle도 label의 고유 잡음 아래로 내려갈 수 없습니다. 그러나 sample ERM의 학습 오류는 epsilon보다 작거나 클 수 있습니다. E[min Rhat]≤min E[Rhat]는 기대값에 대한 관계입니다. 개별 표본에서 generalization gap의 부호를 강제로 양수로 만들면 실제 데이터를 왜곡합니다. 화면은 signed gap을 그대로 표시합니다.
 
+## 균일 제어에서 Oracle 부등식으로
+
+고정 class 전체에서 |R(h)−Rhat(h)|≤e가 동시에 성립하는 사건을 가정하자. h*는 population 최소자이고 학습기는 empirical 최적값보다 최대 a만큼 큰 approximate ERM을 반환한다. 두 population 위험 사이에 empirical 위험 두 개를 끼우면
+
+$$
+R(\widehat h)-R(h^*)\le [R(\widehat h)-\widehat R(\widehat h)]+a+[\widehat R(h^*)-R(h^*)]\le2e+a.
+$$
+
+선택된 가설에도 적용되는 이유는 사건이 class 전체에 동시에 성립하기 때문이다. 고정 M개 가설, [0,1] 손실, IID 표본에서는 양쪽 Hoeffding과 union bound로 e=sqrt(log(2M/delta)/(2N))를 얻는다. 손실 범위보다 클 수도 있는 상한이며 실제 관측 gap 자체가 아니다.
+
+Realizable 상황에서는 더 빠른 별도 논증이 가능하다. 위험 0인 가설이 class에 있고 정확하게 consistent한 가설을 찾는다고 하자. 위험이 e보다 큰 고정 가설이 N개 label에서 한 번도 틀리지 않을 확률은 (1−e)^N≤exp(−Ne) 이하이다. 나쁜 가설들을 union bound하면 log(M/delta)/N 규모의 보장을 얻는다. 잡음이나 consistency 실패가 있으면 이 단계를 쓸 수 없다. 작은 training loss만으로 가정을 증명할 수는 없다.
+
+아래 독립 예제는 같은 비중의 두 입력, Y=X와 세 증가 threshold를 쓴다. 가장 작은 threshold를 고르는 ERM은 모든 관측이 1일 때만 틀린다. 실패 확률 2^(−N)을 모든 표본의 열거로 확인한다.
+
+| 독립 예제의 N | ERM의 양의 초과 위험 확률 |
+|---|---:|
+| 1 | 1/2 |
+| 2 | 1/4 |
+| 4 | 1/16 |
+
+```python
+from itertools import product
+from fractions import Fraction as F
+for N in (1,2,4):
+    failure=F(0)
+    risk=[F(1,2),F(0),F(1,2)]
+    for sample in product((0,1),repeat=N):
+        empirical=[F(sum(int(x>=t)!=x for x in sample),N) for t in range(3)]
+        chosen=min(range(3),key=empirical.__getitem__)
+        uniform=max(abs(a-b) for a,b in zip(risk,empirical))
+        assert risk[chosen]<=2*uniform
+        if risk[chosen]>0:failure+=F(1,2**N)
+    assert failure==F(1,2**N)
+    print(N,failure)
+```
+
+화면의 여섯 threshold 실습은 다른 다섯 입력 세계와 실제 seed 실현을 사용한다. 알려진 population 곡선은 교육용 oracle이다. Class·중단 규칙·test 질의를 데이터를 보고 고르면 별도 동시 제어나 독립 평가가 필요하다. 결정적 생성기는 IID 모형의 재현 가능한 예시를 주지만 유한 seed 집합 자체가 정리의 확률 공간은 아니다.
+
 ## 손계산과 직접 풀기
 
 무잡음에서 population risk는 t=0부터 [0.4,0.2,0,0.2,0.4,0.6]입니다. N=1, seed 7의 실제 표본은 (x=0,y=0)입니다. Threshold 1부터 5는 모두 학습 오류 0이고 tie 규칙은 1을 고릅니다. 그 모델의 population risk는 0.2입니다. 학습 오류 0이 일반화 오류 0을 뜻하지 않는 가장 작은 예입니다.

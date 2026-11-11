@@ -30,6 +30,43 @@ $$
 
 이것은 모든 p에 대해 충분한 조건입니다. 특정 p의 필요한 최소 표본 수를 정확하게 구한 것이라고 부르면 안 됩니다. 표시된 N 범위보다 충분 N이 클 수도 있습니다. Delta를 바꾸면 목표 confidence 기준은 달라지지만 같은 N,p,epsilon의 실제 tail은 바뀌지 않습니다.
 
+## 하한은 모든 추정기가 직면할 어려움을 묻는다
+
+표본 평균의 상한만으로 그 표본 수가 필요하다고 증명할 수는 없다. 두 IID 세계 p_minus=1/2−2epsilon, p_plus=1/2+2epsilon을 비교하자. 0<epsilon≤1/8, delta<1/2이고 한 추정기가 두 세계 모두에서 편차 확률 delta 이하를 보장하면 추정치를 1/2에서 나누어 양쪽 오류가 delta 이하인 검정을 만들 수 있다.
+
+독립 관측의 KL은 더해진다. 검정 출력으로의 data processing과 binary KL의 단조성으로
+
+$$
+N\,\mathrm{kl}(p_-\Vert p_+)\ge\mathrm{kl}(1-\delta\Vert\delta)=(1-2\delta)\log\frac{1-\delta}{\delta}.
+$$
+
+를 얻는다. 실제로 ‘minus 선택’ 사건은 minus 세계에서 확률 1−delta 이상, plus 세계에서 delta 이하이다. 정보를 합치는 검정이 KL을 늘릴 수 없다. 여기서 분모 kl(p_minus||p_plus)=4epsilon*log((1/2+2epsilon)/(1/2−2epsilon))는 epsilon² 규모이다. 따라서 두 세계 모두에서의 confidence도 log(1/delta)/epsilon² 규모의 관측이 필요하다. Hoeffding 충분 조건과 상수는 다르다.
+
+| epsilon, delta=1/20 | 두 세계의 필요 하한 표본 수 | Hoeffding 충분 표본 수 |
+|---|---:|---:|
+| 1/16 | 21 | 473 |
+| 1/32 | 85 | 1889 |
+| 1/64 | 339 | 7555 |
+
+```python
+from math import log,ceil,comb
+from fractions import Fraction as F
+def kl(p,q):return float(p)*log(float(p/q))+float(1-p)*log(float((1-p)/(1-q)))
+delta=F(1,20)
+for eps in (F(1,16),F(1,32),F(1,64)):
+    minus=F(1,2)-2*eps;plus=F(1,2)+2*eps
+    lower=ceil(kl(1-delta,delta)/kl(minus,plus))
+    sufficient=ceil(log(float(2/delta))/(2*float(eps)**2))
+    print(eps,lower,sufficient)
+n=6;p=F(1,4);q=F(3,4)
+def choose_minus(r):return sum((comb(n,k)*r**k*(1-r)**(n-k) for k in range(n//2+1)),F(0))
+a,b=choose_minus(p),choose_minus(q)
+assert kl(a,b)<=n*kl(p,q)+1e-14
+print('test KL and full-data KL:',kl(a,b),n*kl(p,q))
+```
+
+하한은 두 후보 세계 모두에서 작동해야 하는 모든 추정기를 양화하고, 상한은 모든 Bernoulli p에서 표본 평균의 보장을 구성한다. 코드는 작은 majority test에서도 KL 축소를 검산한다. 실제 그림은 여전히 N≤128과 선언한 scaled-precision 경계 규칙을 쓴다. 정수 tail의 진동·미지 p·추정 위험·정보 이론적 불가능성을 같은 개념으로 취급하지 않아야 한다.
+
 ## 손계산과 직접 풀기
 
 p=.5, epsilon=.2, N=3이면 가운데 성공 횟수 1,2의 오차는 1/6이라 사건에 포함되지 않습니다. K=0 또는 3만 포함해 확률은 2/8=.25입니다. N=4에서는 K=1,3의 오차 .25도 포함하므로 확률은 (1+4+4+1)/16=.625입니다. 표본이 늘어도 개별 finite tail이 항상 감소하는 것은 아닙니다.

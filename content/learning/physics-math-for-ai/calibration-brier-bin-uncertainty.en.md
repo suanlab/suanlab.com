@@ -35,6 +35,40 @@ $$
 
 One perfect aggregate point does not establish within-stratum calibration. Absolute value after averaging differs from averaging absolute values. Brier remains approximately .495 in this miscalibrated example.
 
+## Recalibration is an orthogonal projection, while merging is a diagnostic
+
+Let P be a reported score and C(P)=E[Y|P]. Expand Y−P=(Y−C)+(C−P) and condition the cross term on P. Since E[Y−C|P]=0,
+
+$$
+E[(Y-P)^2]=E[(Y-C(P))^2]+E[(C(P)-P)^2].
+$$
+
+Replacing scores by C therefore improves expected Brier by exactly the second term. The tower property also proves E[Y|C]=C. This is an oracle result requiring the true conditional probability; estimating C on the same labels used for evaluation can overfit.
+
+A constant score E[Y] is calibrated too, so calibration alone does not establish resolution or useful discrimination. For the reversed three-stratum example, true recalibration changes the scores to (.85,.5,.15), whereas merging diagnostic bins leaves the original (.15,.5,.85) predictions untouched.
+
+| Procedure in the reversed example | Diagnostic ECE | Expected Brier |
+|---|---:|---:|
+| Original, separate bins | 7/15 | 99/200 |
+| Same scores, merged diagnostic | 0 | 99/200 |
+| Replace scores by true C(P) | 0 | 101/600 |
+
+![Expected Brier components of three actual score policies, separating intrinsic label variance from probability-prediction error.](/assets/learning/theory-calibration-en.svg)
+
+```python
+from fractions import Fraction as F
+p=[F(3,20),F(1,2),F(17,20)];q=list(reversed(p))
+def brier(scores):return sum((b*(1-a)**2+(1-b)*a*a for a,b in zip(scores,q)),F(0))/3
+intrinsic=sum((b*(1-b) for b in q),F(0))/3
+projection=sum(((a-b)**2 for a,b in zip(p,q)),F(0))/3
+assert brier(p)==intrinsic+projection==F(99,200)
+assert brier(q)==intrinsic==F(101,600)
+assert sum(p)==sum(q) and sum(abs(a-b) for a,b in zip(p,q))/3==F(7,15)
+for scores in (p,[F(1,2)]*3,q):print(scores,brier(scores))
+```
+
+The figure compares actual score policies, including a constant-one-half predictor; its middle bar is not merely merged diagnostics. For B bins fixed independently of validation labels, each with N independent Bernoulli outcomes, a union Hoeffding radius sqrt(log(2B/delta)/(2N)) simultaneously controls all bin means. Random bin counts require conditioning or suitable count-aware bounds; adaptive temperature or bin selection needs separate assessment. The existing fixed-stratum variance is not itself a simultaneous confidence interval.
+
 ## Worked example and exercise
 
 For q=p=[.15,.5,.85], probability-error contribution is zero and mean intrinsic variance is (.1275+.25+.1275)/3≈.16833. Hard accuracy is (.85+.5+.85)/3≈.73333. Perfect calibration is therefore different from perfect accuracy.

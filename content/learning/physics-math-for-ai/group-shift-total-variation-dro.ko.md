@@ -27,6 +27,41 @@ $$
 
 선형 함수의 최댓값은 interval 끝점에 있으므로 실제 두 끝점을 비교하고 세 가설 중 worst risk가 가장 작은 것을 고릅니다. 이 집합은 알려진 중심의 모형 설정이지 자동으로 데이터에서 얻은 confidence set이 아닙니다. Target beta가 집합 밖이면 그 target에 대한 보호라고 주장할 수 없습니다.
 
+## 선언한 Shift 반경을 통계적 보장으로 연결하기
+
+Alpha가 미지이고 qhat이 표본 group 비중이라고 하자. Hoeffding은 확률 1−delta 이상으로 |qhat−alpha|≤e=sqrt(log(2/delta)/(2N))를 준다. 추가로 target이 |beta−alpha|≤rho를 만족한다고 가정하면 삼각부등식으로 beta는 qhat 중심 반경 rho+e의 [0,1] 절단 구간 안에 있다. 이 확대 구간의 robust 해는 두 가정 아래에서만 confidence 해석을 갖는다. 반경을 고른 행위만으로 미지 target을 인증하지는 못한다.
+
+독립 상수 coin이 label 1을 확률 u로 예측하도록 허용하자. 기대 위험은 u+q*(1−2u)이다. Q 구간 전체가 1/2 아래이면 u=0, 위이면 u=1이 최적이다. 구간이 1/2을 포함하면 q=1/2에서 모든 u의 위험이 1/2이고 u=1/2가 모든 q에서 이를 달성한다. 따라서 현재 세계의 상수 무작위 predictor 연속체에서도 화면의 세 가설만으로 충분하다.
+
+| 허용 Group-one 구간 | 최적 Coin u | 최악 위험 |
+|---|---:|---:|
+| [1/10,2/5] | 0 | 2/5 |
+| [3/5,9/10] | 1 | 2/5 |
+| [1/10,9/10] | 1/2 | 1/2 |
+
+```python
+from fractions import Fraction as F
+for lo,hi in ((F(1,10),F(2,5)),(F(3,5),F(9,10)),(F(1,10),F(9,10))):
+    risk=lambda u,q:u+q*(1-2*u)
+    choices=[F(0),F(1),F(1,2)]
+    best=min(choices,key=lambda u:max(risk(u,lo),risk(u,hi)))
+    optimum=max(risk(best,lo),risk(best,hi))
+    assert all(max(risk(F(k,100),lo),risk(F(k,100),hi))>=optimum for k in range(101))
+    print(lo,hi,best,optimum)
+alpha=F(4,5);rho=F(1,10);error=F(1,4)
+for k in range(9):
+    center=F(k,8)
+    if abs(center-alpha)<=error:
+        lo=max(0,center-rho-error);hi=min(1,center+rho+error)
+        assert lo<=max(0,alpha-rho)<=min(1,alpha+rho)<=hi
+P=F(1,10);Q=F(9,10);N=8
+variance=(Q*Q/P-Q*Q)/N
+assert variance==F(729,800)
+print('importance variance:',variance)
+```
+
+코드는 선언한 추정 사건이 성립할 때마다 구간 포함 관계를 검사한다. N=8의 반경 1/4에 특정 confidence가 있다고 주장하지 않는다. Support가 있고 group loss l_g가 결정적이면 importance 추정 분산도 Var(Rhat_IS)=[sum Q_g²*l_g²/P_g−R_Q²]/N로 계산할 수 있다. Unbiased여도 드문 학습 질량 때문에 분산이 클 수 있다. Support 조건이나 유한 class의 minimax 결과가 group 내부의 임의 변화까지 보호하지는 않는다.
+
 ## 손계산과 직접 풀기
 
 Alpha=.9에서 항상 1인 가설의 학습 population risk는 .1입니다. Beta=.1로 바뀌면 target risk는 .9가 됩니다. Rho=.8이면 interval은 [.1,1]이고 worst risk는 항상 0인 가설 1, 항상 1인 가설 .9, fair coin .5입니다. 따라서 현재 finite class의 robust 선택은 fair coin입니다.

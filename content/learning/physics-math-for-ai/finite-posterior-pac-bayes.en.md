@@ -31,6 +31,40 @@ $$
 
 Thus data-dependent posterior selection is allowed, and selection among that fixed lambda grid is accounted for. This does not permit free post-data optimization over every real lambda or an arbitrary data-dependent prior.
 
+## Gibbs optimization and the cost of choosing a prior family
+
+For beta>0 and a positive fixed prior, substitute log(q_beta/pi)=−beta*r−log Z into KL(q||q_beta). Rearrangement proves
+
+$$
+E_q r+\frac{\mathrm{KL}(q\Vert\pi)}\beta=-\frac{\log Z}\beta+\frac{\mathrm{KL}(q\Vert q_\beta)}\beta.
+$$
+
+Thus the Gibbs distribution minimizes a regularized empirical objective over distributions. Nonnegativity of the final KL proves optimality; it does not identify a true Bayesian posterior or the population minimizer. The code checks the full identity for three candidate distributions, not just its equality at the optimum.
+
+A predeclared finite family of priors can also be selected after data with an explicit cost. Give prior j a fixed positive mass w_j, summing to one, and allocate failure probability delta*w_j/8 to each prior/grid pair. The same moment and union argument then replaces log(8/delta) by log(8/(delta*w_j)). All posteriors and family/grid choices are covered on one event. This does not cover arbitrary priors invented from the observed labels.
+
+| Fixed prior-family weight | Extra numerator cost |
+|---|---:|
+| 1/2 | log 2 |
+| 1/4 | log 4 |
+| 1/8 | log 8 |
+
+```python
+from math import exp,log
+prior=[.5,.3,.2];risk=[0,.25,.75];beta=2
+Z=sum(p*exp(-beta*r) for p,r in zip(prior,risk))
+gibbs=[p*exp(-beta*r)/Z for p,r in zip(prior,risk)]
+def kl(q,p):return sum(a*log(a/b) for a,b in zip(q,p))
+for q in (prior,[1/3]*3,gibbs):
+    objective=sum(a*r for a,r in zip(q,risk))+kl(q,prior)/beta
+    certificate=-log(Z)/beta+kl(q,gibbs)/beta
+    assert abs(objective-certificate)<1e-14
+    assert objective>=-log(Z)/beta-1e-14
+    print(objective,kl(q,gibbs)/beta)
+```
+
+The live control still uses one declared prior, not this family extension. Its small-tilt KL now uses normalized Gibbs log-ratios u and the convex generator exp(u)*u−expm1(u). Its series starts u²/2+u³/3, retaining the nonnegative second-order effect rather than clipping a negative direct sum to zero. The analytical Gibbs KL can resolve a tilt below the displayed probability precision. `expandedKL` retains the original q*log(q/pi) sum. Both are binary64 calculations, not interval-certified arbitrary precision.
+
 ## Worked example and exercise
 
 For N=32, delta=.05, lambda=32 and beta=0, the penalty is log(160)/32+1/8≈0.2836. Add it to the actual Gibbs empirical risk. An upper bound exceeding one can be clipped using bounded risk, but the unclipped value remains visible so vacuity is not hidden.

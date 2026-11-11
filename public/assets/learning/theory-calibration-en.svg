@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg role="img" aria-labelledby="title desc" xmlns:xlink="http://www.w3.org/1999/xlink" width="440" height="460" viewBox="0 0 440 460" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<title id="title">Diagnostic merging versus changing scores</title><desc id="desc">Brier components of actual score policies in three reversed strata. Merging bins alone leaves the original Brier unchanged.</desc>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-12T04:44:22.846189</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.6.3, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 460
+L 440 460
+L 440 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 74.8 335.8
+L 418 335.8
+L 418 82.8
+L 74.8 82.8
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 90.4 335.8
+L 179.542857 335.8
+L 179.542857 272.235323
+L 90.4 272.235323
+z
+" clip-path="url(#p4e931467d1)" style="fill: #2563eb"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 201.828571 335.8
+L 290.971429 335.8
+L 290.971429 272.235323
+L 201.828571 272.235323
+z
+" clip-path="url(#p4e931467d1)" style="fill: #2563eb"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 313.257143 335.8
+L 402.4 335.8
+L 402.4 272.235323
+L 313.257143 272.235323
+z
+" clip-path="url(#p4e931467d1)" style="fill: #2563eb"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 90.4 272.235323
+L 179.542857 272.235323
+L 179.542857 148.88209
+L 90.4 148.88209
+z
+" clip-path="url(#p4e931467d1)" style="fill: #ea580c"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 201.828571 272.235323
+L 290.971429 272.235323
+L 290.971429 241.397015
+L 201.828571 241.397015
+z
+" clip-path="url(#p4e931467d1)" style="fill: #ea580c"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 313.257143 272.235323
+L 402.4 272.235323
+L 402.4 272.235323
+L 313.257143 272.235323
+z
+" clip-path="url(#p4e931467d1)" style="fill: #ea580c"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 134.971429 335.8
+L 134.971429 82.8
+" clip-path="url(#p4e931467d1)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="m2786b3ba85" d="M 0 0
+L 0 3.5
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m2786b3ba85" x="134.971429" y="335.8" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="134.971429" y="350.759375" transform="rotate(-0 134.971429 350.759375)">Original</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 246.4 335.8
+L 246.4 82.8
+" clip-path="url(#p4e931467d1)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m2786b3ba85" x="246.4" y="335.8" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="246.4" y="350.759375" transform="rotate(-0 246.4 350.759375)">Constant 1/2</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 357.828571 335.8
+L 357.828571 82.8
+" clip-path="url(#p4e931467d1)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m2786b3ba85" x="357.828571" y="335.8" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="357.828571" y="350.759375" transform="rotate(-0 357.828571 350.759375)">True C(P)</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_7">
+      <path d="M 74.8 335.8
+L 418 335.8
+" clip-path="url(#p4e931467d1)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <defs>
+       <path id="m5154e649b3" d="M 0 0
+L -3.5 0
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m5154e649b3" x="74.8" y="335.8" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="67.8" y="339.779688" transform="rotate(-0 67.8 339.779688)">0.0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_9">
+      <path d="M 74.8 298.038806
+L 418 298.038806
+" clip-path="url(#p4e931467d1)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m5154e649b3" x="74.8" y="298.038806" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="67.8" y="302.018493" transform="rotate(-0 67.8 302.018493)">0.1</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_11">
+      <path d="M 74.8 260.277612
+L 418 260.277612
+" clip-path="url(#p4e931467d1)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m5154e649b3" x="74.8" y="260.277612" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="67.8" y="264.257299" transform="rotate(-0 67.8 264.257299)">0.2</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_13">
+      <path d="M 74.8 222.516418
+L 418 222.516418
+" clip-path="url(#p4e931467d1)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m5154e649b3" x="74.8" y="222.516418" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="67.8" y="226.496105" transform="rotate(-0 67.8 226.496105)">0.3</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_15">
+      <path d="M 74.8 184.755224
+L 418 184.755224
+" clip-path="url(#p4e931467d1)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m5154e649b3" x="74.8" y="184.755224" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="67.8" y="188.734911" transform="rotate(-0 67.8 188.734911)">0.4</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_17">
+      <path d="M 74.8 146.99403
+L 418 146.99403
+" clip-path="url(#p4e931467d1)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#m5154e649b3" x="74.8" y="146.99403" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="67.8" y="150.973717" transform="rotate(-0 67.8 150.973717)">0.5</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_19">
+      <path d="M 74.8 109.232836
+L 418 109.232836
+" clip-path="url(#p4e931467d1)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#m5154e649b3" x="74.8" y="109.232836" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: end" x="67.8" y="113.212523" transform="rotate(-0 67.8 113.212523)">0.6</text>
+     </g>
+    </g>
+    <g id="text_11">
+     <text style="font: 10px 'Noto Sans CJK JP'; text-anchor: middle" x="47.629688" y="209.3" transform="rotate(-90 47.629688 209.3)">Expected Brier</text>
+    </g>
+   </g>
+   <g id="patch_9">
+    <path d="M 74.8 335.8
+L 74.8 82.8
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 74.8 335.8
+L 418 335.8
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_12">
+    <text style="font: 9px 'Noto Sans CJK JP'; text-anchor: middle" x="134.971429" y="145.10597" transform="rotate(-0 134.971429 145.10597)">0.4950</text>
+   </g>
+   <g id="text_13">
+    <text style="font: 9px 'Noto Sans CJK JP'; text-anchor: middle" x="246.4" y="237.620896" transform="rotate(-0 246.4 237.620896)">0.2500</text>
+   </g>
+   <g id="text_14">
+    <text style="font: 9px 'Noto Sans CJK JP'; text-anchor: middle" x="357.828571" y="268.459204" transform="rotate(-0 357.828571 268.459204)">0.1683</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_11">
+     <path d="M 322.68875 113.64
+L 412.4 113.64
+Q 414 113.64 414 112.04
+L 414 88.4
+Q 414 86.8 412.4 86.8
+L 322.68875 86.8
+Q 321.08875 86.8 321.08875 88.4
+L 321.08875 112.04
+Q 321.08875 113.64 322.68875 113.64
+z
+" style="fill: #ffffff; opacity: 0.8; stroke: #cccccc; stroke-linejoin: miter"/>
+    </g>
+    <g id="patch_12">
+     <path d="M 324.28875 96.3675
+L 340.28875 96.3675
+L 340.28875 90.7675
+L 324.28875 90.7675
+z
+" style="fill: #2563eb"/>
+    </g>
+    <g id="text_15">
+     <text style="font: 8px 'Noto Sans CJK JP'; text-anchor: start" x="346.68875" y="96.3675" transform="rotate(-0 346.68875 96.3675)">Intrinsic variance</text>
+    </g>
+    <g id="patch_13">
+     <path d="M 324.28875 108.5675
+L 340.28875 108.5675
+L 340.28875 102.9675
+L 324.28875 102.9675
+z
+" style="fill: #ea580c"/>
+    </g>
+    <g id="text_16">
+     <text style="font: 8px 'Noto Sans CJK JP'; text-anchor: start" x="346.68875" y="108.5675" transform="rotate(-0 346.68875 108.5675)">Probability error</text>
+    </g>
+   </g>
+  </g>
+  <g id="text_17">
+   <text style="font: 700 12px 'Noto Sans CJK JP'; text-anchor: middle" x="220" y="23.53125" transform="rotate(-0 220 23.53125)">Diagnostic merging versus changing scores</text>
+  </g>
+  <g id="text_18">
+   <text style="font: 9px 'Noto Sans CJK JP'" transform="translate(22 429.472156)">The three bars use genuinely different score policies.</text>
+   <text style="font: 9px 'Noto Sans CJK JP'" transform="translate(22 443.9)">Merging diagnostic bins alone retains original Brier=0.495.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p4e931467d1">
+   <rect x="74.8" y="82.8" width="343.2" height="253"/>
+  </clipPath>
+ </defs>
+</svg>

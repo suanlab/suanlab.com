@@ -30,6 +30,43 @@ $$
 
 This is sufficient for every p, not the exact necessary minimum for a particular distribution. The sufficient count can exceed the plotted range. Changing delta changes the confidence target, but not the actual tail at fixed N,p,epsilon.
 
+## A lower bound asks what every estimator must face
+
+An upper bound for the sample mean does not establish that its sample count is necessary. Compare two possible IID worlds p_minus=1/2−2epsilon and p_plus=1/2+2epsilon, with 0<epsilon≤1/8. If one estimator has deviation probability at most delta<1/2 in both worlds, thresholding its estimate at one half constructs a test with both errors at most delta.
+
+KL adds over independent observations. Data processing to the test output and monotonicity of binary KL imply
+
+$$
+N\,\mathrm{kl}(p_-\Vert p_+)\ge\mathrm{kl}(1-\delta\Vert\delta)=(1-2\delta)\log\frac{1-\delta}{\delta}.
+$$
+
+Indeed the event “choose minus” has probability at least 1−delta under the minus world and at most delta under the plus world. Coarsening cannot increase information. Here the denominator kl(p_minus||p_plus)=4epsilon*log((1/2+2epsilon)/(1/2−2epsilon)) is of order epsilon². Hence confidence over both worlds demands order log(1/delta)/epsilon² observations as well, with different constants from Hoeffding's sufficient count.
+
+| epsilon, delta=1/20 | Necessary two-world lower count | Hoeffding sufficient count |
+|---|---:|---:|
+| 1/16 | 21 | 473 |
+| 1/32 | 85 | 1889 |
+| 1/64 | 339 | 7555 |
+
+```python
+from math import log,ceil,comb
+from fractions import Fraction as F
+def kl(p,q):return float(p)*log(float(p/q))+float(1-p)*log(float((1-p)/(1-q)))
+delta=F(1,20)
+for eps in (F(1,16),F(1,32),F(1,64)):
+    minus=F(1,2)-2*eps;plus=F(1,2)+2*eps
+    lower=ceil(kl(1-delta,delta)/kl(minus,plus))
+    sufficient=ceil(log(float(2/delta))/(2*float(eps)**2))
+    print(eps,lower,sufficient)
+n=6;p=F(1,4);q=F(3,4)
+def choose_minus(r):return sum((comb(n,k)*r**k*(1-r)**(n-k) for k in range(n//2+1)),F(0))
+a,b=choose_minus(p),choose_minus(q)
+assert kl(a,b)<=n*kl(p,q)+1e-14
+print('test KL and full-data KL:',kl(a,b),n*kl(p,q))
+```
+
+The necessary and sufficient counts have different quantifiers: the lower argument applies to every estimator required to work in both candidate worlds, whereas the upper constructs a guarantee for the sample mean over all Bernoulli p. The auxiliary code also checks KL contraction for a finite majority test. The live plot still shows N≤128 and its declared scaled-precision boundary policy. Integer-tail oscillations, an unknown p, estimator risk and information-theoretic impossibility should remain separate concepts.
+
 ## Worked example and exercise
 
 For p=.5, epsilon=.2 and N=3, counts one and two have error 1/6 and are excluded. Only zero and three contribute, giving probability 2/8=.25. At N=4, counts one and three also qualify because their error is .25. The tail becomes (1+4+4+1)/16=.625. More samples do not force every finite-n tail to decrease monotonically.

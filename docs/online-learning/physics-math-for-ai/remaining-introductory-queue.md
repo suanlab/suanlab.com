@@ -64,6 +64,8 @@
 
 알고리즘·계산복잡도·계산 구조에서는 결정 트리·메모리 제약 DP·flow gap·탈무작위화·증인 복원·평균 비교 하한·work/span·캐시 전송·spectral 합의와 측정 원자료를 한영으로 보강했다. [10개 원주제 대조](algorithms-complexity-topic-review.md)를 더해 현재 기록은 **31영역·305/509개 원주제**다. 다음은 **통계학습·일반화·강건성 11개**이며 후속 **20영역·204개**의 근거 통합과 심화를 이어간다. 기존 입문 완료 상태는 유지한다.
 
+통계학습·일반화·강건성에서는 ERM oracle 부등식·early-stopping 기대·Rademacher loss 변환·Gibbs 변분·ghost 안정성·metric 선택·Gaussian inverse moment·calibration 사영·shift confidence·검정 하한·prefix 공분산을 한영으로 보강했다. [11개 원주제 대조](learning-theory-topic-review.md)를 더해 현재 기록은 **32영역·316/509개 원주제**다. 다음은 **인과추론과 식별 가능성 11개**이며 후속 **19영역·193개**의 근거 통합과 심화를 이어간다. 기존 입문 완료 상태는 유지한다.
+
 ## 이전 작업 기록
 
 아래 수치는 각 작업 시점의 기록이다.

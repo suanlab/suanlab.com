@@ -10,6 +10,19 @@ const sum=(a:number[])=>a.reduce((s,v)=>s+v,0);
 const multiply=(A:number[][],B:number[][])=>A.map(row=>B[0].map((_,j)=>sum(row.map((v,k)=>v*B[k][j]))));
 const transpose=(A:number[][])=>A[0].map((_,j)=>A.map(row=>row[j]));
 const matrixClose=(A:number[][],B:number[][],tol=1e-9)=>A.forEach((row,i)=>row.forEach((v,j)=>close(v,B[i][j],tol)));
+test('small Gibbs tilts retain nonnegative second-order KL without clipping',()=>{
+ const base=posteriorBound(32,.1,7,0,5,.05,0),meanLoss=sum(base.risk.empirical)/6,variance=sum(base.risk.empirical.map(v=>(v-meanLoss)**2))/6;
+ assert.equal(base.KL,0);
+ for(const beta of [1e-8,1e-16,1e-20,1e-100]){const r=posteriorBound(32,.1,7,beta,5,.05,0),leading=beta*beta*variance/2;assert.ok(r.KL>0);assert.ok(Math.abs(r.KL/leading-1)<1e-7);assert.ok(Number.isFinite(r.expandedKL));}
+});
+test('quadratic risk effects retain small positive approximation and estimation beyond the shared floor',()=>{
+ const r=errorDecomposition(8,1e-8,1,1,0,0,7);assert.ok(r.approximation>0);assert.ok(Math.abs(r.approximation/(1e-16/3)-1)<1e-15);assert.equal(r.expandedEffects.approximation,0);
+ for(const mode of [0,1])for(const c of [0,1e-12,1,2]){const q=errorDecomposition(8,c,1,mode,10,.5,7);assert.ok(q.estimation>=0&&q.empiricalGap>=0);close(q.approximation+q.estimation+q.optimizationEffect,q.excess);}
+});
+test('ridge analytic neighbor changes survive cancellation in rounded losses and weights',()=>{
+ const r=ridgeStability(1,0,0,1e-20,1);assert.ok(r.observedBeta>0);assert.equal(r.queryDifference,-1e-20);assert.equal(r.expandedDifference(1),0);
+ const q=ridgeStability(32,0,.5,.5+Number.EPSILON/2,1);assert.equal(q.v,q.w);assert.ok(q.predictionChange>0&&q.observedBeta>0);assert.ok(q.queryDifference<0);
+});
 test('finite population threshold risks match independent joint-distribution enumeration',()=>{
  for(const noise of [0,.1,.45])for(const seed of [1,7,999]){const r=thresholdRisk(32,noise,seed,2);for(let t=0;t<=5;t++){let risk=0;for(let x=0;x<5;x++)for(const y of [0,1]){const q=x>=2?1-noise:noise;risk+=(y?q:1-q)/5*Number(Number(x>=t)!==y);}close(r.population[t],risk);close(r.empirical[t],r.samples.filter(s=>Number(s.x>=t)!==s.y).length/32);}assert.equal(r.oracle,2);close(r.population[2],noise);assert.equal(r.erm,r.empirical.indexOf(Math.min(...r.empirical)));}
 });

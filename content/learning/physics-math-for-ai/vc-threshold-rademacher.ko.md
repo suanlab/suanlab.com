@@ -26,6 +26,44 @@ $$
 
 현재는 n≤10이라 2^n sign을 실제로 모두 계산합니다. 가설 row 수 n+1과 sign 개수 2^n은 다른 대상입니다. Upper bound는 유한 class의 [-1,1] 함수에 대한 계산이며 일반화 bound로 옮길 때에는 loss class, IID와 confidence 조건도 필요합니다. 이 화면의 숫자를 모든 손실의 오차 상한으로 직접 부르지 않습니다.
 
+## Random Walk의 최솟값과 Loss 복잡도
+
+부호열의 처음 t개 합을 S_t, S_0=0이라 하자. Threshold t의 correlation은 S_n−2S_t이므로 정확한 empirical 복잡도는
+
+$$
+\widehat{\mathfrak R}(H)=\frac1nE_\sigma[S_n-2\min_{0\le t\le n}S_t]=-\frac2nE_\sigma\min_t S_t.
+$$
+
+기대 안에서 threshold를 최대화하는 식이며 평균 correlation을 먼저 구해 최대화한 값이 아니다. 아래 코드는 모든 random walk에서 두 표현을 유리수로 대조한다. 유한 가설 행렬의 최적화를 경로 최솟값으로 바꾸는 연결이다.
+
+고정한 binary label y_i도 ±1로 쓰면 0–1 loss는 (1−y_i h_i)/2이다. 가설과 무관한 상수의 Rademacher 기대는 0이고 −sigma_i*y_i도 독립 공정 부호이다. 따라서 이 점들에서 loss class의 empirical 복잡도는 classifier 복잡도의 정확히 절반이다. 일반화에 연결하는 대상은 그 loss class다.
+
+| 서로 다른 순서 점 n | 정확한 Classifier 복잡도 |
+|---|---:|
+| 1 | 1 |
+| 2 | 3/4 |
+| 4 | 19/32 |
+
+```python
+from itertools import product
+from fractions import Fraction as F
+for n in (1,2,4):
+    hs=[[-1 if i<t else 1 for i in range(n)] for t in range(n+1)]
+    total=walk=loss_total=F(0);labels=[(-1)**i for i in range(n)]
+    for signs in product((-1,1),repeat=n):
+        path=[0]
+        for sign in signs:path.append(path[-1]+sign)
+        best=max(sum(a*b for a,b in zip(signs,h)) for h in hs)
+        assert best==path[-1]-2*min(path)
+        total+=F(best,n);walk+=F(-2*min(path),n)
+        loss_total+=max(F(sum(s*(1-y*v) for s,y,v in zip(signs,labels,h)),2*n) for h in hs)
+    rad=total/2**n
+    assert total==walk and loss_total==total/2
+    print(n,rad)
+```
+
+IID 표본에서는 ghost sample의 symmetrization으로 E sup_h(R−Rhat)를 기대 loss 복잡도의 두 배로 제어한다. Empirical ERM과 고정 population oracle을 끼우면 기대 ERM 초과도 같은 양 이하이다. Oracle의 signed empirical gap 기대가 0이기 때문이다. Confidence 보장은 추가 집중 논증이 필요하다. 무작위 입력에 중복이 있어도 loss 변환은 유지되지만 서로 다른 점의 n+1 labeling 수를 그대로 쓸 수 없다. 화면의 완전 열거는 고정한 서로 다른 점들에 조건부이다.
+
 ## 손계산과 직접 풀기
 
 n=2의 가설은 (++),(-+),(--)입니다. Sign (++),(-+),(--)에서는 완전히 맞는 가설이 있어 최대 상관이 1입니다. Sign (+-)에서는 최댓값이 0입니다. 따라서 정확한 empirical Rademacher 복잡도는 (1+1+1+0)/4=0.75입니다. Query mask 1이 바로 만들 수 없는 (+-) label입니다.

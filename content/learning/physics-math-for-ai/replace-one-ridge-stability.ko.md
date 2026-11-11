@@ -30,6 +30,43 @@ $$
 
 따라서 [-1,1]에서 절댓값의 최대는 끝점 중 하나입니다. 파랑·주황은 두 모델의 실제 loss 함수이며 signed query change와 endpoint supremum을 readout에 따로 표시합니다. 작은 query 변화 한 번을 전체 구간 supremum이나 모든 dataset의 안정성으로 바꾸어 읽지 마세요.
 
+## Ghost Observation으로 기대 Gap 증명하기
+
+S는 IID label Y_1,...,Y_N을 담고 Y'_i는 독립 대체 관측이라고 하자. S^(i)는 i번째를 교체한 dataset이다. 같은 결합 법칙의 Y_i와 Y'_i를 교환하면
+
+$$
+E[R(A(S))-\widehat R_S(A(S))]=\frac1N\sum_i E[\ell(A(S^{(i)}),Y_i)-\ell(A(S),Y_i)].
+$$
+
+모든 이웃 dataset과 test label에서 손실 변화가 beta 이하이면 기대의 절댓값도 beta 이하이다. 화면의 결정적 이웃 하나가 아니라 학습 알고리즘 전체의 성질이 필요하다. 각 실현의 gap을 점별로 beta 이하라고 주장하는 증명도 아니다.
+
+독립 예제로 공정한 IID label ±1에서 w=Ybar/(1+lambda)를 쓰자. Population과 empirical half-squared 위험 차이는 w*Ybar이며 정확한 기대는 1/(N*(1+lambda))이다. 작은 N의 모든 label dataset을 열거해 교환 논증을 수치로 확인한다.
+
+| Lambda=1에서 N | 정확한 기대 Gap | 기존 균일 상한 |
+|---|---:|---:|
+| 1 | 1/2 | 2 |
+| 2 | 1/4 | 1 |
+| 4 | 1/8 | 1/2 |
+
+```python
+from itertools import product
+from fractions import Fraction as F
+for N in (1,2,4):
+    gaps=[]
+    for labels in product((-1,1),repeat=N):
+        mean=F(sum(labels),N);w=mean/2
+        population=(w*w+1)/2
+        empirical=sum(((w-y)**2/2 for y in labels),F(0))/N
+        assert population-empirical==w*mean
+        gaps.append(population-empirical)
+    expected=sum(gaps,F(0))/2**N
+    bound=min(F(2),F(2,N))
+    assert expected==F(1,2*N) and expected<=bound
+    print(N,expected,bound)
+```
+
+현재 이웃 진단은 delta=(replacement−first)/(N*(1+lambda))를 써 손실 차이를 delta*((v+w)/2−y)로 인수분해한다. 거의 같은 두 손실이나 반올림된 weight를 빼지 않아 작은 해석적 변화를 유지한다. 두 반올림 손실이 같아도 비영 변화가 남을 수 있으며 직접 뺀 실제 값은 `expandedDifference`에 보존한다. 학습된 weight와 손실 곡선도 별도로 유지한다. 안정성 보장·기대 성능을 측정 민감도나 feature·architecture 변경에 대한 주장과 구분해야 한다.
+
 ## 손계산과 직접 풀기
 
 N=2, lambda=1, 원래 데이터 [-1,.5], 교체 데이터 [1,.5]이면 w=-.125, v=.375입니다. y=-1에서 loss 차이는 .5625, y=1에서는 -.4375이므로 현재 neighbor의 정확한 최대 절댓값은 .5625입니다. 균일 상한은 4/(2·2)=1로 더 보수적입니다.

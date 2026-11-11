@@ -26,6 +26,40 @@ $$
 
 모든 표본의 feature가 0이면 A=B=0으로 empirical 목적함수가 평평합니다. 현재 규칙은 w_S=0을 선택하고 GD도 0에 남습니다. Population에서 feature가 정보를 갖는다는 사실과 현재 표본이 그 정보를 포함한다는 사실은 다릅니다. 이 경우를 작은 ridge로 몰래 바꾸지 않습니다.
 
+## Early Stopping의 Spectral Filter와 Bias 비용
+
+별도의 intercept 문제에서 Y=mu+sigma*sign, sign은 독립 공정 부호라고 하자. Half-squared empirical loss를 w0=0에서 0<eta<1로 최적화하면 recurrence를 풀어 w_k=g_k*Ybar, g_k=1−(1−eta)^k를 얻는다. Population oracle은 mu이고 중심 잡음의 독립성으로 Bayes 위험 위의 기대 초과는
+
+$$
+E[R(w_k)-R_{Bayes}]=\frac12(1-g_k)^2\mu^2+\frac12g_k^2\frac{\sigma^2}{N}.
+$$
+
+첫째는 shrinkage bias, 둘째는 추정 분산이다. G를 자유롭게 고를 수 있다고 미분하면 분모가 양수일 때 g*=mu²/(mu²+sigma²/N)이다. 정수 iteration이 이 값을 정확히 실현할 필요는 없다. 여기서 mu·잡음 분산은 oracle 값이므로 데이터만으로 정한 중단 규칙이 아니다.
+
+Mu=1/4, sigma=1, N=4, eta=1/5에서는 한 step이 기대 초과를 줄이지만 ERM까지 가면 더 커진다. 유리한 seed 하나를 고른 결과가 아니라 열여섯 잡음열 전체에 대한 기대다.
+
+| Iteration | Bayes 위의 기대 초과 |
+|---|---:|
+| 0 | 1/32 |
+| 1 | 1/40 |
+| 극한 | 1/8 |
+
+```python
+from itertools import product
+from fractions import Fraction as F
+N=4;mu=F(1,4);eta=F(1,5)
+for k in (0,1,8):
+    gain=1-(1-eta)**k
+    exact=sum(((gain*(mu+F(sum(signs),N))-mu)**2/2 for signs in product((-1,1),repeat=N)),F(0))/2**N
+    formula=((1-gain)**2*mu**2+gain**2/N)/2
+    assert exact==formula
+    print(k,exact,float(exact))
+assert ((1-(1-eta))**2/N+(1-eta)**2*mu**2)/2==F(1,40)
+assert F(1,2*N)==F(1,8)
+```
+
+현재 실습의 population 효과는 중심화된 항등식으로 계산한다. 근사 항은 상수 feature에서 1/3+c²/9, x feature에서 c²/3이고 추정 항은 A_pop*(w_S−w_H)²/2이다. Population 최적화 효과는 두 제곱 차이를 인수분해해 signed 값을 유지한다. 실제 표본·ERM 동률 규칙·GD recurrence는 보존한다. 두 표시 위험이 같은 잡음 바닥으로 반올림돼도 양의 3.3×10^(−17) 근사 오차를 보존할 수 있다. 직접 뺀 값은 `expandedEffects`에 남긴다. 이 해석적 진단은 반올림한 표시 문자열을 뺀 실측값이 아니다.
+
 ## 손계산과 직접 풀기
 
 c=0, sigma=1, N=2, seed 9이면 실제 표본은 (-1,-2),(1,2)입니다. Linear feature의 ERM은 w=2입니다. Population risk는 (w-1)²/3+1/2이므로 class oracle은 1이고 ERM의 추정 효과는 1/3입니다. 0에서 eta=1/2로 한 번 GD하면 w=1에 도착해 population 최적화 효과가 -1/3입니다. Empirical 간극은 여전히 1/2입니다.

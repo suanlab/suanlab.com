@@ -36,6 +36,39 @@ $$
 
 Fewer than two positive points leaves the slope undefined. Zero risk is not replaced with an arbitrary small positive value to manufacture a fit. Prefix dependence also prevents automatically reporting an independent-residual standard error. Assess seeds, repetitions, fit windows and the estimation procedure together.
 
+## Nested prefixes carry an exactly computable covariance
+
+Set bias and floor to zero and use unit Rademacher observations. Let Z_n=(S_n/n)² for a single repetition. Expanding the fourth moment gives E[S_n⁴]=3n²−2n, since only terms with even sign multiplicities survive. Thus Var(Z_n)=2(n−1)/n³. For n≤m, write S_m=S_n+U with independent centered U; conditioning on the prefix leaves
+
+$$
+\operatorname{Cov}(Z_n,Z_m)=\frac{2(n-1)}{n\,m^2}.
+$$
+
+Averaging K independent repetitions divides this covariance by K, not by the number of plotted sample sizes. More prefix points do not create that many independent experiments. The exact enumeration below checks all joint paths up to m, keeping the shared observations rather than drawing a fresh prefix for each point.
+
+| Nested sizes (n,m), one repetition | Exact covariance |
+|---|---:|
+| (2,4) | 1/16 |
+| (2,8) | 1/64 |
+| (4,8) | 3/128 |
+
+```python
+from itertools import product
+from fractions import Fraction as F
+for n,m in ((2,4),(2,8),(4,8)):
+    pairs=[(F(sum(s[:n]),n)**2,F(sum(s),m)**2) for s in product((-1,1),repeat=m)]
+    mean=lambda values:sum(values,F(0))/len(pairs)
+    ez=mean([a for a,b in pairs]);ew=mean([b for a,b in pairs])
+    covariance=mean([a*b for a,b in pairs])-ez*ew
+    variance=mean([a*a for a,b in pairs])-ez*ez
+    assert ez==F(1,n) and ew==F(1,m)
+    assert variance==F(2*(n-1),n**3)
+    assert covariance==F(2*(n-1),n*m*m)
+    print(n,m,covariance)
+```
+
+Logarithms add another distinction: E[log Rhat] is not log E[Rhat]. Even a positive expected risk can have a zero realized estimate; every even prefix has positive probability of an exactly zero Rademacher sum. All K repetitions can be zero with positive probability, so a log-risk expectation can be minus infinity. The UI correctly leaves zero-risk points out of its descriptive slope and never adds an artificial floor, but that selection must not be interpreted as an unbiased population exponent estimate. These covariance formulas concern the ideal independent-sign model, not an exact probability distribution over the finite seeded generator.
+
 ## Worked example and exercise
 
 With sigma one, zero bias and no prediction floor, expected risk at N=128 is 1/128=.0078125. Including independent prediction noise makes it 1.0078125. A nearly flat large-N curve in the latter case reflects its floor, not an estimator suddenly ceasing to learn.

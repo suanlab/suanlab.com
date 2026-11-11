@@ -36,6 +36,39 @@ $$
 
 양수 점이 두 개 미만이면 slope는 미정입니다. Risk 0을 임의의 작은 양수로 바꿔 그럴듯한 fit을 만들지 않습니다. Prefix 간의 의존성 때문에 단순 독립 잔차 standard error를 자동 보고하지도 않습니다. 여러 반복·seed·구간과 추정 절차를 함께 검토해야 합니다.
 
+## Nested Prefix의 공분산을 정확히 계산하기
+
+Bias·floor는 0, 관측은 단위 Rademacher 부호라 하자. 한 repetition의 Z_n=(S_n/n)²에서 네제곱을 전개하면 부호가 짝수 번 등장한 항만 남아 E[S_n⁴]=3n²−2n이다. 따라서 Var(Z_n)=2(n−1)/n³이다. N≤m에서 S_m=S_n+U로 쓰고 독립 중심 U를 prefix에 조건부로 평균내면
+
+$$
+\operatorname{Cov}(Z_n,Z_m)=\frac{2(n-1)}{n\,m^2}.
+$$
+
+K개 독립 repetition의 평균은 이 공분산을 K로 나눈다. 그리는 표본 크기의 개수로 나누는 것이 아니다. Prefix 점을 더 찍는다고 독립 실험이 그만큼 늘지 않는다. 아래 열거는 각 점마다 새 prefix를 뽑지 않고 m까지의 공동 경로를 그대로 유지해 검산한다.
+
+| 한 Repetition의 Nested 크기 (n,m) | 정확한 공분산 |
+|---|---:|
+| (2,4) | 1/16 |
+| (2,8) | 1/64 |
+| (4,8) | 3/128 |
+
+```python
+from itertools import product
+from fractions import Fraction as F
+for n,m in ((2,4),(2,8),(4,8)):
+    pairs=[(F(sum(s[:n]),n)**2,F(sum(s),m)**2) for s in product((-1,1),repeat=m)]
+    mean=lambda values:sum(values,F(0))/len(pairs)
+    ez=mean([a for a,b in pairs]);ew=mean([b for a,b in pairs])
+    covariance=mean([a*b for a,b in pairs])-ez*ew
+    variance=mean([a*a for a,b in pairs])-ez*ez
+    assert ez==F(1,n) and ew==F(1,m)
+    assert variance==F(2*(n-1),n**3)
+    assert covariance==F(2*(n-1),n*m*m)
+    print(n,m,covariance)
+```
+
+Logarithm에서도 E[log Rhat]와 log E[Rhat]는 다르다. 기대 위험이 양수여도 실현 추정값은 0일 수 있다. 짝수 prefix의 Rademacher 합은 양의 확률로 정확히 0이고 K개 repetition 모두 0일 확률도 양수라 log-risk 기대가 음의 무한일 수 있다. UI는 0 위험 점을 descriptive slope에서 빼고 인위적 floor를 더하지 않지만, 그 선택을 불편 population 지수 추정이라고 해석해서는 안 된다. 이 공분산 식은 이상적인 독립 부호 모형에 대한 것이며 유한 seed 생성기 전체의 정확한 확률 법칙이라는 주장은 아니다.
+
 ## 손계산과 직접 풀기
 
 Sigma=1,b=0,noise floor 없음이면 N=128의 기대 risk는 1/128=.0078125입니다. Prediction noise floor를 더하면 1.0078125입니다. 후자의 큰 N 기울기가 거의 0인 것은 추정기가 갑자기 학습을 멈췄기 때문이 아니라 총 위험의 바닥이 지배하기 때문입니다.

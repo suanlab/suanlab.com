@@ -31,6 +31,40 @@ $$
 
 이 때문에 posterior를 데이터로 골라도 되며 미리 정한 그리드 안의 lambda 선택도 보정됩니다. 연속적인 모든 lambda를 공짜로 사후 최적화하거나 prior까지 자유롭게 데이터로 고르는 결론은 아닙니다.
 
+## Gibbs 최적화와 Prior Family 선택 비용
+
+Beta>0, 양의 고정 prior에서 log(q_beta/pi)=−beta*r−log Z를 KL(q||q_beta)에 넣고 정리하면
+
+$$
+E_q r+\frac{\mathrm{KL}(q\Vert\pi)}\beta=-\frac{\log Z}\beta+\frac{\mathrm{KL}(q\Vert q_\beta)}\beta.
+$$
+
+마지막 KL의 비음수성으로 Gibbs 분포가 분포 위의 regularized empirical 목적함수를 최소화함을 증명한다. 이것이 참 Bayesian 사후나 population 최소자를 식별한다는 뜻은 아니다. 코드는 최적점의 등식뿐 아니라 세 후보 분포에서 전체 항등식을 검사한다.
+
+미리 선언한 유한 prior family도 비용을 지불하면 데이터를 본 뒤 고를 수 있다. Prior j에 고정 양의 질량 w_j를 주고 합을 1로 둔다. 각 prior/grid 쌍에 실패 확률 delta*w_j/8을 배정하면 기존 moment·union 논증의 log(8/delta)가 log(8/(delta*w_j))로 바뀐다. 한 사건에서 모든 posterior와 family/grid 선택을 제어한다. 관측 label을 보고 임의로 만들어 낸 prior까지 허용하는 결과는 아니다.
+
+| 고정 Prior-family 비중 | 추가 분자 비용 |
+|---|---:|
+| 1/2 | log 2 |
+| 1/4 | log 4 |
+| 1/8 | log 8 |
+
+```python
+from math import exp,log
+prior=[.5,.3,.2];risk=[0,.25,.75];beta=2
+Z=sum(p*exp(-beta*r) for p,r in zip(prior,risk))
+gibbs=[p*exp(-beta*r)/Z for p,r in zip(prior,risk)]
+def kl(q,p):return sum(a*log(a/b) for a,b in zip(q,p))
+for q in (prior,[1/3]*3,gibbs):
+    objective=sum(a*r for a,r in zip(q,risk))+kl(q,prior)/beta
+    certificate=-log(Z)/beta+kl(q,gibbs)/beta
+    assert abs(objective-certificate)<1e-14
+    assert objective>=-log(Z)/beta-1e-14
+    print(objective,kl(q,gibbs)/beta)
+```
+
+현재 조절기는 이 family 확장이 아니라 선언한 prior 하나를 쓴다. 작은 tilt의 KL은 정규화 Gibbs log-ratio u와 convex generator exp(u)*u−expm1(u)로 계산한다. 급수의 시작은 u²/2+u³/3으로, 직접 합의 음수를 0으로 clip하는 대신 양의 이차 효과를 보존한다. 해석적 Gibbs KL은 표시 확률의 정밀도보다 작은 tilt도 구별한다. 기존 q*log(q/pi) 합은 `expandedKL`에 남긴다. 둘 다 binary64 계산이며 interval 인증이나 임의 정밀도 결과는 아니다.
+
 ## 손계산과 직접 풀기
 
 N=32, delta=.05, lambda=32, beta=0이면 penalty는 log(160)/32+1/8≈0.2836입니다. 이 값을 실제 Gibbs empirical 위험에 더합니다. 1을 넘으면 bounded risk의 자명한 상한 1로 clip할 수 있지만 원래 상한도 readout에 남겨 vacuity를 숨기지 않습니다.

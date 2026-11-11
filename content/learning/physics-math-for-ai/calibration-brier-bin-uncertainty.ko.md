@@ -35,6 +35,40 @@ $$
 
 Perfect aggregate 점 하나가 stratum 내부의 calibration을 증명하지 못합니다. 평균을 낸 뒤 절댓값을 취하는 것과 절댓값을 평균내는 것은 다릅니다. 이 상황의 Brier는 약 .495로 여전히 나쁩니다.
 
+## Recalibration은 직교 사영이고 Bin 병합은 진단이다
+
+보고한 score를 P, C(P)=E[Y|P]라 하자. Y−P=(Y−C)+(C−P)를 제곱하고 교차항을 P에 조건부로 평균내면 E[Y−C|P]=0이므로
+
+$$
+E[(Y-P)^2]=E[(Y-C(P))^2]+E[(C(P)-P)^2].
+$$
+
+Score를 C로 바꾸면 기대 Brier가 정확히 두 번째 항만큼 개선된다. Tower property로 E[Y|C]=C도 성립한다. 진짜 조건부 확률을 알아야 하는 oracle 결과이며 같은 label에서 C를 추정하고 평가하면 과적합할 수 있다.
+
+상수 E[Y]도 calibrated이므로 calibration만으로 resolution·유용한 판별력을 증명할 수 없다. 뒤집은 세 stratum 예제에서 실제 recalibration은 score를 (.85,.5,.15)로 바꾼다. 반면 진단 bin 병합은 원래 (.15,.5,.85) 예측을 그대로 둔다.
+
+| 뒤집은 예제의 절차 | 진단 ECE | 기대 Brier |
+|---|---:|---:|
+| 원래 Score와 별도 Bin | 7/15 | 99/200 |
+| 같은 Score와 합친 진단 | 0 | 99/200 |
+| Score를 참 C(P)로 교체 | 0 | 101/600 |
+
+![실제로 다른 세 score 정책의 기대 Brier를 고유 label 분산과 확률 예측 오차로 구분한 비교 그림.](/assets/learning/theory-calibration-ko.svg)
+
+```python
+from fractions import Fraction as F
+p=[F(3,20),F(1,2),F(17,20)];q=list(reversed(p))
+def brier(scores):return sum((b*(1-a)**2+(1-b)*a*a for a,b in zip(scores,q)),F(0))/3
+intrinsic=sum((b*(1-b) for b in q),F(0))/3
+projection=sum(((a-b)**2 for a,b in zip(p,q)),F(0))/3
+assert brier(p)==intrinsic+projection==F(99,200)
+assert brier(q)==intrinsic==F(101,600)
+assert sum(p)==sum(q) and sum(abs(a-b) for a,b in zip(p,q))/3==F(7,15)
+for scores in (p,[F(1,2)]*3,q):print(scores,brier(scores))
+```
+
+그림은 상수 1/2 predictor를 포함한 실제 score 정책을 비교한다. 가운데 막대는 진단 bin만 합친 결과가 아니다. 검증 label과 독립적으로 고정한 B개 bin, 각각 독립 Bernoulli 결과 N개에서는 sqrt(log(2B/delta)/(2N))의 union Hoeffding 반경으로 모든 bin 평균을 동시에 제어한다. Bin count가 무작위이면 조건부 또는 count를 고려한 경계가 필요하며 adaptive temperature·bin 선택은 별도 평가가 필요하다. 기존 고정 stratum 분산 자체가 동시 confidence interval은 아니다.
+
 ## 손계산과 직접 풀기
 
 q=p=[.15,.5,.85]이면 확률 오차 성분은 0이고 평균 intrinsic variance는 (.1275+.25+.1275)/3≈.16833입니다. Hard accuracy는 (.85+.5+.85)/3≈.73333입니다. Perfect calibration과 완벽한 정확도는 같은 조건이 아닙니다.

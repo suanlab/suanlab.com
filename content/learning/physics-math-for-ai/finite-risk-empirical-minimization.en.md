@@ -23,6 +23,44 @@ $$
 
 Even this oracle cannot remove intrinsic label noise. A realized sample ERM can nevertheless have empirical error below or above epsilon. The inequality E[min Rhat]≤min E[Rhat] concerns expectations, not every dataset. Forcing every observed generalization gap to be positive would distort the data. The readout keeps its signed value.
 
+## From uniform control to an oracle inequality
+
+Suppose the whole fixed class satisfies |R(h)−Rhat(h)|≤e on one event. Let h* minimize population risk and let the learner return an approximate ERM with empirical suboptimality at most a. Insert the two empirical risks between the population risks:
+
+$$
+R(\widehat h)-R(h^*)\le [R(\widehat h)-\widehat R(\widehat h)]+a+[\widehat R(h^*)-R(h^*)]\le2e+a.
+$$
+
+The event controls the data-selected hypothesis because it holds simultaneously over the class. For M fixed [0,1]-loss hypotheses and IID data, a two-sided Hoeffding union bound gives e=sqrt(log(2M/delta)/(2N)). This is an upper bound, possibly larger than the loss range, rather than the exact observed gap.
+
+In the realizable case with a zero-risk member and exact consistency, a different argument is faster. A fixed hypothesis of risk above e survives N labels without a mistake with probability at most (1−e)^N≤exp(−Ne). Union-bound those bad hypotheses to obtain an excess-risk guarantee at scale log(M/delta)/N. Noise or failure to find a consistent member invalidates that step; it cannot be inferred merely from a low training loss.
+
+The auxiliary two-input world below has Y=X, equal input masses and three increasing thresholds. The smallest-threshold ERM is wrong only when all observations equal one. Its failure probability is exactly 2^(−N), independently enumerated rather than inferred from a bound.
+
+| N in the auxiliary world | Probability ERM has positive excess |
+|---|---:|
+| 1 | 1/2 |
+| 2 | 1/4 |
+| 4 | 1/16 |
+
+```python
+from itertools import product
+from fractions import Fraction as F
+for N in (1,2,4):
+    failure=F(0)
+    risk=[F(1,2),F(0),F(1,2)]
+    for sample in product((0,1),repeat=N):
+        empirical=[F(sum(int(x>=t)!=x for x in sample),N) for t in range(3)]
+        chosen=min(range(3),key=empirical.__getitem__)
+        uniform=max(abs(a-b) for a,b in zip(risk,empirical))
+        assert risk[chosen]<=2*uniform
+        if risk[chosen]>0:failure+=F(1,2**N)
+    assert failure==F(1,2**N)
+    print(N,failure)
+```
+
+The current six-threshold lab uses a different five-input world and actual seeded realizations. Its known population curve is a teaching oracle. Selecting a class, stopping rule or repeated test-set query after inspecting data requires its own simultaneous control or independent evaluation. The deterministic generator supplies reproducible IID-model illustrations; its finite seed set is not the probability space of these theorems.
+
 ## Worked example and exercise
 
 Without noise, population risks from threshold zero through five are [0.4,0.2,0,0.2,0.4,0.6]. At N=1 and seed seven, the actual sample is (x=0,y=0). Thresholds one through five all have zero training error, so the tie rule selects one. Its population risk is 0.2. This is a minimal example of zero training error without zero generalization error.

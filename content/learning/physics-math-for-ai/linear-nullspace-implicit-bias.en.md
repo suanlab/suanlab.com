@@ -28,6 +28,38 @@ $$
 
 Zero initialization has no nullspace component, selecting yx/||x||², the minimum Euclidean norm. A different gradient metric, momentum rule, parameterization or nonlinear network need not select the same object. Eta zero does not learn; a boundary multiplier of minus one generally oscillates rather than damps.
 
+## The selected norm follows the optimization metric
+
+Replace Euclidean GD by w_next=w−eta*P*x*(xᵀw−y), where P is fixed symmetric positive definite. Residuals contract by 1−eta*xᵀPx. Under the strict stability condition, summing the row-direction increments gives
+
+$$
+w_\infty=w_0+\frac{y-x^Tw_0}{x^TPx}Px.
+$$
+
+A Lagrange-multiplier calculation minimizes (w−w0)ᵀP^(−1)(w−w0)/2 subject to xᵀw=y and produces exactly that limit. Any other feasible perturbation z has xᵀz=0, so its cross term with w_infinity−w0 in the inverse metric is zero. Pythagoras proves uniqueness and optimality in that metric.
+
+For x=(1,1), y=1 and zero initialization, diagonal preconditioners change the solution even though every solution fits the same equation. This explains why a change of parameter scale can change an optimizer's implicit choice.
+
+| Diagonal P | Selected solution |
+|---|---|
+| (1,1) | (1/2,1/2) |
+| (4,1) | (4/5,1/5) |
+| (1,4) | (1/5,4/5) |
+
+```python
+from fractions import Fraction as F
+for diagonal in ((1,1),(4,1),(1,4)):
+    a,b=map(F,diagonal);solution=(a/(a+b),b/(a+b))
+    norm=lambda w:w[0]**2/a+w[1]**2/b
+    for t in (F(-1),F(0),F(2,3),F(1)):
+        alternative=(t,1-t)
+        difference=tuple(u-v for u,v in zip(alternative,solution))
+        assert norm(alternative)==norm(solution)+norm(difference)
+    print(diagonal,solution)
+```
+
+The code checks the inverse-metric Pythagorean identity at feasible alternatives using exact fractions. The live controls still implement Euclidean GD; the preconditioner is an auxiliary derivation. Euclidean null projections need not be preserved by a general P. What remains invariant is every vᵀP^(−1)w with xᵀv=0. Momentum, changing metrics and nonlinear networks require separate arguments; equal interpolation is insufficient to transfer a norm-selection theorem.
+
 ## Worked example and exercise
 
 With a=b=y=1 and eta=.25, residual multiplier is .5. From zero, the first two states are (.25,.25) and (.375,.375), converging to (.5,.5). Starting instead at (1,-1) adds the same row-space increments and converges to (1.5,-.5). Both limiting weights sum to one.

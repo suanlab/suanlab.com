@@ -30,6 +30,43 @@ $$
 
 Its maximum absolute value on [-1,1] is attained at an endpoint. Blue and orange show the actual loss functions. The signed query change and endpoint supremum are reported separately. One small query change cannot replace a full test-interval supremum or a uniform-over-datasets statement.
 
+## Prove the expected gap with a ghost observation
+
+Let S contain IID labels Y_1,...,Y_N, and let Y'_i be an independent replacement. Write S^(i) for the replaced dataset. Exchanging Y_i and Y'_i in their identical joint law gives
+
+$$
+E[R(A(S))-\widehat R_S(A(S))]=\frac1N\sum_i E[\ell(A(S^{(i)}),Y_i)-\ell(A(S),Y_i)].
+$$
+
+If every neighboring pair and every test label have loss change at most beta, the absolute expectation is at most beta. The proof needs a property of the whole learning algorithm, not the selected deterministic neighbor shown in the lab. It also does not bound every realized gap pointwise by beta.
+
+For an auxiliary IID fair-label world, w=Ybar/(1+lambda). Population minus empirical half-squared risk is w*Ybar, so its exact expectation is 1/(N*(1+lambda)). Enumerating all label datasets verifies the exchange argument numerically at small N.
+
+| N with lambda=1 | Exact expected gap | Existing uniform upper bound |
+|---|---:|---:|
+| 1 | 1/2 | 2 |
+| 2 | 1/4 | 1 |
+| 4 | 1/8 | 1/2 |
+
+```python
+from itertools import product
+from fractions import Fraction as F
+for N in (1,2,4):
+    gaps=[]
+    for labels in product((-1,1),repeat=N):
+        mean=F(sum(labels),N);w=mean/2
+        population=(w*w+1)/2
+        empirical=sum(((w-y)**2/2 for y in labels),F(0))/N
+        assert population-empirical==w*mean
+        gaps.append(population-empirical)
+    expected=sum(gaps,F(0))/2**N
+    bound=min(F(2),F(2,N))
+    assert expected==F(1,2*N) and expected<=bound
+    print(N,expected,bound)
+```
+
+The selected-neighbor diagnostic now factors loss change as delta*((v+w)/2−y), with delta=(replacement−first)/(N*(1+lambda)). It avoids subtracting two nearly identical losses or rounded weights. A nonzero analytical neighbor change can survive when both rounded loss values agree; `expandedDifference` preserves their actual direct subtraction. The actual learned weights and loss curves remain separately available. Stability bounds and expected performance should still be distinguished from measurement sensitivity or claims about changes to features and architectures.
+
 ## Worked example and exercise
 
 For N=2, lambda=1, datasets [-1,.5] and [1,.5] give w=-.125 and v=.375. At y=-1 the loss change is .5625; at y=1 it is -.4375. The exact neighboring supremum is .5625, while the uniform bound 4/(2·2)=1 is more conservative.
