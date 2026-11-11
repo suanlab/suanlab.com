@@ -35,6 +35,79 @@ There are 2ᴺ source words but only 2ᴺ−1 strings shorter than N. Pigeonhole
 
 For AI checkpoints, include codebooks, scales, indices and format metadata in reported compression. Lossy quantization changes the exact-reconstruction requirement. Correcting transmission damage is a separate coding problem.
 
+## A fixed external length permits prefix decoding
+
+At the same N, raw streams have fixed length N+1 and a different first bit from RLE. Every w-bit RLE token adds a positive run length. Reaching total N terminates the codeword. Appending another token to a valid RLE stream would exceed N, so it cannot create another valid stream. Thus valid streams are prefix-free when the same external N is shared. This does not permit mixing N=8 and N=16 without communicating the distinction.
+
+A source with r runs has two choices of first bit and r−1 boundaries among N−1 gaps: 2·binom(N−1,r−1) possibilities. The binomial theorem gives the Kraft sum of all canonical RLE streams:
+
+$$
+S_{\mathrm{RLE}}=\sum_{r=1}^N2{N-1\choose r-1}2^{-(2+wr)}
+=2^{-1-w}(1+2^{-w})^{N-1}.
+$$
+
+Raw streams contribute 1/2. Selecting only the shorter representation uses a subset of the two valid code families and remains prefix-free. Decodability also makes the selected outputs distinct for different sources.
+
+## Count how often uniform sources actually shrink
+
+Each selected codeword of length at most N−s contributes at least 2⁻⁽ᴺ⁻ˢ⁾ to its Kraft sum. There can be at most 2ᴺ⁻ˢ such words. A uniformly distributed N-bit source therefore saves at least s bits with probability at most 2⁻ˢ:
+
+$$
+P_{\mathrm{uniform}}[L(E(X))\le N-s]\le2^{-s}.
+$$
+
+This is neither an assertion that real data are uniform nor a universal compression-rate limit for nonuniform data.
+
+| N | Minimum length | Uniform mean length | Fraction shortened | Selected-code Kraft sum |
+|---|---|---|---|---|
+| 8 | 5 | 8.914062 | .007812 | .585938 |
+| 16 | 6 | 16.986847 | .003693 | .571518 |
+
+The rounded table comes from exhaustive evaluation of the current raw/RLE selection rule. The code reconstructs all 256 and 65,536 sources, checks prefixes in length order and computes exact-fraction Kraft sums. Constant sources can shrink substantially while uniform average length still includes protocol cost. Report the source distribution and structure when evaluating compression.
+
+**Exercise:** Can uniform average length fall below N here? **Explanation:** No: a prefix lossless code has average length at least H(X)=N. Shortening a few individual inputs does not contradict the average bound.
+
+```python
+from collections import Counter
+from fractions import Fraction as F
+from itertools import groupby
+
+for n in [8,16]:
+    width=n.bit_length()-1
+    codes={}
+    for value in range(2**n):
+        source=f'{value:0{n}b}'
+        runs=[len(list(g)) for _,g in groupby(source)]
+        raw='0'+source
+        rle='1'+source[0]+''.join(f'{length-1:0{width}b}' for length in runs)
+        encoded=rle if len(rle)<len(raw) else raw
+        if encoded[0]=='0': restored=encoded[1:]
+        else:
+            bit=encoded[1];restored=''
+            for i in range(2,len(encoded),width):
+                restored+=bit*(int(encoded[i:i+width],2)+1)
+                bit='1' if bit=='0' else '0'
+        assert restored==source and encoded not in codes
+        codes[encoded]=source
+    # Increasing length makes any prefix conflict visible in the seen set.
+    seen=set()
+    for code in sorted(codes,key=len):
+        assert not any(code[:i] in seen for i in range(len(code)))
+        seen.add(code)
+    histogram=Counter(map(len,codes))
+    kraft=sum(F(count,2**length) for length,count in histogram.items())
+    assert kraft<=1
+    for saving in [1,2,3]:
+        short=sum(count for length,count in histogram.items() if length<=n-saving)
+        assert F(short,2**n)<=F(1,2**saving)
+    average=sum(F(length*count,2**n) for length,count in histogram.items())
+    short=sum(count for length,count in histogram.items() if length<n)
+    print('N, shortest, longest, uniform mean length, shortened fraction, Kraft sum:',
+          n,min(histogram),max(histogram),round(float(average),6),
+          round(short/2**n,6),round(float(kraft),6))
+```
+
+
 ## Exercises with explanations
 
 1. How long is a uniform eight-bit word? **Five bits:** one mode bit, one value bit and three length bits.

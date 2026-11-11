@@ -33,6 +33,77 @@ $$
 
 AI 체크포인트의 압축률도 가중치 본체뿐 아니라 코드북·스케일·인덱스·모형 버전을 포함해야 합니다. 손실 양자화는 정확한 원본 복원이라는 현재 조건을 바꿉니다. 전송 중 오류를 고치는 것은 별도의 오류정정부호 문제입니다.
 
+## 외부 길이가 고정되면 prefix 해독도 가능하다
+
+같은 N에서 raw는 길이 N+1로 고정이고, RLE와 첫 비트가 다릅니다. RLE에서는 w비트 토큰을 읽을 때마다 양의 run 길이가 늘어납니다. 합이 N에 도달하면 그 부호어가 끝납니다. 이미 유효한 RLE 뒤에 토큰을 더 붙이면 합이 N을 넘으므로 또 다른 유효 부호어가 될 수 없습니다. 따라서 같은 외부 N을 공유하는 유효 stream 집합은 prefix-free입니다. N=8과 16을 아무 표시 없이 섞어도 된다는 주장은 아닙니다.
+
+Run이 r개인 N비트 원본은 첫 비트 두 선택과 N−1개 틈 중 r−1개 경계 선택으로 2·binom(N−1,r−1)개입니다. 모든 canonical RLE의 Kraft 합은 이항정리로 다음과 같습니다.
+
+$$
+S_{\mathrm{RLE}}=\sum_{r=1}^N2{N-1\choose r-1}2^{-(2+wr)}
+=2^{-1-w}(1+2^{-w})^{N-1}.
+$$
+
+Raw의 Kraft 합은 1/2입니다. 더 짧은 방식만 선택하는 인코더는 두 유효 집합의 부분집합을 사용하므로 역시 prefix-free입니다. 서로 다른 원본의 출력은 복호 가능성 때문에 달라야 합니다.
+
+## 균등 원본에서 절약하는 비율까지 세기
+
+Kraft 부등식에서 길이가 N−s 이하인 선택 부호어 하나는 합에 최소 2⁻⁽ᴺ⁻ˢ⁾만큼 기여합니다. 따라서 그 개수는 2ᴺ⁻ˢ 이하이고, 균등 N비트 원본이 s비트 이상 줄어들 확률은 2⁻ˢ 이하입니다. 이는 실제 자료가 균등이라는 주장도, 모든 비균등 데이터의 압축률 한계도 아닙니다.
+
+$$
+P_{\mathrm{uniform}}[L(E(X))\le N-s]\le2^{-s}.
+$$
+
+| N | 최소 길이 | 균등 평균 길이 | 실제로 짧아진 비율 | 선택 코드 Kraft 합 |
+|---|---|---|---|---|
+| 8 | 5 | 8.914062 | .007812 | .585938 |
+| 16 | 6 | 16.986847 | .003693 | .571518 |
+
+표는 현재 raw/RLE 선택 규칙의 전수조사 결과이며 반올림했습니다. 코드가 256개와 65,536개 원본 모두를 복원하고, 길이순 prefix 검사·정확분수 Kraft 합을 확인합니다. 구조적인 상수열은 크게 줄어도 균등 평균에서는 프로토콜 비용이 남습니다. 소스의 분포나 실제 구조를 밝히고 압축률을 평가해야 하는 이유입니다.
+
+**직접 풀기:** 균등 분포의 평균 코드 길이를 N보다 작게 만들 수 있나요? **해설:** 이 조건의 prefix 무손실 부호에서는 평균 길이≥H(X)=N입니다. 선택 코드가 더 짧은 몇 입력을 갖는 것과 평균 한계는 모순되지 않습니다.
+
+```python
+from collections import Counter
+from fractions import Fraction as F
+from itertools import groupby
+
+for n in [8,16]:
+    width=n.bit_length()-1
+    codes={}
+    for value in range(2**n):
+        source=f'{value:0{n}b}'
+        runs=[len(list(g)) for _,g in groupby(source)]
+        raw='0'+source
+        rle='1'+source[0]+''.join(f'{length-1:0{width}b}' for length in runs)
+        encoded=rle if len(rle)<len(raw) else raw
+        if encoded[0]=='0': restored=encoded[1:]
+        else:
+            bit=encoded[1];restored=''
+            for i in range(2,len(encoded),width):
+                restored+=bit*(int(encoded[i:i+width],2)+1)
+                bit='1' if bit=='0' else '0'
+        assert restored==source and encoded not in codes
+        codes[encoded]=source
+    # Increasing length makes any prefix conflict visible in the seen set.
+    seen=set()
+    for code in sorted(codes,key=len):
+        assert not any(code[:i] in seen for i in range(len(code)))
+        seen.add(code)
+    histogram=Counter(map(len,codes))
+    kraft=sum(F(count,2**length) for length,count in histogram.items())
+    assert kraft<=1
+    for saving in [1,2,3]:
+        short=sum(count for length,count in histogram.items() if length<=n-saving)
+        assert F(short,2**n)<=F(1,2**saving)
+    average=sum(F(length*count,2**n) for length,count in histogram.items())
+    short=sum(count for length,count in histogram.items() if length<n)
+    print('N, shortest, longest, uniform mean length, shortened fraction, Kraft sum:',
+          n,min(histogram),max(histogram),round(float(average),6),
+          round(short/2**n,6),round(float(kraft),6))
+```
+
+
 ## 확인 문제와 해설
 
 1. N=8에서 상수열 길이는? **5비트입니다.** 헤더 1, 첫 비트 1, 길이 3비트입니다.

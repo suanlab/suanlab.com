@@ -30,6 +30,66 @@ $$
 
 AI가 찾은 압축 설명·프로그램·모형은 실행해 검증할 수 있지만, 탐색 예산이 작은 경우 성능 격차를 곧바로 표현력 한계로 해석하면 안 됩니다. 비교하는 탐색 순서·허용 언어·후보 평가 비용·복원 조건을 맞춰야 합니다.
 
+## 언제 발견한 상한을 최적값이라고 인증할까
+
+고정한 유한 후보 집합에서 이미 길이 b의 유효 설명을 찾았다고 합시다. 길이 b 미만인 모든 후보를 실행했고 어느 것도 목표를 출력하지 않았다면, b가 그 집합의 최솟값입니다. 나머지 같은 길이·더 긴 프로그램의 출력은 몰라도 됩니다. 이는 충분한 인증 규칙이며 다른 구조적 지식으로 더 일찍 증명하는 가능성을 배제하지 않습니다.
+
+짧은 순서에서는 첫 일치 전에 모든 더 짧은 후보를 검사해 자동으로 인증합니다. Literal 우선의 0은 첫 검사에서 9비트를 찾지만 짧은 22개 후보가 남아 인증할 수 없습니다. 257번째에서 길이 3을 찾으면 허용된 최소 프로그램 길이가 3이므로 남은 출력을 몰라도 인증됩니다.
+
+| target | 검사 수 | 순서 | 발견 길이 | 짧은 후보 완전 검사 인증 |
+|---|---|---|---|---|
+| 0 | 1 | literal | 9 | 아니요 |
+| 0 | 257 | literal | 3 | 예 |
+| 173 | 174 | literal | 9 | 아니요 |
+| 173 | 278 | literal | 9 | 예 |
+| 51 | 266 | literal | 8 | 예 |
+| 173 | 196 | shortest | 9 | 예 |
+
+표는 별도의 실행 코드가 후보 목록과 방문 집합으로 확인한 결과입니다. 화면에 새 인증 제어를 추가한 것은 아닙니다. 유한 oracle은 비교 기준으로 따로 계산하며, oracle을 미리 안다는 이유로 탐색 비용을 무료 처리하지 않습니다.
+
+## 길이 제한과 시간 제한을 함께 명시하기
+
+보편 기계라도 프로그램 길이≤B, 각 실행 단계≤T로 두 제한을 모두 명시하면 유한 시뮬레이션으로 다음 값을 계산할 수 있습니다.
+
+$$
+K_{U}^{\le B,T}(x)=\min\{|p|:|p|\le B,\ U(p)=x\text{ within }T\text{ steps}\}.
+$$
+
+집합이 비면 이 제한 문제의 최솟값은 없으며 관례상 +∞로 둘 수 있습니다. 이것은 무제한 K_U(x)가 무한이라는 뜻이 아닙니다. B 또는 T를 늘리면 허용 집합이 커지므로 발견된 최솟값은 증가하지 않습니다. 고정된 유효 literal 프로그램이 실행할 수 있을 만큼 큰 T를 택하면 유한 상한도 생깁니다. 하지만 모든 x에 대해 무제한 최적점에 이미 도달한 T를 인증하는 보편 절차는 앞 계산 불가능성 정리와 양립하지 않습니다.
+
+현재 UI의 예산은 즉시 종료하는 유한 명령의 검사 개수입니다. 위 정의의 T와 같다고 간주하지 않습니다. 연구에서는 생성 모형의 표현력, 탐색 순서, 실제 실행 비용과 최적성 인증을 따로 기록하는 것이 유용합니다.
+
+**직접 풀기:** 길이 8인 설명을 찾은 뒤 남은 프로그램이 모두 길이≥8이면 그 출력도 실행해야 하나요? **해설:** 최단 길이 인증에는 필요하지 않습니다. 다만 같은 최단 길이의 모든 프로그램을 찾는 다른 목적에는 필요할 수 있습니다.
+
+```python
+from fractions import Fraction as F
+
+def programs():
+    out=[('0'+f'{x:08b}',x) for x in range(256)]
+    out += [('10'+str(x),255*x) for x in range(2)]
+    out += [('110'+f'{x:02b}',int(f'{x:02b}'*4,2)) for x in range(4)]
+    out += [('1110'+f'{x:04b}',int(f'{x:04b}'*2,2)) for x in range(16)]
+    return out
+
+def certificate(target,budget,shortest_first=False):
+    family=programs()
+    if shortest_first: family.sort(key=lambda row:(len(row[0]),row[0]))
+    visited=family[:budget]
+    best=min((len(code) for code,x in visited if x==target),default=None)
+    # Sufficient certificate: every strictly shorter candidate was executed.
+    certified=best is not None and all(len(code)>=best for code,x in family[budget:])
+    oracle=min(len(code) for code,x in family if x==target)
+    if certified: assert best==oracle
+    return best,certified
+
+for target,budget,shortest in [(0,1,False),(0,257,False),(173,174,False),
+                               (173,278,False),(51,266,False),(173,196,True)]:
+    best,certified=certificate(target,budget,shortest)
+    print('target, budget, shortest-first, best found, certified:',
+          target,budget,shortest,best,certified)
+```
+
+
 ## 확인 문제와 해설
 
 1. 0의 9비트 설명을 찾으면 최단인가요? **literal 먼저 예산 1에서는 아닙니다.** 같은 유한 언어에 길이 3인 명령이 있습니다.

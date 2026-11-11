@@ -33,6 +33,53 @@ n=5, 전송 0, mask=3은 앞 두 위치만 1인 수신열입니다. K=2이므로
 
 연속된 장치 장애처럼 오류가 상관되면 이항식은 맞지 않습니다. 분산 학습에서 복제본을 여러 개 만드는 것 역시 독립 실패를 보장하지 않습니다. 공통 원인의 장애와 통신량·지연을 함께 평가해야 합니다.
 
+## 거리 보장과 Chernoff 확률 상계
+
+두 부호어의 반경 t인 Hamming 공이 겹친다면 삼각 부등식으로 두 중심 거리는 2t 이하입니다. 따라서 최소 거리 d>2t이면 공들이 겹치지 않아 그 반경의 임의 오류를 유일하게 정정합니다. 독립성은 이 거리 논증에 필요하지 않습니다. 독립성이 필요한 것은 그 공 밖으로 나갈 확률을 계산할 때입니다.
+
+홀수 n≥3에서 독립 Bernoulli 오류의 K 합과 q=(n+1)/(2n)를 둡니다. 0<ε<1/2, λ>0에서 Markov 부등식과 MGF를 쓰면 P(K≥nq)≤$e^{-\lambda nq}(1-\varepsilon+\varepsilon e^\lambda)^n$입니다. 최적 λ=ln[q(1−ε)/(ε(1−q))]를 대입하면
+
+$$
+P_e\le e^{-nD(q\Vert\varepsilon)},\qquad
+D(q\Vert\varepsilon)=q\ln\frac q\varepsilon+(1-q)\ln\frac{1-q}{1-\varepsilon}.
+$$
+
+q를 단순히 1/2로 바꾼 더 느슨한 상계도 가능합니다. 위 식은 홀수 n의 실제 실패 문턱을 사용합니다. 지수의 로그는 자연로그이고 전송률의 비트 단위와 구분합니다.
+
+| n, ε=.1 | 정확한 독립 오류 | Chernoff 상계 | 동시 반전 오류 |
+|---|---|---|---|
+| 3 | .028000000 | .060750000 | .1 |
+| 5 | .008560000 | .023437500 | .1 |
+| 9 | .000890920 | .003177332 | .1 |
+
+모든 위치가 함께 뒤집히는 모형은 위치별 오류율이 똑같이 .1이지만 Pₑ=.1입니다. 표의 마지막 열을 이항 상계에 넣어서는 안 됩니다. 코드는 정확분수 꼬리와 지수 상계를 비교합니다.
+
+고정 ε<.5에서 n이 늘면 독립 오류는 작아지지만 반복 부호의 전송률 1/n도 0으로 갑니다. 양의 용량에 가까운 전송률을 유지하며 신뢰도를 높이는 부호와는 다른 목표입니다.
+
+수치 범위도 구분합니다. 예를 들어 n=9, ε=10⁻¹⁰⁰에서는 실패 확률이 양수지만 binary64 표현 범위 아래입니다. 이 경우 선택 확률 수치는 —·수치 안내로 표시합니다. ε=0인 실제 무오류의 0과 다릅니다.
+
+**직접 풀기:** 더 긴 반복 부호가 항상 더 높은 용량을 만드나요? **해설:** 아닙니다. 채널 용량은 채널 법칙의 성질입니다. 반복 길이는 사용하는 코드의 전송률과 오류를 바꿉니다.
+
+```python
+from fractions import Fraction as F
+from math import comb, log, exp
+
+epsilon=F(1,10)
+for n in [3,5,9]:
+    threshold=(n+1)//2
+    exact=sum(F(comb(n,k))*epsilon**k*(1-epsilon)**(n-k)
+              for k in range(threshold,n+1))
+    q=threshold/n
+    divergence=q*log(q/float(epsilon))+(1-q)*log((1-q)/(1-float(epsilon)))
+    bound=exp(-n*divergence)
+    assert float(exact)<=bound
+    # Correlated model: all positions flip together with probability epsilon.
+    correlated=epsilon
+    print('n, rate, exact independent error, Chernoff bound, common-flip error:',
+          n,round(1/n,6),round(float(exact),9),round(bound,9),float(correlated))
+```
+
+
 ## 확인 문제와 해설
 
 1. n=7은 몇 오류까지 보장하나요? **3개입니다.** 반경 3의 두 Hamming 공은 거리가 7인 두 부호어 사이에서 겹치지 않습니다.

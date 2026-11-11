@@ -1,5 +1,6 @@
 import type { MeasureResult } from './learning-measure';
 import type { Vec2 } from './learning-simulations';
+import { binaryEntropy, bernoulliChannelInformation } from './learning-information';
 
 export const codingKinds = ['binary-channel-capacity', 'repetition-error-correction', 'hamming-linear-codes', 'lossless-compression-reconstruction', 'finite-description-length', 'kolmogorov-uncomputability', 'two-part-mdl-selection', 'budgeted-description-search', 'communication-fingerprints'] as const;
 export type CodingKind = typeof codingKinds[number];
@@ -7,8 +8,7 @@ export const isCodingKind = (kind: string): kind is CodingKind =>
   (codingKinds as readonly string[]).includes(kind);
 
 export function binaryEntropyBits(p: number): number {
-  if (!Number.isFinite(p) || p < 0 || p > 1) throw new Error('Use a probability in [0,1].');
-  return p === 0 || p === 1 ? 0 : -p * Math.log2(p) - (1 - p) * Math.log2(1 - p);
+  return binaryEntropy(p);
 }
 
 /** Joint rows are P(X=x,Y=y), with erasure output at column 2 for BEC. */
@@ -20,8 +20,8 @@ export function binaryChannel(inputOne: number, noise: number, erasure: boolean)
     : [[(1-inputOne)*(1-noise), (1-inputOne)*noise], [inputOne*noise, inputOne*(1-noise)]];
   const output = joint[0].map((_, y) => joint[0][y]+joint[1][y]);
   const mutualInformation = erasure ? (1-noise)*binaryEntropyBits(inputOne)
-    : noise === .5 || inputOne === 0 || inputOne === 1 ? 0 : binaryEntropyBits(noise+(1-2*noise)*inputOne)-binaryEntropyBits(noise);
-  const capacity = erasure ? 1-noise : 1-binaryEntropyBits(noise);
+    : bernoulliChannelInformation(inputOne,noise);
+  const capacity = erasure ? 1-noise : bernoulliChannelInformation(.5,noise);
   return { joint, output, mutualInformation, capacity };
 }
 
@@ -33,16 +33,18 @@ export function evaluateCoding(kind: CodingKind, values: number[]): MeasureResul
   }
   const [mode, p, noise] = values;
   const r = binaryChannel(p, noise, mode === 1);
+  const underflow=r.mutualInformation===0&&p>0&&p<1&&(mode===1?noise<1:noise!==.5);
   const curve: Vec2[] = Array.from({length:101}, (_,i) => [i/100, binaryChannel(i/100,noise,mode===1).mutualInformation]);
   const rows = r.joint.flatMap((row,x) => row.map((v,y) => [x,y===2?'erasure':y,v,r.output[y]]));
   return {
     plot: 'continuous',
+    warning: underflow?'numeric-range':undefined,
     statement: `${mode === 1 ? 'BEC' : 'BSC'}; independent stationary channel uses; P(X=1)=${p}; noise=${noise}. Capacity is asymptotic bits per channel use.`,
-    stats: {'I(X;Y) (bits/use)':r.mutualInformation,'capacity (bits/use)':r.capacity,
-      'input entropy (bits)':binaryEntropyBits(p),'gap to capacity':r.capacity-r.mutualInformation,
+    stats: {'I(X;Y) (bits/use)':underflow?null:r.mutualInformation,'capacity (bits/use)':r.capacity,
+      'input entropy (bits)':binaryEntropyBits(p),'gap to capacity':Math.max(0,r.capacity-r.mutualInformation),
       'output probabilities':r.output},
     curves:[curve,[[0,r.capacity],[1,r.capacity]]],curveColors:['blue','orange'],
-    dots:[[p,r.mutualInformation]],dotColors:['orange'],bounds:[0,1,0,1.05],
+    dots:underflow?[]:[[p,r.mutualInformation]],dotColors:['orange'],bounds:[0,1,0,1.05],
     table:{headers:['X','Y','P(X,Y)','P(Y)'],rows},
   };
 }
@@ -123,7 +125,8 @@ function evaluateCodingExtension(kind:Exclude<CodingKind,'binary-channel-capacit
   const indexed=(values:number[]):Vec2[]=>values.map((y,x)=>[x,y]);const [a,b,c,d,e]=v;
   if(kind==='repetition-error-correction') {
     const n=2*a+1,received=d&((1<<n)-1),errors=bitCount(received^(c?((1<<n)-1):0)),decoded=Number(bitCount(received)>n/2),mass=Array.from({length:n+1},(_,k)=>choose(n,k)*b**k*(1-b)**(n-k));
-    return {plot:'discrete',statement:`Odd repetition n=${n}; independent BSC flips; majority decoder, including when noise > 1/2. Received mask uses only the lowest n bits.`,stats:{'block length n':n,'rate (data bits/use)':1/n,'minimum distance':n,'guaranteed corrected flips':(n-1)/2,'introduced errors':errors,'decoded bit':decoded,'1{recovered payload}':Number(decoded===c),'majority block error probability':repetitionError(n,b),'selected received-word probability':b**errors*(1-b)**(n-errors)},curves:[indexed(mass)],dots:mass.flatMap((y,k)=>k>n/2?[[k,y] as Vec2]:[]),dotColors:mass.slice((n+1)/2).map(()=>'orange'),bounds:[0,n,-.02,1.05],table:{headers:['position','sent','received','error'],rows:Array.from({length:n},(_,i)=>[i+1,c,(received>>i)&1,((received>>i)&1)^c])}};
+    const blockError=repetitionError(n,b),wordProbability=b**errors*(1-b)**(n-errors),blockUnderflow=blockError===0&&b>0,wordUnderflow=wordProbability===0&&b>0&&b<1;
+    return {plot:'discrete',warning:blockUnderflow||wordUnderflow?'numeric-range':undefined,statement:`Odd repetition n=${n}; independent BSC flips; majority decoder, including when noise > 1/2. Received mask uses only the lowest n bits.`,stats:{'block length n':n,'rate (data bits/use)':1/n,'minimum distance':n,'guaranteed corrected flips':(n-1)/2,'introduced errors':errors,'decoded bit':decoded,'1{recovered payload}':Number(decoded===c),'majority block error probability':blockUnderflow?null:blockError,'selected received-word probability':wordUnderflow?null:wordProbability},curves:[indexed(mass)],dots:mass.flatMap((y,k)=>k>n/2?[[k,y] as Vec2]:[]),dotColors:mass.slice((n+1)/2).map(()=>'orange'),bounds:[0,n,-.02,1.05],table:{headers:['position','sent','received','error'],rows:Array.from({length:n},(_,i)=>[i+1,c,(received>>i)&1,((received>>i)&1)^c])}};
   }
   if(kind==='hamming-linear-codes') {
     const sent=hammingEncode(a),received=sent^b,r=hammingDecode(received);

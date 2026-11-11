@@ -36,6 +36,72 @@ The original code can detect up to two errors if used only as a detector. This p
 
 Blue and orange points compare sent and received bits. The table also shows corrected bits, making miscorrection visible.
 
+## A perfect code has exactly one center for every received word
+
+Columns 1,2,4 of H form the GF(2) standard basis, so rank H=3 and its null space has dimension 7−3=4, giving sixteen codewords. Minimum distance three makes their radius-one balls disjoint. Each contains its center and seven single-error neighbors. Their total size is 16(1+7)=128=2⁷, covering the entire received space. This is the meaning of a perfect Hamming(7,4) code.
+
+![Sixteen disjoint Hamming(7,4) balls each contain one codeword and seven single-error neighbors, covering all 128 received words. Center labels read positions one through seven.](/assets/learning/coding-hamming-perfect-cover-en.svg)
+
+The syndrome maps received words to eight cosets. Two vectors with the same syndrome differ by a null-space vector, so each coset has sixteen elements. Syndrome zero has leader zero; nonzero syndrome j has the single-error leader at position j. Syndrome decoding consequently selects the unique radius-one center and equals nearest-neighbor decoding.
+
+## Compare block error for the same four-bit payload
+
+This decoder returns to the original codeword exactly for error weights zero and one. For weight at least two, e plus the decoder's correction of weight at most one cannot be zero. It reaches another valid codeword. Since information extraction bijects codewords with four-bit payloads, the payload is also wrong. Under independent BSC noise,
+
+$$
+P_{e,\mathrm{Ham}}=1-(1-\varepsilon)^7-7\varepsilon(1-\varepsilon)^6.
+$$
+
+Align the comparison at four information bits. Repeating each bit three times consumes twelve uses, and the chance that at least one of four independent blocks fails is 1−(1−Pₑ,rep3)⁴. Hamming uses seven. Directly comparing single-bit error .028 with four-bit block error .1496944 would mix criteria.
+
+| ε | Hamming block error, 7 uses | Repetition block error, 12 uses |
+|---|---|---|
+| .01 | .002031042 | .001191467 |
+| .05 | .044380542 | .028686147 |
+| .1 | .149694400 | .107383193 |
+
+The code enumerates H's null space, verifies disjoint coverage of all 128 received words and checks the success condition for every error weight. These are exact small-model results, not a guarantee of efficient optimal decoding for arbitrary large codes.
+
+**Exercise:** Does zero syndrome after nearest-neighbor correction prove one actual error? **Explanation:** No. Every received word lies in some radius-one ball, so this decoder always produces a valid codeword. Recovering the transmitted center is a separate guarantee.
+
+```python
+from fractions import Fraction as F
+from math import comb
+
+def syndrome(word):
+    value=0
+    for j in range(1,8):
+        if (word>>(j-1))&1: value^=j
+    return value
+
+code=[word for word in range(128) if syndrome(word)==0]
+assert len(code)==16
+owner={}
+for center in code:
+    for error in [0]+[1<<j for j in range(7)]:
+        received=center^error
+        assert received not in owner
+        owner[received]=center
+assert len(owner)==128
+for received in range(128):
+    s=syndrome(received)
+    corrected=received^(1<<(s-1) if s else 0)
+    assert corrected==owner[received]
+for weight in range(8):
+    for error in range(128):
+        if error.bit_count()!=weight: continue
+        s=syndrome(error)
+        corrected=error^(1<<(s-1) if s else 0)
+        assert (corrected==0)==(weight<=1)
+for epsilon in [F(1,100),F(1,20),F(1,10)]:
+    hamming=1-(1-epsilon)**7-7*epsilon*(1-epsilon)**6
+    bit_repetition=3*epsilon**2*(1-epsilon)+epsilon**3
+    four_repetitions=1-(1-bit_repetition)**4
+    print('epsilon, Hamming four-bit block error (7 uses), repetition four-bit error (12 uses):',
+          float(epsilon),round(float(hamming),9),round(float(four_repetitions),9))
+```
+
+
 ## Exercises with explanations
 
 1. Can a parity-position error be corrected? **Yes.** Every position has its own nonzero column.

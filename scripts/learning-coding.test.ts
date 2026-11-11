@@ -22,6 +22,24 @@ test('flips and erasures have different capacities and deterministic inversion p
  for(const p of [0,.01,.3,.5,1])close(binaryChannel(p,.5,false).mutualInformation,0);
  close(binaryEntropyBits(0),0);close(binaryEntropyBits(1),0);
 });
+test('channel information preserves weak contrast and rare inputs without subtracting entropies',()=>{
+ for(const delta of [2**-20,2**-30,2**-40]){
+  const r=binaryChannel(.5,.5+delta,false),leading=(2*delta)**2/(2*Math.LN2);
+  assert.ok(r.capacity>0);assert.ok(Math.abs(r.capacity/leading-1)<1e-10);
+  assert.equal(r.mutualInformation,r.capacity);
+ }
+ const rare=binaryChannel(1e-300,.1,false);
+ assert.ok(rare.mutualInformation>0);assert.ok(Math.abs(rare.mutualInformation/1e-300-.8*Math.log2(9))<1e-12);
+ assert.equal(binaryChannel(.5,.5,false).capacity,0);
+ const under=evaluateCoding('binary-channel-capacity',[0,1e-300,.5+2**-50]);
+ assert.equal(under.warning,'numeric-range');assert.equal(under.stats['I(X;Y) (bits/use)'],null);assert.deepEqual(under.dots,[]);
+ const erased=evaluateCoding('binary-channel-capacity',[1,1e-320,1-2**-52]);
+ assert.equal(erased.warning,'numeric-range');assert.equal(erased.stats['I(X;Y) (bits/use)'],null);assert.deepEqual(erased.dots,[]);
+ for(const values of [[0,0,.1],[0,.5,.5],[1,.5,1]]){
+  const zero=evaluateCoding('binary-channel-capacity',values);
+  assert.equal(zero.stats['I(X;Y) (bits/use)'],0);assert.equal(zero.warning,undefined);
+ }
+});
 test('channel controls reject invalid mode, length, nonfinite values and probabilities',()=>{
  for(const values of [[],[2,.5,.1],[0,NaN,.1],[0,.5,Infinity],[0,-.1,.2],[1,.2,1.1]])assert.throws(()=>evaluateCoding('binary-channel-capacity',values));
  for(const mode of [0,1])for(const noise of [0,.5,1])assert.ok(evaluateCoding('binary-channel-capacity',[mode,.3,noise]).curves.flat(2).every(Number.isFinite));
@@ -32,6 +50,14 @@ const pop=(x:number)=>x.toString(2).replace(/0/g,'').length;
 test('majority repetition error matches every independent error pattern including boundaries',()=>{
  for(const n of [1,3,5,7,9])for(const noise of [0,.1,.5,.8,1]){let error=0,mass=0;for(let mask=0;mask<2**n;mask++){const k=pop(mask),w=noise**k*(1-noise)**(n-k);mass+=w;if(k>n/2)error+=w;}close(mass,1);close(repetitionError(n,noise),error);}
  close(repetitionError(3,.1),.028);close(repetitionError(9,.5),.5);assert.ok(repetitionError(9,.8)>repetitionError(1,.8));
+});
+test('unrepresentable repetition error is withheld instead of advertised as zero',()=>{
+ const r=evaluateCoding('repetition-error-correction',[4,1e-100,0,511]);
+ assert.equal(r.warning,'numeric-range');assert.equal(r.stats['majority block error probability'],null);
+ assert.equal(r.stats['selected received-word probability'],null);
+ const exact=evaluateCoding('repetition-error-correction',[4,0,0,511]);
+ assert.equal(exact.warning,undefined);assert.equal(exact.stats['majority block error probability'],0);
+ assert.equal(exact.stats['selected received-word probability'],0);
 });
 test('Hamming code is linear, has distance three and corrects all single errors for every payload',()=>{
  const words=Array.from({length:16},(_,i)=>hammingEncode(i));assert.equal(new Set(words).size,16);let minimum=7;

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="695" viewBox="0 0 440 695" role="img" aria-labelledby="title desc"><title id="title">One fixed pair versus every pair</title><desc id="desc">Two grids enumerate the sixteen equally likely binary 2x2 matrices. Four blue matrices collide for the preselected difference 01. Ten orange singular matrices collide for some nonzero difference. The axes give the two public rows.</desc>
+<rect width="440" height="695" rx="12" fill="#fff"/>
+<g font-family="system-ui,sans-serif">
+<text x="20" y="35" font-size="22" fill="#0f172a" text-anchor="start">One fixed pair versus every pair</text>
+<text x="20" y="65" font-size="17" fill="#0f172a" text-anchor="start">n = k = 2;  16 equally likely H</text>
+<text x="20" y="100" font-size="21" fill="#1d4ed8" text-anchor="start">Fixed δ=01: 4/16</text>
+<text x="65" y="158" font-size="16" fill="#0f172a" text-anchor="end">00</text>
+<rect x="85" y="130" width="56" height="36" rx="4" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="150" y="130" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="215" y="130" width="56" height="36" rx="4" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="280" y="130" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<text x="65" y="203" font-size="16" fill="#0f172a" text-anchor="end">01</text>
+<rect x="85" y="175" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="150" y="175" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="215" y="175" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="280" y="175" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<text x="65" y="248" font-size="16" fill="#0f172a" text-anchor="end">10</text>
+<rect x="85" y="220" width="56" height="36" rx="4" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="150" y="220" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="215" y="220" width="56" height="36" rx="4" fill="#2563eb" stroke="#cbd5e1"/>
+<rect x="280" y="220" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<text x="65" y="293" font-size="16" fill="#0f172a" text-anchor="end">11</text>
+<rect x="85" y="265" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="150" y="265" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="215" y="265" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="280" y="265" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<text x="113" y="331" font-size="16" fill="#0f172a" text-anchor="middle">00</text>
+<text x="178" y="331" font-size="16" fill="#0f172a" text-anchor="middle">01</text>
+<text x="243" y="331" font-size="16" fill="#0f172a" text-anchor="middle">10</text>
+<text x="308" y="331" font-size="16" fill="#0f172a" text-anchor="middle">11</text>
+<text x="380" y="331" font-size="17" fill="#0f172a" text-anchor="start">r₂</text>
+<text x="48" y="123" font-size="17" fill="#0f172a" text-anchor="start">r₁</text>
+<text x="20" y="400" font-size="21" fill="#9a3412" text-anchor="start">Some nonzero δ: 10/16</text>
+<text x="65" y="458" font-size="16" fill="#0f172a" text-anchor="end">00</text>
+<rect x="85" y="430" width="56" height="36" rx="4" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="150" y="430" width="56" height="36" rx="4" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="215" y="430" width="56" height="36" rx="4" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="280" y="430" width="56" height="36" rx="4" fill="#ea580c" stroke="#cbd5e1"/>
+<text x="65" y="503" font-size="16" fill="#0f172a" text-anchor="end">01</text>
+<rect x="85" y="475" width="56" height="36" rx="4" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="150" y="475" width="56" height="36" rx="4" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="215" y="475" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="280" y="475" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<text x="65" y="548" font-size="16" fill="#0f172a" text-anchor="end">10</text>
+<rect x="85" y="520" width="56" height="36" rx="4" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="150" y="520" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="215" y="520" width="56" height="36" rx="4" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="280" y="520" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<text x="65" y="593" font-size="16" fill="#0f172a" text-anchor="end">11</text>
+<rect x="85" y="565" width="56" height="36" rx="4" fill="#ea580c" stroke="#cbd5e1"/>
+<rect x="150" y="565" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="215" y="565" width="56" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+<rect x="280" y="565" width="56" height="36" rx="4" fill="#ea580c" stroke="#cbd5e1"/>
+<text x="113" y="631" font-size="16" fill="#0f172a" text-anchor="middle">00</text>
+<text x="178" y="631" font-size="16" fill="#0f172a" text-anchor="middle">01</text>
+<text x="243" y="631" font-size="16" fill="#0f172a" text-anchor="middle">10</text>
+<text x="308" y="631" font-size="16" fill="#0f172a" text-anchor="middle">11</text>
+<text x="380" y="631" font-size="17" fill="#0f172a" text-anchor="start">r₂</text>
+<text x="48" y="423" font-size="17" fill="#0f172a" text-anchor="start">r₁</text>
+<text x="220" y="671" font-size="18" fill="#0f172a" text-anchor="middle">Choosing δ after H changes the claim.</text>
+</g></svg>

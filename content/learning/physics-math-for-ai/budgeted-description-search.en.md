@@ -32,6 +32,66 @@ Evaluation count is not elapsed seconds. Real candidates can have different runt
 
 AI-generated descriptions or programs can be executed and verified. Limited search quality does not immediately reveal a representation's fundamental capacity. Align search order, allowed language, evaluation cost and reconstruction criteria before comparing methods.
 
+## When can a discovered bound be certified optimal?
+
+In a fixed finite candidate family, suppose a verified description of length b is found. If every strictly shorter candidate has been executed and none produces the target, b is the family minimum. Unchecked programs of equal or greater length cannot improve it. This is a sufficient certificate; other structural knowledge might sometimes prove optimality sooner.
+
+Shortest-first search certifies its first match because all shorter candidates were tested. Literal-first finds a nine-bit description for zero immediately, but twenty-two shorter candidates remain. At evaluation 257 it finds length three, the grammar's minimum possible program length, so remaining outputs are unnecessary for certification.
+
+| Target | Evaluations | Order | Best found | Shorter-candidate certificate |
+|---|---|---|---|---|
+| 0 | 1 | literal | 9 | No |
+| 0 | 257 | literal | 3 | Yes |
+| 173 | 174 | literal | 9 | No |
+| 173 | 278 | literal | 9 | Yes |
+| 51 | 266 | literal | 8 | Yes |
+| 173 | 196 | shortest | 9 | Yes |
+
+The separate code checks this table from the family and visited set; it does not add a certification control to the screen. The finite oracle remains a separately computed reference, not free information credited to the search.
+
+## Specify both length and time limits
+
+Even for a universal machine, bounding program length by B and each simulation by T steps gives a finite computable problem:
+
+$$
+K_{U}^{\le B,T}(x)=\min\{|p|:|p|\le B,\ U(p)=x\text{ within }T\text{ steps}\}.
+$$
+
+If the set is empty there is no feasible minimum, conventionally +∞. This does not mean unrestricted K_U(x) is infinite. Increasing B or T enlarges the candidate set, so the minimum cannot increase. Once T permits a known valid literal program to finish, a finite bound exists too. A universal procedure certifying that T has reached the unrestricted optimum for every x would conflict with uncomputability.
+
+The current UI budget counts immediately terminating finite commands, rather than the T of this definition. In research, record representation power, search order, execution cost and optimality evidence separately.
+
+**Exercise:** After finding length eight, must all remaining programs of length≥8 be executed? **Explanation:** Not to certify the minimum length. Finding every shortest program would be a different task.
+
+```python
+from fractions import Fraction as F
+
+def programs():
+    out=[('0'+f'{x:08b}',x) for x in range(256)]
+    out += [('10'+str(x),255*x) for x in range(2)]
+    out += [('110'+f'{x:02b}',int(f'{x:02b}'*4,2)) for x in range(4)]
+    out += [('1110'+f'{x:04b}',int(f'{x:04b}'*2,2)) for x in range(16)]
+    return out
+
+def certificate(target,budget,shortest_first=False):
+    family=programs()
+    if shortest_first: family.sort(key=lambda row:(len(row[0]),row[0]))
+    visited=family[:budget]
+    best=min((len(code) for code,x in visited if x==target),default=None)
+    # Sufficient certificate: every strictly shorter candidate was executed.
+    certified=best is not None and all(len(code)>=best for code,x in family[budget:])
+    oracle=min(len(code) for code,x in family if x==target)
+    if certified: assert best==oracle
+    return best,certified
+
+for target,budget,shortest in [(0,1,False),(0,257,False),(173,174,False),
+                               (173,278,False),(51,266,False),(173,196,True)]:
+    best,certified=certificate(target,budget,shortest)
+    print('target, budget, shortest-first, best found, certified:',
+          target,budget,shortest,best,certified)
+```
+
+
 ## Exercises with explanations
 
 1. Does discovering a nine-bit description for zero establish optimality? **Not with budget-one literal-first.** A three-bit command exists in the same family.

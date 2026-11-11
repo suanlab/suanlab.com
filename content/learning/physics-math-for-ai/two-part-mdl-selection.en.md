@@ -34,6 +34,68 @@ The lab also shows data cost at the MLE p̂=K/N. Comparing this uncharged cost d
 
 A shorter description does not automatically establish robustness under distribution shift or a causal interpretation. AI comparisons still need data separation, consistent treatment of shared code and weights, and predictive evaluation.
 
+## Two-part coding and a mixture combine models differently
+
+The four header lengths ℓ=(1,2,3,3) satisfy Σ2⁻ˡ=1. For each model, lengths ceil(−log₂Pᵢ(x)) admit a prefix code because their Kraft sum is at most one. Concatenating the model header and its data code remains prefix-free. The resulting integer length is less than one bit above the displayed ideal cost, assuming external N and shared models/code assignments. The browser does not implement this codec.
+
+Reading header lengths as prior masses and summing candidates gives a normalized mixture. The current two-part cost instead chooses the largest individual contribution:
+
+$$
+m(x)=\sum_{i=1}^4 2^{-\ell_i}P_i(x),\qquad
+L_2(x)=-\log_2\max_i[2^{-\ell_i}P_i(x)],
+$$
+$$
+L_2(x)-\log_2 4\le-\log_2 m(x)\le L_2(x).
+$$
+
+At N=16,K=4, two-part cost is 14.980450 bits and mixture cost 14.592679. The duplicate .5 model cannot win minimum selection with its longer header, but still contributes mixture mass. Changing duplicates or prior rules changes the comparison.
+
+## Exact Bernoulli NML normalization and regret
+
+Over all ordered strings of fixed length N, sum each string's maximized likelihood. There are binom(N,k) strings with k ones, giving
+
+$$
+C_N=\sum_{k=0}^N{N\choose k}(k/N)^k(1-k/N)^{N-k},\qquad
+q_{\mathrm{NML}}(x)=\frac{P_{\widehat\theta(x)}(x)}{C_N}.
+$$
+
+Interpret endpoint 0⁰ as one. The resulting q_NML sums to one, whereas the unnormalized data-dependent MLE need not define one common distribution. For any normalized q, if P_MLE(x)/q(x)≤r for every x, summing P_MLE(x)≤r q(x) gives C_N≤r. Worst-case logarithmic regret is therefore at least log₂C_N. NML attains this lower bound by making the ratio exactly C_N for every string.
+
+| N | C_N | Constant regret, bits |
+|---|---|---|
+| 4 | 3.218750 | 1.686501 |
+| 8 | 4.245018 | 2.085771 |
+| 16 | 5.704258 | 2.512039 |
+
+Regret compares q's log loss with the best-fitting Bernoulli model's log loss on that same data. The fraction code checks normalization and identical regret ratios for every count. N is fixed and shared; these are ideal logarithmic lengths. A continuous model with an infinite normalizing integral cannot use the same definition unchanged.
+
+**Exercise:** Why need the individually maximized likelihoods not sum to one? **Explanation:** A different model is chosen for each x. They are not one fixed model's probability table; normalization by C_N is required.
+
+```python
+from fractions import Fraction as F
+from math import comb,log2
+
+models=[(1,F(1,2)),(2,F(1,4)),(3,F(1,2)),(3,F(3,4))]
+assert sum(F(1,2**length) for length,p in models)==1
+N,K=16,4
+parts=[F(1,2**length)*p**K*(1-p)**(N-K) for length,p in models]
+mixture=sum(parts)
+two_part=-log2(float(max(parts)))
+mix_length=-log2(float(mixture))
+assert two_part-2<=mix_length<=two_part
+print('two-part ideal length, mixture ideal length:',round(two_part,6),round(mix_length,6))
+for n in [4,8,16]:
+    # Every ordered string with k ones has this maximized likelihood.
+    maxima=[F(k,n)**k*(1-F(k,n))**(n-k) for k in range(n+1)]
+    complexity=sum(comb(n,k)*maxima[k] for k in range(n+1))
+    q=[v/complexity for v in maxima]
+    assert sum(comb(n,k)*q[k] for k in range(n+1))==1
+    assert all(maxima[k]/q[k]==complexity for k in range(n+1))
+    print('N, NML normalizer, constant regret bits:',
+          n,round(float(complexity),6),round(log2(float(complexity)),6))
+```
+
+
 ## Exercises with explanations
 
 1. What if the same p gets a header two bits longer? **Total cost increases by exactly two bits.** Fit is unchanged.

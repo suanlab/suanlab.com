@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="560" viewBox="0 0 440 560" role="img" aria-labelledby="title desc"><title id="title">겹치지 않는 16개의 Hamming 공</title><desc id="desc">각 타일은 중심 부호어 하나와 7개 단일 오류 이웃을 포함한다. 위치 1부터 읽은 16개 중심의 공은 서로 겹치지 않고 128개 수신열을 모두 덮는다.</desc>
+<rect width="440" height="560" rx="12" fill="#fff"/>
+<g font-family="system-ui,sans-serif">
+<text x="20" y="35" font-size="22" fill="#0f172a" text-anchor="start">겹치지 않는 16개의 Hamming 공</text>
+<text x="20" y="65" font-size="17" fill="#0f172a" text-anchor="start">중심은 위치 1부터 읽는 7비트</text>
+<rect x="20" y="95" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="67" y="123" font-size="16" fill="#1d4ed8" text-anchor="middle">0000000</text>
+<text x="67" y="151" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="122" y="95" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="169" y="123" font-size="16" fill="#1d4ed8" text-anchor="middle">1110000</text>
+<text x="169" y="151" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="224" y="95" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="271" y="123" font-size="16" fill="#1d4ed8" text-anchor="middle">1001100</text>
+<text x="271" y="151" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="326" y="95" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="373" y="123" font-size="16" fill="#1d4ed8" text-anchor="middle">0111100</text>
+<text x="373" y="151" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="20" y="182" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="67" y="210" font-size="16" fill="#1d4ed8" text-anchor="middle">0101010</text>
+<text x="67" y="238" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="122" y="182" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="169" y="210" font-size="16" fill="#1d4ed8" text-anchor="middle">1011010</text>
+<text x="169" y="238" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="224" y="182" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="271" y="210" font-size="16" fill="#1d4ed8" text-anchor="middle">1100110</text>
+<text x="271" y="238" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="326" y="182" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="373" y="210" font-size="16" fill="#1d4ed8" text-anchor="middle">0010110</text>
+<text x="373" y="238" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="20" y="269" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="67" y="297" font-size="16" fill="#1d4ed8" text-anchor="middle">1101001</text>
+<text x="67" y="325" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="122" y="269" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="169" y="297" font-size="16" fill="#1d4ed8" text-anchor="middle">0011001</text>
+<text x="169" y="325" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="224" y="269" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="271" y="297" font-size="16" fill="#1d4ed8" text-anchor="middle">0100101</text>
+<text x="271" y="325" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="326" y="269" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="373" y="297" font-size="16" fill="#1d4ed8" text-anchor="middle">1010101</text>
+<text x="373" y="325" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="20" y="356" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="67" y="384" font-size="16" fill="#1d4ed8" text-anchor="middle">1000011</text>
+<text x="67" y="412" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="122" y="356" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="169" y="384" font-size="16" fill="#1d4ed8" text-anchor="middle">0110011</text>
+<text x="169" y="412" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="224" y="356" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="271" y="384" font-size="16" fill="#1d4ed8" text-anchor="middle">0001111</text>
+<text x="271" y="412" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<rect x="326" y="356" width="94" height="75" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="373" y="384" font-size="16" fill="#1d4ed8" text-anchor="middle">1111111</text>
+<text x="373" y="412" font-size="20" fill="#0f172a" text-anchor="middle">1 + 7</text>
+<text x="220" y="471" font-size="26" fill="#1d4ed8" text-anchor="middle">16 × (1 + 7) = 128</text>
+<text x="220" y="508" font-size="17" fill="#0f172a" text-anchor="middle">각 타일: 중심과 단일 오류 이웃</text>
+<text x="220" y="538" font-size="17" fill="#0f172a" text-anchor="middle">반경 1에서 유일한 최근접 부호어</text>
+</g></svg>

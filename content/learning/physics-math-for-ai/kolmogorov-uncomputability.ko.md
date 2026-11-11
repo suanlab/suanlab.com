@@ -35,6 +35,63 @@ $$
 
 AI에서 압축기나 LLM이 짧은 설명을 제안하면 그것을 실제로 실행하고 복원 여부를 검증할 수 있습니다. 탐색 실패나 시간 초과로 대상이 본질적으로 무작위라거나 특정 설명이 보편 최적이라고 결론 내리지는 않습니다.
 
+## O(log n)을 실제 prefix 부호로 구성하기
+
+앞 대각 논증의 n은 양의 정수입니다. 이진 표현의 길이를 m=floor(log₂n)+1로 두고 0을 m−1개 쓴 뒤 n의 m비트를 붙입시다. Elias gamma 부호입니다. 앞의 0 개수를 세면 뒤에 읽을 비트 수를 알 수 있어 어느 부호어도 다른 부호어의 진접두사가 아닙니다.
+
+$$
+\ell_\gamma(n)=2\lfloor\log_2n\rfloor+1.
+$$
+
+m비트 정수는 2ᵐ⁻¹개이고 각 부호 길이는 2m−1이라 전체 Kraft 합은 Σm≥1 2⁻ᵐ=1입니다. 따라서 “n을 읽고 가정한 정확 K 알고리즘으로 첫 비압축 문자열을 찾아 출력하라”는 고정 기계는 gamma(n)만 입력받는 prefix 기계로 만들 수 있습니다. 보편 모사 상수 c를 더하면 K_U(x_n)≤2floor(log₂n)+1+c이고, 충분히 큰 n에서 n보다 작아 모순입니다. c의 값을 모르는 유한 표를 가지고 보편 K의 수치값을 계산했다고 주장하지 않습니다.
+
+| n | gamma 길이 |
+|---|---|
+| 1 | 1 |
+| 2 | 3 |
+| 8 | 7 |
+| 256 | 17 |
+| 4096 | 25 |
+
+코드는 정수 부호의 복호와 유한 Kraft 합을 검산합니다. 보편 K oracle을 구현하거나 이 대각 논증을 유한 시뮬레이션으로 대체하는 코드가 아닙니다.
+
+## 수렴하는 상한과 알 수 있는 종료 시점은 다르다
+
+고정 U에는 문자열 길이 n과 literal을 자기 구분해 출력하는 알려진 프로그램이 있으므로, 계산 가능한 길이 상계 B(x)를 잡을 수 있습니다. 길이≤B(x)의 모든 후보를 각각 t단계씩 실행하고 발견한 출력 x의 최단 길이와 기존 B(x) 중 작은 값을 b_t(x)로 둡니다. 후보는 유한하고 각 시뮬레이션이 유한하므로 b_t는 계산 가능합니다. t가 커지면 최단 프로그램도 결국 종료해 b_t(x)가 정확한 K_U(x)에 도달합니다.
+
+그러나 주어진 t에서 이미 도달했는지 항상 판정하는 절차가 있다면 t를 늘리며 그 판정을 기다려 정확 K를 계산할 수 있어 앞 정리에 모순입니다. 정수 상한이 결국 안정된다는 사실과 그 안정 시점을 일반 알고리즘으로 인증할 수 있다는 사실을 구분해야 합니다. 현재 유한 D는 모든 명령과 종료를 알고 있어 이런 보편 비종료 문제를 피합니다.
+
+추가 근거인 Vitányi 논문은 주로 plain 복잡도 C를 사용합니다. 여기서는 prefix K에 맞춰 literal과 정수에 자기 구분 오버헤드를 포함했습니다. plain의 n+O(1) 상계를 prefix K에 그대로 복사하지 않습니다.
+
+**직접 풀기:** 한동안 b_t가 바뀌지 않으면 최적임을 증명하나요? **해설:** 아닙니다. 더 짧은 프로그램이 훨씬 나중에 종료할 수 있습니다. 특정 유한 가족에서 별도로 얻은 완료 증거와 구분합니다.
+
+```python
+from fractions import Fraction as F
+
+def gamma(n):
+    assert n>=1
+    payload=bin(n)[2:]
+    return '0'*(len(payload)-1)+payload
+
+def decode(code):
+    zeros=len(code)-len(code.lstrip('0'))
+    assert len(code)==2*zeros+1 and code[zeros]=='1'
+    return int(code[zeros:],2)
+
+for n in range(1,4096):
+    code=gamma(n)
+    assert decode(code)==n
+    assert len(code)==2*(n.bit_length()-1)+1
+# Exact Kraft mass for all positive integers with at most 12 binary digits.
+mass=sum(F(1,2**len(gamma(n))) for n in range(1,4096))
+assert mass==1-F(1,2**12)
+for n in [1,2,8,256,4096]:
+    print('n, self-delimiting code length:',n,len(gamma(n)))
+print('finite gamma Kraft mass:',mass)
+# This tests an integer code, not a universal Kolmogorov-complexity oracle.
+```
+
+
 ## 확인 문제와 해설
 
 1. L=8에서 대상 173은 덮이나요? **아니요.** 현재 유한 언어의 최솟값은 literal의 9비트입니다. 보편 K에 대한 하한은 아닙니다.

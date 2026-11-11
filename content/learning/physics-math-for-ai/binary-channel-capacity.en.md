@@ -50,6 +50,32 @@ For a memoryless channel and rate R<C, there exists a sequence of codes whose av
 
 Bits/use also differs from bits/second; converting requires a channel-use frequency. For AI systems, compression rate, reconstruction distortion, channel corruption and latency are separate quantities. The real-valued dimension of an embedding cannot simply be equated with this binary-channel capacity. Error-correcting codes will make the tradeoff between actual code length and error probability concrete.
 
+## Why symmetric inputs optimize capacity, and a converse
+
+For the BSC, conditional output entropy h₂(ε) is fixed. Binary output entropy is at most one; p=1/2 makes the output fair and attains that bound. Hence capacity is 1−h₂(ε). For the BEC, the erasure event is independent of X, and a non-erased output reveals X exactly. Retained information is (1−ε)H(X), again maximized by a fair input. Relabeling BSC outputs replaces ε>.5 by 1−ε without changing capacity.
+
+Now send one of M equiprobable messages in n uses, with decoder average error Pₑ. Assume a finite-alphabet memoryless channel without feedback or input cost constraints. Fano gives H(message|Yⁿ)≤1+Pₑ log₂M. Data processing, entropy subadditivity and conditional independence of channel noise also give
+
+$$
+I(J;Y^n)\le I(X^n;Y^n)
+\le\sum_{i=1}^n I(X_i;Y_i)\le nC.
+$$
+
+Here J is the random message and M is its alphabet size. Combining these bounds with H(message)=log₂M yields, for R=(log₂M)/n>0,
+
+$$
+(1-P_e)\log_2 M\le nC+1,
+\qquad P_e\ge\max\left(0,1-\frac CR-\frac1{nR}\right).
+$$
+
+For example ε=.5 gives C=0. At n=100,R=1/2, the bound is Pₑ≥.98. Longer codes cannot create reliable positive-rate communication through an input-independent channel. More generally, holding R>C makes this lower bound stay positive. This is a finite-length weak converse. It neither proves achievability below capacity nor replaces a strong converse asserting error tending to one above capacity.
+
+## Compute small information without cancellation
+
+The mathematically correct h₂(q)−h₂(ε) can lose a small positive difference. At ε=.5+2⁻⁴⁰, C≈2.39×10⁻²⁴ bits/use, but the previous implementation returned zero. At p=10⁻³⁰⁰,ε=.1, information is also positive, about 2.54×10⁻³⁰⁰. The calculator now shares the stable channel-KL and log1p entropy routines verified in the information-theory lessons. Rounded table cells or bars need not reveal such small dependence. When a selected positive I falls below numeric representation range, the readout shows a dash and numeric-range explanation and withholds its point. Exact independence at ε=.5 and constant-input zeros remain distinct.
+
+**Exercise:** With C=0, can sending one fixed message have zero error? **Explanation:** Yes. M=1 gives R=0, outside this positive-rate bound. State the message alphabet and error criterion together.
+
 ## Exercises with explanations
 
 1. What is BSC capacity at ε=1? **One bit/use.** Every output is inverted, and a second inversion recovers the input exactly. Capacity vanishes at ε=.5, where output and input are independent.

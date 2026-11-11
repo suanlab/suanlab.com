@@ -41,6 +41,58 @@ $$
 
 AI 모형이 데이터를 압축한다고 말할 때도 디코더·사전·아키텍처가 무료인지 점검해야 합니다. 학습 후 특정 데이터만 짧게 출력하는 새 언어를 만들고 그 언어의 비용을 빼면 공정한 비교가 아닙니다.
 
+## 같은 정보도 표현 언어에 따라 다른 비용
+
+보편 prefix 기계 U가 다른 고정 prefix 기계 V를 모사하는 프로그램을 c비트로 지정할 수 있다고 합시다. V의 최단 프로그램 앞에 그 지정 코드를 붙이면 U에서 같은 출력을 내므로 K_U(x)≤K_V(x)+c입니다. V도 보편이면 반대 모사도 가능해 |K_U(x)−K_V(x)|≤c′인 두 방향 불변성을 얻습니다. 상수는 기계 쌍에 의존하며 대상 x에는 의존하지 않습니다. 모든 출력이 8비트인 현재 D는 보편이 아니므로 첫 방향의 상계만 자동으로 적용됩니다.
+
+계산 가능한 전단사 f와 그 역함수가 고정되면, 출력 뒤에 f를 적용하는 고정 프로그램을 붙이는 방식으로 K_U(f(x))≤K_U(x)+c_f를 얻고 역함수로 반대 부등식도 얻습니다. 좌표·직렬화 방식이 계산 가능하게 바뀌어도 보편 설명 길이는 가산 상수 안에서 비교됩니다. 그러나 짧은 byte의 유한 문법 K_D가 임의 변환에서 그대로 같다는 뜻은 아닙니다. 상수가 작다거나 실행 시간이 보존된다는 결론도 아닙니다.
+
+## 최단 프로그램과 여러 프로그램의 질량
+
+유한 prefix 명령에 가중치 2⁻길이를 주고 같은 출력의 기여를 합합시다. 전체는 Kraft 합 15/16인 subprobability입니다.
+
+$$
+m_D(x)=\sum_{p:D(p)=x}2^{-|p|},\qquad
+\sum_xm_D(x)=\frac{15}{16},\qquad
+m_D(x)\ge2^{-K_D(x)}.
+$$
+
+따라서 −log₂m_D(x)≤K_D(x)입니다. 이 값은 가장 짧은 설명 하나뿐 아니라 중복 설명의 질량도 반영합니다. 남은 1/16 질량을 무시하고 m_D를 이미 정규화된 확률이라고 부르면 안 됩니다. m_D/(15/16)로 정규화하면 로그 비용도 달라집니다.
+
+| byte | K_D | m_D | −log₂m_D |
+|---|---|---|---|
+| 0 | 3 | 83/512 | 2.624961 |
+| 85 | 5 | 19/512 | 4.752072 |
+| 173 | 9 | 1/512 | 9 |
+
+코드는 고정한 네 명령 가족을 직접 만들어 정확분수 질량을 합합니다. 이 유한 합을 보편 알고리즘 확률이나 그 coding theorem의 구현으로 확대하지 않습니다. 여러 설명을 합하는 것과 최단 하나를 택하는 차이는 다음 MDL의 mixture와도 연결됩니다.
+
+**직접 풀기:** x마다 “x를 출력”하는 다른 복호기를 새로 만들면 불변성 상수는 공통인가요? **해설:** 아닙니다. 복호기 자체가 x에 의존하면 모사 비용도 달라집니다. 그 비용을 숨겨서는 같은 고정 기계 사이의 비교가 아닙니다.
+
+```python
+from fractions import Fraction as F
+
+def programs():
+    out=[('0'+f'{x:08b}',x) for x in range(256)]
+    out += [('10'+str(x),255*x) for x in range(2)]
+    out += [('110'+f'{x:02b}',int(f'{x:02b}'*4,2)) for x in range(4)]
+    out += [('1110'+f'{x:04b}',int(f'{x:04b}'*2,2)) for x in range(16)]
+    return out
+
+from math import log2
+
+family=programs()
+assert sum(F(1,2**len(code)) for code,x in family)==F(15,16)
+for target in [0,85,173]:
+    descriptions=[code for code,x in family if x==target]
+    minimum=min(map(len,descriptions))
+    mass=sum(F(1,2**len(code)) for code in descriptions)
+    assert mass>=F(1,2**minimum)
+    print('byte, finite minimum, program mass, negative log mass:',
+          target,minimum,str(mass),round(-log2(float(mass)),6))
+```
+
+
 ## 확인 문제와 해설
 
 1. 11111111은 몇 비트인가요? **현재 언어에서 101의 3비트입니다.** 원본 8비트와 명령 길이를 구분합니다.
