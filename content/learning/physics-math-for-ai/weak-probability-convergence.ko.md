@@ -30,6 +30,82 @@ $$
 F_n(t)\to F(t)\quad\text{at every continuity point }t\text{ of }F.
 $$
 
+## 확률수렴이 약수렴을 함의함을 증명하기
+
+|h|≤M인 유계 연속 시험함수 h를 택합니다. 작은 η>0에 대해 P(|X|>R)<η인 R을 고릅니다. h는 compact 구간 [−R−1,R+1]에서 균등 연속이므로, 그 안의 두 값 차이가 δ 이하이면 함수값 차이가 η 이하가 되도록 0<δ<1을 고릅니다. {|X|≤R, |X_n−X|≤δ}에서는 이 경계가 적용되고 나머지에서는 2M으로 제어합니다.
+
+$$
+|E[h(X_n)]-E[h(X)]|
+\le\eta+2M\bigl(P(|X|>R)+P(|X_n-X|>\delta)\bigr).
+$$
+
+R,δ를 고정한 뒤 확률수렴을 사용하면 마지막 확률 항이 0으로 갑니다. 이어 η를 0으로 보내면 유계 연속 시험함수에 의한 약수렴 정의를 증명합니다. 모든 연속함수가 실수 전체에서 균등 연속이라고 잘못 가정할 필요가 없습니다.
+
+## 상수 극한에서는 역방향도 성립함을 증명하기
+
+X_n이 상수 c로 분포수렴한다고 합시다. ε>0에 대해 a=c−ε/2, b=c+ε/2를 택하면 둘 다 극한 CDF의 연속점입니다. 극한 CDF 값이 각각 0과 1이므로 다음과 같습니다.
+
+$$
+P(|X_n-c|>\varepsilon)\le F_n(a)+1-F_n(b)\longrightarrow0.
+$$
+
+따라서 상수로는 확률수렴도 합니다. 지정한 결합에서 일반 비상수 극한까지 확장되는 성질은 아니며 앞의 교대 부호 반례가 그 이유를 보여줍니다. 법칙의 수열만으로 특정 목표 확률변수와의 결합이 정해지지는 않습니다.
+
+## 약수렴·전변동·수송 거리 비교하기
+
+높이 n인 희귀 사건의 법칙은 μ_n=(1−1/n)δ0+(1/n)δn이고 목표는 δ0입니다. 모든 유계 연속 h에 대해 적분 차이는 (h(n)−h(0))/n이며 크기가 2||h||∞/n 이하이므로 약수렴을 직접 증명할 수 있습니다.
+
+여기서 전변동은 가측집합 A에 대한 |μ_n(A)−δ0(A)|의 상한으로 정의합니다. 이산 공간에서는 질량 절댓값 차이 합의 절반과 같습니다. {n}에서 달성되므로 값은 1/n입니다. 첫 Wasserstein 거리는 두 법칙의 모든 결합에서 E|U−V|의 하한입니다. δ0와의 모든 결합에서 V는 거의 확실히 0이므로 이 거리는 반드시 E|U|=1입니다.
+
+| n | TV | $W_1$ | 평균 |
+|---|---|---|---|
+| 2 | $1/2$ | 1 | 1 |
+| 4 | $1/4$ | 1 | 1 |
+| 16 | $1/16$ | 1 | 1 |
+
+이 예제는 약수렴하고 전변동 거리도 0으로 가지만 평균과 W1은 목표의 값 0으로 가지 않습니다. 멀리 있는 희귀 결과를 어떤 방식으로 제어하는지에 따라 거리가 답하는 질문이 다릅니다. 수송 항등식은 점 질량 목표에 대해 유도했으며 일반 최적 수송 solver를 구현한 것은 아닙니다.
+
+## 유계 시험함수와 비유계 손실을 구분하기
+
+유계 연속 시험함수 h(x)=x/(1+|x|)의 기대값은 1/(n+1)→0입니다. 반면 비유계 손실 |x|의 기대는 1입니다. 손실을 고정한 K로 자르면 min(n,K)/n→0이지만, n>K이면 꼬리 기여가 1입니다. 따라서 이 모음은 균등 적분가능하지 않습니다. 각 고정 절단값에서 극한을 구한 뒤 균등 꼬리 논증 없이 절단을 제거하면 안 됩니다. L1 충분조건은 [우세수렴과 균등 적분가능성](../convergence-dominated-integration/)에서 확인하세요.
+
+## 유한 법칙을 정확하게 검산하기
+
+다음 코드는 전변동, CDF 거리, 점 목표의 수송 비용, 유계 시험함수, 절단·꼬리 손실을 분수로 검사합니다. 전체 수열의 성질은 위 공식으로 증명합니다. 현재 조절기는 기존 네 수열을 비교하며 수송·절단 계산은 별도의 확장입니다.
+
+```python
+from fractions import Fraction as Q
+
+for n in [2, 4, 16, 64]:
+    law = {0: 1-Q(1, n), n: Q(1, n)}
+    target = {0: Q(1)}
+    support = sorted(set(law) | set(target))
+    mean = sum(Q(x)*law.get(x, 0) for x in support)
+    tv = sum(abs(law.get(x, 0)-target.get(x, 0)) for x in support)/2
+    # Every coupling with delta_0 has second coordinate zero.
+    w1 = sum(abs(Q(x))*law.get(x, 0) for x in support)
+    cdf_gap = max(abs(sum(m for x, m in law.items() if x <= t)
+                      -sum(m for x, m in target.items() if x <= t))
+                  for t in support)
+    assert tv == cdf_gap == Q(1, n) and mean == w1 == 1
+    bounded_test = sum(Q(x, 1+abs(x))*m for x, m in law.items())
+    assert bounded_test == Q(1, n+1)
+    for K in [1, 4, 16]:
+        truncated = sum(min(Q(x), Q(K))*m for x, m in law.items())
+        tail = sum(Q(x)*m for x, m in law.items() if x > K)
+        assert truncated == Q(min(n, K), n)
+        assert tail == int(n > K)
+    print("n, TV, W1, mean, bounded test:", n, tv, w1, mean, bounded_test)
+```
+
+## 추가 문제와 연구 연결
+
+1. 전변동이 아주 작으면 모든 비유계 손실의 오차도 작은가요? **표의 기대 절댓값 손실이 1로 남으므로 아닙니다.**
+2. CDF 최대 거리와 W1이 다를 수 있나요? **여기서는 각각 1/n과 1입니다.**
+3. 분포 이동에 대한 주장에 무엇을 명시해야 하나요? **거리 또는 시험함수 모음, 과제 손실과의 관계, 필요한 꼬리 모멘트입니다.**
+
+약수렴과 시험함수는 [Durrett, §3.2](https://sites.math.duke.edu/~rtd/PTE/PTE5_011119.pdf)를 참고하세요. 위 두 함의와 유한 희귀 사건의 거리 계산은 명시적으로 유도했습니다.
+
 ## 확인 문제와 해설
 
 1. 교대 부호 모드 n=3의 L1 차이는? **2입니다.**

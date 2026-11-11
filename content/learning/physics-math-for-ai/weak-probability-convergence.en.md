@@ -30,6 +30,82 @@ $$
 F_n(t)\to F(t)\quad\text{at every continuity point }t\text{ of }F.
 $$
 
+## Prove that convergence in probability implies weak convergence
+
+Take a bounded continuous test function h, with |h|≤M. Fix a small η>0 and choose R so that P(|X|>R)<η. Continuity makes h uniformly continuous on the compact interval [−R−1,R+1], so choose 0<δ<1 such that values at most δ apart there differ by at most η. On {|X|≤R, |X_n−X|≤δ}, this controls the test-function difference. On its complement use the bound 2M:
+
+$$
+|E[h(X_n)]-E[h(X)]|
+\le\eta+2M\bigl(P(|X|>R)+P(|X_n-X|>\delta)\bigr).
+$$
+
+For this fixed R and δ, convergence in probability sends the final probability to zero. Then let η tend to zero. This proves the bounded-continuous-test definition of weak convergence, without incorrectly assuming that every continuous function is uniformly continuous on the entire real line.
+
+## Prove the special converse for a constant target
+
+Suppose X_n converges in law to a constant c. For any ε>0, choose a=c−ε/2 and b=c+ε/2. Both are continuity points of the limiting CDF. Their limiting CDF values are zero and one, so
+
+$$
+P(|X_n-c|>\varepsilon)\le F_n(a)+1-F_n(b)\longrightarrow0.
+$$
+
+Thus convergence to a constant also holds in probability. This does not extend to arbitrary nonconstant targets under a specified coupling; the alternating-sign example above shows why. A sequence of laws alone does not select a coupling with a particular target variable.
+
+## Compare weak, total-variation and transport distances
+
+The height-n rare-event example has law μ_n=(1−1/n)δ0+(1/n)δn, with target δ0. For every bounded continuous h, the difference of integrals is (h(n)−h(0))/n, whose magnitude is at most 2||h||∞/n. This directly proves weak convergence.
+
+Define total variation here as sup over measurable sets A of |μ_n(A)−δ0(A)|, equivalently half the sum of absolute mass differences on a discrete space. It equals 1/n: the set {n} attains that difference. The first Wasserstein distance is the infimum of E|U−V| over couplings of the two laws. Since V must equal zero almost surely for every coupling with δ0, the distance is forced to be E|U|=1.
+
+| n | TV | $W_1$ | Mean |
+|---|---|---|---|
+| 2 | $1/2$ | 1 | 1 |
+| 4 | $1/4$ | 1 | 1 |
+| 16 | $1/16$ | 1 | 1 |
+
+Both weak convergence and total variation tend to zero here, while the mean and W1 do not approach the target's zero value. These metrics answer different questions about distant rare outcomes. The transport identity was derived for a point-mass target; it is not a general optimal-transport solver.
+
+## Use bounded tests and unbounded losses appropriately
+
+For the bounded continuous test h(x)=x/(1+|x|), the expected value is 1/(n+1)→0. For the unbounded loss |x| it is one. Truncating that loss at a fixed K gives min(n,K)/n→0, but its tail contribution is one whenever n>K. Therefore the family is not uniformly integrable. Passing to a limit for each fixed clipping level and then silently removing clipping is invalid without a uniform tail argument. See [dominated convergence and uniform integrability](../convergence-dominated-integration/) for a sufficient L1 criterion.
+
+## Verify finite laws exactly
+
+The code checks total variation, CDF distance, point-target transport cost, the bounded test and clipped/tail losses using fractions. The formulas above prove the full-sequence statements. The interactive controls still compare the original four sequences; transport and clipping calculations are separate extensions.
+
+```python
+from fractions import Fraction as Q
+
+for n in [2, 4, 16, 64]:
+    law = {0: 1-Q(1, n), n: Q(1, n)}
+    target = {0: Q(1)}
+    support = sorted(set(law) | set(target))
+    mean = sum(Q(x)*law.get(x, 0) for x in support)
+    tv = sum(abs(law.get(x, 0)-target.get(x, 0)) for x in support)/2
+    # Every coupling with delta_0 has second coordinate zero.
+    w1 = sum(abs(Q(x))*law.get(x, 0) for x in support)
+    cdf_gap = max(abs(sum(m for x, m in law.items() if x <= t)
+                      -sum(m for x, m in target.items() if x <= t))
+                  for t in support)
+    assert tv == cdf_gap == Q(1, n) and mean == w1 == 1
+    bounded_test = sum(Q(x, 1+abs(x))*m for x, m in law.items())
+    assert bounded_test == Q(1, n+1)
+    for K in [1, 4, 16]:
+        truncated = sum(min(Q(x), Q(K))*m for x, m in law.items())
+        tail = sum(Q(x)*m for x, m in law.items() if x > K)
+        assert truncated == Q(min(n, K), n)
+        assert tail == int(n > K)
+    print("n, TV, W1, mean, bounded test:", n, tv, w1, mean, bounded_test)
+```
+
+## Further questions and research use
+
+1. Does very small total variation guarantee small error for every unbounded loss? **No: the table's expected absolute loss stays one.**
+2. Can CDF supremum distance disagree with W1? **Yes: it is 1/n here while W1 is one.**
+3. What should a distribution-shift claim specify? **The distance or test-function class, its relation to the task loss and the required tail moments.**
+
+For weak convergence and its test functions, see [Durrett, §3.2](https://sites.math.duke.edu/~rtd/PTE/PTE5_011119.pdf). The two implications and the finite rare-event distance calculations above are derived explicitly.
+
 ## Exercises with explanations
 
 1. What is L1 distance at n=3 in alternating-sign mode? **Two.**
