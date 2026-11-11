@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 618,
+  "implementedUnitCount": 619,
   "curriculumComplete": false,
-  "scope": "618 registered units, 1905 guided experiments and 1236 bilingual manuscript files. Introductory scope: 330 of 362 original topics verified, 32 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "619 registered units, 1907 guided experiments and 1238 bilingual manuscript files. Introductory scope: 331 of 362 original topics verified, 31 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -10000,10 +10000,11 @@
         "geodesics-straight-lines-and-great-circles",
         "einstein-equations-trace-and-sources",
         "spacetime-observation-and-redshift",
-        "accelerated-coordinates-and-invariant-readings"
+        "accelerated-coordinates-and-invariant-readings",
+        "weak-field-orbital-clock-approximation"
       ],
-      "nextUnitId": "weak-field-orbital-clock-approximation",
-      "nextAction": "weak-field-clock-reader-integration",
+      "nextUnitId": null,
+      "nextAction": "relativity-domain-audit",
       "lorentzBoostDraft": {
         "unitId": "special-relativity-lorentz-boosts",
         "status": "registered-and-verified",
@@ -10019,48 +10020,48 @@
           "content/learning/physics-math-for-ai/special-relativity-lorentz-boosts.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
-      "currentPreparationEvidence": "scripts/learning-rindler-observables.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+      "currentPreparationEvidence": "scripts/learning-weak-field-clock.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "accelerated-coordinates-and-invariant-readings",
+        "unitId": "weak-field-orbital-clock-approximation",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-rindler-observables.ts",
-        "lab": "src/components/learning/rindler-observables-lab.tsx",
-        "tests": "scripts/learning-rindler-observables.test.ts",
+        "model": "src/lib/learning-weak-field-clock.ts",
+        "lab": "src/components/learning/weak-field-clock-lab.tsx",
+        "tests": "scripts/learning-weak-field-clock.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
         ],
-        "sectionsPerLocale": 6,
+        "sectionsPerLocale": 5,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "accelerated-coordinates-and-invariant-readings",
+        "unitId": "weak-field-orbital-clock-approximation",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-rindler-observables.ts",
-        "lab": "src/components/learning/rindler-observables-lab.tsx",
-        "tests": "scripts/learning-rindler-observables.test.ts",
+        "model": "src/lib/learning-weak-field-clock.ts",
+        "lab": "src/components/learning/weak-field-clock-lab.tsx",
+        "tests": "scripts/learning-weak-field-clock.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
         ],
-        "sectionsPerLocale": 6,
+        "sectionsPerLocale": 5,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "좌표와 물리량",
+        "originalTopic": "유효 근사",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "accelerated-coordinates-and-invariant-readings"
+          "weak-field-orbital-clock-approximation"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -10068,12 +10069,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-rindler-observables.test.ts"
+        "evidence": "scripts/learning-weak-field-clock.test.ts"
       },
       "topicEvidence": [
         {
@@ -10408,6 +10409,43 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "유효 근사",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "weak-field-orbital-clock-approximation"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+            "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-weak-field-clock.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "weak-field-orbital-clock-approximation",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-weak-field-clock.ts",
+            "lab": "src/components/learning/weak-field-clock-lab.tsx",
+            "tests": "scripts/learning-weak-field-clock.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+              "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
+            ],
+            "sectionsPerLocale": 5,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "minkowskiMetricDraft": {
@@ -10532,21 +10570,38 @@
       },
       "weakFieldDraft": {
         "unitId": "weak-field-orbital-clock-approximation",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/weak-field-orbital-clock-approximation.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/weak-field-orbital-clock-approximation.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "weak-field-clock-reader-integration"
+        "nextAction": "phonon-dispersion-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
+        ]
       }
     },
     {
       "id": "matter-computation",
       "topicCount": 10,
       "status": "planned",
-      "implementedUnitIds": []
+      "implementedUnitIds": [],
+      "nextUnitId": "lattice-vibrations-and-phonon-dispersion",
+      "nextAction": "phonon-dispersion-reader-integration",
+      "phononDraft": {
+        "unitId": "lattice-vibrations-and-phonon-dispersion",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/lattice-vibrations-and-phonon-dispersion.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/lattice-vibrations-and-phonon-dispersion.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "phonon-dispersion-reader-integration"
+      }
     },
     {
       "id": "inverse-problems",
@@ -10582,8 +10637,8 @@
     "inverse-problems",
     "research-methods"
   ],
-  "nextDomain": "relativity",
-  "nextTopic": "유효 근사",
+  "nextDomain": "matter-computation",
+  "nextTopic": "고체·격자·phonon",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

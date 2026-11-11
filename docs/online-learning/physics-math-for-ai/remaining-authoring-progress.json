@@ -15454,66 +15454,103 @@
         },
         {
           "title": "유효 근사",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "weak-field-orbital-clock-approximation"
+          ],
           "preparation": {
             "unitId": "weak-field-orbital-clock-approximation",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/weak-field-orbital-clock-approximation.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/weak-field-orbital-clock-approximation.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "weak-field-clock-reader-integration"
+            "nextAction": "phonon-dispersion-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+              "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+            "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-weak-field-clock.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "weak-field-orbital-clock-approximation",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-weak-field-clock.ts",
+            "lab": "src/components/learning/weak-field-clock-lab.tsx",
+            "tests": "scripts/learning-weak-field-clock.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+              "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
+            ],
+            "sectionsPerLocale": 5,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         }
       ],
       "verification": null,
-      "nextUnitId": "weak-field-orbital-clock-approximation",
-      "nextAction": "weak-field-clock-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
-      "currentPreparationEvidence": "scripts/learning-rindler-observables.test.ts",
+      "nextUnitId": null,
+      "nextAction": "relativity-domain-audit",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+      "currentPreparationEvidence": "scripts/learning-weak-field-clock.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "accelerated-coordinates-and-invariant-readings",
+        "unitId": "weak-field-orbital-clock-approximation",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-rindler-observables.ts",
-        "lab": "src/components/learning/rindler-observables-lab.tsx",
-        "tests": "scripts/learning-rindler-observables.test.ts",
+        "model": "src/lib/learning-weak-field-clock.ts",
+        "lab": "src/components/learning/weak-field-clock-lab.tsx",
+        "tests": "scripts/learning-weak-field-clock.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
         ],
-        "sectionsPerLocale": 6,
+        "sectionsPerLocale": 5,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "accelerated-coordinates-and-invariant-readings",
+        "unitId": "weak-field-orbital-clock-approximation",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-rindler-observables.ts",
-        "lab": "src/components/learning/rindler-observables-lab.tsx",
-        "tests": "scripts/learning-rindler-observables.test.ts",
+        "model": "src/lib/learning-weak-field-clock.ts",
+        "lab": "src/components/learning/weak-field-clock-lab.tsx",
+        "tests": "scripts/learning-weak-field-clock.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
         ],
-        "sectionsPerLocale": 6,
+        "sectionsPerLocale": 5,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "좌표와 물리량",
+        "originalTopic": "유효 근사",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "accelerated-coordinates-and-invariant-readings"
+          "weak-field-orbital-clock-approximation"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -15521,24 +15558,35 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.ko.md",
-          "content/learning/physics-math-for-ai/accelerated-coordinates-and-invariant-readings.en.md"
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.ko.md",
+          "content/learning/physics-math-for-ai/weak-field-orbital-clock-approximation.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-rindler-observables.test.ts"
+        "evidence": "scripts/learning-weak-field-clock.test.ts"
       }
     },
     {
       "id": "matter-computation",
       "title": "물질·계산 장치·물리적 자원",
-      "status": "not-started",
+      "status": "in-progress",
       "existingSeedUnitIds": [],
       "topics": [
         {
           "title": "고체·격자·phonon",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "lattice-vibrations-and-phonon-dispersion",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/lattice-vibrations-and-phonon-dispersion.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/lattice-vibrations-and-phonon-dispersion.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "phonon-dispersion-reader-integration"
+          }
         },
         {
           "title": "전자·band",
@@ -15586,7 +15634,9 @@
           "unitIds": []
         }
       ],
-      "verification": null
+      "verification": null,
+      "nextUnitId": "lattice-vibrations-and-phonon-dispersion",
+      "nextAction": "phonon-dispersion-reader-integration"
     },
     {
       "id": "inverse-problems",
@@ -15716,14 +15766,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 618,
-  "verifiedNewUnitCount": 465,
-  "remainingForwardDomainCount": 4,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 32,
-  "nextDomain": "relativity",
-  "nextTopic": "유효 근사",
+  "implementedUnitCount": 619,
+  "verifiedNewUnitCount": 466,
+  "remainingForwardDomainCount": 3,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 31,
+  "nextDomain": "matter-computation",
+  "nextTopic": "고체·격자·phonon",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 330,
+  "verifiedOriginalScopeTopicCount": 331,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -15785,11 +15835,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 유효 근사. All 618 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 고체·격자·phonon. All 619 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "weak-field-orbital-clock-approximation",
+  "nextAuthoringUnitId": "lattice-vibrations-and-phonon-dispersion",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "weak-field-clock-reader-integration",
+  "nextAction": "phonon-dispersion-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }

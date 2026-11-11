@@ -3265,7 +3265,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "geodesics-straight-lines-and-great-circles",
       "einstein-equations-trace-and-sources",
       "spacetime-observation-and-redshift",
-      "accelerated-coordinates-and-invariant-readings"
+      "accelerated-coordinates-and-invariant-readings",
+      "weak-field-orbital-clock-approximation"
     ]
   },
   {
