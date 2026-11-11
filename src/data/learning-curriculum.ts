@@ -3395,7 +3395,8 @@ export const curriculumDomains:CurriculumDomain[] = [
     ],
     "unitIds": [
       "inverse-problems",
-      "forward-and-inverse-maps-for-cooling"
+      "forward-and-inverse-maps-for-cooling",
+      "ill-posedness-and-singular-modes"
     ]
   },
   {

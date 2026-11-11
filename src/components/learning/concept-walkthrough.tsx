@@ -1,4 +1,6 @@
 'use client';
+import { illPosednessId } from '@/data/ill-posedness-reader';
+import { IllPosednessConcept } from './ill-posedness-lab';
 import { coolingInverseId } from '@/data/cooling-inverse-reader';
 import { CoolingInverseConcept } from './cooling-inverse-lab';
 import { physicalValidationId } from '@/data/physical-validation-reader';
@@ -305,6 +307,7 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === illPosednessId) return <IllPosednessConcept language={language}/>;
   if (kind === coolingInverseId) return <CoolingInverseConcept language={language}/>;
   if (kind === physicalValidationId) return <PhysicalValidationConcept language={language}/>;
   if (kind === energyMeasurementId) return <EnergyMeasurementConcept language={language}/>;

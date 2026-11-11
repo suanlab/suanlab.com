@@ -1,4 +1,5 @@
 'use client';
+import { illPosednessId } from '@/data/ill-posedness-reader';
 import { coolingInverseId } from '@/data/cooling-inverse-reader';
 import { physicalValidationId } from '@/data/physical-validation-reader';
 import { energyMeasurementId } from '@/data/energy-measurement-reader';
@@ -225,6 +226,7 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === illPosednessId) return <span className="ai-concept-equation" aria-hidden="true">x̂₂ = 1 + δ/s</span>;
   if (kind === coolingInverseId) return <span className="ai-concept-equation" aria-hidden="true">y(t) = Ae^(−kt)</span>;
   if (kind === physicalValidationId) return <span className="ai-concept-equation" aria-hidden="true">r = ỹ(x) − M_fit x</span>;
   if (kind === energyMeasurementId) return <span className="ai-concept-equation" aria-hidden="true">SE = s_d / √n</span>;

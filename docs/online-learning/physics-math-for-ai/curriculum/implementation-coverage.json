@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 630,
+  "implementedUnitCount": 631,
   "curriculumComplete": false,
-  "scope": "630 registered units, 1929 guided experiments and 1260 bilingual manuscript files. Introductory scope: 342 of 362 original topics verified, 20 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "631 registered units, 1931 guided experiments and 1262 bilingual manuscript files. Introductory scope: 343 of 362 original topics verified, 19 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -11187,10 +11187,11 @@
       "status": "partially-authored",
       "implementedUnitIds": [
         "inverse-problems",
-        "forward-and-inverse-maps-for-cooling"
+        "forward-and-inverse-maps-for-cooling",
+        "ill-posedness-and-singular-modes"
       ],
-      "nextUnitId": "ill-posedness-and-singular-modes",
-      "nextAction": "ill-posedness-reader-integration",
+      "nextUnitId": "parameter-identifiability-and-sensor-design",
+      "nextAction": "sensor-identifiability-reader-integration",
       "coolingInverseDraft": {
         "unitId": "forward-and-inverse-maps-for-cooling",
         "status": "registered-and-verified",
@@ -11206,48 +11207,48 @@
           "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
-      "currentPreparationEvidence": "scripts/learning-cooling-inverse.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
+      "currentPreparationEvidence": "scripts/learning-ill-posedness.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "forward-and-inverse-maps-for-cooling",
+        "unitId": "ill-posedness-and-singular-modes",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-cooling-inverse.ts",
-        "lab": "src/components/learning/cooling-inverse-lab.tsx",
-        "tests": "scripts/learning-cooling-inverse.test.ts",
+        "model": "src/lib/learning-ill-posedness.ts",
+        "lab": "src/components/learning/ill-posedness-lab.tsx",
+        "tests": "scripts/learning-ill-posedness.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
-          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
+          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "forward-and-inverse-maps-for-cooling",
+        "unitId": "ill-posedness-and-singular-modes",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-cooling-inverse.ts",
-        "lab": "src/components/learning/cooling-inverse-lab.tsx",
-        "tests": "scripts/learning-cooling-inverse.test.ts",
+        "model": "src/lib/learning-ill-posedness.ts",
+        "lab": "src/components/learning/ill-posedness-lab.tsx",
+        "tests": "scripts/learning-ill-posedness.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
-          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
+          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "forward·inverse map",
+        "originalTopic": "ill-posedness",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "forward-and-inverse-maps-for-cooling"
+          "ill-posedness-and-singular-modes"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -11255,12 +11256,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.ko.md",
-          "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
+          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
+          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-cooling-inverse.test.ts"
+        "evidence": "scripts/learning-ill-posedness.test.ts"
       },
       "topicEvidence": [
         {
@@ -11299,18 +11300,70 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "ill-posedness",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "ill-posedness-and-singular-modes"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
+            "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-ill-posedness.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "ill-posedness-and-singular-modes",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-ill-posedness.ts",
+            "lab": "src/components/learning/ill-posedness-lab.tsx",
+            "tests": "scripts/learning-ill-posedness.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
+              "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "illPosednessDraft": {
         "unitId": "ill-posedness-and-singular-modes",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/ill-posedness-and-singular-modes.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/ill-posedness-and-singular-modes.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "ill-posedness-reader-integration"
+        "nextAction": "sensor-identifiability-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
+          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
+        ]
+      },
+      "sensorIdentifiabilityDraft": {
+        "unitId": "parameter-identifiability-and-sensor-design",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/parameter-identifiability-and-sensor-design.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/parameter-identifiability-and-sensor-design.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "sensor-identifiability-reader-integration"
       }
     },
     {
@@ -11340,7 +11393,7 @@
     "research-methods"
   ],
   "nextDomain": "inverse-problems",
-  "nextTopic": "ill-posedness",
+  "nextTopic": "식별 가능성",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",
