@@ -14,6 +14,20 @@ An evaluator that exposes $F$ permits prediction $0.8F$ with MSE 0.36. Exposing 
 
 For forecasting, simulate what was available at each training and test decision. A test feature can legitimately use earlier observations if the deployment system has them. Fit normalizers and feature selection using the allowed training information. For a new-machine claim, split by machine and check identifiers or near-duplicate records that can reveal test labels indirectly.
 
+For the available-information predictor, expand the residual as
+
+$$
+Y-0.8\rho X=0.8\sqrt{1-\rho^2}\,U+0.6N,\qquad |\rho|\le1.
+$$
+
+Independent centered unit-variance residual terms give
+
+$$
+\mathbb E[(Y-0.8\rho X)^2]=0.64(1-\rho^2)+0.36.
+$$
+
+The residual also has conditional mean zero given $X$, by independence. For any square-integrable predictor $g(X)$, its risk equals this residual risk plus $\mathbb E[(0.8\rho X-g(X))^2]$. This proves optimality with the specified available information. At $\rho=0.5$ the admissible risk is 0.84; revealing the future variable lowers it to 0.36. The drop of 0.48 is produced by changing what the evaluator exposes.
+
 ## 5. Enumerate an exact synthetic audit
 
 ```python

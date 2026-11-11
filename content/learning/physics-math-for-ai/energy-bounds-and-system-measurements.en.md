@@ -14,6 +14,30 @@ Run both candidate implementations in each block under similar ambient temperatu
 
 With independent blocks the estimated standard error of the mean paired difference is $s_d/\sqrt n$, where $s_d$ is the sample standard deviation. If the same meter applies one uncertain multiplicative gain to both runs, that scale uncertainty persists as the number of blocks increases. Report it separately from repeatability. With only a few blocks and possible temperature drift, inspect the differences in time order before relying on a confidence interval.
 
+For the stated reset model, write the operation count and units explicitly,
+
+$$
+Q_{\min}=Nk_BT\ln 2,\qquad
+[N]=1,\quad[k_B]=\mathrm{J\,K^{-1}},\quad[T]=\mathrm K.
+$$
+
+The product is in joules. In the paired measurement model the common block offset cancels,
+
+$$
+d_i=(\mu_A+c_i+\eta_{A,i})-(\mu_B+c_i+\eta_{B,i})
+=\mu_A-\mu_B+\eta_{A,i}-\eta_{B,i}.
+$$
+
+Cancellation requires the same additive offset within the pair. A change in temperature between its two runs can violate that model. For independent pairs, estimate repeatability using
+
+$$
+\bar d=\frac1n\sum_i d_i,\qquad
+s_d^2=\frac1{n-1}\sum_i(d_i-\bar d)^2,\qquad
+\widehat{\mathrm{SE}}(\bar d)=\frac{s_d}{\sqrt n}.
+$$
+
+The six differences below give $\bar d=13/3$ mJ and $\widehat{\mathrm{SE}}=1/3$ mJ. A shared relative meter-scale uncertainty of 0.01 contributes $0.01|\bar d|\approx0.0433$ mJ under a first-order scale model. Its common origin persists across repeated blocks.
+
 ## 5. Calculate from an illustrative paired dataset
 
 The values below are synthetic and use millijoules per inference at a shared measurement boundary. A positive difference favors B on energy for these blocks.

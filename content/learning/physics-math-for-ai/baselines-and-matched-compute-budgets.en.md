@@ -14,6 +14,14 @@ Use synthetic learning curves $L_A(b)=0.3+0.4/\sqrt b$ and $L_B(b)=0.2+0.8/\sqrt
 
 Use development data to choose hyperparameters under the declared search budget. Freeze the chosen models and the evaluation protocol before applying the final test. Count failed or discarded searches when they consumed the declared resource. Repeat the comparison with matched information and a meaningful budget range.
 
+Subtract the curves at the same budget,
+
+$$
+\Delta(b)=L_A(b)-L_B(b)=0.1-\frac{0.4}{\sqrt b},\qquad b>0.
+$$
+
+The equality condition is $\sqrt b=4$, hence $b=16$. Positive loss difference favors B, while a negative difference favors A. The differences at budgets 4, 16 and 64 are respectively $-0.10$, $0$ and $0.05$. Comparing A at budget 4 against B at budget 64 combines algorithm choice with resource allocation. Declare whether a budget unit means time, operations or search trials. The coefficients of these synthetic curves belong to that chosen unit and loss scale.
+
 ## 5. Verify the crossover in Python
 
 ```python

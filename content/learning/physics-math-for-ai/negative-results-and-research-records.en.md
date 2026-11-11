@@ -14,6 +14,15 @@ Suppose ten completed validation runs have losses 0.42, 0.55, 0.50, 0.60, 0.48, 
 
 For each working hypothesis, record the prediction, intervention, outcome and interpretation. A negative result under one budget or data regime constrains that claim. It can motivate a new experiment with a changed assumption. Keep the original result linked to the revised hypothesis so the analysis history remains inspectable.
 
+For $m$ valid completed runs, distinguish the best observed loss from the all-run mean,
+
+$$
+\ell_{\mathrm{best}}=\min_{1\le i\le m}\ell_i,\qquad
+\bar\ell_{\mathrm{all}}=\frac1m\sum_{i=1}^m\ell_i.
+$$
+
+Every $\ell_i$ is at least the minimum, so summing proves $\ell_{\mathrm{best}}\le\bar\ell_{\mathrm{all}}$. The gap in this example is $0.534-0.42=0.114$. It measures two summaries of the same retained data. It does not by itself estimate the selected model's error on new observations. Define the eligible set of runs before computing either summary and retain exclusion reasons. A crashed run with no defined metric cannot be inserted as a zero-loss observation.
+
 ## 5. Check a record and its numerical summary
 
 ```python

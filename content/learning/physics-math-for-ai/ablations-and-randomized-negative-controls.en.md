@@ -14,6 +14,20 @@ Replace $Z$ with an independent sign $Z'$ at inference. The frozen full predicto
 
 If the predictor is refitted in the population using independent $Z'$, the optimal coefficient of that feature is zero. The refitted predictor returns to $0.7X$ with error 0.10. Frozen randomization probes dependence of the deployed predictor. Refitting probes what information the learning procedure can use under a changed input relation.
 
+For independent centered signs, each sign has second moment one and every cross moment between distinct signs is zero. Expanding the residual square therefore gives
+
+$$
+\mathbb E[(0.3(Z-Z')+0.1N)^2]=0.3^2(1+1)+0.1^2=0.19.
+$$
+
+After population refitting, consider predictors $aX+bZ'$. The same orthogonality gives
+
+$$
+\mathbb E[(Y-aX-bZ')^2]=(0.7-a)^2+b^2+0.3^2+0.1^2.
+$$
+
+The two variable terms are nonnegative and vanish at $a=0.7,b=0$, proving the stated optimum of 0.10 within this linear predictor family. Correlated signs or a feature-dependent intervention change the cross terms and require a new calculation.
+
 ## 5. Enumerate every case
 
 ```python

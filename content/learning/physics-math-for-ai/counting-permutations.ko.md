@@ -48,11 +48,112 @@ $$
 
 특성 부분집합 탐색은 조합, 토큰 시퀀스 탐색은 반복 문자열에 가깝습니다. 이론적 후보 수가 학습에 실제로 방문하는 후보 수나 실행 시간을 뜻하지는 않습니다. 제약·가지치기·동치 처리와 각 결과의 가중치가 필요합니다.
 
+## 순서 있는 배치를 개수 벡터로 바꾸기
+
+범주가 $V=\{A,B,C\}$이고 관측이 네 개 있다고 하겠습니다. 시퀀스 AABC는 자리의 순서를 바꾸면 달라집니다. 중복집합은 개수 벡터 $(2,1,1)$로 두 번 나타난 A를 보존합니다. 집합 $\{A,B,C\}$는 포함 여부를 보존합니다. 예측할 정답에 어떤 정보가 필요한지 먼저 정한 뒤 집계 연산을 고르세요.
+
+길이 4 시퀀스는 $3^4=81$개, 크기 4 중복집합은 $\binom{6}{4}=15$개이며, 크기 제한 없이 세 범주에서 만드는 부분집합은 $2^3=8$개입니다. 개수 벡터가 $(c_A,c_B,c_C)$인 크기 4 중복집합에 대응하는 서로 다른 시퀀스는
+
+$$
+\frac{4!}{c_A!c_B!c_C!}
+$$
+
+개입니다. $(2,1,1)$에는 12개, $(4,0,0)$에는 한 개가 대응합니다. 따라서 시퀀스를 균등하게 추출하면 각 중복집합에 부여하는 확률이 달라집니다. 중복집합을 균등하게 추출한 데이터와 평가 가중치가 달라진다는 점을 기록하세요.
+
+## 유한 범주의 합 집계가 보존하는 정보 증명하기
+
+세 범주를 3차원 원핫 벡터 $\phi(A)=(1,0,0)$, $\phi(B)=(0,1,0)$, $\phi(C)=(0,0,1)$로 표현합니다. 유한 중복집합 $X$에 대해
+
+$$
+E(X)=\sum_{x\in X}\phi(x)=(c_A,c_B,c_C)
+$$
+
+로 정의합니다. 더하는 순서를 바꾸어도 합은 같습니다. 두 표현이 같으면 각 범주의 개수가 모두 같으므로 같은 중복집합입니다. 따라서 이 표현은 순열 불변이며 단사입니다. 중복집합에 정의된 임의의 목표 함수 $f$에 대해, $\rho(c_A,c_B,c_C)$를 그 개수 벡터에 해당하는 중복집합의 정답으로 정하면 $f=\rho\circ E$입니다. 유한 범주와 정확한 정수 연산에서 직접 구성한 증명입니다.
+
+빈 중복집합은 영벡터이며 크기는 0입니다. 세 좌표를 더하면 모든 입력의 크기를 복원합니다. 학습한 스칼라 임베딩에는 충돌이 생길 수 있습니다. $\phi(A)=0$, $\phi(B)=1$, $\phi(C)=2$라면 AC와 BB의 합은 모두 2입니다. 선택한 임베딩이 목표에 필요한 구별을 보존하는지 확인하세요.
+
+## 평균 집계에서 사라지는 정보 보기
+
+크기가 $m>0$인 중복집합의 평균 집계는 $E(X)/m$입니다. 이는 각 범주의 비율을 나타냅니다. 모든 범주의 개수를 같은 양의 정수배로 늘리면 비율이 유지됩니다.
+
+| 입력 | 합 표현 | 평균 표현 | 크기 |
+|---|---|---|---|
+| A | (1,0,0) | (1,0,0) | 1 |
+| AA | (2,0,0) | (1,0,0) | 2 |
+| AAA | (3,0,0) | (1,0,0) | 3 |
+| AAAA | (4,0,0) | (1,0,0) | 4 |
+
+평균만 받는 결정적 디코더는 네 입력에 같은 값을 출력합니다. 그러므로 서로 다른 크기를 모두 복원할 수 없습니다. 네 입력에 같은 가중치를 주면 제곱오차를 최소화하는 예측은 정답의 평균인 2.5입니다. 네 제곱오차의 합은 5입니다. 이 정보 손실은 해당 평균 표현을 받는 모든 결정적 디코더에 적용됩니다. 평균과 크기를 함께 제공하면 둘을 곱하여 각 범주의 개수를 복원할 수 있습니다. 빈 입력의 평균에는 별도의 규약이나 마스크가 필요합니다.
+
+최적 디코더라는 주장을 증명하겠습니다. 같은 표현을 공유하는 정답을 $y_1,\ldots,y_r$, 그 평균을 $\bar y$라고 합시다. 제곱을 전개하면
+
+$$
+\sum_{i=1}^r(y_i-a)^2
+=\sum_{i=1}^r(y_i-\bar y)^2+r(a-\bar y)^2
+$$
+
+입니다. $\sum_i(y_i-\bar y)=0$이므로 교차항이 사라집니다. 두 번째 항은 음이 아니며 $a=\bar y$일 때 0입니다. 표현이 같은 각 묶음에 이 논증을 적용하면 됩니다. 입력의 추출 가중치가 다르면 그에 맞는 가중평균이 필요합니다.
+
+## 정확한 표현 검산 실행하기
+
+세 범주에서 크기가 1부터 4까지인 비어 있지 않은 중복집합을 전부 만듭니다. 총 $3+6+10+15=34$개입니다. 각 중복집합에 같은 가중치를 주고 정답을 크기로 정합니다. 평균 표현이 같은 입력끼리 묶은 뒤 각 묶음의 정답 평균을 출력하면, 그 표현을 이용하는 최적 디코더의 제곱오차를 계산할 수 있습니다. 유리수 연산으로 표현의 동등성을 정확히 비교합니다.
+
+```python
+from collections import defaultdict
+from fractions import Fraction
+from itertools import combinations_with_replacement, product
+from math import factorial
+
+def histogram(word):
+    return tuple(word.count(symbol) for symbol in range(3))
+
+groups = defaultdict(list)
+multiset_count = sequence_count = 0
+for size in range(1, 5):
+    multisets = list(combinations_with_replacement(range(3), size))
+    for word in multisets:
+        counts = histogram(word)
+        mean = tuple(Fraction(c, size) for c in counts)
+        groups[mean].append(size)
+        assert sum(counts) == size
+    multiplicities = 0
+    for word in multisets:
+        denominator = 1
+        for count in histogram(word):
+            denominator *= factorial(count)
+        multiplicities += factorial(size) // denominator
+    assert multiplicities == 3**size
+    multiset_count += len(multisets)
+    for word in product(range(3), repeat=size):
+        assert histogram(word) == histogram(word[::-1])
+        sequence_count += 1
+
+squared_error = Fraction(0)
+for sizes in groups.values():
+    prediction = Fraction(sum(sizes), len(sizes))
+    squared_error += sum((size - prediction)**2 for size in sizes)
+mse = squared_error / multiset_count
+assert (multiset_count, sequence_count) == (34, 120)
+assert mse == Fraction(21, 34)
+print(multiset_count, sequence_count, mse)
+```
+
+출력은 `34 120 21/34`입니다. 한 범주만 사용하는 세 묶음이 전체 제곱오차 15를 만듭니다. 두 범주를 같은 비율로 사용하는 세 묶음이 6을 만듭니다. 나머지 묶음은 크기가 하나로 정해집니다. 원핫 합과 평균·크기 쌍에는 크기를 정확히 복원하는 디코더가 존재하므로 이 과제의 오차가 0입니다. 이 결과는 정한 가중치에서의 표현 능력을 정확히 계산한 것입니다. 신경망을 최적화하는 과정에는 학습과 일반화에 대한 추가 검토가 필요합니다.
+
+## 연구 결과를 읽고 후속 질문 정하기
+
+Deep Sets는 원소별 변환과 출력 변환 사이에 합을 사용하는 순열 불변 모델을 다룹니다. 정리 2의 가산 기저 집합 조건과 부록 A의 고정 크기 연속 입력 논의를 확인한 뒤 다른 입력 공간에 적용하세요. 여기의 유한 범주 증명과 34개 중복집합 검산은 교재에서 직접 구성한 예제입니다. [Zaheer 외, Deep Sets, arXiv v3, 2018-04-14, §2.2·§3.1·부록 A](https://arxiv.org/pdf/1703.06114v3)
+
+특징 차원을 줄였을 때 목표에 필요한 중복집합 구별을 유지하는지 연구할 수 있습니다. 범주 집합·최대 크기·산술 정밀도·동등성 규칙을 기록하세요. 정확한 히스토그램을 기준으로 삼고, 크기 예측에서 충돌하는 평균 집계를 대조 조건으로 둡니다. 표현 충돌과 최적화 오차를 각각 측정하세요. 이후 더 큰 크기를 별도 평가에 남겨, 평가 영역을 바꿨을 때의 외삽 능력을 확인하세요.
+
 ## 확인 문제와 답
 
 1. 4개 중 서로 다른 2개를 순서 있게 고르면? **12개**입니다.
 2. 같은 선택에서 순서를 지우면? **6개**입니다.
 3. 두 종류 중 중복을 허용해 세 개를 무순서로 고르면? **4개**입니다.
 4. 5개 특성에서 모든 부분집합을 탐색하면? 각 특성의 포함 여부를 정하므로 **2⁵=32개**입니다.
+
+5. A와 AA의 크기를 원핫 평균만으로 구별할 수 없는 이유는? **둘 다 (1,0,0)이므로 모든 디코더가 같은 출력을 내지만 정답은 각각 1과 2입니다.**
+6. 중복집합 AABC에 대응하는 길이 4 시퀀스는? **12개**입니다. 같은 A 두 개의 교환을 보정하면 $4!/2!$입니다.
 
 추가 읽기: [MIT Mathematics for Computer Science](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/). 본문의 대응과 작은 정수 계산은 직접 구성한 예제입니다.

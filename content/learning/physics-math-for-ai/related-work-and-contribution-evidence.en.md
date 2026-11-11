@@ -14,6 +14,21 @@ Suppose controlled errors are 0.60 K and 0.50 K without the physical term, for s
 
 The hypothetical results support an observed error reduction from adding the physical term under both matched context settings. Claiming an effect in a new population requires evaluation there. A claim of novelty also needs a search of related methods and the precise contribution, such as a new observation regime, a theorem with weaker assumptions, or independent evidence for an existing method.
 
+Index the context choice by $c\in\{0,1\}$ and the physical term by $p\in\{0,1\}$. Let $e_{c,p}$ be the measured error in kelvin under one common protocol. The illustrative matrix is
+
+$$
+(e_{c,p})=\begin{pmatrix}0.60&0.54\\0.50&0.40\end{pmatrix}\ \mathrm K.
+$$
+
+Rows change context and columns change the physical term. Define the matched improvement and its change across contexts,
+
+$$
+g_c=e_{c,0}-e_{c,1},\qquad
+I=g_1-g_0=(e_{1,0}-e_{1,1})-(e_{0,0}-e_{0,1}).
+$$
+
+Substitution gives $g_0=0.06$ K, $g_1=0.10$ K and $I=0.04$ K. The diagonal contrast decomposes as $e_{0,0}-e_{1,1}=(e_{0,0}-e_{1,0})+g_1=0.20$ K. Attributing all of it to the physical term merges two changes. These are descriptive contrasts of the four recorded cells. A population or causal interpretation additionally needs its sampling or intervention assumptions and uncertainty.
+
 ## 5. Compute the matched comparisons
 
 ```python
