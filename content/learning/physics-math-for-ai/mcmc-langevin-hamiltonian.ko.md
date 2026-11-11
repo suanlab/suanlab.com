@@ -31,6 +31,45 @@ $$
 
 가역·체적 보존 제안을 momentum 반전과 min(1,exp(-Delta H))로 보정합니다. 마지막 제안이 거절되어도 그림에는 남습니다. 큰 불안정 step의 극적인 제안 그림이 유용한 sampling을 뜻하지 않습니다.
 
+## Leapfrog는 Target 에너지와 다른 수정 이차식을 보존한다
+
+조화 target의 한 leapfrog step은 선형 사상이다.
+
+$$
+M_\epsilon=\begin{pmatrix}1-\epsilon^2/2&\epsilon\\
+-\epsilon(1-\epsilon^2/4)&1-\epsilon^2/2\end{pmatrix}.
+$$
+
+Determinant는 1, trace는 2−ε²다. 0<ε<2이면 고유값이 단위원에 있고 양의 이차식 H̃=[(1−ε²/4)q²+p²]/2를 정확한 산술에서 보존한다. Mᵀdiag(1−ε²/4,1)M이 같은 대각행렬이다. Target H=(q²+p²)/2는 별개이며 ΔH=ε²(q_L²−q₀²)/8이다. 따라서 target 에너지의 정확 보존 없이 유계 진동 오차를 설명한다. ε=2에서는 이차식이 퇴화하고 2보다 크면 불안정 실수 고유값이 생긴다.
+
+![안정한 세 보폭의 조화 leapfrog에서 초기 target 에너지와 비교한 정확 산술 에너지 진동.](/assets/learning/stochastic-shadow-ko.svg)
+
+| ε | 수정 q² 계수 | 선형 안정성 |
+|---|---:|---|
+| 1/2 | 15/16 | 안정 |
+| 1 | 3/4 | 안정 |
+| 3/2 | 7/16 | 안정 |
+
+```python
+from fractions import Fraction as F
+for eps in (F(1,2), F(1), F(3,2)):
+    q, p = F(7,10), F(-3,10)
+    q0 = q
+    c = 1-eps*eps/4
+    initial = (q*q+p*p)/2
+    shadow = (c*q*q+p*p)/2
+    for _ in range(8):
+        half = p-eps*q/2
+        q += eps*half
+        p = half-eps*q/2
+        assert (c*q*q+p*p)/2 == shadow
+        assert (q*q+p*p)/2-initial == eps*eps*(q*q-q0*q0)/8
+    assert (1-eps*eps/2)**2+eps*eps*c == 1
+    print(eps, c, 'energy change:', float((q*q+p*p)/2-initial))
+```
+
+유리수로 차분 Jacobian 없이 보존식과 에너지 오차를 검산한다. Momentum 반전을 포함하면 가역 결정론 제안이 involution이 되고, 면적 보존과 Metropolis 비율이 확장 target을 보존한다. Momentum refresh와 거절 상태 유지도 sampler의 일부다. 적분기 안정성만으로 유용한 mixing을 증명하거나 수용 보정이 불필요해지지는 않는다.
+
 ## 직접 풀기: 세 진단 나누기
 
 h=0.5의 ULA 분산 4/3을 재귀로 확인하세요. 60개 제안·burn-in10에서 왜 초기 상태를 포함한 보유 표본이 51개인지 설명하세요. HMC 마지막 제안 끝점·실제 마지막 chain 상태·에너지 오차도 비교하세요. 높은 수용률·좋은 유한 moments·불변 target의 증명이 왜 서로 다른 근거인지 적으세요.

@@ -42,6 +42,45 @@ The left-sum error against the Itô endpoint integral equals (T-QV_N)/2. On a un
 
 At T=1,N=64 the theoretical MSE is 1/128. At T=2,N=16 it is 1/8. The scaling is quadratic in T and inverse in N, which is different from the sample path's square-root time scaling.
 
+## Adaptedness is what makes the isometry work
+
+Assume EΣHᵢ²Δtᵢ<∞. For a simple predictable integrand Hᵢ measurable before ΔWᵢ, each term HᵢΔWᵢ has conditional mean zero. Cross terms vanish by conditioning on the later increment, and the diagonal term is E[Hᵢ²]Δtᵢ. Therefore
+
+$$
+E\left[\left(\sum_iH_i\Delta W_i\right)^2\right]
+=\sum_i E[H_i^2]\Delta t_i.
+$$
+
+Completing predictable simple processes in L²(dt×dP) constructs the Itô integral and extends this identity. It is not an identity for arbitrary future-dependent integrands. Taking Hᵢ=W_T for every interval gives W_TΣΔWᵢ=W_T², whose expectation is T rather than zero. The missing hypothesis is adaptedness, not a numerical accuracy issue.
+
+For a finite symmetric walk with N increments ±1/√N, the predictable left sum with Hᵢ=Wᵢ has second moment (N−1)/(2N). This discrete martingale example is exactly enumerable. Its deterministic QV equals one; its finite increment distribution is not Gaussian.
+
+| N | E[left sum squared] |
+|---|---:|
+| 2 | 1/4 |
+| 4 | 3/8 |
+| 8 | 7/16 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+for N in (2, 4, 8):
+    second = anticipated_mean = isometry = F(0)
+    for increments in product((-1,1), repeat=N):
+        state, left, diagonal = 0, 0, 0
+        for dw in increments:
+            left += state*dw
+            diagonal += state*state
+            state += dw
+        second += F(left*left, N*N*2**N)
+        isometry += F(diagonal, N*N*2**N)
+        anticipated_mean += F(state*state, N*2**N)
+    assert second==isometry==F(N-1,2*N) and anticipated_mean==1
+    print(N, second, anticipated_mean)
+```
+
+The code uses unscaled ±1 increments and normalizes the sum by N, so exact fractions avoid irrational arithmetic. The anticipated sum is W_T²/N and has mean one. In research code, moving a state evaluation to the next step can change the stochastic integral being approximated even when ordinary deterministic quadrature would tolerate that change.
+
 ## Exercise: distinguish three corrections
 
 For the displayed realization calculate S_N-L_N, QV_N/2 and T/2. The first two agree up to rounding; the third is the limiting correction and generally differs on a finite grid. Then replace every increment on paper by a deterministic smooth path increment. The finite identities remain true, but the limiting QV behavior changes. Explain why the stochastic calculus distinction comes from the process law as well as the summation convention.

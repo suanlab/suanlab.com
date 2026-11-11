@@ -26,6 +26,41 @@ $$
 
 p=0.75, B=2, N=4에서 시간 2에 hit할 확률은 p²+(1-p)²=0.625입니다. 나머지의 정지시각은 4라 E[tau]=2.75, E[S_tau]=0.5×2.75=1.375입니다. E[M_tau]는 0입니다.
 
+## 거의 확실히 유한한 정지시각도 실패할 수 있는 이유
+
+0에서 시작하는 공정 walk를 +1 또는 −B에서 멈추자. 정지시각의 기대값은 B로 유한하고 정지 위치는 유계다. Affine 조화 경계 문제를 풀면 p=Pr(+1 탈출)=B/(B+1)이다. 따라서 E[Sτ]=p−B(1−p)=0이며 선택적 정지가 정당하다. 기대 탈출 시간은 이차 함수의 재귀로 구한다.
+
+이제 B를 늘리자. 공정 walk는 +1에 거의 확실히 도달하지만 그 유계가 아닌 hit 시각의 위치는 반드시 1이므로 E[Sτ]=1이다. 아래쪽 희귀 탈출은 확률 1/(B+1), 크기 B로 기대값 기여가 사라지지 않고 −1로 간다. 이 정지 위치열은 균등 적분 가능하지 않아 극한과 기대값을 교환할 수 없다.
+
+$$
+E[|S_{\tau_B}|\,\mathbf1_{\{|S_{\tau_B}|>K\}}]
+\ge B/(B+1)\quad(B>\max(K,1)).
+$$
+
+| B | 위쪽 탈출 확률 | 아래쪽 탈출의 기대값 기여 |
+|---|---:|---:|
+| 1 | 1/2 | −1/2 |
+| 3 | 3/4 | −3/4 |
+| 9 | 9/10 | −9/10 |
+
+```python
+from fractions import Fraction as F
+for B in (1, 3, 9):
+    upper = F(B, B+1)
+    lower_contribution = -B*(1-upper)
+    assert upper+lower_contribution == 0
+    # Harmonic probability and expected time for -B <= x <= 1.
+    probability = lambda x: F(x+B, B+1)
+    duration = lambda x: (x+B)*(1-x)
+    for x in range(-B+1, 1):
+        assert probability(x)==(probability(x-1)+probability(x+1))/2
+        assert duration(x)==1+F(duration(x-1)+duration(x+1),2)
+    assert duration(0)==B
+    print(B, upper, lower_contribution, duration(0))
+```
+
+유리수 조화 계산이 빠진 꼬리 제어를 드러낸다. 실제 양쪽 경계·유계 horizon 재귀는 계속 유효하다. 관측 성능에 따라 선택한 중단 규칙을 무조건 평균 하나로 정당화할 수 없다. 정보·적분 가능성·정지 조건을 함께 확인해야 한다.
+
 ## 직접 풀기: Seed와 정리 구분
 
 같은 편향 예제의 seed를 바꾸면 실제 정지 상태가 달라도 확률 재귀·기대값은 같습니다. B=1이면 첫 step에 반드시 멈춥니다. 관측 시간이 8이어도 보상은 d 한 번입니다. 잘못 8d를 빼면 무엇이 달라지고 왜 martingale 정리의 반례가 아닌지 계산하세요.

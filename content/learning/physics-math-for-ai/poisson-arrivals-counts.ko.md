@@ -25,6 +25,39 @@ $$
 
 lambda=2, T=1이면 처음 세 확률은 exp(-2), 2exp(-2), 2exp(-2)입니다. 합은 약 0.676676, 꼬리는 약 0.323324입니다. 한 경로의 도착 수가 무엇이든 이론적 count 분산은 2입니다.
 
+## 총 Count를 조건화하면 의존 구조가 바뀐다
+
+0<s<T에서 독립 증분으로 N(s)∼Poisson(λs), N(T)−N(s)∼Poisson(λ(T−s))다. Joint 확률을 전체 Poisson 확률로 나누면 λ>0, 관측 총수 n에서
+
+$$
+\Pr(N(s)=k\mid N(T)=n)=\binom nk(s/T)^k(1-s/T)^{n-k}.
+$$
+
+총수를 조건화하면 한 구간의 count가 다른 것을 결정해 음의 의존성이 생긴다. 무조건 공분산은 0이지만 조건부 공분산은 −n(s/T)(1−s/T)다. 도착 n개를 조건화한 순서 도착시각의 밀도는 ordered simplex에서 n!/Tⁿ이며 독립 uniform 시각 n개의 순서통계량과 같다. 잘린 Poisson 그림의 재정규화와는 다른 조건화다.
+
+n=4, s/T=1/4이면 조건부 평균은 1, 분산은 3/4이다.
+
+| k | 조건부 확률 |
+|---|---:|
+| 0 | 81/256 |
+| 1 | 108/256 |
+| 2 | 54/256 |
+
+```python
+from fractions import Fraction as F
+from math import comb
+n, p = 4, F(1, 4)
+law = [comb(n,k)*p**k*(1-p)**(n-k) for k in range(n+1)]
+mean = sum(k*w for k,w in enumerate(law))
+variance = sum((k-mean)**2*w for k,w in enumerate(law))
+covariance = sum((k-mean)*((n-k)-(n-mean))*w for k,w in enumerate(law))
+assert sum(law)==1 and mean==1 and variance==F(3,4)
+assert covariance == -variance
+print(law, mean, variance, covariance)
+```
+
+유리수로 전체 이항 법칙과 음의 공분산을 확인한다. 무조건 count의 로그 우도는 상수를 제외하면 n logλ−λT이고 내부 최댓값은 n/T, λ>0의 Fisher 정보는 T/λ다. n=0에서는 비음수 rate MLE가 경계에 있으므로 내부 정규 근사는 별도 정당화가 필요하다. Count 우도·조건부 bridge·무조건 seed 경로는 다른 통계 질문이다.
+
 ## 직접 풀기: 두 창과 두 Cutoff
 
 인접한 단위 구간의 count는 독립 Poisson(lambda)이고 합은 Poisson(2lambda)입니다. 이 분포 명제와 한 2단위 경로를 세는 작업을 구별하세요. lambda T=2에서 K를 2→10으로 늘리면 왜 꼬리만 줄고 도착 시간·평균은 같은지도 설명하세요. 재정규화한 세 stem이 뜻하는 조건부 법칙도 적으세요.

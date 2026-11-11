@@ -42,6 +42,45 @@ Left sum과 Itô 적분의 오차는 (T-QV_N)/2입니다. 균등 grid에서 평�
 
 T=1,N=64의 이론 MSE는 1/128, T=2,N=16은 1/8입니다. 시간·grid 배율을 경로의 sqrt(T) 배율과 구별하세요.
 
+## Adapted 조건이 등거리의 핵심이다
+
+EΣHᵢ²Δtᵢ<∞를 가정하자. ΔWᵢ 이전 정보에 대해 가측인 단순 예측 가능 Hᵢ에서 각 HᵢΔWᵢ의 조건부 평균은 0이다. 더 나중 증분에 조건화하면 교차항이 사라지고 대각항은 E[Hᵢ²]Δtᵢ다. 따라서
+
+$$
+E\left[\left(\sum_iH_i\Delta W_i\right)^2\right]
+=\sum_i E[H_i^2]\Delta t_i.
+$$
+
+예측 가능한 단순 과정을 L²(dt×dP)에서 완비화하면 Itô 적분과 등거리 확장을 얻는다. 미래 의존 integrand에는 일반적으로 성립하지 않는다. 매 구간 Hᵢ=W_T라 두면 합은 W_TΣΔWᵢ=W_T²이고 기대값이 0 대신 T다. 빠진 것은 adapted 가정이며 수치 정확도 문제가 아니다.
+
+N개의 ±1/√N 증분인 유한 공정 walk에서 Hᵢ=Wᵢ의 left sum 이차 moment는 (N−1)/(2N)다. 정확히 열거할 수 있는 이산 martingale 예제다. QV는 결정론적으로 1이고 유한 증분 분포는 Gaussian이 아니다.
+
+| N | E[left sum의 제곱] |
+|---|---:|
+| 2 | 1/4 |
+| 4 | 3/8 |
+| 8 | 7/16 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+for N in (2, 4, 8):
+    second = anticipated_mean = isometry = F(0)
+    for increments in product((-1,1), repeat=N):
+        state, left, diagonal = 0, 0, 0
+        for dw in increments:
+            left += state*dw
+            diagonal += state*state
+            state += dw
+        second += F(left*left, N*N*2**N)
+        isometry += F(diagonal, N*N*2**N)
+        anticipated_mean += F(state*state, N*2**N)
+    assert second==isometry==F(N-1,2*N) and anticipated_mean==1
+    print(N, second, anticipated_mean)
+```
+
+코드는 스케일 전 ±1 증분을 쓰고 합을 N으로 나누어 무리수 없이 유리수로 계산한다. 미래를 본 합은 W_T²/N으로 평균 1이다. 연구 코드에서 상태 평가를 다음 step으로 옮기면 보통 결정론 구적에서는 작은 변경이어도 근사하는 확률 적분 자체가 달라질 수 있다.
+
 ## 직접 풀기: 세 보정값 비교
 
 현재 표본의 S_N-L_N, QV_N/2, T/2를 계산하세요. 처음 둘은 반올림을 제외하면 같고 마지막은 극한 보정이라 유한 grid에서 다릅니다. 증분을 결정론적 매끄러운 경로로 바꾸어도 유한 항등식은 맞지만 QV 극한은 바뀝니다. 적분 관례뿐 아니라 과정의 법칙도 필요한 이유를 설명하세요.

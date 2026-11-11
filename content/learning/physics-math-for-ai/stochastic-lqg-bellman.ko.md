@@ -37,6 +37,38 @@ $$
 
 이는 조건부 기대 원리의 무한소 형태이며 diffusion generator를 포함합니다. 고전적 검증에는 정칙성·허용 adapted 제어·적분 가능성이 필요합니다. 유한 이산 실험의 Bellman 검산이 일반 연속 문제의 가정을 없애 주지는 않습니다.
 
+## 완전제곱으로 정책 성능 차이 증명하기
+
+Riccati 가치 Vₙ에 대해 임의 adapted 행동 uₙ의 조건부 Bellman 이차식을 완전제곱하자. 잔차는 (R+Pₙ₊₁)(uₙ+KₙXₙ)²/2다. 조건부 기대를 더하면 미래 가치 항이 망원합으로 상쇄되고 terminal 비용도 사라진다. 따라서 이차 적분 가능한 모든 허용 정책에서
+
+$$
+J(u)-V_0(x_0)=\frac12\sum_{n=0}^{N-1}
+(R+P_{n+1})E[(u_n+K_nX_n)^2]\ge0.
+$$
+
+몇 개 상수 gain의 비교를 넘어 adapted 비선형 정책 전체에 대한 최적성을 증명한다. 준최적 비용을 정량화하고 등호 조건도 준다. 각 벌점 step에서 거의 확실히 최적 feedback과 같아야 한다. u=−LₙX이면 기대값은 (Kₙ−Lₙ)²(mₙ²+vₙ)여서 forward moments로 비음수 합을 직접 구한다.
+
+잡음 없는 한 결정 a=R=x₀=1,terminal q에서 zero 제어 초과 비용은 q²/[2(1+q)]다.
+
+| q | 최적 Gain | Zero 제어 초과 비용 |
+|---|---|---|
+| 1 | 1/2 | 1/4 |
+| 10⁻¹⁰ | q/(1+q) | q²/[2(1+q)] |
+| 10⁻²⁰ | q/(1+q) | q²/[2(1+q)] |
+
+```python
+from fractions import Fraction as F
+for q in (F(1), F(1,10**10), F(1,10**20)):
+    gain = q/(1+q)
+    optimal = (1+gain*gain+q*(1-gain)**2)/2
+    zero = (1+q)/2
+    certificate = (1+q)*gain*gain/2
+    assert zero-optimal==certificate==q*q/(2*(1+q)) > 0
+    print(q, gain, certificate)
+```
+
+실제 초과 비용도 이 완전제곱 합으로 보완했다. 거의 같은 총비용을 빼면 실제 양의 차이가 사라지거나 최적 정책의 가짜 음의 gap이 생긴다. 직접 총비용 차이는 계산 API의 expanded 진단으로 유지한다. 이 인증은 명시한 완전 관측·가산 잡음 모형과 정확한 Bellman 재귀에 의존한다. 학습한 근사 가치에는 잔차·모형 오차 분석이 추가로 필요하다.
+
 ## 직접 풀기: 정보의 우위 드러내기
 
 다음 Z를 본 뒤 u를 고르면 왜 다른 쉬운 문제인지 설명하세요. 한 stage Bellman 미분과 양의 곡률 R+P_next를 구하세요. Terminal weight=0이면 마지막 행동이 0인 이유도 확인하세요. 연속시간 HJB가 같은 조건부 최소화 원리와 연결되지만 이 유한 재귀가 일반 HJB solver는 아니라는 점도 구별하세요.

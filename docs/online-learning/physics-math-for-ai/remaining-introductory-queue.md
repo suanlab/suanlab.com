@@ -58,6 +58,8 @@
 
 상미분·편미분방정식의 [10개 원주제 대조](differential-equations-topic-review.md)를 연결했다. Green 잔차 인증·Picard/Gronwall·흐름 합성·비정규 Lyapunov·임계 감쇠·inertia·역 열연산·특성선 민감도·점성 shock·L1 수축을 한영 논증·독립 Python·과학 그림으로 확장했다. 작은 로지스틱 차이·위상 고립성·PDE 유형의 반올림 문제도 수정했다. 누적 28영역·273개 원주제, 후속 23영역·236개이며 다음은 확률과정·확률미분방정식 11개다. 입문 362/362 완료와 전체 연구 심화 상태는 구분한다.
 
+확률과정·확률미분방정식의 [11개 원주제 대조](stochastic-processes-topic-review.md)를 연결했다. Uniformization·조건부 count·정지 반례·QV 극한·Itô 등거리·OU 강한 차수·상대 엔트로피·probability flow·상관 분산·수정 Hamiltonian·정책 성능 항등식을 한영 증명·독립 Python·과학 그림으로 확장했다. 극소 joint의 support·평균 이동 flux·mixing 분류·작은 LQG 초과 비용도 보완했다. 누적 29영역·284개 원주제, 후속 22영역·225개이며 다음은 과학계산과 수치 시뮬레이션 11개다. 입문 362/362 및 650개 단원·1,969개 안내와 전체 연구 심화의 상태를 구분한다.
+
 ## 이전 작업 기록
 
 아래 수치는 각 작업 시점의 기록이다.

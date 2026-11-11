@@ -33,6 +33,48 @@ At theta=1, sigma=sqrt(2) and stationary variance one, the score is -x. The reve
 
 With theta zero and an initial standard Gaussian, the forward drift vanishes but the density spreads. Reversal still needs a nonzero score drift. At physical time zero the displayed reverse drift is -x for sigma one.
 
+## Same marginals do not imply the same path law
+
+The forward Fokker–Planck flux for constant diffusion is bp−σ²pₓ/2. A deterministic continuity equation with velocity b−σ²score/2 has the same flux and hence, under the required well-posedness conditions, the same marginals. In increasing reverse time, its velocity is θx+σ²score/2 for OU. The reverse SDE instead uses θx+σ²score and retains Brownian noise. The half factor is essential: removing noise from the reverse SDE without changing its drift does not preserve its marginals.
+
+For Gaussian marginals, the deterministic reverse flow is explicitly
+
+$$
+x(s)=m_{T-s}+\sqrt{v_{T-s}/v_T}\,(x_T-m_T).
+$$
+
+Differentiating gives m′ᵣ+(v′ᵣ/(2v))(x−m), exactly the reverse probability-flow velocity. It maps the terminal Gaussian into the requested earlier Gaussian. The noisy reverse SDE has the same mean and variance but different joint laws across times. Neither construction authorizes starting from an unrelated terminal distribution.
+
+| θ=0, σ=v=1, m=0 | Increasing reverse-time drift |
+|---|---|
+| Reverse SDE, with noise | −x |
+| Probability-flow ODE, without noise | −x/2 |
+| Naive sign reversal | 0 |
+
+```python
+from math import exp, sqrt
+theta, sigma, m0, v0, T = .7, 1., .8, .4, 1.
+def moments(t):
+    decay = exp(-theta*t)
+    return m0*decay, v0*decay**2+sigma**2*(1-decay**2)/(2*theta)
+mT, vT = moments(T)
+def flow(s, terminal):
+    m, v = moments(T-s)
+    return m+sqrt(v/vT)*(terminal-mT)
+for s in (.25, .5, .75):
+    m, v = moments(T-s)
+    assert abs(flow(s,mT)-m) < 1e-14
+    scale = sqrt(v/vT)
+    assert abs(scale*scale*vT-v) < 1e-14
+    x = flow(s, 1.2)
+    velocity = theta*x-sigma**2*(x-m)/(2*v)
+    difference = (flow(s+1e-5,1.2)-flow(s-1e-5,1.2))/2e-5
+    assert abs(difference-velocity) < 1e-9
+    print(s, x, velocity)
+```
+
+This auxiliary exact Gaussian map is not an additional live ODE solver. The code verifies its transported moments and velocity by an independent time difference. General score models also need approximation-error analysis and numerical integration; equality of ideal marginals does not prove that a discretized learned sampler reproduces them.
+
 ## Exercise: identify the required terminal law
 
 Use nonstationary initial mean one and variance one quarter. Compute the forward mean and variance at T=1 and use that Gaussian as the reverse initial law. Then choose reverse fraction one half and determine the physical time. Explain why substituting a standard Gaussian or evaluating the score at s instead of T-s would fail the stated marginal moment equations.

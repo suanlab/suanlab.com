@@ -29,6 +29,42 @@ The actual QV is computed from the shown path and generally differs from T. Refi
 
 At N=16 and T=1, QV variance is 0.125. At N=64 it is 0.03125, with the same path endpoint under this coupling. Doubling T for a fixed seeded increment pattern multiplies path values by sqrt(2), QV by two, and its theoretical variance by four. These are distinct scaling powers.
 
+## From a finite chi-square law to a pathwise conclusion
+
+On a uniform Brownian grid, QV_N=(T/N)ΣZᵢ² with independent standard Gaussians. Hence N QV_N/T is chi-square with N degrees of freedom. Its moment generating function, (1−2s)^(−N/2), supplies Chernoff bounds. For 0<δ<1, optimizing the positive and negative exponential parameters gives
+
+$$
+\Pr(|QV_N/T-1|\ge\delta)\le
+e^{-N(\delta-\log(1+\delta))/2}+
+e^{-N(-\delta-\log(1-\delta))/2}.
+$$
+
+Independently, E[(QV_N−T)²]=2T²/N proves L² convergence. On nested dyadic grids N=2ᵏ, Chebyshev probabilities are summable for every fixed positive error threshold. Borel–Cantelli, followed by a countable sequence of thresholds, gives almost sure dyadic convergence. No independence between different grids is needed. This statement concerns an infinite Brownian construction, not the lab's finite 128-step display.
+
+![Two theoretical upper bounds on relative quadratic-variation error, distinguished from sampled error frequencies.](/assets/learning/stochastic-variation-en.svg)
+
+| N, T=1 | Exact QV mean-square error |
+|---|---:|
+| 16 | 1/8 |
+| 64 | 1/32 |
+| 256 | 1/128 |
+
+```python
+from fractions import Fraction as F
+from math import exp, log1p
+delta = .5
+for N in (16, 64, 256):
+    mse = F(2, N)
+    chernoff = min(1., exp(-N*(delta-log1p(delta))/2)+exp(-N*(-delta-log1p(-delta))/2))
+    chebyshev = min(1., float(mse)/(delta*delta))
+    assert 0 < chernoff <= 1 and 0 < chebyshev <= 1
+    print(N, mse, chernoff, chebyshev)
+# Sum Var(QV_2^k) from k=4 to infinity, T=1.
+assert 2*F(1,16)/(1-F(1,2)) == F(1,4)
+```
+
+For a continuous path of finite total variation, Σ(Δx)²≤max|Δx| times total variation tends to zero as the mesh shrinks. Brownian dyadic QV instead tends to T>0, proving its total variation is infinite almost surely. The code checks moment scaling and the bound constants, not a pathwise theorem by simulation.
+
 ## Exercise: explain the overlap
 
 For time fractions one quarter and three quarters of T=2, covariance is one half. Derive it by listing which fine increments occur in both sums. Then compare coarse and fine QV values: their endpoint matches exactly, but their squared-increment sums need not. Expanding the square of a sum reveals cross terms, explaining why endpoint preservation does not preserve QV. Finally state why crossing an orange standard-deviation reference is not a model failure.

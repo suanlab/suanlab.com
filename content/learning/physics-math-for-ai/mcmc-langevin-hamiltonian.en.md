@@ -31,6 +31,45 @@ $$
 
 The reversible, volume-preserving proposal with momentum reversal is corrected by min(1,exp(-Delta H)). The diagram shows the last proposal even if it was rejected. A large unstable integrator step can yield a dramatic trajectory and almost no useful accepted movement; a visually interesting proposal is not evidence of good sampling.
 
+## Leapfrog preserves a modified quadratic, not the target energy
+
+For the harmonic target, one leapfrog step is a linear map
+
+$$
+M_\epsilon=\begin{pmatrix}1-\epsilon^2/2&\epsilon\\
+-\epsilon(1-\epsilon^2/4)&1-\epsilon^2/2\end{pmatrix}.
+$$
+
+Its determinant is one and trace is 2−ε². For 0<ε<2 the eigenvalues lie on the unit circle and the positive quadratic H̃=[(1−ε²/4)q²+p²]/2 is exactly invariant in exact arithmetic: Mᵀdiag(1−ε²/4,1)M equals that same diagonal matrix. Target H=(q²+p²)/2 is different, with ΔH=ε²(q_L²−q₀²)/8. This explains bounded oscillatory energy error without claiming exact target-energy conservation. At ε=2 the quadratic is degenerate; above two the map has an unstable real eigenvalue.
+
+![Exact-arithmetic harmonic leapfrog energy oscillations for three stable steps, compared with their initial target energy.](/assets/learning/stochastic-shadow-en.svg)
+
+| ε | Modified q² coefficient | Linear stability |
+|---|---:|---|
+| 1/2 | 15/16 | stable |
+| 1 | 3/4 | stable |
+| 3/2 | 7/16 | stable |
+
+```python
+from fractions import Fraction as F
+for eps in (F(1,2), F(1), F(3,2)):
+    q, p = F(7,10), F(-3,10)
+    q0 = q
+    c = 1-eps*eps/4
+    initial = (q*q+p*p)/2
+    shadow = (c*q*q+p*p)/2
+    for _ in range(8):
+        half = p-eps*q/2
+        q += eps*half
+        p = half-eps*q/2
+        assert (c*q*q+p*p)/2 == shadow
+        assert (q*q+p*p)/2-initial == eps*eps*(q*q-q0*q0)/8
+    assert (1-eps*eps/2)**2+eps*eps*c == 1
+    print(eps, c, 'energy change:', float((q*q+p*p)/2-initial))
+```
+
+The rational code verifies the invariant and energy error without a finite-difference Jacobian. Momentum flip makes the reversible deterministic proposal an involution; area preservation and the Metropolis ratio then preserve the extended target. Momentum refresh and retained rejections are part of the sampler. Integrator stability alone does not prove useful mixing or eliminate the need for acceptance correction.
+
 ## Exercise: separate three diagnostics
 
 At h=0.5 verify the ULA variance recurrence yields 4/3. In random-walk mode with sixty proposals and burn-in ten, explain why there are fifty-one retained states: the initial state also belongs to the trace. In HMC mode compare the last proposal endpoint with the final accepted chain state and the energy error. Finally state why high acceptance, accurate finite sample moments and a proof of invariant target are three different pieces of evidence.

@@ -8,6 +8,35 @@ const close=(a:number,b:number,tol=1e-9)=>assert.ok(Math.abs(a-b)<=tol*(1+Math.m
 const vector=(a:number[],b:number[],tol=1e-9)=>{assert.equal(a.length,b.length);a.forEach((v,i)=>close(v,b[i],tol));};
 const integrate=(f:(x:number)=>number,a:number,b:number,N=2000)=>{let s=f(a)+f(b);for(let i=1;i<N;i++)s+=(i%2?4:2)*f(a+(b-a)*i/N);return s*(b-a)/(3*N);};
 const multiply=(A:number[][],B:number[][])=>A.map(row=>B[0].map((_,j)=>row.reduce((s,v,k)=>s+v*B[k][j],0)));
+test('Bayes reversal retains positive support when a joint probability underflows',()=>{
+ const r=markovExperiment(Number.MIN_VALUE,1,1-2**-53,1,0,0);
+ assert.equal(r.reverse.next[1],0);assert.deepEqual(r.reverse.reverse[1],[1,0]);
+ assert.equal(reverseKernel([[1,0],[1,0]],[.5,.5]).reverse[1],null);
+ const symmetric=reverseKernel([[1,Number.MIN_VALUE],[1,Number.MIN_VALUE]],[.5,.5]);
+ vector(symmetric.reverse[1]!,[.5,.5],1e-13);
+});
+test('Gaussian flux preserves a tiny moving mean against an exactly stationary variance',()=>{
+ for(const mean of [1e-20,-1e-20,1e-100]){
+  const r=ouDensity(.5,1,mean,1,0),q=r.evaluate(1),expected=-.5*mean*q.rho;
+  assert.ok(q.flux!==0);assert.ok(Math.abs(q.flux/expected-1)<1e-14);
+  assert.ok(Math.abs(q.dxFlux/(-q.dt)-1)<1e-14);
+ }
+});
+test('mixing classification follows transition support rather than a rounded second eigenvalue',()=>{
+ for(const a of [Number.MIN_VALUE,1e-20]){
+  const r=ergodicExperiment(a,0,.5,10,0,7);assert.equal(r.eigenvalue,1);assert.equal(r.mixing,true);
+ }
+ assert.equal(ergodicExperiment(0,0,.5,10,0,7).mixing,false);
+ assert.equal(ergodicExperiment(1,1,.5,10,0,7).mixing,false);
+});
+test('LQG performance differences preserve small positive excess and exact optimal-policy zero',()=>{
+ for(const q of [1e-10,1e-20,1e-100]){
+  const r=lqgExperiment(1,1,q,1,0,1,1),expected=q*q/(2*(1+q));
+  assert.ok(r.gap>0);assert.ok(Math.abs(r.gap/expected-1)<1e-14);
+ }
+ for(const a of [.5,1.3,1.5])assert.equal(lqgExperiment(a,.7,1,12,1,.7,0).gap,0);
+ for(const a of [.5,1,1.5])close(lqgExperiment(a,.7,1,8,1,.7,1).gap,lqgExperiment(a,.7,1,8,1,.7,1).expandedGap,1e-12);
+});
 test('Markov iteration, horizon kernels and Bayes reversal preserve actual joint probabilities',()=>{
  for(const a of [0,.2,1])for(const b of [0,.4,1])for(const p of [0,.3,1])for(const N of [0,1,5]){const r=markovExperiment(a,b,p,N,1,0);let P=[[1,0],[0,1]];for(let n=0;n<N;n++)P=multiply(P,[[1-a,a],[b,1-b]]);vector(r.matrix.flat(),P.flat());close(r.current,(1-p)*P[0][1]+p*P[1][1]);r.reverse.reverse.forEach((row,j)=>{if(row){close(row[0]+row[1],1);for(let i=0;i<2;i++)close(r.reverse.next[j]*row[i],[1-p,p][i]*P[i][j]);}else close(r.reverse.next[j],0);});}close(markovExperiment(.2,.4,1,2,1,0).current,.44);assert.equal(reverseKernel([[1,0],[0,1]],[0,1]).reverse[0],null);
 });

@@ -29,6 +29,42 @@ $$
 
 N=16,T=1이면 QV 분산은 0.125, N=64이면 0.03125입니다. 이 coupling에서는 끝점이 같습니다. 같은 seed에서 T를 두 배로 하면 경로는 sqrt(2)배, QV는 2배, 그 이론 분산은 4배입니다.
 
+## 유한 Chi-square 법칙에서 경로별 결론까지
+
+균등 Brownian 격자에서 QV_N=(T/N)ΣZᵢ²이며 Zᵢ는 독립 표준 Gaussian이다. 따라서 N QV_N/T는 자유도 N인 chi-square다. 적률생성함수 (1−2s)^(−N/2)에 양·음의 지수 인자를 최적화하면 0<δ<1에서
+
+$$
+\Pr(|QV_N/T-1|\ge\delta)\le
+e^{-N(\delta-\log(1+\delta))/2}+
+e^{-N(-\delta-\log(1-\delta))/2}.
+$$
+
+별도로 E[(QV_N−T)²]=2T²/N이 L² 수렴을 증명한다. 중첩 dyadic 격자 N=2ᵏ에서는 고정 양의 오차 문턱의 Chebyshev 확률합이 유한하다. Borel–Cantelli와 가산 문턱열로 거의 확실한 dyadic 수렴을 얻는다. 격자 사이 독립성은 필요 없다. 이는 무한 Brownian 구성에 대한 명제이며 실습의 유한 128-step 표시로 증명한 것이 아니다.
+
+![Quadratic variation의 상대 오차에 대한 두 이론적 확률 상계이며 표본 오류 빈도와 구별하는 그림.](/assets/learning/stochastic-variation-ko.svg)
+
+| N, T=1 | 정확한 QV 평균제곱오차 |
+|---|---:|
+| 16 | 1/8 |
+| 64 | 1/32 |
+| 256 | 1/128 |
+
+```python
+from fractions import Fraction as F
+from math import exp, log1p
+delta = .5
+for N in (16, 64, 256):
+    mse = F(2, N)
+    chernoff = min(1., exp(-N*(delta-log1p(delta))/2)+exp(-N*(-delta-log1p(-delta))/2))
+    chebyshev = min(1., float(mse)/(delta*delta))
+    assert 0 < chernoff <= 1 and 0 < chebyshev <= 1
+    print(N, mse, chernoff, chebyshev)
+# Sum Var(QV_2^k) from k=4 to infinity, T=1.
+assert 2*F(1,16)/(1-F(1,2)) == F(1,4)
+```
+
+연속·유한 total variation 경로에서는 Σ(Δx)²≤max|Δx|×total variation이 격자 축소로 0에 간다. Brownian dyadic QV는 T>0으로 가므로 total variation이 거의 확실히 무한하다. 코드는 moment 배율과 상계 상수를 확인하며 시뮬레이션으로 경로 정리를 증명하지 않는다.
+
 ## 직접 풀기: 공유 구간 설명
 
 T=2에서 1/4·3/4 시각의 공분산은 1/2입니다. 두 합에 함께 들어가는 증분으로 유도하세요. 거친·미세 grid의 끝점이 같아도 QV가 다른 이유는 합의 제곱에 cross term이 생기기 때문입니다. 주황 표준편차 선을 벗어난 것이 왜 모형 실패가 아닌지도 설명하세요.

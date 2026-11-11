@@ -37,6 +37,38 @@ $$
 
 This is the infinitesimal conditional-expectation principle, with a diffusion generator rather than a deterministic derivative. Classical verification needs suitable regularity, admissible adapted controls and integrability. The finite-horizon discrete experiment proves its own Bellman identities; it does not bypass these hypotheses for a general continuous problem.
 
+## Completing the square proves a policy performance identity
+
+For the backward Riccati value Vₙ, complete the conditional Bellman quadratic at any adapted action uₙ. Its residual equals (R+Pₙ₊₁)(uₙ+KₙXₙ)²/2. Summing conditional expectations telescopes the future value terms and cancels the terminal cost. Thus every square-integrable admissible policy satisfies
+
+$$
+J(u)-V_0(x_0)=\frac12\sum_{n=0}^{N-1}
+(R+P_{n+1})E[(u_n+K_nX_n)^2]\ge0.
+$$
+
+This proves optimality among adapted nonlinear policies, not just a comparison with a few constant gains. It also quantifies suboptimality and identifies equality: the action must match optimal feedback almost surely at each penalized step. With feedback u=−LₙX, the expectation is (Kₙ−Lₙ)²(mₙ²+vₙ), so the forward moments give a nonnegative sum directly.
+
+For one noiseless decision a=R=x₀=1 and terminal weight q, zero control has excess q²/[2(1+q)].
+
+| q | Optimal gain | Zero-control excess |
+|---|---|---|
+| 1 | 1/2 | 1/4 |
+| 10⁻¹⁰ | q/(1+q) | q²/[2(1+q)] |
+| 10⁻²⁰ | q/(1+q) | q²/[2(1+q)] |
+
+```python
+from fractions import Fraction as F
+for q in (F(1), F(1,10**10), F(1,10**20)):
+    gain = q/(1+q)
+    optimal = (1+gain*gain+q*(1-gain)**2)/2
+    zero = (1+q)/2
+    certificate = (1+q)*gain*gain/2
+    assert zero-optimal==certificate==q*q/(2*(1+q)) > 0
+    print(q, gain, certificate)
+```
+
+The live excess now uses this completed-square sum. Subtracting two almost equal total costs can erase a real positive excess or create a spurious negative optimal-policy gap; the direct cost difference remains an expanded diagnostic in the calculation API. This certificate uses the specified fully observed additive-noise model and exact Bellman recursion. Approximate learned values require additional residual and model-error analysis.
+
 ## Exercise: expose an information advantage
 
 Explain why choosing u after observing the next Z would solve a different, artificially easier problem. Then reproduce the one-stage Bellman derivative and its positive curvature R+P_next. Check the special terminal weight zero: the last action is zero because no future state penalty remains. Finally describe how a continuous-time HJB equation relates to the same conditional minimization principle, while noting that a discrete finite-horizon recursion is not itself a general continuous-time solver.

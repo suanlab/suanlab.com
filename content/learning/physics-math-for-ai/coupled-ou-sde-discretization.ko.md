@@ -34,6 +34,42 @@ $$
 
 Strong 오차는 joint coupling, weak 오차는 test function의 기대값을 비교합니다. Euler 평균은 x0(1-theta h)^N, 분산은 sigma²h와 (1-theta h)^(2j)의 합의 곱입니다. E[X²]=평균²+분산으로 weak 이차 moment를 비교할 수 있습니다. 한 weak 통계의 일치가 올바른 strong coupling을 대신하지는 않습니다.
 
+## 이 가산 잡음 모형에서 Euler의 강한 차수가 높아지는 이유
+
+고정 T,θ에서 정확한 끝 잡음 kernel은 e^(−θ(T−s)), j구간의 Euler kernel은 (1−θh)^(N−1−j)다. θh<1인 충분히 작은 h에서 log(1−θh)를 전개하면 [0,T]의 kernel 차이가 균일하게 O(h)다. Itô 등거리로 잡음 오차 이차 moment는 O(h²)다. 결정론 평균 차이도 O(h)이므로 전체 MSE는 O(h²), 즉 이 선형 가산 잡음 모형의 강한 RMS 차수는 1이다. 일반 승산 잡음 Euler의 가정·차수를 함께 높이는 주장은 아니다.
+
+국소 bridge 분산은 θ²h³/12+O(h⁴)다. 증분 사영과 bridge를 모두 포함한 국소 innovation 차이 분산은 σ²θ²h³/3+O(h⁴)이다. Bridge만으로 강한 오차를 계산하면 다른 값을 얻는다.
+
+θ>0,0<θh<2에서 Euler 정상 분산은 V=(1−θh)²V+σ²h를 풀어
+
+$$
+V_h=\frac{\sigma^2}{2\theta-\theta^2h},\qquad
+V_* =\frac{\sigma^2}{2\theta}.
+$$
+
+| h, θ=σ=1 | Euler 정상 분산 |
+|---|---:|
+| 1/2 | 2/3 |
+| 1/4 | 4/7 |
+| 1/8 | 8/15 |
+
+```python
+from decimal import Decimal as D, localcontext
+with localcontext() as ctx:
+    ctx.prec = 60
+    for N in (8, 16, 32):
+        h = D(1)/N
+        a, e = 1-h, (-h).exp()
+        mse = (a**N-D(-1).exp())**2
+        for j in range(N):
+            w, decay = a**(N-1-j), (-(N-1-j)*h).exp()
+            mse += h*w*w-2*w*decay*(1-e)+decay*decay*(1-e*e)/2
+        assert mse > 0
+        print(N, 'MSE/h^2:', float(mse/(h*h)), 'stationary variance:', float(1/(2-h)))
+```
+
+독립 Decimal 코드는 끝 kernel 차이 제곱을 구간별로 정확히 적분한다. 고정 T의 MSE/h²를 표시하고 차수의 근거는 해석적 kernel 논증이다. 격자를 바꾸며 새로 생성한 두 경로의 차이가 줄어든다는 사실로 이 결합 증명을 대신할 수 없다.
+
 ## 직접 풀기: 먼저 공분산 검사
 
 Theta=sigma=x0=T=1의 평균 exp(-1), 분산 (1-exp(-2))/2를 구하세요. 한 step의 지수 kernel과 제곱 적분으로 위 공분산·분산을 유도하고 왜 완전 상관 단일 Z가 맞지 않는지 설명하세요. Theta=0에서는 bridge·이론 MSE·관측 차이가 모두 0이어도 끝 분산 sigma² T는 남는지 확인하세요.

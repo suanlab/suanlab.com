@@ -33,6 +33,48 @@ Theta=1,sigma=sqrt(2),정상 분산 1의 score는 -x입니다. 역 drift는 x-2x
 
 Theta=0의 표준 Gaussian 출발에서도 forward drift는 0이지만 분포는 퍼집니다. 역전에는 score drift가 남으며 sigma=1,물리 시간 0에서는 -x입니다.
 
+## 같은 주변 분포가 같은 경로 법칙은 아니다
+
+상수 diffusion의 순방향 Fokker–Planck flux는 bp−σ²pₓ/2다. 속도 b−σ²score/2의 결정론 continuity 식도 같은 flux를 가지므로 필요한 적정성 조건 아래 같은 주변 분포를 만든다. OU의 증가하는 역시간 속도는 θx+σ²score/2다. 역 SDE는 θx+σ²score와 Brownian 잡음을 함께 쓴다. 절반 인자가 중요하다. 역 SDE의 잡음만 없애면 주변 분포가 유지되지 않는다.
+
+Gaussian의 결정론 역 흐름은 명시적으로
+
+$$
+x(s)=m_{T-s}+\sqrt{v_{T-s}/v_T}\,(x_T-m_T).
+$$
+
+미분하면 m′ᵣ+(v′ᵣ/(2v))(x−m)로 역 probability-flow 속도와 같다. 끝 Gaussian을 원하는 이전 Gaussian으로 보낸다. 잡음 있는 역 SDE는 평균·분산이 같아도 시각 사이 joint 법칙이 다르다. 어느 방법도 무관한 끝 분포에서 시작하도록 허용하지 않는다.
+
+| θ=0, σ=v=1, m=0 | 증가하는 역시간 Drift |
+|---|---|
+| 잡음 있는 역 SDE | −x |
+| 잡음 없는 probability-flow ODE | −x/2 |
+| 단순 부호 반전 | 0 |
+
+```python
+from math import exp, sqrt
+theta, sigma, m0, v0, T = .7, 1., .8, .4, 1.
+def moments(t):
+    decay = exp(-theta*t)
+    return m0*decay, v0*decay**2+sigma**2*(1-decay**2)/(2*theta)
+mT, vT = moments(T)
+def flow(s, terminal):
+    m, v = moments(T-s)
+    return m+sqrt(v/vT)*(terminal-mT)
+for s in (.25, .5, .75):
+    m, v = moments(T-s)
+    assert abs(flow(s,mT)-m) < 1e-14
+    scale = sqrt(v/vT)
+    assert abs(scale*scale*vT-v) < 1e-14
+    x = flow(s, 1.2)
+    velocity = theta*x-sigma**2*(x-m)/(2*v)
+    difference = (flow(s+1e-5,1.2)-flow(s-1e-5,1.2))/2e-5
+    assert abs(difference-velocity) < 1e-9
+    print(s, x, velocity)
+```
+
+이 정확 Gaussian 사상은 보조 예제이며 별도의 live ODE solver를 추가한 것은 아니다. 코드는 수송된 moments와 독립 시간 차분의 속도를 확인한다. 일반 학습 score 모형에는 근사 오차와 수치 적분 분석도 필요하다. 이상적인 주변 분포 일치가 이산 학습 sampler의 재현을 증명하지는 않는다.
+
 ## 직접 풀기: 필요한 시작 법칙
 
 초기 평균 1·분산 1/4의 T=1 법칙을 구해 역 시작 Gaussian으로 쓰세요. Reverse 비율 1/2의 실제 forward 시각도 구하세요. 표준 Gaussian으로 임의 대체하거나 score를 T-s 대신 s에서 평가하면 어떤 moment 식이 깨지는지 설명하세요.

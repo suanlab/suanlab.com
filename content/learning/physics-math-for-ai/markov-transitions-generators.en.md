@@ -29,6 +29,39 @@ For positive a+b, the state-one probability is pi1+(p0-pi1)exp(-(a+b)t). The cod
 
 For a selected horizon kernel K and initial law p, Bayes gives R_ji=p_i K_ij/pnext_j. This reverses the joint law of the two endpoint states. Where pnext_j is zero, that conditional row is not determined by the joint law. The table leaves it absent instead of dividing by zero or filling an arbitrary row that appears certified.
 
+## Construct a continuous kernel by uniformization
+
+For a finite-state generator Q, choose γ≥maxᵢ(−Qᵢᵢ), γ>0, and set U=I+Q/γ. U is a stochastic matrix. Since I and U commute, expanding the exponential gives
+
+$$
+e^{tQ}=e^{-\gamma t}\sum_{n=0}^\infty\frac{(\gamma t)^n}{n!}U^n.
+$$
+
+This constructs the continuous process from Poisson candidate events and discrete transitions, allowing self transitions. It proves nonnegative entries and row sums one, rather than assuming a matrix exponential has probabilistic meaning. Truncating after K terms leaves the Poisson tail as the missing row mass. A normalized truncation is a different kernel approximation. If Q=0, the process is constant and no positive event rate is necessary.
+
+For the two-state rates a=b=1 one may take γ=1, so U alternates states. Randomizing the number of alternations removes the deterministic period at positive continuous time. The row probability is (1+exp(−2t))/2.
+
+| t | Continuous P₁₁(t) |
+|---|---|
+| 0 | 1 |
+| 1/2 | (1+e⁻¹)/2 |
+| 1 | (1+e⁻²)/2 |
+
+```python
+from math import exp
+for t in (0., .5, 1.):
+    weight, same, other = exp(-t), 0., 0.
+    for n in range(41):
+        if n % 2: other += weight
+        else: same += weight
+        weight *= t/(n+1)
+    assert abs(same-(1+exp(-2*t))/2) < 1e-14
+    assert abs(same+other-1) < 1e-14
+    print(t, same, other)
+```
+
+The independent Poisson mixture checks the closed form. In the live Bayes calculation, positive support is checked before discarding an underflowed joint product. If the marginal rounds to zero while positive factors remain, a scaled logarithmic calculation retains the conditional row. A truly unsupported endpoint still has no row. This distinguishes mathematical zero from an unrepresentably small probability, without claiming arbitrary-precision marginals.
+
 ## Exercise: three different matrices
 
 Use a=b=1. In discrete time the states alternate, so P² is the identity. In continuous time these numbers are rates: at time one the probability of remaining in state one is (1+exp(-2))/2, not zero. Explain why equating a generator with a finite-time transition fails. Finally set a=b=0 and initial state one; identify the reverse row that cannot be conditioned on and the family of stationary distributions.
