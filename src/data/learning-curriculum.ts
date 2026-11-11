@@ -3466,7 +3466,9 @@ export const curriculumDomains:CurriculumDomain[] = [
       "hypotheses-and-testable-research-questions",
       "related-work-and-contribution-evidence",
       "assumptions-and-aggregation-counterexamples",
-      "baselines-and-matched-compute-budgets"
+      "baselines-and-matched-compute-budgets",
+      "ablations-and-randomized-negative-controls",
+      "seeds-uncertainty-and-paired-sign-tests"
     ]
   }
 ];

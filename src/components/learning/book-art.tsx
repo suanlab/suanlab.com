@@ -1,4 +1,6 @@
 'use client';
+import { pairedSignTestId } from '@/data/paired-sign-test-reader';
+import { randomizedControlsId } from '@/data/randomized-controls-reader';
 import { baselineBudgetsId } from '@/data/baseline-budgets-reader';
 import { aggregationProofId } from '@/data/aggregation-proof-reader';
 import { contributionEvidenceId } from '@/data/contribution-evidence-reader';
@@ -238,6 +240,8 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === pairedSignTestId) return <span className="ai-concept-equation" aria-hidden="true">p = Σⱼ₌ₖⁿ C(n,j)2⁻ⁿ</span>;
+  if (kind === randomizedControlsId) return <span className="ai-concept-equation" aria-hidden="true">Y = 0.7X + cZ + 0.1N</span>;
   if (kind === baselineBudgetsId) return <span className="ai-concept-equation" aria-hidden="true">L_A(b) = 0.3 + 0.4/√b</span>;
   if (kind === aggregationProofId) return <span className="ai-concept-equation" aria-hidden="true">d̄_weighted = d̄ + Cov(n,d)/n̄</span>;
   if (kind === contributionEvidenceId) return <span className="ai-concept-equation" aria-hidden="true">I = Δ_long − Δ_short</span>;

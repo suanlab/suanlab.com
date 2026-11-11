@@ -17037,29 +17037,125 @@
         },
         {
           "title": "ablation·negative control",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "ablations-and-randomized-negative-controls"
+          ],
           "preparation": {
             "unitId": "ablations-and-randomized-negative-controls",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/ablations-and-randomized-negative-controls.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/ablations-and-randomized-negative-controls.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "randomized-controls-reader-integration"
+            "nextAction": "paired-sign-test-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/ablations-and-randomized-negative-controls.ko.md",
+              "content/learning/physics-math-for-ai/ablations-and-randomized-negative-controls.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/ablations-and-randomized-negative-controls.ko.md",
+            "content/learning/physics-math-for-ai/ablations-and-randomized-negative-controls.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-randomized-controls.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "ablations-and-randomized-negative-controls",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-randomized-controls.ts",
+            "lab": "src/components/learning/randomized-controls-lab.tsx",
+            "tests": "scripts/learning-randomized-controls.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/ablations-and-randomized-negative-controls.ko.md",
+              "content/learning/physics-math-for-ai/ablations-and-randomized-negative-controls.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "seed·불확실성·검정",
-          "status": "not-started",
-          "unitIds": []
+          "status": "verified",
+          "unitIds": [
+            "seeds-uncertainty-and-paired-sign-tests"
+          ],
+          "preparation": {
+            "unitId": "seeds-uncertainty-and-paired-sign-tests",
+            "status": "registered-and-verified",
+            "registered": true,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/seeds-uncertainty-and-paired-sign-tests.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/seeds-uncertainty-and-paired-sign-tests.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "availability-leakage-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
+              "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
+            "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-paired-sign-test.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "seeds-uncertainty-and-paired-sign-tests",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-paired-sign-test.ts",
+            "lab": "src/components/learning/paired-sign-test-lab.tsx",
+            "tests": "scripts/learning-paired-sign-test.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
+              "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         },
         {
           "title": "누출·식별·재현",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "availability-leakage-and-reproducible-evaluation",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/availability-leakage-and-reproducible-evaluation.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/availability-leakage-and-reproducible-evaluation.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "availability-leakage-reader-integration"
+          }
         },
         {
           "title": "단위·극한·보존·수렴 검사",
@@ -17078,50 +17174,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "ablations-and-randomized-negative-controls",
-      "nextAction": "randomized-controls-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
-      "currentPreparationEvidence": "scripts/learning-baseline-budgets.test.ts",
+      "nextUnitId": "availability-leakage-and-reproducible-evaluation",
+      "nextAction": "availability-leakage-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
+      "currentPreparationEvidence": "scripts/learning-paired-sign-test.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "baselines-and-matched-compute-budgets",
+        "unitId": "seeds-uncertainty-and-paired-sign-tests",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-baseline-budgets.ts",
-        "lab": "src/components/learning/baseline-budgets-lab.tsx",
-        "tests": "scripts/learning-baseline-budgets.test.ts",
+        "model": "src/lib/learning-paired-sign-test.ts",
+        "lab": "src/components/learning/paired-sign-test-lab.tsx",
+        "tests": "scripts/learning-paired-sign-test.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
-          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.en.md"
+          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
+          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "baselines-and-matched-compute-budgets",
+        "unitId": "seeds-uncertainty-and-paired-sign-tests",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-baseline-budgets.ts",
-        "lab": "src/components/learning/baseline-budgets-lab.tsx",
-        "tests": "scripts/learning-baseline-budgets.test.ts",
+        "model": "src/lib/learning-paired-sign-test.ts",
+        "lab": "src/components/learning/paired-sign-test-lab.tsx",
+        "tests": "scripts/learning-paired-sign-test.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
-          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.en.md"
+          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
+          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "기준선·공정 비교",
+        "originalTopic": "seed·불확실성·검정",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "baselines-and-matched-compute-budgets"
+          "seeds-uncertainty-and-paired-sign-tests"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -17129,23 +17225,23 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.ko.md",
-          "content/learning/physics-math-for-ai/baselines-and-matched-compute-budgets.en.md"
+          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.ko.md",
+          "content/learning/physics-math-for-ai/seeds-uncertainty-and-paired-sign-tests.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-baseline-budgets.test.ts"
+        "evidence": "scripts/learning-paired-sign-test.test.ts"
       }
     }
   ],
-  "implementedUnitCount": 644,
-  "verifiedNewUnitCount": 491,
+  "implementedUnitCount": 646,
+  "verifiedNewUnitCount": 493,
   "remainingForwardDomainCount": 1,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 6,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 4,
   "nextDomain": "research-methods",
-  "nextTopic": "ablation·negative control",
+  "nextTopic": "누출·식별·재현",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 356,
+  "verifiedOriginalScopeTopicCount": 358,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -17207,11 +17303,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers ablation·negative control. All 644 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 누출·식별·재현. All 646 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "ablations-and-randomized-negative-controls",
+  "nextAuthoringUnitId": "availability-leakage-and-reproducible-evaluation",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "randomized-controls-reader-integration",
+  "nextAction": "availability-leakage-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }
