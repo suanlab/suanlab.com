@@ -1,3 +1,4 @@
+import {assertPreservedLearningFile} from './learning/assert-manuscript-preservation';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -18,7 +19,7 @@ test('new local-order reader appends after602 and preserves prior units,guides,1
   assert.deepEqual(learningUnits.slice(0,602).map(u => u.id),before.unitOrder);
   assert.deepEqual(Object.keys(learningGuides).slice(0,602),before.guideOrder);
   for (const unit of learningUnits.slice(0,602)) { assert.equal(hash(unit),before.units[unit.id]); assert.equal(hash(learningGuides[unit.id]),before.guides[unit.id]); }
-  for (const [p,h] of Object.entries({ ...before.manuscripts,...before.preservedFiles })) assert.equal(createHash('sha256').update(readFileSync(p)).digest('hex'),h,p);
+  for (const [p,h] of Object.entries({ ...before.manuscripts,...before.preservedFiles })) assertPreservedLearningFile(p,h);
   for (const domain of curriculumDomains) assert.equal(hash({ ...domain,unitIds: domain.unitIds.filter(u => before.unitOrder.includes(u)) }),before.domains[domain.id]);
   assert.deepEqual(learningUnits[602],blockOrderReader.unit); assert.deepEqual(learningGuides[id],blockOrderReader.guide);
   assert.equal(learningUnits.slice(0,603).reduce((s,u) => s+learningGuides[u.id].experiments.length,0),1875);

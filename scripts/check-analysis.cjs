@@ -5,7 +5,14 @@ const expected={"limits-continuity-completeness": [["two-sided limit", "2"], ["1
 (async()=>{fs.mkdirSync('.runtime/learning',{recursive:true});const browser=await chromium.launch({executablePath:process.env.SUANLAB_BROWSER_PATH||'/usr/bin/google-chrome',args:['--no-sandbox','--enable-unsafe-swiftshader','--disable-gpu-rasterization']});const rows=[],errors=[],scenarios=[];
 async function context(lang='en',dark=false){const c=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce',colorScheme:dark?'dark':'light'});c.setDefaultTimeout(15000);await c.addInitScript(({lang,dark})=>{try{localStorage.setItem('suanlab-language',lang);localStorage.setItem('theme',dark?'dark':'light');}catch{}},{lang,dark});await c.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());c.on('page',p=>p.on('pageerror',e=>errors.push({url:p.url(),message:e.message})));return c;}
 async function go(p,id,lang='en'){const response=await p.goto(base+root+(id?id+'/':''));assert.equal(response.status(),200);await p.waitForFunction(lang=>document.documentElement.lang===lang,lang);if(id)await p.waitForFunction(()=>document.querySelector('.ai-presets')?.disabled === false);}
-async function audit(p,id,lang,width,theme='light'){assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${id}: overflow ${width}`);if(lang==='en')assert.ok(!/[가-힣]/.test(await p.locator('.ai-book').innerText()));const a=await new AxeBuilder({page:p}).include('.ai-book').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(a.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})),[],`${id} ${lang} ${width}`);rows.push({id,lang,width,theme,violations:0});fs.writeFileSync('.runtime/learning/analysis-browser.json',JSON.stringify({rows,errors,scenarios},null,2));}
+async function audit(p,id,lang,width,theme='light'){
+if(['implicit-inverse-functions','matrix-trace-logdet-derivatives','higher-order-autodiff'].includes(id)){
+ const expectedRows=id==='higher-order-autodiff'?4:3;
+ assert.equal(await p.locator('.ai-prose table').last().locator('tbody tr').count(),expectedRows,`${id}: research example table`);
+ assert.equal(await p.locator('.ai-prose pre').count(),1,`${id}: runnable Python example`);
+ assert.equal(await p.locator('.ai-prose .katex-error').count(),0);
+}
+assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${id}: overflow ${width}`);if(lang==='en')assert.ok(!/[가-힣]/.test(await p.locator('.ai-book').innerText()));const a=await new AxeBuilder({page:p}).include('.ai-book').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(a.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})),[],`${id} ${lang} ${width}`);rows.push({id,lang,width,theme,violations:0});fs.writeFileSync('.runtime/learning/analysis-browser.json',JSON.stringify({rows,errors,scenarios},null,2));}
 async function value(p,key){return p.locator('[data-testid="lab-readout"]').evaluate((node,key)=>Array.from(node.querySelectorAll('dl>div')).find(row=>row.querySelector('dt').textContent===key)?.querySelector('dd').textContent.trim(),key);}
 try{
 for(const lang of ['ko','en']){const c=await context(lang);const p=await c.newPage();for(const width of [320,768,1440]){await p.setViewportSize({width,height:1000});for(const id of [null,...ids]){await go(p,id,lang);await audit(p,id,lang,width);if(id&&width===320){const chart=p.locator('.ai-foundation-scroll').first();
@@ -15,7 +22,7 @@ if(await chart.evaluate(node=>node.scrollWidth>node.clientWidth)){
  await p.keyboard.press('ArrowRight');
  await p.waitForFunction(node=>node.scrollLeft>0,await chart.elementHandle(),{timeout:5000});
 }
-if(id==='limits-integration-interchange'||id==='taylor-remainders'){
+if(['limits-integration-interchange','taylor-remainders','implicit-inverse-functions','matrix-trace-logdet-derivatives','higher-order-autodiff'].includes(id)){
  const code=p.locator('.ai-prose pre').first();
  if(await code.evaluate(node=>node.scrollWidth>node.clientWidth)){
   await code.focus();

@@ -47,6 +47,82 @@ $$
 
 Newton-CG, 곡률 진단, 영향함수 등에서 HVP가 쓰입니다. 실제 손실의 비매끄러운 연산·확률 표본·배치 선택이 바뀌면 고전적 미분 가정과 검산 조건을 다시 확인해야 합니다.
 
+## 행렬 곱만으로 trace 추정하기
+
+매개변수·데이터·모형의 난수를 포함해 실수 대칭 Hessian H를 고정하세요. 각 좌표가 독립적으로 −1과 1을 같은 확률로 갖는 Rademacher 벡터 v를 뽑습니다. E[vᵢvⱼ]=δᵢⱼ이므로
+
+$$
+\mathbb E[v^THv]=\operatorname{tr}H,\qquad
+v^THv=\operatorname{tr}H+2\sum_{i<j}H_{ij}v_i v_j.
+$$
+
+vᵢ²=1이어서 대각 성분의 기여는 정확합니다. 서로 다른 두 비순서 쌍의 교차 기댓값은 0입니다. 인덱스가 겹치지 않으면 독립인 평균 0 인자가 남고, 하나를 공유하면 제곱이 소거된 뒤 서로 다른 평균 0 인자 두 개가 남습니다. 따라서
+
+$$
+\operatorname{Var}(v^THv)=4\sum_{i<j}H_{ij}^2,\qquad
+\operatorname{Var}\left(\frac1M\sum_{m=1}^M v_m^THv_m\right)
+=\frac4M\sum_{i<j}H_{ij}^2
+$$
+
+입니다. 두 번째 식은 M개 벡터가 독립일 때 성립합니다. 같은 무작위 벡터를 M번 재사용하면 단일 표본의 분산이 그대로 남습니다. 위 식은 Rademacher 분포에 대한 식이며 다른 분포에서는 4차 모멘트를 다시 계산해야 합니다.
+
+## 기준점의 모든 표본과 곡률 해석
+
+기존 실습의 기준점 (1,0)에서는 Hv=(v₂,v₁)입니다. 확률이 같은 네 벡터를 전부 나열하면 다음과 같습니다.
+
+| v | Hv | vᵀHv |
+|---|---|---|
+| (1,1) | (1,1) | 2 |
+| (1,−1) | (−1,1) | −2 |
+| (−1,1) | (1,−1) | −2 |
+| (−1,−1) | (−1,−1) | 2 |
+
+평균은 0이고 단일 표본의 분산은 4입니다. 독립 표본 M=1,2,8개의 평균은 각각 분산 4,2,1/2을 갖습니다. 양수 관측의 개수 K는 Binomial(M,1/2)이고 추정량은 2(2K−M)/M입니다.
+
+Trace는 부호 있는 곡률의 합입니다. H=diag(2,−1)이면 모든 Rademacher 표본이 정확히 trace 1을 주지만 음의 고유값이 남습니다. 볼록성을 판단하려면 trace 이외의 적절한 곡률 조건이 필요합니다. 실습의 기준 Hessian처럼 반대 부호 곡률이 상쇄되면 trace 0에서도 곡률이 존재합니다.
+
+## Python으로 모든 표본과 배치 모멘트 검산
+
+다음 코드는 gradient의 중앙차분과 해석 HVP를 대조한 뒤 정확한 유리수로 표본·이항 모멘트를 열거합니다. 차분은 수치 검산이고 정확한 열거는 유한 분포의 모멘트 검산입니다. 대화형 엔진은 기존 해석 계산을 유지합니다.
+
+```python
+from fractions import Fraction as Q
+from itertools import product
+from math import comb, cos
+
+def gradient(x, y):
+    return (x * y, 0.5 * x * x + cos(y))
+
+def hvp(v):
+    return (v[1], v[0])  # at (x, y) = (1, 0)
+
+values = []
+for v in product([-1, 1], repeat=2):
+    h = 1e-4
+    plus = gradient(1 + h * v[0], h * v[1])
+    minus = gradient(1 - h * v[0], -h * v[1])
+    difference = tuple((a - b) / (2 * h) for a, b in zip(plus, minus))
+    assert max(abs(a - b) for a, b in zip(difference, hvp(v))) < 1e-8
+    values.append(sum(a * b for a, b in zip(v, hvp(v))))
+assert sum(values) == 0
+assert Q(sum(q * q for q in values), 4) == 4
+
+for m in [1, 2, 8]:
+    mean, second = Q(0), Q(0)
+    for k in range(m + 1):
+        probability = Q(comb(m, k), 2**m)
+        estimate = Q(2 * (2 * k - m), m)
+        mean += probability * estimate
+        second += probability * estimate**2
+    assert mean == 0
+    assert second - mean**2 == Q(4, m)
+    print(m, mean, second - mean**2)
+```
+
+비대칭 동역학 Jacobian J에서는 S=(J+Jᵀ)/2에 대해 vᵀJv=vᵀSv, tr S=tr J입니다. 기댓값 항등식은 유지되지만 분산 식에는 S를 사용합니다. 벡터장의 발산은 tr J이고 스칼라 손실의 곡률 합은 tr H입니다. 실험에서 무엇을 추정하는지 먼저 정하세요.
+
+출처 연결: [FFJORD v3](https://arxiv.org/abs/1810.01367v3)의 §3.1, 식 (7)은 동역학 Jacobian에 확률적 trace 항등식을 적용합니다. 여기의 Hessian 열거와 분산 유도는 직접 구성했습니다. 논문의 flow 학습과 수치 적분 재현은 별도 과제입니다. 이 고정 행렬 예제에서는 같은 HVP 예산으로 독립 표본과 한 표본 재사용을 비교해 보세요.
+
 ## 확인 문제와 답
 
 1. (1,0),v=(1,−1)에서 Hv와 vᵀHv는? **(−1,1),−2**입니다.

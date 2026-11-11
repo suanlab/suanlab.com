@@ -1,3 +1,4 @@
+import {assertPreservedLearningFile} from './learning/assert-manuscript-preservation';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
@@ -14,7 +15,7 @@ const root='.runtime/learning/thermal-field-reader-integration';mkdirSync(root,{
 test('new reader appends after601; existing units,guides,scope,1202manuscripts andmenu bytes survive',()=>{
  assert(learningUnits.length>=602);assert.equal(new Set(learningUnits.map(u=>u.id)).size,learningUnits.length);assert.deepEqual(learningUnits.slice(0,601).map(u=>u.id),before.unitOrder);assert.deepEqual(Object.keys(learningGuides).slice(0,601),before.guideOrder);
  for(const unit of learningUnits.slice(0,601)){assert.equal(hash(unit),before.units[unit.id]);assert.equal(hash(learningGuides[unit.id]),before.guides[unit.id]);}
- for(const[p,h]of Object.entries({...before.manuscripts,...before.preservedFiles}))assert.equal(createHash('sha256').update(readFileSync(p)).digest('hex'),h,p);
+ for(const[p,h]of Object.entries({...before.manuscripts,...before.preservedFiles}))assertPreservedLearningFile(p,h);
  for(const domain of curriculumDomains)assert.equal(hash({...domain,unitIds:domain.unitIds.filter(prior=>before.unitOrder.includes(prior))}),before.domains[domain.id]);
  assert.deepEqual(learningUnits[601],thermalFieldReader.unit);assert.deepEqual(learningGuides[id],thermalFieldReader.guide);assert.equal(learningUnits.slice(0,602).reduce((n,u)=>n+learningGuides[u.id].experiments.length,0),1869);
  assert(thermalFieldReader.unit.prerequisiteIds.every(prior=>before.unitOrder.includes(prior)));assert(curriculumDomains.find(d=>d.id==='field-multiscale')!.unitIds.includes(id));
