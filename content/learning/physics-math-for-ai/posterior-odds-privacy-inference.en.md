@@ -150,6 +150,59 @@ The final plot varies the prior while keeping the selected output's likelihoods 
 
 All probability weights and prior-weight products stay within safe integer bounds in this finite model. The selected posterior has a reduced exact fraction in the caption. Logarithms, entropy and displayed decimals are approximate. Posterior odds are computed directly from joint integer weights, avoiding loss of accuracy from subtracting a rounded posterior from1.
 
+## Research extension: A posterior after postprocessing is a conditional average
+
+Suppose an observer sees only $Z$, produced from an already public output $Y$ using a channel that does not access the hypothesis again. Then $H\to Y\to Z$ is a Markov chain. Iterated conditioning gives
+
+$$
+\Pr(H=1\mid Z)=\mathbb E[\Pr(H=1\mid Y)\mid Z].
+$$
+
+Thus postprocessing averages the original posteriors inside each new observation. The binary entropy and the zero-one Bayes loss $\min(u,1-u)$ are concave. Jensen's inequality consequently gives
+
+$$
+I(H;Z)\le I(H;Y),\qquad R_Z\ge R_Y.
+$$
+
+These are prior-specific information and decision statements, in addition to the prior-free DP postprocessing theorem. Impossible observations still have no conditional posterior. The entropy inequality is an equality when all merged positive-mass outputs have the same posterior. The risk inequality can be an equality more often: merging different posteriors that remain on the same side of one half leaves the optimal decision unchanged.
+
+As an auxiliary example, pass randomized response with truth probability $p=3/4$ through an independent output flip of probability $r$. The composed truth probability is $p' = p(1-r)+(1-p)r$. For a balanced prior:
+
+| Output flip probability $r$ | Effective truth probability | Bayes error | Information, bits, approximately |
+|---|---:|---:|---:|
+| 0 | 3/4 | 1/4 | 0.188722 |
+| 1/4 | 5/8 | 3/8 | 0.045566 |
+| 1/2 | 1/2 | 1/2 | 0 |
+
+With prior $\Pr(H=1)=0.99$, the best decision always predicts one in all three cases, and error remains $0.01$ even though the information changes. Attack accuracy alone therefore does not order all evidence supplied by a release.
+
+The code constructs the three-variable joint law with exact fractions and checks the conditional-average identity and Bayes risks. Entropies use floating logarithms only for display and a numerical check. The native observer experiments retain their original channels; no secret-dependent second query is being treated as postprocessing.
+
+```python
+from fractions import Fraction as F
+from itertools import product
+from math import log2
+def h(p):return 0.0 if p in [0,1] else -float(p)*log2(p)-float(1-p)*log2(1-p)
+p=F(3,4)
+for pi in [F(1,2),F(99,100)]:
+    for r in [F(0),F(1,4),F(1,2)]:
+        J={(a,y,z):(pi if a else 1-pi)*(p if y==a else 1-p)*(1-r if z==y else r) for a,y,z in product(range(2),repeat=3)}
+        my=[sum(J[a,y,z] for a,z in product(range(2),repeat=2)) for y in range(2)]
+        mz=[sum(J[a,y,z] for a,y in product(range(2),repeat=2)) for z in range(2)]
+        py=[sum(J[1,y,z] for z in range(2))/my[y] for y in range(2)]
+        pz=[sum(J[1,y,z] for y in range(2))/mz[z] for z in range(2)]
+        for z in range(2):
+            conditional=sum(py[y]*sum(J[a,y,z] for a in range(2))/mz[z] for y in range(2))
+            assert pz[z]==conditional
+        ry=sum(m*min(v,1-v) for m,v in zip(my,py))
+        rz=sum(m*min(v,1-v) for m,v in zip(mz,pz))
+        iy=h(pi)-sum(float(m)*h(v) for m,v in zip(my,py))
+        iz=h(pi)-sum(float(m)*h(v) for m,v in zip(mz,pz))
+        assert rz>=ry and iz<=iy+1e-12
+        if pi==F(99,100):assert ry==rz==F(1,100)
+        else:print(r,p*(1-r)+(1-p)*r,rz,f'{iz:.6f}')
+```
+
 ## Exercises and worked solutions
 
 1. With prior.2 and Bayes factor3, find the posterior. Prior odds are1/4; posterior odds are3/4 and posterior probability is3/7, not.6.

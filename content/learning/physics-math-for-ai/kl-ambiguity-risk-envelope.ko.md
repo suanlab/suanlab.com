@@ -99,6 +99,61 @@ $$
 
 마지막 그림은 손실과 기준 분포를 고정하고 모호 집합 반경만 바꿉니다. 파랑은 수치 최악 위험이고 주황은 명목 위험입니다. 학습 궤적이나 오류가 생길 확률이 아니라 기대 손실의 포락선입니다. 계산한 점 사이의 곡선 연결은 시각적 근사입니다.
 
+## 연구 확장: 작은 반경의 분산 항과 비대칭 항 구하기
+
+고정된 유한 양의 기준 확률과 상수가 아닌 유계 손실에서 작은 반경의 최악 위험을 전개할 수 있습니다. $\mu=\mathbb E_p l$, $v=\operatorname{Var}_p(l)>0$, $\kappa_3=\mathbb E_p(l-\mu)^3$로 둡시다. 누적생성 함수 $\psi(t)=\log\sum_i p_i e^{t l_i}$는 0 주변에서 해석적이며
+
+$$
+\psi(t)=\mu t+\frac{v t^2}{2}+\frac{\kappa_3t^3}{6}+O(t^4).
+$$
+
+입니다. 양의 지수 재가중 경로의 위험은 $\psi'(t)$이고 KL은 $t\psi'(t)-\psi(t)=vt^2/2+\kappa_3t^3/3+O(t^4)$입니다. 양의 가지에서 관계를 역산하면
+
+$$
+t=\sqrt{2\rho/v}-\frac{2\kappa_3}{3v^2}\rho+O(\rho^{3/2}),\qquad
+R_\rho=\mu+\sqrt{2v\rho}+\frac{\kappa_3}{3v}\rho+O(\rho^{3/2}).
+$$
+
+입니다. 첫 증가는 손실 분산에, 다음 보정은 비대칭성에 의존합니다. 반경에 비례하는 값만 더하면 초기 제곱근 거동을 놓칠 수 있는 이유입니다. 나머지 차수는 고정된 비퇴화 분포의 국소 결과이며 분산이 0으로 갈 때 균일한 주장이 아닙니다. 포화 영역과 상수 손실은 앞의 별도 분석을 사용해야 합니다.
+
+기존 기준 확률과 손실 $(0,1,3)$에서는 $\mu=9/5$, $v=39/25$, $\kappa_3=-57/125$이고 반경 일차 보정 계수는 $-19/195$입니다.
+
+| KL 반경 | 독립적으로 푼 위험 | 제곱근 근사 | 비대칭 보정 포함 |
+|---|---:|---:|---:|
+| 0.01 | 1.975403009 | 1.976635217 | 1.975660858 |
+| 0.0001 | 1.817653523 | 1.817663522 | 1.817653778 |
+| 0.000001 | 1.801766254 | 1.801766352 | 1.801766255 |
+
+마지막 두 반경은 기존 조절 격자보다 작으며 실행 가능한 보강 예제의 범위입니다. 코드는 생산용 부동소수 해법과 별도로 80자리 Decimal과 중심을 빼지 않은 모멘트 생성 함수를 사용합니다. 예제의 정규화한 나머지는 유한하게 유지되지만 점 세 개가 아니라 해석적 전개가 점근 차수의 근거입니다.
+
+```python
+from decimal import Decimal as D,localcontext
+with localcontext() as ctx:
+    ctx.prec=80
+    p=list(map(D,['.2','.3','.5'])); loss=list(map(D,['0','1','3']))
+    mu=sum(a*b for a,b in zip(p,loss))
+    v=sum(a*(b-mu)**2 for a,b in zip(p,loss))
+    kappa=sum(a*(b-mu)**3 for a,b in zip(p,loss))
+    assert mu==D(9)/5 and v==D(39)/25 and kappa==D(-57)/125
+    for rho in map(D,['.01','.0001','.000001']):
+        def tilt(t):
+            raw=[a*(t*b).exp() for a,b in zip(p,loss)]
+            Z=sum(raw); mean=sum(a*b for a,b in zip(raw,loss))/Z
+            return mean,t*mean-Z.ln()
+        lo,hi=D(0),D(1)
+        assert tilt(lo)[1]<rho<tilt(hi)[1]
+        for _ in range(220):
+            mid=(lo+hi)/2
+            if tilt(mid)[1]<rho:lo=mid
+            else:hi=mid
+        exact=tilt((lo+hi)/2)[0]
+        leading=mu+(2*v*rho).sqrt()
+        second=leading+kappa*rho/(3*v)
+        normalized=(exact-second)/(rho*rho.sqrt())
+        assert abs(normalized)<D('.3') and abs(exact-second)<abs(exact-leading)
+        print(rho,f'{exact:.9f}',f'{leading:.9f}',f'{second:.9f}')
+```
+
 ## 연습 문제와 해설
 
 1. 최악 위험이 명목 위험보다 작을 수 없는 이유는 무엇인가요? 해설: 기준 분포가 항상 실행 가능합니다.

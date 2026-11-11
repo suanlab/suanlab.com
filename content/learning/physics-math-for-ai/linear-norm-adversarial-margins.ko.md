@@ -82,6 +82,52 @@ $$
 
 두 번째 그림은 깨끗한 정확성·정확한 최악 부호·엄격 인증·동률을 포함한 실제 강건성을 구분합니다. 마지막 그래프는 다른 입력을 고정하고 반경만 바꾼 직선 마진입니다. 학습 궤적이나 오류 확률이 아닙니다. 원판의 그림도 근사이며 결과는 식과 정확한 부호 비교로 결정합니다.
 
+## 연구 확장: 좌표와 위협 집합을 함께 변환하기
+
+단위를 바꾼다고 물리적 강건성 주장의 의미가 몰래 달라져서는 안 됩니다. 가역행렬 $A$로 $\delta=Az$, $\|z\|_2\le\epsilon$인 타원체 위협을 정의합시다. 선형 마진에 대입하고 Cauchy–Schwarz를 쓰면
+
+$$
+\min_{\|z\|_2\le\epsilon} y f(x+Az)
+=m-\epsilon\|A^\top w\|_2.
+$$
+
+입니다. $A^\top w\ne0$이면 $z_*=-\epsilon yA^\top w/\|A^\top w\|_2$가 하한을 달성합니다. 벡터가 0이면 모든 허용 방향에서 점수가 같으므로 정규화하지 않습니다. 지지 항은 $\sqrt{w^\top AA^\top w}$라고도 쓸 수 있으며 여기의 행렬은 프라이버시 잡음이 아니라 위협의 모양입니다.
+
+다시 가역적인 특징 변환 $v=Bx$를 적용하면 같은 분류기의 가중치는 $w_v=B^{-\top}w$, 위협은 $A_v=BA$입니다. 그러면 $A_v^\top w_v=A^\top w$이므로 마진 경계가 보존됩니다. 변환한 타원체를 새 단위 공으로 바꾸면 다른 공격자를 정의한 것입니다.
+
+$w=(1,2)$, 깨끗한 마진 3, 반경 1에서 $A=(1,0;s,1)$로 두면 다음과 같습니다.
+
+| 모양 매개변수 $s$ | 지지 항의 제곱 | 최악 마진 근삿값 |
+|---|---:|---:|
+| -1/2 | 4 | 1 |
+| 0 | 5 | 0.763932 |
+| 1 | 13 | -0.605551 |
+
+허용 특징 변화의 상관 구조가 달라지면 같은 수치 반경에서도 강건성 결론이 바뀔 수 있습니다. 목표 불변성과 동률 규칙도 여전히 필요합니다. 이 보조 타원체를 기존 노름 공 실습의 숨은 제약으로 추가하는 것은 아닙니다.
+
+코드는 100과 1/2의 유리수 단위 변환으로 불변성을 확인합니다. 부동소수 달성 방향도 만들어 실행 가능성과 마진을 대조하며 지지 항의 제곱과 변환 항등식은 정확한 분수로 확인합니다.
+
+```python
+from fractions import Fraction as F
+from math import sqrt,isclose
+w=[F(1),F(2)]
+for s in [F(-1,2),F(0),F(1)]:
+    A=[[F(1),F(0)],[s,F(1)]]
+    v=[sum(A[i][j]*w[i] for i in range(2)) for j in range(2)]
+    square=sum(t*t for t in v)
+    assert square==(1+2*s)**2+4
+    scales=[F(100),F(1,2)]
+    transformedA=[[scales[i]*a for a in A[i]] for i in range(2)]
+    transformedW=[w[i]/scales[i] for i in range(2)]
+    assert [sum(transformedA[i][j]*transformedW[i] for i in range(2)) for j in range(2)]==v
+    length=sqrt(square); z=[-float(t)/length for t in v]
+    delta=[sum(float(A[i][j])*z[j] for j in range(2)) for i in range(2)]
+    assert isclose(sum(t*t for t in z),1,abs_tol=1e-14)
+    margin=3+sum(float(w[i])*delta[i] for i in range(2))
+    assert isclose(margin,3-length,abs_tol=1e-14)
+    print(s,square,f'{margin:.6f}')
+```
+
 ## 연습 문제와 해설
 
 1. 가중치 삼과 사에서 일·이·무한 노름 위협의 쌍대 노름은 무엇인가요? 해설: 각각 사와 오와 칠입니다.

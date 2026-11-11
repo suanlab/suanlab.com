@@ -74,6 +74,62 @@ The sample diagram shows original-to-current displacement and the four location 
 
 Means and trimmed means are summed on an exact integer lattice before division. This preserves a true symmetric zero without suppressing small nonzero estimates. Huber roots are numerical and accompanied by a score residual. An independent test solver splits the score into affine pieces between residual knots, rather than duplicating the production bisection algorithm.
 
+## Research extension: Contamination can make two clean targets indistinguishable
+
+A deterministic replacement path illustrates an estimator's behavior. A population lower bound asks a stronger question: can any estimator recover the clean target uniformly over a declared contamination class? Consider an auxiliary class of distributions on $\{-1,1\}$, with the clean mean as target, and contamination fraction $0<\varepsilon<1/2$. Set $d=\varepsilon/(1-\varepsilon)$ and
+
+$$
+P_0=((1+d)/2,(1-d)/2),\quad P_1=((1-d)/2,(1+d)/2),\quad
+Q_0=(0,1),\quad Q_1=(1,0).
+$$
+
+The clean means are $-d$ and $d$, but direct substitution gives the same observed law:
+
+$$
+(1-\varepsilon)P_0+\varepsilon Q_0
+=(1-\varepsilon)P_1+\varepsilon Q_1=(1/2,1/2).
+$$
+
+Consequently every iid sample size has the same observable distribution in the two worlds. For any estimate $T$, including a randomized one with the same randomization law in both worlds, $|T+d|+|T-d|\ge2d$ pointwise. Integrating under the common sample law proves
+
+$$
+\max_{j=0,1}\mathbb E_j|T-\mu_j|\ge d,\qquad
+\max_{j=0,1}\mathbb E_j(T-\mu_j)^2\ge d^2.
+$$
+
+For squared loss, average the two squared expressions to get $T^2+d^2$. More observations cannot remove this identification floor. It does not say every robust problem has these constants: the distribution class, target and contamination model are part of the result.
+
+| Population contamination | Absolute-error floor | Squared-error floor |
+|---|---:|---:|
+| 1/10 | 1/9 | 1/81 |
+| 1/5 | 1/4 | 1/16 |
+| 1/3 | 1/2 | 1/4 |
+
+The code checks the two mixture laws and enumerates length-three samples for an illustrative sample-mean estimator. The universal lower bound comes from the pointwise inequalities, not from checking that one estimator. This auxiliary population experiment is distinct from the fixed 21-observation replacement mechanism and the later uniform-reference location functional.
+
+```python
+from fractions import Fraction as F
+from itertools import product
+for epsilon in [F(1,10),F(1,5),F(1,3)]:
+    d=epsilon/(1-epsilon)
+    P0=[(1+d)/2,(1-d)/2]; P1=P0[::-1]
+    Q0=[F(0),F(1)]; Q1=Q0[::-1]
+    R0=[(1-epsilon)*p+epsilon*q for p,q in zip(P0,Q0)]
+    R1=[(1-epsilon)*p+epsilon*q for p,q in zip(P1,Q1)]
+    assert R0==R1==[F(1,2),F(1,2)]
+    means=[-P[0]+P[1] for P in [P0,P1]]
+    assert means==[-d,d]
+    absolute=[F(0),F(0)]; squared=[F(0),F(0)]
+    for sample in product([-1,1],repeat=3):
+        estimate=F(sum(sample),3); weight=F(1,8)
+        assert abs(estimate+d)+abs(estimate-d)>=2*d
+        for j,mean in enumerate(means):
+            absolute[j]+=weight*abs(estimate-mean)
+            squared[j]+=weight*(estimate-mean)**2
+    assert max(absolute)>=d and max(squared)>=d*d
+    print(epsilon,d,d*d)
+```
+
 ## Exercises and worked solutions
 
 1. How many values remain with k=3? Solution:21−6=15. Removing three from each tail is not removing three in total.

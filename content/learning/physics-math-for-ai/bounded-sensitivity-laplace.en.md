@@ -114,6 +114,48 @@ A constant query reveals no information about its input, so it may be released w
 
 For a nonconstant query with positive sensitivity and finite b, epsilon0 requires positive delta. Sending b to infinity is a limit, not a finite useful zero-epsilon pure mechanism. Do not divide by epsilon0 in the calibration formula b=Delta/epsilon.
 
+## Research extension: Allocate a joint vector privacy budget
+
+Releasing two coordinates requires the sensitivity of the whole vector. Consider a separate fixed-size dataset whose dimensionless rows lie in $[0,1]\times[0,8]$, and release both coordinate sums with independent Laplace scales $b_1,b_2$. One row replacement can attain both maximal differences simultaneously. Summing log density ratios gives a tight pure budget
+
+$$
+\epsilon=\frac{\Delta_1}{b_1}+\frac{\Delta_2}{b_2},\qquad (\Delta_1,\Delta_2)=(1,8).
+$$
+
+The tail orthant in the aligned direction attains this ratio; integrating gives the event bound. If a different query has a smaller coupled sensitivity set, summing coordinate bounds may only be sufficient. Independence and public, input-independent scales are part of this mechanism.
+
+Put $e_j=\Delta_j/b_j>0$. For positive weights $w_j$ in a declared squared-error objective, minimizing total noise error under $\sum_j e_j=\epsilon$ becomes
+
+$$
+\min_{e_j>0}\sum_j\frac{2w_j\Delta_j^2}{e_j^2},\qquad
+ e_j=\epsilon\frac{(w_j\Delta_j^2)^{1/3}}{\sum_i(w_i\Delta_i^2)^{1/3}}.
+$$
+
+A Lagrange multiplier gives equal $w_j\Delta_j^2/e_j^3$; strict convexity establishes the unique global optimum. The objective diverges at a zero allocation when its coefficient is positive. Zero sensitivities or zero weights need separate boundary handling. If outputs have different physical units, weights must define a meaningful common loss before adding errors.
+
+With equal weights, allocate epsilon in ratio $1:4$, giving scales $5/\epsilon,10/\epsilon$. Equal epsilon allocation is valid but less accurate for this objective:
+
+| Total epsilon | Optimal total MSE | Equal-allocation total MSE |
+|---|---:|---:|
+| 1/2 | 1000 | 2080 |
+| 1 | 250 | 520 |
+| 2 | 125/2 | 130 |
+
+The exact-fraction code checks stationarity and compares against a fine allocation grid. The continuous proof comes from convexity, not from that finite grid. These are auxiliary vector releases; the scalar native controls still model their stated single query.
+
+```python
+from fractions import Fraction as F
+Delta=[F(1),F(8)]
+def mse(e):return sum(2*d*d/(v*v) for d,v in zip(Delta,e))
+for epsilon in [F(1,2),F(1),F(2)]:
+    allocation=[epsilon/5,4*epsilon/5]
+    assert Delta[0]**2/allocation[0]**3==Delta[1]**2/allocation[1]**3
+    best=mse(allocation); equal=mse([epsilon/2,epsilon/2])
+    assert best==250/epsilon**2 and best<equal
+    for j in range(1,100):assert best<=mse([epsilon*j/100,epsilon*(100-j)/100])
+    print(epsilon,best,equal)
+```
+
 ## Exercises and worked solutions
 
 1. For n8 and B4, compute sensitivities of sum and mean. They are4 and.5. Endpoint replacement attains both.

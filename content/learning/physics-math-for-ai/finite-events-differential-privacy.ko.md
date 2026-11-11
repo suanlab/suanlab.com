@@ -155,6 +155,57 @@ p=1이면 공개 개수가 참 개수와 같습니다. 추정 오차는 0입니�
 
 n이나 p는 채널을 바꿉니다. α는 프라이버시 주장과 프로필 조회를 바꾸고 δ는 수평 예산선을 바꿉니다. 인접 쌍·사건 입력은 관찰만 바꿉니다. 배지는 정확한 정수 분자 비교로 결정하고 로그와 소수 표시는 표시용 수치입니다.
 
+## 연구 확장: 프라이버시를 통계적 검정의 영역으로 읽기
+
+프라이버시 보장은 특정 인접 쌍을 구분하는 검정도 제한합니다. 출력 $y$를 본 검정이 첫 데이터라고 답할 확률을 $\varphi(y)\in[0,1]$로 두세요. 참양성 확률은 $t=\mathbb E_P\varphi$, 거짓양성 확률은 $f=\mathbb E_Q\varphi$입니다. 사건 $\{\varphi>u\}$의 DP 부등식을 $0\le u\le1$에서 적분하면 무작위 검정에도 적용됩니다. 두 방향과 여사건 검정을 함께 사용하면
+
+$$
+t\le\alpha f+\delta,\quad f\le\alpha t+\delta,\quad
+1-t\le\alpha(1-f)+\delta,\quad
+1-f\le\alpha(1-t)+\delta.
+$$
+
+네 직선이 가능한 검정 영역을 제한합니다. 한 채널이 그 안의 모든 점을 달성한다는 뜻은 아닙니다. 첫째와 넷째 부등식을 결합하면 $(\alpha+1)(t-f)\le\alpha-1+2\delta$입니다. 두 가설의 사전 확률이 같으면 검정 오류는 $(1-t+f)/2$이므로
+
+$$
+R_{\rm test}\ge\frac{1-\delta}{\alpha+1},\qquad 0\le\delta\le1.
+$$
+
+$\delta>1$이면 자명한 하한 0을 사용합니다. 이 결론은 해당 인접 쌍과 균형 사전의 검정에 관한 것이며 모든 속성 추론에 대한 보장은 아닙니다. 강한 사전 확률이 있으면 최적 의사결정 문제가 달라집니다.
+
+하한을 달성하는 이진 채널도 만들 수 있습니다. $P=((\alpha+\delta)/(\alpha+1),(1-\delta)/(\alpha+1))$로 두고 $Q$는 항목을 뒤집으세요. $\alpha=3$에서 다음을 얻습니다.
+
+| 덧셈 여유 $\delta$ | 최적 균형 오류 | 총변동 거리 |
+|---|---:|---:|
+| 0 | 1/4 | 1/2 |
+| 1/10 | 9/40 | 11/20 |
+| 1/2 | 1/8 | 3/4 |
+
+![양방향 DP가 제한하는 참양성·거짓양성 확률 영역. 덧셈 여유가 커지면 영역이 넓어지며 표시한 이진 채널은 균형 검정 오류 하한을 달성한다.](/assets/learning/privacy-testing-region-ko.svg)
+
+아래 독립 코드는 보조 채널의 모든 사건과 무작위 검정 격자를 열거하고 정확한 분수로 하한을 확인합니다. 기존 개수 채널의 인증을 바꾸는 계산은 아니며 $\delta$를 보편적인 공개 빈도로 해석하지 않습니다.
+
+```python
+from fractions import Fraction as F
+from itertools import product
+alpha=F(3)
+for delta in [F(0),F(1,10),F(1,2)]:
+    P=[(alpha+delta)/(alpha+1),(1-delta)/(alpha+1)]
+    Q=P[::-1]
+    for A,B in [(P,Q),(Q,P)]:
+        excess=max(sum((A[i]-alpha*B[i] for i in range(2) if mask>>i&1),F(0)) for mask in range(4))
+        assert excess==delta
+    for phi in product([F(i,4) for i in range(5)],repeat=2):
+        t=sum(a*b for a,b in zip(P,phi)); f=sum(a*b for a,b in zip(Q,phi))
+        assert t<=alpha*f+delta and f<=alpha*t+delta
+        assert 1-t<=alpha*(1-f)+delta and 1-f<=alpha*(1-t)+delta
+        assert (1-t+f)/2>=(1-delta)/(alpha+1)
+    error=sum(min(a,b) for a,b in zip(P,Q))/2
+    tv=sum(abs(a-b) for a,b in zip(P,Q))/2
+    assert error==(1-delta)/(alpha+1)
+    print(delta,error,tv)
+```
+
 ## 연습 문제와 해설
 
 1. n=1,p=3/4,α=1에서 필요한 δ는 얼마인가요? 두 분포는 (3/4,1/4)와 (1/4,3/4)이므로 최대 차이는 1/2입니다. 이 인접성에서 (0,1/2)-DP이고 순수 보장은 (ln3,0)입니다.

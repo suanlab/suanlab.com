@@ -120,6 +120,51 @@ The graph uses epsilon itself on the horizontal axis, unlike the alpha=exp(epsil
 
 Input clipping and output clipping remain distinct. Public input clipping establishes the domain bound; output clipping would be postprocessing of the noisy answer and would change its exact profile and risk. This experiment leaves the released real value unclipped.
 
+## Research extension: Whiten a correlated Gaussian release
+
+For a vector release, covariance changes which neighboring directions are easy to distinguish. Take a positive-definite covariance matrix $\Sigma$ fixed publicly across databases. Compare $P=N(0,\Sigma)$ and $Q=N(d,\Sigma)$. Completing the square in their densities gives
+
+$$
+L(Y)=\frac12d^\top\Sigma^{-1}d-d^\top\Sigma^{-1}Y,\qquad
+ h^2=d^\top\Sigma^{-1}d.
+$$
+
+Under $P$, this scalar privacy loss is normal with mean $h^2/2$ and variance $h^2$. An invertible whitening map preserves all event comparisons. Therefore the same analytic Gaussian profile applies with gap-to-noise ratio $h$, even though the output is multidimensional. Taking its exponential moment also gives
+
+$$
+D_r(P\Vert Q)=\frac{r h^2}{2},\qquad r>1.
+$$
+
+For a query, maximize this squared Mahalanobis gap over every legal neighboring difference. Choosing the covariance after seeing the private input would change the mechanism and invalidate this fixed-covariance argument.
+
+With unit marginal variances and correlation $\rho$, $\Sigma=(1,\rho;\rho,1)$ is positive definite only for $|\rho|<1$. The common and opposing directions have different squared gaps:
+
+| Correlation | $d=(1,1)$: $h^2$ | $d=(1,-1)$: $h^2$ |
+|---|---:|---:|
+| -1/2 | 4 | 4/3 |
+| 0 | 2 | 2 |
+| 1/2 | 4/3 | 4 |
+
+Positive correlation helps the common direction here while worsening the opposing one. It is not a general privacy improvement. At $|\rho|=1$ the matrix is singular; a density with this inverse is unavailable, and support containment must be analyzed separately. The scalar native Gaussian lab remains unchanged.
+
+The code independently inverts each rational matrix, checks the privacy-loss variance and calculates the order-two divergence, which equals $h^2$. Whitening geometry and moment accounting follow from the stated Gaussian laws; this is not a claim about a machine sampler or an unspecified training pipeline.
+
+```python
+from fractions import Fraction as F
+for rho in [F(-1,2),F(0),F(1,2)]:
+    S=[[F(1),rho],[rho,F(1)]]; det=1-rho*rho
+    inverse=[[F(1)/det,-rho/det],[-rho/det,F(1)/det]]
+    gaps=[]
+    for d in [[F(1),F(1)],[F(1),F(-1)]]:
+        v=[sum(inverse[i][j]*d[j] for j in range(2)) for i in range(2)]
+        h2=sum(d[i]*v[i] for i in range(2))
+        variance=sum(v[i]*S[i][j]*v[j] for i in range(2) for j in range(2))
+        assert variance==h2 and h2>0
+        gaps.append(h2)
+    assert gaps==[2/(1+rho),2/(1-rho)]
+    print(rho,*gaps)
+```
+
 ## Exercises and worked solutions
 
 1. At Delta1,sigma1,epsilon0, find the required delta. It is2Phi(.5)-1, approximately.3829249225.

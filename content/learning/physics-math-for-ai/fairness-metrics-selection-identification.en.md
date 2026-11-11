@@ -122,6 +122,57 @@ The comparison panel shows the selected and oracle rates for both groups. The la
 
 A positive identification flag records the stated mathematical conditions, not a claim that assumptions were verified from real-world data. Distinguish the simulator's true inclusion probabilities from probabilities supplied to the observer. Also distinguish identification from numerical evaluation: displayed decimals are approximate, while the counterexample calculations can be checked with exact fractions.
 
+## Research extension: Propagate uncertainty in inclusion probabilities
+
+Identification with a known positive inclusion probability is an ideal limit. How sensitive is an inverse-weighted conditional rate to an imperfect probability? Keep the expected-mass model $O_j=q_j C_j$ and assume every relevant $q_j>0$. Suppose externally supplied estimates satisfy a simultaneous deterministic relative-error bound
+
+$$
+(1-\eta)q_j\le\widehat q_j\le(1+\eta)q_j,\qquad 0\le\eta<1.
+$$
+
+Then corrected masses equal $C_j q_j/\widehat q_j$, so each mass is multiplied by a factor in $[1/(1+\eta),1/(1-\eta)]$. For a binary conditional event whose true numerator proportion is $p$, minimize its corrected rate by shrinking numerator masses and enlarging complement masses, and reverse those choices to maximize it:
+
+$$
+\frac{p(1-\eta)}{p(1-\eta)+(1-p)(1+\eta)}
+\le\widehat p\le
+\frac{p(1+\eta)}{p(1+\eta)+(1-p)(1-\eta)}.
+$$
+
+These bounds are sharp when the extremal inclusion estimates are legal probabilities. Equivalently, the corrected odds are within factors $(1-\eta)/(1+\eta)$ and its reciprocal of the true odds when those odds are defined. The reciprocal odds bounds also give an interval for true $p$ by replacing $p$ in the two endpoints with the computed $\widehat p$. This conditional normalization matters: bounding unnormalized cell errors alone is not the final rate analysis.
+
+For an auxiliary population with TP=FN=20 and both inclusion probabilities $1/2$, true TPR is $1/2$:
+
+| Relative error bound $\eta$ | Smallest corrected TPR | Largest corrected TPR |
+|---|---:|---:|
+| 0 | 1/2 | 1/2 |
+| 1/10 | 9/20 | 11/20 |
+| 1/4 | 3/8 | 5/8 |
+
+For two group intervals $[L_g,U_g]$, the signed gap belongs to $[L_1-U_0,U_1-L_0]$. If the inclusion bounds are statistical, their simultaneous coverage must first be justified; the deterministic transformation does not create a confidence level. Unknown zero inclusion and error bounds allowing zero remain identification problems outside this result.
+
+The code checks the extremal corrected rates by enumerating relative-error corners, including two nonsymmetric true rates. It changes no native selection scenario and makes no finite-sample unbiasedness claim.
+
+```python
+from fractions import Fraction as F
+from itertools import product
+for p in [F(1,5),F(1,2),F(4,5)]:
+    for eta in [F(0),F(1,10),F(1,4)]:
+        lo=p*(1-eta)/(p*(1-eta)+(1-p)*(1+eta))
+        hi=p*(1+eta)/(p*(1+eta)+(1-p)*(1-eta))
+        rates=[]
+        for e0,e1 in product([-eta,eta],repeat=2):
+            q=F(1,2); estimated=[q*(1+e0),q*(1+e1)]
+            assert all(0<v<=1 for v in estimated)
+            corrected=[p*q/estimated[0],(1-p)*q/estimated[1]]
+            hat=corrected[0]/sum(corrected)
+            reverse_lo=hat*(1-eta)/(hat*(1-eta)+(1-hat)*(1+eta))
+            reverse_hi=hat*(1+eta)/(hat*(1+eta)+(1-hat)*(1-eta))
+            assert reverse_lo<=p<=reverse_hi
+            rates.append(hat)
+        assert min(rates)==lo and max(rates)==hi
+        if p==F(1,2):print(eta,lo,hi)
+```
+
 ## Exercises and worked solutions
 
 1. In(20,5,5,20), compute TPR and PPV. Both are.8 here, but their denominators are actual positives and positive decisions respectively; equality in this symmetric table does not make the definitions interchangeable.

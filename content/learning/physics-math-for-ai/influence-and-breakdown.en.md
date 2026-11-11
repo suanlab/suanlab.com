@@ -102,6 +102,59 @@ The previous finite sample had mean breakdown1/21 and median breakdown11/21. A b
 
 Known scale is another substantive condition. Estimating scale from corrupted data changes the functional and its influence. In regression, a point may have extreme covariates as well as a large residual; bounding only a residual score does not automatically control leverage. These limitations identify the next mathematical questions instead of invalidating the present calculation.
 
+## Research extension: Turn score conditioning into a finite bias and solver bound
+
+An influence derivative is local. To control a finite shift, inspect how strongly the clean score changes over the whole relevant interval. Let $S_P(0)=0$ and assume $-S'_P(\theta)\ge\kappa>0$ for $|\theta|\le r$, with a globally nonincreasing clean score. The contaminating score $S_Q(\theta)=\mathbb E_Q\operatorname{clip}(X-\theta,-c,c)$ is also nonincreasing and has absolute magnitude at most $c$. If
+
+$$
+(1-\varepsilon)\kappa r>\varepsilon c,
+$$
+
+the mixture score has opposite signs at the endpoints. It is strictly decreasing inside, so its unique root lies inside the interval. At that root the contamination can balance at most $\varepsilon c$ of force. The clean score's slope bound then proves
+
+$$
+|\theta_*|\le\frac{\varepsilon c}{(1-\varepsilon)\kappa}.
+$$
+
+The denominator is a finite-region conditioning assumption, not merely the score derivative at the clean root. A bounded score alone does not control bias when this denominator becomes small. Likewise, for an approximate root $\widetilde\theta$ in the same interval with mixture score residual at most $e_s$,
+
+$$
+|\widetilde\theta-\theta_*|\le\frac{e_s}{(1-\varepsilon)\kappa}.
+$$
+
+A small residual becomes an informative location-error bound only after establishing the slope and interval conditions.
+
+For the current uniform reference, take $c=r=1/2$. On this interval $S_P(\theta)=-\theta/2$, hence $\kappa=1/2$. With distant positive contamination $z=10$ and $\varepsilon<1/3$, the bound is attained by $\theta_* =\varepsilon/(1-\varepsilon)$. Its difference from the first-order approximation is exactly $\varepsilon^2/(1-\varepsilon)$:
+
+| Contamination | Exact bias | First-order bias | Remainder |
+|---|---:|---:|---:|
+| 1/100 | 1/99 | 1/100 | 1/9900 |
+| 1/10 | 1/9 | 1/10 | 1/90 |
+| 1/4 | 1/3 | 1/4 | 1/12 |
+
+The code evaluates the uniform score by its integrated Huber loss, verifies the root and checks the residual-to-error relation. The theorem addresses bias and numerical conditioning under stated assumptions, not a confidence interval or a new finite-sample breakdown guarantee.
+
+```python
+from fractions import Fraction as F
+c=r=kappa=F(1,2); z=F(10)
+def clip(x):return max(-c,min(c,x))
+def loss(x):return x*x/2 if abs(x)<=c else c*(abs(x)-c/2)
+def clean(theta):return (loss(1-theta)-loss(1+theta))/2
+for epsilon in [F(1,100),F(1,10),F(1,4)]:
+    assert (1-epsilon)*kappa*r>epsilon*c
+    theta=epsilon/(1-epsilon)
+    score=lambda t:(1-epsilon)*clean(t)+epsilon*clip(z-t)
+    assert abs(theta)<r and clean(theta)==-kappa*theta and score(theta)==0
+    bound=epsilon*c/((1-epsilon)*kappa)
+    assert theta==bound
+    trial=theta+F(1,100)
+    assert abs(trial)<r
+    assert abs(trial-theta)==abs(score(trial))/((1-epsilon)*kappa)
+    remainder=theta-epsilon
+    assert remainder==epsilon**2/(1-epsilon)
+    print(epsilon,theta,epsilon,remainder)
+```
+
 ## Exercises and explained solutions
 
 1. At epsilon=0.25 and z=100, why is the median bias not0.25? Solution: the clean distribution has weight0.75, so moving its CDF by0.25 requires displacement0.25/0.75=1/3.

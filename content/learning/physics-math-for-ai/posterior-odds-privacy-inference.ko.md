@@ -150,6 +150,59 @@ $$
 
 정해진 작은 모형에서는 출력 가중치와 사전 가중 곱이 안전한 정수 범위에 있습니다. 선택 사후는 약분한 정확한 분수로도 표시합니다. 로그·엔트로피·소수 표시·그림은 근삿값입니다. 사후 오즈는 1에서 반올림된 사후를 빼지 않고 정수 결합 가중치에서 직접 계산하여 손실을 줄입니다.
 
+## 연구 확장: 후처리 뒤의 사후 확률은 조건부 평균이다
+
+관찰자가 공개 출력 $Y$에만 접근하는 후처리 채널의 결과 $Z$를 본다고 합시다. 가설을 다시 읽지 않으므로 $H\to Y\to Z$가 Markov 사슬입니다. 반복 조건부 기대값으로
+
+$$
+\Pr(H=1\mid Z)=\mathbb E[\Pr(H=1\mid Y)\mid Z].
+$$
+
+를 얻습니다. 새 관측 안에 섞인 기존 사후 확률들을 평균하는 셈입니다. 이진 엔트로피와 0-1 Bayes 손실 $\min(u,1-u)$가 오목하므로 Jensen 부등식은
+
+$$
+I(H;Z)\le I(H;Y),\qquad R_Z\ge R_Y.
+$$
+
+를 줍니다. 이는 사전별 정보·결정 성능의 명제이며 사전과 무관한 DP 후처리 정리와 함께 성립합니다. 불가능한 관측에서는 여전히 조건부 사후가 없습니다. 합쳐지는 양의 질량 출력들의 사후가 같으면 엔트로피 부등식에 등호가 됩니다. 오류율은 더 넓은 경우에 같을 수 있습니다. 서로 다른 사후가 모두 1/2의 같은 쪽에 있으면 합쳐도 최적 결정이 같기 때문입니다.
+
+보조 예제로 진실 확률 $p=3/4$인 무작위 응답을 독립 확률 $r$로 다시 반전하세요. 합성 진실 확률은 $p'=p(1-r)+(1-p)r$입니다. 균형 사전에서 다음을 얻습니다.
+
+| 출력 반전 확률 $r$ | 합성 진실 확률 | Bayes 오류 | 정보량 비트 근삿값 |
+|---|---:|---:|---:|
+| 0 | 3/4 | 1/4 | 0.188722 |
+| 1/4 | 5/8 | 3/8 | 0.045566 |
+| 1/2 | 1/2 | 1/2 | 0 |
+
+사전 $\Pr(H=1)=0.99$에서는 세 경우 모두 계속 1이라고 예측하는 것이 최적이고 오류는 $0.01$ 그대로지만 정보량은 달라집니다. 따라서 공격 정확도만으로 공개물이 주는 모든 증거의 크기를 비교할 수 없습니다.
+
+코드는 세 변수의 결합 분포를 정확한 분수로 구성해 조건부 평균과 Bayes 위험을 확인합니다. 엔트로피만 표시와 수치 대조를 위해 부동소수 로그를 사용합니다. 기존 관찰자 실습의 채널은 유지하며 비밀에 다시 접근하는 두 번째 질의를 후처리로 취급하지 않습니다.
+
+```python
+from fractions import Fraction as F
+from itertools import product
+from math import log2
+def h(p):return 0.0 if p in [0,1] else -float(p)*log2(p)-float(1-p)*log2(1-p)
+p=F(3,4)
+for pi in [F(1,2),F(99,100)]:
+    for r in [F(0),F(1,4),F(1,2)]:
+        J={(a,y,z):(pi if a else 1-pi)*(p if y==a else 1-p)*(1-r if z==y else r) for a,y,z in product(range(2),repeat=3)}
+        my=[sum(J[a,y,z] for a,z in product(range(2),repeat=2)) for y in range(2)]
+        mz=[sum(J[a,y,z] for a,y in product(range(2),repeat=2)) for z in range(2)]
+        py=[sum(J[1,y,z] for z in range(2))/my[y] for y in range(2)]
+        pz=[sum(J[1,y,z] for y in range(2))/mz[z] for z in range(2)]
+        for z in range(2):
+            conditional=sum(py[y]*sum(J[a,y,z] for a in range(2))/mz[z] for y in range(2))
+            assert pz[z]==conditional
+        ry=sum(m*min(v,1-v) for m,v in zip(my,py))
+        rz=sum(m*min(v,1-v) for m,v in zip(mz,pz))
+        iy=h(pi)-sum(float(m)*h(v) for m,v in zip(my,py))
+        iz=h(pi)-sum(float(m)*h(v) for m,v in zip(mz,pz))
+        assert rz>=ry and iz<=iy+1e-12
+        if pi==F(99,100):assert ry==rz==F(1,100)
+        else:print(r,p*(1-r)+(1-p)*r,rz,f'{iz:.6f}')
+```
+
 ## 연습 문제와 해설
 
 1. 사전 0.2에 Bayes 인자 3이면 사후 확률은? 사전 오즈 1/4가 3/4가 되므로 사후는 3/7입니다. 0.6이 아닙니다.

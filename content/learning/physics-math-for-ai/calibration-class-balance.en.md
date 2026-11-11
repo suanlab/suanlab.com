@@ -151,6 +151,55 @@ The final plot varies rho in this particular family. Its blue curve represents b
 
 Joint masses have denominator10000 for integer controls. Conditional means, expected scores and Brier risk retain exact integer fractions. Displayed decimals and coordinates are rounded. Interior base-rate controls enforce the class-support assumptions of the mean-balance theorem.
 
+## Research extension: Approximate class balance with exact calibration
+
+How close to perfect must calibrated scores become if class means are only approximately balanced? Keep $0\le R\le1$, exact within-group calibration and interior bases with $\pi_1>\pi_0$. Write $u_g=\mathbb E[R\mid Y=1,G=g]$ and $v_g=\mathbb E[R\mid Y=0,G=g]$. Suppose $|u_1-u_0|\le\eta_+$ and $|v_1-v_0|\le\eta_-$. Calibration gives $\pi_g=\pi_g u_g+(1-\pi_g)v_g$. Subtract after expressing both groups using group-zero means:
+
+$$
+(\pi_1-\pi_0)(1-u_0+v_0)
+=\pi_1(u_1-u_0)+(1-\pi_1)(v_1-v_0).
+$$
+
+The left side is nonnegative. Define $s_0=1-u_0+v_0$. Calibration also implies $v_0=\pi_0s_0$. Moreover $\mathbb E[R^2\mid G]=\mathbb E[YR\mid G]$, so Brier risk $B_0=\pi_0(1-u_0)$. Combining these identities yields
+
+$$
+B_0=\pi_0(1-\pi_0)s_0
+\le\pi_0(1-\pi_0)
+\frac{\pi_1\eta_+ +(1-\pi_1)\eta_-}{\pi_1-\pi_0}.
+$$
+
+Interchanging the reference group gives the corresponding bound for $B_1$, with numerator weights $\pi_0,1-\pi_0$. This quantifies the exact theorem: zero class-mean gaps force zero Brier risk at unequal bases. Small gaps alone are weaker when the bases nearly coincide. If calibration is only empirical or approximate, the expectation identities acquire additional errors; this exact-calibration result cannot silently be reused.
+
+In the informative-flag family already defined above, bases $(1/5,3/5)$ make both gaps $(1-\rho)2/5$. The bound is attained:
+
+| Informative fraction $\rho$ | Both class-mean gaps | Group-zero Brier risk and bound |
+|---|---:|---:|
+| 0 | 2/5 | 4/25 |
+| 1/2 | 1/5 | 2/25 |
+| 9/10 | 1/25 | 2/125 |
+
+The code independently builds the occupied joint score-label bins, verifies calibration and evaluates Brier risk directly. This is a quantitative derivation for the displayed assumptions, not a claim to reproduce every approximate-fairness theorem or to certify labels in real data.
+
+```python
+from fractions import Fraction as F
+p0,p1=F(1,5),F(3,5)
+for rho in [F(0),F(1,2),F(9,10)]:
+    results=[]
+    for pi in [p0,p1]:
+        bins=[(F(0),F(0),rho*(1-pi)),(pi,(1-rho)*pi,(1-rho)*(1-pi)),(F(1),rho*pi,F(0))]
+        for score,pos,neg in bins:
+            if pos+neg:assert pos/(pos+neg)==score
+        u=sum(score*pos for score,pos,neg in bins)/pi
+        v=sum(score*neg for score,pos,neg in bins)/(1-pi)
+        risk=sum(pos*(1-score)**2+neg*score**2 for score,pos,neg in bins)
+        assert risk==pi*(1-u)==(1-pi)*v
+        results.append((u,v,risk))
+    ep=abs(results[1][0]-results[0][0]); em=abs(results[1][1]-results[0][1])
+    bound=p0*(1-p0)*(p1*ep+(1-p1)*em)/(p1-p0)
+    assert results[0][2]==bound and ep==em
+    print(rho,ep,bound)
+```
+
 ## Exercises and worked solutions
 
 1. At bases.2,.6 and rho.5, find the two class-mean gaps. Both equal.5 times.4=.2. Calibration still holds in both groups.

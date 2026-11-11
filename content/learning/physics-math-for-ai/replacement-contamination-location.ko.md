@@ -72,6 +72,62 @@ $$
 
 평균과 절사평균은 정수 격자에서 합한 뒤 나누어 정확한 분수를 보존합니다. 진짜 영을 미세한 음수로 표시하지 않으며 작은 실제 값까지 임의로 영으로 지우지도 않습니다. Huber 해는 수치 해이며 점수 잔차와 함께 확인합니다. 독립 검사는 잔차가 잘리는 경계 사이의 선형식을 풀어 계산합니다.
 
+## 연구 확장: 오염으로 서로 다른 깨끗한 목표가 구별되지 않는 경우
+
+결정적인 교체 경로는 특정 추정량의 반응을 보여 줍니다. 모집단 하한은 더 강한 질문입니다. 선언한 오염 클래스에서 어떤 추정량이든 깨끗한 목표를 복원할 수 있을까요? 보조 분포 클래스를 $\{-1,1\}$ 위의 분포로 두고 깨끗한 평균을 목표로 합시다. $0<\varepsilon<1/2$에서 $d=\varepsilon/(1-\varepsilon)$로 정하고
+
+$$
+P_0=((1+d)/2,(1-d)/2),\quad P_1=((1-d)/2,(1+d)/2),\quad
+Q_0=(0,1),\quad Q_1=(1,0).
+$$
+
+로 둡니다. 깨끗한 평균은 $-d,d$로 다르지만 관측 혼합 법칙은 같습니다.
+
+$$
+(1-\varepsilon)P_0+\varepsilon Q_0
+=(1-\varepsilon)P_1+\varepsilon Q_1=(1/2,1/2).
+$$
+
+따라서 어떤 iid 표본 크기에서도 두 세계의 관측 분포가 같습니다. 두 세계에서 같은 무작위화 법칙을 쓰는 임의의 추정량 $T$에 대해 점마다 $|T+d|+|T-d|\ge2d$입니다. 같은 표본 법칙으로 적분하면
+
+$$
+\max_{j=0,1}\mathbb E_j|T-\mu_j|\ge d,\qquad
+\max_{j=0,1}\mathbb E_j(T-\mu_j)^2\ge d^2.
+$$
+
+입니다. 제곱 손실은 두 식을 평균하여 $T^2+d^2$를 얻으면 됩니다. 표본을 늘려도 이 식별 오차 바닥은 사라지지 않습니다. 모든 강건 문제에 같은 상수가 있다는 뜻은 아니며 분포 클래스·목표·오염 모형이 결과의 일부입니다.
+
+| 모집단 오염 비율 | 절대 오차 하한 | 제곱 오차 하한 |
+|---|---:|---:|
+| 1/10 | 1/9 | 1/81 |
+| 1/5 | 1/4 | 1/16 |
+| 1/3 | 1/2 | 1/4 |
+
+아래 코드는 두 혼합 법칙과 길이 3 표본을 열거한 표본 평균 예를 확인합니다. 모든 추정량에 대한 하한은 그 한 추정량의 계산이 아니라 점별 부등식에서 나옵니다. 이 보조 모집단 실험은 고정된 21개 표본 교체나 다음 균등 기준 위치 함수와 다른 모형입니다.
+
+```python
+from fractions import Fraction as F
+from itertools import product
+for epsilon in [F(1,10),F(1,5),F(1,3)]:
+    d=epsilon/(1-epsilon)
+    P0=[(1+d)/2,(1-d)/2]; P1=P0[::-1]
+    Q0=[F(0),F(1)]; Q1=Q0[::-1]
+    R0=[(1-epsilon)*p+epsilon*q for p,q in zip(P0,Q0)]
+    R1=[(1-epsilon)*p+epsilon*q for p,q in zip(P1,Q1)]
+    assert R0==R1==[F(1,2),F(1,2)]
+    means=[-P[0]+P[1] for P in [P0,P1]]
+    assert means==[-d,d]
+    absolute=[F(0),F(0)]; squared=[F(0),F(0)]
+    for sample in product([-1,1],repeat=3):
+        estimate=F(sum(sample),3); weight=F(1,8)
+        assert abs(estimate+d)+abs(estimate-d)>=2*d
+        for j,mean in enumerate(means):
+            absolute[j]+=weight*abs(estimate-mean)
+            squared[j]+=weight*(estimate-mean)**2
+    assert max(absolute)>=d and max(squared)>=d*d
+    print(epsilon,d,d*d)
+```
+
 ## 연습 문제와 해설
 
 1. 양쪽에서 세 개씩 제거하면 몇 개가 남나요? 해설: 스물한 개에서 여섯 개를 빼므로 열다섯 개입니다.

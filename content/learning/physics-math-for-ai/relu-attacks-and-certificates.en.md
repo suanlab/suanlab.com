@@ -92,6 +92,47 @@ The geometry diagram shows the input box, dashed activation boundaries, candidat
 
 The comparison panel displays L,M and U and separates sufficient certification, exact toy robustness and a found error witness. The final graph plots the best visited score against attack iteration, together with the fixed exact minimum and interval lower bound. Its best-so-far curve cannot increase, but it may remain strictly above the exact minimum forever at a flat start.
 
+## Research extension: Make a covering certificate converge by subdivision
+
+A dense grid supplies feasible attack points; by itself it gives no lower bound between those points. A known Lipschitz constant supplies the missing information. Cover a compact threat set by cells with feasible centers $c_j$, each within distance $r$ of all points in its cell. If the score is $B$-Lipschitz in that norm, then
+
+$$
+U=\min_j f(c_j),\qquad U-Br\le M\le U.
+$$
+
+Every point belongs to a cell and has score at least its center score minus $Br$, hence at least $U-Br$. Each center is feasible, yielding the upper bound. Shrinking the cover radius makes the certified gap at most $Br$, not merely a visually dense sample. For a ReLU layer under the infinity norm, $B=\sum_j|a_j|\|w_j\|_1$ is a sufficient constant because ReLU is one-Lipschitz.
+
+Return to $f(u)=1+\operatorname{ReLU}(u_0)-\operatorname{ReLU}(u_0)=1$ on $[-2,2]^2$. The coefficient bound gives $B=2$ even though algebraic cancellation gives the sharper constant zero. Because the score is independent of the second coordinate, its two-dimensional minimum equals the minimum of its one-dimensional restriction on $[-2,2]$. Apply the covering argument to that reduced function by dividing the first coordinate into $N$ equal intervals. Their centers have one-dimensional radius $2/N$, so the covering lower bound is $1-4/N$.
+
+Independent interval propagation can also be applied separately to every strip and minimized over the strips. Its bound improves once the positive half-axis has been divided sufficiently:
+
+| Strips $N$ | Covering lower bound | Subdivided interval lower bound | Feasible upper bound |
+|---|---:|---:|---:|
+| 1 | -3 | -1 | 1 |
+| 2 | -1 | -1 | 1 |
+| 4 | 0 | 0 | 1 |
+| 8 | 1/2 | 1/2 | 1 |
+
+Eight strips now certify strict positivity without reversing the meaning of a failed coarse bound. The exact minimum was always one; subdivision improves evidence, not the network. Enumerating the full cover can grow exponentially with dimension, so this convergence argument is not a scalable verification claim.
+
+The fraction code independently checks strip endpoints, interval bounds and the covering gap. The native experiment keeps its original arrangement solver and attack; this auxiliary method explains how an additional rigorous lower-bound procedure could be developed.
+
+```python
+from fractions import Fraction as F
+def relu(x):return max(F(0),x)
+def f(x):return 1+relu(x)-relu(x)
+for N in [1,2,4,8]:
+    intervals=[(F(-2)+F(4*j,N),F(-2)+F(4*(j+1),N)) for j in range(N)]
+    upper=min(f((lo+hi)/2) for lo,hi in intervals)
+    cover=upper-F(4,N)
+    independent=min(1+relu(lo)-relu(hi) for lo,hi in intervals)
+    for lo,hi in intervals:
+        for x in [lo,(lo+hi)/2,hi]:assert f(x)==1
+    assert cover<=independent<=1==upper
+    assert upper-independent<=F(4,N)
+    print(N,cover,independent,upper)
+```
+
 ## Exercises and explained solutions
 
 1. A feasible attack finds score−0.2. What follows? Solution: an actual error exists for the+1 target, and the global minimum is at most−0.2.

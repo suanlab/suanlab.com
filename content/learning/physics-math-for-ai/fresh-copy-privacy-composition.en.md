@@ -129,6 +129,50 @@ At p=.5 fresh and copy laws are identical across inputs, with epsilon0; XOR mode
 
 The graph evaluates integer alpha1 through100 exactly and uses segments only to guide the eye. The selected point is recomputed at the input's tenth-grid alpha, even between plotted grid points. This finite calculation does not certify unmodeled releases, data-dependent stopping rules or an arbitrary application's privacy accountant.
 
+## Research extension: Moment accounting before choosing epsilon and delta
+
+An entire privacy profile contains more information than one chosen budget. A useful alternative is a moment of the privacy loss. For a common-support pair and order $r>1$, define
+
+$$
+D_r(P\Vert Q)=\frac{1}{r-1}\log\sum_y P_y^rQ_y^{1-r},\qquad
+\mathbb E_P e^{(r-1)L} = e^{(r-1)D_r(P\Vert Q)}.
+$$
+
+For independent fresh transcripts, the sum factors into a product, so these divergences add. For copying an already released answer, the transcript and original answer determine each other; the divergence stays unchanged. A zero $Q$ atom with positive $P$ instead makes this finite-moment argument unavailable. Do not apply it to the revealing XOR construction.
+
+Markov's inequality bounds $P(L>\epsilon)$ by $\exp((r-1)(D_r-\epsilon))$. On the complementary outputs $P_y\le e^\epsilon Q_y$, while the remaining $P$ mass bounds their event excess. Thus a divergence bound $d_r$ valid in both ordered directions gives a sufficient approximate guarantee
+
+$$
+\epsilon=d_r+\frac{\log(1/\delta)}{r-1},\qquad 0<\delta<1.
+$$
+
+This is a sufficient conversion, not the exact hockey-stick profile. Orders may be compared using deterministic bounds; picking a flattering order from unvalidated estimates would be a different problem. The framework is developed in [Mironov's Rényi differential privacy paper](https://arxiv.org/abs/1702.07476).
+
+For randomized response with $p=3/4$, order two has moment $7/3$. Fresh copies have $d_2=k\log(7/3)$; repeating one public answer still has $d_2=\log(7/3)$. At $\delta=1/10$:
+
+| Fresh responses $k$ | Converted epsilon, approximately | Tight pure epsilon, approximately |
+|---|---:|---:|
+| 1 | 3.149883 | 1.098612 |
+| 4 | 5.691777 | 4.394449 |
+| 12 | 12.470159 | 13.183347 |
+
+The conversion can be looser than the pure bound for short transcripts. Both valid bounds can be retained; this table does not claim universal improvement. The code computes count probabilities independently and confirms the product moment as an exact fraction before taking display logarithms.
+
+```python
+from fractions import Fraction as F
+from math import comb,log
+p=F(3,4); delta=F(1,10)
+for k in [1,4,12]:
+    P=[comb(k,t)*p**(k-t)*(1-p)**t for t in range(k+1)]
+    Q=P[::-1]
+    moment=sum(a*a/b for a,b in zip(P,Q))
+    assert moment==F(7,3)**k
+    copied_moment=p*p/(1-p)+(1-p)**2/p
+    assert copied_moment==F(7,3)
+    converted=log(moment.numerator)-log(moment.denominator)+log(1/float(delta))
+    print(k,f'{converted:.6f}',f'{k*log(3):.6f}')
+```
+
 ## Exercises and worked solutions
 
 1. For p=3/4,k=2,fresh mode, find the smallest delta at alpha1. The difference vector is(8,0,-8)/16. Each direction has maximum1/2, so this is a(0,1/2) guarantee.

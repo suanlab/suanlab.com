@@ -155,6 +155,57 @@ The lower graph has alpha=exp(epsilon) on the horizontal axis, NOT epsilon itsel
 
 Changing n or p changes the channel. Changing alpha changes the privacy claim and profile query; changing delta changes the horizontal budget line. Neighbor/event controls affect inspection only. Exact numerator comparisons decide the badges; logarithms and plotted decimals are display quantities.
 
+## Research extension: Privacy as a region of statistical tests
+
+A privacy guarantee also limits a test that tries to distinguish a particular neighboring pair. Let a randomized test announce the first database with probability $\varphi(y)\in[0,1]$ after output $y$. Write $t=\mathbb E_P\varphi$ for its true-positive probability and $f=\mathbb E_Q\varphi$ for its false-positive probability. Integrating the event inequalities for $\{\varphi>u\}$ over $0\le u\le1$ extends DP from events to randomized tests. Apply both directions and the complementary test:
+
+$$
+t\le\alpha f+\delta,\quad f\le\alpha t+\delta,\quad
+1-t\le\alpha(1-f)+\delta,\quad
+1-f\le\alpha(1-t)+\delta.
+$$
+
+These four lines bound a region of possible tests. They do not promise that a particular channel attains every point in that region. Combining the first and fourth inequalities gives $(\alpha+1)(t-f)\le\alpha-1+2\delta$. Under a balanced prior, the test error is $(1-t+f)/2$, hence
+
+$$
+R_{\rm test}\ge\frac{1-\delta}{\alpha+1},\qquad 0\le\delta\le1.
+$$
+
+For $\delta>1$ use the trivial lower bound zero instead. The result concerns a test of this neighboring pair and its balanced prior, not every attribute-inference problem. A strong prior changes the optimal decision problem.
+
+The bound is sharp among two-output channels: take $P=((\alpha+\delta)/(\alpha+1),(1-\delta)/(\alpha+1))$ and reverse its entries for $Q$. At $\alpha=3$:
+
+| Additive slack $\delta$ | Best balanced error | Total variation |
+|---|---:|---:|
+| 0 | 1/4 | 1/2 |
+| 1/10 | 9/40 | 11/20 |
+| 1/2 | 1/8 | 3/4 |
+
+![Feasible true-positive and false-positive regions under two-sided DP; the larger additive slack enlarges the region, and marked binary channels attain the balanced testing bound.](/assets/learning/privacy-testing-region-en.svg)
+
+The independent code enumerates all events and a grid of randomized tests for these auxiliary channels. It checks the lower bound with exact fractions. It does not replace the native count-channel certificate or interpret $\delta$ as a universal disclosure frequency.
+
+```python
+from fractions import Fraction as F
+from itertools import product
+alpha=F(3)
+for delta in [F(0),F(1,10),F(1,2)]:
+    P=[(alpha+delta)/(alpha+1),(1-delta)/(alpha+1)]
+    Q=P[::-1]
+    for A,B in [(P,Q),(Q,P)]:
+        excess=max(sum((A[i]-alpha*B[i] for i in range(2) if mask>>i&1),F(0)) for mask in range(4))
+        assert excess==delta
+    for phi in product([F(i,4) for i in range(5)],repeat=2):
+        t=sum(a*b for a,b in zip(P,phi)); f=sum(a*b for a,b in zip(Q,phi))
+        assert t<=alpha*f+delta and f<=alpha*t+delta
+        assert 1-t<=alpha*(1-f)+delta and 1-f<=alpha*(1-t)+delta
+        assert (1-t+f)/2>=(1-delta)/(alpha+1)
+    error=sum(min(a,b) for a,b in zip(P,Q))/2
+    tv=sum(abs(a-b) for a,b in zip(P,Q))/2
+    assert error==(1-delta)/(alpha+1)
+    print(delta,error,tv)
+```
+
 ## Exercises and worked solutions
 
 1. At n1,p3/4,alpha1, what delta is needed? The two distributions are(3/4,1/4) and(1/4,3/4), so the maximum excess is1/2. The channel is(0,1/2)-DP under this adjacency, while the pure guarantee is(ln3,0).

@@ -89,6 +89,50 @@ The first diagram draws source rows, destination masses and positive transport f
 
 The second diagram plots the dual upper objective against price and marks one selected optimal price. Several prices may minimize it, especially at a kink or plateau. The last graph varies the average-cost budget with losses fixed and compares worst risk with nominal risk. It is not a physical transport-time simulation or a learning trajectory.
 
+## Research extension: Account for a finite destination grid
+
+A finite-support optimum excludes unseen destinations by definition. To relate it to a continuous problem, add a regularity assumption rather than silently extending the certificate. Suppose continuous destinations lie in a compact interval, loss $l$ is $L$-Lipschitz, all source points belong to a finite grid, and a nearest-grid map moves every destination by at most $e$. Write $R_C$ and $R_G$ for continuous and grid worst risks with absolute-distance transport cost.
+
+Every grid plan is a continuous plan. Conversely, round the destinations of a continuous feasible plan. The triangle inequality increases its average transport cost by at most $e$, while its loss decreases by at most $Le$. Thus
+
+$$
+R_G(\rho)\le R_C(\rho)\le R_G(\rho+e)+Le.
+$$
+
+The enlarged budget is essential; rounding need not preserve the original cost constraint. This is a deterministic approximation bound for a specified loss and domain, not evidence that a future distribution belongs to either ambiguity set. Without a known modulus of continuity, small geometric spacing need not control loss between grid points.
+
+An auxiliary example exposes the issue. Put all source mass at zero on $[-1,1]$ and let $l(y)=\max(0,1-4|y-1/4|)$, so $L=4$. Since $l(y)\le4|y|$ and $l(y)\le1$, continuous risk is exactly $\min(4\rho,1)$: mix zero and the peak $1/4$ to attain it. At $\rho=1/8$, continuous risk is $1/2$:
+
+| Uniform grid spacing $h$ | Grid risk | Continuous risk | Rounding distance $e=h/2$ |
+|---|---:|---:|---:|
+| 1 | 0 | 1/2 | 1/2 |
+| 1/2 | 0 | 1/2 | 1/4 |
+| 1/4 | 1/2 | 1/2 | 1/8 |
+| 1/8 | 1/2 | 1/2 | 1/16 |
+
+The two coarse grids entirely miss the narrow peak. The bound remains valid, though it is deliberately conservative there. The code solves each auxiliary single-source LP by enumerating feasible one- and two-destination extreme distributions and checks the bound at three budgets. The native three-source exact certificate remains a finite-support result.
+
+```python
+from fractions import Fraction as F
+from itertools import combinations
+def loss(y):return max(F(0),1-4*abs(y-F(1,4)))
+def grid_risk(h,rho):
+    points=[F(-1)+j*h for j in range(int(2/h)+1)]
+    candidates=[loss(y) for y in points if abs(y)<=rho]
+    for a,b in combinations(points,2):
+        ca,cb=abs(a),abs(b)
+        if ca==cb:continue
+        weight=(rho-cb)/(ca-cb)
+        if 0<=weight<=1:candidates.append(weight*loss(a)+(1-weight)*loss(b))
+    return max(candidates)
+for h in [F(1),F(1,2),F(1,4),F(1,8)]:
+    e=h/2
+    for rho in [F(1,8),F(1,4),F(3,8)]:
+        continuous=min(4*rho,F(1)); finite=grid_risk(h,rho)
+        assert finite<=continuous<=grid_risk(h,rho+e)+4*e
+    print(h,grid_risk(h,F(1,8)),F(1,2),e)
+```
+
 ## Exercises and explained solutions
 
 1. Why can the radius-zero plan not move mass between distinct points? Solution: each such move has positive ground cost, and all masses are nonnegative.

@@ -112,6 +112,48 @@ Laplace의 순수 경계는 정수 입력의 교차곱으로 판단하여 부동
 
 양의 민감도와 유한한 b를 갖는 비상수 질의는 ε=0에서 양의 δ가 필요합니다. b를 무한대로 보내는 극한을 유한한 유용한 순수 메커니즘으로 해석하면 안 됩니다. 보정식 Δ/ε에 ε=0을 대입하여 나누지도 않습니다.
 
+## 연구 확장: 벡터 전체의 프라이버시 예산 배분
+
+두 좌표를 공개하면 벡터 전체의 민감도가 필요합니다. 별도의 고정 크기 자료에서 무차원 행이 $[0,1]\times[0,8]$에 있고 두 좌표 합에 독립 Laplace 잡음 $b_1,b_2$를 더한다고 합시다. 한 행을 교체해 두 최대 차이를 동시에 달성할 수 있습니다. 로그 밀도비를 더하면 최소 순수 예산은
+
+$$
+\epsilon=\frac{\Delta_1}{b_1}+\frac{\Delta_2}{b_2},\qquad (\Delta_1,\Delta_2)=(1,8).
+$$
+
+같은 방향의 꼬리 영역에서 비율이 달성되며 적분하면 사건 보장입니다. 다른 질의의 결합 민감도 집합이 더 작다면 좌표별 상계의 합은 충분 조건일 뿐일 수 있습니다. 잡음의 독립성과 입력에 의존하지 않는 공개 scale도 메커니즘의 가정입니다.
+
+$e_j=\Delta_j/b_j>0$로 두세요. 선언한 제곱 오차 목적의 양의 가중치 $w_j$ 아래 잡음 오차 최소화는
+
+$$
+\min_{e_j>0}\sum_j\frac{2w_j\Delta_j^2}{e_j^2},\qquad
+ e_j=\epsilon\frac{(w_j\Delta_j^2)^{1/3}}{\sum_i(w_i\Delta_i^2)^{1/3}}.
+$$
+
+Lagrange 승수 조건에서 $w_j\Delta_j^2/e_j^3$가 같아지고 엄격한 볼록성으로 유일한 전역 최소임을 얻습니다. 양의 계수에 예산 0을 배정하면 목적이 발산합니다. 민감도나 가중치가 0인 경계는 따로 다뤄야 합니다. 출력의 물리 단위가 다르면 가중치를 통해 먼저 의미 있는 공통 손실을 정해야 오차를 더할 수 있습니다.
+
+같은 가중치에서는 epsilon을 $1:4$로 나누어 scale $5/\epsilon,10/\epsilon$를 얻습니다. 예산을 똑같이 나누는 방식도 유효하지만 이 목적의 오차는 더 큽니다.
+
+| 전체 epsilon | 최적 전체 MSE | 동일 예산 배분의 전체 MSE |
+|---|---:|---:|
+| 1/2 | 1000 | 2080 |
+| 1 | 250 | 520 |
+| 2 | 125/2 | 130 |
+
+분수 코드는 정상 조건과 촘촘한 배분 격자를 확인합니다. 연속 최적성은 격자가 아니라 볼록성으로 증명합니다. 이는 보조 벡터 공개이며 기존 스칼라 조절기는 원래의 단일 질의를 유지합니다.
+
+```python
+from fractions import Fraction as F
+Delta=[F(1),F(8)]
+def mse(e):return sum(2*d*d/(v*v) for d,v in zip(Delta,e))
+for epsilon in [F(1,2),F(1),F(2)]:
+    allocation=[epsilon/5,4*epsilon/5]
+    assert Delta[0]**2/allocation[0]**3==Delta[1]**2/allocation[1]**3
+    best=mse(allocation); equal=mse([epsilon/2,epsilon/2])
+    assert best==250/epsilon**2 and best<equal
+    for j in range(1,100):assert best<=mse([epsilon*j/100,epsilon*(100-j)/100])
+    print(epsilon,best,equal)
+```
+
 ## 연습 문제와 해설
 
 1. n=8,B=4인 합과 평균의 민감도는 각각 얼마인가요? 4와 0.5이며 끝점 교체가 달성합니다.

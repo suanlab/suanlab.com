@@ -73,6 +73,61 @@ Blue bars show the single-count distribution; orange bars show the selected mini
 
 The implementation uses exact integer binomial weights for rational percentage p and exact comparisons for failure events and advertised-coverage flags. Plotted probabilities, expected values, and confidence endpoints are numerical. This division prevents a rounded endpoint from silently changing a strict boundary, but it does not certify the sampling assumptions of a real experiment.
 
+## Research extension: Adapt models while keeping each new evaluation conditional
+
+A predeclared finite family is not the only valid design. At research round $j$, choose the model and a fixed batch size using past information $\mathcal F_{j-1}$. Evaluate on genuinely fresh records independent of that history. Conditional on the history, its risk $p_j$ is fixed and the new count is binomial. If the conditional endpoint has failure budget $\alpha_j$, then iterated expectation gives
+
+$$
+\Pr\{p_j>U_j\}
+=\mathbb E\bigl[\Pr\{p_j>U_j\mid\mathcal F_{j-1}\}\bigr]\le\alpha_j.
+$$
+
+Choose $\alpha_j=\alpha/[j(j+1)]$. A countable union bound protects every round, so an arbitrary eventual choice among the evaluated models also has its own valid endpoint:
+
+$$
+\Pr\{\forall j\ge1:\ p_j\le U_j\}\ge1-\alpha.
+$$
+
+This permits adaptive model construction because each new evaluation is conditionally valid. It does not permit repeatedly tuning on the same supposed fresh batch. Peeking and stopping inside a batch requires an appropriate time-uniform procedure, such as the preceding construction, rather than the fixed-size interval used here.
+
+A concrete reuse counterexample shows why conditioning matters. Let inputs be uniform on ten values, with true label zero everywhere. After seeing three evaluation inputs, choose a classifier that predicts zero exactly on those values and one elsewhere. Its evaluation error is always zero, but its true risk is $1-d/10\ge0.7$, where $d\le3$ is the number of distinct observed inputs. The naive 95% zero-error upper endpoint is $1-0.05^{1/3}\approx0.631597$. It misses in every one of the 1,000 possible input triples. This construction deliberately violates evaluation independence; it is not a failure of the binomial theorem for a fixed predictor.
+
+For genuinely fresh three-record evaluations, conditional risks $0.7,0.8,0.9$ illustrate the valid schedule at $\alpha=1/20$:
+
+| Research round $j$ | Allocated $\alpha_j$ | Largest conditional miss probability in this risk set |
+|---|---:|---:|
+| 1 | 1/40 | 1/125 |
+| 2 | 1/120 | 1/125 |
+| 10 | 1/2200 | 0 |
+
+The code enumerates the reuse counterexample and independently calculates each fresh binomial failure probability with exact fractions. The general conditional-coverage theorem is broader than these three risks. The native finite-candidate power curves still describe their stated independent equal-risk experiment; this extension supplies a separate design, not a reinterpretation of those curves.
+
+```python
+from fractions import Fraction as F
+from itertools import product
+from math import comb
+misses=0
+for batch in product(range(10),repeat=3):
+    memorized=set(batch)
+    assert all(x in memorized for x in batch)
+    risk=1-F(len(memorized),10)
+    assert (1-risk)**3<F(1,20)
+    misses+=1
+assert misses==1000
+alpha=F(1,20)
+for j in [1,2,10]:
+    allocated=alpha/F(j*(j+1)); failures=[]
+    for p in [F(7,10),F(4,5),F(9,10)]:
+        cdf=F(0); bad=F(0)
+        for k in range(4):
+            mass=comb(3,k)*p**k*(1-p)**(3-k); cdf+=mass
+            if cdf<allocated:bad+=mass
+        assert bad<=allocated
+        failures.append(bad)
+    print(j,allocated,max(failures))
+assert sum(alpha/F(j*(j+1)) for j in range(1,11))==alpha*F(10,11)
+```
+
 ## Worked exercises and solutions
 
 1. **Exercise:** Set n to one, p to 0.9, alpha to 0.1, and M to one. Is zero errors a noncoverage event? **Solution:** No. Its cumulative probability is exactly alpha, its upper endpoint is 0.9, and equality includes the truth. The correct event uses a strict less-than comparison.

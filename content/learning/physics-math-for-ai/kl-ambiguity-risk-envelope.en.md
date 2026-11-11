@@ -102,6 +102,61 @@ Blue and orange bars compare baseline and selected alternative probabilities for
 
 The final graph varies the ambiguity radius while keeping losses and baseline fixed. Blue shows numerical worst risk and orange nominal risk. These are risk envelopes, not training trajectories or probabilities that the model will fail. The radius axis is measured in nats, and interpolation between calculated curve points is a visual approximation.
 
+## Research extension: Resolve the small-radius variance and skewness terms
+
+For a fixed finite positive baseline and nonconstant bounded losses, the worst-risk envelope has a useful local expansion. Let $\mu=\mathbb E_p l$, $v=\operatorname{Var}_p(l)>0$ and $\kappa_3=\mathbb E_p(l-\mu)^3$. The cumulant function $\psi(t)=\log\sum_i p_i e^{t l_i}$ is analytic near zero:
+
+$$
+\psi(t)=\mu t+\frac{v t^2}{2}+\frac{\kappa_3t^3}{6}+O(t^4).
+$$
+
+Along the positive exponential tilt, risk is $\psi'(t)$ and KL is $t\psi'(t)-\psi(t)=vt^2/2+\kappa_3t^3/3+O(t^4)$. Inverting this relation on the positive branch gives
+
+$$
+t=\sqrt{2\rho/v}-\frac{2\kappa_3}{3v^2}\rho+O(\rho^{3/2}),\qquad
+R_\rho=\mu+\sqrt{2v\rho}+\frac{\kappa_3}{3v}\rho+O(\rho^{3/2}).
+$$
+
+The leading increase depends on loss variance, while skewness supplies the next correction. This explains why merely adding a constant times radius can miss the initial square-root behavior. The remainder is local for this fixed nondegenerate distribution; it is not uniform as variance goes to zero, and the saturation regime requires the separate analysis above. Constant losses have no such division by variance.
+
+For the native baseline and losses $(0,1,3)$, $\mu=9/5$, $v=39/25$ and $\kappa_3=-57/125$. The linear-in-radius correction coefficient is $-19/195$:
+
+| KL radius | Independently solved risk | Square-root approximation | Including skewness |
+|---|---:|---:|---:|
+| 0.01 | 1.975403009 | 1.976635217 | 1.975660858 |
+| 0.0001 | 1.817653523 | 1.817663522 | 1.817653778 |
+| 0.000001 | 1.801766254 | 1.801766352 | 1.801766255 |
+
+The last two radii are below the native control grid and belong to this executable extension. The code uses 80-digit Decimal arithmetic and a direct uncentered moment-generating function, independently of the production floating solver. Its normalized remainder stays finite in these examples; the analytic expansion, not three numerical points, establishes the asymptotic order.
+
+```python
+from decimal import Decimal as D,localcontext
+with localcontext() as ctx:
+    ctx.prec=80
+    p=list(map(D,['.2','.3','.5'])); loss=list(map(D,['0','1','3']))
+    mu=sum(a*b for a,b in zip(p,loss))
+    v=sum(a*(b-mu)**2 for a,b in zip(p,loss))
+    kappa=sum(a*(b-mu)**3 for a,b in zip(p,loss))
+    assert mu==D(9)/5 and v==D(39)/25 and kappa==D(-57)/125
+    for rho in map(D,['.01','.0001','.000001']):
+        def tilt(t):
+            raw=[a*(t*b).exp() for a,b in zip(p,loss)]
+            Z=sum(raw); mean=sum(a*b for a,b in zip(raw,loss))/Z
+            return mean,t*mean-Z.ln()
+        lo,hi=D(0),D(1)
+        assert tilt(lo)[1]<rho<tilt(hi)[1]
+        for _ in range(220):
+            mid=(lo+hi)/2
+            if tilt(mid)[1]<rho:lo=mid
+            else:hi=mid
+        exact=tilt((lo+hi)/2)[0]
+        leading=mu+(2*v*rho).sqrt()
+        second=leading+kappa*rho/(3*v)
+        normalized=(exact-second)/(rho*rho.sqrt())
+        assert abs(normalized)<D('.3') and abs(exact-second)<abs(exact-leading)
+        print(rho,f'{exact:.9f}',f'{leading:.9f}',f'{second:.9f}')
+```
+
 ## Exercises and worked solutions
 
 1. Why can worst risk never be below nominal risk? Solution: q=p is feasible at every nonnegative radius.

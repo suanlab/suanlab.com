@@ -68,6 +68,57 @@ The objective is affine, so checking the two interval endpoints suffices. For q_
 
 Transporting this statement to deployment also assumes unchanged conditional error probabilities. If group labels hide a new task, a new labeling process, or changing within-group composition, mixture uncertainty alone does not describe the shift. Choosing a wide radius is not evidence that the real distribution belongs to the assumed family.
 
+## Research extension: Protect every sample size before adaptive stopping
+
+Fixed-count coverage does not justify repeatedly inspecting an interval and stopping when it looks favorable. One transparent, conservative remedy protects all counts in advance. Keep each predictor fixed and imagine a pre-generated iid Bernoulli error stream for each group. Sampling may adaptively choose which group to inspect next, but cannot change these underlying within-group laws.
+
+For total error budget $\alpha$, assign the endpoint for group $g\in\{0,1\}$ at count $n\ge1$ the budget $\beta_{g,n}=\alpha/[2n(n+1)]$. Since $1/[n(n+1)]=1/n-1/(n+1)$, the budgets sum to $\alpha$ over both groups and all counts. The fixed-count binomial guarantee and a countable union bound therefore prove
+
+$$
+\Pr\{\forall g\in\{0,1\},\ \forall n\ge1:\ p_g\le U_{g,n}\}\ge1-\alpha.
+$$
+
+No independence between the two groups is needed for the union step. The binomial marginal law for every fixed within-group count is still required. Set $U_{g,0}=1$. On this simultaneous event, random observed counts, a stopping decision and any subsequently chosen mixture weights preserve the corresponding risk upper bound. Revising the predictor based on evaluation outcomes would change the experiment and is outside this construction.
+
+![Pointwise and time-uniform upper endpoints for hypothetical zero-error prefixes. The time-uniform construction spends a summable budget over all counts and is wider at a given count.](/assets/learning/privacy-sequential-upper-en.svg)
+
+The cost is conservatism. With $\alpha=0.05$ and true error $p=0.1$ in one group, exact path accounting gives the probability of missing at least once by count $T$:
+
+| Horizon $T$ | Summable-budget procedure | Reusing fixed budget $\alpha/2$ |
+|---|---:|---:|
+| 100 | 0.000000000 | 0.059944554 |
+| 200 | 0.000002488 | 0.088020245 |
+| 400 | 0.000003769 | 0.119503932 |
+
+The right column is not a valid 97.5% guarantee over time. A zero in the left column at a finite horizon means no count path can cross yet in this discrete setting, not an unlimited certainty claim. The code propagates exact probability mass over error counts, absorbs first crossings and uses the strict binomial-CDF condition for noncoverage. The unbounded-time theorem comes from the summable union bound; this 400-count computation is an independent finite illustration. More efficient confidence sequences are studied by [Howard and colleagues](https://arxiv.org/abs/1810.08240); this elementary construction is not their optimized boundary.
+
+```python
+from fractions import Fraction as F
+from math import comb
+p=F(1,10); budget=F(1,40)
+states=[[F(1)],[F(1)]]; failed=[F(0),F(0)]
+for n in range(1,401):
+    next_states=[]
+    for state in states:
+        nxt=[F(0)]*(n+1)
+        for k,mass in enumerate(state):
+            nxt[k]+=mass*(1-p); nxt[k+1]+=mass*p
+        next_states.append(nxt)
+    cdf=F(0)
+    for k in range(n+1):
+        cdf+=comb(n,k)*p**k*(1-p)**(n-k)
+        for mode,beta in enumerate([budget/F(n*(n+1)),budget]):
+            if cdf<beta:
+                failed[mode]+=next_states[mode][k]
+                next_states[mode][k]=F(0)
+    states=next_states
+    for mode in range(2):assert sum(states[mode])+failed[mode]==1
+    assert failed[0]<=budget*F(n,n+1)
+    if n in [100,200,400]:
+        assert failed[1]>budget
+        print(n,*(f'{float(v):.9f}' for v in failed))
+```
+
 ## Worked exercises and solutions
 
 1. **Exercise:** Why is the missing-group empirical error not zero? **Solution:** It would require dividing zero observed errors by zero observations. There is no empirical rate. A positive deployment weight therefore makes the plug-in target estimate unavailable.

@@ -122,6 +122,49 @@ If the imperfect zero-FPR decision is interpreted as a probability score taking 
 
 Thresholding a calibrated score can also change binary error rates. A score-level guarantee is not automatically identical to every thresholded binary parity statement.
 
+## Research extension: Quantify an approximate compatibility constraint
+
+Exact equality is an idealization. Suppose two interior base rates differ by $d=|\pi_1-\pi_0|>0$, while both error-rate differences are at most $\eta$. Let $s_g$ denote the positive-decision rate, with discrepancy $d_s=|s_1-s_0|$. Expanding around group zero gives the exact identity
+
+$$
+s_1-s_0=(\pi_1-\pi_0)(t_0-f_0)
++\pi_1(t_1-t_0)+(1-\pi_1)(f_1-f_0).
+$$
+
+The last two terms have absolute sum at most $\eta$, because their weights are nonnegative and sum to one. Therefore
+
+$$
+|t_0-f_0|\le\min\left\{1,\frac{d_s+\eta}{d}\right\}.
+$$
+
+Thus approximate equalized odds and approximate decision-rate parity constrain label separation, but their meaning depends on the base-rate gap. When the gap is tiny, the bound can be uninformative. Rates must exist in both classes; this result does not assign conditional probabilities to empty label classes.
+
+The bound is sharp. Set bases $(1/5,3/5)$, $t_0=4/5$, $f_0=1/5$, and lower both group-one rates by $\eta$:
+
+| Error-rate discrepancy $\eta$ | Decision-rate discrepancy $d_s$ | Bound on $\lvert t_0-f_0\rvert$ |
+|---|---:|---:|
+| 0 | 6/25 | 3/5 |
+| 1/10 | 7/50 | 3/5 |
+| 1/5 | 1/25 | 3/5 |
+
+The apparent improvement in decision-rate parity is paid for by unequal conditional rates; discrimination in group zero has not vanished. This is an algebraic tradeoff, not a choice of normative criterion or a claim about attainable trained models.
+
+For comparison, under exact common rates the predictive-value difference can also be written without differentiation as $PPV_1-PPV_0=tf(\pi_1-\pi_0)/(s_0s_1)$ whenever both decision masses are positive. Positive $t,f$ and unequal bases then expose the strict conflict directly. The code verifies the approximate identity and sharpness with exact fractions.
+
+```python
+from fractions import Fraction as F
+p0,p1=F(1,5),F(3,5); t0,f0=F(4,5),F(1,5)
+for eta in [F(0),F(1,10),F(1,5)]:
+    t1,f1=t0-eta,f0-eta
+    s0=p0*t0+(1-p0)*f0; s1=p1*t1+(1-p1)*f1
+    assert s1-s0==(p1-p0)*(t0-f0)+p1*(t1-t0)+(1-p1)*(f1-f0)
+    ds=abs(s1-s0); bound=(ds+eta)/abs(p1-p0)
+    assert bound==abs(t0-f0)
+    print(eta,ds,bound)
+s0=p0*t0+(1-p0)*f0; s1=p1*t0+(1-p1)*f0
+assert p1*t0/s1-p0*t0/s0==t0*f0*(p1-p0)/(s0*s1)
+```
+
 ## Exercises and worked solutions
 
 1. With shared t=.8,f=.2 and bases.2,.6, compute the decision-rate gap. It is(.8-.2)(.6-.2)=.24, matching.56-.32.

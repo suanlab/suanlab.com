@@ -102,6 +102,59 @@ $$
 
 척도를 오염된 자료에서 추정하면 함수 자체가 달라져 영향함수도 달라집니다. 회귀에서는 잔차뿐 아니라 설명변수의 위치가 극단적인 leverage 오염이 가능합니다. 잔차 점수만 제한하는 것으로 설명변수 오염까지 통제한다고 결론 내리지 않습니다. 이러한 차이가 다음에 필요한 이론을 알려 줍니다.
 
+## 연구 확장: 점수 방정식의 조건수로 유한 편향과 계산 오차 제한하기
+
+영향함수의 미분은 국소적입니다. 유한 이동을 제한하려면 관련 구간 전체에서 깨끗한 점수가 얼마나 강하게 변하는지 알아야 합니다. $S_P(0)=0$이고 점수가 전역적으로 비증가하며 $|\theta|\le r$에서 $-S'_P(\theta)\ge\kappa>0$라고 합시다. 오염 점수 $S_Q(\theta)=\mathbb E_Q\operatorname{clip}(X-\theta,-c,c)$도 비증가하며 절댓값은 $c$ 이하입니다. 만약
+
+$$
+(1-\varepsilon)\kappa r>\varepsilon c,
+$$
+
+이면 혼합 점수는 양 끝에서 반대 부호입니다. 내부에서는 엄격히 감소하므로 유일한 영점이 구간 안에 있습니다. 영점에서 오염이 상쇄할 수 있는 힘은 최대 $\varepsilon c$이므로 깨끗한 점수의 기울기 하한을 사용하면
+
+$$
+|\theta_*|\le\frac{\varepsilon c}{(1-\varepsilon)\kappa}.
+$$
+
+입니다. 분모는 깨끗한 영점 한 곳의 미분이 아니라 유한 구간의 조건수 가정입니다. 분모가 작아지면 점수가 유계여도 편향을 잘 제한하지 못합니다. 같은 구간의 근사해 $\widetilde\theta$에서 혼합 점수 잔차가 $e_s$ 이하이면
+
+$$
+|\widetilde\theta-\theta_*|\le\frac{e_s}{(1-\varepsilon)\kappa}.
+$$
+
+도 성립합니다. 작은 잔차를 유용한 위치 오차로 바꾸려면 먼저 기울기와 구간 조건을 확인해야 합니다.
+
+현재 균등 기준에서 $c=r=1/2$로 두면 이 구간의 $S_P(\theta)=-\theta/2$이므로 $\kappa=1/2$입니다. 먼 양의 오염 $z=10$, $\varepsilon<1/3$에서는 $\theta_* =\varepsilon/(1-\varepsilon)$가 상계를 달성합니다. 일차 근사와의 차이는 정확히 $\varepsilon^2/(1-\varepsilon)$입니다.
+
+| 오염 비율 | 정확한 편향 | 일차 편향 | 나머지 |
+|---|---:|---:|---:|
+| 1/100 | 1/99 | 1/100 | 1/9900 |
+| 1/10 | 1/9 | 1/10 | 1/90 |
+| 1/4 | 1/3 | 1/4 | 1/12 |
+
+코드는 적분한 Huber 손실로 균등 점수를 계산하고 영점 및 잔차와 오차의 관계를 확인합니다. 이는 명시한 조건에서 편향·수치 조건수를 다루는 정리이며 신뢰구간이나 새로운 유한 표본 붕괴점 보장은 아닙니다.
+
+```python
+from fractions import Fraction as F
+c=r=kappa=F(1,2); z=F(10)
+def clip(x):return max(-c,min(c,x))
+def loss(x):return x*x/2 if abs(x)<=c else c*(abs(x)-c/2)
+def clean(theta):return (loss(1-theta)-loss(1+theta))/2
+for epsilon in [F(1,100),F(1,10),F(1,4)]:
+    assert (1-epsilon)*kappa*r>epsilon*c
+    theta=epsilon/(1-epsilon)
+    score=lambda t:(1-epsilon)*clean(t)+epsilon*clip(z-t)
+    assert abs(theta)<r and clean(theta)==-kappa*theta and score(theta)==0
+    bound=epsilon*c/((1-epsilon)*kappa)
+    assert theta==bound
+    trial=theta+F(1,100)
+    assert abs(trial)<r
+    assert abs(trial-theta)==abs(score(trial))/((1-epsilon)*kappa)
+    remainder=theta-epsilon
+    assert remainder==epsilon**2/(1-epsilon)
+    print(epsilon,theta,epsilon,remainder)
+```
+
 ## 연습 문제와 해설
 
 1. 오염 비율 사분의 일과 큰 양의 오염에서 중앙값 편향이 사분의 일이 아닌 이유는 무엇인가요? 해설: 깨끗한 비중이 사분의 삼이므로 그 비중으로 다시 나눈 삼분의 일이 됩니다.

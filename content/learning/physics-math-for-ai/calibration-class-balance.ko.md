@@ -151,6 +151,55 @@ $$
 
 정수 입력의 결합 질량 분모는 10000입니다. 조건부 평균·전체 평균·Brier 위험은 정수 분수로도 보존하고 표시 좌표는 반올림합니다. 기저율을 내부로 제한하여 클래스 평균 정리의 지지 조건을 유지합니다.
 
+## 연구 확장: 정확한 보정 아래 근사 클래스 균형
+
+클래스 평균이 근사적으로만 같다면 보정 점수는 얼마나 완벽해야 할까요? $0\le R\le1$, 정확한 집단별 보정과 내부 기저율 $\pi_1>\pi_0$를 유지합시다. $u_g=\mathbb E[R\mid Y=1,G=g]$, $v_g=\mathbb E[R\mid Y=0,G=g]$로 두고 $|u_1-u_0|\le\eta_+$, $|v_1-v_0|\le\eta_-$를 가정합니다. 보정에서 $\pi_g=\pi_gu_g+(1-\pi_g)v_g$이며 두 식을 집단 0 평균으로 정리하면
+
+$$
+(\pi_1-\pi_0)(1-u_0+v_0)
+=\pi_1(u_1-u_0)+(1-\pi_1)(v_1-v_0).
+$$
+
+입니다. 왼쪽은 음이 아닙니다. $s_0=1-u_0+v_0$로 두면 보정에서 $v_0=\pi_0s_0$도 나옵니다. 또한 $\mathbb E[R^2\mid G]=\mathbb E[YR\mid G]$이므로 Brier 위험은 $B_0=\pi_0(1-u_0)$입니다. 결합하면
+
+$$
+B_0=\pi_0(1-\pi_0)s_0
+\le\pi_0(1-\pi_0)
+\frac{\pi_1\eta_+ +(1-\pi_1)\eta_-}{\pi_1-\pi_0}.
+$$
+
+를 얻습니다. 기준 집단을 바꾸면 분자 가중치가 $\pi_0,1-\pi_0$인 $B_1$ 상계입니다. 정확한 정리를 정량화한 결과로, 다른 기저율에서 두 평균 격차가 0이면 Brier 위험도 0입니다. 기저율이 거의 같으면 작은 격차만으로는 약한 결론입니다. 보정이 경험적이거나 근사적이면 기대값 항등식에도 오차가 생기므로 이 결과를 그대로 적용할 수 없습니다.
+
+앞의 정보 플래그 가족에서 기저율을 $(1/5,3/5)$로 두면 두 격차는 $(1-\rho)2/5$이며 상계가 달성됩니다.
+
+| 정보 비율 $\rho$ | 두 클래스 평균 격차 | 집단 0 Brier 위험과 상계 |
+|---|---:|---:|
+| 0 | 2/5 | 4/25 |
+| 1/2 | 1/5 | 2/25 |
+| 9/10 | 1/25 | 2/125 |
+
+아래 코드는 점유된 점수·레이블 결합 구간을 독립적으로 만들고 보정과 Brier 위험을 직접 확인합니다. 명시한 가정의 정량적 유도이며 모든 근사 공정성 정리의 재현이나 실제 레이블의 타당성 인증은 아닙니다.
+
+```python
+from fractions import Fraction as F
+p0,p1=F(1,5),F(3,5)
+for rho in [F(0),F(1,2),F(9,10)]:
+    results=[]
+    for pi in [p0,p1]:
+        bins=[(F(0),F(0),rho*(1-pi)),(pi,(1-rho)*pi,(1-rho)*(1-pi)),(F(1),rho*pi,F(0))]
+        for score,pos,neg in bins:
+            if pos+neg:assert pos/(pos+neg)==score
+        u=sum(score*pos for score,pos,neg in bins)/pi
+        v=sum(score*neg for score,pos,neg in bins)/(1-pi)
+        risk=sum(pos*(1-score)**2+neg*score**2 for score,pos,neg in bins)
+        assert risk==pi*(1-u)==(1-pi)*v
+        results.append((u,v,risk))
+    ep=abs(results[1][0]-results[0][0]); em=abs(results[1][1]-results[0][1])
+    bound=p0*(1-p0)*(p1*ep+(1-p1)*em)/(p1-p0)
+    assert results[0][2]==bound and ep==em
+    print(rho,ep,bound)
+```
+
 ## 연습 문제와 해설
 
 1. 기저율 0.2,0.6과 ρ=0.5의 두 평균 격차는? 모두 0.5×0.4=0.2입니다. 점수 보정은 두 집단 모두 유지됩니다.

@@ -82,6 +82,52 @@ The geometry diagram draws the chosen ball, the affine decision boundary when on
 
 The certificate panel separates clean correctness, exact worst sign, strict certification, actual tie-aware robustness and the meaning of the radius. The last graph varies epsilon with all other parameters fixed. Its straight blue margin line and orange zero reference are not a training trajectory or a probability of error. The circle used to display an L2 ball is a graphical approximation; the formula and exact sign comparison determine the result.
 
+## Research extension: Transform the threat set together with the coordinates
+
+A unit change of coordinates should not silently change a physical robustness claim. Let an invertible matrix $A$ define perturbations $\delta=Az$ with $\|z\|_2\le\epsilon$. This is an ellipsoidal threat set. Substituting into the affine margin and applying Cauchy–Schwarz gives
+
+$$
+\min_{\|z\|_2\le\epsilon} y f(x+Az)
+=m-\epsilon\|A^\top w\|_2.
+$$
+
+For nonzero $A^\top w$, the feasible latent perturbation $z_*=-\epsilon yA^\top w/\|A^\top w\|_2$ attains the bound. If that vector is zero, the score is constant along every permitted direction and normalization is unnecessary. In covariance notation the support term is $\sqrt{w^\top AA^\top w}$; here this matrix describes the threat, not a noise covariance chosen for privacy.
+
+Under a further invertible feature transformation $v=Bx$, the same classifier has weights $w_v=B^{-\top}w$ and threat matrix $A_v=BA$. Then $A_v^\top w_v=A^\top w$, so the margin bound is invariant. Replacing the transformed ellipsoid by a new unit ball would instead define a different adversary.
+
+For $w=(1,2)$, clean margin three and radius one, take $A=(1,0;s,1)$:
+
+| Shape parameter $s$ | Squared support term | Worst margin, approximately |
+|---|---:|---:|
+| -1/2 | 4 | 1 |
+| 0 | 5 | 0.763932 |
+| 1 | 13 | -0.605551 |
+
+Different correlations of permitted feature changes can reverse the robustness conclusion at the same numerical radius. Label invariance and the tie rule remain part of the claim. This auxiliary ellipsoid is not an extra hidden constraint in the native norm-ball lab.
+
+The code checks coordinate invariance using a rational rescaling by 100 and 1/2. It also constructs a floating attaining witness and checks its feasibility and margin; the squared support and transformation equalities use exact fractions.
+
+```python
+from fractions import Fraction as F
+from math import sqrt,isclose
+w=[F(1),F(2)]
+for s in [F(-1,2),F(0),F(1)]:
+    A=[[F(1),F(0)],[s,F(1)]]
+    v=[sum(A[i][j]*w[i] for i in range(2)) for j in range(2)]
+    square=sum(t*t for t in v)
+    assert square==(1+2*s)**2+4
+    scales=[F(100),F(1,2)]
+    transformedA=[[scales[i]*a for a in A[i]] for i in range(2)]
+    transformedW=[w[i]/scales[i] for i in range(2)]
+    assert [sum(transformedA[i][j]*transformedW[i] for i in range(2)) for j in range(2)]==v
+    length=sqrt(square); z=[-float(t)/length for t in v]
+    delta=[sum(float(A[i][j])*z[j] for j in range(2)) for i in range(2)]
+    assert isclose(sum(t*t for t in z),1,abs_tol=1e-14)
+    margin=3+sum(float(w[i])*delta[i] for i in range(2))
+    assert isclose(margin,3-length,abs_tol=1e-14)
+    print(s,square,f'{margin:.6f}')
+```
+
 ## Exercises and worked solutions
 
 1. With weights(3,4), what are the dual norms for L1,L2 and infinity threats? Solution:4,5 and7 respectively.
