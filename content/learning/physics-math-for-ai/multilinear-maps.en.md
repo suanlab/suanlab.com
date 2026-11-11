@@ -34,7 +34,29 @@ $$
 \dim(U\otimes V)=\dim U\,\dim V.
 $$
 
-This differs from the sum of dimensions in concatenation. A full universal-property proof belongs to the later abstract development; coordinate expansion supplies the current calculation.
+The tensor-product dimension is a product, while concatenation uses a sum. These numbers can coincide: two two-dimensional inputs give four in both cases. For dimensions two and three they give six and five. Equal numbers do not identify the features.
+
+## Prove the finite-dimensional universal property
+
+Let U,V be finite-dimensional real spaces with bases e_i,f_j. Construct a space with basis symbols e_i⊗f_j and define β(u,v)=Σᵢⱼuᵢvⱼe_i⊗f_j. This β is bilinear by its coordinate formula. Given any bilinear F:U×V→W, define one linear map on the basis by
+
+$$
+\widetilde F(e_i\otimes f_j)=F(e_i,f_j),\qquad
+\widetilde F(\beta(u,v))=\sum_{i,j}u_iv_jF(e_i,f_j)=F(u,v).
+$$
+
+This proves existence. For uniqueness, every basis element equals β(e_i,f_j), so any other linear map factoring F must agree on every basis element and therefore everywhere. This is the universal property in finite dimensions, rather than merely an analogy between arrays and interactions.
+
+For the lab’s coefficients, the four basis images are:
+
+| Tensor-product basis | Image under the linear map |
+|---|---|
+| e₀⊗f₀ | (1,2) |
+| e₀⊗f₁ | (3,4) |
+| e₁⊗f₀ | (5,6) |
+| e₁⊗f₁ | (7,8) |
+
+For u=(a,b),v=(c,d), the product features are (ac,ad,bc,bd), acted on by the matrix with rows (1,3,5,7) and (2,4,6,8). Concatenation instead gives (a,b,c,d). Even with equal dimension four, a single linear map of the latter cannot represent the same bilinear dependence for all input pairs: doubling both slots gives a factor two for a linear concatenated map and a factor four for a nonzero bilinear map.
 
 ## Read and check the example
 
@@ -46,6 +68,6 @@ Bilinear pooling, multimodal interactions and attention scores contain such stru
 
 1. Doubling all three slots of a trilinear map gives **eight times the output**.
 2. A zero first slot gives **zero output**.
-3. Concatenation and a tensor product have **different dimensions and interaction semantics**.
+3. Concatenation and a tensor product have **different dimension formulas and interaction semantics, with possible equal dimensions**.
 
 Further reading: [Kolda–Bader, Tensor Decompositions and Applications](https://www.kolda.net/publication/TensorReview.pdf).The small arrays, reconstructions and cost examples here are independently constructed.

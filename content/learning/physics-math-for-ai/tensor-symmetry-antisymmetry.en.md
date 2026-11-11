@@ -30,9 +30,28 @@ For a real vector v, the scalar vᵀKv equals its transpose, which is its negati
 
 ## Extend the idea carefully
 
-For an order-d tensor, averaging over all axis permutations gives full symmetrization. Including each permutation’s sign gives full alternation. Over real numbers division by d! is valid. Unlike the order-two decomposition, adding only these two projections does not generally recover every higher-order tensor. Other permutation symmetry types can occur.
+For a tensor in $V^{\otimes d}$, with the same real vector space in every slot, averaging over all slot permutations gives full symmetrization. Slots from different spaces first need appropriate identifications. Including each permutation’s sign gives full alternation. Over real numbers division by d! is valid. Unlike the order-two decomposition, adding only these two projections does not generally recover every higher-order tensor. Other permutation symmetry types can occur.
 
 The controls and evaluated decomposition here remain order two. They are not an implementation of general high-order symmetrization. In AI, this foundation helps with Hessian symmetry under suitable differentiability assumptions, geometric models and constructions that preserve invariants.
+
+## Exhibit a component outside the two full symmetries
+
+As a separate order-three example in $(\mathbb R^2)^{\otimes3}$, write e_ijk=e_i⊗e_j⊗e_k and set X=e₀⊗e₀⊗e₁. Its six permutations contain each placement of e₁ twice. The full symmetric projection is therefore
+
+$$
+\operatorname{Sym}X=\tfrac13(e_{001}+e_{010}+e_{100}),\qquad
+\operatorname{Alt}X=0.
+$$
+
+The alternating terms cancel because swapping the two e₀ slots leaves X fixed but reverses their sign. Thus Sym X+Alt X does not recover X. The missing component is visible entry by entry:
+
+| Coordinate | X | Sym X | Alt X | X−Sym X−Alt X |
+|---|---|---|---|---|
+| (0,0,1) | 1 | 1/3 | 0 | 2/3 |
+| (0,1,0) | 0 | 1/3 | 0 | −1/3 |
+| (1,0,0) | 0 | 1/3 | 0 | −1/3 |
+
+Its squared Frobenius norm is 2/3. This calculation explains why the two-part matrix identity does not extend unchanged to order three; the interactive decomposition remains the original order-two model.
 
 ## Exercises with answers
 
