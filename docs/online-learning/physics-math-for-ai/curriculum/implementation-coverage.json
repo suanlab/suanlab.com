@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 637,
+  "implementedUnitCount": 640,
   "curriculumComplete": false,
-  "scope": "637 registered units, 1943 guided experiments and 1274 bilingual manuscript files. Introductory scope: 349 of 362 original topics verified, 13 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "640 registered units, 1949 guided experiments and 1280 bilingual manuscript files. Introductory scope: 352 of 362 original topics verified, 10 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -11194,10 +11194,13 @@
         "gaussian-bayesian-inversion",
         "discrete-adjoint-for-terminal-control",
         "scalar-kalman-data-assimilation",
-        "optimal-sensor-allocation"
+        "optimal-sensor-allocation",
+        "correlation-in-measurement-uncertainty",
+        "observation-and-dynamics-residuals",
+        "regime-dependent-model-discrepancy"
       ],
-      "nextUnitId": "correlation-in-measurement-uncertainty",
-      "nextAction": "uncertainty-propagation-reader-integration",
+      "nextUnitId": null,
+      "nextAction": "inverse-problems-domain-audit",
       "coolingInverseDraft": {
         "unitId": "forward-and-inverse-maps-for-cooling",
         "status": "registered-and-verified",
@@ -11213,48 +11216,48 @@
           "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
-      "currentPreparationEvidence": "scripts/learning-optimal-sensor-allocation.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.ko.md",
+      "currentPreparationEvidence": "scripts/learning-model-discrepancy.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "optimal-sensor-allocation",
+        "unitId": "regime-dependent-model-discrepancy",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-optimal-sensor-allocation.ts",
-        "lab": "src/components/learning/optimal-sensor-allocation-lab.tsx",
-        "tests": "scripts/learning-optimal-sensor-allocation.test.ts",
+        "model": "src/lib/learning-model-discrepancy.ts",
+        "lab": "src/components/learning/model-discrepancy-lab.tsx",
+        "tests": "scripts/learning-model-discrepancy.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
-          "content/learning/physics-math-for-ai/optimal-sensor-allocation.en.md"
+          "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.ko.md",
+          "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "optimal-sensor-allocation",
+        "unitId": "regime-dependent-model-discrepancy",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-optimal-sensor-allocation.ts",
-        "lab": "src/components/learning/optimal-sensor-allocation-lab.tsx",
-        "tests": "scripts/learning-optimal-sensor-allocation.test.ts",
+        "model": "src/lib/learning-model-discrepancy.ts",
+        "lab": "src/components/learning/model-discrepancy-lab.tsx",
+        "tests": "scripts/learning-model-discrepancy.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
-          "content/learning/physics-math-for-ai/optimal-sensor-allocation.en.md"
+          "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.ko.md",
+          "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "optimal experimental design",
+        "originalTopic": "model discrepancy",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "optimal-sensor-allocation"
+          "regime-dependent-model-discrepancy"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -11262,12 +11265,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/optimal-sensor-allocation.ko.md",
-          "content/learning/physics-math-for-ai/optimal-sensor-allocation.en.md"
+          "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.ko.md",
+          "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-optimal-sensor-allocation.test.ts"
+        "evidence": "scripts/learning-model-discrepancy.test.ts"
       },
       "topicEvidence": [
         {
@@ -11565,6 +11568,117 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "uncertainty propagation",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "correlation-in-measurement-uncertainty"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/correlation-in-measurement-uncertainty.ko.md",
+            "content/learning/physics-math-for-ai/correlation-in-measurement-uncertainty.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-uncertainty-propagation.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "correlation-in-measurement-uncertainty",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-uncertainty-propagation.ts",
+            "lab": "src/components/learning/uncertainty-propagation-lab.tsx",
+            "tests": "scripts/learning-uncertainty-propagation.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/correlation-in-measurement-uncertainty.ko.md",
+              "content/learning/physics-math-for-ai/correlation-in-measurement-uncertainty.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        },
+        {
+          "originalTopic": "관측·방정식 잔차",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "observation-and-dynamics-residuals"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/observation-and-dynamics-residuals.ko.md",
+            "content/learning/physics-math-for-ai/observation-and-dynamics-residuals.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-dynamics-residuals.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "observation-and-dynamics-residuals",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-dynamics-residuals.ts",
+            "lab": "src/components/learning/dynamics-residuals-lab.tsx",
+            "tests": "scripts/learning-dynamics-residuals.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/observation-and-dynamics-residuals.ko.md",
+              "content/learning/physics-math-for-ai/observation-and-dynamics-residuals.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        },
+        {
+          "originalTopic": "model discrepancy",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "regime-dependent-model-discrepancy"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.ko.md",
+            "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-model-discrepancy.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "regime-dependent-model-discrepancy",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-model-discrepancy.ts",
+            "lab": "src/components/learning/model-discrepancy-lab.tsx",
+            "tests": "scripts/learning-model-discrepancy.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.ko.md",
+              "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "illPosednessDraft": {
@@ -11674,14 +11788,48 @@
       },
       "uncertaintyPropagationDraft": {
         "unitId": "correlation-in-measurement-uncertainty",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/correlation-in-measurement-uncertainty.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/correlation-in-measurement-uncertainty.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "uncertainty-propagation-reader-integration"
+        "nextAction": "dynamics-residuals-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/correlation-in-measurement-uncertainty.ko.md",
+          "content/learning/physics-math-for-ai/correlation-in-measurement-uncertainty.en.md"
+        ]
+      },
+      "dynamicsResidualsDraft": {
+        "unitId": "observation-and-dynamics-residuals",
+        "status": "registered-and-verified",
+        "registered": true,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/observation-and-dynamics-residuals.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/observation-and-dynamics-residuals.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "model-discrepancy-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/observation-and-dynamics-residuals.ko.md",
+          "content/learning/physics-math-for-ai/observation-and-dynamics-residuals.en.md"
+        ]
+      },
+      "modelDiscrepancyDraft": {
+        "unitId": "regime-dependent-model-discrepancy",
+        "status": "registered-and-verified",
+        "registered": true,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/regime-dependent-model-discrepancy.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/regime-dependent-model-discrepancy.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "research-hypotheses-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.ko.md",
+          "content/learning/physics-math-for-ai/regime-dependent-model-discrepancy.en.md"
+        ]
       }
     },
     {
@@ -11690,7 +11838,20 @@
       "status": "partially-authored",
       "implementedUnitIds": [
         "research-methods"
-      ]
+      ],
+      "nextUnitId": "hypotheses-and-testable-research-questions",
+      "nextAction": "research-hypotheses-reader-integration",
+      "researchHypothesesDraft": {
+        "unitId": "hypotheses-and-testable-research-questions",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/hypotheses-and-testable-research-questions.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/hypotheses-and-testable-research-questions.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "research-hypotheses-reader-integration"
+      }
     }
   ],
   "completionRule": "Domain links indicate partial coverage only. Individual topic sections, proofs, experiments and research evidence require authoring and review.",
@@ -11710,8 +11871,8 @@
     "inverse-problems",
     "research-methods"
   ],
-  "nextDomain": "inverse-problems",
-  "nextTopic": "uncertainty propagation",
+  "nextDomain": "research-methods",
+  "nextTopic": "문제·가설·정식화",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

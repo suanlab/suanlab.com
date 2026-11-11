@@ -1,4 +1,10 @@
 'use client';
+import { modelDiscrepancyId } from '@/data/model-discrepancy-reader';
+import { ModelDiscrepancyConcept } from './model-discrepancy-lab';
+import { dynamicsResidualsId } from '@/data/dynamics-residuals-reader';
+import { DynamicsResidualsConcept } from './dynamics-residuals-lab';
+import { uncertaintyPropagationId } from '@/data/uncertainty-propagation-reader';
+import { UncertaintyPropagationConcept } from './uncertainty-propagation-lab';
 import { optimalSensorAllocationId } from '@/data/optimal-sensor-allocation-reader';
 import { OptimalSensorAllocationConcept } from './optimal-sensor-allocation-lab';
 import { kalmanAssimilationId } from '@/data/kalman-assimilation-reader';
@@ -319,6 +325,9 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === modelDiscrepancyId) return <ModelDiscrepancyConcept language={language}/>;
+  if (kind === dynamicsResidualsId) return <DynamicsResidualsConcept language={language}/>;
+  if (kind === uncertaintyPropagationId) return <UncertaintyPropagationConcept language={language}/>;
   if (kind === optimalSensorAllocationId) return <OptimalSensorAllocationConcept language={language}/>;
   if (kind === kalmanAssimilationId) return <KalmanAssimilationConcept language={language}/>;
   if (kind === discreteAdjointId) return <DiscreteAdjointConcept language={language}/>;

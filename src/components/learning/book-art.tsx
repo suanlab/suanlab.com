@@ -1,4 +1,7 @@
 'use client';
+import { modelDiscrepancyId } from '@/data/model-discrepancy-reader';
+import { dynamicsResidualsId } from '@/data/dynamics-residuals-reader';
+import { uncertaintyPropagationId } from '@/data/uncertainty-propagation-reader';
 import { optimalSensorAllocationId } from '@/data/optimal-sensor-allocation-reader';
 import { kalmanAssimilationId } from '@/data/kalman-assimilation-reader';
 import { discreteAdjointId } from '@/data/discrete-adjoint-reader';
@@ -231,6 +234,9 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === modelDiscrepancyId) return <span className="ai-concept-equation" aria-hidden="true">y = m(θ) + δ + ε</span>;
+  if (kind === dynamicsResidualsId) return <span className="ai-concept-equation" aria-hidden="true">r_eq = x′ + x</span>;
+  if (kind === uncertaintyPropagationId) return <span className="ai-concept-equation" aria-hidden="true">Var(wᵀx) = wᵀΣw</span>;
   if (kind === optimalSensorAllocationId) return <span className="ai-concept-equation" aria-hidden="true">Σ = diag(σₐ²/nₐ, σᵦ²/nᵦ)</span>;
   if (kind === kalmanAssimilationId) return <span className="ai-concept-equation" aria-hidden="true">m⁺ = m⁻ + K(y − m⁻)</span>;
   if (kind === discreteAdjointId) return <span className="ai-concept-equation" aria-hidden="true">pₙ = apₙ₊₁</span>;

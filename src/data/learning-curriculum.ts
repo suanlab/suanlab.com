@@ -3402,7 +3402,10 @@ export const curriculumDomains:CurriculumDomain[] = [
       "gaussian-bayesian-inversion",
       "discrete-adjoint-for-terminal-control",
       "scalar-kalman-data-assimilation",
-      "optimal-sensor-allocation"
+      "optimal-sensor-allocation",
+      "correlation-in-measurement-uncertainty",
+      "observation-and-dynamics-residuals",
+      "regime-dependent-model-discrepancy"
     ]
   },
   {
