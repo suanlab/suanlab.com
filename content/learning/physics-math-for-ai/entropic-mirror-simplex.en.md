@@ -31,6 +31,50 @@ For c=(0,1,2),η=1 and four steps, mirror probabilities are approximately (0.972
 
 For c=(0,0,1), the first two mirror probabilities keep their initial ratio 2:3. As the third mass vanishes they approach (0.4,0.6,0). Entropic geometry and initialization select a particular point of the optimal face. Euclidean projection need not select the same point.
 
+## A finite-time guarantee for changing bounded costs
+
+Now allow a different full cost vector cₜ∈[0,1]³ each round. Predict with qₜ before observing that round's vector, then update qₜ₊₁,ᵢ∝qₜ,ᵢexp(−ηcₜ,ᵢ). Let Zₜ=Σᵢq₀,ᵢexp(−ηΣₛ₌₀ᵗ⁻¹cₛ,ᵢ). The log-normalizer increment is bounded by −ηqₜ·cₜ+η²/8. To see the constant, the second derivative of a centered log moment-generating function is a tilted variance, at most 1/4 for values in [0,1]. Integrating twice gives the remainder η²/8.
+
+Sum these increments and lower-bound Z_T by one comparator term. For every fixed component j and η>0,
+
+$$
+\sum_{t=0}^{T-1}q_t^Tc_t-\sum_{t=0}^{T-1}c_{t,j}
+\le\frac{\log(1/q_{0,j})}{\eta}+\frac{\eta T}{8}.
+$$
+
+With q₀=(0.2,0.3,0.5), use log5 to bound all comparator terms. Choosing η=√(8log5/T) bounds average regret by √(log5/(2T)). This is a full-information online guarantee against the best fixed component, not a per-round advantage or a bandit guarantee. For constant costs in [−2,2], rescale or replace the squared range factor accordingly.
+
+| T | Average regret bound |
+|---|---:|
+| 4 | 0.448531 |
+| 16 | 0.224265 |
+| 64 | 0.112133 |
+
+```python
+from math import exp, log, sqrt, fsum
+initial = (0.2, 0.3, 0.5)
+cycle = ((0., 1., .5), (1., .5, 0.), (.5, 0., 1.))
+for T in (4, 16, 64):
+    eta = sqrt(8*log(5)/T)
+    cumulative, loss = [0., 0., 0.], 0.
+    for t in range(T):
+        logits = [log(q)-eta*c for q, c in zip(initial, cumulative)]
+        largest = max(logits)
+        weights = [exp(x-largest) for x in logits]
+        q = [w/fsum(weights) for w in weights]
+        cost = cycle[t % 3]
+        loss += fsum(p*c for p, c in zip(q, cost))
+        cumulative = [s+c for s, c in zip(cumulative, cost)]
+    regret = loss-min(cumulative)
+    bound = log(5)/eta+eta*T/8
+    assert regret <= bound+1e-12
+    print(T, "regret:", round(regret, 6), "average bound:", round(bound/T, 6))
+```
+
+The separate program actually updates the probabilities using changing costs. It evaluates incurred loss before updating and compares cumulative losses, preserving the timing required by the proof. The interactive lab above remains its original constant-cost experiment.
+
+![Actual average regret and the proved bound for separate full-information runs with horizon-dependent step sizes.](/assets/learning/variational-regret-en.svg)
+
 ## Exercise and limits
 
 Set all costs equal. Every simplex point is optimal and the mirror distribution stays at its initial values. Then add the same constant to every cost: prove it cancels from normalized exponential weights. Explain why an initially zero component cannot be revived by this multiplicative formula, motivating the strictly positive initialization used here.

@@ -31,6 +31,50 @@ c=(0,1,2),η=1,4회이면 mirror 확률은 약 (0.972467,0.026717,0.000816), 목
 
 c=(0,0,1)이면 첫 두 mirror 확률의 초기 비율 2:3이 유지된다. 셋째 질량이 사라지며 (0.4,0.6,0)으로 접근한다. 기하와 초기화가 최적 face의 특정 점을 선택하는 셈이다. 유클리드 투영의 선택은 다를 수 있다.
 
+## 변하는 유계 비용에 대한 유한 시간 보장
+
+매 round 다른 전체 비용 벡터 cₜ∈[0,1]³을 허용하자. 그 round의 벡터를 보기 전에 qₜ로 예측하고, 관측 후 qₜ₊₁,ᵢ∝qₜ,ᵢexp(−ηcₜ,ᵢ)로 갱신한다. Zₜ=Σᵢq₀,ᵢexp(−ηΣₛ₌₀ᵗ⁻¹cₛ,ᵢ)라 쓰면 로그 정규화량 증가가 −ηqₜ·cₜ+η²/8 이하이다. 상수의 근거는 중심화 로그 적률생성함수의 이계 미분이 기울어진 분포의 분산이며, [0,1] 값의 분산은 1/4 이하라는 점이다. 두 번 적분하면 나머지 η²/8을 얻는다.
+
+증가량을 합하고 Z_T를 비교 성분 하나의 항으로 아래에서 제한하면 모든 고정 성분 j와 η>0에 대해
+
+$$
+\sum_{t=0}^{T-1}q_t^Tc_t-\sum_{t=0}^{T-1}c_{t,j}
+\le\frac{\log(1/q_{0,j})}{\eta}+\frac{\eta T}{8}.
+$$
+
+q₀=(0.2,0.3,0.5)이므로 모든 비교항을 log5로 제한할 수 있다. η=√(8log5/T)를 택하면 평균 regret 상계는 √(log5/(2T))다. 전체 비용을 관측하고 최선의 고정 성분과 비교하는 온라인 보장이지, 매 round의 우위나 bandit 보장이 아니다. [−2,2]의 상수 비용에는 재척도화하거나 비용 범위 제곱을 반영해야 한다.
+
+| T | 평균 regret 상계 |
+|---|---:|
+| 4 | 0.448531 |
+| 16 | 0.224265 |
+| 64 | 0.112133 |
+
+```python
+from math import exp, log, sqrt, fsum
+initial = (0.2, 0.3, 0.5)
+cycle = ((0., 1., .5), (1., .5, 0.), (.5, 0., 1.))
+for T in (4, 16, 64):
+    eta = sqrt(8*log(5)/T)
+    cumulative, loss = [0., 0., 0.], 0.
+    for t in range(T):
+        logits = [log(q)-eta*c for q, c in zip(initial, cumulative)]
+        largest = max(logits)
+        weights = [exp(x-largest) for x in logits]
+        q = [w/fsum(weights) for w in weights]
+        cost = cycle[t % 3]
+        loss += fsum(p*c for p, c in zip(q, cost))
+        cumulative = [s+c for s, c in zip(cumulative, cost)]
+    regret = loss-min(cumulative)
+    bound = log(5)/eta+eta*T/8
+    assert regret <= bound+1e-12
+    print(T, "regret:", round(regret, 6), "average bound:", round(bound/T, 6))
+```
+
+별도 프로그램은 변하는 비용으로 확률을 실제 갱신한다. 갱신 전에 발생 손실을 계산하고 누적 손실을 비교하여 증명에 필요한 관측 순서를 지킨다. 위 인터랙티브 실습은 기존의 상수 비용 실험을 유지한다.
+
+![시간 길이별로 보폭을 따로 정한 전체 정보 실험에서 실제 평균 regret과 증명한 상계를 비교합니다.](/assets/learning/variational-regret-ko.svg)
+
 ## 직접 풀기와 한계
 
 비용을 모두 같게 하면 모든 점이 최적이고 mirror 분포는 초기값이다. 모든 비용에 같은 상수를 더했을 때 정규화된 지수식에서 상수가 사라짐을 증명하자. 처음부터 0인 성분은 곱셈 갱신으로 되살릴 수 없으므로 여기서는 엄격히 양의 초기화를 사용한다.

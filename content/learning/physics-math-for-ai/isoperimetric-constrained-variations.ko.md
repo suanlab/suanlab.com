@@ -33,6 +33,41 @@ L의 부호 관례를 바꾸면 승수 부호는 바뀌지만 최소 곡선은 �
 
 방향 h=sin 2πt+c sin πt의 면적 변화는 2c/π다. c=0이어야 허용 방향이다. 제약 최적점에서 δJ가 0이어야 하는 것은 허용 방향에 대해서다. 임의 방향의 비영 δJ는 승수 항과 함께 δL=δJ+λδG로 상쇄된다.
 
+## 이 문제에 승수가 존재하는 이유와 실패 조건
+
+H₀¹에서 G(h)=∫h라고 쓰자. w(t)=6t(1−t)는 G(w)=1이므로 제약 미분은 스칼라 제약 공간으로 전사한다. 제약 최소점의 DJ는 ker G에서 0이다. 그 방향으로 양·음의 작은 가능 보폭을 모두 허용하기 때문이다. 임의 h를 h−G(h)w+G(h)w로 분해하면 첫 항이 ker G에 속하여 DJ[h]=DJ[w]G(h)다. 따라서 λ=−DJ[w]를 택하면 모든 방향에서 DJ+λG=0이다. 승수 관계를 가정하지 않고 증명한 셈이다.
+
+최적값 함수는 V(A)=6A²이고 V′(A)=−λ*=12A다. 이 부호 관례에서 음의 승수가 요구 면적을 늘리는 한계 에너지 비용이다. 유한 면적 변화에는 이차 비용도 남는다.
+
+$$
+V(A+\varepsilon)-V(A)=12A\varepsilon+6\varepsilon^2.
+$$
+
+승수 법칙의 무조건 적용에 대한 반례로, H₀¹에서 ∫y²=0 아래 −∫y를 최소화하자. 가능 함수는 0 하나여서 최소점이지만, 그 점의 제약 미분은 모든 방향에서 0이다. 목적 미분 −∫h는 0이 아니므로 어떤 스칼라 승수로도 상쇄할 수 없다. 이 특이 제약에서는 선형화 제약이 0이라는 사실만으로 실제 가능한 방향을 판정할 수 없다.
+
+| A | V(A) | λ* | V′(A) |
+|---|---:|---:|---:|
+| −1/2 | 3/2 | 6 | −6 |
+| 0 | 0 | 0 | 0 |
+| 1/2 | 3/2 | −6 | 6 |
+
+```python
+from fractions import Fraction as F
+V = lambda a: 6*a*a
+eps = F(1, 10)
+for a in (F(-1, 2), F(0), F(1, 2)):
+    multiplier = -12*a
+    change = V(a+eps)-V(a)
+    assert change == -multiplier*eps+6*eps*eps
+    print(a, V(a), multiplier, -multiplier, "finite change:", change)
+# h(t)=t(1-t): integral h=1/6, integral h^2=1/30.
+objective_derivative, constraint_derivative = -F(1, 6), F(0)
+assert objective_derivative != 0 and constraint_derivative == 0
+print("singular constraint:", objective_derivative, constraint_derivative)
+```
+
+유리수 코드는 최적값 미분과 특이 예제의 한 방향을 검산한다. 위 실습의 면적 보존 sine 함수족과 구별되는 예제다. 다중·비선형 제약에서는 제약 미분의 계수나 전사 조건을 먼저 밝히고 승수 정리를 적용하자.
+
 ## 직접 풀기와 풀이
 
 A=0.5,b=v=c=0이면 곡선은 3t(1−t), 에너지 1.5, 승수 −6이다. b=0.2를 더하면 면적은 0.5지만 목적 초과는 0.04π²≈0.394784다. sin 2πt 방향 변분도 0.4π²로 비영이므로 이 가능 진동 곡선은 정지점이 아니다.

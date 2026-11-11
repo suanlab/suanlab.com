@@ -43,6 +43,44 @@ $$
 
 The lab computes both sides independently. This gradient-difference term explains why Euclidean-looking triangle or Pythagorean reasoning cannot simply be reused. Additional orthogonality or optimality conditions are needed for particular projection inequalities.
 
+## Recover a Pythagorean inequality with the correct orientation
+
+Suppose a minimizer z of Dφ(v,x) over a convex set C exists in the differentiability domain. First-order optimality gives ⟨∇φ(z)−∇φ(x),u−z⟩≥0 for every u∈C. Insert this into the three-point identity:
+
+$$
+D_\phi(u,x)-D_\phi(u,z)-D_\phi(z,x)
+=\langle\nabla\phi(z)-\nabla\phi(x),u-z\rangle\ge0.
+$$
+
+This is a projection inequality, with the projected variable in the first argument. It is not a triangle inequality for arbitrary points. Convexity of C and the appropriate minimization orientation do real work; reversing KL or using a nonconvex set does not preserve this proof.
+
+For positive vectors use φ(v)=Σ(vᵢlog vᵢ−vᵢ), and project x onto the probability simplex. The solution is z=x/S, S=Σxᵢ. The gradient difference is the constant vector −log S, whose pairing with u−z vanishes because both have mass one. Thus equality holds for every interior simplex u. The unnormalized divergence D(z,x)=S−1−log S includes mass terms; dropping them would be incorrect.
+
+| x | z | D(z,x) |
+|---|---|---|
+| (2,1) | (2/3,1/3) | 2−log3 |
+| (1,2) | (1/3,2/3) | 2−log3 |
+| (3,1) | (3/4,1/4) | 3−log4 |
+
+```python
+from decimal import Decimal as D, localcontext
+with localcontext() as ctx:
+    ctx.prec = 80
+    def divergence(u, v):
+        return sum(a*(a/b).ln()-a+b for a, b in zip(u, v))
+    for x in ((D(2), D(1)), (D(1), D(2)), (D(3), D(1))):
+        mass = sum(x)
+        z = tuple(a/mass for a in x)
+        for first in (D(1)/4, D(1)/2, D(3)/4):
+            u = (first, 1-first)
+            residual = divergence(u, x)-divergence(u, z)-divergence(z, x)
+            assert abs(residual) < D('1e-75')
+        assert abs(divergence(z, x)-(mass-1-mass.ln())) < D('1e-75')
+        print(tuple(x), tuple(z), divergence(z, x))
+```
+
+This vector projection extends the scalar tangent-gap illustration without changing its controls. Decimal arithmetic checks nine instances of the equality. It is a numerical check of a separately proved identity, not a proof from a near-zero residual.
+
 ## Exercise and explained answer
 
 Use quadratic mode with x=3,y=2,z=1. D(3,1)=2 but D(3,2)+D(2,1)=1, directly violating the triangle inequality. Then use entropy mode and swap x=2,y=1 to verify the unequal gaps above. Finally set x=y: both divergences vanish, while the three-point identity remains valid for any displayed z.

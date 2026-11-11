@@ -37,6 +37,47 @@ The modal error factors are 1−ηAᵢ/Mᵢ. The readout also verifies δJ[−gr
 
 At n=4,κ=0.1,η=0.3, L2 has a high-mode factor about −4.03741 and diverges. With H1 length 0.2 the worst factor magnitude is about 0.572631. Both still have the same optimal coefficients, approximately (0.503281,0.029777).
 
+## When the preconditioning remains useful as resolution grows
+
+Extend the modal argument to frequency ω=nπ. For κ>0 and ℓ>0, set r=κ/ℓ² and s=ℓ²ω². The generalized curvature is a weighted average:
+
+$$
+\frac{1+\kappa\omega^2}{1+\ell^2\omega^2}
+=\frac{1+rs}{1+s}\in[m,L],\qquad
+m=\min(1,r)>0,\quad L=\max(1,r).
+$$
+
+For a fixed 0<η<2/L, every modal error factor has magnitude at most ρ=max(|1−ηm|,|1−ηL|)<1. Summing the modal energy gaps gives an energy contraction of at most ρ² per step, uniformly in the number of retained modes. Extending the sum to an infinite expansion also requires finite initial energy. This is a spectral argument, not evidence from one sampled two-mode plot.
+
+If ℓ²=κ, all generalized curvatures are one. With η=1 the exact metric step solves the quadratic in one step. Applying this metric inverse is itself an elliptic solve; the observation does not promise a free algorithm. The program below uses η=1/4, inside the lab's step range.
+
+Two contrasting limits explain the conditions. For L2 with κ>0, curvatures grow as ω² and no positive fixed step is stable for arbitrarily high modes. For κ=0 but ℓ>0, generalized curvatures tend to zero, so each finite truncation can contract while there is no common contraction factor strictly below one over all frequencies.
+
+| Setting | High-frequency curvature | Uniform conclusion |
+|---|---|---|
+| κ>0, ℓ=0 | grows without bound | no fixed stable step |
+| κ=ℓ²>0 | 1 | factor 1−η |
+| κ=0, ℓ>0 | tends to 0 | no strict common factor |
+
+```python
+from math import pi
+eta, kappa = 0.25, 0.1
+for n in (2, 8, 128):
+    omega_squared = (n*pi)**2
+    A = 1+kappa*omega_squared
+    matched_metric = A  # ell^2=kappa, avoiding a rounded sqrt-and-square.
+    matched_factor = 1-eta*A/matched_metric
+    l2_factor = 1-eta*A
+    unregularized_factor = 1-eta/matched_metric
+    assert matched_factor == 0.75
+    print(n, "L2:", round(l2_factor, 6), "matched:", matched_factor,
+          "kappa=0,H1:", round(unregularized_factor, 6))
+```
+
+The larger frequencies are a separate resolution study, beyond the lab control's range 2–8. The minimizer is unchanged by the metric; objective regularization κ and metric length ℓ play distinct roles even when deliberately matched.
+
+![Generalized curvatures and absolute modal error factors compare L2, matched H1, and unregularized H1 as frequency increases.](/assets/learning/variational-metric-en.svg)
+
 ## Exercise and explained answer
 
 Run twelve H1 steps: objective excess is about 1.94×10⁻⁷. Switch only the metric to L2 and observe the high-frequency coefficient grow. Then set H1 length to zero and reproduce the L2 result. Explain why changing geometry improved this iteration without changing the statistical fit criterion, regularization parameter or minimizing function.

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import {variationalKinds,evaluateVariational as evaluate,functionalVariation,eulerBoundary,constrainedVariation,bernoulliKL,fisherExample,naturalStep,simplexProjection,mirrorRun,bregman,bregmanExample,circleRun,adjointObjective,functionMetricRun} from '../src/lib/learning-variational';
+import {variationalKinds,evaluateVariational as evaluate,functionalVariation,eulerBoundary,constrainedVariation,bernoulliKL,bernoulliKLShift,fisherExample,naturalStep,simplexProjection,mirrorRun,bregman,bregmanExample,circleRun,adjointObjective,functionMetricRun} from '../src/lib/learning-variational';
 import {variationalLabs,learningUnits,learningGuides} from '../src/data/interactive-book';
 import {getLearningContent} from '../src/lib/learning-content';
 const close=(a:number,b:number,tol=1e-10)=>assert.ok(Math.abs(a-b)<=tol*(1+Math.max(Math.abs(a),Math.abs(b))),`${a} != ${b}`);
@@ -100,4 +100,13 @@ for(const kind of variationalKinds)test(`${kind}: meaningful guides and finite g
 });
 for(const kind of variationalKinds)for(const lang of ['ko','en'] as const)test(`${kind}.${lang}: detailed bilingual theory, valid equations and explained exercises`,async()=>{
  const source=await fs.readFile(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8'),rendered=await getLearningContent(kind);assert.ok(rendered.outline[lang].length>=4);assert.ok(rendered[lang].length>4000);assert.ok(rendered[lang].includes('katex'));assert.ok(!rendered[lang].includes('katex-error'));assert.ok(source.includes(lang==='ko'?'직접 풀기':'Exercise'));assert.ok(source.includes('https://'));if(lang==='en'){assert.ok(!/[가-힣]/.test(source));assert.ok(source.split(/\s+/).length>=350);}
+});
+
+test('requested Bernoulli displacements retain KL below the probability coordinate ulp',()=>{
+ for(const p of [.02,.2,.5,.98])for(const delta of [-1e-20,1e-20]){const expected=delta*delta/(2*p*(1-p)),actual=bernoulliKLShift(p,delta);assert.equal(p+delta,p);assert.ok(actual>0);assert.ok(Math.abs(actual/expected-1)<2e-14);assert.equal(fisherExample(p,0,delta,1).kl,actual);}
+ for(const p of [.02,.2,.5,.98]){assert.equal(bernoulliKLShift(p,0),0);for(const d of [-.01,.01])close(bernoulliKLShift(p,d),bernoulliKL(p,p+d));}
+ for(const [p,d] of [[0,0],[1,0],[.2,-.2],[.2,.8],[.5,NaN],[.5,Infinity]])assert.throws(()=>bernoulliKLShift(p,d));
+});
+test('zero-time natural flow returns the input probability without target subtraction cancellation',()=>{
+ for(const p of [.1,.2,.3,.7,.9])for(const r of [.1,.2,.8,.9])assert.equal(naturalStep(p,r,0,0).exactFlow,p);
 });

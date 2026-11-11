@@ -30,6 +30,44 @@ At θ=π, tangent gradient is exactly zero, so either update stays at the antipo
 
 A tiny tangent residual can therefore identify a maximum as easily as a minimum. Curvature, descent behavior and the objective value carry additional information. General manifold problems can have many stationary points and require problem-specific convergence assumptions.
 
+## Prove decrease for a finite geometric step
+
+In angle coordinates F(θ)=−cos θ and |F″|≤1 everywhere. Taylor's upper bound for the exponential update therefore gives
+
+$$
+F(\theta-\eta\sin\theta)\le F(\theta)
+-\eta(1-\eta/2)\sin^2\theta.
+$$
+
+For 0<η<2, each nonstationary exponential step strictly decreases this particular objective. Summing proves Σsin²θₖ<∞ and hence sin θₖ→0. It proves approach to stationarity; initialization exactly at the maximum is still a counterexample to an unconditional minimum claim.
+
+For normalization retraction write the same update with effective step a(θ)=atan(ηsin θ)/sin θ, using limit η when sin θ=0. For nonzero sine, atan z has the same sign as z and magnitude at most |z|, so 0<a≤η. The same bound applies with a in place of η. At fixed η>0 the effective step also has a positive lower bound over the circle. Consequently 0<η<2 gives the same stationarity conclusion. Endpoint η=2 needs separate treatment and is not covered by the strictly positive decrease coefficient used here.
+
+| θ | F″(θ) | Gradient norm | Excess |
+|---|---:|---:|---:|
+| 0 | 1 | 0 | 0 |
+| π/2 | 0 | 1 | 1 |
+| π | −1 | 0 | 2 |
+
+```python
+from math import sin, cos, atan
+eta = 0.5
+for mode in ("exponential", "normalization"):
+    for initial in (-2., .8, 2.8):
+        theta = initial
+        for _ in range(20):
+            sine = sin(theta)
+            effective = eta if sine == 0 else (
+                eta if mode == "exponential" else atan(eta*sine)/sine)
+            next_theta = theta-effective*sine
+            upper = -cos(theta)-effective*(1-effective/2)*sine*sine
+            assert -cos(next_theta) <= upper+1e-14
+            theta = next_theta
+        print(mode, initial, "final excess:", 2*sin(theta/2)**2)
+```
+
+The code checks actual twenty-step paths at three starts for both returns. The proof uses this circle objective's global curvature bound, not a generic Euclidean smoothness assertion for every manifold or retraction. Near the minimum the linearized angle factor is 1−η; near the maximum it is 1+η, while the exact maximum remains stationary.
+
 ## Exercise and explained answer
 
 Compare the two one-step presets, then halve η. Expanding atan a=a−a³/3+… predicts cubic leading endpoint disagreement in this particular normalization retraction. Verify the norm remains one while the updates differ. The analytic endpoint discrepancy uses a stable remainder for a−atan(a), so subtracting nearly equal angles does not erase the cubic term.

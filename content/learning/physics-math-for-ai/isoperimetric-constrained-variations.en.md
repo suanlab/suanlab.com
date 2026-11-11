@@ -33,6 +33,41 @@ The candidate is y=6At(1−t)+b sin 2πt+v sin πt. The second sine mode integra
 
 The direction is h=sin 2πt+c sin πt, with area variation 2c/π. It is admissible exactly when c=0. At a constrained optimum, δJ must vanish on admissible directions; it need not vanish on arbitrary directions. The multiplier balances the latter through δL=δJ+λδG.
 
+## Why a multiplier exists here, and when it can fail
+
+Let G(h)=∫h on H₀¹. The direction w(t)=6t(1−t) satisfies G(w)=1, so the constraint differential maps onto the scalar constraint space. At a constrained minimizer, the differential DJ vanishes on ker G: both positive and negative small feasible steps are available. Decompose any h as h−G(h)w+G(h)w. The first term lies in ker G, proving DJ[h]=DJ[w]G(h). Thus λ=−DJ[w] makes DJ+λG zero on every direction. This proves the multiplier relation rather than assuming it.
+
+The value function is V(A)=6A². Its derivative is −λ*=12A: the negative multiplier is the marginal energy cost of increasing the required area under our sign convention. A finite area change has an additional quadratic cost:
+
+$$
+V(A+\varepsilon)-V(A)=12A\varepsilon+6\varepsilon^2.
+$$
+
+For a counterexample to an unconditional multiplier rule, constrain ∫y²=0 and minimize −∫y over H₀¹. The only feasible function is zero, hence it is a minimizer. But the constraint derivative there is zero in every direction, whereas the objective derivative is −∫h and is not zero. No scalar multiplier can cancel it. Vanishing linearized constraint does not identify genuine feasible directions for this singular constraint.
+
+| A | V(A) | λ* | V′(A) |
+|---|---:|---:|---:|
+| −1/2 | 3/2 | 6 | −6 |
+| 0 | 0 | 0 | 0 |
+| 1/2 | 3/2 | −6 | 6 |
+
+```python
+from fractions import Fraction as F
+V = lambda a: 6*a*a
+eps = F(1, 10)
+for a in (F(-1, 2), F(0), F(1, 2)):
+    multiplier = -12*a
+    change = V(a+eps)-V(a)
+    assert change == -multiplier*eps+6*eps*eps
+    print(a, V(a), multiplier, -multiplier, "finite change:", change)
+# h(t)=t(1-t): integral h=1/6, integral h^2=1/30.
+objective_derivative, constraint_derivative = -F(1, 6), F(0)
+assert objective_derivative != 0 and constraint_derivative == 0
+print("singular constraint:", objective_derivative, constraint_derivative)
+```
+
+The rational code checks the value derivative and a direction in the singular example. It is separate from the lab's area-preserving sine family. For multiple or nonlinear constraints, state the derivative's rank or surjectivity condition before invoking a multiplier theorem.
+
 ## Exercise and explained answer
 
 Choose A=0.5,b=v=c=0. The curve is 3t(1−t), energy 1.5 and multiplier −6. Set b=0.2: area stays 0.5, but objective excess becomes 0.04π²≈0.394784. The variation along sin 2πt is 0.4π², so this oscillating feasible curve is not stationary.

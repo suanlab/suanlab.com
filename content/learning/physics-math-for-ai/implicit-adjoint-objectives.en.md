@@ -34,6 +34,47 @@ $$
 
 The readout compares actual error with this computable upper bound. Residual alone is insufficient without conditioning information. For nonsymmetric systems, a singular-value or inverse-operator bound would replace the SPD eigenvalue argument.
 
+## Include state error in the hypergradient certificate
+
+Keep H exact and SPD with λmin(H)≥m>0. Let the approximate state be ỹ, with state residual s=b−Hỹ, and let the approximate adjoint be ṽ, with residual ρ=ỹ−t−Hṽ. Define εy=‖s‖/m, so ‖y−ỹ‖≤εy. The exact adjoint v satisfies Hv=y−t; subtracting equations gives ‖v−ṽ‖≤(εy+‖ρ‖)/m. Split the error in the product −vᵀy to obtain
+
+$$
+|{-\tilde v^T\tilde y}-({-v^Ty})|
+\le(\|\tilde y\|+\varepsilon_y)
+\frac{\varepsilon_y+\|\rho\|}{m}
++\|\tilde v\|\varepsilon_y.
+$$
+
+Unlike the earlier exact-state certificate, this includes both residuals. All norms in the derivation are Euclidean. It still assumes exact H, fixed b,t and ∂H/∂λ=I. Operator approximation, model error or direct outer dependence require further terms.
+
+For H=diag(1,2), b=(1,−1),t=0, perturb the state to ỹ=(1+ε,−1/2) and solve its adjoint exactly. Then ρ=0 but the hypergradient error is |2ε+ε²|. A zero adjoint residual does not eliminate a state error. Replacing Euclidean vector norms by their L1 upper bounds gives these conservative rational certificates:
+
+| ε | Actual error | Bound |
+|---|---:|---:|
+| 0 | 0 | 0 |
+| 1/100 | 201/10000 | 139/5000 |
+| 1/10 | 21/100 | 61/200 |
+
+```python
+from fractions import Fraction as F
+true_hyper = -F(9, 8)
+for eps in (F(0), F(1, 100), F(1, 10)):
+    state = (1+eps, -F(1, 2))
+    adjoint = (state[0], state[1]/2)
+    state_error_bound = abs(eps)  # m=1; state residual is (-eps,0).
+    adjoint_residual = (state[0]-adjoint[0], state[1]-2*adjoint[1])
+    assert adjoint_residual == (0, 0)
+    approximate = -sum(v*y for v, y in zip(adjoint, state))
+    error = abs(approximate-true_hyper)
+    # L1 upper bounds on the Euclidean norms in the proved certificate.
+    bound = ((sum(map(abs, state))+state_error_bound)*state_error_bound
+             +sum(map(abs, adjoint))*state_error_bound)
+    assert error == abs(2*eps+eps*eps) and error <= bound
+    print(eps, error, bound)
+```
+
+This additional program perturbs the state explicitly. The interactive lab above continues to use its analytic state and to vary only Richardson adjoint work. Do not interpret an exact adjoint for an approximate state as the exact derivative of the true inner optimum.
+
 ## Exercise and explained answer
 
 At λ=c=r=0 use eight adjoint steps. Approximate hypergradient is about −0.887555, error 0.237445 and upper bound 0.260932. Verify the bound contains the error. Then select the coupled example and check that direct sensitivity and the adjoint give the same exact derivative.

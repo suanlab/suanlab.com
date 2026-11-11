@@ -30,6 +30,44 @@ v=−ηgrad f에 대해 정규화 retraction은 Rₓ(v)=(x+v)/‖x+v‖다. xᵀ
 
 작은 접 잔차는 최소점뿐 아니라 극대점에서도 나온다. 곡률·감소 거동·목적값이 추가 정보를 준다. 일반 다양체에는 여러 정지점이 있을 수 있고 수렴 가정도 문제에 맞춰 확인해야 한다.
 
+## 유한 기하 보폭의 감소 증명
+
+각도 좌표에서 F(θ)=−cos θ이고 모든 곳에서 |F″|≤1이다. Taylor 상계로 exponential 갱신은
+
+$$
+F(\theta-\eta\sin\theta)\le F(\theta)
+-\eta(1-\eta/2)\sin^2\theta.
+$$
+
+0<η<2이면 이 목적에서 비정지 보폭은 엄격히 감소한다. 합을 취하면 Σsin²θₖ<∞여서 sin θₖ→0이다. 정지성에 접근한다는 보장이고, 정확히 극대점에 초기화하는 경우는 무조건 최소에 도달한다는 주장의 반례로 남는다.
+
+정규화 retraction도 유효 보폭 a(θ)=atan(ηsin θ)/sin θ를 쓰면 같은 형태다. sin θ=0에서는 극한 η를 쓴다. 0이 아닌 sine에서 atan z는 z와 부호가 같고 절댓값은 |z| 이하이므로 0<a≤η다. 따라서 η 대신 a를 넣은 같은 상계가 성립한다. 고정 η>0에서는 원 전체에서 유효 보폭의 양의 하한도 존재한다. 결과적으로 0<η<2에서 같은 정지성 결론을 얻는다. 끝값 η=2는 여기서 사용한 엄격히 양의 감소 계수로 다루지 않으며 별도 분석이 필요하다.
+
+| θ | F″(θ) | 기울기 노름 | 초과 |
+|---|---:|---:|---:|
+| 0 | 1 | 0 | 0 |
+| π/2 | 0 | 1 | 1 |
+| π | −1 | 0 | 2 |
+
+```python
+from math import sin, cos, atan
+eta = 0.5
+for mode in ("exponential", "normalization"):
+    for initial in (-2., .8, 2.8):
+        theta = initial
+        for _ in range(20):
+            sine = sin(theta)
+            effective = eta if sine == 0 else (
+                eta if mode == "exponential" else atan(eta*sine)/sine)
+            next_theta = theta-effective*sine
+            upper = -cos(theta)-effective*(1-effective/2)*sine*sine
+            assert -cos(next_theta) <= upper+1e-14
+            theta = next_theta
+        print(mode, initial, "final excess:", 2*sin(theta/2)**2)
+```
+
+세 초기점에서 두 복귀 방법의 실제 20회 경로를 검산한다. 증명은 이 원 목적의 전역 곡률 상계를 쓰며 모든 다양체나 retraction에 유클리드 smoothness를 그대로 주장하지 않는다. 최소점 근처의 각도 선형 배율은 1−η, 극대점 근처는 1+η지만 정확한 극대점 자체는 정지한다.
+
 ## 직접 풀기와 풀이
 
 한 보폭 예제 둘을 비교한 뒤 η를 절반으로 하자. atan a=a−a³/3+…로 이 정규화 복귀의 선도 끝점 차이가 세제곱임을 예상할 수 있다. 노름은 계속 1인데 끝점은 다른지 보자. 해석적 끝점 차이는 a−atan(a)의 안정적인 나머지로 계산하여 거의 같은 각도의 차감이 세제곱 항을 지우지 않게 한다.
