@@ -20,7 +20,7 @@ This is a local first-order approximation: its error becomes negligible relative
 
 ## State the mean value theorem precisely
 
-If f is continuous on [a,b] and differentiable on (a,b), some c in the interior satisfies
+For $a<b$, if f is continuous on [a,b] and differentiable on (a,b), some c in the interior satisfies
 
 $$
 f'(c)=\frac{f(b)-f(a)}{b-a}.

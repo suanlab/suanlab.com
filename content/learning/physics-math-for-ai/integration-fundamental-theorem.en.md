@@ -1,6 +1,6 @@
 ## Accumulate small contributions
 
-For dimensionless f(t)=t² on [0,x], N equal subintervals have width h=x/N. The left Riemann sum is
+For dimensionless f(t)=t² on [0,x] with $x\ge0$, N equal subintervals have width h=x/N. The left Riemann sum is
 
 $$
 L_N=h\sum_{k=0}^{N-1}(kh)^2.

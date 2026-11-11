@@ -8,7 +8,7 @@
 
 다음 작업은 전체 **51영역·509개 원주제**의 내용 대조, 영역별 감사와 연구 심화다. 논리·기초수학의 20개 원주제 대조와 브라우저 검증 결과는 [검토 기록](logic-elementary-topic-review.md)에 정리했다. 역문제·연구 방법의 출처와 재현 범위는 [근거 기록](research-methods-source-review.md)을 따른다.
 
-이후 이산수학 9개와 선형대수 11개 원주제를 대조했다. 세기 단원의 순열 불변 표현과 SVD 단원의 과제 손실을 증명·비교표·Python 검산으로 확장했다. 초기 영역의 원주제 대조는 40개이며, 다른 11영역의 107개가 남아 있다. [이산수학 검토 기록](discrete-topic-review.md)과 [선형대수 검토 기록](linear-algebra-topic-review.md)에 확인 범위와 후속 연구 과제를 정리했다.
+이후 이산수학 9개·선형대수 11개·해석학 9개 원주제를 대조했다. 순열 불변 표현·SVD 과제 손실·Taylor 반례·봉우리 표본 추출을 증명·비교표·Python 검산으로 확장했다. 초기 영역의 원주제 대조는 49개이며, 다른 10영역의 98개가 남아 있다. [이산수학](discrete-topic-review.md)·[선형대수](linear-algebra-topic-review.md)·[해석학 검토 기록](analysis-topic-review.md)에 확인 범위와 후속 연구 과제를 정리했다.
 
 ## 이전 작업 기록
 

@@ -26,9 +26,66 @@ $$
 
 ## 유한 정리와 무한급수를 구분하기
 
-고정 x에서 위 상한이 n→∞일 때 0으로 가므로 exp는 자신의 Taylor 급수와 같습니다. 일반적인 매끄러운 함수가 항상 자기 Taylor 급수와 같지는 않습니다. 예를 들어 f(0)=0, x≠0에서 f(x)=exp(−1/x²)는 모든 원점 도함수가 0이지만 주변 함수값은 양수입니다. 이 사실의 완전한 미분 귀납 증명은 별도 심화 과제로 둡니다.
+고정 x에서 위 상한이 n→∞일 때 0으로 가므로 exp는 자신의 Taylor 급수와 같습니다. 일반적인 매끄러운 함수가 항상 자기 Taylor 급수와 같지는 않습니다. 예를 들어 f(0)=0, x≠0에서 f(x)=exp(−1/x²)는 모든 원점 도함수가 0이지만 주변 함수값은 양수입니다. 아래에서 도함수 귀납으로 이 사실을 증명합니다.
 
 유한차 Taylor 정리의 가정과 해석적 함수의 무한 전개 성질을 구분하세요. 고차 미분이 존재한다는 사실만으로 나머지가 사라진다고 가정하면 안 됩니다.
+
+## 원점의 모든 도함수가 0임을 증명하기
+
+$g(0)=0$, $x\ne0$에서 $g(x)=e^{-1/x^2}$로 정의합니다. 먼저 다항식에 $e^{-t^2}$를 곱하면 $|t|\to\infty$에서 0으로 감을 보이겠습니다. 정수 $K>d/2$를 고르면 지수함수의 양의 항 전개로 $e^{t^2}\ge |t|^{2K}/K!$입니다. 따라서
+
+$$
+|t|^d e^{-t^2}\le K!\,|t|^{d-2K}\longrightarrow0
+$$
+
+입니다. $|t|\ge1$에서 다항식의 크기는 적절한 거듭제곱의 상수배 이하이므로 같은 결론이 성립합니다. 충분히 큰 모든 입력에 대한 상한이며 부동소수점 underflow에 의존하지 않습니다.
+
+$x\ne0$에서 $t=1/x$로 두고 다음 다항식을 정의합니다.
+
+$$
+P_0(t)=1,\qquad P_{m+1}(t)=-t^2P_m'(t)+2t^3P_m(t).
+$$
+
+연쇄법칙으로 $P_m(1/x)e^{-1/x^2}$의 다음 도함수를 얻습니다. 원점도 확인하려면 그 식을 원점에서 0으로 확장합니다. 앞의 감소 상한으로 연속이고, 원점의 차분 몫은
+
+$$
+\frac{P_m(1/h)e^{-1/h^2}}h=tP_m(t)e^{-t^2}\longrightarrow0
+$$
+
+입니다. 귀납하면 g는 무한 번 미분 가능하고 모든 m에서 $g^{(m)}(0)=0$입니다. 따라서 원점 Taylor 급수는 영급수이지만 모든 비영 x에서 $g(x)>0$입니다. 한 점에서 모든 도함수가 존재하면서도 그 점의 Taylor 급수와 함수가 달라질 수 있음을 증명했습니다.
+
+## 도함수 다항식을 별도로 검산하기
+
+점화식으로 얻는 처음 네 다항식은 다음과 같습니다. 표는 이 평탄 함수의 예제이며 실습 그림은 지수함수와 유한 Taylor 다항식을 보여 줍니다.
+
+| 도함수 차수 m | 다항식 P_m(t) |
+|---|---|
+| 0 | 1 |
+| 1 | 2t³ |
+| 2 | 4t⁶−6t⁴ |
+| 3 | 8t⁹−36t⁷+24t⁵ |
+
+아래의 정수 계수 계산으로 표를 재현합니다. 유한 다항식 산술을 확인하며, 임의 차수와 임의로 작은 비영 x에 대한 결론은 귀납과 감소 상한에서 얻습니다.
+
+```python
+from collections import defaultdict
+
+polynomial = {0: 1}  # exponent -> integer coefficient
+expected = [
+    {0: 1},
+    {3: 2},
+    {4: -6, 6: 4},
+    {5: 24, 7: -36, 9: 8},
+]
+for order in range(4):
+    assert polynomial == expected[order]
+    print(order, sorted(polynomial.items()))
+    following = defaultdict(int)
+    for exponent, coefficient in polynomial.items():
+        following[exponent + 1] -= exponent * coefficient
+        following[exponent + 3] += 2 * coefficient
+    polynomial = {power: value for power, value in following.items() if value}
+```
 
 ## 그림과 독립 계산
 
