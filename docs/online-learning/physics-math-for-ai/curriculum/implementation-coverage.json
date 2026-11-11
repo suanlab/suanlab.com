@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 648,
+  "implementedUnitCount": 650,
   "curriculumComplete": false,
-  "scope": "648 registered units, 1965 guided experiments and 1296 bilingual manuscript files. Introductory scope: 360 of 362 original topics verified, 2 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "650 registered units, 1969 guided experiments and 1300 bilingual manuscript files. Introductory scope: 362 of 362 original topics verified, 0 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -11845,10 +11845,12 @@
         "ablations-and-randomized-negative-controls",
         "seeds-uncertainty-and-paired-sign-tests",
         "availability-leakage-and-reproducible-evaluation",
-        "dimensions-limits-and-convergence-checks"
+        "dimensions-limits-and-convergence-checks",
+        "theorems-evidence-and-working-hypotheses",
+        "negative-results-and-research-records"
       ],
-      "nextUnitId": "theorems-evidence-and-working-hypotheses",
-      "nextAction": "evidence-roles-reader-integration",
+      "nextUnitId": null,
+      "nextAction": "research-methods-domain-audit",
       "researchHypothesesDraft": {
         "unitId": "hypotheses-and-testable-research-questions",
         "status": "registered-and-verified",
@@ -11864,48 +11866,48 @@
           "content/learning/physics-math-for-ai/hypotheses-and-testable-research-questions.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
-      "currentPreparationEvidence": "scripts/learning-dimension-convergence.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/negative-results-and-research-records.ko.md",
+      "currentPreparationEvidence": "scripts/learning-research-records.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "dimensions-limits-and-convergence-checks",
+        "unitId": "negative-results-and-research-records",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-dimension-convergence.ts",
-        "lab": "src/components/learning/dimension-convergence-lab.tsx",
-        "tests": "scripts/learning-dimension-convergence.test.ts",
+        "model": "src/lib/learning-research-records.ts",
+        "lab": "src/components/learning/research-records-lab.tsx",
+        "tests": "scripts/learning-research-records.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
-          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.en.md"
+          "content/learning/physics-math-for-ai/negative-results-and-research-records.ko.md",
+          "content/learning/physics-math-for-ai/negative-results-and-research-records.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "dimensions-limits-and-convergence-checks",
+        "unitId": "negative-results-and-research-records",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-dimension-convergence.ts",
-        "lab": "src/components/learning/dimension-convergence-lab.tsx",
-        "tests": "scripts/learning-dimension-convergence.test.ts",
+        "model": "src/lib/learning-research-records.ts",
+        "lab": "src/components/learning/research-records-lab.tsx",
+        "tests": "scripts/learning-research-records.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
-          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.en.md"
+          "content/learning/physics-math-for-ai/negative-results-and-research-records.ko.md",
+          "content/learning/physics-math-for-ai/negative-results-and-research-records.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "단위·극한·보존·수렴 검사",
+        "originalTopic": "실패 결과와 연구 기록",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "dimensions-limits-and-convergence-checks"
+          "negative-results-and-research-records"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -11913,12 +11915,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.ko.md",
-          "content/learning/physics-math-for-ai/dimensions-limits-and-convergence-checks.en.md"
+          "content/learning/physics-math-for-ai/negative-results-and-research-records.ko.md",
+          "content/learning/physics-math-for-ai/negative-results-and-research-records.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-dimension-convergence.test.ts"
+        "evidence": "scripts/learning-research-records.test.ts"
       },
       "topicEvidence": [
         {
@@ -12216,6 +12218,80 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "이론·경험·가설 구분",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "theorems-evidence-and-working-hypotheses"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/theorems-evidence-and-working-hypotheses.ko.md",
+            "content/learning/physics-math-for-ai/theorems-evidence-and-working-hypotheses.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-evidence-roles.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "theorems-evidence-and-working-hypotheses",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-evidence-roles.ts",
+            "lab": "src/components/learning/evidence-roles-lab.tsx",
+            "tests": "scripts/learning-evidence-roles.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/theorems-evidence-and-working-hypotheses.ko.md",
+              "content/learning/physics-math-for-ai/theorems-evidence-and-working-hypotheses.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        },
+        {
+          "originalTopic": "실패 결과와 연구 기록",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "negative-results-and-research-records"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/negative-results-and-research-records.ko.md",
+            "content/learning/physics-math-for-ai/negative-results-and-research-records.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-research-records.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "negative-results-and-research-records",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-research-records.ts",
+            "lab": "src/components/learning/research-records-lab.tsx",
+            "tests": "scripts/learning-research-records.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/negative-results-and-research-records.ko.md",
+              "content/learning/physics-math-for-ai/negative-results-and-research-records.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "contributionEvidenceDraft": {
@@ -12325,14 +12401,33 @@
       },
       "evidenceRolesDraft": {
         "unitId": "theorems-evidence-and-working-hypotheses",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/theorems-evidence-and-working-hypotheses.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/theorems-evidence-and-working-hypotheses.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "evidence-roles-reader-integration"
+        "nextAction": "research-records-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/theorems-evidence-and-working-hypotheses.ko.md",
+          "content/learning/physics-math-for-ai/theorems-evidence-and-working-hypotheses.en.md"
+        ]
+      },
+      "researchRecordsDraft": {
+        "unitId": "negative-results-and-research-records",
+        "status": "registered-and-verified",
+        "registered": true,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/negative-results-and-research-records.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/negative-results-and-research-records.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "whole-curriculum-domain-audits",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/negative-results-and-research-records.ko.md",
+          "content/learning/physics-math-for-ai/negative-results-and-research-records.en.md"
+        ]
       }
     }
   ],
@@ -12353,8 +12448,8 @@
     "inverse-problems",
     "research-methods"
   ],
-  "nextDomain": "research-methods",
-  "nextTopic": "이론·경험·가설 구분",
+  "nextDomain": null,
+  "nextTopic": null,
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

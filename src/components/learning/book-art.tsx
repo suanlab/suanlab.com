@@ -1,4 +1,6 @@
 'use client';
+import { researchRecordsId } from '@/data/research-records-reader';
+import { evidenceRolesId } from '@/data/evidence-roles-reader';
 import { dimensionConvergenceId } from '@/data/dimension-convergence-reader';
 import { availabilityLeakageId } from '@/data/availability-leakage-reader';
 import { pairedSignTestId } from '@/data/paired-sign-test-reader';
@@ -242,6 +244,8 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === researchRecordsId) return <span className="ai-concept-equation" aria-hidden="true">reported summary ↔ retained runs</span>;
+  if (kind === evidenceRolesId) return <span className="ai-concept-equation" aria-hidden="true">ε = √[ln(2M/δ)/(2m)]</span>;
   if (kind === dimensionConvergenceId) return <span className="ai-concept-equation" aria-hidden="true">Eₙ₊₁ = (1 + h²)Eₙ</span>;
   if (kind === availabilityLeakageId) return <span className="ai-concept-equation" aria-hidden="true">MSE_available = 0.64(1 − ρ²) + 0.36</span>;
   if (kind === pairedSignTestId) return <span className="ai-concept-equation" aria-hidden="true">p = Σⱼ₌ₖⁿ C(n,j)2⁻ⁿ</span>;

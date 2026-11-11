@@ -3470,7 +3470,9 @@ export const curriculumDomains:CurriculumDomain[] = [
       "ablations-and-randomized-negative-controls",
       "seeds-uncertainty-and-paired-sign-tests",
       "availability-leakage-and-reproducible-evaluation",
-      "dimensions-limits-and-convergence-checks"
+      "dimensions-limits-and-convergence-checks",
+      "theorems-evidence-and-working-hypotheses",
+      "negative-results-and-research-records"
     ]
   }
 ];

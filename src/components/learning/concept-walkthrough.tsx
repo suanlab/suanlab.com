@@ -1,4 +1,8 @@
 'use client';
+import { researchRecordsId } from '@/data/research-records-reader';
+import { ResearchRecordsConcept } from './research-records-lab';
+import { evidenceRolesId } from '@/data/evidence-roles-reader';
+import { EvidenceRolesConcept } from './evidence-roles-lab';
 import { dimensionConvergenceId } from '@/data/dimension-convergence-reader';
 import { DimensionConvergenceConcept } from './dimension-convergence-lab';
 import { availabilityLeakageId } from '@/data/availability-leakage-reader';
@@ -341,6 +345,8 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === researchRecordsId) return <ResearchRecordsConcept language={language}/>;
+  if (kind === evidenceRolesId) return <EvidenceRolesConcept language={language}/>;
   if (kind === dimensionConvergenceId) return <DimensionConvergenceConcept language={language}/>;
   if (kind === availabilityLeakageId) return <AvailabilityLeakageConcept language={language}/>;
   if (kind === pairedSignTestId) return <PairedSignTestConcept language={language}/>;
