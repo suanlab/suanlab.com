@@ -27,7 +27,6 @@ import { isingDecimationId } from '@/data/ising-decimation-reader';
 import { isingCriticalityId } from '@/data/ising-criticality-reader';
 import { legendreResponseUnitId } from '@/data/legendre-response-reader';
 import { scalarGibbsUnitId } from '@/lib/learning-scalar-gibbs-input';
-import '@/styles/scalar-gibbs-lab.css';
 import {isBlockOrderTeachingId} from '@/lib/learning-block-order-teaching';
 import BlockOrderCover from './block-order-cover';
 import {isThermalFieldTeachingId} from '@/lib/learning-thermal-field-teaching';
