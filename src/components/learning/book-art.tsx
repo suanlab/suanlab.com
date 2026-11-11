@@ -1,4 +1,6 @@
 'use client';
+import { contributionEvidenceId } from '@/data/contribution-evidence-reader';
+import { researchHypothesesId } from '@/data/research-hypotheses-reader';
 import { modelDiscrepancyId } from '@/data/model-discrepancy-reader';
 import { dynamicsResidualsId } from '@/data/dynamics-residuals-reader';
 import { uncertaintyPropagationId } from '@/data/uncertainty-propagation-reader';
@@ -234,6 +236,8 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === contributionEvidenceId) return <span className="ai-concept-equation" aria-hidden="true">I = Δ_long − Δ_short</span>;
+  if (kind === researchHypothesesId) return <span className="ai-concept-equation" aria-hidden="true">Δ = E[L_B − L_C]</span>;
   if (kind === modelDiscrepancyId) return <span className="ai-concept-equation" aria-hidden="true">y = m(θ) + δ + ε</span>;
   if (kind === dynamicsResidualsId) return <span className="ai-concept-equation" aria-hidden="true">r_eq = x′ + x</span>;
   if (kind === uncertaintyPropagationId) return <span className="ai-concept-equation" aria-hidden="true">Var(wᵀx) = wᵀΣw</span>;

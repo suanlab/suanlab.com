@@ -1,4 +1,8 @@
 'use client';
+import { contributionEvidenceId } from '@/data/contribution-evidence-reader';
+import { ContributionEvidenceConcept } from './contribution-evidence-lab';
+import { researchHypothesesId } from '@/data/research-hypotheses-reader';
+import { ResearchHypothesesConcept } from './research-hypotheses-lab';
 import { modelDiscrepancyId } from '@/data/model-discrepancy-reader';
 import { ModelDiscrepancyConcept } from './model-discrepancy-lab';
 import { dynamicsResidualsId } from '@/data/dynamics-residuals-reader';
@@ -325,6 +329,8 @@ function Diagram({ kind, step, label, language }: { kind: LearningUnitId; step: 
 export default function ConceptWalkthrough({ kind }: { kind: LearningUnitId }) {
   const { language } = useLanguage(); const ko = language === 'ko'; const guide = learningGuides[kind]; const [step, setStep] = useState(0); const current = guide.steps[step];
   if (isReversalKind(kind)) return <ReversalConceptPanel key={kind} kind={kind} language={language}/>;
+  if (kind === contributionEvidenceId) return <ContributionEvidenceConcept language={language}/>;
+  if (kind === researchHypothesesId) return <ResearchHypothesesConcept language={language}/>;
   if (kind === modelDiscrepancyId) return <ModelDiscrepancyConcept language={language}/>;
   if (kind === dynamicsResidualsId) return <DynamicsResidualsConcept language={language}/>;
   if (kind === uncertaintyPropagationId) return <UncertaintyPropagationConcept language={language}/>;

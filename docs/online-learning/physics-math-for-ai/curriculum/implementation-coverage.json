@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 640,
+  "implementedUnitCount": 642,
   "curriculumComplete": false,
-  "scope": "640 registered units, 1949 guided experiments and 1280 bilingual manuscript files. Introductory scope: 352 of 362 original topics verified, 10 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "642 registered units, 1953 guided experiments and 1284 bilingual manuscript files. Introductory scope: 354 of 362 original topics verified, 8 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -11837,20 +11837,184 @@
       "topicCount": 10,
       "status": "partially-authored",
       "implementedUnitIds": [
-        "research-methods"
+        "research-methods",
+        "hypotheses-and-testable-research-questions",
+        "related-work-and-contribution-evidence"
       ],
-      "nextUnitId": "hypotheses-and-testable-research-questions",
-      "nextAction": "research-hypotheses-reader-integration",
+      "nextUnitId": "assumptions-and-aggregation-counterexamples",
+      "nextAction": "aggregation-proof-reader-integration",
       "researchHypothesesDraft": {
         "unitId": "hypotheses-and-testable-research-questions",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/hypotheses-and-testable-research-questions.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/hypotheses-and-testable-research-questions.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "research-hypotheses-reader-integration"
+        "nextAction": "contribution-evidence-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/hypotheses-and-testable-research-questions.ko.md",
+          "content/learning/physics-math-for-ai/hypotheses-and-testable-research-questions.en.md"
+        ]
+      },
+      "currentPreparationReport": "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
+      "currentPreparationEvidence": "scripts/learning-contribution-evidence.test.ts",
+      "lastIntegratedPreparation": {
+        "unitId": "related-work-and-contribution-evidence",
+        "status": "verified-introductory-unit",
+        "registered": true,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "model": "src/lib/learning-contribution-evidence.ts",
+        "lab": "src/components/learning/contribution-evidence-lab.tsx",
+        "tests": "scripts/learning-contribution-evidence.test.ts",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
+          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.en.md"
+        ],
+        "sectionsPerLocale": 6,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
+      },
+      "lastIntegratedUnitPreparation": {
+        "unitId": "related-work-and-contribution-evidence",
+        "status": "verified-introductory-unit",
+        "registered": true,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "model": "src/lib/learning-contribution-evidence.ts",
+        "lab": "src/components/learning/contribution-evidence-lab.tsx",
+        "tests": "scripts/learning-contribution-evidence.test.ts",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
+          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.en.md"
+        ],
+        "sectionsPerLocale": 6,
+        "guidedExperiments": 2,
+        "explainedQuestionsPerLocale": 2
+      },
+      "lastCompletedIntroductoryTopic": {
+        "originalTopic": "선행 연구와 새 기여",
+        "stage": "introductory-topic-verified",
+        "coverageLevel": "introductory",
+        "unitIds": [
+          "related-work-and-contribution-evidence"
+        ],
+        "registeredUnitCount": 1,
+        "originalTopicComplete": true,
+        "originalTopicAuditPending": false,
+        "homepageIntegrated": true,
+        "actualBrowserVerified": true,
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
+          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.en.md"
+        ],
+        "researchDepthComplete": false,
+        "wholeDomainAuditComplete": false,
+        "evidence": "scripts/learning-contribution-evidence.test.ts"
+      },
+      "topicEvidence": [
+        {
+          "originalTopic": "문제·가설·정식화",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "hypotheses-and-testable-research-questions"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/hypotheses-and-testable-research-questions.ko.md",
+            "content/learning/physics-math-for-ai/hypotheses-and-testable-research-questions.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-research-hypotheses.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "hypotheses-and-testable-research-questions",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-research-hypotheses.ts",
+            "lab": "src/components/learning/research-hypotheses-lab.tsx",
+            "tests": "scripts/learning-research-hypotheses.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/hypotheses-and-testable-research-questions.ko.md",
+              "content/learning/physics-math-for-ai/hypotheses-and-testable-research-questions.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        },
+        {
+          "originalTopic": "선행 연구와 새 기여",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "related-work-and-contribution-evidence"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
+            "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-contribution-evidence.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "related-work-and-contribution-evidence",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-contribution-evidence.ts",
+            "lab": "src/components/learning/contribution-evidence-lab.tsx",
+            "tests": "scripts/learning-contribution-evidence.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
+              "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        }
+      ],
+      "contributionEvidenceDraft": {
+        "unitId": "related-work-and-contribution-evidence",
+        "status": "registered-and-verified",
+        "registered": true,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/related-work-and-contribution-evidence.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/related-work-and-contribution-evidence.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "aggregation-proof-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.ko.md",
+          "content/learning/physics-math-for-ai/related-work-and-contribution-evidence.en.md"
+        ]
+      },
+      "aggregationProofDraft": {
+        "unitId": "assumptions-and-aggregation-counterexamples",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/assumptions-and-aggregation-counterexamples.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/assumptions-and-aggregation-counterexamples.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "aggregation-proof-reader-integration"
       }
     }
   ],
@@ -11872,7 +12036,7 @@
     "research-methods"
   ],
   "nextDomain": "research-methods",
-  "nextTopic": "문제·가설·정식화",
+  "nextTopic": "가정·정리·증명·반례",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",
