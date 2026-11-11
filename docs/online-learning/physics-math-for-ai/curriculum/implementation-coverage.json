@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 621,
+  "implementedUnitCount": 622,
   "curriculumComplete": false,
-  "scope": "621 registered units, 1911 guided experiments and 1242 bilingual manuscript files. Introductory scope: 333 of 362 original topics verified, 29 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "622 registered units, 1913 guided experiments and 1244 bilingual manuscript files. Introductory scope: 334 of 362 original topics verified, 28 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -10590,10 +10590,11 @@
       "status": "partially-authored",
       "implementedUnitIds": [
         "lattice-vibrations-and-phonon-dispersion",
-        "electronic-bands-in-a-dimerized-chain"
+        "electronic-bands-in-a-dimerized-chain",
+        "photodiode-circuits-and-sensor-bandwidth"
       ],
-      "nextUnitId": "photodiode-circuits-and-sensor-bandwidth",
-      "nextAction": "photodiode-bandwidth-reader-integration",
+      "nextUnitId": "photonic-interferometers-and-matrix-products",
+      "nextAction": "photonic-interferometer-reader-integration",
       "phononDraft": {
         "unitId": "lattice-vibrations-and-phonon-dispersion",
         "status": "registered-and-verified",
@@ -10609,48 +10610,48 @@
           "content/learning/physics-math-for-ai/lattice-vibrations-and-phonon-dispersion.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
-      "currentPreparationEvidence": "scripts/learning-electronic-bands.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+      "currentPreparationEvidence": "scripts/learning-photodiode-bandwidth.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "electronic-bands-in-a-dimerized-chain",
+        "unitId": "photodiode-circuits-and-sensor-bandwidth",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-electronic-bands.ts",
-        "lab": "src/components/learning/electronic-bands-lab.tsx",
-        "tests": "scripts/learning-electronic-bands.test.ts",
+        "model": "src/lib/learning-photodiode-bandwidth.ts",
+        "lab": "src/components/learning/photodiode-bandwidth-lab.tsx",
+        "tests": "scripts/learning-photodiode-bandwidth.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "electronic-bands-in-a-dimerized-chain",
+        "unitId": "photodiode-circuits-and-sensor-bandwidth",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-electronic-bands.ts",
-        "lab": "src/components/learning/electronic-bands-lab.tsx",
-        "tests": "scripts/learning-electronic-bands.test.ts",
+        "model": "src/lib/learning-photodiode-bandwidth.ts",
+        "lab": "src/components/learning/photodiode-bandwidth-lab.tsx",
+        "tests": "scripts/learning-photodiode-bandwidth.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "전자·band",
+        "originalTopic": "반도체·회로·센서",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "electronic-bands-in-a-dimerized-chain"
+          "photodiode-circuits-and-sensor-bandwidth"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -10658,12 +10659,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-electronic-bands.test.ts"
+        "evidence": "scripts/learning-photodiode-bandwidth.test.ts"
       },
       "topicEvidence": [
         {
@@ -10739,6 +10740,43 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "반도체·회로·센서",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "photodiode-circuits-and-sensor-bandwidth"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+            "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-photodiode-bandwidth.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "photodiode-circuits-and-sensor-bandwidth",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-photodiode-bandwidth.ts",
+            "lab": "src/components/learning/photodiode-bandwidth-lab.tsx",
+            "tests": "scripts/learning-photodiode-bandwidth.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+              "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "electronicBandsDraft": {
@@ -10758,14 +10796,29 @@
       },
       "photodiodeDraft": {
         "unitId": "photodiode-circuits-and-sensor-bandwidth",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/photodiode-circuits-and-sensor-bandwidth.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/photodiode-circuits-and-sensor-bandwidth.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "photodiode-bandwidth-reader-integration"
+        "nextAction": "photonic-interferometer-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
+        ]
+      },
+      "photonicInterferometerDraft": {
+        "unitId": "photonic-interferometers-and-matrix-products",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/photonic-interferometers-and-matrix-products.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/photonic-interferometers-and-matrix-products.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "photonic-interferometer-reader-integration"
       }
     },
     {
@@ -10803,7 +10856,7 @@
     "research-methods"
   ],
   "nextDomain": "matter-computation",
-  "nextTopic": "반도체·회로·센서",
+  "nextTopic": "analog·photonic computing",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

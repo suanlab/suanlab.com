@@ -15680,24 +15680,72 @@
         },
         {
           "title": "반도체·회로·센서",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "photodiode-circuits-and-sensor-bandwidth"
+          ],
           "preparation": {
             "unitId": "photodiode-circuits-and-sensor-bandwidth",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/photodiode-circuits-and-sensor-bandwidth.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/photodiode-circuits-and-sensor-bandwidth.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "photodiode-bandwidth-reader-integration"
+            "nextAction": "photonic-interferometer-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+              "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+            "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-photodiode-bandwidth.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "photodiode-circuits-and-sensor-bandwidth",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-photodiode-bandwidth.ts",
+            "lab": "src/components/learning/photodiode-bandwidth-lab.tsx",
+            "tests": "scripts/learning-photodiode-bandwidth.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+              "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "analog·photonic computing",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "photonic-interferometers-and-matrix-products",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/photonic-interferometers-and-matrix-products.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/photonic-interferometers-and-matrix-products.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "photonic-interferometer-reader-integration"
+          }
         },
         {
           "title": "잡음·비이상성",
@@ -15731,50 +15779,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "photodiode-circuits-and-sensor-bandwidth",
-      "nextAction": "photodiode-bandwidth-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
-      "currentPreparationEvidence": "scripts/learning-electronic-bands.test.ts",
+      "nextUnitId": "photonic-interferometers-and-matrix-products",
+      "nextAction": "photonic-interferometer-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+      "currentPreparationEvidence": "scripts/learning-photodiode-bandwidth.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "electronic-bands-in-a-dimerized-chain",
+        "unitId": "photodiode-circuits-and-sensor-bandwidth",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-electronic-bands.ts",
-        "lab": "src/components/learning/electronic-bands-lab.tsx",
-        "tests": "scripts/learning-electronic-bands.test.ts",
+        "model": "src/lib/learning-photodiode-bandwidth.ts",
+        "lab": "src/components/learning/photodiode-bandwidth-lab.tsx",
+        "tests": "scripts/learning-photodiode-bandwidth.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "electronic-bands-in-a-dimerized-chain",
+        "unitId": "photodiode-circuits-and-sensor-bandwidth",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-electronic-bands.ts",
-        "lab": "src/components/learning/electronic-bands-lab.tsx",
-        "tests": "scripts/learning-electronic-bands.test.ts",
+        "model": "src/lib/learning-photodiode-bandwidth.ts",
+        "lab": "src/components/learning/photodiode-bandwidth-lab.tsx",
+        "tests": "scripts/learning-photodiode-bandwidth.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "전자·band",
+        "originalTopic": "반도체·회로·센서",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "electronic-bands-in-a-dimerized-chain"
+          "photodiode-circuits-and-sensor-bandwidth"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -15782,12 +15830,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.ko.md",
-          "content/learning/physics-math-for-ai/electronic-bands-in-a-dimerized-chain.en.md"
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.ko.md",
+          "content/learning/physics-math-for-ai/photodiode-circuits-and-sensor-bandwidth.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-electronic-bands.test.ts"
+        "evidence": "scripts/learning-photodiode-bandwidth.test.ts"
       }
     },
     {
@@ -15918,14 +15966,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 621,
-  "verifiedNewUnitCount": 468,
+  "implementedUnitCount": 622,
+  "verifiedNewUnitCount": 469,
   "remainingForwardDomainCount": 3,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 29,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 28,
   "nextDomain": "matter-computation",
-  "nextTopic": "반도체·회로·센서",
+  "nextTopic": "analog·photonic computing",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 333,
+  "verifiedOriginalScopeTopicCount": 334,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -15987,11 +16035,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 반도체·회로·센서. All 621 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers analog·photonic computing. All 622 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "photodiode-circuits-and-sensor-bandwidth",
+  "nextAuthoringUnitId": "photonic-interferometers-and-matrix-products",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "photodiode-bandwidth-reader-integration",
+  "nextAction": "photonic-interferometer-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }
