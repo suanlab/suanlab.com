@@ -30,6 +30,86 @@ $$
 [\,\widehat F_*^{-1}(\alpha/2),\;\widehat F_*^{-1}(1-\alpha/2)\,].
 $$
 
+## 통상적인 bootstrap이 재현하지 못하는 통계량
+
+θ>0에서 iid Uniform(0,θ) 표본과 최댓값 M_n을 생각합시다. 0≤t≤n이면 독립성으로 끝점 추정 pivot의 정확한 생존확률을 구할 수 있습니다.
+
+$$
+R_n=\frac{n(\theta-M_n)}\theta,\qquad
+P_\theta(R_n>t)=(1-t/n)^n\longrightarrow e^{-t}.
+$$
+
+따라서 R_n은 표준 지수분포로 수렴하며 그 CDF는 연속이고 원점에 점 질량이 없습니다. 유한 n에서도 거의 확실히 M_n<θ이므로 P(R_n=0)=0입니다. 표본평균의 CLT가 아니라 경계 통계량의 문제입니다.
+
+## 경험분포 재표집에서 사라지지 않는 질량 찾기
+
+거의 확실히 관측 최댓값은 유일합니다. 크기 n의 경험분포 bootstrap에서는 매번 그 행을 고를 확률이 1/n입니다. 한 번이라도 그 행을 고르면 재표본 최댓값 M_n*는 M_n과 같습니다. 따라서 bootstrap pivot에는 큰 점 질량이 생깁니다.
+
+$$
+R_n^*=\frac{n(M_n-M_n^*)}{M_n},\qquad
+P^*(R_n^*=0\mid X)=1-(1-1/n)^n\longrightarrow1-e^{-1}.
+$$
+
+표의 두 확률 열은 원점의 점 질량입니다.
+
+| n | Bootstrap | 모집단 |
+|---|---|---|
+| 3 | 0.703704 | 0 |
+| 10 | 0.651322 | 0 |
+| 100 | 0.633968 | 0 |
+
+pivot이 비음수이므로 원점 CDF는 이 점 질량입니다. 모집단 극한 CDF는 그 연속점에서 0입니다. 따라서 조건부 경험 bootstrap 법칙은 이 pivot의 극한 법칙을 일치적으로 근사할 수 없습니다. bootstrap 반복 수를 늘려도 잘못된 조건부 분포 주변의 시뮬레이션 오차만 줄어들고 점 질량은 사라지지 않습니다. 아래 완전 열거에는 Monte Carlo 오차가 없지만 같은 문제가 남습니다.
+
+## 모형 기반 재표본은 이 pivot에서 성공할 수 있다
+
+Uniform(0,θ) 모형이 정당하다면 대신 Uniform(0,M_n)에서 새 독립 표본을 뽑습니다. 이를 iid Uniform(0,1) 기초 변수 U_i*에 M_n을 곱한 값으로 쓰면 정규화 pivot은 n(1−max U_i*)입니다. 따라서 M_n>0인 모든 관측에서 유한 n의 R_n과도 법칙이 정확히 같습니다.
+
+$$
+P^*\!\left(\frac{n(M_n-M_{n,\mathrm{param}}^*)}{M_n}>t\mid X\right)=(1-t/n)^n\quad(0\le t\le n).
+$$
+
+성공의 조건은 가정한 균등분포 모형과 scale-free pivot입니다. 모집단 모형이 틀려도 모수적 재표집이 타당하다는 뜻은 아닙니다. 재표집 기제는 반복 횟수만의 문제가 아니라 통계 모형의 선택입니다.
+
+## 관측 세 점의 경험 예제를 완전 열거하기
+
+관측값 (1/5,1/2,4/5)의 27개 순서 경험 재표본은 pivot 값 0,9/8,9/4를 각각 19,7,1번 만듭니다. 다음 코드는 정확한 분수와 모형 기반 scale 항등식을 확인합니다. 고정된 기초 값은 그 항등식의 예시이며 무작위 추출이 아닙니다. 이 최댓값 예제는 기존 세 행의 평균·중앙값 조절기와 별도로 실행합니다.
+
+```python
+from fractions import Fraction as Q
+from itertools import product
+from collections import Counter
+from math import exp
+
+sample = (Q(1, 5), Q(1, 2), Q(4, 5))
+n, observed_max = len(sample), max(sample)
+counts = Counter(n*(observed_max-max(draw))/observed_max
+                 for draw in product(sample, repeat=n))
+assert counts == Counter({Q(0): 19, Q(9, 8): 7, Q(9, 4): 1})
+for value, count in sorted(counts.items()):
+    print("empirical-bootstrap pivot, conditional mass:", value, Q(count, n**n))
+for n in [3, 10, 100]:
+    atom = 1-(1-Q(1, n))**n
+    population_survival_at_one = (1-Q(1, n))**n
+    assert atom+population_survival_at_one == 1
+    print("n, empirical atom at zero, population CDF at zero:", n, float(atom), 0)
+print("limiting empirical atom:", 1-exp(-1))
+# Fixed base values illustrate the scale identity; these are not random draws.
+u = (Q(1, 7), Q(2, 3), Q(4, 5))
+for M in [Q(1, 10), Q(4, 5), Q(3)]:
+    parametric_sample = tuple(M*x for x in u)
+    pivot = len(u)*(M-max(parametric_sample))/M
+    assert pivot == len(u)*(1-max(u))
+print("Parametric normalized pivot is independent of the positive plug-in endpoint.")
+```
+
+## 추가 문제와 연구 연결
+
+1. 경험 bootstrap을 정확히 열거하면 참 표집법칙이 되나요? **시뮬레이션 오차를 제거할 뿐 경험 법칙과 모집단의 차이는 남습니다.**
+2. 경험 재표집의 최댓값에는 왜 점 질량이 있나요? **관측 최댓값을 한 번이라도 선택하면 그 값이 유지되기 때문입니다.**
+3. bootstrap 보고서에는 무엇을 명시해야 하나요? **통계량, 재표집 단위·법칙, 원하는 근사를 뒷받침하는 가정입니다.**
+
+최댓값 반례와 모형 기반 비교는 고전적인 결과입니다. [Bickel–Freedman (1981), §6, Counter-example 2, p.1210](https://www.math.ntu.edu.tw/~hchen/teaching/LargeSample/references/BickelFreedman81.pdf), [출판 DOI](https://doi.org/10.1214/aos/1176345637)를 참고하세요. 세 점의 유한 열거는 여기서 직접 계산했습니다.
+
 ## 확인 문제와 해설
 
 1. 27개 중 같은 숫자 표본도 따로 세나요? **행을 고른 순서가 다르면 따로 세고 결과 통계량에서 합칩니다.**
