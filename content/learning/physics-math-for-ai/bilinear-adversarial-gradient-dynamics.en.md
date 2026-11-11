@@ -173,6 +173,41 @@ The lower curves show log10(1+stationary residual): blue for the selected state 
 
 The queried transition clamps to T−1 and changes only inspection. At T0 no transition exists. Small numbers and large phase-axis labels use scientific notation where needed, while the stored dynamics remain unscaled.
 
+## Research extension: convert residuals to the correct saddle gap
+
+For mu>0, the unconstrained quadratic game has finite one-sided optima: $y^*(x)=ax/\mu$ and $x^*(y)=-ay/\mu$. Substituting them gives the global gap
+
+$$G(x,y)=\sup_v f(x,v)-\inf_u f(u,y)
+=\frac{\mu^2+a^2}{2\mu}(x^2+y^2)
+=\frac{\|F(x,y)\|^2}{2\mu}.
+$$
+
+The conversion depends on curvature. It is not uniform as mu approaches zero. At a1 and z=(1,0), the ordinary objective tends to zero while the gap grows:
+
+| mu | Objective f(1,0) | Global gap |
+|---|---:|---:|
+| 1 | 1/2 | 1 |
+| 1/10 | 1/20 | 101/20 |
+| 1/100 | 1/200 | 10001/200 |
+
+```python
+from fractions import Fraction as F
+for mu in [F(1),F(1,10),F(1,100)]:
+    a=F(1); x,y=F(1),F(0)
+    f=lambda u,v:mu*(u*u-v*v)/2+a*u*v
+    best_y=a*x/mu; best_x=-a*y/mu
+    gap=f(x,best_y)-f(best_x,y)
+    residual_squared=(mu*x+a*y)**2+(mu*y-a*x)**2
+    assert gap==residual_squared/(2*mu)
+    print(mu,f(x,y),gap)
+for R in [F(1),F(2),F(4)]:
+    x,y=F(1),F(0); a=F(1)
+    constrained=max(a*x*v for v in [-R,R])-min(a*u*y for u in [-R,R])
+    assert constrained==R*abs(a)*(abs(x)+abs(y))
+```
+
+At mu0 with nonzero a and nonzero z, the unrestricted gap is infinite. If the problem is instead explicitly restricted to a box $[-R,R]^2$, its bilinear gap is $R|a|(|x|+|y|)$, between R times the residual and $\sqrt2 R$ times the residual. That is a different constrained problem; choosing a plotting window does not impose that constraint. The native panel therefore continues reporting stationary residual and saddle-set distance rather than inventing a finite global gap in the pure case.
+
 ## Exercises and worked solutions
 
 1. For simultaneous a1, mu0, h1/2, what is squared norm after eight updates from (1,0)? It is (5/4)^8=390625/65536, approximately5.96046. The norm is its square root, not that ratio itself. For extragradient it is (13/16)^8 instead.

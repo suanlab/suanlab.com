@@ -112,6 +112,48 @@ $$
 
 검사할 참가자를 바꾸면 효용 곡선·지급 분해·타입 검사는 바뀌어도 현재 할당과 지급은 같아야 합니다. 숨은 실제 가치를 바꾸면 효용·후생·정직 기준점은 바뀌지만 현재 보고에 따른 결정은 여전히 같아야 합니다. 이는 규칙이 실제 가치를 몰래 사용하지 않는지 점검하는 방법이기도 합니다.
 
+## 연구 확장: 단조 할당에서 지급식 유도하기
+
+보조적인 연속 사적 타입 $v\in[0,\bar v]$에서 상대를 고정하고 기대 할당을 q(v), 지급을 p(v), 준선형 효용을 $U(v)=vq(v)-p(v)$라 하자. v>w인 DSIC 부등식들은
+
+$$q(w)(v-w)\le U(v)-U(w)\le q(v)(v-w)
+$$
+
+를 준다. 먼저 두 보고 부등식을 더하면 q가 단조 증가해야 한다. 위 경계를 촘촘한 분할에서 합하면 포락선 $U(v)=U(0)+\int_0^v q(z)dz$를 얻으므로
+
+$$p(v)=vq(v)-\int_0^v q(z)dz+p(0)
+$$
+
+다. 반대로 단조 q와 이 지급식에서는 낮은 보고 w 대비 정직 이득이 $\int_w^v[q(z)-q(w)]dz\ge0$이고 높은 보고에는 역방향 적분을 쓰므로 정직이 최적이다. 확률적 q에서는 기대 효용의 정직성이며 각 추출 결과마다의 universal truthfulness를 자동으로 뜻하지 않는다.
+
+문턱 할당 $q(v)=1\{v\ge\theta\}$과 p(0)=0이면 낙찰자는 theta, 탈락자는 0을 낸다. 참 v=5에서:
+
+| 문턱 | 할당 | 지급 | 효용 |
+|---|---:|---:|---:|
+| 0 | 1 | 0 | 5 |
+| 3 | 1 | 3 | 2 |
+| 7 | 0 | 0 | 0 |
+
+```python
+from fractions import Fraction as F
+for theta in [F(0),F(3),F(7)]:
+    for j in range(21):
+        v=F(j,2); truthful=v*int(v>=theta)-(theta if v>=theta else 0)
+        for k in range(21):
+            report=F(k,2); q=int(report>=theta)
+            integral=max(F(0),report-theta)
+            payment=report*q-integral
+            assert payment==(theta if q else 0)
+            assert truthful>=v*q-payment
+    v=F(5); q=int(v>=theta); payment=theta if q else 0
+    print(theta,q,payment,v*q-payment)
+values=[4,4,4]; cost=10
+payments=[max(0,cost-sum(values)+v) for v in values]
+assert sum(values)>=cost and sum(payments)==6<cost
+```
+
+이 연속 타입 특성화가 문턱 논리를 설명하지만 기존 정수 보고 격자는 별도의 전수 검사를 갖는 유한 메커니즘이다. 이산 DSIC 부등식만으로 모든 연속 지급식을 식별하지는 못한다. 포락선이나 정직 유인도 공공 비용 충당을 보장하지 않는다.
+
 ## 연습 문제와 해설
 
 1. 2등 가격, 실제 가치·보고 (5,5,0), 기준 0에서 참가자 1의 최적 보고는 무엇인가요? 보고 5에서는 참가자 0에게 동률로 집니다. 5 초과 보고는 5를 내고 낙찰되어 효용 0, 5 이하는 탈락하여 효용 0입니다. 따라서 0부터 10까지 모두 최적입니다. 정직 보고가 최적이어도 반드시 낙찰되는 것은 아닙니다.

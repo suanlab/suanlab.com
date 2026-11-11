@@ -112,6 +112,48 @@ Set project cost0: build always occurs and payments are0. Set cost30 and reports
 
 Changing the inspected agent changes the utility curve, pivot decomposition and type check, but must leave current allocation/payments unchanged. Changing hidden true values can change utilities/welfare and the truth reference, but must likewise leave the report-based current decision unchanged. Use these as conceptual checks of the arrows.
 
+## Research extension: derive payments from monotone allocation
+
+For an auxiliary continuous private type $v\in[0,\bar v]$, fix opponents and write expected allocation $q(v)$ and payment p(v), with quasilinear utility $U(v)=vq(v)-p(v)$. DSIC inequalities for v>w imply
+
+$$q(w)(v-w)\le U(v)-U(w)\le q(v)(v-w).
+$$
+
+Adding the two report inequalities first proves q is nondecreasing. Summing these bounds over increasingly fine partitions gives the envelope $U(v)=U(0)+\int_0^v q(z)dz$. Therefore
+
+$$p(v)=vq(v)-\int_0^v q(z)dz+p(0).
+$$
+
+Conversely, a monotone q with this payment formula makes truth optimal: the gain over a lower report w is $\int_w^v[q(z)-q(w)]dz\ge0$, and a higher report has the analogous reversed integral. For probabilistic q this is truthfulness in expected utility; it is not automatically universal truthfulness of every random realization.
+
+For a threshold allocation $q(v)=1\{v\ge\theta\}$ and normalization p(0)=0, winners pay theta and losers pay zero. At true v5:
+
+| Threshold | Allocation | Payment | Utility |
+|---|---:|---:|---:|
+| 0 | 1 | 0 | 5 |
+| 3 | 1 | 3 | 2 |
+| 7 | 0 | 0 | 0 |
+
+```python
+from fractions import Fraction as F
+for theta in [F(0),F(3),F(7)]:
+    for j in range(21):
+        v=F(j,2); truthful=v*int(v>=theta)-(theta if v>=theta else 0)
+        for k in range(21):
+            report=F(k,2); q=int(report>=theta)
+            integral=max(F(0),report-theta)
+            payment=report*q-integral
+            assert payment==(theta if q else 0)
+            assert truthful>=v*q-payment
+    v=F(5); q=int(v>=theta); payment=theta if q else 0
+    print(theta,q,payment,v*q-payment)
+values=[4,4,4]; cost=10
+payments=[max(0,cost-sum(values)+v) for v in values]
+assert sum(values)>=cost and sum(payments)==6<cost
+```
+
+This continuous-type characterization explains the threshold logic; the native integer report grid remains a finite mechanism with its own exhaustive checks. Its discrete DSIC inequalities alone do not identify every continuous payment formula. Neither the envelope nor truthful incentives guarantee public cost recovery.
+
 ## Exercises and worked solutions
 
 1. Under second price, true/report vector (5,5,0), reserve0, inspect agent1. Which reports maximize its utility? Agent0 wins a tie at5. Reporting above5 wins at price5 with utility0, and reporting5 or below loses with utility0. Every report0..10 is optimal; truth need not win to be optimal.

@@ -163,6 +163,39 @@ A profile is epsilon-Nash when every unilateral regret is at most epsilon. The c
 
 At T>0 the mean uses states0..T−1 and excludes terminal stateT. At T0 there is no mean or queried transition; the initial state remains defined. The transition query clamps to T−1 and changes only inspection. Lambda affects only the auxiliary contraction. None of these display/query changes alters the other maps' dynamics.
 
+## Research extension: turn a Nash-map displacement into an incentive bound
+
+For this particular two-action Nash map, let d be the difference between pure payoffs, r the probability on the inferior action, and g=|d|r the unilateral gain. Only the better action has positive gain. Direct normalization gives coordinate displacement
+
+$$\delta=\frac{|d|r^2}{1+|d|r},\qquad g^2=|d|\delta(1+g).
+$$
+
+If the player's payoff range is at most M, then |d| and g are at most M. Therefore $g\le\sqrt{M(1+M)\delta}$. A sharper bound is the positive root of $g^2-M\delta g-M\delta\le0$. For two players, use the largest coordinate displacement and the relevant range for each player. This is an explicit conversion for the canonical map, not for an arbitrary auxiliary fixed-point iteration.
+
+A square-root rate is natural near a pure equilibrium. With pure payoffs1 and0, g=r while displacement is quadratic in r:
+
+| Inferior mass r | Gain g | Map displacement |
+|---|---:|---:|
+| 1/10 | 1/10 | 1/110 |
+| 1/100 | 1/100 | 1/10100 |
+| 1/1000 | 1/1000 | 1/1001000 |
+
+```python
+from fractions import Fraction as F
+for denominator in [10,100,1000]:
+    r=F(1,denominator); p=1-r; gain=r
+    image=(p+gain)/(1+gain); displacement=image-p
+    assert displacement==r*r/(1+r)
+    assert gain*gain==displacement*(1+gain)
+    assert gain*gain<=2*displacement
+    alpha=F(1,100); damped=(1-alpha)*p+alpha*image
+    assert damped-p==alpha*displacement
+    assert gain/displacement==denominator+1
+    print(r,gain,displacement)
+```
+
+No finite uniform linear gain/displacement ratio works as r tends to zero. Damping the map by alpha multiplies displacement by alpha without reducing the current incentive, so a valid conversion must first divide by alpha. These auxiliary fractions extend beyond the native twelfth-grid input; no new convergence guarantee is attached to its floating trajectory.
+
 ## Exercises and worked solutions
 
 1. List the coordination game's Nash equilibria. They are the two pure coordination corners(0,0),(1,1) and the mixed point(1/3,1/3). The finite-game existence theorem does not select one or imply uniqueness.

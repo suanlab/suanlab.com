@@ -128,6 +128,50 @@ Consider F(x,y)=(x−y)^2 on[−1,1]^2, with x maximizing and y minimizing. For 
 
 An existence or duality theorem also does not establish convergence of a particular ascent/descent method. A zero-sum learning experiment requires its own update rules, stability assumptions and convergence analysis.
 
+## Research extension: make a minimax certificate robust to model error
+
+If $|A_{ij}-\widehat A_{ij}|\le\delta$, every mixed expected payoff changes by at most $\delta$. Applying this first inside a minimum and then inside a maximum proves $|v(A)-v(\widehat A)|\le\delta$. The value is Lipschitz even when the optimal-strategy set is not.
+
+More generally, for any queried mixtures,
+
+$$L_{\widehat A}(p)-\delta\le v(A)\le U_{\widehat A}(q)+\delta,\qquad
+U_A(q)-L_A(p)\le U_{\widehat A}(q)-L_{\widehat A}(p)+2\delta.
+$$
+
+An exact estimated saddle is therefore a true profile with dual gap at most $2\delta$. The uncertainty premise is an entrywise guarantee, not a confidence interval automatically supplied by a fitted model.
+
+Sharpness is visible with estimated matrix zero and query $p=q=1$. Let the true matrix be $(0,-\delta;\delta,0)$. Its value remains zero, yet the row and column can each improve by $\delta$:
+
+| $\delta$ | Estimated gap | True gap |
+|---|---:|---:|
+| 0 | 0 | 0 |
+| 1/100 | 0 | 1/50 |
+| 1/4 | 0 | 1/2 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+def value(A):
+    a,b,c,d=A; candidates=[F(0),F(1)]; slope=a-c-b+d
+    if slope:
+        root=(d-c)/slope
+        if 0<=root<=1:candidates.append(root)
+    return max(min(p*a+(1-p)*c,p*b+(1-p)*d) for p in candidates)
+for delta in [F(0),F(1,100),F(1,4)]:
+    for levels in product([-1,0,1],repeat=4):
+        A=[delta*x for x in levels]
+        assert abs(value(A))<=delta
+        for p,q in product([F(0),F(1,2),F(1)],repeat=2):
+            lower=min(p*A[0]+(1-p)*A[2],p*A[1]+(1-p)*A[3])
+            upper=max(q*A[0]+(1-q)*A[1],q*A[2]+(1-q)*A[3])
+            assert upper-lower<=2*delta
+    A=[F(0),-delta,delta,F(0)]
+    assert value(A)==0 and max(A[0],A[2])-min(A[0],A[1])==2*delta
+    print(delta,2*delta)
+```
+
+The code independently solves every three-level perturbation of the zero matrix. This is an auxiliary uncertainty model; the native exact integer arithmetic continues certifying only its stated matrix. Robust value bounds and robust strategy incentives are separate outputs.
+
 ## Exercises with explained solutions
 
 Exercise1: for the matching matrix, query p=3/4 and q=1/4. Compute L,U,F and both unilateral gains.

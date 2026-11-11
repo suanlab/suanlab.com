@@ -114,6 +114,41 @@ R0C0을 조회해 보세요. 확률은 0이지만 보수 (3,3)는 여전히 게�
 
 여기서는 분포와 기대 보수를 계산합니다. Nash equilibrium, correlated equilibrium, 유인에 맞는 추천 규칙, 학습 알고리즘의 수렴을 인증하지 않습니다. 가능한 상관 결합 표가 자동으로 correlated equilibrium의 유인 제약을 만족하는 것은 아닙니다. 다중 행위자 학습으로 넘어갈 때 이 구분을 유지해야 합니다.
 
+## 연구 확장: 전략적 동치가 후생 순위를 보존하지는 않는다
+
+공통 상수보다 더 넓은 불변 변환은
+
+$$u_i'(a_i,a_{-i})=\alpha_i u_i(a_i,a_{-i})+h_i(a_{-i}),\qquad\alpha_i>0
+$$
+
+다. 상대 혼합을 고정하면 추가 항의 기대값은 자신의 어떤 행동에서도 같다. 모든 일방 보수 차이는 양의 $\alpha_i$배가 되므로 최적 반응과 전체 Nash 집합은 그대로다. 추가 항이 자기 행동에도 의존하면 이런 보장은 없다.
+
+조정 게임에서 P2 보수는 유지하고, P2가 행동 1을 고르면 P1 보수에 3을 더하자. 행 행렬은 $(2,0;0,1)$에서 $(2,3;0,4)$로 바뀌지만 행동 차이는 여전히 $3q-1$이다. 반면 두 순수 균형의 효용 합 순위는 뒤집힌다.
+
+| 전략 $(p,q)$ | 원래 효용 합 | 변환한 효용 합 |
+|---|---:|---:|
+| (1,1) | 4 | 4 |
+| (1/3,1/3) | 4/3 | 10/3 |
+| (0,0) | 2 | 5 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+A=[2,0,0,1]; B=A[:]; transformed=[2,3,0,4]
+def utility(M,p,q):
+    masses=[p*q,p*(1-q),(1-p)*q,(1-p)*(1-q)]
+    return sum(m*x for m,x in zip(masses,M))
+for p,q in product([F(0),F(1,3),F(1,2),F(1)],repeat=2):
+    for deviation in [F(0),F(1)]:
+        assert utility(A,deviation,q)-utility(A,p,q)==utility(transformed,deviation,q)-utility(transformed,p,q)
+for p,q,old,new in [(F(1),F(1),F(4),F(4)),(F(1,3),F(1,3),F(4,3),F(10,3)),(F(0),F(0),F(2),F(5))]:
+    assert utility(A,p,q)+utility(B,p,q)==old
+    assert utility(transformed,p,q)+utility(B,p,q)==new
+    print(p,q,old,new)
+```
+
+다중 에이전트 벤치마크에서 같은 전략 예측이 나온다고 과학적으로 의미 있는 후생 척도까지 식별한 것은 아니다. 사람 사이 효용 비교에는 별도의 근거가 필요하다. 이 구성은 보조 예제이며 기존 보수 행렬을 바꾸지 않는다. 보수 크기에 의존하는 학습 규칙은 균형을 보존하는 변환에서도 다른 궤적을 만들 수 있다.
+
 ## 연습 문제와 해설
 
 문제 1: p=0.7, q=0.4일 때 s의 가능한 구간과 독립 결합 표, 독립일 때 P(C0|R0)를 구하세요.

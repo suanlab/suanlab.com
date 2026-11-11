@@ -125,6 +125,41 @@ A coalition score based on conditional observations can depend on correlations a
 
 The next unit studies shared rewards in a Markov team. There the question is which actions improve an evolving system, not how a characteristic-function total should be divided. Both topics involve cooperation, but their primitives and guarantees differ.
 
+## Research extension: balanced collections certify the core
+
+Give nonempty coalitions nonnegative weights $\lambda_S$ so each player is covered with total weight one: $\sum_{S\ni i}\lambda_S=1$. For any core allocation, summing weighted coalition constraints gives
+
+$$\sum_S\lambda_Sv(S)\le\sum_i x_i=v(N).
+$$
+
+Balancedness requires this for every such collection. It is also sufficient for a finite transferable-utility game. Minimize $\sum_i x_i$ subject to all nonempty coalition lower bounds, including N, with x free in sign. Its LP dual maximizes the weighted worth under those balance equalities. The primal is feasible by choosing sufficiently large coordinates and bounded below by the grand-coalition constraint. LP duality gives optimum v(N) exactly when all balanced claims are at most v(N), yielding a core allocation.
+
+In majority, each pair is worth $6s$. Put weight1/2 on every pair. Each player is covered once, but the weighted claim is $9s>6s$. If proper-coalition constraints are relaxed by a common nonnegative $\epsilon$, their sum requires $\epsilon\ge2s$. Equal allocation $(2s,2s,2s)$ attains it.
+
+| Scale s | Grand worth | Balanced pair claim | Minimum nonnegative relaxation |
+|---|---:|---:|---:|
+| 1 | 6 | 9 | 2 |
+| 2 | 12 | 18 | 4 |
+| 3 | 18 | 27 | 6 |
+
+```python
+from fractions import Fraction as F
+pairs=[3,5,6]; balanced={S:F(1,2) for S in pairs}
+assert all(sum(w for S,w in balanced.items() if S&(1<<i))==1 for i in range(3))
+for scale in [1,2,3]:
+    worth=[6*scale if S.bit_count()>=2 else 0 for S in range(8)]
+    claim=sum(w*worth[S] for S,w in balanced.items()); total=worth[7]
+    assert claim==9*scale and claim>total
+    epsilon=2*scale; allocation=[2*scale]*3
+    assert sum(allocation)==total
+    for S in range(1,7):
+        assert sum(x for i,x in enumerate(allocation) if S&(1<<i))>=worth[S]-epsilon
+    assert F(3*6*scale-2*total,3)==epsilon
+    print(scale,total,claim,epsilon)
+```
+
+This extends the empty-core diagnosis to quantified approximate stability. We restrict epsilon to be nonnegative; some least-core conventions allow negative values. The native panel still shows the exact core, not a relaxed substitute.
+
 ## Exercises and explained solutions
 
 Exercise1: in the glove game, calculate the slack of coalition{0,2} under Shapley and under the core allocation.

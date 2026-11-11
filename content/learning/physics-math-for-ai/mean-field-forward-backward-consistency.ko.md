@@ -173,6 +173,47 @@ $$
 
 균형 계산, 해법의 안정성, mean-field control, 물리적 평균장 폐쇄도 서로 다른 작업입니다. 참고문헌은 수학적 틀의 근거이며 오늘의 미해결 문제 상태를 선언하기 위한 자료가 아닙니다. 실습이 인증하는 것은 지정한 작은 게임의 완전한 유리수 해 집합과 별도의 계획 문제입니다.
 
+## 연구 확장: 유한한 한 사람의 무시한 영향 정량화하기
+
+Nonatomic 모형을 N명으로 연결하려면 동시 결정·독립적인 사적 무작위화와 $\mu$에 정확히 맞는 초기 집단 비율을 명시해야 한다. 두 도착 비용이 질량에 L-Lipschitz라고 하자. 여기서는 $L=|a|$다. 일관된 nonatomic 최적 정책의 목표 질량을 $m^*$라 하면 유한 무작위 질량 M의 평균은 $m^*$, 분산은 최대 $1/(4N)$이다.
+
+$m^*$로 질량을 고정하면 지원하는 모든 행동이 최적이다. 한 사람의 행동 변경이 실제 질량을 바꾸는 양은 최대 $1/N$이다. 따름·이탈 비용을 각각 고정 질량 비용과 비교하면
+
+$$\text{expected unilateral gain}\le2L\mathbb E|M-m^*|+L/N
+\le L/\sqrt N+L/N
+$$
+
+이다. 명시한 시간 순서의 기대 근사 Nash 경계이며 표본 경로나 일반 PDE 수렴 인증은 아니다. 남들의 현재 추출을 모두 본 뒤 이탈한다면 정보 모형이 바뀐다.
+
+a=1,b=1/2,k=0, 두 집단 모두 독립적으로 최종 1 확률 1/4를 쓰자. Nonatomic 균형 질량은 1/4지만 자기 원자 질량까지 계산하면 유한 게임의 정확한 개선량은 $1/(8N)$다.
+
+| N | 정확한 기대 이득 | 일반 경계 |
+|---|---:|---:|
+| 4 | 1/32 | 3/4 |
+| 16 | 1/128 | 5/16 |
+| 64 | 1/512 | 9/64 |
+
+![명시한 독립 인구 모형의 정확한 유한 플레이어 기대 이득과 보수적인 Lipschitz 경계를 비교한다.](/assets/learning/game-finite-population-ko.svg)
+
+```python
+from fractions import Fraction as F
+from math import comb,isqrt
+q=F(1,4)
+for N in [4,16,64]:
+    probabilities=[F(comb(N-1,k))*q**k*(1-q)**(N-1-k) for k in range(N)]
+    assert sum(probabilities)==1
+    cost0=sum(prob*(F(15,4)-F(k,N)) for k,prob in enumerate(probabilities))
+    cost1=sum(prob*(F(13,4)+F(k+1,N)) for k,prob in enumerate(probabilities))
+    follow=(1-q)*cost0+q*cost1
+    gain=follow-min(cost0,cost1); bound=F(1,isqrt(N))+F(1,N)
+    assert gain==F(1,8*N) and gain<=bound
+    assert cost0==F(7,2)+F(1,4*N)
+    assert cost1==F(7,2)+F(3,4*N)
+    print(N,gain,bound)
+```
+
+이 예제는 비용이 아핀이라 일반 경계보다 더 정확하다. 인구 선택의 상관이나 초기 비율 불일치에는 새 오차 분석이 필요하다. N만 늘린다고 그 가정들을 무시할 수는 없다.
+
 ## 확인 문제와 해설
 
 문제 1. a=1,b=3/5,k=1/5,mu=4/5에서 m=3/10의 처음 1 집단 무차별 조건과 계획 최적 m=2/5를 유도하세요.

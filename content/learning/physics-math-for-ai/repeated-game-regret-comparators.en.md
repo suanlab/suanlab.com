@@ -132,6 +132,40 @@ The block opponent switches at floor(planned horizon/2). Changing the horizon ch
 
 All summary rewards, comparator reruns and curves use only the displayed prefix. The horizontal curve coordinate counts completed rounds, while the history table uses zero-based round labels. Changing a queried round or discount does not change the actual action sequence. These distinctions make prefix experiments reproducible and prevent accidental use of future evidence.
 
+## Research extension: noisy public monitoring changes cooperation incentives
+
+Extend the infinite dilemma analytically, keeping cooperative reward3, deviation reward5 and punishment reward1. In the cooperative public state, a bad public signal occurs with probability $\alpha$ under cooperation and $\beta$ after one unilateral defection. A bad signal starts permanent mutual defection. Signals are public and their conditional probabilities are known; this is not the native previous-action copy rule.
+
+For discount $d<1$, punishment value is $V_P=1/(1-d)$. Cooperation satisfies $V_C=3+d[(1-\alpha)V_C+\alpha V_P]$, hence $V_C-V_P=2/[1-d(1-\alpha)]$. The one-shot incentive condition is
+
+$$2\le d(\beta-\alpha)(V_C-V_P)
+\quad\Longleftrightarrow\quad d(1+\beta-2\alpha)\ge1.
+$$
+
+Punishment is credible because mutual defection is stage Nash. With the stated public strategy and monitoring model, these continuation inequalities verify the perfect public equilibrium incentives; a cooperative trace alone does not.
+
+| False-alarm $\alpha$ | Detection $\beta$ | Minimum discount |
+|---|---:|---:|
+| 0 | 1 | 1/2 |
+| 1/10 | 1 | 5/9 |
+| 1/10 | 2/5 | 5/6 |
+
+```python
+from fractions import Fraction as F
+for alpha,beta,threshold in [(F(0),F(1),F(1,2)),(F(1,10),F(1),F(5,9)),(F(1,10),F(2,5),F(5,6))]:
+    assert threshold==1/(1+beta-2*alpha)
+    for discount in [threshold/2,threshold,(1+threshold)/2]:
+        punishment=1/(1-discount)
+        cooperation=punishment+2/(1-discount*(1-alpha))
+        deviation=5+discount*((1-beta)*cooperation+beta*punishment)
+        assert cooperation==3+discount*((1-alpha)*cooperation+alpha*punishment)
+        assert (cooperation>=deviation)==(discount>=threshold)
+    print(alpha,beta,threshold)
+assert 1+F(3,10)-2*F(1,5)<1
+```
+
+If $\beta\le2\alpha$, no discount below one satisfies this construction's condition. This is failure of this particular trigger scheme, not a theorem that every form of cooperation is impossible. Imperfect monitoring changes the information model, so the native perfect-monitoring calculation and finite traces remain separate.
+
 ## Exercises with explained solutions
 
 Exercise1: compute all four rounds of the reactive example, then calculate both fixed replay rewards and both regenerated constant-policy rewards.

@@ -112,6 +112,41 @@ Utilities encode each player's preferences over modeled lotteries. They need not
 
 The experiment computes distributions and expectations. It does not certify a Nash equilibrium, a correlated equilibrium, an incentive-compatible recommendation system or convergence of any learning algorithm. A feasible correlated table need not satisfy the incentive constraints of correlated equilibrium. Those distinctions matter when extending these ingredients to multi-agent learning.
 
+## Research extension: strategic equivalence does not preserve welfare rankings
+
+A broader invariant than a common utility offset is
+
+$$u_i'(a_i,a_{-i})=\alpha_i u_i(a_i,a_{-i})+h_i(a_{-i}),\qquad\alpha_i>0.
+$$
+
+Against any fixed opponent mixture, the added term has the same expectation for every own action. Every unilateral utility difference is multiplied by the positive $\alpha_i$. Thus best responses and the complete Nash set are unchanged. A transformation depending on the player's own action does not have this guarantee.
+
+For the coordination game, keep Player2's payoffs unchanged and add three to Player1's payoff whenever Player2 chooses action1. The row matrix changes from $(2,0;0,1)$ to $(2,3;0,4)$. Its action difference remains $3q-1$. Nevertheless the sum of utilities at the two pure equilibria reverses order:
+
+| Profile $(p,q)$ | Original utility sum | Transformed utility sum |
+|---|---:|---:|
+| (1,1) | 4 | 4 |
+| (1/3,1/3) | 4/3 | 10/3 |
+| (0,0) | 2 | 5 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+A=[2,0,0,1]; B=A[:]; transformed=[2,3,0,4]
+def utility(M,p,q):
+    masses=[p*q,p*(1-q),(1-p)*q,(1-p)*(1-q)]
+    return sum(m*x for m,x in zip(masses,M))
+for p,q in product([F(0),F(1,3),F(1,2),F(1)],repeat=2):
+    for deviation in [F(0),F(1)]:
+        assert utility(A,deviation,q)-utility(A,p,q)==utility(transformed,deviation,q)-utility(transformed,p,q)
+for p,q,old,new in [(F(1),F(1),F(4),F(4)),(F(1,3),F(1,3),F(4,3),F(10,3)),(F(0),F(0),F(2),F(5))]:
+    assert utility(A,p,q)+utility(B,p,q)==old
+    assert utility(transformed,p,q)+utility(B,p,q)==new
+    print(p,q,old,new)
+```
+
+This is a modeling warning for multi-agent benchmarks: identical strategic predictions do not identify a scientifically meaningful welfare scale. Interpersonal comparisons need their own justification. The construction is auxiliary; native payoff matrices remain unchanged. Equilibrium invariance also does not guarantee identical learning trajectories for updates that depend on payoff magnitudes.
+
 ## Exercises with explained solutions
 
 Exercise1: p=0.7 and q=0.4. Find the allowed interval for s, the independent joint table and P(C0|R0) under independence.

@@ -128,6 +128,50 @@ A=(4,0;0,3)이면 두 최적 확률은 3/7이고 값은 12/7입니다. 어떤 n/
 
 존재나 쌍대성 정리는 특정 상승·하강 알고리즘의 수렴도 증명하지 않습니다. 제로섬 학습에는 업데이트 규칙과 안정성 가정, 별도의 수렴 분석이 필요합니다.
 
+## 연구 확장: 모형 오차에도 유효한 minimax 인증
+
+$|A_{ij}-\widehat A_{ij}|\le\delta$이면 모든 혼합 기대 보수의 변화는 $\delta$ 이하다. 먼저 최소화 안에, 다음 최대화 안에 이 경계를 적용하면 $|v(A)-v(\widehat A)|\le\delta$다. 최적 전략 집합이 연속적으로 움직이지 않아도 값에는 Lipschitz 경계가 있다.
+
+어떤 조회 혼합에서도 더 일반적으로
+
+$$L_{\widehat A}(p)-\delta\le v(A)\le U_{\widehat A}(q)+\delta,\qquad
+U_A(q)-L_A(p)\le U_{\widehat A}(q)-L_{\widehat A}(p)+2\delta
+$$
+
+다. 따라서 추정 게임의 정확한 안장점은 참 게임에서 쌍대 간극이 최대 $2\delta$인 프로필이다. 가정은 원소별 오차 보장이며 학습 모형을 맞췄다는 이유만으로 신뢰 구간이 생기지는 않는다.
+
+추정 행렬이 0이고 조회가 $p=q=1$인 경우 계수가 sharp함을 보인다. 참 행렬을 $(0,-\delta;\delta,0)$로 두면 값은 여전히 0이지만 두 사람이 각각 $\delta$만큼 개선할 수 있다.
+
+| $\delta$ | 추정 간극 | 참 간극 |
+|---|---:|---:|
+| 0 | 0 | 0 |
+| 1/100 | 0 | 1/50 |
+| 1/4 | 0 | 1/2 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+def value(A):
+    a,b,c,d=A; candidates=[F(0),F(1)]; slope=a-c-b+d
+    if slope:
+        root=(d-c)/slope
+        if 0<=root<=1:candidates.append(root)
+    return max(min(p*a+(1-p)*c,p*b+(1-p)*d) for p in candidates)
+for delta in [F(0),F(1,100),F(1,4)]:
+    for levels in product([-1,0,1],repeat=4):
+        A=[delta*x for x in levels]
+        assert abs(value(A))<=delta
+        for p,q in product([F(0),F(1,2),F(1)],repeat=2):
+            lower=min(p*A[0]+(1-p)*A[2],p*A[1]+(1-p)*A[3])
+            upper=max(q*A[0]+(1-q)*A[1],q*A[2]+(1-q)*A[3])
+            assert upper-lower<=2*delta
+    A=[F(0),-delta,delta,F(0)]
+    assert value(A)==0 and max(A[0],A[2])-min(A[0],A[1])==2*delta
+    print(delta,2*delta)
+```
+
+코드는 0 행렬의 세 수준 섭동을 독립적으로 모두 푼다. 보조 불확실성 모형이며 기존 정확한 정수 계산이 다른 행렬의 참값까지 인증하는 것은 아니다. 값의 강건 경계와 전략 유인의 강건 경계는 별도로 해석하자.
+
 ## 연습 문제와 해설
 
 문제 1: 상반 보수 행렬에서 p=3/4,q=1/4의 L,U,F와 두 일방 이득을 구하세요.

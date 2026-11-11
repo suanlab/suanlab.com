@@ -125,6 +125,41 @@ $$
 
 다음 단원의 Markov 팀 게임에서는 특성함수의 가치를 나누는 대신, 공동 행동으로 변하는 시스템을 어떻게 개선할지 묻습니다. 협력이라는 단어를 공유해도 모형의 기본 요소와 보장은 다릅니다.
 
+## 연구 확장: 균형 잡힌 연합 가중치로 core 인증하기
+
+비어 있지 않은 연합에 비음수 가중치 $\lambda_S$를 주고 각 플레이어의 덮임 합을 $\sum_{S\ni i}\lambda_S=1$로 맞추자. Core 배분의 연합 제약들을 가중 합하면
+
+$$\sum_S\lambda_Sv(S)\le\sum_i x_i=v(N)
+$$
+
+다. 모든 이런 가중치에서 성립하는 것이 balancedness이며 유한 이전 가능 효용 게임에서는 충분조건이기도 하다. 전체 연합 N까지 모든 비공집합 연합의 하한을 제약으로 두고, 부호가 자유인 x의 합을 최소화하자. 쌍대는 덮임 등식 아래 가중 가치 합의 최대화다. 원문제는 좌표를 충분히 크게 두어 가능하고 전체 연합 제약으로 아래가 유계다. LP 쌍대성에서 모든 balanced 청구가 v(N) 이하일 때 정확히 최솟값 v(N)을 얻어 core 배분이 존재한다.
+
+다수결에서 각 쌍의 가치를 $6s$라 하고 세 쌍에 1/2씩 주면 각 플레이어를 한 번 덮지만 청구는 $9s>6s$다. 진부분 연합 제약에 공통의 비음수 $\epsilon$ 위반을 허용하면 합에서 $\epsilon\ge2s$가 필요하며, 균등 배분 $(2s,2s,2s)$가 이를 달성한다.
+
+| 배율 s | 전체 가치 | 균형 쌍 청구 | 최소 비음수 완화 |
+|---|---:|---:|---:|
+| 1 | 6 | 9 | 2 |
+| 2 | 12 | 18 | 4 |
+| 3 | 18 | 27 | 6 |
+
+```python
+from fractions import Fraction as F
+pairs=[3,5,6]; balanced={S:F(1,2) for S in pairs}
+assert all(sum(w for S,w in balanced.items() if S&(1<<i))==1 for i in range(3))
+for scale in [1,2,3]:
+    worth=[6*scale if S.bit_count()>=2 else 0 for S in range(8)]
+    claim=sum(w*worth[S] for S,w in balanced.items()); total=worth[7]
+    assert claim==9*scale and claim>total
+    epsilon=2*scale; allocation=[2*scale]*3
+    assert sum(allocation)==total
+    for S in range(1,7):
+        assert sum(x for i,x in enumerate(allocation) if S&(1<<i))>=worth[S]-epsilon
+    assert F(3*6*scale-2*total,3)==epsilon
+    print(scale,total,claim,epsilon)
+```
+
+빈 core의 판정을 근사 안정성의 크기로 확장한다. 여기서는 epsilon을 비음수로 제한하며 일부 least-core 관례는 음수도 허용한다. 기존 화면은 정확한 core를 계속 보여 주며 완화 집합으로 대신하지 않는다.
+
 ## 확인 문제와 해설
 
 문제 1. 장갑 게임에서 연합 {0,2}의 slack을 Shapley 배분과 core 배분에서 각각 구하세요.

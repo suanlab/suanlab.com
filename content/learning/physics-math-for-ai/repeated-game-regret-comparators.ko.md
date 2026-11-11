@@ -132,6 +132,40 @@ $$
 
 모든 합계·비교 재실행·곡선은 표시한 접두 구간만 사용합니다. 곡선의 가로축은 완료 라운드 수이고 이력 표는 0부터 시작하는 라운드 번호입니다. 조회 라운드나 할인만 바꿔서는 실제 행동열이 바뀌지 않습니다. 이런 구분으로 실험을 재현하고 미래 증거가 섞이는 것을 막습니다.
 
+## 연구 확장: 공적 관측의 잡음이 협력 유인을 바꾼다
+
+무한 딜레마를 보조적으로 확장하되 협력 보수 3, 이탈 보수 5, 처벌 보수 1은 유지하자. 협력 공적 상태에서 나쁜 공적 신호의 확률은 협력하면 $\alpha$, 한 사람만 배신하면 $\beta$다. 나쁜 신호 뒤에는 영원히 둘 다 배신한다. 신호는 공적으로 공유되고 조건부 확률은 알려져 있다. 기존 이전 행동 복사 규칙과는 다르다.
+
+할인 $d<1$에서 처벌 가치는 $V_P=1/(1-d)$이고, $V_C=3+d[(1-\alpha)V_C+\alpha V_P]$이므로 $V_C-V_P=2/[1-d(1-\alpha)]$다. 한 번 이탈의 유인 조건은
+
+$$2\le d(\beta-\alpha)(V_C-V_P)
+\quad\Longleftrightarrow\quad d(1+\beta-2\alpha)\ge1
+$$
+
+이다. 처벌의 상호 배신은 단계 Nash이므로 신뢰 가능하다. 명시한 공적 전략·관측 모형에서는 이 연속 가치 부등식으로 perfect public equilibrium의 유인을 확인한다. 협력 이력만 보고 얻는 인증은 아니다.
+
+| 오경보 $\alpha$ | 탐지 $\beta$ | 최소 할인 |
+|---|---:|---:|
+| 0 | 1 | 1/2 |
+| 1/10 | 1 | 5/9 |
+| 1/10 | 2/5 | 5/6 |
+
+```python
+from fractions import Fraction as F
+for alpha,beta,threshold in [(F(0),F(1),F(1,2)),(F(1,10),F(1),F(5,9)),(F(1,10),F(2,5),F(5,6))]:
+    assert threshold==1/(1+beta-2*alpha)
+    for discount in [threshold/2,threshold,(1+threshold)/2]:
+        punishment=1/(1-discount)
+        cooperation=punishment+2/(1-discount*(1-alpha))
+        deviation=5+discount*((1-beta)*cooperation+beta*punishment)
+        assert cooperation==3+discount*((1-alpha)*cooperation+alpha*punishment)
+        assert (cooperation>=deviation)==(discount>=threshold)
+    print(alpha,beta,threshold)
+assert 1+F(3,10)-2*F(1,5)<1
+```
+
+$\beta\le2\alpha$이면 이 구성에서는 1 미만의 어떤 할인도 조건을 만족하지 못한다. 이 특정 처벌 규칙의 실패이지 모든 협력이 불가능하다는 정리는 아니다. 불완전 관측은 정보 모형을 바꾸므로 기존 완전 관측 계산과 유한 이력 실험은 별도로 유지한다.
+
 ## 연습 문제와 해설
 
 문제 1: 반응 상대 예제의 네 라운드를 계산하고 두 고정 재생 보수와 두 재실행 보수를 구하세요.

@@ -173,6 +173,47 @@ A finite-player system gives each individual nonzero influence. Establishing an 
 
 Likewise, equilibrium computation, solver stability, mean-field control and physical mean-field closure are distinct tasks. The sources provide mathematical frameworks, not a declaration of today's open-problem status. The interactive certificates concern the complete rational solution set of the stated small game and its separate planner problem.
 
+## Research extension: quantify a finite player's neglected influence
+
+To bridge the nonatomic model to N players, specify simultaneous decisions with independent private randomization and initial cohort proportions matching $\mu$ exactly. Suppose both terminal costs are L-Lipschitz in mass; here $L=|a|$. Use a consistent nonatomic optimal policy with target mass $m^*$. Its random finite mass M has mean $m^*$ and variance at most $1/(4N)$.
+
+Freezing mass at $m^*$ makes every supported action optimal. Changing one agent's action changes actual mass by at most $1/N$. Comparing follow/deviation costs with their frozen versions gives
+
+$$\text{expected unilateral gain}\le2L\mathbb E|M-m^*|+L/N
+\le L/\sqrt N+L/N.
+$$
+
+This is an expected approximate-Nash bound under the stated timing, not a sample-path certificate or a general PDE convergence theorem. Observing everyone else's current draws before deviating would change the information model.
+
+Take a1,b1/2,k0 and independent end1 probability1/4 for both cohorts. The nonatomic equilibrium mass is1/4. Accounting for the agent's own atomic mass gives an exact finite-game gain $1/(8N)$:
+
+| N | Exact expected gain | Generic bound |
+|---|---:|---:|
+| 4 | 1/32 | 3/4 |
+| 16 | 1/128 | 5/16 |
+| 64 | 1/512 | 9/64 |
+
+![Exact expected finite-player gain and a conservative Lipschitz bound for the explicitly specified independent population model.](/assets/learning/game-finite-population-en.svg)
+
+```python
+from fractions import Fraction as F
+from math import comb,isqrt
+q=F(1,4)
+for N in [4,16,64]:
+    probabilities=[F(comb(N-1,k))*q**k*(1-q)**(N-1-k) for k in range(N)]
+    assert sum(probabilities)==1
+    cost0=sum(prob*(F(15,4)-F(k,N)) for k,prob in enumerate(probabilities))
+    cost1=sum(prob*(F(13,4)+F(k+1,N)) for k,prob in enumerate(probabilities))
+    follow=(1-q)*cost0+q*cost1
+    gain=follow-min(cost0,cost1); bound=F(1,isqrt(N))+F(1,N)
+    assert gain==F(1,8*N) and gain<=bound
+    assert cost0==F(7,2)+F(1,4*N)
+    assert cost1==F(7,2)+F(3,4*N)
+    print(N,gain,bound)
+```
+
+The exact example is sharper because its costs are affine. Correlated population choices or mismatched initial proportions require a new error analysis; merely increasing N does not justify ignoring those assumptions.
+
 ## Exercises and explained solutions
 
 Exercise1: at a1,b3/5,k1/5,mu4/5, verify private indifference for cohort1 at m3/10 and derive the planner's m2/5.

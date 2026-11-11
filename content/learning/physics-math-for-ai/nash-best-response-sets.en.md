@@ -103,6 +103,38 @@ Keep atoms satisfying both conditions. Their closures also satisfy them because 
 
 This construction exploits the special structure of a two-player, two-action game with bounded integer payoffs. It is not an algorithm claimed to solve every large multi-player game. Its independent tests compare region membership against direct pure-deviation inequalities, including degenerate games and non-query-grid rational points.
 
+## Research extension: payoff uncertainty certifies incentives, not nearby equilibria
+
+Suppose every entry of each estimated payoff matrix differs from truth by at most $\delta$. Any fixed mixed profile or unilateral deviation has expected-payoff error at most $\delta$, because its joint masses sum to one. Subtracting a current payoff from a deviation payoff therefore costs at most $2\delta$.
+
+Consequently an $\epsilon$-Nash profile of the estimated game is an $(\epsilon+2\delta)$-Nash profile of the true game. This statement bounds incentives at the same profile. It does not bound the distance to a particular true equilibrium, guarantee uniqueness, or establish the uniform matrix-error premise from average prediction error.
+
+The factor two is sharp. Let estimated payoffs be zero, let Player2 remain indifferent, and let Player1's true payoffs be $+\delta$ for action0 and $-\delta$ for action1, regardless of the column. Every estimated profile is Nash. A profile with Player1 choosing action1 has true improvement $2\delta$:
+
+| Entry error bound | Estimated unilateral gain | True unilateral gain |
+|---|---:|---:|
+| 0 | 0 | 0 |
+| 1/100 | 0 | 1/50 |
+| 1/10000 | 0 | 1/5000 |
+
+```python
+from fractions import Fraction as F
+for delta in [F(0),F(1,100),F(1,10000)]:
+    estimated=[F(0),F(0)]; true=[delta,-delta]
+    estimated_gain=max(estimated)-estimated[1]
+    gain=max(true)-true[1]
+    assert max(abs(a-b) for a,b in zip(estimated,true))<=delta
+    assert gain==estimated_gain+2*delta
+    print(delta,estimated_gain,gain)
+for p in [F(0),F(1,3),F(1,2),F(1)]:
+    for delta in [F(1,100),F(-1,100)]:
+        gain=max(delta,-delta)-(p*delta+(1-p)*(-delta))
+        assert 0<=gain<=2*abs(delta)
+print('Uniform incentive bounds do not imply equilibrium-location continuity')
+```
+
+An arbitrarily small positive perturbation selects action0 from the entire estimated equilibrium interval; a negative one selects action1. Thus equilibrium locations can change dramatically while the incentive bound remains valid. These auxiliary real perturbations do not change the native integer-payoff catalog.
+
 ## Exercises and explained solutions
 
 Exercise1: in coordination, query p=q=1/2. Is it equilibrium? Compute a profitable pure deviation and the maximum gain.

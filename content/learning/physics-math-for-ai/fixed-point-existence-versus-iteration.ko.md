@@ -163,6 +163,39 @@ $$
 
 T>0 평균은 0..T−1 상태를 사용하고 마지막 T 상태를 제외합니다. T=0에는 평균이나 조회 전이가 없고 초기 상태는 남습니다. 조회는 T−1로 제한되며 관찰만 바꿉니다. λ는 보조 수축에만 영향을 줍니다. 다른 사상의 동역학을 표시용 입력이 바꾸지 않습니다.
 
+## 연구 확장: Nash 사상의 이동량을 유인 경계로 바꾸기
+
+이 특정 두 행동 Nash 사상에서 순수 보수 차이를 d, 열등 행동의 확률을 r, 일방 이득을 g=|d|r라 하자. 좋은 행동만 양의 개선량을 가지므로 직접 정규화하면 좌표 이동량은
+
+$$\delta=\frac{|d|r^2}{1+|d|r},\qquad g^2=|d|\delta(1+g)
+$$
+
+다. 보수 범위가 M 이하면 |d|와 g도 M 이하여서 $g\le\sqrt{M(1+M)\delta}$다. 더 정확한 상한은 $g^2-M\delta g-M\delta\le0$의 양의 근이다. 두 참가자에는 최대 좌표 이동과 각자의 보수 범위를 적용한다. 정량적 변환은 이 정규 사상의 성질이며 임의의 보조 고정점 반복에 적용되는 것이 아니다.
+
+순수 균형 가까이에서는 제곱근 차수가 자연스럽다. 순수 보수가 1과 0이면 g=r이지만 이동량은 r의 이차 규모다.
+
+| 열등 확률 r | 이득 g | 사상 이동 |
+|---|---:|---:|
+| 1/10 | 1/10 | 1/110 |
+| 1/100 | 1/100 | 1/10100 |
+| 1/1000 | 1/1000 | 1/1001000 |
+
+```python
+from fractions import Fraction as F
+for denominator in [10,100,1000]:
+    r=F(1,denominator); p=1-r; gain=r
+    image=(p+gain)/(1+gain); displacement=image-p
+    assert displacement==r*r/(1+r)
+    assert gain*gain==displacement*(1+gain)
+    assert gain*gain<=2*displacement
+    alpha=F(1,100); damped=(1-alpha)*p+alpha*image
+    assert damped-p==alpha*displacement
+    assert gain/displacement==denominator+1
+    print(r,gain,displacement)
+```
+
+r이 0으로 갈 때 균일한 유한 선형 이득/이동 비율은 존재하지 않는다. 사상을 alpha로 감쇠하면 현재 유인은 그대로인데 이동량만 alpha배가 되므로 올바른 변환에는 먼저 alpha로 나누어야 한다. 보조 분수 예제는 기존 12분율 입력 밖까지 확장하며 부동소수점 궤적의 새 수렴 보장을 뜻하지 않는다.
+
 ## 연습 문제와 해설
 
 1. 조정 게임의 Nash를 모두 쓰세요. 두 순수 조정 꼭짓점 (0,0),(1,1)과 혼합점 (1/3,1/3)입니다. 존재 정리가 하나를 골라 주거나 유일성을 뜻하지 않습니다.

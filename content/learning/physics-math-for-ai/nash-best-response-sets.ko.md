@@ -103,6 +103,38 @@ $$
 
 이 구성은 정수 보수가 유계인 두 플레이어·두 행동 게임의 구조를 사용합니다. 모든 큰 다중 플레이어 게임을 푼다는 주장은 아닙니다. 독립 검사에서는 퇴화 게임과 조회 격자 밖 유리수 점도 포함해 반환 영역의 소속과 순수 이탈 부등식을 직접 비교합니다.
 
+## 연구 확장: 보수 불확실성은 유인을 제한하지만 가까운 균형을 보장하지 않는다
+
+각 추정 보수 행렬의 모든 원소가 참값과 최대 $\delta$만큼 다르다고 하자. 고정한 혼합 전략이나 일방 이탈의 기대 보수 오차도 $\delta$ 이하다. 결합 확률 합이 1이기 때문이다. 이탈 보수에서 현재 보수를 빼면 오차는 최대 $2\delta$다.
+
+따라서 추정 게임의 $\epsilon$-Nash는 참 게임의 $(\epsilon+2\delta)$-Nash다. 이는 같은 프로필의 유인 경계이며 특정 참 균형까지의 거리나 유일성을 보장하지 않는다. 평균 예측 오차만으로 행렬 전체의 균일 오차 가정을 확보한 것도 아니다.
+
+계수 2는 개선할 수 없다. 추정 보수는 모두 0이고 P2는 계속 무차별이라고 하자. P1의 참 보수만 열과 관계없이 행동 0에 $+\delta$, 행동 1에 $-\delta$다. 추정 게임에서는 모든 프로필이 Nash지만 P1이 행동 1을 고른 프로필의 참 개선량은 $2\delta$다.
+
+| 원소별 오차 경계 | 추정 일방 이득 | 참 일방 이득 |
+|---|---:|---:|
+| 0 | 0 | 0 |
+| 1/100 | 0 | 1/50 |
+| 1/10000 | 0 | 1/5000 |
+
+```python
+from fractions import Fraction as F
+for delta in [F(0),F(1,100),F(1,10000)]:
+    estimated=[F(0),F(0)]; true=[delta,-delta]
+    estimated_gain=max(estimated)-estimated[1]
+    gain=max(true)-true[1]
+    assert max(abs(a-b) for a,b in zip(estimated,true))<=delta
+    assert gain==estimated_gain+2*delta
+    print(delta,estimated_gain,gain)
+for p in [F(0),F(1,3),F(1,2),F(1)]:
+    for delta in [F(1,100),F(-1,100)]:
+        gain=max(delta,-delta)-(p*delta+(1-p)*(-delta))
+        assert 0<=gain<=2*abs(delta)
+print('Uniform incentive bounds do not imply equilibrium-location continuity')
+```
+
+아무리 작은 양의 섭동도 전체 추정 균형 구간에서 행동 0만 남기고, 음의 섭동은 행동 1만 남긴다. 균형 위치가 크게 바뀌어도 유인 경계는 유효하다. 이 실수 보수 섭동은 보조 예제이며 기존 정수 보수 목록은 그대로다.
+
 ## 연습 문제와 해설
 
 문제 1: 조정 게임에서 p=q=1/2는 균형인가요? 유리한 순수 이탈과 최대 이득을 구하세요.

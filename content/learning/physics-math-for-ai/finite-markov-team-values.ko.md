@@ -145,6 +145,49 @@ $$
 
 작은 정확한 모형은 구현을 확인하고 조정 함정을 구성하며 즉시 보수와 연속 유인을 구분하는 데 유용합니다. 하지만 그것만으로 다중 에이전트 학습이 Nash에 도달하거나 팀 최적을 찾거나 더 큰 물리 시스템에 전이된다고 결론 내릴 수 없습니다.
 
+## 연구 확장: 엄격한 비동기 개선에는 유한 잠재함수가 있다
+
+이 유한 할인 공통 보수 게임을 결정론적 정상 정책으로 제한하고, 모든 상태에 양의 질량을 주는 고정 분포 $\nu$를 고르자. 두 사람이 공유하는 스칼라는 $\Phi(\pi)=\nu^TV^\pi$다. 정상 상대에 대한 정확한 MDP 최적 반응은 모든 시작 상태 가치를 약하게 높인다. 현재 정책이 전체 상태 최적 반응이 아니면 한 성분은 엄격히 좋아지므로 full support에서 $\Phi$도 엄격히 커진다.
+
+한 사람씩 갱신하고 엄격한 개선이 없으면 기존 정책을 유지하자. 여기의 결정론적 정상 공동 정책은 16개뿐이다. 엄격히 증가하는 잠재함수는 프로필을 다시 방문할 수 없어 최대 15번의 엄격 변경 뒤 전체 상태 정상 Nash에 도달한다. 팀 최적을 보장하지 않으며 동시·근사 반응에 그대로 적용되지 않는다.
+
+상태 보존 모형, 할인 1/2에서 두 상태 모두 행동이 어긋난 상태로 시작하자. 잠재함수는 두 상태 가치의 평균이다.
+
+| 갱신 규칙 | 결과 | 잠재함수 |
+|---|---|---:|
+| 행만 반응 | 둘 다 행동 1 | 4 |
+| 열만 반응 | 둘 다 행동 0 | 6 |
+| 둘이 동시 반응 | 불일치만 영원히 교환 | 0 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+policies=list(product([0,1],repeat=2)); rewards=[[4,0,0,3],[2,0,0,1]]
+def potential(p,q):return sum(F(rewards[s][2*p[s]+q[s]]) for s in range(2))
+def response(player,p,q):
+    candidates=[(potential(a,q),a) if player==0 else (potential(p,a),a) for a in policies]
+    best=max(v for v,a in candidates)
+    return next(a for v,a in candidates if v==best)
+for start_p,start_q in product(policies,repeat=2):
+    p,q=start_p,start_q; changes=0
+    while True:
+        changed=False
+        for player in range(2):
+            a=response(player,p,q); newp,newq=(a,q) if player==0 else (p,a)
+            if potential(newp,newq)>potential(p,q):p,q=newp,newq;changes+=1;changed=True
+        if not changed:break
+    assert changes<=15
+    assert potential(response(0,p,q),q)==potential(p,q)
+    assert potential(p,response(1,p,q))==potential(p,q)
+p,q=(0,0),(1,1); first=(response(0,p,q),response(1,p,q))
+assert first==((1,1),(0,0))
+assert (response(0,*first),response(1,*first))==(p,q)
+assert potential((1,1),(1,1))==4 and potential((0,0),(0,0))==6
+print('16 asynchronous starts terminate; simultaneous mismatch has period two')
+```
+
+이는 보조 정책 개선 이력이며 기존 평가 화면에 학습 알고리즘을 추가한 것은 아니다. 엄격성도 필요하다. 같은 가치의 정책을 임의로 계속 바꾸면 유한 평탄면에서도 순환할 수 있다. Full-support 잠재함수는 다른 상태의 유리한 반응을 한 초기 상태 검사로 놓칠 수 있는 이유도 설명한다.
+
 ## 확인 문제와 해설
 
 문제 1. 조정 함정의 상태 0에서 현재 가치, 한 번 강제한 Q00, 공동 최적 가치를 계산하고 차이를 설명하세요.

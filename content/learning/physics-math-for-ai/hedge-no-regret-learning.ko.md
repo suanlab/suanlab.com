@@ -151,6 +151,47 @@ $$
 
 조회 라운드는 표시된 마지막 라운드로 제한합니다. 빈 접두 구간에는 선택·피드백·평균 regret·평균 게임 간극을 만들어 넣지 않습니다. 아직 실행하지 않은 첫 다음 혼합은 사전확률로 정의할 수 있습니다. eta 0의 Hedge는 사전확률 고정 정책이며 양의 eta 상한은 표시하지 않습니다. FTL에도 Hedge 상한은 없습니다. 아래 곡선은 signed regret과 가능한 이론 상한이며, 표본 보수 경로가 아닙니다.
 
+## 연구 확장: regret은 주변분포의 곱이 아니라 공동분포를 제한한다
+
+반복된 순수 공동 행동마다 질량 $1/T$를 주는 경험 법칙을 $\mu_T$라 하자. 참가자 i의 외부 regret을 다시 쓰면
+
+$$\max_b\mathbb E_{\mu_T}[u_i(b,a_{-i})-u_i(a)] = R_T^i/T
+$$
+
+다. 따라서 각 $R_T^i/T\le\epsilon$이면 $\epsilon$ coarse correlated equilibrium(CCE)이다. 이탈은 추천을 보기 전에 고정한다. Correlated equilibrium은 추천 행동에 따라 이탈할 수 있어, 모든 추천 c와 대안 b의 비정규화 제약에 $1\{a_i=c\}$가 들어간다. Swap regret은 이 더 강한 비교와 연결된다.
+
+분수 혼합으로 동시에 실행했다면 해당 공동 법칙은 라운드별 곱 법칙의 평균이며, 일반적으로 주변 평균들의 곱과 다르다. 조정 균형 00과 11을 번갈아 실행하자. 각 평균 보수는 3/2, 최고 고정 재생 보수는 1이므로 signed regret은 음수다. 경험 법칙은 CE까지 만족하지만, 같은 공정 주변분포를 독립 곱으로 바꾸면 보수는 3/4이고 일방 이득은 1/4다.
+
+| 짝수 기간 | 각 signed regret | 독립 평균의 Nash 이득 |
+|---|---:|---:|
+| 2 | -1 | 1/4 |
+| 4 | -2 | 1/4 |
+| 8 | -4 | 1/4 |
+
+![경험적인 대각 공동 실행과 같은 공정 주변분포의 독립 곱은 서로 다른 셀 질량과 효용을 만든다.](/assets/learning/game-joint-product-ko.svg)
+
+```python
+from fractions import Fraction as F
+from itertools import product
+A=[2,0,0,1]; mu=[F(1,2),F(0),F(0),F(1,2)]
+for player,recommended,alternative in product(range(2),range(2),range(2)):
+    gain=F(0)
+    for a,b in product(range(2),repeat=2):
+        own=a if player==0 else b
+        if own==recommended:
+            changed=2*alternative+b if player==0 else 2*a+alternative
+            gain+=mu[2*a+b]*(A[changed]-A[2*a+b])
+    assert gain<=0
+for T in [2,4,8]:
+    actual=F(3*T,2); fixed=max(T,F(T,2)); regret=fixed-actual
+    product_payoff=F(sum(A),4); best_response=F(1)
+    assert regret==F(-T,2) and product_payoff==F(3,4)
+    assert best_response-product_payoff==F(1,4)
+    print(T,regret,best_response-product_payoff)
+```
+
+이 구성 경로를 기존 Hedge가 생성했다고 주장하지 않는다. 기존 제로섬 평균 혼합 정리를 일반합 게임에 그대로 적용할 수 없는 이유를 보여 준다.
+
 ## 확인 문제와 해설
 
 문제 1. 균등 사전확률, eta 1, 고정 벡터 (1,0)의 첫 두 확률과 보수를 구하세요. 첫 확률부터 e/(1+e)를 쓰면 무엇이 잘못되나요?

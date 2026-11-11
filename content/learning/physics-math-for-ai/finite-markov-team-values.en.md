@@ -145,6 +145,49 @@ Partial observation changes which policies can depend on the true state. Correla
 
 A small exact model is useful for checking an implementation, formulating a coordination trap and separating immediate from continuation incentives. It does not by itself establish that a multi-agent training method reaches Nash, reaches the team optimum or transfers to a larger physical system.
 
+## Research extension: strict asynchronous improvement has a finite potential
+
+Restrict this finite discounted common-payoff game to deterministic stationary policies, and choose a fixed full-support state distribution $\nu$. The scalar $\Phi(\pi)=\nu^TV^\pi$ is shared by both players. Against a stationary opponent, an exact MDP best response weakly improves every starting-state value. If the current policy is not an all-state best response, some component improves strictly, so full support makes $\Phi$ strictly increase.
+
+Update one player at a time, and preserve its policy when there is no strict improvement. There are only16 joint deterministic stationary policies here. A strictly increasing potential cannot revisit a profile, so at most15 strict changes occur before all-state stationary Nash. This does not imply team optimality, and it does not apply unchanged to simultaneous or approximate responses.
+
+Use the state-preserving family at discount1/2 and start with mismatched actions at both states. The potential is the average of both state values:
+
+| Update rule | Result | Potential |
+|---|---|---:|
+| Row responds alone | Both choose action1 | 4 |
+| Column responds alone | Both choose action0 | 6 |
+| Both respond simultaneously | Mismatch swaps forever | 0 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+policies=list(product([0,1],repeat=2)); rewards=[[4,0,0,3],[2,0,0,1]]
+def potential(p,q):return sum(F(rewards[s][2*p[s]+q[s]]) for s in range(2))
+def response(player,p,q):
+    candidates=[(potential(a,q),a) if player==0 else (potential(p,a),a) for a in policies]
+    best=max(v for v,a in candidates)
+    return next(a for v,a in candidates if v==best)
+for start_p,start_q in product(policies,repeat=2):
+    p,q=start_p,start_q; changes=0
+    while True:
+        changed=False
+        for player in range(2):
+            a=response(player,p,q); newp,newq=(a,q) if player==0 else (p,a)
+            if potential(newp,newq)>potential(p,q):p,q=newp,newq;changes+=1;changed=True
+        if not changed:break
+    assert changes<=15
+    assert potential(response(0,p,q),q)==potential(p,q)
+    assert potential(p,response(1,p,q))==potential(p,q)
+p,q=(0,0),(1,1); first=(response(0,p,q),response(1,p,q))
+assert first==((1,1),(0,0))
+assert (response(0,*first),response(1,*first))==(p,q)
+assert potential((1,1),(1,1))==4 and potential((0,0),(0,0))==6
+print('16 asynchronous starts terminate; simultaneous mismatch has period two')
+```
+
+This auxiliary policy-improvement trace does not add a learning algorithm to the native evaluation panel. The strictness rule matters: allowing arbitrary equal-value switches can create cycles on a finite plateau. Full-support potential reasoning also explains why checking only an unvisited initial state can miss a profitable response elsewhere.
+
 ## Exercises and explained solutions
 
 Exercise1: compute current value, once-forced Q00 and team-optimal value at state0 in the coordination trap. Why are the three numbers different?
