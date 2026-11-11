@@ -23,6 +23,54 @@ $$
 
 아무리 잘 스케줄해도 전체 W개 작업을 P개보다 많이 동시에 실행할 수 없고 한 의존 경로를 건너뛸 수도 없습니다. 현재 구현은 매 tick의 시작에 모든 dependency가 끝난 task 중 index 순으로 최대 P개를 골라 실제 실행합니다. 이 greedy schedule이 항상 최적이라는 주장은 하지 않습니다. 각 task를 한 번만 실행했는지, child가 이전 tick에 끝났는지, 결과가 같은지를 독립 검사합니다.
 
+## 작업을 비워 두지 않는 스케줄에는 상한도 있다
+
+Unit-task DAG의 greedy list scheduler는 준비 작업이 P개 이상이면 P개를 실행한다. Tick을 full과 underfull로 나누자. Underfull에서는 준비 작업을 모두 실행해 남은 최장 경로를 최소 1 줄이므로 그런 tick은 최대 S개다. Full마다 P개,underfull마다 최소 하나를 세면
+
+$$
+\max(W/P,S)\le T_P\le W/P+(1-1/P)S.
+$$
+
+이상적 작업 모형의 부등식이며 ready 작업을 찾는 실제 CPU 시간이 아니다. Live 구현은 dependency 기록을 훑어 스케줄을 만들고 그 진단 비용을 unit DAG 작업으로 세지 않는다. 유용 병렬성 W/S는 메모리 비용이 없어도 processor를 더 늘려 효과가 사라지는 이유를 설명한다.
+
+![Processor 수별 실제 unit-task list 스케줄 tick과 work/span 상계를 비교하며 실측 시간이 아님을 구분하는 그림.](/assets/learning/algorithm-work-span-ko.svg)
+
+| N=8,bandwidth1의 P | 정수 하한 | 실제 List Tick |
+|---|---:|---:|
+| 1 | 36 | 36 |
+| 4 | 9 | 10 |
+| 16 | 3 | 4 |
+
+```python
+from fractions import Fraction as F
+tasks=[]
+for count in (2,3,3,3,3,3,3,2):
+    layer=[]
+    for _ in range(count):layer.append(len(tasks));tasks.append([])
+    while len(layer)>1:
+        nxt=[]
+        for k in range(0,len(layer),2):
+            if k+1==len(layer):nxt.append(layer[k])
+            else:nxt.append(len(tasks));tasks.append([layer[k],layer[k+1]])
+        layer=nxt
+depth=[]
+for deps in tasks:depth.append(1+max([depth[d] for d in deps],default=0))
+W,S=len(tasks),max(depth)
+for P in (1,4,16):
+    done=set();ticks=0
+    while len(done)<W:
+        ready=[i for i,deps in enumerate(tasks) if i not in done and all(d in done for d in deps)][:P]
+        assert ready;done.update(ready);ticks+=1
+    assert max(F(W,P),S)<=ticks<=F(W,P)+(1-F(1,P))*S
+    print(P,W,S,ticks)
+data=[1e16,1.,-1e16,1.];serial=0.
+for x in data:serial+=x
+balanced=(data[0]+data[1])+(data[2]+data[3])
+assert serial==1 and balanced==0 and sum(map(F,data))==2
+```
+
+독립 DAG 예제로 양쪽 bound를 확인한다. 산술 정확도도 별도 제약이다. 저장 수 (10¹⁶,1,−10¹⁶,1)의 순차 double 합은 1,지정한 균형 합은 0인데 정확 합은 2다. 트리가 오차 상계를 개선해도 모든 입력에서 더 정확한 것은 아니다. 작업 감소와 병렬성 증가가 재결합한 수치 계산의 검증을 대신하지 않는다.
+
 ## 손계산과 직접 풀기
 
 N=8, band 폭 1이면 양 끝 row는 각각 2개, 내부 여섯 row는 각각 3개 nonzero입니다. nnz=22, W=44-8=36, S=3입니다. P=1이면 36 tick이고 P=4의 하한은 9 tick입니다. 현재 greedy 실행은 10 tick으로 하한보다 한 tick 큽니다. 하한과 달라도 유효한 스케줄일 수 있습니다.

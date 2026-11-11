@@ -28,6 +28,44 @@ $$
 
 Miss만 세면 실제로 수정한 출력의 쓰기를 빠뜨립니다. 반대로 write-through나 non-temporal store 같은 다른 정책에는 같은 식을 그대로 적용할 수 없습니다. 현재 정책을 먼저 고정한 뒤 tile 크기와 용량을 바꾸세요.
 
+## Cold Cache Traffic 하한과 단조롭지 않은 Tile 선택
+
+Cold write allocation에서는 접근한 각 line을 최소 한 번 읽고,출력 cell이 있는 line은 축출 또는 마지막 flush에서 최소 한 번 써야 한다. 따라서 transfer 하한은 |lines(A∪B)|+|lines(B)|다. 두 배열이 line 정렬되고 L이 N²을 나누면 3N²/L이다. 할당이 경계 line을 공유하면 정렬 공식 대신 실제 line 집합을 써야 한다.
+
+같은 주소 trace의 fully associative LRU는 stack 성질을 갖는다. 용량 C에는 가장 최근 서로 다른 C개 line이 있으므로 C 증가가 hit를 miss로 바꾸지 않는다. 그러나 tile을 바꾸면 trace 자체가 달라져 큰 tile이 더 좋다는 결론은 아니다.
+
+| N=8,L=4,C=8의 Tile | Miss | 전체 Line Transfer |
+|---|---:|---:|
+| 1 | 80 | 144 |
+| 4 | 32 | 48 |
+| 8 | 80 | 144 |
+
+```python
+def simulate(tile):
+    N,L,C=8,4,8;cache=[];misses=writes=0
+    for ii in range(0,N,tile):
+        for jj in range(0,N,tile):
+            for i in range(ii,min(N,ii+tile)):
+                for j in range(jj,min(N,jj+tile)):
+                    for address,write in ((i*N+j,False),(N*N+j*N+i,True)):
+                        line=address//L
+                        found=next((k for k,(a,_) in enumerate(cache) if a==line),None)
+                        if found is not None:
+                            _,dirty=cache.pop(found);cache.append((line,dirty or write))
+                        else:
+                            misses+=1
+                            if len(cache)==C:writes+=cache.pop(0)[1]
+                            cache.append((line,write))
+    writes+=sum(dirty for _,dirty in cache)
+    return misses,misses+writes
+answers=[simulate(t) for t in (1,4,8)]
+assert answers==[(80,144),(32,48),(80,144)]
+assert answers[1][1]==3*8*8//4
+print(answers)
+```
+
+독립 read/write 시뮬레이터는 tile4에서 하한을 달성한다. 입력·출력 작업집합이 resident8개 line에 맞는 반면 전체 행렬 tile은 naive 순서를 재현한다. Cache 모형의 결과이며 실제 bandwidth·set 충돌·kernel fusion은 순위를 바꿀 수 있다. 올바른 traffic 하한이 실측 실행 시간 예측은 아니다.
+
 ## 손계산과 직접 풀기
 
 N=8, L=4, C=8에서 naive의 miss는 80개, 4×4 blocked는 32개입니다. 전체 A,B가 차지하는 고유 line은 32개라 후자는 compulsory line 수에 도달합니다. 쓰기까지 포함한 모델 byte traffic은 각각 4608과 1536입니다. 이는 이 구체적인 trace와 정책의 값이지 모든 실제 장치에서의 속도비가 아닙니다.

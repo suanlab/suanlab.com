@@ -26,6 +26,35 @@ $$
 
 The checksum consumes the results. Repeat the same configuration to observe variability. An interval below clock resolution can appear as zero; it is not replaced with an invented positive value. Other tabs, system load, browser version and JIT state affect measurements. No result is adjusted to force one method to win.
 
+## Keep paired timing samples and their measured settings
+
+The benchmark now exposes its actual seven trial pairs, first-run method, and measured N, target and repetitions. The table is shown only while those settings match the current task. Changing a declared cost weight leaves the measured task unchanged; changing N, the target or batch repetitions invalidates that measurement. These are provenance rules, not adjustments to timing values.
+
+Ratio of medians and median of paired ratios answer different questions. For the synthetic seven-pair data below, the former is 100 while the latter is 1. Neither set is a browser measurement. A paired ratio also becomes undefined when its denominator is a zero-duration reading; replacing zero by a guessed positive floor can create an arbitrary speedup.
+
+| Statistic on the synthetic data | Result |
+|---|---:|
+| Median linear batch | 100 |
+| Median binary batch | 1 |
+| Median paired linear/binary ratio | 1 |
+
+```python
+from statistics import median
+from fractions import Fraction as F
+linear=[1,1,100,100,100,100,100]
+binary=[1,1,1,1,100,100,100]
+ratio_of_medians=F(median(linear),median(binary))
+paired=[F(a,b) if b else None for a,b in zip(linear,binary)]
+assert all(x is not None for x in paired)
+median_ratio=median(paired)
+assert ratio_of_medians==100 and median_ratio==1
+print(median(linear),median(binary),ratio_of_medians,median_ratio)
+```
+
+Seven batches are not automatically seven independent draws: JIT state, thermal drift, background work and trial order can correlate them. Alternating order reduces one systematic imbalance without proving iid noise or a confidence interval. If each clock reading has absolute error at most q, an elapsed difference has error at most 2q; dividing by repetitions reduces that timing-resolution term per execution, but not every source of runtime variation.
+
+Publish the timed boundaries, raw samples, correctness checks and task metadata before interpreting a finite ranking. A timing experiment still cannot prove an asymptotic complexity class or calibrate the unrelated abstract cost units by changing a slider.
+
 ## Worked example and exercise
 
 For the last key in N=1024, linear search uses 1024 probes and binary uses eleven. With α=γ=1 and β=0, modeled costs are 1024 and eleven. With γ=500 and β=1000, binary cost becomes 6500, reversing the modeled ranking. That reversal is a result of declared weights, not a measured slowdown.

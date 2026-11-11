@@ -26,6 +26,44 @@ $$
 
 V는 고정 평균에 대한 제곱 오차 합입니다. 각 pair는 합을 보존하고 disagreement를 줄입니다. 고정된 연결 망에서 모든 edge가 반복적으로 선택되는 fairness가 필요합니다. 현재 순환 규칙은 이 유한 edge 집합을 빠뜨리지 않습니다. 아직 몇 번만 실행했다면 정확한 평균에 도달했다고 주장하지 않습니다.
 
+## 올바른 불변 평균이 있어야 Spectral 수축을 쓴다
+
+고정 대칭 stochastic W에서 x를 평균 Jx와 disagreement e=(I−J)x로 나누자. J=11ᵀ/N이다. 연결 망과 양의 diagonal에서는 상수 mode만 고유값 1이고 나머지 절댓값은 1보다 작다. 그 최댓값이 ρ이면
+
+$$
+\|x^k-Jx^0\|_2\le\rho^k\|x^0-Jx^0\|_2.
+$$
+
+통신 round당 오차 bound다. Ring과 complete는 round당 메시지 수가 다르다. 여섯 node ring의 고유값은 1/3+(2/3)cos(2πj/6)이므로 ρ=2/3이다. 두 triangle은 각 component가 평균에 도달해도 전체 component 차이의 고유값 1을 남긴다.
+
+![고정된 세 6-node 망의 정확 유리수 평균 갱신에서 directed 메시지 수에 따른 disagreement를 비교하는 그림.](/assets/learning/algorithm-gossip-ko.svg)
+
+| 망 | 전체 Disagreement 배율 ρ | Round당 Directed Message |
+|---|---:|---:|
+| Ring | 2/3 | 12 |
+| Complete | 0 | 30 |
+| 두 Triangle | 1 | 12 |
+
+```python
+from fractions import Fraction as F
+initial=list(map(F,range(6)));mean=sum(initial)/6
+ring=[[F(int(i==j or (i-j)%6 in (1,5)),3) for j in range(6)] for i in range(6)]
+x=initial[:];energy=lambda v:sum((a-mean)**2 for a in v)
+start=energy(x)
+for k in range(1,11):
+    x=[sum(a*b for a,b in zip(row,x)) for row in ring]
+    assert sum(x)==sum(initial) and energy(x)<=F(4,9)**k*start
+print('ring after 120 messages:',float(energy(x)))
+W=[[F(9,10),F(1,10)],[F(2,5),F(3,5)]]
+z=[F(0),F(1)];weights=[F(4,5),F(1,5)]
+for _ in range(20):
+    z=[sum(a*b for a,b in zip(row,z)) for row in W]
+    assert sum(a*b for a,b in zip(weights,z))==F(1,5)
+print('directed values:',list(map(float,z)))
+```
+
+행 확률성만으로는 상수 벡터를 보존하지만 산술평균은 아니다. 방향 두-state 행렬 [[0.9,0.1],[0.4,0.6]]의 정상 left weight는 (0.8,0.2)다. (0,1)에서 consensus는 0.5 대신 0.2로 간다. 보조 유리수 예제는 이 가중 불변량을 검산하고 live 망은 무방향으로 유지한다. 시간 가변·비동기·Byzantine에는 다른 가정이 필요하며 고정 대칭 spectrum으로 인증할 수 없다.
+
 ## 메시지 회계와 손계산
 
 Synchronous round는 active edge마다 양방향 scalar 하나씩, pair step은 선택된 edge에서 양방향 하나씩 교환한다고 가정합니다. Payload는 double 8 byte로 고정하고 header·동기화·망 지연은 제외합니다. Round 수가 같다고 통신량이 같은 것이 아닙니다.

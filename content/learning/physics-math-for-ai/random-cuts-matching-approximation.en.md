@@ -25,6 +25,37 @@ $$
 
 Every cover must hit each vertex-disjoint matching edge, establishing the lower bound. Read the actual endpoint pairs and cover bitmask to inspect the witness. The empty graph has optimum zero, so its multiplicative ratio is left undefined rather than dividing by zero.
 
+## Remove randomness with conditional expectations
+
+Give each nonnegative-weight edge e weight wₑ. Independent fair vertex bits make its expected crossing weight wₑ/2, so E[C]=Σwₑ/2≥OPT/2. Fix vertices sequentially. Before fixing the next bit, the current conditional expectation is the average of the two possible next conditional expectations. At least one choice cannot decrease it. After the last bit, the conditional expectation is the deterministic cut value, proving a deterministic one-half approximation.
+
+An edge with both endpoints fixed contributes its known crossing weight. With at least one endpoint still independently fair, it contributes half its weight. These contributions make the conditional expectations computable without enumerating all future assignments; an implementation may update only incident edges. Nonnegative weights are needed for Σwₑ≥OPT in this proof.
+
+| Procedure | Guaranteed quantity |
+|---|---|
+| One uniform random cut | At least OPT/2 in expectation |
+| One selected random sample | Can still have cut zero |
+| Conditional-expectation choices | At least OPT/2 on every input |
+
+```python
+from fractions import Fraction as F
+edges=[(0,1,3),(1,2,2),(0,2,4),(2,3,1)]
+def expected(partial):
+    return sum(F(w)*(int(partial[i]!=partial[j]) if i in partial and j in partial else F(1,2)) for i,j,w in edges)
+partial={};history=[expected(partial)]
+for v in range(4):
+    scores=[expected({**partial,v:b}) for b in (0,1)]
+    bit=0 if scores[0]>=scores[1] else 1
+    partial[v]=bit;history.append(expected(partial))
+assert all(b>=a for a,b in zip(history,history[1:]))
+cut=expected(partial)
+opt=max(sum(w for i,j,w in edges if ((m>>i)&1)!=((m>>j)&1)) for m in range(16))
+assert 2*cut>=sum(w for _,_,w in edges) and cut<=opt
+print(history,partial,cut,opt)
+```
+
+The exact Fraction example uses a weighted four-vertex auxiliary graph; the live six-vertex lab remains unweighted. Its conditional expectations increase from 5 to 8, and exhaustive optima are used only to check the result, not to choose bits. A reproducible seed and a derandomization proof are different objects. The matching-based cover guarantee above solves a separate objective and remains its own certificate.
+
 ## Worked example and exercise
 
 A triangle has cut zero or two. Among its eight active-vertex assignments, two assign all three bits equally. Thus P(C=0)=1/4 and P(C=2)=3/4. The three isolated vertices multiply both counts equally and do not change the probabilities. Expected cut is 1.5, half the three-edge count.

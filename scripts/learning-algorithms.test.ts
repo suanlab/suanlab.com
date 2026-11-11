@@ -3,9 +3,28 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {algorithmLabs,learningUnits,learningGuides} from '../src/data/interactive-book';
 import {getLearningContent} from '../src/lib/learning-content';
-import {searchArray,searchExperiment,matrixChain,flowExperiment,randomizedApproximation,satReduction,sortingBounds,sparseSchedule,transposeCache,gossipExperiment,modeledSearchCost,evaluateAlgorithm,algorithmKinds} from '../src/lib/learning-algorithms';
+import {searchArray,searchExperiment,matrixChain,flowExperiment,randomizedApproximation,satReduction,sortingBounds,permutations,comparisonSort,sparseSchedule,transposeCache,gossipExperiment,modeledSearchCost,evaluateAlgorithm,algorithmKinds} from '../src/lib/learning-algorithms';
 const close=(a:number,b:number,t=1e-9)=>assert.ok(Math.abs(a-b)<=t*(1+Math.max(Math.abs(a),Math.abs(b))),`${a} != ${b}`);
 const sum=(a:number[])=>a.reduce((s,v)=>s+v,0);
+test('sorting transcripts are prefix-free and obey the uniform average information bound',()=>{
+ for(const n of [2,3,5,7])for(const method of [0,1]){
+  const traces=permutations(n).map(input=>comparisonSort(input,method).trace).sort();
+  for(let i=1;i<traces.length;i++)assert.ok(!traces[i].startsWith(traces[i-1]));
+  assert.ok(sum(traces.map(s=>s.length))/traces.length>=Math.log2(traces.length));
+ }
+});
+test('work-conserving unit-task schedules obey the sharper Brent list-scheduling bound',()=>{
+ for(const power of [2,3,5])for(const band of [0,1,3])for(const processors of [1,2,4,16]){
+  const r=sparseSchedule(power,band,processors,0);
+  assert.ok(r.makespan<=r.work/processors+(1-1/processors)*r.span+1e-12);
+ }
+});
+test('cold write-allocate transpose traffic respects compulsory loads plus output writebacks',()=>{
+ for(const power of [2,3,5])for(const L of [1,2,4,8])for(const capacity of [1,8,64])for(const blocked of [0,1]){
+  const r=transposeCache(power,2,L,capacity,blocked);
+  assert.ok(r.transfers>=3*r.N*r.N/L);
+ }
+});
 test('actual search probes return the right key or a missing witness on every small array',()=>{
  for(let N=1;N<=70;N++)for(let q=-1;q<=N;q++)for(const m of [0,1]){const a=Array.from({length:N},(_,i)=>i),r=searchArray(a,q,m);assert.equal(r.index,q>=0&&q<N?q:null);assert.equal(r.trace.length,r.comparisons);if(m===0)assert.equal(r.comparisons,q>=0&&q<N?q+1:N);else assert.ok(r.comparisons<=Math.floor(Math.log2(N))+1);for(const t of r.trace)assert.ok(t.index>=t.lo&&t.index<=t.hi);}
 });

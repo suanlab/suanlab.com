@@ -25,6 +25,44 @@ $$
 
 The split table also reconstructs a witness parenthesization. As a contrast, ordinary mergesort divides into disjoint halves and performs a linear merge, giving T(n)=2T(n/2)+O(n). Its divide-and-conquer structure differs from reusing overlapping subchain problems here.
 
+## A memory constraint changes the sufficient DP state
+
+Scalar work alone need not select a feasible contraction order. Consider dimensions (1,10,100,5). Exclude storage of the original inputs, count every newly allocated intermediate and final output, and assume kernel scratch is zero. Both children remain live while their parent output is allocated, and child intermediates are freed afterward.
+
+For left-first evaluation with child peaks pL,pR, retained intermediate sizes sL,sR, and output size s, the peak is max(pL,sL+pR,sL+sR+s). Right-first exchanges L and R. Leaves use zero additional storage in this model. Combining costs and taking the cheaper evaluation order gives two nondominated plans: left association has work 1500 and peak 105 scalars; right association has work 5050 and peak 55.
+
+| Temporary/output capacity | Feasible minimum-work plan | Work |
+|---|---|---:|
+| 50 | none | unavailable |
+| 60 | A₁(A₂A₃) | 5050 |
+| 110 | (A₁A₂)A₃ | 1500 |
+
+```python
+d=(1,10,100,5)
+def plans(i,j):
+    if i==j:return [(0,0,0,f'A{i+1}')]
+    out=[]
+    for k in range(i,j):
+        for wl,pl,sl,tl in plans(i,k):
+            for wr,pr,sr,tr in plans(k+1,j):
+                size=d[i]*d[j+1]
+                work=wl+wr+d[i]*d[k+1]*d[j+1]
+                left=max(pl,sl+pr,sl+sr+size)
+                right=max(pr,sr+pl,sl+sr+size)
+                out.append((work,min(left,right),size,f'({tl}{tr})'))
+    return out
+candidates=plans(0,2)
+assert {(w,p) for w,p,_,_ in candidates}=={(1500,105),(5050,55)}
+for capacity in (50,60,110):
+    feasible=[p for p in candidates if p[1]<=capacity]
+    best=min(feasible) if feasible else None
+    print(capacity,best)
+```
+
+An augmented planner can retain a Pareto frontier of (work,peak) pairs for each interval. Discarding a state is justified only when another state has no greater cost in either coordinate and preserves the same boundary shape. Keeping only the lowest-work subplan can remove the sole plan satisfying a later memory limit. Frontier size and enumeration cost require their own analysis; the original scalar O(n³) bound does not automatically survive this extension.
+
+The code is an auxiliary exhaustive planner with custom dimensions. It does not change the live dimension families or estimate GPU allocator behavior, input residency or multiplication workspace.
+
 ## Worked example and exercise
 
 For dimensions 1,2,3,4, multiplying (A₁A₂)A₃ costs 1·2·3+1·3·4=18. Multiplying A₁(A₂A₃) costs 2·3·4+1·2·4=32. The exact mathematical product is identical, but the work differs. Doubling every dimension multiplies each scalar cost by eight.

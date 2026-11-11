@@ -21,6 +21,48 @@ Insertion sort는 key를 앞쪽으로 이동시키며 key 비교가 발생할 �
 
 서로 다른 순열에서 나온 trace 수가 n!인지, 실제 정렬 결과가 오름차순인지, 관측 최악이 counting 하한 이상인지 검산합니다. 이 전수 실험은 작은 n의 구현 근거입니다. 일반 lower bound 자체는 위의 잎 수 논증에서 나옵니다.
 
+## 평균 하한과 양화 순서
+
+결정론적 comparison-only sorter의 종료 transcript는 prefix-free다. 하나가 종료하면 같은 prefix를 가진 더 긴 transcript가 있을 수 없다. 길이가 ℓᵢ이면 Kraft로 Σ2^(−ℓᵢ)≤1이며 n! 입력 순서의 균일 평균에 Jensen을 적용하면
+
+$$
+2^{-\overline\ell}\le\frac1{n!}\sum_i2^{-\ell_i}\le\frac1{n!},
+\qquad\overline\ell\ge\log_2(n!).
+$$
+
+비균일 입력 법칙의 entropy가 H(p)이면 prefix-code 논증으로 Eₚℓ≥H(p)다. 항상 정확한 무작위 sorter에서는 모든 입력 순서에 정확한 random tape를 고정한다. 유한 입력 집합이므로 예외 확률의 합도 0이다. 각 결정론 트리에 균일 평균 하한을 적용하고 tape에 대해 평균내면,어떤 입력의 기대 무작위 비용은 log₂(n!) 이상이다. 최악 입력의 기대 비용이지 모든 입력의 하한이나 오답 허용 알고리즘에 대한 증명은 아니다.
+
+| n | 균일 순열의 Insertion 평균 비교 수 |
+|---|---:|
+| 3 | 8/3 |
+| 4 | 59/12 |
+| 5 | 463/60 |
+
+```python
+from itertools import permutations
+from fractions import Fraction as F
+from math import log2,factorial
+def trace(p):
+    a=list(p);out=''
+    for i in range(1,len(a)):
+        key=a[i];j=i-1
+        while j>=0:
+            less=key<a[j];out+='1' if less else '0'
+            if not less:break
+            a[j+1]=a[j];j-=1
+        a[j+1]=key
+    return out
+for n in (3,4,5):
+    codes=sorted(trace(p) for p in permutations(range(n)))
+    assert all(not b.startswith(a) for a,b in zip(codes,codes[1:]))
+    kraft=sum(F(1,2**len(t)) for t in codes)
+    mean=F(sum(map(len,codes)),len(codes))
+    assert kraft<=1 and float(mean)>=log2(factorial(n))
+    print(n,mean,kraft)
+```
+
+정확 transcript 계산으로 그림 평균과 독립적으로 prefix-freeness·Kraft를 확인한다. 임의의 서로 다른 key를 비교해 입력 reference를 재배치하는 모형이다. 알려진 숫자 label로 고정 출력을 합성하면 다른 모형이 된다. 작은 열거는 구현 근거이고 일반 하한은 양화한 논증에서 나온다.
+
 ## 손계산과 직접 풀기
 
 n=3이면 순열은 6개이고 ceil(log₂6)=3입니다. Insertion sort는 이미 정렬된 입력에서 2회, 역순에서 3회입니다. 최악 하한이 3이라는 것은 모든 입력이 3회여야 한다는 뜻이 아닙니다. n=5 mergesort의 관측 최악은 8이고 counting 하한은 7입니다. 낮은 하한이 항상 달성 가능하다는 보장도 없습니다.

@@ -27,6 +27,35 @@ $$
 
 Checksum은 결과를 실제 사용하도록 돕습니다. 같은 입력·크기·반복에서 다시 실행해 변동을 관측하세요. 타이머 해상도보다 짧은 구간은 0으로 보일 수 있습니다. 이를 임의의 양수로 바꾸거나 항상 한 방법이 빠르도록 보정하지 않습니다. 다른 tab·부하·브라우저·JIT 상태도 측정에 영향을 줍니다.
 
+## Pair Timing 원자료와 측정 설정을 함께 남기기
+
+벤치마크에 실제 7개 trial pair·먼저 실행한 방법·측정한 N,target,반복 수를 표시하도록 보강했다. 현재 과제와 그 설정이 같을 때만 표를 보여 준다. 선언한 비용 가중치를 바꿔도 측정 과제는 같지만 N·대상값·batch 반복을 바꾸면 기존 측정은 무효다. Timing 값을 조정하는 규칙이 아니라 출처를 연결하는 규칙이다.
+
+중앙값의 비와 pair별 비의 중앙값은 다른 질문이다. 아래 합성 7-pair 데이터에서 전자는 100,후자는 1이다. 브라우저 실측값이 아니다. 분모가 0인 측정의 pair 비도 미정이며 임의 양의 floor로 바꾸면 임의 speedup을 만들 수 있다.
+
+| 합성 데이터의 통계량 | 결과 |
+|---|---:|
+| 선형 Batch 중앙값 | 100 |
+| 이진 Batch 중앙값 | 1 |
+| Pair별 선형/이진 비의 중앙값 | 1 |
+
+```python
+from statistics import median
+from fractions import Fraction as F
+linear=[1,1,100,100,100,100,100]
+binary=[1,1,1,1,100,100,100]
+ratio_of_medians=F(median(linear),median(binary))
+paired=[F(a,b) if b else None for a,b in zip(linear,binary)]
+assert all(x is not None for x in paired)
+median_ratio=median(paired)
+assert ratio_of_medians==100 and median_ratio==1
+print(median(linear),median(binary),ratio_of_medians,median_ratio)
+```
+
+7개 batch가 자동으로 독립 7표본은 아니다. JIT·열 변화·다른 작업·실행 순서가 상관을 만들 수 있다. 순서를 교대하면 한 불균형은 줄여도 iid 잡음이나 신뢰구간을 증명하지 않는다. 각 시계 읽기의 절대 오차가 q 이하면 경과 차이 오차는 최대 2q다. 반복 수로 나누면 실행당 시계 해상도 항은 줄지만 모든 runtime 변동이 사라지는 것은 아니다.
+
+유한 순위를 해석하기 전에 측정 경계·원자료·정확성 검사·과제 metadata를 공개하자. Timing으로 점근 복잡도 class를 증명하거나 slider의 추상 비용 단위를 보정할 수는 없다.
+
 ## 손계산과 직접 풀기
 
 N=1024의 마지막 key에서 linear는 1024 probe, binary는 11 probe입니다. α=γ=1, β=0이면 모형 비용은 1024와 11입니다. γ=500, β=1000이면 binary 비용은 6500으로 순위가 뒤집힙니다. 이 변화는 선언한 비용 모형의 결과이며 실측이 아닙니다.

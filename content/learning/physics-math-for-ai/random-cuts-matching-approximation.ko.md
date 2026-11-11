@@ -25,6 +25,37 @@ $$
 
 어떤 cover도 서로 끝점이 분리된 matching edge마다 최소 한 node를 가져야 하므로 첫 부등식을 얻습니다. 실제 matching endpoint pair와 cover bitmask를 readout으로 확인할 수 있습니다. 빈 그래프에서는 최적값도 0이므로 비율은 정의하지 않습니다.
 
+## 조건부 기대값으로 무작위성 제거하기
+
+각 edge에 비음수 가중치 wₑ를 주자. 독립 공정 vertex bit에서 교차 기대 가중치는 wₑ/2이므로 E[C]=Σwₑ/2≥OPT/2다. Vertex를 순서대로 고정한다. 다음 bit를 고정하기 전 조건부 기대값은 가능한 두 다음 기대값의 평균이므로 적어도 한 선택은 감소시키지 않는다. 마지막에는 기대값이 확정 cut 값이 되어 결정론적 1/2 근사를 증명한다.
+
+양 끝이 고정된 edge는 알려진 교차 가중치,한쪽 이상이 독립 공정이면 절반을 기여한다. 미래 할당 전체를 열거하지 않고 조건부 기대값을 계산할 수 있으며 구현은 인접 edge만 갱신할 수 있다. Σwₑ≥OPT를 쓰므로 이 증명에는 비음수 가중치가 필요하다.
+
+| 절차 | 보장하는 양 |
+|---|---|
+| 균일 Random Cut 한 번 | 기대값에서 OPT/2 이상 |
+| 선택한 Random 표본 하나 | Cut 0일 수도 있음 |
+| 조건부 기대값 선택 | 모든 입력에서 OPT/2 이상 |
+
+```python
+from fractions import Fraction as F
+edges=[(0,1,3),(1,2,2),(0,2,4),(2,3,1)]
+def expected(partial):
+    return sum(F(w)*(int(partial[i]!=partial[j]) if i in partial and j in partial else F(1,2)) for i,j,w in edges)
+partial={};history=[expected(partial)]
+for v in range(4):
+    scores=[expected({**partial,v:b}) for b in (0,1)]
+    bit=0 if scores[0]>=scores[1] else 1
+    partial[v]=bit;history.append(expected(partial))
+assert all(b>=a for a,b in zip(history,history[1:]))
+cut=expected(partial)
+opt=max(sum(w for i,j,w in edges if ((m>>i)&1)!=((m>>j)&1)) for m in range(16))
+assert 2*cut>=sum(w for _,_,w in edges) and cut<=opt
+print(history,partial,cut,opt)
+```
+
+정확 Fraction 예제는 네 vertex의 가중 보조 그래프이며 live 여섯 vertex는 비가중으로 유지한다. 조건부 기대값은 5에서 8로 증가하고 전수 최적값은 결과 검산에만 쓴다. 재현 seed와 탈무작위화 증명은 다른 객체다. 앞의 matching cover 보장은 다른 목적함수의 독립 인증이다.
+
 ## 손계산과 직접 풀기
 
 Triangle의 cut은 0 또는 2입니다. 세 활성 node의 bit가 모두 같은 두 경우가 8개 할당 중 2개이므로 P(C=0)=1/4, P(C=2)=3/4입니다. 나머지 세 isolated node bit는 비율에 영향을 주지 않습니다. 평균은 1.5이며 edge 수 3의 절반입니다.

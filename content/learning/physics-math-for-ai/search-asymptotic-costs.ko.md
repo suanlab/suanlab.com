@@ -27,6 +27,37 @@ $$
 
 현재 핵심 탐색은 반복형이라 재귀 stack 깊이가 0이고 구간 index 등 상수 개의 보조 scalar로 실행할 수 있습니다. 입력 배열의 N개 원소는 별도입니다. 하지만 교육 화면은 probe trace와 여러 N의 비교 결과를 저장합니다. 이 진단 기록까지 포함한 프로그램 전체의 메모리를 O(1)이라고 주장하면 안 됩니다. 입력 저장, 알고리즘 보조 공간, 출력과 디버깅 기록을 나누어 보고하세요.
 
+## 전처리를 포함하고 어떤 하한인지 명시하기
+
+순서 비교 탐색에서 equality 결과는 조사한 key를 식별하고 성공 branch를 끝낸다. 최대 h회 조사하는 이진 탐색 트리의 probe node에는 1+2+⋯+2^(h−1)=2ʰ−1개 key만 놓을 수 있다. 따라서 최악 성공 탐색은 h≥ceil(log₂(N+1))이며 midpoint 탐색이 이를 달성한다. 특정 target은 더 쌀 수 있다. 정렬성과 ordinal key 질의를 가정한 논증이며 hash 조회나 표현된 정수의 산술 연산은 다른 모형이다.
+
+처음에 정렬되지 않은 데이터의 반복 membership 질의를 생각하자. N이 2의 거듭제곱일 때 정렬에 mergesort 최악 bound B=Nlog₂N−N+1,각 scan에 N,각 binary 질의에 b=ceil(log₂(N+1))를 부과하면 N>b에서
+
+$$
+B+Qb\le QN\quad\Longleftrightarrow\quad Q\ge B/(N-b).
+$$
+
+부과한 비용 사이의 대수적 crossover이며 모든 질의열이나 장치에 대한 약속이 아니다. 항상 첫 원소를 묻는 scan은 N회 가정을 어긴다. 원래 미정렬 배열의 위치를 반환하려면 위치 mapping 저장도 필요하다.
+
+| N | 부과한 정렬 Bound B | 첫 정수 Crossover Q |
+|---|---:|---:|
+| 8 | 17 | 5 |
+| 64 | 321 | 6 |
+| 1024 | 9217 | 10 |
+
+```python
+from math import ceil,log2
+for N in (8,64,1024):
+    B=N*(N.bit_length()-1)-N+1
+    b=ceil(log2(N+1));Q=ceil(B/(N-b))
+    assert B+Q*b<=Q*N
+    assert B+(Q-1)*b>(Q-1)*N
+    assert 2**(b-1)-1<N<=2**b-1
+    print(N,B,b,Q)
+```
+
+Live 실습은 이미 정렬된 배열을 제공하며 이 전처리 pipeline을 실행하지 않는다. Retrieval 시스템에서는 핵심 질의 bound와 함께 구축·갱신·저장·질의 분포를 기록해야 한다. 제공된 배열의 유한 timing으로 생략한 전처리 비용을 증명할 수 없다.
+
 ## 손계산과 직접 풀기
 
 N=32에서 마지막 key 31을 선형으로 찾으면 32회입니다. 이진 탐색은 15,23,27,29,30,31을 조사하여 6회이며, 32라는 없는 key를 찾을 때도 같은 6회 뒤 종료합니다. 첫 key 0의 선형 탐색은 1회입니다.

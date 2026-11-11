@@ -27,6 +27,41 @@ $$
 
 Apply D to its own encoding. If H predicts termination, D loops; if H predicts nontermination, D halts. Either answer contradicts correctness, so no such total H exists. This general contradiction is not inferred from a finite SAT table or a timeout. Finite-variable exhaustive SAT decisions and general halting undecidability are different statements.
 
+## Recover a witness using a decision oracle
+
+Suppose an oracle decides satisfiability for arbitrary input formulas. After an initial yes answer, fix one actual variable at a time. Ask whether the current formula remains satisfiable with that variable false. If yes, retain false; otherwise retain true. The invariant is that at least one satisfying completion remains. After all n variables have been fixed, the assignment itself is a witness. This uses at most n+1 decision queries, including the initial query.
+
+Variable names can first be renumbered by their distinct occurrences, so n means the number of variables, not the largest binary identifier. A fixed value can be encoded by a unit clause, or by repeating its literal three times to stay in 3-CNF. The formula growth and the original reduction remain polynomial in encoded input length. If the decision oracle were polynomial time, this witness search would be polynomial too; the construction does not supply such an oracle.
+
+| Input | Decision queries in this procedure |
+|---|---:|
+| Three-variable satisfiable example | 4 |
+| Unsatisfiable example | 1 |
+| General satisfiable n-variable input | At most n+1 |
+
+```python
+from itertools import product
+def recover(clauses,n):
+    calls=0
+    def oracle(partial):
+        nonlocal calls
+        calls+=1
+        return any(all(bits[i-1]==b for i,b in partial.items()) and all(any(bits[abs(l)-1]==(l>0) for l in c) for c in clauses) for bits in product((False,True),repeat=n))
+    partial={}
+    if not oracle(partial):return None,calls
+    for variable in range(1,n+1):
+        partial[variable]=False
+        if not oracle(partial):partial[variable]=True
+    assert all(any(partial[abs(l)]==(l>0) for l in c) for c in clauses)
+    return partial,calls
+sat=[[1,2,3],[-1,2,3],[1,-2,-3]]
+unsat=[[1,1,1],[-1,-1,-1],[2,2,2]]
+assert recover(sat,3)[1]==4 and recover(unsat,3)==(None,1)
+print(recover(sat,3),recover(unsat,3))
+```
+
+The small oracle above exhausts assignments, so the executable demonstration is not a polynomial-time SAT algorithm. Finite witness checking, oracle search-to-decision reduction and halting undecidability are separate claims. A halting execution can be recognized by running it, but an arbitrary timeout cannot certify nontermination or unsatisfiability.
+
 ## Worked example and exercise
 
 For the first formula, assigning every variable true gives forward witness mask 81 by selecting the first true occurrence in each clause. Query mask 273 selects another valid independent set and decodes to assignment three. It need not reproduce original assignment seven: different valid witnesses can satisfy the same formula.

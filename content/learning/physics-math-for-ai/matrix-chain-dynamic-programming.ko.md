@@ -25,6 +25,44 @@ $$
 
 Split 표에서 최적 괄호를 복원할 수 있으므로 비용 값뿐 아니라 증거도 남깁니다. 일반적인 분할정복의 예인 mergesort는 겹치지 않는 두 절반과 선형 merge로 T(n)=2T(n/2)+O(n)을 가집니다. 그 재귀와 중복 구간을 재사용하는 현재 DP를 같은 것으로 부르지 마세요.
 
+## 메모리 제약이 DP의 충분 상태를 바꾼다
+
+Scalar 작업량만으로 feasible한 contraction 순서를 고르지 못할 수 있다. 차원 (1,10,100,5)를 생각하자. 원래 입력 저장은 제외하고 새 중간·최종 출력을 세며 kernel scratch는 0으로 가정한다. 부모 출력을 할당할 때 두 child 결과를 유지하고 곱셈 후 child 중간값을 해제한다.
+
+왼쪽 먼저 평가할 때 child peak pL,pR,유지 중간 크기 sL,sR,출력 s의 peak는 max(pL,sL+pR,sL+sR+s)다. 오른쪽 우선은 L,R을 바꾼다. Leaf 추가 저장은 0이다. 각 평가 순서를 비교하면 서로 지배하지 않는 두 plan을 얻는다. 왼쪽 결합은 작업 1500·peak105 scalar,오른쪽은 작업5050·peak55다.
+
+| 임시·출력 용량 | Feasible한 최소 작업 Plan | 작업량 |
+|---|---|---:|
+| 50 | 없음 | 미정 |
+| 60 | A₁(A₂A₃) | 5050 |
+| 110 | (A₁A₂)A₃ | 1500 |
+
+```python
+d=(1,10,100,5)
+def plans(i,j):
+    if i==j:return [(0,0,0,f'A{i+1}')]
+    out=[]
+    for k in range(i,j):
+        for wl,pl,sl,tl in plans(i,k):
+            for wr,pr,sr,tr in plans(k+1,j):
+                size=d[i]*d[j+1]
+                work=wl+wr+d[i]*d[k+1]*d[j+1]
+                left=max(pl,sl+pr,sl+sr+size)
+                right=max(pr,sr+pl,sl+sr+size)
+                out.append((work,min(left,right),size,f'({tl}{tr})'))
+    return out
+candidates=plans(0,2)
+assert {(w,p) for w,p,_,_ in candidates}=={(1500,105),(5050,55)}
+for capacity in (50,60,110):
+    feasible=[p for p in candidates if p[1]<=capacity]
+    best=min(feasible) if feasible else None
+    print(capacity,best)
+```
+
+확장 planner는 구간마다 (work,peak) Pareto frontier를 유지할 수 있다. 같은 경계 shape를 보존하며 두 좌표 모두 더 나쁘지 않은 상태가 있어야 기존 상태를 버릴 수 있다. 최저 작업 subplan 하나만 보관하면 나중 메모리 제한을 만족하는 유일한 plan을 잃을 수 있다. Frontier 크기와 열거 비용은 별도 분석이 필요하며 원래 scalar O(n³) bound가 자동으로 유지되지 않는다.
+
+아래는 custom 차원의 보조 전수 planner다. 실제 차원 가족을 바꾸거나 GPU allocator·입력 residency·곱셈 workspace를 추정하지 않는다.
+
 ## 손계산과 직접 풀기
 
 차원이 1,2,3,4이면 (A₁A₂)A₃는 1·2·3+1·3·4=18입니다. A₁(A₂A₃)는 2·3·4+1·2·4=32입니다. 수학적으로 같은 곱이지만 비용이 다릅니다. 차원을 모두 2배 하면 각 곱셈 비용이 8배가 됩니다.

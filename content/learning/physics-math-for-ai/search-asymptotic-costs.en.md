@@ -27,6 +27,37 @@ This is a worst-case comparison bound, not a claim that every selected target re
 
 The core searches are iterative, with no recursive stack and a constant number of auxiliary scalar indices. The N-element input array is separate. However, this teaching interface also stores a probe trace and results for several N values. Including those diagnostics, the whole program is not constant-space. Distinguish input storage, algorithm auxiliary space, required output and debugging records when making memory claims.
 
+## Include preprocessing and state which lower bound applies
+
+In an ordered comparison search, an equality result identifies the probed key and terminates that successful branch. With at most h probes, a binary search tree can place at most 1+2+⋯+2^(h−1)=2ʰ−1 keys at its probe nodes. Thus worst-case successful search needs h≥ceil(log₂(N+1)). Iterative midpoint search reaches this bound, although a particular target can be much cheaper. This argument assumes ordinal key queries and sorted order; a hash lookup or an arithmetic operation on represented integer keys belongs to a different model.
+
+For repeated membership queries on initially unsorted data, suppose sorting is charged its mergesort worst-case bound B=Nlog₂N−N+1 for power-of-two N. Charge every scan N probes and every binary query b=ceil(log₂(N+1)). For N>b in this declared model,
+
+$$
+B+Qb\le QN\quad\Longleftrightarrow\quad Q\ge B/(N-b).
+$$
+
+This is an algebraic crossover between charged costs, not a promise about every query stream or every machine. An always-first-element scan violates the N-probe charging assumption. Returning positions in the original unsorted array also requires retaining a position mapping.
+
+| N | Charged sort bound B | First integer crossover Q |
+|---|---:|---:|
+| 8 | 17 | 5 |
+| 64 | 321 | 6 |
+| 1024 | 9217 | 10 |
+
+```python
+from math import ceil,log2
+for N in (8,64,1024):
+    B=N*(N.bit_length()-1)-N+1
+    b=ceil(log2(N+1));Q=ceil(B/(N-b))
+    assert B+Q*b<=Q*N
+    assert B+(Q-1)*b>(Q-1)*N
+    assert 2**(b-1)-1<N<=2**b-1
+    print(N,B,b,Q)
+```
+
+The live lab already supplies a sorted array and does not execute this preprocessing pipeline. For retrieval systems, construction, updates, storage and query distributions must be reported alongside the core query bound. No finite timing of the provided array can establish an omitted preprocessing cost.
+
 ## Worked example and exercise
 
 For N=32, linear search needs 32 probes to find key 31. Binary search probes 15,23,27,29,30,31, taking six. Missing key 32 also terminates after those six probes. A linear query for key zero instead takes one probe.

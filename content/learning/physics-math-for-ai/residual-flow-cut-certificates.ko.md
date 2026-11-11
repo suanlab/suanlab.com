@@ -26,6 +26,35 @@ $$
 
 잔여 탐색에서 t가 도달 불가능하면 S의 바깥 방향 arc는 모두 포화이고 반대 방향 유량은 0입니다. 따라서 부등식이 등식이 되어 현재 유량과 컷이 서로 최적임을 증명합니다. 단지 실행 상한에 도달한 것은 이 조건을 대신하지 못합니다.
 
+## 알고리즘 종료 전에도 Primal–Dual Gap은 유용하다
+
+Feasible flow는 최대 유량의 하한 L,유효한 s–t cut은 상한 U다. 따라서 남은 개선량은 U−L 이하다. 등호 일치로 solver의 success flag를 믿지 않고 최적성을 인증한다. t까지 포함한 잔여 도달 집합은 그런 cut이 아니며, 별도로 source만 고른 cut은 이 망에서 항상 유효하다.
+
+다섯 용량을 모두 1로 두고 보조 Ford–Fulkerson에서 첫 비최단 경로 s–a–b–t를 강제로 고르자. 다음 s–b–a–t는 역 잔여 arc b–a로 기존 a–b flow를 취소한다. 실제 BFS는 처음에 더 짧은 길을 택하므로 이 구성은 역 arc의 필요성을 따로 분리한다.
+
+| 단계 | Feasible Flow L | Source Cut U | Gap |
+|---|---:|---:|---:|
+| 초기 | 0 | 2 | 2 |
+| 첫 강제 경로 | 1 | 2 | 1 |
+| 역방향 보정 | 2 | 2 | 0 |
+
+```python
+C=[[0]*4 for _ in range(4)];F=[[0]*4 for _ in range(4)]
+arcs=[(0,1),(0,2),(1,2),(1,3),(2,3)]
+for i,j in arcs:C[i][j]=1
+def augment(path):
+    assert all(C[i][j]-F[i][j]>=1 for i,j in zip(path,path[1:]))
+    for i,j in zip(path,path[1:]):F[i][j]+=1;F[j][i]-=1
+    assert all(0<=F[i][j]<=C[i][j] for i,j in arcs)
+    assert sum(F[1])==sum(F[2])==0
+print(0,2,2)
+for path in ((0,1,2,3),(0,2,1,3)):
+    augment(path);value=sum(F[0]);print(value,2,2-value)
+assert F[1][2]==0 and sum(F[0])==2
+```
+
+일반 Edmonds–Karp에서 BFS source 거리는 줄지 않는다. 새 역 arc도 이전 거리 label에서 지름길을 만들지 않는다. 역 arc 사용 뒤 같은 arc가 다시 포화되려면 tail 거리가 최소 2 증가한다. 각 방향 arc는 O(V)회 critical일 수 있고 augmentation마다 하나가 포화되므로 O(VE)회,인접 구조의 O(E) BFS를 포함하면 O(VE²)다. 용량 산술의 단위 비용 가정이며 수 encoding의 bit 비용은 별도다. 네 node의 전수 cut oracle은 이 일반 복잡도 증명과 구분한다.
+
 ## 손계산과 직접 풀기
 
 용량을 s→a=3, s→b=2, a→b=1, a→t=2, b→t=3으로 두세요. BFS는 s-a-t에 2, s-b-t에 2를 보내고, 마지막 s-a-b-t에 1을 보냅니다. 총 5이며 source 밖 용량 3+2도 5이므로 더 클 수 없습니다.
