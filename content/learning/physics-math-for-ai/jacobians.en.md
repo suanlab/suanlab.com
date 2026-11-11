@@ -76,6 +76,78 @@ At the reference settings this is $(-0.02,0.01)^T$. The derivative is correct; t
 
 Reduce $d$ tenfold to $(0.01,-0.02)^T$. The JVP becomes $(-0.01,0.02)^T$ and the remainder becomes $(-0.0002,0.0001)^T$, one hundredth of its previous size. This is a useful experiment for separating a derivative implementation bug from ordinary approximation error.
 
+## Total differentiability controls every small displacement
+
+For an open-domain map F:Rⁿ→Rᵐ, total (Fréchet) differentiability at p means there is one linear map A such that
+
+$$
+\lim_{d\to0,\,d\ne0}\frac{\|F(p+d)-F(p)-Ad\|}{\|d\|}=0.
+$$
+
+The approach may bend or change direction as it shrinks. This is stronger than checking each fixed straight direction separately. If the limit holds, coordinate directions identify A’s columns as partial derivatives, so A is the Jacobian. Continuous partial derivatives on a neighborhood are a sufficient condition, although not a necessary one.
+
+For the lab’s polynomial, the exact remainder already computed is (dₓdᵧ,dₓ²). Each entry has absolute value at most ‖d‖₂², hence its vector norm is at most √2‖d‖₂². Dividing by ‖d‖₂ bounds the quotient by √2‖d‖₂→0. This establishes the displayed Jacobian as the total derivative, beyond testing finitely many directions.
+
+## A continuous function with every directional derivative but no total derivative
+
+Define a separate scalar example, with value zero at the origin:
+
+$$
+f(x,y)=\begin{cases}\dfrac{x^3y}{x^4+y^2}&(x,y)\ne(0,0),\\0&(x,y)=(0,0).\end{cases}
+$$
+
+Because 2|x²y|≤x⁴+y², we have |f(x,y)|≤|x|/2. Thus f is continuous at the origin. For any fixed v=(a,b) with b≠0,
+
+$$
+\frac{f(ta,tb)}t=\frac{t a^3b}{t^2a^4+b^2}\longrightarrow0.
+$$
+
+For b=0 the quotient is exactly zero. Every directional derivative therefore exists and equals zero; the proposed directional map is even linear. Both coordinate partial derivatives are zero, so a total derivative, if it existed, would have to be A=0.
+
+Now take the curved approach (x,y)=(t,t²), t≠0. Direct substitution gives f(t,t²)=t/2 and
+
+$$
+\frac{|f(t,t^2)|}{\|(t,t^2)\|_2}=\frac1{2\sqrt{1+t^2}}\longrightarrow\frac12.
+$$
+
+The required remainder limit fails. The paths become increasingly tangent to the x-axis, while each directional derivative holds its ray fixed. This difference in quantifiers explains how all the straight-line checks can miss the failure. Also ∂f/∂y(x,0)=1/x for x≠0, so the partial derivative is not continuous at the origin.
+
+| Positive t | f(t,t)/t on a fixed ray | f(t,t²)/t on the curved path |
+|---|---|---|
+| 1/2 | 2/5 | 1/2 |
+| 1/8 | 8/65 | 1/2 |
+| 1/32 | 32/1025 | 1/2 |
+
+## Reproduce the path comparison in Python
+
+The code uses exact fractions and checks the table and fixed-ray formulas, including negative t and coordinate directions. Its finite cases illustrate the formulas; the limits and continuity arguments above establish the claims for all directions. The interactive lab continues to display F=(xy,x²+y), not this separate counterexample.
+
+```python
+from fractions import Fraction as Q
+
+def f(x, y):
+    if x == 0 and y == 0:
+        return Q(0)
+    return x**3 * y / (x**4 + y**2)
+
+for t in [Q(1, 2), Q(1, 8), Q(1, 32)]:
+    ray = f(t, t) / t
+    curved = f(t, t * t) / t
+    assert ray == t / (1 + t * t)
+    assert curved == Q(1, 2)
+    print(t, ray, curved)
+
+for a, b in [(Q(1), Q(0)), (Q(0), Q(1)),
+             (Q(2), Q(-3)), (Q(-1), Q(2))]:
+    for t in [Q(1, 4), Q(-1, 8), Q(1, 32)]:
+        quotient = f(t * a, t * b) / t
+        expected = Q(0) if b == 0 else t * a**3 * b / (t*t*a**4 + b*b)
+        assert quotient == expected
+        assert abs(f(t*a, t*b)) <= abs(t*a) / 2
+```
+
+Research lesson: a successful finite set of directional gradient checks does not prove total differentiability. A check should record the model’s differentiability assumptions, the paths sampled and the scale of the remainder. For this example, explain why a Jacobian assembled from coordinate partials cannot justify the usual linear approximation at the origin.
+
 ## Pull output importance backward: VJP
 
 Suppose we care about the scalar score $L=F_1-F_2$. Define fixed output weights $q=(1,-1)^T$, so $L=q^TF$. The input gradient is

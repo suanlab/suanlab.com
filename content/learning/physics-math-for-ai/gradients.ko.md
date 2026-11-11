@@ -80,6 +80,79 @@ $$
 
 여기서 η가 학습률입니다. 그래디언트가 원점을 향하는 힘이거나 물체의 속도인 것은 아닙니다. 현재 위치에서 계산한 함수의 미분입니다.
 
+## 최급강하 방향을 증명하고 거리를 지정하기
+
+p에서 미분 가능한 함수의 고정 방향 v에 대한 방향미분은
+
+$$
+D_vL(p)=\lim_{t\to0}\frac{L(p+tv)-L(p)}t=g^Tv,\qquad g=\nabla L(p).
+$$
+
+입니다. 유클리드 단위벡터 v에 대해 Cauchy–Schwarz 부등식은 gᵀv≥−‖g‖₂를 줍니다. g≠0이면 v=−g/‖g‖₂에서 등호가 성립합니다. 따라서 단위 유클리드 거리당 일차 감소가 가장 큰 방향입니다. g=0이면 모든 일차 방향미분이 0이며 고차 거동은 별도로 남습니다. 편미분이 존재한다는 사실만으로 미분 가능성을 가정할 수 없는 이유는 Jacobian 단원에서 다룹니다.
+
+이번에는 실수 대칭 양의 정부호 행렬 M으로 이동 길이를 ‖v‖_M=√(vᵀMv)로 정하고, 살펴보는 점에서 이 계량을 고정하겠습니다. 내적을 분해하면
+
+$$
+g^Tv=(M^{-1/2}g)^T(M^{1/2}v)
+\ge-\sqrt{g^TM^{-1}g}\,\|v\|_M.
+$$
+
+따라서 g≠0일 때 단위 최급강하 방향과 이 내적에 대응하는 gradient는
+
+$$
+v_M=-\frac{M^{-1}g}{\sqrt{g^TM^{-1}g}},\qquad
+\operatorname{grad}_M L=M^{-1}g.
+$$
+
+입니다. 실제로 모든 v에 대해 (grad_M L)ᵀMv=gᵀv가 성립하여 계량 gradient를 특정합니다. 미분이라는 선형 함수는 그대로이고, 그 미분을 나타내는 벡터는 선택한 내적에 따라 달라집니다.
+
+## 같은 이동 예산으로 두 방향 비교하기
+
+실습의 기준점에서 g=(4,2)입니다. M=diag(4,1)로 두면 같은 좌표 변화라도 x 방향의 길이 비용이 y 방향의 두 배입니다. 아래 두 방향은 모두 M-길이가 1입니다.
+
+| 구성 방법 | 방향 | 일차 변화 gᵀv |
+|---|---|---|
+| 보통의 음의 gradient를 M-길이로 정규화 | (−2,−1)/√17 | −10/√17 ≈ −2.425356 |
+| M-길이 1인 모든 방향 중 최소 선택 | (−1,−2)/√8 | −√8 ≈ −2.828427 |
+
+−g의 길이만 바꾸면 방향은 그대로입니다. M⁻¹을 적용하면 방향도 달라집니다. 서로 다른 길이 예산에서 얻은 기울기를 직접 비교하면 다른 질문에 답하게 됩니다. 기존 장면은 보통의 유클리드 경사하강을 유지하며 이 표는 별도 계량 비교 예제입니다.
+
+다음 Python 코드는 세 양의 대각 계량에서 같은 이동 예산, 유도한 최소 기울기, 원래 이차 손실의 독립 중앙차분을 대조합니다.
+
+```python
+from math import sqrt
+
+g = (4.0, 2.0)
+p = (2.0, 2.0)
+
+def loss(x, y):
+    return x * x + 0.5 * y * y
+
+for diagonal in [(1.0, 1.0), (4.0, 1.0), (1.0, 9.0)]:
+    inverse_g = tuple(a / m for a, m in zip(g, diagonal))
+    scale = sqrt(sum(a * b for a, b in zip(g, inverse_g)))
+    steepest = tuple(-a / scale for a in inverse_g)
+    ordinary_scale = sqrt(sum(m * a * a for m, a in zip(diagonal, g)))
+    ordinary = tuple(-a / ordinary_scale for a in g)
+    slopes = []
+    for direction in [steepest, ordinary]:
+        norm_squared = sum(m * a * a for m, a in zip(diagonal, direction))
+        assert abs(norm_squared - 1) < 1e-12
+        slope = sum(a * b for a, b in zip(g, direction))
+        h = 1e-4
+        plus = loss(*(a + h * b for a, b in zip(p, direction)))
+        minus = loss(*(a - h * b for a, b in zip(p, direction)))
+        assert abs((plus - minus) / (2 * h) - slope) < 1e-9
+        slopes.append(slope)
+    assert abs(slopes[0] + scale) < 1e-12
+    assert slopes[0] <= slopes[1] + 1e-12
+    print(diagonal, steepest, slopes)
+```
+
+이 계산은 방향미분을 전처리한 매개변수 갱신과 연결합니다. 실제 목적함수에서는 M과 학습률을 선택한 근거도 필요하며 국소 방향 공식만으로 전역 수렴이 보장되지는 않습니다. 연습으로 M=I와 이번 손실의 Hessian을 M으로 사용한 경우를 비교하고, 정규화하지 않은 M⁻¹g 갱신과 단위 방향의 차이를 설명하세요.
+
+출처 연결: [Boyd와 Vandenberghe의 Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf) §9.4.1, 인쇄 476쪽에서 유클리드·이차 노름의 최급강하를 확인했습니다. 기준점의 비교와 실행 검산은 직접 구성했습니다.
+
 ## 첫 한 걸음을 손으로 계산하기
 
 `a=2`, `b=1`, 시작점 `(2,2)`, 학습률 `η=0.25`로 두겠습니다.

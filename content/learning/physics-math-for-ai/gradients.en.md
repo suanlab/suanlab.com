@@ -80,6 +80,79 @@ Here, “steepest” compares very small movements of equal length. In this unit
 
 Here η is the learning rate. The gradient is not a velocity or a force pulling a physical object to the origin. It is the derivative evaluated at the current parameters.
 
+## Prove the steepest direction and specify its distance
+
+For a function differentiable at p, a fixed direction v has directional derivative
+
+$$
+D_vL(p)=\lim_{t\to0}\frac{L(p+tv)-L(p)}t=g^Tv,\qquad g=\nabla L(p).
+$$
+
+For Euclidean unit v, Cauchy–Schwarz gives gᵀv≥−‖g‖₂. When g≠0, equality holds at v=−g/‖g‖₂. This proves the steepest first-order decrease per unit Euclidean distance. If g=0, all first-order directional derivatives vanish; higher-order behavior still matters. The Jacobian unit explains why merely having partial derivatives does not supply the differentiability assumption.
+
+Now measure a movement using ‖v‖_M=√(vᵀMv), with M real, symmetric and positive definite. Freeze this metric at the point under study. Factoring the inner product gives
+
+$$
+g^Tv=(M^{-1/2}g)^T(M^{1/2}v)
+\ge-\sqrt{g^TM^{-1}g}\,\|v\|_M.
+$$
+
+Thus, for g≠0, the unit steepest direction and the gradient defined by this inner product are
+
+$$
+v_M=-\frac{M^{-1}g}{\sqrt{g^TM^{-1}g}},\qquad
+\operatorname{grad}_M L=M^{-1}g.
+$$
+
+Indeed, (grad_M L)ᵀMv=gᵀv for every v, which identifies the metric gradient. The differential is unchanged; the vector representing it depends on the chosen inner product.
+
+## Compare two directions under the same movement budget
+
+At the lab’s reference, g=(4,2). Take M=diag(4,1): a displacement along x costs twice as much in length as the same displacement along y. Both directions below have M-length one.
+
+| Construction | Direction | First-order change gᵀv |
+|---|---|---|
+| Normalize the ordinary negative gradient in M-length | (−2,−1)/√17 | −10/√17 ≈ −2.425356 |
+| Minimize over all directions of M-length one | (−1,−2)/√8 | −√8 ≈ −2.828427 |
+
+Simply changing the length of −g leaves its orientation unchanged; applying M⁻¹ changes the orientation. Comparing slopes across different length budgets would answer a different question. The existing scene still uses ordinary Euclidean gradient descent; this table is a separate metric comparison.
+
+The Python check uses three positive diagonal metrics. It checks equal movement budgets, the derived minimum slope and independent central differences of the original quadratic loss.
+
+```python
+from math import sqrt
+
+g = (4.0, 2.0)
+p = (2.0, 2.0)
+
+def loss(x, y):
+    return x * x + 0.5 * y * y
+
+for diagonal in [(1.0, 1.0), (4.0, 1.0), (1.0, 9.0)]:
+    inverse_g = tuple(a / m for a, m in zip(g, diagonal))
+    scale = sqrt(sum(a * b for a, b in zip(g, inverse_g)))
+    steepest = tuple(-a / scale for a in inverse_g)
+    ordinary_scale = sqrt(sum(m * a * a for m, a in zip(diagonal, g)))
+    ordinary = tuple(-a / ordinary_scale for a in g)
+    slopes = []
+    for direction in [steepest, ordinary]:
+        norm_squared = sum(m * a * a for m, a in zip(diagonal, direction))
+        assert abs(norm_squared - 1) < 1e-12
+        slope = sum(a * b for a, b in zip(g, direction))
+        h = 1e-4
+        plus = loss(*(a + h * b for a, b in zip(p, direction)))
+        minus = loss(*(a - h * b for a, b in zip(p, direction)))
+        assert abs((plus - minus) / (2 * h) - slope) < 1e-9
+        slopes.append(slope)
+    assert abs(slopes[0] + scale) < 1e-12
+    assert slopes[0] <= slopes[1] + 1e-12
+    print(diagonal, steepest, slopes)
+```
+
+This calculation connects directional derivatives to preconditioned updates. A chosen M and a learning rate still need justification for the actual objective; the local direction formula alone is not a global convergence result. As an exercise, compare M=I with M equal to this loss’s Hessian, and explain why an unnormalized M⁻¹g update differs from a unit direction.
+
+Source connection: [Boyd and Vandenberghe, Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf), §9.4.1, printed p. 476, gives Euclidean and quadratic-norm steepest descent. The reference-point comparison and executable check here are independently constructed.
+
 ## Calculate the first step
 
 Set `a=2`, `b=1`, start at `(2,2)`, and use `η=0.25`.
