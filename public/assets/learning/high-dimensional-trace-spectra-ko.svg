@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="590" viewBox="0 0 440 590" role="img" aria-labelledby="title desc"><title id="title">trace와 스펙트럼의 모양</title><desc id="desc">두 결정적 양의 준정부호 행렬은 모두 trace 3입니다. 단위행렬은 고유값 1,1,1, 제곱합 3, 노름 1입니다. 랭크 1인 대각행렬은 고유값 3,0,0, 제곱합 9, 노름 3입니다.</desc>
+<rect width="440" height="590" rx="12" fill="#fff"/>
+<g font-family="system-ui,sans-serif" fill="#0f172a"><text x="20" y="30" font-size="23">trace와 스펙트럼의 모양</text><text x="20" y="57" font-size="18">결정적인 PSD 비교 예제</text>
+<text x="70" y="90" font-size="21" fill="#2563eb">S = I₃</text>
+<path d="M62 250H398" stroke="#cbd5e1" stroke-width="1"/><text x="40" y="256" font-size="17">0</text>
+<path d="M62 206H398" stroke="#cbd5e1" stroke-width="1"/><text x="40" y="212" font-size="17">1</text>
+<path d="M62 162H398" stroke="#cbd5e1" stroke-width="1"/><text x="40" y="168" font-size="17">2</text>
+<path d="M62 118H398" stroke="#cbd5e1" stroke-width="1"/><text x="40" y="124" font-size="17">3</text>
+<rect x="81" y="206" width="48" height="44" rx="3" fill="#2563eb"/>
+<text x="105" y="273" text-anchor="middle" font-size="17">λ1</text>
+<rect x="191" y="206" width="48" height="44" rx="3" fill="#2563eb"/>
+<text x="215" y="273" text-anchor="middle" font-size="17">λ2</text>
+<rect x="301" y="206" width="48" height="44" rx="3" fill="#2563eb"/>
+<text x="325" y="273" text-anchor="middle" font-size="17">λ3</text>
+<text x="40" y="303" font-size="19">tr S = 3; tr(S²) = 3; ‖S‖₂ = 1</text>
+<text x="70" y="350" font-size="21" fill="#ea580c">S = diag(3,0,0)</text>
+<path d="M62 510H398" stroke="#cbd5e1" stroke-width="1"/><text x="40" y="516" font-size="17">0</text>
+<path d="M62 466H398" stroke="#cbd5e1" stroke-width="1"/><text x="40" y="472" font-size="17">1</text>
+<path d="M62 422H398" stroke="#cbd5e1" stroke-width="1"/><text x="40" y="428" font-size="17">2</text>
+<path d="M62 378H398" stroke="#cbd5e1" stroke-width="1"/><text x="40" y="384" font-size="17">3</text>
+<rect x="81" y="378" width="48" height="132" rx="3" fill="#ea580c"/>
+<text x="105" y="533" text-anchor="middle" font-size="17">λ1</text>
+<circle cx="215" cy="510" r="4" fill="#ea580c"/>
+<text x="215" y="533" text-anchor="middle" font-size="17">λ2</text>
+<circle cx="325" cy="510" r="4" fill="#ea580c"/>
+<text x="325" y="533" text-anchor="middle" font-size="17">λ3</text>
+<text x="40" y="563" font-size="19">tr S = 3; tr(S²) = 9; ‖S‖₂ = 3</text>
+</g></svg>

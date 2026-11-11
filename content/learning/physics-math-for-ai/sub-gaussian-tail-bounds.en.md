@@ -28,6 +28,16 @@ At σ=1,t=2, the sign law has tail zero because its only values are ±1. The Gau
 
 A Laplace law can have finite variance without an MGF existing for all real arguments. An estimated variance therefore does not certify sub-Gaussianity. State centering, scale and any independence assumptions required by subsequent sum inequalities. Gaussian tail values here use a numerical CDF; the plot is not a fixed-seed sampling experiment.
 
+## Computing a small log MGF
+
+When cosh(x) is extremely close to one, direct logarithms or subtraction of similar constants can lose a quadratic-size value. For |x|<1 the implementation uses the following identity with log1p.
+
+$$
+\log\cosh x=\log\!\left(1+2\sinh^2(x/2)\right).
+$$
+
+At σ=1,λ=10⁻⁸, the value is approximately 5×10⁻¹⁷. This distinguishes an exact zero at λ=0 from a small positive value. If a mathematically positive selected log MGF falls below numeric representation range, the readout and marker are withheld with a numeric-range notice. Larger |x| retains the overflow-avoiding expression. This is not arbitrary-precision evaluation across every representable-range boundary.
+
 ## Exercises with explanations
 
 1. Must σ² be the unique optimal constant? **No: any valid proxy can be used.**

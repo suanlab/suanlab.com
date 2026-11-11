@@ -68,3 +68,27 @@ test('high-dimensional helpers and controls reject invalid seeds, matrices and d
 for(const kind of highDimensionalKinds)test(`${kind} has four concept steps and three finite guided experiments`,()=>{
  const spec=highDimensionalLabs[kind],guide=learningGuides[kind];assert.equal(guide.steps.length,4);assert.equal(guide.experiments.length,3);for(const preset of spec.presets){const r=evaluate(kind,preset.values);assert.ok(r.curves.flat().every(v=>v.every(Number.isFinite)));assert.ok(!/[가-힣]/.test(r.statement??''));for(const value of Object.values(r.stats)){if(typeof value==='number')assert.ok(Number.isFinite(value));if(Array.isArray(value))assert.ok(value.every(Number.isFinite));}}
 });
+
+test('small Rademacher log MGFs retain their positive quadratic term and even symmetry',()=>{
+ for(const sigma of [.25,1,2])for(const lambda of [1e-8,1e-10,1e-100,1e-150]){
+  const r=evaluate('sub-gaussian-tail-bounds',[sigma,2,lambda]);
+  const actual=num(r,'Rademacher log MGF at λ'),leading=(sigma*lambda)**2/2;
+  assert.ok(actual>0);close(actual/leading,1,1e-12);
+  assert.equal(evaluate('sub-gaussian-tail-bounds',[sigma,2,-lambda]).stats['Rademacher log MGF at λ'],actual);
+ }
+ for(const lambda of [1-1e-12,1,1+1e-12]){
+  close(num(evaluate('sub-gaussian-tail-bounds',[1,2,lambda]),'Rademacher log MGF at λ'),Math.log(Math.cosh(lambda)),1e-12);
+ }
+ assert.equal(evaluate('sub-gaussian-tail-bounds',[1,2,0]).stats['Rademacher log MGF at λ'],0);
+});
+
+test('subnormal positive log MGFs are retained and unrepresentable ones are withheld',()=>{
+ // Exact binary64 input 2.6e-162 has a quadratic half-square rounding to one subnormal unit.
+ const tiny=evaluate('sub-gaussian-tail-bounds',[1,2,2.6e-162]);
+ assert.equal(tiny.stats['Rademacher log MGF at λ'],Number.MIN_VALUE);
+ assert.equal(tiny.stats['Gaussian log MGF at λ'],Number.MIN_VALUE);
+ const under=evaluate('sub-gaussian-tail-bounds',[1,2,1e-162]);
+ assert.equal(under.stats['Rademacher log MGF at λ'],null);
+ assert.equal(under.stats['Gaussian log MGF at λ'],null);
+ assert.equal(under.warning,'numeric-range');assert.deepEqual(under.dots,[]);
+});
