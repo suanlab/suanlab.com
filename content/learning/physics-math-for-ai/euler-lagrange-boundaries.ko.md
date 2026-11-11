@@ -33,6 +33,61 @@ $$
 
 왼쪽 끝이 고정되어 비영 상수 차이도 허용되지 않으므로 등호는 같은 곡선에서만 성립한다. 일반 문제에서는 경계·함수 공간에 따라 유일성과 존재성도 별도로 확인해야 한다.
 
+## 약한 잔차를 에너지 오차 인증으로 바꾸기
+
+내부 미분방정식 잔차는 자유 경계 문제의 일부다. V={v∈H¹(0,1):v(0)=0}에 노름 ‖v′‖₂를 주고, 왼쪽 끝값이 올바른 매끄러운 후보 y를 생각하자. e=y−y*, r=−y″−q, b=y′(1)라고 쓰자. 부분적분과 정확해의 약한 방정식을 이용하면
+
+$$
+R(v):=\int_0^1rv\,dt+bv(1)=\int_0^1e'v'\,dt,
+\qquad
+\|R\|_{V^*}=\|e'\|_2,\qquad
+J[y]-J[y^*]=\tfrac12\|R\|_{V^*}^2.
+$$
+
+쌍대 노름은 노름이 1인 모든 시험함수에 대한 상한이다. Cauchy–Schwarz로 한쪽 부등식을 얻고, e≠0이면 v=e/‖e′‖₂를 택해 등호를 얻는다. e=0인 경우도 직접 확인된다. 이 강제적인 이차 문제에서는 약한 잔차가 실제 에너지 오차와 정확히 연결된다.
+
+좀 더 간단히 계산하려면 ‖v‖₂≤‖v′‖₂와 |v(1)|≤‖v′‖₂를 쓰자. 그러면
+
+$$
+\|e'\|_2\le\|r\|_2+|b|,\qquad
+0\le J[y]-J[y^*]\le\tfrac12(\|r\|_2+|b|)^2.
+$$
+
+여기의 상수는 충분한 상계이며 항마다 최적인 상수라고 주장하지 않는다. 양 끝 고정 문제에서는 시험함수도 양 끝에서 0이므로 b 항이 없다. 이때 후보는 양 끝의 본질적 경계값을 만족해야 한다. 그 값 자체를 위반하면 경계 lifting의 오차부터 반영해야 하며 위 인증을 그대로 적용할 수 없다.
+
+## 내부 잔차가 정확히 0이어도 잘못된 해가 될 수 있다
+
+자유 경계의 정확해에 e(t)=a t+c t²를 더하자. 내부 잔차는 −2c, 자연 경계 잔차는 a+2c, 목적 초과는 (a²+2ac+4c²/3)/2다. 특히 e=t/2이면 내부 잔차는 0이지만 오른쪽 기울기가 틀려 목적 초과 1/8이 남는다.
+
+| (a,c) | r | b | 초과 | 상계 |
+|---|---:|---:|---:|---:|
+| (1/2,0) | 0 | 1/2 | 1/8 | 1/8 |
+| (0,1/2) | −1 | 1 | 1/6 | 2 |
+| (1,−1/2) | 1 | 0 | 1/6 | 1/2 |
+
+```python
+from fractions import Fraction as F
+
+# Free-right-end problem. e(t)=a*t+c*t*t is the candidate error.
+for a, c in ((F(1, 2), F(0)), (F(0), F(1, 2)), (F(1), F(-1, 2))):
+    interior, boundary = -2*c, a+2*c
+    derivative_squared_integral = a*a+2*a*c+F(4, 3)*c*c
+    gap = derivative_squared_integral/2
+    certificate = (abs(interior)+abs(boundary))**2/2
+    assert 0 <= gap <= certificate
+    print("a,c:", a, c, "r,b:", interior, boundary,
+          "gap,bound:", gap, certificate)
+# Check the bound on an independent rational polynomial grid.
+for i in range(-8, 9):
+    for j in range(-8, 9):
+        a, c = F(i, 8), F(j, 8)
+        gap = (a*a+2*a*c+F(4, 3)*c*c)/2
+        assert gap <= (abs(2*c)+abs(a+2*c))**2/2
+print("289 polynomial residual certificates verified")
+```
+
+별도의 다항 예제와 289개 유리수 격자 검산은 위 실습의 sine 기저 조절기를 늘리지 않는다. 물리 기반 학습에서 내부 방정식과 지정된 경계 조건을 함께 확인해야 하는 이유를 설명한다. 비볼록 에너지·비강제 연산자·근사 구적법에서는 등식과 인증을 새로 유도해야 한다. 표본 훈련 손실이 작다는 사실만으로 충분하지 않다.
+
 ## 직접 풀기와 풀이
 
 후보는 다항 기저에 b sin πt를 더한 형태다. 자유 경계에서 q=a=2,b=0.2이면 오른쪽 기울기는 −0.2π≈−0.628319다. 내부 잔차도 π²·0.2 sin πt로 비영이다. 목적 초과는 0.01π²≈0.098696이다.

@@ -48,6 +48,8 @@
 
 비볼록·확률·대규모 최적화의 10개 원주제를 감소 보폭·PL·heavy-ball 안정성·quartic 꼬리·epoch 의존성·SVRG 비용·broadcast 보정·유한 hypergradient·implicit 오차·단위별 종료 기준의 한영 논증과 실행 예제로 보강했다. 작은 SGD 오차·SVRG 분산·정확해 hypergradient와 수축 표시도 수정했다. [검토 기록](stochastic-optimization-topic-review.md)을 포함해 누적 24영역·235개 원주제이며 다음은 변분법과 기하적 최적화다. 입문 362/362와 전체 연구 심화 완료는 구별한다.
 
+변분법 심화는 [첫 두 주제의 진행 기록](variational-geometry-topic-review.md)에 정리했다. H₀¹/L2 노름별 미분 가능성과 자유 경계 잔차 인증의 한영 증명·유리수 Python 예제를 보강했다. 남은 여덟 주제를 포함한 영역 대조는 진행 중이므로 완료 집계는 24영역·235개, 영역 단위 대조 대상은 27영역·274개로 유지한다.
+
 ## 이전 작업 기록
 
 아래 수치는 각 작업 시점의 기록이다.

@@ -33,6 +33,61 @@ $$
 
 Because the left endpoint is fixed, a nonzero constant difference is not admissible; equality therefore identifies the unique minimizer. Without appropriate boundary or function-space assumptions, uniqueness and even existence require further work.
 
+## Turn the weak residual into an energy-error certificate
+
+An interior differential residual is only part of the free-end problem. Let V={v∈H¹(0,1):v(0)=0}, with norm ‖v′‖₂, and let y be a smooth candidate with the correct left endpoint. Write e=y−y*, r=−y″−q and b=y′(1). Integration by parts and the exact solution's weak equation give
+
+$$
+R(v):=\int_0^1rv\,dt+bv(1)=\int_0^1e'v'\,dt,
+\qquad
+\|R\|_{V^*}=\|e'\|_2,\qquad
+J[y]-J[y^*]=\tfrac12\|R\|_{V^*}^2.
+$$
+
+The dual norm is a supremum over unit-norm test functions. Cauchy–Schwarz proves the upper inequality; choosing v=e/‖e′‖₂ proves equality when e is nonzero. The zero case follows directly. This converts a weak residual into the actual energy error for this coercive quadratic problem.
+
+To obtain a simpler computable bound, use ‖v‖₂≤‖v′‖₂ and |v(1)|≤‖v′‖₂. Therefore
+
+$$
+\|e'\|_2\le\|r\|_2+|b|,\qquad
+0\le J[y]-J[y^*]\le\tfrac12(\|r\|_2+|b|)^2.
+$$
+
+These constants are sufficient, rather than optimal for every term. For fixed endpoints the test functions vanish at both ends, so there is no b term; candidates must then satisfy both essential endpoint values. If a candidate violates the essential values, first account for a boundary lifting instead of applying this certificate unchanged.
+
+## An exactly zero interior residual can still give the wrong solution
+
+Take the free-end solution and add e(t)=a t+c t². The interior residual is −2c and the natural boundary residual is a+2c. The excess is (a²+2ac+4c²/3)/2. In particular e=t/2 has zero interior residual but excess 1/8, because its right-end slope is wrong.
+
+| (a,c) | r | b | Excess | Bound |
+|---|---:|---:|---:|---:|
+| (1/2,0) | 0 | 1/2 | 1/8 | 1/8 |
+| (0,1/2) | −1 | 1 | 1/6 | 2 |
+| (1,−1/2) | 1 | 0 | 1/6 | 1/2 |
+
+```python
+from fractions import Fraction as F
+
+# Free-right-end problem. e(t)=a*t+c*t*t is the candidate error.
+for a, c in ((F(1, 2), F(0)), (F(0), F(1, 2)), (F(1), F(-1, 2))):
+    interior, boundary = -2*c, a+2*c
+    derivative_squared_integral = a*a+2*a*c+F(4, 3)*c*c
+    gap = derivative_squared_integral/2
+    certificate = (abs(interior)+abs(boundary))**2/2
+    assert 0 <= gap <= certificate
+    print("a,c:", a, c, "r,b:", interior, boundary,
+          "gap,bound:", gap, certificate)
+# Check the bound on an independent rational polynomial grid.
+for i in range(-8, 9):
+    for j in range(-8, 9):
+        a, c = F(i, 8), F(j, 8)
+        gap = (a*a+2*a*c+F(4, 3)*c*c)/2
+        assert gap <= (abs(2*c)+abs(a+2*c))**2/2
+print("289 polynomial residual certificates verified")
+```
+
+This independent polynomial example and its 289-case rational grid do not add controls to the lab's sine-based family. They explain why physics-informed training should monitor the specified boundary conditions as well as interior equations. For nonconvex energies, noncoercive operators or approximate quadrature, the equality and certificate require new arguments; a small sampled training loss alone is insufficient.
+
 ## Exercise and explained answer
 
 The candidate is a polynomial basis curve plus b sin πt. In free-end mode use q=a=2 and b=0.2. Its right-end slope is −0.2π≈−0.628319. Its interior residual is π²·0.2 sin πt, so the candidate violates both interior stationarity and the natural condition. Its objective excess is 0.01π²≈0.098696.
