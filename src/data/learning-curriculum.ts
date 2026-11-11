@@ -3327,7 +3327,8 @@ export const curriculumDomains:CurriculumDomain[] = [
       "lattice-vibrations-and-phonon-dispersion",
       "electronic-bands-in-a-dimerized-chain",
       "photodiode-circuits-and-sensor-bandwidth",
-      "photonic-interferometers-and-matrix-products"
+      "photonic-interferometers-and-matrix-products",
+      "photodiode-noise-and-equivalent-bandwidth"
     ]
   },
   {
