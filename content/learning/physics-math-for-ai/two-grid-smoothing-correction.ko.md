@@ -25,6 +25,43 @@ $$
 
 Coarse 식은 pivoting을 사용하는 작은 직접 해법으로 풉니다. 이어 post-smoothing을 적용하며 cycle 수만큼 실제 반복합니다. Restriction과 prolongation의 차원, 경계 0의 처리, 잔차 부호가 모두 중요합니다. 잘못된 부호는 오차를 제거하는 대신 더합니다.
 
+## Coarse 보정은 에너지 사영이다
+
+A가 대칭 양의 정부호이고 P가 full column rank이면 R=Pᵀ/2의 상수 인자는 정확한 coarse 보정에서 소거된다. 오차 연산자는 C=I−P(PᵀAP)⁻¹PᵀA다. 직접 곱하면 C²=C,CᵀA=AC,PᵀAC=0이므로
+
+$$
+\|Ce\|_A^2=\|e\|_A^2-\|e-Ce\|_A^2.
+$$
+
+Euclidean 거리가 아니라 A-에너지에서 가장 가까운 coarse 성분을 제거한다. 정확한 coarse 보정의 비확장은 증명하지만 적절한 smoothing·근사 논증 없이 균일 two-grid 수렴까지 보이지는 않는다.
+
+Weighted Jacobi의 고주파 대역 θ∈[π/2,π]에서 최악 인자는 max(|1−ω|,|1−2ω|)다. 양 끝 오차를 균형 맞추면 minimax ω=2/3,최악 인자 1/3이다. 균일 1D Poisson의 이 대역 상수이며 모든 연산자의 최적 weight가 아니다.
+
+![공간 주파수별 weighted Jacobi 배율과 고주파 대역에서 minimax weight의 의미를 비교하는 그림.](/assets/learning/scientific-smoothing-ko.svg)
+
+| ω | 지정 고주파 대역의 최악 배율 |
+|---|---:|
+| 1/2 | 1/2 |
+| 2/3 | 1/3 |
+| 1 | 1 |
+
+```python
+from fractions import Fraction as F
+A=[[F(2),F(-1),F(0)],[F(-1),F(2),F(-1)],[F(0),F(-1),F(2)]]
+p=[F(1,2),F(1),F(1,2)];e=[F(1),F(-1),F(2)]
+mv=lambda v:[sum(a*b for a,b in zip(row,v)) for row in A]
+dot=lambda a,b:sum(x*y for x,y in zip(a,b))
+coefficient=dot(p,mv(e))/dot(p,mv(p))
+removed=[coefficient*x for x in p]
+corrected=[x-y for x,y in zip(e,removed)]
+assert dot(p,mv(corrected))==0
+assert dot(e,mv(e))==dot(corrected,mv(corrected))+dot(removed,mv(removed))
+for weight in (F(1,2),F(2,3),F(1)):
+    print(weight,max(abs(1-weight),abs(1-2*weight)))
+```
+
+유리수 사영으로 세 fine 미지수의 직교성과 피타고라스를 확인한다. 실제 solver는 Galerkin coarse 행렬을 조립하고 전후 smoothing을 수행한다. Neural pooling도 연산자·norm·보정 식을 명시해야 같은 의미의 그림으로 해석할 수 있다.
+
 ## 손계산과 직접 풀기
 
 m=1인 매끄러운 sine와 m=7인 진동 sine를 같은 fine 격자에서 비교해 보세요. Jacobi의 mode multiplier는 1-ω(1-cos(mπh))입니다. 작은 mπh에서는 거의 1이라 변화가 느리고, 선택된 큰 주파수에서는 절댓값이 작아질 수 있습니다. Coarse correction은 smoothing이 남긴 매끄러운 부분을 주로 줄입니다.

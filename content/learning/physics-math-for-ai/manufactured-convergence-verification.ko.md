@@ -22,6 +22,42 @@ Max norm에는 경계도 포함합니다. L2는 연속 적분의 사다리꼴 �
 
 왼쪽 경계를 0.1로 바꾸면 다른 경계 문제를 풉니다. Direct solve의 잔차는 반올림 수준이지만 원래 정확해에 대한 오차는 0으로 가지 않습니다. 반대로 Jacobi 반복 수가 너무 적으면 fine 격자의 느린 수렴이 지배해 격자를 줄여도 오차가 잘 줄지 않습니다.
 
+## 잔차를 검증 예산의 한 항으로 바꾸기
+
+1D Dirichlet FD 행렬은 역이 비음수인 M-matrix다. 이산 barrier wᵢ=xᵢ(1−xᵢ)/2는 Aw=1,max w≤1/8을 만족한다. 잔차 상계에 비교 원리를 적용하면 대수 오차 ‖e_alg‖∞≤‖r‖∞/8이다. 경계 불일치 δ와 제조 목표의 일관성 결함 τ를 포함하면
+
+$$
+\|u_{computed}-u_{target}\|_\infty
+\le |\delta|+\tfrac18(\|r\|_\infty+\|\tau\|_\infty).
+$$
+
+잘못된 데이터·선형 풀이·이산화를 분리한다. 이차 방법에서는 대수 잔차 O(h²)가 이 norm에서 맞는 예산으로 충분하며 고정 반복 수가 이를 보장하지는 않는다.
+
+0에서 시작하는 Jacobi와 sine 우변의 정확 이산해에 대한 오차는 그 진폭에 cos(πh)ᵏ를 곱한 것이다. h² 이하로 만들려면 O(h⁻²log(1/h))회가 필요하다. 격자 세분화는 미지수 수뿐 아니라 필요한 relaxation 작업도 늘린다.
+
+| N | 필요한 대수 오차 목표 | 반복 수 |
+|---|---|---|
+| 8 | h²=1/64 | 아래 계산 |
+| 16 | h²=1/256 | 아래 계산 |
+| 32 | h²=1/1024 | 아래 계산 |
+
+```python
+from fractions import Fraction as F
+from math import pi,sin,cos,log,ceil
+for N in (4,8,16):
+    h=F(1,N);xs=[F(i,N) for i in range(1,N)]
+    inverse=[[h*min(x,y)*(1-max(x,y)) for y in xs] for x in xs]
+    for x,row in zip(xs,inverse):assert sum(row)==x*(1-x)/2<=F(1,8)
+for N in (8,16,32):
+    h=1/N;scale=pi*pi*h*h/(4*sin(pi*h/2)**2);rho=cos(pi*h)
+    iterations=ceil(log(h*h/scale)/log(rho))
+    assert scale*rho**iterations<=h*h
+    assert scale*rho**(iterations-1)>h*h
+    print(N,iterations,'algebraic error:',scale*rho**iterations)
+```
+
+정확한 역행렬 행합으로 소거 해법과 독립적으로 안정 상수를 검산한다. 반복 수 추정은 보조 작업량 계산이며 live의 최대 500회보다 클 수 있다. 일관성 차수가 틀리지 않아도 fine 오차 곡선이 평평해지는 이유다. 실제 부동소수점 잔차를 엄밀한 인증에 쓰려면 산술 오차도 평가해야 한다.
+
 ## 손계산과 직접 풀기
 
 정현파가 FD 행렬의 고유벡터이므로 올바른 경계의 이산해는 다음 배율을 가집니다.

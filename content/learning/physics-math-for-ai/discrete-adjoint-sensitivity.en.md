@@ -29,6 +29,44 @@ The centered finite difference reruns the same Euler integration at θ+ε and θ
 
 The continuous exact solution is y(t)=1/(1+4 exp(-θt)), giving dy(T)/dθ=T y(T)(1-y(T)). Its objective gradient is also reported, but it differentiates a different finite-h function. Checking convergence toward that continuous derivative is distinct from checking that forward tangent and reverse adjoint agree on the discrete graph.
 
+## Differentiating an iteration differs from differentiating its limit
+
+An implicit logistic step solves F(z,y,θ)=z−y−hθz(1−z)=0. Where F_z≠0, implicit differentiation gives
+
+$$
+\frac{dz}{d\theta}=\frac{dy/d\theta+h z(1-z)}{1-h\theta(1-2z)}.
+$$
+
+If the solver instead returns a differentiable approximate state with F=r(θ), the numerator acquires r′(θ). A small residual value alone does not bound the derivative error: r(θ)=εsin(θ/ε²) has amplitude ε but derivative amplitude 1/ε. Differentiating a fixed number of Newton updates gives the derivative of that iteration program. Converging primal states and sensitivities requires appropriate additional control.
+
+| Differentiated object | One-parameter state sensitivity |
+|---|---|
+| Continuous logistic flow | T y(T)(1−y(T)) |
+| Converged implicit step, fixed initial state | h z(1−z)/F_z |
+| Fixed Newton program | Chain rule through its actual updates |
+
+```python
+from decimal import Decimal as D,localcontext
+with localcontext() as ctx:
+    ctx.prec=60
+    h,theta,y=D('.25'),D('.5'),D('.2')
+    a,b=h*theta,1-h*theta
+    root=2*y/(b+(b*b+4*a*y).sqrt())
+    exact_derivative=h*root*(1-root)/(1-h*theta*(1-2*root))
+    x,dx=y,D(0)
+    for k in range(1,5):
+        residual=x-y-h*theta*x*(1-x)
+        denominator=1-h*theta*(1-2*x)
+        total_derivative=denominator*dx-h*x*(1-x)
+        denominator_derivative=2*h*theta*dx-h*(1-2*x)
+        dx-= (total_derivative*denominator-residual*denominator_derivative)/(denominator*denominator)
+        x-=residual/denominator
+        if k in (1,2,4):print(k,float(abs(x-root)),float(abs(dx-exact_derivative)))
+    assert abs(x-root)<D('1e-30') and abs(dx-exact_derivative)<D('1e-28')
+```
+
+The Decimal example differentiates Newton updates and compares their limit with the implicit derivative. This auxiliary step is separate from the live explicit-Euler adjoint. Its continuous reference gradient now evaluates the small target mismatch with expm1 before adding it to the initial state. A tiny nonzero continuum sensitivity can coexist with an Euler rollout whose represented states never change. Neither comparison replaces the finite computation graph by a different objective.
+
 ## Worked example and exercise
 
 At θ=0, all Euler states remain 0.2. Every step has F_y=1 and F_theta=0.16h, so s_N=0.16T. All reverse adjoints equal 0.2-target. Both methods therefore give gradient (0.2-target)0.16T.

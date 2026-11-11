@@ -22,6 +22,42 @@ The algebraic residual r=b-Au measures how well the discrete equations were solv
 
 Changing the left boundary to 0.1 defines a different boundary-value problem. A direct solve can have a residual near roundoff while its error against the original exact solution does not approach zero. Conversely, a fixed small number of Jacobi iterations may leave dominant algebraic error, especially on finer meshes where low-frequency relaxation is slower.
 
+## Turn the residual into one part of a verification budget
+
+The 1D Dirichlet FD matrix is an M-matrix with a nonnegative inverse. The discrete barrier wᵢ=xᵢ(1−xᵢ)/2 satisfies Aw=1 and max w≤1/8. Applying the comparison principle to residual bounds gives an algebraic-error estimate ‖e_alg‖∞≤‖r‖∞/8. With boundary mismatch δ and consistency defect τ for the manufactured target,
+
+$$
+\|u_{computed}-u_{target}\|_\infty
+\le |\delta|+\tfrac18(\|r\|_\infty+\|\tau\|_\infty).
+$$
+
+This separates wrong data, linear-solve error and discretization. For a second-order method, making the algebraic residual O(h²) is a sufficient matching budget in this norm; a fixed iteration count does not enforce it.
+
+For zero-start Jacobi and the sine right-hand side, the error against the exact discrete solution is its amplitude times cos(πh)ᵏ. Requiring this to be at most h² takes O(h⁻²log(1/h)) iterations. Refinement therefore increases both the number of unknowns and the required relaxation work.
+
+| N | Required algebraic-error target | Iteration count |
+|---|---|---|
+| 8 | h²=1/64 | computed below |
+| 16 | h²=1/256 | computed below |
+| 32 | h²=1/1024 | computed below |
+
+```python
+from fractions import Fraction as F
+from math import pi,sin,cos,log,ceil
+for N in (4,8,16):
+    h=F(1,N);xs=[F(i,N) for i in range(1,N)]
+    inverse=[[h*min(x,y)*(1-max(x,y)) for y in xs] for x in xs]
+    for x,row in zip(xs,inverse):assert sum(row)==x*(1-x)/2<=F(1,8)
+for N in (8,16,32):
+    h=1/N;scale=pi*pi*h*h/(4*sin(pi*h/2)**2);rho=cos(pi*h)
+    iterations=ceil(log(h*h/scale)/log(rho))
+    assert scale*rho**iterations<=h*h
+    assert scale*rho**(iterations-1)>h*h
+    print(N,iterations,'algebraic error:',scale*rho**iterations)
+```
+
+Exact inverse row sums verify the stability constant independently of elimination. The iteration estimate is an auxiliary work calculation; it may exceed the live 500-iteration selector. It explains why a fine-grid error curve can flatten without invalidating the consistency order. A floating residual measurement still needs its own arithmetic-error assessment before it can be used as a rigorous certificate.
+
 ## Worked example and exercise
 
 The sine sample vector is an eigenvector of the FD matrix. With correct boundary data the exact discrete solution therefore has amplitude

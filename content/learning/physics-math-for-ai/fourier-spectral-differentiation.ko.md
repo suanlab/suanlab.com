@@ -21,6 +21,36 @@ DFT의 뒤쪽 index는 음의 주파수로 읽습니다. N=16이면 15번은 -1�
 
 입력 주파수가 Nyquist보다 작다는 표시는 현재 단일 sine 성분에 대한 진단입니다. 일반 데이터에서 진짜 미해상 주파수를 표본만 보고 항상 알아낼 수 있다는 뜻은 아닙니다. 비주기 경계나 불연속에서는 Gibbs와 경계 처리도 별도로 고려해야 합니다.
 
+## Skew 미분에 이산 Chain Rule이 자동으로 생기지는 않는다
+
+지정한 실수 Nyquist 관례의 주기 Fourier 미분은 격자 내적에서 Dᵀ=−D다. 정규화 뒤 unitary 변환과 순허수 부호 multiplier로 증명한다. 따라서 uᵀDu=0으로 선형 수송의 반이산 에너지가 보존된다. 그러나 표본을 곱하는 비선형 항에는 aliasing이 생기며 D(u²)=2uDu는 일반적으로 틀리다.
+
+매끄러운 Burgers에서 split 근사 uₜ=−[D(u²)+uDu]/3를 생각하자. uᵀD(u²)=−(Du)ᵀu²이므로 격자 에너지 미분이 0이다. 잘못된 이산 곱 규칙을 가정하지 않는 대수 상쇄다. 미해상 mode를 복구하거나 dealiased 정확도를 증명하거나 shock 이후 entropy 소산을 제공하지는 않는다.
+
+4절점 실수 spectral 행렬,u=(1,2,3,5)에서 비가중 에너지 E=Σuᵢ²/2를 쓰면
+
+| 반이산 우변 | E′ |
+|---|---:|
+| −uDu | 9 |
+| −D(u²)/2 | −9/2 |
+| −[D(u²)+uDu]/3 | 0 |
+
+```python
+from fractions import Fraction as F
+u=list(map(F,(1,2,3,5)))
+def D(v):return [(v[(j+1)%4]-v[(j-1)%4])/2 for j in range(4)]
+du,du2=D(u),D([x*x for x in u])
+naive=[-x*y for x,y in zip(u,du)]
+conservative=[-v/2 for v in du2]
+split=[-(a+x*b)/3 for a,x,b in zip(du2,u,du)]
+rates=[sum(x*y for x,y in zip(u,rhs)) for rhs in (naive,conservative,split)]
+assert rates==[9,F(-9,2),0]
+assert sum(u[i]*du[i] for i in range(4))==0
+print(rates)
+```
+
+아래 4절점 행렬은 정확 유리수 보조 예제이며 live DFT는 8절점부터다. Nyquist 미분은 0이다. 에너지 안정 거동과 해상도는 별개이므로 학습 spectral 연산자에서도 둘을 검사해야 한다. 이차량 보존만으로 비선형 PDE 해를 인증할 수 없다.
+
 ## 손계산과 직접 풀기
 
 N=16, k=3이면 sine derivative multiplier는 3입니다. 같은 모드의 중심 차분은 sin(3h)/h를 곱하므로 약 2.35264로 작습니다. spectral은 현재 삼각다항식을 해상하는 한 반올림 수준의 오차를 보입니다.

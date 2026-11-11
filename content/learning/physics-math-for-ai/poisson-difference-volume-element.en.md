@@ -25,6 +25,41 @@ $$
 
 Piecewise-linear hat functions produce diagonal 2/h and neighboring entries -1/h. The load is integrated over elements using two-point Gauss quadrature, rather than inserting f_i directly. This quadrature is exact for appropriate polynomial integrands but remains approximate for the sinusoidal load. Rescaling K to resemble an FD matrix does not erase the difference between their right-hand sides.
 
+## Exact nodal values can coexist with nonzero function error
+
+With exact weak loads, the constant-coefficient 1D linear FEM solution is the nodal interpolant Iₕu. To prove it, note that each test derivative vₕ′ is constant on an element. Therefore ∫(u−Iₕu)′vₕ′ is that constant times the difference of the endpoint interpolation errors, both zero. Galerkin orthogonality and uniqueness identify uₕ=Iₕu. More generally, orthogonality gives the energy best-approximation property for this symmetric coercive bilinear form.
+
+This does not make the interpolant equal to u between nodes. For u=x(1−x), its interpolation error on an element starting at a is ξ(h−ξ), ξ=x−a. Integrating its square and its derivative square over N uniform elements gives
+
+$$
+\|u-I_hu\|_{L^2}^2=\frac{h^4}{30},\qquad
+\|(u-I_hu)'\|_{L^2}^2=\frac{h^2}{3}.
+$$
+
+| N | Squared L2 error | Squared energy error |
+|---|---|---|
+| 4 | 1/(30·4⁴) | 1/(3·4²) |
+| 8 | 1/(30·8⁴) | 1/(3·8²) |
+| 16 | 1/(30·16⁴) | 1/(3·16²) |
+
+```python
+from fractions import Fraction as F
+def square(c):
+    out=[F(0)]*(2*len(c)-1)
+    for i,a in enumerate(c):
+        for j,b in enumerate(c):out[i+j]+=a*b
+    return out
+def integral(c,h):return sum(a*h**(i+1)/F(i+1) for i,a in enumerate(c))
+for N in (4,8,16):
+    h=F(1,N)
+    l2=N*integral(square([F(0),h,F(-1)]),h)
+    energy=N*integral(square([h,F(-2)]),h)
+    assert l2==h**4/30 and energy==h*h/3
+    print(N,l2,energy)
+```
+
+The exact polynomial integration checks errors across entire elements, not just at nodes. The proof assumes exact loads and a constant diffusion coefficient. The live two-point quadrature is exact for the quadratic example's constant source, but approximate for its sine source. Quadrature error then adds a separate consistency term; this nodal argument must not be transferred unchanged to that approximate load or to variable coefficients.
+
 ## Worked example and exercise
 
 Set A=L=R=0. The exact solution x(1-x) has constant source two. Central second differences reproduce its second derivative exactly, so FD nodal errors are near roundoff. Linear FEM with exact loads also has exact nodal values for this one-dimensional constant-coefficient problem, although its linear interpolant is not the exact quadratic inside an element.

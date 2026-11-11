@@ -24,6 +24,42 @@ $$
 
 주기 경계에서 stencil의 이웃 교환은 전체 합에서 상쇄되어 h∑uᵢ를 보존합니다. 이 보존은 안정성을 보장하지 않습니다. 부호가 교대하는 큰 값도 합이 0일 수 있기 때문입니다. Nyquist multiplier와 최대 nodal 오차, 질량 변화를 함께 보세요.
 
+## 물리 공간 에너지 추정으로 Fourier 조건 이해하기
+
+비가중 주기 격자 norm을 쓰자. h를 곱해도 안정성 결론은 같다. dᵢ=uᵢ₊₁−uᵢ,Δ₂uᵢ=uᵢ₋₁−2uᵢ+uᵢ₊₁라 두면 summation by parts로 열 항등식을 얻는다.
+
+$$
+\|u+r\Delta_2u\|^2-\|u\|^2
+=-2r\sum_i d_i^2+r^2\sum_i(\Delta_2u_i)^2
+\le-2r(1-2r)\sum_i d_i^2.
+$$
+
+Σ(Δ₂u)²≤4Σd²를 썼다. Upwind는 u와 주기 이동 S의 convex combination이므로 정확히 ‖(1−r)u+rSu‖²−‖u‖²=−r(1−r)‖u−Su‖²다. Stencil을 대각화하지 않고도 같은 CFL 구간을 얻는다. 가중치가 비음수이면 비음수 초기 데이터의 positivity·최대 경계도 증명한다. 실제 cosine 데이터가 비음수라는 주장은 아니다.
+
+| 방법과 r | 이웃 차이 제곱 합의 계수 |
+|---|---:|
+| Heat,r=1/4,상계 | −1/4 |
+| Upwind,r=1/2,항등식 | −1/4 |
+| Upwind,r=1,항등식 | 0 |
+
+```python
+from fractions import Fraction as F
+u=list(map(F,(1,2,-1,0)))
+sq=lambda v:sum(x*x for x in v)
+diff=[u[(i+1)%4]-u[i] for i in range(4)]
+lap=[u[(i-1)%4]-2*u[i]+u[(i+1)%4] for i in range(4)]
+r=F(1,4);heat=[x+r*d for x,d in zip(u,lap)]
+change=sq(heat)-sq(u)
+assert change==-2*r*sq(diff)+r*r*sq(lap)
+assert change<=-2*r*(1-2*r)*sq(diff)
+for r in (F(1,2),F(1)):
+    upwind=[(1-r)*u[i]+r*u[(i-1)%4] for i in range(4)]
+    assert sq(upwind)-sq(u)==-r*(1-r)*sq(diff)
+    print(r,sq(upwind)-sq(u))
+```
+
+실제 upwind도 combination 형태로 바꿨다. r=1에서는 뺄셈으로 손상될 수 있는 작은 표본까지 bit 단위의 정확한 배열 순열이다. 안정 구간 밖에서도 정확 산술의 질량 망원합은 유지되지만 에너지 수축 논증은 실패한다. 매우 큰 불안정 부동소수점 rollout에서는 질량 상쇄의 정확도도 잃을 수 있다.
+
 ## 손계산과 직접 풀기
 
 열에서 r=0.75이면 Nyquist multiplier는 1-4r=-2입니다. 초기 크기 ε=0.001은 20 step 뒤 0.001·(-2)²⁰=1048.576이 됩니다. 물리 열 방정식은 오히려 고주파를 가장 빠르게 감쇠하므로 이 성장은 수치 현상입니다.

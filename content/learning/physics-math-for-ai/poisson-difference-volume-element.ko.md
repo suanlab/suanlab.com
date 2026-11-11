@@ -25,6 +25,41 @@ $$
 
 선형 hat 함수를 사용하면 균일 격자의 K는 대각 2/h, 이웃 -1/h입니다. Load는 단순히 f_i를 넣지 않고 각 요소에서 두 점 Gauss 적분으로 계산합니다. 다항식에서는 정확할 수 있지만 정현파 load의 적분은 여전히 근사입니다. K를 h로 나누어 FD와 비교해도 우변의 정의가 다릅니다.
 
+## 절점이 정확해도 함수 오차는 남는다
+
+정확한 weak load의 1D 상수 계수 선형 FEM 해는 절점 보간 Iₕu다. 각 요소의 시험 도함수 vₕ′는 상수이므로 ∫(u−Iₕu)′vₕ′는 그 상수와 양 끝 보간 오차 차이의 곱이며 0이다. Galerkin 직교성과 유일성으로 uₕ=Iₕu를 얻는다. 더 일반적으로 이 대칭·coercive 형식의 직교성은 에너지 최적 근사를 준다.
+
+절점 사이에서 u와 같다는 뜻은 아니다. u=x(1−x)의 시작점 a인 요소에서 보간 오차는 ξ(h−ξ),ξ=x−a다. 제곱과 도함수 제곱을 N개 균일 요소에서 적분하면
+
+$$
+\|u-I_hu\|_{L^2}^2=\frac{h^4}{30},\qquad
+\|(u-I_hu)'\|_{L^2}^2=\frac{h^2}{3}.
+$$
+
+| N | L2 오차 제곱 | 에너지 오차 제곱 |
+|---|---|---|
+| 4 | 1/(30·4⁴) | 1/(3·4²) |
+| 8 | 1/(30·8⁴) | 1/(3·8²) |
+| 16 | 1/(30·16⁴) | 1/(3·16²) |
+
+```python
+from fractions import Fraction as F
+def square(c):
+    out=[F(0)]*(2*len(c)-1)
+    for i,a in enumerate(c):
+        for j,b in enumerate(c):out[i+j]+=a*b
+    return out
+def integral(c,h):return sum(a*h**(i+1)/F(i+1) for i,a in enumerate(c))
+for N in (4,8,16):
+    h=F(1,N)
+    l2=N*integral(square([F(0),h,F(-1)]),h)
+    energy=N*integral(square([h,F(-2)]),h)
+    assert l2==h**4/30 and energy==h*h/3
+    print(N,l2,energy)
+```
+
+유리수 다항식 적분으로 절점뿐 아니라 요소 전체의 오차를 검산한다. 증명은 정확 load와 상수 확산계수를 가정한다. 실제 두 점 구적은 이차 예제의 상수 source에 정확하지만 sine source에는 근사다. 이때 구적 일관성 항이 추가되며 절점 논증을 근사 load나 가변 계수에 그대로 적용할 수 없다.
+
 ## 손계산과 직접 풀기
 
 A=L=R=0이면 정확해는 x(1-x), source는 2입니다. FD의 이차 차분은 이 이차 함수의 미분을 정확히 재현하므로 내부 절점 오차는 반올림 수준입니다. 선형 FEM도 이 1D 상수 계수 문제에서 정확한 load를 사용하면 절점 값이 정확하지만 요소 내부의 선형 보간은 곡선과 다릅니다.

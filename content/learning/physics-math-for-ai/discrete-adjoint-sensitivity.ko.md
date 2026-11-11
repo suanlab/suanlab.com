@@ -29,6 +29,44 @@ $$
 
 연속 정확해는 y(t)=1/(1+4 exp(-θt))이고 dy(T)/dθ=T y(T)(1-y(T))입니다. 따라서 연속 J의 gradient도 계산할 수 있지만 이것은 다른 유한 h 목적함수의 미분입니다. N을 늘리며 차이가 줄어드는지 확인하는 일은 이산 adjoint 내부 검산과 구분합니다.
 
+## 반복 프로그램의 미분과 그 극한의 미분은 다르다
+
+암시적 logistic step은 F(z,y,θ)=z−y−hθz(1−z)=0을 푼다. F_z≠0인 곳에서 암묵 미분하면
+
+$$
+\frac{dz}{d\theta}=\frac{dy/d\theta+h z(1-z)}{1-h\theta(1-2z)}.
+$$
+
+미분 가능한 근사 상태가 F=r(θ)를 만족하면 분자에 r′(θ)가 추가된다. 작은 잔차값만으로 미분 오차를 제한할 수 없다. r(θ)=εsin(θ/ε²)는 진폭 ε지만 도함수 진폭은 1/ε다. 고정 횟수 Newton을 미분하면 그 반복 프로그램의 도함수다. 상태와 민감도의 수렴에는 적절한 추가 제어가 필요하다.
+
+| 미분 대상 | 한 모수의 상태 민감도 |
+|---|---|
+| 연속 Logistic 흐름 | T y(T)(1−y(T)) |
+| 고정 초기값의 수렴한 암시적 Step | h z(1−z)/F_z |
+| 고정 Newton 프로그램 | 실제 갱신을 통한 Chain Rule |
+
+```python
+from decimal import Decimal as D,localcontext
+with localcontext() as ctx:
+    ctx.prec=60
+    h,theta,y=D('.25'),D('.5'),D('.2')
+    a,b=h*theta,1-h*theta
+    root=2*y/(b+(b*b+4*a*y).sqrt())
+    exact_derivative=h*root*(1-root)/(1-h*theta*(1-2*root))
+    x,dx=y,D(0)
+    for k in range(1,5):
+        residual=x-y-h*theta*x*(1-x)
+        denominator=1-h*theta*(1-2*x)
+        total_derivative=denominator*dx-h*x*(1-x)
+        denominator_derivative=2*h*theta*dx-h*(1-2*x)
+        dx-= (total_derivative*denominator-residual*denominator_derivative)/(denominator*denominator)
+        x-=residual/denominator
+        if k in (1,2,4):print(k,float(abs(x-root)),float(abs(dx-exact_derivative)))
+    assert abs(x-root)<D('1e-30') and abs(dx-exact_derivative)<D('1e-28')
+```
+
+Decimal 예제는 Newton 갱신을 미분하고 그 극한을 암묵 도함수와 비교한다. 실제 명시적 Euler adjoint와는 별도의 보조 step이다. 연속 기준 gradient도 초기 상태에 더하기 전 작은 목표 차이를 expm1으로 평가하도록 보완했다. 저장 Euler 상태가 전혀 변하지 않아도 연속 민감도는 작게 남을 수 있다. 유한 계산 그래프를 다른 목적함수로 바꾸어 검증하는 것은 아니다.
+
 ## 손계산과 직접 풀기
 
 θ=0이면 모든 Euler 상태는 0.2입니다. 각 step의 F_y=1, F_theta=0.16h이므로 s_N=0.16T, reverse a_n=0.2-target입니다. 전체 gradient는 (0.2-target)0.16T로 두 방식이 같습니다.

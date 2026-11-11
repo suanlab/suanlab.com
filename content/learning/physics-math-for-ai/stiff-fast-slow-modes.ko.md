@@ -19,6 +19,37 @@ A=ε=0이면 정확한 산술의 Euler는 모든 step에서 q=0을 유지합니�
 
 파랑은 느린 수치 모드이고 주황은 빠른 수치 모드와 빠른 정확해 기준입니다. 큰 fast 값이 y축을 지배하면 표에서 slow 오차를 따로 확인하세요. 독립 좌표를 합한 하나의 물리량으로 오해하지 않는 것도 중요합니다.
 
+## A-stability가 미해상 빠른 모드의 감쇠는 아니다
+
+복소 시험식 y′=μy에서 z=hμ,Re z≤0라 하자. Backward Euler는 R=1/(1−z)이고 |1−z|²≥1이므로 A-stable이다. 사다리꼴법은 R=(1+z/2)/(1−z/2)다. 분모·분자 절댓값 제곱의 차이가 −2 Re z≥0이므로 역시 A-stable이다. 그러나 음의 실수 무한대 극한은 다르다.
+
+$$
+\lim_{x\to\infty}R_{BE}(-x)=0,\qquad
+\lim_{x\to\infty}R_{trap}(-x)=-1.
+$$
+
+첫 성질은 L-stable한 강성 감쇠를 주지만 두 번째는 거의 감쇠하지 않는 교대 fast 성분을 남길 수 있다. 안정성은 증폭을 제한할 뿐 미해상 과도의 충실한 제거를 보장하지 않는다. 상수가 아닌 명시적 Runge–Kutta 안정성 다항식은 최고차항 때문에 음의 실수축 전체에서 유계일 수 없다.
+
+| z | Backward Euler | 사다리꼴법 |
+|---|---:|---:|
+| −1 | 1/2 | 1/3 |
+| −10 | 1/11 | −2/3 |
+| −100 | 1/101 | −49/51 |
+
+```python
+from fractions import Fraction as F
+for z in (F(-1),F(-10),F(-100)):
+    backward=1/(1-z)
+    trapezoid=(1+z/2)/(1-z/2)
+    assert abs(backward)<=1 and abs(trapezoid)<=1
+    print(z,backward,trapezoid)
+for z in (-1+2j,-.01+10j,-10+3j):
+    assert abs(1/(1-z))<=1
+    assert abs((1+z/2)/(1-z/2))<=1
+```
+
+사다리꼴 비교는 보조 분석이며 live 방법을 추가한 것은 아니다. Fast 모드를 잘 감쇠해도 slow 모드는 부정확할 수 있다. 비선형 풀이 수렴·비정규 증폭·관측 functional도 확인해야 한다. Scalar A-stability 그림이 일반 비선형 적정성 증명은 아니다.
+
 ## 손계산과 직접 풀기
 
 k=40, T=1, N=10, A=1이면 explicit fast 값은 (-3)^{10}=59049입니다. 반면 정확값은 exp(-40)으로 거의 0입니다. Slow Euler는 0.9^{10}≈0.348678이며 정확한 exp(-1)과 비교할 수 있습니다. 큰 fast 오차와 상대적으로 작은 slow 오차는 서로 다른 현상입니다.

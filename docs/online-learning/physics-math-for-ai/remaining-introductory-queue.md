@@ -60,6 +60,8 @@
 
 확률과정·확률미분방정식의 [11개 원주제 대조](stochastic-processes-topic-review.md)를 연결했다. Uniformization·조건부 count·정지 반례·QV 극한·Itô 등거리·OU 강한 차수·상대 엔트로피·probability flow·상관 분산·수정 Hamiltonian·정책 성능 항등식을 한영 증명·독립 Python·과학 그림으로 확장했다. 극소 joint의 support·평균 이동 flux·mixing 분류·작은 LQG 초과 비용도 보완했다. 누적 29영역·284개 원주제, 후속 22영역·225개이며 다음은 과학계산과 수치 시뮬레이션 11개다. 입문 362/362 및 650개 단원·1,969개 안내와 전체 연구 심화의 상태를 구분한다.
 
+과학계산·수치 시뮬레이션의 [11개 원주제 대조](numerical-simulation-topic-review.md)를 연결했다. Implicit 잔차 예산·이산 Gronwall·A/L 안정성·위상/가변 step 반례·FEM 함수 오차·spectral split 에너지·Neumann load·CFL 에너지·Galerkin 사영·implicit 민감도·제조해 검증 예산을 한영 논증·독립 Python·과학 그림으로 확장했다. 작은 감쇠 오차·Neumann 비호환성·정확 셀 이동·작은 연속 민감도도 보완했다. 누적 30영역·295개 원주제, 후속 21영역·214개이며 다음은 알고리즘·계산복잡도·계산 구조 10개다. 입문 362/362 및 전체 연구 심화의 완료 여부는 구분한다.
+
 ## 이전 작업 기록
 
 아래 수치는 각 작업 시점의 기록이다.

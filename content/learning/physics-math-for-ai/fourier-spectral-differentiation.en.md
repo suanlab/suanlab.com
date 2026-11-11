@@ -21,6 +21,36 @@ At grid nodes, sin((k+N)x_j)=sin(kx_j). Nevertheless the continuous derivatives 
 
 The resolution flag concerns the specified single sine component. It does not mean unknown high frequencies can always be detected from samples alone. Nonperiodicity, discontinuities, Gibbs effects and boundary conditions require additional treatment beyond this periodic trigonometric example.
 
+## Skew differentiation does not supply a discrete chain rule
+
+With the stated real Nyquist convention, periodic Fourier differentiation is skew-adjoint in the grid inner product: Dᵀ=−D. This follows from the purely imaginary signed multipliers and the unitary transform after normalization. Consequently uᵀDu=0, which conserves semidiscrete linear-advection energy. Multiplying samples to form nonlinear terms introduces aliasing, however, and D(u²)=2uDu is generally false.
+
+For smooth Burgers dynamics, consider the split approximation uₜ=−[D(u²)+uDu]/3. Its grid energy derivative vanishes because uᵀD(u²)=−(Du)ᵀu². The cancellation is algebraic and does not assume a false discrete product rule. It does not restore unresolved modes, prove dealiased accuracy, or supply entropy dissipation after shock formation.
+
+For the four-node real spectral matrix and u=(1,2,3,5), take the unweighted energy E=Σuᵢ²/2:
+
+| Semidiscrete right-hand side | E′ |
+|---|---:|
+| −uDu | 9 |
+| −D(u²)/2 | −9/2 |
+| −[D(u²)+uDu]/3 | 0 |
+
+```python
+from fractions import Fraction as F
+u=list(map(F,(1,2,3,5)))
+def D(v):return [(v[(j+1)%4]-v[(j-1)%4])/2 for j in range(4)]
+du,du2=D(u),D([x*x for x in u])
+naive=[-x*y for x,y in zip(u,du)]
+conservative=[-v/2 for v in du2]
+split=[-(a+x*b)/3 for a,x,b in zip(du2,u,du)]
+rates=[sum(x*y for x,y in zip(u,rhs)) for rhs in (naive,conservative,split)]
+assert rates==[9,F(-9,2),0]
+assert sum(u[i]*du[i] for i in range(4))==0
+print(rates)
+```
+
+The four-node matrix below is an exact rational auxiliary example; the live DFT lab starts at eight nodes. Its Nyquist derivative is zero. Stable energy behavior and resolution are separate properties, so learned spectral operators should be checked for both. A conserved quadratic alone cannot certify a nonlinear PDE solution.
+
 ## Worked example and exercise
 
 For N=16 and k=3, the spectral sine multiplier is three. The central-difference multiplier is sin(3h)/h≈2.35264, so it underestimates this derivative. The spectral derivative is near roundoff for this resolved trigonometric polynomial.

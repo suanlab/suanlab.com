@@ -19,6 +19,37 @@ If A=ε=0, exact-arithmetic Euler keeps q=0 forever. A quiet observed trajectory
 
 Blue shows the numerical slow coordinate. Orange shows the numerical fast coordinate and the exact fast reference. They are separate coordinates, not terms that must be added to obtain a single measured quantity. If a huge fast value dominates the vertical scale, inspect the slow-mode error in the numeric table.
 
+## A-stability does not imply decay of unresolved fast modes
+
+For the complex test equation y′=μy, put z=hμ with Re z≤0. Backward Euler has R=1/(1−z); since |1−z|²≥1 it is A-stable. The trapezoidal rule has R=(1+z/2)/(1−z/2). The difference between squared denominator and numerator magnitudes is −2 Re z≥0, so it is also A-stable. Nevertheless their large negative-real limits differ:
+
+$$
+\lim_{x\to\infty}R_{BE}(-x)=0,\qquad
+\lim_{x\to\infty}R_{trap}(-x)=-1.
+$$
+
+The first property supplies L-stable stiff damping; the second can leave nearly undamped alternating fast components. Stability prevents amplification but does not promise a faithful elimination of an unresolved transient. No nonconstant explicit Runge–Kutta stability polynomial can be bounded on the entire negative real axis, since its highest-degree term grows there.
+
+| z | Backward Euler | Trapezoidal |
+|---|---:|---:|
+| −1 | 1/2 | 1/3 |
+| −10 | 1/11 | −2/3 |
+| −100 | 1/101 | −49/51 |
+
+```python
+from fractions import Fraction as F
+for z in (F(-1),F(-10),F(-100)):
+    backward=1/(1-z)
+    trapezoid=(1+z/2)/(1-z/2)
+    assert abs(backward)<=1 and abs(trapezoid)<=1
+    print(z,backward,trapezoid)
+for z in (-1+2j,-.01+10j,-10+3j):
+    assert abs(1/(1-z))<=1
+    assert abs((1+z/2)/(1-z/2))<=1
+```
+
+The trapezoidal comparison is an auxiliary analysis, not an added live method. For research solvers, a step can damp fast modes well while still making the slow mode inaccurate. Nonlinear solve convergence, nonnormal amplification and the chosen observation functional also matter; a scalar A-stability plot is not a general nonlinear well-posedness proof.
+
 ## Worked example and exercise
 
 For k=40, T=1, N=10 and A=1, explicit Euler gives fast terminal value (-3)^{10}=59049. The true value exp(-40) is nearly zero. Meanwhile slow Euler gives 0.9^{10}≈0.348678, to be compared with exp(-1). The catastrophic fast error and moderate slow error are different effects.

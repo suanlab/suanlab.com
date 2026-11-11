@@ -24,6 +24,41 @@ $$
 
 For Euler, expect approximately one and two; for midpoint, two and three; for RK4, four and five. Finite step sizes retain higher-order terms, so an observed order need not be an exact integer. Zero errors make logarithmic ratios undefined. Near roundoff, cancellations can make ratios fluctuate rather than converge. Inspect both successive ratios and the absolute error sizes.
 
+## A discrete Gronwall estimate separates three error sources
+
+Assume the numerical one-step map is Lipschitz with factor at most 1+Lh on the region visited, the unscaled local defect is at most Ch^(p+1), and each computed step adds a perturbation of size at most ε. These are uniform hypotheses over the fixed interval T=Nh. Repeatedly applying the error recurrence gives
+
+$$
+|e_N|\le(1+Lh)^N|e_0|+
+(Ch^{p+1}+\varepsilon)\sum_{j=0}^{N-1}(1+Lh)^j.
+$$
+
+For L>0, use (1+Lh)^N≤e^(LT) to bound the added terms by (Chᵖ+ε/h)(e^(LT)−1)/L. At L=0 the factor is T. Local consistency, stable propagation and evaluation accuracy are separate inputs; reducing h does not remove a fixed per-step perturbation budget.
+
+With C=1, minimizing the simplified budget hᵖ+ε/h gives h=(ε/p)^(1/(p+1)). This is a worst-case assumed-error model, not a prediction that every machine error has the same sign or size. Near a roundoff plateau, observed error ratios cannot certify the nominal order.
+
+| p | Balancing step for C=1 |
+|---|---|
+| 1 | ε^(1/2) |
+| 2 | (ε/2)^(1/3) |
+| 4 | (ε/4)^(1/5) |
+
+```python
+from fractions import Fraction as F
+from math import exp
+for N in (4,8,16):
+    h=F(1,N);L=F(1);C=F(1);eps=F(1,10**8);p=2
+    error=F(0)
+    for _ in range(N):error=(1+L*h)*error+C*h**(p+1)+eps
+    geometric=sum((1+L*h)**j for j in range(N))
+    assert error==(C*h**(p+1)+eps)*geometric
+    upper=(float(C*h**p)+float(eps/h))*(exp(1)-1)
+    assert float(error)<=upper
+    print(N,float(error),upper)
+```
+
+The rational recursion checks accumulation without using measured errors to fit an assumed order. In the live decay example, a stable expm1 comparison retains small analytic changes. The resulting measured defects still include the arithmetic used to execute each stage; they are not replaced by the Taylor leading term.
+
 ## Worked example and exercise
 
 For λ=T=1, Euler with N=2 has global error approximately 0.117879. With N=4 it has error approximately 0.051473. The first observed order is about log₂(0.117879/0.051473)=1.195, already informative but not exactly one. The one-step defect at h=1/2 is |1/2-exp(-1/2)|≈0.106531, a different quantity.

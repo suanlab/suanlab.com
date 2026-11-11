@@ -27,6 +27,42 @@ The first equation is compatibility. The second expresses the freedom to add a c
 
 For compatible data, imposing u(0)=0 selects one representative from the constant family. Gauge fixing removes nonuniqueness; it does not repair incompatible data. Distinguish the original unconstrained stiffness nullity from the nonsingular system after selecting a gauge.
 
+## A gauge cannot turn incompatible loads into a solution
+
+For the symmetric Neumann stiffness matrix on a connected 1D mesh, K1=0 and its range is orthogonal to constants. Thus Σbᵢ=0 is necessary and, with nullity one, sufficient for solvability. Fixing one nodal value chooses a representative only after this condition holds. If an incompatible load is pinned anyway, the dropped equation absorbs the missing balance.
+
+The live source perturbation has analytic compatibility sum δ. It now rejects every nonzero prescribed δ, even when rounded quadrature loads hide it or a generic tolerance would accept it. The independently assembled floating sum remains available in the calculation API; it does not define the existence criterion for these known data.
+
+A uniform source correction δ has nodal load weights wᵢ=∫φᵢ. On a nonuniform mesh these are not uniform. For nodes (0,1/4,1), they are:
+
+| Node | Constant-source load weight |
+|---|---:|
+| 0 | 1/8 |
+| 1/4 | 1/2 |
+| 1 | 3/8 |
+
+```python
+from fractions import Fraction as F
+xs=[F(0),F(1,4),F(1)]
+K=[[F(0) for _ in xs] for _ in xs];weights=[F(0)]*3
+for j in range(2):
+    h=xs[j+1]-xs[j]
+    K[j][j]+=1/h;K[j+1][j+1]+=1/h
+    K[j][j+1]-=1/h;K[j+1][j]-=1/h
+    weights[j]+=h/2;weights[j+1]+=h/2
+base=[x**3 for x in xs];delta=F(1,10**20)
+rhs=[sum(a*b for a,b in zip(row,base))+delta*w for row,w in zip(K,weights)]
+assert sum(rhs)==delta and weights==[F(1,8),F(1,2),F(3,8)]
+a,b,c=K[1][1],K[1][2],K[2][2]
+det=a*c-b*b
+u=[F(0),(c*rhs[1]-b*rhs[2])/det,(a*rhs[2]-b*rhs[1])/det]
+residual=[sum(x*y for x,y in zip(row,u))-r for row,r in zip(K,rhs)]
+assert residual==[-delta,0,0]
+print(weights,residual)
+```
+
+The exact pinned solve leaves residual −δ in its omitted equation. Subtracting δw removes a uniform source bias. In contrast, the Euclidean load projection b−δ1/3 is a different correction, despite also making the load sum zero. Existence, choice of gauge and choice of which physical data to revise are distinct decisions.
+
 ## Worked example and exercise
 
 For a=1/2 and δ=0, the source integral is -3, and outward derivatives are -1/2 and 7/2. Their sum is zero, so pure Neumann solutions exist up to a constant. Choosing u(0)=0 selects the displayed base function.

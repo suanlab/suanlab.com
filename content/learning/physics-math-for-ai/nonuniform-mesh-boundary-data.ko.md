@@ -28,6 +28,42 @@ $$
 
 호환성이 맞으면 u(0)=0이라는 gauge로 하나의 대표를 고릅니다. Gauge를 고정하는 것은 비호환 데이터를 고치는 일이 아닙니다. 원래 unconstrained stiffness의 nullity와 수정 후 선형 시스템을 구별해 읽으세요.
 
+## Gauge가 비호환 Load를 해로 바꾸지는 못한다
+
+연결된 1D mesh의 대칭 Neumann stiffness는 K1=0이고 range가 상수에 직교한다. 따라서 Σbᵢ=0이 필요하고 nullity 1이면 충분하다. 이 조건 이후에만 절점 하나를 고정해 대표를 선택한다. 비호환 load를 그대로 pin하면 버린 식이 빠진 수지를 떠안는다.
+
+실제 source 섭동의 해석적 호환성 합은 δ다. 반올림한 구적 load가 이를 숨기거나 일반 tolerance가 허용해도 지정한 δ가 0이 아니면 거부하도록 수정했다. 독립 조립한 부동소수점 합은 계산 API에 남기지만, 알려진 이 데이터의 존재 기준으로 쓰지 않는다.
+
+균일 source 보정 δ의 절점 load 가중치는 wᵢ=∫φᵢ다. 비균일 mesh에서 균일 벡터가 아니다. 절점 (0,1/4,1)에서는
+
+| 절점 | 상수 Source의 Load 가중치 |
+|---|---:|
+| 0 | 1/8 |
+| 1/4 | 1/2 |
+| 1 | 3/8 |
+
+```python
+from fractions import Fraction as F
+xs=[F(0),F(1,4),F(1)]
+K=[[F(0) for _ in xs] for _ in xs];weights=[F(0)]*3
+for j in range(2):
+    h=xs[j+1]-xs[j]
+    K[j][j]+=1/h;K[j+1][j+1]+=1/h
+    K[j][j+1]-=1/h;K[j+1][j]-=1/h
+    weights[j]+=h/2;weights[j+1]+=h/2
+base=[x**3 for x in xs];delta=F(1,10**20)
+rhs=[sum(a*b for a,b in zip(row,base))+delta*w for row,w in zip(K,weights)]
+assert sum(rhs)==delta and weights==[F(1,8),F(1,2),F(3,8)]
+a,b,c=K[1][1],K[1][2],K[2][2]
+det=a*c-b*b
+u=[F(0),(c*rhs[1]-b*rhs[2])/det,(a*rhs[2]-b*rhs[1])/det]
+residual=[sum(x*y for x,y in zip(row,u))-r for row,r in zip(K,rhs)]
+assert residual==[-delta,0,0]
+print(weights,residual)
+```
+
+정확한 pinned 풀이는 생략한 식에 −δ 잔차를 남긴다. δw를 빼면 균일 source bias가 제거된다. 반면 Euclidean load 사영 b−δ1/3은 합을 0으로 만들더라도 다른 보정이다. 해 존재·gauge 선택·어느 물리 데이터를 고칠지는 서로 다른 결정이다.
+
 ## 손계산과 직접 풀기
 
 a=1/2, δ=0이면 source 적분은 -3이고 outward 값은 -1/2와 7/2입니다. 합은 0이므로 pure Neumann 해가 존재하며 상수만큼 비유일합니다. u(0)=0을 선택하면 기준 함수 자체가 대표입니다.

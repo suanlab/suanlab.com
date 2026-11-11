@@ -7,6 +7,35 @@ import {getLearningContent} from '../src/lib/learning-content';
 const close=(a:number,b:number,tol=1e-9)=>assert.ok(Math.abs(a-b)<=tol*(1+Math.max(Math.abs(a),Math.abs(b))),`${a} != ${b}`);
 const norm=(x:number[])=>Math.max(0,...x.map(Math.abs));
 const dot=(a:number[],b:number[])=>a.reduce((s,v,i)=>s+v*b[i],0);
+test('analytic decay error retains a tiny lost state change without erasing large-time tails',()=>{
+ for(const rate of [1e-20,1e-100,1e-200])for(const method of [0,1,2,3]){
+  const r=integrateDecay(rate,1,4,method);
+  assert.equal(r.path.at(-1),1);assert.equal(r.exact,1);
+  assert.ok(r.error>0&&Math.abs(r.error/rate-1)<1e-14);
+ }
+ const tail=integrateDecay(80,2,160,0);
+ assert.equal(tail.path.at(-1),0);assert.ok(tail.error>0);close(tail.error/Math.exp(-160),1,1e-14);
+});
+test('pure Neumann compatibility uses the prescribed source bias rather than a roundoff tolerance',()=>{
+ for(const bias of [1e-20,-1e-20,1e-100]){
+  const r=meshBoundary(8,1.5,.5,bias,2);
+  assert.equal(r.compatibility,bias);assert.equal(r.compatible,false);assert.equal(r.values,null);
+ }
+ assert.equal(meshBoundary(8,1.5,.5,0,2).compatible,true);
+});
+test('unit-CFL transport is a bit-exact permutation, including samples near zero',()=>{
+ for(const power of [3,4,5])for(const steps of [1,10,50])for(const noise of [0,.001]){
+  const r=cflExperiment(power,1,steps,.5,1,noise);
+  assert.deepEqual(r.values,r.initial.map((_,i)=>r.initial[(i-steps%r.N+r.N)%r.N]));
+ }
+});
+test('continuous logistic sensitivity retains a small target mismatch independently of rounded states',()=>{
+ for(const theta of [-1e-20,1e-20,-1e-100,1e-100]){
+  const r=discreteAdjoint(theta,1,8,.2),leading=.0256*theta;
+  assert.ok(r.continuousGradient!==0&&Math.abs(r.continuousGradient/leading-1)<1e-14);
+  assert.equal(r.expandedContinuousGradient,0);
+ }
+});
 test('actual integrator stages match independent stability polynomials and zero initial states',()=>{
  for(const rate of [0,.3,2,8])for(const T of [.1,1,2])for(const N of [1,7,64])for(let method=0;method<4;method++){const z=-rate*T/N,R=[1+z,1+z+z*z/2,1+z+z*z/2+z**3/6+z**4/24,1/(1-z)][method],r=integrateDecay(rate,T,N,method);close(r.factor,R);close(r.path.at(-1)!,R**N,2e-8);close(r.exact,Math.exp(-rate*T));assert.equal(integrateDecay(rate,T,N,method,0).path.at(-1),0);}
  close(integrateDecay(1,1,2,0).path.at(-1)!,1/4);close(integrateDecay(1,1,2,3).path.at(-1)!,4/9);

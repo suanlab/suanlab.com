@@ -24,6 +24,42 @@ The reported time is T=n dt. Changing r or N also changes dt and T, so do not co
 
 Periodic neighbor exchanges cancel in the global sum, preserving discrete mass h∑u_i in exact arithmetic. This conservation does not imply stability: very large alternating values can still sum to zero. Inspect the Nyquist multiplier, maximum nodal error and mass change separately.
 
+## Energy estimates explain the Fourier bounds in physical space
+
+Use the unweighted periodic grid norm; multiplying it by h changes none of the stability conclusions. Write dᵢ=uᵢ₊₁−uᵢ and Δ₂uᵢ=uᵢ₋₁−2uᵢ+uᵢ₊₁. Summation by parts gives the heat identity
+
+$$
+\|u+r\Delta_2u\|^2-\|u\|^2
+=-2r\sum_i d_i^2+r^2\sum_i(\Delta_2u_i)^2
+\le-2r(1-2r)\sum_i d_i^2.
+$$
+
+The inequality uses Σ(Δ₂u)²≤4Σd². Upwind is a convex combination of u and its periodic shift S, giving exactly ‖(1−r)u+rSu‖²−‖u‖²=−r(1−r)‖u−Su‖². Hence the same CFL intervals follow without diagonalizing the stencil. Nonnegative combination weights also prove maximum bounds and positivity when the initial data are nonnegative; the lab's cosine data need not be.
+
+| Scheme and r | Coefficient multiplying squared neighbor differences |
+|---|---:|
+| Heat, r=1/4, upper bound | −1/4 |
+| Upwind, r=1/2, identity | −1/4 |
+| Upwind, r=1, identity | 0 |
+
+```python
+from fractions import Fraction as F
+u=list(map(F,(1,2,-1,0)))
+sq=lambda v:sum(x*x for x in v)
+diff=[u[(i+1)%4]-u[i] for i in range(4)]
+lap=[u[(i-1)%4]-2*u[i]+u[(i+1)%4] for i in range(4)]
+r=F(1,4);heat=[x+r*d for x,d in zip(u,lap)]
+change=sq(heat)-sq(u)
+assert change==-2*r*sq(diff)+r*r*sq(lap)
+assert change<=-2*r*(1-2*r)*sq(diff)
+for r in (F(1,2),F(1)):
+    upwind=[(1-r)*u[i]+r*u[(i-1)%4] for i in range(4)]
+    assert sq(upwind)-sq(u)==-r*(1-r)*sq(diff)
+    print(r,sq(upwind)-sq(u))
+```
+
+The live upwind update now uses the combination form. At r=1 this is a bit-exact array permutation, including very small samples that subtraction could damage. Above the stability interval, telescoping still preserves mass in exact arithmetic, but these energy estimates no longer give contraction. In a huge unstable floating rollout even mass cancellation can lose accuracy.
+
 ## Worked example and exercise
 
 For heat with r=0.75, the Nyquist multiplier is 1-4r=-2. An initial amplitude ε=0.001 becomes 0.001·(-2)²⁰=1048.576 after twenty steps. Physical diffusion instead damps high frequencies most strongly, so this growth is a numerical artifact.

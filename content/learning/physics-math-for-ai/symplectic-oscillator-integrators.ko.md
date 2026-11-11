@@ -26,6 +26,36 @@ $$
 
 ωh<2에서 이 이차형은 양의 정부호입니다. 경계 또는 그 이상에서는 면적을 보존해도 해가 유계라는 결론을 낼 수 없습니다. 실험에서 step 수를 줄여 이런 차이를 보세요. 유한 정밀도의 미세한 수정 에너지 drift와 물리 H의 진동도 구별해야 합니다.
 
+## 에너지가 유계여도 위상 오차는 자란다
+
+고정 step Verlet의 z=ωh<2에서 고유값은 exp(±iφ),cosφ=1−z²/2다. 따라서 위상률은 ωₕ=2asin(ωh/2)/h이며 전개하면 ωₕ−ω=ω³h²/24+O(h⁴)다. 물리 시간 T 뒤 위상 전진 오차는 T(ωₕ−ω)다. 수정 에너지가 유계여도 장시간 위상 오차가 균일하게 작다는 결론은 나오지 않는다.
+
+![안정한 세 고정 보폭의 해석적 Verlet 위상률 편향을 동일한 물리 시간에 누적한 그림.](/assets/learning/scientific-phase-ko.svg)
+
+| ω=1의 h | 위상률 초과량 근삿값 |
+|---|---:|
+| 1/2 | 0.0107210 |
+| 1/4 | 0.00262265 |
+| 1/8 | 0.000652189 |
+
+```python
+from fractions import Fraction as F
+from math import asin
+def matrix(h):
+    return [[1-h*h/2,h],[-h*(1-h*h/4),1-h*h/2]]
+def mm(A,B):return [[sum(A[i][k]*B[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
+M=mm(matrix(F(19,10)),matrix(F(1,2)))
+trace=M[0][0]+M[1][1]
+assert trace==F(-299,125) and M[0][0]*M[1][1]-M[0][1]*M[1][0]==1
+print('alternating trace:',trace)
+for h in (.5,.25,.125):
+    bias=2*asin(h/2)/h-1
+    assert bias>0
+    print(h,bias,'leading approximation:',h*h/24)
+```
+
+가변 보폭은 또 다른 반례를 준다. 각각의 Verlet 사상이 symplectic이면 곱도 symplectic이다. 하지만 고정-h 수정 이차식은 h에 따라 바뀐다. ω=1에서 h₁=1/2,h₂=19/10을 교대하면 두-step 사상은 determinant 1,trace −299/125<−2다. 각 보폭은 따로 안정해도 교대 곱의 반복은 불안정하다. 코드로 유리수 trace를 정확히 검산한다. Symplectic만으로 적응 step 안정성을 보장하지 못하며 live 실습은 고정 h를 유지한다.
+
 ## 손계산과 직접 풀기
 
 ω=1, h=0.2이면 forward Euler 첫 상태는 (1,-0.2)이고 H=0.52입니다. Symplectic Euler는 p=-0.2를 먼저 만든 뒤 q=0.96이 되어 H=0.4808입니다. 교차항 -hqp/2=0.0192를 더하면 수정 이차량은 정확히 0.5입니다.
