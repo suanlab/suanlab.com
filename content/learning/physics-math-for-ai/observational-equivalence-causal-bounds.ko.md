@@ -50,6 +50,42 @@ $$
 
 아래 경계는 mask 12로 실현한다. 비처치 셀의 빠진 Y1은 0, 처치 셀의 빠진 Y0는 1이다. 위 경계는 반대로 선택한 mask 3이다. 극점 효과는 이 배정에서 직접 계산한다. 호환되는 극점 모집단을 섞어서도 중간 효과를 만들 수 있다.
 
+## 추가 가정은 식별 집합을 줄이거나 서로 충돌할 수 있다
+
+단조 처치 반응 Y1≥Y0이면 허용 반응 유형은 (0,0),(0,1),(1,1)뿐이다. Benefit 유형 (0,1)은 관측 셀 (X,Y)=(0,0) 또는 (1,1)에만 나타날 수 있다. 따라서 ATE와 같은 benefit 모집단 질량은 [0,p00+p11] 안이다. 아무도 benefit을 갖지 않게 하거나 모든 적격 사례에 benefit을 주면 양 끝값을 실현한다. 혼합으로 중간값도 채운다.
+
+기본 관측 법칙에서 일관성 구간 [−0.74,0.26]은 [0,0.26]으로 줄어든다. 반면 교환가능성과 처치 Support를 추가하면 r1−r0=−0.5로 식별한다. 서로 다른 가정의 결론이지 무조건 결합할 값이 아니다. 단조성과 교환가능성을 함께 가정하면 ATE가 비음수인 동시에 음수여야 하므로 이 정확한 모집단 법칙과 양립하지 않는다.
+
+| 같은 관측 법칙의 가정 | 식별 ATE 집합 |
+|---|---|
+| 일관성만 | [−37/50,13/50] |
+| 단조 반응 추가 | [0,13/50] |
+| 대신 교환가능성·Support 추가 | {−1/2} |
+
+```python
+from fractions import Fraction as F
+joint=[F(9,50),F(21,50),F(8,25),F(2,25)]
+all_effects=[];monotone=[]
+for mask in range(16):
+    effect=F(0);allowed=True
+    for cell,mass in enumerate(joint):
+        x,y=divmod(cell,2);missing=(mask>>cell)&1
+        y0,y1=(y,missing) if x==0 else (missing,y)
+        effect+=mass*(y1-y0)
+        if mass and y1<y0:allowed=False
+    all_effects.append(effect)
+    if allowed:monotone.append(effect)
+assert (min(all_effects),max(all_effects))==(F(-37,50),F(13,50))
+assert (min(monotone),max(monotone))==(F(0),joint[0]+joint[3])
+exchangeable=joint[3]/sum(joint[2:])-joint[1]/sum(joint[:2])
+assert exchangeable==F(-1,2) and exchangeable<min(monotone)
+print(min(all_effects),max(all_effects),min(monotone),max(monotone),exchangeable)
+```
+
+코드는 열여섯 missing-outcome 완성을 열거하고 반응 유형을 제한해 sharpness를 검사한다. 실현 가능성을 보이지 않은 채 구간만 교차한 결과가 아니다. 음의 단순 차이만으로 단조성을 기각할 수는 없다. 선택적 처치가 부호를 뒤집을 수 있다. 여기서 충돌하는 것은 교환가능성과의 결합이다.
+
+유한 자료에는 추정 불확실성이 더해진다. 정직한 confidence region C가 확률 1−delta 이상으로 관측 모집단 법칙을 포함하면, C 안의 각 p에 대한 식별 집합의 합집합은 그 사건에서 모든 양립 효과를 덮는다. 추정한 표 하나에 대입한 식별 구간이 자동으로 그런 confidence set이 되지는 않는다. 관측 확률의 수치 정밀도와 인과 가정은 다른 불확실성이다.
+
 ## 확인 문제와 풀이
 
 pi=0.4, r0=0.7, r1=0.2에서 단순 관측 차이와 경계를 구하자.

@@ -34,6 +34,47 @@ $$
 
 OLS는 Cov(X,Y)/Var(X)를 사용한다. 처치 분산은 gamma²+alpha²+2 gamma alpha rho+sigma²이고, beta 외에 더해지는 분자는 delta(gamma rho+alpha)+kappa D다. 관측 표본이 커져도 이 가정 위반 항이 자동으로 사라지는 것은 아니다.
 
+## 이질적 반응의 이진 도구가 식별하는 Local 효과
+
+현재 선형 상수 효과 모형은 moment 가정이 맞으면 beta를 식별한다. 반응이 이질적이고 Z가 이진 무작위 도구이면 Wald 비율은 다른 estimand를 식별할 수 있다. Z가 모든 잠재 처치·결과와 독립이고, 배제 Y=Y(X), 일관성, 관련성, 단조성 X1≥X0을 가정하자. Always-taker와 never-taker는 Z가 바뀌어도 처치가 같고 complier만 바뀐다.
+
+배정 arm 둘을 빼고 변하지 않은 반응을 상쇄하면
+
+$$
+E[X\mid Z=1]-E[X\mid Z=0]=P(C),\quad
+E[Y\mid Z=1]-E[Y\mid Z=0]=P(C)E[Y_1-Y_0\mid C].
+$$
+
+따라서 비율은 complier LATE이며 전체 ATE와 자동으로 같지 않다. Defier가 있으면 반대 부호로 기여해 추가 제약 없이는 이 해석이 깨진다. 단조성은 개체 수준 제한이지 평균 first stage가 양수라는 조건만은 아니다.
+
+| 독립 모집단의 Principal stratum | 질량 | 평균 결과 효과 |
+|---|---:|---:|
+| Never-taker | 3/10 | 1 |
+| Complier | 1/2 | 2/5 |
+| Always-taker | 1/5 | −1 |
+
+```python
+from fractions import Fraction as F
+# x0,x1,y0,y1,mass; the complier stratum has two outcome response types.
+atoms=[(0,0,0,1,F(3,10)),(0,1,0,1,F(1,5)),(0,1,0,0,F(3,10)),(1,1,1,0,F(1,5))]
+assert sum(row[-1] for row in atoms)==1
+means=[]
+for z in (0,1):
+    ex=ey=F(0)
+    for x0,x1,y0,y1,mass in atoms:
+        x=x0 if z==0 else x1;ex+=mass*x;ey+=mass*(y0 if x==0 else y1)
+    means.append((ex,ey))
+first=means[1][0]-means[0][0];reduced=means[1][1]-means[0][1]
+ate=sum(mass*(y1-y0) for x0,x1,y0,y1,mass in atoms)
+assert first==F(1,2) and reduced==F(1,5)
+assert reduced/first==F(2,5) and ate==F(3,10)
+print(first,reduced,reduced/first,ate)
+```
+
+First-stage 차이는 1/2, reduced form은 1/5이므로 Wald는 2/5지만 ATE는 3/10이다. 네 response atom으로 직접 구성한 결과이며 현재 연속 선형 잡음 조절기와는 별개다.
+
+IV의 분자·분모를 저장된 binary64 계수의 정확한 dyadic 다항식으로 평가한 뒤 비율을 ties-to-even으로 binary64에 반올림한다. 작은 곱과 큰 항 상쇄 뒤의 잔여 효과를 모두 보존한다. 직접 나눈 rounded moment는 `expandedIV`, 보통 산술의 beta+(delta*rho+kappa)/D는 `factoredIV`에 남긴다. 수학적으로 0인 분모나 표현 불가능한 최종 비율은 계속 미정이다. 표의 반올림 moment가 0이어도 저장 입력의 정확한 분모는 비영일 수 있다. 작은 다항식의 정확한 중간 산술이지 입력 자료 전체의 임의 정밀도나 추론 인증은 아니다. 이 수치 보완이 약한 도구의 표본 추론을 해결하거나 배제·독립 가정을 증명하는 것은 아니다.
+
 ## 손계산 예제
 
 gamma=alpha=beta=delta=sigma=1, kappa=rho=0이면 Var(X)=3이다. IV는 1, OLS는 1+1/3이다. 같은 교란 모집단을 보지만 유효한 도구 모멘트만 U의 기여를 제거한다.

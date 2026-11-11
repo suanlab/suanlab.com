@@ -47,6 +47,48 @@ $$
 
 At rho=1, the selected sample omits 00. Given X=0, Y must be one; given X=1, Y is one half. The selected difference is -0.5 although the population causal effect is zero. The path X→S←Y is a collider path: selecting its common consequence can induce dependence between otherwise independent causes. This example does not assert that every selection process creates bias or that every collider must be measured.
 
+## Double robustness has an algebraic remainder, not two chances to ignore confounding
+
+For a fixed action x, let q_x(z)=E[Y|X=x,Z=z] and e_x(z)=P(X=x|Z=z). Define an augmented population functional using candidate functions m and g, with g positive on target strata:
+
+$$
+\Psi_x(m,g)=E\left[m(Z)+\frac{1\{X=x\}}{g(Z)}(Y-m(Z))\right],
+\quad\Psi_x-\mu_x=E\left[\left(1-\frac{e_x(Z)}{g(Z)}\right)(m(Z)-q_x(Z))\right].
+$$
+
+Conditioning on Z proves the identity: the residual's expectation is e_x*(q_x−m). The remainder vanishes if either nuisance function is correct. It does not vanish merely because both models fit training data. If g≥eta>0, Cauchy–Schwarz bounds its absolute size by ||g−e_x||₂*||m−q_x||₂/eta. This product motivates rate conditions, but asymptotic inference additionally needs sampling assumptions, variance control and appropriate sample splitting or cross-fitting.
+
+The rational example retains World A's default joint law. Correct outcome means alone or correct propensities alone recover ATE −1/10. Two wrong functions reproduce the biased +3/10 contrast.
+
+| Candidate nuisance functions | Augmented ATE |
+|---|---:|
+| Correct outcome, wrong propensity | −1/10 |
+| Wrong outcome, correct propensity | −1/10 |
+| Both wrong | 3/10 |
+
+![Population augmented-mean bias as outcome error varies, with three propensity choices illustrating the product remainder.](/assets/learning/causal-double-robust-en.svg)
+
+The figure isolates one stratum with true propensity 1/5 and outcome mean 7/10; the code below uses the full two-stratum World A.
+
+```python
+from fractions import Fraction as F
+P=[F(1,2)]*2;e=[F(1,10),F(9,10)];tau=F(-1,10)
+q=[[F(1,5),F(1,5)+tau],[F(7,10),F(7,10)+tau]]
+wrong=[[F(2,5)]*2 for _ in range(2)]
+def augmented(m,g,x):
+    true_e=[e[z] if x else 1-e[z] for z in range(2)]
+    fitted_e=[g[z] if x else 1-g[z] for z in range(2)]
+    value=sum(P[z]*(m[z][x]+true_e[z]/fitted_e[z]*(q[z][x]-m[z][x])) for z in range(2))
+    truth=sum(P[z]*q[z][x] for z in range(2))
+    remainder=sum(P[z]*(1-true_e[z]/fitted_e[z])*(m[z][x]-q[z][x]) for z in range(2))
+    assert value-truth==remainder
+    return value
+for m,g in ((q,[F(1,2)]*2),(wrong,e),(wrong,[F(1,2)]*2)):
+    print(augmented(m,g,1)-augmented(m,g,0))
+```
+
+This is a population identity for fixed functions, not a finite-sample unbiasedness claim for nuisances trained on the same records. It also presumes the backdoor identification assumptions: unmeasured common causes, missing support or conditioning on a collider are not repaired by the algebra. Conditional cell ratios now use scaled log masses, retaining supported rare cells whose raw products underflow. Truly absent treatment strata remain unavailable, and World B's selection process remains a separate world.
+
 ## Exercise with an explained answer
 
 Keep World A's default values, but randomize treatment by setting e_0=e_1=0.5. Keep rho=1 in World B. Which discrepancy disappears?

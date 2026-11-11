@@ -27,6 +27,46 @@ $$
 
 This formula needs source support for the stratum and both treatment levels whenever P_t(Z=z)>0, as well as the conditional exchangeability, consistency and outcome-invariance assumptions. The implementation leaves missing source conditional means unavailable. It does not read the oracle q to fill an empty cell or extrapolate a regression into an absent group.
 
+## Unlabeled target data cannot verify outcome invariance
+
+Source observations and target P(Z) determine the reweighting functional under the invariant-effect assumption. They cannot generally test that assumption. Two target worlds q_target(z,x)=q_source(z,x) and q_source(z,x)+Delta_z*x have identical source data and identical target Z distribution, yet different target ATEs. Additional target outcomes, experiments or justified restrictions are needed to distinguish them.
+
+Instead of claiming exact invariance, suppose a substantive sensitivity model bounds |Delta_z|≤d_z. In this example the shifted outcome probabilities remain valid throughout those ranges. Then
+
+$$
+\tau_t=\tau_{transport}+\sum_zP_t(z)\Delta_z,\quad
+\tau_t\in\left[\tau_{transport}-\sum_zP_t(z)d_z,\ \tau_{transport}+\sum_zP_t(z)d_z\right].
+$$
+
+These bounds are sharp for the declared independent shift intervals: choose every Delta_z at the matching endpoint. They are not a confidence interval learned automatically from the source. If probability constraints or coupled shift restrictions excluded those corners, sharpness would require a revised feasibility analysis.
+
+For d0=1/20,d1=1/10, source stratum effects (1/10,3/10) and target group-one mass t, the interval changes with composition:
+
+| Target t | Transported effect | Sensitivity interval |
+|---|---:|---|
+| 0 | 1/10 | [1/20,3/20] |
+| 1/2 | 1/5 | [1/8,11/40] |
+| 1 | 3/10 | [1/5,2/5] |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+effect=[F(1,10),F(3,10)];bounds=[F(1,20),F(1,10)]
+for t in (F(0),F(1,2),F(1)):
+    Q=[1-t,t];center=sum(p*v for p,v in zip(Q,effect));radius=sum(p*v for p,v in zip(Q,bounds))
+    candidates=[]
+    for signs in product((-1,1),repeat=2):
+        shifts=[s*d for s,d in zip(signs,bounds)]
+        for z in (0,1):
+            q1=F(1,10)+F(2,5)*z+effect[z]+shifts[z]
+            assert 0<=q1<=1
+        candidates.append(center+sum(p*d for p,d in zip(Q,shifts)))
+    assert min(candidates)==center-radius and max(candidates)==center+radius
+    print(t,center,min(candidates),max(candidates))
+```
+
+The live shift control remains one shared Delta, while this auxiliary sensitivity model permits separate bounded group shifts. Source conditional rates now normalize log cells, so positive source support is retained when a joint product is too small to represent. A genuinely absent source stratum or treatment is still unavailable; no outcome oracle fills it. Mechanism similarity, support, sensitivity restrictions and sampling uncertainty should be reported separately.
+
 ## Worked exercise and solution
 
 Set s=0.2,t=0.8, with e0=e1=0.5 and Delta=0. Compute source, transported and target effects.

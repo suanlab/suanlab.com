@@ -24,6 +24,45 @@ $$
 
 쌍둥이 그림의 사실 세계와 행동 세계는 하나의 잠재 U를 공유한다. 사실 X·Y의 사각형은 증거이고 X_a는 지정한 행동이다. E_Y에 관한 정보를 얻은 뒤 새 E_Y를 뽑으면 다른 질문이 된다. 같은 상태를 유지하므로 일관성도 성립한다. 증거와 양립하는 모든 상태에서 사실 처치를 다시 적용하면 사실 결과가 나온다.
 
+## 무작위 배정도 모든 Cross-world 결합을 식별하지는 못한다
+
+무작위 처치가 (Y0,Y1)과 독립이면 trial의 두 arm에서 p0=P(Y0=1), p1=P(Y1=1)을 식별한다. 그러나 한 개체의 두 결과를 동시에 보지는 못한다. T=P(Y0=1,Y1=1)라 쓰고 네 반응 유형 질량의 비음수성을 요구하면 날카로운 Fréchet 구간은
+
+$$
+\max(0,p_0+p_1-1)\le t\le\min(p_0,p_1),\quad
+P(Y_1=1,Y_0=0)=p_1-t.
+$$
+
+P1>0이면 무작위 배정으로 P(Y0=0|X=1,Y=1)=(p1−t)/p1도 얻는다. 이 necessity 확률은 명시한 무작위 체제에서 실제 처치받고 성공한 집단에 관한 것이다. 관측 처치였다면 조건에서 X를 빼기 전에 추가 가정이 필요하다.
+
+P0=3/10,p1=3/5에서 ATE는 모든 결합에서 3/10이지만 necessity는 1/2에서 1까지 가능하다. 코드는 세 결합 법칙을 직접 구성하고 무작위 factual (X,Y) 표가 같음을 검사한다.
+
+| Cross-world t | Benefit 확률 | 처치 성공 집단의 Necessity |
+|---|---:|---:|
+| 0 | 3/5 | 1 |
+| 3/20 | 9/20 | 3/4 |
+| 3/10 | 3/10 | 1/2 |
+
+![같은 무작위 관측과 평균 처치 효과를 유지하면서 가능한 cross-world 결합에 따른 benefit·harm 확률을 비교한 그림.](/assets/learning/causal-counterfactual-coupling-ko.svg)
+
+```python
+from fractions import Fraction as F
+p0,p1=F(3,10),F(3,5);baseline=None
+for t in (F(0),F(3,20),F(3,10)):
+    response={(0,0):1-p0-p1+t,(0,1):p1-t,(1,0):p0-t,(1,1):t}
+    assert min(response.values())>=0 and sum(response.values())==1
+    factual={(x,y):sum(mass/2 for (y0,y1),mass in response.items() if (y0 if x==0 else y1)==y) for x in (0,1) for y in (0,1)}
+    if baseline is None:baseline=factual
+    assert factual==baseline
+    benefit=response[0,1];harm=response[1,0]
+    assert benefit-harm==p1-p0
+    print(t,benefit,benefit/p1)
+```
+
+단조성 Y1≥Y0를 추가하면 harm을 제거해 이 예에서는 t=p0로 고정한다. 주변 위험의 순서만으로 단조성이 입증되지는 않는다. 화면의 XOR SCM은 같은 잡음을 공유해 특정 결합 하나를 제공한다. 그림은 그와 달리 trial 주변분포를 유지하면서 결합을 바꾼다.
+
+매우 희귀한 factual 증거에서는 `logEvidence`를 유지하고 호환 log mass로 posterior를 정규화한다. Raw `evidence`가 0으로 underflow해도 사후 Support가 양수일 수 있어 ‘posterior defined’는 1로 남는다. 실제로 불가능한 증거는 유한 log mass가 없어 여전히 사후분포가 없다. 원래 atom 확률도 비교용으로 유지하며 임의 floor나 균등 상태로 바꾸지 않는다.
+
 ## 끝까지 계산하는 예제
 
 Chain 결과식 Y=X XOR E_Y를 고르고 pi=0.5, 배정 잡음 0.1, 결과 잡음 0.2로 두자. X_f=1,Y_f=1을 관측하면 E_Y=0을 알 수 있다. 증거 확률은 0.5×0.8=0.4다.

@@ -30,6 +30,38 @@ $$
 
 Chain과 같은 skeleton의 두 비-collider 방향은 A와 C가 B 조건에서 독립이라는 패턴을 공유한다. 충실한 후보가 세 개 남는 Markov 동등성이다. 방향을 바꾸어 동일 공분산을 표현할 때 계수와 잡음 분산도 다시 정할 수 있다. 모든 방향에서 같은 단위 잡음 계수를 그대로 쓴 공분산이 항상 같다는 뜻은 아니다.
 
+## 개입을 비교하기 전에 관측 공분산을 맞추기
+
+Markov 동등한 방향도 계수·잡음 분산을 바꾸면 같은 관측 Gaussian 법칙을 표현할 수 있다. 독립 단위 분산 잡음으로 chain A=E_A,B=A+E_B,C=B+E_C를 만들면 공분산은 [[1,1,1],[1,2,2],[1,2,3]]이다.
+
+Fork에서는 B를 분산 2인 독립 root로 두고 A=B/2+N_A, Var(N_A)=1/2, C=B+N_C, Var(N_C)=1로 둔다. 독립 innovation의 공분산을 계산하면 정확히 같아 중심 Gaussian 관측 법칙 전체가 일치한다. 조건부 regression E[C|A=a]=a도 같다.
+
+그러나 do(A=a)에서는 chain만 B를 통해 a를 C로 전달한다. Fork는 root B를 바꾸지 않는다. 개입이 관측상 동등한 두 모형을 구분하는 예다.
+
+| 고정 A | Chain의 do(A) 아래 C 평균 | Fork의 do(A) 아래 C 평균 |
+|---|---:|---:|
+| −1 | −1 | 0 |
+| 0 | 0 | 0 |
+| 1 | 1 | 0 |
+
+```python
+from fractions import Fraction as F
+chain=[[F(1),0,0],[F(1),1,0],[F(1),1,1]]
+fork=[[F(1,2),1,0],[F(1),0,0],[F(1),0,1]]
+def covariance(T,variances):return [[sum(T[i][k]*T[j][k]*variances[k] for k in range(3)) for j in range(3)] for i in range(3)]
+a=covariance(chain,[F(1)]*3);b=covariance(fork,[F(2),F(1,2),F(1)])
+assert a==b==[[1,1,1],[1,2,2],[1,2,3]]
+for query in (-1,0,1):
+    conditional=a[2][0]/a[0][0]*query
+    chain_do=F(query);fork_do=F(0)
+    assert conditional==chain_do
+    print(query,chain_do,fork_do)
+```
+
+같은 CI 패턴의 그래프 두 개를 나열한 데 그치지 않고 모집단 법칙을 직접 일치시켰다. 방향마다 innovation 분산을 모두 1로 고정하면 추가 식별 제약을 도입할 수 있다는 설명이기도 하다. 화면은 선언한 1e-9 수치 zero 규칙 아래 25개 DAG의 CI 패턴을 비교하며 다른 잡음 분산 적합이나 실제 개입 실험을 수행하지 않는다.
+
+실제 개입은 대상·배정·유지 기제가 정당화될 때만 방향 정보를 더한다. Faithfulness 실패·숨은 원인·선택·피드백은 CI 후보의 해석을 무효화할 수 있다. 유한 표본의 거의 0인 상관에는 정확한 공분산 비교 외에 별도 추론 문제도 남는다.
+
 ## 확인 문제와 풀이
 
 Collider에서 a=b=1로 두고 A,C의 주변 상관과 B 조건 상관을 비교하라.

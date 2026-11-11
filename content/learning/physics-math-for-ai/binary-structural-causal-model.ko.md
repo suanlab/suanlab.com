@@ -46,6 +46,43 @@ $$
 
 반면 X를 고정해도 Z와 Y의 관계는 바뀌지 않는다. P(Y=1|do(X=1))=0.5다. 관측은 공통 원인에 관한 정보를 갱신하고 개입은 배정식을 교체한다. 이 차이는 선언한 SCM에서 계산한 결과이며 관측표만으로 얻은 결론은 아니다.
 
+## Truncated Factorization은 왜 정규화되는가
+
+비순환 SCM의 외생 잡음들이 서로 독립이면 각 배정식은 부모가 주어졌을 때의 조건부 kernel을 만든다. 위상 순서로 실행하면 그 kernel들의 곱이 모집단 법칙이다. 고정 개입은 해당 kernel만 점질량으로 교체하고 다른 식과 외생 법칙을 유지한다.
+
+$$
+p^{do(X=a)}(v)=1\{x=a\}\prod_{j:V_j\ne X}p(v_j\mid pa_j).
+$$
+
+정규화는 남은 leaf부터 합하면 증명된다. 어떤 부모 값에서도 조건부 kernel의 합은 1이고, 역위상 순서로 반복하면 전체 합도 1이다. 교체한 점질량도 합이 1이다. 관측 factor 하나를 임의로 지운 계산이 아니라 모집단 확률 법칙을 구성한 것이다. 살아남은 kernel을 관측 셀에서 비모수적으로 추정하려면 추가로 positivity가 필요하다.
+
+아래 독립 chain은 P(Z=1)=2/5, P(X=1|Z)=(1/10,4/5), P(Y=1|X)=(1/5,7/10)을 쓴다. 개입 법칙의 완전 열거로 정규화와 원래 Z 분포의 보존을 확인한다.
+
+| 독립 Chain의 배정 | Y 평균 |
+|---|---:|
+| do(X=0) | 1/5 |
+| do(X=1) | 7/10 |
+| 독립 정책 P(X=1)=1/4 | 13/40 |
+
+```python
+from fractions import Fraction as F
+P=[F(3,5),F(2,5)];e=[F(1,10),F(4,5)];q=[F(1,5),F(7,10)]
+bit=lambda p,b:p if b else 1-p
+for action in (0,1):
+    rows=[(z,x,y,P[z]*int(x==action)*bit(q[x],y)) for z in (0,1) for x in (0,1) for y in (0,1)]
+    assert sum(mass for z,x,y,mass in rows)==1
+    assert sum(mass for z,x,y,mass in rows if z==1)==P[1]
+    mean=sum(y*mass for z,x,y,mass in rows)
+    assert mean==q[action]
+    print(action,mean)
+r=F(1,4);assert (1-r)*q[0]+r*q[1]==F(13,40)
+print('independent policy:',(1-r)*q[0]+r*q[1])
+```
+
+외생 입력이 의존하면 그 결합 법칙을 유지하거나 적절한 잠재 구조를 추가해야 한다. X=U,Y=U에는 X 효과가 없지만 관측 조건부는 Y=X다. 이 조건부를 자율적인 X→Y 기제로 취급하면 다른 인과모형이 된다. 관측 factorization만으로 modular 개입 의미가 정당화되지는 않는다.
+
+구현은 원래 joint mass를 유지하면서 조건부 요약을 호환 log weight로 정규화한다. Binary64 범위 아래의 양의 곱과 구조적으로 0인 factor를 구분한다. 빠진 Support를 만들거나 표시한 joint mass를 임의 정밀도로 계산했다고 주장하지 않으면서 조건부 의미를 보존한다.
+
 ## 손계산 문제와 풀이
 
 두 잡음 확률을 모두 0, pi=0.5로 두고 결과식 2를 선택하자. 자연 관측의 Y와 X=1로 개입한 Y를 예상하라.

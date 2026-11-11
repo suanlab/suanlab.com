@@ -66,6 +66,8 @@
 
 통계학습·일반화·강건성에서는 ERM oracle 부등식·early-stopping 기대·Rademacher loss 변환·Gibbs 변분·ghost 안정성·metric 선택·Gaussian inverse moment·calibration 사영·shift confidence·검정 하한·prefix 공분산을 한영으로 보강했다. [11개 원주제 대조](learning-theory-topic-review.md)를 더해 현재 기록은 **32영역·316/509개 원주제**다. 다음은 **인과추론과 식별 가능성 11개**이며 후속 **19영역·193개**의 근거 통합과 심화를 이어간다. 기존 입문 완료 상태는 유지한다.
 
+인과추론·식별 가능성에서는 truncated factorization·double robustness·odds 개입·front-door·반사실 결합·단조 경계·LATE·매개 비식별·개입 발견·이전 민감도·정책 가치 경계를 한영으로 보강했다. [11개 원주제 대조](causality-topic-review.md)를 더해 현재 기록은 **33영역·327/509개 원주제**다. 다음은 **제어·최적제어·강화학습의 수학 11개**이며 후속 **18영역·182개**의 근거 통합과 심화를 이어간다. 기존 입문 완료 상태는 유지한다.
+
 ## 이전 작업 기록
 
 아래 수치는 각 작업 시점의 기록이다.

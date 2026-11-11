@@ -46,6 +46,43 @@ $$
 
 Setting X does not alter Z or its influence on Y, so P(Y=1|do(X=1))=0.5. Observation updates information about a common cause; intervention changes an assignment. This numerical distinction follows from the declared SCM, not from the table alone.
 
+## Why truncated factorization normalizes
+
+For an acyclic SCM with mutually independent exogenous noises, each assignment induces a conditional kernel given its parents. Evaluating in topological order produces the product of those kernels. A fixed intervention replaces the intervened kernel with a point mass while retaining all other assignments and the exogenous law:
+
+$$
+p^{do(X=a)}(v)=1\{x=a\}\prod_{j:V_j\ne X}p(v_j\mid pa_j).
+$$
+
+To prove normalization, sum a remaining leaf variable first. Its conditional kernel sums to one for every parent configuration. Continue in reverse topological order; the point mass also sums to one. This proves a population law, rather than merely removing an inconvenient observational factor and hoping the result sums to one. Positivity is additionally needed when estimating the surviving kernels nonparametrically from observational support.
+
+The independent chain below uses P(Z=1)=2/5, P(X=1|Z)=(1/10,4/5), and P(Y=1|X)=(1/5,7/10). Enumerating the manipulated law verifies both normalization and that Z retains its population distribution.
+
+| Assignment in the auxiliary chain | Mean Y |
+|---|---:|
+| do(X=0) | 1/5 |
+| do(X=1) | 7/10 |
+| Independent policy P(X=1)=1/4 | 13/40 |
+
+```python
+from fractions import Fraction as F
+P=[F(3,5),F(2,5)];e=[F(1,10),F(4,5)];q=[F(1,5),F(7,10)]
+bit=lambda p,b:p if b else 1-p
+for action in (0,1):
+    rows=[(z,x,y,P[z]*int(x==action)*bit(q[x],y)) for z in (0,1) for x in (0,1) for y in (0,1)]
+    assert sum(mass for z,x,y,mass in rows)==1
+    assert sum(mass for z,x,y,mass in rows if z==1)==P[1]
+    mean=sum(y*mass for z,x,y,mass in rows)
+    assert mean==q[action]
+    print(action,mean)
+r=F(1,4);assert (1-r)*q[0]+r*q[1]==F(13,40)
+print('independent policy:',(1-r)*q[0]+r*q[1])
+```
+
+Dependent exogenous inputs require keeping their joint law or adding the appropriate latent structure. For example, X=U,Y=U has no X effect, although the observational conditional is Y=X. Treating that conditional as an autonomous X-to-Y mechanism would give a different causal model. Observational factorization alone does not justify modular intervention semantics.
+
+The implementation retains raw joint masses, but conditional summaries now normalize compatible log weights. A positive product below binary64 range is different from a factor that is structurally zero. This preserves conditional meaning without inventing missing support or claiming that the displayed tiny joint masses are arbitrary-precision values.
+
 ## Worked exercise and solution
 
 Set both noise probabilities to zero, pi=0.5, and choose mechanism 2. Predict Y before forcing X, then force X=1.

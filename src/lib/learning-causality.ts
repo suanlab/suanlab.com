@@ -1,3 +1,4 @@
+import { causalLogBit, normalizeCausalLogs } from './learning-causal-probability';
 import { isCausalResearchKind, evaluateCausalResearch } from './learning-causal-research';
 import { doCalculus, doGraphs, type CausalNetwork } from './learning-causal-graphs';
 import type { MeasureResult } from './learning-measure';
@@ -39,9 +40,11 @@ export function binarySCM(pi: number, noiseX: number, noiseY: number, mechanism:
     const naturalY = outcome(naturalX), y = outcome(x);
     observational[2 * naturalX + naturalY] += mass;
     manipulated[2 * x + y] += mass;
-    atoms.push({ z, ex, ey, mass, naturalX, naturalY, x, y });
+    const logMass=causalLogBit(pi,z)+causalLogBit(noiseX,ex)+causalLogBit(noiseY,ey);
+    atoms.push({ z, ex, ey, mass, logMass, naturalX, naturalY, x, y });
   }
-  return { atoms, observational, manipulated, observationalMean: expectation(observational), manipulatedMean: expectation(manipulated), conditionalOne: condition(observational, 1) };
+  const conditional=normalizeCausalLogs(atoms.map(a=>a.naturalX===1?a.logMass:-Infinity));
+  return { atoms, observational, manipulated, observationalMean: expectation(observational), manipulatedMean: expectation(manipulated), conditionalOne: conditional.probabilities?sum(atoms.map((a,i)=>conditional.probabilities![i]*a.naturalY)):null };
 }
 
 /** Binary backdoor example with an explicit, known outcome mechanism. */
@@ -50,20 +53,20 @@ export function binaryConfounding(pi: number, e0: number, e1: number, effect: nu
   if (!Number.isFinite(effect) || effect < -.2 || effect > .2) throw new Error('Use effect in [-0.2, 0.2].');
   const population = [1 - pi, pi], propensities = [e0, e1];
   const outcome = (z: number, x: number) => [.2, .7][z] + effect * x;
-  const joint = [0, 0, 0, 0], cells: { z: number; x: number; y: number; mass: number }[] = [];
+  const joint = [0, 0, 0, 0], cells: { z: number; x: number; y: number; mass: number; logMass:number }[] = [];
   for (const z of [0, 1]) for (const x of [0, 1]) for (const y of [0, 1]) {
     const mass = population[z] * bernoulli(propensities[z], x) * bernoulli(outcome(z, x), y);
-    joint[2 * x + y] += mass; cells.push({ z, x, y, mass });
+    joint[2 * x + y] += mass; cells.push({ z, x, y, mass, logMass:causalLogBit(pi,z)+causalLogBit(propensities[z],x)+causalLogBit(outcome(z,x),y) });
   }
-  const observed = [condition(joint, 0), condition(joint, 1)];
+  const observed = [0,1].map(x=>{const norm=normalizeCausalLogs(cells.map(c=>c.x===x?c.logMass:-Infinity));return norm.probabilities?sum(cells.map((c,i)=>norm.probabilities![i]*c.y)):null;});
   const interventional = [0, 1].map(x => sum(population.map((p, z) => p * outcome(z, x))));
   const adjusted = [0, 1].map(x => {
     let value = 0;
     for (const z of [0, 1]) {
       if (population[z] === 0) continue;
-      const denominator = sum(cells.filter(c => c.z === z && c.x === x).map(c => c.mass));
-      if (denominator === 0) return null;
-      value += population[z] * sum(cells.filter(c => c.z === z && c.x === x && c.y === 1).map(c => c.mass)) / denominator;
+      const group=cells.filter(c=>c.z===z&&c.x===x),norm=normalizeCausalLogs(group.map(c=>c.logMass));
+      if(!norm.probabilities)return null;
+      value+=population[z]*sum(group.map((c,i)=>norm.probabilities![i]*c.y));
     }
     return value;
   });
@@ -87,11 +90,11 @@ export function observationPolicy(pi: number, e0: number, e1: number, query: num
   const population = [1 - pi, pi], propensity = [e0, e1];
   const outcome = (z: number, x: number) => .1 + .6 * z + .2 * x;
   const queryMass = sum(population.map((p, z) => p * bernoulli(propensity[z], query)));
-  const posterior = queryMass > 0 ? population.map((p, z) => p * bernoulli(propensity[z], query) / queryMass) : null;
+  const normalized=normalizeCausalLogs([0,1].map(z=>causalLogBit(pi,z)+causalLogBit(propensity[z],query))),posterior=normalized.probabilities;
   const observed = posterior ? sum(posterior.map((p, z) => p * outcome(z, query))) : null;
   const doMeans = [0, 1].map(x => sum(population.map((p, z) => p * outcome(z, x))));
   const supported = population.every((p, z) => p === 0 || bernoulli(propensity[z], query) > 0);
-  return { population, propensity, outcome, queryMass, posterior, observed, doMeans,
+  return { population, propensity, outcome, queryMass, logQueryMass:normalized.logMass, posterior, observed, doMeans,
     intervention: doMeans[query], policyMean: (1 - policy) * doMeans[0] + policy * doMeans[1],
     supported, adjusted: supported ? doMeans[query] : null };
 }
@@ -101,9 +104,9 @@ export function binaryCounterfactual(pi:number,ex:number,ey:number,mechanism:num
   choice(factualX,0,1);choice(factualY,0,1);choice(action,0,1);
   const factual=binarySCM(pi,ex,ey,mechanism,-1),worlds=[binarySCM(pi,ex,ey,mechanism,0),binarySCM(pi,ex,ey,mechanism,1)];
   const evidence=factual.atoms.reduce((s,a)=>s+(a.naturalX===factualX&&a.naturalY===factualY?a.mass:0),0);
-  const posterior=evidence>0?factual.atoms.map(a=>a.naturalX===factualX&&a.naturalY===factualY?a.mass/evidence:0):null;
+  const normalized=normalizeCausalLogs(factual.atoms.map(a=>a.naturalX===factualX&&a.naturalY===factualY?a.logMass:-Infinity)),posterior=normalized.probabilities;
   const means=worlds.map(world=>posterior?sum(world.atoms.map((a,i)=>posterior[i]*a.y)):null);
-  return {factual,worlds,evidence,posterior,means,populationMeans:worlds.map(world=>world.manipulatedMean),selected:means[action],action};
+  return {factual,worlds,evidence,logEvidence:normalized.logMass,posterior,means,populationMeans:worlds.map(world=>world.manipulatedMean),selected:means[action],action};
 }
 /** Sharp binary ATE bounds under consistency alone, with explicit compatible completions. */
 export function observationalBounds(pi:number,r0:number,r1:number,completion:number,mask:number){

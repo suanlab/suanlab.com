@@ -50,6 +50,42 @@ For each observed cell (X,Y), choose its missing opposite-treatment outcome to b
 
 The lower endpoint uses mask 12: missing Y1 is zero in untreated cells and missing Y0 is one in treated cells. The upper uses mask 3, reversing those choices. Intermediate mixtures of compatible extreme populations fill the interval as well.
 
+## Additional assumptions can shrink the set or contradict each other
+
+Under monotone treatment response Y1≥Y0, only response types (0,0),(0,1),(1,1) are permitted. A beneficial (0,1) individual can appear only in observed cells (X,Y)=(0,0) or (1,1). Therefore its population mass, now equal to ATE, lies in [0,p00+p11]. Both endpoints are attainable: give no case a benefit, or give every eligible case a benefit. Mixtures fill the interval.
+
+For the default observed law, this shrinks the consistency interval [−0.74,0.26] to [0,0.26]. Alternatively, exchangeability with treatment support identifies r1−r0=−0.5. Those are alternative assumptions, not compatible conclusions to combine blindly. Monotonicity and exchangeability together cannot explain this exact population law because they would require both a nonnegative and negative ATE.
+
+| Assumptions for the same observed law | Identified ATE set |
+|---|---|
+| Consistency only | [−37/50,13/50] |
+| Add monotone response | [0,13/50] |
+| Instead add exchangeability and support | {−1/2} |
+
+```python
+from fractions import Fraction as F
+joint=[F(9,50),F(21,50),F(8,25),F(2,25)]
+all_effects=[];monotone=[]
+for mask in range(16):
+    effect=F(0);allowed=True
+    for cell,mass in enumerate(joint):
+        x,y=divmod(cell,2);missing=(mask>>cell)&1
+        y0,y1=(y,missing) if x==0 else (missing,y)
+        effect+=mass*(y1-y0)
+        if mass and y1<y0:allowed=False
+    all_effects.append(effect)
+    if allowed:monotone.append(effect)
+assert (min(all_effects),max(all_effects))==(F(-37,50),F(13,50))
+assert (min(monotone),max(monotone))==(F(0),joint[0]+joint[3])
+exchangeable=joint[3]/sum(joint[2:])-joint[1]/sum(joint[:2])
+assert exchangeable==F(-1,2) and exchangeable<min(monotone)
+print(min(all_effects),max(all_effects),min(monotone),max(monotone),exchangeable)
+```
+
+The code checks sharpness by enumerating the sixteen missing-outcome completions and restricting response types, rather than merely intersecting intervals without showing attainability. Monotonicity alone cannot be rejected from the negative crude contrast: selective assignment can reverse it. It is the conjunction with exchangeability that conflicts here.
+
+Finite data add another layer. If an honest confidence region C contains the observed population law with probability at least 1−delta, the union over p in C of each law's identified set covers every compatible causal effect on that event. A plug-in identification interval at one estimated table is not automatically such a confidence set. Numerical precision in observed probabilities and causal assumptions are different sources of uncertainty.
+
 ## Worked exercise and solution
 
 Take pi=0.4, r0=0.7 and r1=0.2. Calculate the crude difference and bounds.

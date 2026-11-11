@@ -27,6 +27,46 @@ $$
 
 P_t(Z=z)>0인 층에는 source 집단 Support와 두 처치의 Support가 필요하다. 조건부 교환가능성·일관성·결과 불변성도 가정이다. 실습은 source 결합확률에서 실제 조건부 평균을 구한다. 비어 있는 셀을 oracle q로 채우거나 없는 집단에 회귀 외삽을 하지 않는다.
 
+## Target의 Label 없는 자료는 Outcome 불변성을 검증하지 못한다
+
+Source 관측과 target P(Z)는 효과 불변성 가정 아래 재가중 functional을 정한다. 그러나 일반적으로 그 가정을 검정하지는 못한다. Target이 q_source(z,x)를 쓰는 세계와 q_source(z,x)+Delta_z*x를 쓰는 세계는 같은 source 자료·target Z 분포를 가지면서 target ATE가 다르다. 구분하려면 추가 target 결과·실험·정당화된 제한이 필요하다.
+
+정확한 불변성 대신 실질적 민감도 모형으로 |Delta_z|≤d_z를 가정하자. 이 예에서는 전체 범위에서 결과 확률도 유효하다.
+
+$$
+\tau_t=\tau_{transport}+\sum_zP_t(z)\Delta_z,\quad
+\tau_t\in\left[\tau_{transport}-\sum_zP_t(z)d_z,\ \tau_{transport}+\sum_zP_t(z)d_z\right].
+$$
+
+독립 group shift 구간에서 모두 같은 방향의 끝값을 택하면 양 끝을 실현하므로 sharp하다. Source에서 자동 학습한 confidence interval은 아니다. 확률 제약이나 shift 결합 제약이 그 corner를 제외하면 sharpness도 다시 분석해야 한다.
+
+D0=1/20,d1=1/10, source 층 효과 (1/10,3/10), target group-one 비중 t이면 다음과 같다.
+
+| Target t | 이전 효과 | 민감도 구간 |
+|---|---:|---|
+| 0 | 1/10 | [1/20,3/20] |
+| 1/2 | 1/5 | [1/8,11/40] |
+| 1 | 3/10 | [1/5,2/5] |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+effect=[F(1,10),F(3,10)];bounds=[F(1,20),F(1,10)]
+for t in (F(0),F(1,2),F(1)):
+    Q=[1-t,t];center=sum(p*v for p,v in zip(Q,effect));radius=sum(p*v for p,v in zip(Q,bounds))
+    candidates=[]
+    for signs in product((-1,1),repeat=2):
+        shifts=[s*d for s,d in zip(signs,bounds)]
+        for z in (0,1):
+            q1=F(1,10)+F(2,5)*z+effect[z]+shifts[z]
+            assert 0<=q1<=1
+        candidates.append(center+sum(p*d for p,d in zip(Q,shifts)))
+    assert min(candidates)==center-radius and max(candidates)==center+radius
+    print(t,center,min(candidates),max(candidates))
+```
+
+화면의 shift 조절기는 공통 Delta 하나를 유지한다. 독립 민감도 모형은 층별 bounded shift를 허용한다. Source 조건부율은 log cell로 정규화해 joint 곱이 표현 범위 아래여도 양의 Support를 유지한다. 실제로 없는 source 층·처치는 여전히 미정이며 outcome oracle로 채우지 않는다. 기제 유사성·Support·민감도 제한·표본 불확실성을 나누어 보고해야 한다.
+
 ## 확인 문제와 풀이
 
 s=0.2,t=0.8, e0=e1=0.5, Delta=0일 때 세 효과를 구하라.

@@ -38,6 +38,48 @@ $$
 
 부모가 없으면 확률은 0.2다. 개입은 해당 배정식만 상수로 교체한다. 나머지 기제의 확률은 0.2에서 0.8 사이여서 필요한 증거가 양의 확률을 갖는다. 열여섯 내생 상태의 확률을 정확히 합하므로, 표본 잡음이나 유의성 검정으로 규칙을 허용하는 것이 아니다.
 
+## 국소 그래프 규칙을 Front-door 식별식으로 연결하기
+
+독립 예제로 숨은 U가 X,Y의 원인이고 X→M→Y, 직접 X→Y는 없는 그래프를 생각하자. M은 모든 X→Y 방향 경로를 가로막고, X와 M 사이에 열린 backdoor 경로가 없으며, X가 모든 M–Y backdoor 경로를 막는다고 가정한다. 사용할 관측 조건부의 Support도 필요하다.
+
+먼저 P(m|do(x))=P(m|x)를 식별한다. 다음으로 M→Y 개입을 X로 조정해 P(y|do(m))=sum_x' P(y|m,x')P(x')를 얻는다. X의 영향이 M만 통과하고 적절한 개입이 교란 경로를 막으므로 허용된 치환을 연결하면
+
+$$
+P(y\mid do(x))=\sum_m P(m\mid x)\sum_{x'}P(y\mid m,x')P(x').
+$$
+
+이다. 안쪽 평균은 P(X|M=m)이 아니라 모집단 P(X)로 낸다. 전자를 재사용하면 매개 선택 정보를 유지해 관측량 쪽으로 되돌아간다. 각 삭제 그래프를 그려 확인하자. 직접 X→Y나 숨은 X–M 교란이 있는 그래프에서는 이 functional이 정당하지 않을 수 있다.
+
+이진 예제에서 U는 공정하고 처치 propensity는 (1/10,9/10)이다. P(M=1|X)=1/5+3X/5, P(Y=1|M,U)=1/10+2M/5+3U/10을 쓴다. 정확한 관측 joint에서 front-door 식으로 두 개입 평균을 식별한다. 단순 관측 차이는 진짜 효과의 두 배다.
+
+| 질의 | 관측 평균 또는 차이 | Front-door 평균 또는 차이 |
+|---|---:|---:|
+| X=0 | 21/100 | 33/100 |
+| X=1 | 69/100 | 57/100 |
+| 차이 | 12/25 | 6/25 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+bit=lambda p,b:p if b else 1-p
+joint={key:F(0) for key in product((0,1),repeat=3)}
+for u,x,m,y in product((0,1),repeat=4):
+    e=[F(1,10),F(9,10)][u];pm=F(1,5)+F(3,5)*x;py=F(1,10)+F(2,5)*m+F(3,10)*u
+    joint[x,m,y]+=F(1,2)*bit(e,x)*bit(pm,m)*bit(py,y)
+px=lambda x:sum(joint[x,m,y] for m,y in product((0,1),repeat=2))
+pym=lambda x,m:joint[x,m,1]/sum(joint[x,m,y] for y in (0,1))
+observed=[];front=[]
+for x in (0,1):
+    observed.append(sum(joint[x,m,1] for m in (0,1))/px(x))
+    front.append(sum(sum(joint[x,m,y] for y in (0,1))/px(x)*sum(pym(t,m)*px(t) for t in (0,1)) for m in (0,1)))
+    oracle=F(1,10)+F(2,5)*(F(1,5)+F(3,5)*x)+F(3,20)
+    assert front[x]==oracle
+    print(x,observed[x],front[x])
+assert observed[1]-observed[0]==F(12,25) and front[1]-front[0]==F(6,25)
+```
+
+관측 노드 세 개인 다른 그래프의 연결된 유도이며 새 preset이나 일반 식별 엔진이 아니다. 실제 네 노드 도구는 Z(W)의 조상 제한을 포함한 세 국소 규칙을 계속 검사한다. 한 수치 실현의 등식이 그래프 증명을 대신하지 못하며, 그래프 식별이 측정과 유한 표본 추정을 보장하는 것도 아니다.
+
 ## 손계산 예제: 교환과 조상 제한
 
 W→Z, W→Y인 fork에서 W를 조건으로 주지 않고 규칙 2를 고르자. Z 출력 화살표를 지워도 공통 원인 경로가 남는다. s=0.6, 질의 Z=1이면 개입 평균은 0.32, 관측 평균은 0.50이다. W를 조건에 포함하면 경로가 막혀 교환이 허용된다. W=1에서는 양변 평균이 0.8이다.

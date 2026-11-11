@@ -40,6 +40,49 @@ A controlled mediator value m gives CDE(m)=c+dm. The blue curve varies this inte
 
 The plot compares two estimands. It does not claim that CDE(m) plus a single universal indirect effect reconstructs TE for every m. The table and separate readouts carry the correctly paired natural decompositions.
 
+## The mediation formula needs more than randomized treatment
+
+For measured baseline C, the familiar nested-counterfactual functional is
+
+$$
+E[Y_{x,M_{x'}}]=\sum_{c,m}E[Y\mid X=x,M=m,C=c]P(M=m\mid X=x',C=c)P(C=c).
+$$
+
+One derivation conditions on C and M_x'. A cross-world independence such as Y_xm independent of M_x' given C separates their expectations; consistency, treatment and mediator exchangeability, and support then replace them by the displayed observational terms. Independent structural errors can supply the required relationships in an appropriate graph. Randomizing X alone does not supply mediator–outcome exchangeability or rule out a treatment-induced mediator–outcome confounder.
+
+An explicit counterexample makes the missing information visible. Let U and randomized X be independent fair bits, M0=U and Y(0,m)=0. In world A, set M1=1−U and Y(1,m)=1{m=U}. In world B, set M1=U and Y(1,m)=1{m≠U}. Both worlds have uniform factual M and Y=0 in both treatment arms, including positive support for every (X,M) cell. Yet E[Y(1,M0)] is one in A and zero in B.
+
+| Quantity from the common law or completion | Value |
+|---|---:|
+| Observational mediation functional | 0 |
+| Nested mean in world A | 1 |
+| Nested mean in world B | 0 |
+
+```python
+from fractions import Fraction as F
+from itertools import product
+observed=[];nested=[]
+for world in (0,1):
+    law={(x,m,y):F(0) for x,m,y in product((0,1),repeat=3)}
+    target=F(0)
+    for u in (0,1):
+        m0=u;m1=1-u if world==0 else u
+        y1=lambda m:int(m==u) if world==0 else int(m!=u)
+        target+=F(1,2)*y1(m0)
+        for x in (0,1):
+            m=m0 if x==0 else m1;y=0 if x==0 else y1(m)
+            law[x,m,y]+=F(1,4)
+    observed.append(law);nested.append(target)
+assert observed[0]==observed[1] and nested==[1,0]
+assert all(sum(observed[0][x,m,y] for y in (0,1))>0 for x,m in product((0,1),repeat=2))
+assert sum(mass*y for (x,m,y),mass in observed[0].items())==0
+print('same observed law, different nested means:',nested)
+```
+
+This counterexample has shared mediator/outcome dependence and is distinct from the live independent-noise interaction model. It shows why a nested effect needs its identifying assumptions, not that the mediation formula is invalid when those assumptions hold. Interventional mediator-distribution effects ask different questions and need their own estimands and adjustment conditions.
+
+In the current model, analytical integration of centered noises now computes c, a(b+d), ab, c+ad and c+dm directly. `expanded` retains averages of differences between the rounded atom outcomes. Tiny effects can survive even when those displayed statewise differences round to zero. The decomposition residuals remain independent arithmetic checks rather than being forced to zero.
+
 ## Worked exercise and solution
 
 Set a=1,b=0.5,c=0.2,d=0.5. Compute both decompositions and CDE(-1).

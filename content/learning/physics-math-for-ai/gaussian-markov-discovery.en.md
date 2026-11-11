@@ -30,6 +30,38 @@ For every candidate DAG, enumerate d-separations. A Markov-CI-compatible candida
 
 A chain and the two other non-collider orientations of the same skeleton share the independence A independent of C given B. Three faithful-compatible DAGs remain. This is Markov equivalence; observational CI information alone does not choose their directions. The coefficient values and innovation variances can be reparameterized when comparing observationally equivalent Gaussian models. Keeping identical unit-noise coefficients across orientations would not generally produce the same covariance.
 
+## Matching a covariance before comparing interventions
+
+A Markov-equivalent orientation can represent the same observational Gaussian law after coefficients and noise variances are changed. Construct the chain A=E_A,B=A+E_B,C=B+E_C with independent unit-variance noises. Its covariance is [[1,1,1],[1,2,2],[1,2,3]].
+
+Now let the fork have B as an independent root of variance two, A=B/2+N_A with Var(N_A)=1/2, and C=B+N_C with Var(N_C)=1. Its independent innovations produce exactly the same covariance and hence the same centered Gaussian observational law. The conditional regression E[C|A=a]=a agrees as well.
+
+Under do(A=a), however, the chain propagates a through B to C, while the fork leaves root B unchanged. Thus the intervention distinguishes two observationally equivalent models:
+
+| Fixed A value | Chain mean C under do(A) | Fork mean C under do(A) |
+|---|---:|---:|
+| −1 | −1 | 0 |
+| 0 | 0 | 0 |
+| 1 | 1 | 0 |
+
+```python
+from fractions import Fraction as F
+chain=[[F(1),0,0],[F(1),1,0],[F(1),1,1]]
+fork=[[F(1,2),1,0],[F(1),0,0],[F(1),0,1]]
+def covariance(T,variances):return [[sum(T[i][k]*T[j][k]*variances[k] for k in range(3)) for j in range(3)] for i in range(3)]
+a=covariance(chain,[F(1)]*3);b=covariance(fork,[F(2),F(1,2),F(1)])
+assert a==b==[[1,1,1],[1,2,2],[1,2,3]]
+for query in (-1,0,1):
+    conditional=a[2][0]/a[0][0]*query
+    chain_do=F(query);fork_do=F(0)
+    assert conditional==chain_do
+    print(query,chain_do,fork_do)
+```
+
+This is an explicit population equality of laws, not just two graphs sharing a CI pattern. It also explains why keeping unit innovation variances fixed across orientations can impose extra identifying restrictions. The live tool compares CI patterns of all 25 DAGs under its declared 1e-9 numerical zero convention; it does not fit these alternate noise variances or perform an intervention experiment.
+
+An actual intervention can add directional information only when its target, assignment and retained mechanisms are justified. A failed faithfulness condition, hidden causes, selection or feedback can invalidate a CI-based candidate interpretation. Near-zero finite-sample correlations add inference problems beyond the exact covariance comparison.
+
 ## Exercise: the collider contrast
 
 Choose collider mode with a=b=1. Compare marginal A,C correlation and partial correlation given B.

@@ -24,6 +24,45 @@ $$
 
 The twin diagram shares one latent U between factual and action worlds. The factual X and Y squares are evidence, while X_a is assigned. Resampling E_Y after learning something about it would answer another question. The retained-state construction also implies consistency: applying the factual treatment again gives the factual outcome in every compatible state.
 
+## Randomization identifies marginals, not every cross-world coupling
+
+Suppose randomized treatment is independent of (Y0,Y1), so separate trial arms identify p0=P(Y0=1) and p1=P(Y1=1). They still do not observe both outcomes for one individual. Let t=P(Y0=1,Y1=1). Nonnegativity of all four response-type masses gives the sharp Fréchet interval
+
+$$
+\max(0,p_0+p_1-1)\le t\le\min(p_0,p_1),\quad
+P(Y_1=1,Y_0=0)=p_1-t.
+$$
+
+For p1>0, random assignment also gives P(Y0=0|X=1,Y=1)=(p1−t)/p1. This probability of necessity concerns the actually treated successes under the specified randomized regime. An observationally assigned treatment would require further assumptions before dropping X from that conditional.
+
+Take p0=3/10,p1=3/5. ATE stays 3/10 for every compatible coupling, but necessity ranges from one half to one. The code explicitly constructs all three example joint laws and verifies that their randomized factual (X,Y) tables agree.
+
+| Cross-world t | Benefit probability | Necessity among treated successes |
+|---|---:|---:|
+| 0 | 3/5 | 1 |
+| 3/20 | 9/20 | 3/4 |
+| 3/10 | 3/10 | 1/2 |
+
+![Benefit and harm probabilities across compatible cross-world couplings, with a fixed average treatment effect and unchanged randomized observations.](/assets/learning/causal-counterfactual-coupling-en.svg)
+
+```python
+from fractions import Fraction as F
+p0,p1=F(3,10),F(3,5);baseline=None
+for t in (F(0),F(3,20),F(3,10)):
+    response={(0,0):1-p0-p1+t,(0,1):p1-t,(1,0):p0-t,(1,1):t}
+    assert min(response.values())>=0 and sum(response.values())==1
+    factual={(x,y):sum(mass/2 for (y0,y1),mass in response.items() if (y0 if x==0 else y1)==y) for x in (0,1) for y in (0,1)}
+    if baseline is None:baseline=factual
+    assert factual==baseline
+    benefit=response[0,1];harm=response[1,0]
+    assert benefit-harm==p1-p0
+    print(t,benefit,benefit/p1)
+```
+
+Monotonicity Y1≥Y0 would remove harm and force t=p0 in this example. Ordered marginal risks alone do not establish monotonicity. The live XOR SCM supplies one particular cross-world coupling through shared noise; the figure instead varies couplings while retaining their trial marginals.
+
+For extremely rare factual evidence, the implementation now keeps `logEvidence` and normalizes compatible log masses before exponentiating the posterior. Raw `evidence` can underflow to zero while posterior support is positive; the “posterior defined” flag then remains one. Truly impossible evidence has no finite log mass and still yields no posterior. The raw atom probabilities are retained for comparison, not silently floored or replaced by equally likely states.
+
 ## A complete numerical example
 
 Choose the chain outcome Y=X XOR E_Y, with pi=0.5, assignment noise 0.1 and outcome noise 0.2. Observe X_f=1,Y_f=1. The evidence implies E_Y=0. Its probability is 0.5×0.8=0.4.

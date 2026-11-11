@@ -44,6 +44,50 @@ $$
 
 The conditional weighted readout is explicitly an oracle because this example calls U hidden. It is not an estimator available from action and outcome logs alone. In the declared model, independent outcome noise given U,X provides the required conditional exchangeability; a real dataset would need justification for that assumption and measurement of a sufficient adjustment set.
 
+## Bound a policy value before claiming improvement
+
+If only the exact binary logging law is known and consistency is assumed, the missing outcomes remain free. Its cells p_xy give E[Y0] in [p01,p01+P(X=1)] and E[Y1] in [p11,p11+P(X=0)]. For an external independent Bernoulli policy with probability r of action one,
+
+$$
+L(r)=(1-r)p_{01}+rp_{11},\quad
+H(r)=L(r)+(1-r)P(X=1)+rP(X=0).
+$$
+
+Both endpoints are attainable by assigning every missing potential outcome zero or one; compatible mixtures fill the interval. This is not an assumption that the outcome mechanism is known. The live oracle selects one particular compatible model, whereas these bounds quantify all consistency-only completions.
+
+The default logging law has cells (21/50,2/25,2/25,21/50). Its logging outcome mean is 1/2. Even with exact probabilities and both marginal actions observed, none of the external-coin policies below has a lower bound above that baseline.
+
+| External r | Sharp policy-value interval | Known-model oracle |
+|---|---|---:|
+| 0 | [2/25,29/50] | 2/5 |
+| 1/2 | [1/4,3/4] | 1/2 |
+| 1 | [21/50,23/25] | 3/5 |
+
+```python
+from fractions import Fraction as F
+joint=[F(21,50),F(2,25),F(2,25),F(21,50)]
+logging=joint[1]+joint[3];assert logging==F(1,2)
+for r in (F(0),F(1,2),F(1)):
+    candidates=[]
+    for mask in range(16):
+        value=F(0)
+        for cell,mass in enumerate(joint):
+            x,y=divmod(cell,2);missing=(mask>>cell)&1
+            y0,y1=(y,missing) if x==0 else (missing,y)
+            value+=mass*((1-r)*y0+r*y1)
+        candidates.append(value)
+    lo=(1-r)*joint[1]+r*joint[3]
+    hi=lo+(1-r)*sum(joint[2:])+r*sum(joint[:2])
+    oracle=F(2,5)+r/F(5)
+    assert (min(candidates),max(candidates))==(lo,hi)
+    assert lo<=oracle<=hi and lo<logging
+    print(r,lo,hi,oracle)
+```
+
+This does not establish that every new policy is harmful; it shows what cannot be certified without restricting the hidden confounding or collecting more information. A justified sensitivity set can narrow the policy-value set and support robust comparisons, but its scope must be explicit. The example is not the full optimizer in the cited confounding-robust policy research.
+
+Marginal action support now uses normalized log weights over hidden strata. A positive but unrepresentable joint action probability no longer falsely becomes absent support; raw masses and nonrepresentable raw weights remain visible as numerical limitations. Conditional support still requires each target action in every positive stratum, and genuinely missing cells remain unavailable. Neither numerical normalization nor marginal overlap removes hidden-confounding bias.
+
 ## Exercise: marginal overlap without conditional overlap
 
 Set pi=0.5,e0=0,e1=1 and r=1. Are both logging actions present? Can either weighting scheme recover the target without extra assumptions?

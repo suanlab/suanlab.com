@@ -40,6 +40,47 @@ $$
 
 Its extra numerator is delta(gamma rho+alpha)+kappa D. A large observational sample estimates these population moments more precisely; it does not eliminate a nonzero assumption-violation term.
 
+## A heterogeneous binary instrument identifies a local effect
+
+The live linear constant-effect model identifies beta when its moment assumptions hold. With binary randomized Z and heterogeneous responses, the Wald ratio can identify a different estimand. Assume Z is independent of all potential treatments and outcomes, exclusion Y=Y(X), consistency, relevance and monotonicity X1≥X0. Always-takers and never-takers do not change treatment when Z changes; only compliers do.
+
+Subtracting the two assignment arms and cancelling unchanged responses proves
+
+$$
+E[X\mid Z=1]-E[X\mid Z=0]=P(C),\quad
+E[Y\mid Z=1]-E[Y\mid Z=0]=P(C)E[Y_1-Y_0\mid C].
+$$
+
+Their ratio is the complier LATE, not automatically the whole-population ATE. Defiers would contribute with the opposite sign, destroying this simple interpretation unless additional restrictions were justified. Monotonicity is an individual-level restriction, not just a positive first-stage average.
+
+| Principal stratum in the auxiliary population | Mass | Mean outcome effect |
+|---|---:|---:|
+| Never-takers | 3/10 | 1 |
+| Compliers | 1/2 | 2/5 |
+| Always-takers | 1/5 | −1 |
+
+```python
+from fractions import Fraction as F
+# x0,x1,y0,y1,mass; the complier stratum has two outcome response types.
+atoms=[(0,0,0,1,F(3,10)),(0,1,0,1,F(1,5)),(0,1,0,0,F(3,10)),(1,1,1,0,F(1,5))]
+assert sum(row[-1] for row in atoms)==1
+means=[]
+for z in (0,1):
+    ex=ey=F(0)
+    for x0,x1,y0,y1,mass in atoms:
+        x=x0 if z==0 else x1;ex+=mass*x;ey+=mass*(y0 if x==0 else y1)
+    means.append((ex,ey))
+first=means[1][0]-means[0][0];reduced=means[1][1]-means[0][1]
+ate=sum(mass*(y1-y0) for x0,x1,y0,y1,mass in atoms)
+assert first==F(1,2) and reduced==F(1,5)
+assert reduced/first==F(2,5) and ate==F(3,10)
+print(first,reduced,reduced/first,ate)
+```
+
+Here the first-stage difference is 1/2 and the reduced form is 1/5, so Wald is 2/5 while ATE is 3/10. The four response atoms give an explicit construction, separate from the continuous linear-noise controls.
+
+The IV numerator and denominator are now evaluated as exact dyadic polynomials of the stored binary64 coefficients, then the ratio is rounded to binary64 with ties to even. This preserves tiny products and residuals after large cancellations. `expandedIV` retains the directly divided rounded moments; `factoredIV` retains the ordinary beta+(delta*rho+kappa)/D calculation. A mathematically zero denominator or a nonrepresentable final ratio remains unavailable. A rounded table moment can be zero even when the exact stored-input denominator is not. This is exact intermediate arithmetic for this small polynomial, not arbitrary-precision input data or an inference certificate. This numerical repair does not solve weak-instrument sampling inference or establish the exclusion and independence assumptions.
+
 ## Worked examples
 
 With gamma=alpha=beta=delta=sigma=1 and kappa=rho=0, Var(X)=3. IV equals 1, while OLS equals 1+1/3. Both methods see the same confounded population, but only the valid instrument moment cancels the U contribution.

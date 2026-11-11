@@ -44,6 +44,50 @@ $$
 
 현재 U는 숨은 변수이므로 조건부 가중값을 oracle이라고 명시한다. 행동·결과 로그만으로 실행할 수 있는 추정기가 아니다. 생성 모형은 U,X 조건부 결과 잡음 독립성으로 교환가능성을 제공한다. 실제 연구에서는 충분한 조정 변수의 측정과 이 가정의 정당화가 필요하다.
 
+## 개선을 주장하기 전에 정책 가치의 경계를 구하기
+
+정확한 이진 logging 법칙과 일관성만 알면 빠진 잠재 결과는 자유롭다. 셀 p_xy에서 E[Y0]는 [p01,p01+P(X=1)], E[Y1]는 [p11,p11+P(X=0)] 안이다. 독립 외부 동전이 확률 r로 행동 1을 주면
+
+$$
+L(r)=(1-r)p_{01}+rp_{11},\quad
+H(r)=L(r)+(1-r)P(X=1)+rP(X=0).
+$$
+
+빠진 잠재 결과를 모두 0 또는 1로 정하면 양 끝을 실현하고 양립 혼합이 중간값을 채운다. 결과 기제를 안다고 가정한 경계가 아니다. 화면의 oracle은 특정 완성 모형 하나의 값이고, 이 구간은 일관성만 만족하는 모든 완성을 양화한다.
+
+기본 logging 셀은 (21/50,2/25,2/25,21/50), logging 결과 평균은 1/2이다. 확률을 정확히 알고 주변 행동 둘을 모두 관측해도 아래 외부 동전 정책은 어느 것도 하한이 baseline보다 높지 않다.
+
+| 외부 r | 날카로운 정책 가치 구간 | 알려진 모형의 Oracle |
+|---|---|---:|
+| 0 | [2/25,29/50] | 2/5 |
+| 1/2 | [1/4,3/4] | 1/2 |
+| 1 | [21/50,23/25] | 3/5 |
+
+```python
+from fractions import Fraction as F
+joint=[F(21,50),F(2,25),F(2,25),F(21,50)]
+logging=joint[1]+joint[3];assert logging==F(1,2)
+for r in (F(0),F(1,2),F(1)):
+    candidates=[]
+    for mask in range(16):
+        value=F(0)
+        for cell,mass in enumerate(joint):
+            x,y=divmod(cell,2);missing=(mask>>cell)&1
+            y0,y1=(y,missing) if x==0 else (missing,y)
+            value+=mass*((1-r)*y0+r*y1)
+        candidates.append(value)
+    lo=(1-r)*joint[1]+r*joint[3]
+    hi=lo+(1-r)*sum(joint[2:])+r*sum(joint[:2])
+    oracle=F(2,5)+r/F(5)
+    assert (min(candidates),max(candidates))==(lo,hi)
+    assert lo<=oracle<=hi and lo<logging
+    print(r,lo,hi,oracle)
+```
+
+새 정책이 모두 해롭다는 뜻은 아니다. 숨은 교란을 제한하거나 정보를 더 얻지 않으면 무엇을 인증하지 못하는지 보여준다. 정당화된 민감도 집합은 가치 구간을 줄여 강건 비교를 가능하게 할 수 있지만 그 범위를 명시해야 한다. 인용한 연구의 전체 최적화기를 구현한 예제는 아니다.
+
+주변 행동 Support는 숨은 층의 log weight 정규화를 사용한다. 양수이지만 표현하지 못하는 joint 행동 확률을 부재로 오인하지 않는다. Raw mass와 표현 불가능한 raw weight의 수치 한계는 그대로 남긴다. 조건부 Support는 여전히 양의 모든 층에서 목표 행동을 요구하고 실제 빈 셀은 미정이다. 수치 정규화나 주변 overlap이 숨은 교란 편향을 없애지는 않는다.
+
 ## 확인 문제와 풀이
 
 pi=0.5,e0=0,e1=1,r=1로 두자. 두 로그 행동은 모두 존재하는가? 목표 가치는 복원되는가?

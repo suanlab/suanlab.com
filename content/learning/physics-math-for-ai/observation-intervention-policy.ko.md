@@ -46,6 +46,46 @@ pi=1, e_0=e_1=1, 질의 a=0으로 두자. 관측 사례는 모두 X=1이어서 P
 
 실습은 목표 확률이 양수인 모든 Z 층에서 질의 처치가 관측될 가능성이 있는지 별도로 검사한다. 이 Support 조건이 충족될 때만 backdoor 식별 평균을 표시한다. Oracle 값을 계산했다고 관측되지 않은 가정을 실증한 것은 아니다. 관측 연구에서는 일관성과 조건부 교환가능성도 필요하다. 지금은 독립 잡음의 생성 모형이 이 가정을 명시적으로 제공한다. 목표 질량이 0인 층은 합에 기여하지 않으므로 불필요한 Support를 요구하지 않는다.
 
+## 기존 Support를 유지하는 확률적 개입
+
+외부 동전은 모두에게 같은 행동 확률을 준다. 다른 개입은 측정한 처치 전 Z에 따라 배정할 수 있다. 유한 odds multiplier delta>0으로 자연 propensity e(z)를 바꾸자.
+
+$$
+g_\delta(1\mid z)=\frac{\delta e(z)}{1-e(z)+\delta e(z)},\quad
+V(\delta)=\sum_zP(z)\sum_xg_\delta(x\mid z)q(z,x).
+$$
+
+Delta=1이면 자연 배정 확률을 유지한다. E=0 또는 1인 층은 같은 결정적 행동을 유지해 원래 없는 행동을 요구하지 않는다. 관측 행동 확률이 양수인 경우 importance ratio는 max(delta,1/delta) 이하이다. 이 정책 family의 Support·가중치 성질이지 교환가능성의 증명은 아니다.
+
+Propensity와 결과 기제를 유지하고 미분하면 dV/dlog(delta)=sum_z P(z)*g_delta*(1−g_delta)*(q(z,1)−q(z,0))이다. 결정적 logging 층은 0을 기여한다. 예제는 현재 결과식과 pi=1/2,e=(1/10,9/10)을 쓰지만 Z 의존 odds 개입은 독립 유도이며 화면의 독립 동전 조절기를 바꾸지 않는다.
+
+| Odds 배율 | 정책 결과 평균 |
+|---|---:|
+| 1/2 | 509/1045 |
+| 1 | 1/2 |
+| 2 | 536/1045 |
+
+```python
+from fractions import Fraction as F
+e=[F(1,10),F(9,10)];P=[F(1,2)]*2
+q=lambda z,x:F(1,10)+F(3,5)*z+F(1,5)*x
+for delta in (F(1,2),F(1),F(2)):
+    g=[delta*p/(1-p+delta*p) for p in e]
+    value=sum(P[z]*((1-g[z])*q(z,0)+g[z]*q(z,1)) for z in range(2))
+    derivative=sum(P[z]*g[z]*(1-g[z])*(q(z,1)-q(z,0)) for z in range(2))
+    for p in (F(0),*e,F(1)):
+        treated=delta*p/(1-p+delta*p)
+        for observed,target in ((p,treated),(1-p,1-treated)):
+            assert (target==0 if observed==0 else target/observed<=max(delta,1/delta))
+    print(delta,value,derivative)
+```
+
+모집단 propensity로 정의한 정책은 분포 의존 estimand이기도 하다. Propensity를 추정하고 그 정책을 평가할 때 정직한 평가 절차와 불확실성 분석이 필요하다. 간섭·피드백·결과 기제 변경에는 여전히 다른 모형이 필요하다. Overlap을 유지하면 외삽은 줄지만 숨은 교란이 사라지는 것은 아니다.
+
+관측 질의도 log 정규화를 사용한다. Raw `queryMass`가 0으로 underflow해도 `logQueryMass`는 유한할 수 있다. 관측 조건부를 유지하더라도 backdoor 조정은 모든 목표 양의 층을 계속 검사하므로 두 Support 질문은 다르다.
+
+더 넓은 식별·추정 결과는 [Kennedy의 incremental intervention 분석](https://arxiv.org/abs/1704.00211)을 참고하자. 위 유한 한 단계 유도는 논문의 전체 longitudinal efficiency 이론 재현이 아니다.
+
 ## 손계산 문제와 풀이
 
 pi=0.5, e_0=e_1=0.5로 설정하자. 관측 X=1 평균, 고정 do(1) 평균, r=0.5 정책 평균을 비교하라.

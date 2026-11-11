@@ -1,3 +1,4 @@
+import { causalLogBit, normalizeCausalLogs } from './learning-causal-probability';
 import type { CausalResult } from './learning-causality';
 import type { CausalNetwork, CausalEdge } from './learning-causal-graphs';
 import { causalOrder, causalSeparation } from './learning-causal-graphs';
@@ -12,18 +13,47 @@ const average=(a:number[])=>sum(a)/a.length;
 const ratio=(a:number,b:number)=>{const r=a/b;return b!==0&&Number.isFinite(r)?r:null;};
 const bern=(p:number,v:number)=>v?p:1-p;
 
+// Stored finite binary64 values are integer multiples of 2^-1074.
+function causalDyadicUnits(value:number){
+ const bits=new DataView(new ArrayBuffer(8));bits.setFloat64(0,value);
+ const high=bits.getUint32(0),low=bits.getUint32(4),exponent=(high>>>20)&2047;
+ let mantissa=(BigInt(high&0xfffff)<<BigInt(32))+BigInt(low);
+ if(exponent)mantissa=(mantissa+(BigInt(1)<<BigInt(52)))<<BigInt(exponent-1);
+ return high>>>31?-mantissa:mantissa;
+}
+// Round a signed exact rational to binary64, including subnormals and ties to even.
+function causalDyadicRatio(numerator:bigint,denominator:bigint):number|null{
+ const zero=BigInt(0),one=BigInt(1),two=BigInt(2);
+ if(denominator===zero)return null;if(numerator===zero)return 0;
+ const negative=(numerator<zero)!==(denominator<zero),n=numerator<zero?-numerator:numerator,d=denominator<zero?-denominator:denominator;
+ let exponent=n.toString(2).length-d.toString(2).length;
+ if(exponent>=0?n<(d<<BigInt(exponent)):(n<<BigInt(-exponent))<d)exponent--;
+ if(exponent>1023)return null;
+ const scale=exponent<-1022?1074:52-exponent,a=scale>=0?n<<BigInt(scale):n,b=scale>=0?d:d<<BigInt(-scale);
+ let rounded=a/b;const remainder=a%b;
+ if(two*remainder>b||(two*remainder===b&&rounded%two===one))rounded++;
+ const value=Number(rounded)*2**(-scale),signed=negative?-value:value;
+ return Number.isFinite(signed)?signed:null;
+}
+function exactInstrumentRatio(gamma:number,alpha:number,beta:number,delta:number,kappa:number,rho:number){
+ const [g,a,b,d,k,r]=[gamma,alpha,beta,delta,kappa,rho].map(causalDyadicUnits),unit=BigInt(1)<<BigInt(1074);
+ const denominator=(g*unit+a*r)*unit,numerator=b*g*unit+b*a*r+d*r*unit+k*unit*unit;
+ return causalDyadicRatio(numerator,denominator);
+}
 export function instrumentalMoments(gamma:number,alpha:number,beta:number,delta:number,kappa:number,rho:number,sigma:number){
  [gamma,alpha,delta,sigma].forEach(v=>range(v,0,1));range(beta,-1,1);range(kappa,-.5,.5);range(rho,-.8,.8);
  const covZX=gamma+alpha*rho,varX=gamma*gamma+alpha*alpha+2*gamma*alpha*rho+sigma*sigma,covUX=gamma*rho+alpha;
  const covZY=beta*covZX+delta*rho+kappa,covXY=beta*varX+delta*covUX+kappa*covZX;
- return {covZX,varX,covUX,covZY,covXY,iv:ratio(covZY,covZX),ols:ratio(covXY,varX),truth:beta};
+ const violation=ratio(delta*rho+kappa,covZX),factoredIV=violation===null?null:beta+violation;
+ return {covZX,varX,covUX,covZY,covXY,iv:exactInstrumentRatio(gamma,alpha,beta,delta,kappa,rho),factoredIV:factoredIV!==null&&Number.isFinite(factoredIV)?factoredIV:null,expandedIV:ratio(covZY,covZX),ols:ratio(covXY,varX),truth:beta};
 }
 export function mediationEffects(a:number,b:number,c:number,d:number,m:number){
  [a,b,c,d].forEach(v=>range(v,-1,1));range(m,-2,2);
  const atoms=[];for(const em of [-.5,.5])for(const ey of [-.25,.25]){const M0=em,M1=a+em,y=(x:number,z:number)=>c*x+b*z+d*x*z+ey;
   atoms.push({em,ey,M0,M1,Y00:y(0,M0),Y10:y(1,M0),Y01:y(0,M1),Y11:y(1,M1),CDE:y(1,m)-y(0,m)});}
  const TE=average(atoms.map(v=>v.Y11-v.Y00)),PNDE=average(atoms.map(v=>v.Y10-v.Y00)),TNIE=average(atoms.map(v=>v.Y11-v.Y10)),PNIE=average(atoms.map(v=>v.Y01-v.Y00)),TNDE=average(atoms.map(v=>v.Y11-v.Y01)),CDE=average(atoms.map(v=>v.CDE));
- return {atoms,TE,PNDE,TNIE,PNIE,TNDE,CDE};
+ const expanded={TE,PNDE,TNIE,PNIE,TNDE,CDE};
+ return {atoms,TE:c+a*(b+d),PNDE:c,TNIE:a*(b+d),PNIE:a*b,TNDE:c+a*d,CDE:c+d*m,expanded};
 }
 const discoveryEdges:CausalEdge[][]=[[[0,1],[1,2]],[[1,0],[1,2]],[[0,1],[2,1]],[[0,1],[1,2],[0,2]]];
 export const threeNodeDAGs:CausalEdge[][]=[];
@@ -43,20 +73,21 @@ export function gaussianDiscovery(mode:number,a:number,b:number,c:number,given:n
 export function mechanismTransport(source:number,target:number,e0:number,e1:number,shift:number){
  [source,target,e0,e1].forEach(v=>range(v,0,1));range(shift,-.1,.1);
  const P=[1-source,source],Q=[1-target,target],e=[e0,e1],q=(z:number,x:number)=>.1+.4*z+(.1+.2*z)*x;
- const cells:{z:number;x:number;y:number;mass:number}[]=[];for(const z of [0,1])for(const x of [0,1])for(const y of [0,1])cells.push({z,x,y,mass:P[z]*bern(e[z],x)*bern(q(z,x),y)});
- const rates=[0,1].map(z=>[0,1].map(x=>{const group=cells.filter(v=>v.z===z&&v.x===x),mass=sum(group.map(v=>v.mass));return mass>0?sum(group.map(v=>v.mass*v.y))/mass:null;}));
+ const cells:{z:number;x:number;y:number;mass:number;logMass:number}[]=[];for(const z of [0,1])for(const x of [0,1])for(const y of [0,1])cells.push({z,x,y,mass:P[z]*bern(e[z],x)*bern(q(z,x),y),logMass:causalLogBit(source,z)+causalLogBit(e[z],x)+causalLogBit(q(z,x),y)});
+ const rates=[0,1].map(z=>[0,1].map(x=>{const group=cells.filter(v=>v.z===z&&v.x===x),norm=normalizeCausalLogs(group.map(v=>v.logMass));return norm.probabilities?sum(group.map((v,i)=>norm.probabilities![i]*v.y)):null;}));
  let transported:number|null=0;for(const z of [0,1])if(Q[z]>0){if(rates[z].some(v=>v===null)){transported=null;break;}transported+=Q[z]*(rates[z][1]!-rates[z][0]!);}
  return {P,Q,e,q,cells,rates,transported,sourceATE:.1+.2*source,targetATE:.1+.2*target+shift,invariant:shift===0};
 }
 export function offPolicyConfounding(pi:number,e0:number,e1:number,policy:number){
  [pi,e0,e1,policy].forEach(v=>range(v,0,1));const P=[1-pi,pi],e=[e0,e1],target=[1-policy,policy],q=(u:number,a:number)=>.1+.6*u+.2*a;
  const masses=P.map((p,u)=>[p*(1-e[u]),p*e[u]]),marginals=[sum(masses.map(v=>v[0])),sum(masses.map(v=>v[1]))];
- const marginalSupport=target.every((p,a)=>p===0||marginals[a]>0),conditionalSupport=P.every((p,u)=>p===0||target.every((t,a)=>t===0||bern(e[u],a)>0));
+ const normalized=[0,1].map(a=>normalizeCausalLogs([0,1].map(u=>causalLogBit(pi,u)+causalLogBit(e[u],a))));
+ const marginalSupport=target.every((p,a)=>p===0||normalized[a].probabilities!==null),conditionalSupport=P.every((p,u)=>p===0||target.every((t,a)=>t===0||bern(e[u],a)>0));
  // Integrate weighted outcomes algebraically, before forming potentially overflowing raw weights.
- const naive=marginalSupport?sum([0,1].map(a=>target[a]===0?0:sum([0,1].map(u=>target[a]*(masses[u][a]/marginals[a])*q(u,a))))):null;
+ const naive=marginalSupport?sum([0,1].map(a=>target[a]===0?0:sum([0,1].map(u=>target[a]*normalized[a].probabilities![u]*q(u,a))))):null;
  const conditional=conditionalSupport?sum([0,1].map(u=>sum([0,1].map(a=>P[u]*target[a]*q(u,a))))):null;
  const truth=.1+.6*pi+.2*policy,logging=sum([0,1].map(u=>sum([0,1].map(a=>masses[u][a]*q(u,a)))));
- return {P,e,target,q,masses,marginals,marginalSupport,conditionalSupport,naive,conditional,truth,logging};
+ return {P,e,target,q,masses,marginals,logMarginals:normalized.map(v=>v.logMass),marginalPosteriors:normalized.map(v=>v.probabilities),marginalSupport,conditionalSupport,naive,conditional,truth,logging};
 }
 const triangle=(names=['X','M','Y']):CausalNetwork=>({nodes:[{name:names[0],x:75,y:170},{name:names[1],x:175,y:45},{name:names[2],x:275,y:170}],edges:[{from:0,to:1},{from:1,to:2},{from:0,to:2}]});
 export function evaluateCausalResearch(kind:CausalResearchKind,p:number[]):CausalResult{

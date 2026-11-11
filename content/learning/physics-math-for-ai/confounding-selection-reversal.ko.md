@@ -49,6 +49,48 @@ $$
 
 rho=1이면 선택 표본에서 00만 빠진다. X=0인 선택 관측에서는 Y=1이 확실하지만, X=1에서는 Y=1일 확률이 0.5다. 선택된 차이는 -0.5이고 모집단 인과효과는 0이다. 공통 결과를 조건으로 삼으면 원래 독립이던 원인 사이에 연관이 생길 수 있다. 이것이 X→S←Y라는 collider 경로의 핵심이다. 모든 선택이 항상 편향을 만든다는 뜻은 아니다.
 
+## Double Robustness의 곱 잔차와 교란 가정
+
+고정 행동 x에서 q_x(z)=E[Y|X=x,Z=z], e_x(z)=P(X=x|Z=z)라 하자. 목표 층에서 g가 양수인 후보 함수 m,g로 augmented 모집단 functional을 정의한다.
+
+$$
+\Psi_x(m,g)=E\left[m(Z)+\frac{1\{X=x\}}{g(Z)}(Y-m(Z))\right],
+\quad\Psi_x-\mu_x=E\left[\left(1-\frac{e_x(Z)}{g(Z)}\right)(m(Z)-q_x(Z))\right].
+$$
+
+Z에 조건부로 평균하면 residual의 기대가 e_x*(q_x−m)이어서 항등식이 증명된다. Nuisance 하나가 정확하면 잔차가 0이다. 두 모델이 training data에 잘 맞는다는 이유로 잔차가 없어지는 것은 아니다. G≥eta>0이면 Cauchy–Schwarz로 절댓값을 ||g−e_x||₂*||m−q_x||₂/eta 이하로 제어한다. 이 곱은 rate 조건의 동기이지만 점근 추론에는 표본 가정·분산 제어·적절한 sample splitting 또는 cross-fitting도 필요하다.
+
+유리수 예제는 세계 A의 기본 joint law를 유지한다. Outcome 평균만 정확하거나 propensity만 정확해도 ATE −1/10을 복원하지만 두 함수가 모두 틀리면 편향된 +3/10을 얻는다.
+
+| 후보 Nuisance 함수 | Augmented ATE |
+|---|---:|
+| 정확한 Outcome·틀린 Propensity | −1/10 |
+| 틀린 Outcome·정확한 Propensity | −1/10 |
+| 둘 다 틀림 | 3/10 |
+
+![Outcome 오차와 세 propensity 선택에 따른 augmented 평균의 모집단 편향으로 곱 잔차를 설명한 그림.](/assets/learning/causal-double-robust-ko.svg)
+
+그림은 참 propensity 1/5·outcome 평균 7/10인 한 층을 분리하며 아래 코드는 세계 A의 두 층 전체를 쓴다.
+
+```python
+from fractions import Fraction as F
+P=[F(1,2)]*2;e=[F(1,10),F(9,10)];tau=F(-1,10)
+q=[[F(1,5),F(1,5)+tau],[F(7,10),F(7,10)+tau]]
+wrong=[[F(2,5)]*2 for _ in range(2)]
+def augmented(m,g,x):
+    true_e=[e[z] if x else 1-e[z] for z in range(2)]
+    fitted_e=[g[z] if x else 1-g[z] for z in range(2)]
+    value=sum(P[z]*(m[z][x]+true_e[z]/fitted_e[z]*(q[z][x]-m[z][x])) for z in range(2))
+    truth=sum(P[z]*q[z][x] for z in range(2))
+    remainder=sum(P[z]*(1-true_e[z]/fitted_e[z])*(m[z][x]-q[z][x]) for z in range(2))
+    assert value-truth==remainder
+    return value
+for m,g in ((q,[F(1,2)]*2),(wrong,e),(wrong,[F(1,2)]*2)):
+    print(augmented(m,g,1)-augmented(m,g,0))
+```
+
+고정 함수의 모집단 항등식이지 같은 기록에서 학습한 nuisance의 유한 표본 불편성 주장은 아니다. Backdoor 식별 가정도 필요하다. 미측정 공통 원인·Support 부재·collider 조건화는 이 대수로 고칠 수 없다. 조건부 셀 비율은 scaled log mass를 써 raw 곱이 underflow하는 희귀 양의 셀을 유지한다. 실제로 없는 처치 층은 여전히 미정이며 세계 B의 선택 과정도 별도로 유지한다.
+
 ## 확인 문제와 해설
 
 세계 A의 나머지 기본값을 유지하고 e_0=e_1=0.5로 처치를 무작위 배정하자. 세계 B에서는 rho=1을 유지한다. 어떤 불일치가 사라지는가?

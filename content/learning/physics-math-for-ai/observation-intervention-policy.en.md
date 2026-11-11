@@ -46,6 +46,46 @@ Set pi=1, e_0=e_1=1 and query a=0. Every observational case has X=1. P(X=0)=0 ma
 
 The lab separately reports whether backdoor adjustment has positive support for the query in each stratum with positive target mass. It displays the identified mean only when that requirement holds. A model-defined oracle does not supply empirical evidence for its unobserved assumptions. In an observational study, identification additionally needs consistency and conditional exchangeability; here the independent-noise construction explicitly supplies them.
 
+## A stochastic intervention can respect existing support
+
+An external coin uses one action probability for everyone. A different intervention can use a measured pre-treatment Z. For a finite odds multiplier delta>0, transform the natural propensity e(z) into
+
+$$
+g_\delta(1\mid z)=\frac{\delta e(z)}{1-e(z)+\delta e(z)},\quad
+V(\delta)=\sum_zP(z)\sum_xg_\delta(x\mid z)q(z,x).
+$$
+
+At delta=1 it retains the natural assignment probabilities. At e=0 or e=1 the same action remains deterministic: it never demands an action structurally absent in that stratum. For positive observational action probability, the importance ratio is bounded by max(delta,1/delta). These are support and weight properties of this policy family, not exchangeability proofs.
+
+Holding the propensity and outcome mechanisms fixed, differentiation gives dV/dlog(delta)=sum_z P(z)*g_delta*(1−g_delta)*(q(z,1)−q(z,0)). Strata with deterministic logging contribute zero. The example uses the current outcome law and pi=1/2,e=(1/10,9/10), but this Z-dependent odds intervention is auxiliary and does not change the independent-coin control.
+
+| Odds multiplier | Policy outcome mean |
+|---|---:|
+| 1/2 | 509/1045 |
+| 1 | 1/2 |
+| 2 | 536/1045 |
+
+```python
+from fractions import Fraction as F
+e=[F(1,10),F(9,10)];P=[F(1,2)]*2
+q=lambda z,x:F(1,10)+F(3,5)*z+F(1,5)*x
+for delta in (F(1,2),F(1),F(2)):
+    g=[delta*p/(1-p+delta*p) for p in e]
+    value=sum(P[z]*((1-g[z])*q(z,0)+g[z]*q(z,1)) for z in range(2))
+    derivative=sum(P[z]*g[z]*(1-g[z])*(q(z,1)-q(z,0)) for z in range(2))
+    for p in (F(0),*e,F(1)):
+        treated=delta*p/(1-p+delta*p)
+        for observed,target in ((p,treated),(1-p,1-treated)):
+            assert (target==0 if observed==0 else target/observed<=max(delta,1/delta))
+    print(delta,value,derivative)
+```
+
+A policy defined through the population propensity is itself a distribution-dependent estimand. Estimating that propensity and evaluating the resulting policy requires an honest procedure and uncertainty analysis. Interference, feedback or changed outcome mechanisms still require a new model. Respecting overlap reduces extrapolation; it does not make hidden confounding disappear.
+
+The observed query also uses log normalization: `logQueryMass` can be finite when its raw `queryMass` underflows to zero. This preserves the conditional observation while backdoor adjustment still checks every target-positive stratum; the two support questions are distinct.
+
+For broader identification and estimation results, see [Kennedy’s incremental intervention analysis](https://arxiv.org/abs/1704.00211). The finite one-step derivation above is not its full longitudinal efficiency theory.
+
 ## Worked exercise and solution
 
 Set pi=0.5 and e_0=e_1=0.5. Compare the observed X=1 mean, fixed do(1) mean and policy mean at r=0.5.
