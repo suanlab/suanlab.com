@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "updated": "2026-11-11",
-  "implementedUnitCount": 631,
+  "implementedUnitCount": 633,
   "curriculumComplete": false,
-  "scope": "631 registered units, 1931 guided experiments and 1262 bilingual manuscript files. Introductory scope: 343 of 362 original topics verified, 19 pending. Whole-curriculum scope, domain audits and research depth remain open.",
+  "scope": "633 registered units, 1935 guided experiments and 1266 bilingual manuscript files. Introductory scope: 345 of 362 original topics verified, 17 pending. Whole-curriculum scope, domain audits and research depth remain open.",
   "domains": [
     {
       "id": "logic-proof",
@@ -11188,10 +11188,12 @@
       "implementedUnitIds": [
         "inverse-problems",
         "forward-and-inverse-maps-for-cooling",
-        "ill-posedness-and-singular-modes"
+        "ill-posedness-and-singular-modes",
+        "parameter-identifiability-and-sensor-design",
+        "tikhonov-regularization-and-noise-gain"
       ],
-      "nextUnitId": "parameter-identifiability-and-sensor-design",
-      "nextAction": "sensor-identifiability-reader-integration",
+      "nextUnitId": "gaussian-bayesian-inversion",
+      "nextAction": "gaussian-bayesian-reader-integration",
       "coolingInverseDraft": {
         "unitId": "forward-and-inverse-maps-for-cooling",
         "status": "registered-and-verified",
@@ -11207,48 +11209,48 @@
           "content/learning/physics-math-for-ai/forward-and-inverse-maps-for-cooling.en.md"
         ]
       },
-      "currentPreparationReport": "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
-      "currentPreparationEvidence": "scripts/learning-ill-posedness.test.ts",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+      "currentPreparationEvidence": "scripts/learning-tikhonov-noise-gain.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "ill-posedness-and-singular-modes",
+        "unitId": "tikhonov-regularization-and-noise-gain",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-ill-posedness.ts",
-        "lab": "src/components/learning/ill-posedness-lab.tsx",
-        "tests": "scripts/learning-ill-posedness.test.ts",
+        "model": "src/lib/learning-tikhonov-noise-gain.ts",
+        "lab": "src/components/learning/tikhonov-noise-gain-lab.tsx",
+        "tests": "scripts/learning-tikhonov-noise-gain.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "ill-posedness-and-singular-modes",
+        "unitId": "tikhonov-regularization-and-noise-gain",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-ill-posedness.ts",
-        "lab": "src/components/learning/ill-posedness-lab.tsx",
-        "tests": "scripts/learning-ill-posedness.test.ts",
+        "model": "src/lib/learning-tikhonov-noise-gain.ts",
+        "lab": "src/components/learning/tikhonov-noise-gain-lab.tsx",
+        "tests": "scripts/learning-tikhonov-noise-gain.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "ill-posedness",
+        "originalTopic": "regularization",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "ill-posedness-and-singular-modes"
+          "tikhonov-regularization-and-noise-gain"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -11256,12 +11258,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-ill-posedness.test.ts"
+        "evidence": "scripts/learning-tikhonov-noise-gain.test.ts"
       },
       "topicEvidence": [
         {
@@ -11337,6 +11339,80 @@
             "guidedExperiments": 2,
             "explainedQuestionsPerLocale": 2
           }
+        },
+        {
+          "originalTopic": "식별 가능성",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "parameter-identifiability-and-sensor-design"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.ko.md",
+            "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-sensor-identifiability.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "parameter-identifiability-and-sensor-design",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-sensor-identifiability.ts",
+            "lab": "src/components/learning/sensor-identifiability-lab.tsx",
+            "tests": "scripts/learning-sensor-identifiability.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.ko.md",
+              "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
+        },
+        {
+          "originalTopic": "regularization",
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "unitIds": [
+            "tikhonov-regularization-and-noise-gain"
+          ],
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+            "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-tikhonov-noise-gain.test.ts",
+          "latestUnitPreparation": {
+            "unitId": "tikhonov-regularization-and-noise-gain",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-tikhonov-noise-gain.ts",
+            "lab": "src/components/learning/tikhonov-noise-gain-lab.tsx",
+            "tests": "scripts/learning-tikhonov-noise-gain.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+              "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         }
       ],
       "illPosednessDraft": {
@@ -11356,14 +11432,44 @@
       },
       "sensorIdentifiabilityDraft": {
         "unitId": "parameter-identifiability-and-sensor-design",
-        "status": "bilingual-draft",
-        "registered": false,
+        "status": "registered-and-verified",
+        "registered": true,
         "draftFiles": [
           "docs/online-learning/physics-math-for-ai/drafts/parameter-identifiability-and-sensor-design.ko.md",
           "docs/online-learning/physics-math-for-ai/drafts/parameter-identifiability-and-sensor-design.en.md"
         ],
         "pythonExerciseExecuted": true,
-        "nextAction": "sensor-identifiability-reader-integration"
+        "nextAction": "tikhonov-noise-gain-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.ko.md",
+          "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.en.md"
+        ]
+      },
+      "tikhonovDraft": {
+        "unitId": "tikhonov-regularization-and-noise-gain",
+        "status": "registered-and-verified",
+        "registered": true,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/tikhonov-regularization-and-noise-gain.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/tikhonov-regularization-and-noise-gain.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "gaussian-bayesian-reader-integration",
+        "contentFiles": [
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
+        ]
+      },
+      "gaussianBayesianDraft": {
+        "unitId": "gaussian-bayesian-inversion",
+        "status": "bilingual-draft",
+        "registered": false,
+        "draftFiles": [
+          "docs/online-learning/physics-math-for-ai/drafts/gaussian-bayesian-inversion.ko.md",
+          "docs/online-learning/physics-math-for-ai/drafts/gaussian-bayesian-inversion.en.md"
+        ],
+        "pythonExerciseExecuted": true,
+        "nextAction": "gaussian-bayesian-reader-integration"
       }
     },
     {
@@ -11393,7 +11499,7 @@
     "research-methods"
   ],
   "nextDomain": "inverse-problems",
-  "nextTopic": "식별 가능성",
+  "nextTopic": "Bayesian inverse problem",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
     "finding": "Nonzero decimal underflow is rejected before a Number value reaches the model. Explicit integer constraints, live valid edits, invalid draft feedback and resets were verified across the remaining10 direct consumers.",

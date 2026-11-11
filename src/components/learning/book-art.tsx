@@ -1,4 +1,6 @@
 'use client';
+import { tikhonovNoiseGainId } from '@/data/tikhonov-noise-gain-reader';
+import { sensorIdentifiabilityId } from '@/data/sensor-identifiability-reader';
 import { illPosednessId } from '@/data/ill-posedness-reader';
 import { coolingInverseId } from '@/data/cooling-inverse-reader';
 import { physicalValidationId } from '@/data/physical-validation-reader';
@@ -225,6 +227,8 @@ function LogicCover({kind}:{kind:LogicKind}){const r=evaluateLogic(kind,logicLab
 export default function BookArt({ kind = 'vectors-and-forces' }: { kind?: string }) {
   const pattern = useId();
   if (isReversalKind(kind)) return <CycleReversalCover kind={kind}/>;
+  if (kind === tikhonovNoiseGainId) return <span className="ai-concept-equation" aria-hidden="true">x̂ = sy/(s² + λ)</span>;
+  if (kind === sensorIdentifiabilityId) return <span className="ai-concept-equation" aria-hidden="true">b = (y₁ − y₂)/(1 − r)</span>;
   if (kind === illPosednessId) return <span className="ai-concept-equation" aria-hidden="true">x̂₂ = 1 + δ/s</span>;
   if (kind === coolingInverseId) return <span className="ai-concept-equation" aria-hidden="true">y(t) = Ae^(−kt)</span>;
   if (kind === physicalValidationId) return <span className="ai-concept-equation" aria-hidden="true">r = ỹ(x) − M_fit x</span>;

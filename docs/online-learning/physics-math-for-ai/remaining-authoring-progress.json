@@ -16279,29 +16279,125 @@
         },
         {
           "title": "식별 가능성",
-          "status": "in-progress",
-          "unitIds": [],
+          "status": "verified",
+          "unitIds": [
+            "parameter-identifiability-and-sensor-design"
+          ],
           "preparation": {
             "unitId": "parameter-identifiability-and-sensor-design",
-            "status": "bilingual-draft",
-            "registered": false,
+            "status": "registered-and-verified",
+            "registered": true,
             "draftFiles": [
               "docs/online-learning/physics-math-for-ai/drafts/parameter-identifiability-and-sensor-design.ko.md",
               "docs/online-learning/physics-math-for-ai/drafts/parameter-identifiability-and-sensor-design.en.md"
             ],
             "pythonExerciseExecuted": true,
-            "nextAction": "sensor-identifiability-reader-integration"
+            "nextAction": "tikhonov-noise-gain-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.ko.md",
+              "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.ko.md",
+            "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-sensor-identifiability.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "parameter-identifiability-and-sensor-design",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-sensor-identifiability.ts",
+            "lab": "src/components/learning/sensor-identifiability-lab.tsx",
+            "tests": "scripts/learning-sensor-identifiability.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.ko.md",
+              "content/learning/physics-math-for-ai/parameter-identifiability-and-sensor-design.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
           }
         },
         {
           "title": "regularization",
-          "status": "not-started",
-          "unitIds": []
+          "status": "verified",
+          "unitIds": [
+            "tikhonov-regularization-and-noise-gain"
+          ],
+          "preparation": {
+            "unitId": "tikhonov-regularization-and-noise-gain",
+            "status": "registered-and-verified",
+            "registered": true,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/tikhonov-regularization-and-noise-gain.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/tikhonov-regularization-and-noise-gain.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "gaussian-bayesian-reader-integration",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+              "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
+            ]
+          },
+          "stage": "introductory-topic-verified",
+          "coverageLevel": "introductory",
+          "registeredUnitCount": 1,
+          "originalTopicComplete": true,
+          "originalTopicAuditPending": false,
+          "homepageIntegrated": true,
+          "actualBrowserVerified": true,
+          "contentFiles": [
+            "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+            "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
+          ],
+          "researchDepthComplete": false,
+          "wholeDomainAuditComplete": false,
+          "evidence": "scripts/learning-tikhonov-noise-gain.test.ts",
+          "lastIntegratedUnitPreparation": {
+            "unitId": "tikhonov-regularization-and-noise-gain",
+            "status": "verified-introductory-unit",
+            "registered": true,
+            "homepageIntegrated": true,
+            "actualBrowserVerified": true,
+            "model": "src/lib/learning-tikhonov-noise-gain.ts",
+            "lab": "src/components/learning/tikhonov-noise-gain-lab.tsx",
+            "tests": "scripts/learning-tikhonov-noise-gain.test.ts",
+            "contentFiles": [
+              "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+              "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
+            ],
+            "sectionsPerLocale": 6,
+            "guidedExperiments": 2,
+            "explainedQuestionsPerLocale": 2
+          }
         },
         {
           "title": "Bayesian inverse problem",
-          "status": "not-started",
-          "unitIds": []
+          "status": "in-progress",
+          "unitIds": [],
+          "preparation": {
+            "unitId": "gaussian-bayesian-inversion",
+            "status": "bilingual-draft",
+            "registered": false,
+            "draftFiles": [
+              "docs/online-learning/physics-math-for-ai/drafts/gaussian-bayesian-inversion.ko.md",
+              "docs/online-learning/physics-math-for-ai/drafts/gaussian-bayesian-inversion.en.md"
+            ],
+            "pythonExerciseExecuted": true,
+            "nextAction": "gaussian-bayesian-reader-integration"
+          }
         },
         {
           "title": "sensitivity·adjoint",
@@ -16335,50 +16431,50 @@
         }
       ],
       "verification": null,
-      "nextUnitId": "parameter-identifiability-and-sensor-design",
-      "nextAction": "sensor-identifiability-reader-integration",
-      "currentPreparationReport": "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
-      "currentPreparationEvidence": "scripts/learning-ill-posedness.test.ts",
+      "nextUnitId": "gaussian-bayesian-inversion",
+      "nextAction": "gaussian-bayesian-reader-integration",
+      "currentPreparationReport": "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+      "currentPreparationEvidence": "scripts/learning-tikhonov-noise-gain.test.ts",
       "lastIntegratedPreparation": {
-        "unitId": "ill-posedness-and-singular-modes",
+        "unitId": "tikhonov-regularization-and-noise-gain",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-ill-posedness.ts",
-        "lab": "src/components/learning/ill-posedness-lab.tsx",
-        "tests": "scripts/learning-ill-posedness.test.ts",
+        "model": "src/lib/learning-tikhonov-noise-gain.ts",
+        "lab": "src/components/learning/tikhonov-noise-gain-lab.tsx",
+        "tests": "scripts/learning-tikhonov-noise-gain.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastIntegratedUnitPreparation": {
-        "unitId": "ill-posedness-and-singular-modes",
+        "unitId": "tikhonov-regularization-and-noise-gain",
         "status": "verified-introductory-unit",
         "registered": true,
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
-        "model": "src/lib/learning-ill-posedness.ts",
-        "lab": "src/components/learning/ill-posedness-lab.tsx",
-        "tests": "scripts/learning-ill-posedness.test.ts",
+        "model": "src/lib/learning-tikhonov-noise-gain.ts",
+        "lab": "src/components/learning/tikhonov-noise-gain-lab.tsx",
+        "tests": "scripts/learning-tikhonov-noise-gain.test.ts",
         "contentFiles": [
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
         ],
         "sectionsPerLocale": 6,
         "guidedExperiments": 2,
         "explainedQuestionsPerLocale": 2
       },
       "lastCompletedIntroductoryTopic": {
-        "originalTopic": "ill-posedness",
+        "originalTopic": "regularization",
         "stage": "introductory-topic-verified",
         "coverageLevel": "introductory",
         "unitIds": [
-          "ill-posedness-and-singular-modes"
+          "tikhonov-regularization-and-noise-gain"
         ],
         "registeredUnitCount": 1,
         "originalTopicComplete": true,
@@ -16386,12 +16482,12 @@
         "homepageIntegrated": true,
         "actualBrowserVerified": true,
         "contentFiles": [
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.ko.md",
-          "content/learning/physics-math-for-ai/ill-posedness-and-singular-modes.en.md"
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.ko.md",
+          "content/learning/physics-math-for-ai/tikhonov-regularization-and-noise-gain.en.md"
         ],
         "researchDepthComplete": false,
         "wholeDomainAuditComplete": false,
-        "evidence": "scripts/learning-ill-posedness.test.ts"
+        "evidence": "scripts/learning-tikhonov-noise-gain.test.ts"
       }
     },
     {
@@ -16456,14 +16552,14 @@
       "verification": null
     }
   ],
-  "implementedUnitCount": 631,
-  "verifiedNewUnitCount": 478,
+  "implementedUnitCount": 633,
+  "verifiedNewUnitCount": 480,
   "remainingForwardDomainCount": 2,
-  "remainingScopeTopicsWithoutNewVerifiedUnit": 19,
+  "remainingScopeTopicsWithoutNewVerifiedUnit": 17,
   "nextDomain": "inverse-problems",
-  "nextTopic": "식별 가능성",
+  "nextTopic": "Bayesian inverse problem",
   "scopeNote": "Verification records the authored introductory treatments and concrete experiments. Full-curriculum completion and further proofs, depth, research connections and review remain separate.",
-  "verifiedOriginalScopeTopicCount": 343,
+  "verifiedOriginalScopeTopicCount": 345,
   "originalObjective": "남은 36개 영역 전체 다 만들어",
   "sharedNumberFieldValidationFollowup": {
     "source": "src/components/learning/lab-controls.tsx",
@@ -16525,11 +16621,11 @@
     "scope": "Q table denominator exponent d is distinct from per-draw bits b; diagrams keep original plotting meaning."
   },
   "authoredUnverifiedNewUnitCount": 1,
-  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers 식별 가능성. All 631 registered units are verified in their declared introductory scopes.",
+  "authoredUnverifiedNewUnitCountDefinition": "One active bilingual draft covers Bayesian inverse problem. All 633 registered units are verified in their declared introductory scopes.",
   "remainingForwardDomainCountDefinition": "Domains with original introductory topics still unverified; domain audits and research depth remain separate outstanding work.",
-  "nextAuthoringUnitId": "parameter-identifiability-and-sensor-design",
+  "nextAuthoringUnitId": "gaussian-bayesian-inversion",
   "remainingScopeTopicsWithoutNewVerifiedUnitDefinition": "Original introductory topics not yet fully verified,including those with some registered constituent units.",
-  "nextAction": "sensor-identifiability-reader-integration",
+  "nextAction": "gaussian-bayesian-reader-integration",
   "unregisteredDraftUnitCount": 1,
   "registeredUnverifiedNewUnitCount": 0
 }
