@@ -35,6 +35,42 @@ $$
 
 제곱 기울기 평균은 Hessian이 아니다. 좌표 사이 교차 곡률도 담지 않는다. 좌표를 임의로 회전하면 동일한 알고리즘 궤적을 유지하는 것도 아니다. 유한 그래프가 좋아 보인다고 모든 볼록·비볼록 문제의 수렴이 증명되지는 않는다. 정확한 변형·학습률 일정·확률 가정·정칙 조건을 함께 읽어야 한다.
 
+## Heavy-ball 안정 구간을 증명하고 좌표 변화 검사하기
+
+곡률 λ에서 a=1+β−ηλ로 씁니다. 특성다항식에 r=(1+s)/(1−s)를 넣고 (1−s)²를 곱하면 단위원 내부가 왼쪽 반평면으로 옮겨지고 다음 다항식을 얻습니다.
+
+$$
+\big(2(1+\beta)-\eta\lambda\big)s^2
++2(1-\beta)s+\eta\lambda.
+$$
+
+0≤β<1에서 이차 Hurwitz 조건은 세 계수의 양수성이므로 정확히 0<ηλ<2(1+β)입니다. 등호에서는 근이 경계에 놓입니다. 고정 이차 방향의 증명이지 손실의 단조성이나 비선형 heavy-ball 수렴률의 보장은 아닙니다.
+
+Adam의 좌표별 정규화에는 다른 한계가 있습니다. 직교 재매개화 u=Rᵀx에서 gradient는 공변 변환되지만 각 성분을 자체 크기로 나누는 연산은 그렇지 않습니다. Python은 회전한 두 기저의 첫 bias-corrected Adam 보폭을 원래 좌표로 되돌려 비교합니다. 같은 계산의 GD는 일치합니다. Epsilon은 실습처럼 제곱근 밖에 둡니다.
+
+| 항목 | 명시한 이차함수의 Heavy-ball | 첫 Adam 갱신 |
+|---|---|---|
+| 안정성 검사 | 특성근 | 이 근 검사로 보장하지 않음 |
+| 매개변수 기저 회전 | Scalar momentum 점화식과 호환 | 좌표 정규화가 일반적으로 보폭을 바꿈 |
+| 유리한 유한 손실 | 영원한 단조성 증명 아님 | 보편 수렴 정리 아님 |
+
+## Python으로 계산 재현하기
+
+```python
+from math import sqrt,hypot
+c=1/sqrt(2); R=[[c,-c],[c,c]]
+def mv(A,v): return [sum(row[j]*v[j] for j in range(2)) for row in A]
+Rt=list(map(list,zip(*R))); x=[1,1]; g=[1,8]; eta=.1; eps=.001
+plain=[x[i]-eta*g[i]/(abs(g[i])+eps) for i in range(2)]
+gu=mv(Rt,g); rotated_step=mv(R,[eta*z/(abs(z)+eps) for z in gu])
+changed=[x[i]-rotated_step[i] for i in range(2)]
+gd=mv(R,mv(Rt,g))
+assert hypot(gd[0]-g[0],gd[1]-g[1])<1e-14
+assert hypot(plain[0]-changed[0],plain[1]-changed[1])>.1
+print('Adam original basis:',plain)
+print('Adam rotated basis, mapped back:',changed)
+```
+
 ## 직접 풀기와 풀이
 
 κ=8,η=0.1,β=0.8의 heavy-ball을 열 번 실행하여 GD와 목적값을 비교하자. 안정성이 매 반복 우위를 뜻하지 않음을 확인한다. β=0으로 바꾸면 두 곡선이 일치한다. 다음 Adam 한 번만 실행하고 보정 모멘트 (1,8), (1,64)를 직접 구하자. 보정을 생략하면 초기 이동량이 왜 달라지는지도 설명하자.

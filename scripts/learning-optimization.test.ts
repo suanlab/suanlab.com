@@ -91,3 +91,23 @@ for(const kind of optimizationKinds)test(`${kind}: meaningful guides and finite 
 for(const kind of optimizationKinds)for(const lang of ['ko','en'] as const)test(`${kind}.${lang}: detailed theory, valid equations and explained exercises`,async()=>{
  const source=await fs.readFile(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8'),rendered=await getLearningContent(kind);assert.ok(rendered.outline[lang].length>=4);assert.ok(rendered[lang].length>4000);assert.ok(rendered[lang].includes('katex'));assert.ok(!rendered[lang].includes('katex-error'));assert.ok(source.includes(lang==='ko'?'직접 풀기':'Exercise'));assert.ok(source.includes('https://'));if(lang==='en'){assert.ok(!/[가-힣]/.test(source));assert.ok(source.split(/\s+/).length>=350);}
 });
+
+test('centered SGD errors retain noise smaller than the parameter rounding scale',()=>{
+ const r=finiteSumRun(.5,1,1,1e-20,0);assert.equal(r.sgd,1);assert.equal(r.sgdError,-1e-20);assert.equal(r.gdError,0);
+ assert.equal(evaluate('finite-sum-gd-sgd',[.5,1,1,1e-20,0]).stats['illustrative SGD final error x-1'],-1e-20);
+ const quiet=finiteSumRun(.2,-1,20,0,0);quiet.history.forEach(h=>assert.equal(h.sgdError,h.gdError));
+});
+test('SVRG variance is not lost when all displayed estimators round to the same value',()=>{
+ const r=varianceReduced(0,1e-20,.1,0);assert.ok(r.svrg.every(x=>x===r.svrg[0]));
+ assert.ok(Math.abs(r.svrgVariance/1.25e-40-1)<1e-15);
+});
+test('exact-solution hypergradients retain a small outer residual near the validation target',()=>{
+ const r=bilevelRun(1e-20,2,.25,20);assert.equal(r.exact,2);assert.equal(r.exactHyper,4e-20);
+ assert.equal(Math.abs(bilevelRun(0,2,.25,20).exactHyper),0);
+});
+test('strict quadratic and local-round stability survives a factor rounded to one',()=>{
+ const r=smoothRun(8,1e-20,1);assert.equal(r.rho,1);assert.equal(r.contracts,true);
+ assert.equal(evaluate('smoothness-learning-rate',[8,1e-20,1]).stats['1{all error modes strictly contract}'],1);
+ const local=localDrift(4,1e-20,4,1,0);assert.equal(local.mapA,1);assert.equal(local.contracts,true);
+ assert.equal(localDrift(4,0,4,1,0).contracts,false);
+});

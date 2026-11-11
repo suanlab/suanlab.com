@@ -37,6 +37,45 @@ $$
 
 L-smooth 비볼록 함수에서도 목적값 감소는 가능하지만 전역 최적해 수렴은 별도 주장이다. 강볼록성은 추가 구조다. 사용한 가정에 따라 정당화되는 결론이 어디까지인지 구분하자.
 
+## 감소식을 합친 뒤 최적성을 주장하기
+
+아래로 유계인 L-smooth 목적, 상수 0<η≤1/L, 정확한 gradient에서 descent lemma를 더하면 다음을 얻습니다.
+
+$$
+\min_{0\le k<T}\|\nabla f(x_k)\|^2
+\le\frac1T\sum_{k=0}^{T-1}\|\nabla f(x_k)\|^2
+\le\frac{2(f(x_0)-f_{\inf})}{\eta T}.
+$$
+
+무한 실행에서도 같은 합이 유한하므로 gradient 노름은 0으로 갑니다. 하지만 이 결론이나 유한 시간 최소 노름 상계가 반복점의 전역 최적해 수렴을 증명하지는 않습니다. 반복점의 유계성과 정상성의 의미는 별도 분석이 필요합니다.
+
+Polyak–Łojasiewicz 조건 ‖∇f‖²/2≥μ(f−f*)가 추가되면 이 보폭 범위에서 목적 오차에 1−ημ의 선형률을 얻습니다. 최적해 유일성이 필요한 조건은 아닙니다. f(x,y)=(x+y)²/2는 Hessian 고유값이 0과 2입니다. μ=2의 PL을 만족하지만 강볼록이 아니며 x+y=0인 모든 점이 최적입니다.
+
+| 가정 | 결론 |
+|---|---|
+| 하한·L-smooth·적절한 상수 보폭 | Gradient 노름 소멸 |
+| PL 부등식 추가 | 목적 오차의 선형 상계 |
+| 강볼록성 | 유일 최적해와 매개변수 오차 제어 |
+
+정확 계산 코드는 x−y를 유지하면서 x+y를 줄입니다. Null 방향이 목적값 수렴을 방해하지는 않습니다. 실습의 엄격한 이차 안정성은 0<ηL<2로 검사하여 아주 작은 η에서 배율이 1로 반올림돼도 수학적 경계와 혼동하지 않습니다.
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as F
+x,y=F(1),F(0); eta=F(1,4); initial=F(1,2); norms=[]
+for k in range(8):
+    value=(x+y)**2/2; grad=x+y
+    assert grad*grad == 2*value
+    norms.append(2*grad*grad)
+    nxtx,nxty=x-eta*grad,y-eta*grad
+    assert (nxtx+nxty)**2/2 <= (1-eta*2)*value
+    assert nxtx-nxty==1
+    print(k,float(value),tuple(map(float,[x,y])))
+    x,y=nxtx,nxty
+assert sum(norms)<=2*initial/eta
+```
+
 ## 직접 풀기와 풀이
 
 κ=8에서 η=0.2, 0.25, 0.3을 각각 8회 반복하자. 수축 배율은 0.8, 1, 1.4다. 둘째 좌표 (1−8η)⁸을 계산하여 표와 비교한다. 이어 η=0으로 두면 두 좌표가 그대로이고 ρ=1이다. 유계인 수열, 감소하는 목적값, 엄격히 수축하는 오차가 각각 다른 관찰임을 설명하자.

@@ -38,6 +38,48 @@ The inner linear contraction factor is q=1−η(1+λ). For |q|<1, w_K approaches
 
 The plotted λ range includes points with different stability properties when η is large. Check the inner residual and the derivative discrepancy rather than assuming every part of the orange curve is an approximation of equal quality.
 
+## State agreement does not imply derivative agreement
+
+![State and sensitivity errors converge at different rates; a one-step exact inner state can still have a different derivative from the exact solution map.](/assets/learning/optimization-hypergradient-en.svg)
+
+Write a=1+λ and q=1−ηa. Solving the training recurrence and differentiating its finite sum gives
+
+$$
+w_K=\frac2a(1-q^K),\qquad
+s_K=-\frac2{a^2}(1-q^K)+\frac{2\eta K}{a}q^{K-1}.
+$$
+
+For K=0 use s₀=0 separately. The sensitivity error contains both qᴷ and Kqᴷ⁻¹ terms. A bound on the state error alone does not bound it without additional information about the differentiated procedure.
+
+At λ=1,η=1/2, the first step reaches the exact optimizer w₁=1 and has zero training residual, but s₁=0 while the exact solution sensitivity is −1/2. With validation target 1/2, the two hypergradients are zero and −1/4. The first-step function is constant in λ; it only coincides with the optimizer at this parameter. A second step repairs the derivative at this point.
+
+| K at λ=1,η=1/2 | State wK | Sensitivity sK |
+|---:|---:|---:|
+| 0 | 0 | 0 |
+| 1 | 1 | 0 |
+| 2 | 1 | -1/2 |
+
+At a fixed solved state, H⁻¹=ηΣⱼ≥₀(I−ηH)ʲ when the spectral radius is below one. A truncated Neumann inverse has a geometric error bound under an operator-norm contraction, but actual training unrolls additionally carry state-error forcing. These are different approximations.
+
+The exact-solution readout now retains its analytic outer residual. With λ=10⁻²⁰,target=2, the true hypergradient is approximately 4×10⁻²⁰ even though the displayed optimizer rounds to two.
+
+## Reproduce the calculation in Python
+
+```python
+from fractions import Fraction as Q
+lam,eta,target=Q(1),Q(1,2),Q(1,2)
+w=s=Q(0)
+for k in range(3):
+    print(k,'w:',w,'s:',s,'hyper:',(w-target)*s)
+    old=w
+    w=(1-eta*(1+lam))*w+2*eta
+    s=(1-eta*(1+lam))*s-eta*old
+tiny=Q(1,10**20)
+exact_hyper=4*tiny/(1+tiny)**3
+assert exact_hyper>0
+print('tiny-lambda exact hypergradient:',float(exact_hyper))
+```
+
 ## Exercise and explained answer
 
 Keep λ=1,b=0.5,η=0.25 and increase K from one to eight. The inner state becomes 0.99609375, sensitivity −0.482421875 and hypergradient approximately −0.239326. Compare with exact −0.25. Explain why a small training residual helps but does not, without conditioning information, supply a universal bound on hypergradient error.

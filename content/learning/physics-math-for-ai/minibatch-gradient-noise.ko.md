@@ -34,6 +34,45 @@ B=2에서는 순서 있는 batch가 12개이고 분산은 5σ²/3이다. B=4에�
 
 x를 옮기면 모든 결과가 평행 이동하고 분산은 같다. σ는 편차에 선형, 분산에 제곱으로 작용한다. 유한 조합 확률의 화면 표시는 부동소수점 근사지만, 대칭으로 offset 기대값이 0이라는 사실은 정수 합 단계에서 먼저 처리한다.
 
+## 각 Batch가 비편향이어도 한 Epoch 안에서는 의존합니다
+
+네 offset을 섞어 서로 겹치지 않는 크기 2의 batch 둘로 나누세요. 평균 offset m₁,m₂는 정확히 m₂=−m₁이므로 Cov(m₁,m₂)=−5/3입니다. 각 주변분포는 평균 0, 분산 5/3을 유지합니다. 주변 비편향성은 첫 batch를 관측한 뒤의 새로운 조건부 비편향성보다 약한 조건입니다.
+
+성분 gradient가 x+σm, q=1−η인 두 순차 갱신의 최종 상태는 다음과 같습니다.
+
+$$
+x_2=q^2x_0-\eta\sigma(qm_1+m_2)
+=q^2x_0+\eta^2\sigma m_1,
+\qquad\operatorname{Var}(x_2)=\tfrac53\eta^4\sigma^2.
+$$
+
+반면 크기 2의 비복원 batch를 독립적으로 두 번 새로 뽑으면 분산은 (5/3)η²σ²(1+q²)입니다. 차이는 batch 간 공분산 때문입니다. 한 점에서 네 기울기를 평균하면 잡음이 사라지지만 순차 갱신은 다른 점에서 gradient를 평가하므로 완전히 상쇄되지 않습니다.
+
+| η=1/5, σ=1의 방식 | 두 보폭 뒤 분산 |
+|---|---:|
+| 한 번 섞은 Epoch | 1/375 |
+| 독립적인 크기 2 Batch | 41/375 |
+| 같은 점의 전체 Batch 한 번 | 0 |
+
+코드는 순열 24개를 정확히 열거합니다. 별도의 두 보폭 예제이며 기존 제어는 한 batch의 주변분포를 보여줍니다. 이차 gradient에 의존하는 결과를 모든 reshuffling 알고리즘·자료에 일반화하면 안 됩니다.
+
+## Python으로 계산 재현하기
+
+```python
+from itertools import permutations
+from fractions import Fraction as F
+eta=F(1,5); outcomes=[]; covariance=F(0)
+for p in permutations([-3,-1,1,3]):
+    m1,m2=F(p[0]+p[1],2),F(p[2]+p[3],2)
+    assert m2==-m1
+    x=-eta*m1; x=(1-eta)*x-eta*m2
+    outcomes.append(x); covariance+=m1*m2/24
+variance=sum(x*x for x in outcomes)/24
+independent=F(5,3)*eta*eta*(1+(1-eta)**2)
+assert covariance==-F(5,3) and variance==F(1,375) and independent==F(41,375)
+print('covariance:',covariance,'epoch variance:',variance,'independent:',independent)
+```
+
 ## 직접 풀기와 풀이
 
 σ=1,x=0,B=2에서 평균 0인 복원 추출은 (−3,3),(3,−3),(−1,1),(1,−1) 네 개이므로 확률 4/16이다. 비복원에서도 이 네 쌍이 가능하지만 전체 수가 12라서 확률은 4/12다. 나머지 질량을 계산하여 확률 합 1과 분산 2.5, 5/3을 검산하자.

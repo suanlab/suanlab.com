@@ -9,7 +9,7 @@
 f=x²/2에서는 기울기가 x, 유일한 최소점이 0이고 GD는 xₖ=(1−η)ᵏx₀다. 표시한 양의 보폭 범위에서 수축한다.
 
 $$
-|\nabla f(x)|=|x|,\qquad f(x)-f^*=x^2/2.
+|\nabla f(x)|=|x|,\qquad f(x)-f^*=x^2/2
 $$
 
 매개변수 거리·기울기·목적 오차가 이 관계로 연결되는 것은 이 함수가 강한 곡률을 갖기 때문이다. 임의 함수의 보편 항등식이 아니다. 일반적인 연결에는 강볼록성·오차 상계 조건·Polyak–Łojasiewicz 부등식 같은 추가 가정이 필요하다.
@@ -32,6 +32,40 @@ $$
 지수함수는 x→∞에서만 infimum 0에 접근한다. 기울기 절댓값은 목적값과 같고 모든 유한 x에서 양수다. 양의 일정 학습률에서는 x가 ηexp(−x)만큼 증가한다. 만약 x가 유한한 극한을 가지면 증가량은 양의 상수로 접근하여 모순이다. 따라서 x는 유한한 점으로 수렴하지 않지만 목적값과 기울기는 0으로 간다.
 
 아래로 유계인 목적값 감소와 기울기 소멸이 반복점의 유계성이나 최솟값 달성을 뜻하지 않는 예다. 더 강한 수렴 결론에는 compactness와 해 존재 가정 등을 따로 확인해야 한다.
+
+## Gradient 허용 오차는 좌표와 단위에 의존합니다
+
+같은 물리 이차함수 f=x²/2에서 u=cx로 좌표를 바꾸세요. f=u²/(2c²), u-gradient는 x/c, 강볼록 상수는 1/c²입니다. c를 크게 하면 물리적 점과 목적 오차를 바꾸지 않고도 gradient 숫자가 작아집니다. 따라서 gradient 성분의 단순 문턱은 특징·매개변수 단위에 의존합니다.
+
+알려진 μ-강볼록 하한 아래에서는 좌표 배율을 반영한 목적 인증이 일관됩니다.
+
+$$
+f(x)-f^*\le\frac{\|\nabla f(x)\|^2}{2\mu},\qquad
+\|x-x^*\|\le\frac{\|\nabla f(x)\|}{\mu}.
+$$
+
+이차함수에서는 둘 다 등호입니다. u 좌표의 거리 상계는 u-거리이므로 c로 나누어 물리 x-거리를 복구합니다. 곡률 변환을 빠뜨리면 단위가 섞여 허용 오차가 오해를 부르는 성공 표시가 될 수 있습니다.
+
+| 물리 x=1에서 c | u-gradient | 목적 오차 |
+|---:|---:|---:|
+| 1 | 1 | 1/2 |
+| 1,000 | 1/1,000 | 1/2 |
+| 1,000,000 | 1/1,000,000 | 1/2 |
+
+오차 상계가 없는 비볼록 목적에서는 앞의 극대점·무한히 이동하는 지수함수가 더 강한 결론의 반례입니다. 부동소수점 갱신도 이동량이 반올림되어 정체될 수 있습니다. 학습률·배율을 반영한 잔차·목적 변화·곡률 가정·실제 종료 목표를 각각 보고하세요. 수치 정체·일차 정상성·이차 정상성·전역 최적성은 다른 결과입니다.
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as Q
+for c in [Q(1),Q(1000),Q(1000000)]:
+    physical=Q(1); u=c*physical
+    gradient=physical/c; mu=1/(c*c)
+    objective_bound=gradient*gradient/(2*mu)
+    coordinate_distance=abs(gradient)/mu
+    assert objective_bound==Q(1,2) and coordinate_distance/c==physical
+    print('scale:',c,'gradient:',gradient,'gap bound:',objective_bound,'physical distance:',coordinate_distance/c)
+```
 
 ## 직접 풀기와 종료 기준
 

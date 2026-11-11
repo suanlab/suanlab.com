@@ -33,6 +33,40 @@ The exponential has infimum zero only as x→∞. Its gradient magnitude equals 
 
 This is a case where bounded-below descent and vanishing gradients do not imply bounded iterates or an attained minimum. Compactness and existence assumptions cannot be omitted from stronger convergence claims.
 
+## A gradient tolerance depends on coordinates and units
+
+Change coordinates to u=cx in the same physical quadratic f=x²/2. Then f=u²/(2c²), its u-gradient is x/c and its strong-convexity constant is 1/c². Making c large produces a small numerical gradient without changing the physical point or objective error. A raw threshold on gradient components therefore depends on feature and parameter units.
+
+Under a known μ-strong-convexity bound, the coordinate-scaled objective certificate remains consistent:
+
+$$
+f(x)-f^*\le\frac{\|\nabla f(x)\|^2}{2\mu},\qquad
+\|x-x^*\|\le\frac{\|\nabla f(x)\|}{\mu}.
+$$
+
+The quadratic attains equality in both. In u coordinates the distance bound refers to u-distance; divide by c to recover physical x-distance. Omitting the curvature transformation mixes units and can turn a tolerance into a misleading success flag.
+
+| c at physical x=1 | u-gradient | Objective error |
+|---:|---:|---:|
+| 1 | 1 | 1/2 |
+| 1,000 | 1/1,000 | 1/2 |
+| 1,000,000 | 1/1,000,000 | 1/2 |
+
+For nonconvex objectives without an error bound, the original maximum and escaping exponential remain counterexamples to stronger conclusions. A finite floating-point update may also stagnate because its displacement rounds away. Report step size, scale-aware residuals, objective behavior, curvature assumptions and the actual stopping target separately. Numerical stagnation, first-order stationarity, second-order stationarity and global optimality are different outcomes.
+
+## Reproduce the calculation in Python
+
+```python
+from fractions import Fraction as Q
+for c in [Q(1),Q(1000),Q(1000000)]:
+    physical=Q(1); u=c*physical
+    gradient=physical/c; mu=1/(c*c)
+    objective_bound=gradient*gradient/(2*mu)
+    coordinate_distance=abs(gradient)/mu
+    assert objective_bound==Q(1,2) and coordinate_distance/c==physical
+    print('scale:',c,'gradient:',gradient,'gap bound:',objective_bound,'physical distance:',coordinate_distance/c)
+```
+
 ## Exercise and stopping criteria
 
 Use the quadratic with x₀=1,η=0.2 and ten steps. Gradient magnitude is 0.8¹⁰≈0.107374 and objective error approximately 0.005765. Compare the double-well zero start, whose gradient is smaller but objective error larger.

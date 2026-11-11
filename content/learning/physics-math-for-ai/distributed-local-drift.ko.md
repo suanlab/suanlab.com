@@ -34,6 +34,46 @@ $$
 
 통신 round 수열의 수렴이 의도한 전역 목적의 최적화를 뜻하지 않는 실제 반례다. 같은 곡률에서는 이 고정점 편향이 사라진다. 따라서 지역 계산을 늘리는 것이 언제나 좋거나 언제나 나쁘다고 일반화할 수 없다.
 
+## Broadcast Gradient 보정으로 이 고정점 편향을 없앨 수 있습니다
+
+Broadcast 점 w̄에서 지역 gradient를 gᵢ(w)−gᵢ(w̄)+G(w̄)로 바꾸세요. 모든 worker가 처음에는 같은 전체 gradient를 봅니다. 이차 곡률 hᵢ의 지역 점화식을 풀면 다음과 같습니다.
+
+$$
+w_i^{(E)}=\bar w-\frac{1-(1-\eta h_i)^E}{h_i}G(\bar w),\qquad
+w^+=\bar w-sG(\bar w),\quad
+s=\frac12\sum_{i=1}^2\frac{1-(1-\eta h_i)^E}{h_i}.
+$$
+
+따라서 보정 round map이 수축하면 고정점은 전역 gradient 방정식을 풉니다. κ=4,η=0.1,E=4에서 s=0.28075, 오차 배율은 0.298125입니다. 보정하지 않은 map은 약 0.433583으로 갑니다. 보정은 새로운 anchor 기울기를 사용하므로 추가 계산·정보 비용이 있습니다.
+
+| 이 예제의 방법 | 수축할 때의 고정점 |
+|---|---:|
+| 보정 없는 지역 평균 | 약 0.433583 |
+| 정확한 Broadcast Gradient 보정 | 0.6 |
+| 중앙 전체 Gradient | 0.6 |
+
+투명한 결정론적 control-variate 예제이며 SCAFFOLD의 저장 확률 제어를 모두 구현한 것은 아닙니다. 실제 알고리즘·가정은 [Karimireddy 등](https://proceedings.mlr.press/v119/karimireddy20a.html), local SGD 이론은 [Stich](https://arxiv.org/abs/1805.09767)를 참고하세요. 기존 제어는 보정하지 않은 평균을 유지합니다. 엄격 수축 표시는 round 보정량을 1에서 빼기 전에 검사하여 아주 작은 η를 경계로 오인하지 않습니다.
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as Q
+h=[Q(1),Q(4)]; a=[Q(-1),Q(1)]; eta=Q(1,10); E=4
+local=corrected=Q(0); optimum=Q(3,5)
+for round_index in range(8):
+    raw=[]; fixed=[]; G=(5*corrected-3)/2
+    for hi,ai in zip(h,a):
+        u=local; v=corrected
+        for _ in range(E):
+            u-=eta*hi*(u-ai)
+            v-=eta*(hi*(v-corrected)+G)
+        raw.append(u); fixed.append(v)
+    local=sum(raw)/2; corrected=sum(fixed)/2
+    print(round_index+1,float(local),float(corrected),float(corrected-optimum))
+s=sum((1-(1-eta*hi)**E)/hi for hi in h)/2
+assert s==Q(1123,4000) and 1-s*Q(5,2)==Q(477,1600)
+```
+
 ## 직접 풀기와 풀이
 
 w₀=0,κ=4,η=0.1,E=4로 여덟 round를 수행하자. 지역 평균은 약 0.433337, 중앙 GD는 약 0.599940에 이른다. 지역 평균에서 전역 기울기는 약 −0.416657이다. 뒤쪽 round의 점 변화가 작다는 종료 기준만으로 왜 충분하지 않은지 설명하자.

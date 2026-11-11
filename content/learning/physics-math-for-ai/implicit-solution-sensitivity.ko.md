@@ -3,7 +3,7 @@
 매개변수 θ가 F(w,θ)=0을 통해 w를 결정한다고 하자. 암시적 미분은 수치 해결기의 모든 반복을 미분하는 대신 이 방정식을 사용한다. 실습은
 
 $$
-F(w,\theta)=w^3+\delta w-\theta=0,\qquad\delta\ge0
+F(w,\theta)=w^3+\delta w-\theta=0,\qquad\delta\ge0.
 $$
 
 을 다룬다. δ>0이면 w에 대해 엄격 증가하고 도함수가 어디서나 양수다. δ=0인 cubic도 엄격 증가하므로 모든 θ에 유일한 실수 해가 있다. 따라서 역함수 미분 가능성이 실패하는 경우에도 해의 유일성은 성립한다.
@@ -17,7 +17,7 @@ F=0을 미분하면
 $$
 (3w^2+\delta)\frac{dw}{d\theta}=1,
 \qquad\frac{dw}{d\theta}=\frac{1}{3w^2+\delta}
-\quad\text{if }3w^2+\delta\ne0.
+\quad\text{when }3w^2+\delta\ne0.
 $$
 
 외부 손실 V=(w−b)²/2의 hypergradient는 (w−b)/(3w²+δ)다. b는 외부 미분만 바꾸며 근이나 역민감도 자체를 바꾸지 않는다.
@@ -35,6 +35,42 @@ h=0.0001의 중앙차분은 약 464.159라는 유한 수를 준다. 세제곱근
 파란 선은 w를 가로축으로 θ=w³+δw를 그린 것이다. 주황 선은 해에서의 접선이다. 표시된 역민감도는 이 기울기 자체가 아니라 역수다. 수평 접선 근처에서 작은 θ 변화가 큰 w 변화를 만들 수 있다. 거대한 역함수 접선을 안정적인 사상처럼 그리지 않는다.
 
 벡터 방정식에서는 J_w dw/dθ=−J_θ가 대응한다. 역행렬을 직접 만드는 대신 선형계를 풀 수 있다. 스칼라 외부 목적이면 전치 Jacobian의 adjoint 풀이로 전체 해 Jacobian 저장을 피할 수도 있다. 비특이성과 수치 조건수는 여전히 중요하고, 근사 근이나 반복 선형 풀이에는 추가 오차가 생긴다.
+
+## 조건수를 이용해 잔차를 오차 상계로 바꾸기
+
+δ>0에서는 scalar 도함수 Fw가 모든 곳에서 δ 이상입니다. 평균값 정리로 임의 근사 ŵ의 근 오차를 제한합니다.
+
+$$
+|\widehat w-w^*|\le\frac{|F(\widehat w,\theta)|}{\delta}.
+$$
+
+근 오차가 ε이면 Jacobian 오차는 3ε(|ŵ|+|w*|) 이하입니다. 두 Jacobian이 모두 δ 이상이므로 역민감도 차이는 이를 δ²로 나눈 값 이하입니다. 작은 잔차만 있고 최소 특이값 하한이 없으면 충분하지 않은 이유입니다. δ→0에서 상계가 나빠지며 앞의 특이 예제와 연결됩니다.
+
+벡터 방정식에서는 Jᵀu=∇wV를 풀고 Vθ−uᵀFθ를 구성합니다. 고정된 근에서 근사 adjoint의 잔차가 r=Jᵀû−∇wV이면 gradient 오차는 ‖Fθ‖‖J⁻ᵀ‖‖r‖ 이하입니다. 근 상태의 근사에는 별도의 오차항이 더해집니다. 잘못된 상태에서 선형계만 정확히 풀어서는 부족합니다.
+
+| 오차 원인 | 필요한 정보 |
+|---|---|
+| 비선형 근 잔차 | 도함수·특이값의 하한 |
+| Adjoint 잔차 | 역 Jacobian 노름과 매개변수 결합 |
+| 거의 특이한 역함수 | 유일성뿐 아니라 조건수·국소 정칙성 |
+
+정확분수 예제는 δ=1/4,θ=1/4,w*=1/2에서 의도적으로 근을 바꿔 비교합니다. 상계는 보수적이며 항등식이 아닙니다. 큰 벡터계에서는 보통 조밀한 역행렬 대신 선형 풀이와 잔차 제어를 사용합니다.
+
+## Python으로 계산 재현하기
+
+```python
+from fractions import Fraction as Q
+delta,theta,root=Q(1,4),Q(1,4),Q(1,2)
+J=lambda w:3*w*w+delta
+for error in [Q(1,10),Q(1,100),Q(1,1000)]:
+    approximate=root+error
+    residual=approximate**3+delta*approximate-theta
+    bound=abs(residual)/delta
+    sensitivity_error=abs(1/J(approximate)-1/J(root))
+    sensitivity_bound=3*error*(abs(approximate)+abs(root))/delta**2
+    assert error<=bound and sensitivity_error<=sensitivity_bound
+    print(float(error),float(bound),float(sensitivity_error),float(sensitivity_bound))
+```
 
 ## 직접 풀기와 풀이
 

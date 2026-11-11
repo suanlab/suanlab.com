@@ -38,6 +38,46 @@ $$
 
 η=2이면 GD 오차의 부호만 바뀌고 절댓값이 유지된다. 확률 분산은 매 반복 10σ²씩 증가한다. η=0이면 어디서 시작해도 움직이지 않는다. 움직이지 않는 곡선을 수렴 성공으로 판정하면 안 된다. 감소 학습률의 수렴 주장에는 비편향성·분산 제한·보폭의 합 조건 등을 따로 명시해야 한다.
 
+## 감소 학습률은 확률적 극한을 바꿉니다
+
+![한 seed 경로에서 모멘트를 추정하지 않고 정확한 iid 평균 오차와 MSE로 상수 보폭의 잡음 바닥과 1/k 감소 보폭의 차이를 보여줍니다.](/assets/learning/optimization-schedule-ko.svg)
+
+목적이 전역 μ-강볼록이고 gradient가 L-Lipschitz라고 하세요. 표본 gradient가 조건부 비편향이며 조건부 잡음 분산이 σg² 이하라고 가정합니다. 현재 정보에 적응된 양의 보폭에서 매개변수 오차 제곱을 전개하면 다음과 같습니다.
+
+$$
+\mathbb E[\|e_{k+1}\|^2\mid\mathcal F_k]
+\le(1-2\mu\eta_k+L^2\eta_k^2)\|e_k\|^2+\eta_k^2\sigma_g^2.
+$$
+
+보폭이 결국 충분히 작아지고 합은 발산하되 제곱합은 유한하면, supermartingale 수렴 논증으로 오차가 거의 확실히 수렴하고 Σηₖ‖eₖ‖²도 유한합니다. 그러면 극한은 0이어야 합니다. 전역 곡률·달성 최적해·유한 초기 이차 모멘트를 사용하는 명제이며 임의의 비볼록 신경망이나 잡음 과정의 정리가 아닙니다.
+
+이 유한합 모형에서는 k=1부터 ηₖ=1/k로 선택하면 xₖ가 앞 k개 target의 표본 평균입니다. 점화식에 k를 곱하면 바로 증명됩니다. 첫 보폭 이후 초기점은 잊히며 MSE는 2.5σ²/k입니다. 정확분포 코드는 보기 좋은 seed 하나 대신 정수 잡음 합의 분포를 합성합니다.
+
+| σ=1의 갱신 수 k | ηₖ=1/k의 MSE |
+|---:|---:|
+| 1 | 5/2 |
+| 16 | 5/32 |
+| 64 | 5/128 |
+
+기존 제어는 상수 η를 유지합니다. 그림의 오차는 이제 중심화한 점화식으로 전파하여 σ=10⁻²⁰이 target 1+σz의 반올림 때문에 사라지지 않습니다. 매개변수 상태는 별도로 평가하므로 같은 값으로 반올림될 수 있습니다. 해석적 iid 모멘트와 예시 경로도 구별합니다.
+
+## Python으로 계산 재현하기
+
+```python
+from collections import Counter
+from fractions import Fraction as F
+distribution=Counter({0:1})
+for k in range(1,65):
+    nxt=Counter()
+    for total,count in distribution.items():
+        for z in [-2,-1,1,2]: nxt[total+z]+=count
+    distribution=nxt
+    if k in [1,4,16,64]:
+        second=sum(F(total*total*count,k*k*4**k) for total,count in distribution.items())
+        assert second==F(5,2*k)
+        print(k,'exact MSE:',second)
+```
+
 ## 직접 풀기와 풀이
 
 x₀=−1, η=0.2, σ=1, 반복 10회로 두자. 평균 오차는 −2·0.8¹⁰≈−0.214748이다. 분산은 약 0.274575, MSE는 약 0.320692다. 기대 목적 오차는 MSE의 절반이다. σ=0으로 바꾸면 평균은 같지만 MSE는 약 0.046117이 된다. 차이가 평균 기울기의 변화가 아니라 분산에서 나왔음을 설명하자.
