@@ -9,6 +9,15 @@ test('geometric polynomial norms and exact uniform tails agree with independent 
  for(let m=0;m<=8;m++){const r=geometricFunction(m),direct=(x:number)=>Array.from({length:m+1},(_,k)=>x**k/2**(k+1)).reduce((s,v)=>s+v,0);close(r.l1,integrate(direct));close(r.l2,Math.sqrt(integrate(x=>direct(x)**2)));close(1-direct(1),r.uniformError);for(let i=0;i<=100;i++)assert.ok(Math.abs(1/(2-i/100)-direct(i/100))<=r.uniformError+1e-14);}
  close(integrate(x=>1/(2-x)),Math.log(2));close(integrate(x=>1/(2-x)**2),.5);
 });
+test('geometric query tails retain tiny positive values and distinguish range loss from an exact zero',()=>{
+ const r=evaluate('normed-banach-hilbert',[8,1,1e-5]);
+ const expected=(1e-5/2)**9/(2-1e-5);
+ assert.ok(num(r,'query approximation error')>0);
+ close(num(r,'query approximation error')/expected,1,1e-12);
+ assert.equal(evaluate('normed-banach-hilbert',[8,1,0]).stats['query approximation error'],0);
+ const under=evaluate('normed-banach-hilbert',[8,1,1e-100]);
+ assert.equal(under.warning,'numeric-range');assert.equal(under.stats['query approximation error'],null);
+});
 test('parallelogram defects distinguish inner-product geometry from mere completeness',()=>{
  const norm=(x:number[],p:number)=>p===Infinity?Math.max(...x.map(Math.abs)):x.reduce((s,v)=>s+Math.abs(v)**p,0)**(1/p);
  for(const [mode,p] of [[0,1],[1,2],[2,Infinity]]){const defect=norm([1,1],p)**2+norm([1,-1],p)**2-2*norm([1,0],p)**2-2*norm([0,1],p)**2;close(num(evaluate('normed-banach-hilbert',[2,mode,1]),'parallelogram defect on two disjoint unit vectors'),defect);}
@@ -61,6 +70,13 @@ test('Sobolev L2 derivative membership has a strict threshold and logarithmic bo
 });
 test('rank-one integral action, Hilbert-Schmidt norm and midpoint bias match direct integrals',()=>{
  for(const a of [-2,0,1,2])for(const b of [-1,0,1])for(const N of [1,2,8,16]){const r=rankOneKernel(a,b,N);close(r.exact,integrate(t=>r.g(t)*r.f(t)));close(r.eigenvalue,integrate(t=>r.g(t)**2));close(r.approx-r.exact,-a*b/(12*N*N));close(r.discreteEigenvalue-r.eigenvalue,-a*a/(12*N*N));const hsSquared=integrate(x=>integrate(t=>(r.g(x)*r.g(t))**2,0,1,40),0,1,40);close(Math.sqrt(hsSquared),r.eigenvalue);}
+});
+test('midpoint bias is not replaced by subtraction noise at almost constant kernels',()=>{
+ const r=evaluate('integral-kernel-operators',[1e-8,1e-8,16,.5]);
+ close(num(r,'coefficient quadrature error')/(1e-16/3072),1,1e-12);
+ assert.equal(evaluate('integral-kernel-operators',[0,1,16,.5]).stats['coefficient quadrature error'],0);
+ const under=evaluate('integral-kernel-operators',[1e-200,1e-200,16,.5]);
+ assert.equal(under.warning,'numeric-range');assert.equal(under.stats['coefficient quadrature error'],null);
 });
 test('rank-one Nyström matrix has its claimed eigenvector with quadrature weights included',()=>{
  const r=rankOneKernel(1,1,4),g=r.nodes.map(r.g);for(let i=0;i<4;i++)close(g.reduce((s,gj,j)=>s+r.g(r.nodes[i])*r.g(r.nodes[j])*gj/4,0),r.discreteEigenvalue*g[i]);

@@ -36,6 +36,28 @@ At α=1, N=4, the infinite norm is one and tail norm is .2. In growth mode, fini
 
 For neural operators, finite-matrix stability implies continuous stability only with suitable norms, domains and resolution-independent bounds.
 
+## A compactness criterion for diagonal operators
+
+A bounded diagonal T=diag(λ_k) is compact exactly when λ_k→0. For sufficiency, finite-rank truncations have norm error supk>N|λ_k|→0. Their norm limit is compact because the unit-ball image can first be approximated within ε by a bounded finite-dimensional image, then covered by a finite ε-net. The image is totally bounded; completeness makes its closure compact.
+
+For necessity, if the multipliers do not tend to zero, some ε>0 and infinite subsequence satisfy |λ_kj|≥ε. Distinct basis images are separated by sqrt(|λ_ki|²+|λ_kj|²)≥√2ε and have no convergent subsequence. Small values among sixteen displayed coordinates cannot replace this infinite-tail condition.
+
+| λ_k | Bounded on all ℓ² | Compactness | Rank-N tail norm |
+|---|---|---|---|
+| 1 | Yes | No | 1 |
+| 1/k | Yes | Yes | 1/(N+1) |
+| k | No | Not a bounded compact map | ∞ |
+
+## An unbounded operator can have a closed graph
+
+Consider Tx=(k x_k) on its natural domain. If x⁽ⁿ⁾→x and Tx⁽ⁿ⁾→y in ℓ² norm, coordinate convergence gives y_k=kx_k. Since y∈ℓ², x belongs to D(T) and Tx=y. The graph is closed. This does not assert that D(T) itself is a closed subset under the original ℓ² norm.
+
+Check the adjoint domain too. For y∈D(T*), testing finitely supported x forces (T*y)_k=k y_k. This output must lie in ℓ², requiring Σk²|y_k|²<∞. Conversely that condition and Cauchy–Schwarz give ⟨Tx,y⟩=⟨x,(k y_k)⟩. Thus D(T*)=D(T) and T*=T: the natural diagonal operator is self-adjoint. Real coefficients alone were not the proof.
+
+The graph norm ‖x‖_T²=Σ(1+k²)|x_k|² is a weighted ℓ² norm making D(T) complete. It gives ‖Tx‖₂≤‖x‖_T, while T is unbounded under the original ℓ² norm. Specify operator, norm and domain together.
+
+**Exercise:** Does self-adjointness of every finite truncation automatically prove self-adjointness of the original operator? **Explanation:** No. The conclusion here used equality of adjoint domains. Boundary conditions can be decisive for differential operators.
+
 ## Exercises with explanations
 
 1. Tail norm for α=2, N=3? **1/16:** the first omitted multiplier is largest.

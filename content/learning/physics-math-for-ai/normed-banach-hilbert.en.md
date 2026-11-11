@@ -36,6 +36,54 @@ Polynomials with uniform norm are incomplete: this Cauchy sequence has a nonpoly
 
 For AI approximation, small average loss differs from uniformly small error. State the input measure and evaluation norm.
 
+## Prove completeness of ℓ² using coordinates and tails
+
+Take a Cauchy sequence x⁽ⁿ⁾ in real ℓ². Each coordinate difference is bounded by the full norm difference, so every coordinate has a real limit x_k. Cauchy sequences have a common norm bound M. Taking coordinate limits over finitely many indices gives Σk≤K|x_k|²≤M². Increasing K proves x∈ℓ².
+
+For ε>0 choose N such that ‖x⁽ⁿ⁾−x⁽ᵐ⁾‖₂≤ε for n,m≥N. Fix n, first let m→∞ in finitely many coordinates, then increase K:
+
+$$
+\sum_{k=1}^K|x_k^{(n)}-x_k|^2\le\varepsilon^2
+\quad\Longrightarrow\quad
+\|x^{(n)}-x\|_2\le\varepsilon\qquad(n\ge N).
+$$
+
+The limit lies in the space and convergence holds in norm, proving completeness. The inner product Σx_ky_k induces this norm, so ℓ² is Hilbert. The Cauchy condition controls the infinite tail; coordinate convergence alone would not suffice.
+
+If only finitely supported sequences c₀₀ are allowed, truncations of x_k=1/k are ℓ²-Cauchy but their limit lies outside c₀₀. Every ℓ² vector is approximated by its own finite truncations, so c₀₀ is dense nevertheless. Density and completeness are different properties.
+
+## Inspect constants in finite-dimensional norm equivalence
+
+This table uses counting-measure sequence norms, rather than the probability measure on [0,1]. Set the first N coordinates to 1/√N and all later coordinates to zero.
+
+| N | ℓ¹ norm | ℓ² norm | ℓ∞ norm |
+|---|---|---|---|
+| 4 | 2 | 1 | .5 |
+| 16 | 4 | 1 | .25 |
+| 64 | 8 | 1 | .125 |
+
+The norms are equivalent at each fixed N, but no single resolution-independent C gives ℓ¹≤Cℓ² or ℓ²≤Cℓ∞ throughout this family. Specify the measure and dimension dependence when discussing neural-operator or mesh-refinement stability. The code checks finite vector values; the infinite-sum argument above proves completeness.
+
+Small query errors also need an appropriate formula. At m=8,x=10⁻⁵, the actual tail is about 9.77×10⁻⁴⁹, but subtracting function values previously produced about 1.11×10⁻¹⁶. The calculator now directly uses the exact tail formula. Positive tails below numeric representation range show a dash and explanation, while the exact zero at x=0 remains zero.
+
+**Exercise:** Does coordinatewise convergence to zero imply ℓ²-norm convergence? **Explanation:** No. Each fixed coordinate of e_n tends to zero while its norm stays one. The completeness proof additionally used the Cauchy condition.
+
+```python
+from math import sqrt
+
+for N in [4,16,64]:
+    # Counting-measure sequence norms, not unit-interval Lp norms.
+    vector=[1/sqrt(N)]*N
+    l1=sum(map(abs,vector))
+    l2=sqrt(sum(x*x for x in vector))
+    linf=max(map(abs,vector))
+    assert abs(l2-1)<1e-12
+    assert abs(l1-sqrt(N))<1e-12
+    assert abs(linf-1/sqrt(N))<1e-12
+    print('N, l1, l2, linfinity:',N,l1,l2,linf)
+```
+
+
 ## Exercises with explanations
 
 1. What is the degree-zero L1 norm? **1/2:** the function is constant 1/2.

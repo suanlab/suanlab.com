@@ -26,6 +26,57 @@ Hilbert 공간의 compact 자기수반 연산자는 kernel의 기저까지 포�
 
 L2[0,1]의 곱셈 연산자 Mf(x)=x f(x)는 bounded 자기수반이고 스펙트럼은 [0,1]입니다. 고유방정식 (x−λ)f(x)=0은 거의 모든 곳에서 f=0을 강제하므로 비영 고유함수가 없습니다. 일반 스펙트럼 정리는 projection-valued measure를 사용합니다. Unbounded 사상은 대칭이라는 형식적 계산만으로 자기수반이 되지 않으며 정의역과 수반의 정의역도 비교해야 합니다.
 
+## 곱셈 연산자의 스펙트럼을 직접 확인하기
+
+복소 L²[0,1]에서 Mf(x)=x f(x)를 보겠습니다. z∉[0,1]이면 (M−zI)⁻¹f=f/(x−z)가 유계이고 그 노름은 1/dist(z,[0,1])입니다. 따라서 이 z들은 resolvent에 속합니다.
+
+반대로 λ∈[0,1]에서 λ 가까운 길이 ℓ의 구간 I를 잡고 u=1_I/√ℓ로 정규화하면 ‖u‖₂=1이지만 ‖(M−λI)u‖₂≤supx∈I|x−λ|입니다. 구간 폭을 줄여 이 값을 0으로 보낼 수 있습니다. 유계 역이 있다면 1≤‖(M−λI)⁻¹‖‖(M−λI)u‖가 되어 모순입니다. 이로써 spectrum이 정확히 [0,1]임을 증명합니다.
+
+하지만 고유방정식은 f가 {λ} 바깥에서 0임을 강제합니다. 한 점은 측도 0이므로 L² 고유함수는 0뿐입니다. Approximate eigenvector가 있다고 실제 비영 고유벡터가 있는 것은 아닙니다.
+
+## 노름 1인 함수가 한 점으로 모일 때
+
+λ=1/2, 0<h<1/2에서 u_h=1_[1/2−h,1/2+h]/√(2h)라 두면
+
+$$
+\|u_h\|_2=1,\qquad
+\|(M-\tfrac12 I)u_h\|_2=\frac h{\sqrt3},\qquad
+\int_0^1u_h=\sqrt{2h}.
+$$
+
+임의의 고정 v∈L²에 대해 |⟨u_h,v⟩|≤(∫Ih|v|²)¹ᐟ²→0이므로 u_h는 약하게 0으로 갑니다. 노름은 1이어서 strong 수렴은 아닙니다. δ처럼 단위 질량이 남는 정규화도 아닙니다. 여기서는 L² 노름을 보존해 적분 질량은 0으로 갑니다.
+
+![곱셈 연산자의 근사 고유벡터인 세 정규화 구간 함수가 좁고 높아져도 L2 노름은 1이고, 고유방정식 잔차는 줄며 적분 질량은 0으로 가는 그림.](/assets/learning/functional-continuous-spectrum-ko.svg)
+
+| h | 잔차 노름 | 적분 질량 | 높이 |
+|---|---|---|---|
+| 1/4 | .144338 | .707107 | 1.414214 |
+| 1/16 | .036084 | .353553 | 2.828427 |
+| 1/64 | .009021 | .176777 | 5.656854 |
+
+코드는 구간 다항식 적분을 분수로 계산합니다. 현재 화면의 2×2 행렬과 별개의 무한 차원 예제입니다. Compact 자기수반 정리의 고유기저와 일반 자기수반 연산자의 projection-valued measure를 구분하는 실제 이유를 보여 줍니다. Dirac을 고유방정식에 형식적으로 넣더라도 그것은 일반 L² 고유함수라는 주장이 아닙니다.
+
+**직접 풀기:** 이 u_h가 strong 수렴하는 부분열을 가진다면 어떤 문제가 생기나요? **해설:** 극한은 노름 1이고 (M−1/2)u=0이어야 합니다. 그런 비영 L² 고유함수는 없으므로 모순입니다.
+
+```python
+from fractions import Fraction as F
+from math import sqrt
+
+lam=F(1,2)
+for h in [F(1,4),F(1,16),F(1,64)]:
+    lo,hi=lam-h,lam+h
+    squared_height=F(1,2*h)
+    norm_squared=(hi-lo)*squared_height
+    residual_squared=squared_height*((hi-lam)**3-(lo-lam)**3)/3
+    assert norm_squared==1
+    assert residual_squared==h*h/3
+    pairing_with_one=sqrt(float(2*h))
+    print('h, residual norm, integral u_h, peak height:',
+          str(h),round(sqrt(float(residual_squared)),6),
+          round(pairing_with_one,6),round(sqrt(float(squared_height)),6))
+```
+
+
 ## 확인 문제와 해설
 
 1. 고유값이 모두 실수면 직교 대각화인가요? **아니요.** Jordan 모형이 반례입니다.

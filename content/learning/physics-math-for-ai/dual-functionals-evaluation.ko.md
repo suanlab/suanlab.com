@@ -32,6 +32,60 @@ $$
 
 AI의 관측을 점 샘플로 표현할 때 입력 공간의 노름과 관측 안정성을 함께 정해야 합니다. 반대로 유한 폭 센서의 가중 적분은 그 가중치가 L2라면 현재 Riesz 예제처럼 연속 관측이 됩니다.
 
+## Riesz 대표는 어디에서 오는가
+
+ℓ≠0인 실수 Hilbert 공간의 연속 선형 범함수를 잡습니다. Ker ℓ은 닫혀 있으므로 다음 단원에서 증명할 직교 투영을 사용할 수 있습니다. ℓ(u)≠0인 u를 택하고 v=u−Pkerℓ u라 두면 v≠0, v⊥ker ℓ, ℓ(v)=ℓ(u)입니다. 임의 f에서 f−[ℓ(f)/ℓ(v)]v는 kernel에 있으므로
+
+$$
+\langle f,v\rangle=\frac{\ell(f)}{\ell(v)}\|v\|^2,
+\qquad g=\frac{\ell(v)}{\|v\|^2}v,
+\qquad \ell(f)=\langle f,g\rangle.
+$$
+
+대표 두 개의 차이가 모든 f와 내적 0이면 f를 그 차이로 택해 노름이 0임을 얻으므로 유일합니다. ℓ=0의 대표는 g=0입니다. 복소 공간에서는 내적의 선형인 인자에 맞춰 켤레를 넣어야 하며 여기서는 실수 경우를 사용합니다.
+
+## 센서 폭을 줄이면 측정 노름이 커진다
+
+폭 h의 평균 센서를 ℓ_h(f)=h⁻¹∫₀ʰf로 두면 대표는 g_h=h⁻¹1_[0,h]이고 노름은 h⁻¹/²입니다. 각 고정 h>0에서는 L² 연속이지만 h→0의 공통 상한은 없습니다. Spike v_m와 h=1/m를 함께 택하면 점 값은 1, 평균 센서값은 정확히 1/2입니다. 평균값이 모든 연속 f에서 점 값으로 수렴한다는 명제는 f도 m마다 바뀌는 이 예제에 균등하게 적용되지 않습니다.
+
+| m | spike L² 노름 | 평균 센서 쌍대 노름 | spike H¹ 노름 |
+|---|---|---|---|
+| 1 | .577350 | 1 | 1.154701 |
+| 4 | .288675 | 2 | 2.020726 |
+| 16 | .144338 | 4 | 4.002603 |
+
+미분 제곱 적분은 m이므로 spike의 H¹ 노름은 sqrt(m+1/(3m))로 커집니다. 1차원 H¹의 절대연속 대표에서는 기본정리와 Cauchy–Schwarz로 모든 x에 대해
+
+$$
+|u(x)|\le\|u\|_{L^2(0,1)}+\|u'\|_{L^2(0,1)}
+\le\sqrt2\,\|u\|_{H^1(0,1)}.
+$$
+
+첫 부등식은 |u(x)|≤|u(y)|+∫|u'|를 y에 대해 평균해 얻습니다. 따라서 더 강한 노름 아래의 bounded 점 평가는 L² spike 반례와 모순되지 않습니다. 이 H¹ 대표의 근거는 약도함수 단원에서 연결합니다. 일반 고차원에서 같은 상수를 그대로 쓰지는 않습니다.
+
+**직접 풀기:** 각 ℓ_h가 연속이면 그 극한 점 평가도 L² 연속인가요? **해설:** 아닙니다. 노름 h⁻¹/²이 발산하므로 연속성 상수가 균등하지 않습니다.
+
+```python
+from fractions import Fraction as F
+from math import sqrt
+
+for m in [1,4,16]:
+    h=F(1,m)
+    spike_integral=h/2
+    sensor_value=spike_integral/h
+    signal_l2_squared=F(1,3*m)
+    sensor_dual_squared=F(1,h)
+    derivative_l2_squared=F(m)
+    assert sensor_value==F(1,2)
+    assert sensor_value**2<=signal_l2_squared*sensor_dual_squared
+    assert 1<=2*(signal_l2_squared+derivative_l2_squared)
+    print('m, spike L2 norm, averaging dual norm, spike H1 norm:',
+          m,*(round(sqrt(float(v)),6) for v in
+              [signal_l2_squared,sensor_dual_squared,
+               signal_l2_squared+derivative_l2_squared]))
+```
+
+
 ## 확인 문제와 해설
 
 1. g=1인 범함수의 노름은? **1입니다.** 길이 1인 구간에서 ‖1‖₂=1입니다.

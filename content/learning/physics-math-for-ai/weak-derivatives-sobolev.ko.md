@@ -39,6 +39,57 @@ $$
 
 PDE 학습에서는 점별 미분 잔차와 약한 잔차가 서로 다른 함수 공간 가정을 사용합니다. 경계조건·적분 가능성·차원별 embedding을 함께 확인해야 합니다.
 
+## 약도함수의 존재와 Lᵖ 조건을 따로 증명하기
+
+u=|x|ᵅ, α>0에서 후보 v=α sign(x)|x|ᵅ⁻¹는 L¹입니다. 원점을 뺀 두 구간에 부분적분하고 빠진 폭 η를 줄이면 경계항 ηᵅ[φ(−η)−φ(η)]→0입니다. v의 적분 가능성으로 나머지 적분도 수렴하므로 모든 compact 시험 함수에 대해 약도함수 항등식을 얻습니다. 단지 두 개 시험값이 맞았다는 관찰을 대신하는 증명입니다.
+
+1≤p<∞에서 ∫\|v\|ᵖ의 원점 지수는 pα−p입니다. 적분이 유한하려면 이 지수가 −1보다 커야 하므로
+
+$$
+u=|x|^\alpha\in W^{1,p}(-1,1)
+\quad\Longleftrightarrow\quad \alpha>1-\frac1p
+\qquad(\alpha>0),
+$$
+$$
+\|v\|_p^p=\frac{2\alpha^p}{p\alpha-p+1}
+\quad\text{when }p\alpha-p+1>0.
+$$
+
+경계에서는 로그 발산입니다. p=∞는 별도로 α≥1일 때 v가 본질적으로 유계입니다. 현재 UI는 p=2의 H¹ 조건을 표시하며, 아래 p 변화는 별도 설명입니다.
+
+| p, α=3/4 | ∫\|v\|ᵖ | W¹,ᵖ 소속 |
+|---|---|---|
+| 1 | 2 | 예 |
+| 2 | 9/4 | 예 |
+| 3 | 27/8 | 예 |
+| 4 | ∞, 로그 발산 | 아니요 |
+
+## 1차원 H¹의 대표와 경계 trace
+
+u′=v∈L²(0,1)이면 F(x)=∫₀ˣv는 절대연속이고 약도함수가 v입니다. u−F의 분포 도함수는 0이므로 연결 구간에서 거의 모든 곳에 상수입니다. 이 마지막 사실은 적분이 0인 compact 시험 함수를 다른 compact 시험 함수의 도함수로 써서 확인할 수 있습니다. 따라서 u는 상수+F인 유일한 절대연속 대표를 가집니다. 이 대표에서 앞 단원의 점 평가 경계를 사용할 수 있습니다.
+
+Trace가 연속이라는 사실은 “모든 H¹ 함수가 경계값 0”이라는 뜻이 아닙니다. H¹₀는 compact 매끄러운 함수의 H¹ 폐포이며 |x|ᵅ의 정의역인 (−1,1)에서는 양 끝 trace가 0인 함수들입니다. 현재 |x|ᵅ는 양 끝값 1이라 H¹에 속해도 H¹₀는 아닙니다. α>1/2에서 |x|ᵅ−1은 같은 도함수를 유지하고 양 끝 trace를 0으로 만듭니다. α=3/4이면 그 함수의 L² 제곱 노름은 18/35입니다. 분수 코드는 이 적분과 p별 경계를 대조합니다.
+
+**직접 풀기:** 약도함수가 L¹이면 자동으로 H¹인가요? **해설:** 아닙니다. α=1/2는 약도함수가 L¹이지만 L²는 아니어서 H¹에서 제외됩니다.
+
+```python
+from fractions import Fraction as F
+
+alpha=F(3,4)
+for p in [1,2,3,4]:
+    exponent=p*alpha-p
+    integral=2*alpha**p/(exponent+1) if exponent>-1 else None
+    expected={1:F(2),2:F(9,4),3:F(27,8),4:None}[p]
+    assert integral==expected
+    print('p, derivative Lp norm to power p:',p,
+          str(integral) if integral is not None else 'infinity (logarithmic at p=4)')
+# Subtracting the endpoint trace leaves the weak derivative unchanged.
+zero_trace_norm_squared=2/(2*alpha+1)-4/(alpha+1)+2
+assert zero_trace_norm_squared==F(18,35)
+print('L2 squared norm of |x|^(3/4)-1:',zero_trace_norm_squared)
+```
+
+
 ## 확인 문제와 해설
 
 1. α=.75는 H1인가요? **예.** 도함수 제곱 노름은 2.25입니다.
