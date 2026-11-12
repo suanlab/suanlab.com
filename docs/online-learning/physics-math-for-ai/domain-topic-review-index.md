@@ -82,4 +82,4 @@
 
 파동·진동·음향·광학은 [같은 최종 빌드의 18단원 연구 종합 대조](waves-optics-research-audit.md)를 통과했다. 다음은 [전자기학 연구 대조](electromagnetism-topic-review.md)이며 전체 교육과정 완료 상태는 false로 유지한다.
 
-전자기학은 [격자 분산·Gauss 보정](maxwell-research-status.md)까지 **8/20단원**을 검증했다. 다음은 유도·전자기파이며 영역 전체 대조 전이므로 위 41영역 집계는 유지한다.
+전자기학은 [유도 반작용·전기 관측의 자기장 식별](induction-research-status.md)까지 **10/20단원**을 검증했다. 다음은 장의 에너지·Poynting 흐름이며 영역 전체 대조 전이므로 위 41영역 집계는 유지한다.

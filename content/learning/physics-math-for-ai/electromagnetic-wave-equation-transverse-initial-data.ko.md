@@ -124,6 +124,103 @@ E의 값과 파동 잔차만 학습하면 호환되지 않는 B를 놓칠 수 �
 
 제품 모형의 도함수는 같은 해석 가족에서 유도한 진단이다. 독립 검증은 별도 Python 공간·시간5점 차분, 실제 장 선적분과 선속 변화율,160자리 mpmath 기준을 사용한다. 차분 오차·상쇄·꼬리 표현 한계를 수학적 오류나 물리적 영점과 혼동하지 않는다. 에너지·Poynting 흐름과 매질 경계는 다음 원래 주제로 남긴다.
 
+## 연구 확장: 전기장 관측으로 초기 자기장 추론하기
+
+### 초기 상태 추론을 두 수의 문제로 만들기
+
+일정한 ε·μ에서 길이 L_z인 주기 영역의 무원천 장을 매끄러운 유한 Fourier 다항식으로 둡니다. 공간 표본이 유지한 각 모드를 실제로 분해한다고 가정합니다. 한 실수 정상파 직교 성분을 아래처럼 쓰면 a와 b의 단위는 모두 V/m입니다. 다른 공간 직교 성분도 같은 방식으로 다룹니다. 일차 Maxwell 식에 대입하면 a_dot=−ωb, b_dot=ωa인 회전을 얻습니다. 이는 연속 전파이며 앞의 어긋난 격자 갱신과는 다릅니다. 주기 기하는 보충 역문제이며 기존 Gaussian 펄스의 경계 모형이 아닙니다.
+
+$$
+E_x=a(t)\cos(kz),\quad cB_y=b(t)\sin(kz),\quad k=\frac{2\pi n}{L_z}>0,\quad\omega=ck,\quad\frac{d}{dt}\binom a b=\omega\begin{pmatrix}0&-1\\1&0\end{pmatrix}\binom a b.
+$$
+
+$$
+\binom{a(T)}{b(T)}=\begin{pmatrix}\cos\phi&-\sin\phi\\\sin\phi&\cos\phi\end{pmatrix}\binom{a_0}{b_0},\quad\phi=\omega T,\quad a(T)^2+b(T)^2=a_0^2+b_0^2.
+$$
+
+### 두 전기장 시점으로 충분한 조건을 정확히 찾기
+
+a(0)과 a(T)를 측정하면 관측 행렬의 행렬식은 −sin φ입니다. φ=mπ에서는 어떤 b₀도 같은 두 번째 전기 진폭 (−1)^m a₀를 만듭니다. 정확한 자료와 완벽한 Maxwell 모형에서도 식별 불가능합니다. 이 시점들 밖에서는 역변환이 존재합니다. 보이지 않는 시점에 분모를 작은 양수로 바꾸는 것은 해를 선택할 뿐 누락 자료를 복원하지 않습니다. 여기의 ‘한 시점’은 공간적으로 분해한 Fourier 계수를 뜻하며 임의 점 하나의 전기장 값이 아닙니다.
+
+$$
+\binom{a(0)}{a(T)}=O_T\binom{a_0}{b_0},\quad O_T=\begin{pmatrix}1&0\\\cos\phi&-\sin\phi\end{pmatrix},\quad\det O_T=-\sin\phi,\quad\operatorname{rank}O_T=\begin{cases}2,&\sin\phi\ne0,\\1,&\sin\phi=0.\end{cases}
+$$
+
+### 복원 결과를 해석하기 전에 오차를 전파하기
+
+y₀·y_T에 평균 0인 측정 오차를 넣습니다. 대수 계산으로 아래의 정확한 오차 식을 얻고 분산을 취하면 다음 식입니다. Gaussian 분포는 필요하지 않습니다. a₀를 정확히 알면 이후 시점 오차는 1/|sin φ|배 증폭됩니다. 두 오차가 독립이고 분산이 같으면 표준편차 증폭은 sqrt(1+cos²φ)/|sin φ|입니다. 상관된 오차에는 공분산 항이 필요합니다. 불확실한 초기 시점을 여러 잔차가 공유하면 잔차 잡음이 독립이지 않습니다. 조건이 좋은 식도 c·k·측정 시점을 안다고 가정합니다. 매개변수·시계 오차는 추가 원인입니다.
+
+$$
+\widehat b_0=\frac{y_0\cos\phi-y_T}{\sin\phi},\quad y_0=a_0+\eta_0,\quad y_T=a_0\cos\phi-b_0\sin\phi+\eta_T,\quad\widehat b_0-b_0=\frac{\eta_0\cos\phi-\eta_T}{\sin\phi}.
+$$
+
+$$
+\operatorname{Var}(\widehat b_0)=\frac{v_0\cos^2\phi+v_T-2v_{0T}\cos\phi}{\sin^2\phi},\quad v_0=\operatorname{Var}\eta_0,\quad v_T=\operatorname{Var}\eta_T,\quad v_{0T}=\operatorname{Cov}(\eta_0,\eta_T).
+$$
+
+### 보이지 않는 시점의 복제 대신 정보를 주는 시점을 추가하기
+
+이 문단에서는 a₀를 정확히 알고 이후 오차들이 독립이며 공통 분산 v_eta를 갖는다고 둡니다. 그러면 z_i=s_i b₀−η_i입니다. 잔차 제곱합을 미분하면 D>0에서 스칼라 최소제곱 해와 그 분산입니다. 두 시점의 위상 차이가 π/2이면 이 특정 모드에서 D=sin²φ+cos²φ=1입니다. 보이지 않는 시점만 반복하면 D=0입니다. 사분의 일 주기 시간 간격은 모드에 의존하므로 같은 두 전역 시점으로 모든 Fourier 모드에 D=1을 약속하면 안 됩니다. 가중·상관 잡음에는 해당 측정 공분산이 필요하며 이 동일 분산 간편식을 적용하지 않습니다.
+
+$$
+a_0\ \text{known}:\quad z_i=a_0\cos\phi_i-y_i,\quad s_i=\sin\phi_i,\quad D=\sum_i s_i^2,\quad\widehat b_0=\frac{\sum_i s_i z_i}{D},\quad\operatorname{Var}(\widehat b_0)=\frac{v_\eta}{D}\quad(D>0).
+$$
+
+### 정규화와 새 정보를 구분하기
+
+선언한 최소제곱 목적함수에 λ b²를 추가하면 아래 ridge 추정값을 선택합니다. 잡음이 없는 정확 자료에서도 D/(D+λ)만큼 0으로 편향됩니다. D=0에서는 실제 b₀가 무엇이든 0을 반환합니다. 이는 관측이 아니라 사전 선호입니다. 영이 아닌 유한 대역 n=1,…,N_b에는 제안한 한 시점 T_*가 정확한 시간 영모드를 모두 피합니다. 하지만 초기 a₀를 아는 경우의 최악 잡음 증폭은 약 2N_b/π로 커집니다. 대역폭을 늘리면 균일한 조건수 이점이 사라지므로 무한 모드 안정성 정리로 확장하지 않습니다. 평균 자기장 모드는 공간 미분이 제거하므로 어떤 시점에도 보이지 않습니다.
+
+$$
+\widehat b_{\lambda}=\frac{\sum_i s_i z_i}{D+\lambda},\quad\lambda>0,\quad\eta_i=0:\quad\widehat b_{\lambda}=\frac{D}{D+\lambda}b_0,\qquad D=0:\quad\widehat b_{\lambda}=0\ \text{for every true }b_0.
+$$
+
+$$
+1\le n\le N_b,\quad T_*={\pi\over2\omega_{N_b}}:\quad\phi_n={n\pi\over2N_b},\quad\min_n|\sin\phi_n|=\sin{\pi\over2N_b}>0,\quad\max_n {1\over|\sin\phi_n|}=\csc{\pi\over2N_b}.
+$$
+
+### 시간 맹점과 공간 맹점을 나누기
+
+시간 역변환 식만으로 공간적으로 겹친 표본을 별개의 Fourier 계수로 취급할 수는 없습니다. N개 등간격 점에서 모드 n과 n+N의 초기 코사인 표본은 같습니다. 진폭을 추론하기 전에 분해 가능한 유한 대역을 선언하거나 전체 시공간 표본 연산자를 분석해야 합니다. 추가 시점으로 일부 공간 중첩을 구분할 수도 있지만 이는 다른 역문제입니다. 기존 Gaussian 가족은 다른 점 관측 반례를 줍니다. z=0에서 모든 우향 비율 β는 매 시점 같은 E를 갖지만 B는 다릅니다. 중심 밖 전기 관측은 그 가족을 구분할 수 있습니다. 이를 전체 Fourier 계수 관측과 대체하거나 일반 점 센서 정리로 확대하지 않습니다. 아래 셀은 a₀=0.6, b₀=0.8 V/m이고 이후 진폭에만 고정 +0.01 V/m 오차를 줍니다. 정확한 설계 위상은 π의 유리수 배로 선언합니다. 정수 배는 부동소수 sin(π)를 정보로 사용하지 않고 사용 불가로 표시합니다. 가까운 비영 위상은 여전히 사용 가능하지만 조건이 나쁩니다.
+
+$$
+\partial_t\overline E_x=\partial_t\overline B_y=0,\qquad E_x(0,t)=A e^{-(ct)^2/(2\sigma_G^2)},\qquad cB_y(0,t)=(2\beta-1)E_x(0,t)\quad\text{(Gaussian family)}.
+$$
+
+| 위상 / pi | 사인 절댓값 | 이후 잡음 증폭 | 추정 b0 [V/m] |
+| --- | --- | --- | --- |
+| 0.00000000 | 0.00000000 | unavailable | unavailable |
+| 0.16666667 | 0.50000000 | 2.00000000 | 0.78000000 |
+| 0.50000000 | 1.00000000 | 1.00000000 | 0.79000000 |
+| 1.00000000 | 0.00000000 | unavailable | unavailable |
+
+```python
+from fractions import Fraction
+from math import sin, cos, pi
+# Fractions declare exact design phases in units of pi.
+# A phase equal to an integer*pi is mathematically blind.
+a0, b0, eta = 0.6, 0.8, 0.01
+for p in [Fraction(0), Fraction(1,6), Fraction(1,2), Fraction(1)]:
+    if p.denominator == 1:
+        print(f"{float(p):.8f} 0.00000000 unavailable unavailable")
+        continue
+    c, s = cos(pi*float(p)), sin(pi*float(p))
+    y = a0*c-b0*s+eta  # a0 known exactly; noise on later snapshot
+    estimate = (a0*c-y)/s
+    print(f"{float(p):.8f} {abs(s):.8f} {1/abs(s):.8f} {estimate:.8f}")
+```
+
+[Feynman II 20–1절](https://www.feynmanlectures.caltech.edu/II_20.html)은 반대 방향 파동의 배경입니다. [Boyd 관측 가능성 노트](https://see.stanford.edu/materials/lsoeldsee263/19-observ.pdf)는 관측 행렬의 영공간과 최소제곱 상태 추정을 연결합니다. 위 유한 모드의 시점·잡음·ridge·대역폭 식은 여기서 직접 유도합니다. 기존 Gaussian 예제는 선언한 중심 점 모호성을 검사하며 새 주기 Fourier 역변환 제어를 제공한다는 뜻이 아닙니다.
+
+![전기장 관측의 시점 모호성·잡음·유한 대역 조건](/assets/learning/electromagnetism-electric-snapshot-observability.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**정확한 Maxwell 물리가 보이지 않는 표본 시점의 b0를 식별하는가?** **답:** 아니다. sin φ=0이면 잡음이 없는 자료에서도 전기 관측 행렬에 자명하지 않은 영공간이 있다.
+
+**정보 없는 시점을 반복하면 식별성이 좋아지는가?** **답:** 아니다. s_i가 0이라 D에 아무것도 더하지 않는다. 정보를 주는 시점이나 다른 물리량 측정을 선택해야 한다.
+
+**유한 대역의 시점 설계가 모든 모드의 안정 복원을 증명하는가?** **답:** 아니다. 최악 잡음 증폭이 대역폭과 함께 커지고 평균 자기장 모드는 전기장 진화에서 보이지 않는다.
+
 ## 연습과 해설
 
 각 문제에서 초기 값, 시간 미분, 공간 미분을 따로 적어보자.

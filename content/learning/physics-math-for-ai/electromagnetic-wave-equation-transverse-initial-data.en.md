@@ -124,6 +124,103 @@ Training only E values and wave residuals can miss an incompatible B. Check init
 
 Derivatives in the product model are diagnostics derived from the same analytic family. Independent references use separate Python five-point spatial and temporal differences, actual-field line integrals and flux rates, and160-digit mpmath calculations. Do not confuse differentiation error, cancellation, or tail representation limits with mathematical defects or physical zeros. Energy, Poynting flow, and material boundaries remain subsequent original topics.
 
+## Research extension: infer initial magnetic fields from electric snapshots
+
+### Turn initial-state inference into a two-number problem
+
+Suppose the source-free fields are smooth finite Fourier polynomials on a periodic interval of length L_z with constant ε and μ. Assume spatial sampling actually resolves each retained mode. For one real standing-mode quadrature write E and cB below, so a and b both have units V/m. The other spatial quadrature is treated analogously. Substitution into the first-order Maxwell equations gives a rotation, with a_dot=−ωb and b_dot=ωa. This is continuous propagation; it is distinct from the preceding staggered-grid update. The periodic geometry is a supplementary inverse problem, not the native Gaussian pulse’s boundary model.
+
+$$
+E_x=a(t)\cos(kz),\quad cB_y=b(t)\sin(kz),\quad k=\frac{2\pi n}{L_z}>0,\quad\omega=ck,\quad\frac{d}{dt}\binom a b=\omega\begin{pmatrix}0&-1\\1&0\end{pmatrix}\binom a b.
+$$
+
+$$
+\binom{a(T)}{b(T)}=\begin{pmatrix}\cos\phi&-\sin\phi\\\sin\phi&\cos\phi\end{pmatrix}\binom{a_0}{b_0},\quad\phi=\omega T,\quad a(T)^2+b(T)^2=a_0^2+b_0^2.
+$$
+
+### Identify exactly when two electric snapshots suffice
+
+If both a(0) and a(T) are measured, their observation matrix has determinant −sin φ. At φ=mπ, every possible b₀ gives the same second electric amplitude (−1)^m a₀. This is genuine non-identifiability even with exact data and a perfect Maxwell model. Away from these times the inverse exists. Adding a small positive denominator at a blind time invents a choice; it does not recover the missing datum. Here “snapshot” means a spatially resolved Fourier coefficient, not one electric-field value at an arbitrary point.
+
+$$
+\binom{a(0)}{a(T)}=O_T\binom{a_0}{b_0},\quad O_T=\begin{pmatrix}1&0\\\cos\phi&-\sin\phi\end{pmatrix},\quad\det O_T=-\sin\phi,\quad\operatorname{rank}O_T=\begin{cases}2,&\sin\phi\ne0,\\1,&\sin\phi=0.\end{cases}
+$$
+
+### Propagate errors before interpreting a reconstruction
+
+Let y₀ and y_T include zero-mean measurement errors. Algebra gives the exact error expression below, and taking its variance gives the following formula. No Gaussian distribution is required. If a₀ is known exactly, error in the later snapshot is amplified by 1/|sin φ|. If both errors are independent with equal variance, the standard-deviation gain is sqrt(1+cos²φ)/|sin φ|. Correlated errors require the covariance term: sharing an uncertain initial snapshot across several later residuals does not produce independent residual noise. A well-conditioned formula also assumes that c, k and the measurement times are known; parameter and clock errors are additional sources.
+
+$$
+\widehat b_0=\frac{y_0\cos\phi-y_T}{\sin\phi},\quad y_0=a_0+\eta_0,\quad y_T=a_0\cos\phi-b_0\sin\phi+\eta_T,\quad\widehat b_0-b_0=\frac{\eta_0\cos\phi-\eta_T}{\sin\phi}.
+$$
+
+$$
+\operatorname{Var}(\widehat b_0)=\frac{v_0\cos^2\phi+v_T-2v_{0T}\cos\phi}{\sin^2\phi},\quad v_0=\operatorname{Var}\eta_0,\quad v_T=\operatorname{Var}\eta_T,\quad v_{0T}=\operatorname{Cov}(\eta_0,\eta_T).
+$$
+
+### Add informative times, rather than duplicate blind times
+
+For this paragraph take a₀ as exactly known and later errors as independent with common variance v_eta. Then z_i=s_i b₀−η_i. Differentiating the sum of squared residuals yields the scalar least-squares solution and its variance when D>0. Two times whose phases differ by π/2 have D=sin²φ+cos²φ=1 for this particular mode. Repeating only blind times leaves D=0. A common quarter-period interval is mode dependent; do not promise D=1 for every Fourier mode from the same two global times. Weighted or correlated noise requires the corresponding measurement covariance, not this equal-variance shortcut.
+
+$$
+a_0\ \text{known}:\quad z_i=a_0\cos\phi_i-y_i,\quad s_i=\sin\phi_i,\quad D=\sum_i s_i^2,\quad\widehat b_0=\frac{\sum_i s_i z_i}{D},\quad\operatorname{Var}(\widehat b_0)=\frac{v_\eta}{D}\quad(D>0).
+$$
+
+### Distinguish regularization from new information
+
+Adding λ b² to the declared least-squares objective selects the ridge estimate below. With exact noiseless data it is biased toward zero by D/(D+λ). At D=0 it returns zero for every possible true b₀. That is a prior preference, not an observation. For a finite nonzero band n=1,…,N_b, the proposed single later time T_* avoids all exact temporal blind modes. However its worst known-a₀ noise gain grows approximately as 2N_b/π. Increasing bandwidth therefore removes the uniform conditioning benefit; no infinite-mode stability theorem follows. The mean magnetic mode remains unobserved at every time because spatial derivatives annihilate it.
+
+$$
+\widehat b_{\lambda}=\frac{\sum_i s_i z_i}{D+\lambda},\quad\lambda>0,\quad\eta_i=0:\quad\widehat b_{\lambda}=\frac{D}{D+\lambda}b_0,\qquad D=0:\quad\widehat b_{\lambda}=0\ \text{for every true }b_0.
+$$
+
+$$
+1\le n\le N_b,\quad T_*={\pi\over2\omega_{N_b}}:\quad\phi_n={n\pi\over2N_b},\quad\min_n|\sin\phi_n|=\sin{\pi\over2N_b}>0,\quad\max_n {1\over|\sin\phi_n|}=\csc{\pi\over2N_b}.
+$$
+
+### Separate temporal blindness from spatial blindness
+
+A temporal inversion formula does not by itself justify treating aliased spatial samples as separate Fourier coefficients. At N equally spaced points, modes n and n+N have the same cosine samples at the initial time. State a resolved finite band, or analyze the full space–time sampling operator, before inferring amplitudes. Additional times can distinguish some spatial aliases, but that is a different inverse problem. The existing Gaussian family gives a different, point-observation counterexample: at z=0 all right fractions β have the same E at every time, yet different B. An off-center electric measurement can distinguish that family. This does not replace full Fourier-coefficient observations or establish a general point-sensor theorem. In the cell below a₀=0.6 and b₀=0.8 V/m, and only the later amplitude receives a fixed +0.01 V/m error. Exact designed phases are declared as rational multiples of π; integer multiples are reported unavailable rather than using the floating approximation sin(π) as information. Nonzero nearby phases remain available but ill conditioned.
+
+$$
+\partial_t\overline E_x=\partial_t\overline B_y=0,\qquad E_x(0,t)=A e^{-(ct)^2/(2\sigma_G^2)},\qquad cB_y(0,t)=(2\beta-1)E_x(0,t)\quad\text{(Gaussian family)}.
+$$
+
+| phase / pi | absolute sine | later-noise gain | estimated b0 [V/m] |
+| --- | --- | --- | --- |
+| 0.00000000 | 0.00000000 | unavailable | unavailable |
+| 0.16666667 | 0.50000000 | 2.00000000 | 0.78000000 |
+| 0.50000000 | 1.00000000 | 1.00000000 | 0.79000000 |
+| 1.00000000 | 0.00000000 | unavailable | unavailable |
+
+```python
+from fractions import Fraction
+from math import sin, cos, pi
+# Fractions declare exact design phases in units of pi.
+# A phase equal to an integer*pi is mathematically blind.
+a0, b0, eta = 0.6, 0.8, 0.01
+for p in [Fraction(0), Fraction(1,6), Fraction(1,2), Fraction(1)]:
+    if p.denominator == 1:
+        print(f"{float(p):.8f} 0.00000000 unavailable unavailable")
+        continue
+    c, s = cos(pi*float(p)), sin(pi*float(p))
+    y = a0*c-b0*s+eta  # a0 known exactly; noise on later snapshot
+    estimate = (a0*c-y)/s
+    print(f"{float(p):.8f} {abs(s):.8f} {1/abs(s):.8f} {estimate:.8f}")
+```
+
+[Feynman II §20–1](https://www.feynmanlectures.caltech.edu/II_20.html) supplies the counterpropagating-wave background. [Boyd’s observability notes](https://see.stanford.edu/materials/lsoeldsee263/19-observ.pdf) connect observation-matrix nullspaces and least-squares state estimation. The finite-mode timing, noise, ridge and bandwidth formulas above are derived directly here. The native Gaussian example tests the stated center-point ambiguity without claiming a new periodic Fourier-inversion control.
+
+![Electric-only timing ambiguity, noise and finite-band conditioning](/assets/learning/electromagnetism-electric-snapshot-observability.en.svg)
+
+### Research questions with explanations
+
+**Can exact Maxwell physics identify b0 at a blind sampling time?** **Answer:** No. When sin φ=0 the electric observation matrix has a nontrivial nullspace even with noiseless data.
+
+**Does repeating an uninformative time improve identifiability?** **Answer:** No. Its s_i is zero and adds nothing to D. Choose an informative time or a different physical measurement.
+
+**Does a finite-band schedule prove stable recovery of all modes?** **Answer:** No. Its worst noise gain grows with bandwidth, and the mean magnetic mode remains invisible to electric evolution.
+
 ## Exercises with explanations
 
 Write initial values, time derivatives, and spatial derivatives separately.
