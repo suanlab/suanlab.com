@@ -107,6 +107,149 @@ $$
 
 빠른 회전에서는 이웃 표본 사이의 각도 차이가 작도록 충분히 표본을 넣습니다. 몇 개의 긴 현으로 잘못 그리지 않습니다. 시간 그림은 10초 범위에서 반지름·접선 힘 N, 운동에너지·일 예산 J, 각운동량 kg m²/s를 따로 보여 줍니다.
 
+## 연구 확장: 움직이는 가이드의 가상 일과 실제 일률 구분하기
+
+고정 가이드 계산을 별도 문제로 확장합니다. 중심은 고정하되 외부 기구가 양수이고 두 번 미분 가능한 반지름 R(t)를 지정합니다. 평면 내에서 입자에 작용하는 힘은 이상적인 양방향 가이드의 반지름 반응력뿐이고 접선 구동은 0입니다. 원래 고정 반지름 조작의 의미를 유지하며 새 물리 구속은 아래 독립 코드로 재현합니다.
+
+물리적인 가이드 변화는 관측 좌표를 다시 쓰거나 각운동량 기준점을 옮기는 것과 다릅니다. 마찰이 없어도 법선 방향 운동으로 입자에 에너지를 전달할 수 있습니다. 수축 프로토콜을 선택하기 전에 호환 조건·뉴턴 식·일 수지를 유도합니다.
+
+### 시간에 의존하는 구속 미분하기
+
+앞과 같은 직교 이동 기저 er,e_theta로 씁니다.
+
+$$
+g(q,t)=\tfrac12(\lVert q\rVert^2-R(t)^2)=0,\quad
+q\cdot v=R\dot R,\qquad
+v=\dot R e_r+R\omega e_\theta.
+$$
+
+실험실 속도에는 법선 성분이 있습니다. 고정 가이드의 q·v=0을 가져오면 허용되는 움직이는 가이드 초기 조건을 거부하게 됩니다. 하지만 시각을 고정한 가상 변위에는 여전히 q·delta q=0이 성립합니다. 가상 변위는 순간 구속 안의 변분이며 시간이 흐르며 실제 입자가 이동한 변위와 다릅니다.
+
+### 반응력과 보존되는 각운동량 구하기
+
+기저와 속도를 미분한 다음 m a=N_rad er의 반지름·접선 성분을 분리합니다.
+
+$$
+a=(\ddot R-R\omega^2)e_r+(2\dot R\omega+R\dot\omega)e_\theta,\qquad
+N_{\mathrm{rad}}=m(\ddot R-R\omega^2),\quad
+\ell=mR^2\omega=\mathrm{constant}.
+$$
+
+접선 식은 m R² omega의 시간 미분이 0임을 줍니다. 고정 중심에 대해 반지름 운동의 외적은 0이므로 ell은 전체 역학적 각운동량입니다. N_rad는 바깥 방향을 양수로 한 성분이고 양방향 가이드는 두 부호 모두 공급할 수 있습니다. R이 바뀔 때 고정 반지름의 각가속도 식을 그대로 사용할 수는 없습니다.
+
+### 영 가상 일과 실제 일률 분리하기
+
+g의 기울기는 q입니다. 법선 반응력을 승수 lambda로 나타내고 시각을 고정한 가상 구속을 사용합니다. 실제 운동에는 g(q(t),t)=0을 미분합니다.
+
+$$
+F_{\mathrm{guide}}=\lambda\nabla_qg,\quad \lambda=\frac{N_{\mathrm{rad}}}R,\quad
+q\cdot\delta q=0\ \Longrightarrow\ F_{\mathrm{guide}}\cdot\delta q=0,\qquad
+P_{\mathrm{guide}}=-\lambda\partial_tg=N_{\mathrm{rad}}\dot R.
+$$
+
+partial_t g=−R R_dot이므로 실험실 일률은 N_rad R_dot입니다. 가이드의 법선 속도 u_g=R_dot er에 대한 상대 속도 v−u_g와 반응력은 수직이지만 실험실 속도와의 내적은 일반적으로 0이 아닙니다. 외부 가이드 기구가 일을 공급하거나 회수하며 이 에너지 전달은 마찰열이 아닙니다.
+
+### 운동에너지의 미분 직접 확인하기
+
+omega=ell/(m R²)를 사용하면 운동에너지는 반지름·접선 운동을 모두 포함합니다.
+
+$$
+K=\frac m2\dot R^2+\frac{\ell^2}{2mR^2},\qquad
+\dot K=m\dot R\ddot R-\frac{\ell^2\dot R}{mR^3}
+=N_{\mathrm{rad}}\dot R.
+$$
+
+반응력 식을 대입하면 설명되지 않은 에너지 잔차로 일을 정의하지 않고 같은 일률을 얻습니다. 고정 반지름 극한 R_dot=0에서는 원래 영 가이드 일률을 회복합니다. 일반 유도는 R이 양수이고 선언한 호환·매끄러운 운동이 존재하는 동안 적용하며 충격이나 포획 법칙을 도입하지 않습니다.
+
+### 변화율로 나누지 않고 선형 반지름 풀기
+
+양의 R을 유지하는 선언한 구간에서 R=R0−b t로 둡니다. b의 단위는 m/s입니다. omega를 적분하면 다음과 같습니다.
+
+$$
+R(t)=R_0-bt>0,\qquad
+\theta(t)-\theta_0=\frac{\ell t}{mR_0R(t)},\qquad
+\dot\theta(t)=\frac\ell{mR(t)^2}.
+$$
+
+이 유리식 각도를 미분하면 R−t R_dot=R0에 의해 ell/(m R²)가 나옵니다. 같은 식을 역수의 차이로 썼을 때 생기는 b 나눗셈을 피하므로 b=0에서도 잘 정의됩니다. R_double_dot=0이어서 반응력과 그 일률을 직접 적분한 일은 다음과 같습니다.
+
+$$
+N_{\mathrm{rad}}=-\frac{\ell^2}{mR(t)^3},\qquad
+W_{\mathrm{guide}}(0,t)=\int_0^tN_{\mathrm{rad}}(s)\dot R(s)\,ds
+=\frac{\ell^2}{2m}\left(\frac1{R(t)^2}-\frac1{R_0^2}\right).
+$$
+
+이 선형 프로토콜의 반지름 운동에너지는 일정하고 접선 에너지의 변화가 전달된 일에 대응합니다. 비영 ell에서 수축하면 힘과 법선 속도가 모두 안쪽이어서 일률이 양수입니다. 팽창하면 마찰 없이도 가이드 일률이 음수가 됩니다.
+
+### 유한 수축과 두 극한 계산하기
+
+0≤t≤1 s에서 m=1 kg,ell=2 kg m²/s,R0=2 m,b=1 m/s,theta0=0을 선택합니다. 초기 반지름 속도는 이미 −1 m/s입니다. 입자를 몰래 포획하거나 장치를 순간적인 속도 점프로 출발·정지시키지 않고 이 구간의 호환되는 운동을 지정합니다.
+
+| t (s) | R (m) | K (J) | 공급된 가이드 일 (J) |
+|---|---:|---:|---:|
+| 0 | 2 | 1 | 0 |
+| 1/2 | 3/2 | 25/18 | 7/18 |
+| 1 | 1 | 5/2 | 3/2 |
+
+![원형 가이드가 수축하면 각운동량을 유지하면서 입자에 반지름 반응력의 양의 일을 줍니다. 에너지와 일은 공간 경로와 별도 패널에 표시합니다.](/assets/learning/classical-moving-guide-work.ko.svg)
+
+공간 축은 m이며 단위 길이가 같습니다. 점선 원은 초기·최종 가이드 기하이고 파랑은 실제 1초 경로입니다. 아래는 J 단위의 운동에너지와 누적 공급 일입니다. 선언하지 않은 배율의 힘·속도 화살표를 거리 축에 겹치지 않습니다.
+
+b=−1 m/s이면 1초 뒤 R=3 m로 팽창하고 5/18 J를 회수합니다. b=0이면 반지름 속도가 없어져 원래 영 일 상황으로 돌아옵니다. 고정 극한은 실제 코드 (1,4,0,0,5,10)으로 확인할 수 있습니다. m=1,R=2,영 접선 구동,theta0=0,omega0=1/2,t=1이며 반응력 −1/2 N,K=1/2 J,ell=2 kg m²/s,가이드 일 0입니다.
+
+### 정확한 분수로 스칼라 수지 재현하기
+
+코드는 SI 수치값에서 팽창·작은 수축·고정 한계를 포함한 네 부호 있는 수축률을 다섯 시각에서 확인합니다. 각운동량 식·가이드 일률·승수 일률·에너지 수지를 별도의 대수식으로 검사하며 반지름 0은 거부합니다. 원래 실습에 새 움직이는 가이드 해석기나 일반 접촉 이탈 규칙을 구현한 것은 아닙니다.
+
+```python
+from fractions import Fraction as F
+
+def state(b, t):
+    m, R0, ell = F(1), F(2), F(2)
+    R, rd = R0-b*t, -b
+    if not (0 <= t <= 1) or R <= 0:
+        raise ValueError("Use the stated interval with positive radius")
+    omega = ell/(m*R*R)
+    alpha = 2*b*ell/(m*R**3)
+    reaction = -ell*ell/(m*R**3)
+    power = reaction*rd
+    theta = ell*t/(m*R0*R)
+    K = m*rd*rd/2+ell*ell/(2*m*R*R)
+    K0 = m*b*b/2+ell*ell/(2*m*R0*R0)
+    W = ell*ell/(2*m)*(1/(R*R)-1/(R0*R0))
+    assert m*R*R*omega == ell
+    assert 2*rd*omega+R*alpha == 0
+    assert power == b*ell*ell/(m*R**3)
+    assert K-K0 == W
+    # g_t = -R*R_dot and lambda = reaction/R.
+    assert -(reaction/R)*(-R*rd) == power
+    return R, theta, omega, reaction, K, W
+
+for b in map(F, [-1, 0, "1/10", 1]):
+    for t in map(F, [0, "1/4", "1/2", "3/4", 1]):
+        result = state(b, t)
+    print("contraction rate b, final R, theta, omega, reaction, K, work:", b, *result)
+assert state(F(1), F(1))[-2:] == (F(5, 2), F(3, 2))
+assert state(F(-1), F(1))[-1] == F(-5, 18)
+assert state(F(0), F(1)) == (F(2), F(1, 2), F(1, 2), F(-1, 2), F(1, 2), F(0))
+try:
+    state(F(2), F(1))
+except ValueError:
+    pass
+else:
+    raise AssertionError("A zero radius must be rejected")
+```
+
+실행 사이에 원래 반지름 입력을 바꾸는 것만으로 이 물리 프로토콜이 되지는 않습니다. 법선 속도와 구동 장치의 일이 지정되지 않기 때문입니다. 원래 고정 가이드 실험과 독립 확장을 구분하세요. 매끄러운 일반 식이 논증의 근거이며 스무 유리수 준비는 그 계산을 확인합니다. 연속 증명이나 독립 데카르트 적분을 대신하지 않습니다.
+
+### 학습한 구속을 위한 해설 문제
+
+1. **영 가상 일이 영 실제 일률을 보장하지 않는 이유는?** 같은 시각의 허용 변분은 접선이지만 실험실 속도에는 R_dot er가 있습니다. 구속의 시간 미분이 빠진 항을 제공합니다.
+2. **중심 각운동량이 일정한데 에너지는 변할 수 있나요?** 그렇습니다. 반응력은 반지름 방향이라 토크가 0이지만 일률은 N_rad R_dot입니다. 예제에서 ell은 2로 유지되고 운동에너지는 1에서 5/2 J로 증가합니다.
+3. **구속 대리 모형은 어떤 정보를 유지해야 하나요?** g(q,t)·호환 초기 속도·물리적 가이드 운동·일의 규약을 기록하세요. 작은 반지름 잔차만으로 접선 속도·반응력·에너지 수지를 검증할 수는 없습니다.
+
+시간 의존 구속 좌표는 [Sussman·Wisdom의 SICM 1.6.2·연습 1.32](https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/9579/sicm_edition_2.zip/chapter001.html)를 참고하세요. 움직이는 원의 프로토콜·식·예제 수치는 이 이상적 가이드에서 직접 유도했습니다.
+
 ## 풀이가 있는 여섯 연습
 
 1. **연습: 정지에서 구동.** m=R=f=1,θ0=ω0=0,t=1이면? **풀이:** α=1,ω=1,Δθ=1/2입니다. 반응력 크기 1N, 구동 일과 K는 1/2J,L=1kg m²/s입니다. 반응력 일은 0입니다.

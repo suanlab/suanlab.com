@@ -97,6 +97,165 @@ $$
 
 조회 시각은 현재 정확한 상태를 바꾸고 곡선 범위는 10초를 유지합니다. 질량 외 코드는 10으로 나눕니다. 정지 시각과 위치는 조회 격자 사이의 유리수일 수 있습니다. 사건을 다음 시뮬레이션 단계로 반올림하지 않고 그림 표본에 명시적으로 넣습니다.
 
+## 연구 확장: 운동 방향을 바꾸는 실험으로 마찰 식별하기
+
+질량·법선 하중은 알지만 구동력은 독립적으로 교정하지 않았고 위치만 측정한다고 합시다. 아무리 정확한 궤적이면 운동마찰 계수를 정할 수 있을까요? 항상 그렇지는 않습니다. 전체 위치 이력이 같은 세 가지 허용 입력을 구성한 뒤, 이를 구분하는 두 번째 실험을 선택합니다.
+
+원래 실습은 구동과 계수를 아는 순방향 모형입니다. 여기의 역문제는 관측자에게 그 입력 일부를 감춘 별도 문제이며 계산기의 모호함이 아닙니다. 같은 수평면·N=mg·g=10 m/s²·정지 문턱 규약을 유지하고 각 실행에서는 매개변수가 일정합니다.
+
+### 양의 미끄럼에서 관측하지 못한 힘 방향 찾기
+
+미끄럼 마찰력 크기를 C, 정지 한계를 S로 씁니다. a_pos는 v>0에서의 가속도로, 앞에서 쓴 정지 후 재출발 가속도 a_plus와 구분합니다. 양의 미끄럼 한 구간은 두 미지 힘의 선형 조합 한 개만 제공합니다.
+
+$$
+C=\mu_kN,\quad S=\mu_sN,\qquad
+m a_{\mathrm{pos}}=F-C
+=\begin{pmatrix}1&-1\end{pmatrix}\begin{pmatrix}F\\C\end{pmatrix},\qquad
+(F,C)\longmapsto(F+\eta,C+\eta).
+$$
+
+관측 행의 랭크는 1이고 영방향은 (1,1)입니다. 새 매개변수가 허용되는 한 구동과 마찰을 같은 만큼 바꾸면 측정 가속도는 유지됩니다. 단위는 N인 힘의 변화이며 두 무차원 계수를 임의로 바꾸는 것과 다릅니다.
+
+m=1 kg,N=10 N,S=3 N을 선택합니다. 아래 실제 입력 코드는 질량 외 항목을 0.1 단위로 쓰며 margin은 mu_s−mu_k의 코드입니다. 시간 코드 10은 1초입니다. 선택한 모형은 후보 C처럼 mu_s=mu_k도 허용합니다.
+
+| 후보 | F (N) | C (N) | mu_k | mu_s | 코드 (질량,미끄럼,여유,구동,속도,시각) |
+|---|---:|---:|---:|---:|---|
+| A | 0 | 1 | 0.1 | 0.3 | (1,1,2,0,10,10) |
+| B | 1 | 2 | 0.2 | 0.3 | (1,2,1,10,10,10) |
+| C | 2 | 3 | 0.3 | 0.3 | (1,3,0,20,10,10) |
+
+### 멈춘 뒤까지 전체 궤적이 같음을 증명하기
+
+세 입력은 v0=1 m/s로 출발하고 모두 a_pos=−1 m/s²입니다. 따라서 첫 정지 전까지 같은 해를 갖고 t_s=1 s,x=1/2 m에서 멈춥니다. 모든 구동이 S보다 작아서 이후에는 붙어 있습니다. 양의 감속 크기를 A라 하면 t≥0의 전체 이력은 다음과 같습니다.
+
+$$
+u(t)=\min(t,t_s),\quad t_s=1\ \mathrm{s},\quad
+x(t)=v_0u(t)-\frac A2u(t)^2,\quad v(t)=v_0-Au(t),\qquad
+v_0=1\ \mathrm{m/s},\quad A=1\ \mathrm{m/s^2}.
+$$
+
+t≤t_s에서는 일정 가속도 해이고 이후에는 u가 고정되어 위치 1/2 m,속도 0입니다. 무한히 촘촘하고 오차 없는 위치 데이터도 세 입력을 구별하지 못합니다. 단지 표본이 성긴 오류가 아니라 구조적인 비식별성입니다.
+
+### 서로 다른 일·열 수지 유지하기
+
+같은 궤적은 같은 운동에너지 이력도 주지만 열과 구동 일이 같지는 않습니다.
+
+$$
+Q=CD,\quad W=Fx,\quad \Delta K+Q=W,\qquad
+x(t_s)=D(t_s)=\tfrac12\ \mathrm{m},\quad
+Q(t_s)=C\left(\tfrac12\ \mathrm{m}\right),\quad
+W(t_s)=F\left(\tfrac12\ \mathrm{m}\right).
+$$
+
+공통 정지 시각에서 초기 운동에너지는 1/2 J이고 최종은 0입니다.
+
+| 후보 | 소산 열 Q (J) | 구동 일 W (J) | Delta K+Q−W (J) |
+|---|---:|---:|---:|
+| A | 1/2 | 0 | 0 |
+| B | 1 | 1/2 | 0 |
+| C | 3/2 | 1 | 0 |
+
+![세 매개변수 후보의 전진 위치 곡선은 하나로 겹치지만, 공통 정지점의 발생 열과 구동 일은 다릅니다.](/assets/learning/classical-friction-identification.ko.svg)
+
+위 패널은 m 단위의 공통 위치 한 개를 그렸으며 구분되는 세 궤적이 아닙니다. 아래는 J 단위의 열과 일입니다. 에너지 잔차를 맞추면 둘의 차이를 알 뿐 각각을 독립 측정한 것이 아닙니다. F를 따로 교정하면 C=F−m a_pos로 이 미끄럼 구간에서 식별할 수 있습니다. 무엇을 관측했는지 먼저 밝혀야 합니다.
+
+### 반대 방향의 실험 준비하기
+
+질량·구동·계수·하중을 그대로 유지하면서 v0=−1 m/s로 출발합니다. 마찰은 오른쪽을 향합니다. 비영 음의 속도 구간의 가속도를 a_neg로 정의합니다.
+
+$$
+m a_{\mathrm{neg}}=F+C,\qquad
+F=\frac m2(a_{\mathrm{pos}}+a_{\mathrm{neg}}),\quad
+C=\frac m2(a_{\mathrm{neg}}-a_{\mathrm{pos}}),\quad
+\mu_k=\frac C{mg}.
+$$
+
+가속도 쌍 (a_pos,a_neg)는 (−1,1),(−1,3),(−1,5) m/s²입니다. 둘째 실험의 정지 시각은 1,1/3,1/5초, 정지 위치는 −1/2,−1/6,−1/10 m여서 후보를 구분합니다. 붙은 뒤의 0 가속도나 힘 점프를 가로지른 미분값 대신 미끄럼 가속도를 사용하세요. 실제 실습에서는 표의 각 행에서 초기 속도 코드만 10에서 −10으로 바꾸면 이 준비를 확인할 수 있습니다.
+
+### 결정론적 가속도 불확실성 정량화하기
+
+식별할 수 있다는 사실이 잡음이 있는 미분을 안전하게 만드는 것은 아닙니다. 질량·법선 하중은 정확히 알고 두 미끄럼 가속도 추정에 인증된 오차 크기가 있다고 합시다. 추정 역식에서 참 역식을 빼고 삼각 부등식을 적용합니다.
+
+$$
+|\widehat a_{\mathrm{pos}}-a_{\mathrm{pos}}|\le\varepsilon_{\mathrm{pos}},\quad
+|\widehat a_{\mathrm{neg}}-a_{\mathrm{neg}}|\le\varepsilon_{\mathrm{neg}},\qquad
+\max(|\widehat F-F|,|\widehat C-C|)\le\beta
+=\frac m2(\varepsilon_{\mathrm{pos}}+\varepsilon_{\mathrm{neg}}),\quad
+|\widehat\mu_k-\mu_k|\le\frac\beta N.
+$$
+
+m=1 kg,epsilon_pos=0.1 m/s²,epsilon_neg=0.2 m/s²이면 beta=3/20 N, 계수 오차 상계는 3/200입니다. 같은 부호의 끝점 오차는 구동 상계에, 반대 부호는 마찰 상계에 도달합니다. 명시한 가정의 결정론적 상계이며 신뢰구간이 아닙니다. 위치 잡음 허용치만으로 가속도 오차를 인증할 수는 없고 추정기 분석이 필요합니다. 두 실험 사이에 질량·하중·표면 상태가 바뀌면 역문제도 달라집니다.
+
+F,C를 식별해도 관측한 고착과 모형 조건 mu_s≥mu_k는 정지 한계의 하한만 줍니다.
+
+$$
+S\ge\max(|F|,C),\qquad
+\mu_s\ge\max\!\left(\frac{|F|}{mg},\mu_k\right).
+$$
+
+mu_s 자체를 정하려면 추가 교정이나 출발 문턱 데이터가 필요합니다. 입력 공간에 사전 지정한 범위와 궤적에서 얻은 정보를 구분하세요.
+
+### 분기 식과 날카로운 오차 상계 재현하기
+
+코드는 SI 수치값에서 세 후보 가족만 계산하며 두 방향 모두 멈춘 뒤 붙는 경우입니다. 각 후보·방향의 여섯 시각에서 일 수지와 두 방향 역식을 검사합니다. 이어 각 구동에서 가속도 오차의 네 모서리를 정확한 분수로 확인합니다. 전체 이력의 동일성과 오차 상계는 앞의 일반 논증으로 얻고, 유한 검사는 예제의 구현을 확인합니다.
+
+```python
+from fractions import Fraction as F
+
+def case(drive, direction, time):
+    C = drive+1
+    assert drive in (0, 1, 2) and direction in (-1, 1)
+    a = drive-direction*C
+    stop = -F(direction)/a
+    u = min(time, stop)
+    x = direction*u+a*u*u/2
+    v = direction+a*u
+    Q, W = C*abs(x), drive*x
+    assert v*v/2-F(1, 2)+Q == W
+    return x, v, stop, Q, W
+
+for drive in map(F, [0, 1, 2]):
+    a_pos, a_neg = drive-(drive+1), drive+(drive+1)
+    assert (a_pos+a_neg)/2 == drive
+    assert (a_neg-a_pos)/2 == drive+1
+    for direction in [-1, 1]:
+        for time in map(F, [0, "1/10", "1/2", 1, 2, 10]):
+            x, v, stop, Q, W = case(drive, direction, time)
+            if direction == 1:
+                u = min(time, F(1))
+                assert x == u-u*u/2 and stop == 1
+            else:
+                assert stop == 1/(2*drive+1)
+        print("drive, direction, stop, x, heat, work:",
+              drive, direction, stop, x, Q, W)
+
+# Deterministic acceleration-error bounds, not a confidence interval.
+m, N = F(1), F(10)
+eps_pos, eps_neg = F(1, 10), F(1, 5)
+beta = m*(eps_pos+eps_neg)/2
+for drive in map(F, [0, 1, 2]):
+    a_pos, a_neg = -F(1), 2*drive+1
+    errors_F, errors_C = [], []
+    for epos in [-eps_pos, eps_pos]:
+        for eneg in [-eps_neg, eps_neg]:
+            Fhat = m*(a_pos+epos+a_neg+eneg)/2
+            Chat = m*(a_neg+eneg-a_pos-epos)/2
+            errors_F.append(abs(Fhat-drive))
+            errors_C.append(abs(Chat-(drive+1)))
+            assert errors_F[-1] <= beta and errors_C[-1] <= beta
+            assert abs(Chat/N-(drive+1)/N) <= beta/N
+    assert max(errors_F) == max(errors_C) == beta
+print("sharp force and coefficient error bounds:", beta, beta/N)
+```
+
+### 접촉 계 식별을 위한 해설 문제
+
+1. **전진 표본을 늘려도 A,B,C가 구분되지 않는 이유는?** 해석적 이력이 모든 시각에서 같기 때문입니다. 다른 관측 정보나 다른 준비가 필요합니다.
+2. **측정한 열은 도움이 되나요?** 그렇습니다. 알려진 단조 이동 거리 D=1/2 m에서 독립 Q 측정은 C=Q/D를 줍니다. 맞춘 에너지 잔차에서 재구성한 열은 독립 관측이 아닙니다.
+3. **학습한 마찰 결과는 무엇을 보고해야 하나요?** 교정한 입력·관측한 방향·가속도 추정 오차·정지 사건·정지 문턱 규약을 밝히세요. 순방향 적합이 모든 물리 매개변수의 식별을 뜻하지는 않습니다.
+
+역문제 가족과 불확실성 상계는 원래 실습과 같은 Coulomb 법칙·계의 경계에서 직접 유도했습니다.
+
 ## 풀이가 있는 여섯 연습
 
 1. **연습: 멈춘 뒤 붙음.** m=1,μk=0.2,μs=0.4,F=3,v0=−1이면? **풀이:** N=10, 초기 마찰 +2N, 가속도 5m/s²입니다. 1/5초에 x=−1/10m에서 멈추고 3≤4이므로 마찰 −3N으로 붙어 있습니다.
