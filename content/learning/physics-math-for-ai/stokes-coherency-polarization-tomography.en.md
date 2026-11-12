@@ -170,6 +170,115 @@ Near an unpolarized state, noise in several fitted components can bias a norm-ba
 
 Evaluate unitary degree preservation, filtering with lost power, zero intensity, linear-only ambiguity and noncommuting operation order as distinct controls. Independent real-field integrals, eigenvalue degrees and six-state Mueller reconstruction check separate parts of the calculation. Successful model tests still do not replace actual visual and interaction review of a future reader interface.
 
+## Research extension: identifiable does not mean well conditioned
+
+A missing circular channel makes S3 unidentifiable. A very weak circular response is subtler: the measurement matrix has full rank, yet small readout or calibration errors can dominate the inferred component. We derive a six-reading instrument family, its singular values and explicit error propagation. This is a supplementary instrument model; the native ideal six-analyzer readout is unchanged.
+
+### Declare three complementary analyzer pairs
+
+
+$$
+\boldsymbol n_1=(1,0,0),\quad\boldsymbol n_2=(0,1,0),\quad\boldsymbol n_3=(\cos\delta,0,\sin\delta),\qquad y_{r\pm}=\tfrac12(S_0\pm\boldsymbol n_r\cdot\boldsymbol S),\quad 0<\delta\le\pi/2.
+$$
+
+Here bold S=(S1,S2,S3), and all readings use the same intensity calibration. The first two pairs are H/V and D/A. A retarder at angle pi/4 followed by H/V realizes the third pair: using the stated Jones convention, the output S1 equals cos(delta) S1+sin(delta) S3. At delta=pi/2 it is the circular-sensitive pair; at delta=0 it repeats H/V. The six readings are calibrated separate observations, not a claim that six simultaneous arms each receive the full incident power.
+
+### Compute the instrument singular values
+
+
+$$
+y=AS,\quad A_{r\pm}=\tfrac12(1,\pm\boldsymbol n_r^T),\qquad A^TA=\frac12\begin{pmatrix}3&0&0&0\\0&1+\cos^2\delta&0&\cos\delta\sin\delta\\0&0&1&0\\0&\cos\delta\sin\delta&0&\sin^2\delta\end{pmatrix}.
+$$
+
+Complementary signs cancel the intensity-polarization cross terms. The remaining S1/S3 block has trace 2 and determinant sin²(delta), yielding eigenvalues 1±abs(cos(delta)). The factor one half belongs to the actual power-measurement normalization.
+
+
+$$
+\operatorname{spec}(A^TA)=\left\{\tfrac32,\tfrac12,\tfrac{1+|\cos\delta|}{2},\tfrac{1-|\cos\delta|}{2}\right\},\qquad\kappa_2(A)=\sqrt{\frac3{1-|\cos\delta|}}\sim\frac{\sqrt6}{\delta}\quad(\delta\downarrow0).
+$$
+
+Every nonzero delta in this interval gives rank four. Nevertheless the smallest singular value tends to zero, and at zero the rank is only three. The ideal circular setting has condition number sqrt(3) in these unnormalized Stokes coordinates. This is a statement about this measurement family and Euclidean coordinate scales, not universal instrument optimality.
+
+### Reconstruct and propagate readout error
+
+
+$$
+d_r=y_{r+}-y_{r-},\qquad\widehat S_0=\frac13\sum_{r=1}^3(y_{r+}+y_{r-}),\quad\widehat S_1=d_1,\quad\widehat S_2=d_2,\quad\widehat S_3=\frac{d_3-\cos\delta\,d_1}{\sin\delta}.
+$$
+
+These formulas are unconstrained ordinary least squares for equal absolute error weights. Averaging the three pair sums uses redundant intensity information; dividing the difference by a small sine exposes the weak circular sensitivity. For measured data y=AS+eta,
+
+
+$$
+\|\widehat S-S\|_2\le\|A^+\|_2\|\eta\|_2=\sqrt{\frac2{1-|\cos\delta|}}\|\eta\|_2.
+$$
+
+The pseudoinverse bound concerns unnormalized Stokes error; ratios such as degree require an additional nonzero-intensity condition. If each reading has independent zero-mean error with common variance sigmaN², direct variance propagation gives
+
+
+$$
+\operatorname{Var}\widehat S_0=\tfrac23\sigma_N^2,\quad\operatorname{Var}\widehat S_1=\operatorname{Var}\widehat S_2=2\sigma_N^2,\qquad
+\operatorname{Var}\widehat S_3=\frac{2(1+\cos^2\delta)}{\sin^2\delta}\sigma_N^2,\quad\operatorname{Cov}(\widehat S_1,\widehat S_3)=-2\cot\delta\,\sigma_N^2.
+$$
+
+The covariance comes from reusing d1 in the S3 estimate. Other off-diagonal covariances vanish under these assumptions. No Gaussian distribution is needed for these second-moment identities. Photon-counting variance, unequal gains and fixed total exposure budgets require different weights and a noise model; a condition number alone does not optimize all such experiments.
+
+### Keep calibration error distinct from random noise
+
+
+$$
+\delta_{\rm true}=\delta+\Delta:\quad\widehat S_3=\frac{\cos(\delta+\Delta)-\cos\delta}{\sin\delta}S_1+\frac{\sin(\delta+\Delta)}{\sin\delta}S_3,\qquad
+\widehat S_3-S_3=\Delta(-S_1+\cot\delta\,S_3)+O(\Delta^2/\sin\delta)\quad\text{at fixed }\delta>0.
+$$
+
+Substitute the true third-pair response into the nominal inverse. The first-order expansion requires a small calibration error at a fixed nonzero setting; it is not uniform as delta approaches zero. An unknown instrument retardance and an unknown S3 can trade off even with noiseless readings. More data from the same uncalibrated setting do not identify both automatically. The table uses true S=(1,0.3,0.2,0.2), a +0.5-degree retardance offset, and reports the exact bias rather than the linear approximation.
+
+| delta (degrees) | condition number | S3 standard-error gain / sigmaN | exact S3 bias |
+|---|---|---|---|
+| 90 | 1.73205081 | 1.41421356 | -0.00262557604 |
+| 30 | 4.73205081 | 3.74165739 | 0.000377599179 |
+| 10 | 14.0523715 | 11.4303871 | 0.00720776888 |
+| 1 | 140.347206 | 114.58865 | 0.0967085729 |
+
+```python
+from math import sin, cos, sqrt, pi
+
+# Equal independent absolute error per reading; no photon-budget comparison.
+shift = .5*pi/180
+for degrees in [90, 30, 10, 1]:
+    delta = degrees*pi/180
+    c, s = cos(delta), sin(delta)
+    condition = sqrt(3/(1-abs(c)))
+    noise_gain = sqrt(2*(1+c*c))/abs(s)
+    # Actual S=(1,.3,.2,.2); actual retardance delta+shift.
+    inferred_s3 = ((cos(delta+shift)-c)*.3+
+                   sin(delta+shift)*.2)/s
+    bias = inferred_s3-.2
+    print(degrees, *(format(value, '.9g') for value in
+          [condition, noise_gain, bias]))
+```
+
+### Positive readings need not yield a physical fitted state
+
+
+$$
+S_{\rm true}=(1,0,0,0),\quad y=(0.5,0.5,0.5,0.5,0.51,0.49):\qquad\widehat S=(1,0,0,0.02/\sin\delta).
+$$
+
+All six readings are positive and every complementary pair sums to one. At delta=1 degree the inferred S3 is about 1.146, outside the physical cone. At 5 degrees it is about 0.229, inside the cone but still a false polarization estimate for this unpolarized preparation. Thus positivity and cone membership are different diagnostics, and neither removes instrument uncertainty. A constrained estimator may return a physical state, but its adjustment, residuals and noise assumptions must be reported; it has not changed the measured data into exact observations. The native raw-Stokes validator continues to reject invalid vectors.
+
+![Weak circular response amplifies the instrument condition number and Stokes error; positive readings of an unpolarized input can reconstruct a state outside the physical cone.](/assets/learning/waves-polarization-instrument-conditioning.en.svg)
+
+The [primary noise-optimization paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC3369578/) explains why noise assumptions matter beyond condition number. Our six-reading family, covariance and calibration formulas are derived above for their stated assumptions; they do not establish optimality under combined shot and read noise.
+
+### Research questions with explanations
+
+**Does full rank guarantee a useful reconstruction?** **Answer:** No. Every nonzero delta has full rank, while error amplification grows as 1/delta near zero. State the smallest singular value and the relevant error model.
+
+**Will repeated measurements remove calibration bias?** **Answer:** Not by averaging the same incorrect instrument model. The exact formula shows systematic mixing between S1 and S3; independent calibration or additional identifiable settings are required.
+
+**Does forcing the estimate into the Stokes cone validate the observations?** **Answer:** No. It changes the estimator, not the data or calibration. Report that procedure and residuals; a compatible physical estimate can still be biased.
+
 ## Explained exercises
 
 ### Exercise 1 — Mixture or coherent superposition?

@@ -168,6 +168,115 @@ $$
 
 지연판의 편광도 보존, 손실을 동반한 필터 선택, 영강도, 선형 관측의 모호성, 비가환 순서를 각각 대조군으로 둔다. 독립 실수장 적분·고유값 편광도·여섯 입력 상태의 Mueller 복원은 서로 다른 계산 부분을 검사한다. 수학 검사가 통과해도 독자 화면의 실제 시각화와 조작 검증은 별도로 필요하다.
 
+## 연구 확장: 식별 가능하다고 안정적인 것은 아니다
+
+원형 채널이 없으면 S3를 식별할 수 없다. 원형 응답이 아주 약한 경우는 더 미묘하다. 측정 행렬은 완전 계수여도 작은 읽음·보정 오차가 추정 성분을 지배할 수 있다. 여섯 읽음 계열의 장치 행렬·특잇값·명시적 오차 전파를 유도한다. 이는 보충 장치 모델이며 기존 이상적 여섯 분석기 읽음은 그대로다.
+
+### 세 상보 분석기 쌍을 명시한다
+
+
+$$
+\boldsymbol n_1=(1,0,0),\quad\boldsymbol n_2=(0,1,0),\quad\boldsymbol n_3=(\cos\delta,0,\sin\delta),\qquad y_{r\pm}=\tfrac12(S_0\pm\boldsymbol n_r\cdot\boldsymbol S),\quad 0<\delta\le\pi/2.
+$$
+
+여기서 굵은 S=(S1,S2,S3)이며 모든 읽음은 같은 강도 보정을 쓴다. 처음 두 쌍은 H/V와 D/A다. 각도 pi/4의 지연판 뒤 H/V를 놓으면 세 번째 쌍을 실현한다. 명시한 Jones 관례에서 출력 S1은 cos(delta) S1+sin(delta) S3이다. delta=pi/2이면 원형 성분 쌍이고 delta=0이면 H/V를 반복한다. 여섯 읽음은 보정한 별도 관측이며 여섯 동시 분기 각각에 입사 파워 전체가 전달된다는 주장이 아니다.
+
+### 장치 특잇값을 계산한다
+
+
+$$
+y=AS,\quad A_{r\pm}=\tfrac12(1,\pm\boldsymbol n_r^T),\qquad A^TA=\frac12\begin{pmatrix}3&0&0&0\\0&1+\cos^2\delta&0&\cos\delta\sin\delta\\0&0&1&0\\0&\cos\delta\sin\delta&0&\sin^2\delta\end{pmatrix}.
+$$
+
+상보 부호가 강도·편광 교차 항을 상쇄한다. 남은 S1/S3 블록의 대각합은 2, 행렬식은 sin²(delta)이므로 고윳값은 1±abs(cos(delta))이다. 1/2 인자는 실제 파워 측정의 정규화에서 나온다.
+
+
+$$
+\operatorname{spec}(A^TA)=\left\{\tfrac32,\tfrac12,\tfrac{1+|\cos\delta|}{2},\tfrac{1-|\cos\delta|}{2}\right\},\qquad\kappa_2(A)=\sqrt{\frac3{1-|\cos\delta|}}\sim\frac{\sqrt6}{\delta}\quad(\delta\downarrow0).
+$$
+
+이 구간에서 0이 아닌 모든 delta는 계수 4를 준다. 그래도 최소 특잇값은 0으로 가고 정확히 0에서는 계수가 3이다. 이상적 원형 설정의 조건수는 이 비정규화 Stokes 좌표에서 sqrt(3)이다. 이는 이 측정 계열과 Euclidean 좌표 척도에 대한 결과이지 장치의 보편적 최적성 주장이 아니다.
+
+### 복원하고 읽음 오차를 전파한다
+
+
+$$
+d_r=y_{r+}-y_{r-},\qquad\widehat S_0=\frac13\sum_{r=1}^3(y_{r+}+y_{r-}),\quad\widehat S_1=d_1,\quad\widehat S_2=d_2,\quad\widehat S_3=\frac{d_3-\cos\delta\,d_1}{\sin\delta}.
+$$
+
+이 식은 절대 오차 가중치가 같을 때 제약 없는 보통 최소제곱 해다. 세 쌍의 합을 평균해 중복 강도 정보를 사용하고 작은 사인으로 차를 나누는 과정이 약한 원형 감도를 드러낸다. 측정 데이터가 y=AS+eta이면 다음과 같다.
+
+
+$$
+\|\widehat S-S\|_2\le\|A^+\|_2\|\eta\|_2=\sqrt{\frac2{1-|\cos\delta|}}\|\eta\|_2.
+$$
+
+유사역행렬 상계는 비정규화 Stokes 오차에 대한 것이다. 편광도 같은 비율에는 강도가 0이 아니라는 추가 조건이 필요하다. 각 읽음의 오차가 독립·평균 0·공통 분산 sigmaN²이면 직접 분산 전파로 다음을 얻는다.
+
+
+$$
+\operatorname{Var}\widehat S_0=\tfrac23\sigma_N^2,\quad\operatorname{Var}\widehat S_1=\operatorname{Var}\widehat S_2=2\sigma_N^2,\qquad
+\operatorname{Var}\widehat S_3=\frac{2(1+\cos^2\delta)}{\sin^2\delta}\sigma_N^2,\quad\operatorname{Cov}(\widehat S_1,\widehat S_3)=-2\cot\delta\,\sigma_N^2.
+$$
+
+공분산은 S3 추정에서 d1을 다시 쓰기 때문에 생긴다. 이 가정에서는 다른 비대각 공분산은 0이다. 이차 모멘트 항등식에 가우스 분포는 필요하지 않다. 광자 계수 분산·다른 이득·고정 총 노출 예산에는 다른 가중치와 잡음 모델이 필요하며 조건수만으로 모든 실험을 최적화할 수는 없다.
+
+### 보정 오차와 무작위 잡음을 구분한다
+
+
+$$
+\delta_{\rm true}=\delta+\Delta:\quad\widehat S_3=\frac{\cos(\delta+\Delta)-\cos\delta}{\sin\delta}S_1+\frac{\sin(\delta+\Delta)}{\sin\delta}S_3,\qquad
+\widehat S_3-S_3=\Delta(-S_1+\cot\delta\,S_3)+O(\Delta^2/\sin\delta)\quad\text{at fixed }\delta>0.
+$$
+
+실제 세 번째 쌍 응답을 명목 역변환에 대입한다. 일차 전개는 0이 아닌 설정을 고정한 작은 보정 오차에 대한 것이며 delta가 0으로 갈 때 균일하지 않다. 장치 지연량과 S3가 둘 다 미지이면 잡음 없는 읽음에서도 서로 보상될 수 있다. 보정되지 않은 같은 설정의 데이터를 늘린다고 둘이 자동으로 식별되지는 않는다. 표는 실제 S=(1,0.3,0.2,0.2), 지연량 +0.5도 오프셋을 사용하고 선형 근사가 아닌 정확한 편향을 보고한다.
+
+| delta (도) | 조건수 | S3 표준오차 이득 / sigmaN | 정확한 S3 편향 |
+|---|---|---|---|
+| 90 | 1.73205081 | 1.41421356 | -0.00262557604 |
+| 30 | 4.73205081 | 3.74165739 | 0.000377599179 |
+| 10 | 14.0523715 | 11.4303871 | 0.00720776888 |
+| 1 | 140.347206 | 114.58865 | 0.0967085729 |
+
+```python
+from math import sin, cos, sqrt, pi
+
+# Equal independent absolute error per reading; no photon-budget comparison.
+shift = .5*pi/180
+for degrees in [90, 30, 10, 1]:
+    delta = degrees*pi/180
+    c, s = cos(delta), sin(delta)
+    condition = sqrt(3/(1-abs(c)))
+    noise_gain = sqrt(2*(1+c*c))/abs(s)
+    # Actual S=(1,.3,.2,.2); actual retardance delta+shift.
+    inferred_s3 = ((cos(delta+shift)-c)*.3+
+                   sin(delta+shift)*.2)/s
+    bias = inferred_s3-.2
+    print(degrees, *(format(value, '.9g') for value in
+          [condition, noise_gain, bias]))
+```
+
+### 양의 읽음도 물리적 적합 상태를 보장하지 않는다
+
+
+$$
+S_{\rm true}=(1,0,0,0),\quad y=(0.5,0.5,0.5,0.5,0.51,0.49):\qquad\widehat S=(1,0,0,0.02/\sin\delta).
+$$
+
+여섯 읽음이 모두 양수이고 모든 상보 쌍의 합은 1이다. delta=1도이면 추정 S3는 약 1.146으로 물리 원뿔 밖이다. 5도이면 약 0.229로 원뿔 안이지만 이 무편광 준비 상태에 대해서는 여전히 거짓 편광 추정이다. 따라서 읽음의 양수성과 원뿔 소속은 서로 다른 진단이며 어느 것도 장치 불확실성을 제거하지 않는다. 제약 추정기가 물리 상태를 반환할 수는 있지만 조정·잔차·잡음 가정을 보고해야 한다. 측정 데이터가 정확한 관측으로 바뀐 것은 아니다. 기존 원시 Stokes 검증기는 잘못된 벡터를 계속 거부한다.
+
+![약한 원형 응답이 장치 조건수와 Stokes 오차를 증폭시키며 무편광 입력의 양의 읽음도 물리 원뿔 밖의 상태로 복원될 수 있다.](/assets/learning/waves-polarization-instrument-conditioning.ko.svg)
+
+[잡음 최적화 원 논문](https://pmc.ncbi.nlm.nih.gov/articles/PMC3369578/)은 조건수 외에 잡음 가정이 중요한 이유를 설명한다. 이 여섯 읽음 계열·공분산·보정 식은 위의 명시한 가정에서 유도하며 샷·읽음 잡음이 함께 있을 때의 최적성을 확립하지 않는다.
+
+### 해설이 있는 연구 질문
+
+**완전 계수이면 유용한 복원을 보장하는가?** **답:** 아니다. 0이 아닌 모든 delta는 완전 계수지만 영점 근처 오차 증폭은 1/delta처럼 커진다. 최소 특잇값과 해당 오차 모델을 명시한다.
+
+**측정을 반복하면 보정 편향이 사라지는가?** **답:** 같은 잘못된 장치 모델로 평균한다고 사라지지 않는다. 정확한 식은 S1·S3의 체계적 혼합을 보인다. 독립 보정이나 추가로 식별 가능한 설정이 필요하다.
+
+**추정값을 Stokes 원뿔 안에 강제하면 관측을 검증하는가?** **답:** 아니다. 데이터나 보정이 아니라 추정기를 바꾼다. 그 절차와 잔차를 보고해야 하며 적합 가능한 물리 추정도 편향될 수 있다.
+
 ## 해설 문제
 
 ### 문제 1 — 혼합인가 결맞은 중첩인가?

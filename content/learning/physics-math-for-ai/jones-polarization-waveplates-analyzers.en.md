@@ -161,6 +161,110 @@ Use a lossless retarder as a norm-preservation control, a crossed analyzer as a 
 
 Independent vector projections test matrix ordering, singular-value decomposition tests ellipse axes and direct real-time integration tests cycle factors. These checks are stronger than generating reference curves by calling the same product routine. Mathematical validation and actual reader-interface verification remain separate stages.
 
+## Research extension: unresolved color can hide pure polarization
+
+The monochromatic retarder above preserves the degree of every nonzero Jones state. Why can a broadband measurement nevertheless become partially polarized? The detector may discard frequency information before reporting a polarization matrix. We derive that averaging explicitly and show why frequency-dependent compensation must act before the information is discarded. This is a supplementary spectral model, not a new native wavelength or delay control.
+
+### Define what the detector averages
+
+At each frequency prepare the same unit Jones direction (1,1)/sqrt(2), with total normalized spectral intensity I>0. Let Omega be angular-frequency detuning from the carrier, sigmaOmega its standard deviation and tau the differential group delay. Assume a fixed-axis, linear-retardance model with no absorption or reflection:
+
+
+$$
+\rho(\Omega)=\frac{e^{-\Omega^2/(2\sigma_\Omega^2)}}{\sqrt{2\pi}\sigma_\Omega},\quad J(\Omega)=\begin{pmatrix}1&0\\0&e^{i(\delta_0+\tau\Omega)}\end{pmatrix},\qquad s=\sigma_\Omega|\tau|.
+$$
+
+Omega and sigmaOmega have units rad/s, tau has units seconds and delta0 and s are dimensionless. The Gaussian is a detuning-envelope idealization; interpreting it as an optical spectrum requires a carrier much larger than the bandwidth. The detector is assumed to sum spectral intensities without cross-frequency interference, for example under a stationary incoherent-frequency model or an appropriate long-time average. A finite time gate that retains cross-frequency terms needs a different observation model.
+
+Every J(Omega) is unitary. At a resolved frequency the output vector is (1, exp(i(delta0+tau Omega)))/sqrt(2), whose outer product has rank one. However, the unresolved coherency is the average of outer products, not the outer product of an averaged Jones vector.
+
+
+$$
+\chi(\tau)=\int\rho(\Omega)e^{i\tau\Omega}d\Omega,\qquad\overline C=\frac I2\begin{pmatrix}1&e^{-i\delta_0}\overline{\chi(\tau)}\\e^{i\delta_0}\chi(\tau)&1\end{pmatrix}.
+$$
+
+The upper-right sign follows from Ex times the conjugate of Ey and agrees with the existing S3 convention. Chi is the characteristic function of the normalized spectrum. Its magnitude is at most one by the triangle inequality. The trace stays I, even when the off-diagonal terms shrink: no power has been absorbed.
+
+### Evaluate the Gaussian and the actual analyzer readings
+
+
+$$
+\chi(\tau)=e^{-s^2/2},\qquad \overline S=I(1,0,e^{-s^2/2}\cos\delta_0,e^{-s^2/2}\sin\delta_0),\qquad P=e^{-s^2/2}.
+$$
+
+The Gaussian Fourier integral gives the exponential; equivalently its characteristic function obeys chi-prime(u)=−u chi(u) after integration by parts, with chi(0)=1. The coherency eigenvalues are I(1±P)/2. Mixedness arises because the spectral components have different relative phases and their label is unobserved. It does not contradict purity at each frequency.
+
+
+$$
+I_\gamma=\frac I2[1+P\cos\delta_0\sin(2\gamma)],\qquad I_{C\pm}=\frac I2[1\pm P\sin\delta_0].
+$$
+
+These are integrated positive analyzer intensities. With delta0=pi/2 every linear analyzer reads I/2 regardless of delay; the circular-sensitive pair reveals the changing S3. This connects the spectral mechanism to the existing observation ambiguity without inventing a deterministic ellipse for the averaged beam. The table uses I=1, delta0=pi/2 and nine significant digits. The Python cell integrates the spectrum rather than calling the product calculator.
+
+| s | degree P | I_C+ | I_C- |
+|---|---|---|---|
+| 0.25 | 0.969233234 | 0.984616617 | 0.0153833828 |
+| 0.5 | 0.882496903 | 0.941248451 | 0.0587515487 |
+| 1 | 0.60653066 | 0.80326533 | 0.19673467 |
+| 2 | 0.135335283 | 0.567667642 | 0.432332358 |
+
+```python
+from math import exp, cos, sqrt, pi
+
+def characteristic(s, n=16000):
+    step = 18/n
+    def f(q):
+        return exp(-q*q/2)/sqrt(2*pi)*cos(s*q)
+    return step/3*(f(-9)+f(9)+sum(
+        (4 if j % 2 else 2)*f(-9+j*step) for j in range(1, n)))
+
+# Unit total intensity; mean retardance pi/2; unresolved Gaussian spectrum.
+for s in [.25, .5, 1, 2]:
+    degree = characteristic(s)
+    assert abs(degree-exp(-s*s/2)) < 2e-13
+    print(s, *(format(value, '.9g') for value in
+          [degree, (1+degree)/2, (1-degree)/2]))
+```
+
+The omitted Gaussian probability outside q=Omega/sigmaOmega in [−9,9] is erfc(9/sqrt(2)); it bounds the absolute missing characteristic integral. Quadrature discretization remains separate and is checked by doubling the partition. Numerical integration is evidence for the explicit derivation, not an all-wavelength material certificate.
+
+### Separate a bandwidth bound from a Gaussian assumption
+
+
+$$
+\mathbb E\Omega=0,\quad\mathbb E\Omega^2=\sigma_\Omega^2:\qquad P=|\chi(\tau)|\ge\max(0,1-s^2/2),\qquad 1-P\le\min(1,s^2/2).
+$$
+
+Use cos(z)≥1−z²/2 and abs(chi)≥Re chi. This finite-second-moment lower bound does not require Gaussianity or a symmetric spectrum. It does not make the full degree a function of bandwidth alone. For an equal two-line spectrum at detunings ±sigmaOmega,
+
+
+$$
+\rho_{\rm two}=\tfrac12[\delta(\Omega-\sigma_\Omega)+\delta(\Omega+\sigma_\Omega)]:\qquad\chi(\tau)=\cos(\sigma_\Omega\tau),\quad P=|\cos(\sigma_\Omega\tau)|.
+$$
+
+The variance matches the Gaussian, but the degree revives. When cos is negative, the signed Stokes preference reverses even though degree is nonnegative. Thus fitting delay from degree alone requires the spectral model and can be nonunique. A monotonic Gaussian decay is not a universal law of lossless retarders.
+
+### Compensate before discarding the spectral label
+
+
+$$
+J_c(\Omega)=\operatorname{diag}(1,e^{-i(\delta_0+\tau\Omega)}):\quad J_c(\Omega)J(\Omega)=I_2,\quad P_{\rm compensated}=1,\qquad P(U\overline C U^\dagger)=P(\overline C)\quad\text{for fixed unitary }U.
+$$
+
+An ideal inverse phase response acting on the frequency-resolved field restores the original polarization before detection. In contrast, a frequency-independent unitary acting on the already averaged matrix preserves its eigenvalues and cannot restore degree. This does not prohibit physical compensation of a broadband beam: it says that the reduced 2×2 matrix alone has discarded the spectral correlations that such a compensator uses. The exact inverse is a declared ideal response, not a promise about a realizable plate at every frequency.
+
+![Equal spectral variances give different unresolved polarization degrees; a two-line spectrum revives and can reverse its signed circular preference.](/assets/learning/waves-polarization-spectral-delay.en.svg)
+
+The [primary PMD study abstract](https://opg.optica.org/jlt/abstract.cfm?uri=jlt-22-3-763) motivates retaining the spectral model when interpreting polarization degree. The Gaussian, two-line and ideal compensation calculations here are derived for the explicitly stated first-order fixed-axis model; they are not a reproduction of the full all-order study.
+
+### Research questions with explanations
+
+**Does lower observed degree prove absorption?** **Answer:** No. Every frequency transformation is unitary and the integrated trace stays I. The missing frequency label makes a mixture of distinct pure directions.
+
+**Does the same bandwidth imply the same delay-to-degree curve?** **Answer:** No. The Gaussian and two-line distributions have the same variance but different characteristic functions. Signed Stokes data and spectral information retain distinctions lost by degree alone.
+
+**Can compensation and spectral averaging always be interchanged?** **Answer:** No. The exact frequency-dependent inverse acts on correlations before detection. A fixed unitary on the reduced matrix preserves degree and is a different operation.
+
 ## Explained exercises
 
 ### Exercise 1 — Normalize a state without inventing a physical loss
