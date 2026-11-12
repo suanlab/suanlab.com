@@ -146,6 +146,122 @@ Each stiffness satisfies ki=m(pi fi/4)². Changing mass at fixed frequency codes
 
 The model evaluates 201 times over two seconds. Bracket, torque and energy residuals remain numerical values rather than being replaced by zero. Their maxima are sampled diagnostics, not certified continuous-time bounds. Independent symbolic gradients and 60-digit trajectory derivatives check the formulas. Spatial projections explicitly retain which pair of axes is displayed; a projected crossing does not mean a full phase-space trajectory intersects itself.
 
+## Research extension: a reduced Casimir does not determine full dynamics
+
+The three angular momenta form a Poisson algebra, but replacing six phase coordinates by those three observables discards information. We can compute the reduced bracket exactly while still lacking enough state to predict the next angular momentum.
+
+### Define the reduced bracket and its leaves
+
+Use the positive spatial angular-momentum convention derived above:
+
+$$
+\Pi_{ij}(L)=\epsilon_{ijk}L_k,\qquad
+\{F,G\}_L=\nabla F^T\Pi(L)\nabla G,\qquad
+\dot L=\Pi(L)\nabla h=\nabla h\times L.
+$$
+
+A Hamiltonian $h(L)$ is a sufficient construction for a closed reduced flow. More generally, any deterministic closure must give the same rate to full states with the same retained variables. The reduced algebra has the Casimir:
+
+$$
+C(L)=\frac12|L|^2,\quad\nabla C=L,\quad\Pi(L)L=0,\qquad
+\operatorname{rank}\Pi=\begin{cases}2,&L\ne0,\\0,&L=0.\end{cases}
+$$
+
+For $L\ne0$, the matrix has a nonzero two-by-two minor and zero determinant, hence rank two. Its leaves are fixed-radius spheres. The origin is a separate rank-zero leaf. Every reduced Hamiltonian vector field is tangent to its leaf. $C$ has units (J s)².
+
+### Distinguish the reduced algebra from the full canonical space
+
+The full angular-momentum map preserves brackets between functions of $L$. It does not turn every full Hamiltonian into a function of $L$:
+
+$$
+\{C(L),F(L)\}_{x,p}=0,\qquad
+\{C(L),H(x,p)\}_{x,p}=L\cdot\tau\quad\text{for the stated mechanical }H.
+$$
+
+The pullback of a reduced Casimir need not commute with arbitrary functions on the full phase space. In the anisotropic oscillator, the torque can change $|L|$. Imposing the reduced Casimir as a universal conservation law would change the physical model.
+
+Take a companion oscillator with $m=1$ kg and stiffnesses $(0,1,4)$ N/m:
+
+$$
+H=\frac{|p|^2}{2m}+\frac{k_yy^2+k_zz^2}{2},\qquad k_x=0.
+$$
+
+### Keep the same angular momentum and energy, but change the torque
+
+The following arrays are SI values of two full states:
+
+$$
+A:\ x=(1,1,0),\ p=(0,1,0),\qquad
+B:\ x=(5/7,-1/5,0),\ p=(0,7/5,0).
+$$
+
+| State | $L_z$ / (J s) | $H$ / J | $\dot L_z$ / (N m) |
+|---|---|---|---|
+| A | 1 | 1 | -1 |
+| B | 1 | 1 | 1/7 |
+
+Both have $L=(0,0,1)$ J s and $C=1/2$ (J s)², yet $\dot L_z=-xy$ has opposite signs. Even retaining the conserved scalar energy alongside $L$ cannot close these rates. As before, differentiate the full three-dimensional angular-momentum functions before evaluating these planar states.
+
+An even sharper rank-zero case uses the same SI parameters:
+
+$$
+x=(1,1,1),\ p=0:\quad L=0,\ \Pi(L)=0,\ \tau=(-3,4,-1),\qquad
+\dot C(0)=0,\quad\ddot C(0)=26\quad\text{in SI numerical values}.
+$$
+
+Any smooth $h(L)$ predicts zero rate at the reduced origin, while the full oscillator immediately leaves it. The instantaneous zero of $\dot C$ is also insufficient: the nonzero second derivative gives initial quadratic growth. The lost information belongs to the full positions and momenta.
+
+### Compare two explicitly different generators
+
+A legitimate closed reduced example is a spatial-rotation generator:
+
+$$
+h(L)=\Omega L_x,\quad\Omega=1\,\mathrm{s}^{-1},\qquad
+L(t)=(0,-\sin(\Omega t),\cos(\Omega t))\,\mathrm{Js},\qquad
+C(t)=\tfrac12(\mathrm{Js})^2.
+$$
+
+![Closed rotation leaves and changing angular magnitude in the full oscillator](/assets/learning/analytical-angular-closure.en.svg)
+
+The rotation example and the two full oscillator traces start at the same $L$, but use different specified Hamiltonians. This is not an approximation-error plot. The positive spatial bracket here should not be copied into body-fixed Euler equations without checking their convention. The stiffnesses and states are supplementary Python examples, not new native controls.
+
+For learned reduced dynamics, test whether the retained variables determine rates before fitting a Hamiltonian or enforcing a Casimir. A correct Poisson algebra does not supply missing physical state.
+
+### Execute the closure counterexample
+
+
+
+```python
+from fractions import Fraction as Q
+from math import sin, cos
+
+# SI: m=1 kg, stiffness=(0,1,4) N/m; differentiate full 3D functions first.
+states = [([Q(1), Q(1), Q(0)], [Q(0), Q(1), Q(0)]),
+          ([Q(5,7), Q(-1,5), Q(0)], [Q(0), Q(7,5), Q(0)])]
+rates = []
+for x, p in states:
+    Lz = x[0]*p[1]-x[1]*p[0]
+    H = sum(v*v for v in p)/2+x[1]**2/2+2*x[2]**2
+    torque_z = -x[0]*x[1]
+    assert Lz == 1 and H == 1
+    rates.append(torque_z)
+    print(Lz, H, torque_z)
+assert rates == [Q(-1), Q(1,7)]
+
+# A separate closed reduced example: h=Lx/(1 second), initial L=(0,0,1).
+for t in [0, .5, 1, 2]:
+    L = [0, -sin(t), cos(t)]
+    assert abs(sum(x*x for x in L)/2-.5) < 2e-15
+# Same retained L and H can have different full oscillator torques.
+# The reduced rotation example uses a different specified Hamiltonian.
+```
+
+**Research questions with answers**
+
+- Is the reduced Casimir a Casimir of the full canonical space? **Answer:** No. It commutes with functions of $L$, not with every full Hamiltonian.
+- Can adding total energy to $L$ close this oscillator? **Answer:** These two states disprove that proposal: both retained values agree but rates differ.
+- Why can the full flow leave $L=0$? **Answer:** Its Hamiltonian does not yield a closed reduced vector field on $L$; the zero reduced bracket cannot encode the missing torque data.
+
 ## Exercises with explanations
 
 1. Derive {Lx,Ly} from the coordinate gradients. **Solution:** Expand the three canonical pairs before substituting a state. The remaining terms are xp_y−yp_x=Lz. Reversing the arguments gives −Lz.

@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-three-unit-extension",
+  "date": "2026-11-12",
+  "baselineCommit": "9a8b291dfb817d669e3cbac35df678b0f640453f",
+  "scope": {
+    "expandedUnits": [
+      "polar-hamiltonian-legendre-map",
+      "poisson-observable-canonical-flow",
+      "angular-momentum-poisson-algebra"
+    ],
+    "manuscripts": 6,
+    "localizedFigures": 6,
+    "originalManuscriptsPreserved": true,
+    "previousReviewEntriesPreserved": 657,
+    "reviewEntriesAfter": 663,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/polar-hamiltonian-legendre-map.en.md",
+      "sha256": "a66adb2d134de84bde6e7aa5c659b6474220225ffae4b0060d979c676b976b12",
+      "previousSha256": "441fa160c86695c8df4a9f6e1917434c1b37b5158ce8015c4db5ac5028df65a1"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/polar-hamiltonian-legendre-map.ko.md",
+      "sha256": "ea06f592801e1f4e0922d393bc0ce292c6fc644fd26990536eb83b0a607c597a",
+      "previousSha256": "c3202301af9630984b04a789f40c4a72bd41cd70a022b6e687899070968c2ea1"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/poisson-observable-canonical-flow.en.md",
+      "sha256": "59f9400897472cd9da57882ada64b230ded4bbc8f37535d6b6410f077e14cb5e",
+      "previousSha256": "205c3b1cb6224642e60f6f63464a3f858a21a4bc9ff8868f3414bdaf67945401"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/poisson-observable-canonical-flow.ko.md",
+      "sha256": "63484ae83e825438dba698b05d7264aaff0769e04f4b39c2e3b3a09d68375e22",
+      "previousSha256": "88d0da56d25c6cdb4dbaf15f67e20e4e7134d042acf4a803269a87cba2fef3e4"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/angular-momentum-poisson-algebra.en.md",
+      "sha256": "464197fba308eea108c44f29931b925af1ab9cfaf49504e9838f8e4fbf976df4",
+      "previousSha256": "fcc4f8ab75f37c6286866e5ff7bf21868ee2df18d02bbb4780f9a5435c83c597"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/angular-momentum-poisson-algebra.ko.md",
+      "sha256": "d78ea70ef10f7a99b51b26aa3e0495ad4b95bb7654d7679c307ba0f3fc3c6b5f",
+      "previousSha256": "7f50b6bffe3d4ad2f2f5ef890601f5b8b1b475e498d3f0b3a6be411e167c7027"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/analytical-canonical-dual.en.svg",
+      "sha256": "91c1b4cebc6f11cec538a867c3c88264e9266a6ab9aea7ac072792e5c3a45916"
+    },
+    {
+      "path": "public/assets/learning/analytical-canonical-dual.ko.svg",
+      "sha256": "750d42cf8cfe0cd2c753d011c8defe784295b3016cb31cd35b72f733e355cc16"
+    },
+    {
+      "path": "public/assets/learning/analytical-poisson-clock.en.svg",
+      "sha256": "7c37f6873e7fa70e5033b3d0575a248303dfaf555af583b64a3c3550b4fef1e7"
+    },
+    {
+      "path": "public/assets/learning/analytical-poisson-clock.ko.svg",
+      "sha256": "ec979adc6bcd853af2ecca6efd7208671ca968e0ea87ce3100b77567f45b051e"
+    },
+    {
+      "path": "public/assets/learning/analytical-angular-closure.en.svg",
+      "sha256": "98363d668c7a9b2fb0323c1ad418582102f1d719a25a4a9c9120337d379ded95"
+    },
+    {
+      "path": "public/assets/learning/analytical-angular-closure.ko.svg",
+      "sha256": "503deabf9986497f5dc23f6af9ecac16e30014a27022666a28b9a9ef35eb4983"
+    }
+  ],
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-generalized-coordinates.test.ts",
+      "scripts/learning-stationary-action.test.ts",
+      "scripts/learning-lagrange-equations.test.ts",
+      "scripts/learning-hamiltonian-canonical.test.ts",
+      "scripts/learning-poisson-brackets.test.ts",
+      "scripts/learning-symplectic-geometry.test.ts",
+      "scripts/learning-noether-theorem.test.ts",
+      "scripts/learning-constraints-reduction.test.ts",
+      "scripts/learning-hamilton-jacobi.test.ts",
+      "scripts/learning-hamilton-jacobi-integration.test.ts",
+      "scripts/learning-structure-preserving.test.ts",
+      "scripts/learning-structure-preserving-integration.test.ts",
+      "scripts/learning-analytical-topology-research.test.ts",
+      "scripts/learning-coordinate-research.test.ts",
+      "scripts/learning-action-research.test.ts",
+      "scripts/learning-lagrange-research.test.ts",
+      "scripts/learning-canonical-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 368,
+    "selectedTestFailures": 0,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-canonical-research.py",
+      "legendreStates": 270,
+      "nonlinearChartStates": 108,
+      "canonicalAngularStates": 729,
+      "clockExamples": 5,
+      "sameAngularAndEnergyCounterexamples": 2,
+      "zeroLeafCounterexample": 1
+    },
+    "pairedPythonCellsExecuted": 6,
+    "pairedDisplayEquationsPerUnit": [
+      6,
+      6,
+      7
+    ],
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "build": "passed",
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "browser": {
+      "unitCount": 3,
+      "states": 24,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 9,
+      "explainedQuizzes": 6,
+      "conceptSelections": 12,
+      "persistenceCompletionGroups": 3,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "command": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_CANONICAL_RESEARCH_REPORT=.runtime/learning/canonical-research-browser.json node scripts/check-canonical-research.cjs"
+    },
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "registry": {
+      "units": 650,
+      "guides": 1969
+    },
+    "sourceExportServedSvgPairs": 6,
+    "exportServedHtmlPairs": 3,
+    "priorDomainBrowserBaseline": {
+      "commit": "a3110d1",
+      "states": 160,
+      "evidence": "docs/online-learning/physics-math-for-ai/analytical-topology-research-evidence.json"
+    },
+    "sourceFigurePreviewsReviewed": 6,
+    "mobileScreenshotsReviewed": 6
+  },
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 39,
+    "reviewedTopics": 386,
+    "remainingDomains": 12,
+    "remainingTopics": 123,
+    "introductoryTopicsComplete": 362
+  }
+}

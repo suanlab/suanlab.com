@@ -124,6 +124,115 @@ pθ=0인 반지름 운동은 직교 원점을 통과할 수 있다. x=(cos(πt/2
 
 초기 조절값은 Ω=πf/4,k=mΩ² 약속을 유지한다. f가 같을 때 질량을 바꾸면 강성도 함께 바뀌어 고유 진동수가 유지된다. 초기 각속도 코드와 조회 시각의 의미도 앞 극좌표 단원과 같다.
 
+## 연구 확장: 비선형 운동량을 역변환한 뒤 미분하기
+
+앞의 Lagrange 확장에서는 볼록한 사차 운동 후보를 만들고 에너지를 속도로 표현했다. Hamilton 방정식에 쓰려면 먼저 정준 운동량으로 바꾸어야 한다. 운동량을 고정하면 매개변수 미분의 부호도 달라질 수 있다.
+
+### 단위를 맞춘 운동량 사상 만들기
+
+$m>0$, $\lambda\ge0$, 정칙한 극좌표 $r>0$을 사용한다. $U$는 $\lambda$와 독립으로 둔다:
+
+$$
+L_\lambda=\frac m2s+\frac\lambda4s^2-U(r),\quad s=\dot r^2+r^2\dot\theta^2,\qquad
+p_r=(m+\lambda s)\dot r,\quad p_\theta=(m+\lambda s)r^2\dot\theta.
+$$
+
+앞과 같이 $\lambda$의 단위는 kg s²/m²다. 반지름 운동량은 kg m/s, 각운동량은 kg m²/s이므로 크기를 합칠 때는 각 성분을 반지름으로 나눈다:
+
+$$
+P=\sqrt{p_r^2+\frac{p_\theta^2}{r^2}},\quad u=\sqrt{s},\qquad
+P=mu+\lambda u^3,\quad\frac{dP}{du}=m+3\lambda u^2>0.
+$$
+
+### 각 정칙 운동량 공간에서 전역 역변환 증명하기
+
+$mu+\lambda u^3$는 0에서 시작해 엄격히 증가하며 무한대로 간다. 따라서 모든 $P\ge0$에 정확히 한 번 도달한다. 국소 Hessian 판정보다 강한, 고정한 정칙 위치에서의 전역 역변환 증명이다. 운동량이 0이 아니면 방향도 속도 방향을 정한다. $P=0$에서는 속도 0을 직접 사용한다. 이분법 구간은 $[0,P/m]$이며 $\lambda=0$에는 별도의 정확한 선형 분기가 있다.
+
+이 역변환 뒤에야 Hamiltonian을 정준 변수의 함수로 쓸 수 있다:
+
+
+
+$$
+H_\lambda(r,p_r,p_\theta)
+=\frac m2u(P)^2+\frac{3\lambda}{4}u(P)^4+U(r).
+$$
+
+### 올바른 독립 변수를 고정해 미분하기
+
+음함수 미분이나 Legendre 변환에서 정상 속도 항의 상쇄를 이용하면 다음을 얻는다:
+
+$$
+H_{p_r}=\frac{up_r}{P},\qquad H_{p_\theta}=\frac{up_\theta}{r^2P},\qquad
+-H_r=\frac{up_\theta^2}{r^3P}-U'(r),\quad P>0.
+$$
+
+마지막 미분은 두 정준 운동량을 고정한다. 각속도가 아니라 $P$의 반지름 의존성을 반영한다. $P=0$에서는 운동량 미분은 0이고 $H_r=U\prime(r)$다. 이 분기는 수치적인 $0/0$을 피하지만 극좌표를 $r=0$까지 확장하지는 않는다.
+
+운동 계수에 대한 포락선 미분은 특히 유익하다:
+
+$$
+\left.\frac{\partial H_\lambda}{\partial\lambda}\right|_{r,p_r,p_\theta}
+=-\frac{u^4}{4},\qquad
+\left.\frac{\partial E_\lambda}{\partial\lambda}\right|_u=\frac{3u^4}{4}.
+$$
+
+정준 운동량을 고정하면 사차 벌점이 커질수록 최적 속도가 줄어든다. 속도를 고정하면 앞에서 구한 에너지는 커진다. 두 미분은 서로 다른 질문이다. 다음 SI 예제는 $m=1$ kg, $U=0$이다. 가운데 열은 $P=\sqrt{18}$ kg m/s를, 마지막 열은 $u=\sqrt2$ m/s를 고정한다.
+
+| $\lambda$ / (kg s²/m²) | $u(P)$ / (m/s) | 고정 $P$의 $H$ / J | 고정 $u$의 $E$ / J |
+|---|---|---|---|
+| 0 | 4.242641 | 9 | 1 |
+| 1/2 | 1.716023 | 4.724169 | 5/2 |
+| 1 | 1.414214 | 4 | 4 |
+
+![비선형 운동량 역변환과 고정 변수에 따른 에너지 변화](/assets/learning/analytical-canonical-dual.ko.svg)
+
+서로 다른 후보에서 운동량의 수치가 같다고 물리적 초기 속도까지 같은 것은 아니다. 표는 함수를 비교하며 하나의 공통 초기값 궤적을 비교하는 것이 아니다. 0이 아닌 퍼텐셜을 더하면 사차 후보의 동역학도 바뀐다. 이 보충 예제는 기존 이차 실습과 별도로 다룬다.
+
+### 기존 모델의 극한을 복원하고 실행하기
+
+이차·영 운동량 분기는 다음과 같다:
+
+$$
+H_0=\frac{p_r^2}{2m}+\frac{p_\theta^2}{2mr^2}+U(r),\qquad
+\lambda=0:\ u=P/m,\quad P=0:\ u=\dot r=\dot\theta=0\quad(r>0).
+$$
+
+
+
+```python
+from math import sqrt
+
+def inverse_speed(P, m, lam):
+    if P < 0 or m <= 0 or lam < 0:
+        raise ValueError("Require P>=0, m>0, lambda>=0")
+    if P == 0 or lam == 0:
+        return P/m
+    lo, hi = 0.0, P/m
+    for _ in range(80):
+        mid = (lo+hi)/2
+        if m*mid+lam*mid**3 < P:
+            lo = mid
+        else:
+            hi = mid
+    return (lo+hi)/2
+
+# SI: m=1, U=0, fixed P=sqrt(18); last column fixes speed=sqrt(2).
+values = []
+for lam in [0, .5, 1]:
+    u = inverse_speed(sqrt(18), 1, lam)
+    H = u*u/2+3*lam*u**4/4
+    values.append(H)
+    print(lam, round(u, 6), round(H, 6), 1+3*lam)
+assert values[0] > values[1] > values[2]
+assert inverse_speed(0, 1, 1) == 0
+```
+
+**연구 질문과 답**
+
+- 국소 역함수로 전역 역함수까지 증명하는가? **답:** 아니다. 여기서는 $P(u)$의 단조성과 전체 치역이 추가 증명이다.
+- 두 에너지 미분의 부호가 다른 이유는? **답:** 고정한 변수가 다르다. 운동량을 고정하면 속도는 변해야 한다.
+- 영 운동량 분기로 원점을 고칠 수 있는가? **답:** 없다. 정칙한 양의 반지름에서만 적용된다.
+
 ## 해설이 있는 연습 문제
 
 1. 자유 운동 예제의 1초 뒤 운동량은? **해설:** pr=m rdot=3/√5 kg m/s이고 pθ=m(x vy−y vx)=1 kg m²/s다. 단위가 다르므로 두 숫자를 같게 두지 않는다.

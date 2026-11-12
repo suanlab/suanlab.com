@@ -124,6 +124,115 @@ The implementation reuses the independently verified Cartesian analytic flow and
 
 The initial controls retain Ω=πf/4 and k=mΩ². At fixed f, changing mass changes stiffness as well, preserving the physical frequency. The initial angular-rate code and query time have the meanings established in the preceding polar-flow unit.
 
+## Research extension: invert the nonlinear momentum before differentiating
+
+The preceding Lagrange extension gave a convex quartic kinetic candidate. Its energy was written in velocity variables. To use Hamilton equations, we must first express that energy in canonical momentum variables. Holding momentum fixed can even reverse the sign of a parameter derivative.
+
+### Build the momentum map with units
+
+Use $m>0$, $\lambda\ge0$ and a regular polar chart $r>0$. Keep $U$ independent of $\lambda$:
+
+$$
+L_\lambda=\frac m2s+\frac\lambda4s^2-U(r),\quad s=\dot r^2+r^2\dot\theta^2,\qquad
+p_r=(m+\lambda s)\dot r,\quad p_\theta=(m+\lambda s)r^2\dot\theta.
+$$
+
+As before, $\lambda$ has units kg s²/m². Radial momentum has units kg m/s and angular momentum kg m²/s. Divide the angular component by radius before combining their magnitudes:
+
+$$
+P=\sqrt{p_r^2+\frac{p_\theta^2}{r^2}},\quad u=\sqrt{s},\qquad
+P=mu+\lambda u^3,\quad\frac{dP}{du}=m+3\lambda u^2>0.
+$$
+
+### Prove global inversion on each regular momentum fiber
+
+The function $mu+\lambda u^3$ starts at zero, is strictly increasing, and tends to infinity. It therefore reaches every $P\ge0$ exactly once. This proves global inversion at each fixed regular position, beyond a local Hessian argument. For nonzero momentum, its direction also fixes velocity direction. At $P=0$, use zero velocity directly. A bisection interval is $[0,P/m]$; $\lambda=0$ has the separate exact linear branch.
+
+After this inversion, the Hamiltonian is genuinely a function of the canonical arguments:
+
+
+
+$$
+H_\lambda(r,p_r,p_\theta)
+=\frac m2u(P)^2+\frac{3\lambda}{4}u(P)^4+U(r).
+$$
+
+### Differentiate the correct independent variables
+
+Implicit differentiation, or cancellation of the stationary velocity terms in the Legendre transform, gives:
+
+$$
+H_{p_r}=\frac{up_r}{P},\qquad H_{p_\theta}=\frac{up_\theta}{r^2P},\qquad
+-H_r=\frac{up_\theta^2}{r^3P}-U'(r),\quad P>0.
+$$
+
+The last derivative holds both canonical momenta fixed. It includes the radius dependence of $P$, rather than holding angular velocity fixed. At $P=0$, the momentum derivatives are zero and $H_r=U\prime(r)$. These branches avoid a numerical $0/0$. They do not extend the polar chart through $r=0$.
+
+The envelope derivative in the kinetic coefficient is especially informative:
+
+$$
+\left.\frac{\partial H_\lambda}{\partial\lambda}\right|_{r,p_r,p_\theta}
+=-\frac{u^4}{4},\qquad
+\left.\frac{\partial E_\lambda}{\partial\lambda}\right|_u=\frac{3u^4}{4}.
+$$
+
+At fixed canonical momentum, increasing the quartic penalty reduces the maximizing speed; at fixed speed, the earlier energy increases. The two derivatives ask different questions. In the following SI example, $m=1$ kg and $U=0$. The middle columns fix $P=\sqrt{18}$ kg m/s; the last column instead fixes $u=\sqrt2$ m/s.
+
+| $\lambda$ / (kg s²/m²) | $u(P)$ / (m/s) | $H$ at fixed $P$ / J | $E$ at fixed $u$ / J |
+|---|---|---|---|
+| 0 | 4.242641 | 9 | 1 |
+| 1/2 | 1.716023 | 4.724169 | 5/2 |
+| 1 | 1.414214 | 4 | 4 |
+
+![Nonlinear momentum inversion and opposite fixed-variable energy trends](/assets/learning/analytical-canonical-dual.en.svg)
+
+Equal numeric momenta in different candidates do not mean equal physical initial velocities. The table compares functions, not one common initial-value trajectory. Adding a nonzero potential also changes the dynamics of the quartic candidate. This companion is separate from the native quadratic experiment.
+
+### Recover the native model and execute
+
+The quadratic and zero-momentum branches are:
+
+$$
+H_0=\frac{p_r^2}{2m}+\frac{p_\theta^2}{2mr^2}+U(r),\qquad
+\lambda=0:\ u=P/m,\quad P=0:\ u=\dot r=\dot\theta=0\quad(r>0).
+$$
+
+
+
+```python
+from math import sqrt
+
+def inverse_speed(P, m, lam):
+    if P < 0 or m <= 0 or lam < 0:
+        raise ValueError("Require P>=0, m>0, lambda>=0")
+    if P == 0 or lam == 0:
+        return P/m
+    lo, hi = 0.0, P/m
+    for _ in range(80):
+        mid = (lo+hi)/2
+        if m*mid+lam*mid**3 < P:
+            lo = mid
+        else:
+            hi = mid
+    return (lo+hi)/2
+
+# SI: m=1, U=0, fixed P=sqrt(18); last column fixes speed=sqrt(2).
+values = []
+for lam in [0, .5, 1]:
+    u = inverse_speed(sqrt(18), 1, lam)
+    H = u*u/2+3*lam*u**4/4
+    values.append(H)
+    print(lam, round(u, 6), round(H, 6), 1+3*lam)
+assert values[0] > values[1] > values[2]
+assert inverse_speed(0, 1, 1) == 0
+```
+
+**Research questions with answers**
+
+- Does a local inverse prove the global inverse? **Answer:** No. Here monotonicity and the full range of $P(u)$ supply the additional proof.
+- Why do the two energy derivatives have opposite signs? **Answer:** They hold different variables fixed; velocity must change when momentum is fixed.
+- May the zero-momentum branch repair the origin? **Answer:** No. It applies only at a regular positive radius.
+
 ## Exercises with explanations
 
 1. Find the free example's momenta after one second. **Solution:** pr=m rdot=3/√5 kg m/s, while ptheta=m(x vy−y vx)=1 kg m²/s. Their different units explain why their numerical values should not be equated.

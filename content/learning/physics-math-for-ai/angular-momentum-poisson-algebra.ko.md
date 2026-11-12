@@ -150,6 +150,122 @@ Jacobi 부호를 검사하는 예로 (x,Lx,Ly)를 사용한다. 순환 항은 {x
 
 모델은 두 초의 201시점을 수치 평가한다. Bracket·토크·에너지 잔차는 작은 값을 임의로 0으로 덮지 않는다. 최대 잔차는 표본 관측값이지 연속 시간의 보증 상한이 아니다. 독립적으로 생성한 기호 기울기와 60자리 궤적 미분을 대조하며, 위치·운동량 단위가 섞인 잔차 크기는 만들지 않는다. 공간 투영은 표시한 두 축의 단위를 유지하고 물리적 궤적과 위상 공간을 구분한다.
 
+## 연구 확장: 축약 Casimir만으로 전체 동역학이 정해지지는 않는다
+
+세 각운동량은 Poisson 대수를 이루지만 여섯 위상 좌표를 세 관측량으로 바꾸면 정보가 사라진다. 축약 bracket을 정확히 구해도 다음 각운동량을 예측할 상태 정보는 부족할 수 있다.
+
+### 축약 bracket과 잎 정의하기
+
+앞에서 유도한 양의 공간 각운동량 관례를 사용한다:
+
+$$
+\Pi_{ij}(L)=\epsilon_{ijk}L_k,\qquad
+\{F,G\}_L=\nabla F^T\Pi(L)\nabla G,\qquad
+\dot L=\Pi(L)\nabla h=\nabla h\times L.
+$$
+
+$h(L)$는 닫힌 축약 흐름을 만드는 충분한 구성이다. 더 일반적으로도 결정론적 닫힘은 남긴 변수가 같은 전체 상태들에 같은 변화율을 주어야 한다. 이 축약 대수의 Casimir는 다음과 같다:
+
+$$
+C(L)=\frac12|L|^2,\quad\nabla C=L,\quad\Pi(L)L=0,\qquad
+\operatorname{rank}\Pi=\begin{cases}2,&L\ne0,\\0,&L=0.\end{cases}
+$$
+
+$L\ne0$에서는 0이 아닌 2×2 소행렬식과 영 행렬식을 가지므로 랭크는 2다. 잎은 반지름이 일정한 구면이며 원점은 별도의 랭크 0 잎이다. 모든 축약 Hamiltonian 벡터장은 그 잎에 접한다. $C$의 단위는 (J s)²다.
+
+### 축약 대수와 전체 정준 공간 구분하기
+
+전체 각운동량 사상은 $L$의 함수들 사이 bracket을 보존한다. 그러나 모든 전체 Hamiltonian을 $L$의 함수로 만드는 것은 아니다:
+
+$$
+\{C(L),F(L)\}_{x,p}=0,\qquad
+\{C(L),H(x,p)\}_{x,p}=L\cdot\tau\quad\text{for the stated mechanical }H.
+$$
+
+축약 Casimir를 끌어와도 전체 위상 공간의 임의의 함수와 통하는 것은 아니다. 비등방 진동자에서는 토크가 $|L|$을 바꿀 수 있다. 축약 Casimir를 보편적 보존 법칙으로 강제하면 물리 모델을 바꾸게 된다.
+
+$m=1$ kg, 강성 $(0,1,4)$ N/m인 보충 진동자를 보자:
+
+$$
+H=\frac{|p|^2}{2m}+\frac{k_yy^2+k_zz^2}{2},\qquad k_x=0.
+$$
+
+### 같은 각운동량·에너지에서 다른 토크 만들기
+
+다음 배열은 두 전체 상태의 SI 수치다:
+
+$$
+A:\ x=(1,1,0),\ p=(0,1,0),\qquad
+B:\ x=(5/7,-1/5,0),\ p=(0,7/5,0).
+$$
+
+| 상태 | $L_z$ / (J s) | $H$ / J | $\dot L_z$ / (N m) |
+|---|---|---|---|
+| A | 1 | 1 | -1 |
+| B | 1 | 1 | 1/7 |
+
+둘 다 $L=(0,0,1)$ J s, $C=1/2$ (J s)²이지만 $\dot L_z=-xy$의 부호가 반대다. 보존되는 스칼라 에너지를 $L$과 함께 남겨도 이 변화율은 닫히지 않는다. 앞과 같이 전체 3차원 각운동량 함수를 미분한 뒤 평면 위의 상태를 평가해야 한다.
+
+같은 SI 매개변수에서 랭크 0의 예제는 더욱 분명하다:
+
+$$
+x=(1,1,1),\ p=0:\quad L=0,\ \Pi(L)=0,\ \tau=(-3,4,-1),\qquad
+\dot C(0)=0,\quad\ddot C(0)=26\quad\text{in SI numerical values}.
+$$
+
+매끄러운 $h(L)$는 축약 원점에서 변화율 0을 예측하지만 전체 진동자는 즉시 그 점을 떠난다. $\dot C$가 한순간 0인 것도 충분하지 않다. 0이 아닌 이계도함수가 초기의 이차 증가를 준다. 사라진 정보는 전체 위치·운동량에 있다.
+
+### 명시적으로 다른 두 생성자 비교하기
+
+올바르게 닫힌 축약 예제로 공간 회전 생성자를 쓸 수 있다:
+
+$$
+h(L)=\Omega L_x,\quad\Omega=1\,\mathrm{s}^{-1},\qquad
+L(t)=(0,-\sin(\Omega t),\cos(\Omega t))\,\mathrm{Js},\qquad
+C(t)=\tfrac12(\mathrm{Js})^2.
+$$
+
+![닫힌 회전 잎과 전체 진동자에서 변하는 각운동량 크기](/assets/learning/analytical-angular-closure.ko.svg)
+
+회전 예제와 두 전체 진동자 궤적은 같은 $L$에서 시작하지만 서로 다르게 명시한 Hamiltonian을 사용한다. 근사 오차를 그린 그림이 아니다. 여기의 양의 공간 bracket을 몸체 기준 Euler 방정식에 옮길 때는 관례를 따로 확인해야 한다. 강성과 상태는 Python 보충 예제이며 기존 입력에 추가한 것은 아니다.
+
+학습한 축약 동역학에서는 Hamiltonian을 맞추거나 Casimir를 강제하기 전에 남긴 변수로 변화율이 결정되는지 확인해야 한다. 정확한 Poisson 대수가 사라진 물리 상태를 대신하지는 않는다.
+
+### 닫힘의 반례 실행하기
+
+
+
+```python
+from fractions import Fraction as Q
+from math import sin, cos
+
+# SI: m=1 kg, stiffness=(0,1,4) N/m; differentiate full 3D functions first.
+states = [([Q(1), Q(1), Q(0)], [Q(0), Q(1), Q(0)]),
+          ([Q(5,7), Q(-1,5), Q(0)], [Q(0), Q(7,5), Q(0)])]
+rates = []
+for x, p in states:
+    Lz = x[0]*p[1]-x[1]*p[0]
+    H = sum(v*v for v in p)/2+x[1]**2/2+2*x[2]**2
+    torque_z = -x[0]*x[1]
+    assert Lz == 1 and H == 1
+    rates.append(torque_z)
+    print(Lz, H, torque_z)
+assert rates == [Q(-1), Q(1,7)]
+
+# A separate closed reduced example: h=Lx/(1 second), initial L=(0,0,1).
+for t in [0, .5, 1, 2]:
+    L = [0, -sin(t), cos(t)]
+    assert abs(sum(x*x for x in L)/2-.5) < 2e-15
+# Same retained L and H can have different full oscillator torques.
+# The reduced rotation example uses a different specified Hamiltonian.
+```
+
+**연구 질문과 답**
+
+- 축약 Casimir가 전체 정준 공간의 Casimir인가? **답:** 아니다. $L$의 함수들과 통하지만 모든 전체 Hamiltonian과 통하는 것은 아니다.
+- $L$에 총에너지를 더하면 이 진동자가 닫히는가? **답:** 두 상태가 반례다. 남긴 값은 같지만 변화율이 다르다.
+- 전체 흐름이 $L=0$을 떠날 수 있는 이유는? **답:** 그 Hamiltonian은 $L$만의 닫힌 벡터장을 만들지 않는다. 영 축약 bracket으로 사라진 토크 정보를 담을 수 없다.
+
 ## 해설이 있는 연습 문제
 
 1. 좌표 기울기에서 {Lx,Ly}를 유도하자. **해설:** 상태를 대입하기 전에 세 정준 쌍을 전개하면 xp_y−yp_x=Lz가 남는다. 인자를 바꾸면 −Lz다.

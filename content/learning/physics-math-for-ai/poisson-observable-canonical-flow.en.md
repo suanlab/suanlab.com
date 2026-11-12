@@ -141,6 +141,109 @@ The model evaluates 201 times over two seconds. Frequencies use Omega=pi f/4 and
 
 Action histories, rates and phase portraits have separate axes. Identity residuals remain raw floating-point differences. Reported maximum residuals refer to sampled output times; they are neither continuous-time bounds nor integration errors from a newly introduced solver. Conservation flags come from the selected formulas and exact parameter conditions, rather than from accepting a small graph variation as a proof.
 
+## Research extension: a nonlinear chart can preserve energy with the wrong clock
+
+The earlier constant scaling example changed the fundamental bracket by a constant. A nonlinear coordinate change makes the factor state dependent. In two dimensions, even the Jacobi identity and energy conservation cannot by themselves certify the correct physical time evolution.
+
+### Transform the variables and the Poisson tensor
+
+Choose a fixed length $\ell$, so the exponential has a dimensionless argument:
+
+$$
+Q=q,\qquad P=e^{q/\ell}p,\qquad f(Q)=e^{Q/\ell}>0,\quad\ell>0,\qquad
+p=e^{-Q/\ell}P.
+$$
+
+The inverse exists globally for finite coordinates. The same Hamiltonian and the induced bracket are:
+
+$$
+\widetilde H=\frac{e^{-2Q/\ell}P^2}{2m}+\frac{kQ^2}{2},\qquad
+\Pi=f(Q)\begin{pmatrix}0&1\\-1&0\end{pmatrix},\qquad
+\{F,G\}_\Pi=f(F_QG_P-F_PG_Q).
+$$
+
+The factor follows from $\{Q,P\}=e^{q/\ell}$. Multiplying the transformed Hamiltonian gradient by this tensor gives:
+
+$$
+\dot Q=\frac{e^{-Q/\ell}P}{m},\qquad
+\dot P=\frac{e^{-Q/\ell}P^2}{m\ell}-e^{Q/\ell}kQ.
+$$
+
+Direct differentiation of $P=e^{q/\ell}p$ gives exactly the same result. Omitting $f$ divides the vector field by that positive state-dependent factor. It changes the physical clock along an orbit.
+
+### Understand what structural checks prove
+
+Here $J$ denotes the constant antisymmetric matrix displayed above. Any smooth two-dimensional tensor $g(Q,P)J$ is Poisson: its Jacobi tensor is alternating in three indices, and three distinct indices cannot occur in dimension two. Skew symmetry also gives $\nabla H^T\Pi\nabla H=0$. Thus both $fJ$ and the incorrect choice $J$ pass Jacobi and conserve the same autonomous Hamiltonian. This dimension-specific fact does not extend to arbitrary matrices in higher dimensions.
+
+The preserved measure also changes with the chart:
+
+$$
+d\mu=\frac{dQ\,dP}{f(Q)},\qquad
+\partial_Q\!\left(\frac{\dot Q}{f}\right)+\partial_P\!\left(\frac{\dot P}{f}\right)=0,\qquad
+\partial_Q\dot Q+\partial_P\dot P=\frac{\dot Q}{\ell}.
+$$
+
+The density $1/f$ is the transformed canonical area density. Ordinary coordinate area can expand while this physical measure is preserved. Requiring a flat latent area without specifying the chart would impose an additional convention.
+
+### Solve the correct and naive free clocks
+
+Set $k=0$, $q_0=0$ and $p_0>0$. Define dimensionless time $\tau$. Correct evolution and the flow produced by an unjustified unit bracket are:
+
+$$
+\tau=\frac{p_0t}{m\ell},\qquad
+\left(\frac{Q_{\rm correct}}\ell,\frac{P_{\rm correct}}{p_0}\right)=(\tau,e^\tau),\qquad
+\left(\frac{Q_{\rm naive}}\ell,\frac{P_{\rm naive}}{p_0}\right)=(\log(1+\tau),1+\tau).
+$$
+
+For the naive flow, $p=e^{-Q/\ell}P$ stays constant, but $\dot Q=(p_0/m)e^{-Q/\ell}$ integrates to the logarithm. Both flows satisfy:
+
+$$
+\widetilde H_{\rm correct}=\widetilde H_{\rm naive}=\frac{p_0^2}{2m},\qquad
+P=p_0e^{Q/\ell}\quad\text{on both phase curves}.
+$$
+
+Use $m=1$ kg, $\ell=1$ m and $p_0=1$ kg m/s, so numeric $\tau=t$ in seconds.
+
+| Time / s | Correct $Q$ / m | Naive $Q$ / m | Energy in both / J |
+|---|---|---|---|
+| 0 | 0 | 0 | 1/2 |
+| 1/2 | 1/2 | 0.405465 | 1/2 |
+| 1 | 1 | 0.693147 | 1/2 |
+| 2 | 2 | 1.098612 | 1/2 |
+
+![Different physical clocks on the same phase curve](/assets/learning/analytical-poisson-clock.en.svg)
+
+At one second the transformed $P$ values are $e$ and 2 kg m/s, while the original $p$ remains 1 kg m/s in both flows. Both traces lie on the same phase curve, so matching an unparameterized orbit is insufficient. Physical timestamps or calibrated observable rates discriminate the models. The nonlinear chart is a separate Python companion; native controls retain their linear scaling examples.
+
+### Execute and question the evidence
+
+
+
+```python
+from math import exp, log
+
+# SI: m=1 kg, ell=1 m, p0=1 kg m/s, q0=0, k=0.
+for t in [0, .5, 1, 2]:
+    Q, P = t, exp(t)
+    bad_Q, bad_P = log(1+t), 1+t
+    for x, momentum in [(Q, P), (bad_Q, bad_P)]:
+        H = exp(-2*x)*momentum*momentum/2
+        assert abs(H-.5) < 2e-15
+        assert abs(momentum-exp(x)) < 2e-14
+    # Correct induced tensor gives Qdot=1; naive canonical tensor does not.
+    assert abs(exp(-Q)*P-1) < 2e-15
+    assert abs(exp(-2*bad_Q)*bad_P-1/(1+t)) < 2e-15
+    print(t, round(Q, 6), round(bad_Q, 6), .5)
+# Both models preserve energy and the same unparameterized phase curve.
+# Physical timestamps discriminate their different clock rates.
+```
+
+**Research questions with answers**
+
+- Does Jacobi select the correct bracket in this chart? **Answer:** No. Both candidate tensors are Poisson in two dimensions.
+- Does conserved energy certify the clock? **Answer:** No. A skew tensor conserves the chosen energy even with an incorrect rate.
+- Which area is preserved? **Answer:** The induced density $dQdP/f$, rather than necessarily the flat coordinate area.
+
 ## Exercises with explanations
 
 1. Compute {q,H} and {p,H}. **Solution:** Only q_q=1 and p_p=1 survive, yielding p/m and −kq. The signs recover Hamilton equations and check the argument order.

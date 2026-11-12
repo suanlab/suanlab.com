@@ -149,6 +149,109 @@ $$
 
 보존 여부의 표시는 그래프가 거의 평평한지 보고 정하지 않는다. 선택한 함수와 매개변수의 정확한 조건에서 판정한다. 원점은 여기서 직교 좌표의 정상적인 상태이므로 앞 극좌표 단원의 좌표 미정과도 구분한다.
 
+## 연구 확장: 비선형 좌표에서 에너지는 같아도 시계는 다를 수 있다
+
+앞의 상수 배율 예제에서는 기본 bracket의 상수 계수가 바뀌었다. 비선형 좌표 변환에서는 이 계수가 상태에 의존한다. 2차원에서는 Jacobi 항등식과 에너지 보존까지 만족해도 올바른 물리적 시간 진화를 보장하지 못한다.
+
+### 변수와 Poisson 텐서를 함께 변환하기
+
+고정 길이 $\ell$을 사용해 지수의 인자를 무차원으로 만들자:
+
+$$
+Q=q,\qquad P=e^{q/\ell}p,\qquad f(Q)=e^{Q/\ell}>0,\quad\ell>0,\qquad
+p=e^{-Q/\ell}P.
+$$
+
+유한한 좌표에서 역변환은 전역적으로 존재한다. 같은 Hamiltonian과 유도된 bracket은 다음과 같다:
+
+$$
+\widetilde H=\frac{e^{-2Q/\ell}P^2}{2m}+\frac{kQ^2}{2},\qquad
+\Pi=f(Q)\begin{pmatrix}0&1\\-1&0\end{pmatrix},\qquad
+\{F,G\}_\Pi=f(F_QG_P-F_PG_Q).
+$$
+
+계수는 $\{Q,P\}=e^{q/\ell}$에서 나온다. 변환한 Hamiltonian 기울기에 이 텐서를 곱하면 다음과 같다:
+
+$$
+\dot Q=\frac{e^{-Q/\ell}P}{m},\qquad
+\dot P=\frac{e^{-Q/\ell}P^2}{m\ell}-e^{Q/\ell}kQ.
+$$
+
+직접 $P=e^{q/\ell}p$를 미분해도 같은 결과를 얻는다. $f$를 빠뜨리면 양의 상태 의존 계수로 벡터장을 나누게 되어 궤도를 따르는 물리적 시계가 달라진다.
+
+### 구조 검사가 증명하는 범위 이해하기
+
+여기서 $J$는 앞에서 표시한 상수 반대칭 행렬이다. 매끄러운 2차원 텐서 $g(Q,P)J$는 모두 Poisson이다. Jacobi 텐서는 세 첨자에 교대적이지만 2차원에서는 서로 다른 세 첨자를 만들 수 없기 때문이다. 반대칭성으로 $\nabla H^T\Pi\nabla H=0$도 얻는다. 따라서 $fJ$와 잘못 선택한 $J$ 모두 Jacobi를 만족하고 같은 자율 Hamiltonian을 보존한다. 이 차원에 특유한 사실을 임의의 고차원 행렬에 적용하면 안 된다.
+
+좌표에 따라 보존 측도도 달라진다:
+
+$$
+d\mu=\frac{dQ\,dP}{f(Q)},\qquad
+\partial_Q\!\left(\frac{\dot Q}{f}\right)+\partial_P\!\left(\frac{\dot P}{f}\right)=0,\qquad
+\partial_Q\dot Q+\partial_P\dot P=\frac{\dot Q}{\ell}.
+$$
+
+밀도 $1/f$는 정준 면적 밀도를 변환한 것이다. 보통의 좌표 면적이 커져도 이 물리적 측도는 보존될 수 있다. 좌표 관례를 명시하지 않고 평평한 잠재 면적을 강제하면 별도의 가정을 부과하는 셈이다.
+
+### 올바른 자유 시계와 순진한 시계 풀기
+
+$k=0$, $q_0=0$, $p_0>0$으로 두고 무차원 시간 $\tau$를 정의한다. 올바른 진화와 근거 없이 단위 bracket을 쓴 흐름은 다음과 같다:
+
+$$
+\tau=\frac{p_0t}{m\ell},\qquad
+\left(\frac{Q_{\rm correct}}\ell,\frac{P_{\rm correct}}{p_0}\right)=(\tau,e^\tau),\qquad
+\left(\frac{Q_{\rm naive}}\ell,\frac{P_{\rm naive}}{p_0}\right)=(\log(1+\tau),1+\tau).
+$$
+
+순진한 흐름에서도 $p=e^{-Q/\ell}P$는 일정하지만 $\dot Q=(p_0/m)e^{-Q/\ell}$를 적분하면 로그가 된다. 두 흐름 모두 다음 관계를 만족한다:
+
+$$
+\widetilde H_{\rm correct}=\widetilde H_{\rm naive}=\frac{p_0^2}{2m},\qquad
+P=p_0e^{Q/\ell}\quad\text{on both phase curves}.
+$$
+
+ $m=1$ kg, $\ell=1$ m, $p_0=1$ kg m/s이면 초 단위 시간의 수치와 $\tau$가 같다.
+
+| 시간 / s | 올바른 $Q$ / m | 순진한 $Q$ / m | 두 에너지 / J |
+|---|---|---|---|
+| 0 | 0 | 0 | 1/2 |
+| 1/2 | 1/2 | 0.405465 | 1/2 |
+| 1 | 1 | 0.693147 | 1/2 |
+| 2 | 2 | 1.098612 | 1/2 |
+
+![같은 위상 곡선을 따르는 서로 다른 물리적 시계](/assets/learning/analytical-poisson-clock.ko.svg)
+
+1초에서 변환한 $P$는 각각 $e$, 2 kg m/s이며 원래 $p$는 두 흐름 모두 1 kg m/s다. 두 궤적은 같은 위상 곡선 위에 있으므로 시간 표시 없는 궤도만 맞추는 것으로는 충분하지 않다. 물리적 시각이나 보정된 관측량 변화율로 모델을 구분할 수 있다. 비선형 좌표는 Python 보충 예제이며 기존 조작은 선형 배율 예제를 유지한다.
+
+### 실행하고 근거 점검하기
+
+
+
+```python
+from math import exp, log
+
+# SI: m=1 kg, ell=1 m, p0=1 kg m/s, q0=0, k=0.
+for t in [0, .5, 1, 2]:
+    Q, P = t, exp(t)
+    bad_Q, bad_P = log(1+t), 1+t
+    for x, momentum in [(Q, P), (bad_Q, bad_P)]:
+        H = exp(-2*x)*momentum*momentum/2
+        assert abs(H-.5) < 2e-15
+        assert abs(momentum-exp(x)) < 2e-14
+    # Correct induced tensor gives Qdot=1; naive canonical tensor does not.
+    assert abs(exp(-Q)*P-1) < 2e-15
+    assert abs(exp(-2*bad_Q)*bad_P-1/(1+t)) < 2e-15
+    print(t, round(Q, 6), round(bad_Q, 6), .5)
+# Both models preserve energy and the same unparameterized phase curve.
+# Physical timestamps discriminate their different clock rates.
+```
+
+**연구 질문과 답**
+
+- Jacobi로 이 좌표의 올바른 bracket을 고르는가? **답:** 아니다. 두 후보 텐서 모두 2차원에서 Poisson이다.
+- 에너지 보존으로 시계가 인증되는가? **답:** 아니다. 반대칭 텐서는 변화율이 잘못되어도 선택한 에너지를 보존한다.
+- 어떤 면적이 보존되는가? **답:** 유도된 밀도 $dQdP/f$이며, 보통의 좌표 면적일 필요는 없다.
+
 ## 해설이 있는 연습 문제
 
 1. {q,H}와 {p,H}를 계산하자. **해설:** q_q=1과 p_p=1인 항만 남아 각각 p/m과 −kq다. Hamilton 방정식과 비교하면 bracket 인자 순서의 부호를 점검할 수 있다.
