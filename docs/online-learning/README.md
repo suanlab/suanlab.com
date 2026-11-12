@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-13 관측·샘플링·센서 연구 보강: [이동 격자·포화 후 정보](physics-math-for-ai/sampling-research-status.md)를 두 단원의 한영 네 편·그림 네 개에 추가했다. 선택 55검사·빌드·타입·1,888 HTML과 변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. 기존 본문 네 편·다른 파동 원고 32편·713검토 항목을 보존했다. [파동 순차 보강은 18/18단원](physics-math-for-ai/waves-optics-topic-review.md)이며 다음은 [영역 연구 종합 대조](physics-math-for-ai/waves-optics-research-audit-plan.md)다. 전체 대조 40영역·396주제/후속 11영역·113주제와 전체 51영역·509주제를 유지한다.
+
 2026-11-13 Fourier optics 연구 보강: [제어 기준광 복원·광동공 모호성과 다양성](physics-math-for-ai/fourier-research-status.md)을 두 단원의 한영 네 편·그림 네 개에 추가했다. 선택 54검사·빌드·타입·1,888 HTML과 변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. 기존 본문 네 편·다른 파동 원고 32편·709검토 항목을 보존했다. [파동 순차 검토는 16/18단원](physics-math-for-ai/waves-optics-topic-review.md)이며 다음은 관측·샘플링·센서다. 전체 대조 40영역·396주제/후속 11영역·113주제와 전체 51영역·509주제를 유지한다.
 
 2026-11-12 기하·파동 광학 연구 보강: [상거리 불확실성·개구 경계와 모멘트](physics-math-for-ai/ray-wave-research-status.md)를 두 단원의 한영 네 편·그림 네 개에 추가했다. 선택 48검사·빌드·타입·1,888 HTML과 변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. 기존 본문 네 편·다른 파동 원고 32편·705검토 항목을 보존했다. [파동 순차 검토는 14/18단원](physics-math-for-ai/waves-optics-topic-review.md)이며 다음은 Fourier optics다. 전체 대조 40영역·396주제/후속 11영역·113주제와 전체 51영역·509주제를 유지한다.

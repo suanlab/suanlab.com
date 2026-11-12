@@ -146,6 +146,114 @@ A denoising loss should reflect which stage its input represents: irradiance, el
 
 Useful controlled experiments vary photon exposure and gain independently, compare predicted code probabilities against held-out exposures and inspect saturation before fitting a noise slope. Do not mistake a successful educational simulation for measured camera calibration. Real research may add pixel-response nonuniformity, correlated read noise, color channels and uncertainty in estimated parameters.
 
+## Research extension: saturation reduces information even when variance shrinks
+
+A narrow clipped histogram is not automatically a precise observation of illumination. We quantify that statement with Fisher information about a positive Poisson mean. The derivation first isolates a noiseless storage cap, then treats read noise and ADC conversion as another known observation channel. This is supplementary likelihood analysis, not a new native estimator or measured camera calibration.
+
+### Name the parameter and the complete-data score
+
+
+$$
+N\sim\operatorname{Poisson}(\lambda),\quad\lambda>0,\quad p_n=e^{-\lambda}\lambda^n/n!:\qquad s_N(n)=\partial_\lambda\log p_n=n/\lambda-1,\quad J_N=\mathbb E s_N^2=1/\lambda.
+$$
+
+Lambda is the total expected collected electron count at one fixed exposure, including a known dark contribution when present. All other parameters are held fixed. The score measures sensitivity of the log likelihood to that mean; information is the expected squared score. It is not output variance or a realized number of photons. The regular formula here excludes the boundary lambda=0.
+
+### Derive the likelihood of a capped count
+
+
+$$
+C=\min(N,F),\quad F\ge1\text{ integer}:\qquad P(C=n)=p_n\ (n<F),\quad P(C=F)=r_F=\Pr(N\ge F),\quad r_F\prime=p_{F-1}.
+$$
+
+Differentiate one minus the finite sum of probabilities below F; the recurrence p-prime(n)=p(n−1)−p(n) telescopes. The top bin includes N=F as well as overflow. The native overflow probability is Pr(N>F), so it is different from this top-bin probability. Confusing them gives the wrong score and information.
+
+
+$$
+s_C(n)=n/\lambda-1\ (n<F),\quad s_C(F)=p_{F-1}/r_F,\qquad J_F=\sum_{n=0}^{F-1}p_n(n/\lambda-1)^2+\frac{p_{F-1}^2}{r_F}.
+$$
+
+The saturated code is a censored event, not an exact report N=F. Its score is the derivative of log(rF), which remains positive. Retaining this tail likelihood uses the one-sided information that clipping leaves, without pretending the original count was observed.
+
+### Identify the exact information that was discarded
+
+
+$$
+s_C(C)=\mathbb E[s_N(N)\mid C],\qquad\frac1\lambda-J_F=\mathbb E\operatorname{Var}(s_N\mid C)=\frac{r_F}{\lambda^2}\operatorname{Var}(N\mid N\ge F)>0.
+$$
+
+Differentiate the grouped probabilities to obtain the conditional-score identity, then use the law of total variance and E score=0. Only the top bin merges distinct counts. For finite F and lambda>0 its conditional variance is positive, so grouping strictly loses information about lambda. A smaller stored-count variance cannot reverse this inequality.
+
+The table uses F=3, read sigma zero, gain one, offset zero and a two-bit ADC. Then the native digital code equals C exactly. Its upper-rail probability is r3, whereas storage overflow is r3−p3. The information efficiency lambda J3 compares with the complete Poisson observation at the same mean. Values are rounded to nine significant digits.
+
+| mean lambda | capped information J3 | efficiency lambda J3 | upper-rail probability |
+|---|---|---|---|
+| 0.5 | 1.99165959 | 0.995829794 | 0.014387678 |
+| 2 | 0.429594981 | 0.859189961 | 0.323323584 |
+| 5 | 0.0667240463 | 0.333620232 | 0.875347981 |
+| 10 | 0.00187110431 | 0.0187110431 | 0.997230604 |
+
+```python
+from math import exp
+
+# No read noise; gain=1, offset=0, two-bit ADC, full well F=3.
+for mean in [.5, 2, 5, 10]:
+    cap = 3
+    probabilities = [exp(-mean)]
+    for n in range(1, cap):
+        probabilities.append(probabilities[-1]*mean/n)
+    tail = 1-sum(probabilities)  # Stable enough for these stated rows.
+    information = sum(p*(n/mean-1)**2
+                      for n, p in enumerate(probabilities))
+    information += probabilities[-1]**2/tail
+    print(mean, *(format(x, '.9g') for x in
+          [information, mean*information, tail]))
+```
+
+Subtracting a finite sum is adequate for these table rows. Extremely small tail probabilities require a positive tail recurrence or another stable method. The independent verifier uses positive Poisson terms through count 256; for its largest mean 20 the omitted upper-tail Chernoff bound is below 1e−180. No retained distribution is silently renormalized.
+
+### Treat electronics as a known observation channel
+
+
+$$
+Q(d\mid c)\text{ independent of }\lambda,\quad P_D(d)=\sum_cQ(d\mid c)P_C(c):\qquad s_D(d)=\mathbb E[s_C\mid D=d],\quad J_D=\sum_d\frac{[P_D\prime(d)]^2}{P_D(d)}\le J_F<1/\lambda.
+$$
+
+Read noise, known gain and deterministic rounding/clipping after the charge cap form such a channel in this model. The same conditional-score argument proves contraction. Use bins of positive probability; zero bins carry no probability mass under the model. Unknown noise, gain or offset parameters require a joint inference problem, not this one-parameter comparison. This result does not assume that quantization always adds 1/12 variance.
+
+
+$$
+K\text{ independent equal-parameter exposures}:\qquad J_F^{(K)}=KJ_F,\quad\frac{J_F^{(K)}}{J_N^{(K)}}=\lambda J_F.
+$$
+
+Independent scores add and have zero cross covariance. More exposures add information but do not restore the information efficiency lost per exposure. This comparison fixes the mean per exposure; changing total time, read count or photon budget is a different experimental design. No universal estimator error bar or globally unbiased finite-sample estimator is asserted here.
+
+
+$$
+C_1=\cdots=C_K=F:\qquad L(\lambda)=r_F(\lambda)^K,\quad L\prime(\lambda)=Kr_F^{K-1}p_{F-1}>0,\quad\sup_{\lambda>0}L(\lambda)=1.
+$$
+
+The capped family is still structurally identifiable for lambda>0: P(C=0)=exp(−lambda) is one-to-one. Reduced information does not mean identical full distributions. The following all-rail case is a finite-data likelihood issue.
+
+For all-rail noiseless observations this likelihood increases toward its supremum as lambda tends to infinity; it has no finite maximum-likelihood estimate on the unbounded parameter space. Calling the measured cap the true mean is unjustified. A finite prior, bounded parameter range or other exposure can produce a finite inference, but each is additional information. This example concerns C or the noiseless identity ADC above, not every noisy rail event.
+
+
+$$
+\lambda=q\mu_p+dT,\quad q,d,T\text{ known}:\qquad J_{\mu_p}=q^2J_D,\quad q=0\ \Longrightarrow\ J_{\mu_p}=0.
+$$
+
+The chain rule separates information about incident photons from information about the collected mean. With zero QE, dark and read noise may still produce a nontrivial histogram but it carries no information about the incident mean in this stated model. The Poisson preparation, independent electronics and known calibration are assumptions; correlated light and unknown nuisance parameters need other likelihoods. The EMVA source supplies linear sensor terminology, not this censoring-information proof or a camera compliance claim.
+
+![Complete Poisson information exceeds capped-count information and subsequent noisy-code information; shrinking capped variance at high illumination accompanies loss of information efficiency.](/assets/learning/waves-sampling-censored-information.en.svg)
+
+### Research questions with explanations
+
+**Does a narrow saturated histogram mean high precision about illumination?** **Answer:** No. Grouping counts reduces Fisher information by the conditional score variance, even when stored output variance becomes small.
+
+**Is the upper-bin likelihood the overflow probability?** **Answer:** No. The cap bin includes N=F as well as N>F. Its correct probability is Pr(N≥F); using strict overflow changes the likelihood.
+
+**Do all-rail observations give a finite maximum-likelihood estimate?** **Answer:** Not in this unbounded noiseless-cap model. Their likelihood is monotone, so a finite estimate needs additional exposure data, a bound or a stated prior.
+
 ## Explained exercises
 
 ### 1. Distinguish expected and observed counts

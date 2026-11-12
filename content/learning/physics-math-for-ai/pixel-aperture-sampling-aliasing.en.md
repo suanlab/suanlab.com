@@ -128,6 +128,112 @@ A useful forward chain is scene parameters, optical intensity, aperture/exposure
 
 A good research experiment changes pitch, aperture and exposure separately, records physical units and asks which distinct scenes remain observationally equivalent. A held-out phase or grid origin is a stronger check than reusing one convenient crest-aligned pattern.
 
+## Research extension: two shifted grids resolve only a declared alias family
+
+A single grid has frequency ambiguities. Moving the same pixel array by a known fraction of its pitch can supply another equation, but cannot restore a frequency erased by the physical aperture. We derive the rank and conditioning for two known candidate frequencies. This supplementary two-frame model is distinct from the native single-stripe control; it is not a general super-resolution algorithm.
+
+### Declare a nonnegative two-tone scene
+
+
+$$
+\nu_s=1/p,\quad 0<\nu p<1/2:\qquad E(x)/E_0=1+\operatorname{Re}\!\left[c_0e^{i2\pi\nu x}+c_1e^{i2\pi(\nu+\nu_s)x}\right],\quad |c_0|+|c_1|\le1.
+$$
+
+E0>0 is a known calibrated irradiance in W/m². Pitch p and aperture width a>0 are in metres; take a≤p, positive pixel height and exposure, and a static scene. Both spatial frequencies are known, while their complex modulation coefficients are unknown. The magnitude condition guarantees nonnegative irradiance. Equal aperture and exposure in both frames retain a common energy-to-average conversion; different throughput would require its calibration.
+
+
+$$
+H_\ell=\operatorname{sinc}[(\nu+\ell/p)a],\quad A_\ell=H_\ell c_\ell,\qquad x_{j,n}=np+\delta_j:\qquad\frac{\overline E_{j,n}}{E_0}-1=\operatorname{Re}\!\left[e^{i2\pi\nu(np+\delta_j)}b_j\right],\quad b_j=A_0+e^{i2\pi\delta_j/p}A_1.
+$$
+
+The sinc convention is sin(pi u)/(pi u), including its sign. The two frequencies differ by one sampling frequency, so their n-dependent factors agree and only their origin-dependent phase differs. A negative H is a known modulation phase reversal, not negative energy. A zero H removes that component before every grid samples it.
+
+### Obtain a complex coefficient from real pixels
+
+
+$$
+\beta_j=e^{i2\pi\nu\delta_j}b_j,\quad \omega=2\pi\nu p,\quad y_n=\overline E_{j,n}/E_0-1:\qquad\operatorname{Re}\beta_j=y_0,\quad\operatorname{Im}\beta_j=\frac{\cos\omega\,y_0-y_1}{\sin\omega}.
+$$
+
+A camera does not directly output bj as a complex number. With known E0 and frequency, two noncollinear real samples within each frame suffice for this ideal formula; more pixels can support a calibrated least-squares fit. The assumption 0<nu p<1/2 excludes the exact DC and Nyquist degeneracies. Near those boundaries this demodulation itself becomes poorly conditioned, independently of the inter-frame matrix below. Unknown DC or unknown frequencies require additional measurements.
+
+### Separate inter-frame rank from aperture loss
+
+
+$$
+\delta_0=0,\quad\delta_1=\delta,\quad\theta=2\pi\delta/p:\qquad\begin{pmatrix}b_0\\b_1\end{pmatrix}=B\begin{pmatrix}A_0\\A_1\end{pmatrix},\quad B=\begin{pmatrix}1&1\\1&e^{i\theta}\end{pmatrix},\quad\det B=e^{i\theta}-1.
+$$
+
+The post-aperture coefficients are identifiable when the shift is not an integer pitch. The original scene coefficients additionally require H0 and H1 to be nonzero. Moving by exactly a full pitch adds no independent equation for this alias pair. The second frame must observe the same scene with known registration; motion or an unknown shift changes the model.
+
+
+$$
+\sigma_{\min,\max}(B)=\sqrt{2\mp2|\cos(\pi\delta/p)|},\qquad\kappa_2(B)=\sqrt{\frac{1+|\cos(\pi\delta/p)|}{1-|\cos(\pi\delta/p)|}}.
+$$
+
+The Gram matrix has diagonal entries 2 and off-diagonal magnitude abs(1+exp(i theta)). Its eigenvalues give the squared singular values. A very small nonzero shift has full rank but large error amplification. Half a pitch makes B/sqrt(2) unitary and its condition number one for these post-aperture coordinates. That does not optimize every physical photon budget, detector noise model or unknown scene.
+
+
+$$
+\delta=p/2:\qquad A_0=(b_0+b_1)/2,\quad A_1=(b_0-b_1)/2,\qquad\|\Delta A\|_2\le\|\Delta b\|_2/\sqrt2.
+$$
+
+For the numerical example use pitch 10 micrometres, aperture width 5 micrometres, nu=30,000 cycles/m, c0=0.25 and c1=0.4 exp(i0.7). Their magnitude sum is 0.65, so the scene is nonnegative. The second frequency is 130,000 cycles/m. The table reports the fitted coefficient at each second-grid origin and the condition number of B; the first-grid coefficient is fixed. All values are dimensionless.
+
+| shift / pitch | condition number B | Re b_shift | Im b_shift |
+|---|---|---|---|
+| 0.05 | 12.7062047 | 0.333061166 | 0.148184947 |
+| 0.1 | 6.31375151 | 0.282756336 | 0.16942725 |
+| 0.25 | 2.41421356 | 0.128412171 | 0.13349023 |
+| 0.5 | 1 | 0.107359211 | -0.11243727 |
+
+```python
+from cmath import exp
+from math import sin, cos, pi, sqrt
+
+def sinc(x):
+    return 1 if x == 0 else sin(pi*x)/(pi*x)
+
+# Frequencies in cycles/pitch; active width/pitch=0.5; static scene.
+c0, c1 = .25, .4*exp(.7j)
+h0, h1 = sinc(.3*.5), sinc(1.3*.5)
+a0, a1 = h0*c0, h1*c1
+b0 = a0+a1
+for shift in [.05, .1, .25, .5]:
+    w = exp(2j*pi*shift)
+    shifted = a0+w*a1
+    condition = sqrt((1+abs(cos(pi*shift)))/(1-abs(cos(pi*shift))))
+    recovered0 = (w*b0-shifted)/(w-1)/h0
+    recovered1 = (shifted-b0)/(w-1)/h1
+    assert abs(recovered0-c0)+abs(recovered1-c1) < 1e-13
+    print(shift, *(format(x, '.9g') for x in
+          [condition, shifted.real, shifted.imag]))
+```
+
+
+$$
+\|\Delta c\|_2\le\frac{\|\Delta b\|_2}{\sigma_{\min}(B)\min(|H_0|,|H_1|)}\quad(H_0H_1\ne0).
+$$
+
+This bound is conditional on calibrated transfer factors and already fitted frame coefficients. It does not include the earlier real-pixel demodulation error, registration uncertainty or shot-noise budget automatically. Near an aperture zero, scene recovery remains unstable even with the best inter-frame shift.
+
+
+$$
+\nu p=0.25,\quad a=0.8p:\qquad H_1=\operatorname{sinc}(1)=0\ \Longrightarrow\ b_j=H_0c_0\text{ for every }\delta_j.
+$$
+
+No number of translated copies of this unchanged aperture recovers c1 in that example. With K unrestricted alias components and M grid origins, the complex measurement matrix has rank at most M; two frames do not identify an arbitrary spectrum. A changed aperture, a spectral prior or another physical observation is additional information, not a consequence of interpolation. The native calculator still prepares one stripe at a time; the two-tone verification combines its linear integrals and subtracts the duplicated DC once.
+
+![Two shifted grids can separate a calibrated two-frequency alias family, while a small shift is ill-conditioned and the aperture transfer still limits recovery.](/assets/learning/waves-sampling-shifted-grids.en.svg)
+
+### Research questions with explanations
+
+**Are two shifted pixels enough for arbitrary super-resolution?** **Answer:** No. Here each frame first fits a complex coefficient from real pixels, with known DC and frequencies. Two frames then resolve only the stated two-component alias family.
+
+**Does half-pitch shifting restore aperture zeros?** **Answer:** No. It conditions the post-aperture mixing matrix well, but zero transfer erased a component before either grid observed it.
+
+**Does full rank certify a stable physical reconstruction?** **Answer:** No. Include demodulation, aperture, registration and noise conditions. A tiny shift is invertible but strongly amplifies coefficient error.
+
 ## Explained exercises
 
 ### 1. Compare pitch with aperture
