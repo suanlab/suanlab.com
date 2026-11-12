@@ -150,6 +150,129 @@ First block one slit and compare the far-field intensity with a centered single 
 
 Finally decrease $F$ at fixed $\eta$ and compare complex and intensity errors using the same distance normalization. A learned diffraction surrogate should distinguish physical parameter changes from sampling changes, and should retain phase when downstream interference matters. These examples do not complete polarization, general dispersion or the later Fourier-optics curriculum.
 
+## Research extension: bound the far-field error and keep its phase meaning
+
+A phase-variation diagnostic can be turned into an actual absolute bound between the exact Fresnel and Fraunhofer integrals of this paraxial model. The bound also explains when an isolated intensity image can agree even while a phase-referenced field is wrong. The result concerns these integrals, not a full-wave Maxwell error or a certified floating-point quadrature.
+
+### Remove only the common known distance factor
+
+
+
+$$
+C_F(\eta)=e^{i\pi\eta^2/F-i\pi/4},\quad \mathcal A_F=\frac{U_F}{\sqrt F C_F}=\int A(wu)e^{i\pi Fu^2-i2\pi\eta u}du,\qquad
+\mathcal A_0=\frac{U_{FF}}{\sqrt F C_F}=\int A(wu)e^{-i2\pi\eta u}du,\quad F>0.
+$$
+
+Both fields use exactly the same known phase and spreading factor. This does not rotate one result independently. The reduced intensities are the existing shared shape quantities I/F, not separate peak-normalized images.
+
+
+
+$$
+M_0=\int|A(wu)|du,\quad M_2=\int|A(wu)|u^2du,\qquad
+M_0=\sum_j a_j,\quad M_2=\sum_j a_j(c_j^2+1/12)\quad\text{for unit-width rectangular slits centered at }c_j.
+$$
+
+These are absolute-amplitude moments, not the transmitted squared-field norm. A blocked branch contributes zero. The moments are dimensionless in the normalized aperture coordinate.
+
+### Prove a uniform absolute model bound
+
+
+
+$$
+|\mathcal A_F-\mathcal A_0|\le\int|A(wu)|\,|e^{i\pi Fu^2}-1|du\le\min\{2M_0,\pi FM_2\}.
+$$
+
+Apply the triangle inequality and abs(exp(ix)−1)≤min(2,abs(x)). No cancellation assumption is needed, and the bound is uniform in eta for the stated integrals. It does not prove paraxial physical validity at arbitrary screen angles. A computed quadrature still requires its own numerical error estimate; the native refinement diagnostic is unchanged.
+
+
+
+$$
+\big||\mathcal A_F|^2-|\mathcal A_0|^2\big|\le2M_0|\mathcal A_F-\mathcal A_0|\le2M_0\min\{2M_0,\pi FM_2\},\qquad
+|U_F-U_{FF}|=\sqrt F|\mathcal A_F-\mathcal A_0|,\quad \frac{|I_F-I_{FF}|}{F}=\big||\mathcal A_F|^2-|\mathcal A_0|^2\big|.
+$$
+
+Use abs(AF),abs(A0)≤M0 and factor a difference of squares. These are absolute errors, still meaningful at an exact dark zero where relative error is unavailable. For a fixed aperture, the reduced field error is O(F) and the raw intensity-error bound is O(F²).
+
+### Define a different geometry-based phase approximation explicitly
+
+
+
+$$
+U_{FF,q}=e^{i\pi Fq}U_{FF},\quad q\in\mathbb R\text{ chosen from the aperture before comparison},\qquad
+|\mathcal A_F-e^{i\pi Fq}\mathcal A_0|\le\pi F\int|A(wu)|\,|u^2-q|du.
+$$
+
+Factor exp(i pi F q) from the Fresnel integrand, then apply the same inequality to the remaining phase. This defines a separate, phase-corrected approximation. It does not change the native Fraunhofer curve or license fitting a phase after seeing the exact output. Keep the added phase whenever this predicted field interferes with a reference.
+
+
+
+$$
+c_1=-d/2,\ c_2=d/2,\ d\ge1,\ q=d^2/4:\qquad
+\int|A(wu)|\,|u^2-q|du=\frac d4(a_1+a_2),\quad M_2=(a_1+a_2)(d^2/4+1/12).
+$$
+
+For the positive-center interval put u=d/2+t, with t between −1/2 and 1/2. Then abs(u²−q)=abs(t)(d+t); its integral is d/4 because the odd term cancels. The negative-center interval is its mirror. Constant nonnegative amplitudes supply the displayed weights, regardless of their relative optical phase. The original bound grows as F d², whereas this phase-corrected bound grows as F d.
+
+### Build an intensity agreement with a persistent field mismatch
+
+Use two equal unit-amplitude slits with zero relative phase, eta=0, and change their separation together with F. This deliberately changes aperture geometry; it is not the original fixed-aperture distance refinement.
+
+
+
+$$
+d=\frac2{\sqrt F},\quad q=d^2/4=1/F,\quad e^{i\pi Fq}=-1,\quad \mathcal A_0=2,\qquad
+|\mathcal A_F+2|\le\pi\sqrt F\longrightarrow0,\quad |\mathcal A_F-2|\longrightarrow4,\quad \big||\mathcal A_F|^2-4\big|\longrightarrow0.
+$$
+
+The reduced Fresnel field tends to −2 while the unmodified reduced Fraunhofer field stays +2. Their isolated intensities approach the same value, yet their relative phase is wrong. Raw complex error also shrinks with sqrt(F) because of geometric spreading; that alone would conceal the persistent reduced-field mismatch. The table is a supplementary geometry sequence: all but its first separation exceed the native d≤4 range, and the last F is below its 0.01 bound.
+
+| F | d | unmodified reduced-field error | known-phase corrected error | reduced-intensity error |
+|---|---|---|---|---|
+| 0.25 | 4 | 3.27165135 | 0.730223230 | 2.38153573 |
+| 0.0625 | 8 | 3.80034784 | 0.201548222 | 0.758367305 |
+| 0.015625 | 16 | 3.94896996 | 0.0516312734 | 0.201485253 |
+| 0.00390625 | 32 | 3.98717236 | 0.0129864866 | 0.0511439685 |
+
+```python
+from cmath import exp
+from math import pi, sqrt
+
+def integrate(f, n=20000):
+    h = 1/n
+    return h/3*(f(-.5)+f(.5)+sum(
+        (4 if j % 2 else 2)*f(-.5+j*h) for j in range(1, n)))
+
+# Two unit slits; eta=0; geometry gives exp(i*pi*F*d^2/4)=-1.
+for fresnel in [.25, .0625, .015625, .00390625]:
+    d = 2/sqrt(fresnel)
+    field = -2*integrate(lambda t: exp(1j*pi*fresnel*(t*t+d*t)))
+    uncorrected = abs(field-2)
+    corrected = abs(field+2)
+    intensity_error = abs(abs(field)**2-4)
+    print(fresnel, d, *(format(x, '.9g') for x in
+          [uncorrected, corrected, intensity_error]))
+    assert corrected <= pi*sqrt(fresnel)+1e-12
+```
+
+
+
+$$
+U_{\rm ref}=\sqrt F C_F\mathcal A_0:\qquad \frac{|U_F+U_{\rm ref}|^2}{F}=|\mathcal A_F+2|^2\longrightarrow0,\qquad
+\frac{|U_{FF}+U_{\rm ref}|^2}{F}=|2+2|^2=16.
+$$
+
+The reference is chosen from the known geometry, not fitted to the exact solution. An isolated-intensity loss can approach zero while a downstream coherent-reference prediction fails. A model comparison must state whether absolute phase, a prescribed common phase correction, or only isolated intensity is relevant.
+
+![A separated-aperture sequence has decreasing isolated-intensity error but a persistent unmodified reduced-field error; the prescribed geometry phase restores the field comparison.](/assets/learning/waves-interference-aperture-bounds.en.svg)
+
+### Research questions with explanations
+
+**Does the moment bound certify full electromagnetic accuracy?** **Answer:** No. It bounds two exact paraxial integrals. Physical-model validity and numerical quadrature error remain separate questions.
+
+**May an arbitrary fitted phase be removed before every comparison?** **Answer:** No. The corrected approximation must be declared in advance from geometry, and its phase retained in reference interference. The native unmodified field remains a different prediction.
+
+**Can an excellent isolated-intensity prediction fail coherently?** **Answer:** Yes. In the sequence above the true reduced field approaches −2 while the unmodified approximation gives +2. Adding the same known reference gives limiting reduced intensities 0 and 16.
+
 ## Exercises with explanations
 
 ### Exercise 1: Width convention

@@ -150,6 +150,129 @@ $w=50$ μm, $\lambda=500$ nm, $F=1$이면 $z=5$ mm이고 $\eta=1$은 $x=50$ μm�
 
 마지막으로 $\eta$를 고정해 $F$를 줄이고 같은 거리 정규화에서 복소장·강도 오차를 비교한다. 학습 회절 모델은 물리 매개변수 변화와 표본 수 변화를 구분해야 하며 뒤에 간섭을 계산한다면 위상도 보존해야 한다. 이 예제만으로 편광·일반 분산·전체 Fourier optics 집필을 완료하지 않는다.
 
+## 연구 확장: 원거리장 오차를 상계하고 위상의 의미를 유지한다
+
+위상 변화 진단에서 출발해 이 근축 모델의 정확한 Fresnel·Fraunhofer 적분 사이에 실제 절대 상계를 만들 수 있다. 상계는 고립된 강도 영상이 같아도 위상 기준이 있는 장은 틀릴 수 있는 경우도 설명한다. 이는 두 적분에 대한 결과이며 전체 Maxwell 파동 오차나 부동소수점 구적 인증이 아니다.
+
+### 공통의 알려진 거리 인자만 분리한다
+
+
+
+$$
+C_F(\eta)=e^{i\pi\eta^2/F-i\pi/4},\quad \mathcal A_F=\frac{U_F}{\sqrt F C_F}=\int A(wu)e^{i\pi Fu^2-i2\pi\eta u}du,\qquad
+\mathcal A_0=\frac{U_{FF}}{\sqrt F C_F}=\int A(wu)e^{-i2\pi\eta u}du,\quad F>0.
+$$
+
+두 장에서 정확히 같은 알려진 위상과 퍼짐 인자를 사용한다. 한 결과만 독립적으로 회전한 것이 아니다. 축소 강도는 서로 다른 봉우리로 정규화한 영상이 아니라 기존의 공통 모양 척도 I/F이다.
+
+
+
+$$
+M_0=\int|A(wu)|du,\quad M_2=\int|A(wu)|u^2du,\qquad
+M_0=\sum_j a_j,\quad M_2=\sum_j a_j(c_j^2+1/12)\quad\text{for unit-width rectangular slits centered at }c_j.
+$$
+
+이는 절대 진폭 모멘트이며 투과한 장 제곱 노름이 아니다. 차단한 가지의 기여는 0이다. 정규화한 개구 좌표에서 모멘트는 무차원이다.
+
+### 균일한 절대 모델 상계를 증명한다
+
+
+
+$$
+|\mathcal A_F-\mathcal A_0|\le\int|A(wu)|\,|e^{i\pi Fu^2}-1|du\le\min\{2M_0,\pi FM_2\}.
+$$
+
+삼각부등식과 abs(exp(ix)−1)≤min(2,abs(x))를 적용한다. 상쇄를 가정할 필요가 없으며 명시한 적분에서는 eta에 균일하다. 임의 화면 각도에서 근축 모델의 물리적 유효성을 증명하지는 않는다. 계산된 구적에는 별도의 수치 오차 추정이 필요하며 기존 정련 진단은 그대로다.
+
+
+
+$$
+\big||\mathcal A_F|^2-|\mathcal A_0|^2\big|\le2M_0|\mathcal A_F-\mathcal A_0|\le2M_0\min\{2M_0,\pi FM_2\},\qquad
+|U_F-U_{FF}|=\sqrt F|\mathcal A_F-\mathcal A_0|,\quad \frac{|I_F-I_{FF}|}{F}=\big||\mathcal A_F|^2-|\mathcal A_0|^2\big|.
+$$
+
+abs(AF), abs(A0)≤M0와 제곱의 차를 이용한다. 이는 정확한 암점에서 상대 오차가 정의되지 않아도 의미 있는 절대 오차다. 고정 개구에서는 축소 장 오차가 O(F), 원래 강도 오차 상계는 O(F²)이다.
+
+### 기하에 따른 다른 위상 근사를 명시적으로 정의한다
+
+
+
+$$
+U_{FF,q}=e^{i\pi Fq}U_{FF},\quad q\in\mathbb R\text{ chosen from the aperture before comparison},\qquad
+|\mathcal A_F-e^{i\pi Fq}\mathcal A_0|\le\pi F\int|A(wu)|\,|u^2-q|du.
+$$
+
+Fresnel 적분에서 exp(i pi F q)를 분리하고 남은 위상에 같은 부등식을 적용한다. 이는 별도의 위상 보정 근사를 정의한다. 기존 Fraunhofer 곡선을 바꾸거나 정확한 출력을 본 뒤 위상을 적합해도 된다는 뜻이 아니다. 예측 장을 기준 장과 간섭시킬 때 추가 위상을 유지해야 한다.
+
+
+
+$$
+c_1=-d/2,\ c_2=d/2,\ d\ge1,\ q=d^2/4:\qquad
+\int|A(wu)|\,|u^2-q|du=\frac d4(a_1+a_2),\quad M_2=(a_1+a_2)(d^2/4+1/12).
+$$
+
+양의 중심 구간에서 −1/2≤t≤1/2와 u=d/2+t를 사용하면 abs(u²−q)=abs(t)(d+t)이다. 홀수 항이 상쇄되어 적분은 d/4이다. 음의 중심 구간은 거울상이다. 일정한 비음 진폭은 상대 광학 위상과 무관하게 표시한 가중치를 준다. 원래 상계는 F d²처럼, 위상 보정 상계는 F d처럼 증가한다.
+
+### 강도는 일치하지만 장 차이는 남는 계열을 만든다
+
+상대 위상이 0인 두 단위 진폭 슬릿과 eta=0을 사용하고 F와 함께 간격도 바꾼다. 개구 기하를 의도적으로 바꾸는 계열이며 원래의 고정 개구 거리 정련이 아니다.
+
+
+
+$$
+d=\frac2{\sqrt F},\quad q=d^2/4=1/F,\quad e^{i\pi Fq}=-1,\quad \mathcal A_0=2,\qquad
+|\mathcal A_F+2|\le\pi\sqrt F\longrightarrow0,\quad |\mathcal A_F-2|\longrightarrow4,\quad \big||\mathcal A_F|^2-4\big|\longrightarrow0.
+$$
+
+축소 Fresnel 장은 −2로 가지만 수정하지 않은 축소 Fraunhofer 장은 +2를 유지한다. 고립된 강도는 같은 값에 가까워져도 상대 위상은 틀린다. 원래 복소 오차도 기하적 퍼짐 때문에 sqrt(F)와 함께 줄어드므로 그것만 보면 남아 있는 축소 장 차이를 숨긴다. 표는 보충 기하 계열이다. 첫 행을 제외한 간격은 기존 d≤4를 넘고 마지막 F는 기존 하한 0.01보다 작다.
+
+| F | d | 원래 축소 장 오차 | 알려진 위상 보정 오차 | 축소 강도 오차 |
+|---|---|---|---|---|
+| 0.25 | 4 | 3.27165135 | 0.730223230 | 2.38153573 |
+| 0.0625 | 8 | 3.80034784 | 0.201548222 | 0.758367305 |
+| 0.015625 | 16 | 3.94896996 | 0.0516312734 | 0.201485253 |
+| 0.00390625 | 32 | 3.98717236 | 0.0129864866 | 0.0511439685 |
+
+```python
+from cmath import exp
+from math import pi, sqrt
+
+def integrate(f, n=20000):
+    h = 1/n
+    return h/3*(f(-.5)+f(.5)+sum(
+        (4 if j % 2 else 2)*f(-.5+j*h) for j in range(1, n)))
+
+# Two unit slits; eta=0; geometry gives exp(i*pi*F*d^2/4)=-1.
+for fresnel in [.25, .0625, .015625, .00390625]:
+    d = 2/sqrt(fresnel)
+    field = -2*integrate(lambda t: exp(1j*pi*fresnel*(t*t+d*t)))
+    uncorrected = abs(field-2)
+    corrected = abs(field+2)
+    intensity_error = abs(abs(field)**2-4)
+    print(fresnel, d, *(format(x, '.9g') for x in
+          [uncorrected, corrected, intensity_error]))
+    assert corrected <= pi*sqrt(fresnel)+1e-12
+```
+
+
+
+$$
+U_{\rm ref}=\sqrt F C_F\mathcal A_0:\qquad \frac{|U_F+U_{\rm ref}|^2}{F}=|\mathcal A_F+2|^2\longrightarrow0,\qquad
+\frac{|U_{FF}+U_{\rm ref}|^2}{F}=|2+2|^2=16.
+$$
+
+기준 장은 정확한 해에 적합한 것이 아니라 알려진 기하에서 정한다. 고립 강도 손실은 0에 가까워져도 후속 결맞은 기준 장의 예측은 실패할 수 있다. 절대 위상·사전에 정한 공통 위상 보정·고립 강도 중 무엇이 필요한 비교인지 명시해야 한다.
+
+![분리 개구 계열에서 고립 강도 오차는 줄지만 원래 축소 장 오차는 남으며 사전에 정한 기하 위상이 장 비교를 회복한다.](/assets/learning/waves-interference-aperture-bounds.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**모멘트 상계가 전체 전자기 정확도를 인증하는가?** **답:** 아니다. 정확한 두 근축 적분의 차를 상계한다. 물리 모델의 유효성과 수치 구적 오차는 별개의 질문이다.
+
+**모든 비교 전에 임의로 적합한 위상을 제거해도 되는가?** **답:** 아니다. 보정 근사는 기하에서 미리 선언해야 하며 기준 장 간섭에서 그 위상을 유지해야 한다. 기존의 수정하지 않은 장은 다른 예측으로 남는다.
+
+**훌륭한 고립 강도 예측도 결맞은 실험에서 실패할 수 있는가?** **답:** 그렇다. 위 계열에서 실제 축소 장은 −2로 가지만 수정하지 않은 근사는 +2이다. 같은 알려진 기준 장을 더하면 축소 강도의 극한은 0과 16이다.
+
 ## 해설이 있는 연습 문제
 
 ### 문제 1: 폭의 관례

@@ -79,7 +79,10 @@ test('uniform phase populations keep a physical contrast even when only roundoff
 });
 for(const id of ['coherent-superposition-detector-averages','finite-aperture-fresnel-fraunhofer'])for(const lang of ['ko','en']as const)test(`${id}.${lang}: detailed bilingual theory,six explained exercises and strict math render`,async()=>{
  const{readFile}=await import('node:fs/promises'),{getLearningContent}=await import('../src/lib/learning-content');const raw=await readFile(`content/learning/physics-math-for-ai/${id}.${lang}.md`,'utf8'),rendered=await getLearningContent(id);
- assert.ok(raw.length>6500);assert.equal(rendered.outline[lang].length,16);assert.equal(rendered.outline.ko.length,rendered.outline.en.length);assert.equal(new Set(rendered.outline[lang].map(h=>h.id)).size,16);assert.ok(rendered[lang].includes('katex-display'));assert.ok(!rendered[lang].includes('katex-error'));
+ assert.ok(raw.length>6500);assert.equal(rendered.outline[lang].length,17);assert.equal(rendered.outline.ko.length,rendered.outline.en.length);assert.equal(new Set(rendered.outline[lang].map(h=>h.id)).size,17);assert.ok(rendered[lang].includes('katex-display'));assert.ok(!rendered[lang].includes('katex-error'));
+ const start=raw.search(/^## (Research extension:|연구 확장:)/m),headerEnd=raw.indexOf('\n',start),next=raw.slice(headerEnd).search(/^## /m);
+ assert.ok(start>=0&&next>=0);const original=raw.slice(0,start)+raw.slice(headerEnd+next);
+ assert.equal((original.match(/^## /gm)||[]).length,16);assert.equal(rendered.outline[lang].filter(h=>/Research extension:|연구 확장:/.test(h.title)).length,1);
  assert.equal((raw.match(/^### (?:Exercise|문제) [1-6]/gm)||[]).length,6);assert.equal((raw.match(lang==='en'?/\*\*Solution:\*\*/g:/\*\*해설:\*\*/g)||[]).length,6);assert.doesNotMatch(raw,/TODO|TBD|coming soon/i);if(lang==='en')assert.doesNotMatch(raw,/[가-힣]/);
 });
 test('a tiny positive exposure at a large center retains its instantaneous limit instead of collapsing endpoints',()=>{

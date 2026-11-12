@@ -154,6 +154,123 @@ $$
 
 독립 기준값은 실제 복소 크기와 실수 제곱을 SciPy로 적분한다. 서로 다른 세 위상에서 별도로 구한 평균으로 제품의 대비 공식을 호출하지 않고 변조와 가시도를 복원한다. 영노출·없는 경로·음의 정현비·거의 어두운 무늬·균일 위상·비식별 예제도 검사한다. AI 대리 모델이 한 밝은 무늬를 맞춘 것만으로는 부족하다. 노출·진폭·위상 집단을 독립적으로 바꿔 평가한다.
 
+## 연구 확장: 같은 평균 무늬에도 다른 요동이 숨을 수 있다
+
+평균 무늬 곡선은 위상 모멘트 하나에 의존한다. 그 곡선을 맞추면 확률적 광학 모델을 검증한 것일까? 아니다. 두 고전적 위상 모집단은 모든 스캔 위상에서 평균이 정확히 같으면서 반복 측정 분산은 다를 수 있다. 추가 모멘트와 물리적 일관성 조건을 유도한다. 광자 계수 통계나 기존 실습의 새 잡음 제어가 아니라 별도의 반복 노출 계산이다.
+
+### 무엇이 요동하는지 명시한다
+
+노출마다 위상 theta 하나를 뽑고 해당 노출 동안 고정한다. 기존 정규화 해석 신호 강도와 부호 있는 창 인자를 유지한다. 제어 설정을 고정했을 때 한 번의 노출 평균은 다음과 같다.
+
+
+
+$$
+I_\theta=B+C\cos(\psi+\theta),\qquad B=a^2+b^2,\quad C=2abS,\quad S=\operatorname{sinc}(\Delta\omega T/2).
+$$
+
+B≥2ab≥abs(C)이므로 모든 실현 강도는 음이 아니다. 확률변수는 이미 노출 평균을 취한 정규화 강도다. 그 분산은 순간 실수 장 제곱의 분산이나 샷 잡음 계수 분산이 아니다. 한 노출 안에서 위상이 빠르게 바뀌면 이 고정 위상 모델을 넘어서는 시간 상관 정보가 필요하다.
+
+
+
+$$
+M=\mathbb E e^{i\theta},\qquad N=\mathbb E e^{2i\theta},\qquad \mu_I=\mathbb E I_\theta=B+C\operatorname{Re}(e^{i\psi}M).
+$$
+
+모멘트는 앞에서 정의한 모집단 모멘트와 같은 양의 위상 관례를 사용한다. N은 위상 분포의 이차 조화 모멘트이며 독립적인 장 진폭이 아니다.
+
+### 광원을 추론하기 전에 분산을 유도한다
+
+
+
+$$
+\sigma_I^2=\operatorname{Var}(I_\theta)=C^2\left[\frac{1+\operatorname{Re}(e^{2i\psi}N)}2-\left(\operatorname{Re}(e^{i\psi}M)\right)^2\right].
+$$
+
+cos²(alpha)=[1+cos(2alpha)]/2를 사용한 뒤 코사인 평균의 제곱을 뺀다. 평균 곡선은 진폭과 창 인자를 알아야 M을 드러내며 N은 알려주지 않는다. 음의 S는 평균 변조 부호를 바꾸지만 분산에는 S²이 곱해진다. S=0이면 고정 위상의 모든 노출 평균이 B가 되어 이 분산은 사라진다.
+
+### 모멘트의 결합 물리 조건을 확인한다
+
+
+
+$$
+Z=e^{i\theta}:\qquad |N-M^2|=\left|\mathbb E(Z-M)^2\right|\le\mathbb E|Z-M|^2=1-|M|^2.
+$$
+
+삼각부등식으로 비음 정규화 가중치를 갖는 모든 위상 모집단의 필요조건을 증명한다. abs(M)≤1, abs(N)≤1을 따로 확인하는 것은 더 약하다. 선형대수적으로는 다음 모멘트 행렬로도 검사할 수 있다.
+
+
+
+$$
+\Gamma=\mathbb E[zz^\dagger]=\begin{pmatrix}1&\overline M&\overline N\\M&1&\overline M\\N&M&1\end{pmatrix},\quad z=(1,Z,Z^2)^T,\qquad
+v^\dagger\Gamma v=\mathbb E|v^\dagger z|^2\ge0,\quad \det\Gamma=(1-|M|^2)^2-|N-M^2|^2\ge0.
+$$
+
+M을 고정하면 가능한 N은 중심 M², 반지름 1−abs(M)²인 원판 안에 있어야 한다. 이를 필요한 일관성 검사로 사용하며 유한 수치 검사를 일반적인 모멘트 복원 정리로 부르지 않는다. 예를 들어 모델이 각각 유계지만 함께는 불가능한 다음 쌍을 예측할 수 있다.
+
+
+
+$$
+M=0.8,\quad N=-0.8,\quad a=b=S=1,\quad\psi=0:\qquad |N-M^2|=1.44>0.36,\quad\sigma_I^2=-2.16.
+$$
+
+음의 분산은 일관성 없는 예측을 식별하며 음의 물리 강도나 실현 가능한 위상 모집단을 뜻하지 않는다.
+
+### 평균 곡선이 같은 두 모집단을 비교한다
+
+
+
+$$
+\mathcal P_A=\tfrac12(\delta_0+\delta_\pi):\quad M_A=0,\ N_A=1,\ \sigma_A^2=C^2\cos^2\psi,\qquad
+\mathcal P_B=\tfrac12(\delta_{\pi/2}+\delta_{3\pi/2}):\quad M_B=0,\ N_B=-1,\ \sigma_B^2=C^2\sin^2\psi.
+$$
+
+모든 psi에서 두 평균 곡선은 B이다. psi=0, a=b=S=1일 때 A는 강도 4와 0을 만들지만 B는 언제나 2를 준다. 평균만 학습하는 손실로는 둘을 구분할 수 없다. 표는 a=b=S=1에서 두 결과로부터 평균·분산을 직접 구하며 위상 좌표는 반올림했다.
+
+| psi (rad) | 공통 평균 | 분산 A | 분산 B |
+|---|---|---|---|
+| 0 | 2 | 4 | 0 |
+| 0.785398 | 2 | 2 | 2 |
+| 1.570796 | 2 | 0 | 4 |
+| 2.356194 | 2 | 2 | 2 |
+
+```python
+from math import cos, pi
+
+# Classical phase held fixed within each exposure; a=b=1, S=1.
+for psi in [0, pi/4, pi/2, 3*pi/4]:
+    populations = [[0, pi], [pi/2, 3*pi/2]]
+    results = []
+    for phases in populations:
+        values = [2+2*cos(psi+theta) for theta in phases]
+        mean = sum(values)/2
+        variance = sum((value-mean)**2 for value in values)/2
+        results.append((mean, variance))
+    assert abs(results[0][0]-results[1][0]) < 1e-12
+    print(round(psi, 6), round(results[0][0], 6),
+          round(results[0][1], 6), round(results[1][1], 6))
+```
+
+### 독립 반복과 더 긴 노출을 구분한다
+
+
+
+$$
+\overline I_R=\frac1R\sum_{r=1}^R I_r:\qquad \operatorname{Var}(\overline I_R)=\frac{\sigma_I^2}{R}\quad\text{for independent identical runs},\qquad
+\operatorname{Var}(\overline I_R)=\frac{\sigma_I^2}{R}+\frac2{R^2}\sum_{h=1}^{R-1}(R-h)K_h,\quad K_h=\operatorname{Cov}(I_r,I_{r+h})\quad\text{for stationary runs}.
+$$
+
+합의 분산을 전개하면 공분산 항을 얻는다. 모든 반복이 고정 위상 하나를 재사용하면 모든 지연 공분산이 sigma²이므로 평균을 취해도 이 모집단 분산은 줄지 않는다. 반대로 노출 기간 T를 바꾸면 S와 한 번의 관측 자체가 바뀐다. 광원의 시간 모델 없이 두 연산을 교환할 수 없다.
+
+![두 위상 모집단은 평탄한 평균 강도를 공유하지만 스캔 분산이 다르며 별도의 결합 모멘트 원판은 개별 단위 상계만 만족하는 예측을 배제한다.](/assets/learning/waves-interference-moment-variance.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**전체 평균 무늬 곡선으로 요동 통계를 식별할 수 있는가?** **답:** 아니다. 두 모집단은 M=0과 모든 평균 위상 값을 공유하지만 이차 모멘트와 분산 스캔은 다르다.
+
+**각각 유계인 학습 모멘트는 물리적으로 일관적인가?** **답:** 반드시 그렇지는 않다. 결합 원판이나 양의 모멘트 행렬을 확인한다. 예시의 유계 쌍은 음의 분산을 예측한다.
+
+**표본을 늘리면 불확실성이 언제나 1/R로 줄어드는가?** **답:** 명시한 독립 반복의 분산에서만 그렇다. 상관된 반복에는 공분산 항이 남고 긴 노출은 관측량을 바꾼다. 광원 시계와 검출기 모델을 명시한다.
+
 ## 해설이 있는 연습 문제
 
 ### 문제 1: 같은 위상의 두 장

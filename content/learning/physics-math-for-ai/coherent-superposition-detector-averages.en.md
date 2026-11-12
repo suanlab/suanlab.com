@@ -152,6 +152,123 @@ The underlying teaching model supports amplitudes0–2, frequencies0–16, time 
 
 Independent reference calculations integrate actual complex magnitudes and real squares with SciPy. Three separately averaged phase settings recover modulation and contrast without calling the product's formula. Tests also cover zero exposure, absent fields, negative sinc, nearly dark fringes, uniform phases and the nonidentifiability example. For an AI surrogate, matching one bright fringe is weak evidence: test changes of exposure, branch amplitude and population independently.
 
+## Research extension: the same mean fringe can hide different fluctuations
+
+The mean fringe curve depends on one phase moment. Does matching that curve verify a stochastic optical model? No: two classical phase populations can have exactly the same mean at every scanned phase and different run-to-run variance. We derive the extra moment and its physical consistency constraint. This is a supplementary repeated-exposure calculation, not photon-counting statistics or a new native noise control.
+
+### Specify which quantity fluctuates
+
+Draw one phase theta per exposure and hold it fixed throughout that exposure. Keep the existing normalized analytic-signal intensity and its signed window factor. At fixed controlled settings the per-run exposure average is
+
+
+
+$$
+I_\theta=B+C\cos(\psi+\theta),\qquad B=a^2+b^2,\quad C=2abS,\quad S=\operatorname{sinc}(\Delta\omega T/2).
+$$
+
+Since B≥2ab≥abs(C), every realized intensity is nonnegative. The random variable here is an already exposure-averaged normalized intensity. Its variance is not the variance of the instantaneous real field square, nor a shot-noise count variance. Fast phase changes inside one exposure require temporal correlation information beyond this frozen-phase model.
+
+
+
+$$
+M=\mathbb E e^{i\theta},\qquad N=\mathbb E e^{2i\theta},\qquad \mu_I=\mathbb E I_\theta=B+C\operatorname{Re}(e^{i\psi}M).
+$$
+
+These moments use the same positive-phase convention as the population moment already defined above. N is a second harmonic of the phase distribution, not an independent field amplitude.
+
+### Derive the variance before inferring a source
+
+
+
+$$
+\sigma_I^2=\operatorname{Var}(I_\theta)=C^2\left[\frac{1+\operatorname{Re}(e^{2i\psi}N)}2-\left(\operatorname{Re}(e^{i\psi}M)\right)^2\right].
+$$
+
+Use cos²(alpha)=[1+cos(2alpha)]/2, then subtract the squared mean of the cosine. The mean curve reveals M only after amplitude and window factors are known; it does not reveal N. A negative S changes the mean modulation sign while variance scales with S². If S=0, every frozen-phase exposure average equals B and this particular variance vanishes.
+
+### Enforce a joint physical moment constraint
+
+
+
+$$
+Z=e^{i\theta}:\qquad |N-M^2|=\left|\mathbb E(Z-M)^2\right|\le\mathbb E|Z-M|^2=1-|M|^2.
+$$
+
+The triangle inequality proves this necessary condition for every phase population with nonnegative normalized weights. Separate bounds abs(M)≤1 and abs(N)≤1 are weaker. A complementary linear-algebra check uses the moment matrix:
+
+
+
+$$
+\Gamma=\mathbb E[zz^\dagger]=\begin{pmatrix}1&\overline M&\overline N\\M&1&\overline M\\N&M&1\end{pmatrix},\quad z=(1,Z,Z^2)^T,\qquad
+v^\dagger\Gamma v=\mathbb E|v^\dagger z|^2\ge0,\quad \det\Gamma=(1-|M|^2)^2-|N-M^2|^2\ge0.
+$$
+
+For a fixed M, the allowable N must lie inside a disk centered at M² with radius 1−abs(M)². We use this as a necessary consistency test; no finite numerical check is a general moment-reconstruction theorem. For example, a model might independently predict the following bounded but impossible pair:
+
+
+
+$$
+M=0.8,\quad N=-0.8,\quad a=b=S=1,\quad\psi=0:\qquad |N-M^2|=1.44>0.36,\quad\sigma_I^2=-2.16.
+$$
+
+That negative variance identifies an inconsistent prediction, not negative physical intensity or a realizable phase ensemble.
+
+### Compare two populations with identical mean curves
+
+
+
+$$
+\mathcal P_A=\tfrac12(\delta_0+\delta_\pi):\quad M_A=0,\ N_A=1,\ \sigma_A^2=C^2\cos^2\psi,\qquad
+\mathcal P_B=\tfrac12(\delta_{\pi/2}+\delta_{3\pi/2}):\quad M_B=0,\ N_B=-1,\ \sigma_B^2=C^2\sin^2\psi.
+$$
+
+Both mean curves are B for every psi. At psi=0 and a=b=S=1, population A produces intensities 4 and 0, while population B always gives 2. A mean-only training loss cannot distinguish them. The table computes means and variances directly from the two outcomes, with a=b=S=1 and rounded phase coordinates.
+
+| psi (rad) | shared mean | variance A | variance B |
+|---|---|---|---|
+| 0 | 2 | 4 | 0 |
+| 0.785398 | 2 | 2 | 2 |
+| 1.570796 | 2 | 0 | 4 |
+| 2.356194 | 2 | 2 | 2 |
+
+```python
+from math import cos, pi
+
+# Classical phase held fixed within each exposure; a=b=1, S=1.
+for psi in [0, pi/4, pi/2, 3*pi/4]:
+    populations = [[0, pi], [pi/2, 3*pi/2]]
+    results = []
+    for phases in populations:
+        values = [2+2*cos(psi+theta) for theta in phases]
+        mean = sum(values)/2
+        variance = sum((value-mean)**2 for value in values)/2
+        results.append((mean, variance))
+    assert abs(results[0][0]-results[1][0]) < 1e-12
+    print(round(psi, 6), round(results[0][0], 6),
+          round(results[0][1], 6), round(results[1][1], 6))
+```
+
+### Distinguish repeated independent runs from a longer exposure
+
+
+
+$$
+\overline I_R=\frac1R\sum_{r=1}^R I_r:\qquad \operatorname{Var}(\overline I_R)=\frac{\sigma_I^2}{R}\quad\text{for independent identical runs},\qquad
+\operatorname{Var}(\overline I_R)=\frac{\sigma_I^2}{R}+\frac2{R^2}\sum_{h=1}^{R-1}(R-h)K_h,\quad K_h=\operatorname{Cov}(I_r,I_{r+h})\quad\text{for stationary runs}.
+$$
+
+Expand the variance of the sum to obtain the covariance terms. If every run reuses one frozen phase, all lag covariances equal sigma² and averaging does not reduce this ensemble variance. Changing the duration T instead changes S and the per-run observation itself. These operations cannot be exchanged without a source-time model.
+
+![Two phase populations share a flat mean intensity but have different scanned variances; separately, a joint moment disk rejects predictions that satisfy only individual unit bounds.](/assets/learning/waves-interference-moment-variance.en.svg)
+
+### Research questions with explanations
+
+**Does the full mean fringe curve identify fluctuation statistics?** **Answer:** No. The two populations share M=0 and every mean phase value, yet their second moments and variance scans differ.
+
+**Are individually bounded learned moments physically consistent?** **Answer:** Not necessarily. Check their joint disk or positive moment matrix; the displayed bounded pair predicts a negative variance.
+
+**Will collecting more samples always reduce uncertainty by 1/R?** **Answer:** Only for the stated independent-run variance. Correlated runs retain covariance terms, and longer exposure changes the observable. State the source timing and detector model.
+
 ## Exercises with explanations
 
 ### Exercise 1: Equal fields
