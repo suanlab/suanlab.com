@@ -122,6 +122,105 @@ Independent 180-digit references check nine thin slabs and a tiny balanced flux.
 
 A field-generating AI model may match an electric snapshot while predicting the wrong magnetic state and energy budget. Compare initial E and B, electric and magnetic storage, signed boundary flow, finite-region storage change, and first-order Maxwell relations. Do not reward a zero total-energy loss if the model merely hides local defects or confuses the compatible reference with its actual output.
 
+## Research extension: local zero-flux observers in vacuum
+
+### Declare a vacuum calculation at one event
+
+For this supplement use vacuum, with c₀ the physical vacuum light speed and ε₀μ₀c₀²=1. Alternatively use consistently normalized Lorentz-invariant vacuum units. A material wave speed 1/sqrt(εμ) from an arbitrary stationary medium is not a replacement for c₀ in a Lorentz transformation. Take transverse counterpropagating components f and g at one event. They may have either sign. The energy and flux formulas below retain both directions, and the field momentum density is S/c₀². This local calculation does not assign a finite total energy to the plane pulse’s infinite transverse extent.
+
+$$
+\mathbf E=(f+g,0,0),\quad c_0\mathbf B=(0,f-g,0),\quad u=\epsilon_0(f^2+g^2),\quad s=\frac{S_z}{c_0}=\epsilon_0(f^2-g^2),\quad \mathbf p_{\rm field}=\frac{\mathbf S}{c_0^2}.
+$$
+
+### Transform fields and coordinates together
+
+Let an inertial observer move along +z at v, with α=v/c₀ distinct from the pulse’s splitting fraction β. The primed fields are measured at the same physical event expressed in primed coordinates. Using z×y=−x and z×x=y fixes the two field-transform signs. Form half the sum and difference of E′ and c₀B′ to obtain f′ and g′. Rapidity η makes their opposite Doppler factors especially clear. Transforming a whole lab-time curve also requires transforming its event coordinates; a fixed laboratory slab is not the same simultaneous region for the moving observer.
+
+$$
+\alpha=\frac v{c_0},\quad|\alpha|<1,\quad\gamma=(1-\alpha^2)^{-1/2},\quad t'=\gamma(t-vz/c_0^2),\quad z'=\gamma(z-vt),\quad E_x'=\gamma(E_x-vB_y),\quad c_0B_y'=\gamma(c_0B_y-\alpha E_x).
+$$
+
+$$
+\eta=\operatorname{artanh}\alpha,\quad f'=\gamma(1-\alpha)f=e^{-\eta}f,\quad g'=\gamma(1+\alpha)g=e^{\eta}g.
+$$
+
+### Energy density and energy flux mix through stress
+
+Substitute f′ and g′ into the quadratic energy formulas. The resulting two-by-two block T uses indices ct,z: its diagonal entries are u because the longitudinal momentum flux is also u for these transverse fields. Applying Λ to both tensor indices gives the expanded formulas below. This is not the transformation of an ordinary two-component vector. The pressure contribution is why dividing momentum density by energy density does not directly supply the observer velocity that makes Poynting flux zero. Squaring the expanded formulas proves the next invariant; the field form gives an independent algebraic route.
+
+$$
+T=\begin{pmatrix}u&s\\s&u\end{pmatrix},\quad\Lambda=\gamma\begin{pmatrix}1&-\alpha\\-\alpha&1\end{pmatrix},\quad T'=\Lambda T\Lambda^T,\quad\begin{aligned}u'&=\gamma^2[(1+\alpha^2)u-2\alpha s],\\s'&=\gamma^2[(1+\alpha^2)s-2\alpha u].\end{aligned}
+$$
+
+$$
+u'^2-s'^2=u^2-s^2=4\epsilon_0^2f^2g^2=\frac{\epsilon_0^2}{4}(E_x^2-c_0^2B_y^2)^2.
+$$
+
+### Find a local zero-flux observer when one exists
+
+When f and g are both nonzero, s′=0 means |f′|=|g′|. Taking the ratio of the Doppler factors gives α∗ and η∗ below; substituting back gives u∗. The expression using s/(u+sqrt(u²−s²)) avoids the removable division by s that would occur in (u−sqrt(u²−s²))/s at a balanced state. It still requires available nonzero energy and a trustworthy invariant. Write the laboratory energy-flow ratio as w=S_z/(c₀u). Its relation to α∗ shows that these are different quantities except in special cases such as balance. For f=1 and g=1/4 in a common field unit, α∗=3/5, while w=15/17 and u∗/(ε₀ field-unit²)=1/2.
+
+$$
+fg\ne0:\quad\alpha_* =\frac{|f|-|g|}{|f|+|g|}=\frac{s}{u+\sqrt{u^2-s^2}},\quad\eta_* =\frac12\log\left|\frac f g\right|,\quad s'=0,\quad u_*=2\epsilon_0|fg|.
+$$
+
+$$
+w=\frac{S_z}{c_0u}=\frac{s}{u}=\frac{2\alpha_*}{1+\alpha_*^2},\qquad fg\ne0:\quad |\alpha_*|<1,\quad |w|<1.
+$$
+
+### Keep magnetic, electric, null and zero states separate
+
+If f and g have the same sign, their equal transformed magnitudes give B′=0. With opposite signs the zero-flux frame has E′=0 instead. If only one travelling component is nonzero, every finite rapidity keeps a nonzero flux of that sign: the required boost lies at |α|=1 and is not an inertial observer. This nonzero one-way state is a null electromagnetic field: the invariant u²−s² vanishes, while E and B do not. If both vanish, fields are zero in every frame; neither w nor a preferred normalized frame is defined. A nonzero u∗ is a local field invariant here, not a photon rest mass or an assertion of a global rest frame. In an overlapping pulse, α∗ generally changes from event to event, so the construction supplies a locally selected family of inertial observers, not one observer field that is necessarily inertial everywhere.
+
+$$
+\begin{cases}fg>0:&\text{a longitudinal zero-flux frame has }B_y'=0,\\fg<0:&\text{a longitudinal zero-flux frame has }E_x'=0,\\fg=0,\ u>0:&\text{no subluminal longitudinal zero-flux frame},\\f=g=0:&\text{zero fields in every frame; normalized ratios undefined}.\end{cases}
+$$
+
+### Treat a nearly one-way field without inventing a light-speed observer
+
+For f≠0 set r=|g/f|. The limit r→0 through positive values has valid but increasingly large rapidity; the exact r=0 case has no subluminal zero-flux observer. Finite precision can round α∗ to 1 before the small counterpropagating component vanishes. Compute from signed f,g and logarithmic amplitude ratios when appropriate, track arithmetic availability, and never repair the result by silently clipping a physical speed. Squaring rounded u and s can also erase the invariant; 2ε₀|fg| avoids that particular cancellation. The cell includes the exact one-way case and reports its zero-flux observer and energy there as unavailable. Other rows use signed vacuum components f=1, g=r≥0 and evaluate transformed fields through rapidity.
+
+$$
+r=|g/f|>0:\quad 1-\alpha_* =\frac{2r}{1+r},\quad\frac{u_*}{u}=\frac{2r}{1+r^2},\quad\eta_*=-\frac12\log r,\qquad r\to0^+:\quad\alpha_*\to1,\quad u_*/u\to0.
+$$
+
+| r = g/f | lab S / (c0 u) | zero-flux alpha | zero-flux u / energy unit |
+| --- | --- | --- | --- |
+| 0 | 1 | unavailable | unavailable |
+| 1e-06 | 0.999999999998 | 0.999998000002 | 2e-06 |
+| 0.1 | 0.980198019802 | 0.818181818182 | 0.2 |
+| 1 | 0 | -0 | 2 |
+
+```python
+from math import log, exp, tanh
+# Vacuum amplitudes f=1, g=r, in one fixed field unit.
+# Energies are divided by epsilon0 times that unit squared.
+for r in [0.0, 1e-6, 0.1, 1.0]:
+    u, s = 1+r*r, 1-r*r
+    w = s/u
+    if r == 0:
+        print(f"{r:.12g} {w:.12g} unavailable unavailable")
+        continue
+    eta = -0.5*log(r)
+    alpha = tanh(eta)
+    fp, gp = exp(-eta), exp(eta)*r
+    up, sp = fp*fp+gp*gp, fp*fp-gp*gp
+    assert abs(sp) < 1e-12
+    print(f"{r:.12g} {w:.12g} {alpha:.12g} {up:.12g}")
+```
+
+[Feynman II §26–3](https://www.feynmanlectures.caltech.edu/II_26.html) gives the vacuum field transformations, and [§27–6](https://www.feynmanlectures.caltech.edu/II_27.html) gives field momentum. The transverse stress-block algebra, local classification and near-null diagnostics here follow directly from our stated fields. The existing Gaussian lab can supply vacuum event data and laboratory energy/flux; it does not add a moving-observer control or reinterpret a material’s wave speed as vacuum c₀.
+
+![Vacuum zero-flux frame, observer-dependent energy and near-null limits](/assets/learning/electromagnetism-vacuum-zero-flux-frame.en.svg)
+
+### Research questions with explanations
+
+**Is S/u the speed of the observer who measures zero flux?** **Answer:** Generally no. In the stated vacuum transverse family, S/(c₀u)=2α∗/(1+α∗²), rather than α∗.
+
+**Does a one-way nonzero wave have a finite zero-flux inertial frame?** **Answer:** No. The limiting boost has |α|=1. An arbitrarily small nonzero opposite component and an exact zero component are different cases.
+
+**Can the same formula use the wave speed of a dielectric?** **Answer:** No. This is a vacuum Lorentz calculation using c₀. Moving media require additional constitutive and material energy–momentum treatment.
+
 ## Exercises with explanations
 
 ### Exercise 1: Same E, different energy

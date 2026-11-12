@@ -122,6 +122,105 @@ $$
 
 AI 장 생성 모형은 전기장 한 장면을 맞추면서 자기 상태와 에너지 예산을 틀릴 수 있다. 초기 E와 B, 전기·자기 저장, 부호 있는 경계 흐름, 유한 영역의 저장 변화, 일차 Maxwell 관계를 함께 비교하자. 국소 결함을 가리거나 호환 기준을 실제 출력과 혼동한 결과에 총 에너지 손실0이라는 이유로 좋은 점수를 주지 말자.
 
+## 연구 확장: 진공에서 국소 영선속 관측자 찾기
+
+### 한 사건에서의 진공 계산을 선언하기
+
+이 보충에서는 진공을 사용하며 c₀는 물리적 진공 광속이고 ε₀μ₀c₀²=1입니다. 또는 일관되게 정규화한 Lorentz 불변 진공 단위를 사용합니다. 임의의 정지 매질에서 나온 파동 속도 1/sqrt(εμ)를 Lorentz 변환의 c₀로 대체할 수는 없습니다. 한 사건에서 횡방향 반대 진행 성분 f·g를 취하며 두 성분은 어느 부호도 가능합니다. 아래 에너지·선속 식은 두 방향을 유지하고 장 운동량 밀도는 S/c₀²입니다. 이 국소 계산이 평면 펄스의 무한 횡단 면적에 유한한 총에너지를 부여하지는 않습니다.
+
+$$
+\mathbf E=(f+g,0,0),\quad c_0\mathbf B=(0,f-g,0),\quad u=\epsilon_0(f^2+g^2),\quad s=\frac{S_z}{c_0}=\epsilon_0(f^2-g^2),\quad \mathbf p_{\rm field}=\frac{\mathbf S}{c_0^2}.
+$$
+
+### 장과 좌표를 함께 변환하기
+
+관성 관측자가 +z 방향으로 v로 움직이며 α=v/c₀는 펄스 분리 비율 β와 다르다고 둡니다. 프라임 장은 같은 물리적 사건을 프라임 좌표로 표현해 측정한 값입니다. z×y=−x, z×x=y로 두 변환 부호를 정합니다. E′와 c₀B′의 합·차를 반으로 나누면 f′·g′입니다. 신속도 η를 사용하면 서로 반대인 Doppler 인자가 명확해집니다. 실험실 한 시점 곡선 전체를 바꾸려면 사건 좌표도 변환해야 합니다. 고정된 실험실 slab는 이동 관측자의 동일한 동시 영역이 아닙니다.
+
+$$
+\alpha=\frac v{c_0},\quad|\alpha|<1,\quad\gamma=(1-\alpha^2)^{-1/2},\quad t'=\gamma(t-vz/c_0^2),\quad z'=\gamma(z-vt),\quad E_x'=\gamma(E_x-vB_y),\quad c_0B_y'=\gamma(c_0B_y-\alpha E_x).
+$$
+
+$$
+\eta=\operatorname{artanh}\alpha,\quad f'=\gamma(1-\alpha)f=e^{-\eta}f,\quad g'=\gamma(1+\alpha)g=e^{\eta}g.
+$$
+
+### 에너지 밀도와 선속은 응력을 통해 섞인다
+
+f′·g′를 이차 에너지 식에 대입합니다. 얻는 2×2 블록 T는 ct,z 첨자를 사용하며, 이 횡방향 장의 종방향 운동량 선속도 u이므로 두 대각 성분이 u입니다. 두 텐서 첨자에 Λ를 적용하면 아래 전개식을 얻습니다. 이는 보통의 두 성분 벡터 변환이 아닙니다. 압력 기여 때문에 운동량 밀도를 에너지 밀도로 나눈 값이 곧바로 Poynting 선속을 0으로 만드는 관측자 속도가 되지 않습니다. 전개식을 제곱하면 다음 불변량을 증명할 수 있고, 장 표현은 독립적인 대수 경로를 줍니다.
+
+$$
+T=\begin{pmatrix}u&s\\s&u\end{pmatrix},\quad\Lambda=\gamma\begin{pmatrix}1&-\alpha\\-\alpha&1\end{pmatrix},\quad T'=\Lambda T\Lambda^T,\quad\begin{aligned}u'&=\gamma^2[(1+\alpha^2)u-2\alpha s],\\s'&=\gamma^2[(1+\alpha^2)s-2\alpha u].\end{aligned}
+$$
+
+$$
+u'^2-s'^2=u^2-s^2=4\epsilon_0^2f^2g^2=\frac{\epsilon_0^2}{4}(E_x^2-c_0^2B_y^2)^2.
+$$
+
+### 존재할 때 국소 영선속 관측자를 찾기
+
+f·g가 모두 0이 아니면 s′=0은 |f′|=|g′|입니다. Doppler 인자 비로 아래 α∗·η∗를 얻고 다시 대입하면 u∗입니다. s/(u+sqrt(u²−s²)) 식은 균형 상태에서 (u−sqrt(u²−s²))/s가 갖는 s로의 나눗셈을 피합니다. 그래도 사용할 수 있는 비영 에너지와 신뢰할 불변량이 필요합니다. 실험실 에너지 흐름 비율을 w=S_z/(c₀u)라 쓰면 α∗와의 관계로 둘이 균형 같은 특별한 경우 밖에서는 다름을 알 수 있습니다. 공통 장 단위에서 f=1, g=1/4이면 α∗=3/5이지만 w=15/17이고 u∗/(ε₀ 장 단위²)=1/2입니다.
+
+$$
+fg\ne0:\quad\alpha_* =\frac{|f|-|g|}{|f|+|g|}=\frac{s}{u+\sqrt{u^2-s^2}},\quad\eta_* =\frac12\log\left|\frac f g\right|,\quad s'=0,\quad u_*=2\epsilon_0|fg|.
+$$
+
+$$
+w=\frac{S_z}{c_0u}=\frac{s}{u}=\frac{2\alpha_*}{1+\alpha_*^2},\qquad fg\ne0:\quad |\alpha_*|<1,\quad |w|<1.
+$$
+
+### 자기형·전기형·널장·영장을 구분하기
+
+f와 g의 부호가 같으면 변환 크기가 같아져 B′=0입니다. 반대 부호에서는 영선속 기준계의 E′=0입니다. 진행 성분 하나만 0이 아니면 모든 유한 신속도에서 같은 부호의 비영 선속이 남습니다. 필요한 |α|=1은 관성 관측자가 아닙니다. 이 비영 단방향 상태를 널(null) 전자기장이라 부릅니다. 여기서 0인 것은 불변량 u²−s²이며 E와 B 자체가 아닙니다. 둘 다 0이면 모든 기준계에서 장이 0이고 w나 선호하는 정규화 기준계가 정의되지 않습니다. 여기서 비영 u∗는 국소 장 불변량이지 광자의 정지 질량이나 전역 정지 기준계에 대한 주장이 아닙니다. 겹치는 펄스에서는 α∗가 사건마다 일반적으로 달라집니다. 따라서 이는 각 지점에서 선택한 관성 관측자들의 모음이지 어디서나 하나의 관성계가 되는 관측자장은 아닙니다.
+
+$$
+\begin{cases}fg>0:&\text{a longitudinal zero-flux frame has }B_y'=0,\\fg<0:&\text{a longitudinal zero-flux frame has }E_x'=0,\\fg=0,\ u>0:&\text{no subluminal longitudinal zero-flux frame},\\f=g=0:&\text{zero fields in every frame; normalized ratios undefined}.\end{cases}
+$$
+
+### 거의 단방향인 장에서 광속 관측자를 만들지 않기
+
+f≠0에서 r=|g/f|로 둡니다. 양의 r을 통해 0에 접근하는 극한에는 점점 큰 신속도의 유효한 관측자가 있지만, 정확한 r=0에는 광속보다 느린 영선속 관측자가 없습니다. 유한 정밀도는 반대 성분이 사라지기 전에 α∗를 1로 반올림할 수 있습니다. 필요할 때 부호 있는 f·g와 로그 진폭비를 사용하고 산술 가용성을 추적하며 물리 속도를 몰래 잘라 보정하지 않습니다. 반올림한 u·s의 제곱 차도 불변량을 잃을 수 있는데 2ε₀|fg|는 그 상쇄를 피합니다. 셀은 정확한 단방향 경우를 포함하고 그 경우 영선속 관측자와 그곳 에너지를 사용 불가로 표시합니다. 나머지 행은 부호 있는 진공 성분 f=1, g=r≥0를 신속도로 변환합니다.
+
+$$
+r=|g/f|>0:\quad 1-\alpha_* =\frac{2r}{1+r},\quad\frac{u_*}{u}=\frac{2r}{1+r^2},\quad\eta_*=-\frac12\log r,\qquad r\to0^+:\quad\alpha_*\to1,\quad u_*/u\to0.
+$$
+
+| r = g/f | 실험실 S / (c0 u) | 영선속 alpha | 영선속 u / 에너지 단위 |
+| --- | --- | --- | --- |
+| 0 | 1 | unavailable | unavailable |
+| 1e-06 | 0.999999999998 | 0.999998000002 | 2e-06 |
+| 0.1 | 0.980198019802 | 0.818181818182 | 0.2 |
+| 1 | 0 | -0 | 2 |
+
+```python
+from math import log, exp, tanh
+# Vacuum amplitudes f=1, g=r, in one fixed field unit.
+# Energies are divided by epsilon0 times that unit squared.
+for r in [0.0, 1e-6, 0.1, 1.0]:
+    u, s = 1+r*r, 1-r*r
+    w = s/u
+    if r == 0:
+        print(f"{r:.12g} {w:.12g} unavailable unavailable")
+        continue
+    eta = -0.5*log(r)
+    alpha = tanh(eta)
+    fp, gp = exp(-eta), exp(eta)*r
+    up, sp = fp*fp+gp*gp, fp*fp-gp*gp
+    assert abs(sp) < 1e-12
+    print(f"{r:.12g} {w:.12g} {alpha:.12g} {up:.12g}")
+```
+
+[Feynman II 26–3절](https://www.feynmanlectures.caltech.edu/II_26.html)은 진공 장 변환을, [27–6절](https://www.feynmanlectures.caltech.edu/II_27.html)은 장 운동량을 제공합니다. 횡방향 응력 블록 대수·국소 분류·거의 단방향 진단은 선언한 장에서 직접 유도합니다. 기존 Gaussian 실습은 진공 사건 자료와 실험실 에너지·선속을 제공하며 이동 관측자 제어를 추가하거나 매질 파동 속도를 진공 c₀로 재해석하지 않습니다.
+
+![진공 영선속 기준계·관측자별 에너지·거의 단방향 극한](/assets/learning/electromagnetism-vacuum-zero-flux-frame.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**S/u가 선속 0을 측정하는 관측자의 속도인가?** **답:** 일반적으로 아니다. 선언한 진공 횡방향 가족에서 S/(c₀u)=2α∗/(1+α∗²)이며 α∗ 자체와 다르다.
+
+**비영 단방향 파동에 유한한 영선속 관성계가 있는가?** **답:** 없다. 극한 변환은 |α|=1이다. 아무리 작아도 비영인 반대 성분과 정확한 영 성분은 다른 경우다.
+
+**유전체의 파동 속도를 같은 식에 써도 되는가?** **답:** 안 된다. c₀를 사용하는 진공 Lorentz 계산이다. 움직이는 매질에는 추가 구성 법칙과 물질 에너지·운동량 처리가 필요하다.
+
 ## 풀이가 있는 연습문제
 
 ### 연습 1: 같은 E와 다른 에너지

@@ -115,6 +115,98 @@ Draw the cylinder as a box in an energy-accounting diagram. Attach boundary arro
 
 Start by removing b₂ and observe which pair vanishes. Then restore b₂ and remove only J: the source-work arrow disappears while electric storage still grows. This comparison connects the missing term to a physical accounting failure rather than merely a red residual label.
 
+## Research extension: power cannot identify every current component
+
+### Ask what a power observation actually determines
+
+Assume the electric field is known. A power-density measurement gives one scalar projection of a three-component current, not the whole current vector. The formula below separates the determined parallel part from an arbitrary perpendicular part. At E=0 the projection formula is undefined: power is zero for every J, so the datum determines even less. In a learned field model, a zero energy residual can therefore coexist with an incorrect transverse current. Initial constraints, continuity, vector Maxwell equations and boundary data remain distinct tests.
+
+$$
+p=\mathbf J\cdot\mathbf E,\quad[p]={\rm W/m^3},\qquad\mathbf E\ne0:\quad\mathbf J=\frac{p}{|\mathbf E|^2}\mathbf E+\mathbf J_\perp,\quad\mathbf E\cdot\mathbf J_\perp=0.
+$$
+
+### Build an energy-invisible negative control
+
+In the bounded induction family above E_z=0. Add an axial current q(x,y,t) that is independent of z while keeping E, B and charge unchanged. Its divergence is zero and it does no work against E, so continuity and the entire energy accounting are unchanged. Yet the Ampere residual changes by −μq along z. Thus these are deliberately incompatible source predictions when q is nonzero, not alternative Maxwell solutions for the same fields. Boundary currents and supports belong to the stated bounded model; periodic or isolated-system assumptions are not added silently.
+
+$$
+\delta\mathbf J=q(x,y,t)\mathbf e_z:\quad\nabla\cdot\delta\mathbf J=0,\quad\mathbf E\cdot\delta\mathbf J=0,\quad\delta\mathbf r_A=-\mu q\mathbf e_z,\quad\mathbf r_A=\nabla\times\mathbf B-\mu(\mathbf J+\epsilon\partial_t\mathbf E).
+$$
+
+### Separate dissipative and transverse tensor response
+
+For a new local identification example, assume a real, instantaneous, spatially homogeneous planar law J=ΣE, with no imposed relation between its four coefficients. Split Σ into a symmetric S and an antisymmetric A. A ninety-degree rotation of E is perpendicular to E, so its work is zero. Equivalently, the scalar EᵀAE equals its negative after transposition. Every power experiment is blind to h, even if arbitrarily many field directions are available. A Hall-like response provides physical motivation, but this algebra does not claim quantization, a measured material or a full Drude parameter relation. Additional constitutive priors can reduce ambiguity; that information comes from the priors.
+
+$$
+\mathbf J=\Sigma\mathbf E,\quad \Sigma=S+A,\quad S=\begin{pmatrix}a&b\\b&d\end{pmatrix},\quad A=\begin{pmatrix}0&-h\\h&0\end{pmatrix},\quad [a]=[b]=[d]=[h]={\rm S/m}.
+$$
+
+$$
+\mathbf E^TA\mathbf E=0,\qquad p=\mathbf E^TS\mathbf E=aE_x^2+2bE_xE_y+dE_y^2.
+$$
+
+### Test passivity for every direction
+
+In this restricted instantaneous resistive model, nonnegative power for every field is equivalent to S being positive semidefinite. If a>0, complete the square: p=a(E_x+bE_y/a)²+(d−b²/a)E_y². If a=0, positivity requires b=0 and d≥0. This explains the determinant condition including its degenerate boundary. Positive powers on a few probes are insufficient. For S=(1,2;2,1) S/m, the fields (1,0), (0,1) and (1,1) V/m give powers 1, 1 and 6 W/m³, yet (1,−1) gives −2 W/m³. General J·E can be negative when sources or reversible storage supply energy; do not apply this resistive passivity test to every material or every prescribed current.
+
+$$
+p\ge0\ \text{for all planar }\mathbf E\quad\Longleftrightarrow\quad S\succeq0\quad\Longleftrightarrow\quad a\ge0,\ d\ge0,\ ad-b^2\ge0.
+$$
+
+### Design calibrated probes and expose their blind column
+
+Use exactly known field components with E∗>0 and dimensionless δ. The third probe has magnitude E∗sqrt(1+δ²), so these are not equal-amplitude directions. P_i is the actual power density; p_i=P_i/E∗² has conductivity units. The h column is identically zero. The three-column symmetric block has determinant −2δ: it is invertible for δ≠0, while δ=0 duplicates the first probe and also loses b. With independent equal-variance errors of variance v_p in p_i, error propagation yields the variance below without requiring Gaussian noise. As δ approaches zero the inverse becomes ill conditioned. Unequal or correlated errors and uncertain E∗ need their own propagation; the plotted curve holds absolute p-error variance fixed.
+
+$$
+\mathbf E_1=E_*(1,0),\quad\mathbf E_2=E_*(0,1),\quad\mathbf E_3=E_*(1,\delta),\quad p_i=\frac{P_i}{E_*^2},\quad\begin{pmatrix}p_1\\p_2\\p_3\end{pmatrix}=\begin{pmatrix}1&0&0&0\\0&0&1&0\\1&2\delta&\delta^2&0\end{pmatrix}\begin{pmatrix}a\\b\\d\\h\end{pmatrix}.
+$$
+
+$$
+\delta\ne0:\quad a=p_1,\quad d=p_2,\quad b=\frac{p_3-p_1-\delta^2p_2}{2\delta},\qquad\operatorname{Var}(\widehat b)=v_p\frac{2+\delta^4}{4\delta^2}\quad\text{(independent equal-variance }p_i\text{ errors)}.
+$$
+
+### Add a different observation to identify h
+
+After recovering b, one calibrated transverse-current observation at E=E∗e_x identifies h. Changing h changes a physical current vector, rather than a gauge reference, despite leaving power unchanged. The table uses a=2, b=1 and d=3 S/m, whose symmetric determinant is 5 (S/m)². It varies h in units of 1 S/m: J_y changes while J_x and power stay fixed. In the displayed matrix h_bar is h divided by 1 S/m. The constitutive example is separate from the original manufactured induction solution; substituting arbitrary ΣE into that solution does not establish Maxwell compatibility.
+
+$$
+\mathbf E=E_*\mathbf e_x:\quad J_y=(b+h)E_*,\quad h=J_y/E_*-b,\qquad (\Sigma_{h_2}-\Sigma_{h_1})\mathbf E=(h_2-h_1)(-E_y,E_x)^T.
+$$
+
+$$
+S=\begin{pmatrix}2&1\\1&3\end{pmatrix}{\rm S/m},\quad E_*=1\ {\rm V/m}:\quad\bar h=\frac{h}{1\ {\rm S/m}},\quad\Sigma_h=\begin{pmatrix}2&1-\bar h\\1+\bar h&3\end{pmatrix}\ {\rm S/m},\quad\mathbf J=(2,1+\bar h)^T\ {\rm A/m^2},\quad p=2\ {\rm W/m^3}.
+$$
+
+| h in units of S/m | Jx [A/m2] | Jy [A/m2] | power [W/m3] |
+| --- | --- | --- | --- |
+| -2.00000000 | 2.00000000 | -1.00000000 | 2.00000000 |
+| 0.00000000 | 2.00000000 | 1.00000000 | 2.00000000 |
+| 1.00000000 | 2.00000000 | 2.00000000 | 2.00000000 |
+| 3.00000000 | 2.00000000 | 4.00000000 | 2.00000000 |
+
+```python
+# Entries and h in S/m; E=(1,0) V/m; J in A/m^2.
+a, b, d = 2.0, 1.0, 3.0
+E = [1.0, 0.0]
+for h in [-2.0, 0.0, 1.0, 3.0]:
+    Sigma = [[a,b-h],[b+h,d]]
+    J = [sum(x*y for x,y in zip(row,E)) for row in Sigma]
+    power = sum(x*y for x,y in zip(E,J))
+    print(f"{h:.8f} {J[0]:.8f} {J[1]:.8f} {power:.8f}")
+```
+
+[Tong’s classical Hall discussion, §1.2.2](https://arxiv.org/html/1606.06687#S1.SS2.SSS2), supplies conductivity-tensor context. Our unconstrained real tensor family, calibrated probe inverse, passivity counterexample and uncertainty calculation are derived here. They do not use a microscopic Drude relation to infer the hidden coefficient. The existing induction-energy lab supplies the manufactured E and required J for the separate axial-current negative control; no new conductivity-tensor control is implied.
+
+![Hidden transverse current, passivity and probe conditioning](/assets/learning/electromagnetism-power-invisible-current.en.svg)
+
+### Research questions with explanations
+
+**Does unchanged energy balance mean the added axial current is Maxwell-compatible?** **Answer:** No. The energy-invisible axial current changes the vector Ampere residual by −μq e_z while leaving continuity and J·E unchanged.
+
+**Can enough power-only directions reveal the antisymmetric coefficient?** **Answer:** No, within this unconstrained real instantaneous tensor family. Every EᵀAE vanishes. A constitutive prior or another measurement supplies different information.
+
+**Do three positive measured powers certify passivity?** **Answer:** No. Recover S and test its positive-semidefinite condition; the displayed indefinite tensor gives three positive probe values and a negative-power direction.
+
 ## Exercises with explanations
 
 ### Exercise 1: Interpret a sign

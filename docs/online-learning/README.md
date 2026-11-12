@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-13 장 에너지·Poynting 연구 보강: [전력 관측의 전류 영공간과 진공 국소 영선속 기준계](physics-math-for-ai/poynting-research-status.md)를 한영 네 원고·그림 네 개에 추가했다. 선택 48검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 12/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 매질·경계다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제를 유지한다.
+
 2026-11-13 유도·전자기파 연구 보강: [수동 회로·질량의 반작용과 전기 관측의 초기 자기장 식별](physics-math-for-ai/induction-research-status.md)을 한영 네 원고·그림 네 개에 추가했다. 선택 47검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 10/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 장의 에너지·Poynting 흐름이다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제를 유지한다.
 
 2026-11-13 Maxwell 연구 보강: [어긋난 격자의 분산·임계 상태와 Gauss 보정의 물리적 비용](physics-math-for-ai/maxwell-research-status.md)을 한영 네 원고·그림 네 개에 추가했다. 선택 49검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 8/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 유도·전자기파다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제를 유지한다.

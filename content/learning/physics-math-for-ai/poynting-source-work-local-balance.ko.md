@@ -115,6 +115,98 @@ TypeScript 모형은 비영 중간값이 표현 범위를 벗어나면 물리적
 
 먼저 b₂를 없애면 어느 쌍이 사라지는지 보자. 다음에는 b₂를 복원하고 J만 없애자. 전기 저장은 계속 늘지만 원천 일 화살표가 사라진다. 빨간 잔차 표시 하나보다 어떤 에너지 통로가 빠졌는지를 설명할 수 있어야 한다.
 
+## 연구 확장: 전력은 전류의 모든 성분을 식별하지 못한다
+
+### 전력 관측이 실제로 결정하는 것을 묻기
+
+전기장을 안다고 가정합니다. 전력 밀도 측정은 세 성분 전류 전체가 아니라 스칼라 사영 하나를 줍니다. 아래 식은 결정되는 평행 성분과 임의의 수직 성분을 나눕니다. E=0이면 사영 식이 정의되지 않습니다. 모든 J에서 전력이 0이므로 관측이 주는 정보는 더 적습니다. 학습 장 모형에서는 에너지 잔차가 0이어도 횡방향 전류가 틀릴 수 있습니다. 초기 제약·연속 방정식·벡터 Maxwell 식·경계 자료를 따로 검사해야 합니다.
+
+$$
+p=\mathbf J\cdot\mathbf E,\quad[p]={\rm W/m^3},\qquad\mathbf E\ne0:\quad\mathbf J=\frac{p}{|\mathbf E|^2}\mathbf E+\mathbf J_\perp,\quad\mathbf E\cdot\mathbf J_\perp=0.
+$$
+
+### 에너지에 보이지 않는 음성 대조 만들기
+
+앞의 유계 유도 가족은 E_z=0입니다. E·B·전하를 그대로 두고 z에 독립인 축 전류 q(x,y,t)를 추가합니다. 발산이 0이고 E에 대한 일이 없으므로 연속 방정식과 전체 에너지 수지는 바뀌지 않습니다. 그러나 Ampere 잔차는 z 방향으로 −μq만큼 변합니다. 따라서 q가 0이 아닐 때 이들은 같은 장의 다른 Maxwell 해가 아니라 의도적으로 호환되지 않는 원천 예측입니다. 경계 전류와 지지는 선언한 유계 모형에 속하며 주기·고립계 가정을 몰래 추가하지 않습니다.
+
+$$
+\delta\mathbf J=q(x,y,t)\mathbf e_z:\quad\nabla\cdot\delta\mathbf J=0,\quad\mathbf E\cdot\delta\mathbf J=0,\quad\delta\mathbf r_A=-\mu q\mathbf e_z,\quad\mathbf r_A=\nabla\times\mathbf B-\mu(\mathbf J+\epsilon\partial_t\mathbf E).
+$$
+
+### 소산 응답과 횡방향 텐서 응답을 나누기
+
+새 국소 식별 예제에서는 네 계수 사이의 관계를 추가하지 않은 실수·순간·공간 균일 평면 법칙 J=ΣE를 가정합니다. Σ를 대칭 S와 반대칭 A로 나눕니다. E를 90도 회전한 벡터는 E에 수직이므로 일이 0입니다. 같은 내용을 대수적으로 보면 스칼라 EᵀAE는 전치 후 자신의 음수가 됩니다. 임의로 많은 장 방향을 관측해도 전력만으로 h는 보이지 않습니다. Hall형 응답은 물리적 동기이지만 이 대수가 양자화·실측 물질·완전한 Drude 매개변수 관계를 주장하지는 않습니다. 추가 구성 관계의 사전 가정이 모호성을 줄일 수 있으며 그 정보는 사전 가정에서 옵니다.
+
+$$
+\mathbf J=\Sigma\mathbf E,\quad \Sigma=S+A,\quad S=\begin{pmatrix}a&b\\b&d\end{pmatrix},\quad A=\begin{pmatrix}0&-h\\h&0\end{pmatrix},\quad [a]=[b]=[d]=[h]={\rm S/m}.
+$$
+
+$$
+\mathbf E^TA\mathbf E=0,\qquad p=\mathbf E^TS\mathbf E=aE_x^2+2bE_xE_y+dE_y^2.
+$$
+
+### 모든 방향에서 수동성을 검사하기
+
+이 제한된 순간 저항 모형에서 모든 장의 전력이 음이 아니라는 조건은 S의 양의 준정부호성과 같습니다. a>0이면 p=a(E_x+bE_y/a)²+(d−b²/a)E_y²로 완전제곱을 만들 수 있습니다. a=0에서는 b=0, d≥0이어야 합니다. 따라서 퇴화 경계까지 포함한 행렬식 조건이 나옵니다. 몇 탐침의 양의 전력만으로 충분하지는 않습니다. S=(1,2;2,1) S/m에서 (1,0)·(0,1)·(1,1) V/m는 1·1·6 W/m³를 주지만 (1,−1)은 −2 W/m³입니다. 일반적인 J·E는 원천이나 가역 저장이 에너지를 공급하면 음수일 수 있으므로 이 저항 수동성 검사를 모든 물질·처방 전류에 적용하지 않습니다.
+
+$$
+p\ge0\ \text{for all planar }\mathbf E\quad\Longleftrightarrow\quad S\succeq0\quad\Longleftrightarrow\quad a\ge0,\ d\ge0,\ ad-b^2\ge0.
+$$
+
+### 보정된 탐침을 설계하고 영인 열을 드러내기
+
+정확히 아는 장 성분과 E∗>0, 무차원 δ를 사용합니다. 세 번째 탐침의 크기는 E∗sqrt(1+δ²)이므로 같은 크기의 방향들이 아닙니다. P_i는 실제 전력 밀도이고 p_i=P_i/E∗²는 전도율 단위입니다. h 열은 항상 0입니다. 대칭 성분의 세 열 블록 행렬식은 −2δ여서 δ≠0이면 가역이고 δ=0이면 첫 탐침을 중복해 b도 잃습니다. p_i 오차가 독립·동분산 v_p일 때 Gaussian 잡음 가정 없이 아래 오차 전파 분산을 얻습니다. δ가 0에 가까우면 역변환 조건이 나빠집니다. 불균일·상관 오차와 불확실한 E∗에는 별도 전파가 필요합니다. 그림은 절대 p 오차 분산을 고정합니다.
+
+$$
+\mathbf E_1=E_*(1,0),\quad\mathbf E_2=E_*(0,1),\quad\mathbf E_3=E_*(1,\delta),\quad p_i=\frac{P_i}{E_*^2},\quad\begin{pmatrix}p_1\\p_2\\p_3\end{pmatrix}=\begin{pmatrix}1&0&0&0\\0&0&1&0\\1&2\delta&\delta^2&0\end{pmatrix}\begin{pmatrix}a\\b\\d\\h\end{pmatrix}.
+$$
+
+$$
+\delta\ne0:\quad a=p_1,\quad d=p_2,\quad b=\frac{p_3-p_1-\delta^2p_2}{2\delta},\qquad\operatorname{Var}(\widehat b)=v_p\frac{2+\delta^4}{4\delta^2}\quad\text{(independent equal-variance }p_i\text{ errors)}.
+$$
+
+### 다른 관측 하나로 h를 식별하기
+
+b를 복원한 뒤 E=E∗e_x에서 보정된 횡전류 관측 하나로 h를 구할 수 있습니다. h의 변화는 전력을 유지하더라도 게이지 기준이 아니라 물리적 전류 벡터를 바꿉니다. 표는 대칭 행렬식이 5 (S/m)²인 a=2, b=1, d=3 S/m를 사용합니다. 1 S/m 단위로 h를 바꾸면 J_y는 변하고 J_x와 전력은 일정합니다. 표시한 행렬의 h_bar는 h를 1 S/m로 나눈 무차원 값입니다. 이 구성 법칙 예제는 기존 제조 유도 해와 별개입니다. 그 해에 임의 ΣE를 대입한다고 Maxwell 호환성이 증명되지는 않습니다.
+
+$$
+\mathbf E=E_*\mathbf e_x:\quad J_y=(b+h)E_*,\quad h=J_y/E_*-b,\qquad (\Sigma_{h_2}-\Sigma_{h_1})\mathbf E=(h_2-h_1)(-E_y,E_x)^T.
+$$
+
+$$
+S=\begin{pmatrix}2&1\\1&3\end{pmatrix}{\rm S/m},\quad E_*=1\ {\rm V/m}:\quad\bar h=\frac{h}{1\ {\rm S/m}},\quad\Sigma_h=\begin{pmatrix}2&1-\bar h\\1+\bar h&3\end{pmatrix}\ {\rm S/m},\quad\mathbf J=(2,1+\bar h)^T\ {\rm A/m^2},\quad p=2\ {\rm W/m^3}.
+$$
+
+| S/m 단위의 h | Jx [A/m2] | Jy [A/m2] | 전력 [W/m3] |
+| --- | --- | --- | --- |
+| -2.00000000 | 2.00000000 | -1.00000000 | 2.00000000 |
+| 0.00000000 | 2.00000000 | 1.00000000 | 2.00000000 |
+| 1.00000000 | 2.00000000 | 2.00000000 | 2.00000000 |
+| 3.00000000 | 2.00000000 | 4.00000000 | 2.00000000 |
+
+```python
+# Entries and h in S/m; E=(1,0) V/m; J in A/m^2.
+a, b, d = 2.0, 1.0, 3.0
+E = [1.0, 0.0]
+for h in [-2.0, 0.0, 1.0, 3.0]:
+    Sigma = [[a,b-h],[b+h,d]]
+    J = [sum(x*y for x,y in zip(row,E)) for row in Sigma]
+    power = sum(x*y for x,y in zip(E,J))
+    print(f"{h:.8f} {J[0]:.8f} {J[1]:.8f} {power:.8f}")
+```
+
+[Tong의 고전 Hall 논의 1.2.2절](https://arxiv.org/html/1606.06687#S1.SS2.SSS2)은 전도율 텐서의 배경입니다. 제약 없는 실수 텐서 가족·보정 탐침 역변환·수동성 반례·불확실성 계산은 여기서 유도하며 숨은 계수를 미시 Drude 관계로 추론하지 않습니다. 기존 유도 에너지 실습은 별도 축 전류 음성 대조의 제조 E와 필요한 J를 제공합니다. 새 전도율 텐서 제어가 생겼다는 뜻은 아닙니다.
+
+![숨은 횡전류·수동성·탐침 조건](/assets/learning/electromagnetism-power-invisible-current.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**에너지 수지가 같으면 추가 축 전류도 Maxwell에 호환되는가?** **답:** 아니다. 에너지에 보이지 않는 축 전류는 연속 방정식·J·E를 유지하지만 벡터 Ampere 잔차를 −μq e_z만큼 바꾼다.
+
+**전력 방향을 충분히 늘리면 반대칭 계수가 보이는가?** **답:** 제약 없는 이 실수 순간 텐서 가족에서는 아니다. 모든 EᵀAE가 0이다. 구성 법칙의 사전 가정이나 다른 측정은 별개의 정보를 준다.
+
+**세 측정 전력이 양수이면 수동성이 보증되는가?** **답:** 아니다. S를 복원해 양의 준정부호 조건을 검사해야 한다. 표시한 부정부호 텐서는 세 양의 탐침 값과 음의 전력 방향을 함께 갖는다.
+
 ## 풀이가 있는 연습문제
 
 ### 연습 1: 부호를 해석하자
