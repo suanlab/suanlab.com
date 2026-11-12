@@ -122,6 +122,101 @@ $$
 
 학습한 장에서는 부피 잔차, 구성방정식, 법선 방향, 자유·분극 전하, 경계의 양쪽 값, 전위 차를 함께 확인하자. 부피 점만 학습하면 측도0인 표면 결함을 놓칠 수 있다. 정상적인 경계 점프를 평균으로 부드럽게 만들면 다른 매질 문제를 풀게 될 수 있다.
 
+## 연구 확장: 쌍극자 시트를 분해하고 극한 취하기
+
+### 원천 모형의 변경을 명시하기
+
+앞의 전위 연속성은 처방된 쌍극자 시트가 없는 보통 경계면을 가정합니다. 이 가정을 살피기 위해 +z 방향의 외부 처방 면적당 분극 모멘트 p_s를 갖는 두께 ℓ의 새 진공 층을 분해합니다. 이는 원래의 양의 선형 유전체 법칙을 D=0에 대입해서 얻는 상태가 아닙니다. 분극은 층 안에서 일정하고 밖에서 0입니다. 그 음의 발산은 아래쪽 음전하 시트와 위쪽 양전하 시트를 만듭니다. p_s는 C/m, 각 표면 전하는 C/m² 단위입니다. p_s의 부호를 바꾸면 두 전하와 전위 점프 부호가 모두 바뀝니다.
+
+$$
+P_z^{(\ell)}=\frac{p_s}{\ell}\mathbf1_{(-\ell/2,\ell/2)}(z),\quad\rho_b^{(\ell)}=\frac{p_s}{\ell}\left[\delta(z-\ell/2)-\delta(z+\ell/2)\right],\quad [p_s]={\rm C/m},\quad\ell>0.
+$$
+
+### 극한 전에 장과 전위를 먼저 구하기
+
+자유 전하와 외부 법선 방향 배경장이 없고 D_z=0이면 장은 안에서 분극과 반대이고 밖에서 사라집니다. 두 전하 시트의 장을 중첩해도 같은 결과입니다. 아래 외부 전위를 0으로 잡고 z를 따라 −E를 적분합니다. 모든 양의 두께에서 전위는 두 시트 위치를 포함해 연속입니다. 고정 p_s에서 아래 외부와 위 외부의 전위차는 두께와 무관합니다. 공통 덧셈 전위 기준은 이 차이나 장을 바꾸지 않습니다.
+
+$$
+D_z=0,\quad E_z^{(\ell)}=-\frac{P_z^{(\ell)}}{\epsilon_0},\qquad E_z=-\frac{p_s}{\epsilon_0\ell}\ \text{inside},\quad E_z=0\ \text{outside}.
+$$
+
+$$
+V^{(\ell)}(z)=\frac{p_s}{\epsilon_0}\begin{cases}0,&z\le-\ell/2,\\(z+\ell/2)/\ell,&|z|<\ell/2,\\1,&z\ge\ell/2,\end{cases}\qquad \Delta V=-\int E_z\,dz=\frac{p_s}{\epsilon_0}.
+$$
+
+### 총전하 0과 쌍극자 모멘트 0을 구분하기
+
+두 전하는 합에서 상쇄되지만 첫 공간 모멘트는 남습니다. 따라서 층 전체를 둘러싼 pillbox는 순전하 0을 보더라도 층을 가로지르는 전압은 0이 아닐 수 있습니다. 이상 극한에서는 바깥의 법선 장 trace만으로 이 추가 쌍극자 원천 자료를 표현하지 못합니다. 이는 원래 정규 경계면과 다른 경계 모형이며 양쪽에 무관한 전위 기준을 주어 고칠 오류가 아닙니다.
+
+$$
+\int\rho_b^{(\ell)}dz=0,\qquad\int z\rho_b^{(\ell)}dz=p_s,\qquad \sigma_-=-p_s/\ell,\quad\sigma_+=p_s/\ell.
+$$
+
+### 측정을 통해 특이 극한을 정의하기
+
+델타 도함수를 보통의 점값처럼 읽지 않습니다. 전하 분포를 매끄러운 시험 함수 φ와 짝지으면 중심 차분이 φ′(0)으로 가므로 −p_s δ′임을 알 수 있습니다. Taylor 전개로 층 근방에서 C³인 시험 함수의 표시한 오차 경계를 얻습니다. 지지가 유계인 매끄러운 함수에는 통상적인 분포 해석이 됩니다. δ′가 음의 미분으로 작용하므로 부호도 정해집니다. 이에 따라 E는 −p_s δ/ε₀로 가고 V의 두 trace는 0과 p_s/ε₀입니다. 수학적 표면에 지정한 한 값이 trace를 대체하거나 경계 평균을 정의하지는 않습니다.
+
+$$
+\langle\rho_b^{(\ell)},\varphi\rangle=\frac{p_s}{\ell}[\varphi(\ell/2)-\varphi(-\ell/2)]\longrightarrow p_s\varphi'(0)=\langle-p_s\delta',\varphi\rangle,\quad\left|\langle\rho_b^{(\ell)},\varphi\rangle-p_s\varphi'(0)\right|\le\frac{|p_s|\ell^2}{24}\sup_{|z|\le\ell/2}|\varphi'''(z)|.
+$$
+
+### 유한 두께 층의 에너지를 조사하기
+
+진공 전기장 에너지 밀도를 z에 적분하면 횡단 면적당 에너지입니다. 비영 p_s를 고정하면 장은 1/ℓ, 에너지는 1/ℓ로 커집니다. 따라서 유한 전위 점프가 이 이상화에서 유한한 장 에너지 비용을 뜻하지 않습니다. 여기서는 전기장 기여를 계산하며 미시 분극 에너지·준비 기구는 모형화하지 않습니다. 발산은 직사각형 프로파일 선택만의 인공 효과도 아닙니다. 같은 전압차를 갖고 두께 ℓ 안에 놓인 제곱 적분 가능한 임의 장에 Cauchy–Schwarz 하한이 성립합니다. 여기의 일정한 내부 장에서 등호가 됩니다.
+
+$$
+U_A^{(\ell)}=\frac{\epsilon_0}{2}\int(E_z^{(\ell)})^2dz=\frac{p_s^2}{2\epsilon_0\ell},\qquad [U_A]={\rm J/m^2}.
+$$
+
+$$
+\left(\int_{-\ell/2}^{\ell/2}E_zdz\right)^2\le\ell\int_{-\ell/2}^{\ell/2}E_z^2dz\quad\Longrightarrow\quad U_A\ge\frac{\epsilon_0(\Delta V)^2}{2\ell}.
+$$
+
+### 어떤 물리량을 고정하는지 선언하기
+
+대신 시트 전하 크기 σ를 고정하면 p_s=σℓ가 줄어 전압과 장 에너지가 모두 0으로 갑니다. 두 극한은 다른 실험입니다. 양의 두께에서 p_s=0이면 장과 에너지는 정확히 0입니다. ℓ=0은 유한 층 식의 범위 밖이며 분모를 작은 수로 바꿀 대상이 아닙니다. 아래 양의 기준 척도로 두 극한을 표에서 비교합니다. 예를 들어 V_scale=1 V, ℓ_ref=1 mm이면 p_ref=ε₀×1 V, U_ref≈4.427×10⁻⁹ J/m²입니다. 두께를 사분의 일로 줄이면 고정 p_s의 에너지는 네 배이고 고정 σ의 에너지·전압은 각각 사분의 일입니다. 임의로 작은 실제 두께에서 연속체 모형이 유효하다고 보증하지 않습니다.
+
+$$
+\sigma\ \text{fixed},\ p_s=\sigma\ell:\quad\Delta V=\frac{\sigma\ell}{\epsilon_0}\to0,\quad U_A=\frac{\sigma^2\ell}{2\epsilon_0}\to0;\qquad p_s\ne0\ \text{fixed}:\quad\Delta V=\frac{p_s}{\epsilon_0},\quad U_A\to\infty.
+$$
+
+$$
+q=\frac{\ell}{\ell_{\rm ref}},\quad p_{\rm ref}=\epsilon_0V_{\rm scale},\quad\sigma_{\rm ref}=\frac{p_{\rm ref}}{\ell_{\rm ref}},\quad U_{\rm ref}=\frac{p_{\rm ref}^2}{2\epsilon_0\ell_{\rm ref}}:\quad\begin{array}{c|ccc}&\sigma/\sigma_{\rm ref}&\Delta V/V_{\rm scale}&U_A/U_{\rm ref}\\p_s=p_{\rm ref}&1/q&1&1/q\\\sigma=\sigma_{\rm ref}&1&q&q\end{array}.
+$$
+
+| ell / ell_ref | 고정 모멘트 sigma / sigma_ref | 고정 모멘트 전압 / V_scale | 고정 모멘트 에너지 / U_ref | 고정 전하 에너지 / U_ref |
+| --- | --- | --- | --- | --- |
+| 1.00000000 | 1.00000000 | 1.00000000 | 1.00000000 | 1.00000000 |
+| 0.25000000 | 4.00000000 | 1.00000000 | 4.00000000 | 0.25000000 |
+| 0.06250000 | 16.00000000 | 1.00000000 | 16.00000000 | 0.06250000 |
+| 0.01562500 | 64.00000000 | 1.00000000 | 64.00000000 | 0.01562500 |
+
+```python
+from fractions import Fraction
+# Dimensionless reference units: epsilon0=1, ell_ref=1, p_ref=1.
+# The common reference energy per area is 1/2.
+for q in [Fraction(1),Fraction(1,4),Fraction(1,16),Fraction(1,64)]:
+    sigma = 1/q
+    E = -sigma
+    jump = -E*q
+    energy_fixed_moment = E*E*q/2
+    energy_fixed_charge = q/2
+    print(f"{float(q):.8f} {float(sigma):.8f} {float(jump):.8f} "
+          f"{float(2*energy_fixed_moment):.8f} {float(2*energy_fixed_charge):.8f}")
+```
+
+[Haus·Melcher 4.5절의 균일 쌍극자층 전위](https://www.mit.edu/course/6/6.013_book/www/chapter4/4.5.html)는 이상 쌍극자층의 배경입니다. 분해한 평면 프로파일·약한 극한 오차·고정 모멘트/전하의 에너지 척도·형상 하한은 여기서 유도합니다. 기존 정규 경계면 실습은 쌍극자 시트가 없는 원천 계약과 공통 영전위 기준을 유지하며 새 두께·쌍극자 제어를 제공하지 않습니다.
+
+![분해한 쌍극자 전위·집중 장·두 에너지 극한](/assets/learning/electromagnetism-dipole-layer-limit.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**둘러싼 전하가 0이면 전위 점프도 0인가?** **답:** 아니다. 두 시트의 총전하는 0이지만 면적당 쌍극자 모멘트가 남아 외부 전위차가 0이 아니다.
+
+**두께가 사라져도 고정된 유한 전압차의 에너지가 유한한가?** **답:** 이 처방 진공 층의 장 에너지 모형에서는 아니다. 고정 비영 전압의 하한은 1/ℓ로 증가한다.
+
+**공통 게이지 기준으로 이상 쌍극자 점프를 지울 수 있는가?** **답:** 아니다. 양쪽 외부 전위를 같이 옮길 뿐이다. 쌍극자 원천 추가는 경계 문제의 변경이며 기준 이동이 아니다.
+
 ## 풀이가 있는 연습문제
 
 ### 연습 1: 자유 전하가 없을 때

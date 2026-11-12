@@ -122,6 +122,101 @@ Independent Python references evaluate vector surface and edge integrals over243
 
 For a learned field, test bulk residuals, constitutive relations, the declared normal, free and bound charges, interface traces, and potential differences. Training on only bulk points can miss a surface defect of measure zero. Smoothing a legitimate interface jump into an average may solve a different material problem.
 
+## Research extension: resolve a dipole sheet before taking its limit
+
+### Change the source model explicitly
+
+Potential continuity above assumes an ordinary interface without a prescribed dipole sheet. To examine that assumption, resolve a new vacuum layer of thickness ℓ with an externally prescribed polarization moment per area p_s pointing along +z. It is not obtained by substituting the original positive linear dielectric law into D=0. The polarization is constant inside the layer and zero outside. Its negative divergence gives a negative lower sheet and a positive upper sheet. The unit of p_s is C/m, whereas each surface charge has units C/m². Reversing p_s reverses both charges and the potential jump.
+
+$$
+P_z^{(\ell)}=\frac{p_s}{\ell}\mathbf1_{(-\ell/2,\ell/2)}(z),\quad\rho_b^{(\ell)}=\frac{p_s}{\ell}\left[\delta(z-\ell/2)-\delta(z+\ell/2)\right],\quad [p_s]={\rm C/m},\quad\ell>0.
+$$
+
+### Find the field and potential before taking a limit
+
+With no free charge, no imposed normal background and D_z=0, the field is opposite to the polarization inside and vanishes outside. Superposing the fields of the two charge sheets gives the same result. Choose the lower exterior potential as zero and integrate −E along z. At every positive thickness the potential is continuous, including at both sheet locations. The exterior-to-exterior potential difference is independent of thickness at fixed p_s. A common additive potential reference changes neither this difference nor the field.
+
+$$
+D_z=0,\quad E_z^{(\ell)}=-\frac{P_z^{(\ell)}}{\epsilon_0},\qquad E_z=-\frac{p_s}{\epsilon_0\ell}\ \text{inside},\quad E_z=0\ \text{outside}.
+$$
+
+$$
+V^{(\ell)}(z)=\frac{p_s}{\epsilon_0}\begin{cases}0,&z\le-\ell/2,\\(z+\ell/2)/\ell,&|z|<\ell/2,\\1,&z\ge\ell/2,\end{cases}\qquad \Delta V=-\int E_z\,dz=\frac{p_s}{\epsilon_0}.
+$$
+
+### Distinguish zero total charge from zero dipole moment
+
+The two charges cancel in total, but their first spatial moment does not. Thus a pillbox outside the entire layer sees zero net charge even when traversing the layer gives a nonzero voltage. In the ideal limit, normal exterior field traces alone do not encode this additional dipole-source datum. It is a different boundary model from the original regular interface, not an error to repair by assigning unrelated potential references to the two sides.
+
+$$
+\int\rho_b^{(\ell)}dz=0,\qquad\int z\rho_b^{(\ell)}dz=p_s,\qquad \sigma_-=-p_s/\ell,\quad\sigma_+=p_s/\ell.
+$$
+
+### Define the singular limit through measurements
+
+Do not read a delta derivative as an ordinary point value. Pair the charge distribution with a smooth test function φ. The centered difference tends to φ′(0), which identifies −p_s δ′. Taylor expansion gives the displayed error bound for C³ test functions near the layer; compactly supported smooth functions give the usual distributional interpretation. The sign follows from δ′ acting as minus differentiation. Correspondingly E tends to −p_s δ/ε₀ and V has the two traces 0 and p_s/ε₀. The value assigned at the mathematical surface does not replace the traces or define an interface average.
+
+$$
+\langle\rho_b^{(\ell)},\varphi\rangle=\frac{p_s}{\ell}[\varphi(\ell/2)-\varphi(-\ell/2)]\longrightarrow p_s\varphi'(0)=\langle-p_s\delta',\varphi\rangle,\quad\left|\langle\rho_b^{(\ell)},\varphi\rangle-p_s\varphi'(0)\right|\le\frac{|p_s|\ell^2}{24}\sup_{|z|\le\ell/2}|\varphi'''(z)|.
+$$
+
+### Inspect the energy of the regularized layer
+
+Integrate the vacuum electric-field energy density over z to obtain energy per transverse area. For fixed nonzero p_s, the field grows like 1/ℓ and its energy like 1/ℓ. A finite voltage jump therefore does not imply a finite field-energy cost in this idealization. This is the electric-field contribution; microscopic polarization energy and the preparation mechanism are not modeled. The divergence is not merely an artifact of choosing a rectangular profile. Cauchy–Schwarz gives the lower bound for any square-integrable field confined to a thickness ℓ with the same voltage drop. Equality holds for the constant interior field used here.
+
+$$
+U_A^{(\ell)}=\frac{\epsilon_0}{2}\int(E_z^{(\ell)})^2dz=\frac{p_s^2}{2\epsilon_0\ell},\qquad [U_A]={\rm J/m^2}.
+$$
+
+$$
+\left(\int_{-\ell/2}^{\ell/2}E_zdz\right)^2\le\ell\int_{-\ell/2}^{\ell/2}E_z^2dz\quad\Longrightarrow\quad U_A\ge\frac{\epsilon_0(\Delta V)^2}{2\ell}.
+$$
+
+### State which physical quantity is held fixed
+
+If the sheet charge magnitude σ is fixed instead, then p_s=σℓ shrinks and both the voltage and field energy tend to zero. These limits are different experiments. For p_s=0 and positive thickness the fields and energy are exactly zero; ℓ=0 is outside the finite-layer formula, rather than a denominator to replace by a small number. Use the positive reference scales below to compare the two limits in the table. For example, taking V_scale=1 V and ℓ_ref=1 mm gives p_ref=ε₀×1 V and U_ref≈4.427×10⁻⁹ J/m². Reducing thickness by four at fixed p_s multiplies energy by four; at fixed σ it divides energy by four and also divides voltage by four. No continuum validity at arbitrarily small physical thickness is certified.
+
+$$
+\sigma\ \text{fixed},\ p_s=\sigma\ell:\quad\Delta V=\frac{\sigma\ell}{\epsilon_0}\to0,\quad U_A=\frac{\sigma^2\ell}{2\epsilon_0}\to0;\qquad p_s\ne0\ \text{fixed}:\quad\Delta V=\frac{p_s}{\epsilon_0},\quad U_A\to\infty.
+$$
+
+$$
+q=\frac{\ell}{\ell_{\rm ref}},\quad p_{\rm ref}=\epsilon_0V_{\rm scale},\quad\sigma_{\rm ref}=\frac{p_{\rm ref}}{\ell_{\rm ref}},\quad U_{\rm ref}=\frac{p_{\rm ref}^2}{2\epsilon_0\ell_{\rm ref}}:\quad\begin{array}{c|ccc}&\sigma/\sigma_{\rm ref}&\Delta V/V_{\rm scale}&U_A/U_{\rm ref}\\p_s=p_{\rm ref}&1/q&1&1/q\\\sigma=\sigma_{\rm ref}&1&q&q\end{array}.
+$$
+
+| ell / ell_ref | sigma at fixed moment / sigma_ref | fixed-moment voltage / V_scale | fixed-moment energy / U_ref | fixed-charge energy / U_ref |
+| --- | --- | --- | --- | --- |
+| 1.00000000 | 1.00000000 | 1.00000000 | 1.00000000 | 1.00000000 |
+| 0.25000000 | 4.00000000 | 1.00000000 | 4.00000000 | 0.25000000 |
+| 0.06250000 | 16.00000000 | 1.00000000 | 16.00000000 | 0.06250000 |
+| 0.01562500 | 64.00000000 | 1.00000000 | 64.00000000 | 0.01562500 |
+
+```python
+from fractions import Fraction
+# Dimensionless reference units: epsilon0=1, ell_ref=1, p_ref=1.
+# The common reference energy per area is 1/2.
+for q in [Fraction(1),Fraction(1,4),Fraction(1,16),Fraction(1,64)]:
+    sigma = 1/q
+    E = -sigma
+    jump = -E*q
+    energy_fixed_moment = E*E*q/2
+    energy_fixed_charge = q/2
+    print(f"{float(q):.8f} {float(sigma):.8f} {float(jump):.8f} "
+          f"{float(2*energy_fixed_moment):.8f} {float(2*energy_fixed_charge):.8f}")
+```
+
+[Haus–Melcher §4.5, “Potential of Uniform Dipole Layer”](https://www.mit.edu/course/6/6.013_book/www/chapter4/4.5.html), provides ideal dipole-layer context. The resolved planar profile, weak-error estimate, fixed-moment versus fixed-charge energy scaling and shape bound are derived here. The existing regular-interface lab retains its no-dipole-sheet source contract and common zero potential reference; it does not expose a new layer-thickness or dipole control.
+
+![Resolved dipole potentials, concentrated fields and two energy limits](/assets/learning/electromagnetism-dipole-layer-limit.en.svg)
+
+### Research questions with explanations
+
+**Does zero enclosed charge force a zero voltage jump?** **Answer:** No. The two sheets have zero total charge but nonzero dipole moment per area, giving a nonzero exterior potential difference.
+
+**Does a fixed finite voltage jump have finite energy as thickness vanishes?** **Answer:** Not in this prescribed vacuum-layer field-energy model. The lower bound scales as 1/ℓ for a fixed nonzero voltage.
+
+**Can a common gauge reference remove the ideal dipole jump?** **Answer:** No. It shifts both exterior potentials equally. Adding a dipole source changes the boundary problem; it is not a reference change.
+
 ## Exercises with explanations
 
 ### Exercise 1: No free charge

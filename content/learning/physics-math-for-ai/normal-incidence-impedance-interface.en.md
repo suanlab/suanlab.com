@@ -136,6 +136,106 @@ Bulk Maxwell residuals can pass in both open half-spaces while the interface sou
 
 The references include81 independent boundary solves and phase integrals,96 spacetime field/derivative comparisons, and high-precision cancellation cases. These selected numerical observations are not rigorous error bounds or proof of all material behavior.
 
+## Research extension: passive sheets and coherent absorption
+
+### Close the surface-current law
+
+Keep the original lossless half-spaces and normal incidence, but add an electric sheet with surface current K_x=Y_s E_s. There is no magnetic sheet, so tangential E remains continuous. The real positive port admittances Y_j=1/Z_j and the sheet admittance have units S, unlike a bulk conductivity in S/m. Write Y_s=G+iX with G≥0 and real sheet susceptance X. Use peak phasors with exp(−iωt), ω>0; cycle powers carry a factor 1/2. This is a frequency-local constitutive model, not a full dispersion or causality certificate for a material.
+
+$$
+Y_j=1/Z_j>0,\quad Y_s=G+iX,\quad G\ge0,\quad[Y_j]=[Y_s]={\rm S},\qquad E_s=E_1=E_2,\quad H_1-H_2=K_x=Y_sE_s.
+$$
+
+### Derive scattering from both boundary conditions
+
+For a unit incident electric amplitude from the left, tangential E gives t=1+r. The reversed magnetic sign of the reflected wave gives the second boundary equation. Solving it yields r and t below. Passive G and positive port admittances keep the real part of the denominator positive, so the driven boundary solution exists. At G=X=0 recover the original no-sheet Fresnel solution. A purely reactive sheet G=0 can reflect but absorbs no cycle-mean power. At very large G the sheet field tends to zero and reflection tends to −1; an increasingly good conductor is not an increasingly good absorber.
+
+$$
+\mathcal D=Y_1+Y_2+Y_s,\quad t=1+r,\quad Y_1(1-r)-Y_2t=Y_st,\quad r=\frac{Y_1-Y_2-Y_s}{\mathcal D},\quad t=\frac{2Y_1}{\mathcal D}.
+$$
+
+$$
+R=|r|^2,\quad T=\frac{Y_2}{Y_1}|t|^2,\quad\mathcal A=\frac{G}{Y_1}|t|^2=\frac{4Y_1G}{(Y_1+Y_2+G)^2+X^2},\quad R+T+\mathcal A=1.
+$$
+
+### Prove the one-beam absorption bound
+
+The average sheet work is G|E_s|²/2. Dividing reflected, transmitted and absorbed powers by the nonzero incident power gives R, T and the absorbed fraction. The displayed nonnegative square proves the joint optimum G=Y₁+Y₂ and X=0. For equal media the maximum is one half. This bound assumes one incident beam, a zero-thickness electric sheet, no magnetic response and no backing reflector. It is not a universal bound for every absorber. Unequal media have a different one-sided bound Y₁/(Y₁+Y₂). Zero input has zero power but no observed normalized absorption fraction.
+
+$$
+a=Y_1+Y_2:\quad\mathcal A\le\frac{4Y_1G}{(a+G)^2}\le\frac{Y_1}{a},\quad\frac{Y_1}{a}-\frac{4Y_1G}{(a+G)^2}=\frac{Y_1(G-a)^2}{a(a+G)^2},\quad\mathcal A_{\max}=\frac{Y_1}{a}\ \text{at }G=a,\ X=0.
+$$
+
+### Allow coherent inputs from both sides
+
+Let a_L and a_R be incoming electric phasors and b_L and b_R outgoing phasors, all in the same signed x basis. Solve E_s=a_L+b_L=a_R+b_R together with the current jump to obtain the following expressions. Input power is the sum of incoming traveling-channel powers; it is not the square of a summed electric amplitude. The actual sheet field does depend on the coherent sum, so relative phase controls absorption. The same local power balance accounts for that dependence without creating energy.
+
+$$
+E_s=\frac{2(Y_1a_L+Y_2a_R)}{\mathcal D},\quad b_L=E_s-a_L,\quad b_R=E_s-a_R,\quad P_{\rm in}=\frac{Y_1|a_L|^2+Y_2|a_R|^2}{2},\quad P_{\rm in}-P_{\rm out}=\frac G2|E_s|^2.
+$$
+
+### Normalize ports before discussing scattering modes
+
+Multiplying each channel amplitude by sqrt(Y_j) puts power into a Euclidean norm. With v=(sqrt(Y₁),sqrt(Y₂)), the matrix has one mode along v and a perpendicular mode with eigenvalue −1. The latter has zero sheet field and never dissipates in this electric sheet. Direct multiplication gives the Hermitian absorption operator below, including reactive X. Its nonzero eigenvalue reaches one only at G=Y₁+Y₂, X=0. Then equal nonzero electric input phasors give no outgoing wave: coherent perfect absorption. In unequal media those equal electric amplitudes carry unequal powers. The general dark condition is Y₁a_L+Y₂a_R=0, not unconditional equal-and-opposite electric amplitudes.
+
+$$
+\widehat a=\begin{pmatrix}\sqrt{Y_1}a_L\\\sqrt{Y_2}a_R\end{pmatrix},\quad\widehat b=\mathcal S\widehat a,\quad v=\begin{pmatrix}\sqrt{Y_1}\\\sqrt{Y_2}\end{pmatrix},\quad\mathcal S=\frac{2vv^T}{\mathcal D}-I,\quad P_{\rm in}=\frac12\|\widehat a\|^2,\quad P_{\rm out}=\frac12\|\widehat b\|^2.
+$$
+
+$$
+\mathcal S v=\frac{a-Y_s}{a+Y_s}v,\quad\mathcal S v_\perp=-v_\perp,\quad I-\mathcal S^\dagger\mathcal S=\frac{4aG}{|a+Y_s|^2}\frac{vv^T}{a},\qquad 0\le\frac{4aG}{|a+Y_s|^2}\le1.
+$$
+
+$$
+G=a,\ X=0,\ a_L=a_R\ne0:\quad b_L=b_R=0;\qquad Y_1a_L+Y_2a_R=0:\quad E_s=0,\quad P_{\rm absorbed}=0.
+$$
+
+### Separate a fixed phase from an incoherent ensemble
+
+For symmetric media at the critical conductance, equal input magnitudes with phase difference φ absorb cos²(φ/2) of the incoming power. In-phase inputs are fully absorbed; opposite-phase inputs have E_s=0 and no absorption. The code solves the boundary field for four exact phase choices and prints the outgoing and absorbed powers. Averaging repeated monochromatic experiments with equal mean-squared electric amplitudes gives the coherence expression below. It is a ratio of averaged powers, not generally an average of fluctuating normalized ratios. Uniform random relative phase gives zero coherence and mean absorption one half. This reconciles the one-beam limit with coherent perfect absorption; broadband dynamics and frequency-dependent sheet models require separate treatment.
+
+$$
+Y_1=Y_2=Y,\ G=2Y,\ X=0:\quad r=-\tfrac12,\ t=\tfrac12,\quad a_L=A,\ a_R=Ae^{i\phi},\quad A\ne0:\quad\mathcal A_{\rm two}=\cos^2(\phi/2).
+$$
+
+$$
+\langle|a_L|^2\rangle=\langle|a_R|^2\rangle=I_0>0,\quad\gamma_{12}=\frac{\langle a_La_R^*\rangle}{I_0},\quad\frac{\langle P_{\rm absorbed}\rangle}{\langle P_{\rm in}\rangle}=\frac{1+\operatorname{Re}\gamma_{12}}{2}\quad\text{(symmetric critical sheet)}.
+$$
+
+| phase / pi | left outgoing / input | right outgoing / input | absorbed / input | power residual |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 0.00000000 | 0.00000000 | 1.00000000 | 0.00000000 |
+| 0.50000000 | 0.25000000 | 0.25000000 | 0.50000000 | -0.00000000 |
+| 1.00000000 | 0.50000000 | 0.50000000 | 0.00000000 | 0.00000000 |
+| 1.50000000 | 0.25000000 | 0.25000000 | 0.50000000 | -0.00000000 |
+
+```python
+# Peak phasors: Y1=Y2=1, G=2, X=0; power unit Y*E_ref^2.
+# Exact quarter-turn phasors avoid treating sin(pi) roundoff as a physical field.
+for phase_over_pi, right in [(0.0,1), (0.5,1j), (1.0,-1), (1.5,-1j)]:
+    left = 1
+    Es = 2*(left+right)/4
+    out_left, out_right = Es-left, Es-right
+    incoming = (abs(left)**2+abs(right)**2)/2
+    L, R = abs(out_left)**2/2, abs(out_right)**2/2
+    absorbed = 2*abs(Es)**2/2
+    assert abs(incoming-L-R-absorbed) < 1e-14
+    print(f"{phase_over_pi:.8f} {L/incoming:.8f} {R/incoming:.8f} "
+          f"{absorbed/incoming:.8f} {(incoming-L-R-absorbed):.8f}")
+```
+
+[Chong and colleagues, PRL 105, 053901 (2010)](https://www.eng.yale.edu/caolab/papers/PRL10.pdf), supplies the scattering-zero and coherent-illumination context. Our zero-thickness electric-sheet model, passivity bound, unequal-port normalization and phase/coherence examples are derived from the displayed boundary conditions, not adopted as a benchmark result for that paper’s slab. The native no-sheet Fresnel limit and forced-transparent source accounting remain available as separate comparisons.
+
+![One-beam absorption bound, coherent phase and reactive mismatch](/assets/learning/electromagnetism-coherent-sheet-absorption.en.svg)
+
+### Research questions with explanations
+
+**Does the symmetric one-beam 50 percent limit rule out complete absorption?** **Answer:** No. Two coherent incident channels can occupy the fully absorbed mode. The one-beam bound has different illumination assumptions.
+
+**Are equal incoming powers always the perfectly absorbed state?** **Answer:** No. At the critical sheet the electric phasors must match; unequal port admittances then imply unequal incoming powers.
+
+**Does making the sheet conductance arbitrarily large maximize absorption?** **Answer:** No. It drives the sheet field to zero and approaches a reflector. Maximum absorption needs the matched finite conductance and zero reactive part.
+
 ## Exercises with explanations
 
 ### Exercise 1: Greater electric amplitude

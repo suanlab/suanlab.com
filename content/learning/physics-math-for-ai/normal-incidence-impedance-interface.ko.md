@@ -136,6 +136,106 @@ A=0이면 장과 입사 일률이0이다. 매질에 따른 형식적 계수는 �
 
 기준은 독립 경계 선형계·위상 적분81조건, 공간·시간 장·도함수 비교96조건, 고정밀 상쇄 사례를 포함한다. 선택한 수치 관측이며 엄밀한 오차 상한이나 모든 매질 거동의 증명은 아니다.
 
+## 연구 확장: 수동 시트와 간섭성 흡수
+
+### 표면 전류의 구성 법칙을 닫기
+
+원래의 무손실 반공간과 수직 입사를 유지하고 표면 전류 K_x=Y_s E_s인 전기 시트를 추가합니다. 자기 시트가 없으므로 접선 E는 연속입니다. 실수 양의 포트 어드미턴스 Y_j=1/Z_j와 시트 어드미턴스 단위는 S이며 체적 전도율의 S/m와 다릅니다. Y_s=G+iX, G≥0, 실수 시트 서셉턴스 X로 씁니다. exp(−iωt), ω>0인 첨두 phasor를 사용하므로 주기 평균 전력에는 1/2가 있습니다. 이는 한 주파수의 구성 모형이며 물질 전체의 분산·인과성 보증이 아닙니다.
+
+$$
+Y_j=1/Z_j>0,\quad Y_s=G+iX,\quad G\ge0,\quad[Y_j]=[Y_s]={\rm S},\qquad E_s=E_1=E_2,\quad H_1-H_2=K_x=Y_sE_s.
+$$
+
+### 두 경계 조건에서 산란을 유도하기
+
+왼쪽에서 단위 전기 진폭이 들어오면 접선 E 조건은 t=1+r입니다. 반사파의 반대 자기장 부호가 두 번째 경계 식을 줍니다. 풀면 아래 r·t입니다. 수동 G와 양의 포트 어드미턴스는 분모 실수부를 양수로 유지하므로 구동 경계 해가 존재합니다. G=X=0이면 원래 무시트 Fresnel 해입니다. 순수 반응성 시트 G=0은 반사할 수 있어도 주기 평균 전력을 흡수하지 않습니다. G가 매우 크면 시트 장은 0, 반사는 −1에 접근합니다. 더 좋은 도체가 언제나 더 좋은 흡수체는 아닙니다.
+
+$$
+\mathcal D=Y_1+Y_2+Y_s,\quad t=1+r,\quad Y_1(1-r)-Y_2t=Y_st,\quad r=\frac{Y_1-Y_2-Y_s}{\mathcal D},\quad t=\frac{2Y_1}{\mathcal D}.
+$$
+
+$$
+R=|r|^2,\quad T=\frac{Y_2}{Y_1}|t|^2,\quad\mathcal A=\frac{G}{Y_1}|t|^2=\frac{4Y_1G}{(Y_1+Y_2+G)^2+X^2},\quad R+T+\mathcal A=1.
+$$
+
+### 한쪽 입사의 흡수 상한을 증명하기
+
+평균 시트 일률은 G|E_s|²/2입니다. 반사·투과·흡수 전력을 비영 입사 전력으로 나누면 R·T·흡수율입니다. 표시한 음이 아닌 제곱이 공동 최적점 G=Y₁+Y₂, X=0을 증명합니다. 같은 매질이면 최대는 절반입니다. 이 상한은 한 입사파·두께 0 전기 시트·자기 응답 없음·뒤쪽 반사체 없음을 가정합니다. 모든 흡수체의 보편 상한이 아닙니다. 다른 매질의 한쪽 상한은 Y₁/(Y₁+Y₂)입니다. 입력 0에서는 전력이 0이지만 관측된 정규화 흡수율은 정의되지 않습니다.
+
+$$
+a=Y_1+Y_2:\quad\mathcal A\le\frac{4Y_1G}{(a+G)^2}\le\frac{Y_1}{a},\quad\frac{Y_1}{a}-\frac{4Y_1G}{(a+G)^2}=\frac{Y_1(G-a)^2}{a(a+G)^2},\quad\mathcal A_{\max}=\frac{Y_1}{a}\ \text{at }G=a,\ X=0.
+$$
+
+### 양쪽에서 간섭성 입력을 허용하기
+
+a_L·a_R은 들어오는 전기 phasor, b_L·b_R은 나가는 phasor로 같은 부호 있는 x 기저를 씁니다. E_s=a_L+b_L=a_R+b_R과 전류 점프를 함께 풀면 아래 식입니다. 입력 전력은 들어오는 진행 채널 전력의 합이며 더한 전기 진폭의 제곱이 아닙니다. 실제 시트 장은 간섭성 합에 의존하므로 상대 위상이 흡수를 제어합니다. 같은 국소 전력 수지가 에너지를 만들지 않고 그 의존성을 설명합니다.
+
+$$
+E_s=\frac{2(Y_1a_L+Y_2a_R)}{\mathcal D},\quad b_L=E_s-a_L,\quad b_R=E_s-a_R,\quad P_{\rm in}=\frac{Y_1|a_L|^2+Y_2|a_R|^2}{2},\quad P_{\rm in}-P_{\rm out}=\frac G2|E_s|^2.
+$$
+
+### 산란 모드 전에 포트를 전력으로 정규화하기
+
+각 채널 진폭에 sqrt(Y_j)를 곱하면 전력이 Euclidean 노름이 됩니다. v=(sqrt(Y₁),sqrt(Y₂)) 방향의 한 모드와 고윳값 −1인 수직 모드가 있습니다. 후자는 시트 장이 0이라 이 전기 시트에서 소산하지 않습니다. 직접 곱하면 반응성 X까지 포함한 아래 Hermitian 흡수 연산자를 얻습니다. 그 비영 고윳값은 G=Y₁+Y₂, X=0에서만 1에 도달합니다. 그러면 같은 비영 전기 입력 phasor에 나가는 파가 없습니다. 이것이 간섭성 완전 흡수입니다. 다른 매질에서는 같은 전기 진폭이 다른 전력을 운반합니다. 일반적인 비흡수 조건은 Y₁a_L+Y₂a_R=0이며 무조건 같은 크기·반대 부호 전기 진폭이 아닙니다.
+
+$$
+\widehat a=\begin{pmatrix}\sqrt{Y_1}a_L\\\sqrt{Y_2}a_R\end{pmatrix},\quad\widehat b=\mathcal S\widehat a,\quad v=\begin{pmatrix}\sqrt{Y_1}\\\sqrt{Y_2}\end{pmatrix},\quad\mathcal S=\frac{2vv^T}{\mathcal D}-I,\quad P_{\rm in}=\frac12\|\widehat a\|^2,\quad P_{\rm out}=\frac12\|\widehat b\|^2.
+$$
+
+$$
+\mathcal S v=\frac{a-Y_s}{a+Y_s}v,\quad\mathcal S v_\perp=-v_\perp,\quad I-\mathcal S^\dagger\mathcal S=\frac{4aG}{|a+Y_s|^2}\frac{vv^T}{a},\qquad 0\le\frac{4aG}{|a+Y_s|^2}\le1.
+$$
+
+$$
+G=a,\ X=0,\ a_L=a_R\ne0:\quad b_L=b_R=0;\qquad Y_1a_L+Y_2a_R=0:\quad E_s=0,\quad P_{\rm absorbed}=0.
+$$
+
+### 고정 위상과 비간섭 앙상블을 구분하기
+
+대칭 매질의 임계 전도도에서 같은 입력 크기·위상 차 φ는 cos²(φ/2)만큼 입력 전력을 흡수합니다. 같은 위상은 완전 흡수, 반대 위상은 E_s=0이라 흡수가 없습니다. 코드는 정확한 네 위상에서 경계 장을 풀어 출력·흡수 전력을 표로 보입니다. 같은 평균 제곱 전기 진폭으로 단색 실험을 반복해 평균하면 아래 간섭도 식입니다. 이는 평균 전력의 비이지 일반적으로 변동하는 정규화 비율의 평균은 아닙니다. 균일한 무작위 상대 위상은 간섭도 0과 평균 흡수 절반을 줍니다. 따라서 한 입사파 상한과 간섭성 완전 흡수는 모순이 아닙니다. 광대역 동역학·주파수 의존 시트는 별도 처리가 필요합니다.
+
+$$
+Y_1=Y_2=Y,\ G=2Y,\ X=0:\quad r=-\tfrac12,\ t=\tfrac12,\quad a_L=A,\ a_R=Ae^{i\phi},\quad A\ne0:\quad\mathcal A_{\rm two}=\cos^2(\phi/2).
+$$
+
+$$
+\langle|a_L|^2\rangle=\langle|a_R|^2\rangle=I_0>0,\quad\gamma_{12}=\frac{\langle a_La_R^*\rangle}{I_0},\quad\frac{\langle P_{\rm absorbed}\rangle}{\langle P_{\rm in}\rangle}=\frac{1+\operatorname{Re}\gamma_{12}}{2}\quad\text{(symmetric critical sheet)}.
+$$
+
+| 위상 / pi | 왼쪽 출력 / 입력 | 오른쪽 출력 / 입력 | 흡수 / 입력 | 전력 잔차 |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 0.00000000 | 0.00000000 | 1.00000000 | 0.00000000 |
+| 0.50000000 | 0.25000000 | 0.25000000 | 0.50000000 | -0.00000000 |
+| 1.00000000 | 0.50000000 | 0.50000000 | 0.00000000 | 0.00000000 |
+| 1.50000000 | 0.25000000 | 0.25000000 | 0.50000000 | -0.00000000 |
+
+```python
+# Peak phasors: Y1=Y2=1, G=2, X=0; power unit Y*E_ref^2.
+# Exact quarter-turn phasors avoid treating sin(pi) roundoff as a physical field.
+for phase_over_pi, right in [(0.0,1), (0.5,1j), (1.0,-1), (1.5,-1j)]:
+    left = 1
+    Es = 2*(left+right)/4
+    out_left, out_right = Es-left, Es-right
+    incoming = (abs(left)**2+abs(right)**2)/2
+    L, R = abs(out_left)**2/2, abs(out_right)**2/2
+    absorbed = 2*abs(Es)**2/2
+    assert abs(incoming-L-R-absorbed) < 1e-14
+    print(f"{phase_over_pi:.8f} {L/incoming:.8f} {R/incoming:.8f} "
+          f"{absorbed/incoming:.8f} {(incoming-L-R-absorbed):.8f}")
+```
+
+[Chong 등의 PRL 105, 053901 (2010)](https://www.eng.yale.edu/caolab/papers/PRL10.pdf)은 산란 영점과 간섭성 조명의 배경입니다. 두께 0 전기 시트 모형·수동 상한·다른 포트 정규화·위상/간섭도 예제는 표시한 경계 조건에서 유도하며 그 논문의 slab 성능 검증으로 가져오지 않습니다. 기존 무시트 Fresnel 극한과 강제 투명 원천 수지는 별도 비교로 유지합니다.
+
+![한 입사파 흡수 상한·간섭 위상·반응성 불일치](/assets/learning/electromagnetism-coherent-sheet-absorption.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**대칭 매질 한 입사파의 50% 상한은 완전 흡수를 금지하는가?** **답:** 아니다. 두 간섭성 입력 채널이 완전히 흡수되는 모드를 만들 수 있다. 한 입사파 상한은 다른 조명 가정을 갖는다.
+
+**같은 입력 전력이 항상 완전 흡수 상태인가?** **답:** 아니다. 임계 시트에서 전기 phasor가 같아야 하며 포트 어드미턴스가 다르면 들어오는 전력은 다르다.
+
+**시트 전도도를 무한히 키우면 흡수가 최대인가?** **답:** 아니다. 시트 장을 0으로 보내 반사체에 접근한다. 최대 흡수에는 맞춘 유한 전도도와 영인 반응성 성분이 필요하다.
+
 ## 풀이가 있는 연습문제
 
 ### 연습 1: 더 큰 전기 진폭
