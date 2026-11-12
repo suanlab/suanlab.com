@@ -180,6 +180,119 @@ An exact spectral implementation should not be checked only against another call
 
 For the continuum comparison, keep the same physical Fourier coefficients and change only the dispersion relation. Conservation validates each evolution separately, while refinement tests their relationship. In particular, the discrete and continuum initial strain energies differ at finite spacing. Replacing one with the other to obtain an identical displayed total would conceal the very modeling error the experiment measures.
 
+## Research extension: a lattice group-speed bound is not a strict front
+
+The continuum wave equation has exact finite dependence for compact initial data. Does the lattice automatically have the same strict support because its group speed is bounded? A simple infinite-chain Green function answers no: it has very small, nonzero remote coefficients. We distinguish that mathematical statement from a detectable signal and from the smooth, fixed-material refinement experiment above.
+
+### Change the domain and initial data explicitly
+
+This supplement uses an infinite chain, not the native finite periodic chain. Displace one site by Q≠0 and release every site from rest. The delta below is a Kronecker delta on integer sites, not a continuum Dirac distribution:
+
+
+
+$$
+\ddot q_n=\frac{c^2}{a^2}(q_{n+1}-2q_n+q_{n-1}),\quad n\in\mathbb Z,\quad q_n(0)=Q\delta_{n0},\quad\dot q_n(0)=0,\qquad
+m=\mu a,\quad\kappa=\tau/a,\quad c^2=\tau/\mu,\quad s=ct/a,\quad \mu,\tau,a>0.
+$$
+
+This localized initial state contains all lattice Fourier modes. It is not supplied by the native few-mode controls. Its wavelength content does not satisfy a uniform long-wave assumption as spacing decreases.
+
+
+
+$$
+\omega(\xi)=\frac{2c}{a}\sin(\xi a/2),\quad v_g=\frac{d\omega}{d\xi}=c\cos(\xi a/2),\quad 0<\xi a<\pi,\qquad |v_g|\le c.
+$$
+
+The opposite wavenumber branch has the same speed bound in absolute value. Group velocity describes a narrow spectral packet; it is not by itself a theorem that every spatial coefficient vanishes outside abs(n)a≤ct.
+
+### Obtain the exact coefficient from the Fourier symbol
+
+
+
+$$
+q_n(t)=QG_n(s),\qquad G_n(s)=\frac1{2\pi}\int_{-\pi}^{\pi}\cos\!\left(2s\sin\frac\theta2\right)e^{in\theta}\,d\theta
+=J_{2|n|}(2s)=\sum_{r=0}^{\infty}\frac{(-1)^r s^{2|n|+2r}}{r!(2|n|+r)!}.
+$$
+
+Each Fourier component solves its scalar oscillator equation and has the required zero initial velocity. The Jacobi–Anger cosine expansion in [DLMF 10.12.2](https://dlmf.nist.gov/10.12#E2) identifies its Fourier coefficient; the power series is [DLMF 10.2.2](https://dlmf.nist.gov/10.2#E2) at even integer order. One may evaluate the displayed convergent series without a special-function library. Symmetry gives G−n=Gn.
+
+### Prove that remote coefficients are nonzero
+
+For n≥1 let Tr be the magnitude of series term r. If s²<2n+1, successive magnitudes decrease from the beginning. The alternating-series bounds give
+
+
+
+$$
+\frac{T_{r+1}}{T_r}=\frac{s^2}{(r+1)(2n+r+1)},\qquad
+0<s^2<2n+1:\quad 0<\frac{s^{2n}}{(2n)!}\left(1-\frac{s^2}{2n+1}\right)\le G_n(s)\le\frac{s^{2n}}{(2n)!}.
+$$
+
+For every fixed finite s>0 there are arbitrarily large n satisfying that condition. Therefore the exact infinite chain has no strict compact support at any positive time. This does not say every site is nonzero at every time; particular coefficients can have zeros. It proves the existence of arbitrarily remote nonzero sites, with factorially small values.
+
+The table fixes s=1. All listed sites lie outside the nominal continuum cone abs(n)≤1. Values and bounds are rounded; the rigorous inequalities are the exact expressions above.
+
+| n | G_n(1) | alternating lower bound | leading upper bound |
+|---|---|---|---|
+| 2 | 0.0339957198 | 0.0333333333 | 0.0416666667 |
+| 3 | 0.00120242897 | 0.00119047619 | 0.00138888889 |
+| 4 | 2.21795523e-5 | 2.20458554e-5 | 2.48015873e-5 |
+| 6 | 1.93269515e-9 | 1.92708526e-9 | 2.08767570e-9 |
+
+```python
+from math import factorial
+
+# Infinite-chain displacement coefficient at s=c*t/a=1, not the native periodic data.
+for n in [2, 3, 4, 6]:
+    leading = 1/factorial(2*n)
+    term = value = leading
+    for r in range(1, 32):
+        term *= -1/(r*(2*n+r))
+        value += term
+    lower = leading*(1-1/(2*n+1))
+    print(n, *(format(x, '.9g') for x in [value, lower, leading]))
+    assert 0 < lower <= value <= leading
+```
+
+### Quantify a small tail rather than setting it to zero
+
+
+
+$$
+N\ge1,\quad s^2<2N+1:\qquad
+\sum_{|n|\ge N}|q_n(t)|\le\frac{2|Q|s^{2N}}{(2N)!}\left[1-\frac{s^2}{(2N+1)(2N+2)}\right]^{-1}.
+$$
+
+Sum the leading upper bounds on both sides of the chain. The ratio between successive leading terms is at most s²/[(2N+1)(2N+2)], so a geometric majorant proves the estimate. This is a displacement l1 tail with units m, not an energy tail. A numerical cutoff or a detector threshold defines a practical support criterion, not an exact zero of this equation.
+
+### Check the continuum initial-energy assumption
+
+
+
+$$
+E_a(0)=\kappa Q^2=\frac{\tau Q^2}{a},\qquad \max_n\frac{|q_{n+1}(0)-q_n(0)|}{a}=\frac{|Q|}{a}.
+$$
+
+There are two strained links, each storing kappa Q²/2. Holding a one-site displacement Q fixed while a tends to zero makes both initial energy and slope diverge. It is not the preceding fixed smooth initial field, and eventually violates the small-slope physical approximation. Nonzero lattice tails cannot refute the finite-dependence theorem of a different continuum initial-value problem.
+
+
+
+$$
+Q=\eta a,\quad |\eta|\ll1:\qquad E_a(0)=\tau\eta^2a\longrightarrow0,\qquad
+\sup_{n,t}|q_n(t)|\le|\eta|a\longrightarrow0.
+$$
+
+The final bound follows directly from the Fourier integral, whose absolute value is at most one. This scaled one-site family approaches the trivial zero field; it is not a nonzero smooth continuum pulse. For a meaningful nonzero refinement experiment, sample the same smooth profile across many cells. The infinite classical spring model also does not establish a claim about relativistic signal propagation in a real material.
+
+![At ct/a=1 the infinite-chain coefficients extend beyond abs(n)=1; small positive tails agree with alternating-series bounds.](/assets/learning/waves-front-lattice-tail.en.svg)
+
+### Research questions with explanations
+
+**Does bounded group speed prove a strict lattice light cone?** **Answer:** No. The explicit Green function has arbitrarily remote nonzero coefficients. A packet speed bound and an exact support theorem are different statements.
+
+**May the one-site impulse be used as the original smooth refinement test?** **Answer:** Not with fixed nonzero Q. Its spectrum, energy and slope change with spacing. State the domain and the physical initial-data sequence before comparing models.
+
+**What locality rule should a learned simulator satisfy?** **Answer:** Match the equation and data: strict finite dependence for the stated continuum PDE, or quantified small tails for this infinite lattice. Finite precision and finite detection thresholds must be reported separately from mathematical support.
+
 ## Exercises with explanations
 
 ### Exercise 1: Refining the same string

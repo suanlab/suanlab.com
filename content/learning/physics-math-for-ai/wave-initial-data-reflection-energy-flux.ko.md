@@ -1,3 +1,134 @@
+## 연구 확장: 수동 경계도 파동 에너지를 저장하고 재방출한다
+
+정지한 고정단·자유단은 경계 에너지를 저장하지 않고 반사한다. 이제 명시적인 다른 보충 모델로, 스프링과 점성 감쇠기에 연결된 질량 없는 끝점을 고려한다. 줄은 여전히 선형이지만 경계는 스프링 변위를 통해 기억을 갖는다. 기존 고정단·자유단 계산기에 Robin·감쇠 제어를 추가한 것은 아니다.
+
+### 왼쪽 끝점 힘의 부호를 유도한다
+
+
+
+$$
+u_{tt}=c^2u_{xx},\quad x\ge0,\quad Z=\frac\tau c=\mu c>0,\quad Y(t)=u(0,t),\qquad
+\tau u_x(0,t)=K_bY(t)+bY^{\prime}(t),\quad K_b\ge0,\quad b\ge0.
+$$
+
+줄은 끝점에 횡방향 힘 tau ux를 주고 스프링과 감쇠기는 변위·속도를 반대한다. 힘의 평형에서 표시한 부호가 나온다. Z와 b의 단위는 N s/m, Kb는 N/m이다. 여기서 스칼라 b는 경계 감쇠이며 앞의 무차원 compact 모양 함수와 구분한다. 끝점 질량이나 능동 경계 구동기는 포함하지 않는다.
+
+
+
+$$
+E_s=\int_0^\infty\left(\frac\mu2u_t^2+\frac\tau2u_x^2\right)dx,\quad E_b=\frac{K_bY^2}{2},\qquad
+\frac d{dt}(E_s+E_b)=-b(Y^{\prime})^2\le0.
+$$
+
+고려하는 유한 시간에 무한대 전력 흐름이 없고 적합한 유한 에너지 초기값을 가정한다. 기존 국소 보존식을 적분하면 dEs/dt=J(0)=−tau Yprime ux(0)이다. 힘의 평형을 대입하면 스프링 저장과 열을 분리할 수 있다. 스프링이 방출할 때 줄의 에너지만은 늘어날 수 있다. 수동성은 결합 수지에 대한 진술이다.
+
+### 조화 반사와 흡수 비율을 계산한다
+
+exp(+i Omega t) 관례에서 왼쪽으로 오는 진폭 I에는 exp(+i Omega x/c), 오른쪽으로 나가는 진폭 R에는 exp(−i Omega x/c)가 곱해진다. x=0에서 변위와 기울기를 모두 경계식에 대입한다.
+
+
+
+$$
+r(\Omega)=\frac RI=\frac{-K_b+i\Omega(Z-b)}{K_b+i\Omega(Z+b)},\quad \Omega>0,\qquad
+|r|^2=\frac{K_b^2+\Omega^2(Z-b)^2}{K_b^2+\Omega^2(Z+b)^2},\qquad
+1-|r|^2=\frac{4\Omega^2Zb}{K_b^2+\Omega^2(Z+b)^2}\in[0,1].
+$$
+
+양의 주파수·수동성 가정에서 분모는 0이 아니다. 자유단 Kb=b=0은 r=+1이고 고정된 주파수에서 강성을 크게 보내면 r=−1이다. 정확한 광대역 정합에는 Kb=0과 b=Z가 함께 필요하다. 양의 유한 스프링이 있는데 b=Z만 놓으면 주파수 의존 반사가 남는다. DC에는 전파하는 주기 전력이 없으므로 0/0 계산으로 측정 흡수 비율을 부여해서는 안 된다.
+
+
+
+$$
+P_{\rm in}=\frac{Z\Omega^2|I|^2}{2},\quad P_{\rm out}=\frac{Z\Omega^2|R|^2}{2},\quad
+P_{\rm heat}=\frac{b\Omega^2|I+R|^2}{2},\qquad P_{\rm in}-P_{\rm out}=P_{\rm heat}.
+$$
+
+이는 시간 평균 전력이다. 주기 상태에서 스프링의 평균 저장률은 0이지만 펄스 과정의 순간 저장률이 0일 필요는 없다.
+
+### 특성으로 인과적인 끝점 기억을 유도한다
+
+u(x,t)=F(t+x/c)+G(t−x/c)로 쓴다. F는 끝점에서 평가한 입사 변위, G는 반사 변위이며 원래 공간 초기 속도 장을 뜻하지 않는다. 펄스가 오기 전 F(0)=Y(0)=0에서 시작한다. compact 입사 흔적은 끝점에서 떨어진 입사 초기 펄스로 준비할 수 있으며 능동적인 경계 힘이 아니다.
+
+
+
+$$
+Y=F+G,\quad (Z+b)Y^{\prime}+K_bY=2ZF^{\prime},\qquad
+Y(t)=\frac{2Z}{Z+b}\int_0^t e^{-K_b(t-s)/(Z+b)}F^{\prime}(s)\,ds,\quad G=Y-F.
+$$
+
+tau ux=Z(Fprime−Gprime), Yprime=Fprime+Gprime를 이용하면 일차 방정식을 얻는다. 지수 핵은 과거 입력에만 의존한다. Kb=0에서는 Y=2ZF/(Z+b)이므로 해당 감쇠를 선택하면 자유단 또는 정합 반사를 복원한다.
+
+
+
+$$
+P_{\rm in}(t)=Z(F^{\prime})^2,\quad P_{\rm out}(t)=Z(G^{\prime})^2,\qquad
+P_{\rm in}-P_{\rm out}=K_bYY^{\prime}+b(Y^{\prime})^2=\frac{dE_b}{dt}+b(Y^{\prime})^2.
+$$
+
+두 전력은 서로 다른 특성 변화율에서 계산한다. 그 차를 저장 에너지 변화로 정의해 맞추는 것이 아니다. 이전에 저장한 스프링 에너지가 공급한다면 입력이 끝난 뒤 출력 전력이 생겨도 이 순간 항등식에 맞는다.
+
+### compact 펄스 뒤의 반사 꼬리를 적분한다
+
+
+
+$$
+K_b>0,\quad F(t)=0\ (t\ge T),\quad \lambda=\frac{K_b}{Z+b}:\qquad
+Y(t)=Y(T)e^{-\lambda(t-T)},\quad G(t)=Y(t)\quad(t\ge T).
+$$
+
+입사 변위는 compact이지만 반사 장에는 시간에 따라 지수적으로 줄어드는 꼬리가 있다. 끝점에서 저장 에너지를 방출하며 줄 안의 전파는 여전히 속도 c의 연속체 특성을 따른다. T부터 무한대까지 출력·열 전력을 적분하면 다음과 같다.
+
+
+
+$$
+E_{\rm rad,tail}=\int_T^\infty Z(G^{\prime})^2dt=\frac Z{Z+b}E_b(T),\qquad
+Q_{\rm tail}=\int_T^\infty b(Y^{\prime})^2dt=\frac b{Z+b}E_b(T),\qquad E_{\rm rad,tail}+Q_{\rm tail}=E_b(T).
+$$
+
+b=0에서는 남은 스프링 에너지가 모두 줄로 돌아간다. b를 바꾸면 분배 비율뿐 아니라 앞선 펄스가 만든 상태 Y(T)도 바뀌므로 실험 사이의 저장 에너지가 같다고 가정하지 않는다.
+
+표는 Z=1 N s/m, Kb=1 N/m과 SI 초 단위의 1<t<3에서 입사 변위 F(t)=0.1[1−(t−2)²]³ m를 고정하고 그 밖에서는 0으로 둔다. 따라서 T=3초다. 값은 반올림했으며 코드는 인과적 합성곱에 복합 Simpson 구적을 적용한 뒤 정확한 꼬리 식을 사용한다.
+
+| b (N s/m) | Y(T) (m) | 저장 E_b(T) (J) | 방출 꼬리 (J) | 꼬리 열 (J) |
+|---|---|---|---|---|
+| 0 | -0.0710926056 | 0.00252707929 | 0.00252707929 | 0 |
+| 0.5 | -0.0427660489 | 0.000914467470 | 0.000609644980 | 0.000304822490 |
+| 1 | -0.0281144098 | 0.000395210019 | 0.000197605010 | 0.000197605010 |
+| 2 | -0.0146481885 | 0.000107284713 | 3.57615711e-5 | 7.15231423e-5 |
+
+```python
+from math import exp
+
+# Z=1 N s/m, Kb=1 N/m. Incoming displacement: 0.1*(1-(t-2)^2)^3 m on (1,3) s.
+def incoming_rate(t):
+    z = t-2
+    return -0.6*z*(1-z*z)**2 if abs(z) < 1 else 0
+
+def integrate(f, a, b, n=20000):
+    h = (b-a)/n
+    return h/3*(f(a)+f(b)+sum(
+        (4 if j % 2 else 2)*f(a+j*h) for j in range(1, n)))
+
+for damping in [0, .5, 1, 2]:
+    y = 2/(1+damping)*integrate(
+        lambda t: exp(-(3-t)/(1+damping))*incoming_rate(t), 1, 3)
+    stored = y*y/2
+    radiation = stored/(1+damping)
+    heat = damping*stored/(1+damping)
+    print(damping, *(format(x, '.9g') for x in [y, stored, radiation, heat]))
+    assert abs(radiation+heat-stored) < 1e-15
+```
+
+![compact 입사 펄스가 수동 스프링·감쇠기 끝점에서 반사 시간 꼬리를 남기며 저장 에너지가 출력 방출과 열로 나뉜다.](/assets/learning/waves-front-boundary-memory.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**b=Z이면 언제나 완전 흡수 경계인가?** **답:** 이 모델에서는 Kb=0일 때만 그렇다. 양의 스프링이 주파수 의존 반응성 부하를 더하므로 특히 낮은 주파수에서 반사가 남는다.
+
+**입사 펄스가 끝난 뒤 수동 끝점이 에너지를 내보낼 수 있는가?** **답:** 그렇다. 스프링이 이전 저장 에너지를 방출한다. 줄의 에너지 증가를 능동 생성으로 해석하기 전에 경계 저장과 소산을 포함한다.
+
+**반사 시간 꼬리가 PDE의 유한 전파를 위반하는가?** **답:** 아니다. 국소적인 인과 경계 ODE가 꼬리를 만들고 각 방출 교란은 c로 이동한다. 무한 격자의 공간 지지 문제와 다르다. 학습 경계 모델은 자기 기억과 에너지 수지로 검증한다.
+
 ## 파동은 초기값 문제다
 
 줄의 모양을 한 장 찍은 사진만으로 미래를 정할 수 없다. 같은 모양도 순간적으로 정지해 있거나 왼쪽·오른쪽으로 이동하거나 별도의 초기 충격을 받은 상태일 수 있다. 파동 방정식에는 초기 변위와 초기속도가 모두 필요하다. 특성선이 끝점에 도달하면 경계에서 제공하는 정보도 필요해진다.
