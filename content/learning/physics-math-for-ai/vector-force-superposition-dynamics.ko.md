@@ -110,6 +110,135 @@ $$
 
 선택한 계, 외력 입력, 질량, 초기 상태와 관측자 기준을 함께 기록합니다. 모형 안의 정확한 항등식과 실제 장치에서 그 모형이 맞는지는 다릅니다. 일정한 힘의 예측 성공만으로 접촉, 회전이나 질량 교환까지 검증했다고 해석하지 않습니다.
 
+## 연구 확장: 힘 잔차를 궤적 오차의 상계로 바꾸기
+
+학습한 힘의 오차가 작으면 예측한 위치도 정확할까요? 힘 오차는 속도를 바꾸고 바뀐 속도는 다시 위치에 누적됩니다. 일찍 발생한 오차일수록 더 오래 작용합니다. 이 관계를 계산하면 힘 손실과 궤적 평가를 연결할 수 있습니다. 다만 손실이 전체 시간 구간의 힘을 실제로 제어한다는 근거가 필요합니다.
+
+### 비교하는 대상을 먼저 정의하기
+
+같은 일정 양의 질량 m과 관성계를 사용하는 두 정확한 뉴턴 궤적을 비교합니다. 초기 상태는 다를 수 있습니다. 부호 있는 벡터 잔차와 오차를 다음과 같이 정합니다.
+
+$$
+\mathbf e_q=\widehat{\mathbf q}-\mathbf q,\quad
+\mathbf e_v=\widehat{\mathbf v}-\mathbf v,\quad
+\mathbf r(s)=\widehat{\mathbf F}(s)-\mathbf F(s),\qquad
+m\dot{\mathbf e}_v=\mathbf r.
+$$
+
+미리 정한 시간 함수인 힘에서는 두 함수의 차이가 잔차입니다. 상태에 의존하는 힘에서는 **각자의 실제 궤적**에서 평가해야 합니다. 예측 힘은 예측 상태에서, 기준 힘은 기준 상태에서 계산합니다. 이 확장은 연속 운동에 대한 독립 해석이며 기존 조작형 입력은 여전히 일정한 힘 두 개를 사용합니다.
+
+속도 오차 식을 적분하고 위치 오차를 한 번 더 적분합니다. 삼각 영역 0≤s≤u≤t에서 적분 순서를 바꾸면 커널 t−s가 나옵니다. 시각 s의 힘 오차가 남은 시간만큼 위치에 기여하는 것입니다. 잔차가 적분 가능하고 속도가 절대연속이면 다음 항등식이 성립합니다.
+
+$$
+\mathbf e_v(t)=\mathbf e_{v0}+\frac1m\int_0^t\mathbf r(s)\,ds,
+\qquad
+\mathbf e_q(t)=\mathbf e_{q0}+t\mathbf e_{v0}
++\frac1m\int_0^t(t-s)\mathbf r(s)\,ds.
+$$
+
+초기 상태 오차도 식에 남습니다. 초기 속도를 바꾼 실험의 모든 위치 오차를 학습한 힘의 탓으로 돌리면 안 됩니다.
+
+### 균일 예산과 적분 예산의 차이
+
+[0,t] 전체에서 유클리드 힘 노름이 ||r(s)||≤ε를 만족한다고 합시다. 삼각 부등식을 적용하고 음이 아닌 커널을 적분하면 다음과 같습니다.
+
+$$
+\|\mathbf e_v(t)\|\le\|\mathbf e_{v0}\|+\frac{\epsilon t}{m},\qquad
+\|\mathbf e_q(t)\|\le\|\mathbf e_{q0}\|+t\|\mathbf e_{v0}\|
++\frac{\epsilon t^2}{2m}.
+$$
+
+힘의 기여는 속도에서 시간에 비례하고 위치에서 시간의 제곱에 비례합니다. 초기 상태가 같고 잔차가 일정한 εu이며 u가 단위벡터이면 두 상계에 동시에 도달합니다. 질량 2 kg과 잔차 크기 1 N에서는 다음 값을 정확히 얻습니다.
+
+| t (s) | 속도 오차 노름 (m/s) | 위치 오차 노름 (m) |
+|---|---|---|
+| 0 | 0 | 0 |
+| 1/2 | 1/4 | 1/16 |
+| 1 | 1/2 | 1/4 |
+| 2 | 1 | 1 |
+
+전체 구간의 힘 오차 제곱 적분이 정당화되었다면 Cauchy–Schwarz로 다른 상계를 얻습니다.
+
+$$
+\|\mathbf e_v(t)\|\le\|\mathbf e_{v0}\|+\frac{\sqrt{t}}{m}B_t,
+\qquad
+\|\mathbf e_q(t)\|\le\|\mathbf e_{q0}\|+t\|\mathbf e_{v0}\|
++\frac{\sqrt{t^3/3}}{m}B_t,
+\quad B_t^2=\int_0^t\|\mathbf r(s)\|^2\,ds.
+$$
+
+위치 상수는 커널 제곱 (t−s)²을 적분한 t³/3에서 나옵니다. 속도 커널은 1이므로 제곱 적분은 t입니다. B_t의 단위는 N√s이므로 각 우변의 단위가 속도·위치와 맞습니다. 서로 다른 시간 지수를 같은 오차 지표처럼 바꿔 쓰면 안 됩니다.
+
+최종 시간 T를 고정하면 잔차 c(T−s)u가 위치 L2 상계에 도달합니다. 일정하고 방향이 같은 잔차는 속도 L2 상계에 도달합니다. 두 극값 함수는 다릅니다. T=2 s, m=2 kg, c=1 N/s이면 위치 오차는 4/3 m, B_T²=8/3 N²s이며 상계의 제곱은 정확히 16/9 m²입니다. 난수 시뮬레이션 없이도 상수가 날카로울 수 있음을 확인합니다.
+
+### 세 시점의 학습 손실이 0이어도 운동은 달라진다
+
+초기 상태가 같고 A>0의 단위가 N, τ>0의 단위가 s라고 합시다. 다음 잔차를 사용합니다.
+
+$$
+\mathbf r(t)=A\,p(t/\tau)\mathbf u,\quad
+p(u)=u^2(u-1)^2(u-2)^2,\quad
+\mathbf u=(3/5,4/5),\quad 0\le t\le2\tau.
+$$
+
+A와 무관하게 t=0,τ,2τ의 세 힘 오차는 모두 0입니다. 하지만 영점 사이에서는 p가 양수입니다. 전개하면 p(u)=u⁶−6u⁵+13u⁴−12u³+4u²입니다. 다항식을 정확히 적분하면 다음 값을 얻습니다.
+
+$$
+\int_0^2p(u)\,du=\int_0^2(2-u)p(u)\,du=\frac{16}{105},
+\quad
+\|\mathbf e_v(2\tau)\|=\frac{16A\tau}{105m},
+\quad
+\|\mathbf e_q(2\tau)\|=\frac{16A\tau^2}{105m}.
+$$
+
+A=1 N, τ=1 s, m=2 kg이면 속도와 위치 오차의 수치는 모두 8/105이며 단위는 각각 m/s와 m입니다. A를 키우면 세 표본의 오차 0은 유지되면서 궤적 오차는 임의로 커집니다. 앞의 균일·L2 상계가 틀린 것이 아닙니다. 세 영점으로는 상계에 필요한 연속 구간 예산을 알 수 없는 것입니다.
+
+![관측한 세 시점의 힘 잔차는 모두 0이지만 사이 구간의 양의 잔차가 누적되어 마지막 위치 오차가 8/105미터가 되는 그림입니다.](/assets/learning/classical-force-residual.ko.svg)
+
+위쪽 세로축은 힘 N, 아래쪽은 위치 오차 노름 m입니다. 지정한 A=1, τ=1, m=2 예제이며 가로축은 물리적 시간 s입니다. 위쪽 표시는 정확한 영점 표본 세 개입니다. 사이의 곡선까지 관측했다는 뜻이 아닙니다.
+
+### 정확한 예제 재현하기
+
+코드는 선언한 SI 단위의 수치를 유리수로 계산합니다. 다항식의 인자는 무차원이며 τ=1 s라서 수치상 시간과 같습니다. 세 영점만으로 다항식을 추정한 것이 아닙니다.
+
+```python
+from fractions import Fraction as F
+
+mass = F(2)  # kg; numerical times below are in seconds
+for t in [F(0), F(1,2), F(1), F(2)]:
+    # Constant 1 N residual along the unit vector (3/5, 4/5).
+    dv, dq = t/mass, t*t/(2*mass)
+    print("constant: t, velocity error, position error:", t, dv, dq)
+
+# At T=2 s, residual (2-t) N saturates the position L2 bound.
+T = F(2)
+B_squared = T**3/3  # integral of (T-t)^2; units N^2 s
+position = T**3/(3*mass)
+assert position**2 == T**3/(3*mass**2) * B_squared
+assert position == F(4,3)
+print("L2 extremizer: position error =", position)
+
+# A=1 N, tau=1 s; p(t/tau) in dimensionless time u=t/tau.
+p = [F(0), F(0), F(4), F(-12), F(13), F(-6), F(1)]
+value = lambda u: sum(c*u**i for i,c in enumerate(p))
+assert all(value(F(u)) == 0 for u in [0,1,2])
+impulse = sum(c*T**(i+1)/F(i+1) for i,c in enumerate(p))
+position = sum(c*T**(i+2)/F((i+1)*(i+2))
+               for i,c in enumerate(p))/mass
+assert impulse == F(16,105)
+assert impulse/mass == position == F(8,105)
+print("zero sampled force error; velocity and position errors:",
+      impulse/mass, position)
+```
+
+### 풀이가 있는 연구 점검
+
+1. **m=2 kg에서 균일 0.02 N 예산은 힘 때문에 생기는 위치 오차를 언제까지 0.01 m 이하로 보장하나요?** 초기 상태가 같으면 0.02t²/(2·2)≤0.01이므로 t≤√2 s입니다. 전체 구간의 연속 예산이 타당할 때의 정확한 흐름에 대한 충분조건입니다.
+2. **기준 궤적에서만 평가한 작은 힘 오차로 피드백 모형에도 같은 상계를 적용할 수 있나요?** 아닙니다. 예측 상태에서의 힘 오차는 아직 제어되지 않았습니다. Lipschitz 추정처럼 정당화된 상태 정칙성 상계와 그에 따른 안정성 논증이 추가로 필요합니다.
+3. **수치 적분기의 오차도 포함하나요?** 아닙니다. 여기서는 정확한 흐름을 비교합니다. 계산 궤적에서는 이산화 오차를 별도로 제어하거나 미분 잔차가 정당화된 보간 함수를 구성해야 합니다. 시간 단계별 출력 목록만으로는 부족합니다.
+
+커널 식·부등식·다항식 반례는 위 가정에서 직접 유도했습니다. 선언한 연속 힘 예산과 운동을 연결하며 드문 관측만으로 경험적 힘 법칙을 인증하지 않습니다.
+
 ## 연습문제와 해설
 
 1. **문제:** 2kg 입자에 (2,0)N과 (0,2)N이 작용하면? **해설:** 힘의 합은 (2,2)N, 가속도는 (1,1)m/s²입니다.

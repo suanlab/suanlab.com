@@ -110,6 +110,135 @@ A learned acceleration model should respond to vector superposition and mass in 
 
 An informative evaluation reports the selected system, force inputs, mass, initial data and observer frame. It distinguishes exact model identities from empirical correctness of the model in a real apparatus. A successful constant-force prediction does not by itself validate contact laws, rotations or changing-mass behavior outside the lesson's assumptions.
 
+## Research extension: turn a force residual into a trajectory bound
+
+Suppose a learned force makes a small error. Does that mean its predicted position is accurate? A force error changes velocity, and the changed velocity then accumulates into position. Earlier errors have longer to act. This gives a quantitative connection between a force loss and a trajectory evaluation, provided the loss actually controls the force over the full interval.
+
+### Define what is being compared
+
+Use two exact Newtonian trajectories with the same constant positive mass m and the same inertial frame. Their initial states may differ. Define the signed vector residual and errors as follows:
+
+$$
+\mathbf e_q=\widehat{\mathbf q}-\mathbf q,\quad
+\mathbf e_v=\widehat{\mathbf v}-\mathbf v,\quad
+\mathbf r(s)=\widehat{\mathbf F}(s)-\mathbf F(s),\qquad
+m\dot{\mathbf e}_v=\mathbf r.
+$$
+
+For prescribed time-dependent forces, the residual is simply the difference of those functions. For state-dependent forces, evaluate each force **along its own actual trajectory**: the hatted force at the hatted state and the reference force at the reference state. This extension is a standalone analysis of continuous motion; the existing interactive controls still use two constant forces.
+
+Integrate the velocity-error equation, then integrate position error. Interchanging the integrals over 0≤s≤u≤t gives the kernel t−s: a force error at time s acts for the remaining time. Integrable residuals suffice for these identities, with absolutely continuous velocities:
+
+$$
+\mathbf e_v(t)=\mathbf e_{v0}+\frac1m\int_0^t\mathbf r(s)\,ds,
+\qquad
+\mathbf e_q(t)=\mathbf e_{q0}+t\mathbf e_{v0}
++\frac1m\int_0^t(t-s)\mathbf r(s)\,ds.
+$$
+
+These equations retain initial-state errors. An experiment cannot attribute all position error to its learned force while quietly changing initial velocity.
+
+### Uniform and integral budgets answer different questions
+
+If the Euclidean force norm satisfies ||r(s)||≤ε throughout [0,t], apply the triangle inequality and integrate the nonnegative kernel:
+
+$$
+\|\mathbf e_v(t)\|\le\|\mathbf e_{v0}\|+\frac{\epsilon t}{m},\qquad
+\|\mathbf e_q(t)\|\le\|\mathbf e_{q0}\|+t\|\mathbf e_{v0}\|
++\frac{\epsilon t^2}{2m}.
+$$
+
+The force contribution is linear in time for velocity and quadratic for position. With identical initial states and a constant residual εu along any unit vector u, both bounds are attained. A mass of 2 kg and residual magnitude 1 N give the following exact values:
+
+| t (s) | velocity error norm (m/s) | position error norm (m) |
+|---|---|---|
+| 0 | 0 | 0 |
+| 1/2 | 1/4 | 1/16 |
+| 1 | 1/2 | 1/4 |
+| 2 | 1 | 1 |
+
+If an integrated squared force error is justified instead, Cauchy–Schwarz supplies another bound:
+
+$$
+\|\mathbf e_v(t)\|\le\|\mathbf e_{v0}\|+\frac{\sqrt{t}}{m}B_t,
+\qquad
+\|\mathbf e_q(t)\|\le\|\mathbf e_{q0}\|+t\|\mathbf e_{v0}\|
++\frac{\sqrt{t^3/3}}{m}B_t,
+\quad B_t^2=\int_0^t\|\mathbf r(s)\|^2\,ds.
+$$
+
+To obtain the position constant, square the scalar kernel and integrate: integral of (t−s)² is t³/3. The velocity kernel is 1 and its squared integral is t. B_t has units N√s, so both right-hand sides have the required velocity or position units. The different powers are not interchangeable error metrics.
+
+At a fixed horizon T, a residual c(T−s)u attains the position L2 bound. A constant aligned residual attains the velocity L2 bound. They are different extremizers. For T=2 s, m=2 kg and c=1 N/s, the position error is 4/3 m; B_T²=8/3 N²s and the squared upper bound is exactly 16/9 m². This proves the constants can be sharp without a random simulation.
+
+### A zero training loss at three times can still miss motion
+
+Take identical initial states, A>0 in newtons, τ>0 in seconds and the following residual:
+
+$$
+\mathbf r(t)=A\,p(t/\tau)\mathbf u,\quad
+p(u)=u^2(u-1)^2(u-2)^2,\quad
+\mathbf u=(3/5,4/5),\quad 0\le t\le2\tau.
+$$
+
+All three samples t=0,τ,2τ give zero force error, independent of A. Yet p is positive between its zeros. Expanding gives p(u)=u⁶−6u⁵+13u⁴−12u³+4u². Integrating this polynomial exactly yields:
+
+$$
+\int_0^2p(u)\,du=\int_0^2(2-u)p(u)\,du=\frac{16}{105},
+\quad
+\|\mathbf e_v(2\tau)\|=\frac{16A\tau}{105m},
+\quad
+\|\mathbf e_q(2\tau)\|=\frac{16A\tau^2}{105m}.
+$$
+
+For A=1 N, τ=1 s and m=2 kg, both numerical error values are 8/105, with their respective units m/s and m. Increasing A makes them arbitrarily large while the three sampled errors remain zero. The uniform and L2 bounds remain valid; those three zeros simply do not supply either required continuous budget.
+
+![A force residual vanishes at the three observation times but remains positive between them; the resulting position error accumulates to 8/105 metres.](/assets/learning/classical-force-residual.en.svg)
+
+The upper panel shows force in N and the lower panel position-error norm in m, for the stated A=1, τ=1, m=2 example. The horizontal axes are physical seconds. The markers in the upper panel are the three exact zero samples, not an assertion that the intervening curve was observed.
+
+### Reproduce the exact examples
+
+The code uses rational arithmetic and numerical values in the declared SI units. The polynomial argument is dimensionless; it equals numerical time only because τ=1 s. It does not fit a polynomial from the three zeros.
+
+```python
+from fractions import Fraction as F
+
+mass = F(2)  # kg; numerical times below are in seconds
+for t in [F(0), F(1,2), F(1), F(2)]:
+    # Constant 1 N residual along the unit vector (3/5, 4/5).
+    dv, dq = t/mass, t*t/(2*mass)
+    print("constant: t, velocity error, position error:", t, dv, dq)
+
+# At T=2 s, residual (2-t) N saturates the position L2 bound.
+T = F(2)
+B_squared = T**3/3  # integral of (T-t)^2; units N^2 s
+position = T**3/(3*mass)
+assert position**2 == T**3/(3*mass**2) * B_squared
+assert position == F(4,3)
+print("L2 extremizer: position error =", position)
+
+# A=1 N, tau=1 s; p(t/tau) in dimensionless time u=t/tau.
+p = [F(0), F(0), F(4), F(-12), F(13), F(-6), F(1)]
+value = lambda u: sum(c*u**i for i,c in enumerate(p))
+assert all(value(F(u)) == 0 for u in [0,1,2])
+impulse = sum(c*T**(i+1)/F(i+1) for i,c in enumerate(p))
+position = sum(c*T**(i+2)/F((i+1)*(i+2))
+               for i,c in enumerate(p))/mass
+assert impulse == F(16,105)
+assert impulse/mass == position == F(8,105)
+print("zero sampled force error; velocity and position errors:",
+      impulse/mass, position)
+```
+
+### Worked research checks
+
+1. **How long does a uniform 0.02 N budget keep the force-only position error below 0.01 m for m=2 kg?** With matching initial states, 0.02t²/(2·2)≤0.01 gives t≤√2 s. This is a sufficient exact-flow guarantee if the continuous budget is valid throughout that interval.
+2. **Does a small force error evaluated only on the reference trajectory establish the same bound for a feedback model?** No. It does not yet control the force at the predicted states. A justified state-regularity bound, such as a Lipschitz estimate and the resulting stability argument, is additional evidence.
+3. **Does this include the error of a discrete numerical solver?** No. Compare exact flows here. For computed trajectories, separately control discretization or construct an interpolant with a justified differential residual; a list of time-step outputs alone does not provide it.
+
+The kernel formulas, inequalities and polynomial counterexample are direct derivations under the assumptions above. They connect a declared continuous force budget to motion; they do not certify an empirical force law from sparse data.
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Add(2,0) N and(0,2) N for a2 kg particle. **Solution:** Net force is(2,2) N and acceleration is(1,1) m/s squared.

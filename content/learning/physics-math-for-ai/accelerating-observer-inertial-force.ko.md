@@ -123,6 +123,190 @@ A가 음수이면 고른 양의 축 반대로 관측자가 가속하며 관성 �
 
 초기 조건과 관측자 궤적을 함께 바꾸고 같은 실험실 사건으로 복원하며 수정한 식도 확인합니다. 회전 없는 일정한 병진 가속이라는 적용 범위를 명시합니다. 이 사례의 성공이 임의 카메라 운동과 모든 비관성 역학을 검증한 것은 아닙니다.
 
+## 연구 확장: 회전 좌표 항을 유도한 뒤 에너지를 해석하기
+
+카메라는 원점이 움직이지 않아도 회전할 수 있습니다. 그러면 실험실에서 고정된 점도 카메라 좌표에서는 곡선을 그립니다. 카메라 원점의 가속도를 빼는 것만으로는 부족합니다. 축이 변하면 상대 속도가 가속도에 기여하는 방식도 달라집니다. 이 확장에서는 평면에서 그 항들을 유도합니다. 기존 조작형 실습은 여전히 일차원·비회전·병진 관측자이며 아래 이차원 예제는 독립 계산입니다.
+
+### 회전을 정의하고 두 번 미분하기
+
+q는 관성 실험실 위치, O(t)는 두 번 미분 가능한 원점 위치입니다. R의 열은 실험실에서 본 관측자의 직교 단위 축입니다. 반시계 방향을 양수로 하는 일정한 각속도 Ω와 회전 좌표 r을 정합니다. J는 벡터를 반시계로 90도 회전시킵니다.
+
+$$
+R(t)=\begin{pmatrix}\cos\Omega t&-\sin\Omega t\\
+\sin\Omega t&\cos\Omega t\end{pmatrix},\qquad
+J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\quad
+\mathbf q=\mathbf O+R\mathbf r,\quad \dot R=R\Omega J.
+$$
+
+J²=−I를 사용하여 곱을 미분하면 상대 속도에 대한 교차 항이 두 번 생깁니다.
+
+$$
+\dot{\mathbf q}=\dot{\mathbf O}+R(\dot{\mathbf r}+\Omega J\mathbf r),
+\qquad
+\ddot{\mathbf q}=\ddot{\mathbf O}
++R(\ddot{\mathbf r}+2\Omega J\dot{\mathbf r}-\Omega^2\mathbf r).
+$$
+
+계수 2가 중요합니다. 상대 속도 앞의 R을 미분한 항과 RΩJr을 미분한 항이 각각 기여합니다. 뉴턴 법칙에 R의 전치를 곱하고 나머지를 힘 쪽으로 옮깁니다.
+
+$$
+m\ddot{\mathbf r}
+=R^T\mathbf F-mR^T\ddot{\mathbf O}
+-2m\Omega J\dot{\mathbf r}+m\Omega^2\mathbf r.
+$$
+
+순서대로 새 축에서의 물리 힘, 병진 원점 관성 항, 코리올리 항, 원심 항입니다. 모두 단위는 N입니다. Ω=0이면 R=I이므로 앞의 병진 좌표 식으로 돌아갑니다. 각속도 Ω(t)가 시간에 따라 변하면 회전각은 Ωt 대신 각속도의 시간 적분을 사용해야 합니다. 이를 미분하면 Euler 힘 −m·dotΩ·Jr도 추가됩니다. 위의 일정 각속도 식에는 그 항이 없습니다.
+
+### 일을 하지 않는 힘도 궤적을 휠 수 있다
+
+벡터와 그것을 90도 회전시킨 벡터는 수직입니다. 대수적으로 스칼라 v의 전치×Jv는 자신의 전치인 v의 전치×J의 전치×v와 같고, 이는 원래 값의 음수입니다. 따라서 다음이 성립합니다.
+
+$$
+P_{\mathrm{Cor}}=-2m\Omega\dot{\mathbf r}^{\,T}J\dot{\mathbf r}=0,
+\qquad J^T=-J.
+$$
+
+순간 일률 0은 속력에 대한 기여를 제약할 뿐 전체 가속도 벡터를 없애지 않습니다. 수직 가속도는 방향을 바꿉니다. 코리올리 항이 일을 하지 않는다는 이유로 운동방정식에서 지우면 그 방향 효과를 잃습니다.
+
+### 실험실에서 고정된 점을 직접 계산하기
+
+O=0, m=1 kg, Ω=1 rad/s이고 실험실 q=(1,0) m가 고정되어 있다고 합시다. 물리적 힘은 없습니다. 수치 t는 초 단위이며 정확한 회전 궤적과 미분은 다음과 같습니다.
+
+$$
+\mathbf r=(\cos t,-\sin t),\quad
+\dot{\mathbf r}=(-\sin t,-\cos t),\quad
+\ddot{\mathbf r}=-\mathbf r,\qquad
+\mathbf F_{\mathrm{Cor}}=-2\mathbf r,\quad
+\mathbf F_{\mathrm{cf}}=\mathbf r.
+$$
+
+코리올리 벡터와 원심 벡터의 합은 −r N이며 질량×회전 가속도와 같습니다. t=0에서는 각각 (−2,0) N과 (1,0) N입니다. 실험실 상호작용을 추가한 것이 아니라 같은 고정점을 다른 좌표로 표현하는 것입니다.
+
+코리올리를 빼면 식이 r''=r로 바뀝니다. **변환한 초기 위치와 속도는 그대로** r(0)=(1,0), r'(0)=(0,−1)로 사용해도 해는 다음과 같습니다.
+
+$$
+\mathbf r_{\mathrm{wrong}}(t)=(\cosh t,-\sinh t),
+\qquad
+\ddot{\mathbf r}_{\mathrm{wrong}}=\mathbf r_{\mathrm{wrong}}.
+$$
+
+1 s 뒤 위치 차이는 약 1.056854 m입니다. 처음 위치와 속도가 같아 초기 상태 검사만으로는 오류를 발견하지 못합니다. R을 곱해도 오차 노름은 같으므로 실험실 좌표로 복원한 뒤에도 같은 차이가 남습니다.
+
+![실험실에서 고정된 점의 올바른 회전 좌표는 단위원을 따르지만, 같은 초기 위치와 속도에서 코리올리를 빠뜨린 예측은 쌍곡선 경로를 따릅니다.](/assets/learning/classical-rotating-frame.ko.svg)
+
+그림은 0≤t≤2 s에서 회전 **위치** 좌표를 m로 표시하며 가로·세로의 단위 척도가 같습니다. 파랑과 주황 점선은 서로 다른 모형의 예측입니다. 올바른 한 물리 실험에 두 경로가 있다는 뜻이 아닙니다. 기준 실험실 점은 (1,0) m에 고정되어 있습니다.
+
+### 회전 보존량에 필요한 가정 명시하기
+
+O=0이고 Ω가 일정하다고 합시다. 물리 힘은 −∇V이며 V는 시간 독립이고 해당 회전에 불변이어서 V(Rr)=V(r)를 만족해야 합니다. 중심 용수철과 자유 운동이 여기에 속합니다. 원심 항의 퍼텐셜은 −mΩ²||r||²/2입니다. 다음 양을 미분하여 힘 식을 대입하면 코리올리 일률만 남으며 그 값은 0입니다.
+
+$$
+E_{\mathrm{rot}}=\frac m2\|\dot{\mathbf r}\|^2+V(\mathbf r)
+-\frac m2\Omega^2\|\mathbf r\|^2,
+\qquad
+\dot E_{\mathrm{rot}}=\dot{\mathbf r}\cdot
+(m\ddot{\mathbf r}+\nabla V-m\Omega^2\mathbf r)=0.
+$$
+
+이 양은 실험실 역학적 에너지와 다릅니다. 실험실 속도의 제곱을 전개하고 [r×Jr]_z=||r||²를 사용하면 다음 관계를 얻습니다.
+
+$$
+E_{\mathrm{lab}}=\frac m2\|\dot{\mathbf r}+\Omega J\mathbf r\|^2+V,
+\quad L=m\,[\mathbf r\times(\dot{\mathbf r}+\Omega J\mathbf r)]_z,
+\qquad E_{\mathrm{rot}}=E_{\mathrm{lab}}-\Omega L.
+$$
+
+선언한 시간 독립·회전 대칭 아래에서는 E_lab와 L이 각각 보존되므로 이 항등식으로도 E_rot의 일정함을 확인합니다. 회전에 불변이지 않은 퍼텐셜은 회전 표현에서 일반적으로 시간에 의존하며 같은 보존 논증을 적용할 수 없습니다. 원점이 병진 가속하는 경우도 에너지 수지를 새로 유도해야 합니다.
+
+앞의 잘못된 자유 점 궤적도 모든 시간에 E_rot=0을 보존합니다. 속도 (sinh t,−cosh t)의 노름 제곱이 위치 (cosh t,−sinh t)의 노름 제곱과 같아서 양의 운동에너지와 음의 원심 퍼텐셜이 상쇄되기 때문입니다. 따라서 **에너지 보존을 정확히 검사해도 코리올리를 빠뜨린 모형이 통과할 수 있습니다**. 전체 벡터 식과 물리적 복원으로 그 오류를 찾아야 합니다.
+
+등방 용수철에서 반지름 ρ인 실험실 원운동을 구체적으로 사용합시다.
+
+$$
+\mathbf q(t)=\rho(\cos\omega t,\sin\omega t),\quad
+V=\frac12m\omega^2\|\mathbf q\|^2,\qquad
+E_{\mathrm{lab}}=m\omega^2\rho^2,\quad
+L=m\omega\rho^2,\quad
+E_{\mathrm{rot}}=m\omega(\omega-\Omega)\rho^2.
+$$
+
+ω=0인 자유 사례는 앞의 정지한 실험실 점입니다. m=1 kg, ρ=1 m이면 다음과 같습니다.
+
+| ω (rad/s) | Ω (rad/s) | E_lab (J) | L (kg m²/s) | E_rot (J) |
+|---|---|---|---|---|
+| 0 | 1 | 0 | 0 | 0 |
+| 2 | 1 | 4 | 2 | 2 |
+| 2 | 3 | 4 | 2 | −2 |
+
+마지막 두 행의 Ω 변경은 관측자 변경입니다. 실험실 궤도와 물리 에너지는 같습니다. 음의 E_rot는 음의 실험실 운동에너지나 소산의 증거가 아닙니다. 원심 퍼텐셜과 −ΩL 항을 포함하는 양이기 때문입니다.
+
+### 이차원 계산 재현하기
+
+표준 라이브러리 코드로 24개 상태의 힘 성분, 코리올리 일률, 물리 복원과 에너지 항등식을 확인합니다. 부동소수점 잔차 검사는 유도한 항등식의 예시이며 대수적 증명이나 실제 카메라 검증을 대신하지 않습니다.
+
+```python
+from math import sin, cos, cosh, sinh, hypot
+
+def J(x):
+    return (-x[1], x[0])
+
+def rotate(x, angle):
+    c, s = cos(angle), sin(angle)
+    return (c*x[0]-s*x[1], s*x[0]+c*x[1])
+
+max_defect = 0.0
+for mass in [1.0, 2.0]:  # kg; radius = 1 m
+    for omega, Omega in [(0.0,1.0), (2.0,1.0), (2.0,3.0)]:
+        # Isotropic spring stiffness k=m*omega^2; omega=0 is free.
+        nu = omega-Omega
+        lab_energy, lab_L = mass*omega**2, mass*omega
+        for t in [0.0, 0.3, 1.0, 2.0]:
+            r = (cos(nu*t), sin(nu*t))
+            v = tuple(nu*x for x in J(r))
+            acc = tuple(-nu**2*x for x in r)
+            physical = tuple(-mass*omega**2*x for x in r)
+            coriolis = tuple(-2*mass*Omega*x for x in J(v))
+            centrifugal = tuple(mass*Omega**2*x for x in r)
+            defect = max(abs(mass*acc[j]-physical[j]
+                             -coriolis[j]-centrifugal[j])
+                         for j in range(2))
+            max_defect = max(max_defect, defect)
+            assert defect < 1e-12
+            assert abs(sum(a*b for a,b in zip(v,coriolis))) < 1e-12
+            jacobi = (mass*sum(x*x for x in v)/2
+                      +mass*omega**2/2-mass*Omega**2/2)
+            assert abs(jacobi-(lab_energy-Omega*lab_L)) < 1e-12
+            lab_q = rotate(r, Omega*t)
+            assert hypot(lab_q[0]-cos(omega*t),
+                         lab_q[1]-sin(omega*t)) < 1e-12
+        print("m, omega, Omega, E_lab, L, E_rot:",
+              mass, omega, Omega, lab_energy, lab_L, jacobi)
+
+# Free lab point, Omega=1: correct r=(cos t,-sin t).
+# Omitting Coriolis gives r_wrong=(cosh t,-sinh t).
+t = 1.0
+error = hypot(cosh(t)-cos(t), sinh(t)-sin(t))
+assert 1.05 < error < 1.06
+print("position error after 1 s, metres:", round(error,6))
+# The incorrect path still passes this rotating-energy conservation test.
+for t in [0.0, 0.3, 1.0, 2.0]:
+    wrong_r = (cosh(t), -sinh(t))
+    wrong_v = (sinh(t), -cosh(t))
+    wrong_energy = (sum(x*x for x in wrong_v)
+                    -sum(x*x for x in wrong_r))/2
+    assert wrong_energy == 0.0
+print("incorrect path E_rot:", wrong_energy)
+print("maximum force residual:", max_defect)
+```
+
+### 풀이가 있는 연구 질문
+
+1. **t=0에 자유 점 모형에서 원심 항만 남기면 어떤 가속도를 예측하나요?** (1,0) m/s²를 예측하지만 정확한 회전 가속도는 (−1,0) m/s²입니다. 빠진 코리올리 항은 질량 1 kg에서 (−2,0) N입니다.
+2. **에너지가 같으면 운동 방향도 정확한가요?** 아닙니다. 일은 가속도의 속도 방향 투영이라는 스칼라만 제약합니다. 변환한 벡터 식 전체와 실험실 위치·속도 복원도 검사해야 합니다.
+3. **회전 관측을 학습한 시뮬레이터에는 무엇이 필요한가요?** 관측자의 회전, 변환한 초기 상태, 속도에 의존하는 코리올리 항이 필요합니다. 해당하면 원점 가속도와 Euler 항도 포함합니다. 선언한 대칭 아래의 E_rot 보존은 유용한 근거지만 운동학 조건을 대신하지 않습니다.
+
+이 확장의 회전 식과 예제는 q=O+Rr 및 뉴턴 법칙에서 직접 유도했습니다. 기존 병진 관측자 구현은 유지하면서 가정을 명시한 이차원 해석을 추가합니다.
+
 ## 연습문제와 해설
 
 1. **문제:** 실험실에서 힘 없이 정지한 1kg 입자를 A=1m/s² 관측자로 보면 a'는? **해설:** -1m/s²이며 관성 항은 -1N입니다.
