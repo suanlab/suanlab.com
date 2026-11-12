@@ -111,6 +111,179 @@ The position panel shows q1 in blue, q2 in orange and R in green against time. T
 
 Use the query control for exact current values, and then change just the boundary code. Positions, velocities and total momentum should stay fixed while selected force and selected momentum may change. Reverse the internal pair, try unequal masses, and compare an opposing external pair with both external forces zero. These changes distinguish aggregate motion from relative dynamics.
 
+## Research extension: separate observable motion from an unknown force assignment
+
+The simulator declares its internal and external forces as known inputs. In an inverse problem, an observer may instead measure positions and accelerations while the external forces are uncalibrated. Those are different information conditions. We will show why even exact trajectories can leave the internal force unknown, and what additional measurement resolves the ambiguity.
+
+### Project external forces onto center and relative motion
+
+Keep the same positive constant masses and one-dimensional inertial model. The internal pair is +f,−f, and all three forces f,E1,E2 are constant. Change coordinates from q1,q2 to center R and relative position r:
+
+$$
+M=m_1+m_2,\quad \mu=\frac{m_1m_2}{M},\quad
+q_1=R+\frac{m_2}{M}r,\quad q_2=R-\frac{m_1}{M}r,
+\qquad r=q_1-q_2.
+$$
+
+Add and subtract the particle equations with their mass weights:
+
+$$
+M\ddot R=E_1+E_2,\qquad
+\mu\ddot r=f+g,\quad
+ g=\frac{m_2E_1-m_1E_2}{M}.
+$$
+
+A zero external sum fixes center acceleration but leaves the external relative force g unspecified. For example, E1=m1A,E2=m2A produces center acceleration A and g=0. The pair E1=G,E2=−G produces no center acceleration but contributes g=G to relative dynamics. Center observations alone cannot distinguish these effects on the internal motion.
+
+The same separation appears in work. Substitute the coordinate differentials into the two external work contributions:
+
+$$
+E_1\,dq_1+E_2\,dq_2=(E_1+E_2)\,dR+g\,dr,\qquad
+f\,dq_1-f\,dq_2=f\,dr.
+$$
+
+The net external force multiplies center displacement; its mass-weighted difference multiplies relative displacement. This explains why zero net external force can coexist with nonzero external work. Equal and opposite internal forces contribute through relative motion as well.
+
+### Find the missing direction in the observation map
+
+Assume masses and complete noiseless trajectories are known, so both accelerations can be differentiated exactly. This is deliberately stronger than a noisy finite-data experiment. If the separate force components are unknown, acceleration observes only:
+
+$$
+\underbrace{\begin{pmatrix}m_1a_1\\m_2a_2\end{pmatrix}}_{\mathbf y}
+=\underbrace{\begin{pmatrix}1&1&0\\-1&0&1\end{pmatrix}}_{H}
+\underbrace{\begin{pmatrix}f\\E_1\\E_2\end{pmatrix}}_{\boldsymbol\theta},
+\qquad H\begin{pmatrix}1\\-1\\1\end{pmatrix}=\mathbf0.
+$$
+
+H has rank two: its second and third columns are independent. Its null space is one-dimensional. Adding any constant c times the displayed null vector preserves both observed accelerations:
+
+$$
+(f,E_1,E_2)\longmapsto(f+c,E_1-c,E_2+c),\qquad
+E_1+E_2\longmapsto E_1+E_2,\quad g\longmapsto g-c.
+$$
+
+The change in g cancels the change in f, preserving relative acceleration; the external sum preserves center acceleration. With the same initial conditions, every particle trajectory, momentum and kinetic energy is identical for the whole observation interval. More samples of those same trajectories cannot remove a null direction that is present at every time.
+
+The force assignment and the declared interaction potential −fr do change. This inverse problem does not invalidate the native lab: that lab supplies f,E1,E2 explicitly rather than estimating them from motion alone.
+
+### Work three indistinguishable assignments
+
+Use m1=1 kg,m2=2 kg, initial positions −1 m and 1 m, and zero velocities. Start from f=1 N,E1=E2=0. Apply c=−2,0,2 N. All three resulting input sets fit the native force ranges and give these same trajectories in SI numerical units:
+
+$$
+q_1(t)=-1+\frac12t^2,\quad q_2(t)=1-\frac14t^2,\quad
+v_1=t,\quad v_2=-\frac12t,\quad R=\frac13,\quad P=0.
+$$
+
+At 1 s, the displacements are 1/2 m and −1/4 m, so relative displacement is 3/4 m and kinetic energy has increased by 3/4 J. The work assignment varies:
+
+| f (N) | E1 (N) | E2 (N) | internal work (J) | external work (J) |
+|---|---|---|---|---|
+| −1 | 2 | −2 | −3/4 | 3/2 |
+| 1 | 0 | 0 | 3/4 | 0 |
+| 3 | −2 | 2 | 9/4 | −3/2 |
+
+Each row sums to 3/4 J and satisfies the mechanical balance with **its own declared potential**. Observed kinetic motion alone cannot decide which internal/external split generated the data. A separately calibrated interaction-energy or external-force measurement would provide information missing from those trajectories.
+
+![Three different internal and external force assignments produce the same particle trajectories and center, while their internal and external work contributions differ and sum to the same kinetic change.](/assets/learning/classical-center-force-identification.en.svg)
+
+The upper panel shows the shared trajectories in metres, not three separate colored force assignments. The lower panel compares signed work in joules for the three table rows at 1 s. Its paired bars always sum to the same 3/4 J. Position and work have distinct axes and units.
+
+### A unique regularized answer can still miss the generating force
+
+A learner might select the smallest squared-force penalty R=f²+E1²+E2² among exact fits. With observed force components y=(1,−1) N, write all forces relative to F_ref=1 N to keep the arithmetic dimensionless:
+
+$$
+\phi=\frac{f}{F_{\mathrm{ref}}},\quad F_{\mathrm{ref}}=1\ \mathrm N,
+\quad \frac{\mathcal R}{F_{\mathrm{ref}}^2}
+=\phi^2+(1-\phi)^2+(-1+\phi)^2
+=\frac23+3\left(\phi-\frac23\right)^2.
+$$
+
+The unique minimum is f=2/3 N,E1=1/3 N,E2=−1/3 N. It fits every observed trajectory exactly, yet differs from the generating assignment f=1 N,E1=E2=0. The prior selects one point on the indistinguishable line; it does not add a calibration observation. Other penalty weights can select a different point.
+
+The continuous minimum is a standalone exact-fraction calculation. Native force codes have 0.1 N resolution: codes 7,3,−3 give forces 0.7,0.3,−0.3 N and the same accelerations. That is the minimum penalty on the supported exact-fit grid, 67/100 N². It still differs from the generating force. The code checks the grid explicitly.
+
+### Add information that breaks the null direction
+
+If E1 is independently calibrated, the first particle equation determines f. With exactly known mass and deterministic error bounds, the triangle inequality also quantifies uncertainty:
+
+$$
+f=m_1a_1-E_1,\qquad
+|\widehat f-f|\le m_1\epsilon_a+\epsilon_E
+\quad\text{if}\quad
+|\widehat a_1-a_1|\le\epsilon_a,\quad |\widehat E_1-E_1|\le\epsilon_E.
+$$
+
+For m1=1 kg, acceleration error at most 0.02 m/s² and external-force error at most 0.03 N imply force error at most 0.05 N. This is a deterministic bound under those premises, not a confidence interval inferred without a noise model. Known mass and calibrated external force are substantive additional information.
+
+### Reproduce with exact arithmetic
+
+The rational example checks trajectories at four times for each of the three assignments, both work balances, center/relative equations, the continuous penalty minimum and the native grid minimum. The general all-time equivalence follows from the null-space proof above, rather than from agreement at sampled times.
+
+```python
+from fractions import Fraction as F
+
+m1,m2 = F(1),F(2)  # kg; q10=-1 m, q20=1 m, v10=v20=0
+M = m1+m2
+mu = m1*m2/M
+
+def state(f,e1,e2,t):
+    a1,a2 = (f+e1)/m1,(-f+e2)/m2
+    q1,q2 = -1+a1*t*t/2,1+a2*t*t/2
+    v1,v2 = a1*t,a2*t
+    R = (m1*q1+m2*q2)/M
+    K = (m1*v1*v1+m2*v2*v2)/2
+    wi = f*((q1+1)-(q2-1))
+    we = e1*(q1+1)+e2*(q2-1)
+    potential,initial_potential = -f*(q1-q2),2*f
+    assert K == wi+we
+    assert K+potential-initial_potential == we
+    assert M*((m1*a1+m2*a2)/M) == e1+e2
+    assert mu*(a1-a2) == f+(m2*e1-m1*e2)/M
+    return (q1,q2,v1,v2,R,K),wi,we
+
+for c in [F(-2),F(0),F(2)]:
+    f,e1,e2 = 1+c,-c,c
+    for t in [F(0),F(1,2),F(1),F(2)]:
+        observed,wi,we = state(f,e1,e2,t)
+        reference,_,_ = state(F(1),F(0),F(0),t)
+        assert observed == reference
+    _,wi,we = state(f,e1,e2,F(1))
+    print("f, E1, E2, internal work, external work:",f,e1,e2,wi,we)
+
+# Forces divided by F_ref=1 N, so phi and the penalty below are dimensionless.
+phi = F(2,3)
+e1,e2 = 1-phi,-1+phi
+assert (phi,e1,e2) == (F(2,3),F(1,3),F(-1,3))
+for f in [F(-1),F(0),phi,F(1),F(3)]:
+    penalty = f*f+(1-f)**2+(-1+f)**2
+    assert penalty == F(2,3)+3*(f-phi)**2
+observed,_,_ = state(phi,e1,e2,F(1))
+assert observed == state(F(1),F(0),F(0),F(1))[0]
+print("continuous minimum-norm forces:",phi,e1,e2)
+
+# Actual lab controls use integer codes divided by10 N.
+feasible = []
+for code in range(-30,31):
+    f = F(code,10)
+    e1,e2 = 1-f,-1+f
+    if abs(e1)<=3 and abs(e2)<=3:
+        feasible.append((f*f+e1*e1+e2*e2,f,e1,e2))
+assert min(feasible) == (F(67,100),F(7,10),F(3,10),F(-3,10))
+print("lab-grid minimum: penalty and forces:",*min(feasible))
+# A calibrated E1 with deterministic error bounds breaks the null direction.
+assert m1*F(1,50)+F(3,100) == F(1,20)  # force error <=0.05 N
+```
+
+### Worked questions for physical inference
+
+1. **Will selecting only particle1 in the lab identify f from its motion?** The selected net external force is f+E1=1 N in every table row. Boundary selection correctly changes the balance being inspected, but it does not separate two unknown contributions to the same net force.
+2. **Will arbitrarily dense noiseless trajectories identify the three constants here?** They give the same two constant acceleration components; H retains its one-dimensional null space. A calibrated force, known intervention or another independent physical observation is needed.
+3. **Why does exact work balance not validate the learned interaction potential?** Each candidate declares a different −fr and compensating external work. Its algebraic balance can be exact while its physical force assignment remains unverified by independent observations.
+
+All coordinate projections, null-space and penalty calculations follow directly from this two-particle model. The analysis concerns missing force information, while the existing simulation continues to evaluate explicitly declared inputs.
+
 ## Six exercises with worked solutions
 
 1. **Exercise: internal motion from rest.** Set equal1kg masses at−1m and1m, initial velocities zero, f=1N and E1=E2=0. At1s? **Solution:** accelerations are1 and−1m/s²; positions−1/2 and1/2m; velocities1 and−1m/s. P=0 and R=0, while K=1J.

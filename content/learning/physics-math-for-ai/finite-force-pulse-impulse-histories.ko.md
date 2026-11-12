@@ -90,6 +90,174 @@ $$
 
 조회 시각은 정확한 표와 수치를 바꿉니다. 그림은 10초의 시간 범위를 유지하여 조회 변경 때문에 이후 운동이 사라지지 않도록 했습니다. 진폭을 0으로 만들고 부호를 뒤집은 뒤 가장 짧은 펄스도 비교하세요. 표는 현재 입력의 정확한 유리수 계산이고 선은 연속 이력의 표본 그림입니다.
 
+## 연구 확장: 끝점 관측에 보이지 않는 힘 이력과 최소 노력 선택
+
+앞의 일정 힘과 증가 힘은 마지막 운동량이 같아도 위치가 다를 수 있음을 보여 줍니다. 마지막 위치와 속도를 모두 관측하면 힘의 시간 이력을 알 수 있을까요? 여전히 전체 함수를 알아내지는 못합니다. 두 관측은 힘의 가중 적분 두 개입니다. 그 적분을 정리하고, 양의 힘만 사용하는 반례를 만든 뒤 최소 노력이라는 추가 조건이 무엇을 고르는지 증명하겠습니다.
+
+### 두 끝점 관측은 시간 모멘트 두 개다
+
+일차원 관성계의 입자에서 m>0은 일정하고 초기 q0,v0는 알려져 있으며 T>0을 고정합니다. [0,T]에서 미리 정한 제곱 적분 가능한 힘을 허용하고 이후 힘은 0입니다. 충돌 법칙은 추가하지 않습니다. 정확한 뉴턴 식을 두 번 적분하면 목표 위치 X와 속도 V는 다음을 요구합니다.
+
+$$
+J=m(V-v_0)=\int_0^T F(s)\,ds,\qquad
+B=m(X-q_0-v_0T)=\int_0^T(T-s)F(s)\,ds.
+$$
+
+J의 단위는 N s, B는 N s²입니다. 늦게 준 힘도 같은 넓이의 이른 힘만큼 운동량을 바꾸지만, 남은 시간 T−s가 짧아서 최종 위치에는 덜 기여합니다. 두 모멘트를 알면 충격량만 알 때보다 시간 배치를 더 제약하지만 가능한 이력은 여전히 무한히 많습니다.
+
+여기서 넓히는 것은 해석할 힘의 함수 집합입니다. 기존 실습 입력은 일정 힘과 증가 힘을 유지합니다. 아래의 일차·이차 힘은 실행 코드가 있는 독립 예제입니다.
+
+### 일차 힘을 고르고 최적인 이유를 증명하기
+
+추가로 노력 E(F)=힘 제곱의 시간 적분을 최소화한다고 합시다. 단위는 N²s인 수학적 제어 벌점입니다. 힘×속도의 시간 적분인 역학적 일 J와는 다릅니다. 전기 에너지로 해석하려면 작동기 모형이 더 필요합니다.
+
+두 관측 커널은 1과 T−s입니다. 그 둘의 선형 결합에서 최소 노력 힘을 찾아봅시다. 모멘트 식에 대입하면 Gram 연립식이 됩니다.
+
+$$
+F_*(s)=a+b(T-s),\quad
+\begin{pmatrix}T&T^2/2\\T^2/2&T^3/3\end{pmatrix}
+\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}J\\B\end{pmatrix},
+\quad \det G=\frac{T^4}{12}>0.
+$$
+
+행렬의 각 항은 커널 곱의 적분입니다. 1의 적분은 T, T−s의 적분은 T²/2, (T−s)²의 적분은 T³/3입니다. 행렬식이 양수이므로 계수가 유일합니다.
+
+$$
+a=\frac{4J}{T}-\frac{6B}{T^2},\qquad
+b=-\frac{6J}{T^2}+\frac{12B}{T^3}.
+$$
+
+a의 단위는 N, b는 N/s입니다. 전체 함수 공간에서도 최적인지 증명하려면 다른 가능한 힘을 F=F_*+w로 씁니다. 모멘트 식을 빼면 w는 두 커널에 각각 직교하고 따라서 F_*에도 직교합니다.
+
+$$
+\int_0^T w(s)\,ds=\int_0^T(T-s)w(s)\,ds=0,
+\quad \langle F_*,w\rangle=0,\qquad
+\mathcal E(F)=\mathcal E(F_*)+\int_0^T w(s)^2\,ds.
+$$
+
+마지막 식은 제곱을 전개하고 내적 두 배 항을 소거한 결과입니다. 남은 제곱 노름은 음이 아니며 w=0이 거의 모든 시간에 성립할 때만 0입니다. 따라서 시간 측도 0인 집합의 값 차이를 제외하면 F_*가 유일한 최소해입니다. 종료 시각 한 점에 어떤 유한한 힘 값을 정하는지는 적분에 영향을 주지 않습니다.
+
+최소 비용은 음이 아닌 항들의 합으로 정리할 수 있습니다.
+
+$$
+\mathcal E(F_*)=\frac{4J^2}{T}-\frac{12JB}{T^2}+\frac{12B^2}{T^3}
+=\frac{J^2}{T}+\frac{12(B-JT/2)^2}{T^3}.
+$$
+
+첫 항은 필요한 충격량의 대가입니다. 둘째는 위치 모멘트가 일정 힘의 값 JT/2에서 벗어나는 대가입니다. 부호를 제한하지 않은 L2 힘에 대한 증명입니다. 최대 힘, 양의 힘 조건, 작동기 동역학 때문에 이 일차 힘을 사용할 수 없다면 다른 최적화가 필요합니다.
+
+### 두 목표를 손으로 계산하기
+
+m=1 kg, T=2 s, q0=v0=0으로 둡니다. X=1 m,V=1 m/s이면 J=1 N s,B=1 N s²입니다. a=1/2 N,b=0이므로 일정한 0.5 N이 두 목표를 만족합니다. X=1 m,V=0이면 J=0,B=1이어서 a=−3/2 N,b=3/2 N/s입니다. 지정한 SI 수치에서 F_*(s)=1.5−1.5s이며 가속한 뒤 제동하여 1미터 이동 후 정지합니다.
+
+| V (m/s) | X (m) | 최소 노력 (N²s) | 순 역학적 일 (J) |
+|---|---|---|---|
+| 1 | 1 | 1/2 | 1/2 |
+| 0 | 1 | 3/2 | 0 |
+
+둘째 행이 차이를 보여 줍니다. 다시 정지하므로 순 운동에너지 일은 0이지만 힘 제곱 노력은 양수입니다. 양의 일과 음의 일이 상쇄된 것이며 실제 작동기의 소비 에너지는 아직 정하지 않았습니다.
+
+### 두 끝점 관측에 힘 섭동을 숨기기
+
+다음 무차원 shifted Legendre 다항식을 사용합니다. 직접 적분하면 세 항등식을 얻습니다.
+
+$$
+P_2(u)=6u^2-6u+1,\qquad
+\int_0^1P_2(u)\,du=\int_0^1uP_2(u)\,du=0,
+\qquad \int_0^1P_2(u)^2\,du=\frac15.
+$$
+
+단위가 N인 A에 대해 A·P2(s/T)를 더하면 충격량과 위치 모멘트의 변화가 모두 0입니다. 가능한 어떤 이력에 더해도 두 끝점이 보존됩니다. 그 제곱 노름은 A²T/5입니다. T=2 s, m=1 kg에서 다음을 비교합시다.
+
+$$
+F_A(s)=\frac12\ \mathrm N,\quad
+F_B(s)=F_A(s)+A P_2(s/T),\quad A=\frac12\ \mathrm N,\quad 0\le s<T,
+\qquad F_A(s)=F_B(s)=0\quad(s\ge T).
+$$
+
+다항식의 범위는 −1/2부터 1이므로 펄스 중 F_B는 0.25부터 1 N 사이입니다. 두 힘 모두 양수입니다. 힘을 반대로 줄 수 있어야만 생기는 모호성이 아닙니다. 둘 다 q(T)=1 m,v(T)=1 m/s이지만 노력은 1/2과 3/5 N²s로 다릅니다. 차이 1/10은 직교성과 A²T/5에서 정확히 나옵니다.
+
+섭동을 적분하면 중간 궤적이 어디에서 다른지도 계산할 수 있습니다.
+
+$$
+q_B(t)-q_A(t)=\frac{A}{2m}t^2(1-t/T)^2,\qquad
+v_B(t)-v_A(t)=\frac{A}{m}t(1-t/T)(1-2t/T),\quad 0\le t\le T.
+$$
+
+t=T/2이면 속도 차이는 0이지만 위치 차이는 AT²/(32m)=1/16 m입니다. T 이후에는 위치와 속도 차이가 모두 0으로 유지됩니다. 중간 시각의 속도 관측을 추가해도 이 섭동은 발견하지 못합니다. 그 시각의 위치 관측은 두 이력을 구분합니다.
+
+![두 양의 힘 이력은 마지막 위치와 속도가 같지만 중간 위치 차이가 1/16미터까지 커집니다. 두 힘 모두 2초에서 종료되어 0이 됩니다.](/assets/learning/classical-pulse-moments.ko.svg)
+
+위쪽 세로축은 힘 N, 아래쪽은 부호 있는 위치 차이 m입니다. 힘 패널에서 파랑 실선은 일정 힘, 주황 점선은 이차 섭동을 더한 힘입니다. T의 빈 표시는 좌극한, 채운 표시는 종료 시각에 정한 힘 0입니다. 수직 선분은 점프를 나타내며 중간 힘이 작용하는 시간 구간이 아닙니다.
+
+### 모멘트와 노력을 정확히 재현하기
+
+표준 라이브러리의 유리수 산술로 다항식 적분, Gram 역행렬, 끝점 조건, 직교성과 중간 위치 차이를 확인합니다. 시간 수치는 초 단위입니다. 코드는 초기 상태 0을 사용하며 위의 일반식은 초기값을 유지합니다.
+
+```python
+from fractions import Fraction as F
+
+def integral(poly, t, power=0):
+    return sum(c*t**(i+power+1)/F(i+power+1)
+               for i,c in enumerate(poly))
+
+def multiply(a,b):
+    out = [F(0)]*(len(a)+len(b)-1)
+    for i,x in enumerate(a):
+        for j,y in enumerate(b):
+            out[i+j] += x*y
+    return out
+
+def position(poly,t,m):
+    return (t*integral(poly,t)-integral(poly,t,1))/m
+
+# SI numerical values; m=1 kg, q0=v0=0, T=2 s.
+m, T = F(1), F(2)
+G = [[T,T*T/2],[T*T/2,T**3/3]]
+Gi = [[4/T,-6/T**2],[-6/T**2,12/T**3]]
+for i in range(2):
+    for j in range(2):
+        assert sum(G[i][k]*Gi[k][j] for k in range(2)) == (i==j)
+
+for V,X in [(F(1),F(1)), (F(0),F(1))]:
+    J,B = m*V,m*X
+    a,b = [row[0]*J+row[1]*B for row in Gi]
+    force = [a+b*T,-b]  # coefficients in increasing powers of t
+    assert integral(force,T) == J
+    assert position(force,T,m) == X
+    effort = integral(multiply(force,force),T)
+    assert effort == J*J/T+12*(B-J*T/2)**2/T**3
+    print("V, X, force coefficients, effort, work:",
+          V,X,force,effort,J*J/(2*m))
+
+# P2(t/T) has zero zeroth and first time moments.
+p2 = [F(1),-6/T,6/T**2]
+assert integral(p2,T) == integral(p2,T,1) == 0
+assert integral(multiply(p2,p2),T) == T/5
+A = F(1,2)
+flat = [F(1,2)]
+perturbed = [flat[0]+A*p2[0],A*p2[1],A*p2[2]]
+for force in [flat,perturbed]:
+    assert integral(force,T)/m == 1
+    assert position(force,T,m) == 1
+assert integral(perturbed,T/2) == integral(flat,T/2)
+gap = position(perturbed,T/2,m)-position(flat,T/2,m)
+assert gap == A*T*T/(32*m) == F(1,16)
+assert integral(multiply(flat,flat),T) == F(1,2)
+assert integral(multiply(perturbed,perturbed),T) == F(3,5)
+assert F(1,2)-A/2 == F(1,4)  # minimum force, attained at T/2
+print("same endpoint; same midway velocity; midway position gap:",gap)
+print("efforts in N^2 s:",F(1,2),F(3,5))
+```
+
+### 학습 제어를 위한 해설 문제
+
+1. **유일한 최소 노력 해가 실제 힘 이력을 식별하나요?** 아닙니다. 이차 이력도 같은 끝점을 맞추지만 노력이 더 큽니다. 벌점이라는 추가 선호로 한 설명을 고른 것이며 끝점 관측이 그 선호까지 제공한 것은 아닙니다.
+2. **어떤 추가 관측이 만든 두 이력을 구분하나요?** 1초에서 두 속도는 0.5 m/s로 같지만 위치는 1/16 m 다릅니다. 그 시각의 위치는 끝점 위치·속도에 없는 정보를 줍니다.
+3. **같은 변위를 더 짧은 시간에 이동하고 다시 정지하려면 어떻게 되나요?** 초기 상태 0에서 J=0,B=mX이므로 최소 노력은 12m²X²/T³입니다. T가 0으로 접근하면 발산하며 실제 작동기 제약은 그 전에 목표를 불가능하게 만들 수도 있습니다.
+
+모멘트·사영·다항식 계산은 선언한 뉴턴 계에서 직접 유도했습니다. 끝점 학습만으로 실제 힘 법칙이나 접촉 모형을 인증하지 않습니다.
+
 ## 풀이가 있는 여섯 연습
 
 1. **연습: 종료 상태.** m=1kg, F0=2N, τ=2s, v0=0에서 2초 상태는? **풀이:** 두 충격량은 4N s, 속도는 4m/s입니다. 위치는 4m와 8/3m, 운동에너지는 모두 8J, 간격은 4/3m입니다.
