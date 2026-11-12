@@ -131,6 +131,101 @@ $$
 
 An endpoint energy can round to its initial value while this positive cubic loss remains mathematically nonzero. The stable integral retains its logarithm even when the ordinary value is unavailable. Exact zero beta, zero conductivity or zero initial state are separate physical cases and must remain exact zeros where appropriate.
 
+## Research extension: dissipation, invariant motions and relaxation
+
+The availability law says that a closed reciprocal mode cannot grow in total norm. It does not yet say whether every disturbance disappears. To ask that stronger question, retain the same energy-normalized variables and examine the actual evolution matrix. Omega is strictly positive because the periodic cell has positive wavenumber; g can have either sign and d is nonnegative. All three matrix coefficients have units of inverse seconds. No external forcing or one-way temperature controller is added.
+
+$$
+M=\begin{pmatrix}0&\omega&0\\-\omega&0&g\\0&-g&-d\end{pmatrix},\qquad \dot y=My,\quad\mathcal A=\frac V4\|y\|^2,\qquad\omega>0,\ d\ge0.
+$$
+
+Insert a trial exponential state with growth rate lambda. Expanding the determinant gives a cubic rather than three independent scalar decay rates. Its roots describe the asymptotic modes of this particular finite system. A negative real part gives exponential damping of that mode; a purely imaginary root permits persistent oscillation. Because the coefficients are real, any nonreal roots occur as a conjugate pair.
+
+$$
+\det(\lambda I-M)=\lambda^3+d\lambda^2+(\omega^2+g^2)\lambda+d\omega^2.
+$$
+
+For a monic cubic with positive coefficients, the cubic Hurwitz condition additionally requires the product of the quadratic and linear coefficients to exceed the constant coefficient. Here its margin is d times g squared. Thus positive conduction and nonzero reciprocal coupling place all roots strictly in the left half-plane. The condition is independent of the sign of g. This conclusion concerns the declared single mode, not every continuum boundary condition or nonlinear material.
+
+$$
+d>0,\ g\ne0:\qquad d(\omega^2+g^2)-d\omega^2=dg^2>0\quad\Longrightarrow\quad\operatorname{Re}\lambda_j<0.
+$$
+
+There is also an intuitive route. A trajectory with no availability loss must keep the thermal coordinate zero. Its differential equation then requires the velocity coordinate to vanish when g is nonzero. The velocity equation finally requires the displacement coordinate to vanish because omega is positive. The only trajectory that can remain forever inside the zero-loss set is the origin. This invariant-set argument explains why indirect thermal dissipation eventually damps mechanical motion, even when the instantaneous loss happens to be zero.
+
+$$
+\dot{\mathcal A}=-\frac{Vd}{2}y_3^2,\qquad y_3\equiv0\Rightarrow gy_2\equiv0\Rightarrow\omega y_1\equiv0\quad(d>0,\ g\ne0).
+$$
+
+The exact endpoints matter. Removing conduction makes the matrix skew-symmetric: its exponential preserves every norm, and the spectrum includes one zero root. Removing coupling instead leaves an undamped mechanical oscillator alongside an independently diffusing thermal coordinate. Nonincreasing availability is consistent with both of these persistent motions. Replacing an exact zero by an arbitrary small positive coefficient changes the long-time conclusion.
+
+$$
+d=0:\ \lambda\in\{0,\,\pm i\Omega\},\quad\Omega=\sqrt{\omega^2+g^2};\qquad g=0:\ \lambda\in\{-d,\,\pm i\omega\}.
+$$
+
+The stationary direction in the adiabatic case combines displacement and temperature with zero velocity. Project the initial state onto it. That projection is constant; the orthogonal part rotates forever. This is a decomposition, not convergence to a terminal equilibrium. For example, an initial pure thermal coordinate generally contains both a stationary part and an oscillating part. Y-star has the same units as each energy-normalized coordinate, the square root of pascals. Scale the whole state by a small common amplitude to remain inside the original small-strain and small-temperature regime.
+
+$$
+n=\begin{pmatrix}g\\0\\\omega\end{pmatrix},\quad Mn=0\ (d=0),\qquad y_{\parallel}=\frac{nn^T}{\Omega^2}y(0),\quad y(t)=y_{\parallel}+y_{\perp}(t).
+$$
+
+For zero conduction the cubic identity reduces the exponential to a sine and cosine expression. This gives an executable example with no numerical ODE library. In the table omega and g both equal one per second and the initial state is Y-star times the third coordinate vector. The columns divide all coordinates by Y-star, so the norm column is one without assigning an unrealistically large physical disturbance. The formula concerns zero conduction only.
+
+$$
+M^3=-\Omega^2M,\qquad e^{Mt}=I+\frac{\sin(\Omega t)}{\Omega}M+\frac{1-\cos(\Omega t)}{\Omega^2}M^2\quad(d=0).
+$$
+
+Even with both required mechanisms present, increasing conduction is not an unlimited speed improvement. At fixed positive omega and fixed nonzero g, perturb the undamped conjugate pair for small positive d. Its real part starts linearly in d. A separate slow real root starts with a different coefficient. These are expansions in d with the other scales fixed; neither is a universal error bound or a finite-time envelope for every coordinate.
+
+$$
+d\to0^+:\qquad\operatorname{Re}\lambda_{\pm}=-\frac{dg^2}{2(\omega^2+g^2)}+o(d),\qquad\lambda_0=-\frac{d\omega^2}{\omega^2+g^2}+o(d).
+$$
+
+In the opposite limit temperature relaxes so quickly that its amplitude is small, approximately minus g times velocity divided by d. The mechanical feedback therefore becomes weak again. The conjugate roots approach the original mechanical frequency with damping proportional to inverse d. Thus both very weak and very strong conduction can leave slowly damped mechanical oscillations. The fast thermal root does not describe the slowest surviving disturbance.
+
+$$
+d\to\infty:\qquad y_3\simeq-\frac gd y_2,\quad\lambda_{\pm}=\pm i\omega-\frac{g^2}{2d}+o(d^{-1}),\quad\lambda_{\rm fast}=-d+O(d^{-1}).
+$$
+
+The figure scans a dimensionless conduction ratio while holding the coupling ratio at one. Its positive spectral relaxation rate tends to zero at either extreme. That is an asymptotic indicator; the matrix can be nonnormal when conduction is present, so it does not equal every transient component slope. For scientific AI, assess the availability inequality, zero-case spectrum and observed trajectories separately. Fitting a decaying temperature trace alone cannot establish that mechanical energy ultimately decays. The existing interactive controls and propagator remain unchanged.
+
+$$
+\delta=d/\omega,\quad\gamma=g/\omega,\qquad r_{\rm spec}=-\max_j\operatorname{Re}(\lambda_j/\omega)\quad(\delta>0,\ \gamma\ne0).
+$$
+
+Columns are time in seconds, y1/Y-star, y2/Y-star, y3/Y-star and squared norm divided by Y-star squared. This is a zero-conduction trajectory, not a positively damped one.
+
+| t | y1/Ystar | y2/Ystar | y3/Ystar | norm2/Ystar2 |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 0.00000000 | 0.00000000 | 1.00000000 | 1.00000000 |
+| 0.50000000 | 0.11987770 | 0.45936268 | 0.88012230 | 1.00000000 |
+| 1.00000000 | 0.42202815 | 0.69845600 | 0.57797185 | 1.00000000 |
+| 2.00000000 | 0.97568156 | 0.21783962 | 0.02431844 | 1.00000000 |
+
+```python
+from math import sqrt, sin, cos
+# omega=g=1 /s, d=0; y(0)=Y-star*(0,0,1).
+omega = sqrt(2.0)
+for t in (0.0, 0.5, 1.0, 2.0):
+    y1 = (1-cos(omega*t))/2
+    y2 = sin(omega*t)/omega
+    y3 = (1+cos(omega*t))/2
+    norm2 = y1*y1+y2*y2+y3*y3
+    print(" ".join(f"{v:.8f}" for v in (t, y1, y2, y3, norm2)))
+```
+
+[Kelly’s thermoelasticity chapter](https://pkel015.connect.amazon.auckland.ac.nz/SolidMechanicsBooks/Part_IV/Chapter_2_Applications/PDF/02_Thermomech_Applications_02_Thermoelasticity.pdf) supplies the thermodynamic background used in the original model. The characteristic cubic, invariant directions and fixed-parameter asymptotics are derived here from its stated three-coordinate reduction.
+
+![Adiabatic persistent motion, a conduction-dependent relaxation spectrum and finite-time availability](/assets/learning/continuum-thermoelastic-relaxation-spectrum.en.svg)
+
+### Research questions with explanations
+
+**Does a nonincreasing availability prove that all coordinates decay?** **Answer:** No. Zero conduction preserves the whole norm, and zero coupling retains an undamped mechanical oscillator. Inspect the invariant trajectories or the characteristic roots.
+
+**Must more conduction always damp mechanics faster?** **Answer:** No. At fixed coupling, very large d suppresses the thermal response and makes the mechanical damping scale as inverse d. The fast thermal root is not the slowest rate.
+
+**Does an adiabatic stationary projection mean the trajectory converges to it?** **Answer:** No. The orthogonal component continues to oscillate. Projection and asymptotic convergence are different statements.
+
 ## Six exercises with answers
 
 ### Exercise 1 — Missing initial data

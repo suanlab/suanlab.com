@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "status": "validated-sequential-research-pair",
+  "baselineCommit": "2b0bd1ea641c4794572afbeac2d5484c4c5908c9",
+  "scope": {
+    "domain": "continuum-physics",
+    "expandedUnits": [
+      "thermoelastic-mode-reciprocal-energy-exchange",
+      "thermoelectric-bar-seebeck-peltier-joule-balance"
+    ],
+    "localizedManuscripts": 4,
+    "newDisplayedEquations": 40,
+    "newResearchExplanations": 12,
+    "originalAnsweredExercisesPreserved": 24,
+    "sequentialReviewedUnits": 18,
+    "totalDomainUnits": 22
+  },
+  "scientific": {
+    "exactCubicAndHurwitzCases": 45,
+    "adiabaticPropagatorCases": 27,
+    "independentTimeQuadratureCases": 27,
+    "exactPersistentZeroControls": 6,
+    "exactLoadedLegPortCases": 45,
+    "localEntropyQuadratureCases": 45,
+    "distinctObjectiveOptimumCases": 9
+  },
+  "assets": [
+    {
+      "path": "public/assets/learning/continuum-thermoelectric-load-power-efficiency.ko.svg",
+      "sha256": "6c85cbbb2923b8c947f01788771e8c291bfca6a19e9be4efec5e9b781a295e45",
+      "manualPng": ".runtime/learning/continuum-multiphysics-research-preparation/continuum-thermoelectric-load-power-efficiency.ko.png",
+      "manualPngSha256": "eaaedf33bae9e18f7d1c4ee91bc03fec2ae0d41acdcd07423e6640f4737b876d",
+      "review": "Directly viewed final full-size PNG: persistent adiabatic coordinates and stationary projection, nonmonotone spectral relaxation and norm histories, distinct power/efficiency optimal loads and positive entropy components. Both languages, scales and units checked; Ystar avoids the original strain symbol."
+    },
+    {
+      "path": "public/assets/learning/continuum-thermoelastic-relaxation-spectrum.ko.svg",
+      "sha256": "e03acd34560a3e17492e7faadd70453a877496a4f3cb41f3f82bcd0a785914a5",
+      "manualPng": ".runtime/learning/continuum-multiphysics-research-preparation/continuum-thermoelastic-relaxation-spectrum.ko.png",
+      "manualPngSha256": "93026e822a972d38bcf8965e4cc9f6a34f5928d4f71036b723dcf835e3aae35f",
+      "review": "Directly viewed final full-size PNG: persistent adiabatic coordinates and stationary projection, nonmonotone spectral relaxation and norm histories, distinct power/efficiency optimal loads and positive entropy components. Both languages, scales and units checked; Ystar avoids the original strain symbol."
+    },
+    {
+      "path": "public/assets/learning/continuum-thermoelastic-relaxation-spectrum.en.svg",
+      "sha256": "418841f85bf78847f663e0c93e6a73f5690e754487f559e1ec44804f382d3781",
+      "manualPng": ".runtime/learning/continuum-multiphysics-research-preparation/continuum-thermoelastic-relaxation-spectrum.en.png",
+      "manualPngSha256": "23de6841ff9bf3545c1a426c7f10413d88cc5e3007ac09335522954b4140806d",
+      "review": "Directly viewed final full-size PNG: persistent adiabatic coordinates and stationary projection, nonmonotone spectral relaxation and norm histories, distinct power/efficiency optimal loads and positive entropy components. Both languages, scales and units checked; Ystar avoids the original strain symbol."
+    },
+    {
+      "path": "public/assets/learning/continuum-thermoelectric-load-power-efficiency.en.svg",
+      "sha256": "f73336c88ce757eced73bfedeb8428fb891c31f33db694cd8131c9e564098b77",
+      "manualPng": ".runtime/learning/continuum-multiphysics-research-preparation/continuum-thermoelectric-load-power-efficiency.en.png",
+      "manualPngSha256": "20ce08fbc4ed623b0aa35c107e911f026b94b04c9fdc4b7a9267d7a04ab58b94",
+      "review": "Directly viewed final full-size PNG: persistent adiabatic coordinates and stationary projection, nonmonotone spectral relaxation and norm histories, distinct power/efficiency optimal loads and positive entropy components. Both languages, scales and units checked; Ystar avoids the original strain symbol."
+    }
+  ],
+  "verification": {
+    "frozenInputs": {
+      "content/learning/physics-math-for-ai/thermoelastic-mode-reciprocal-energy-exchange.en.md": "6d7d121398b6b107f2036b1096bbe610fa03f0c61fb61433092f88c3396a2389",
+      "content/learning/physics-math-for-ai/thermoelastic-mode-reciprocal-energy-exchange.ko.md": "121b91d641e3f74c54048817f180ea8e9383f45891bd3e62a992cc742fe4f9f0",
+      "content/learning/physics-math-for-ai/thermoelectric-bar-seebeck-peltier-joule-balance.en.md": "6ca7db76092223be51aecfa8b98e6ece88a8a555a32eb318216e89436bb31fc6",
+      "content/learning/physics-math-for-ai/thermoelectric-bar-seebeck-peltier-joule-balance.ko.md": "376631ca77c510b3fd22f2740231d3ee4261181e53b7fd0398435774fb72f1c5",
+      "public/assets/learning/continuum-thermoelectric-load-power-efficiency.ko.svg": "6c85cbbb2923b8c947f01788771e8c291bfca6a19e9be4efec5e9b781a295e45",
+      "public/assets/learning/continuum-thermoelastic-relaxation-spectrum.ko.svg": "e03acd34560a3e17492e7faadd70453a877496a4f3cb41f3f82bcd0a785914a5",
+      "public/assets/learning/continuum-thermoelastic-relaxation-spectrum.en.svg": "418841f85bf78847f663e0c93e6a73f5690e754487f559e1ec44804f382d3781",
+      "public/assets/learning/continuum-thermoelectric-load-power-efficiency.en.svg": "f73336c88ce757eced73bfedeb8428fb891c31f33db694cd8131c9e564098b77"
+    },
+    "previousResearchInputs": {
+      "content/learning/physics-math-for-ai/particle-kernel-continuum-fields.en.md": "d4730735e05631c3f0871606dbedb389ab3607c5d798f8e4ed0de7886ad95a3c",
+      "content/learning/physics-math-for-ai/particle-kernel-continuum-fields.ko.md": "cadcec16bbf90bcab966437222ada190491ee2d7f68d06096c3d623f8418f7c6",
+      "content/learning/physics-math-for-ai/continuum-scale-separation-counting.en.md": "6d6423f40b436badf83983e2fafda535c37ff6925a5fb4339ee4e0fd570386de",
+      "content/learning/physics-math-for-ai/continuum-scale-separation-counting.ko.md": "ed1538a1e9f414baf4637d71e211d3821e6695123b5f56f6bf8003f50c8f5c80",
+      "public/assets/learning/continuum-paired-count-window-covariance.ko.svg": "6415fe000bcaa2a55ac4239a84f5464930be776bb47a1989953b0f56fe0fe6ce",
+      "public/assets/learning/continuum-ballistic-energy-moment-closure.ko.svg": "37d4570f8e7e5587bf3f8aea1dca5823e5491dce1f93a97a9af6ec2b50a327cc",
+      "public/assets/learning/continuum-paired-count-window-covariance.en.svg": "cd17bed453623aafb746bfb4d9708b2295d5aed59650827b8d033485ffa052a3",
+      "public/assets/learning/continuum-ballistic-energy-moment-closure.en.svg": "190104c9207a948d480386beb7b021d545ab4ec0be09c490994f88d8d975ca0b",
+      "content/learning/physics-math-for-ai/moving-control-volume-mass-transport.ko.md": "992615759c065dc57b990a1f006586e5caa3876ff8cdbfdaa68470049ac3a80e",
+      "content/learning/physics-math-for-ai/moving-control-volume-mass-transport.en.md": "efdaa610e98c95444e8298cccde8a586812ca840aa94a52184ac4904fc98c013",
+      "content/learning/physics-math-for-ai/compressible-flow-momentum-energy-balance.ko.md": "3ff5c36f7928f7fd8daf1c0b374bdded95ce2af97bf359030b296006baa990a5",
+      "content/learning/physics-math-for-ai/compressible-flow-momentum-energy-balance.en.md": "d97be8eb2452a8f20776008d8c9b995222255a3d9e5604dbbc067876f7f5ccf5",
+      "public/assets/learning/continuum-shock-entropy-selection.en.svg": "c462f1bf13c587a90e25f8e08fca9a4091941fa73b6a0250e9b9bbd0935dced7",
+      "public/assets/learning/continuum-shock-entropy-selection.ko.svg": "8007ee3faa9cf0a9aca42eb102b935e189a87457680c792ce6edb711a0596151",
+      "public/assets/learning/continuum-contact-weak-window.ko.svg": "4858f25b3f147c2b08fb4cd3b26c890fd44c383a38599d15f77e307d8ac16be3",
+      "public/assets/learning/continuum-contact-weak-window.en.svg": "f748c11d98b8575f25656aa3ad0577e730933e405804f39be41db4ac52da3073",
+      "content/learning/physics-math-for-ai/transmission-line-lumped-limit-energy.en.md": "ed0e1d4881496d0e6d94721b73619fecd0c33161a15466e19817506255ef18e4",
+      "public/assets/learning/electromagnetism-positive-modal-line-reduction.en.svg": "58c9ab691e2b4668c2e3b7233c7fee29da59adabd07638f95290775e7ba94b71",
+      "content/learning/physics-math-for-ai/transmission-line-lumped-limit-energy.ko.md": "5c0bccbe9a10fa557ac54fc923e905563f7eee736dd4883a098371797cc6a19d",
+      "public/assets/learning/electromagnetism-positive-modal-line-reduction.ko.svg": "1a9b1946df9dfee3f9202518ac24298b78d40b579bc1c755adaeec6d5ae66584",
+      "content/learning/physics-math-for-ai/layered-medium-bloch-effective-limit.en.md": "8785587c6e45f96ad4c2f69bdd43643efb91b883972de2e1a73f1beae8e0d57d",
+      "public/assets/learning/electromagnetism-bilayer-origin-boundary-phase.en.svg": "367fa0ac3eca8eb02a9f8e5359f60f44ffa978bdf2b231338c6b196ae294f4b8",
+      "content/learning/physics-math-for-ai/layered-medium-bloch-effective-limit.ko.md": "0de32a280f251a1dabc9dc5b6fa762c1f33d53b5cc428f6644d51c03bd45f866",
+      "public/assets/learning/electromagnetism-bilayer-origin-boundary-phase.ko.svg": "5a0a880d688fc1d140992c691f6d2c8d7402ff3761407ffb8c739d5de52a1f3a",
+      "content/learning/physics-math-for-ai/sinusoidal-forcing-transient-response.en.md": "819107905895dbb9d129816ba6629d8cdba5b0286bbd04fd9c32736960fab5b1",
+      "public/assets/learning/waves-resonance-limit-clock.en.svg": "5e77675997fdccf0e037b336463e31ea9e19e618b74f01f359c0922fcdc9e846",
+      "content/learning/physics-math-for-ai/sinusoidal-forcing-transient-response.ko.md": "c2362b0b4269e905286cbdca51d3a2eab9860b7dc7fc2a357bd9a423f72ca36e",
+      "public/assets/learning/waves-resonance-limit-clock.ko.svg": "bae819e59a42a620cbf4c63a75149d56ae22b2604857b67346c97e64809e36cc",
+      "content/learning/physics-math-for-ai/oscillator-frequency-response-power-resonance.en.md": "49c2e4ec86dbd064b372f2d2dfb5f6683aeb328bb96eddb40c45373cd70d0611",
+      "public/assets/learning/waves-resonance-spectral-area.en.svg": "e84d42039404a1382e1ea7ad86dfba5b4d8bc2a5298f65dfe32a9972a1f0db5c",
+      "content/learning/physics-math-for-ai/oscillator-frequency-response-power-resonance.ko.md": "71d42f7553bc1cb726e1b279b8262891c9dab0229ae33950a653df2e1236ffad",
+      "public/assets/learning/waves-resonance-spectral-area.ko.svg": "5e2742b132aa3433ed520bdef7c8bcc446195336bc053e72cb78908bef57a796",
+      "content/learning/physics-math-for-ai/mass-weighted-coupled-normal-modes.en.md": "1f5131a62f46fd4bf5d15f3e1d11192dad74031939edf81e14deae2d8268195f",
+      "public/assets/learning/waves-coupled-mode-gap.en.svg": "b70dbc6e44b4ff06956175fa125b61aca2b1e88e2f984a5356956ab003eba638",
+      "content/learning/physics-math-for-ai/mass-weighted-coupled-normal-modes.ko.md": "ba62a3b08b65f48ee61e660854f81a6d9c020d0be7b492f9b8691a22721b0de5",
+      "public/assets/learning/waves-coupled-mode-gap.ko.svg": "7ee3f28d69848da0e919d289a64a05b2ff99846fd8da771df5f0b4d0ecdc9c9a",
+      "content/learning/physics-math-for-ai/coupled-mode-beating-energy-transfer.en.md": "5d67f76af7474804c97610a1e55c2745addb60d988a041197b1d971e161231d3",
+      "public/assets/learning/waves-coupled-nearby-model.en.svg": "b1062a5619df90d954853475fb19a93df4341f249e04bf42f8a1e2ea7f01f3d5",
+      "content/learning/physics-math-for-ai/coupled-mode-beating-energy-transfer.ko.md": "4b5f4c843eb00de9046b308b909941bd6ce3a48ee1febaf1bd382813ec10f765",
+      "public/assets/learning/waves-coupled-nearby-model.ko.svg": "a2cece2989f4b2f28e8d8822a7547a2631a5e2e0522ec2c409e477a0205fea02",
+      "content/learning/physics-math-for-ai/coupled-chain-continuum-wave-limit.en.md": "2de5e04998dfbb1752b7355be3fb5772b98335b22e3d2d208338ba1594fe29cc",
+      "public/assets/learning/waves-front-lattice-tail.en.svg": "87c2416cb59de51fd37fbda846e5e445a5a84f78e7ea14c99eef5666eff1b8a0",
+      "content/learning/physics-math-for-ai/coupled-chain-continuum-wave-limit.ko.md": "42e9d50175d756867d17aeffa10dbeb633ca7d1eb83a4a36095f6a94c80ee07d",
+      "public/assets/learning/waves-front-lattice-tail.ko.svg": "d5073416268bd1cbb3d0011b2722c7386565844eec3a9a8b482fdc1dc08c0ea8",
+      "content/learning/physics-math-for-ai/wave-initial-data-reflection-energy-flux.en.md": "4c9687cb8c2279ff73092b0bd92640139f10f029a60b9188a42a7581d8285b8f",
+      "public/assets/learning/waves-front-boundary-memory.en.svg": "ace5da78305fb79b07e057c64231c1ebedbfa6db246304acfffb084c4d29f87d",
+      "content/learning/physics-math-for-ai/wave-initial-data-reflection-energy-flux.ko.md": "f324df2474a9996d4ccc8908ca0f9330931585ecec596f7b2a2f1287d208948e",
+      "public/assets/learning/waves-front-boundary-memory.ko.svg": "6ccb6a9da9c1df24153660e6c81b7cd848709b12322286597f09203708feb7cb",
+      "content/learning/physics-math-for-ai/coherent-superposition-detector-averages.en.md": "05c235fa3479b653d05d784282913ea1728b9ecf909b5decc3874febab84bfe0",
+      "public/assets/learning/waves-interference-moment-variance.en.svg": "b99981ec73a02df3c59b489d95e3648f7b2b3fa697a692495cddcfa45269090d",
+      "content/learning/physics-math-for-ai/coherent-superposition-detector-averages.ko.md": "16e2e0adcd94c528351d8fe0fb0935a91b8957924164094d85ea994560bcd3bf",
+      "public/assets/learning/waves-interference-moment-variance.ko.svg": "7ec58233ed1cbcc333ef263e63c87dcb8c7a4b1ebc911482253cc650cf95725d",
+      "content/learning/physics-math-for-ai/finite-aperture-fresnel-fraunhofer.en.md": "552ff1ab74ac9b114d22eac7f0a4b9a0ee26ed53722bd4d924f95aae8bdcc6d2",
+      "public/assets/learning/waves-interference-aperture-bounds.en.svg": "941895e30d5bc9f212cb1fd8cb3e3ecb9fb857ecb00d85cf8828072be3b09572",
+      "content/learning/physics-math-for-ai/finite-aperture-fresnel-fraunhofer.ko.md": "9b56003c8a129df1d7beb5b678c199dca1f73145a8dde76e374c16f41622f819",
+      "public/assets/learning/waves-interference-aperture-bounds.ko.svg": "fa5185446edba9fde2a2e03858c9a632758f39b29e01b6bcf68b1b446910b545",
+      "content/learning/physics-math-for-ai/dispersive-wave-packets-phase-group-velocity.en.md": "168273d3ed6c0a813ad9bc8e654d17169bbd80f4f5e512fecfa556bc777de54a",
+      "public/assets/learning/waves-dispersion-cubic-remainder.en.svg": "1c8b2db8cdf00996f6a2b7ed7b2f56edc572e8a71c9783c9796b27e98fce55b5",
+      "content/learning/physics-math-for-ai/dispersive-wave-packets-phase-group-velocity.ko.md": "b4a6b867a8a76b098af078ca0ccc2b78e427ffd156ddbe07f29076e284542087",
+      "public/assets/learning/waves-dispersion-cubic-remainder.ko.svg": "1a25e82b9a595bb3f7b58780c5f147d9bc740b2a25fe2e42ce548d4e3eed8e05",
+      "content/learning/physics-math-for-ai/lattice-wave-packet-transport-dispersion.en.md": "f86183d3dcb4024f9e84c5ad6226489460a6041942aa9c7cb99b638abe5e6d74",
+      "public/assets/learning/waves-dispersion-energy-allocation.en.svg": "0984ef62c828cb4d8e9508a029e110379df0c54807d8b97bb3e0a32a64327119",
+      "content/learning/physics-math-for-ai/lattice-wave-packet-transport-dispersion.ko.md": "07a5fe9f7d63e1017f40a46c692f6f1473be5181aea85830bc16b7268b392517",
+      "public/assets/learning/waves-dispersion-energy-allocation.ko.svg": "2e90c42c476faf7fad1d5c94f7fdd9be0f711b264a77fe9af5cc1cf3b7545399",
+      "content/learning/physics-math-for-ai/jones-polarization-waveplates-analyzers.en.md": "8cf10fd363876329b793877d81f4d4abf0a30e2db44f5931486894e716d58d4a",
+      "public/assets/learning/waves-polarization-spectral-delay.en.svg": "22672555057000e3e2e906a50d3a9c775db4825b2100457b9a5cfbee32c52d6e",
+      "content/learning/physics-math-for-ai/jones-polarization-waveplates-analyzers.ko.md": "a6e82b94b147ebd17ca1a9c05d4fbad36b5c786c2148311b43a5299f3b2eef3d",
+      "public/assets/learning/waves-polarization-spectral-delay.ko.svg": "8fe023395ff940b006413203da42daab8ea4d7884d7562ff10d96f5539dce8f6",
+      "content/learning/physics-math-for-ai/stokes-coherency-polarization-tomography.en.md": "3f44bbd0d417a66d7b83277ab21b84c9bd4fddadb1c5d8191859aa09fc042685",
+      "public/assets/learning/waves-polarization-instrument-conditioning.en.svg": "c0bb3801296dfe2386a1d4a57cb2956ec6a944fdace9cf192044318496834d53",
+      "content/learning/physics-math-for-ai/stokes-coherency-polarization-tomography.ko.md": "fcd32c4042c2d8c0d319702cb6d1f770d7db9c3a133bf78b904340502cea31c5",
+      "public/assets/learning/waves-polarization-instrument-conditioning.ko.svg": "680a2a643dc438036a7f1950b8678a984b03a8563cf2e1e8699a87aeabc147c9",
+      "content/learning/physics-math-for-ai/paraxial-ray-matrices-thin-lens-imaging.en.md": "a35637d78097fdd371146a24810baf97230b5f34f7e1d5a6535b7dadda079112",
+      "public/assets/learning/waves-ray-image-uncertainty.en.svg": "054cddb52542f4e707ade5c76fad1398326573812bad0976664ae0d32bfc9e2b",
+      "content/learning/physics-math-for-ai/paraxial-ray-matrices-thin-lens-imaging.ko.md": "1fe45a8a56d640c4af24f9c7cd244d57e130d405d1035237b95c63fa98936794",
+      "public/assets/learning/waves-ray-image-uncertainty.ko.svg": "ba441618642bb5927633a169bf37f825be14b7e8f2cae8a27c053bdab1633564",
+      "content/learning/physics-math-for-ai/gaussian-beam-focusing-ray-wave-limit.en.md": "188f0588775ecf9e7e851ad91eb19088baac1cfc6131e43612bc0ec94dc37a74",
+      "public/assets/learning/waves-ray-aperture-moments.en.svg": "82cfdfc63efd2fb0c0fd2c4d6f7179f8c7904f0c3735a7c09c5df639194dcc90",
+      "content/learning/physics-math-for-ai/gaussian-beam-focusing-ray-wave-limit.ko.md": "90dd46654cf3122b140b7cb2f853b6b6b60f9f21fed80ff834a42e49ce51e63b",
+      "public/assets/learning/waves-ray-aperture-moments.ko.svg": "5077fa30be2c85d2749c47dd57f33eff6afbfa40b4f39b045cd8ecbc273644cb",
+      "content/learning/physics-math-for-ai/coherent-fourier-pupil-spatial-filtering.en.md": "f3e7c2f88116e4203a3182cbc85b12bae446dac411d6f7620b6901728acf89d8",
+      "public/assets/learning/waves-fourier-reference-probes.en.svg": "ad3c0e7d0d4df09277a034442d1a8c4d558ca150f72a590185715561ae94d33f",
+      "content/learning/physics-math-for-ai/coherent-fourier-pupil-spatial-filtering.ko.md": "91d7b523632b1077c8fd10b8b9d93608dd3b570642bf01c6a1c6e3449b5e04c7",
+      "public/assets/learning/waves-fourier-reference-probes.ko.svg": "4353276607b763ffbbdacb7ee3ab14c8a40fa8ce9dda497d0c479772e304a786",
+      "content/learning/physics-math-for-ai/incoherent-psf-otf-image-formation.en.md": "948bbc2c975e9f9332ca086cd90bf03f065bf8f69237c7a7a317d82b455c4ce7",
+      "public/assets/learning/waves-fourier-pupil-ambiguity.en.svg": "b32e8730e1ee9fb3272bd7359f1c8fc03077eef7ad8dfe0ad8799b282a97c77e",
+      "content/learning/physics-math-for-ai/incoherent-psf-otf-image-formation.ko.md": "3e2bd40e10162af3cebba18ed6411723d68f7e12f332549591b785a72c099b26",
+      "public/assets/learning/waves-fourier-pupil-ambiguity.ko.svg": "feabca91245918620cec00ecced999b6edc0152371d4149f048a36b6e853e5bf",
+      "content/learning/physics-math-for-ai/pixel-aperture-sampling-aliasing.en.md": "2956827c680778344c05b85396a875cf4b9c93e279aefb72226bedbbd0a461d9",
+      "public/assets/learning/waves-sampling-shifted-grids.en.svg": "c33ff2105ec422297d07e2257085193278a1729450993c8c663badcd030d168a",
+      "content/learning/physics-math-for-ai/pixel-aperture-sampling-aliasing.ko.md": "dbbf351e35f697c7dd9a0926c89071271d92ec670bddd57e0fb8b2460cb81784",
+      "public/assets/learning/waves-sampling-shifted-grids.ko.svg": "a3f87507a56759e1e87399085b2ba245f321d870a28ae3c40c6848ebdd1c7229",
+      "content/learning/physics-math-for-ai/photon-counting-exposure-sensor-noise.en.md": "906a7475d07c5617b5b772956ee1b1ba6f22a3a089cc3adcb7467792711fcd14",
+      "public/assets/learning/waves-sampling-censored-information.en.svg": "ad4235fb142100589ef02538bda738904fcbbd7a02d8492ae92d7703e27a3e3c",
+      "content/learning/physics-math-for-ai/photon-counting-exposure-sensor-noise.ko.md": "f0db064bf0d649c152b353a96a3c3cba3cc6851fc523ff49441650563a6f3340",
+      "public/assets/learning/waves-sampling-censored-information.ko.svg": "a6c42afd32aabdf9711bbccef776a7418960ebeef89afbced49d7a52cf916df6",
+      "content/learning/physics-math-for-ai/charge-superposition-test-field.en.md": "bbb6b6b77e622a462f3ffb57bcb07d3573c0bfc8d8ff5d64944f79f6089f5141",
+      "content/learning/physics-math-for-ai/charge-superposition-test-field.ko.md": "4e4fe2c7bce3bb2235f5bf1639bce54b95802239f93a6244ec1fa2355e2184a5",
+      "content/learning/physics-math-for-ai/charge-continuity-surface-current.en.md": "6a17f51582d437bb075e707e5ff9dfe1b61e455ea11bf8fced79aa11d456c0e7",
+      "content/learning/physics-math-for-ai/charge-continuity-surface-current.ko.md": "9a48800577110539e7592f95669f9f81cfd68251e385dec24f646dd86858f61d",
+      "public/assets/learning/electromagnetism-probe-backreaction.en.svg": "31cea21fc4dd6d3640e1fee9537582952e7f8bb9987a994b439e2f0b6539c408",
+      "public/assets/learning/electromagnetism-probe-backreaction.ko.svg": "d4a7a41d6a836a8cd58f74e9b13a7b55b1185d849b4e28ab5a632a99048270ec",
+      "public/assets/learning/electromagnetism-current-nullspace.en.svg": "e16ee61f6fc2abce97c7b521eca7d2365de4c24f8c3a2baa52feb908ff707fd7",
+      "public/assets/learning/electromagnetism-current-nullspace.ko.svg": "589acba4710f6fabc4b15b867ffc0c7357f3f84ac2cbb66b14086e9dae62b8f2",
+      "content/learning/physics-math-for-ai/gauss-symmetry-electrostatic-sphere.en.md": "7473374017b3c37df060feed089bb4aa1fc3d1075ac043edad510f5f5d73404e",
+      "content/learning/physics-math-for-ai/gauss-symmetry-electrostatic-sphere.ko.md": "12879632e0ac9e6df782c4a327926affc60bb963c2c6e69e21f028725af686bb",
+      "content/learning/physics-math-for-ai/ampere-symmetry-steady-current-cylinder.en.md": "0b4dfbe94a1380faa00991fb2bd5ae65976afe6108b415d26a8bb149ed106860",
+      "content/learning/physics-math-for-ai/ampere-symmetry-steady-current-cylinder.ko.md": "6e7dcfab34ba3e9b9c0d0fc202d4c3dfef723eeb2407c2610bb06a4e2a42a4fb",
+      "public/assets/learning/electromagnetism-radial-density-inverse.en.svg": "232d76c9d09956293c68e99130adf798add6361c4ef61e654177aa01bcdcada3",
+      "public/assets/learning/electromagnetism-radial-density-inverse.ko.svg": "06771346c9c6d4efa38d89100d6bc48fb05bce883d3e455b3c5106699055c630",
+      "public/assets/learning/electromagnetism-skin-diffusion.en.svg": "4c290cba797755a4787a1bb72ae4bb195411bad48f887f7e68c4e04798129a2f",
+      "public/assets/learning/electromagnetism-skin-diffusion.ko.svg": "60e8b079047c2711c8c3e983020774aa819e2d398e97687f1b946f49f7c3617f",
+      "content/learning/physics-math-for-ai/electrostatic-potential-reference-path-work.en.md": "c226ae9e9d6822ceb6c3d56c150edccfc6f6cc042209ac220545ab5dcf5fcb0f",
+      "content/learning/physics-math-for-ai/electrostatic-potential-reference-path-work.ko.md": "73405f6c64979e514fc65830ac45f716f253226662d03ac3fa8ee89ddc1d9f63",
+      "content/learning/physics-math-for-ai/magnetic-vector-potential-curl-gauge.en.md": "ed3bc87ec9a43584a2a980268c3eff952fe0689113a8e76b83e1a5b26f09b0f4",
+      "content/learning/physics-math-for-ai/magnetic-vector-potential-curl-gauge.ko.md": "c084bc95e816a8ea1db6f9cdec48a542777ca574fb009e0e6bbf66c8edba801e",
+      "public/assets/learning/electromagnetism-weighted-potential-loops.en.svg": "fe1f13921162e435a5d843801123c6073e13b5bf40c43722c5b2e06b4fdd31c3",
+      "public/assets/learning/electromagnetism-weighted-potential-loops.ko.svg": "f939353a96f0f8d525a4cc44c568dcde855b5a65e5c04b92eb430506cc169d8b",
+      "public/assets/learning/electromagnetism-periodic-flux-obstruction.en.svg": "39d5ffc94cb6e0e5c917dede1be84b601f11228c9d297a141e24092c6ed55ce6",
+      "public/assets/learning/electromagnetism-periodic-flux-obstruction.ko.svg": "2fc7b0344bad877803b24a5b0aa75e9eedfbd98286c6ccb43edab3d9567ff7bb",
+      "content/learning/physics-math-for-ai/maxwell-plane-wave-local-integral-laws.en.md": "0440e91b9084eece531f363e167c4e27099023dec70bc92e034db1ed50b2798c",
+      "content/learning/physics-math-for-ai/maxwell-plane-wave-local-integral-laws.ko.md": "9d581fcc0ccc6ba1fb53bd42dc5bc4773b357bd39dee7d29f18f7524f36eb527",
+      "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.en.md": "b96affda6502f0cdfcb0cf932c8aba74b934addbcab50178f3a024d6cf0aa8fb",
+      "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.ko.md": "37c8aed8de10ef9c5fd8bf42e24b5b7e3a6d0f669105e6a25f93eb81b136319d",
+      "public/assets/learning/electromagnetism-staggered-wave-stability.en.svg": "2e7cee0d2018b62b2db0adbedac782c139174b49758626e575869e07db3c9731",
+      "public/assets/learning/electromagnetism-staggered-wave-stability.ko.svg": "88535eff801e86cc51a92311fad364cbfac136ac06dfec182123b52b4260070a",
+      "public/assets/learning/electromagnetism-periodic-gauss-repair.en.svg": "951fda621e97d9a404fb31516e5e2df97bf0b7a0978e600c39def793f16d29ea",
+      "public/assets/learning/electromagnetism-periodic-gauss-repair.ko.svg": "ca9770bb8e317f30c756cddef9dc98be6dfc2254a7703254db6522a0e681c801",
+      "content/learning/physics-math-for-ai/faraday-induction-fixed-moving-loop.en.md": "bb230d7abf175c3e7998db00b158583d684264b0f2bdef92898c59daf8143b64",
+      "content/learning/physics-math-for-ai/faraday-induction-fixed-moving-loop.ko.md": "40a15d76e8a6c5da02e584869113fa4b391ded95a3e3f44cd352094950c14fb3",
+      "content/learning/physics-math-for-ai/electromagnetic-wave-equation-transverse-initial-data.en.md": "3495047cee852b7138181ce5ab7a6d57c3c47196cc14c7fde2afc566b4dfad98",
+      "content/learning/physics-math-for-ai/electromagnetic-wave-equation-transverse-initial-data.ko.md": "e0d5d973db4997ba28f5cc6e41931fda81470f165f62c576aa0f26d51c1aa640",
+      "public/assets/learning/electromagnetism-induction-mechanical-backreaction.en.svg": "2d0f806271569e1ba40a31b423f509af55f751eacb8290ea32d892da0defcb30",
+      "public/assets/learning/electromagnetism-induction-mechanical-backreaction.ko.svg": "00894e7a1c97150e384e85d3fee78fb2d79d8a203c2c61baaf7f977752bd0225",
+      "public/assets/learning/electromagnetism-electric-snapshot-observability.en.svg": "bf1856e5eb6e873e5682dfede3b3ac496320098ce2fbb15aaf7a67aa988a2417",
+      "public/assets/learning/electromagnetism-electric-snapshot-observability.ko.svg": "a04a06dc759fd17ca08707c150c530fee7092e7175fcac854929b06cf02d0dd2",
+      "content/learning/physics-math-for-ai/poynting-source-work-local-balance.en.md": "26531a5f4f9f2249d1c23a1cdb05901b9c873e50fa5577034b70c21b052197fb",
+      "content/learning/physics-math-for-ai/poynting-source-work-local-balance.ko.md": "4597338d0073cc57d80dc8ec9812c84440a4ada7b8cc8fdca0895f0f37e4e2df",
+      "content/learning/physics-math-for-ai/transverse-pulse-energy-flux-balance.en.md": "03d0711110331383a930f4a96b173a72a7c5d3b620c2ffdba13020b851167ee5",
+      "content/learning/physics-math-for-ai/transverse-pulse-energy-flux-balance.ko.md": "dda19f23131ce0c7be862ab32f26dad8281a491cff9e1e6806fd217af0c732f1",
+      "public/assets/learning/electromagnetism-power-invisible-current.en.svg": "52714d4ef609b083e191e159d17c4ae536fb282b77aeb522168ea207dbb0a2fb",
+      "public/assets/learning/electromagnetism-power-invisible-current.ko.svg": "a9b4a3939b666f87e21bae0a8d9c16dfd3d51a074c600e8139e3ad974415e96c",
+      "public/assets/learning/electromagnetism-vacuum-zero-flux-frame.en.svg": "0ba53d609b9c013001fc9016395d637fdda9b390deff752385eceeffdb0b1d55",
+      "public/assets/learning/electromagnetism-vacuum-zero-flux-frame.ko.svg": "3c1a3f23c44029c0613bf1a403da270c8cf2b6c67f450070bb474212c72e8898",
+      "content/learning/physics-math-for-ai/dielectric-interface-free-bound-charge.en.md": "2bd4549f07bd3a724c2f5e68f5ca2e4bf44140f5396c18a364bddb2ecddbc4d8",
+      "content/learning/physics-math-for-ai/dielectric-interface-free-bound-charge.ko.md": "d1bf645a6dce7a693261230a7cd7261cb66d1400054e5b353f0dd94b35c38f61",
+      "content/learning/physics-math-for-ai/normal-incidence-impedance-interface.en.md": "b471b9817b9ccd28530bede8dc7184debac10c5497adc776eab49145343afc4f",
+      "content/learning/physics-math-for-ai/normal-incidence-impedance-interface.ko.md": "d4c0eef2b544cfab5ac524719777d1e63097a832b99c83ab12159d4e9427edc7",
+      "public/assets/learning/electromagnetism-dipole-layer-limit.en.svg": "4dc71b47c5e7f5003d580d62b44bc4611fc3a965b73fbcd729c50e631db931f3",
+      "public/assets/learning/electromagnetism-dipole-layer-limit.ko.svg": "fc888e5107ee2b39f84a7855cc0ee03d0b0f3e057fcb82d9e2688ebeb91d6492",
+      "public/assets/learning/electromagnetism-coherent-sheet-absorption.en.svg": "b1b6082f44bd73cc010533eafb7f2d15728b48ef387e7b82e9eb17748639955f",
+      "public/assets/learning/electromagnetism-coherent-sheet-absorption.ko.svg": "b3aeeb75adf61fa4d1a0ceb7667ca3350a98851b1fc87a210b8a30ba9faafdcc",
+      "content/learning/physics-math-for-ai/time-dependent-gauge-field-invariance.en.md": "5377e3688b45e34c6be938afbdc5cc77e944122f360f38ba16fa49a7b11503a7",
+      "content/learning/physics-math-for-ai/time-dependent-gauge-field-invariance.ko.md": "fe5660a65e7d173265268353381bec18c55fe44a807bcfe83da0ecfdd7703cb4",
+      "content/learning/physics-math-for-ai/lorenz-gauge-source-initial-compatibility.en.md": "655cc502fe1cbdd7a5e0fbbe450cd5621afe4e578933c4fa965f346d1927da3a",
+      "content/learning/physics-math-for-ai/lorenz-gauge-source-initial-compatibility.ko.md": "328d1de5e9335c2c5cb5be26ee5ec93ba2613ec87cc5f1b44afe7a929732540a",
+      "public/assets/learning/electromagnetism-spacetime-gauge-projection.en.svg": "fab4ab3384d1bd890b965b46e5a88d6e613f7a876fd1c403c0c931231df292a4",
+      "public/assets/learning/electromagnetism-spacetime-gauge-projection.ko.svg": "286fe7a76abfc9155b06f56a8da57181c6870f66b05b3e826c8da17876409dcf",
+      "public/assets/learning/electromagnetism-lorenz-constraint-energy.en.svg": "1d585481f73122d3735a4b120bc189a5902addaa516ddafca2350593d7d5a2ba",
+      "public/assets/learning/electromagnetism-lorenz-constraint-energy.ko.svg": "9df33223eb5c0206517c8e3e598d3f95984fc39d1d89c2c506411338ade2de21",
+      "content/learning/physics-math-for-ai/rc-circuit-field-closure-approximation.en.md": "2ef9128aae3bb840c65cc38978db4a68ff2bb8b1c96bdf1274781e7db41bd754",
+      "content/learning/physics-math-for-ai/rc-circuit-field-closure-approximation.ko.md": "c5ab00afcdca7ff1bc4fb01998537ea4f246d1a287b1ef0afe6225cc68ee6c75",
+      "content/learning/physics-math-for-ai/finite-area-coil-sensor-observability.en.md": "804bc6010073ed2e1fd002ae0d7889ca49fe8c9b940b7d7551a3c6fe0411279c",
+      "content/learning/physics-math-for-ai/finite-area-coil-sensor-observability.ko.md": "8aa7f8a66dd2052ee5d7bc39f552041abe4fe8eb4758e250da1488a74b2d72fc",
+      "public/assets/learning/electromagnetism-relaxing-capacitor-energy.en.svg": "2e3be2b430b81334d072a1dc6cefd1caf9ac8798ea653c963a936ea23686eaf8",
+      "public/assets/learning/electromagnetism-relaxing-capacitor-energy.ko.svg": "5f3831fe82a79cd18ceb69a36138ab5dd95711eb16df86a1a42dbea97780f54d",
+      "public/assets/learning/electromagnetism-coil-aperture-blind-modes.en.svg": "e1ac43a680b77b8143d08dc40ccc746c8e0e2f4cdefebe3e0336eaf43dea047b",
+      "public/assets/learning/electromagnetism-coil-aperture-blind-modes.ko.svg": "6f8ab3714b6f396858f33b60285bbb4fd694f6e352d32d56c6b91f6121f3b2bb",
+      "content/learning/physics-math-for-ai/cauchy-traction-stress-balance.en.md": "94e3f33e3b72c339abb43b4f53d10fd40a5475a6201b8b61f534721e3e01848f",
+      "content/learning/physics-math-for-ai/cauchy-traction-stress-balance.ko.md": "ff1c34dce02c0c7adfabfe4aeb0634e75348bf93a759d7bffa8b4028a1baf756",
+      "content/learning/physics-math-for-ai/finite-deformation-small-strain-rotation.en.md": "a5c2df653e978376f1a08da8d645855b226d088c4483bd5d0c06d20d8850f6f7",
+      "content/learning/physics-math-for-ai/finite-deformation-small-strain-rotation.ko.md": "733f8fa7a4e8542191b97cf2cd6360449191b77c47aff109baf03c4d8b584f15",
+      "public/assets/learning/continuum-stress-directional-identification.ko.svg": "746195f106cc83c251c99ee098605a18b38b5b092bed32a7c3d60c0f83b04174",
+      "public/assets/learning/continuum-metric-compatibility-loop.ko.svg": "223ac716f73de59bab5a9eecf9ca558a7ae3da8410416ca34f4c29dddae236c6",
+      "public/assets/learning/continuum-stress-directional-identification.en.svg": "a0864152ff9879df224a60ac7c055507900d47b4eb361ebc514213c7b1353cce",
+      "public/assets/learning/continuum-metric-compatibility-loop.en.svg": "2baaf7c6323391388770f953b39a62c126e4d9eca70a6db489324fb544db82b9",
+      "content/learning/physics-math-for-ai/linearized-euler-acoustic-characteristics.en.md": "33ca09aa231c522086203acf165f3f680572e239e5e49e536d6a646f93f9a0b8",
+      "content/learning/physics-math-for-ai/linearized-euler-acoustic-characteristics.ko.md": "e248c74586efbf73270e3a6bb4c7ef43b9d3343fd93a33fa47c04641d5f19c7b",
+      "content/learning/physics-math-for-ai/taylor-green-navier-stokes-viscous-decay.en.md": "188ddcd4993b2f724da15033b525dc41a7d28639f7981a92069b6b2bfeea6230",
+      "content/learning/physics-math-for-ai/taylor-green-navier-stokes-viscous-decay.ko.md": "2f6e500e0abd1ddb32d8b20797ca49135cec85ca554e00a0330136337b64ec9c",
+      "public/assets/learning/continuum-perturbation-energy-exchange.ko.svg": "fb321cfe9ad1e52fc083156a1fe3541462550ddeda401bcec54212f8ff9c60ee",
+      "public/assets/learning/continuum-subsonic-incoming-norm.en.svg": "329e56d514f61902ab97ed98f047aefef8b6af911e7f7d39bb0e12384c55f8d9",
+      "public/assets/learning/continuum-subsonic-incoming-norm.ko.svg": "986e3fa81191393abe6b5ac5bd0e1094afd230e98c48039bd7aa833388dd91df",
+      "public/assets/learning/continuum-perturbation-energy-exchange.en.svg": "4722d3df90a2f1962d0fdbde6beb0f1e487ee9eda79d1baf77987080e2749aff",
+      "content/learning/physics-math-for-ai/fourier-heat-diffusion-mode-budget.en.md": "015aa360a8da6239ad88f7a96ba27954641f0a012ee7a533c5189a0f13ef4d11",
+      "content/learning/physics-math-for-ai/fourier-heat-diffusion-mode-budget.ko.md": "b0f5e7b41d40a9fab0189e7bb1d4ae5979dd42d78e8a639b0885067df0dd93bd",
+      "content/learning/physics-math-for-ai/gaussian-fick-diffusion-spreading.en.md": "b3858b91b1f858e5678cd1b10576ab329ea8fdb515aabb95df74b21b52563c7f",
+      "content/learning/physics-math-for-ai/gaussian-fick-diffusion-spreading.ko.md": "ba3f2aa20a42fb4c13c4246bad6b09c569ab71225481d1db27c6777170d18518",
+      "public/assets/learning/continuum-gaussian-relative-information-distance.ko.svg": "c315a07d4e1c74f5f3fa9e6c7a4e49575602291064dea6b561b52c8243d19ae4",
+      "public/assets/learning/continuum-heat-entropy-availability.ko.svg": "f847d4837be440f4028e6318aef83ebf4f4b1d2f01b17c4dca0e69ec2c81afbd",
+      "public/assets/learning/continuum-heat-entropy-availability.en.svg": "93ca39b7a9d7ed9ad049a26d17bc8711f285abd03fd677ce56746fdf6448af0e",
+      "public/assets/learning/continuum-gaussian-relative-information-distance.en.svg": "320df07ef41dc4f5eee5197e1cf6619b40a6babe677a4850988d0f703a8b167e",
+      "content/learning/physics-math-for-ai/reversible-reaction-advection-diffusion-budget.en.md": "e180b6a9eba75371fd1a30346aa486d7f16d84cdff5ac47eb9053dbfec285fd0",
+      "content/learning/physics-math-for-ai/reversible-reaction-advection-diffusion-budget.ko.md": "e2bff2bcd5345280b9ebf0b31adfa7130eadb6e73124eb1d7f46755210de60df",
+      "content/learning/physics-math-for-ai/fisher-kpp-reaction-diffusion-front.en.md": "03ae2101f795358fa9cc7d3253c05621e612d1d0db8c9c6bde9d696d9e8103ab",
+      "content/learning/physics-math-for-ai/fisher-kpp-reaction-diffusion-front.ko.md": "f5c1430c6fed0025edbd3451097ec61c543f26d127e66c20c45181bc98efad10",
+      "public/assets/learning/continuum-kpp-spreading-comparison-bump.en.svg": "c41b6b55964e72a2cc1ab7d0163b1d03036d6ec56db6cb43481bc4a6af684814",
+      "public/assets/learning/continuum-reaction-spatial-composition-information.ko.svg": "776f900f79852f0f415c20b4cb0a4ae2b33cfc8ab9d837f1d69e1bc0ac997b7f",
+      "public/assets/learning/continuum-reaction-spatial-composition-information.en.svg": "c0bda12e2e90ac3b936e17567cadec3055412e69fb31caafd00ac5880802db72",
+      "public/assets/learning/continuum-kpp-spreading-comparison-bump.ko.svg": "a7e2566dff4489f2ec8a08e33bcd75603c6ae8e03bcd59fe29d4040463e569de",
+      "content/learning/physics-math-for-ai/kelvin-voigt-maxwell-memory-dissipation.en.md": "7d2bba704e5a1738926666f2564ae28c5fdd766b5060b409b3e4d81349d91a35",
+      "content/learning/physics-math-for-ai/kelvin-voigt-maxwell-memory-dissipation.ko.md": "98c6019d6539ad0a7381f44b1f77cdc6d9581c0e3edbf199c23ae1ba73e55c66",
+      "content/learning/physics-math-for-ai/neo-hookean-uniaxial-constitutive-objectivity.en.md": "b6263954a8dfb897bc589cbf3d1c178023311802bb66cb2caddc571742409eb2",
+      "content/learning/physics-math-for-ai/neo-hookean-uniaxial-constitutive-objectivity.ko.md": "2bfc0ea446ed0bd9a00a21db32a57a83d32a968a37d6fbc64de19a9f27ff1665",
+      "public/assets/learning/continuum-viscoelastic-spectrum-identifiability.en.svg": "ab5be5181b5d90a5c6150ebb233df4ec0ad601c421ad13c0d868b0ed23686ab7",
+      "public/assets/learning/continuum-hyperelastic-uniaxial-invisible-shear.ko.svg": "d54abade036445852cceff51dc520024656ff116c23e2b2b4ab97fe0224e9c1c",
+      "public/assets/learning/continuum-hyperelastic-uniaxial-invisible-shear.en.svg": "3ef03e08988dcd3229fc17e33716975d262927c3cb64e3e7094bcf52d1d2a3c4",
+      "public/assets/learning/continuum-viscoelastic-spectrum-identifiability.ko.svg": "7d71519cedd487ff77ec206b14ab9a40fdfe7559728955aabd96075ed7e31e78",
+      "content/learning/physics-math-for-ai/advection-diffusion-peclet-boundary-layer.en.md": "7d3ce40ef49e41f87a80f50b8052e2c0092138c30ebbc1a00e8a99e2cdb79bf9",
+      "content/learning/physics-math-for-ai/advection-diffusion-peclet-boundary-layer.ko.md": "ccb7206cd3c2a464857012e65de5c9a8f2c4944db943db1635e5b5a682fd2e9b",
+      "content/learning/physics-math-for-ai/reaction-diffusion-damkohler-penetration.en.md": "d01f2115f60734e4de572964299610a9ab3684d2109d20523dccbe3998996ec8",
+      "content/learning/physics-math-for-ai/reaction-diffusion-damkohler-penetration.ko.md": "81e4da5ba647a1fcb6857a678db819b31b35b0e8553bbae79e51728185c89ec2",
+      "public/assets/learning/continuum-peclet-grid-positive-flux.ko.svg": "417a514c1994ceeb8bc3ed53b2c412cd8eb84664977cf6310c00ebe6d19e6f34",
+      "public/assets/learning/continuum-damkohler-robin-supply-identification.ko.svg": "d2fe7c3c340a7fbeb2f1096efda54c447ee73547f607b220b48439c9c2eae0b6",
+      "public/assets/learning/continuum-damkohler-robin-supply-identification.en.svg": "f17e75b6eb4476568ef905f5453d7444aa6506fa296ee5bc0c08113095725093",
+      "public/assets/learning/continuum-peclet-grid-positive-flux.en.svg": "977dbea18bd8e3aa455d0f547643cdcd9ac6468d35f3cdf14b87cd48adfb79be"
+    },
+    "allSourceFilesFrozen": 5342,
+    "allOutputFilesFrozen": 310,
+    "exactCurrentRenderedContent": [
+      {
+        "id": "thermoelastic-mode-reciprocal-energy-exchange",
+        "lang": "en",
+        "exactCurrentRenderedContent": true,
+        "headings": 13
+      },
+      {
+        "id": "thermoelastic-mode-reciprocal-energy-exchange",
+        "lang": "ko",
+        "exactCurrentRenderedContent": true,
+        "headings": 13
+      },
+      {
+        "id": "thermoelectric-bar-seebeck-peltier-joule-balance",
+        "lang": "en",
+        "exactCurrentRenderedContent": true,
+        "headings": 16
+      },
+      {
+        "id": "thermoelectric-bar-seebeck-peltier-joule-balance",
+        "lang": "ko",
+        "exactCurrentRenderedContent": true,
+        "headings": 16
+      }
+    ],
+    "regression": {
+      "files": 6,
+      "tests": 143
+    },
+    "checkExits": {
+      "tests": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T23:10:43.593832+00:00",
+        "command": [
+          "node_modules/.bin/tsx",
+          "--test",
+          "scripts/learning-continuum-multiphysics-research.test.ts",
+          "scripts/learning-continuum-multiphysics.test.ts",
+          "scripts/learning-continuum-multiphysics-foundation.test.ts",
+          "scripts/learning-continuum-multiphysics-integration.test.ts",
+          "scripts/learning-continuum-domain-audit-stage2.test.ts",
+          "scripts/learning-manuscript-preservation.test.ts"
+        ]
+      },
+      "lint": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T23:10:26.981944+00:00",
+        "command": [
+          "npm",
+          "run",
+          "lint"
+        ]
+      },
+      "content": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T23:10:28.062624+00:00",
+        "command": [
+          "npm",
+          "run",
+          "validate:content"
+        ]
+      },
+      "build": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T23:13:55.290658+00:00",
+        "command": [
+          "npm",
+          "run",
+          "build"
+        ]
+      },
+      "types": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T23:14:14.302597+00:00",
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ]
+      },
+      "export": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T23:14:47.092761+00:00",
+        "command": [
+          "npm",
+          "run",
+          "check:export"
+        ]
+      },
+      "render": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T23:14:48.819022+00:00",
+        "command": [
+          "node_modules/.bin/tsx",
+          "-e",
+          "import fs from 'node:fs';import assert from 'node:assert/strict';import {getLearningContent} from './src/lib/learning-content';(async()=>{const rows=[];for(const id of ['thermoelastic-mode-reciprocal-energy-exchange','thermoelectric-bar-seebeck-peltier-joule-balance']){const c=await getLearningContent(id);const html=fs.readFileSync('out/book/online/physics-math-for-ai/'+id+'/index.html','utf8');const prefix='self.__next_f.push(';const flight=html.split('<script>').filter(s=>s.startsWith(prefix+'[1,')).map(s=>JSON.parse(s.slice(prefix.length,s.indexOf('</script>')-1))[1]).join('');for(const lang of ['en','ko']){assert.ok(html.includes(c[lang])||flight.includes(c[lang]),id+lang);rows.push({id,lang,exactCurrentRenderedContent:true,headings:c.outline[lang].length});}}fs.writeFileSync('.runtime/learning/continuum-multiphysics-research-export-match.json',JSON.stringify(rows,null,2)+'\\n');})().catch(e=>{console.error(e);process.exitCode=1});"
+        ]
+      },
+      "browser": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T23:16:39.848334+00:00",
+        "command": [
+          "node",
+          "scripts/check-continuum-multiphysics-research.cjs"
+        ]
+      }
+    },
+    "browser": {
+      "states": 16,
+      "guides": 6,
+      "quizzes": 4,
+      "concepts": 8,
+      "persistenceCompletionGroups": 2,
+      "pageErrors": 0,
+      "axeViolations": 0,
+      "reportSha256": "c62f2a307a18ac3fb87a7b8fbb5e565f2daf845c99bc4b401528a4cf33cc5d6d",
+      "manualCaptures": [
+        {
+          "path": ".runtime/learning/continuum-multiphysics-research-thermoelastic-mode-reciprocal-energy-exchange-en-320.png",
+          "sha256": "f5cbca02fe5941b7f2f70c4dc5b139c31396c97c7c088fb15ad6beb29a425e2d",
+          "review": "Directly viewed final 320px capture around the added figure and explained questions: localized prose wraps, SVG fits the column and code stays in its scrolling container. Detailed plot labels were separately reviewed at full source size. The capture does not cover the full manuscript."
+        },
+        {
+          "path": ".runtime/learning/continuum-multiphysics-research-thermoelastic-mode-reciprocal-energy-exchange-ko-320.png",
+          "sha256": "eecbc4e86ab2a51c4d61d7968f1dcfbed3687609d51bf823a83fa646cd49f825",
+          "review": "Directly viewed final 320px capture around the added figure and explained questions: localized prose wraps, SVG fits the column and code stays in its scrolling container. Detailed plot labels were separately reviewed at full source size. The capture does not cover the full manuscript."
+        },
+        {
+          "path": ".runtime/learning/continuum-multiphysics-research-thermoelectric-bar-seebeck-peltier-joule-balance-en-320.png",
+          "sha256": "83261086eecd5e611c0beaf43082ff18c2a8a684de754bed7b6a5e47184d7ef2",
+          "review": "Directly viewed final 320px capture around the added figure and explained questions: localized prose wraps, SVG fits the column and code stays in its scrolling container. Detailed plot labels were separately reviewed at full source size. The capture does not cover the full manuscript."
+        },
+        {
+          "path": ".runtime/learning/continuum-multiphysics-research-thermoelectric-bar-seebeck-peltier-joule-balance-ko-320.png",
+          "sha256": "bae084a1426f5b21b8bff08bd3edfac234ac703899e1744094306823dc530eaf",
+          "review": "Directly viewed final 320px capture around the added figure and explained questions: localized prose wraps, SVG fits the column and code stays in its scrolling container. Detailed plot labels were separately reviewed at full source size. The capture does not cover the full manuscript."
+        }
+      ]
+    },
+    "build": {
+      "routes": 1893,
+      "htmlPages": 1888
+    },
+    "servedFiles": [
+      {
+        "path": "out/assets/learning/continuum-thermoelectric-load-power-efficiency.ko.svg",
+        "sha256": "6c85cbbb2923b8c947f01788771e8c291bfca6a19e9be4efec5e9b781a295e45"
+      },
+      {
+        "path": "out/assets/learning/continuum-thermoelastic-relaxation-spectrum.ko.svg",
+        "sha256": "e03acd34560a3e17492e7faadd70453a877496a4f3cb41f3f82bcd0a785914a5"
+      },
+      {
+        "path": "out/assets/learning/continuum-thermoelastic-relaxation-spectrum.en.svg",
+        "sha256": "418841f85bf78847f663e0c93e6a73f5690e754487f559e1ec44804f382d3781"
+      },
+      {
+        "path": "out/assets/learning/continuum-thermoelectric-load-power-efficiency.en.svg",
+        "sha256": "f73336c88ce757eced73bfedeb8428fb891c31f33db694cd8131c9e564098b77"
+      },
+      {
+        "path": "out/book/online/physics-math-for-ai/thermoelastic-mode-reciprocal-energy-exchange/index.html",
+        "sha256": "58584d4b1f1479e7ab11bad6951174e0c3b10e7a0bd40fb6bf5bfbb872a872ff"
+      },
+      {
+        "path": "out/book/online/physics-math-for-ai/thermoelectric-bar-seebeck-peltier-joule-balance/index.html",
+        "sha256": "afae5af8260daed87f9d930d81b5b71a8c3cbb6021bc18117ff6ff25c9997888"
+      }
+    ]
+  },
+  "ledger": {
+    "previousEntriesUnchanged": 789,
+    "currentEntries": 793
+  },
+  "originalManuscripts": {
+    "content/learning/physics-math-for-ai/thermoelastic-mode-reciprocal-energy-exchange.en.md": "9cc966c7f409e84441ddc676897994d248561b8d550b7d0baec51767601f0221",
+    "content/learning/physics-math-for-ai/thermoelastic-mode-reciprocal-energy-exchange.ko.md": "3e0ff9dd8998d6f504359051d415899d4847021294d7dd69e1d428b352b26064",
+    "content/learning/physics-math-for-ai/thermoelectric-bar-seebeck-peltier-joule-balance.en.md": "7b1a0b1df9ec4c5c38a0698ad5f2713d363b225c0e2ac5b27e90476e56f02bf5",
+    "content/learning/physics-math-for-ai/thermoelectric-bar-seebeck-peltier-joule-balance.ko.md": "97b337eeddfbcdca9afaaa26fa4f7c247c51d9b6ef12595f15bc562a7a0ddf71"
+  },
+  "toolingSha256": {
+    "scripts/check-continuum-multiphysics-research.cjs": "261fffbdab8595e82ffac7a41f7bda818aa9fc7e2e2d0d73b16973931ede1023",
+    "scripts/learning-continuum-multiphysics-research.test.ts": "502f9b5fbc853aac96ba97099d0169c9096257cf0bca51c6fbe1c159e0d2c700",
+    "scripts/learning/verify-continuum-multiphysics-research.py": "485104d50a1a7ab1e0dd28f21f4c5ac52f810508524b06d3f95d833bf473ea3d",
+    "scripts/learning-continuum-multiphysics-foundation.test.ts": "a68054681b653ccc47063600a319e8c814e3677da7479b41e46a667898657597"
+  },
+  "wholeDomainResearchReviewComplete": false,
+  "curriculumComplete": false,
+  "remainingReview": {
+    "reviewedDomains": 42,
+    "reviewedOriginalTopics": 415,
+    "pendingDomains": 9,
+    "pendingOriginalTopics": 94
+  },
+  "publicDeploymentConfirmed": false
+}

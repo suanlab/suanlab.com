@@ -151,6 +151,103 @@ A displayed decimal is stored as a binary input. With r=L=1, S=0.01 V/K, TR−TL
 
 The constant-property bar uses exact rational operations on its supplied binary inputs before projecting each observable. Voltage, local electrical work, heat-flux derivative and physical interval integrals therefore retain the same small signed contribution. Ordinary boundary heat subtraction can still round to zero; compare the separately retained difference. This exact algebra applies to this rational bar family, not to every transcendental calculation elsewhere in the book.
 
+## Research extension: load matching and the objective of a generator
+
+The earlier bar permits an imposed signed current. A generator connected to a passive resistor has a different experimental control: the load determines that current together with the terminal law. Keep the original right end hot and the left end cold, positive constant Seebeck coefficient and fixed reservoir temperatures. Define I positive in the generating direction, opposite to the original positive-x current density. R is an electrical resistance in ohms; H is a thermal conductance in watts per kelvin, not the thermal conductivity K.
+
+$$
+T_R=T_h>T_c=T_L>0,\quad S>0,\quad\Delta T=T_h-T_c,\quad I=-Aj>0,\qquad R=\frac{rL}{A},\quad H=\frac{KA}{L},\quad\mathcal E=S\Delta T.
+$$
+
+A positive load resistance receives the terminal voltage and current. Substitute the generating current sign into the old terminal relation and solve the resulting circuit, rather than adding an arbitrary voltage condition to an already fixed current. The ratio m compares external and internal electrical resistances. This ideal circuit uses the declared single-leg terminal reference and an ideal return; contact jumps, lead thermopower and heat exchangers are still excluded.
+
+$$
+m=R_{\rm load}/R>0,\qquad\Delta V=\mathcal E-RI=R_{\rm load}I,\qquad I=\frac{\mathcal E}{R(1+m)}.
+$$
+
+Useful electrical power is minus the original electrical input. It can be computed from either the load or the internal emf and loss. Differentiate its load-ratio factor: the unique maximum for positive m occurs at resistance matching. A temperature profile that looks favorable does not itself identify this electrical operating point. The half-open limits m approaching zero and infinity both yield zero useful power even though their heat and current states differ.
+
+$$
+P_{\rm out}=I\Delta V=\mathcal E I-RI^2=\frac{\mathcal E^2}{R}\frac m{(1+m)^2},\qquad\frac{d}{dm}\frac m{(1+m)^2}=\frac{1-m}{(1+m)^3},\quad m_{\rm power}=1.
+$$
+
+Track the actual hot and cold heat ports before defining efficiency. Heat drawn from the hot right reservoir is minus the old right-going QR. Heat rejected into the cold left reservoir is minus QL. Evaluate the original temperature gradient at each endpoint to obtain the two expressions. Half of the distributed Joule heat appears at each end for these constant properties and fixed temperatures; that split is not a general contact or nonlinear-material law.
+
+$$
+Q_h=-Q_R=ST_hI+H\Delta T-\frac{RI^2}{2},\qquad Q_c=-Q_L=ST_cI+H\Delta T+\frac{RI^2}{2},\qquad Q_h-Q_c=P_{\rm out}.
+$$
+
+Both heat quantities are positive for the positive-load generating family. The identity closes the first law but does not determine the efficiency optimum. Define the thermal-to-electrical merit parameter Z and its dimensionless product with mean absolute temperature. Geometry cancels from Z for this uniform leg. Increasing area scales both conductances and power, but it does not increase Z for unchanged material properties.
+
+$$
+Z=\frac{S^2}{RH}=\frac{S^2}{rK},\quad[Z]=\mathrm{K}^{-1},\qquad\overline T=\frac{T_h+T_c}{2},\quad Z\overline T>0,\qquad\eta=\frac{P_{\rm out}}{Q_h}.
+$$
+
+Substitution of the load current gives a compact efficiency curve. This expression still includes the heat leak through the material and the Joule contribution to the hot port. Its denominator is positive in the declared family. A large Seebeck voltage alone is insufficient to predict efficiency because electrical resistance and thermal conduction also enter. Use absolute reservoir temperatures here, not deviations from an arbitrary reference.
+
+$$
+\eta(m)=\frac{\Delta T\,m}{T_h(1+m)-\Delta T/2+(1+m)^2/Z}.
+$$
+
+Differentiate this ratio while keeping temperatures and material properties fixed. Its derivative has the sign of one plus Z times mean temperature minus m squared. Thus the unique efficiency optimum has a larger load resistance than the maximum-power point. The distinction is an optimization question, not a failure of either calculation: the objective in the denominator changed from nothing to consumed hot-side heat.
+
+$$
+\operatorname{sgn}\eta^{\prime}(m)=\operatorname{sgn}(1+Z\overline T-m^2),\qquad m_{\rm efficiency}=\sqrt{1+Z\overline T}>1.
+$$
+
+At that load the familiar closed expression follows directly. For finite positive Z it is below the Carnot ratio. Its formal approach to Carnot as Z grows is a limit of this ideal constant-property model; it is not a claim about finite-power manufactured hardware or coefficients that remain unchanged over arbitrarily large temperature ranges. Maximum efficiency and maximum power generally occur at distinct currents.
+
+$$
+\eta_{\max}=\frac{\Delta T}{T_h}\frac{\sqrt{1+Z\overline T}-1}{\sqrt{1+Z\overline T}+T_c/T_h}<\frac{\Delta T}{T_h}.
+$$
+
+The second law supplies a separate check using both reservoirs. The positive entropy increase is a Fourier heat-leak term plus an electrical-resistance term. The reversible Seebeck/Peltier transport cancels from this expression. To test a coupled surrogate, independently integrate the local entropy-production density over the actual bar and compare with these reservoir ports; rearranging the port identity alone supplies no independent field evidence.
+
+$$
+\dot S_{\rm res}=\frac{Q_c}{T_c}-\frac{Q_h}{T_h}=\frac{H(\Delta T)^2}{T_cT_h}+\frac{RI^2(T_h+T_c)}{2T_cT_h}=A\int_0^L\left[\frac{rj^2}{T}+\frac{K T_x^2}{T^2}\right]dx>0.
+$$
+
+Keep the limiting observations distinct. An open circuit still conducts heat, so its efficiency tends to zero at positive temperature difference. A short circuit also gives zero useful load power while carrying finite current and dissipating heat. Exact equal reservoir temperatures remove the thermal drive: passive-load current, output and hot heat are zero, so the efficiency is undefined rather than an assigned zero ratio. The existing lab still accepts prescribed current; this resistor-coupled family is an additional worked model.
+
+$$
+m\to\infty:\ I,P_{\rm out},\eta\to0,\ Q_h\to H\Delta T>0;\qquad m\to0^+:\ P_{\rm out},\eta\to0;\qquad\Delta T=0:\ \eta=0/0\ \text{undefined}.
+$$
+
+The teaching table fixes R=0.1 ohm, H=0.2 W/K, S=0.03 V/K and reservoirs at 300 and 400 K. Columns are load ratio, current in amperes, output in watts, hot heat in watts and dimensionless efficiency. These declared coefficients are not a calibrated product.
+
+| m | I | Pout | Qhot | efficiency |
+| --- | --- | --- | --- | --- |
+| 0.50000000 | 20.00000000 | 20.00000000 | 240.00000000 | 0.08333333 |
+| 1.00000000 | 15.00000000 | 22.50000000 | 188.75000000 | 0.11920530 |
+| 4.09267639 | 5.89081216 | 14.20226970 | 88.95466257 | 0.15965739 |
+| 10.00000000 | 2.72727273 | 7.43801653 | 52.35537190 | 0.14206788 |
+
+```python
+from math import sqrt
+# Ideal leg: R=0.1 ohm, H=0.2 W/K, S=0.03 V/K.
+r, h, s, tc, th = 0.1, 0.2, 0.03, 300.0, 400.0
+z = s*s/(r*h)
+opt = sqrt(1+z*(th+tc)/2)
+for m in (0.5, 1.0, opt, 10.0):
+    current = s*(th-tc)/(r*(1+m))
+    power = current*current*m*r
+    hot = s*th*current+h*(th-tc)-r*current*current/2
+    efficiency = power/hot
+    print(" ".join(f"{v:.8f}" for v in (m, current, power, hot, efficiency)))
+```
+
+[COMSOL’s thermoelectric theory](https://doc.comsol.com/6.3/doc/com.comsol.help.heat/heat_ug_theory.07.083.html) documents the linked transport laws. The load circuit, optimization and reservoir-entropy comparison here are derived from our original bar and its explicit port signs.
+
+![Distinct maximum-power and maximum-efficiency loads and their reservoir entropy](/assets/learning/continuum-thermoelectric-load-power-efficiency.en.svg)
+
+### Research questions with explanations
+
+**Does resistance matching maximize both output and efficiency?** **Answer:** No. Maximum power uses m=1, whereas maximum efficiency uses sqrt(1+Z times mean temperature) under the stated fixed-temperature, constant-property assumptions.
+
+**Does an open circuit eliminate heat drawn from the hot reservoir?** **Answer:** No. Fourier conduction remains at positive temperature difference. Electrical output and efficiency tend to zero while hot heat stays positive.
+
+**May equal reservoir temperatures be assigned a measured zero efficiency?** **Answer:** No. With this passive load, both output and hot heat vanish. The ratio is undefined, and a missing thermal drive is a separate control.
+
 ## Six exercises with answers
 
 ### Exercise 1 — Independent terminal data

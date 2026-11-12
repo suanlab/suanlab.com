@@ -85,4 +85,4 @@
 전자기학은 [양의 모드 축약·벌크 닮음과 경계 위상](effective-research-status.md)까지 **20/20단원 순차 보강**을 검증했다. 이후 [160화면·40원고·487검사의 연구 종합 대조](electromagnetism-research-audit.md)를 마쳐 위 42영역 집계에 포함했다.
 
 
-연속체는 [무차원 수 연구 보강](continuum-dimensionless-research-status.md)까지 **16/22단원 순차 보강**을 검증했다. 다음은 복합물리이며 영역 전체 종합 대조 전까지 위 42영역 집계를 유지한다.
+연속체는 [복합물리 연구 보강](continuum-multiphysics-research-status.md)까지 **18/22단원 순차 보강**을 검증했다. 다음은 난류·폐쇄이며 영역 전체 종합 대조 전까지 위 42영역 집계를 유지한다.
