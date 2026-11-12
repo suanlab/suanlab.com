@@ -110,6 +110,117 @@ $$
 
 학습한 A/V를 비교할 때 전위의 점별 제곱오차만 사용하면 같은 장의 다른 게이지 표현을 과도하게 벌점 줄 수 있습니다. 실제 E/B, 원천과 Maxwell 잔차, 초기·경계 조건, 선택한 게이지 조건을 구분해 평가하세요. 반대로 아무 A/V 변경이나 허용하면 부분 변경으로 물리장이 달라져도 놓칠 수 있습니다. 물리적으로 같은 해인지와 특정 표현을 만족하는지를 두 판정으로 기록하는 것이 도움이 됩니다. 배경 관계는 [Feynman II §18–6](https://www.feynmanlectures.caltech.edu/II_18.html)을 참고하세요.
 
+## 연구 확장: 시공간 링크와 게이지 몫 오차
+
+### 스냅샷 대신 방향 있는 시공간 링크를 만들기
+
+학습한 퍼텐셜이 기준 퍼텐셜과 크게 달라도 같은 힘을 예측할 수 있습니다. 표현을 비교하려면 다른 좌표를 고정하고 x–t 직사각 격자의 링크를 따라 고전적 1형식 A·dx−Vdt를 적분합니다. 공간·시간 링크 모두 단위가 volt-second로 chi와 같습니다. 게이지 변환은 각 링크 양 끝의 함수 값 차이가 됩니다. 격자는 보충 비교 모형이며 기존 매끄러운 퍼텐셜 실습의 새 제어가 아닙니다. 아래 유도는 정확한 적분을 가정하며 표본 구적 오차는 별도로 검사해야 합니다.
+
+$$
+\theta_e=\int_e(\mathbf A\cdot d\mathbf x-V\,dt),\qquad\theta_e^{\prime}=\theta_e+\chi(\mathrm{head}(e))-\chi(\mathrm{tail}(e))=(\theta+D\chi)_e.
+$$
+
+### 시간 링크의 마이너스 부호 확인하기
+
+전역 공간 링크는 x 증가 방향, 시간 링크는 t 증가 방향입니다. 한 면은 아래·오른쪽·위·왼쪽 순서로 순회하므로 위와 왼쪽 링크는 전역 방향과 반대로 지납니다. 순환을 전개하면 ∂x(−V)−∂t A_x, 즉 E_x가 됩니다. 전기장은 공간 A 루프만으로 주어지지 않고 방향 있는 시공간 면 적분으로 나타납니다. 게이지 변화의 끝점 항은 망원경처럼 상쇄되어 각 면에서 0입니다. 공간 링크만 바꾸면 일반적으로 이 상쇄가 사라집니다.
+
+$$
+C\theta=\theta_{\rm bottom}+\theta_{\rm right}-\theta_{\rm top}-\theta_{\rm left}=\int\!\!\int E_x\,dx\,dt,\qquad CD=0.
+$$
+
+### 같은 면 장이 게이지 동등성을 뜻하는 조건
+
+연결되어 있고 모든 면이 채워진 비주기 직사각 격자에서는 모든 닫힌 경로가 면 경계들의 합입니다. 두 링크 배열의 차이가 모든 면에서 curl 0이면, 한 기준 꼭짓점에서 임의의 경로를 따라 차이를 적분해 chi를 만듭니다. 면 순환이 0이므로 경로에 무관합니다. 공통 상수만 모호하게 남습니다. 독립적인 꼭짓점 차이와 면을 세면 아래 차원이 나옵니다. 이는 정확한 유한 격자 명제입니다. 면을 제거하거나 주기성을 부여하거나 허용 경계 게이지를 제한하면 결론이 달라집니다. 국소 면 손실만으로 다른 경계 문제를 인증할 수 없습니다.
+
+$$
+N_v=(N_x+1)(N_t+1),\quad N_e=N_x(N_t+1)+N_t(N_x+1),\quad N_f=N_xN_t,\quad\ker D=\operatorname{span}\{\mathbf1\},\quad\operatorname{rank}D=N_v-1,\quad\operatorname{rank}C=N_f,\quad\ker C=\operatorname{im}D.
+$$
+
+### 측정 비교 척도를 정하고 게이지를 정렬하기
+
+delta-theta는 예측에서 기준을 뺀 링크입니다. 양의 대각행렬 W를 정하고 꼭짓점 기울기를 제거한 가중 링크 오차를 최소화합니다. 수치 예에서는 링크와 chi를 같은 양의 volt-second 기준으로 나누므로 배열·선언한 가중치는 무차원입니다. 동등한 표현들에서의 이 최솟값을 게이지 몫 손실이라고 부릅니다. chi 한 값을 고정해 상수 영방향을 없앱니다. 남은 가중 그래프 Laplacian은 양의 정부호입니다. 이차형식이 양의 가중 링크 차이 제곱의 합이며 연결 그래프에서 상수일 때만 0이기 때문입니다. 따라서 고정된 해가 유일하고 잔차는 허용 기울기에 W-직교합니다. W는 비교 척도이며 전자기 에너지·Lorentz 시공간 계량·자동으로 주어지는 통계 공분산이 아닙니다.
+
+$$
+\min_{\chi:\chi_0=0}(\delta\theta-D\chi)^T W(\delta\theta-D\chi),\qquad D^TWD\chi=D^TW\delta\theta,\qquad D^TW r=0.
+$$
+
+### 역행렬 없이 한 면을 풀기
+
+한 면에서 남는 불일치는 면 순환 f로 결정됩니다. C r=f를 제약으로 잔차의 가중 제곱을 최소화하면 하나의 Lagrange 승수로 아래 해가 나옵니다. 잔차는 가중치의 역수에 따라 분배되며 면 curl은 원래 불일치와 같습니다. W를 독립 링크 오차 공분산의 역행렬로 명시했다면 s는 면 오차의 분산입니다. 그렇지 않으면 척도에 의존하는 수일 뿐입니다. 투영은 표현 오차를 제거하면서 측정된 전기 순환을 남깁니다. 잘못된 전기장을 고쳐주지는 않습니다.
+
+$$
+C=(1,1,-1,-1),\quad f=C\delta\theta,\quad s=CW^{-1}C^T,\quad r=W^{-1}C^T f/s,\quad\mathcal L_{\rm quotient}=r^TWr=f^2/s.
+$$
+
+### 원시 퍼텐셜 오차를 압도하는 게이지
+
+아래 왼쪽부터 순환 순서로 chi=(0,1,3,−1)를 택하면 전역 링크 차이는 (1,2,4,−1)이며 면 curl은 0입니다. 왼쪽 시간 링크의 고정 오차에 이 기울기의 lambda배를 더합니다. 원시 가중 오차는 이차적으로 커지지만 모든 lambda에서 전기 순환과 게이지 몫 손실은 같습니다. 표는 정확한 분수로 잔차와 정규방정식 결함을 계산한 뒤 출력합니다. 작은 몫 손실만으로 3차원 자기장·지정 원천·초기 조건·경계 조건까지 검증한 것은 아닙니다.
+
+$$
+D\chi=(1,2,4,-1)^T,\quad W=\operatorname{diag}(1,2,4,8),\quad\delta\theta_\lambda=\lambda D\chi+(0,0,0,1)^T,\quad f=-1,\quad s=15/8,\quad\mathcal L_{\rm raw}=81\lambda^2-16\lambda+8,\quad\mathcal L_{\rm quotient}=8/15.
+$$
+
+### 경계 제한이 추가로 보존하는 자료
+
+열린 경로의 변화는 끝점의 chi 차이이므로 보통 게이지에 의존합니다. 허용하는 표현이 양 끝의 chi를 고정한다면 그 경로 합도 제한된 게이지군에서 불변입니다. 따라서 면 장이 같아도 요구된 경계 표현에는 맞지 않을 수 있습니다. 한 꼭짓점 고정은 상수 모호성만 제거하지만 여러 물리 경계 값을 고정하면 제거할 수 있는 기울기 자체를 제한합니다. 게이지를 정렬하기 전에 그 제한을 선언해야 합니다.
+
+$$
+\sum_{e\in p}\!\operatorname{sgn}_p(e)(D\chi)_e=\chi(q)-\chi(p),\qquad\chi(p)=\chi(q)=0\ \Longrightarrow\ \sum_{e\in p}\!\operatorname{sgn}_p(e)\delta\theta_e\ \text{is invariant under allowed gauges}.
+$$
+
+### 주기 방향에는 전역 루프가 남는다
+
+양 공간 끝을 붙여 시공간 원통을 만듭니다. 모든 공간 링크에 kappa/Nx, 시간 링크에 0을 주면 작은 면 순환은 모두 0이지만 공간을 한 바퀴 도는 합은 kappa입니다. 주기적인 단일값 chi의 한 바퀴 합은 끝점 상쇄로 0이므로 비영 kappa를 제거할 수 없습니다. 이는 선언한 주기 게이지 종류의 고전적 전역 표현 장애이며 양자 위상·선속 양자화를 가정하지 않습니다. 국소 면과 독립적인 감김 순환을 함께 기록합니다. 면이 빠진 격자도 구멍 둘레 순환을 남깁니다.
+
+$$
+\theta^x_{i,j}=\kappa/N_x,\quad\theta^t_{i,j}=0,\quad C\theta=0,\qquad\sum_{i=0}^{N_x-1}\theta^x_{i,j}=\kappa\ne0\ \Longrightarrow\ \theta\ne D\chi\ \text{for periodic single-valued }\chi.
+$$
+
+### 표현과 미분 연산의 호환성 유지하기
+
+연속체의 상쇄는 혼합 미분의 교환을 이용합니다. 호환되는 tensor-grid 차분도 이 대수를 유지하지만 두 항에 무관한 stencil·보간을 쓰면 가짜 전기장 변화가 생길 수 있습니다. 반대로 격자에 내장된 정확한 항등식이 물리 정확성의 독립 검사는 아닙니다. 매끄러운 장의 적분과 격자 면 순환을 비교하고 구적을 세분화하며 부분 변환을 음성 대조로 검사합니다. 기존 실습은 다항 퍼텐셜과 장을 평가하고, 유한 격자 투영은 별도 연구 계산입니다.
+
+$$
+\delta E_x=(D_xD_t-D_tD_x)\chi;\qquad D_xD_t=D_tD_x\ \Longrightarrow\ \delta E_x=0.
+$$
+
+| lambda | 원시 가중 오차 | 몫 오차 | 면 불일치 | 정규방정식 결함 |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 8.00000000 | 0.53333333 | -1.00000000 | 0.00000000 |
+| 1.00000000 | 73.00000000 | 0.53333333 | -1.00000000 | 0.00000000 |
+| 10.00000000 | 7948.00000000 | 0.53333333 | -1.00000000 | 0.00000000 |
+| 100.00000000 | 808408.00000000 | 0.53333333 | -1.00000000 | 0.00000000 |
+
+```python
+from fractions import Fraction as F
+weights = [F(1), F(2), F(4), F(8)]
+curl = [F(1), F(1), F(-1), F(-1)]
+grad = [F(1), F(2), F(4), F(-1)]
+den = sum(c*c/w for c, w in zip(curl, weights))
+for lam in [0, 1, 10, 100]:
+    error = [lam*g + F(i == 3) for i, g in enumerate(grad)]
+    face = sum(c*x for c, x in zip(curl, error))
+    residual = [c*face/(w*den) for c, w in zip(curl, weights)]
+    wr = [w*r for w, r in zip(weights, residual)]
+    normal = [-wr[0]-wr[3], wr[0]-wr[1], wr[1]+wr[2], -wr[2]+wr[3]]
+    raw = sum(w*x*x for w, x in zip(weights, error))
+    quotient = sum(w*r*r for w, r in zip(weights, residual))
+    values = [F(lam), raw, quotient, face, max(map(abs, normal))]
+    print(" ".join(f"{float(x):.8f}" for x in values))
+```
+
+[Feynman II 18–6절](https://www.feynmanlectures.caltech.edu/II_18.html)은 고전 퍼텐셜·게이지의 배경입니다. 여기의 유한 격자 exactness·투영과 1차원 제약 에너지 예제는 명시한 영역·경계 가정에서 직접 유도합니다.
+
+![시공간 링크 방향·원시/몫 오차·감김 루프](/assets/learning/electromagnetism-spacetime-gauge-projection.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**국소 면 curl 0이면 주기 게이지 동등성인가?** **답:** 아니다. 비영 감김 순환은 주기 단일값 꼭짓점 함수의 기울기가 될 수 없다. 채워진 비주기 직사각 격자 정리와 경계 가정이 다르다.
+
+**연결 격자의 무제한 정렬에 한 기준점이면 충분한 이유는?** **답:** 가중 기울기 에너지는 상수에서만 0이다. 한 값을 고정하면 비상수 기울기를 제한하지 않고 그 영방향만 제거한다.
+
+**몫 손실 감소가 전기장 수정을 뜻하는가?** **답:** 아니다. 투영은 면 불일치 f를 보존하고 허용 표현 변경에 해당하는 성분만 제거한다.
+
 ## 풀이가 있는 연습 문제
 
 ### 연습 1

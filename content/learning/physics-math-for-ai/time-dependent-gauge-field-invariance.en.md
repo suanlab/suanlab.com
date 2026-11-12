@@ -110,6 +110,117 @@ Compare the analytically preserved reference field with the sum of rounded contr
 
 An AI model trained to output potentials can be penalized unfairly by pointwise potential error when another gauge represents the same fields. Evaluate E and B, Maxwell residuals with the requested sources, initial and boundary conditions, and the chosen gauge condition separately. The opposite shortcut is also unsafe: allowing arbitrary potential changes can hide partial changes that alter the physical field. Record physical equivalence and representation compliance as separate judgments. For background on coordinated transformations and the Lorenz representation, see [Feynman II §18–6](https://www.feynmanlectures.caltech.edu/II_18.html). The polynomial examples and numerical comparisons here are explicit local constructions.
 
+## Research extension: space-time links and gauge quotient errors
+
+### Replace snapshots by oriented space-time links
+
+A learned potential can be far from a reference potential while predicting exactly the same force. To compare representations, first integrate the classical one-form A·dx−Vdt along oriented links of a rectangular x–t grid, with other coordinates fixed. Spatial and temporal links both have units volt-seconds, the units of chi. The transformation is an endpoint difference on every link. The grid is a supplementary comparison model, not a new control in the existing smooth-potential lab. Exact integration is assumed in this derivation; sampled quadrature needs its own error check.
+
+$$
+\theta_e=\int_e(\mathbf A\cdot d\mathbf x-V\,dt),\qquad\theta_e^{\prime}=\theta_e+\chi(\mathrm{head}(e))-\chi(\mathrm{tail}(e))=(\theta+D\chi)_e.
+$$
+
+### The time-like edges carry a minus sign
+
+Orient global spatial edges toward increasing x and temporal edges toward increasing t. Traverse a face bottom-right-top-left. The two upper/left edges are traversed against their global orientations. Expanding the circulation gives ∂x(−V)−∂t A_x, which is E_x. Thus an electric field is encoded by an oriented space-time face integral, not by a spatial A loop alone. Endpoint changes telescope to zero: a coordinated gauge transformation preserves every face exactly. Changing only spatial links generally does not.
+
+$$
+C\theta=\theta_{\rm bottom}+\theta_{\rm right}-\theta_{\rm top}-\theta_{\rm left}=\int\!\!\int E_x\,dx\,dt,\qquad CD=0.
+$$
+
+### When equal face fields imply gauge equivalence
+
+On a filled, connected, nonperiodic rectangular grid, every closed edge path is a sum of faces. If the difference of two link arrays has zero face curl, integrate that difference along any path from one fixed vertex to define chi. Zero face circulation makes the answer path-independent. A common constant in chi is the only ambiguity. Counting independent faces and vertex differences gives the dimensions below. These are exact finite-grid statements. Removing a face, imposing periodicity, or restricting allowed boundary gauges changes the conclusion; a local face loss cannot silently certify those other problems.
+
+$$
+N_v=(N_x+1)(N_t+1),\quad N_e=N_x(N_t+1)+N_t(N_x+1),\quad N_f=N_xN_t,\quad\ker D=\operatorname{span}\{\mathbf1\},\quad\operatorname{rank}D=N_v-1,\quad\operatorname{rank}C=N_f,\quad\ker C=\operatorname{im}D.
+$$
+
+### Align gauges with a declared measurement metric
+
+Let delta-theta be predicted minus reference links. Choose a positive diagonal matrix W, then minimize the weighted link error after removing a vertex gradient. For the numerical example, divide links and chi by the same positive volt-second reference; the arrays and declared weights are then dimensionless. This minimum over equivalent representations is the gauge quotient loss. Pin one chi value to remove the constant null direction. The remaining weighted graph Laplacian is positive definite: its quadratic form is the positive sum of squared edge differences, zero only for a constant on a connected graph. The normal equation therefore has a unique anchored solution. Its residual is W-orthogonal to every allowed gradient. W defines the comparison metric; it is not electromagnetic energy, a Lorentzian space-time metric, or automatically a statistical covariance.
+
+$$
+\min_{\chi:\chi_0=0}(\delta\theta-D\chi)^T W(\delta\theta-D\chi),\qquad D^TWD\chi=D^TW\delta\theta,\qquad D^TW r=0.
+$$
+
+### Solve one face without a matrix inverse
+
+For one face, every remaining mismatch is specified by f, its face circulation. Minimize residual energy subject to C r=f. A scalar Lagrange multiplier gives the expression below. The residual is distributed inversely to the weights, and its face curl equals the original mismatch. If W is explicitly chosen as the inverse covariance of independent link errors, s is the variance of that face error; otherwise s is just a metric-dependent number. The projection removes a representation error and keeps the measured electric circulation. It does not repair a wrong electric field.
+
+$$
+C=(1,1,-1,-1),\quad f=C\delta\theta,\quad s=CW^{-1}C^T,\quad r=W^{-1}C^T f/s,\quad\mathcal L_{\rm quotient}=r^TWr=f^2/s.
+$$
+
+### A gauge can dominate raw potential error
+
+Take the vertex values chi=(0,1,3,−1) in cyclic order from bottom left. Their globally oriented edge differences are (1,2,4,−1), with zero face curl. Add lambda times this gradient to a fixed error on the left temporal link. The raw weighted error grows quadratically, but every lambda has the same electric circulation and the same quotient loss. The table computes the residual and the normal-equation defect with exact fractions before printing. A small quotient loss does not by itself verify magnetic fields in three dimensions, assigned sources, initial data, or boundary data.
+
+$$
+D\chi=(1,2,4,-1)^T,\quad W=\operatorname{diag}(1,2,4,8),\quad\delta\theta_\lambda=\lambda D\chi+(0,0,0,1)^T,\quad f=-1,\quad s=15/8,\quad\mathcal L_{\rm raw}=81\lambda^2-16\lambda+8,\quad\mathcal L_{\rm quotient}=8/15.
+$$
+
+### Boundary restrictions preserve additional data
+
+An open path is generally gauge-dependent: its change is the endpoint difference. If the admissible representation fixes chi at both endpoints, that path sum becomes invariant under the restricted gauge group. Two arrays may then have equal face fields but fail the required boundary representation. Pinning one vertex merely removes a constant ambiguity; pinning many physical boundary values restricts which gradients may be removed. A comparison pipeline must declare that restriction before it aligns gauges.
+
+$$
+\sum_{e\in p}\!\operatorname{sgn}_p(e)(D\chi)_e=\chi(q)-\chi(p),\qquad\chi(p)=\chi(q)=0\ \Longrightarrow\ \sum_{e\in p}\!\operatorname{sgn}_p(e)\delta\theta_e\ \text{is invariant under allowed gauges}.
+$$
+
+### A periodic direction leaves a global loop
+
+Identify the two spatial sides to form a space-time cylinder. Assign kappa/Nx to every spatial link and zero to temporal links. Each small face has zero circulation, yet a spatial wrapping loop sums to kappa. A periodic single-valued chi has telescoping wrapping sum zero, so it cannot remove a nonzero kappa. This is a classical global representation obstruction for the declared periodic gauge class; no quantum phase or flux quantization is assumed. Record independent wrapping circulations in addition to local faces. A missing face similarly leaves a hole circulation.
+
+$$
+\theta^x_{i,j}=\kappa/N_x,\quad\theta^t_{i,j}=0,\quad C\theta=0,\qquad\sum_{i=0}^{N_x-1}\theta^x_{i,j}=\kappa\ne0\ \Longrightarrow\ \theta\ne D\chi\ \text{for periodic single-valued }\chi.
+$$
+
+### Keep differentiation compatible with the representation
+
+At the continuum level the cancellation uses commuting mixed derivatives. Compatible tensor-grid differences retain this algebra; using unrelated stencils or interpolation for the two terms can create a false electric change. Conversely, an exact algebraic identity built into a grid is not an independent check of its physical accuracy. Compare integrated smooth fields and grid face circulations, refine the quadrature, and test partial transformations as negative controls. The native lab still evaluates its polynomial potentials and fields; the finite-grid projection is an additional research calculation.
+
+$$
+\delta E_x=(D_xD_t-D_tD_x)\chi;\qquad D_xD_t=D_tD_x\ \Longrightarrow\ \delta E_x=0.
+$$
+
+| lambda | raw weighted error | quotient error | face mismatch | normal defect |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 8.00000000 | 0.53333333 | -1.00000000 | 0.00000000 |
+| 1.00000000 | 73.00000000 | 0.53333333 | -1.00000000 | 0.00000000 |
+| 10.00000000 | 7948.00000000 | 0.53333333 | -1.00000000 | 0.00000000 |
+| 100.00000000 | 808408.00000000 | 0.53333333 | -1.00000000 | 0.00000000 |
+
+```python
+from fractions import Fraction as F
+weights = [F(1), F(2), F(4), F(8)]
+curl = [F(1), F(1), F(-1), F(-1)]
+grad = [F(1), F(2), F(4), F(-1)]
+den = sum(c*c/w for c, w in zip(curl, weights))
+for lam in [0, 1, 10, 100]:
+    error = [lam*g + F(i == 3) for i, g in enumerate(grad)]
+    face = sum(c*x for c, x in zip(curl, error))
+    residual = [c*face/(w*den) for c, w in zip(curl, weights)]
+    wr = [w*r for w, r in zip(weights, residual)]
+    normal = [-wr[0]-wr[3], wr[0]-wr[1], wr[1]+wr[2], -wr[2]+wr[3]]
+    raw = sum(w*x*x for w, x in zip(weights, error))
+    quotient = sum(w*r*r for w, r in zip(weights, residual))
+    values = [F(lam), raw, quotient, face, max(map(abs, normal))]
+    print(" ".join(f"{float(x):.8f}" for x in values))
+```
+
+[Feynman II §18–6](https://www.feynmanlectures.caltech.edu/II_18.html) supplies the classical potential and gauge background. The finite-grid exactness/projection and the one-dimensional constraint energy examples here are derived explicitly under the stated domains and boundary assumptions.
+
+![Space-time link orientations, raw versus quotient error and a wrapping loop](/assets/learning/electromagnetism-spacetime-gauge-projection.en.svg)
+
+### Research questions with explanations
+
+**Does zero local face curl prove periodic gauge equivalence?** **Answer:** No. A nonzero wrapping circulation cannot be a gradient of a periodic single-valued vertex function. The filled nonperiodic rectangle theorem has different boundary assumptions.
+
+**Why is one anchor enough for unrestricted connected-grid alignment?** **Answer:** The weighted gradient energy vanishes only on constants. Pinning one value removes that null direction without restricting any nonconstant gradient.
+
+**Does a smaller quotient loss mean the electric field was repaired?** **Answer:** No. The projection preserves the face mismatch f. It removes only the component attributable to an allowed representation change.
+
 ## Exercises with explanations
 
 ### Exercise 1

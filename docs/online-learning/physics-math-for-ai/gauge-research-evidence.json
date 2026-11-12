@@ -1,0 +1,738 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "status": "validated-two-unit-extension",
+  "baselineCommit": "dd4a990445d958bd61d8ef9af4e8a7858c29b2cc",
+  "scope": {
+    "expandedUnits": [
+      "time-dependent-gauge-field-invariance",
+      "lorenz-gauge-source-initial-compatibility"
+    ],
+    "manuscripts": 4,
+    "localizedFigures": 4,
+    "originalManuscriptsPreserved": true,
+    "unchangedOtherElectromagnetismManuscripts": 36,
+    "previousReviewEntriesPreserved": 745,
+    "reviewEntriesAfter": 749,
+    "sequentiallyReviewedElectromagnetismUnits": 16,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/time-dependent-gauge-field-invariance.en.md",
+      "sha256": "5377e3688b45e34c6be938afbdc5cc77e944122f360f38ba16fa49a7b11503a7",
+      "originalSha256": "4edeab1c0273eaa1216317a9dfefc89e1f2012960febee9a74677d28fa570e1f",
+      "expanded": true
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/time-dependent-gauge-field-invariance.ko.md",
+      "sha256": "fe5660a65e7d173265268353381bec18c55fe44a807bcfe83da0ecfdd7703cb4",
+      "originalSha256": "ce517b670cb31dd187c6effe232225d948104f5e0a5745b4400192e502344014",
+      "expanded": true
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/lorenz-gauge-source-initial-compatibility.en.md",
+      "sha256": "655cc502fe1cbdd7a5e0fbbe450cd5621afe4e578933c4fa965f346d1927da3a",
+      "originalSha256": "925b4202bec8166190f0ddb4edc59b5aa51314c110f9a01d9752164c7f30b719",
+      "expanded": true
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/lorenz-gauge-source-initial-compatibility.ko.md",
+      "sha256": "328d1de5e9335c2c5cb5be26ee5ec93ba2613ec87cc5f1b44afe7a929732540a",
+      "originalSha256": "4f760dc3f6cd2ac165f0a497ccbf9a0d8047f658744d73afd9e0fc69532b4842",
+      "expanded": true
+    }
+  ],
+  "unchangedElectromagnetismManuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/charge-superposition-test-field.en.md",
+      "sha256": "bbb6b6b77e622a462f3ffb57bcb07d3573c0bfc8d8ff5d64944f79f6089f5141",
+      "originalSha256": "bbb6b6b77e622a462f3ffb57bcb07d3573c0bfc8d8ff5d64944f79f6089f5141",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/charge-superposition-test-field.ko.md",
+      "sha256": "4e4fe2c7bce3bb2235f5bf1639bce54b95802239f93a6244ec1fa2355e2184a5",
+      "originalSha256": "4e4fe2c7bce3bb2235f5bf1639bce54b95802239f93a6244ec1fa2355e2184a5",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/charge-continuity-surface-current.en.md",
+      "sha256": "6a17f51582d437bb075e707e5ff9dfe1b61e455ea11bf8fced79aa11d456c0e7",
+      "originalSha256": "6a17f51582d437bb075e707e5ff9dfe1b61e455ea11bf8fced79aa11d456c0e7",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/charge-continuity-surface-current.ko.md",
+      "sha256": "9a48800577110539e7592f95669f9f81cfd68251e385dec24f646dd86858f61d",
+      "originalSha256": "9a48800577110539e7592f95669f9f81cfd68251e385dec24f646dd86858f61d",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gauss-symmetry-electrostatic-sphere.en.md",
+      "sha256": "7473374017b3c37df060feed089bb4aa1fc3d1075ac043edad510f5f5d73404e",
+      "originalSha256": "7473374017b3c37df060feed089bb4aa1fc3d1075ac043edad510f5f5d73404e",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gauss-symmetry-electrostatic-sphere.ko.md",
+      "sha256": "12879632e0ac9e6df782c4a327926affc60bb963c2c6e69e21f028725af686bb",
+      "originalSha256": "12879632e0ac9e6df782c4a327926affc60bb963c2c6e69e21f028725af686bb",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ampere-symmetry-steady-current-cylinder.en.md",
+      "sha256": "0b4dfbe94a1380faa00991fb2bd5ae65976afe6108b415d26a8bb149ed106860",
+      "originalSha256": "0b4dfbe94a1380faa00991fb2bd5ae65976afe6108b415d26a8bb149ed106860",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ampere-symmetry-steady-current-cylinder.ko.md",
+      "sha256": "6e7dcfab34ba3e9b9c0d0fc202d4c3dfef723eeb2407c2610bb06a4e2a42a4fb",
+      "originalSha256": "6e7dcfab34ba3e9b9c0d0fc202d4c3dfef723eeb2407c2610bb06a4e2a42a4fb",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/electrostatic-potential-reference-path-work.en.md",
+      "sha256": "c226ae9e9d6822ceb6c3d56c150edccfc6f6cc042209ac220545ab5dcf5fcb0f",
+      "originalSha256": "c226ae9e9d6822ceb6c3d56c150edccfc6f6cc042209ac220545ab5dcf5fcb0f",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/electrostatic-potential-reference-path-work.ko.md",
+      "sha256": "73405f6c64979e514fc65830ac45f716f253226662d03ac3fa8ee89ddc1d9f63",
+      "originalSha256": "73405f6c64979e514fc65830ac45f716f253226662d03ac3fa8ee89ddc1d9f63",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/magnetic-vector-potential-curl-gauge.en.md",
+      "sha256": "ed3bc87ec9a43584a2a980268c3eff952fe0689113a8e76b83e1a5b26f09b0f4",
+      "originalSha256": "ed3bc87ec9a43584a2a980268c3eff952fe0689113a8e76b83e1a5b26f09b0f4",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/magnetic-vector-potential-curl-gauge.ko.md",
+      "sha256": "c084bc95e816a8ea1db6f9cdec48a542777ca574fb009e0e6bbf66c8edba801e",
+      "originalSha256": "c084bc95e816a8ea1db6f9cdec48a542777ca574fb009e0e6bbf66c8edba801e",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/maxwell-plane-wave-local-integral-laws.en.md",
+      "sha256": "0440e91b9084eece531f363e167c4e27099023dec70bc92e034db1ed50b2798c",
+      "originalSha256": "0440e91b9084eece531f363e167c4e27099023dec70bc92e034db1ed50b2798c",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/maxwell-plane-wave-local-integral-laws.ko.md",
+      "sha256": "9d581fcc0ccc6ba1fb53bd42dc5bc4773b357bd39dee7d29f18f7524f36eb527",
+      "originalSha256": "9d581fcc0ccc6ba1fb53bd42dc5bc4773b357bd39dee7d29f18f7524f36eb527",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.en.md",
+      "sha256": "f4ec64c2fdcf24edb8d154b786414f957411063e7fa477975c101491e03e68a3",
+      "originalSha256": "f4ec64c2fdcf24edb8d154b786414f957411063e7fa477975c101491e03e68a3",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.ko.md",
+      "sha256": "ddf2edf9e6da628999fdbad5726f9f423a33ecd517ee01505d2ae920fe0e2b9d",
+      "originalSha256": "ddf2edf9e6da628999fdbad5726f9f423a33ecd517ee01505d2ae920fe0e2b9d",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/faraday-induction-fixed-moving-loop.en.md",
+      "sha256": "bb230d7abf175c3e7998db00b158583d684264b0f2bdef92898c59daf8143b64",
+      "originalSha256": "bb230d7abf175c3e7998db00b158583d684264b0f2bdef92898c59daf8143b64",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/faraday-induction-fixed-moving-loop.ko.md",
+      "sha256": "40a15d76e8a6c5da02e584869113fa4b391ded95a3e3f44cd352094950c14fb3",
+      "originalSha256": "40a15d76e8a6c5da02e584869113fa4b391ded95a3e3f44cd352094950c14fb3",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/electromagnetic-wave-equation-transverse-initial-data.en.md",
+      "sha256": "3495047cee852b7138181ce5ab7a6d57c3c47196cc14c7fde2afc566b4dfad98",
+      "originalSha256": "3495047cee852b7138181ce5ab7a6d57c3c47196cc14c7fde2afc566b4dfad98",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/electromagnetic-wave-equation-transverse-initial-data.ko.md",
+      "sha256": "e0d5d973db4997ba28f5cc6e41931fda81470f165f62c576aa0f26d51c1aa640",
+      "originalSha256": "e0d5d973db4997ba28f5cc6e41931fda81470f165f62c576aa0f26d51c1aa640",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/poynting-source-work-local-balance.en.md",
+      "sha256": "26531a5f4f9f2249d1c23a1cdb05901b9c873e50fa5577034b70c21b052197fb",
+      "originalSha256": "26531a5f4f9f2249d1c23a1cdb05901b9c873e50fa5577034b70c21b052197fb",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/poynting-source-work-local-balance.ko.md",
+      "sha256": "4597338d0073cc57d80dc8ec9812c84440a4ada7b8cc8fdca0895f0f37e4e2df",
+      "originalSha256": "4597338d0073cc57d80dc8ec9812c84440a4ada7b8cc8fdca0895f0f37e4e2df",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/transverse-pulse-energy-flux-balance.en.md",
+      "sha256": "03d0711110331383a930f4a96b173a72a7c5d3b620c2ffdba13020b851167ee5",
+      "originalSha256": "03d0711110331383a930f4a96b173a72a7c5d3b620c2ffdba13020b851167ee5",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/transverse-pulse-energy-flux-balance.ko.md",
+      "sha256": "dda19f23131ce0c7be862ab32f26dad8281a491cff9e1e6806fd217af0c732f1",
+      "originalSha256": "dda19f23131ce0c7be862ab32f26dad8281a491cff9e1e6806fd217af0c732f1",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/dielectric-interface-free-bound-charge.en.md",
+      "sha256": "2bd4549f07bd3a724c2f5e68f5ca2e4bf44140f5396c18a364bddb2ecddbc4d8",
+      "originalSha256": "2bd4549f07bd3a724c2f5e68f5ca2e4bf44140f5396c18a364bddb2ecddbc4d8",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/dielectric-interface-free-bound-charge.ko.md",
+      "sha256": "d1bf645a6dce7a693261230a7cd7261cb66d1400054e5b353f0dd94b35c38f61",
+      "originalSha256": "d1bf645a6dce7a693261230a7cd7261cb66d1400054e5b353f0dd94b35c38f61",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/normal-incidence-impedance-interface.en.md",
+      "sha256": "b471b9817b9ccd28530bede8dc7184debac10c5497adc776eab49145343afc4f",
+      "originalSha256": "b471b9817b9ccd28530bede8dc7184debac10c5497adc776eab49145343afc4f",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/normal-incidence-impedance-interface.ko.md",
+      "sha256": "d4c0eef2b544cfab5ac524719777d1e63097a832b99c83ab12159d4e9427edc7",
+      "originalSha256": "d4c0eef2b544cfab5ac524719777d1e63097a832b99c83ab12159d4e9427edc7",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/rc-circuit-field-closure-approximation.en.md",
+      "sha256": "bc24e801abaa4403b743c277ab53d0e732938b1f277796f16a8b39893c8391af",
+      "originalSha256": "bc24e801abaa4403b743c277ab53d0e732938b1f277796f16a8b39893c8391af",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/rc-circuit-field-closure-approximation.ko.md",
+      "sha256": "82f9f9ea92b1c78ae7c4d4ce1aebbcb191825a1d85f51d891d897cd3d114c805",
+      "originalSha256": "82f9f9ea92b1c78ae7c4d4ce1aebbcb191825a1d85f51d891d897cd3d114c805",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-area-coil-sensor-observability.en.md",
+      "sha256": "2e4e0891a0a907de2ff87bdbaf9a1406d260dd593caa857bc2f36af5f5a1c803",
+      "originalSha256": "2e4e0891a0a907de2ff87bdbaf9a1406d260dd593caa857bc2f36af5f5a1c803",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-area-coil-sensor-observability.ko.md",
+      "sha256": "6aa5d812c6564a9ca6f5e7a81440ad314c6753ed30550e8aac4dbaae660ec20c",
+      "originalSha256": "6aa5d812c6564a9ca6f5e7a81440ad314c6753ed30550e8aac4dbaae660ec20c",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/transmission-line-lumped-limit-energy.en.md",
+      "sha256": "6a696ee417b6f4cce36583c5a7e63798f27a32a1ada5e7182c46a75e04890d54",
+      "originalSha256": "6a696ee417b6f4cce36583c5a7e63798f27a32a1ada5e7182c46a75e04890d54",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/transmission-line-lumped-limit-energy.ko.md",
+      "sha256": "4c78346dde1dbc759ef2c02b4f31a7abc8154da705b548bf3232cde18593211b",
+      "originalSha256": "4c78346dde1dbc759ef2c02b4f31a7abc8154da705b548bf3232cde18593211b",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/layered-medium-bloch-effective-limit.en.md",
+      "sha256": "42e14563b072317e4ac8285807fe4c5345c622a15caa4ee80a6df8ad6a983466",
+      "originalSha256": "42e14563b072317e4ac8285807fe4c5345c622a15caa4ee80a6df8ad6a983466",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/layered-medium-bloch-effective-limit.ko.md",
+      "sha256": "52e49bcba890af2c4f6352a0d121e677a8094aa5f22aa125583a91d7a6aabc74",
+      "originalSha256": "52e49bcba890af2c4f6352a0d121e677a8094aa5f22aa125583a91d7a6aabc74",
+      "expanded": false
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/electromagnetism-spacetime-gauge-projection.en.svg",
+      "sha256": "fab4ab3384d1bd890b965b46e5a88d6e613f7a876fd1c403c0c931231df292a4"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-spacetime-gauge-projection.ko.svg",
+      "sha256": "286fe7a76abfc9155b06f56a8da57181c6870f66b05b3e826c8da17876409dcf"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-lorenz-constraint-energy.en.svg",
+      "sha256": "1d585481f73122d3735a4b120bc189a5902addaa516ddafca2350593d7d5a2ba"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-lorenz-constraint-energy.ko.svg",
+      "sha256": "9df33223eb5c0206517c8e3e598d3f95984fc39d1d89c2c506411338ade2de21"
+    }
+  ],
+  "priorResearchInputsPreserved": {
+    "content/learning/physics-math-for-ai/sinusoidal-forcing-transient-response.en.md": "819107905895dbb9d129816ba6629d8cdba5b0286bbd04fd9c32736960fab5b1",
+    "public/assets/learning/waves-resonance-limit-clock.en.svg": "5e77675997fdccf0e037b336463e31ea9e19e618b74f01f359c0922fcdc9e846",
+    "content/learning/physics-math-for-ai/sinusoidal-forcing-transient-response.ko.md": "c2362b0b4269e905286cbdca51d3a2eab9860b7dc7fc2a357bd9a423f72ca36e",
+    "public/assets/learning/waves-resonance-limit-clock.ko.svg": "bae819e59a42a620cbf4c63a75149d56ae22b2604857b67346c97e64809e36cc",
+    "content/learning/physics-math-for-ai/oscillator-frequency-response-power-resonance.en.md": "49c2e4ec86dbd064b372f2d2dfb5f6683aeb328bb96eddb40c45373cd70d0611",
+    "public/assets/learning/waves-resonance-spectral-area.en.svg": "e84d42039404a1382e1ea7ad86dfba5b4d8bc2a5298f65dfe32a9972a1f0db5c",
+    "content/learning/physics-math-for-ai/oscillator-frequency-response-power-resonance.ko.md": "71d42f7553bc1cb726e1b279b8262891c9dab0229ae33950a653df2e1236ffad",
+    "public/assets/learning/waves-resonance-spectral-area.ko.svg": "5e2742b132aa3433ed520bdef7c8bcc446195336bc053e72cb78908bef57a796",
+    "content/learning/physics-math-for-ai/mass-weighted-coupled-normal-modes.en.md": "1f5131a62f46fd4bf5d15f3e1d11192dad74031939edf81e14deae2d8268195f",
+    "public/assets/learning/waves-coupled-mode-gap.en.svg": "b70dbc6e44b4ff06956175fa125b61aca2b1e88e2f984a5356956ab003eba638",
+    "content/learning/physics-math-for-ai/mass-weighted-coupled-normal-modes.ko.md": "ba62a3b08b65f48ee61e660854f81a6d9c020d0be7b492f9b8691a22721b0de5",
+    "public/assets/learning/waves-coupled-mode-gap.ko.svg": "7ee3f28d69848da0e919d289a64a05b2ff99846fd8da771df5f0b4d0ecdc9c9a",
+    "content/learning/physics-math-for-ai/coupled-mode-beating-energy-transfer.en.md": "5d67f76af7474804c97610a1e55c2745addb60d988a041197b1d971e161231d3",
+    "public/assets/learning/waves-coupled-nearby-model.en.svg": "b1062a5619df90d954853475fb19a93df4341f249e04bf42f8a1e2ea7f01f3d5",
+    "content/learning/physics-math-for-ai/coupled-mode-beating-energy-transfer.ko.md": "4b5f4c843eb00de9046b308b909941bd6ce3a48ee1febaf1bd382813ec10f765",
+    "public/assets/learning/waves-coupled-nearby-model.ko.svg": "a2cece2989f4b2f28e8d8822a7547a2631a5e2e0522ec2c409e477a0205fea02",
+    "content/learning/physics-math-for-ai/coupled-chain-continuum-wave-limit.en.md": "2de5e04998dfbb1752b7355be3fb5772b98335b22e3d2d208338ba1594fe29cc",
+    "public/assets/learning/waves-front-lattice-tail.en.svg": "87c2416cb59de51fd37fbda846e5e445a5a84f78e7ea14c99eef5666eff1b8a0",
+    "content/learning/physics-math-for-ai/coupled-chain-continuum-wave-limit.ko.md": "42e9d50175d756867d17aeffa10dbeb633ca7d1eb83a4a36095f6a94c80ee07d",
+    "public/assets/learning/waves-front-lattice-tail.ko.svg": "d5073416268bd1cbb3d0011b2722c7386565844eec3a9a8b482fdc1dc08c0ea8",
+    "content/learning/physics-math-for-ai/wave-initial-data-reflection-energy-flux.en.md": "4c9687cb8c2279ff73092b0bd92640139f10f029a60b9188a42a7581d8285b8f",
+    "public/assets/learning/waves-front-boundary-memory.en.svg": "ace5da78305fb79b07e057c64231c1ebedbfa6db246304acfffb084c4d29f87d",
+    "content/learning/physics-math-for-ai/wave-initial-data-reflection-energy-flux.ko.md": "f324df2474a9996d4ccc8908ca0f9330931585ecec596f7b2a2f1287d208948e",
+    "public/assets/learning/waves-front-boundary-memory.ko.svg": "6ccb6a9da9c1df24153660e6c81b7cd848709b12322286597f09203708feb7cb",
+    "content/learning/physics-math-for-ai/coherent-superposition-detector-averages.en.md": "05c235fa3479b653d05d784282913ea1728b9ecf909b5decc3874febab84bfe0",
+    "public/assets/learning/waves-interference-moment-variance.en.svg": "b99981ec73a02df3c59b489d95e3648f7b2b3fa697a692495cddcfa45269090d",
+    "content/learning/physics-math-for-ai/coherent-superposition-detector-averages.ko.md": "16e2e0adcd94c528351d8fe0fb0935a91b8957924164094d85ea994560bcd3bf",
+    "public/assets/learning/waves-interference-moment-variance.ko.svg": "7ec58233ed1cbcc333ef263e63c87dcb8c7a4b1ebc911482253cc650cf95725d",
+    "content/learning/physics-math-for-ai/finite-aperture-fresnel-fraunhofer.en.md": "552ff1ab74ac9b114d22eac7f0a4b9a0ee26ed53722bd4d924f95aae8bdcc6d2",
+    "public/assets/learning/waves-interference-aperture-bounds.en.svg": "941895e30d5bc9f212cb1fd8cb3e3ecb9fb857ecb00d85cf8828072be3b09572",
+    "content/learning/physics-math-for-ai/finite-aperture-fresnel-fraunhofer.ko.md": "9b56003c8a129df1d7beb5b678c199dca1f73145a8dde76e374c16f41622f819",
+    "public/assets/learning/waves-interference-aperture-bounds.ko.svg": "fa5185446edba9fde2a2e03858c9a632758f39b29e01b6bcf68b1b446910b545",
+    "content/learning/physics-math-for-ai/dispersive-wave-packets-phase-group-velocity.en.md": "168273d3ed6c0a813ad9bc8e654d17169bbd80f4f5e512fecfa556bc777de54a",
+    "public/assets/learning/waves-dispersion-cubic-remainder.en.svg": "1c8b2db8cdf00996f6a2b7ed7b2f56edc572e8a71c9783c9796b27e98fce55b5",
+    "content/learning/physics-math-for-ai/dispersive-wave-packets-phase-group-velocity.ko.md": "b4a6b867a8a76b098af078ca0ccc2b78e427ffd156ddbe07f29076e284542087",
+    "public/assets/learning/waves-dispersion-cubic-remainder.ko.svg": "1a25e82b9a595bb3f7b58780c5f147d9bc740b2a25fe2e42ce548d4e3eed8e05",
+    "content/learning/physics-math-for-ai/lattice-wave-packet-transport-dispersion.en.md": "f86183d3dcb4024f9e84c5ad6226489460a6041942aa9c7cb99b638abe5e6d74",
+    "public/assets/learning/waves-dispersion-energy-allocation.en.svg": "0984ef62c828cb4d8e9508a029e110379df0c54807d8b97bb3e0a32a64327119",
+    "content/learning/physics-math-for-ai/lattice-wave-packet-transport-dispersion.ko.md": "07a5fe9f7d63e1017f40a46c692f6f1473be5181aea85830bc16b7268b392517",
+    "public/assets/learning/waves-dispersion-energy-allocation.ko.svg": "2e90c42c476faf7fad1d5c94f7fdd9be0f711b264a77fe9af5cc1cf3b7545399",
+    "content/learning/physics-math-for-ai/jones-polarization-waveplates-analyzers.en.md": "8cf10fd363876329b793877d81f4d4abf0a30e2db44f5931486894e716d58d4a",
+    "public/assets/learning/waves-polarization-spectral-delay.en.svg": "22672555057000e3e2e906a50d3a9c775db4825b2100457b9a5cfbee32c52d6e",
+    "content/learning/physics-math-for-ai/jones-polarization-waveplates-analyzers.ko.md": "a6e82b94b147ebd17ca1a9c05d4fbad36b5c786c2148311b43a5299f3b2eef3d",
+    "public/assets/learning/waves-polarization-spectral-delay.ko.svg": "8fe023395ff940b006413203da42daab8ea4d7884d7562ff10d96f5539dce8f6",
+    "content/learning/physics-math-for-ai/stokes-coherency-polarization-tomography.en.md": "3f44bbd0d417a66d7b83277ab21b84c9bd4fddadb1c5d8191859aa09fc042685",
+    "public/assets/learning/waves-polarization-instrument-conditioning.en.svg": "c0bb3801296dfe2386a1d4a57cb2956ec6a944fdace9cf192044318496834d53",
+    "content/learning/physics-math-for-ai/stokes-coherency-polarization-tomography.ko.md": "fcd32c4042c2d8c0d319702cb6d1f770d7db9c3a133bf78b904340502cea31c5",
+    "public/assets/learning/waves-polarization-instrument-conditioning.ko.svg": "680a2a643dc438036a7f1950b8678a984b03a8563cf2e1e8699a87aeabc147c9",
+    "content/learning/physics-math-for-ai/paraxial-ray-matrices-thin-lens-imaging.en.md": "a35637d78097fdd371146a24810baf97230b5f34f7e1d5a6535b7dadda079112",
+    "public/assets/learning/waves-ray-image-uncertainty.en.svg": "054cddb52542f4e707ade5c76fad1398326573812bad0976664ae0d32bfc9e2b",
+    "content/learning/physics-math-for-ai/paraxial-ray-matrices-thin-lens-imaging.ko.md": "1fe45a8a56d640c4af24f9c7cd244d57e130d405d1035237b95c63fa98936794",
+    "public/assets/learning/waves-ray-image-uncertainty.ko.svg": "ba441618642bb5927633a169bf37f825be14b7e8f2cae8a27c053bdab1633564",
+    "content/learning/physics-math-for-ai/gaussian-beam-focusing-ray-wave-limit.en.md": "188f0588775ecf9e7e851ad91eb19088baac1cfc6131e43612bc0ec94dc37a74",
+    "public/assets/learning/waves-ray-aperture-moments.en.svg": "82cfdfc63efd2fb0c0fd2c4d6f7179f8c7904f0c3735a7c09c5df639194dcc90",
+    "content/learning/physics-math-for-ai/gaussian-beam-focusing-ray-wave-limit.ko.md": "90dd46654cf3122b140b7cb2f853b6b6b60f9f21fed80ff834a42e49ce51e63b",
+    "public/assets/learning/waves-ray-aperture-moments.ko.svg": "5077fa30be2c85d2749c47dd57f33eff6afbfa40b4f39b045cd8ecbc273644cb",
+    "content/learning/physics-math-for-ai/coherent-fourier-pupil-spatial-filtering.en.md": "f3e7c2f88116e4203a3182cbc85b12bae446dac411d6f7620b6901728acf89d8",
+    "public/assets/learning/waves-fourier-reference-probes.en.svg": "ad3c0e7d0d4df09277a034442d1a8c4d558ca150f72a590185715561ae94d33f",
+    "content/learning/physics-math-for-ai/coherent-fourier-pupil-spatial-filtering.ko.md": "91d7b523632b1077c8fd10b8b9d93608dd3b570642bf01c6a1c6e3449b5e04c7",
+    "public/assets/learning/waves-fourier-reference-probes.ko.svg": "4353276607b763ffbbdacb7ee3ab14c8a40fa8ce9dda497d0c479772e304a786",
+    "content/learning/physics-math-for-ai/incoherent-psf-otf-image-formation.en.md": "948bbc2c975e9f9332ca086cd90bf03f065bf8f69237c7a7a317d82b455c4ce7",
+    "public/assets/learning/waves-fourier-pupil-ambiguity.en.svg": "b32e8730e1ee9fb3272bd7359f1c8fc03077eef7ad8dfe0ad8799b282a97c77e",
+    "content/learning/physics-math-for-ai/incoherent-psf-otf-image-formation.ko.md": "3e2bd40e10162af3cebba18ed6411723d68f7e12f332549591b785a72c099b26",
+    "public/assets/learning/waves-fourier-pupil-ambiguity.ko.svg": "feabca91245918620cec00ecced999b6edc0152371d4149f048a36b6e853e5bf",
+    "content/learning/physics-math-for-ai/pixel-aperture-sampling-aliasing.en.md": "2956827c680778344c05b85396a875cf4b9c93e279aefb72226bedbbd0a461d9",
+    "public/assets/learning/waves-sampling-shifted-grids.en.svg": "c33ff2105ec422297d07e2257085193278a1729450993c8c663badcd030d168a",
+    "content/learning/physics-math-for-ai/pixel-aperture-sampling-aliasing.ko.md": "dbbf351e35f697c7dd9a0926c89071271d92ec670bddd57e0fb8b2460cb81784",
+    "public/assets/learning/waves-sampling-shifted-grids.ko.svg": "a3f87507a56759e1e87399085b2ba245f321d870a28ae3c40c6848ebdd1c7229",
+    "content/learning/physics-math-for-ai/photon-counting-exposure-sensor-noise.en.md": "906a7475d07c5617b5b772956ee1b1ba6f22a3a089cc3adcb7467792711fcd14",
+    "public/assets/learning/waves-sampling-censored-information.en.svg": "ad4235fb142100589ef02538bda738904fcbbd7a02d8492ae92d7703e27a3e3c",
+    "content/learning/physics-math-for-ai/photon-counting-exposure-sensor-noise.ko.md": "f0db064bf0d649c152b353a96a3c3cba3cc6851fc523ff49441650563a6f3340",
+    "public/assets/learning/waves-sampling-censored-information.ko.svg": "a6c42afd32aabdf9711bbccef776a7418960ebeef89afbced49d7a52cf916df6",
+    "content/learning/physics-math-for-ai/charge-superposition-test-field.en.md": "bbb6b6b77e622a462f3ffb57bcb07d3573c0bfc8d8ff5d64944f79f6089f5141",
+    "content/learning/physics-math-for-ai/charge-superposition-test-field.ko.md": "4e4fe2c7bce3bb2235f5bf1639bce54b95802239f93a6244ec1fa2355e2184a5",
+    "content/learning/physics-math-for-ai/charge-continuity-surface-current.en.md": "6a17f51582d437bb075e707e5ff9dfe1b61e455ea11bf8fced79aa11d456c0e7",
+    "content/learning/physics-math-for-ai/charge-continuity-surface-current.ko.md": "9a48800577110539e7592f95669f9f81cfd68251e385dec24f646dd86858f61d",
+    "public/assets/learning/electromagnetism-probe-backreaction.en.svg": "31cea21fc4dd6d3640e1fee9537582952e7f8bb9987a994b439e2f0b6539c408",
+    "public/assets/learning/electromagnetism-probe-backreaction.ko.svg": "d4a7a41d6a836a8cd58f74e9b13a7b55b1185d849b4e28ab5a632a99048270ec",
+    "public/assets/learning/electromagnetism-current-nullspace.en.svg": "e16ee61f6fc2abce97c7b521eca7d2365de4c24f8c3a2baa52feb908ff707fd7",
+    "public/assets/learning/electromagnetism-current-nullspace.ko.svg": "589acba4710f6fabc4b15b867ffc0c7357f3f84ac2cbb66b14086e9dae62b8f2",
+    "content/learning/physics-math-for-ai/gauss-symmetry-electrostatic-sphere.en.md": "7473374017b3c37df060feed089bb4aa1fc3d1075ac043edad510f5f5d73404e",
+    "content/learning/physics-math-for-ai/gauss-symmetry-electrostatic-sphere.ko.md": "12879632e0ac9e6df782c4a327926affc60bb963c2c6e69e21f028725af686bb",
+    "content/learning/physics-math-for-ai/ampere-symmetry-steady-current-cylinder.en.md": "0b4dfbe94a1380faa00991fb2bd5ae65976afe6108b415d26a8bb149ed106860",
+    "content/learning/physics-math-for-ai/ampere-symmetry-steady-current-cylinder.ko.md": "6e7dcfab34ba3e9b9c0d0fc202d4c3dfef723eeb2407c2610bb06a4e2a42a4fb",
+    "public/assets/learning/electromagnetism-radial-density-inverse.en.svg": "232d76c9d09956293c68e99130adf798add6361c4ef61e654177aa01bcdcada3",
+    "public/assets/learning/electromagnetism-radial-density-inverse.ko.svg": "06771346c9c6d4efa38d89100d6bc48fb05bce883d3e455b3c5106699055c630",
+    "public/assets/learning/electromagnetism-skin-diffusion.en.svg": "4c290cba797755a4787a1bb72ae4bb195411bad48f887f7e68c4e04798129a2f",
+    "public/assets/learning/electromagnetism-skin-diffusion.ko.svg": "60e8b079047c2711c8c3e983020774aa819e2d398e97687f1b946f49f7c3617f",
+    "content/learning/physics-math-for-ai/electrostatic-potential-reference-path-work.en.md": "c226ae9e9d6822ceb6c3d56c150edccfc6f6cc042209ac220545ab5dcf5fcb0f",
+    "content/learning/physics-math-for-ai/electrostatic-potential-reference-path-work.ko.md": "73405f6c64979e514fc65830ac45f716f253226662d03ac3fa8ee89ddc1d9f63",
+    "content/learning/physics-math-for-ai/magnetic-vector-potential-curl-gauge.en.md": "ed3bc87ec9a43584a2a980268c3eff952fe0689113a8e76b83e1a5b26f09b0f4",
+    "content/learning/physics-math-for-ai/magnetic-vector-potential-curl-gauge.ko.md": "c084bc95e816a8ea1db6f9cdec48a542777ca574fb009e0e6bbf66c8edba801e",
+    "public/assets/learning/electromagnetism-weighted-potential-loops.en.svg": "fe1f13921162e435a5d843801123c6073e13b5bf40c43722c5b2e06b4fdd31c3",
+    "public/assets/learning/electromagnetism-weighted-potential-loops.ko.svg": "f939353a96f0f8d525a4cc44c568dcde855b5a65e5c04b92eb430506cc169d8b",
+    "public/assets/learning/electromagnetism-periodic-flux-obstruction.en.svg": "39d5ffc94cb6e0e5c917dede1be84b601f11228c9d297a141e24092c6ed55ce6",
+    "public/assets/learning/electromagnetism-periodic-flux-obstruction.ko.svg": "2fc7b0344bad877803b24a5b0aa75e9eedfbd98286c6ccb43edab3d9567ff7bb",
+    "content/learning/physics-math-for-ai/maxwell-plane-wave-local-integral-laws.en.md": "0440e91b9084eece531f363e167c4e27099023dec70bc92e034db1ed50b2798c",
+    "content/learning/physics-math-for-ai/maxwell-plane-wave-local-integral-laws.ko.md": "9d581fcc0ccc6ba1fb53bd42dc5bc4773b357bd39dee7d29f18f7524f36eb527",
+    "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.en.md": "f4ec64c2fdcf24edb8d154b786414f957411063e7fa477975c101491e03e68a3",
+    "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.ko.md": "ddf2edf9e6da628999fdbad5726f9f423a33ecd517ee01505d2ae920fe0e2b9d",
+    "public/assets/learning/electromagnetism-staggered-wave-stability.en.svg": "2e7cee0d2018b62b2db0adbedac782c139174b49758626e575869e07db3c9731",
+    "public/assets/learning/electromagnetism-staggered-wave-stability.ko.svg": "88535eff801e86cc51a92311fad364cbfac136ac06dfec182123b52b4260070a",
+    "public/assets/learning/electromagnetism-periodic-gauss-repair.en.svg": "951fda621e97d9a404fb31516e5e2df97bf0b7a0978e600c39def793f16d29ea",
+    "public/assets/learning/electromagnetism-periodic-gauss-repair.ko.svg": "ca9770bb8e317f30c756cddef9dc98be6dfc2254a7703254db6522a0e681c801",
+    "content/learning/physics-math-for-ai/faraday-induction-fixed-moving-loop.en.md": "bb230d7abf175c3e7998db00b158583d684264b0f2bdef92898c59daf8143b64",
+    "content/learning/physics-math-for-ai/faraday-induction-fixed-moving-loop.ko.md": "40a15d76e8a6c5da02e584869113fa4b391ded95a3e3f44cd352094950c14fb3",
+    "content/learning/physics-math-for-ai/electromagnetic-wave-equation-transverse-initial-data.en.md": "3495047cee852b7138181ce5ab7a6d57c3c47196cc14c7fde2afc566b4dfad98",
+    "content/learning/physics-math-for-ai/electromagnetic-wave-equation-transverse-initial-data.ko.md": "e0d5d973db4997ba28f5cc6e41931fda81470f165f62c576aa0f26d51c1aa640",
+    "public/assets/learning/electromagnetism-induction-mechanical-backreaction.en.svg": "2d0f806271569e1ba40a31b423f509af55f751eacb8290ea32d892da0defcb30",
+    "public/assets/learning/electromagnetism-induction-mechanical-backreaction.ko.svg": "00894e7a1c97150e384e85d3fee78fb2d79d8a203c2c61baaf7f977752bd0225",
+    "public/assets/learning/electromagnetism-electric-snapshot-observability.en.svg": "bf1856e5eb6e873e5682dfede3b3ac496320098ce2fbb15aaf7a67aa988a2417",
+    "public/assets/learning/electromagnetism-electric-snapshot-observability.ko.svg": "a04a06dc759fd17ca08707c150c530fee7092e7175fcac854929b06cf02d0dd2",
+    "content/learning/physics-math-for-ai/poynting-source-work-local-balance.en.md": "26531a5f4f9f2249d1c23a1cdb05901b9c873e50fa5577034b70c21b052197fb",
+    "content/learning/physics-math-for-ai/poynting-source-work-local-balance.ko.md": "4597338d0073cc57d80dc8ec9812c84440a4ada7b8cc8fdca0895f0f37e4e2df",
+    "content/learning/physics-math-for-ai/transverse-pulse-energy-flux-balance.en.md": "03d0711110331383a930f4a96b173a72a7c5d3b620c2ffdba13020b851167ee5",
+    "content/learning/physics-math-for-ai/transverse-pulse-energy-flux-balance.ko.md": "dda19f23131ce0c7be862ab32f26dad8281a491cff9e1e6806fd217af0c732f1",
+    "public/assets/learning/electromagnetism-power-invisible-current.en.svg": "52714d4ef609b083e191e159d17c4ae536fb282b77aeb522168ea207dbb0a2fb",
+    "public/assets/learning/electromagnetism-power-invisible-current.ko.svg": "a9b4a3939b666f87e21bae0a8d9c16dfd3d51a074c600e8139e3ad974415e96c",
+    "public/assets/learning/electromagnetism-vacuum-zero-flux-frame.en.svg": "0ba53d609b9c013001fc9016395d637fdda9b390deff752385eceeffdb0b1d55",
+    "public/assets/learning/electromagnetism-vacuum-zero-flux-frame.ko.svg": "3c1a3f23c44029c0613bf1a403da270c8cf2b6c67f450070bb474212c72e8898",
+    "content/learning/physics-math-for-ai/dielectric-interface-free-bound-charge.en.md": "2bd4549f07bd3a724c2f5e68f5ca2e4bf44140f5396c18a364bddb2ecddbc4d8",
+    "content/learning/physics-math-for-ai/dielectric-interface-free-bound-charge.ko.md": "d1bf645a6dce7a693261230a7cd7261cb66d1400054e5b353f0dd94b35c38f61",
+    "content/learning/physics-math-for-ai/normal-incidence-impedance-interface.en.md": "b471b9817b9ccd28530bede8dc7184debac10c5497adc776eab49145343afc4f",
+    "content/learning/physics-math-for-ai/normal-incidence-impedance-interface.ko.md": "d4c0eef2b544cfab5ac524719777d1e63097a832b99c83ab12159d4e9427edc7",
+    "public/assets/learning/electromagnetism-dipole-layer-limit.en.svg": "4dc71b47c5e7f5003d580d62b44bc4611fc3a965b73fbcd729c50e631db931f3",
+    "public/assets/learning/electromagnetism-dipole-layer-limit.ko.svg": "fc888e5107ee2b39f84a7855cc0ee03d0b0f3e057fcb82d9e2688ebeb91d6492",
+    "public/assets/learning/electromagnetism-coherent-sheet-absorption.en.svg": "b1b6082f44bd73cc010533eafb7f2d15728b48ef387e7b82e9eb17748639955f",
+    "public/assets/learning/electromagnetism-coherent-sheet-absorption.ko.svg": "b3aeeb75adf61fa4d1a0ceb7667ca3350a98851b1fc87a210b8a30ba9faafdcc"
+  },
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-gauge-freedom.test.ts",
+      "scripts/learning-gauge-freedom-integration.test.ts",
+      "scripts/learning-gauge-freedom-foundation.test.ts",
+      "scripts/learning-gauge-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 53,
+    "independentChecks": {
+      "boundaryEnergyInfluxIdentities": 12,
+      "constantMeanBlindCases": 12,
+      "exactnessDimensionChecks": 9,
+      "forcedModeEnergyIdentities": 60,
+      "incidenceComplexes": 9,
+      "incomingPotentialResidualChecks": 48,
+      "invalidGeometryRejections": 4,
+      "invalidWeightRejections": 2,
+      "periodicWrappingObstructions": 27,
+      "puncturedDomainObstructions": 1,
+      "pureGaugeReconstructions": 36,
+      "quotientOrbitChecks": 144,
+      "restrictedBoundaryCounterexamples": 3,
+      "singleFaceClosedForms": 12,
+      "standingModeQuadratures": 36,
+      "uniformSourceHistoryEqualities": 48,
+      "weightedNormalAndCurlChecks": 36
+    },
+    "nativeBridge": {
+      "spacetimeLoopCases": 36,
+      "timeGaugeDirectEvaluations": 288,
+      "nonzeroPartialLoopDefects": 12,
+      "standingEnergyGrids": 27,
+      "standingDirectEvaluations": 864,
+      "zeroAmplitudeGrids": 9,
+      "constantOffsetDirectEvaluations": 9,
+      "totalDirectEvaluations": 1161,
+      "note": "Native normalized potentials integrated around oriented x-time rectangles using exact polynomial Simpson/trapezoid rules; no grid projection, boundary forcing or source forcing controls introduced. Periodic standing energies obtained by 32 actual derivative samples per case, independently compared to modal integral."
+    },
+    "pairedResearch": {
+      "displayedEquations": 36,
+      "perManuscriptEquations": [
+        9,
+        9
+      ],
+      "pythonCellsExecuted": 4,
+      "researchQuestionsWithExplanations": 12,
+      "originalExercisesPreserved": 24,
+      "pythonOutputsEqualMarkdownTables": true
+    },
+    "foundationExerciseGuard": {
+      "path": "scripts/learning-gauge-freedom-foundation.test.ts",
+      "before": "8dfbe80fa6b52976c3bde93928563fec5a45e0979469c87b2f07b599ccde9bec",
+      "after": "ac1d94e0da947621aca064f34f71472634fb16b1436dd1aff8952b6647e04bc1",
+      "reason": "Keep exactly six original answered exercises within the original exercise section; supplementary three answers checked separately, original manuscript bodies also hash-preserved."
+    },
+    "rendering": {
+      "researchAstEmphasisCount": 0,
+      "literalSymbols": [
+        "delta-theta",
+        "g_tau"
+      ],
+      "literalSymbolsCheckedInAll16States": true
+    },
+    "browser": {
+      "states": 16,
+      "expandedGuides": 6,
+      "explainedQuizzes": 4,
+      "conceptSelections": 8,
+      "persistenceCompletionGroups": 2,
+      "pageErrors": 0,
+      "axeViolations": 0,
+      "reportSha256": "c18d4df7861f49aa5ecaaa191ae4a5ecb697022b4bf0617cecf6c2e2dd0d5bbb",
+      "rows": [
+        {
+          "id": "time-dependent-gauge-field-invariance",
+          "lang": "ko",
+          "width": 320,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "lorenz-gauge-source-initial-compatibility",
+          "lang": "ko",
+          "width": 320,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "time-dependent-gauge-field-invariance",
+          "lang": "ko",
+          "width": 768,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "lorenz-gauge-source-initial-compatibility",
+          "lang": "ko",
+          "width": 768,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "time-dependent-gauge-field-invariance",
+          "lang": "ko",
+          "width": 1440,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "lorenz-gauge-source-initial-compatibility",
+          "lang": "ko",
+          "width": 1440,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "time-dependent-gauge-field-invariance",
+          "lang": "en",
+          "width": 320,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "lorenz-gauge-source-initial-compatibility",
+          "lang": "en",
+          "width": 320,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "time-dependent-gauge-field-invariance",
+          "lang": "en",
+          "width": 768,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "lorenz-gauge-source-initial-compatibility",
+          "lang": "en",
+          "width": 768,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "time-dependent-gauge-field-invariance",
+          "lang": "en",
+          "width": 1440,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "lorenz-gauge-source-initial-compatibility",
+          "lang": "en",
+          "width": 1440,
+          "theme": "light",
+          "violations": 0
+        },
+        {
+          "id": "time-dependent-gauge-field-invariance",
+          "lang": "ko",
+          "width": 1440,
+          "theme": "dark",
+          "violations": 0
+        },
+        {
+          "id": "lorenz-gauge-source-initial-compatibility",
+          "lang": "ko",
+          "width": 1440,
+          "theme": "dark",
+          "violations": 0
+        },
+        {
+          "id": "time-dependent-gauge-field-invariance",
+          "lang": "en",
+          "width": 1440,
+          "theme": "dark",
+          "violations": 0
+        },
+        {
+          "id": "lorenz-gauge-source-initial-compatibility",
+          "lang": "en",
+          "width": 1440,
+          "theme": "dark",
+          "violations": 0
+        }
+      ]
+    },
+    "build": {
+      "routes": 1893,
+      "htmlPages": 1888,
+      "exitCodes": {
+        "tests": {
+          "exitCode": 0,
+          "finishedAtUtc": "2026-11-12T19:17:26.197671+00:00"
+        },
+        "lint": {
+          "exitCode": 0,
+          "finishedAtUtc": "2026-11-12T19:11:22.371843+00:00"
+        },
+        "content": {
+          "exitCode": 0,
+          "finishedAtUtc": "2026-11-12T19:12:18.065060+00:00"
+        },
+        "build": {
+          "exitCode": 0,
+          "finishedAtUtc": "2026-11-12T19:15:39.318445+00:00"
+        },
+        "types": {
+          "exitCode": 0,
+          "finishedAtUtc": "2026-11-12T19:17:42.755473+00:00"
+        },
+        "export": {
+          "exitCode": 0,
+          "finishedAtUtc": "2026-11-12T19:17:35.899776+00:00"
+        },
+        "browser": {
+          "exitCode": 0,
+          "finishedAtUtc": "2026-11-12T19:18:43.816109+00:00"
+        }
+      }
+    },
+    "frozenInputs": {
+      "content/learning/physics-math-for-ai/time-dependent-gauge-field-invariance.en.md": "5377e3688b45e34c6be938afbdc5cc77e944122f360f38ba16fa49a7b11503a7",
+      "public/assets/learning/electromagnetism-spacetime-gauge-projection.en.svg": "fab4ab3384d1bd890b965b46e5a88d6e613f7a876fd1c403c0c931231df292a4",
+      "content/learning/physics-math-for-ai/time-dependent-gauge-field-invariance.ko.md": "fe5660a65e7d173265268353381bec18c55fe44a807bcfe83da0ecfdd7703cb4",
+      "public/assets/learning/electromagnetism-spacetime-gauge-projection.ko.svg": "286fe7a76abfc9155b06f56a8da57181c6870f66b05b3e826c8da17876409dcf",
+      "content/learning/physics-math-for-ai/lorenz-gauge-source-initial-compatibility.en.md": "655cc502fe1cbdd7a5e0fbbe450cd5621afe4e578933c4fa965f346d1927da3a",
+      "public/assets/learning/electromagnetism-lorenz-constraint-energy.en.svg": "1d585481f73122d3735a4b120bc189a5902addaa516ddafca2350593d7d5a2ba",
+      "content/learning/physics-math-for-ai/lorenz-gauge-source-initial-compatibility.ko.md": "328d1de5e9335c2c5cb5be26ee5ec93ba2613ec87cc5f1b44afe7a929732540a",
+      "public/assets/learning/electromagnetism-lorenz-constraint-energy.ko.svg": "9df33223eb5c0206517c8e3e598d3f95984fc39d1d89c2c506411338ade2de21"
+    },
+    "html": [
+      {
+        "path": "out/book/online/physics-math-for-ai/time-dependent-gauge-field-invariance/index.html",
+        "sha256": "3550951ea32792b83046bff53e7bc34668f224db7daf2fa9abeeb08cb9003327"
+      },
+      {
+        "path": "out/book/online/physics-math-for-ai/lorenz-gauge-source-initial-compatibility/index.html",
+        "sha256": "7f0ece0ceb1177800ecb11d495701e781d45dd329420dbaae8f7d910788212cb"
+      }
+    ],
+    "manualReviews": [
+      {
+        "path": ".runtime/learning/electromagnetism-spacetime-gauge-projection.en.png",
+        "sha256": "72c74200495667c46bc459fdd1b6f9a878aaf441b7579cf983bd17afa4aab289"
+      },
+      {
+        "path": ".runtime/learning/gauge-research-time-dependent-gauge-field-invariance-en-320.png",
+        "sha256": "5403feb29b6c3ad68dfe693aab94977ebc5667a54d347e6848812fc32253ce98"
+      },
+      {
+        "path": ".runtime/learning/electromagnetism-spacetime-gauge-projection.ko.png",
+        "sha256": "a415362506f1c4a90066c6271d8cfb16f998107bce3ce72912f8817e3ca9da6c"
+      },
+      {
+        "path": ".runtime/learning/gauge-research-time-dependent-gauge-field-invariance-ko-320.png",
+        "sha256": "e3c2a679c585c89410aa756f1fb65bcc897e0588a5b67a7d6c1490a2e9c32159"
+      },
+      {
+        "path": ".runtime/learning/electromagnetism-lorenz-constraint-energy.en.png",
+        "sha256": "a5f6961146e02b608980736807700010dfb86956ae029dd4181c74539d271524"
+      },
+      {
+        "path": ".runtime/learning/gauge-research-lorenz-gauge-source-initial-compatibility-en-320.png",
+        "sha256": "6f07439bc1750d4601640630fe5f7bb113b83e341d32c1a317fd35f304bde7b3"
+      },
+      {
+        "path": ".runtime/learning/electromagnetism-lorenz-constraint-energy.ko.png",
+        "sha256": "a1f5813201ba7b24f77189b89f7f69791ffec1d4ba35441042824a99ef0209e0"
+      },
+      {
+        "path": ".runtime/learning/gauge-research-lorenz-gauge-source-initial-compatibility-ko-320.png",
+        "sha256": "f51eb3c575f212e27700265bd8a2fc6a775a056ae138c60163cbb40a77906922"
+      }
+    ],
+    "logs": {
+      ".runtime/learning/gauge-research-tests.log": "efecda65f0c123ae7240ce9c04aa26595aa736fa38129eec3ac7e0bbda8b6fb9",
+      ".runtime/learning/gauge-research-lint.log": "3be436cfc280576162c8988ab0bf2da58c1cb1af605d4cca297edd0b2c7c9997",
+      ".runtime/learning/gauge-research-content.log": "cae16334d0d816cb4f9981be8422454c5186c14b964768b00780286cd813b72d",
+      ".runtime/learning/gauge-research-build.log": "ffab249ea04884847bb599f2181e4026d4d3e28e10649f4270311eab07a8a6ca",
+      ".runtime/learning/gauge-research-types.log": "6d339cc3c6b097244df96011008e228f3bc9a23bcef588e7d89e6265838f6660",
+      ".runtime/learning/gauge-research-export.log": "7693d86189e4ec43f9df04724c2cbf33caf0d974a41cccb2aa2004d36af557d2",
+      ".runtime/learning/gauge-research-browser.log": "1aab1e6a45400ae26cd4a02e850b3c72cddc1dd166fb1d9a8c7389ece67428e1"
+    },
+    "commands": {
+      "independent": "python3 scripts/learning/verify-gauge-research.py --json",
+      "selectedTests": "node_modules/.bin/tsx --test --test-concurrency=2 scripts/learning-gauge-freedom.test.ts scripts/learning-gauge-freedom-integration.test.ts scripts/learning-gauge-freedom-foundation.test.ts scripts/learning-gauge-research.test.ts scripts/learning-manuscript-preservation.test.ts",
+      "browser": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_GAUGE_RESEARCH_REPORT=.runtime/learning/gauge-research-browser.json node scripts/check-gauge-research.cjs",
+      "buildAndChecks": [
+        "npm run lint",
+        "npm run validate:content",
+        "npm run build",
+        "npm run typecheck",
+        "npm run check:export"
+      ]
+    }
+  },
+  "toolingSha256": {
+    "scripts/learning/verify-gauge-research.py": "a22e55e4ad4f320c8621df4224a7476ff58ed44e49d2130d0e9da3d65aa359a9",
+    "scripts/check-gauge-research.cjs": "3c24ff4e9a68c2ce2553284d9c3b6bc986b83c835345bc3dcbe623dfbf0b6d58",
+    "scripts/learning-gauge-freedom.test.ts": "5113229c34efc463cc213d8d08da5875bf06815068b545b8a4b108752461e100",
+    "scripts/learning-gauge-freedom-integration.test.ts": "37dca6737ab2ab9d03c762a373824768f1547898cb49a048d48f308374469a88",
+    "scripts/learning-gauge-freedom-foundation.test.ts": "ac1d94e0da947621aca064f34f71472634fb16b1436dd1aff8952b6647e04bc1",
+    "scripts/learning-gauge-research.test.ts": "6aa2cc1f425d6b16937e226af619141309fd71ec3b077a957e606c6aaa26e146",
+    "scripts/learning-manuscript-preservation.test.ts": "54bd28bb2268aea6dcad13a14c256df644e5ad6a6ef3805ab5462c6e9cc031b1"
+  },
+  "sources": [
+    {
+      "url": "https://www.feynmanlectures.caltech.edu/II_18.html",
+      "scope": "Section 18-6: classical potential definitions, coordinated gauge and separated potential wave equations. Discrete exactness, metric projection, topology/boundary qualifications and forced constraint energy examples derived in these manuscripts, not attributed to the source."
+    }
+  ],
+  "remainingReview": {
+    "reviewedDomains": 41,
+    "reviewedOriginalTopics": 405,
+    "pendingDomains": 10,
+    "pendingOriginalTopics": 104,
+    "electromagnetismUnitsRemaining": 4
+  },
+  "nextUnits": [
+    "rc-circuit-field-closure-approximation",
+    "finite-area-coil-sensor-observability"
+  ],
+  "curriculumComplete": false,
+  "publicDeploymentConfirmed": false
+}
