@@ -104,6 +104,118 @@ Compare position against the constant-velocity reference before reading a single
 
 The calculation uses reduced rational arithmetic for bounded rational controls. Polynomial action and its integration-by-parts identity are exact for those controls. An independent five-node Boole quadrature integrates the degree-five gauged Lagrangian exactly. Floating-point plotting is a display of these values, not a numerical dynamics integrator.
 
+## Research extension: transform terminal costs with the action gauge
+
+Suppose the second photograph is a preference rather than an exact endpoint. The optimizer may choose a nearby final position and pay a penalty. A boundary term that was constant in the fixed-endpoint problem now varies across candidates. Keeping the interior Newton equation unchanged is not enough to keep this optimization task unchanged.
+
+### Define a soft endpoint with consistent units
+
+Fix $a$ and the physical times $0,T$, with $m,T,\rho>0$. Allow the final position $b$ to vary over the whole real line, without a terminal position bound. Use an action-valued terminal cost:
+
+$$
+\mathcal J_\gamma[q]=\int_0^T\left(\frac m2\dot q^2+\gamma q\dot q\right)dt+\Phi_0(b),\qquad
+q(0)=a,\quad b=q(T)\in\mathbb R\ \text{free},\qquad
+\Phi_0(b)=\frac\rho2(b-b_{\rm target})^2.
+$$
+
+Both $\gamma$ and $\rho$ have units kg/s, so the integral and terminal cost have units J s. The weight $\rho$ is not a spring stiffness in N/m. The terminal penalty is part of the boundary-value objective; it does not add a force to the free-particle equation $m\ddot q=0$. This is a separate Python companion to the native prescribed-path experiment.
+
+### Reduce the entire path problem to one endpoint
+
+For any admissible path with a square-integrable velocity, subtract the straight path joining its own endpoints. The remaining variation has zero endpoint traces. The kinetic cross term integrates to zero, giving the exact decomposition:
+
+$$
+q(t)=a+\frac{b-a}{T}t+\eta(t),\quad\eta\in H_0^1(0,T),\qquad
+\mathcal J_\gamma[q]=j_\gamma(b)+\frac m2\int_0^T\dot\eta^2dt,
+\quad j_\gamma(b)=\frac{m(b-a)^2}{2T}+\frac\gamma2(b^2-a^2)+\frac\rho2(b-b_{\rm target})^2.
+$$
+
+For every fixed $b$, the extra integral is nonnegative and vanishes only for $\eta=0$. Thus minimizing $j_\gamma(b)$ solves the full path problem, rather than only a chosen polynomial family. Its linear and quadratic coefficients are:
+
+$$
+h_\gamma=\frac mT+\gamma+\rho,\qquad
+d=\frac{ma}{T}+\rho b_{\rm target},\qquad
+j_\gamma'(b)=h_\gamma b-d,\qquad j_\gamma''(b)=h_\gamma.
+$$
+
+Integration by parts also gives the natural terminal condition, because $\delta q(0)=0$ while $\delta q(T)$ is arbitrary:
+
+$$
+m\dot q(T)+\gamma b+\rho(b-b_{\rm target})=0,\qquad
+b_{\rm stat}=\frac d{h_\gamma}\ (h_\gamma\ne0),\qquad
+j_\gamma(b_{\rm stat}+z)-j_\gamma(b_{\rm stat})=\frac{h_\gamma}2z^2.
+$$
+
+If $h_\gamma>0$, the endpoint and the full path have one global minimum. If $h_\gamma<0$, the endpoint objective is unbounded below: its stationary point is a maximum only within the straight-path endpoint family. The full functional is a saddle there, since a fixed-endpoint bow increases kinetic action. If $h_\gamma=0$ and $d\ne0$, the remaining linear objective is unbounded below; if both vanish, every straight endpoint path minimizes the same constant value. A vanishing first variation alone cannot distinguish these cases.
+
+### Keep the same task by correcting the terminal cost
+
+The action gauge contributes $\gamma(b^2-a^2)/2$. Subtract this same boundary quantity from the terminal cost:
+
+$$
+\Phi_\gamma(b)=\Phi_0(b)-\frac\gamma2(b^2-a^2),\qquad
+\mathcal J_\gamma^{\rm corrected}[q]
+=\int_0^T L_\gamma\,dt+\Phi_\gamma(b)
+=\mathcal J_0[q]\quad\text{for every admissible }q.
+$$
+
+This is pointwise equality of objectives for all admissible paths, not merely equality at an optimum. The initial-position term is constant but is retained to make the numerical values equal too. The corrected natural condition and minimizer are:
+
+$$
+m\dot q(T)+\rho(b-b_{\rm target})=0,\qquad
+b_{\rm min}^{\rm corrected}
+=\frac{ma/T+\rho b_{\rm target}}{m/T+\rho},\qquad \frac mT+\rho>0.
+$$
+
+The separate corrected terminal term need not remain nonnegative; the total objective remains exactly the original positive quadratic problem. Treating each gauge-dependent piece as an independently meaningful physical energy would miss that equality.
+
+![Free-endpoint objective curves and terminal gauge compensation](/assets/learning/analytical-terminal-cost.en.svg)
+
+For $m=1$ kg, $T=1$ s, $a=0$, $b_{\rm target}=1$ m and $\rho=1$ kg/s:
+
+| $\gamma$ / (kg/s) | $h_\gamma$ / (kg/s) | Uncorrected minimizing $b$ / m | Corrected minimizing $b$ / m |
+|---|---|---|---|
+| -3 | -1 | No minimum | 1/2 |
+| -2 | 0 | No minimum | 1/2 |
+| -1 | 1 | 1 | 1/2 |
+| 0 | 2 | 1/2 | 1/2 |
+| 1 | 3 | 1/3 | 1/2 |
+
+At $\gamma=-3$, the stationary endpoint is $b=-1$ m, but it is not a minimum. All straight paths still have zero Newton residual. For AI trajectory objectives, a learned Lagrangian gauge and a soft observation cost must be transformed together if they are intended to describe the same task.
+
+### Execute and explain the boundary problem
+
+This exact rational cell reproduces the table and the pointwise cancellation.
+
+```python
+from fractions import Fraction as Q
+
+# SI: m=1 kg, T=1 s, rho=1 kg/s, a=0 m, target=1 m.
+def reduced(b, gamma):
+    b, gamma = Q(b), Q(gamma)
+    return b*b/2+gamma*b*b/2+(b-1)**2/2
+
+for gamma in map(Q, [-3, -2, -1, 0, 1]):
+    h = 2+gamma
+    minimum = Q(1)/h if h > 0 else None
+    corrected_minimum = Q(1, 2)
+    for b in map(Q, [-1, 0, 1, 2]):
+        assert reduced(b, gamma)-gamma*b*b/2 == reduced(b, 0)
+    if h:
+        stationary = Q(1)/h
+        assert h*stationary-1 == 0
+        assert reduced(stationary+1, gamma)-reduced(stationary, gamma) == h/2
+    print(gamma, h, minimum, corrected_minimum)
+# None means no minimum in THESE examples (the linear drive is nonzero).
+# A stationary endpoint with h<0 is not a minimum of the functional.
+```
+
+**Research questions with answers**
+
+- Why does a total derivative affect the uncorrected optimizer? **Answer:** The free endpoint makes its boundary value variable, and the original terminal cost was left unchanged.
+- Is a concave reduced endpoint maximum a maximum over all paths? **Answer:** No. Fixed-endpoint shape variations increase kinetic action, so the full stationary point is a saddle.
+- Does $h_\gamma=0$ always mean no minimizer? **Answer:** No. With $d=0$, every straight endpoint path is a minimizer; with $d\ne0$, the linear objective is unbounded below.
+
 ## Exercises with explanations
 
 1. With m=T=1, a=0, b=1 and A=B=1, calculate S₀. Answer: (1+1/3+1/5)/2=23/30 Js. Positive excess action shows this trial is above the constant-velocity path.

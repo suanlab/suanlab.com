@@ -123,6 +123,135 @@ With T=2 s the first coefficient is zero. The same amplitude now defines a solut
 
 With T=2.5 s the ratio is 1.25. The first-mode trial has action −9π²/160 Js, while a third-mode trial has positive action. The zero path is stationary with a saddle action, and the physical restoring force remains unchanged.
 
+## Research extension: count all negative directions and resolve conjugate endpoints
+
+Two displayed modes can establish a saddle without counting every direction that decreases action. To see the full picture, keep the same fixed-zero endpoints but allow all $H_0^1(0,T)$ variations. The result also explains why recovering an initial velocity from two endpoint positions can fail while the initial-value dynamics remain regular.
+
+### Keep action and its second variation distinct
+
+At the stationary zero path, the first variation vanishes. The second variation is twice the exact action difference:
+
+$$
+\mathcal Q[\eta]=\delta^2S[\eta]
+=m\int_0^T(\dot\eta^2-\omega_0^2\eta^2)dt,\qquad
+S[\eta]-S[0]=\frac12\mathcal Q[\eta],\quad
+R=\frac{\omega_0T}{\pi}\ge0.
+$$
+
+The mass and horizon are positive. For a finite horizon and finite frequency, the sine expansion used earlier diagonalizes this entire quadratic form:
+
+$$
+\eta(t)=\sum_{n\ge1}c_n\sin\frac{n\pi t}{T},\qquad
+\mathcal Q[\eta]=\sum_{n\ge1}h_nc_n^2,\qquad
+h_n=\frac{m\pi^2}{2T}(n^2-R^2).
+$$
+
+The amplitudes $c_n$ have length units, and $h_n$ has units kg/s, giving action units to each term. This is not the instantaneous mechanical-energy spectrum. The $H_0^1$ condition ensures convergence of the derivative-weighted series.
+
+### Count the full Morse index and the zero directions
+
+Define the Morse index as the largest dimension of a subspace on which the second variation is negative definite. Define nullity as the dimension of the kernel of its associated bilinear form, not the set of all vectors whose quadratic value happens to be zero. Here:
+
+$$
+\operatorname{index}(\mathcal Q)=\#\{n\in\{1,2,3,\ldots\}:n<R\}
+=\max(0,\lceil R\rceil-1),\qquad
+\operatorname{nullity}(\mathcal Q)=
+\begin{cases}1,&R\in\{1,2,3,\ldots\},\\0,&\text{otherwise}.\end{cases}
+$$
+
+The negative sine modes span a negative-definite subspace. Any subspace with one more dimension contains a nonzero variation whose coefficients in those negative modes vanish; its quadratic value is nonnegative. This proves the maximum dimension in the full space. Exactly one coefficient vanishes at a positive integer $R$, while infinitely many higher modes remain positive. Cancellation between a positive and negative term can give zero quadratic value without giving a kernel vector.
+
+![Full Fourier curvature signs and exact oscillator Morse index](/assets/learning/analytical-action-index.en.svg)
+
+| $R$ | Negative directions | Kernel dimension | Nature at the zero path |
+|---|---|---|---|
+| 1/2 | 0 | 0 | Strict minimum |
+| 1 | 0 | 1 | Minimum with one zero mode |
+| 3/2 | 1 | 0 | Saddle |
+| 2 | 1 | 1 | Saddle with one zero mode |
+| 5/2 | 2 | 0 | Saddle |
+| 3 | 2 | 1 | Saddle with one zero mode |
+
+At $R=5/2$, modes one and two are negative although the native plot shows only modes one and three. Its saddle classification is correct, but that two-mode view does not count the full negative subspace. At $R=2$, mode two is a zero mode and mode one is negative: a zero direction does not make the reference a minimum. Horizons beyond the native range are explored by the supplementary cell, not additional sliders.
+
+### Connect a zero mode to the endpoint map
+
+For $\omega_0>0$, a general initial position $a$ and velocity $v_0$ give:
+
+$$
+q(t)=a\cos(\omega_0t)+\frac{v_0}{\omega_0}\sin(\omega_0t),\qquad
+b=a\cos(\omega_0T)+\frac{v_0}{\omega_0}\sin(\omega_0T),\quad \omega_0>0.
+$$
+
+At an integer horizon, the coefficient carrying initial velocity into the final position vanishes:
+
+$$
+\omega_0T=N\pi\ \Longrightarrow\ b=(-1)^Na,\qquad
+\eta_N(t)=c_N\sin\frac{N\pi t}{T},\quad
+\eta_N(0)=\eta_N(T)=0,\quad h_N=0.
+$$
+
+If $b=(-1)^Na$, every initial velocity gives an admissible classical path, with different initial-value data. If this compatibility condition fails, there is no classical path joining the specified positions in that duration. For example, at $R=1$, $a=1$ m requires $b=-1$ m; choosing $b=0$ instead gives no stationary classical path. The original zero-endpoint family is always compatible. At later integer horizons its family still has the negative directions counted above.
+
+### Separate ill-conditioned boundary recovery from initial-value motion
+
+Away from integer horizons, solving for initial velocity gives the exact endpoint sensitivity:
+
+$$
+v_0=\frac{\omega_0[b-a\cos(\omega_0T)]}{\sin(\omega_0T)},\qquad
+\frac{\partial v_0}{\partial b}=\frac{\omega_0}{\sin(\omega_0T)},\quad
+\sin(\omega_0T)\ne0.
+$$
+
+Near a conjugate horizon, a small endpoint error can produce a large inferred-velocity error. The gain has units s$^{-1}$. For $\omega_0=\pi$ rad/s and $R=0.99$, an endpoint error of $0.001$ m changes the inferred velocity by about $0.100016$ m/s; at $R=0.5$ it changes by about $0.003142$ m/s. These are deterministic inverse sensitivities, not stochastic error bars.
+
+The complete initial-to-final state map remains invertible:
+
+$$
+\begin{pmatrix}q(T)\\\dot q(T)\end{pmatrix}
+=\begin{pmatrix}\cos(\omega_0T)&\sin(\omega_0T)/\omega_0\\-\omega_0\sin(\omega_0T)&\cos(\omega_0T)\end{pmatrix}
+\begin{pmatrix}a\\v_0\end{pmatrix},\qquad\det=1.
+$$
+
+At an integer horizon it is simply $(-1)^N I$. The information loss occurs when only endpoint positions are retained. For zero frequency, use the regular free-particle limit $q(T)=a+v_0T$, whose inverse gain is $1/T$. For AI boundary reconstruction, record observation type, compatibility and conditioning; a stable initial-value law does not guarantee a well-conditioned endpoint inverse.
+
+### Execute exact classifications before numerical gains
+
+Integer critical horizons are detected with rational arithmetic before any floating-point sine division. `None` denotes an undefined endpoint inverse, not a universal assertion that no path exists.
+
+```python
+from fractions import Fraction as Q
+from math import pi, sin
+
+def signature(ratio):
+    r = Q(ratio)
+    if r < 0:
+        raise ValueError("Nonnegative ratio required")
+    ceiling = (r.numerator+r.denominator-1)//r.denominator
+    return max(0, ceiling-1), int(r > 0 and r.denominator == 1)
+
+for r in map(Q, ['1/2', '1', '3/2', '2', '5/2', '3']):
+    index, nullity = signature(r)
+    signs = [Q(n*n)-r*r for n in range(1, 7)]
+    assert sum(x < 0 for x in signs) == index
+    assert sum(x == 0 for x in signs) == nullity
+    print(r, index, nullity)
+
+# Here omega=pi rad/s and T=r seconds; r must be positive.
+for r in map(Q, ['1/2', '99/100', '1', '101/100']):
+    gain = None if r.denominator == 1 else pi/sin(float(r)*pi)
+    print('endpoint inverse gain:', r, gain)
+# At an integer r, the endpoint inverse is undefined: compatible data
+# allow a family; incompatible data allow no classical solution.
+# The Fourier proof, not this finite list, establishes the full index.
+```
+
+**Research questions with answers**
+
+- Does a zero quadratic value identify a null mode? **Answer:** No. In a saddle, positive and negative terms can cancel; a null mode lies in the kernel of the bilinear form.
+- At $R=2$, is the zero path a flat minimum? **Answer:** No. Mode two is null, but mode one is negative, so it is a degenerate saddle.
+- Does a singular endpoint inverse contradict unique initial-value dynamics? **Answer:** No. Specifying $(a,v_0)$ still selects one trajectory; retaining only $(a,b)$ can discard velocity information or impose incompatible data.
+
 ## Exercises with explanations
 
 1. At the critical horizon choose A=0 and B=1. Is this path stationary? No. D₃ is positive, so the third-mode residual and action are nonzero.

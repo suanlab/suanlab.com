@@ -103,6 +103,118 @@ m=T=1, a=0, b=1, A=B=0이면 속도는 1 m/s, 운동에너지는 1/2 J, 작용�
 
 유리수 조절값에 대한 다항식 계산은 약분된 유리수로 수행한다. 독립 검증에서는 다섯 점 Boole 적분을 사용한다. γqv는 최대 5차 다항식이어서 이 적분법이 정확히 적분할 수 있다. 화면에 그리는 소수값과 운동방정식을 수치적으로 푸는 알고리즘은 구분한다.
 
+## 연구 확장: 작용의 게이지와 끝점 비용을 함께 바꾸기
+
+두 번째 사진이 정확한 끝점 조건이 아니라 선호하는 위치라고 하자. 최적화기는 근처의 다른 끝점을 선택하고 벌점을 지불할 수 있다. 끝점 고정 문제에서 상수였던 경계항이 이제 후보마다 달라진다. 내부 Newton 방정식이 같다는 사실만으로 최적화 과제까지 같게 유지되지는 않는다.
+
+### 단위를 맞춘 부드러운 끝점 조건 정의하기
+
+$a$와 물리적 시각 $0,T$를 고정하고 $m,T,\rho>0$으로 둔다. 최종 위치 $b$는 끝점 위치의 범위 제한 없이 실수 전체에서 자유롭게 바꾼다. 끝점 비용도 작용의 단위를 가져야 한다.
+
+$$
+\mathcal J_\gamma[q]=\int_0^T\left(\frac m2\dot q^2+\gamma q\dot q\right)dt+\Phi_0(b),\qquad
+q(0)=a,\quad b=q(T)\in\mathbb R\ \text{free},\qquad
+\Phi_0(b)=\frac\rho2(b-b_{\rm target})^2.
+$$
+
+$\gamma$와 $\rho$의 단위는 kg/s이며, 적분과 끝점 비용의 단위는 모두 J s다. 가중치 $\rho$는 N/m 단위의 용수철 강성이 아니다. 끝점 벌점은 경계값 목적함수의 일부이며 자유 입자의 방정식 $m\ddot q=0$에 힘을 더하지 않는다. 이 예제는 기존의 지정 경로 실습과 별도로 Python에서 실행한다.
+
+### 전체 경로 문제를 끝점 하나로 축약하기
+
+속도의 제곱 적분이 유한한 허용 경로에서 그 경로의 양 끝점을 잇는 직선 경로를 뺀다. 남은 변분의 양 끝값은 0이다. 운동에너지 교차 항의 적분이 사라지므로 다음의 정확한 분해를 얻는다.
+
+$$
+q(t)=a+\frac{b-a}{T}t+\eta(t),\quad\eta\in H_0^1(0,T),\qquad
+\mathcal J_\gamma[q]=j_\gamma(b)+\frac m2\int_0^T\dot\eta^2dt,
+\quad j_\gamma(b)=\frac{m(b-a)^2}{2T}+\frac\gamma2(b^2-a^2)+\frac\rho2(b-b_{\rm target})^2.
+$$
+
+각각의 고정한 $b$에서 추가 적분은 음이 아니고 $\eta=0$일 때만 0이다. 따라서 $j_\gamma(b)$의 최소화는 특정 다항식 가족만이 아니라 전체 경로 문제를 푼다. 이 끝점 함수의 일차·이차 계수는 다음과 같다.
+
+$$
+h_\gamma=\frac mT+\gamma+\rho,\qquad
+d=\frac{ma}{T}+\rho b_{\rm target},\qquad
+j_\gamma'(b)=h_\gamma b-d,\qquad j_\gamma''(b)=h_\gamma.
+$$
+
+$\delta q(0)=0$이고 $\delta q(T)$는 자유롭기 때문에 부분적분에서 자연 끝점 조건도 얻는다.
+
+$$
+m\dot q(T)+\gamma b+\rho(b-b_{\rm target})=0,\qquad
+b_{\rm stat}=\frac d{h_\gamma}\ (h_\gamma\ne0),\qquad
+j_\gamma(b_{\rm stat}+z)-j_\gamma(b_{\rm stat})=\frac{h_\gamma}2z^2.
+$$
+
+$h_\gamma>0$이면 끝점과 전체 경로에 유일한 전역 최소가 있다. $h_\gamma<0$이면 끝점 목적함수는 아래로 유계가 아니다. 그 정상점은 직선 경로의 끝점 가족 안에서만 최대다. 끝점을 고정한 휜 경로는 운동 작용을 증가시키므로 전체 함수공간에서는 안장이다. $h_\gamma=0$, $d\ne0$이면 남은 일차 목적함수도 아래로 유계가 아니다. 둘 다 0이면 끝점이 다른 모든 직선 경로가 같은 상수 최솟값을 이룬다. 일차 변분이 0이라는 사실만으로 이 경우들을 구분할 수 없다.
+
+### 끝점 비용을 보정해 같은 과제를 유지하기
+
+작용의 게이지는 $\gamma(b^2-a^2)/2$를 더한다. 끝점 비용에서 같은 경계량을 빼자.
+
+$$
+\Phi_\gamma(b)=\Phi_0(b)-\frac\gamma2(b^2-a^2),\qquad
+\mathcal J_\gamma^{\rm corrected}[q]
+=\int_0^T L_\gamma\,dt+\Phi_\gamma(b)
+=\mathcal J_0[q]\quad\text{for every admissible }q.
+$$
+
+이는 최적점에서만 성립하는 관계가 아니라 모든 허용 경로에서 목적함수 값이 같은 관계다. 초기 위치 항은 상수이지만 수치값까지 같게 하기 위해 남겨 두었다. 보정한 자연 끝점 조건과 최소점은 다음과 같다.
+
+$$
+m\dot q(T)+\rho(b-b_{\rm target})=0,\qquad
+b_{\rm min}^{\rm corrected}
+=\frac{ma/T+\rho b_{\rm target}}{m/T+\rho},\qquad \frac mT+\rho>0.
+$$
+
+보정한 끝점 항만 따로 보면 음이 될 수도 있다. 그러나 전체 목적함수는 원래의 양의 이차 문제와 정확히 같다. 게이지에 의존하는 각 조각을 독립적인 물리적 에너지로 해석하면 이 관계를 놓치게 된다.
+
+![자유 끝점 목적함수 곡선과 끝점 게이지 보정](/assets/learning/analytical-terminal-cost.ko.svg)
+
+$m=1$ kg, $T=1$ s, $a=0$, $b_{\rm target}=1$ m, $\rho=1$ kg/s로 계산하면 다음과 같다.
+
+| $\gamma$ / (kg/s) | $h_\gamma$ / (kg/s) | 미보정 최소 끝점 $b$ / m | 보정한 최소 끝점 $b$ / m |
+|---|---|---|---|
+| -3 | -1 | 최소 없음 | 1/2 |
+| -2 | 0 | 최소 없음 | 1/2 |
+| -1 | 1 | 1 | 1/2 |
+| 0 | 2 | 1/2 | 1/2 |
+| 1 | 3 | 1/3 | 1/2 |
+
+$\gamma=-3$에서 정상 끝점은 $b=-1$ m이지만 최소가 아니다. 모든 직선 경로의 Newton 잔차는 여전히 0이다. AI 궤적 목적함수에서 같은 과제를 기술하려면 학습한 Lagrangian의 게이지와 부드러운 관측 비용을 함께 변환해야 한다.
+
+### 경계값 문제를 실행하고 설명하기
+
+정확한 유리수 산술로 표와 점별 상쇄를 재현한다.
+
+```python
+from fractions import Fraction as Q
+
+# SI: m=1 kg, T=1 s, rho=1 kg/s, a=0 m, target=1 m.
+def reduced(b, gamma):
+    b, gamma = Q(b), Q(gamma)
+    return b*b/2+gamma*b*b/2+(b-1)**2/2
+
+for gamma in map(Q, [-3, -2, -1, 0, 1]):
+    h = 2+gamma
+    minimum = Q(1)/h if h > 0 else None
+    corrected_minimum = Q(1, 2)
+    for b in map(Q, [-1, 0, 1, 2]):
+        assert reduced(b, gamma)-gamma*b*b/2 == reduced(b, 0)
+    if h:
+        stationary = Q(1)/h
+        assert h*stationary-1 == 0
+        assert reduced(stationary+1, gamma)-reduced(stationary, gamma) == h/2
+    print(gamma, h, minimum, corrected_minimum)
+# None means no minimum in THESE examples (the linear drive is nonzero).
+# A stationary endpoint with h<0 is not a minimum of the functional.
+```
+
+**연구 질문과 답**
+
+- 전미분이 미보정 최적점에 영향을 주는 이유는? **답:** 자유 끝점 때문에 경계값이 후보마다 달라지며 원래 끝점 비용을 그대로 두었기 때문이다.
+- 오목한 끝점 함수의 최대가 전체 경로에서도 최대인가? **답:** 아니다. 끝점을 고정한 모양 변분은 운동 작용을 증가시키므로 전체 정상점은 안장이다.
+- $h_\gamma=0$이면 항상 최소가 없는가? **답:** 아니다. $d=0$이면 모든 직선 끝점 경로가 최소이고, $d\ne0$이면 일차 목적함수가 아래로 유계가 아니다.
+
 ## 해설이 있는 연습 문제
 
 1. m=T=1, a=0, b=1, A=B=1의 S₀는? 답은 23/30 Js다. 기준 경로의 1/2 Js보다 4/15 Js만큼 크므로 실제 자유 운동 경로가 아니다.

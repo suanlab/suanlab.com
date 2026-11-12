@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-two-unit-extension",
+  "date": "2026-11-12",
+  "baselineCommit": "01dab2a38c2671058e1f20877a314bd6923f1010",
+  "scope": {
+    "expandedUnits": [
+      "free-particle-action-boundary-gauge",
+      "harmonic-action-stationary-saddle"
+    ],
+    "manuscripts": 4,
+    "localizedFigures": 4,
+    "originalManuscriptsPreserved": true,
+    "previousReviewEntriesPreserved": 649,
+    "reviewEntriesAfter": 653,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/free-particle-action-boundary-gauge.en.md",
+      "sha256": "3c9db372ee295f93dfb99b9df5783ac9b9774d5bb0a77a8e2838e74f443e09bb",
+      "previousSha256": "4fea1668c26e960ee5eed22b3f77bb3af70486520753eddf228ff5fe688d8b29"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/free-particle-action-boundary-gauge.ko.md",
+      "sha256": "df809bacfb84a4e2eacd50f8da1b0dc7760db532f432202dedc6f6164f6c80d7",
+      "previousSha256": "3de0c5831ac1d5146cc1d70ae7a2193fce1d27a5b0527e9c11319f22abbf0735"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/harmonic-action-stationary-saddle.en.md",
+      "sha256": "77934345ecf143d5e04586faca92c54587632ae5bc359a88cec0bb361e0094a8",
+      "previousSha256": "88af7329057842730b41d429c7ef59bbea714e8841c21aff7c8f86399d8ce6c5"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/harmonic-action-stationary-saddle.ko.md",
+      "sha256": "e50c11e9281a06d775cfa0c39d4723c2778d22a3afbf64bdf85e49e9c34260a6",
+      "previousSha256": "389052a80a7626edd22fa6bd60d174ccc9208c35cf4cc4dac9f1d3be018e92a5"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/analytical-terminal-cost.en.svg",
+      "sha256": "6ade20f160eeb31874a8869c33a7518de206de1fca0e7d996be79802e6614e99"
+    },
+    {
+      "path": "public/assets/learning/analytical-terminal-cost.ko.svg",
+      "sha256": "e69a4cc536bac38fa98c5c184f043c098b773a17bb204d4dc6d0954f3b55d3cf"
+    },
+    {
+      "path": "public/assets/learning/analytical-action-index.en.svg",
+      "sha256": "b680464387a9e2fcb5a40fd450215772b62c4668d84ffb38e3b5810fdb5174b2"
+    },
+    {
+      "path": "public/assets/learning/analytical-action-index.ko.svg",
+      "sha256": "6c652587d83e8b5fed0d9e85f6601b8dc67ea92aa743bbe9435737f67c08c6ae"
+    }
+  ],
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-generalized-coordinates.test.ts",
+      "scripts/learning-stationary-action.test.ts",
+      "scripts/learning-lagrange-equations.test.ts",
+      "scripts/learning-hamiltonian-canonical.test.ts",
+      "scripts/learning-poisson-brackets.test.ts",
+      "scripts/learning-symplectic-geometry.test.ts",
+      "scripts/learning-noether-theorem.test.ts",
+      "scripts/learning-constraints-reduction.test.ts",
+      "scripts/learning-hamilton-jacobi.test.ts",
+      "scripts/learning-hamilton-jacobi-integration.test.ts",
+      "scripts/learning-structure-preserving.test.ts",
+      "scripts/learning-structure-preserving-integration.test.ts",
+      "scripts/learning-analytical-topology-research.test.ts",
+      "scripts/learning-coordinate-research.test.ts",
+      "scripts/learning-action-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 356,
+    "selectedTestFailures": 0,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-action-research.py",
+      "exactFreeEndpointPaths": 1152,
+      "exactMorseSettings": 117,
+      "independentQuadraticFormIntegrals": 162,
+      "criticalEndpointCases": 36,
+      "nearCriticalPerturbations": 40
+    },
+    "pairedPythonCellsExecuted": 4,
+    "pairedDisplayEquationsPerUnit": [
+      6,
+      7
+    ],
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "build": "passed",
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "sourceExportServedSvgPairs": 4,
+    "exportServedHtmlPairs": 2,
+    "browser": {
+      "unitCount": 2,
+      "states": 16,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 6,
+      "explainedQuizzes": 4,
+      "conceptSelections": 8,
+      "persistenceCompletionGroups": 2,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "command": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_ACTION_RESEARCH_REPORT=.runtime/learning/action-research-browser.json node scripts/check-action-research.cjs"
+    },
+    "registry": {
+      "units": 650,
+      "guides": 1969
+    },
+    "priorDomainBrowserBaseline": {
+      "commit": "a3110d1",
+      "states": 160,
+      "evidence": "docs/online-learning/physics-math-for-ai/analytical-topology-research-evidence.json"
+    },
+    "sourceFigurePreviewsReviewed": 4,
+    "mobileScreenshotsReviewed": 4
+  },
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 39,
+    "reviewedTopics": 386,
+    "remainingDomains": 12,
+    "remainingTopics": 123,
+    "introductoryTopicsComplete": 362
+  }
+}

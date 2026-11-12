@@ -123,6 +123,135 @@ T=2초에서는 첫 모드가 평탄하다. 같은 진폭의 경로는 이제 �
 
 T=2.5초에서는 비가 1.25다. 첫 모드 시험 경로의 작용은 −9π²/160 Js이고 세 번째 모드의 작용은 양수다. 0 경로는 정상 안장점이 된다. 이때도 물리적 힘의 복원 방향은 바뀌지 않는다.
 
+## 연구 확장: 모든 음의 방향과 켤레 끝점의 의미 확인하기
+
+화면의 두 모드로 안장임을 보일 수는 있지만 작용을 감소시키는 모든 방향의 수까지 알 수는 없다. 같은 영 끝점 조건을 유지하면서 모든 $H_0^1(0,T)$ 변분을 허용해 보자. 이 결과는 초기값 동역학이 정칙해도 두 끝점 위치에서 초기 속도를 복원하는 문제가 실패할 수 있는 이유와도 연결된다.
+
+### 작용과 이차 변분을 구분하기
+
+정상인 영 경로에서는 일차 변분이 0이다. 이차 변분은 정확한 작용 차이의 두 배다.
+
+$$
+\mathcal Q[\eta]=\delta^2S[\eta]
+=m\int_0^T(\dot\eta^2-\omega_0^2\eta^2)dt,\qquad
+S[\eta]-S[0]=\frac12\mathcal Q[\eta],\quad
+R=\frac{\omega_0T}{\pi}\ge0.
+$$
+
+질량과 관측 구간 길이는 양수다. 유한한 구간과 유한한 진동수에서 앞의 sine 전개로 이 이차 형식 전체를 대각화할 수 있다.
+
+$$
+\eta(t)=\sum_{n\ge1}c_n\sin\frac{n\pi t}{T},\qquad
+\mathcal Q[\eta]=\sum_{n\ge1}h_nc_n^2,\qquad
+h_n=\frac{m\pi^2}{2T}(n^2-R^2).
+$$
+
+진폭 $c_n$의 단위는 길이이고 $h_n$은 kg/s이므로 각 항의 단위는 작용이다. 이는 순간적인 기계적 에너지의 스펙트럼이 아니다. $H_0^1$ 조건은 미분 가중치가 있는 급수의 수렴을 보장한다.
+
+### 전체 Morse 지수와 영 방향 세기
+
+Morse 지수는 이차 변분이 음의 정부호인 부분공간의 최대 차원이다. Nullity는 대응하는 쌍선형 형식의 핵 차원이며, 이차 형식의 값이 우연히 0인 모든 벡터의 집합을 뜻하지 않는다. 이 예제에서는 다음과 같다.
+
+$$
+\operatorname{index}(\mathcal Q)=\#\{n\in\{1,2,3,\ldots\}:n<R\}
+=\max(0,\lceil R\rceil-1),\qquad
+\operatorname{nullity}(\mathcal Q)=
+\begin{cases}1,&R\in\{1,2,3,\ldots\},\\0,&\text{otherwise}.\end{cases}
+$$
+
+음의 sine 모드들이 음의 정부호 부분공간을 생성한다. 그보다 차원이 하나 큰 부분공간에는 이 음의 모드 계수가 모두 0인 영이 아닌 변분이 존재한다. 그 변분의 이차 값은 음이 아니므로 전체 공간에서의 최대 차원이 증명된다. 양의 정수 $R$에서는 계수 하나가 정확히 0이고, 무한히 많은 높은 모드는 양수다. 양수 항과 음수 항이 상쇄되어 이차 값이 0이 되는 것과 핵 벡터가 되는 것은 다르다.
+
+![전체 Fourier 곡률 부호와 진동자의 정확한 Morse 지수](/assets/learning/analytical-action-index.ko.svg)
+
+| $R$ | 음의 방향 수 | 핵 차원 | 영 경로에서의 분류 |
+|---|---|---|---|
+| 1/2 | 0 | 0 | 엄격한 최소 |
+| 1 | 0 | 1 | 영 모드 하나를 가진 최소 |
+| 3/2 | 1 | 0 | 안장 |
+| 2 | 1 | 1 | 영 모드 하나를 가진 안장 |
+| 5/2 | 2 | 0 | 안장 |
+| 3 | 2 | 1 | 영 모드 하나를 가진 안장 |
+
+$R=5/2$에서는 1번과 2번 모드가 음수지만 기존 그림은 1번과 3번 모드만 표시한다. 안장이라는 분류는 올바르지만 두 모드 화면으로 전체 음의 부분공간의 차원을 세는 것은 아니다. $R=2$에서는 2번 모드가 영 모드여도 1번이 음수이므로 최소가 아니다. 기존 범위를 넘는 구간은 보충 셀에서 다루며 새 조작을 추가한 것은 아니다.
+
+### 영 모드를 끝점 사상과 연결하기
+
+$\omega_0>0$에서 일반적인 초기 위치 $a$와 속도 $v_0$의 해는 다음과 같다.
+
+$$
+q(t)=a\cos(\omega_0t)+\frac{v_0}{\omega_0}\sin(\omega_0t),\qquad
+b=a\cos(\omega_0T)+\frac{v_0}{\omega_0}\sin(\omega_0T),\quad \omega_0>0.
+$$
+
+정수 구간에서는 초기 속도를 최종 위치로 보내는 계수가 사라진다.
+
+$$
+\omega_0T=N\pi\ \Longrightarrow\ b=(-1)^Na,\qquad
+\eta_N(t)=c_N\sin\frac{N\pi t}{T},\quad
+\eta_N(0)=\eta_N(T)=0,\quad h_N=0.
+$$
+
+$b=(-1)^Na$이면 모든 초기 속도가 허용되는 고전 경로를 주지만 각 경로의 초기값 자료는 다르다. 이 적합 조건을 만족하지 않으면 주어진 시간에 두 위치를 잇는 고전 경로가 없다. 예를 들어 $R=1$, $a=1$ m에서는 $b=-1$ m가 필요하며, $b=0$을 지정하면 정상 고전 경로가 없다. 원래의 영 끝점 가족은 항상 적합하다. 이후 정수 구간의 해 가족에도 앞에서 센 음의 방향은 남는다.
+
+### 경계 복원의 나쁜 조건수와 초기값 운동 구분하기
+
+정수 구간 밖에서는 초기 속도와 끝점 민감도를 정확히 구할 수 있다.
+
+$$
+v_0=\frac{\omega_0[b-a\cos(\omega_0T)]}{\sin(\omega_0T)},\qquad
+\frac{\partial v_0}{\partial b}=\frac{\omega_0}{\sin(\omega_0T)},\quad
+\sin(\omega_0T)\ne0.
+$$
+
+켤레 구간 가까이에서는 작은 끝점 오차가 큰 초기 속도 추정 오차를 만들 수 있다. 이득의 단위는 s$^{-1}$다. $\omega_0=\pi$ rad/s, $R=0.99$에서 끝점 오차 $0.001$ m는 추정 속도를 약 $0.100016$ m/s 바꾼다. $R=0.5$에서는 약 $0.003142$ m/s다. 이는 결정론적인 역문제 민감도이며 확률적 오차막대가 아니다.
+
+완전한 초기·최종 상태 사상은 여전히 가역이다.
+
+$$
+\begin{pmatrix}q(T)\\\dot q(T)\end{pmatrix}
+=\begin{pmatrix}\cos(\omega_0T)&\sin(\omega_0T)/\omega_0\\-\omega_0\sin(\omega_0T)&\cos(\omega_0T)\end{pmatrix}
+\begin{pmatrix}a\\v_0\end{pmatrix},\qquad\det=1.
+$$
+
+정수 구간에서는 이 행렬이 단순히 $(-1)^N I$가 된다. 정보 손실은 끝점 위치만 남길 때 발생한다. 진동수가 0이면 정칙한 자유 입자 극한 $q(T)=a+v_0T$를 쓰며 역이득은 $1/T$다. AI 경계 복원에서는 관측 종류·적합성·조건수를 기록해야 한다. 안정적인 초기값 법칙만으로 끝점 역문제의 좋은 조건수가 보장되지는 않는다.
+
+### 정확한 분류 뒤 수치 이득 계산하기
+
+정수 임계 구간은 부동소수점 sine 나눗셈 전에 유리수로 판정한다. `None`은 끝점 역함수가 정의되지 않는다는 뜻이며, 모든 경우에 경로가 없다는 뜻은 아니다.
+
+```python
+from fractions import Fraction as Q
+from math import pi, sin
+
+def signature(ratio):
+    r = Q(ratio)
+    if r < 0:
+        raise ValueError("Nonnegative ratio required")
+    ceiling = (r.numerator+r.denominator-1)//r.denominator
+    return max(0, ceiling-1), int(r > 0 and r.denominator == 1)
+
+for r in map(Q, ['1/2', '1', '3/2', '2', '5/2', '3']):
+    index, nullity = signature(r)
+    signs = [Q(n*n)-r*r for n in range(1, 7)]
+    assert sum(x < 0 for x in signs) == index
+    assert sum(x == 0 for x in signs) == nullity
+    print(r, index, nullity)
+
+# Here omega=pi rad/s and T=r seconds; r must be positive.
+for r in map(Q, ['1/2', '99/100', '1', '101/100']):
+    gain = None if r.denominator == 1 else pi/sin(float(r)*pi)
+    print('endpoint inverse gain:', r, gain)
+# At an integer r, the endpoint inverse is undefined: compatible data
+# allow a family; incompatible data allow no classical solution.
+# The Fourier proof, not this finite list, establishes the full index.
+```
+
+**연구 질문과 답**
+
+- 이차 값이 0이면 영 모드인가? **답:** 아니다. 안장에서는 양수·음수 항이 상쇄될 수 있다. 영 모드는 쌍선형 형식의 핵에 속해야 한다.
+- $R=2$의 영 경로는 평탄한 최소인가? **답:** 아니다. 2번 모드는 영이지만 1번이 음수여서 퇴화한 안장이다.
+- 끝점 역함수의 특이성이 초기값 해의 유일성과 모순되는가? **답:** 아니다. $(a,v_0)$는 하나의 궤적을 고른다. $(a,b)$만 남기면 속도 정보가 사라지거나 자료가 부적합해질 수 있다.
+
 ## 해설이 있는 연습 문제
 
 1. 임계 구간에서 A=0, B=1이면 정상인가? 아니다. D₃가 양수여서 세 번째 모드의 잔차와 작용이 남는다. 첫 모드가 평탄하다는 결론을 다른 모드에 적용할 수 없다.
