@@ -171,6 +171,116 @@ CDF 식은 유용한 해석적 기준이지만 양의 꼬리에서 가까운 두
 
 모델을 비교할 때 구간의 기하, 물리적 밀도 단위, 미분 관례를 고정합니다. 화면마다 밀도를 따로 정규화하면 보존 문제 자체가 바뀔 수 있습니다. 연속 방정식을 만족해도 힘 법칙, 구성 법칙, Maxwell 방정식, 실제 관측을 위반할 수 있습니다. 실제로 평가한 식과 관측을 명확히 보고해야 합니다.
 
+## 연구 확장: 보존된 전하 이력만으로 순환 전류를 식별할 수 없다
+
+### 방향 있는 네 절점 수지를 선언한다
+
+보존 잔차는 축적을 검사하며 전류의 모든 성분을 검사하지 않습니다. 지정한 이동 Gaussian과 별개인 유한 회로 예제로 바꿉니다. 저장 절점 네 개와 1→2→3→4→1의 방향 있는 가지 네 개를 사용합니다. B는 출발 절점에 −1, 도착 절점에 +1을 가지므로 B j는 순유입이지 순유출이 아닙니다. 외부 전하 주입은 없습니다. 가지 전류는 A 단위의 단면 적분 전류이며 체적 밀도가 아닙니다.
+
+이것은 운동학적 수지 모형입니다. 정전용량·저항·인덕턴스·구동 emf·자기 일관 장은 지정하지 않습니다. 연속 방정식에 맞는 이력이 수동 회로에서 반드시 실현되는 것은 아닙니다. 기존 이동 Gaussian 실습은 그대로 유지합니다.
+
+
+$$
+\dot{\mathbf Q}=B\mathbf j,\qquad B=\begin{pmatrix}-1&0&0&1\\1&-1&0&0\\0&1&-1&0\\0&0&1&-1\end{pmatrix},\qquad \mathbf Q\ [\mathrm C],\quad\mathbf j\ [\mathrm A].
+$$
+
+### 하나의 축적 이력을 준비한다
+
+다음의 일정한 가지 전류 jp와 전하 변화율 b를 선택합니다. 각 절점은 2 C에서 시작하고 0≤t≤1 s만 봅니다. 절점 1은 전하를 잃고 절점 4는 얻으며 중간 절점의 전하는 유지됩니다. 전체 전하는 8 C입니다. 이 숫자는 부호 있는 수지를 설명하며 실제 장치 제안이 아닙니다.
+
+
+$$
+\mathbf b=(-1,0,0,1)^T\ \mathrm A,\quad\mathbf j_{\mathrm p}=(1,1,1,0)^T\ \mathrm A:\qquad B\mathbf j_{\mathrm p}=\mathbf b,\quad \mathbf Q(t)=(2,2,2,2)^T\ \mathrm C+t\mathbf b\quad(0\le t\le1\ \mathrm s).
+$$
+
+### 관측되지 않는 전류 방향을 푼다
+
+Bz=0을 행별로 씁니다. 각 행은 유입과 유출 성분을 같게 하므로 네 성분이 모두 같습니다. 이는 수치 잔차 하나가 아니라 영공간 전체의 증명입니다. Bj=b의 임의 두 해를 빼면 그 차이가 이 영공간에 들어갑니다.
+
+
+$$
+B\mathbf z=0\quad\Longleftrightarrow\quad z_1=z_2=z_3=z_4,\qquad \mathbf c=(1,1,1,1)^T,\quad\ker B=\operatorname{span}\{\mathbf c\},\quad\operatorname{rank}B=3.
+$$
+
+
+
+$$
+\mathbf j(t)=\mathbf j_{\mathrm p}+\alpha(t)\mathbf c:\qquad B\mathbf j(t)=\mathbf b,\qquad\mathbf Q(t)=\mathbf Q(0)+\int_0^tB\mathbf j(u)\,du.
+$$
+
+### 모든 순경계 관측으로도 놓치는 이유를 설명한다
+
+Alpha의 단위는 A이며 적분이 존재하면 시간에 따라 변해도 됩니다. 그 순환 전류는 어떤 절점에도 축적을 만들지 않습니다. 따라서 네 절점의 전하 이력을 정확하고 촘촘하게 알아도 alpha(t)를 복원하지 못합니다. 다른 양을 관측하거나 정당한 추가 물리를 지정해야 합니다.
+
+임의 저장 절점 집합의 0/1 지시 벡터를 곱합니다. 내부 가지의 기여는 서로 상쇄됩니다. 남는 것은 전체 경계를 통과하는 순유입입니다. 순환을 더하면 개별 교차 전류는 바뀔 수 있어도 순변화는 상쇄됩니다.
+
+
+$$
+\frac{d}{dt}\sum_{i\in S}Q_i=\boldsymbol\chi_S^TB\mathbf j,\qquad \boldsymbol\chi_S^TB(\mathbf j+\alpha\mathbf c)=\boldsymbol\chi_S^TB\mathbf j\quad\text{for every node subset }S.
+$$
+
+### 정규화와 관측 근거를 구분한다
+
+따라서 닫힌 제어 경계의 순선속을 더 많이 측정해도 이 영공간은 사라지지 않습니다. 국소 가지 전류 관측은 절점 집합의 전체 경계를 통과하는 순선속과 다릅니다. 아래 수치 식과 표에서 alpha와 각 j 좌표는 A로 나타내며 제곱 노름은 A² 단위입니다.
+
+
+$$
+a=\frac{\alpha}{1\ \mathrm A}:\quad\frac{\|\mathbf j\|_2^2}{(1\ \mathrm A)^2}=3+6a+4a^2=\frac34+4\left(a+\frac34\right)^2,\qquad a_{\min}=-\frac34.
+$$
+
+### 순환을 볼 수 있는 관측을 선택한다
+
+최소 노름 전류는 (1/4,1/4,1/4,−3/4) A입니다. 이는 특정 순환을 선택한 것이지 전하 자료의 결론이 아닙니다. 알려진 동일 가지 저항과 0인 회로 emf라면 관련 추가 법칙을 정당화할 수 있지만 현재 관측 모형에는 어느 것도 포함되지 않습니다. AI 벌점이 유일한 답을 골라도 실제 전류를 놓칠 수 있습니다.
+
+선언한 부호대로 가지 1을 측정합니다. 읽음 y 하나가 미지의 순환 성분 하나를 결정합니다. 다음 좌표식에서 y와 상수의 단위는 A입니다.
+
+
+$$
+y=j_1\quad\Longrightarrow\quad\alpha=y-1\ \mathrm A,\qquad\mathbf j=(y,y,y,y-(1\ \mathrm A))^T.
+$$
+
+
+
+$$
+\operatorname{rank}\begin{pmatrix}B\\\mathbf h^T\end{pmatrix}=4\quad\Longleftrightarrow\quad\mathbf h^T\mathbf c\ne0,\qquad\delta\mathbf j=\frac{\delta y}{\mathbf h^T\mathbf c}\mathbf c,\quad\|\delta\mathbf j\|_2=\frac{2|\delta y|}{|\mathbf h^T\mathbf c|}\quad(B\mathbf j\text{ known exactly}).
+$$
+
+마지막 잡음 식은 B j가 정확하고 추가 읽음 하나에만 오차가 있다는 가정입니다. 전하 미분에도 잡음이 있는 추정기의 공분산이 아닙니다. h=(1,−1,0,0)이면 같은 순환 성분의 차이만 보아 hᵀc=0이고 rank는 3입니다. h=(1,0,0,0)이면 rank가 4가 되고 전류 오차 노름은 가지 읽음 오차 절댓값의 두 배입니다.
+
+표는 일정한 alpha 예제입니다. 가지 전류와 노름이 다른데도 모두 같은 b와 전하 이력을 가집니다.
+
+| alpha [A] | j1 [A] | j4 [A] | 제곱 노름 [A2] |
+| --- | --- | --- | --- |
+| -0.75 | 0.25 | -0.75 | 0.75 |
+| 0 | 1 | 0 | 3 |
+| 0.5 | 1.5 | 0.5 | 7 |
+| 1 | 2 | 1 | 13 |
+
+```python
+B = [[-1,0,0,1], [1,-1,0,0],
+     [0,1,-1,0], [0,0,1,-1]]
+for alpha in [-.75, 0, .5, 1]:
+    j = [1+alpha, 1+alpha, 1+alpha, alpha]
+    b = [sum(a*x for a,x in zip(row,j)) for row in B]
+    assert b == [-1,0,0,1]
+    print(*(format(x, '.9g') for x in
+            [alpha, j[0], j[3], sum(x*x for x in j)]))
+```
+
+기존 방향 면 전류 함수에는 가지 방향 법선과 균일한 단면 밀도 j_e/A를 지정하여 국소 읽음을 대조할 수 있습니다. Gaussian 실습에 고리 회로가 추가되거나 구성 법칙이 추론되는 것은 아닙니다. 연속 방정식을 학습하는 모델은 수지 오차와 자료가 관측하는 전류 방향을 함께 보고해야 합니다. 관측 사상이 매 시각 없애는 순환은 전하 프레임을 늘려도 드러나지 않습니다.
+
+[MIT 그래프·incidence 행렬 강의](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/d71b25b942dd3dec0ede49d712deb4b0_MIT18_06SCF11_Ses1.12sum.pdf)는 회로와 영공간의 틀을 제공합니다. 그 자료는 행이 가지인 행렬이며 여기의 B는 행이 절점인 전치 관례입니다. 과도 예제·모든 절점 집합의 논증·추가 센서 계산은 이 네 가지 고리에서 직접 유도합니다.
+
+![같은 축적을 만드는 다른 전류](/assets/learning/electromagnetism-current-nullspace.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**정확한 전하 이력이 모든 가지 전류를 결정하는가?** **답:** 아니다. 적분 가능한 alpha(t)를 더해도 모든 절점 전하 이력을 보존하는 순환이 남는다.
+
+**정규화한 유일한 답은 자료에 의한 식별을 증명하는가?** **답:** 아니다. 벌점이 순환을 선택한다. 추가 물리 법칙이나 순환을 보는 관측으로 그 선택을 정당화해야 한다.
+
+**센서를 아무거나 더하면 모호성이 사라지는가?** **답:** 아니다. 센서 행 h와 c의 내적이 0이 아니어야 한다. 이웃 가지 전류의 차이는 동일 성분 순환을 여전히 보지 못한다.
+
 ## 풀이가 있는 연습
 
 ### 연습 1 — 오른쪽으로 움직이는 음전하

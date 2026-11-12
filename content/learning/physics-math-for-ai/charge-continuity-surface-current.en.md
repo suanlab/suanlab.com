@@ -171,6 +171,116 @@ A current predictor should be checked jointly with density evolution and control
 
 Keep interval geometry, physical density units and derivative conventions fixed when comparing models. A density renormalized separately inside every view can destroy the conservation problem. A continuity-preserving prediction can still violate a force law, constitutive law, Maxwell equation or experimental observation. Report which equations are actually evaluated.
 
+## Research extension: conserved charge histories do not identify loop currents
+
+### Specify a directed four-node balance
+
+A conservation residual tests accumulation, not every component of current. Replace the prescribed moving Gaussian with a separate finite network example: four storage nodes and four directed branches 1→2→3→4→1. The entries of B are −1 at the departing node and +1 at the arriving node, so B j is net inflow, not net outflow. No external charge injection is present. Branch currents are section-integrated currents in A, not volume densities.
+
+This is a kinematic balance model. It does not specify capacitances, resistances, inductances, driving emf or self-consistent fields. Continuity-compatible histories are not automatically realizations of a passive circuit. The native translating Gaussian experiment is unchanged.
+
+
+$$
+\dot{\mathbf Q}=B\mathbf j,\qquad B=\begin{pmatrix}-1&0&0&1\\1&-1&0&0\\0&1&-1&0\\0&0&1&-1\end{pmatrix},\qquad \mathbf Q\ [\mathrm C],\quad\mathbf j\ [\mathrm A].
+$$
+
+### Prepare one accumulation history
+
+Choose constant branch currents jp and the resulting charge derivative b below. Start every node at 2 C and consider only 0≤t≤1 s: node 1 loses charge, node 4 gains it, and the middle nodes keep their charge. Total charge remains 8 C. These numbers illustrate signed balances, not a proposed practical device.
+
+
+$$
+\mathbf b=(-1,0,0,1)^T\ \mathrm A,\quad\mathbf j_{\mathrm p}=(1,1,1,0)^T\ \mathrm A:\qquad B\mathbf j_{\mathrm p}=\mathbf b,\quad \mathbf Q(t)=(2,2,2,2)^T\ \mathrm C+t\mathbf b\quad(0\le t\le1\ \mathrm s).
+$$
+
+### Solve the unobserved current direction
+
+Write out Bz=0 one row at a time. Each row equates the incoming and outgoing component, so all four components are equal. That proves the entire nullspace, not just one numerical zero residual. Subtracting any two solutions of Bj=b puts their difference in this nullspace.
+
+
+$$
+B\mathbf z=0\quad\Longleftrightarrow\quad z_1=z_2=z_3=z_4,\qquad \mathbf c=(1,1,1,1)^T,\quad\ker B=\operatorname{span}\{\mathbf c\},\quad\operatorname{rank}B=3.
+$$
+
+
+
+$$
+\mathbf j(t)=\mathbf j_{\mathrm p}+\alpha(t)\mathbf c:\qquad B\mathbf j(t)=\mathbf b,\qquad\mathbf Q(t)=\mathbf Q(0)+\int_0^tB\mathbf j(u)\,du.
+$$
+
+### Explain why every net boundary measurement can miss it
+
+Alpha has units A and may vary with time as long as its integral exists. Its loop current contributes no accumulation at any node, so even exact, arbitrarily dense observations of all four charge histories do not recover alpha(t). One must observe a different quantity or impose justified extra physics.
+
+For any set of storage nodes, multiply by its 0/1 indicator. Contributions on internal branches cancel. The remaining terms are the net inflow through the whole boundary. Adding a loop changes some individual crossings but the net change cancels.
+
+
+$$
+\frac{d}{dt}\sum_{i\in S}Q_i=\boldsymbol\chi_S^TB\mathbf j,\qquad \boldsymbol\chi_S^TB(\mathbf j+\alpha\mathbf c)=\boldsymbol\chi_S^TB\mathbf j\quad\text{for every node subset }S.
+$$
+
+### Separate regularization from evidence
+
+Thus measuring net flux through more closed control boundaries does not remove this nullspace. A local branch-current measurement is different from the net flux through the whole boundary of a node set. In the numerical formulas and table below, alpha and each j coordinate are expressed in A; the displayed squared norm is expressed in A².
+
+
+$$
+a=\frac{\alpha}{1\ \mathrm A}:\quad\frac{\|\mathbf j\|_2^2}{(1\ \mathrm A)^2}=3+6a+4a^2=\frac34+4\left(a+\frac34\right)^2,\qquad a_{\min}=-\frac34.
+$$
+
+### Choose an observation that sees the loop
+
+The minimum-norm current is (1/4,1/4,1/4,−3/4) A. This is a particular choice of circulation, not a consequence of charge data. Known equal branch resistances and zero loop emf could justify a related additional law; neither is part of our current observation model. An AI penalty can choose a unique answer while missing the true current.
+
+Measure branch 1 with the stated sign convention. One reading y then determines the single unknown loop component. In the following coordinate expression, y and the constants are in A.
+
+
+$$
+y=j_1\quad\Longrightarrow\quad\alpha=y-1\ \mathrm A,\qquad\mathbf j=(y,y,y,y-(1\ \mathrm A))^T.
+$$
+
+
+
+$$
+\operatorname{rank}\begin{pmatrix}B\\\mathbf h^T\end{pmatrix}=4\quad\Longleftrightarrow\quad\mathbf h^T\mathbf c\ne0,\qquad\delta\mathbf j=\frac{\delta y}{\mathbf h^T\mathbf c}\mathbf c,\quad\|\delta\mathbf j\|_2=\frac{2|\delta y|}{|\mathbf h^T\mathbf c|}\quad(B\mathbf j\text{ known exactly}).
+$$
+
+The last noise formula assumes exact B j and one noisy additional reading. It is not an estimator covariance with noisy charge derivatives. For h=(1,−1,0,0), the measurement sees only a difference of equal loop components, hᵀc=0, and rank stays 3. For h=(1,0,0,0), rank becomes 4 and the current error norm is twice the absolute branch-reading error.
+
+The table shows constant alpha examples. Each has the same b and the same charge history, despite different branch currents and norms.
+
+| alpha [A] | j1 [A] | j4 [A] | norm squared [A2] |
+| --- | --- | --- | --- |
+| -0.75 | 0.25 | -0.75 | 0.75 |
+| 0 | 1 | 0 | 3 |
+| 0.5 | 1.5 | 0.5 | 7 |
+| 1 | 2 | 1 | 13 |
+
+```python
+B = [[-1,0,0,1], [1,-1,0,0],
+     [0,1,-1,0], [0,0,1,-1]]
+for alpha in [-.75, 0, .5, 1]:
+    j = [1+alpha, 1+alpha, 1+alpha, alpha]
+    b = [sum(a*x for a,x in zip(row,j)) for row in B]
+    assert b == [-1,0,0,1]
+    print(*(format(x, '.9g') for x in
+            [alpha, j[0], j[3], sum(x*x for x in j)]))
+```
+
+The native directed-surface-current function can check a local reading by prescribing a uniform section density j_e/A and a normal along that branch. It does not add this ring to the Gaussian lab or infer a constitutive law. For a learned continuity solver, report both balance error and which current directions the data observe. More charge frames cannot reveal a circulation that the observation map annihilates at every time.
+
+[MIT’s graph and incidence-matrix notes](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/d71b25b942dd3dec0ede49d712deb4b0_MIT18_06SCF11_Ses1.12sum.pdf) supply the network/nullspace framework. Their incidence matrix has edge rows; B here uses node rows, the transpose convention. The transient example, every-subset argument and additional-sensor calculation are derived above for this four-cycle.
+
+![Different currents with the same accumulation](/assets/learning/electromagnetism-current-nullspace.en.svg)
+
+### Research questions with explanations
+
+**Do exact charge histories determine all branch currents?** **Answer:** No. Any integrable alpha(t) adds an unobserved loop while preserving all node charge histories.
+
+**Does a unique regularized answer prove identification by data?** **Answer:** No. The penalty selects a circulation. An additional physical law or a loop-sensitive observation must justify that selection.
+
+**Will any additional sensor remove the ambiguity?** **Answer:** No. Its row h must have nonzero overlap with c. A difference of adjacent branch currents remains blind to the equal-component loop.
+
 ## Explained exercises
 
 ### Exercise 1 — Negative carriers moving right

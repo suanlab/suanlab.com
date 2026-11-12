@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-13 전하·전류·장 연구 보강: [유한 탐침의 교란·순환 전류의 비식별](physics-math-for-ai/charge-research-status.md)을 두 단원의 한영 네 편·그림 네 개에 추가했다. 독립 계산·선택 75검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 2/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 정전·정자기다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제를 유지한다.
+
 2026-11-13 파동 영역 종합 검수: [9원주제·18단원 연구 대조](physics-math-for-ai/waves-optics-research-audit.md)를 마쳤다. 36원고·216기존 해설 보존, 36 Python 실행·278연구 수식 한영 대응, 같은 출력의 144화면·54안내·36퀴즈·18저장/완료를 검증했다. 기존 395검사의 입력과 제품 소스가 같아 그 결과를 재사용한다. 전체 대조는 **41영역·405주제**, 후속은 **10영역·104주제**이며 다음은 [전자기학](physics-math-for-ai/electromagnetism-topic-review.md)이다. 전체 51영역·509주제와 입문 362/362를 유지한다.
 
 2026-11-13 관측·샘플링·센서 연구 보강: [이동 격자·포화 후 정보](physics-math-for-ai/sampling-research-status.md)를 두 단원의 한영 네 편·그림 네 개에 추가했다. 선택 55검사·빌드·타입·1,888 HTML과 변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. 기존 본문 네 편·다른 파동 원고 32편·713검토 항목을 보존했다. [파동 순차 보강은 18/18단원](physics-math-for-ai/waves-optics-topic-review.md)이며 다음은 [영역 연구 종합 대조](physics-math-for-ai/waves-optics-research-audit-plan.md)다. 전체 대조 40영역·396주제/후속 11영역·113주제와 전체 51영역·509주제를 유지한다.

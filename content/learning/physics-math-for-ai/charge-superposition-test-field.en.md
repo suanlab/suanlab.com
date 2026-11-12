@@ -133,6 +133,121 @@ A learned electrostatic surrogate should specify its geometry, source representa
 
 Compare field components, force for several test charges, and potential-gradient consistency. Do not validate a vector predictor only by its magnitude. A normalized-direction score also misses amplitude errors. This introductory model supplies static sources; extending it to moving charges requires additional electromagnetic physics and is not justified by animating the observation point.
 
+## Research extension: a finite probe can change the field it measures
+
+### Declare the mechanical preparation
+
+The fixed-source calculation above answers a well-defined question. A real probe can ask a different one by moving the source. Consider one positive point charge Q attached to a mechanical harmonic trap with stiffness kappa>0 and constrained to the x axis. Its unperturbed position is x=0. Hold a negative probe charge −q, q>0, fixed at R>0. Work in vacuum with k=9×10⁹ N m²/C², a deliberately rounded teaching constant. The source can move toward the probe but cannot pass it. Gravity, radiation, finite charge size, thermal escape and changes to the trapping apparatus are excluded.
+
+The trap is mechanical; we are not assuming that a free charge is stably confined by an electrostatic potential in three dimensions. R and x have units m, kappa has units N/m, and U has units J. This is a supplementary quasistatic model. It adds no source-motion control to the native fixed-source experiment.
+
+
+$$
+U(x)=\frac{\kappa x^2}{2}-\frac{kQq}{R-x},\quad s=\frac{x}{R},\quad \eta=\frac{kQq}{\kappa R^3},\quad W(s)=\frac{U}{\kappa R^2}=\frac{s^2}{2}-\frac{\eta}{1-s},\qquad 0\le s<1.
+$$
+
+### Find both equilibria before selecting one
+
+Differentiate the potential rather than equating unsigned force magnitudes without a direction. The attractive force on the source is positive x and the trap force is −kappa x. Their balance gives the following cubic.
+
+
+$$
+W^{\prime}(s)=s-\frac{\eta}{(1-s)^2}=0\quad\Longleftrightarrow\quad g(s)=s(1-s)^2=\eta,\qquad g^{\prime}(s)=(1-s)(1-3s).
+$$
+
+### Use curvature to identify the locally stable branch
+
+The derivative of g is positive on 0<s<1/3 and negative on 1/3<s<1. Since g(0)=g(1)=0 and its maximum is 4/27, each 0<eta<4/27 has two interior equilibria. The lower-s equilibrium has positive potential curvature; the upper one has negative curvature. For a positive source mass, the former is locally stable under conservative dynamics and the latter is unstable. A small positive damping can relax a preparation toward the lower branch; no relaxation rate is computed here.
+
+
+$$
+\frac{U^{\prime\prime}(x)}{\kappa}=1-\frac{2\eta}{(1-s)^3}=\frac{1-3s}{1-s}\quad\text{at equilibrium}.
+$$
+
+
+
+$$
+\eta_{\mathrm c}=\frac4{27},\quad s_{\mathrm c}=\frac13,\quad W^{\prime\prime}(s_{\mathrm c})=0,\quad W^{\prime\prime\prime}(s_{\mathrm c})=-\frac92,\qquad W(s)\longrightarrow-\infty\quad(s\to1^-).
+$$
+
+### Read the force on the actual probe
+
+At the fold the curvature vanishes but the third derivative does not, so it is not a local minimum. Above the fold there is no interior equilibrium in this domain. Even below it, the lower branch is only a local minimum: the point-charge potential is unbounded toward collision. Local stability is not a global energy minimum or a promise of safety against large disturbances.
+
+The force on the negative probe is negative x. Divide that signed force by its signed charge, not by its absolute value. The result is the source field at the probe in the disturbed configuration. E0 is the field of the unperturbed source at x=0.
+
+
+$$
+E_0=\frac{kQ}{R^2},\quad F_{\mathrm p}=-\frac{kQq}{(R-x)^2},\quad q_{\mathrm t}=-q,\quad \frac{F_{\mathrm p}/q_{\mathrm t}}{E_0}=\frac1{(1-s)^2}=:f(\eta)\quad(q>0).
+$$
+
+
+
+$$
+\frac{ds}{d\eta}=\frac1{(1-s)(1-3s)},\qquad \frac{df}{d\eta}=\frac2{(1-s)^4(1-3s)}\qquad(0<s<1/3).
+$$
+
+### Turn small into a stated tolerance
+
+On the lower branch both displacement and measured field increase with eta. The field ratio tends to 9/4 at the fold while its sensitivity to eta diverges. A finite field does not imply a well-conditioned preparation. For a requested relative field error epsilon, invert the field ratio and then use the increasing part of g to obtain an exact criterion within this model.
+
+
+$$
+0<\varepsilon<\frac54,\quad s_\varepsilon=1-\frac1{\sqrt{1+\varepsilon}}:\qquad f(\eta)-1\le\varepsilon\quad\Longleftrightarrow\quad\eta\le s_\varepsilon(1-s_\varepsilon)^2\quad\text{on the stable branch}.
+$$
+
+
+
+$$
+\kappa,R,Q\text{ fixed},\quad q\to0^+:\quad\frac{s}{\eta}\to1,\quad\frac{f(\eta)-1}{\eta}\to2;\qquad \kappa=\frac{kQq}{\eta_*R^3},\quad 0<\eta_*<4/27:\quad f(\eta)=f(\eta_*)>1.
+$$
+
+### Calculate the stable branch in its explicit domain
+
+The first limits hold at fixed trap stiffness, distance and source charge. They follow from eta=s(1−s)² and the derivative of (1−s)⁻² at zero. In the second preparation, the trap softens in proportion to q: eta remains eta*, so an arbitrarily small absolute probe charge retains a finite disturbance. State which quantities stay fixed when using a small-probe argument.
+
+For Q=1 nC, R=0.1 m and kappa=10⁻⁴ N/m, E0=900 N/C and q=eta×(10⁻⁷/9) C. The table reports the lower equilibrium, field ratio and local curvature ratio. Bisection below brackets only the increasing branch, for 0<eta<4/27; it is not a generic cubic solver.
+
+For a 5% field-error tolerance, s_epsilon≈0.0240999271 and eta≤0.0229523115. With the same physical parameters, this means q≤2.55025683×10⁻¹⁰ C. The eta=0.025 row already exceeds that tolerance. These thresholds apply to the locally stable branch, not the upper equilibrium.
+
+| eta | stable s | field / E0 | curvature / kappa |
+| --- | --- | --- | --- |
+| 0.005 | 0.00505089421 | 1.01017884 | 0.989846929 |
+| 0.025 | 0.0263726954 | 1.05490782 | 0.945825892 |
+| 0.075 | 0.0907103305 | 1.20947107 | 0.800480895 |
+| 0.14 | 0.246737798 | 1.76241284 | 0.344882041 |
+
+```python
+def stable(eta):
+    lo, hi = 0.0, 1.0/3
+    for _ in range(100):
+        s = (lo + hi)/2
+        if s*(1-s)**2 < eta:
+            lo = s
+        else:
+            hi = s
+    return (lo + hi)/2
+
+for eta in [.005, .025, .075, .14]:
+    s = stable(eta)
+    print(*(format(x, '.9g') for x in
+            [eta, s, 1/(1-s)**2, (1-3*s)/(1-s)]))
+```
+
+The field ratio at exactly q=0 is a limiting definition; the measured quotient 0/0 is undefined. This local point-charge model does not simulate collapse dynamics, contact or thermal switching. To connect with the existing evaluator, prescribe the source at x=R s and compare its force and field with the source prescribed at x=0. Such two fixed-geometry evaluations verify the Coulomb observable, not the existence or stability of a mechanically moving equilibrium.
+
+[MIT’s electric-field chapter](https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/7ee5ddbd5e0abae753e4212a9754ee23_MITRES_6_002S08_chp02_text.pdf) explains why a test charge should not rearrange source charges. The spring potential, fold, tolerance and coupled limits here are derived for this explicitly constrained supplement.
+
+![Probe equilibrium and relative field disturbance](/assets/learning/electromagnetism-probe-backreaction.en.svg)
+
+### Research questions with explanations
+
+**Does dividing by the probe charge remove its disturbance?** **Answer:** No. Division removes the direct force factor, but not the source displacement caused by the probe.
+
+**Is every equilibrium below the fold stable?** **Answer:** No. The upper branch is a local maximum; the lower minimum is only local and does not remove the collision singularity.
+
+**Does a small absolute q always recover E0?** **Answer:** Only under stated fixed parameters. A trap softening with q can keep eta and the relative disturbance unchanged.
+
 ## Explained exercises
 
 ### Exercise 1 — Charge signs before arithmetic
