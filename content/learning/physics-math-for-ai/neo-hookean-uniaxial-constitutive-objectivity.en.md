@@ -139,6 +139,99 @@ Signed logarithms retain positive energy or signed force beyond linear floating-
 
 The accompanying references differentiate energy, construct full matrices, evaluate actual face traction and integrate in stretch coordinates independently from the product's scalar formulas. Start by changing stretch and comparing force through both areas. Then rotate specimen and normal together. Finally inspect small log stretches and a closed return path. These experiments are useful checks for learned energies and automatic differentiation pipelines.
 
+## Research extension: an energy term invisible to all uniaxial data
+
+Within the original one-parameter neo-Hookean family, a nontrivial uniaxial measurement can identify mu. A broader learned energy is a different inverse problem. Keep the same incompressible isotropic setting, but explicitly enlarge the energy class. Use invariants of the right Cauchy–Green tensor C; its eigenvalues are squared principal stretches. They agree with the eigenvalues of B from the original lesson.
+
+$$
+C=F^TF,\quad I_1=\operatorname{tr}C,\quad I_2=\tfrac12[(\operatorname{tr}C)^2-\operatorname{tr}(C^2)],\quad I_3=\det C=(\det F)^2.
+$$
+
+Define the discriminant as the product of squared eigenvalue differences. It is nonnegative because C is symmetric, and its invariant expression is a smooth polynomial in F. Keep the full dependence on the third invariant when taking an unconstrained F derivative. Substituting the incompressibility constraint too early can change the isotropic pressure term. The third invariant may be set to one after differentiation or when evaluating a path that preserves it.
+
+$$
+\Delta(C)=\prod_{i<j}(c_i-c_j)^2\ge0\quad(c_i\text{ eigenvalues of }C),\qquad\Delta=I_1^2I_2^2-4I_2^3-4I_1^3I_3+18I_1I_2I_3-27I_3^2.
+$$
+
+Add any nonnegative coefficient kappa times this discriminant to the original energy. Kappa has stress units because the discriminant is dimensionless. The resulting energy is still per reference volume and is considered on determinant-one deformations. This is a deliberately expanded constitutive family, not a correction to the original definition of a neo-Hookean material.
+
+$$
+W_\kappa(F)=\frac\mu2(I_1-3)+\kappa\Delta(C),\quad\mu>0,\quad\kappa\ge0,\quad\det F=1,\qquad[\kappa]=\mathrm{Pa},\quad[W_\kappa]=\mathrm{J/m^3}.
+$$
+
+Left rigid rotations and right material rotations preserve the invariants, giving objectivity and isotropy. On the incompressible domain the positive eigenvalues have product one, so their sum is at least three by AM–GM. Both the base term and the added term are nonnegative. These symmetry and energy conditions are meaningful constraints, but they do not force kappa to be zero or determine it from the old experiment.
+
+$$
+W_\kappa(RFQ)=W_\kappa(F)\quad(R,Q\in SO(3)),\qquad I_1\ge3\ \text{when }I_3=1,\qquad W_\kappa\ge0.
+$$
+
+Every uniaxial state has two equal transverse eigenvalues, so its discriminant vanishes at every positive stretch. More strongly, the full F gradient vanishes there. To see this without differentiating individual degenerate eigenvectors, note that the smooth polynomial discriminant is nonnegative for every real F and attains zero at this state. A differentiable function at such a minimum has zero gradient in every matrix direction. The result also holds after proper rotations.
+
+$$
+F_\lambda=\operatorname{diag}(\lambda,\lambda^{-1/2},\lambda^{-1/2}),\quad\lambda>0:\qquad\Delta(F_\lambda^TF_\lambda)=0,\qquad\nabla_F\Delta(F^TF)\big|_{F=F_\lambda}=0.
+$$
+
+Consequently all added constitutive stress contributions vanish on the uniaxial family, not merely the derivative along its scalar stretch path. The same free-side boundary condition then determines the same incompressibility pressure, and both nominal and Cauchy stresses match. All uniaxial force and energy histories are identical for every kappa in the enlarged class. Equibiaxial states also have a repeated eigenvalue and cannot distinguish this particular additional term.
+
+$$
+P_\kappa=\partial_FW_\kappa-p_\kappa F^{-T},\quad\sigma_\kappa=P_\kappa F^T,\qquad F=F_\lambda\text{ with free sides}:\quad p_\kappa=p_0=\mu/\lambda,\quad P_\kappa=P_0,\quad\sigma_\kappa=\sigma_0.
+$$
+
+Now test a different deformation: simple shear. Its determinant remains one while, for nonzero shear, its three C eigenvalues are distinct. Substitution into the invariant polynomial gives the positive discriminant shown below. The shear parameter is dimensionless. This experiment probes a direction absent from the complete uniaxial training family, rather than just another point on that family.
+
+$$
+F_\gamma=\begin{pmatrix}1&\gamma&0\\0&1&0\\0&0&1\end{pmatrix},\quad\det F_\gamma=1,\qquad I_1=I_2=3+\gamma^2,\qquad\Delta=\gamma^6(\gamma^2+4).
+$$
+
+Differentiate the actual shear-path energy. The pressure contribution to P12 vanishes for this F, and P12 equals the Cauchy shear component on this path. Normal stresses can still depend on the pressure chosen by the shear boundary-value problem; the original free-side uniaxial pressure must not be reused automatically. The measured shear component depends explicitly on kappa even though all the uniaxial data did not.
+
+$$
+W_\kappa(\gamma)=\frac{\mu\gamma^2}{2}+\kappa\gamma^6(\gamma^2+4),\qquad P_{12}=\sigma_{12}=\frac{dW_\kappa}{d\gamma}=\mu\gamma+8\kappa\gamma^5(\gamma^2+3).
+$$
+
+If mu is known and a nonzero shear is measured without noise, kappa can be recovered within this particular enlarged family. Exact uniqueness and useful experimental sensitivity are separate. The sensitivity vanishes like the fifth power of shear near zero, so a fixed stress error can produce a very large parameter error in a tiny-shear test. At exactly zero shear the displayed inverse is undefined, rather than a reason to assign kappa zero.
+
+$$
+\frac{\partial P_{12}}{\partial\kappa}=8\gamma^5(\gamma^2+3),\qquad\kappa=\frac{P_{12}-\mu\gamma}{8\gamma^5(\gamma^2+3)}\quad(\gamma\ne0,\ \mu\text{ known}).
+$$
+
+All members are hyperelastic and their shear work equals stored-energy change. A closed elastic return path has zero work, even though the models disagree on the stress away from the training path. Thus conservative work, nonnegative energy, objectivity and exact uniaxial fit can coexist with different multiaxial predictions. None of the conditions checked here is a proof of global strong ellipticity, uniqueness or resistance to geometric instability; those require separate analyses.
+
+$$
+\int_{\gamma_a}^{\gamma_b}P_{12}\,d\gamma=W_\kappa(\gamma_b)-W_\kappa(\gamma_a),\qquad\oint P_{12}\,d\gamma=0.
+$$
+
+The table takes kappa/mu = 0.01. Columns are shear gamma, base energy divided by mu, dimensionless discriminant, base shear stress divided by mu and extended shear stress divided by mu. All are dimensionless. The figure compares kappa/mu = 0, 0.01 and 0.02: all uniaxial responses coincide but shear responses separate. These supplemental loading paths do not change the original uniaxial interactive geometry.
+
+| gamma | base W/mu | discriminant | base shear/mu | extended shear/mu |
+| --- | --- | --- | --- | --- |
+| 0.25000000 | 0.03125000 | 0.00099182 | 0.25000000 | 0.25023926 |
+| 0.50000000 | 0.12500000 | 0.06640625 | 0.50000000 | 0.50812500 |
+| 1.00000000 | 0.50000000 | 5.00000000 | 1.00000000 | 1.32000000 |
+| 1.50000000 | 1.12500000 | 71.19140625 | 1.50000000 | 4.68937500 |
+
+```python
+# kappa/mu=0.01; all other columns normalized by mu where indicated.
+for gamma in (0.25, 0.5, 1.0, 1.5):
+    base_energy = gamma*gamma/2
+    discriminant = gamma**6*(gamma*gamma+4)
+    base_shear = gamma
+    extended_shear = gamma+0.08*gamma**5*(gamma*gamma+3)
+    print(" ".join(f"{v:.8f}" for v in (gamma, base_energy, discriminant, base_shear, extended_shear)))
+```
+
+The [Bower hyperelasticity chapter](https://solidmechanics.org/Text/Chapter3_5/Chapter3_5.htm) gives energy, invariants and constrained-stress background. The discriminant family and its invisible uniaxial gradient are constructed here. Preserve the full third invariant during stress differentiation; nonnegative energy and these test paths are not a certificate of every multiaxial stability condition.
+
+![Identical uniaxial energies and stresses with distinct simple-shear predictions](/assets/learning/continuum-hyperelastic-uniaxial-invisible-shear.en.svg)
+
+### Research questions with explanations
+
+**Does an exact fit to every uniaxial history fix a general isotropic energy?** **Answer:** No. The discriminant term and its full stress gradient vanish on that family while changing simple-shear predictions.
+
+**May incompressibility be substituted before an unconstrained F derivative?** **Answer:** Retain the full third-invariant dependence or use a correctly constrained formulation. Premature substitution can alter the pressure-related derivative.
+
+**Is arbitrarily small nonzero shear always an informative practical test?** **Answer:** Not necessarily. Exact identification is possible here, but kappa sensitivity tends to zero as the fifth power of shear, strongly amplifying stress noise.
+
 ## Exercises with worked answers
 
 ### Exercise 1 — Same specimen force

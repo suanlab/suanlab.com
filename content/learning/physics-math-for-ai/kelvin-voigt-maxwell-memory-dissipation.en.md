@@ -137,6 +137,98 @@ This cubic change is physically nonzero even when the stress display remains unc
 
 The cubic conclusion requires the initial equality to hold for the actual inputs, not just their displayed decimals. For example, an amplitude entered as 0.001 and an angular frequency entered as 0.7 have binary floating-point representations. Their exact product need not equal a separately entered initial elastic strain of 0.0007. With unit modulus and viscosity, the small initial stress derivative is about −2.27 times ten to the minus twenty Pa/s. Rounding the two driving terms separately would incorrectly erase it and leave only a cubic change. The implementation forms the complete difference and ratio before observing that derivative, including at time zero. Keep an exactly tuned cubic experiment separate from a nearby experiment with a small linear contribution; neither display precision nor a small shared-formula residual proves the equality.
 
+## Research extension: identical frequency data and different internal laws
+
+Suppose a harmonic test reports one positive storage modulus and one positive loss modulus. Can a constitutive-learning algorithm infer the arrangement of springs and dashpots uniquely? Use Sobs and Lobs for the observed moduli, keeping them distinct from the earlier a and b stress coefficients that already include strain amplitude. Use a known nonzero small strain amplitude. The observations refer to a **steady periodic state** at a known positive frequency. Startup data are not being silently replaced by a periodic formula.
+
+$$
+S_o=E'(\omega_0)>0,\quad L_o=E''(\omega_0)>0,\quad\omega_0>0,\qquad\sigma_{\rm per}(t)=\varepsilon_0[S_o\sin(\omega_0t)+L_o\cos(\omega_0t)],\quad[S_o]=[L_o]=\mathrm{Pa}.
+$$
+
+A Kelvin–Voigt model fits these two observations by taking its spring modulus to be Sobs and its viscosity to be Lobs divided by frequency. Both parameters are positive. This explains why a nonzero measured loss does not alone prove the presence of a hidden relaxing spring state: the parallel dashpot already supplies loss.
+
+$$
+E_{KV}=S_o,\qquad\eta_{KV}=\frac{L_o}{\omega_0}>0.
+$$
+
+A single Maxwell element fits exactly the same pair with different positive parameters. Divide storage by loss to determine its dimensionless frequency, then recover its modulus and relaxation time. For example, unit observed moduli at unit angular frequency give a Kelvin–Voigt spring and viscosity of one, but a Maxwell modulus and viscosity of two in their respective SI units. Both predict the same total periodic stress for the same imposed strain.
+
+$$
+E_M=\frac{S_o^2+L_o^2}{S_o},\qquad\tau_M=\frac{S_o}{L_o\omega_0},\qquad\eta_M=E_M\tau_M=\frac{S_o^2+L_o^2}{L_o\omega_0}.
+$$
+
+Predict a second frequency without refitting. Write its ratio to the measured frequency as z. The two response functions now follow directly from their constitutive equations. Kelvin–Voigt storage stays constant and its loss grows linearly. Maxwell storage tends to a finite high-frequency modulus while its loss eventually falls. Matching at one point does not make these whole functions equal.
+
+$$
+z=\omega/\omega_0:\quad\begin{aligned}E'_{KV}(z)&=S_o,&E''_{KV}(z)&=zL_o,\\E'_M(z)&=\frac{z^2S_o(S_o^2+L_o^2)}{L_o^2+z^2S_o^2},&E''_M(z)&=\frac{zL_o(S_o^2+L_o^2)}{L_o^2+z^2S_o^2}.\end{aligned}
+$$
+
+The explicit storage difference proves that any other positive frequency distinguishes **these two ideal noiseless model classes** when both observed moduli are positive. This is an exact-identification statement, not a claim about experimental noise or an arbitrary relaxation spectrum. Close to z = 1 the difference is small, so practical discrimination also depends on measurement accuracy and frequency placement.
+
+$$
+E'_M(z)-E'_{KV}(z)=\frac{S_oL_o^2(z^2-1)}{L_o^2+z^2S_o^2}\ne0\qquad(z>0,\ z\ne1).
+$$
+
+Now expand the model class to several Maxwell branches in parallel. Each branch carries its own initial internal state and a causal exponential memory; their stresses add. A finite set of positive branch parameters is already more flexible than the single element. It is important to state which model class is being identified before interpreting a fitted parameter list.
+
+$$
+\dot\sigma_j+\frac{\sigma_j}{\tau_j}=E_j\dot\varepsilon,\quad E_j,\tau_j>0,\qquad\sigma=\sum_j\sigma_j.
+$$
+
+Sum each branch's power balance. The sum stores recoverable energy and dissipates at a nonnegative rate, even though instantaneous input power can be negative when energy is returned. The model is passive relative to its declared initial storage. Positivity and this energy identity constrain physical structure, but they do not imply that a limited experiment identifies the branch parameters uniquely.
+
+$$
+\psi=\sum_j\frac{\sigma_j^2}{2E_j},\qquad\mathcal D=\sum_j\frac{\sigma_j^2}{E_j\tau_j}\ge0,\qquad\sigma\dot\varepsilon=\dot\psi+\mathcal D.
+$$
+
+At the observed frequency, regard each branch's positive loss contribution as a weight. The storage-to-loss ratio is the weighted average of its dimensionless relaxation times. This turns the inverse problem into a two-moment matching problem. To compare full periodic histories, initialize each branch at stress epsilon-zero times its weight. Choosing zero initial memory instead generally produces a transient and would change the experiment.
+
+$$
+x_j=\omega_0\tau_j,\quad w_j=\frac{E_jx_j}{1+x_j^2}>0,\qquad L_o=\sum_jw_j,\quad S_o=\sum_jw_jx_j.
+$$
+
+Choose one dimensionless branch time on each side of the observed ratio. The displayed positive weights match both moments exactly, and the recovered moduli and times are positive. There are infinitely many such choices. Thus even adding passivity and a finite causal memory representation does not select a unique two-branch spectrum from a single frequency. Two frequencies distinguish the elementary pair above but need not determine every larger spectrum.
+
+$$
+0<x_1<\frac{S_o}{L_o}<x_2:\qquad w_1=L_o\frac{x_2-S_o/L_o}{x_2-x_1},\quad w_2=L_o\frac{S_o/L_o-x_1}{x_2-x_1},\quad E_j=\frac{w_j(1+x_j^2)}{x_j},\quad\tau_j=\frac{x_j}{\omega_0}.
+$$
+
+Here is one explicit two-branch fit to the unit target. Its high-frequency storage is the sum of branch moduli, and its low-frequency loss divided by angular frequency tends to the sum of modulus times relaxation time. Both limits differ from the single Maxwell fit, whose corresponding values are two. All three models have the same observed periodic stress and cycle loss at the fitted frequency, yet their internal stored energies can differ at the same phase. A matched output history need not reveal the internal allocation of energy.
+
+$$
+S_o=L_o=1\mathrm{\ Pa},\quad\omega_0=1\mathrm{\ s^{-1}}:\qquad(E_1,\tau_1)=(3.4\mathrm{\ Pa},0.25\mathrm{\ s}),\quad(E_2,\tau_2)=(0.85\mathrm{\ Pa},4\mathrm{\ s}),\quad\sum_jE_j=4.25\mathrm{\ Pa},\quad\sum_jE_j\tau_j=4.25\mathrm{\ Pa\,s}.
+$$
+
+The table uses Sobs = Lobs = 1 Pa and omega-zero = 1/s. Columns are frequency ratio, Kelvin–Voigt storage/loss and single-Maxwell storage/loss in Pa. The figure adds the positive two-branch example. Its energy panel uses the periodic branch initial states and plots storage divided by nonzero strain amplitude squared, in Pa. Equal total periodic stress does not imply equal stored energy. These examples add no spectrum controls to the current two-element lab.
+
+| frequency ratio | KV storage | KV loss | Maxwell storage | Maxwell loss |
+| --- | --- | --- | --- | --- |
+| 0.25000000 | 1.00000000 | 0.25000000 | 0.11764706 | 0.47058824 |
+| 0.50000000 | 1.00000000 | 0.50000000 | 0.40000000 | 0.80000000 |
+| 1.00000000 | 1.00000000 | 1.00000000 | 1.00000000 | 1.00000000 |
+| 2.00000000 | 1.00000000 | 2.00000000 | 1.60000000 | 0.80000000 |
+
+```python
+# Observed storage=loss=1 Pa at omega0=1/s.
+for z in (0.25, 0.5, 1.0, 2.0):
+    kv_storage, kv_loss = 1.0, z
+    maxwell_storage = 2*z*z/(1+z*z)
+    maxwell_loss = 2*z/(1+z*z)
+    print(" ".join(f"{v:.8f}" for v in (z, kv_storage, kv_loss, maxwell_storage, maxwell_loss)))
+```
+
+The [Bower small-strain viscoelasticity chapter](https://solidmechanics.org/Text/Chapter3_6/Chapter3_6.htm) gives history and harmonic-response background. The inverse constructions and uniaxial sine convention here are explicit separate derivations; they do not inherit the source shear-strain factors automatically. The fitted toy spectra are not a calibration for a named material.
+
+![Positive passive spectra fit one frequency but differ in other frequencies and internal energy](/assets/learning/continuum-viscoelastic-spectrum-identifiability.en.svg)
+
+### Research questions with explanations
+
+**Does positive loss at one frequency identify a unique Maxwell spectrum?** **Answer:** No. The explicit positive two-branch construction matches the same storage and loss for infinitely many time pairs.
+
+**Can zero initial memory be used when comparing complete steady histories?** **Answer:** Generally no. Each Maxwell branch needs its periodic initial stress; zero memory usually leaves a startup transient.
+
+**Does an extra frequency identify every possible model class?** **Answer:** No. It distinguishes the stated Kelvin–Voigt and single-Maxwell fits in the noiseless setting, while larger spectra require further information and an explicit model class.
+
 ## Experiments and explained exercises
 
 First compare startup and periodic initial conditions under identical loading. Next vary frequency while observing stress phase, storage and loss moduli. Finally inspect actual interval work, stored-energy change and dissipation together. For learned constitutive models, these checks expose missing internal state, incorrect phase conventions and violations hidden by a low pointwise fitting error.
