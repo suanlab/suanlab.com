@@ -159,6 +159,104 @@ The graph always has dimension two. Its ambient form stays nondegenerate while t
 
 A separate floating-point loop calculation is compared with the exact action. Its discrepancy is a numerical display diagnostic, not the criterion for Lagrangian structure. No tiny radius, artificial regularization or residual overwrite is used at the origin or at singular A.
 
+## Research extension: a closed momentum field without a global action
+
+Imagine carrying an angle counter around a hole. After one turn you return to the same position, but the counter has advanced by a full turn. A local derivative cannot detect that discrepancy. The following nonlinear companion example makes the earlier local/global distinction calculable. It is separate from the constant-matrix graph controlled in the native lab.
+
+### Specify the domain before differentiating
+
+Let position have units of length, and let the constant $\kappa$ have units of action, J s. The missing origin is part of the model, rather than a plotting inconvenience.
+
+$$
+Q=\mathbb R^2\setminus\{0\},\qquad
+p_\kappa(x,y)=\frac{\kappa}{x^2+y^2}(-y,x),\qquad
+\beta=p_\kappa\cdot dq.
+$$
+
+Differentiating each component gives a symmetric Jacobian. Since the identity block makes $E$ rank two everywhere in $Q$, the two-dimensional graph is Lagrangian in four-dimensional phase space.
+
+$$
+Dp_\kappa=\frac{\kappa}{(x^2+y^2)^2}
+\begin{pmatrix}2xy&y^2-x^2\\y^2-x^2&-2xy\end{pmatrix},\qquad
+E^TJE=Dp_\kappa-Dp_\kappa^T=0,\quad E=\begin{pmatrix}I\\Dp_\kappa\end{pmatrix}.
+$$
+
+### Count winding instead of subtracting principal angles
+
+Choose a continuous angular branch on a simply connected chart. The local action exists there, but its value changes by $2\pi\kappa$ after a counterclockwise turn about the excluded point.
+
+$$
+S_{\rm local}=\kappa\theta,\qquad dS_{\rm local}=\beta,\qquad
+\oint_C\beta=2\pi\kappa w(C),\quad w(C)\in\mathbb Z.
+$$
+
+For $\kappa\ne0$, a single-valued global $S$ would give zero on every closed-loop integral, contradicting this period. A small loop centered at $(2,0)$ with radius $1/2$ is contractible in $Q$ and has zero period. Reversing orientation reverses the sign; winding twice doubles it. For $\kappa=0$, the zero field is globally exact. A principal `atan2` endpoint difference silently discards winding.
+
+![Loops and their momentum periods on the punctured plane](/assets/learning/analytical-topology-period.en.svg)
+
+| Encircling radius | Period / (J s), $\kappa=1$ J s | Contractible loop / (J s) |
+|---|---|---|
+| 0.5 | $2\pi$ | 0 |
+| 1 | $2\pi$ | 0 |
+| 2 | $2\pi$ | 0 |
+
+The last column uses the same small off-center loop in every row. The loop period is independent of the enclosing radius, even though momentum magnitude varies as $1/r$.
+
+### A Lagrangian graph still needs a Hamiltonian
+
+Symmetry of $Dp$ alone does not establish stationary Hamilton–Jacobi dynamics. The free-particle Hamiltonian varies across this graph. For $m>0$, adding the following explicit attractive inverse-square potential makes the local action solve the stationary equation with energy zero:
+
+$$
+H_{\rm free}(q,p_\kappa(q))=\frac{\kappa^2}{2mr^2},\qquad
+U(q)=-\frac{\kappa^2}{2mr^2},\qquad
+H(q,p_\kappa(q))=0,\quad r>0.
+$$
+
+The velocity is tangent to circles, and differentiating the field along that velocity reproduces the force:
+
+$$
+\dot q=\frac{p_\kappa}{m},\qquad
+Dp_\kappa\dot q=-\frac{\kappa^2 q}{mr^4}=-\nabla U(q).
+$$
+
+Thus the graph is invariant under this specified Hamiltonian flow while still lacking a global scalar action for nonzero $\kappa$. This proves neither stability nor continuation through the origin. Position alone, a local curl penalty, or a Hamiltonian residual cannot certify global exactness. An AI model using one global scalar potential must state the topological sectors it excludes.
+
+### Execute and explain
+
+This standard-library cell integrates $p(q)\cdot q^\prime$ directly. It checks two loop classes, three radii and reversed double winding. Quadrature is a numerical check; the angular differential above supplies the proof.
+
+```python
+from math import cos, sin, pi
+
+def period(center, radius, kappa, winding, steps=1024):
+    total = 0.0
+    for j in range(steps):
+        angle = winding * 2 * pi * j / steps
+        c, s = cos(angle), sin(angle)
+        x, y = center[0] + radius*c, center[1] + radius*s
+        r2 = x*x + y*y
+        if r2 == 0:
+            raise ValueError("The origin is excluded")
+        px, py = -kappa*y/r2, kappa*x/r2
+        dx, dy = -radius*winding*s, radius*winding*c
+        total += px*dx + py*dy
+    return total * 2*pi / steps
+
+for radius in [.5, 1, 2]:
+    encircling = period([0, 0], radius, 1, 1)
+    contractible = period([2, 0], .5, 1, 1)
+    assert abs(encircling - 2*pi) < 3e-12
+    assert abs(contractible) < 3e-12
+    print(radius, round(encircling, 6), round(contractible, 6))
+assert abs(period([0, 0], 1, 1, -2) + 4*pi) < 3e-12
+```
+
+**Research questions with answers**
+
+- Can zero curl certify a global action? **Answer:** Only with suitable domain assumptions; the nonzero period here is a counterexample.
+- Does the free-particle Hamiltonian preserve this graph? **Answer:** For nonzero $\kappa$, it is not constant on the connected graph, and its straight trajectories do not follow these circles.
+- Can you shrink the enclosing loop to a point in $Q$? **Answer:** No. Such a contraction would have to cross the excluded origin.
+
 ## Exercises with explanations
 
 1. Compute E^TJE for a general two-by-two A. **Solution:** Multiplying the blocks gives A−A^T. For the controlled coefficients its off-diagonal entry is 2c, so c=0 is the exact condition.

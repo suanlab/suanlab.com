@@ -146,6 +146,102 @@ dx 계수의 변화는 γtx=∂F/∂x이고 dt 계수의 변화는 γx²/2=∂F/
 
 기계 에너지와 Hγ는 J, dHγ/dt와 시간 편미분은 W 단위로 표시한다. 시간 의존 H의 고정 시각 등고선에 전체 진화 궤적이 놓일 필요는 없다. 소수 항등식 잔차와 샘플 최대값을 0으로 덮지 않으며 모든 연속 시각의 보증 상한으로 주장하지 않는다.
 
+## 연구 확장: 원의 감김 수와 전역 경계항
+
+앞의 함수 $F=\gamma t x^2/2$는 직선 전체에서 정의된다. 원에서는 국소 표현 $F=\alpha\theta$를 쓰려면 각도의 가지를 골라야 한다. 어떤 항을 무시할 수 있는 경계 보정이라고 부르기 전에 국소 운동 방정식과 완전한 경로의 작용을 함께 비교하자. 이 원운동 예제는 기존 1차원 조작과 별개로 실행하는 보충 예제다.
+
+### 일정한 운동량 이동은 국소 운동을 보존한다
+
+반지름 $R$이 고정된 원 위의 입자를 관성모멘트 $I$로 기술하자. 각도는 무차원, 각속도의 단위는 시간의 역수이며 $\alpha$의 단위는 J s다.
+
+$$
+L_\alpha=\frac I2\dot\theta^2+\alpha\dot\theta,\qquad
+I=mR^2>0,\quad \alpha=\text{constant},\qquad I\ddot\theta=0.
+$$
+
+추가한 항은 정준 운동량을 바꾸지만 시간에 명시적으로 의존하지 않는다. Legendre 변환을 하면 이동된 운동량 좌표에서 물리적 운동에너지를 얻는다.
+
+$$
+p_\alpha=I\dot\theta+\alpha,\qquad
+H_\alpha=\frac{(p_\alpha-\alpha)^2}{2I}=E_{\rm physical},\qquad
+\oint\alpha\,d\theta=2\pi\alpha.
+$$
+
+앞의 시간 의존 $\gamma$ 예제와 달리 여기서는 $H_\alpha=E$다. $\alpha$와 $\gamma$는 단위가 다른 상수이므로 동일시하면 안 된다. 일정한 $\alpha$만큼의 이동은 원통 위에서 전역적으로 정의되는 symplectic 사상이다.
+
+$$
+\Psi(\theta,p)=(\theta,p+\alpha),\qquad
+\Psi^*(d\theta\wedge dp)=d\theta\wedge dp,\qquad
+\Psi^*(p\,d\theta)-p\,d\theta=\alpha\,d\theta.
+$$
+
+0이 아닌 $\alpha$에서 일형식의 차이는 closed이지만 exact가 아니다. 따라서 symplectic 보존이 전역 스칼라 생성함수 하나의 존재를 보장하지는 않는다. 국소적으로는 $\alpha\dot\theta=d(\alpha\theta)/dt$이지만, 전역 적분에는 감김 수가 남는다.
+
+### 물리적 끝점을 고정하고 감김 부류를 구분하기
+
+소요 시간 $T>0$을 고정하고, 물리적 양 끝 각도를 $2\pi$를 법으로 같게 둔다. 펼친 각도 좌표에서는 끝값이 정수 바퀴만큼 다를 수 있다. 일정한 속도 경로는 각 감김 부류 안에서 각각 정상 작용을 이룬다.
+
+$$
+\theta_n(t)=\theta_0+\frac{2\pi n}{T}t,\qquad
+\mathcal A_{\alpha,n}=\frac{I(2\pi n)^2}{2T}+2\pi\alpha n,\quad n\in\mathbb Z.
+$$
+
+감김 수 $n$을 고정하면 추가 작용은 상수이므로 모든 일차 변분이 그대로다. 서로 다른 감김 부류 사이에서는 같은 상수가 아니다. 다음 SI 예제에서는 무차원 게이지 세기 $a$를 명시적으로 정의한다.
+
+$$
+\frac{\mathcal A_{a,n}}{\pi\,{\rm J\,s}}=n^2+2an=(n+a)^2-a^2,\qquad
+\frac{E_n}{\rm J}=\frac{n^2}{2},\quad
+I=1\,{\rm kg\,m^2},\ T=2\pi\,{\rm s},\ \alpha=a\,{\rm J\,s}.
+$$
+
+![원의 감김 경로와 게이지 작용 비교](/assets/learning/analytical-circle-gauge.ko.svg)
+
+| 감김 수 $n$ | $\mathcal A_{0,n}/(\pi\,{\rm J\,s})$ | $\mathcal A_{1,n}/(\pi\,{\rm J\,s})$ | $E_n/\mathrm{J}$ |
+|---|---|---|---|
+| -2 | 4 | 0 | 2 |
+| -1 | 1 | -1 | 1/2 |
+| 0 | 0 | 0 | 0 |
+| 1 | 1 | 3 | 1/2 |
+| 2 | 4 | 8 | 2 |
+
+허용하는 감김 수는 정수뿐이다. 그림의 점 사이 연결선은 추세를 읽기 위한 안내이며, 분수 감김 경로를 추가하지 않는다.
+
+완전제곱식을 쓰면 모든 정수 감김 수에 대한 최솟값을 증명할 수 있다. $a=0$은 $n=0$, $a=1$은 $n=-1$을 고르고 $a=1/2$에서는 $n=-1,0$이 동률이다. 각 부류 안에서는 Cauchy–Schwarz로 $\int_0^T\dot\theta^2dt\ge(2\pi n)^2/T$를 얻으므로 일정한 속도 경로가 그 부류의 최소다. 두 논증을 합치면 운동에너지 작용이 유한한 모든 허용 경로에 대한 전역 결과가 된다. 음의 작용이 음의 에너지를 뜻하지는 않는다.
+
+초기값 문제는 그대로다. 동일한 물리적 초기 각도와 각속도를 지정하면 궤적도 같다. 달라진 최소는 물리적 끝점만 고정하고 감김 수가 다른 완전한 경로 사이에서 최적화하는 별개의 질문이다. 양자 위상이나 양자화 가정은 필요하지 않다.
+
+### 정확한 산술로 실행하고 의미를 점검하기
+
+다음 코드는 유리수 산술로 표를 출력한다. 유한 탐색은 제시한 예제의 점검이며, 범위를 제한하지 않은 최소는 앞의 부등식과 완전제곱식이 증명한다.
+
+```python
+from fractions import Fraction as Q
+
+# I=1 kg m^2, T=2*pi s; alpha is measured in J s.
+def state(alpha, n):
+    alpha = Q(alpha)
+    momentum = n + alpha
+    energy = Q(n*n, 2)
+    action_over_pi = n*n + 2*alpha*n
+    assert (momentum-alpha)**2/2 == energy
+    assert action_over_pi == (n+alpha)**2-alpha**2
+    return momentum, energy, action_over_pi
+
+for n in range(-2, 3):
+    print(n, state(0, n)[2], state(1, n)[2], state(1, n)[1])
+for alpha, expected in [(Q(0), [0]), (Q(1, 2), [-1, 0]), (Q(1), [-1])]:
+    values = {n: state(alpha, n)[2] for n in range(-4, 5)}
+    assert [n for n, a in values.items() if a == min(values.values())] == expected
+# The completed square proves the result over ALL integers.
+# Finite enumeration alone would not establish a global minimum.
+```
+
+**연구 질문과 답**
+
+- Euler–Lagrange 방정식에 감김 보정이 나타나지 않는 이유는? **답:** 끝점을 고정한 작은 연속 변분은 동일한 감김 부류에 머물며, 그 안에서 보정은 상수이기 때문이다.
+- $n=-1$은 동일한 초기값에서 새로 선택되는 궤적인가? **답:** 아니다. 경계값 작용을 여러 부류에서 최소화한 결과이며, 고정한 초기값 문제의 해를 대체하지 않는다.
+- AI 작용 모델은 무엇을 기록해야 하는가? **답:** 배치 공간의 정의역, 허용하는 감김 부류, 생성함수의 국소·전역 여부, 고정한 끝점 자료다. 국소 방정식 일치만으로 모든 경로 작용을 결정할 수 없다.
+
 ## 해설이 있는 연습 문제
 
 1. 운동량 사상의 역을 구하자. **해설:** P에서 γtx를 빼고 양의 m으로 나누면 v=(P−γtx)/m이다. ∂P/∂v=m이므로 이번 모델에서는 모든 점에서 역이 존재한다.

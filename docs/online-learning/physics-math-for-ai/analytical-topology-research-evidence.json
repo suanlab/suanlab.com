@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-two-unit-extension",
+  "date": "2026-11-12",
+  "baselineCommit": "d486291",
+  "scope": {
+    "domain": "analytical-mechanics",
+    "expandedUnits": [
+      "lagrangian-momentum-graphs",
+      "time-gauge-hamiltonian-energy"
+    ],
+    "manuscripts": 4,
+    "localizedFigures": 4,
+    "originalManuscriptsPreserved": true,
+    "previousReviewEntriesPreserved": 641,
+    "reviewEntriesAfter": 645,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/lagrangian-momentum-graphs.en.md",
+      "sha256": "7c12b851cb1051336abac53f7f788d0386041e9690e47ae26fcd0c6f6df0e581",
+      "previousSha256": "a602e397dd17f88d119c48c2e84fb5a39511df286af562059128430eb7dd2420"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/lagrangian-momentum-graphs.ko.md",
+      "sha256": "45e1a2e633bb00d8fdd310498f4d6c217ca3d905baccc175861c00895f7a6230",
+      "previousSha256": "758c5c5bcaff837199414255c0297998b1a3e45a8ee460a5f38f80aac3eefe93"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/time-gauge-hamiltonian-energy.en.md",
+      "sha256": "f96b3722aea90afc0fd7190910d68505194e9ffadd75401f4f0b6582901faf48",
+      "previousSha256": "adc7f5e4aeb21d0224d45393d0a7d8d2cab0ba34812afcc798b8039106c1bf2a"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/time-gauge-hamiltonian-energy.ko.md",
+      "sha256": "4e06af4ce1ab14e2c211d99cf1b38d8f936a236b3d825c0449917574c1fb294b",
+      "previousSha256": "87b90372de79c581d176f1a1704663f75cfea447f51542b12e2f4f465c56ca87"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/analytical-topology-period.en.svg",
+      "sha256": "77a98240acaedd38c062edab28c65acb85bf08556b769785ce959d01bf368f53"
+    },
+    {
+      "path": "public/assets/learning/analytical-topology-period.ko.svg",
+      "sha256": "43a807635f2855f2e7849136b3bffeacf5b7694e46e730ec92f9f654e3f93f11"
+    },
+    {
+      "path": "public/assets/learning/analytical-circle-gauge.ko.svg",
+      "sha256": "d722d352e3b325c175a65cb94db044d173d138a6739f119c2eefedfe1ce91fbf"
+    },
+    {
+      "path": "public/assets/learning/analytical-circle-gauge.en.svg",
+      "sha256": "6691ae3b73a4c1a51c40f08ec1a59d6b2cb49f0583946ac1bb0738ad69c98e21"
+    }
+  ],
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-generalized-coordinates.test.ts",
+      "scripts/learning-stationary-action.test.ts",
+      "scripts/learning-lagrange-equations.test.ts",
+      "scripts/learning-hamiltonian-canonical.test.ts",
+      "scripts/learning-poisson-brackets.test.ts",
+      "scripts/learning-symplectic-geometry.test.ts",
+      "scripts/learning-noether-theorem.test.ts",
+      "scripts/learning-constraints-reduction.test.ts",
+      "scripts/learning-hamilton-jacobi.test.ts",
+      "scripts/learning-hamilton-jacobi-integration.test.ts",
+      "scripts/learning-structure-preserving.test.ts",
+      "scripts/learning-structure-preserving-integration.test.ts",
+      "scripts/learning-analytical-topology-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 346,
+    "selectedTestFailures": 0,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-analytical-topology.py",
+      "loopPeriods": 76,
+      "hamiltonianTangencyStates": 48,
+      "exactCircleStates": 36
+    },
+    "pairedPythonCellsExecuted": 4,
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "browser": {
+      "unitCount": 20,
+      "states": 160,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 60,
+      "explainedQuizzes": 40,
+      "conceptSelections": 80,
+      "persistenceCompletionGroups": 20,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "report": ".runtime/learning/analytical-topology-domain-browser.json",
+      "command": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_ANALYTICAL_DOMAIN_REPORT=.runtime/learning/analytical-topology-domain-browser.json node scripts/check-analytical-domain.cjs"
+    },
+    "mobileExcerptStates": 2,
+    "sourceToExportSvgPairs": 4,
+    "servedHtmlToExportPairs": 2,
+    "prerequisites": {
+      "units": 20,
+      "topics": 10,
+      "prerequisiteClosure": 175,
+      "acyclic": true,
+      "unknownIds": 0
+    }
+  },
+  "remainingReview": {
+    "domains": 12,
+    "topics": 123,
+    "originalTotalDomains": 51,
+    "originalTotalTopics": 509,
+    "reviewedDomains": 39,
+    "reviewedTopics": 386,
+    "introductoryTopicsComplete": 362
+  }
+}

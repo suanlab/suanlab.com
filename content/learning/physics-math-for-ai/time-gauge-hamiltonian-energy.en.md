@@ -146,6 +146,102 @@ The implementation evaluates the analytic free or harmonic trajectory over two s
 
 Plot physical energy and Hgamma with energy units J; plot dHgamma/dt and its explicit partial derivative with power units W. A fixed-time contour of a time-dependent H need not contain the entire evolving phase trajectory. The code reports floating-point identity residuals and sampled maxima without forcing them to zero or claiming bounds at all real times.
 
+## Research extension: circle winding and global boundary terms
+
+The earlier function $F=\gamma t x^2/2$ is globally defined on the line. On a circle, the local expression $F=\alpha\theta$ needs a branch of angle. Compare the local equations and the action of complete paths before calling a term an irrelevant boundary correction. This circle example is an executable companion, separate from the one-dimensional native controls.
+
+### Constant momentum translation preserves local motion
+
+Let a particle move on a fixed circle of radius $R$, with inertia $I$. Angles are dimensionless, angular velocity has units of inverse time, and $\alpha$ has units of J s.
+
+$$
+L_\alpha=\frac I2\dot\theta^2+\alpha\dot\theta,\qquad
+I=mR^2>0,\quad \alpha=\text{constant},\qquad I\ddot\theta=0.
+$$
+
+The additional term changes canonical momentum but has no explicit time dependence. Legendre transformation gives the physical kinetic energy in the translated momentum coordinate:
+
+$$
+p_\alpha=I\dot\theta+\alpha,\qquad
+H_\alpha=\frac{(p_\alpha-\alpha)^2}{2I}=E_{\rm physical},\qquad
+\oint\alpha\,d\theta=2\pi\alpha.
+$$
+
+Unlike the earlier time-dependent $\gamma$ example, here $H_\alpha=E$. The constants $\alpha$ and $\gamma$ have different units and must not be identified. Translation by constant $\alpha$ is a globally defined symplectic map of the cylinder:
+
+$$
+\Psi(\theta,p)=(\theta,p+\alpha),\qquad
+\Psi^*(d\theta\wedge dp)=d\theta\wedge dp,\qquad
+\Psi^*(p\,d\theta)-p\,d\theta=\alpha\,d\theta.
+$$
+
+For nonzero $\alpha$, the one-form difference is closed but not exact. Consequently symplectic preservation does not guarantee one global scalar generating function. Locally $\alpha\dot\theta=d(\alpha\theta)/dt$; globally the integral remembers winding.
+
+### Fix physical endpoints and keep the winding class
+
+Hold duration $T>0$ fixed and require identical physical endpoint angles modulo $2\pi$. A lifted path can end at a different integer turn. The constant-speed paths are stationary separately in every winding class:
+
+$$
+\theta_n(t)=\theta_0+\frac{2\pi n}{T}t,\qquad
+\mathcal A_{\alpha,n}=\frac{I(2\pi n)^2}{2T}+2\pi\alpha n,\quad n\in\mathbb Z.
+$$
+
+For a fixed winding $n$, the extra action is a constant and all first variations are unchanged. Across different winding classes it is not the same constant. For the following SI example, define the dimensionless gauge strength $a$ explicitly:
+
+$$
+\frac{\mathcal A_{a,n}}{\pi\,{\rm J\,s}}=n^2+2an=(n+a)^2-a^2,\qquad
+\frac{E_n}{\rm J}=\frac{n^2}{2},\quad
+I=1\,{\rm kg\,m^2},\ T=2\pi\,{\rm s},\ \alpha=a\,{\rm J\,s}.
+$$
+
+![Winding paths and their circle gauge actions](/assets/learning/analytical-circle-gauge.en.svg)
+
+| Winding $n$ | $\mathcal A_{0,n}/(\pi\,{\rm J\,s})$ | $\mathcal A_{1,n}/(\pi\,{\rm J\,s})$ | $E_n/\mathrm{J}$ |
+|---|---|---|---|
+| -2 | 4 | 0 | 2 |
+| -1 | 1 | -1 | 1/2 |
+| 0 | 0 | 0 | 0 |
+| 1 | 1 | 3 | 1/2 |
+| 2 | 4 | 8 | 2 |
+
+Only integer winding numbers are admissible. In the figure, connecting lines guide the eye and do not introduce fractional winding paths.
+
+Completing the square proves the minimum over all integer winding numbers: $a=0$ selects $n=0$; $a=1$ selects $n=-1$; $a=1/2$ ties $n=-1,0$. Within each class, Cauchy–Schwarz gives $\int_0^T\dot\theta^2dt\ge(2\pi n)^2/T$, so the constant-speed path attains that class minimum. Combining both arguments proves the global result over all admissible finite-kinetic-action paths. A negative action does not imply negative energy.
+
+The initial-value problem is unchanged: specifying the same physical initial angle and angular velocity gives the same trajectory. The changed minimum concerns a different question, optimization across complete paths with fixed physical endpoints but variable winding. No quantum phase or quantization assumption is needed.
+
+### Execute exact arithmetic and test the interpretation
+
+The cell prints the table using rational arithmetic. Its finite search checks the displayed examples; the inequality and completed square above establish the unrestricted minimum.
+
+```python
+from fractions import Fraction as Q
+
+# I=1 kg m^2, T=2*pi s; alpha is measured in J s.
+def state(alpha, n):
+    alpha = Q(alpha)
+    momentum = n + alpha
+    energy = Q(n*n, 2)
+    action_over_pi = n*n + 2*alpha*n
+    assert (momentum-alpha)**2/2 == energy
+    assert action_over_pi == (n+alpha)**2-alpha**2
+    return momentum, energy, action_over_pi
+
+for n in range(-2, 3):
+    print(n, state(0, n)[2], state(1, n)[2], state(1, n)[1])
+for alpha, expected in [(Q(0), [0]), (Q(1, 2), [-1, 0]), (Q(1), [-1])]:
+    values = {n: state(alpha, n)[2] for n in range(-4, 5)}
+    assert [n for n, a in values.items() if a == min(values.values())] == expected
+# The completed square proves the result over ALL integers.
+# Finite enumeration alone would not establish a global minimum.
+```
+
+**Research questions with answers**
+
+- Why does the Euler–Lagrange equation miss the winding correction? **Answer:** Small continuous variations with fixed endpoints stay in one winding class, where the correction is constant.
+- Is $n=-1$ a new trajectory selected from identical initial data? **Answer:** No. It minimizes a boundary-value action over classes; it does not replace the solution of a fixed initial-value problem.
+- What should an AI action model record? **Answer:** The configuration domain, allowed winding classes, whether its generating function is local or global, and which endpoint data are fixed. Matching local equations alone does not determine all path actions.
+
 ## Exercises with explanations
 
 1. Derive the inverse momentum map. **Solution:** Subtract gamma t x from P and divide by positive mass, giving v=(P−gamma t x)/m. The derivative of P with respect to v is m, so the inverse exists everywhere in this model.

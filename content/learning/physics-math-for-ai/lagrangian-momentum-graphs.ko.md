@@ -156,6 +156,104 @@ $$
 
 별도의 부동소수점 폐곡선 계산과 정확한 작용의 차이도 제공한다. 그 차이는 수치 표시 진단이지 Lagrangian 판정 기준이 아니다. 원점이나 특이한 A에서 작은 반지름, 인위적 정칙화, 잔차 덮어쓰기를 사용하지 않는다.
 
+## 연구 확장: 닫힌 운동량 장에도 전역 작용이 없을 수 있다
+
+구멍 주위를 돌며 각도를 누적하는 계기판을 생각하자. 한 바퀴 뒤 위치는 출발점과 같지만 계기판은 한 바퀴 증가한다. 각 지점의 미분값만으로는 이 차이를 알아낼 수 없다. 앞서 짧게 소개한 국소·전역 구분을 비선형 장에서 직접 계산해 보자. 이 예제는 기존 실습의 상수 행렬 그래프와 별도로 실행한다.
+
+### 미분하기 전에 정의역을 정하기
+
+위치의 단위는 길이, 상수 $\kappa$의 단위는 작용인 J s다. 원점 제외는 그림을 그리기 위한 편의가 아니라 모델의 조건이다.
+
+$$
+Q=\mathbb R^2\setminus\{0\},\qquad
+p_\kappa(x,y)=\frac{\kappa}{x^2+y^2}(-y,x),\qquad
+\beta=p_\kappa\cdot dq.
+$$
+
+각 성분을 미분하면 대칭 Jacobian을 얻는다. $E$의 위쪽 항등행렬 때문에 $Q$의 모든 점에서 계수는 2다. 따라서 이 2차원 그래프는 4차원 위상 공간에서 Lagrangian이다.
+
+$$
+Dp_\kappa=\frac{\kappa}{(x^2+y^2)^2}
+\begin{pmatrix}2xy&y^2-x^2\\y^2-x^2&-2xy\end{pmatrix},\qquad
+E^TJE=Dp_\kappa-Dp_\kappa^T=0,\quad E=\begin{pmatrix}I\\Dp_\kappa\end{pmatrix}.
+$$
+
+### 주각의 끝값을 빼지 말고 감김 수를 세기
+
+단순 연결인 좌표 영역에서 연속적인 각도 가지를 고른다. 그 영역에는 국소 작용이 있지만, 제외한 점 주위를 반시계 방향으로 한 바퀴 돌면 누적값은 $2\pi\kappa$만큼 변한다.
+
+$$
+S_{\rm local}=\kappa\theta,\qquad dS_{\rm local}=\beta,\qquad
+\oint_C\beta=2\pi\kappa w(C),\quad w(C)\in\mathbb Z.
+$$
+
+$\kappa\ne0$일 때 전역 단일값 $S$가 있다면 모든 닫힌 경로의 적분은 0이어야 하므로 위 결과와 모순이다. 중심 $(2,0)$, 반지름 $1/2$인 작은 원은 $Q$ 안에서 한 점으로 수축할 수 있어 적분이 0이다. 진행 방향을 바꾸면 부호가 바뀌고 두 번 감으면 값이 두 배가 된다. $\kappa=0$인 영 장은 전역 exact다. `atan2` 주각의 끝값만 빼면 감김 정보를 잃는다.
+
+![구멍 난 평면의 경로와 운동량 주기 적분](/assets/learning/analytical-topology-period.ko.svg)
+
+| 원점 주위 반지름 | 주기 / (J s), $\kappa=1$ J s | 수축 가능한 경로 / (J s) |
+|---|---|---|
+| 0.5 | $2\pi$ | 0 |
+| 1 | $2\pi$ | 0 |
+| 2 | $2\pi$ | 0 |
+
+마지막 열은 모든 행에서 동일한 작은 비중심 원을 사용한다. 운동량의 크기는 $1/r$로 변하지만 원점을 감싼 경로의 주기는 반지름에 의존하지 않는다.
+
+### Lagrangian 그래프에도 운동 법칙이 따로 필요하다
+
+$Dp$의 대칭성만으로 정상 Hamilton–Jacobi 동역학이 성립하지는 않는다. 자유 입자의 Hamiltonian은 이 그래프 위에서 일정하지 않다. $m>0$에서 다음의 인력성 역제곱 퍼텐셜을 더하면 국소 작용은 에너지 0의 정상 방정식을 만족한다.
+
+$$
+H_{\rm free}(q,p_\kappa(q))=\frac{\kappa^2}{2mr^2},\qquad
+U(q)=-\frac{\kappa^2}{2mr^2},\qquad
+H(q,p_\kappa(q))=0,\quad r>0.
+$$
+
+속도는 원의 접선 방향이며, 그 속도를 따라 운동량 장을 미분한 값은 실제 힘과 같다.
+
+$$
+\dot q=\frac{p_\kappa}{m},\qquad
+Dp_\kappa\dot q=-\frac{\kappa^2 q}{mr^4}=-\nabla U(q).
+$$
+
+따라서 이 그래프는 명시한 Hamiltonian 흐름에 대해 불변이면서도, 0이 아닌 $\kappa$에서는 전역 스칼라 작용을 갖지 않는다. 이 계산으로 안정성이나 원점을 통과하는 연장을 증명한 것은 아니다. 위치, 국소 curl 손실, Hamiltonian 잔차만으로 전역 exactness를 인증할 수 없다. 전역 스칼라 퍼텐셜 하나를 사용하는 AI 모델은 제외하는 위상적 부류를 밝혀야 한다.
+
+### 실행하고 해석하기
+
+다음 표준 라이브러리 코드는 $p(q)\cdot q^\prime$를 직접 적분한다. 두 경로 부류, 세 반지름, 역방향 두 바퀴를 확인한다. 구적법은 수치 점검이며, 증명은 앞의 각도 미분식이다.
+
+```python
+from math import cos, sin, pi
+
+def period(center, radius, kappa, winding, steps=1024):
+    total = 0.0
+    for j in range(steps):
+        angle = winding * 2 * pi * j / steps
+        c, s = cos(angle), sin(angle)
+        x, y = center[0] + radius*c, center[1] + radius*s
+        r2 = x*x + y*y
+        if r2 == 0:
+            raise ValueError("The origin is excluded")
+        px, py = -kappa*y/r2, kappa*x/r2
+        dx, dy = -radius*winding*s, radius*winding*c
+        total += px*dx + py*dy
+    return total * 2*pi / steps
+
+for radius in [.5, 1, 2]:
+    encircling = period([0, 0], radius, 1, 1)
+    contractible = period([2, 0], .5, 1, 1)
+    assert abs(encircling - 2*pi) < 3e-12
+    assert abs(contractible) < 3e-12
+    print(radius, round(encircling, 6), round(contractible, 6))
+assert abs(period([0, 0], 1, 1, -2) + 4*pi) < 3e-12
+```
+
+**연구 질문과 답**
+
+- curl이 0이면 전역 작용을 보장하는가? **답:** 적절한 정의역 가정이 더 필요하다. 여기서는 0이 아닌 주기 적분이 반례다.
+- 자유 입자의 Hamiltonian도 이 그래프를 보존하는가? **답:** 0이 아닌 $\kappa$에서 그래프 위의 Hamiltonian이 일정하지 않고, 자유 입자의 직선 궤적은 이 원을 따르지 않는다.
+- 원점을 감싼 원을 $Q$ 안에서 한 점으로 줄일 수 있는가? **답:** 없다. 그런 수축은 제외한 원점을 통과해야 한다.
+
 ## 해설이 있는 연습 문제
 
 1. 일반적인2×2 A에서 E^TJE를 계산하자. **해설:** 블록을 곱하면 A−A^T다. 선택한 계수에서는 비대각 성분이2c여서 c=0이 정확한 조건이다.
