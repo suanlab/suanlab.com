@@ -108,6 +108,64 @@ A learning algorithm can achieve small equation error on a poorly excited set wh
 
 A useful evaluation reports the feature design, exact or estimated rank, the physical coefficient domain, normalization and noise assumptions. When the aim is predicting complete motion, equation-level fitting also needs to be distinguished from simulation accuracy over time. Two instantaneous probes do not establish the correctness of an entire trajectory model.
 
+## Research extension: Design excitation under a fixed normalized budget
+
+### Rank answers a different question from precision
+
+Use independent reset probes as in the laboratory, not an unforced single trajectory. Fix the length and time reference scales first. In normalized coordinates, the response is linear in theta=(gamma T,kappa T²). Assume fresh independent centered Gaussian errors with known variance sigma² in the normalized responses. For a full-column-rank design A, unconstrained least squares has covariance sigma² times the inverse Gram matrix.
+
+$$
+y_i=a_i^T\theta+\varepsilon_i,\qquad
+a_i=(v_iT/L,x_i/L),\qquad
+G=A^TA,\qquad \operatorname{Cov}(\widehat\theta)=\sigma^2G^{-1}.
+$$
+
+Impose a declared dimensionless feature-norm budget: the sum of squared row norms is at most E, with E positive. This is a design criterion, not automatically the mechanical energy or the laboratory's hardware cost. Actuator limits, reset costs and feasible states would add further constraints.
+
+### Prove a balanced optimum
+
+For two unknown coefficients, let the positive eigenvalues of G be lambda_1 and lambda_2. Their sum is at most E. Arithmetic–geometric mean and the smaller-eigenvalue inequality give
+
+$$
+\det G=\lambda_1\lambda_2\le(E/2)^2,\qquad
+\lambda_{\min}(G)\le E/2.
+$$
+
+Both optima occur at G=(E/2)I. With two probes, equal-length orthogonal feature rows realize this design. It maximizes determinant information and minimizes the worst-direction variance within the declared unconstrained design class. Merely repeating one feature direction cannot create full rank, however accurate its mean becomes.
+
+### Compare equally costly but nearly parallel probes
+
+Take E=2, first row (1,0), and second row (c,s), with c nonnegative and c²+s²=1. Every such design uses the same budget. Its Gram eigenvalues are 1+c and 1−c. As c approaches one, rank stays two until s reaches zero, but the largest coefficient-variance multiplier grows like one divided by 1−c.
+
+| Second unit row | Minimum Gram eigenvalue | Worst variance divided by sigma² |
+|---|---|---|
+| (0,1) | 1 | 1 |
+| (3/5,4/5) | 2/5 | 5/2 |
+| (99/101,20/101) | 2/101 | 101/2 |
+
+The final design has no exact algebraic ambiguity, yet its least-informed direction is much noisier than the orthogonal design. This gives a quantitative reason to excite independent state directions rather than report only that a determinant is nonzero.
+
+### Retain physical and statistical assumptions
+
+The covariance above concerns unconstrained least squares. Enforcing gamma nonnegative and kappa positive changes the estimator and can change its finite-sample distribution; clipping a noisy estimate does not preserve this covariance formula automatically. Changing reference scales also changes a Euclidean feature budget unless the design metric transforms consistently. Keep the chosen units and budget fixed when comparing designs.
+
+**Worked question:** Is the algebraically identifiable probe pair necessarily a good experiment? **Answer:** No. Precision depends on the excitation geometry relative to noise and cost. The code constructs exact rational unit rows, checks their Gram determinants and eigenvalues, and verifies the inverse covariance matrix. These continuous design examples are standalone; they do not claim the native finite control grid implements an optimizer or every reset is physically feasible.
+
+```python
+from fractions import Fraction as F
+for c,s in [(F(0),F(1)),(F(3,5),F(4,5)),(F(99,101),F(20,101)),(F(9999,10001),F(200,10001))]:
+    assert c*c+s*s==1
+    G=[[1+c*c,c*s],[c*s,s*s]]
+    determinant=G[0][0]*G[1][1]-G[0][1]**2
+    assert sum(G[i][i] for i in range(2))==2
+    assert determinant==(1-c)*(1+c)==s*s<=1
+    inverse=[[G[1][1]/determinant,-G[0][1]/determinant],[-G[1][0]/determinant,G[0][0]/determinant]]
+    for i in range(2):
+        for j in range(2):
+            assert sum(G[i][k]*inverse[k][j] for k in range(2))==int(i==j)
+    print('row',c,s,'Gram determinant',determinant,'worst variance multiplier',1/(1-c))
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** For rows(1,0),(0,1) and response(1,2), recover the coefficients. **Solution:** gamma=1 and kappa=2; each row isolates one coefficient.

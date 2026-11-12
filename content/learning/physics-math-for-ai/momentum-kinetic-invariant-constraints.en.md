@@ -98,6 +98,63 @@ A learned transition model can satisfy a momentum penalty and still make a wrong
 
 Projecting an output onto an invariant set can be useful, but its existence, multiplicity and choice rule matter. A set may be empty or contain more than one point, even in this simple two-velocity example. A benchmark should report balance residuals, feasibility and the actual dynamical assumptions rather than interpreting one small loss as complete physical correctness.
 
+## Research extension: A restitution law selects a collision branch
+
+### Add a physical event law to the invariant set
+
+The laboratory allows arbitrary internal impulses. To select a collision update, add assumptions that the particles are actually in contact, particle one is on the left, their positive masses are fixed, and no external impulse acts during the event. Let d=v_1−v_2 be positive, so they are approaching. A passive coefficient of restitution e between zero and one prescribes the post-event relative velocity, rather than leaving it to conservation alone.
+
+With impulse J on particle one and minus J on particle two, use the reduced mass mu. Solving the prescribed relative-velocity equation gives
+
+$$
+\mu={m_1m_2\over m_1+m_2},\qquad
+d'=d+{J\over\mu}=-ed,\qquad
+J=-(1+e)\mu d.
+$$
+
+The sign is mechanically meaningful: the left particle receives a nonpositive impulse and the right receives its opposite. The post-event particles separate or have equal velocity. The contact assumption and restitution rule are extra information; neither follows from the momentum line or energy ellipse in the original figure.
+
+### Derive the kinetic-energy change
+
+The center velocity V=P/(m_1+m_2) stays fixed. Decompose kinetic energy into center and relative parts, then substitute d'=−ed:
+
+$$
+K={P^2\over2(m_1+m_2)}+\tfrac12\mu d^2,\qquad
+\Delta K=-\tfrac12\mu(1-e^2)d^2\le0.
+$$
+
+For e=1, the nontrivial elastic impulse is minus 2 mu d. The other invariant-preserving choice J=0 leaves the incoming relative velocity positive. It is not the resolved, separating contact event under these assumptions. For e=0, both velocities become V and kinetic energy reaches the minimum compatible with that momentum. If d=0, the event has no incoming relative excitation and these formulas cannot identify e from a zero impulse.
+
+### Work a family of impacts
+
+Choose masses two and three kilograms and incoming velocities two and minus one meters per second. Then P=1, mu=6/5, V=1/5, and initial K=11/2 joules. The impulses below can also be entered into the original impulse widget; its unchanged fixed-K target correctly fails for the inelastic cases.
+
+| Restitution | Impulse J (N s) | Post-event velocities (m/s) | Kinetic energy (J) |
+|---|---|---|---|
+| 0 | −18/5 | 1/5, 1/5 | 1/10 |
+| 1/2 | −27/5 | −7/10, 4/5 | 29/20 |
+| 1 | −36/5 | −8/5, 7/5 | 11/2 |
+
+The loss here is translational kinetic energy. A total-energy model would need the unresolved deformation, thermal, or other internal channels; the impulse formula alone does not say where that energy went. Momentum conservation and kinetic-energy conservation are different constraints, and a passive collision need not satisfy both.
+
+**Worked question:** May an AI simulator choose whichever invariant root is numerically closest and call that a collision law? **Answer:** Not without declaring that selection model and checking its contact behavior. A valid event rule must also specify the approach condition, admissible impulse direction, restitution assumptions, and external inputs. The code checks the entire five-value restitution family with exact fractions and shows why the zero-impulse invariant root is insufficient for an incoming contact. It does not add contact positions or an e slider to the native laboratory.
+
+```python
+from fractions import Fraction as F
+m1,m2=F(2),F(3);v1,v2=F(2),F(-1)
+M=m1+m2;mu=m1*m2/M;d=v1-v2
+P=m1*v1+m2*v2;K=(m1*v1*v1+m2*v2*v2)/2
+for e in [F(0),F(1,4),F(1,2),F(3,4),F(1)]:
+    J=-(1+e)*mu*d
+    w1,w2=v1+J/m1,v2-J/m2
+    after=(m1*w1*w1+m2*w2*w2)/2
+    assert m1*w1+m2*w2==P and w1-w2==-e*d<=0
+    assert after-K==-mu*(1-e*e)*d*d/2
+    assert after>=P*P/(2*M)
+    print('e',e,'J',J,'velocities',w1,w2,'kinetic',after)
+assert d>0  # J=0 would retain an approaching contact.
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** What is the total momentum change under the declared map? **Solution:** Internal J cancels, leaving exactly I.

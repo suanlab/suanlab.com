@@ -101,6 +101,76 @@ A learned surrogate can exploit the normalized equation to share data across dif
 
 A collapse demonstrated inside one linear family also does not establish extrapolation to a new damping ratio or a nonlinear device. Separate the dimensional derivation, the numerical implementation and empirical evidence that the parent model describes the experiment. The reduction is useful precisely when its assumptions and reconstruction map are explicit.
 
+## Research extension: Forced similarity requires matching the input as well
+
+### Extend the scaling calculation to an external force
+
+The laboratory compares unforced oscillators. For a standalone extension, consider a prescribed force f(t) and positive constant mass and stiffness, with nonnegative constant damping. Use the previous physical scaling: mass multiplier h, rate multiplier r, and length multiplier ell are all positive. Differentiate the proposed relation x_B(t)=ell x_A(rt) twice, then substitute the scaled coefficients:
+
+$$
+m_B=hm_A,\quad b_B=hrb_A,\quad k_B=hr^2k_A,\quad
+x_B(t)=\ell x_A(rt),\qquad
+f_B(t)=h\ell r^2 f_A(rt).
+$$
+
+Every term on the left of the B equation acquires the same factor h ell r squared. The force on the right must acquire it too. Matching damping ratio and normalized initial conditions cannot compensate for a mismatched input. The initial velocity still scales by ell r, rather than ell alone.
+
+### Make the dimensionless forcing visible
+
+With omega_0=sqrt(k/m), reference length X positive, s=omega_0 t, and u=x/X, the equation becomes
+
+$$
+u_{ss}+2\zeta u_s+u=p(s),\qquad
+p(s)={f(s/\omega_0)\over kX}.
+$$
+
+Take X_B=ell X_A. The force scaling above makes p_B(s)=p_A(s) at the same dimensionless time. For a sinusoidal force, both its amplitude and frequency must transform: F_B=h ell r² F_A and Omega_B=r Omega_A. Keeping the old numerical frequency while changing omega_0 generally changes the ratio nu=Omega/omega_0 and therefore changes the normalized problem.
+
+### Work a frequency-response counterexample
+
+For positive damping, the decaying transient leaves a sinusoidal steady response. Substituting a sine-and-cosine ansatz into the normalized equation gives the displacement amplitude
+
+$$
+U={F/(kX)\over\sqrt{(1-\nu^2)^2+(2\zeta\nu)^2}},\qquad
+\nu={\Omega\over\omega_0}.
+$$
+
+Choose A with m=1, k=4, b=1, X=1, force amplitude F=4, and frequency Omega=1, using coherent SI coordinates. Then omega_0=2, zeta=1/4, and nu=1/2. With h=3,r=2,ell=2, B has m=3,k=48,b=6,X=2. Its correct forcing is amplitude 96 at frequency 2. The normalized amplitude agrees, approximately 1.26491, while its physical displacement amplitude is twice as large. Leaving the B force frequency at one changes its normalized response even though the damping ratios still match.
+
+| Comparison | What must match after normalization | Common missing item |
+|---|---|---|
+| Unforced initial-value motion | Damping ratio and both initial coordinates | Initial velocity scaling |
+| Forced initial-value motion | The same data and the entire p(s) | Force amplitude or time argument |
+| Sinusoidal steady response with damping | Damping ratio, force ratio and frequency ratio | Omega/omega_0 |
+
+At zero damping and exact resonance, this finite steady-amplitude formula is not available: a nonzero force proportional to cos(omega_0 t) produces a term proportional to t sin(omega_0 t). Away from resonance an undamped periodic particular solution can exist, but initial transients do not decay. Thus “same normalized amplitude” and “attracting steady response” need their own assumptions.
+
+**Worked question:** Does agreement in a free-decay benchmark justify transferring a learned model to arbitrary driven experiments? **Answer:** No. The input is part of the problem. A useful transfer claim specifies its normalized input class and initial conditions, then checks the force transformation. The code verifies the chain-rule scaling with a manufactured polynomial trajectory using exact fractions, separately checks the sinusoidal amplitude, and never treats these forces as new controls in the unforced widget.
+
+```python
+from fractions import Fraction as F
+from math import sqrt,isclose
+m,k,b=F(1),F(4),F(1)
+h,r,ell=F(3),F(2),F(2)
+mb,kb,bb=h*m,h*r*r*k,h*r*b
+def x(t):return 1+t+t*t+t**3
+def dx(t):return 1+2*t+3*t*t
+def ddx(t):return 2+6*t
+def force(t):return m*ddx(t)+b*dx(t)+k*x(t)
+for t in [F(0),F(1,4),F(1,2),F(1),F(2)]:
+    lhs=mb*ell*r*r*ddx(r*t)+bb*ell*r*dx(r*t)+kb*ell*x(r*t)
+    assert lhs==h*ell*r*r*force(r*t)
+def amplitude(m,k,b,X,force,frequency):
+    omega=sqrt(float(k/m));zeta=float(b)/(2*sqrt(float(m*k)))
+    nu=float(frequency)/omega
+    return float(force/(k*X))/sqrt((1-nu*nu)**2+(2*zeta*nu)**2)
+ua=amplitude(m,k,b,F(1),F(4),F(1))
+ub=amplitude(mb,kb,bb,ell,F(96),F(2))
+wrong=amplitude(mb,kb,bb,ell,F(96),F(1))
+assert isclose(ua,ub,rel_tol=1e-14) and abs(wrong-ua)>.1
+print('matched normalized amplitudes',ua,ub,'unscaled-frequency response',wrong)
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Why must X be positive and independent of a possibly zero x0? **Solution:** It is a normalization denominator; choosing X=x0 would fail or reverse conventions for zero or negative initial displacement.

@@ -129,6 +129,68 @@ Enforcing every rotation as a symmetry while withholding the material orientatio
 
 A useful evaluation reports context transformations, matrix-level or domain-level claims, and queried-point errors separately. A zero error at q=0 is especially weak: both linear forces vanish there even for a model lacking the tested global symmetry.
 
+## Research extension: Measure anisotropy instead of inferring it from a small defect
+
+### Quantify the active force defect
+
+Retain the two-dimensional quadratic potential with K=diag(k_x,k_y), both stiffnesses positive. Rotate the state while holding this material tensor fixed. For a rotation R with sine s, direct multiplication gives a particularly transparent commutator. Its action swaps the two coordinates and rescales their norm:
+
+$$
+F(Rq)-RF(q)=(RK-KR)q,
+\qquad RK-KR=(k_x-k_y)s\begin{pmatrix}0&1\\1&0\end{pmatrix},
+\qquad \|F(Rq)-RF(q)\|_2=|k_x-k_y|\,|s|\,\|q\|_2.
+$$
+
+This identity is exact in the stated diagonal two-dimensional family. A small force defect can mean small anisotropy, but it can also mean a small displacement or a nearly zero-sine rotation. At the origin every such force comparison vanishes. A half turn has zero sine and also fails to test isotropy, even at large displacement.
+
+With a nonzero q and nonzero s, an actual defect-norm bound epsilon implies an anisotropy bound epsilon divided by the product of absolute sine and displacement norm. A finite-data learning claim therefore needs a declared excitation scale and test rotations. Measurement uncertainty in the force would require its own error allowance rather than being called material symmetry.
+
+### Find the closest isotropic quadratic model
+
+Let k_bar be the mean stiffness. Expanding the squared Frobenius distance to a scalar tensor completes the square:
+
+$$
+\bar k={k_x+k_y\over2},\qquad
+\|K-tI\|_F^2={(k_x-k_y)^2\over2}+2(t-\bar k)^2.
+$$
+
+Thus k_bar I is the unique closest isotropic tensor in this metric. It also equals the average of K transformed through four quarter-turn orientations. This is a declared approximation of the material, not a passive coordinate conversion: a coordinate conversion retains the complete transformed tensor R K R-transpose and does not discard its anisotropy.
+
+For k_x=1,k_y=3 and a three-fifths/four-fifths rotation, the defect multiplier is 8/5 per displacement unit. The closest isotropic tensor is 2I and its squared Frobenius error is two. A half-turn-only test would report zero defect while missing all of this anisotropy.
+
+| Test or operation | Useful conclusion in this quadratic family | Missing information |
+|---|---|---|
+| Origin or half-turn force comparison | Often zero defect | Cannot determine isotropy |
+| Nonzero displacement and nonzero-sine rotation | Quantitative stiffness-gap information | Needs a force-error bound in noisy data |
+| Average material orientations | Produces closest scalar stiffness | Changes the original anisotropic model |
+
+Fourfold symmetry of this rank-two quadratic tensor is enough to make it isotropic, but fourfold symmetry of a general higher-order potential need not imply full rotational symmetry. Likewise, the original distinction between a discrete symmetry and continuous angular-momentum conservation remains intact.
+
+**Worked question:** If a neural force field has a small raw equivariance loss near equilibrium, has it learned an isotropic material? **Answer:** Not from that evidence alone. Normalize the test by meaningful state and rotation scales and retain the material tensor as context when it is anisotropic. The code verifies the exact defect relation, the closest-isotropic distance decomposition and the four-orientation average with rational matrices. It does not replace the native anisotropic coefficients by their average.
+
+```python
+from fractions import Fraction as F
+kx,ky=F(1),F(3);mean=(kx+ky)/2
+rotations=[(F(1),F(0)),(F(-1),F(0)),(F(0),F(1)),(F(3,5),F(4,5))]
+force=lambda q:[-kx*q[0],-ky*q[1]]
+for c,s in rotations:
+    rotate=lambda q:[c*q[0]-s*q[1],s*q[0]+c*q[1]]
+    for q in [[F(0),F(0)],[F(1),F(2)],[F(3,5),F(4,5)]]:
+        a,b=force(rotate(q)),rotate(force(q))
+        defect=[x-y for x,y in zip(a,b)]
+        assert sum(x*x for x in defect)==(kx-ky)**2*s*s*sum(x*x for x in q)
+for t in [F(1,2),F(1),F(2),F(3),F(5)]:
+    assert (kx-t)**2+(ky-t)**2==(kx-ky)**2/2+2*(t-mean)**2
+quarter=[(F(1),F(0)),(F(0),F(1)),(F(-1),F(0)),(F(0),F(-1))]
+average=[[F(0),F(0)],[F(0),F(0)]]
+for c,s in quarter:
+    transformed=[[kx*c*c+ky*s*s,(kx-ky)*s*c],[(kx-ky)*s*c,kx*s*s+ky*c*c]]
+    for i in range(2):
+        for j in range(2):average[i][j]+=transformed[i][j]/4
+assert average==[[mean,0],[0,mean]]
+print('isotropic average',average,'minimum squared Frobenius error',(kx-ky)**2/2)
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** What coefficient transformation represents the same model when q'=Rq? **Solution:** K'=RKR transpose. The resulting off-diagonal entries generally matter.

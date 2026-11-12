@@ -90,6 +90,72 @@ A surrogate trained on small amplitudes may learn the harmonic period extremely 
 
 Dimensional scaling offers a useful check: under this ideal model changing L or g rescales both the reference and approximate periods through sqrt(L/g), while the normalized ratio depends on amplitude. This does not mean every real pendulum follows that scaling once omitted effects become important. A physically meaningful benchmark separates parent-model approximation, numerical evaluation and empirical model discrepancy.
 
+## Research extension: Bound a period approximation and its accumulated return-time error
+
+### Replace a small numerical difference with a controlled remainder
+
+Keep the ideal pendulum assumptions and an oscillation amplitude strictly between zero and pi radians. Write m=sin²(alpha/2), so 0<m<1. Here m is the elliptic parameter, not the pendulum mass; the modulus in the earlier integral is sqrt(m). Expanding the integrand in nonnegative binomial powers and integrating its sine powers gives a positive series for the period ratio R=T/T_0:
+
+$$
+R=\sum_{n=0}^{\infty}a_nm^n,\qquad
+a_n=\left({\binom{2n}{n}\over4^n}\right)^2,\qquad
+{a_{n+1}\over a_n}=\left({2n+1\over2n+2}\right)^2<1.
+$$
+
+The underlying elliptic expansion and AGM relation are recorded in [DLMF 19.5](https://dlmf.nist.gov/19.5) and [19.8](https://dlmf.nist.gov/19.8). The following explicit geometric remainder follows directly from the decreasing coefficients. For S_J retaining powers zero through J, every later coefficient is at most a_(J+1), hence
+
+$$
+0\le R-S_J\le B_J={a_{J+1}m^{J+1}\over1-m},\qquad
+S_J=\sum_{n=0}^{J}a_nm^n.
+$$
+
+At alpha=60 degrees, m=1/4 exactly, so both interval endpoints are rational numbers. The code checks six such bounds against a separately evaluated 90-digit AGM value. The rational bound is established by the series argument; the finite-precision AGM check is an independent numerical consistency check, not a proof that its rounded value is exact. Near the separatrix m approaches one and this particular bound becomes less efficient.
+
+### A good period is not automatically a good long-time clock
+
+Let a chosen approximation have period T_Q=T_0 Q, with Q positive. At the Nth numbered return to the release phase, the time discrepancy is N times the one-period discrepancy. Combining this exact clock statement with the interval above gives
+
+$$
+\left|NT-NT_Q\right|=NT_0|R-Q|
+\le NT_0\max\left(|S_J-Q|,|S_J+B_J-Q|\right).
+$$
+
+Truncation order J and event count N are independent choices. A timing budget therefore needs a number of cycles as well as a per-period tolerance. For the 60-degree pendulum, R is about 1.073182007. After 100 corresponding cycles, the linear period's timing mismatch is about 7.3182 T_0. Using the alpha-squared corrected period reduces it to about 0.4643 T_0, but does not eliminate accumulation.
+
+![Timing mismatch at numbered return events grows linearly with event count for a 60-degree pendulum; the corrected small-angle period reduces the drift relative to the linear period.](/assets/learning/physical-period-clock-en.svg)
+
+This compares periodic clocks. It does not replace the nonlinear motion by a cosine or certify displacement error between returns. At zero amplitude the actual resting state has no nontrivial return period; T_0 remains a limiting quantity. At the upright equilibrium the oscillatory family also ends. Those exclusions from the original lesson remain essential.
+
+| Claim | Information required | What remains unproved |
+|---|---|---|
+| Bound the period ratio | Amplitude and an elliptic-series remainder | Accuracy of a guessed waveform |
+| Bound numbered return times | Period bound and the event count | Uniform position error between events |
+| Apply the ideal prediction experimentally | Adequate gravity, geometry and drag assumptions | Empirical validity from a dimension check alone |
+
+**Worked question:** Can a fixed one-percent period rule guarantee a fixed absolute timing error for arbitrarily many cycles? **Answer:** No. Unless the period is exact, the numbered-event error grows linearly with cycle count. Choose a time horizon and observable before assigning a tolerance. The code uses exact fractions for the rational series bounds and explicitly labels the corrected-period clock as a numerical calculation.
+
+```python
+from fractions import Fraction as F
+from decimal import Decimal as D,localcontext
+from math import comb,pi
+with localcontext() as ctx:
+    ctx.prec=90
+    a,b=D(1),(D(3)/4).sqrt()
+    for _ in range(20): a,b=(a+b)/2,(a*b).sqrt()
+    reference=1/a
+    for order in [1,2,4,8,16,32]:
+        coeff=[F(comb(2*n,n),4**n)**2 for n in range(order+2)]
+        lower=sum(coeff[n]*F(1,4)**n for n in range(order+1))
+        width=coeff[-1]*F(1,4)**(order+1)/F(3,4)
+        lo=D(lower.numerator)/D(lower.denominator)
+        hi=D((lower+width).numerator)/D((lower+width).denominator)
+        assert lo<reference<hi
+        print('order',order,'interval width',float(width))
+    ratio=float(reference)
+    for Q in [1,1+(pi/3)**2/16]:
+        print('100 numbered returns, mismatch in T0 units',100*abs(ratio-Q))
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Why use radians in the correction alpha squared/16? **Solution:** Its Taylor derivation assumes the radian convention; degree values require conversion by pi/180.

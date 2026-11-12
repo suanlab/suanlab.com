@@ -100,6 +100,71 @@ A learned simulator might predict positions accurately while its finite-differen
 
 Dimensionless time provides a useful way to compare different masses and drag coefficients. It also warns against extrapolating a surrogate trained only on early motion into the terminal regime. Success inside the parent model does not automatically justify a different drag law or new physical setting. Separate approximation, numerical computation and empirical modeling claims when designing experiments and reporting results.
 
+## Research extension: Prove observable-specific early-time error budgets
+
+### Normalize by the actual observable
+
+Assume positive mass and gravity, nonnegative linear drag, release from rest, and a positive query time. Put z=bt/m. Normalize velocity by gt and displacement by gt²/2, their respective free-fall values. The exact solution can be written as two weighted averages of an exponential:
+
+$$
+R_v={v\over gt}=\int_0^1e^{-zr}\,dr,\qquad
+R_x={x\over gt^2/2}=2\int_0^1(1-r)e^{-zr}\,dr.
+$$
+
+These formulas also cover b=0, when both averages are one. They do not assign a relative error at t=0, where both reference observables vanish. The native interface correctly keeps that zero-time relative comparison unavailable.
+
+### Obtain a uniform sufficient condition
+
+For nonnegative u, the tangent-line inequality gives 1−u no greater than exp(−u), which is no greater than one. Integrating with the two weights gives lower bounds 1−z/2 and 1−z/3. If those lower bounds are positive, divide by them to control relative error against the exact drag solution:
+
+$$
+0\le{gt-v\over v}\le {z\over2-z}\quad(0\le z<2),\qquad
+0\le{gt^2/2-x\over x}\le {z\over3-z}\quad(0\le z<3).
+$$
+
+For any positive tolerance delta, solve each upper-bound inequality for z. This produces explicit sufficient time budgets:
+
+$$
+z\le {2\delta\over1+\delta}\ \text{for velocity},\qquad
+z\le {3\delta\over1+\delta}\ \text{for position}.
+$$
+
+These are guarantees within the stated parent model, not necessary conditions. Failing the bound means the bound did not certify the approximation; the exact error could still meet the tolerance. The derivation uses a dimensionless response, so mass and drag affect the budget through z, whereas the positive gravity scale cancels.
+
+### Recover the four-percent guide with a proof
+
+At delta=0.04, the velocity condition is z at most 1/13 and the position condition is z at most 3/26. The guide's z=0.1 lies between them. Position is therefore certified below four percent by this conservative bound; velocity is not certified. Separate evaluation of the exact solution gives approximately 3.3609 percent position error and 5.0833 percent velocity error, confirming the actual pass and failure in this example.
+
+| Observable | Sufficient z limit for four percent | z=0.1 |
+|---|---|---|
+| Velocity relative to exact v | 1/13, about 0.07692 | No certificate; exact error also fails |
+| Position relative to exact x | 3/26, about 0.11538 | Certified; exact error passes |
+| Either observable at t=0 | Relative error undefined | Use an absolute or limiting statement instead |
+
+### Separate approximation validity from empirical validity
+
+A bound relative to a linear-drag parent law does not show that a real fluid exerts linear drag at the relevant speed. Likewise, a late-time terminal-velocity argument is a different approximation with a different observable error. A model comparison should state the parent law, the chosen observable, the error denominator, and the time interval before reporting success.
+
+**Worked question:** If a researcher keeps z below the position threshold, can they reuse that certificate for velocity? **Answer:** No. The weighting kernels differ, and the position allowance is larger. Use the velocity threshold when velocity is the target. The code uses 90-digit Decimal exponentials to check the inequalities at several z values, including a very small one where direct binary-float subtraction would be unreliable. The analytic integral inequalities supply the guarantee; these numerical checks are not a substitute for that proof or new browser controls.
+
+```python
+from decimal import Decimal as D,localcontext
+from fractions import Fraction as F
+delta=F(1,25)
+assert 2*delta/(1+delta)==F(1,13)
+assert 3*delta/(1+delta)==F(3,26)
+assert F(1,13)<F(1,10)<F(3,26)
+with localcontext() as ctx:
+    ctx.prec=90
+    for text in ['.000000000001','.001','.01','.1','.5','1','1.5']:
+        z=D(text);ez=(-z).exp()
+        rv=(1-ez)/z;rx=2*(z-1+ez)/(z*z)
+        ev=(1-rv)/rv;ex=(1-rx)/rx
+        assert 0<ev<=z/(2-z) and 0<ex<=z/(3-z)
+        if z==D('.1'): assert ex<D('.04')<ev
+        print('z',z,'velocity error',f'{ev:.8g}','position error',f'{ex:.8g}')
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** For m=1,b=1,g=10, compute tau and terminal velocity. **Solution:** They are one second and ten meters per second.

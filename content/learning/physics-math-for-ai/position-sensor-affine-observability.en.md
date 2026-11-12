@@ -132,6 +132,82 @@ It differs from explicitly changing the observer coordinates while consistently 
 
 For learned representations, reconstructing sensor data accurately may identify only an equivalence class. If a downstream task requires absolute position relative to an obstacle or apparatus, it may need an independent anchor. The required information depends on the prediction or control task, not just reconstruction loss.
 
+## Research extension: Choose observation times and retain the calibration floor
+
+### Estimate what the sensor actually identifies
+
+Extend the constant-velocity position sensor to n independent readings z_i=x_0+v_0 t_i+b+epsilon_i. Let the fixed unknown bias be b; errors have mean zero and common variance sigma². Choose the recording times before seeing those errors. Define a=x_0+b, the identifiable sensor intercept. With at least two distinct times, least squares estimates a and v_0, not x_0 and b separately. No number of such readings removes their original additive ambiguity.
+
+Put t_bar equal to the average time and S_tt equal to the sum of squared centered times. Linear least-squares weights give
+
+$$
+\widehat v={\sum_i(t_i-\bar t)z_i\over S_{tt}},\quad
+\widehat a=\bar z-\bar t\widehat v,\quad
+S_{tt}=\sum_i(t_i-\bar t)^2>0,
+$$
+
+$$
+\operatorname{Var}(\widehat v)={\sigma^2\over S_{tt}},\quad
+\operatorname{Var}(\widehat a)=\sigma^2\left({1\over n}+{\bar t^2\over S_{tt}}\right),\quad
+\operatorname{Cov}(\widehat a,\widehat v)=-{\sigma^2\bar t\over S_{tt}}.
+$$
+
+One can derive these by squaring the data weights and using independence. Centering time makes the estimated sensor intercept at t_bar equal to z_bar and uncorrelated with the slope. It does not turn that biased sensor value into an absolute physical position. Uncorrelated estimates need not be independent unless additional assumptions, such as Gaussian errors, hold.
+
+### Maximize time spread within the valid model window
+
+Assume allowed observation times lie in [0,T], T positive, and the constant-velocity model remains valid there. Since t_i² is at most T t_i, completing the square gives
+
+$$
+S_{tt}\le nT^2/4,\qquad
+\operatorname{Var}(\widehat v)\ge {4\sigma^2\over nT^2}.
+$$
+
+For even n, half the observations at zero and half at T attain the bound when repeats have independent noise. For odd n the equal split is unavailable. This is slope-variance optimality within the stated model, not a universal data-collection prescription: interior readings can be valuable for testing whether the velocity is actually constant.
+
+| Four observation times in seconds | S_tt in s² | Var(v_hat)/sigma² in s^-2 |
+|---|---|---|
+| 0,0,2,2 | 4 | 1/4 |
+| 0,2/3,4/3,2 | 20/9 | 9/20 |
+| 1,1,1,1 | 0 | Slope unavailable |
+
+### Supply an actual bias reference if absolute position matters
+
+Suppose an independent calibration gives b_hat=b+eta with mean-zero error variance tau_b². Now x_0_hat=a_hat−b_hat is defined, but its variance includes the independent reference uncertainty:
+
+$$
+\operatorname{Var}(\widehat x_0)
+=\sigma^2\left({1\over n}+{\bar t^2\over S_{tt}}\right)+\tau_b^2.
+$$
+
+For designs with increasing time spread and bounded mean time, the sampling contribution can decrease to zero while tau_b² remains. Shared calibration noise would require covariance terms instead. A deterministic drift bound also cannot simply be called a variance. These distinctions connect back to the measurement lesson.
+
+**Worked question:** Does observing for longer make an unknown sensor origin identifiable? **Answer:** It can improve slope precision under a valid model, but it does not remove the x_0/b null direction. An independent bias reference supplies new information; time centering supplies only a better parameterization. The code verifies the regression-weight identities and variance formulas with exact fractions, rejects the equal-time singular design, and shows the independent calibration contribution. The native two-time and velocity-only sensor modes keep their original scope.
+
+```python
+from fractions import Fraction as F
+def design(times):
+    n=len(times);mean=sum(times)/n;spread=sum((t-mean)**2 for t in times)
+    if spread==0:raise ValueError('Slope unavailable at a single recording time.')
+    wv=[(t-mean)/spread for t in times]
+    wa=[F(1,n)-mean*w for w in wv]
+    assert sum(wv)==0 and sum(w*t for w,t in zip(wv,times))==1
+    assert sum(wa)==1 and sum(w*t for w,t in zip(wa,times))==0
+    vv=sum(w*w for w in wv);va=sum(w*w for w in wa);cov=sum(a*v for a,v in zip(wa,wv))
+    assert vv==1/spread and va==F(1,n)+mean*mean/spread and cov==-mean/spread
+    assert sum((a+mean*v)*v for a,v in zip(wa,wv))==0
+    return spread,vv,va
+for times in [[F(0),F(0),F(2),F(2)],[F(0),F(2,3),F(4,3),F(2)]]:
+    spread,vv,va=design(times)
+    assert spread<=4 and vv>=F(1,4)
+    print('times',times,'spread',spread,'slope variance/sigma²',vv,'intercept variance/sigma²',va)
+spread,vv,va=design([F(0),F(0),F(2),F(2)])
+assert va+F(1,4)==F(3,4)
+try:design([F(1)]*4)
+except ValueError:print('Equal times remain singular; calibration variance adds independently.')
+else:raise AssertionError('Equal-time singularity was hidden.')
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Calibrated positions are1 m at0 s and3 m at1 s. Recover x0,v0. **Solution:** v0=2 m/s and x0=1 m.

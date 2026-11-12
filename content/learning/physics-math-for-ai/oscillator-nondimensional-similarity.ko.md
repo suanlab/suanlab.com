@@ -103,6 +103,76 @@ $$
 
 이 선형 함수족 안에서의 곡선 붕괴가 새로운 감쇠비나 비선형 장치로의 외삽까지 보장하지는 않습니다. 차원 유도·수치 구현·실험에서 기준 모형이 맞는다는 증거를 구분해야 합니다. 가정과 복원 지도를 명시할 때 무차원화가 학습과 연구에 유용해집니다.
 
+## 연구 확장: 강제 진동의 유사성에는 입력도 맞아야 합니다
+
+### 외력까지 포함해 척도 계산 확장하기
+
+실습은 외력이 없는 진동자를 비교합니다. 별도 확장에서는 주어진 외력 f(t), 양의 상수 질량·강성, 비음수 상수 감쇠를 생각합시다. 앞의 물리적 척도와 같이 질량 배율 h, 진동률 배율 r, 길이 배율 ell은 모두 양수입니다. 제안한 관계 x_B(t)=ell x_A(rt)를 두 번 미분하고 계수를 대입합니다.
+
+$$
+m_B=hm_A,\quad b_B=hrb_A,\quad k_B=hr^2k_A,\quad
+x_B(t)=\ell x_A(rt),\qquad
+f_B(t)=h\ell r^2 f_A(rt).
+$$
+
+B 방정식의 왼쪽 모든 항에 h ell r 제곱이 붙으므로 오른쪽 외력도 같은 배율을 가져야 합니다. 감쇠비와 정규화 초기 조건만 맞추어서는 입력 불일치를 보상하지 못합니다. 초기 속도에도 ell만이 아니라 ell r이 필요합니다.
+
+### 무차원 외력을 드러내기
+
+omega_0=루트(k/m), 양의 기준 길이 X, s=omega_0 t, u=x/X를 사용하면 방정식은 다음과 같습니다.
+
+$$
+u_{ss}+2\zeta u_s+u=p(s),\qquad
+p(s)={f(s/\omega_0)\over kX}.
+$$
+
+X_B=ell X_A로 두면 위 외력 척도에서 같은 무차원 시간의 p_B(s)=p_A(s)가 됩니다. 정현파 외력은 진폭과 진동수를 모두 바꿔야 합니다. F_B=h ell r² F_A, Omega_B=r Omega_A입니다. omega_0가 바뀌는데 수치 진동수를 그대로 두면 nu=Omega/omega_0가 달라져 정규화한 문제도 달라집니다.
+
+### 주파수 응답 반례 계산
+
+감쇠가 양수이면 과도 응답이 사라진 뒤 정현파 정상 응답이 남습니다. 정규화 방정식에 사인·코사인 후보를 대입하면 변위 진폭을 얻습니다.
+
+$$
+U={F/(kX)\over\sqrt{(1-\nu^2)^2+(2\zeta\nu)^2}},\qquad
+\nu={\Omega\over\omega_0}.
+$$
+
+일관된 SI 수치에서 A를 m=1,k=4,b=1,X=1, 외력 진폭 F=4, 진동수 Omega=1로 잡읍시다. omega_0=2, zeta=1/4, nu=1/2입니다. h=3,r=2,ell=2이면 B는 m=3,k=48,b=6,X=2입니다. 맞는 외력은 진폭 96, 진동수 2입니다. 정규화 진폭은 약 1.26491로 같고 물리적 변위 진폭은 두 배입니다. B의 외력 진동수를 1로 유지하면 감쇠비가 같아도 정규화 응답이 달라집니다.
+
+| 비교 | 정규화 후 맞아야 할 것 | 자주 빠뜨리는 것 |
+|---|---|---|
+| 외력 없는 초기값 운동 | 감쇠비와 두 초기 좌표 | 초기 속도 척도 |
+| 강제 초기값 운동 | 같은 데이터와 p(s) 전체 | 외력 진폭·시간 인자 |
+| 감쇠가 있는 정현파 정상 응답 | 감쇠비·외력 비·진동수 비 | Omega/omega_0 |
+
+감쇠가 0이고 정확히 공명하면 이 유한 정상 진폭 공식을 쓸 수 없습니다. cos(omega_0 t)에 비례하는 0이 아닌 외력은 t sin(omega_0 t)에 비례하는 항을 만듭니다. 공명이 아닌 무감쇠 계에는 주기적인 특수해가 있을 수 있지만 초기 과도 응답이 감쇠하지 않습니다. 따라서 정규화 진폭의 일치와 끌어당기는 정상 응답에는 각각 가정이 필요합니다.
+
+**풀이 질문:** 자유 감쇠 벤치마크의 일치만으로 임의의 강제 실험에 학습 모형을 옮겨도 될까요? **해설:** 아닙니다. 입력도 문제의 일부입니다. 정규화 입력 종류와 초기 조건을 정하고 외력 변환을 확인해야 합니다. 아래 코드는 제조한 다항식 궤적으로 연쇄법칙 척도를 정확한 분수로 검산하고 정현파 진폭을 별도로 확인합니다. 기존 무외력 화면에 이런 외력 조작 기능이 추가된 것은 아닙니다.
+
+```python
+from fractions import Fraction as F
+from math import sqrt,isclose
+m,k,b=F(1),F(4),F(1)
+h,r,ell=F(3),F(2),F(2)
+mb,kb,bb=h*m,h*r*r*k,h*r*b
+def x(t):return 1+t+t*t+t**3
+def dx(t):return 1+2*t+3*t*t
+def ddx(t):return 2+6*t
+def force(t):return m*ddx(t)+b*dx(t)+k*x(t)
+for t in [F(0),F(1,4),F(1,2),F(1),F(2)]:
+    lhs=mb*ell*r*r*ddx(r*t)+bb*ell*r*dx(r*t)+kb*ell*x(r*t)
+    assert lhs==h*ell*r*r*force(r*t)
+def amplitude(m,k,b,X,force,frequency):
+    omega=sqrt(float(k/m));zeta=float(b)/(2*sqrt(float(m*k)))
+    nu=float(frequency)/omega
+    return float(force/(k*X))/sqrt((1-nu*nu)**2+(2*zeta*nu)**2)
+ua=amplitude(m,k,b,F(1),F(4),F(1))
+ub=amplitude(mb,kb,bb,ell,F(96),F(2))
+wrong=amplitude(mb,kb,bb,ell,F(96),F(1))
+assert isclose(ua,ub,rel_tol=1e-14) and abs(wrong-ua)>.1
+print('matched normalized amplitudes',ua,ub,'unscaled-frequency response',wrong)
+```
+
 ## 연습 문제와 해설
 
 1. **문제:** X를 초기 변위로 항상 정하면 왜 안 되나요? **해설:** 초기 변위는 0이나 음수일 수 있지만 X는 분모인 양의 독립 기준이어야 합니다.

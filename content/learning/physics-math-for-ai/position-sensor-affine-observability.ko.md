@@ -130,6 +130,82 @@ zp는 특정 해이고 N의 열들은 A의 영공간 기저입니다. A N=0이�
 
 학습한 표현이 센서 출력을 잘 복원해도 실제로는 동치류만 알아낸 것일 수 있습니다. 장애물이나 장치에 대한 절대 위치가 필요한 후속 과제라면 독립적인 기준이 더 필요할 수 있습니다. 필요한 정보는 재구성 오차뿐 아니라 실제 예측·제어 과제에 달려 있습니다.
 
+## 연구 확장: 관측 시간 선택과 교정 분산 바닥 유지
+
+### 센서가 실제로 식별하는 양 추정하기
+
+등속 위치 센서를 독립 측정 n개인 z_i=x_0+v_0 t_i+b+epsilon_i로 확장합시다. b는 고정 미지 편향이고 오차는 평균 0·공통 분산 sigma²입니다. 오차를 보기 전에 기록 시간을 고정합니다. a=x_0+b를 식별 가능한 센서 절편으로 정의합니다. 서로 다른 시간이 두 개 이상이면 최소제곱으로 a와 v_0를 추정하지만 x_0와 b를 따로 정하지는 못합니다. 관측 횟수를 늘려도 원래 가산 모호성이 사라지지 않습니다.
+
+t_bar는 평균 시간, S_tt는 중심화 시간 제곱합입니다. 최소제곱의 선형 가중치로 다음을 얻습니다.
+
+$$
+\widehat v={\sum_i(t_i-\bar t)z_i\over S_{tt}},\quad
+\widehat a=\bar z-\bar t\widehat v,\quad
+S_{tt}=\sum_i(t_i-\bar t)^2>0,
+$$
+
+$$
+\operatorname{Var}(\widehat v)={\sigma^2\over S_{tt}},\quad
+\operatorname{Var}(\widehat a)=\sigma^2\left({1\over n}+{\bar t^2\over S_{tt}}\right),\quad
+\operatorname{Cov}(\widehat a,\widehat v)=-{\sigma^2\bar t\over S_{tt}}.
+$$
+
+데이터 가중치를 제곱하고 독립성을 쓰면 유도됩니다. 시간을 중심화하면 t_bar의 추정 센서 절편은 z_bar이며 기울기와 무상관입니다. 그러나 편향된 센서 값이 절대 물리 위치로 바뀌는 것은 아닙니다. Gaussian 오차 같은 추가 가정 없이는 무상관 추정량을 독립이라고 부를 수도 없습니다.
+
+### 모형이 유효한 창 안에서 시간 퍼짐 최대화
+
+허용 시간이 양의 T에 대해 [0,T]이고 그 안에서 등속 모형이 유효하다고 합시다. t_i²≤T t_i를 사용하고 완전제곱을 만들면 다음을 얻습니다.
+
+$$
+S_{tt}\le nT^2/4,\qquad
+\operatorname{Var}(\widehat v)\ge {4\sigma^2\over nT^2}.
+$$
+
+n이 짝수이면 절반을 0, 절반을 T에 놓아 독립 잡음의 반복으로 하한을 달성합니다. 홀수이면 같은 비율로 나눌 수 없습니다. 선언한 모형의 기울기 분산 최적성이지 보편적인 데이터 수집 처방이 아닙니다. 중간 관측은 실제로 등속인지 확인하는 데 유용할 수 있습니다.
+
+| 관측 시간 네 개 (초) | S_tt (s²) | Var(v_hat)/sigma² (s^-2) |
+|---|---|---|
+| 0,0,2,2 | 4 | 1/4 |
+| 0,2/3,4/3,2 | 20/9 | 9/20 |
+| 1,1,1,1 | 0 | 기울기 미정 |
+
+### 절대 위치가 중요하면 실제 편향 기준 제공하기
+
+독립 교정으로 b_hat=b+eta를 얻고 평균 0 오차 분산이 tau_b²라고 합시다. 이제 x_0_hat=a_hat−b_hat을 정의할 수 있지만 분산에는 독립 기준 불확실성이 포함됩니다.
+
+$$
+\operatorname{Var}(\widehat x_0)
+=\sigma^2\left({1\over n}+{\bar t^2\over S_{tt}}\right)+\tau_b^2.
+$$
+
+평균 시간이 제한되어 있고 시간 퍼짐이 계속 커지는 설계에서는 표본 기여가 0으로 줄어도 tau_b²가 남습니다. 교정 잡음을 공유하면 공분산 항이 필요합니다. 결정론적 drift 상한도 단순히 분산이라고 부를 수 없습니다. 측정 단원과 연결되는 구분입니다.
+
+**풀이 질문:** 오래 관측하면 미지 센서 원점도 식별될까요? **해설:** 유효한 모형에서는 기울기 정밀도를 개선할 수 있지만 x_0/b 영방향은 제거하지 못합니다. 독립 편향 기준은 새 정보를 주고 시간 중심화는 매개변수 표현만 개선합니다. 아래 코드는 회귀 가중치·분산 공식을 정확한 분수로 확인하고 동일 시간 특이 설계를 거부하며 독립 교정 기여를 보입니다. 기존 두 시간·속도 전용 센서 모드는 원래 범위를 유지합니다.
+
+```python
+from fractions import Fraction as F
+def design(times):
+    n=len(times);mean=sum(times)/n;spread=sum((t-mean)**2 for t in times)
+    if spread==0:raise ValueError('Slope unavailable at a single recording time.')
+    wv=[(t-mean)/spread for t in times]
+    wa=[F(1,n)-mean*w for w in wv]
+    assert sum(wv)==0 and sum(w*t for w,t in zip(wv,times))==1
+    assert sum(wa)==1 and sum(w*t for w,t in zip(wa,times))==0
+    vv=sum(w*w for w in wv);va=sum(w*w for w in wa);cov=sum(a*v for a,v in zip(wa,wv))
+    assert vv==1/spread and va==F(1,n)+mean*mean/spread and cov==-mean/spread
+    assert sum((a+mean*v)*v for a,v in zip(wa,wv))==0
+    return spread,vv,va
+for times in [[F(0),F(0),F(2),F(2)],[F(0),F(2,3),F(4,3),F(2)]]:
+    spread,vv,va=design(times)
+    assert spread<=4 and vv>=F(1,4)
+    print('times',times,'spread',spread,'slope variance/sigma²',vv,'intercept variance/sigma²',va)
+spread,vv,va=design([F(0),F(0),F(2),F(2)])
+assert va+F(1,4)==F(3,4)
+try:design([F(1)]*4)
+except ValueError:print('Equal times remain singular; calibration variance adds independently.')
+else:raise AssertionError('Equal-time singularity was hidden.')
+```
+
 ## 연습문제와 해설
 
 1. **문제:** 보정 위치가 0s에서 1m, 1s에서 3m이면? **해설:** v0=2m/s, x0=1m입니다.

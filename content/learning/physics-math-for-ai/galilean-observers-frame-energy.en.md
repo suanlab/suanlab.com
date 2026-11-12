@@ -111,6 +111,66 @@ A learned trajectory predictor may be tested under observer changes by transform
 
 The model's context also matters. A medium velocity, an imposed field or an observer-dependent sensor input cannot be silently omitted from the transformation. An equivariance test should report the transformation convention and the quantities it expects to agree. Kinetic energy in a chosen frame can be a valid prediction target without being an observer-independent scalar.
 
+## Research extension: Separate center motion from intrinsic translational kinetic energy
+
+### Generalize the observer comparison to several particles
+
+The native example has one particle, whose kinetic energy changes under a Galilean boost. For N particles with positive fixed masses, define total mass M, momentum P, center velocity V, and total translational kinetic energy K. Velocities can be vectors in the same inertial frame. Under a constant observer boost U, all velocities change by minus U, so V changes by the same amount.
+
+Expand each velocity as V plus its deviation. The cross term vanishes because the mass-weighted deviations sum to zero:
+
+$$
+M=\sum_i m_i,\quad P=\sum_i m_iv_i,\quad V=P/M,\qquad
+K={\|P\|^2\over2M}+K_{\rm rel},\qquad
+K_{\rm rel}=\tfrac12\sum_i m_i\|v_i-V\|^2.
+$$
+
+The relative velocities v_i−V are unchanged by the boost, hence K_rel is invariant while K generally is not. K_rel is the kinetic energy of relative translational motion in this particle model. It is not automatically the full thermodynamic internal energy: unresolved rotation, deformation, potentials and thermal states would need their own variables.
+
+### Obtain an independent pairwise expression
+
+Expanding squared pair differences and collecting each mass-weighted velocity term gives another useful identity:
+
+$$
+K_{\rm rel}=K-{\|P\|^2\over2M}
+={1\over2M}\sum_{i<j}m_im_j\|v_i-v_j\|^2.
+$$
+
+This expression makes boost invariance visible without computing a center velocity first. For one particle the pair sum is empty and K_rel=0, even when its laboratory kinetic energy is large. For two particles it becomes one half the reduced mass times relative speed squared, exactly the term controlling the restitution example.
+
+### Work a boost without calling the energy change dissipation
+
+Use masses (2,1,3) kilograms and velocities (1,−2,4) meters per second. M=6, P=12, V=2, K=27 joules and K_rel=15 joules. A boost U=3 gives velocities (−2,−5,1), P'=−6, V'=−1 and K'=18 joules. The nine-joule difference in total kinetic energy is a frame change; K_rel stays 15. It is not evidence of a physical energy-loss event.
+
+| Quantity | Effect of a common constant boost | Interpretation |
+|---|---|---|
+| Total momentum | Subtract M U | Frame-dependent coordinate quantity |
+| Total translational kinetic energy | K−U dot P+M times norm(U)²/2 | Frame-dependent |
+| Relative velocities and K_rel | Unchanged | Boost-invariant information |
+
+The decomposition is instantaneous kinematics. A dynamical covariance claim still needs the force model and any medium velocity to transform as in the original lesson. Accelerated observers are not included in the inertial Galilean statement. Under an event with conserved total momentum, the difference in kinetic energy between before and after is boost-invariant because the term involving the momentum change vanishes; with external impulse that simplification need not hold.
+
+**Worked question:** Can a model use K_rel alone to reconstruct laboratory trajectories? **Answer:** No. It discards center motion and compresses many different relative configurations to one scalar. An invariant feature is useful only when its lost information is irrelevant to the prediction task or provided separately. The code checks the center and pairwise formulas and the exact momentum/energy transformation under five boosts. It is a multi-particle standalone extension, not an extra hidden state in the single-particle widget.
+
+```python
+from fractions import Fraction as F
+from itertools import combinations
+m=list(map(F,[2,1,3]));v=list(map(F,[1,-2,4]));M=sum(m)
+def quantities(w):
+    P=sum(a*b for a,b in zip(m,w));V=P/M
+    K=sum(a*b*b for a,b in zip(m,w))/2
+    relative=sum(a*(b-V)**2 for a,b in zip(m,w))/2
+    pair=sum(m[i]*m[j]*(w[i]-w[j])**2 for i,j in combinations(range(3),2))/(2*M)
+    assert relative==pair==K-P*P/(2*M)
+    return P,K,relative
+P,K,relative=quantities(v)
+assert (P,K,relative)==(12,27,15)
+for U in map(F,[-7,-2,0,3,10]):
+    pp,kp,rp=quantities([w-U for w in v])
+    assert pp==P-M*U and kp==K-U*P+M*U*U/2 and rp==relative
+    print('boost',U,'momentum',pp,'kinetic',kp,'relative kinetic',rp)
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** A particle has laboratory x=5 m at t=2 s. The other observer has b=1 m and U=1 m/s. Find x'. **Solution:** x'=5-1-2=2 m. Reconstructing gives2+1+2=5 m.

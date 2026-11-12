@@ -101,6 +101,76 @@ A neural predictor might output points that look close to a surface while its de
 
 An informative benchmark reports the original residuals, the chosen correction, its domain of definition and changes in relevant invariants. If the intended task is physical time evolution, it also needs a dynamical model and temporal verification. Local algebraic consistency is useful, but it answers a more specific question.
 
+## Research extension: Project velocities in the kinetic-energy metric
+
+### Keep the native unit-mass assumption separate
+
+The laboratory's Euclidean projection is appropriate for its declared unit isotropic mass. Now consider a different, generalized-coordinate kinetic model with a constant symmetric positive-definite mass matrix M. At a fixed valid configuration, let a full-row-rank constraint Jacobian J require tangent velocities Jw=0. This is a homogeneous fixed-configuration constraint; moving boundaries and position corrections are separate problems.
+
+Choose the feasible velocity closest to v in the mass norm. The Lagrangian stationarity equation gives M(w−v)+J-transpose lambda=0. Solving the constraint for lambda yields
+
+$$
+\min_{Jw=0}\tfrac12(w-v)^TM(w-v),\qquad
+P_M=I-M^{-1}J^T(JM^{-1}J^T)^{-1}J,\qquad w=P_Mv.
+$$
+
+Full row rank and positive-definite M make the middle matrix invertible. Strict convexity makes the feasible minimizer unique. Redundant constraints require rank reduction or a separately justified generalized inverse; an ordinary inverse must not be taken blindly.
+
+### Prove the energy identity in the correct inner product
+
+Direct substitution gives J P_M=0 and P_M squared=P_M. The correction lies in the mass-orthogonal complement of tangent velocities, so P_M-transpose M=M P_M. With T(v)=one half v-transpose Mv, the resulting Pythagorean identity is
+
+$$
+T(v)=T(P_Mv)+\tfrac12(Jv)^T(JM^{-1}J^T)^{-1}(Jv).
+$$
+
+The removed amount is nonnegative. This is a property of the local correction, not a claim that a full time integrator conserves energy. In fact the projection generally removes energy when the input has a normal component. Position projection can change other quantities, as the original angular-momentum example already shows.
+
+### A Euclidean correction can increase this kinetic energy
+
+Fix a unit circle at q=(3/5,4/5) meters and use J=q-transpose, equivalent to the circle's normal constraint up to a nonzero factor. Let M=diag(1,4) kilograms in these generalized coordinates, and v=(1,0) meters per second. The two feasible projections and their energies are
+
+$$
+P_Mv=(4/13,-3/13),\qquad P_Ev=(16/25,-12/25),
+\qquad T(v)=1/2,\quad T(P_Mv)=2/13,\quad T(P_Ev)=416/625.
+$$
+
+The Euclidean projection raises kinetic energy from 0.5 to 0.6656 joules despite making the velocity tangent. It minimized the wrong distance for this different kinetic model. The mass projection instead removes 9/26 joules. There is no conflict with the native unit-mass result: setting M to the identity makes the two projections coincide.
+
+![In velocity space, a tangent line intersects the initial kinetic-energy ellipse. The Euclidean projected velocity lies outside that energy level, whereas the mass-metric projection lies inside it.](/assets/learning/physical-mass-projection-en.svg)
+
+| Requirement | Euclidean projection | Mass-metric projection |
+|---|---|---|
+| Tangent velocity at the fixed q | Yes | Yes |
+| Minimum correction in the M norm | Generally no | Yes |
+| Nonincrease of this quadratic kinetic energy | Not guaranteed | Follows from mass orthogonality |
+
+**Worked question:** Is a zero geometric constraint residual enough to certify a physically consistent numerical correction? **Answer:** No. The metric, mass model, rank assumptions, and event or time-stepping interpretation matter too. The code checks tangency, mass orthogonality, exact energy decomposition and minimality against a family of other tangent velocities. The anisotropic example is standalone; the existing widget retains its unit isotropic mass and its explicit origin degeneracy.
+
+```python
+from fractions import Fraction as F
+q=[F(3,5),F(4,5)];v=[F(1),F(0)];mass=[F(1),F(4)]
+dot=lambda a,b:sum(x*y for x,y in zip(a,b))
+T=lambda w:sum(m*x*x for m,x in zip(mass,w))/2
+normal_inverse=[q[i]/mass[i] for i in range(2)]
+den=dot(q,normal_inverse)
+pm=[v[i]-normal_inverse[i]*dot(q,v)/den for i in range(2)]
+pe=[v[i]-q[i]*dot(q,v)/dot(q,q) for i in range(2)]
+assert pm==[F(4,13),F(-3,13)] and pe==[F(16,25),F(-12,25)]
+assert dot(q,pm)==dot(q,pe)==0
+removed=[v[i]-pm[i] for i in range(2)]
+assert sum(mass[i]*pm[i]*removed[i] for i in range(2))==0
+assert T(v)==T(pm)+T(removed) and T(removed)==dot(q,v)**2/(2*den)
+assert T(pe)>T(v) and T(pm)==F(2,13) and T(pe)==F(416,625)
+cost=lambda w:T([w[i]-v[i] for i in range(2)])
+for t in [F(n,13) for n in range(-10,11)]:
+    tangent=[4*t,-3*t]
+    assert dot(q,tangent)==0 and cost(tangent)>=cost(pm)
+    assert cost(tangent)==cost(pm)+T([tangent[i]-pm[i] for i in range(2)])
+print('mass projection',pm,'Euclidean projection',pe)
+print('energies initial, mass, Euclidean',T(v),T(pm),T(pe))
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** At q=(1,0),v=(0,1),a=0 on a unit circle, which condition fails? **Solution:** The acceleration condition gives v squared+q dot a=1; position and tangency pass.

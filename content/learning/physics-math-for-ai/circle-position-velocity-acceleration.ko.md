@@ -103,6 +103,76 @@ $$
 
 따라서 원래 잔차,사용한 보정,정의되는 영역,관심 불변량의 변화를 보고해야 합니다. 목적이 실제 시간 운동이라면 동역학 모형과 시간에 걸친 검증도 필요합니다. 국소 대수 일관성은 유용하지만 더 구체적인 질문에 대한 답입니다.
 
+## 연구 확장: 운동에너지 계량에서 속도 사영하기
+
+### 기존 단위 질량 가정과 구분하기
+
+실습의 Euclidean 사영은 선언한 단위 등방 질량에 맞습니다. 이제 다른 일반화 좌표 운동에너지 모형을 생각합시다. 질량 행렬 M은 상수인 대칭 양의 정부호이고, 유효한 위치를 고정했을 때 행 랭크가 가득한 제약 Jacobian J가 Jw=0을 요구합니다. 고정 위치의 동차 제약이며 움직이는 경계나 위치 보정은 별도 문제입니다.
+
+질량 노름에서 v에 가장 가까운 허용 속도를 고릅니다. Lagrangian 정류식은 M(w−v)+J 전치 lambda=0입니다. 제약에서 lambda를 구하면 다음 사영을 얻습니다.
+
+$$
+\min_{Jw=0}\tfrac12(w-v)^TM(w-v),\qquad
+P_M=I-M^{-1}J^T(JM^{-1}J^T)^{-1}J,\qquad w=P_Mv.
+$$
+
+J의 완전 행 랭크와 M의 양의 정부호성이 가운데 행렬의 가역성을 보장합니다. 엄격한 볼록성으로 허용 최소점도 유일합니다. 중복 제약에는 랭크 축소나 별도로 정당화한 일반화 역이 필요합니다. 보통의 역행렬을 무작정 취하면 안 됩니다.
+
+### 맞는 내적에서 에너지 항등식 증명하기
+
+직접 대입하면 J P_M=0, P_M 제곱=P_M입니다. 보정은 접선 속도의 질량 내적 직교 여공간에 있으므로 P_M 전치 M=M P_M입니다. T(v)=v 전치 Mv의 절반이라 하면 다음 Pythagoras 항등식을 얻습니다.
+
+$$
+T(v)=T(P_Mv)+\tfrac12(Jv)^T(JM^{-1}J^T)^{-1}(Jv).
+$$
+
+제거량은 비음수입니다. 국소 보정의 성질이지 전체 시간 적분기가 에너지를 보존한다는 뜻은 아닙니다. 오히려 입력에 법선 성분이 있으면 사영은 일반적으로 에너지를 제거합니다. 원래 각운동량 예제처럼 위치 사영은 다른 양도 바꿀 수 있습니다.
+
+### Euclidean 보정이 이 운동에너지를 늘릴 수도 있습니다
+
+단위 원 위 q=(3/5,4/5)m를 고정하고 J=q 전치를 사용합시다. 원의 법선 제약과 0이 아닌 배율만 다릅니다. 이 일반화 좌표에서 M=diag(1,4)kg, v=(1,0)m/s로 두면 두 허용 사영과 에너지는 다음과 같습니다.
+
+$$
+P_Mv=(4/13,-3/13),\qquad P_Ev=(16/25,-12/25),
+\qquad T(v)=1/2,\quad T(P_Mv)=2/13,\quad T(P_Ev)=416/625.
+$$
+
+Euclidean 사영은 속도를 접선으로 만들면서도 운동에너지를 0.5 J에서 0.6656 J로 늘립니다. 다른 운동에너지 모형에 맞지 않는 거리를 최소화했기 때문입니다. 질량 사영은 9/26 J를 제거합니다. 기존 단위 질량 결과와 모순되지 않습니다. M이 항등행렬이면 두 사영이 일치합니다.
+
+![속도 공간에서 접선 직선과 초기 운동에너지 타원을 비교한다. Euclidean 사영 속도는 초기 에너지 등고선 밖에 있고 질량 계량 사영은 안에 있다.](/assets/learning/physical-mass-projection-ko.svg)
+
+| 요구 | Euclidean 사영 | 질량 계량 사영 |
+|---|---|---|
+| 고정 q에서 접선 속도 | 만족 | 만족 |
+| M 노름 최소 보정 | 일반적으로 아님 | 만족 |
+| 이 이차 운동에너지의 비증가 | 보장되지 않음 | 질량 직교성에서 성립 |
+
+**풀이 질문:** 기하 제약 잔차 0만으로 수치 보정의 물리적 일관성을 인증할 수 있을까요? **해설:** 아닙니다. 계량·질량 모형·랭크 가정·사건 또는 시간 적분 해석도 필요합니다. 아래 코드는 접선성·질량 직교성·정확한 에너지 분해와 다른 접선 속도 가족에 대한 최소성을 검사합니다. 비등방 예제는 독립 예제이며 기존 화면은 단위 등방 질량과 원점 퇴화 처리를 유지합니다.
+
+```python
+from fractions import Fraction as F
+q=[F(3,5),F(4,5)];v=[F(1),F(0)];mass=[F(1),F(4)]
+dot=lambda a,b:sum(x*y for x,y in zip(a,b))
+T=lambda w:sum(m*x*x for m,x in zip(mass,w))/2
+normal_inverse=[q[i]/mass[i] for i in range(2)]
+den=dot(q,normal_inverse)
+pm=[v[i]-normal_inverse[i]*dot(q,v)/den for i in range(2)]
+pe=[v[i]-q[i]*dot(q,v)/dot(q,q) for i in range(2)]
+assert pm==[F(4,13),F(-3,13)] and pe==[F(16,25),F(-12,25)]
+assert dot(q,pm)==dot(q,pe)==0
+removed=[v[i]-pm[i] for i in range(2)]
+assert sum(mass[i]*pm[i]*removed[i] for i in range(2))==0
+assert T(v)==T(pm)+T(removed) and T(removed)==dot(q,v)**2/(2*den)
+assert T(pe)>T(v) and T(pm)==F(2,13) and T(pe)==F(416,625)
+cost=lambda w:T([w[i]-v[i] for i in range(2)])
+for t in [F(n,13) for n in range(-10,11)]:
+    tangent=[4*t,-3*t]
+    assert dot(q,tangent)==0 and cost(tangent)>=cost(pm)
+    assert cost(tangent)==cost(pm)+T([tangent[i]-pm[i] for i in range(2)])
+print('mass projection',pm,'Euclidean projection',pe)
+print('energies initial, mass, Euclidean',T(v),T(pm),T(pe))
+```
+
 ## 연습 문제와 해설
 
 1. **문제:** 단위원의 q=(1,0), v=(0,1), a=0에서 무엇이 실패하나요? **해설:** 위치와 접선은 맞지만 가속도 잔차가 1입니다.

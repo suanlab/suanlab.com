@@ -119,6 +119,69 @@ An informative evaluation asks which candidate parameter transformations leave e
 
 The simple cart is a manageable example of a general habit: first characterize the complete observation-equivalence family, then design a new experiment that changes it. A smaller residual from the same uninformative experiment is not automatically new identifying information.
 
+## Research extension: Invert an uncertainty set without inventing a finite mass bound
+
+### Replace a noisy ratio by a set of admissible ratios
+
+Assume a known positive added force Delta F, the same unknown baseline force in both runs, and a positive finite mass. The true acceleration difference is Delta F divided by mass. Suppose a justified measurement model provides a closed confidence interval I=[l,u] for that difference, with l no greater than u. The following calculation transforms that interval; it does not manufacture its coverage from queried numbers.
+
+The mass confidence set contains every positive mass whose predicted difference falls in I. Because the reciprocal map is decreasing on positive differences, its endpoints reverse. Cases reaching zero must be handled separately:
+
+$$
+\mathcal M(I)=\{m>0:\Delta F/m\in[l,u]\}
+=\begin{cases}
+\varnothing,&u\le0,\\
+[\Delta F/u,\Delta F/l],&0<l\le u,\\
+[\Delta F/u,\infty),&l\le0<u.
+\end{cases}
+$$
+
+The last set is unbounded above; infinity is not a fitted mass. The empty case flags tension between the interval and the positive-mass model, but a confidence interval can miss its true target with its allowed failure probability. It is not by itself proof that the physical model is false. Zero or negative added-force experiments need their own cases rather than silently applying this positive-force formula.
+
+### Transfer coverage by event equivalence
+
+For a fixed true positive mass, membership in the transformed set is exactly the same event as the true acceleration difference belonging to I. Therefore any valid lower coverage bound transfers unchanged:
+
+$$
+\Pr\{m_*\in\mathcal M(I)\}
+=\Pr\{\Delta F/m_*\in I\}\ge1-\alpha.
+$$
+
+This is a confidence set for mass alone. Recovering the baseline force with an uncertain baseline acceleration needs joint uncertainty information. Likewise, uncertainty in the actuator's force calibration would change the inversion problem. The widget's finite slider limits are teaching ranges, not independent experimental prior bounds on the full positive-mass family.
+
+| Hypothetical acceleration-difference interval, Delta F=2 N | Mass set in kg | Interpretation |
+|---|---|---|
+| [0.8,1.2] m/s² | [5/3,5/2] | Finite two-sided set |
+| [−0.2,0.2] m/s² | [10,∞) | Arbitrarily large finite masses remain possible |
+| [−1,−0.1] m/s² | Empty | No positive mass agrees with this interval |
+
+![Three acceleration-difference intervals map to a bounded mass interval, an unbounded mass ray, and an empty positive-mass set; the zero crossing changes the shape of the inverse set.](/assets/learning/physical-mass-set-en.svg)
+
+### Why local symmetric error bars can fail
+
+The derivative of Delta F divided by the difference grows in magnitude near zero. A local linear error bar can become negative, enormous, or misleadingly finite when the difference interval crosses zero. Set inversion preserves the nonlinear geometry instead of clipping negative masses and pretending the remaining finite interval has the original coverage. The example intervals above are hypothetical inputs, not sampled measurements.
+
+**Worked question:** If the point estimate of the acceleration difference is zero, must the only answer be “infinite mass”? **Answer:** No. A zero point difference has no finite positive exact solution for positive Delta F, while an uncertainty interval extending to positive differences can support an unbounded set of finite masses. Those are different questions. The code checks set membership against the original inequality on a rational grid, including zero endpoints and intervals below zero. No uncertainty controls are added to the existing exact two-run widget.
+
+```python
+from fractions import Fraction as F
+force=F(2)
+def invert(l,u):
+    assert l<=u
+    if u<=0:return None
+    return force/u,None if l<=0 else force/l
+def contains(interval,m):
+    return interval is not None and interval[0]<=m and (interval[1] is None or m<=interval[1])
+examples=[(F(4,5),F(6,5)),(F(-1,5),F(1,5)),(F(-1),F(-1,10)),(F(0),F(0)),(F(0),F(1))]
+for l,u in examples:
+    interval=invert(l,u)
+    for m in [F(n,10) for n in range(1,1001)]+[F(1000),F(1000000)]:
+        assert contains(interval,m)==(l<=force/m<=u)
+    print('difference interval',l,u,'mass inverse',interval)
+assert invert(F(4,5),F(6,5))==(F(5,3),F(5,2))
+assert invert(F(-1,5),F(1,5))==(F(10),None)
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** An exact trajectory has a0=2 m/s squared. Are m=1 kg,F=2 N uniquely identified? **Solution:** No. Every positive mass with F=2m fits the same ratio and trajectory under the stated initial data.
