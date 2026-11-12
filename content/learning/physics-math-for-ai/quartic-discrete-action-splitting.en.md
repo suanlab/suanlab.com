@@ -162,6 +162,125 @@ For differentiable simulators, compare the differentiated implemented map with i
 
 The experiment does not establish global bounds for arbitrary neural integrators or prove long-time stability from a short trace. It provides a nonlinear, independently checked example in which such claims can be formulated and falsified.
 
+## Research extension: an exact invariant does not give uniform phase accuracy
+
+The native quartic experiment correctly labels its modified Hamiltonian as truncated. A distinct calculation becomes available in the harmonic limit a=0: Verlet then has an exact quadratic invariant and an exactly computable phase. Comparing them shows why an excellent energy trace does not certify the clock over increasing time horizons.
+
+We use the native model's harmonic limit, but evaluate the very long horizons below by closed formulas. The finite-step laboratory is not being claimed to execute those millions of steps. The exact-evolution approach is also discussed by Chin and Scuro in [sections III–V](https://arxiv.org/html/math-ph/0408004v2); all mass factors, units and examples below follow the stated kick–drift–kick convention.
+
+### Form the actual one-step matrix
+
+Use the following positive parameters and define two dimensionless quantities:
+
+$$
+a=0,\quad k=m\omega^2>0,\quad H=\frac{p^2}{2m}+\frac{m\omega^2q^2}{2},\qquad
+x=h\omega,\quad \rho=1-\frac{x^2}{4},\quad m,\omega,h>0.
+$$
+
+Inserting the quadratic force into the native Verlet substeps gives
+
+$$
+\begin{pmatrix}q'\\p'\end{pmatrix}=M_h\begin{pmatrix}q\\p\end{pmatrix},\qquad
+M_h=\begin{pmatrix}1-x^2/2&h/m\\-hm\omega^2\rho&1-x^2/2\end{pmatrix},\quad \det M_h=1.
+$$
+
+The off-diagonal entries have units s/kg and kg/s. Determinant one proves symplecticity in this single canonical pair, including step sizes that later turn out unstable. It does not prove boundedness of its iterates.
+
+### Prove the exact invariant and identify its domain
+
+Direct matrix multiplication gives
+
+$$
+K_h=\frac{p^2}{2m}+\frac{m\omega^2\rho q^2}{2},\qquad
+M_h^T\begin{pmatrix}m\omega^2\rho&0\\0&1/m\end{pmatrix}M_h
+=\begin{pmatrix}m\omega^2\rho&0\\0&1/m\end{pmatrix}.
+$$
+
+Thus K_h is preserved exactly in exact arithmetic. It is positive definite precisely when 0<h omega<2. In that domain its ellipse bounds both q and p for a fixed initial state. The invariant differs from the physical energy and is specific to this quadratic potential. Applying it unchanged to the native nonlinear a>0 case would be wrong.
+
+An invariant and a Hamiltonian generating a map at a specified time are also different objects. On the stable principal branch,
+
+$$
+0<x<2:\quad\vartheta=2\arcsin(x/2),\quad \sin\vartheta=x\sqrt\rho,\qquad
+H_{\rm mod}=\frac{\vartheta}{\sin\vartheta}K_h,\quad \omega_h=\frac\vartheta h.
+$$
+
+The time-h flow of H_mod is M_h. To check the scale, the natural frequency of K_h is omega sqrt(rho); multiplying by theta/sin(theta) gives theta/h. Removing that factor preserves the same ellipses but changes their traversal time. As h tends to zero the factor tends to one; a zero step itself is the identity.
+
+### Separate an energy bound from a phase bound
+
+For an initial displacement Q and zero initial momentum, the closed iterates are
+
+$$
+q_0=Q,\ p_0=0:\quad
+q_n=Q\cos(n\vartheta),\quad p_n=-m\omega\sqrt\rho\,Q\sin(n\vartheta),\qquad
+E_n=E_0\left[1-\frac{x^2}{4}\sin^2(n\vartheta)\right],\quad
+|E_n-E_0|\le E_0\frac{x^2}{4},\quad E_0=\frac{m\omega^2Q^2}{2}.
+$$
+
+The energy estimate holds for every integer n in the stable domain. In the unit reference m=omega=Q=1 it bounds physical-energy drift by h²/8 J. Nevertheless the numerical rotation angle differs from the physical one:
+
+$$
+\omega_h=\omega+\frac{h^2\omega^3}{24}+O(h^4),\qquad
+\Delta\theta_n=n(\vartheta-h\omega).
+$$
+
+At a fixed physical duration T=nh, the phase error is second order under the usual small-step limit. That is compatible with the original refinement experiment. It does not say the same small bound holds for durations growing without limit as h changes.
+
+### Test a growing horizon explicitly
+
+Choose the following horizon, using an integer N_h where the displayed ratio is integral, or its nearest integer for the asymptotic limit:
+
+$$
+T_h=\frac{24}{\omega(h\omega)^2},\qquad N_h=\frac{24}{(h\omega)^3},\qquad
+N_h(\vartheta-h\omega)\longrightarrow1\quad(h\to0).
+$$
+
+The leading phase term tends to one radian while the energy bound tends to zero. This is deliberately a growing-horizon comparison, not a fixed-duration convergence-order experiment. It tests whether an inference from small energy drift to uniformly accurate phase would be valid.
+
+The table uses m=omega=Q=1, p0=0 in SI reference units. Each row has its own duration N_h h. The code computes the closed formulas, rather than simulating the listed step counts.
+
+| h (s) | N_h | unwrapped phase error (rad) | energy-error bound (J) |
+|---|---|---|---|
+| 0.2 | 3000 | 1.004527 | 0.005 |
+| 0.1 | 24000 | 1.001127 | 0.00125 |
+| 0.05 | 192000 | 1.000281 | 0.0003125 |
+| 0.025 | 1536000 | 1.000070 | 0.000078125 |
+
+```python
+from math import asin
+
+# SI reference m=omega=Q=1, p0=0. Closed formulas, not millions of updates.
+for h in [.2, .1, .05, .025]:
+    theta = 2*asin(h/2)
+    n = round(24/h**3)
+    phase_error = n*(theta-h)
+    energy_bound = h*h/8
+    print(h, n, round(phase_error, 6), round(energy_bound, 9))
+    assert 1 < phase_error < 1.01
+```
+
+### Examine the stability boundary rather than extending an ellipse
+
+At the boundary the matrix and invariant become
+
+$$
+h\omega=2:\quad M_h=\begin{pmatrix}-1&h/m\\0&-1\end{pmatrix},\quad K_h=\frac{p^2}{2m},\qquad
+p_n=(-1)^np_0,\quad q_n=(-1)^n(q_0-nhp_0/m).
+$$
+
+For nonzero p0, position grows linearly in step count while the invariant stays constant. It no longer bounds position because its q term has vanished. The special orbit p0=0 is bounded, but does not certify stability of a neighborhood. Beyond this boundary, the matrix has real reciprocal eigenvalues and a growing direction. Symplecticity still holds; the numerical update can be unstable even when the continuous oscillator is bounded.
+
+![On horizons proportional to the inverse square of the step, phase error stays near one radian while the exact physical-energy drift bound decreases.](/assets/learning/analytical-structure-long-phase.en.svg)
+
+### Research questions with explanations
+
+**Does an exactly preserved positive quadratic quantity certify accurate timing?** **Answer:** It bounds states on its ellipses, but does not set the physical angular speed. The modified generator includes a scale factor that changes this clock, producing the accumulated phase error.
+
+**Why not use this exact invariant for the quartic oscillator?** **Answer:** Its derivation uses the constant linear force derivative of a quadratic potential. The native a>0 model instead has a nonlinear map and a truncated modified-energy diagnostic with separately checked defects and assumptions.
+
+**What should a long-time learned-integrator comparison report?** **Answer:** State the horizon and step rule, distinguish fixed-duration refinement from a growing-horizon test, and report unwrapped phase, state error, invariant behavior and stability domain. This solvable limit does not establish a global nonlinear shadow-energy theorem.
+
 ## Work through six checks with explanations
 
 ### Exercise 1

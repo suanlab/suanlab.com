@@ -185,6 +185,133 @@ Track invariant behavior, phase accumulation, endpoint state error, local update
 
 This experiment does not prove that arbitrary constrained systems conserve energy under RATTLE, nor that a projected neural network is globally symplectic. It gives a fully interpretable counterexample to validation based only on a circle and a tangent arrow.
 
+## Research extension: state-dependent observation times change the phase-map test
+
+The native RATTLE proof assumes one step h is fixed while initial states vary. What changes if a controller selects a different positive duration for each input? We can isolate that issue using the exact physical flow, so that no integration or constraint error obscures the comparison.
+
+This is a supplementary observation-time model. It does not add an adaptive controller to the native RATTLE implementation. Adaptive variational constructions can retain geometric structure under additional hypotheses; see [Duruisseaux, Schmitt and Leok](https://arxiv.org/abs/1709.01975). The explicit maps and collision below are derived here, rather than applying a blanket rule that every variable step fails.
+
+### Distinguish a fixed physical time from a fixed sample index
+
+On the free-circle cylinder use a local unwrapped angle and angular momentum L:
+
+$$
+I=mR^2,\quad E=\frac{L^2}{2I},\qquad
+\Phi_h(\theta,L)=(\theta+hL/I,L),\quad h\text{ fixed}.
+$$
+
+For one common fixed h this is a canonical shear. Now let the reported elapsed time depend smoothly on the input state. Differentiating the entire implemented map gives
+
+$$
+\Psi(\theta,L)=(\theta+(L/I)h(\theta,L),L),\qquad
+D\Psi=\begin{pmatrix}1+(L/I)h_\theta&h/I+(L/I)h_L\\0&1\end{pmatrix},\quad
+\det D\Psi=1+\frac LIh_\theta.
+$$
+
+The upper-right entry has units 1/Js; the determinant is dimensionless. Holding h artificially fixed during this differentiation omits the controller derivative and tests a different map. Across these inputs the sample index is equal, but their elapsed physical times need not be equal.
+
+### Keep every individual trajectory exact
+
+Choose a smooth periodic clock
+
+$$
+h(\theta)=h_0(1+\varepsilon\sin\theta),\quad h_0>0,\quad |\varepsilon|<1,\qquad
+h\ge h_0(1-|\varepsilon|)>0,\quad \det D\Psi=1+\frac{Lh_0\varepsilon}{I}\cos\theta.
+$$
+
+For each individual input, theta' is its exact physical angle at the returned positive time h. Energy, angular momentum and the Cartesian circle/tangency conditions are all correct there. Yet the determinant generally differs from one, because neighboring inputs are observed at different times.
+
+This does not contradict Liouville's theorem for fixed-time Hamiltonian flow. It also does not mean the adaptive exact observations are inaccurate when compared at their own reported times. The distinction is essential: equal-index sensitivity and equal-physical-time sensitivity answer different questions.
+
+### Construct a fold with positive elapsed times
+
+Take I=1 kg m², L=1 Js, h0=3 s and epsilon=0.5. The clock lies between 1.5 and 4.5 s. At theta=pi the determinant is −0.5 although the elapsed time is positive. The negative derivative reverses ordering across neighboring initial angles; it does not reverse any particle's positive angular velocity.
+
+There are even three distinct initial angles that give the same final unwrapped angle. The nonzero root below produces them:
+
+$$
+\sigma=1.5\sin\sigma,\quad 0<\sigma<\pi,\qquad
+\theta_0=\pi-\sigma,\ \pi,\ \pi+\sigma,\quad
+h=(3+\sigma,\ 3,\ 3-\sigma)\,\mathrm{s},\qquad
+\theta'=\pi+3\quad\text{in the stated SI example}.
+$$
+
+Their elapsed times differ. Retaining the clock resolves the apparent ambiguity: the initial angle is recovered as theta'−(L/I)h. Losing it can make an exact variable-time observation look like a many-to-one physical time flow. Physical initial-value uniqueness has not failed.
+
+| initial angle (rad) | elapsed h (s) | final angle (rad) | reduced determinant |
+|---|---|---|---|
+| 1.645811 | 4.495782 | 6.141593 | 0.887583 |
+| 3.141593 | 3 | 6.141593 | −0.5 |
+| 4.637374 | 1.504218 | 6.141593 | 0.887583 |
+
+All three have energy 0.5 J and angular momentum 1 Js. Values are rounded to six decimal places.
+
+```python
+from math import pi, sin, cos
+
+# I=L=1 in SI units; h0=3 s, epsilon=.5. Find the nonzero collision root.
+lo, hi = .1, pi
+for _ in range(80):
+    mid = (lo+hi)/2
+    if mid-1.5*sin(mid) < 0:
+        lo = mid
+    else:
+        hi = mid
+sigma = (lo+hi)/2
+for initial in [pi-sigma, pi, pi+sigma]:
+    elapsed = 3*(1+.5*sin(initial))
+    final = initial+elapsed
+    determinant = 1+1.5*cos(initial)
+    assert elapsed > 0 and abs(final-(pi+3)) < 1e-12
+    assert abs(final-elapsed-initial) < 1e-12
+    print(*(round(x, 6) for x in [initial, elapsed, final, determinant]))
+```
+
+### Accumulate the actual clock over several observations
+
+At each later input evaluate the controller again, rather than multiplying the first duration by the number of samples. Exact free motion then obeys
+
+$$
+t_N=\sum_{j=0}^{N-1}h(\theta_j,L),\qquad
+\theta_N=\theta_0+\frac LI t_N,\quad L_N=L,\quad E_N=\frac{L^2}{2I}.
+$$
+
+Thus every accumulated phase agrees with its own actual time, even when the equal-index map distorts area. Comparing theta_N with N times an assumed fixed duration would manufacture a timing error for a different schedule. Conversely, reporting only energy and circle residuals would conceal which schedule was used.
+
+### Include controller derivatives in the RATTLE family too
+
+If the same substitution is made into the native near-identity RATTLE family, its regular reduced map has
+
+$$
+\theta'=\theta+\arcsin\left(\frac{Lh(\theta,L)}I\right),\quad L'=L,\qquad
+\det D\Psi_{\rm RATTLE}=1+\frac{Lh_\theta/I}{\sqrt{1-(Lh/I)^2}},\quad |Lh/I|<1.
+$$
+
+This formula is a companion calculation; the native step remains constant. With L/I=1 per second, h0=0.5 s and epsilon=0.5, all angles satisfy abs(Lh/I)≤0.75, safely inside the root domain. At theta=0 and pi the determinants are 1±0.25/sqrt(0.75), so area changes even without a root-boundary problem. The earlier fold example used the exact flow and has no RATTLE root restriction; the two examples must not be conflated.
+
+### Identify a state-dependent exception explicitly
+
+If the clock depends only on L, for example
+
+$$
+h(L)=h_0\left[1+\varepsilon\tanh(L/L_*)\right],\quad L_*>0,\quad |\varepsilon|<1,\qquad
+h_\theta=0\quad\Longrightarrow\quad\det D\Psi=1.
+$$
+
+then the exact free-circle map still preserves reduced area. Here $L_*$ is a positive reference angular momentum so the hyperbolic tangent has a dimensionless argument. A clock depending on the free energy alone also has no angle derivative. Its elapsed time still varies between initial momenta, so preserving area does not make it a common fixed-time observation.
+
+The corresponding regular RATTLE shear also has determinant one when h_theta=0. More general constrained systems, extended phase spaces and adaptive variational algorithms require their own construction. Neither this exception nor the folded counterexample supplies a universal verdict on all adaptive methods.
+
+![Three input angles share one final angle at different positive elapsed times; the equal-index map has a region of negative reduced Jacobian determinant.](/assets/learning/analytical-structure-observation-clock.en.svg)
+
+### Research questions with explanations
+
+**Can exact trajectories give a noncanonical equal-index map?** **Answer:** Yes. Here each input is evaluated at its own exact elapsed time, so all physical checks at that time pass. The map across inputs additionally differentiates the clock and generally does not preserve phase area.
+
+**Does the fold violate physical initial-value uniqueness?** **Answer:** No. The three inputs have different observation times. Keeping those times distinguishes the observations; the fixed-time physical flow remains invertible.
+
+**What should an adaptive learned simulator store and compare?** **Answer:** Preserve actual elapsed times, differentiate the full controller when claiming a map property, and compare states at equal physical times for accuracy. Report whether a structural argument concerns the original phase space, a regular constraint leaf or an extended construction.
+
 ## Work through six checks with explanations
 
 ### Exercise 1

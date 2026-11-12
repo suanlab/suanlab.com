@@ -1,0 +1,1733 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-12",
+  "status": "reviewed-original-topics-and-registered-labs",
+  "registeredDomainReviewComplete": true,
+  "curriculumComplete": false,
+  "sourceParentCommit": "6670be768a05a6b775912bb835b308c6816473bf",
+  "inventory": {
+    "schemaVersion": 1,
+    "status": "source-and-executable-inventory-verified",
+    "baselineCommit": "d486291",
+    "domain": {
+      "id": "analytical-mechanics",
+      "title": {
+        "ko": "해석역학과 구조 보존",
+        "en": "Analytical Mechanics and Structure Preservation"
+      },
+      "prerequisiteIds": [
+        "classical-mechanics",
+        "variational-geometry"
+      ],
+      "topics": [
+        {
+          "ko": "일반화 좌표",
+          "en": "Generalized coordinates"
+        },
+        {
+          "ko": "작용·정상 작용",
+          "en": "Action and stationary action"
+        },
+        {
+          "ko": "Lagrange 방정식",
+          "en": "Lagrange equations"
+        },
+        {
+          "ko": "Hamiltonian·정준 변수",
+          "en": "Hamiltonians and canonical variables"
+        },
+        {
+          "ko": "Poisson bracket",
+          "en": "Poisson brackets"
+        },
+        {
+          "ko": "symplectic geometry",
+          "en": "Symplectic geometry"
+        },
+        {
+          "ko": "Noether 정리",
+          "en": "Noether’s theorem"
+        },
+        {
+          "ko": "구속·보존량",
+          "en": "Constraints and conserved quantities"
+        },
+        {
+          "ko": "Hamilton-Jacobi",
+          "en": "Hamilton–Jacobi theory"
+        },
+        {
+          "ko": "보존 구조의 수치 근사",
+          "en": "Numerical approximation of conserved structure"
+        }
+      ],
+      "unitIds": [
+        "polar-generalized-velocity-force-metric",
+        "double-pendulum-generalized-mass-metric",
+        "free-particle-action-boundary-gauge",
+        "harmonic-action-stationary-saddle",
+        "polar-lagrange-newton-equivalence",
+        "double-pendulum-lagrange-dynamics",
+        "polar-hamiltonian-legendre-map",
+        "time-gauge-hamiltonian-energy",
+        "poisson-observable-canonical-flow",
+        "angular-momentum-poisson-algebra",
+        "four-dimensional-symplectic-maps",
+        "lagrangian-momentum-graphs",
+        "noether-point-symmetry-defects",
+        "noether-boost-time-boundaries",
+        "routh-cyclic-momentum-reduction",
+        "circle-dirac-constraint-geometry",
+        "uniform-force-hamilton-jacobi-family",
+        "oscillator-hamilton-jacobi-caustic-atlas",
+        "quartic-discrete-action-splitting",
+        "circle-rattle-projection-phase"
+      ]
+    },
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "domains": 51,
+      "topics": 509
+    },
+    "prerequisites": {
+      "domainIds": [
+        "classical-mechanics",
+        "variational-geometry"
+      ],
+      "closure": [
+        "propositions-implications",
+        "quantifiers-counterexamples",
+        "sets-functions",
+        "numbers-ratios-units",
+        "vectors-and-forces",
+        "si-dimension-algebra",
+        "linear-transforms",
+        "gradients",
+        "chain-rule",
+        "probability-distributions",
+        "expectation-variance",
+        "information-theory",
+        "counting-permutations",
+        "binomial-inclusion-exclusion",
+        "probability-spaces-events",
+        "self-information-entropy",
+        "conditional-probability-independence",
+        "joint-marginal-conditional",
+        "conditional-entropy-mutual-information",
+        "statistical-estimation",
+        "bayesian-inference",
+        "finite-bayes-updates",
+        "likelihood-mle-map",
+        "conjugate-posterior-predictive",
+        "marginal-likelihood-evidence",
+        "latent-mixtures-em",
+        "real-complex-numbers",
+        "equations-inequalities",
+        "polynomial-rational-functions",
+        "exponentials-logarithms",
+        "variational-elbo",
+        "cross-entropy-kl",
+        "coding-compression-mdl",
+        "rate-distortion-binary",
+        "fano-error-bounds",
+        "renyi-information",
+        "mass-density-cdf",
+        "information-units-normalization",
+        "binary-floating-rounding",
+        "jacobians",
+        "backpropagation",
+        "stochastic-optimization",
+        "limits-continuity-completeness",
+        "differentiability-mean-value",
+        "convexity-first-order",
+        "convex-sets-jensen",
+        "constrained-first-order-optimality",
+        "subgradient-support-lines",
+        "lagrangian-kkt-multipliers",
+        "duality-slater-counterexamples",
+        "primal-dual-gap-certificates",
+        "finite-sum-gd-sgd",
+        "smoothness-learning-rate",
+        "momentum-adaptive-updates",
+        "proximal-operators-moreau",
+        "inner-products",
+        "eigenvalues",
+        "svd",
+        "least-squares",
+        "regularization",
+        "lasso-ridge-regularization",
+        "bilevel-unrolled-hypergradients",
+        "implicit-inverse-functions",
+        "implicit-solution-sensitivity",
+        "conditioning-backward-error",
+        "linear-nonlinear-solvers",
+        "initial-boundary-state-data",
+        "existence-uniqueness-waiting",
+        "linear-nonlinear-ode-flows",
+        "unit-covariant-predictions",
+        "boolean-algebra",
+        "relations-orders",
+        "graphs-trees-dags",
+        "automata-formal-languages",
+        "proof-strategies",
+        "mathematical-induction",
+        "finite-state-transitions",
+        "system-boundary-mass-balances",
+        "vector-spaces-rank",
+        "positive-semidefinite-matrices",
+        "linear-quadratic-semidefinite-programs",
+        "trigonometry-coordinates",
+        "circle-manifold-charts",
+        "integration-fundamental-theorem",
+        "determinants-traces",
+        "vector-fields-divergence-curl",
+        "line-surface-volume-integrals",
+        "circle-metrics-geodesics",
+        "sigma-algebras-measures",
+        "lebesgue-simple-functions",
+        "probability-measures-expectations",
+        "normed-banach-hilbert",
+        "dual-functionals-evaluation",
+        "tangent-cotangent-pairing",
+        "coordinate-invariant-metrics",
+        "bernoulli-fisher-coordinates",
+        "natural-gradient-coordinate-steps",
+        "entropic-mirror-simplex",
+        "bregman-generator-geometry",
+        "circle-riemannian-descent",
+        "implicit-adjoint-objectives",
+        "function-space-gradient-metrics",
+        "monge-kantorovich-mass",
+        "transport-plans-dual-certificates",
+        "kl-ambiguity-risk-envelope",
+        "finite-wasserstein-risk-certificates",
+        "laws-large-numbers-clt",
+        "samples-parameters-estimators",
+        "multivariate-gaussians",
+        "confidence-intervals-tests",
+        "finite-events-differential-privacy",
+        "fresh-copy-privacy-composition",
+        "posterior-odds-privacy-inference",
+        "fairness-metrics-selection-identification",
+        "stratified-evaluation-shift-bounds",
+        "measurement-calibration-identifiability",
+        "physical-states-observation-information",
+        "quadratic-forms-orders",
+        "phase-portraits-fixed-points",
+        "pde-principal-symbol-types",
+        "complex-polar-maps",
+        "complex-signals-phase",
+        "fourier-series-transform",
+        "diffusion-wave-advection-modes",
+        "initial-data-temporal-order",
+        "wasserstein-quantile-metrics",
+        "sinkhorn-entropic-couplings",
+        "stable-exponentials-logsumexp",
+        "pendulum-small-angle-validity",
+        "linear-drag-time-regimes",
+        "oscillator-nondimensional-similarity",
+        "momentum-kinetic-invariant-constraints",
+        "circle-position-velocity-acceleration",
+        "galilean-observers-frame-energy",
+        "rotational-covariance-material-symmetry",
+        "polar-generalized-velocity-force-metric",
+        "force-mass-calibration-identifiability",
+        "vector-force-superposition-dynamics",
+        "finite-force-pulse-impulse-histories",
+        "two-particle-momentum-center-of-mass",
+        "quartic-potential-work-allowed-states",
+        "damped-oscillator-work-power-heat",
+        "fixed-origin-angular-momentum-torque",
+        "central-harmonic-angular-momentum-area",
+        "isolated-central-pair-conservation",
+        "gyroscopic-force-energy-momentum",
+        "dry-friction-stopping-release",
+        "circular-guide-reaction-work",
+        "double-pendulum-generalized-mass-metric",
+        "free-particle-action-boundary-gauge",
+        "harmonic-action-stationary-saddle",
+        "polar-lagrange-newton-equivalence",
+        "double-pendulum-lagrange-dynamics",
+        "polar-hamiltonian-legendre-map",
+        "time-gauge-hamiltonian-energy",
+        "poisson-observable-canonical-flow",
+        "angular-momentum-poisson-algebra",
+        "four-dimensional-symplectic-maps",
+        "lagrangian-momentum-graphs",
+        "noether-point-symmetry-defects",
+        "noether-boost-time-boundaries",
+        "routh-cyclic-momentum-reduction",
+        "circle-dirac-constraint-geometry",
+        "uniform-force-hamilton-jacobi-family",
+        "oscillator-hamilton-jacobi-caustic-atlas",
+        "explicit-implicit-runge-kutta",
+        "conditional-expectation",
+        "markov-transitions-generators",
+        "poisson-arrivals-counts",
+        "martingale-stopping-compensation",
+        "ergodic-mixing-time-averages",
+        "mcmc-langevin-hamiltonian",
+        "symplectic-oscillator-integrators",
+        "quartic-discrete-action-splitting",
+        "circle-rattle-projection-phase"
+      ]
+    },
+    "originalManuscriptsPreserved": 40,
+    "reviewedManuscripts": [
+      {
+        "id": "polar-generalized-velocity-force-metric",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/polar-generalized-velocity-force-metric.en.md",
+        "sha256": "410d11ad7170960081b0731bde47ca33d442c922842ddfeb468c7b3ab471bad1",
+        "originalSha256": "72f9cca31525daf2ac7c01bf0a5af1c028ec1fef04627c0a4f632796ffabe3c3",
+        "researchSha256": "cac2fc9b5bf5d990c752b7d7b74e65e506a97c874a9eb34fea375742ad1cd182",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "3dbc1746cdc94c30182e81208bd97fcb5756f0c59e2cf3ce3967ac247a726416",
+        "stdoutSha256": "fd45ab6fe2a9baa28826f99931b6e644e650c4ecefae76b5b23ab5f731631757",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 13,
+        "image": "/assets/learning/analytical-polar-hessian.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/coordinate-research-status.md"
+      },
+      {
+        "id": "polar-generalized-velocity-force-metric",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/polar-generalized-velocity-force-metric.ko.md",
+        "sha256": "741e2b4491abb20f47cb2e34824dcd5809f25e8cf72b19ca659e3147d05159c0",
+        "originalSha256": "36e273396c201cf3d093362e225eddab81e608ed3d614c85710b15e981e6f010",
+        "researchSha256": "e1941338173b584d44b8ce3dbda433225c128607181d8676325193c8f6561ef0",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "3dbc1746cdc94c30182e81208bd97fcb5756f0c59e2cf3ce3967ac247a726416",
+        "stdoutSha256": "fd45ab6fe2a9baa28826f99931b6e644e650c4ecefae76b5b23ab5f731631757",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 13,
+        "image": "/assets/learning/analytical-polar-hessian.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/coordinate-research-status.md"
+      },
+      {
+        "id": "double-pendulum-generalized-mass-metric",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/double-pendulum-generalized-mass-metric.en.md",
+        "sha256": "75eb347a4711c4d7459d1b4708f2c70716948eb58a040867257edf91549fbdf5",
+        "originalSha256": "d0037b5289abb65eb51c1a146655f3ebb7ccc54a6efb2326da67eeef1df6c6cc",
+        "researchSha256": "03d23fab25c65988ac1bbea7c3b01555bbefddbe9dec26d0019e095a4c02b960",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "c0b6000dad54f344d98b7c82622717edf3b7b24d3ffb77ebfcc2106a4f88612d",
+        "stdoutSha256": "224282b3a7ba9434e6237a3fef546deaa85fda39abea1c09a9713cfb35ffec8e",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-pendulum-modes.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/coordinate-research-status.md"
+      },
+      {
+        "id": "double-pendulum-generalized-mass-metric",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/double-pendulum-generalized-mass-metric.ko.md",
+        "sha256": "a1f0ae39a6f56fa9086e16b9294cbd07237369f9d6e7d0ae9aadaa4354d019e5",
+        "originalSha256": "443bc18fc4dbefd52ed6be2b192b4c75a57f282cf5ad25b7d8f919eafcc69d71",
+        "researchSha256": "ff1c9b964e6f02cd6445b2b9b699acb8233d83e09a7495c3220df1a8dc81a5ff",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "c0b6000dad54f344d98b7c82622717edf3b7b24d3ffb77ebfcc2106a4f88612d",
+        "stdoutSha256": "224282b3a7ba9434e6237a3fef546deaa85fda39abea1c09a9713cfb35ffec8e",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-pendulum-modes.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/coordinate-research-status.md"
+      },
+      {
+        "id": "free-particle-action-boundary-gauge",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/free-particle-action-boundary-gauge.en.md",
+        "sha256": "3c9db372ee295f93dfb99b9df5783ac9b9774d5bb0a77a8e2838e74f443e09bb",
+        "originalSha256": "4fea1668c26e960ee5eed22b3f77bb3af70486520753eddf228ff5fe688d8b29",
+        "researchSha256": "b0962ec05a7522d811c7ec15ac81d91ecc88e5856bd7a33f11b326a433ff2992",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "f1bbc87dda7f7bf05232e38db75a0e37eec7b44399dd9e29ddd763ffe6ebff7d",
+        "stdoutSha256": "c99f84fb554694f15a0fad7bdc6ff99e22fa04b0b127edde625e1fe011537499",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "inline explanations preserved from baseline",
+        "outlineCount": 12,
+        "image": "/assets/learning/analytical-terminal-cost.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/action-research-status.md"
+      },
+      {
+        "id": "free-particle-action-boundary-gauge",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/free-particle-action-boundary-gauge.ko.md",
+        "sha256": "df809bacfb84a4e2eacd50f8da1b0dc7760db532f432202dedc6f6164f6c80d7",
+        "originalSha256": "3de0c5831ac1d5146cc1d70ae7a2193fce1d27a5b0527e9c11319f22abbf0735",
+        "researchSha256": "1e01be85a079ceb078249e0b00ce35fb1be3a9409c69aed65658bd1a2038303f",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "f1bbc87dda7f7bf05232e38db75a0e37eec7b44399dd9e29ddd763ffe6ebff7d",
+        "stdoutSha256": "c99f84fb554694f15a0fad7bdc6ff99e22fa04b0b127edde625e1fe011537499",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "inline explanations preserved from baseline",
+        "outlineCount": 12,
+        "image": "/assets/learning/analytical-terminal-cost.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/action-research-status.md"
+      },
+      {
+        "id": "harmonic-action-stationary-saddle",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/harmonic-action-stationary-saddle.en.md",
+        "sha256": "77934345ecf143d5e04586faca92c54587632ae5bc359a88cec0bb361e0094a8",
+        "originalSha256": "88af7329057842730b41d429c7ef59bbea714e8841c21aff7c8f86399d8ce6c5",
+        "researchSha256": "1b97f7fba2ba4e8e386f8a0172d85e412898417ea206293f560c480d02e220e0",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "0a2b071bc92d95bd793d218c7344908c38d5301edb162c1eb29ad4fbf99e2c73",
+        "stdoutSha256": "254e07a27a2f53d2deccc468d7d9966b6c41cace96a5118b75b9727a08492d35",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "inline explanations preserved from baseline",
+        "outlineCount": 13,
+        "image": "/assets/learning/analytical-action-index.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/action-research-status.md"
+      },
+      {
+        "id": "harmonic-action-stationary-saddle",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/harmonic-action-stationary-saddle.ko.md",
+        "sha256": "e50c11e9281a06d775cfa0c39d4723c2778d22a3afbf64bdf85e49e9c34260a6",
+        "originalSha256": "389052a80a7626edd22fa6bd60d174ccc9208c35cf4cc4dac9f1d3be018e92a5",
+        "researchSha256": "8fafc2c434a0b662eeb7e4a366b0841a6863e2b4e652770242bcc39c987718b0",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "0a2b071bc92d95bd793d218c7344908c38d5301edb162c1eb29ad4fbf99e2c73",
+        "stdoutSha256": "254e07a27a2f53d2deccc468d7d9966b6c41cace96a5118b75b9727a08492d35",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "inline explanations preserved from baseline",
+        "outlineCount": 13,
+        "image": "/assets/learning/analytical-action-index.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/action-research-status.md"
+      },
+      {
+        "id": "polar-lagrange-newton-equivalence",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/polar-lagrange-newton-equivalence.en.md",
+        "sha256": "a385ba6d8a09e3fe9e6ebafe5dec2178bcf45da2b48bb928a9631292765aa595",
+        "originalSha256": "f79ce7a22b027ad5904051752d43fc075a169e3fe9ffdbdd83d0e7d4616f0f1c",
+        "researchSha256": "7dfb06e64da152be5c92199523127d1a9580c8863ae744b53191166b1ceebf08",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "8f3a82670531aea6c6f7386ec9f7b04454eab0c3e29398c48018851fb39a2dfc",
+        "stdoutSha256": "9c1c2461bf14ebad617d4ac4edbfa1df295edc3df28e8dacb09f5314c5cdd669",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-lagrange-kinetic.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/lagrange-research-status.md"
+      },
+      {
+        "id": "polar-lagrange-newton-equivalence",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/polar-lagrange-newton-equivalence.ko.md",
+        "sha256": "9cb1662e7fb1fb4363e347df619dd4be548426a6071bb159bb6c2544d667ab60",
+        "originalSha256": "997b923dbe19d092fc1bb2fc97a5d9693ca6eaee6715d0d2dc3b84cf37539303",
+        "researchSha256": "a91feff8a25c66c774c916138fe0916a06dd6af241dde2d321d345e6ad2952d2",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "8f3a82670531aea6c6f7386ec9f7b04454eab0c3e29398c48018851fb39a2dfc",
+        "stdoutSha256": "9c1c2461bf14ebad617d4ac4edbfa1df295edc3df28e8dacb09f5314c5cdd669",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-lagrange-kinetic.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/lagrange-research-status.md"
+      },
+      {
+        "id": "double-pendulum-lagrange-dynamics",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/double-pendulum-lagrange-dynamics.en.md",
+        "sha256": "959525ddb3744c5c674dc71c41be1983f721d0937258b9f8f0180de420c56a3d",
+        "originalSha256": "24153a29283762141187d0ec6768aaf52d0bd858982ce7995271267a67ecce23",
+        "researchSha256": "d6fbcd908f02f7b9051f3e3fcfe27d5b2e3ea3f07546c2882aad38c82ef6cc35",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "887fa964e55af32c22402a0370b87e9f179edc7979b23e708dc4203ef535779a",
+        "stdoutSha256": "dc8772b3825e25392b2695287cff4917d4d703387c322eeb681e85c54f57598f",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 13,
+        "image": "/assets/learning/analytical-lagrange-scale.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/lagrange-research-status.md"
+      },
+      {
+        "id": "double-pendulum-lagrange-dynamics",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/double-pendulum-lagrange-dynamics.ko.md",
+        "sha256": "87b7603a2650d9e1795a07c2c9a730841dab4333e6a5d7e5a4d9d0365a321394",
+        "originalSha256": "48aa9772a966823973649a355f6a74fc817f222a5318e934be25cc01c67508a0",
+        "researchSha256": "4a334709a45b2e812ab843cb558e48cc96b926d76529b1aeb10e97f65ede6d73",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "887fa964e55af32c22402a0370b87e9f179edc7979b23e708dc4203ef535779a",
+        "stdoutSha256": "dc8772b3825e25392b2695287cff4917d4d703387c322eeb681e85c54f57598f",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 13,
+        "image": "/assets/learning/analytical-lagrange-scale.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/lagrange-research-status.md"
+      },
+      {
+        "id": "polar-hamiltonian-legendre-map",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/polar-hamiltonian-legendre-map.en.md",
+        "sha256": "a66adb2d134de84bde6e7aa5c659b6474220225ffae4b0060d979c676b976b12",
+        "originalSha256": "441fa160c86695c8df4a9f6e1917434c1b37b5158ce8015c4db5ac5028df65a1",
+        "researchSha256": "9adb281493c13ff103a37ba9aadd0e4a124bb8a2199815042a9cd1192247f0d5",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "d94560b9f6ed6b6e87ad608302bfbdfcedad412ab8b65c3f0051555fc8c3c915",
+        "stdoutSha256": "4dc129e0662d165708ee54d5f08b33937b60c3f74e0d61533cfb57d633e46a53",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-canonical-dual.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/canonical-research-status.md"
+      },
+      {
+        "id": "polar-hamiltonian-legendre-map",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/polar-hamiltonian-legendre-map.ko.md",
+        "sha256": "ea06f592801e1f4e0922d393bc0ce292c6fc644fd26990536eb83b0a607c597a",
+        "originalSha256": "c3202301af9630984b04a789f40c4a72bd41cd70a022b6e687899070968c2ea1",
+        "researchSha256": "0c7bcb15ee28c0b30395d289203036ab61783a762e164552a5fd9431fb0d5ba3",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "d94560b9f6ed6b6e87ad608302bfbdfcedad412ab8b65c3f0051555fc8c3c915",
+        "stdoutSha256": "4dc129e0662d165708ee54d5f08b33937b60c3f74e0d61533cfb57d633e46a53",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-canonical-dual.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/canonical-research-status.md"
+      },
+      {
+        "id": "time-gauge-hamiltonian-energy",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/time-gauge-hamiltonian-energy.en.md",
+        "sha256": "f96b3722aea90afc0fd7190910d68505194e9ffadd75401f4f0b6582901faf48",
+        "originalSha256": "adc7f5e4aeb21d0224d45393d0a7d8d2cab0ba34812afcc798b8039106c1bf2a",
+        "researchSha256": "43fd237fedf0be4193c83b3043df18efc96eb41e70f356572a43cdfbbb27d10e",
+        "displayedResearchEquations": 5,
+        "pythonSha256": "985d91ea2c676e052258bf7d875325be262165b08768b686e9def0e8c6ce540b",
+        "stdoutSha256": "efd64e877dc0f00d0169b941f992e3f61d5db24c1b9cae52f2851ce95da07a2c",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-circle-gauge.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/analytical-topology-research-status.md"
+      },
+      {
+        "id": "time-gauge-hamiltonian-energy",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/time-gauge-hamiltonian-energy.ko.md",
+        "sha256": "4e06af4ce1ab14e2c211d99cf1b38d8f936a236b3d825c0449917574c1fb294b",
+        "originalSha256": "87b90372de79c581d176f1a1704663f75cfea447f51542b12e2f4f465c56ca87",
+        "researchSha256": "fb52feeb0d769fea6d299abb125973d6df953b3edb088d4c5a47a7087162ad24",
+        "displayedResearchEquations": 5,
+        "pythonSha256": "985d91ea2c676e052258bf7d875325be262165b08768b686e9def0e8c6ce540b",
+        "stdoutSha256": "efd64e877dc0f00d0169b941f992e3f61d5db24c1b9cae52f2851ce95da07a2c",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-circle-gauge.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/analytical-topology-research-status.md"
+      },
+      {
+        "id": "poisson-observable-canonical-flow",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/poisson-observable-canonical-flow.en.md",
+        "sha256": "59f9400897472cd9da57882ada64b230ded4bbc8f37535d6b6410f077e14cb5e",
+        "originalSha256": "205c3b1cb6224642e60f6f63464a3f858a21a4bc9ff8868f3414bdaf67945401",
+        "researchSha256": "fa7c5f13d3b1ad41d99916ed4af93397d6b03fa61a59508d186fc7d4cf09aa7a",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "d525b0dffaeb114460f75f578347cf3bd92daed77097330716162a1af968f36e",
+        "stdoutSha256": "76bfb99aaf2b73edeb99a21fe374db72eb1397f86cdb380878135d5bab528cde",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 13,
+        "image": "/assets/learning/analytical-poisson-clock.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/canonical-research-status.md"
+      },
+      {
+        "id": "poisson-observable-canonical-flow",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/poisson-observable-canonical-flow.ko.md",
+        "sha256": "63484ae83e825438dba698b05d7264aaff0769e04f4b39c2e3b3a09d68375e22",
+        "originalSha256": "88d0da56d25c6cdb4dbaf15f67e20e4e7134d042acf4a803269a87cba2fef3e4",
+        "researchSha256": "e180dfc367bcf997293f9bf2bc0f15c43ae46902bdf9e5553b97af9da07c0b31",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "d525b0dffaeb114460f75f578347cf3bd92daed77097330716162a1af968f36e",
+        "stdoutSha256": "76bfb99aaf2b73edeb99a21fe374db72eb1397f86cdb380878135d5bab528cde",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 13,
+        "image": "/assets/learning/analytical-poisson-clock.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/canonical-research-status.md"
+      },
+      {
+        "id": "angular-momentum-poisson-algebra",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/angular-momentum-poisson-algebra.en.md",
+        "sha256": "464197fba308eea108c44f29931b925af1ab9cfaf49504e9838f8e4fbf976df4",
+        "originalSha256": "fcc4f8ab75f37c6286866e5ff7bf21868ee2df18d02bbb4780f9a5435c83c597",
+        "researchSha256": "39d445b048c12f528d83f0256be5f686a9f21790ee81e9c297c6dbd0f0445ecf",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "bcd7c2eaaa3c616ce370f71a98b9f1a641c91d093b21a50da8a16db10f9f348e",
+        "stdoutSha256": "1ae8e2726496f6c2bc02816e5a09329e3125103b7b75f38b3b1250ac8e36ec16",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-angular-closure.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/canonical-research-status.md"
+      },
+      {
+        "id": "angular-momentum-poisson-algebra",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/angular-momentum-poisson-algebra.ko.md",
+        "sha256": "d78ea70ef10f7a99b51b26aa3e0495ad4b95bb7654d7679c307ba0f3fc3c6b5f",
+        "originalSha256": "7f50b6bffe3d4ad2f2f5ef890601f5b8b1b475e498d3f0b3a6be411e167c7027",
+        "researchSha256": "4bc16d4455c4606bbf75d1f1687677f2df91130ac9f2a2b0c646282c0143abbb",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "bcd7c2eaaa3c616ce370f71a98b9f1a641c91d093b21a50da8a16db10f9f348e",
+        "stdoutSha256": "1ae8e2726496f6c2bc02816e5a09329e3125103b7b75f38b3b1250ac8e36ec16",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-angular-closure.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/canonical-research-status.md"
+      },
+      {
+        "id": "four-dimensional-symplectic-maps",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/four-dimensional-symplectic-maps.en.md",
+        "sha256": "db445a48a9b65fb1e5111fcf450c826e7b576fa72d99816fc5ece7e46659b8b4",
+        "originalSha256": "aa273aaf822a1507eb37b3ff3f1cb38eb851cc4605d8869a14310eaadff296ab",
+        "researchSha256": "73404b3c82940e97fec0ef5ca8a421cab3e4343f92a15a33dfa086b68d0f763d",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "e7721d858186e8520eb2d2efde36b5be49cc5519c49ed29fd2a9406a5b3a6808",
+        "stdoutSha256": "a3e1abc23839c99350f3a401bd22b57310bf50ebcf4bb8a84cdcd6ca9a497443",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-symplectic-dimension.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/symplectic-dimension-research-status.md"
+      },
+      {
+        "id": "four-dimensional-symplectic-maps",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/four-dimensional-symplectic-maps.ko.md",
+        "sha256": "dfc6b87b805662e403cd5624c8890d34eb9a00a522cb26e3fae311342db852a1",
+        "originalSha256": "c728f39745def11caa613a333d02f4fb1722701b2a3399c3aed30c16372b6ae2",
+        "researchSha256": "dd42a2a93a4241e2d81ea93087ccce7d30239290056b9968a92dec695690b2a7",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "e7721d858186e8520eb2d2efde36b5be49cc5519c49ed29fd2a9406a5b3a6808",
+        "stdoutSha256": "a3e1abc23839c99350f3a401bd22b57310bf50ebcf4bb8a84cdcd6ca9a497443",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 14,
+        "image": "/assets/learning/analytical-symplectic-dimension.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/symplectic-dimension-research-status.md"
+      },
+      {
+        "id": "lagrangian-momentum-graphs",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/lagrangian-momentum-graphs.en.md",
+        "sha256": "7c12b851cb1051336abac53f7f788d0386041e9690e47ae26fcd0c6f6df0e581",
+        "originalSha256": "a602e397dd17f88d119c48c2e84fb5a39511df286af562059128430eb7dd2420",
+        "researchSha256": "30391ddafdef17893713dabb3ffd0e3fffbc25017ab4694abd7d25770b154986",
+        "displayedResearchEquations": 5,
+        "pythonSha256": "84c1433c03c0850416ed28a2191b89d7d1758c03e30fe76f341b9abd022a5314",
+        "stdoutSha256": "78a1f7a0906584a30172ff1b43c9740b3bedc17ef2619260156fa6a69a63239b",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 15,
+        "image": "/assets/learning/analytical-topology-period.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/analytical-topology-research-status.md"
+      },
+      {
+        "id": "lagrangian-momentum-graphs",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/lagrangian-momentum-graphs.ko.md",
+        "sha256": "45e1a2e633bb00d8fdd310498f4d6c217ca3d905baccc175861c00895f7a6230",
+        "originalSha256": "758c5c5bcaff837199414255c0297998b1a3e45a8ee460a5f38f80aac3eefe93",
+        "researchSha256": "47ddc75df714d1e52b701aa43d6e18faa962726a22c0cfc1129b4dec246845ed",
+        "displayedResearchEquations": 5,
+        "pythonSha256": "84c1433c03c0850416ed28a2191b89d7d1758c03e30fe76f341b9abd022a5314",
+        "stdoutSha256": "78a1f7a0906584a30172ff1b43c9740b3bedc17ef2619260156fa6a69a63239b",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 15,
+        "image": "/assets/learning/analytical-topology-period.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/analytical-topology-research-status.md"
+      },
+      {
+        "id": "noether-point-symmetry-defects",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/noether-point-symmetry-defects.en.md",
+        "sha256": "16feca83f663346cebabd5aecf5338efb3d601764bc1572972fdf0035d3c2f94",
+        "originalSha256": "7e8281c7293fd8d9421911f9f7ecd7225af693a2a7c2654304e6d7a81f8ba423",
+        "researchSha256": "fe9605477233d817759f246c0621ed2292aaa102f1da09cf6e21f52d747acc8c",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "84dba2abb6fbf63175d36c72249368e0e69252d2ae9838d2bf50bb07b413afcd",
+        "stdoutSha256": "19486d4b1b9b05cf3b6d73d8964afecf59d6ecebf6b4195b5ace7dac279a5790",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 15,
+        "image": "/assets/learning/analytical-noether-rank.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/noether-research-status.md"
+      },
+      {
+        "id": "noether-point-symmetry-defects",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/noether-point-symmetry-defects.ko.md",
+        "sha256": "fd370634d394ad9b0706ae4305115bedc8270b48966bc8dc7adea650cdb37708",
+        "originalSha256": "841de614af65d315a2eb74d164e038221f6a32a158a145e3446e90e842e07e7e",
+        "researchSha256": "4ac0ae45f74c332c5e700849d6ac17695ae94663823d098e6f99fda6e57649d2",
+        "displayedResearchEquations": 6,
+        "pythonSha256": "84dba2abb6fbf63175d36c72249368e0e69252d2ae9838d2bf50bb07b413afcd",
+        "stdoutSha256": "19486d4b1b9b05cf3b6d73d8964afecf59d6ecebf6b4195b5ace7dac279a5790",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 15,
+        "image": "/assets/learning/analytical-noether-rank.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/noether-research-status.md"
+      },
+      {
+        "id": "noether-boost-time-boundaries",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/noether-boost-time-boundaries.en.md",
+        "sha256": "fa6588cd1016ddd186cbb9ca17399634aa1b5c3d8484ce7966e1684ebb87ef9d",
+        "originalSha256": "f6fd011e9e8406f9ee803c924678445a65ac4b9280186fc27eacf56329e6b886",
+        "researchSha256": "2e2078ec67cab66a7f96c928d759a7c3c534e1c03671a28e2fd7d101166fa96d",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "2182128f58ce897dacdd92763e7932ebde00ff061cfda509cfe65d4d1f6ca8f2",
+        "stdoutSha256": "65117b207db16bb4110965f920b88edf639b04412003d21b8471d887db742678",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 15,
+        "image": "/assets/learning/analytical-noether-boost.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/noether-research-status.md"
+      },
+      {
+        "id": "noether-boost-time-boundaries",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/noether-boost-time-boundaries.ko.md",
+        "sha256": "7c84212b0df4b726fe2602d969565b184c9013111a506e42f433a6bb777046cf",
+        "originalSha256": "a83a818e82d46c6c2d37f4755959416cc0361ac6ab8a2f45df770d953fdeba3f",
+        "researchSha256": "bbd38a8102f484abf4f671e3837abeeb347f40b97cc5ee77ea57dd11d1909a78",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "2182128f58ce897dacdd92763e7932ebde00ff061cfda509cfe65d4d1f6ca8f2",
+        "stdoutSha256": "65117b207db16bb4110965f920b88edf639b04412003d21b8471d887db742678",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 15,
+        "image": "/assets/learning/analytical-noether-boost.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/noether-research-status.md"
+      },
+      {
+        "id": "routh-cyclic-momentum-reduction",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/routh-cyclic-momentum-reduction.en.md",
+        "sha256": "551f3d19d3a6df3980458d1b74f2a9d8436c012e108701fcb3af4d29383d977b",
+        "originalSha256": "e5693189ea930263e962e946d55d11b4450b8a978c09c8a9752f7e1d76ba669a",
+        "researchSha256": "914e308ecd8fc90a2f4d29c1239eabb8b83268f8e57fe2c6a0e1950b843ebf03",
+        "displayedResearchEquations": 8,
+        "pythonSha256": "f4d941469c037035d8c3a2741ff778f8ac899391b3528ee1b27cdc3f014c7d62",
+        "stdoutSha256": "18fa753d6c1da1c2efb738915787cf0a3ffd9590ed19ff292a1c16e391c60faa",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 16,
+        "image": "/assets/learning/analytical-constraint-nonholonomic.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/constraint-research-status.md"
+      },
+      {
+        "id": "routh-cyclic-momentum-reduction",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/routh-cyclic-momentum-reduction.ko.md",
+        "sha256": "3b6e29f842db5caeb02d1e6e0316b2603d68d8632ea7dc793c76e4725c362c01",
+        "originalSha256": "537cd0f506b186e7cfec4be67ce890febbf935f4bbd70446a3c952f72f562776",
+        "researchSha256": "1b38936ac9896c76ba6fcfde8acd42bb8cd602667ff2c90495f4d8995223cb4a",
+        "displayedResearchEquations": 8,
+        "pythonSha256": "f4d941469c037035d8c3a2741ff778f8ac899391b3528ee1b27cdc3f014c7d62",
+        "stdoutSha256": "18fa753d6c1da1c2efb738915787cf0a3ffd9590ed19ff292a1c16e391c60faa",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 16,
+        "image": "/assets/learning/analytical-constraint-nonholonomic.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/constraint-research-status.md"
+      },
+      {
+        "id": "circle-dirac-constraint-geometry",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/circle-dirac-constraint-geometry.en.md",
+        "sha256": "b073020a12015319bacd17881cc17fb338098992fe4d4ba4ada513bd9591d1ae",
+        "originalSha256": "7d0ba4e0422c342c36f7fed0c2b895ca345dc9e03fcce62ea6ce6983f6dfd29c",
+        "researchSha256": "0dcf143cd0caf8fc1893e8064cc80767abdc7ea8e854f4900c811dfc5d23739e",
+        "displayedResearchEquations": 8,
+        "pythonSha256": "7edd9ed0d470ee8d87dc15411329059aae993a81ec7a00d7f009e789c1d96e76",
+        "stdoutSha256": "3a756f9e6c2875fd28496ef6461188a2ffe8c248c313651342ea9b4bf2fc5a47",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 16,
+        "image": "/assets/learning/analytical-constraint-moving-circle.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/constraint-research-status.md"
+      },
+      {
+        "id": "circle-dirac-constraint-geometry",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/circle-dirac-constraint-geometry.ko.md",
+        "sha256": "a1241691ee368c484501809a7d1d08fec081c75b21ba10406445a375c5d1bc51",
+        "originalSha256": "ec7858f7a6189f9fc6f1306caa3b250e4d27d93cbab4c7a1e435dbcb198999be",
+        "researchSha256": "03f614edf300fcee5a17e62caa5702c10228b1aa0b57f948eb0ac0e91e1bc5fc",
+        "displayedResearchEquations": 8,
+        "pythonSha256": "7edd9ed0d470ee8d87dc15411329059aae993a81ec7a00d7f009e789c1d96e76",
+        "stdoutSha256": "3a756f9e6c2875fd28496ef6461188a2ffe8c248c313651342ea9b4bf2fc5a47",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 16,
+        "image": "/assets/learning/analytical-constraint-moving-circle.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/constraint-research-status.md"
+      },
+      {
+        "id": "uniform-force-hamilton-jacobi-family",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/uniform-force-hamilton-jacobi-family.en.md",
+        "sha256": "b9588a1e182098eaa42cab3ec90c05d9cb30977d17ae18753afd79033444f510",
+        "originalSha256": "1b0e218c1cf3b1d6ffbfd06a6a580b02644fdba6de3b8bbeb64af1fc64a910e2",
+        "researchSha256": "dc54fe818fe229e6feac5e383d9baaa5c4779f4d642ea48c6fd1b732bb7a3819",
+        "displayedResearchEquations": 8,
+        "pythonSha256": "4c1bd137c6839e17bba0a6a0cdc9cc24731d6c47a59a1171c40cf49e6de02bd4",
+        "stdoutSha256": "7d434069c77cfafaf524b963ba0d70756b4df649fb5026d5669114b01299c470",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 16,
+        "image": "/assets/learning/analytical-hj-residual-gradients.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/hj-research-status.md"
+      },
+      {
+        "id": "uniform-force-hamilton-jacobi-family",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/uniform-force-hamilton-jacobi-family.ko.md",
+        "sha256": "f9e4cefc8718d1aa35e6f1ace03be4626b6ec9b5fe5001e7a637b1db835949ec",
+        "originalSha256": "1f80ad8d7463af18fb7991b7e100ca0aeb2f3e59cf960a97b46deda78aa07738",
+        "researchSha256": "84a9b70634f4449a1139645a38b68d7347c17ee5c7631365373ffb6ea0626627",
+        "displayedResearchEquations": 8,
+        "pythonSha256": "4c1bd137c6839e17bba0a6a0cdc9cc24731d6c47a59a1171c40cf49e6de02bd4",
+        "stdoutSha256": "7d434069c77cfafaf524b963ba0d70756b4df649fb5026d5669114b01299c470",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 16,
+        "image": "/assets/learning/analytical-hj-residual-gradients.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/hj-research-status.md"
+      },
+      {
+        "id": "oscillator-hamilton-jacobi-caustic-atlas",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/oscillator-hamilton-jacobi-caustic-atlas.en.md",
+        "sha256": "6d80a23bcfca9da15e5c3c008694929206ef84d7139db9ec6bbc672b6b94472f",
+        "originalSha256": "a95db58f09067865841ddc87954888700fb073da2a80b8a9d2e64e4ef57d2424",
+        "researchSha256": "365aca7b73a1090b69bc0829bfb084a64f9e390a5b2815dcee4f0361464a84ff",
+        "displayedResearchEquations": 9,
+        "pythonSha256": "e8b09b0d54129676e8419e7617923e73072d96c7f660c9ce0797f53efef550b5",
+        "stdoutSha256": "e385c5dc4d20c693a827aeeb6141d5da162e68d3707c53b5ac3dab9d55824dfe",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 16,
+        "image": "/assets/learning/analytical-hj-value-selection.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/hj-research-status.md"
+      },
+      {
+        "id": "oscillator-hamilton-jacobi-caustic-atlas",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/oscillator-hamilton-jacobi-caustic-atlas.ko.md",
+        "sha256": "6a37c1269d492cd6298c4f55f1676676fafe73c6269a459b8f2ab56b03410435",
+        "originalSha256": "870a677a08846322b75c8075a5702688c7a91eb2a639d40525c5a306b590b367",
+        "researchSha256": "488efdf025096e61f06d9007feb493025a24b46df1b6d974ead9b01779ab418c",
+        "displayedResearchEquations": 9,
+        "pythonSha256": "e8b09b0d54129676e8419e7617923e73072d96c7f660c9ce0797f53efef550b5",
+        "stdoutSha256": "e385c5dc4d20c693a827aeeb6141d5da162e68d3707c53b5ac3dab9d55824dfe",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 16,
+        "image": "/assets/learning/analytical-hj-value-selection.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/hj-research-status.md"
+      },
+      {
+        "id": "quartic-discrete-action-splitting",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/quartic-discrete-action-splitting.en.md",
+        "sha256": "8996d5c1cb82fcfb571e5239c2087778c6d1f92a764a633b86438c1697dba68c",
+        "originalSha256": "0cb6b9a4842c4fe3ab7b34117c4f2c3e99d3deec938967bc742e7242208206d3",
+        "researchSha256": "1238f876c64b009f9c1756e6238995814629a063a990b2a15475f1f0f9ab6e61",
+        "displayedResearchEquations": 8,
+        "pythonSha256": "1e2abaa24b8d4a6879f1a34378c71c8987890164ebbe5708bd084792c0a2ff1c",
+        "stdoutSha256": "a067d1a54f4a00d0105ba272317248c61003836d0ec3d9812ed8257dff655537",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 17,
+        "image": "/assets/learning/analytical-structure-long-phase.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/structure-research-status.md"
+      },
+      {
+        "id": "quartic-discrete-action-splitting",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/quartic-discrete-action-splitting.ko.md",
+        "sha256": "7723ab06cc3ce5a79f96bdd6fe4319242fd8449deddc3d52404e03b6f6d78d16",
+        "originalSha256": "46bac9b79e10d52946231b0b6d7eb74111e4f87771d5ac2bcdaf51dda6dddddc",
+        "researchSha256": "76a1c8e5bc6b23690f8cea9f8b92912e76fe23fc1101514d29d1f6fa4bd2bf33",
+        "displayedResearchEquations": 8,
+        "pythonSha256": "1e2abaa24b8d4a6879f1a34378c71c8987890164ebbe5708bd084792c0a2ff1c",
+        "stdoutSha256": "a067d1a54f4a00d0105ba272317248c61003836d0ec3d9812ed8257dff655537",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 17,
+        "image": "/assets/learning/analytical-structure-long-phase.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/structure-research-status.md"
+      },
+      {
+        "id": "circle-rattle-projection-phase",
+        "lang": "en",
+        "path": "content/learning/physics-math-for-ai/circle-rattle-projection-phase.en.md",
+        "sha256": "a5c498afe4b1e4374908f7ea815ab1d1ca10cf8ac753fb5591ab2449b2a01315",
+        "originalSha256": "008bf5a7cbe00af228a1736dbf635d4158cb8d40058e47bcd8d34cf72270bd0f",
+        "researchSha256": "af4b94716061954bf5cfcddfd6301bfd9d61b10105fb1a3c63133579788b2f1f",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "48a110749993e6a98602a20219116af1df79b101f904e442573b92bae2d152d8",
+        "stdoutSha256": "1c30cf0aefe451fbea0735fabea2098c848748e50bdc438c14bafac47f1ddc04",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 17,
+        "image": "/assets/learning/analytical-structure-observation-clock.en.svg",
+        "review": "docs/online-learning/physics-math-for-ai/structure-research-status.md"
+      },
+      {
+        "id": "circle-rattle-projection-phase",
+        "lang": "ko",
+        "path": "content/learning/physics-math-for-ai/circle-rattle-projection-phase.ko.md",
+        "sha256": "2a8092587ea70e72055cbf7e1a442beb9873ccc690bf7e044f42111bf5ab0b02",
+        "originalSha256": "e1082610ae3855965a135e77f7306a8ff9748c12d8c47fe689448e26ee22e637",
+        "researchSha256": "38dfd4888b2b4b71a03d9e8160315822f29ec4898e612a7aa0334de5a8618c5b",
+        "displayedResearchEquations": 7,
+        "pythonSha256": "48a110749993e6a98602a20219116af1df79b101f904e442573b92bae2d152d8",
+        "stdoutSha256": "1c30cf0aefe451fbea0735fabea2098c848748e50bdc438c14bafac47f1ddc04",
+        "originalExercisesWithSolutions": 6,
+        "exerciseFormat": "explicit solution labels",
+        "outlineCount": 17,
+        "image": "/assets/learning/analytical-structure-observation-clock.ko.svg",
+        "review": "docs/online-learning/physics-math-for-ai/structure-research-status.md"
+      }
+    ],
+    "pairedResearchUnits": 20,
+    "pythonCellsExecuted": 40,
+    "displayedResearchEquations": 272,
+    "originalExercisesWithSolutions": 240,
+    "guides": 60,
+    "quizQuestions": 40,
+    "conceptSteps": 80,
+    "assets": [
+      {
+        "path": "public/assets/learning/analytical-polar-hessian.en.svg",
+        "sha256": "43da6a0d175cf336b51317b5c8918233ecde8834a85a3991557ca9f6b9b2361d"
+      },
+      {
+        "path": "public/assets/learning/analytical-polar-hessian.ko.svg",
+        "sha256": "20d2c885954d53d80658effa98318ba8ab0c514bd81fed34318e3094a246d21c"
+      },
+      {
+        "path": "public/assets/learning/analytical-pendulum-modes.en.svg",
+        "sha256": "64b6bc646c46a87380934d291c20107755ddd49d53f2319b4adc0447e94236f5"
+      },
+      {
+        "path": "public/assets/learning/analytical-pendulum-modes.ko.svg",
+        "sha256": "2e54dacd0840af654682e167706c5a42caa149bc348dba65cc9b95ffd64177f6"
+      },
+      {
+        "path": "public/assets/learning/analytical-terminal-cost.en.svg",
+        "sha256": "6ade20f160eeb31874a8869c33a7518de206de1fca0e7d996be79802e6614e99"
+      },
+      {
+        "path": "public/assets/learning/analytical-terminal-cost.ko.svg",
+        "sha256": "e69a4cc536bac38fa98c5c184f043c098b773a17bb204d4dc6d0954f3b55d3cf"
+      },
+      {
+        "path": "public/assets/learning/analytical-action-index.en.svg",
+        "sha256": "b680464387a9e2fcb5a40fd450215772b62c4668d84ffb38e3b5810fdb5174b2"
+      },
+      {
+        "path": "public/assets/learning/analytical-action-index.ko.svg",
+        "sha256": "6c652587d83e8b5fed0d9e85f6601b8dc67ea92aa743bbe9435737f67c08c6ae"
+      },
+      {
+        "path": "public/assets/learning/analytical-lagrange-kinetic.en.svg",
+        "sha256": "8cc39e95cd8aaa6f4948fb64005492a66aa98d142f8d5c9766c73c65439dfcd5"
+      },
+      {
+        "path": "public/assets/learning/analytical-lagrange-kinetic.ko.svg",
+        "sha256": "2c7f6d875a885f0f5f9d6df046b7abe66cd326c3df495560a6741f7f2514958a"
+      },
+      {
+        "path": "public/assets/learning/analytical-lagrange-scale.en.svg",
+        "sha256": "8476b3321917a1a8f63ce74acfb8067eeb92e57e1d3fe171e4fa9c8f8b623531"
+      },
+      {
+        "path": "public/assets/learning/analytical-lagrange-scale.ko.svg",
+        "sha256": "f4f6fbfc442320cac706a8186543f910bc8d8d63432907fea7bf1b94c5a868f6"
+      },
+      {
+        "path": "public/assets/learning/analytical-canonical-dual.en.svg",
+        "sha256": "91c1b4cebc6f11cec538a867c3c88264e9266a6ab9aea7ac072792e5c3a45916"
+      },
+      {
+        "path": "public/assets/learning/analytical-canonical-dual.ko.svg",
+        "sha256": "750d42cf8cfe0cd2c753d011c8defe784295b3016cb31cd35b72f733e355cc16"
+      },
+      {
+        "path": "public/assets/learning/analytical-circle-gauge.en.svg",
+        "sha256": "3a2be5cbfddd37bfa8a9e6f6e1e39114ba408c3200e9fe737f71aea81e05609e"
+      },
+      {
+        "path": "public/assets/learning/analytical-circle-gauge.ko.svg",
+        "sha256": "9bf7ee60b05123ba9d72021a0ce355e901b24e574e791cac3bf2d8fb45624303"
+      },
+      {
+        "path": "public/assets/learning/analytical-poisson-clock.en.svg",
+        "sha256": "7c37f6873e7fa70e5033b3d0575a248303dfaf555af583b64a3c3550b4fef1e7"
+      },
+      {
+        "path": "public/assets/learning/analytical-poisson-clock.ko.svg",
+        "sha256": "ec979adc6bcd853af2ecca6efd7208671ca968e0ea87ce3100b77567f45b051e"
+      },
+      {
+        "path": "public/assets/learning/analytical-angular-closure.en.svg",
+        "sha256": "98363d668c7a9b2fb0323c1ad418582102f1d719a25a4a9c9120337d379ded95"
+      },
+      {
+        "path": "public/assets/learning/analytical-angular-closure.ko.svg",
+        "sha256": "503deabf9986497f5dc23f6af9ecac16e30014a27022666a28b9a9ef35eb4983"
+      },
+      {
+        "path": "public/assets/learning/analytical-symplectic-dimension.en.svg",
+        "sha256": "a5697b4cdc58170ad8a66603a2959a41bbd7431244d83da8ca5895f7f01acaae"
+      },
+      {
+        "path": "public/assets/learning/analytical-symplectic-dimension.ko.svg",
+        "sha256": "4ec2cbeed01924516f19ddbcf3cb84b737bdb5e60276ceb9d1b7d56a53ae46b1"
+      },
+      {
+        "path": "public/assets/learning/analytical-topology-period.en.svg",
+        "sha256": "42993df6bedc8f7aea9440cc268d1ae481f54bed18c379ca96858f99abbe4b24"
+      },
+      {
+        "path": "public/assets/learning/analytical-topology-period.ko.svg",
+        "sha256": "a5054594e283b44451a41e74aa33bbf28a98e7921ca4b86695938dbeb7f94839"
+      },
+      {
+        "path": "public/assets/learning/analytical-noether-rank.en.svg",
+        "sha256": "d007ba3ba4d7069d504824dfe68c92794dd45e321f84fba121d5977f5aaccd5a"
+      },
+      {
+        "path": "public/assets/learning/analytical-noether-rank.ko.svg",
+        "sha256": "299960243ffe1c881b50a4d3356a02b638dd18a2225b97fa1ae4a73751e6ce6f"
+      },
+      {
+        "path": "public/assets/learning/analytical-noether-boost.en.svg",
+        "sha256": "51d60585df894a9f5d0e4081d4aa611ee65996d39e59edd717e3c5f1b45e9282"
+      },
+      {
+        "path": "public/assets/learning/analytical-noether-boost.ko.svg",
+        "sha256": "c245bd5f8bfaeae7a0551721e7b5068779dda2e48d14969ad0204532ebf3094b"
+      },
+      {
+        "path": "public/assets/learning/analytical-constraint-nonholonomic.en.svg",
+        "sha256": "757133262902c90e89754f02a8a15abb0faba71162707206066a3b37ef94c121"
+      },
+      {
+        "path": "public/assets/learning/analytical-constraint-nonholonomic.ko.svg",
+        "sha256": "c41ff82aeb7c51e43c4558c68bb5733028cf537df1dd4ac8f7032925a2cf8299"
+      },
+      {
+        "path": "public/assets/learning/analytical-constraint-moving-circle.en.svg",
+        "sha256": "c9783925be6a7d950862a5822b58fe4d60443e4c0b469772984ccf1226ec746b"
+      },
+      {
+        "path": "public/assets/learning/analytical-constraint-moving-circle.ko.svg",
+        "sha256": "0f35ede3da1a4c3cefa9b2387d2849f35b81334ed5cd458b4fba945544607c78"
+      },
+      {
+        "path": "public/assets/learning/analytical-hj-residual-gradients.en.svg",
+        "sha256": "3dc8839062dd8d4907b363b6d972deab8dd91edd327b858c5ed99c4354c3d304"
+      },
+      {
+        "path": "public/assets/learning/analytical-hj-residual-gradients.ko.svg",
+        "sha256": "d8480708ed5c08e86c5265f23e95ab27c1a8dd1b9db68845b10317a205656980"
+      },
+      {
+        "path": "public/assets/learning/analytical-hj-value-selection.en.svg",
+        "sha256": "95d2025831c06f510dc8401cb9b4e553e287c5cd421d57e064dca56c5d1b9611"
+      },
+      {
+        "path": "public/assets/learning/analytical-hj-value-selection.ko.svg",
+        "sha256": "9b4d8b53b68f6f305d682ec5150e8d82cc4ca9e91320533dcd3103c5a31d8e8d"
+      },
+      {
+        "path": "public/assets/learning/analytical-structure-long-phase.en.svg",
+        "sha256": "07b3350597aacb1c106cee3991e772772d98c93eb817db055db749ffbfe7c6b8"
+      },
+      {
+        "path": "public/assets/learning/analytical-structure-long-phase.ko.svg",
+        "sha256": "ad2098f4355cd92f9bfd09103ec379f5071546346ccdfc5560692ee967f2139a"
+      },
+      {
+        "path": "public/assets/learning/analytical-structure-observation-clock.en.svg",
+        "sha256": "c1e53f4dc71ee46d3ff2b9c93e54560b326415156accb4fe015ca5d15234e018"
+      },
+      {
+        "path": "public/assets/learning/analytical-structure-observation-clock.ko.svg",
+        "sha256": "5616ce57c438e6ef611d76c717b36ce88887a4e0932f7051565c498fdc9f40a1"
+      }
+    ],
+    "externalReferences": [
+      "https://arxiv.org/abs/1709.01975",
+      "https://arxiv.org/abs/2104.07475",
+      "https://arxiv.org/html/0912.0863v1",
+      "https://arxiv.org/html/1405.5394v1",
+      "https://arxiv.org/html/1605.07128v2",
+      "https://arxiv.org/html/2112.12216v1",
+      "https://arxiv.org/html/2302.10966v2",
+      "https://arxiv.org/html/math-ph/0408004v2",
+      "https://arxiv.org/html/math/0505366v1",
+      "https://arxiv.org/pdf/quant-ph/9702006",
+      "https://courses.physics.ucsd.edu/2019/Winter/physics141/Assignments/stoermer-verlet.pdf",
+      "https://davidtong.org/teaching/classical-dynamics/dynhtml/S2",
+      "https://davidtong.org/teaching/classical-dynamics/dynhtml/S4",
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html",
+      "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/9579/sicm_edition_2.zip/chapter006.html",
+      "https://ocw.mit.edu/courses/2-003j-dynamics-and-control-i-spring-2007/resources/lec01/",
+      "https://ocw.mit.edu/courses/2-003j-dynamics-and-control-i-spring-2007/resources/lec13/",
+      "https://ocw.mit.edu/courses/2-003j-dynamics-and-control-i-spring-2007/resources/lec14/",
+      "https://people.math.ethz.ch/~acannas/Papers/lsg.pdf",
+      "https://people.math.wisc.edu/~htran24/HJ%20equations-viscosity%20solutions%20and%20applications-v1.pdf",
+      "https://underactuated.mit.edu/multibody.html",
+      "https://unige.ch/~hairer/poly_geoint/week2.pdf"
+    ],
+    "readerVerification": "Run scripts/check-analytical-domain.cjs against the final static export separately."
+  },
+  "priorEvidenceRechecked": [
+    {
+      "path": "docs/online-learning/physics-math-for-ai/analytical-topology-research-evidence.json",
+      "sha256": "0a3b402c8758600f46b1e716f45d4aa75182a85f98e9ae0ecae58c050f4a1974",
+      "manuscripts": 4,
+      "assets": 4
+    },
+    {
+      "path": "docs/online-learning/physics-math-for-ai/coordinate-research-evidence.json",
+      "sha256": "2e18bef0bb1a38e1f546794d68c1e6bd219d5ac6f8df028b7a284c3eccc0b122",
+      "manuscripts": 4,
+      "assets": 4
+    },
+    {
+      "path": "docs/online-learning/physics-math-for-ai/action-research-evidence.json",
+      "sha256": "02fd3c994951ba5b0223867fc3b1280f29384d1de8f8ef82bcc1e1c2f3433ff9",
+      "manuscripts": 4,
+      "assets": 4
+    },
+    {
+      "path": "docs/online-learning/physics-math-for-ai/lagrange-research-evidence.json",
+      "sha256": "68fa359cdcbc50bdfaddc7805efdb005a31c5f5e2b391bbf3e5ec3f1288e1ba4",
+      "manuscripts": 4,
+      "assets": 4
+    },
+    {
+      "path": "docs/online-learning/physics-math-for-ai/canonical-research-evidence.json",
+      "sha256": "de728c1a519349b3839cc27713a3317861d0214cb096a249a8903b753223b69d",
+      "manuscripts": 6,
+      "assets": 6
+    },
+    {
+      "path": "docs/online-learning/physics-math-for-ai/symplectic-dimension-research-evidence.json",
+      "sha256": "9a5989297a070b69edc650d8cb7ed379b71e8077a0de1e624b9c77ce53d01c90",
+      "manuscripts": 2,
+      "assets": 2
+    },
+    {
+      "path": "docs/online-learning/physics-math-for-ai/noether-research-evidence.json",
+      "sha256": "0831b3dd94c1fffde9c6214f1bdf517c6799423921f09878a082a3febc5f292e",
+      "manuscripts": 4,
+      "assets": 4
+    },
+    {
+      "path": "docs/online-learning/physics-math-for-ai/constraint-research-evidence.json",
+      "sha256": "a30e79de7bde2eef12d592288f143a02bde51e4d4f33b7aac5f2336901f7ad73",
+      "manuscripts": 4,
+      "assets": 4
+    },
+    {
+      "path": "docs/online-learning/physics-math-for-ai/hj-research-evidence.json",
+      "sha256": "f4fa3d653813cb991e1b20a570596a3698b8fb9cb43e2bd4186da88fa7532ff2",
+      "manuscripts": 4,
+      "assets": 4
+    }
+  ],
+  "topicMapping": [
+    {
+      "topic": {
+        "ko": "일반화 좌표",
+        "en": "Generalized coordinates"
+      },
+      "unitIds": [
+        "polar-generalized-velocity-force-metric",
+        "double-pendulum-generalized-mass-metric"
+      ]
+    },
+    {
+      "topic": {
+        "ko": "작용·정상 작용",
+        "en": "Action and stationary action"
+      },
+      "unitIds": [
+        "free-particle-action-boundary-gauge",
+        "harmonic-action-stationary-saddle"
+      ]
+    },
+    {
+      "topic": {
+        "ko": "Lagrange 방정식",
+        "en": "Lagrange equations"
+      },
+      "unitIds": [
+        "polar-lagrange-newton-equivalence",
+        "double-pendulum-lagrange-dynamics"
+      ]
+    },
+    {
+      "topic": {
+        "ko": "Hamiltonian·정준 변수",
+        "en": "Hamiltonians and canonical variables"
+      },
+      "unitIds": [
+        "polar-hamiltonian-legendre-map",
+        "time-gauge-hamiltonian-energy"
+      ]
+    },
+    {
+      "topic": {
+        "ko": "Poisson bracket",
+        "en": "Poisson brackets"
+      },
+      "unitIds": [
+        "poisson-observable-canonical-flow",
+        "angular-momentum-poisson-algebra"
+      ]
+    },
+    {
+      "topic": {
+        "ko": "symplectic geometry",
+        "en": "Symplectic geometry"
+      },
+      "unitIds": [
+        "four-dimensional-symplectic-maps",
+        "lagrangian-momentum-graphs"
+      ]
+    },
+    {
+      "topic": {
+        "ko": "Noether 정리",
+        "en": "Noether’s theorem"
+      },
+      "unitIds": [
+        "noether-point-symmetry-defects",
+        "noether-boost-time-boundaries"
+      ]
+    },
+    {
+      "topic": {
+        "ko": "구속·보존량",
+        "en": "Constraints and conserved quantities"
+      },
+      "unitIds": [
+        "routh-cyclic-momentum-reduction",
+        "circle-dirac-constraint-geometry"
+      ]
+    },
+    {
+      "topic": {
+        "ko": "Hamilton-Jacobi",
+        "en": "Hamilton–Jacobi theory"
+      },
+      "unitIds": [
+        "uniform-force-hamilton-jacobi-family",
+        "oscillator-hamilton-jacobi-caustic-atlas"
+      ]
+    },
+    {
+      "topic": {
+        "ko": "보존 구조의 수치 근사",
+        "en": "Numerical approximation of conserved structure"
+      },
+      "unitIds": [
+        "quartic-discrete-action-splitting",
+        "circle-rattle-projection-phase"
+      ]
+    }
+  ],
+  "originalTranslationReview": {
+    "basis": "analytical-mechanics-domain-audit.md",
+    "preservedOriginalManuscripts": 40,
+    "identicalNormalizedDisplayMathPairs": 5,
+    "semanticallyReviewedNotationDifferencePairs": 15,
+    "method": "Historical semantic review retained; all original bytes rechecked against d486291, not normalized away."
+  },
+  "reviewLedger": {
+    "previousEntriesPreserved": 677,
+    "entriesAfter": 681
+  },
+  "verification": {
+    "selectedTestFiles": [
+      {
+        "path": "scripts/learning-generalized-coordinates.test.ts",
+        "sha256": "d57ee80bd9dc9c994082a583beefc55fbb3d306b1abedf6bae1b1bb7c586f782"
+      },
+      {
+        "path": "scripts/learning-stationary-action.test.ts",
+        "sha256": "a1256d35bf2912e260d57fd956b169cb360b2f28a35d5eb3151b879d307c69ba"
+      },
+      {
+        "path": "scripts/learning-lagrange-equations.test.ts",
+        "sha256": "4b34ceb942ca9ae0593a6b77928a3c5f3f1b51da0cfaea0bc2d7921e9d43c96d"
+      },
+      {
+        "path": "scripts/learning-hamiltonian-canonical.test.ts",
+        "sha256": "ce486570a7e7ef5b43aed265343ca54f7431b070958a119496cba9a8ac75cd85"
+      },
+      {
+        "path": "scripts/learning-poisson-brackets.test.ts",
+        "sha256": "40e8f073be574a2c5237b4fbcf28f3826e538564545261a4995e22597472cbb5"
+      },
+      {
+        "path": "scripts/learning-symplectic-geometry.test.ts",
+        "sha256": "0d1f201ac7e42d7a5f4dc5ffd3346318f1db1557c530d312a9038ca56cac3bcb"
+      },
+      {
+        "path": "scripts/learning-noether-theorem.test.ts",
+        "sha256": "5a9a42a515bdf66c66bd527887c7313c164fce24396d7aeb28b6903ba0268087"
+      },
+      {
+        "path": "scripts/learning-constraints-reduction.test.ts",
+        "sha256": "048b64e3bd6fda1aa2490641ba06037b39f738c4dc2ab77aefb915c4f21ca64b"
+      },
+      {
+        "path": "scripts/learning-hamilton-jacobi.test.ts",
+        "sha256": "68a138a68f2b9e61a5b125033e9aedee8273dc55f9ab4c2b74249042d8f0e20f"
+      },
+      {
+        "path": "scripts/learning-hamilton-jacobi-integration.test.ts",
+        "sha256": "9e7f2b41fb5028a79a9ab17cbced9d00d6b92100edbf5aeb42efa9f5a8642c22"
+      },
+      {
+        "path": "scripts/learning-structure-preserving.test.ts",
+        "sha256": "3fc82aa9504bccf27f3ea339d61c2d828cf522b97a12b56b0717ff909a2a2d68"
+      },
+      {
+        "path": "scripts/learning-structure-preserving-integration.test.ts",
+        "sha256": "096e587bdbf3e5dc7b65b037d0fbbe8e4e83f2e29e5eb96130774b6e3a580711"
+      },
+      {
+        "path": "scripts/learning-analytical-topology-research.test.ts",
+        "sha256": "6b5559175c9bcb7e0c1970086bef17d398cb04bbf7d9bec0f937595e87f0e679"
+      },
+      {
+        "path": "scripts/learning-coordinate-research.test.ts",
+        "sha256": "5a33a35b75d1671fefb2633ddc53aa7ee498dc57057b84716b25766964221d78"
+      },
+      {
+        "path": "scripts/learning-action-research.test.ts",
+        "sha256": "ea32a58a3b39a6f0bdbafa6eeb6afc98061c0eb56d0a67587332cf05ff2a3993"
+      },
+      {
+        "path": "scripts/learning-lagrange-research.test.ts",
+        "sha256": "6356ecc6f3d31ca5414312c8df71d1a8f78738d75d5968b0b12fa29d74df1a3f"
+      },
+      {
+        "path": "scripts/learning-canonical-research.test.ts",
+        "sha256": "f4ba070861c2b396e8af7343d8590c7cb6a037004c5494026a9a9f8161f3155c"
+      },
+      {
+        "path": "scripts/learning-symplectic-dimension-research.test.ts",
+        "sha256": "2a3516037879ac1334d015f298c25d1fb2f132649c7c5695e61b7d5b1e7df5f5"
+      },
+      {
+        "path": "scripts/learning-noether-research.test.ts",
+        "sha256": "78f7e53f240a4cae2634161b0bc80ca6c1b36911c7954de8d329e70120e2f143"
+      },
+      {
+        "path": "scripts/learning-constraint-research.test.ts",
+        "sha256": "b9cd5c05f8e5e258bb40c9b07460ef420e507390726038be4c97008f76c5833b"
+      },
+      {
+        "path": "scripts/learning-hj-research.test.ts",
+        "sha256": "d97965f5a5a629fc6c642778efa773868b4b042d615bd296ee94c4e1dfb9fdf3"
+      },
+      {
+        "path": "scripts/learning-structure-research.test.ts",
+        "sha256": "433fb33e4fe6835fe64b43e66f6b6ec7a4c7e0af8497979e0630de009081d841"
+      },
+      {
+        "path": "scripts/learning-manuscript-preservation.test.ts",
+        "sha256": "54bd28bb2268aea6dcad13a14c256df644e5ad6a6ef3805ab5462c6e9cc031b1"
+      }
+    ],
+    "tests": 390,
+    "failures": 0,
+    "browser": {
+      "unitCount": 20,
+      "states": 160,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 60,
+      "explainedQuizzes": 40,
+      "conceptSelections": 80,
+      "persistenceCompletionGroups": 20,
+      "interactionLocale": "en",
+      "interactionWidth": 320,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "reportSha256": "c38b90bf11b6960d18279f456f04228bc518819a2eed9cc2e23e16ff0eb83aa3"
+    },
+    "unchangedSourceAndAssetHashes": {
+      "content/learning/physics-math-for-ai/polar-generalized-velocity-force-metric.en.md": "410d11ad7170960081b0731bde47ca33d442c922842ddfeb468c7b3ab471bad1",
+      "content/learning/physics-math-for-ai/polar-generalized-velocity-force-metric.ko.md": "741e2b4491abb20f47cb2e34824dcd5809f25e8cf72b19ca659e3147d05159c0",
+      "content/learning/physics-math-for-ai/double-pendulum-generalized-mass-metric.en.md": "75eb347a4711c4d7459d1b4708f2c70716948eb58a040867257edf91549fbdf5",
+      "content/learning/physics-math-for-ai/double-pendulum-generalized-mass-metric.ko.md": "a1f0ae39a6f56fa9086e16b9294cbd07237369f9d6e7d0ae9aadaa4354d019e5",
+      "content/learning/physics-math-for-ai/free-particle-action-boundary-gauge.en.md": "3c9db372ee295f93dfb99b9df5783ac9b9774d5bb0a77a8e2838e74f443e09bb",
+      "content/learning/physics-math-for-ai/free-particle-action-boundary-gauge.ko.md": "df809bacfb84a4e2eacd50f8da1b0dc7760db532f432202dedc6f6164f6c80d7",
+      "content/learning/physics-math-for-ai/harmonic-action-stationary-saddle.en.md": "77934345ecf143d5e04586faca92c54587632ae5bc359a88cec0bb361e0094a8",
+      "content/learning/physics-math-for-ai/harmonic-action-stationary-saddle.ko.md": "e50c11e9281a06d775cfa0c39d4723c2778d22a3afbf64bdf85e49e9c34260a6",
+      "content/learning/physics-math-for-ai/polar-lagrange-newton-equivalence.en.md": "a385ba6d8a09e3fe9e6ebafe5dec2178bcf45da2b48bb928a9631292765aa595",
+      "content/learning/physics-math-for-ai/polar-lagrange-newton-equivalence.ko.md": "9cb1662e7fb1fb4363e347df619dd4be548426a6071bb159bb6c2544d667ab60",
+      "content/learning/physics-math-for-ai/double-pendulum-lagrange-dynamics.en.md": "959525ddb3744c5c674dc71c41be1983f721d0937258b9f8f0180de420c56a3d",
+      "content/learning/physics-math-for-ai/double-pendulum-lagrange-dynamics.ko.md": "87b7603a2650d9e1795a07c2c9a730841dab4333e6a5d7e5a4d9d0365a321394",
+      "content/learning/physics-math-for-ai/polar-hamiltonian-legendre-map.en.md": "a66adb2d134de84bde6e7aa5c659b6474220225ffae4b0060d979c676b976b12",
+      "content/learning/physics-math-for-ai/polar-hamiltonian-legendre-map.ko.md": "ea06f592801e1f4e0922d393bc0ce292c6fc644fd26990536eb83b0a607c597a",
+      "content/learning/physics-math-for-ai/time-gauge-hamiltonian-energy.en.md": "f96b3722aea90afc0fd7190910d68505194e9ffadd75401f4f0b6582901faf48",
+      "content/learning/physics-math-for-ai/time-gauge-hamiltonian-energy.ko.md": "4e06af4ce1ab14e2c211d99cf1b38d8f936a236b3d825c0449917574c1fb294b",
+      "content/learning/physics-math-for-ai/poisson-observable-canonical-flow.en.md": "59f9400897472cd9da57882ada64b230ded4bbc8f37535d6b6410f077e14cb5e",
+      "content/learning/physics-math-for-ai/poisson-observable-canonical-flow.ko.md": "63484ae83e825438dba698b05d7264aaff0769e04f4b39c2e3b3a09d68375e22",
+      "content/learning/physics-math-for-ai/angular-momentum-poisson-algebra.en.md": "464197fba308eea108c44f29931b925af1ab9cfaf49504e9838f8e4fbf976df4",
+      "content/learning/physics-math-for-ai/angular-momentum-poisson-algebra.ko.md": "d78ea70ef10f7a99b51b26aa3e0495ad4b95bb7654d7679c307ba0f3fc3c6b5f",
+      "content/learning/physics-math-for-ai/four-dimensional-symplectic-maps.en.md": "db445a48a9b65fb1e5111fcf450c826e7b576fa72d99816fc5ece7e46659b8b4",
+      "content/learning/physics-math-for-ai/four-dimensional-symplectic-maps.ko.md": "dfc6b87b805662e403cd5624c8890d34eb9a00a522cb26e3fae311342db852a1",
+      "content/learning/physics-math-for-ai/lagrangian-momentum-graphs.en.md": "7c12b851cb1051336abac53f7f788d0386041e9690e47ae26fcd0c6f6df0e581",
+      "content/learning/physics-math-for-ai/lagrangian-momentum-graphs.ko.md": "45e1a2e633bb00d8fdd310498f4d6c217ca3d905baccc175861c00895f7a6230",
+      "content/learning/physics-math-for-ai/noether-point-symmetry-defects.en.md": "16feca83f663346cebabd5aecf5338efb3d601764bc1572972fdf0035d3c2f94",
+      "content/learning/physics-math-for-ai/noether-point-symmetry-defects.ko.md": "fd370634d394ad9b0706ae4305115bedc8270b48966bc8dc7adea650cdb37708",
+      "content/learning/physics-math-for-ai/noether-boost-time-boundaries.en.md": "fa6588cd1016ddd186cbb9ca17399634aa1b5c3d8484ce7966e1684ebb87ef9d",
+      "content/learning/physics-math-for-ai/noether-boost-time-boundaries.ko.md": "7c84212b0df4b726fe2602d969565b184c9013111a506e42f433a6bb777046cf",
+      "content/learning/physics-math-for-ai/routh-cyclic-momentum-reduction.en.md": "551f3d19d3a6df3980458d1b74f2a9d8436c012e108701fcb3af4d29383d977b",
+      "content/learning/physics-math-for-ai/routh-cyclic-momentum-reduction.ko.md": "3b6e29f842db5caeb02d1e6e0316b2603d68d8632ea7dc793c76e4725c362c01",
+      "content/learning/physics-math-for-ai/circle-dirac-constraint-geometry.en.md": "b073020a12015319bacd17881cc17fb338098992fe4d4ba4ada513bd9591d1ae",
+      "content/learning/physics-math-for-ai/circle-dirac-constraint-geometry.ko.md": "a1241691ee368c484501809a7d1d08fec081c75b21ba10406445a375c5d1bc51",
+      "content/learning/physics-math-for-ai/uniform-force-hamilton-jacobi-family.en.md": "b9588a1e182098eaa42cab3ec90c05d9cb30977d17ae18753afd79033444f510",
+      "content/learning/physics-math-for-ai/uniform-force-hamilton-jacobi-family.ko.md": "f9e4cefc8718d1aa35e6f1ace03be4626b6ec9b5fe5001e7a637b1db835949ec",
+      "content/learning/physics-math-for-ai/oscillator-hamilton-jacobi-caustic-atlas.en.md": "6d80a23bcfca9da15e5c3c008694929206ef84d7139db9ec6bbc672b6b94472f",
+      "content/learning/physics-math-for-ai/oscillator-hamilton-jacobi-caustic-atlas.ko.md": "6a37c1269d492cd6298c4f55f1676676fafe73c6269a459b8f2ab56b03410435",
+      "content/learning/physics-math-for-ai/quartic-discrete-action-splitting.en.md": "8996d5c1cb82fcfb571e5239c2087778c6d1f92a764a633b86438c1697dba68c",
+      "content/learning/physics-math-for-ai/quartic-discrete-action-splitting.ko.md": "7723ab06cc3ce5a79f96bdd6fe4319242fd8449deddc3d52404e03b6f6d78d16",
+      "content/learning/physics-math-for-ai/circle-rattle-projection-phase.en.md": "a5c498afe4b1e4374908f7ea815ab1d1ca10cf8ac753fb5591ab2449b2a01315",
+      "content/learning/physics-math-for-ai/circle-rattle-projection-phase.ko.md": "2a8092587ea70e72055cbf7e1a442beb9873ccc690bf7e044f42111bf5ab0b02",
+      "public/assets/learning/analytical-action-index.en.svg": "b680464387a9e2fcb5a40fd450215772b62c4668d84ffb38e3b5810fdb5174b2",
+      "public/assets/learning/analytical-action-index.ko.svg": "6c652587d83e8b5fed0d9e85f6601b8dc67ea92aa743bbe9435737f67c08c6ae",
+      "public/assets/learning/analytical-angular-closure.en.svg": "98363d668c7a9b2fb0323c1ad418582102f1d719a25a4a9c9120337d379ded95",
+      "public/assets/learning/analytical-angular-closure.ko.svg": "503deabf9986497f5dc23f6af9ecac16e30014a27022666a28b9a9ef35eb4983",
+      "public/assets/learning/analytical-canonical-dual.en.svg": "91c1b4cebc6f11cec538a867c3c88264e9266a6ab9aea7ac072792e5c3a45916",
+      "public/assets/learning/analytical-canonical-dual.ko.svg": "750d42cf8cfe0cd2c753d011c8defe784295b3016cb31cd35b72f733e355cc16",
+      "public/assets/learning/analytical-circle-gauge.en.svg": "3a2be5cbfddd37bfa8a9e6f6e1e39114ba408c3200e9fe737f71aea81e05609e",
+      "public/assets/learning/analytical-circle-gauge.ko.svg": "9bf7ee60b05123ba9d72021a0ce355e901b24e574e791cac3bf2d8fb45624303",
+      "public/assets/learning/analytical-constraint-moving-circle.en.svg": "c9783925be6a7d950862a5822b58fe4d60443e4c0b469772984ccf1226ec746b",
+      "public/assets/learning/analytical-constraint-moving-circle.ko.svg": "0f35ede3da1a4c3cefa9b2387d2849f35b81334ed5cd458b4fba945544607c78",
+      "public/assets/learning/analytical-constraint-nonholonomic.en.svg": "757133262902c90e89754f02a8a15abb0faba71162707206066a3b37ef94c121",
+      "public/assets/learning/analytical-constraint-nonholonomic.ko.svg": "c41ff82aeb7c51e43c4558c68bb5733028cf537df1dd4ac8f7032925a2cf8299",
+      "public/assets/learning/analytical-hj-residual-gradients.en.svg": "3dc8839062dd8d4907b363b6d972deab8dd91edd327b858c5ed99c4354c3d304",
+      "public/assets/learning/analytical-hj-residual-gradients.ko.svg": "d8480708ed5c08e86c5265f23e95ab27c1a8dd1b9db68845b10317a205656980",
+      "public/assets/learning/analytical-hj-value-selection.en.svg": "95d2025831c06f510dc8401cb9b4e553e287c5cd421d57e064dca56c5d1b9611",
+      "public/assets/learning/analytical-hj-value-selection.ko.svg": "9b4d8b53b68f6f305d682ec5150e8d82cc4ca9e91320533dcd3103c5a31d8e8d",
+      "public/assets/learning/analytical-lagrange-kinetic.en.svg": "8cc39e95cd8aaa6f4948fb64005492a66aa98d142f8d5c9766c73c65439dfcd5",
+      "public/assets/learning/analytical-lagrange-kinetic.ko.svg": "2c7f6d875a885f0f5f9d6df046b7abe66cd326c3df495560a6741f7f2514958a",
+      "public/assets/learning/analytical-lagrange-scale.en.svg": "8476b3321917a1a8f63ce74acfb8067eeb92e57e1d3fe171e4fa9c8f8b623531",
+      "public/assets/learning/analytical-lagrange-scale.ko.svg": "f4f6fbfc442320cac706a8186543f910bc8d8d63432907fea7bf1b94c5a868f6",
+      "public/assets/learning/analytical-noether-boost.en.svg": "51d60585df894a9f5d0e4081d4aa611ee65996d39e59edd717e3c5f1b45e9282",
+      "public/assets/learning/analytical-noether-boost.ko.svg": "c245bd5f8bfaeae7a0551721e7b5068779dda2e48d14969ad0204532ebf3094b",
+      "public/assets/learning/analytical-noether-rank.en.svg": "d007ba3ba4d7069d504824dfe68c92794dd45e321f84fba121d5977f5aaccd5a",
+      "public/assets/learning/analytical-noether-rank.ko.svg": "299960243ffe1c881b50a4d3356a02b638dd18a2225b97fa1ae4a73751e6ce6f",
+      "public/assets/learning/analytical-pendulum-modes.en.svg": "64b6bc646c46a87380934d291c20107755ddd49d53f2319b4adc0447e94236f5",
+      "public/assets/learning/analytical-pendulum-modes.ko.svg": "2e54dacd0840af654682e167706c5a42caa149bc348dba65cc9b95ffd64177f6",
+      "public/assets/learning/analytical-poisson-clock.en.svg": "7c37f6873e7fa70e5033b3d0575a248303dfaf555af583b64a3c3550b4fef1e7",
+      "public/assets/learning/analytical-poisson-clock.ko.svg": "ec979adc6bcd853af2ecca6efd7208671ca968e0ea87ce3100b77567f45b051e",
+      "public/assets/learning/analytical-polar-hessian.en.svg": "43da6a0d175cf336b51317b5c8918233ecde8834a85a3991557ca9f6b9b2361d",
+      "public/assets/learning/analytical-polar-hessian.ko.svg": "20d2c885954d53d80658effa98318ba8ab0c514bd81fed34318e3094a246d21c",
+      "public/assets/learning/analytical-structure-long-phase.en.svg": "07b3350597aacb1c106cee3991e772772d98c93eb817db055db749ffbfe7c6b8",
+      "public/assets/learning/analytical-structure-long-phase.ko.svg": "ad2098f4355cd92f9bfd09103ec379f5071546346ccdfc5560692ee967f2139a",
+      "public/assets/learning/analytical-structure-observation-clock.en.svg": "c1e53f4dc71ee46d3ff2b9c93e54560b326415156accb4fe015ca5d15234e018",
+      "public/assets/learning/analytical-structure-observation-clock.ko.svg": "5616ce57c438e6ef611d76c717b36ce88887a4e0932f7051565c498fdc9f40a1",
+      "public/assets/learning/analytical-symplectic-dimension.en.svg": "a5697b4cdc58170ad8a66603a2959a41bbd7431244d83da8ca5895f7f01acaae",
+      "public/assets/learning/analytical-symplectic-dimension.ko.svg": "4ec2cbeed01924516f19ddbcf3cb84b737bdb5e60276ceb9d1b7d56a53ae46b1",
+      "public/assets/learning/analytical-terminal-cost.en.svg": "6ade20f160eeb31874a8869c33a7518de206de1fca0e7d996be79802e6614e99",
+      "public/assets/learning/analytical-terminal-cost.ko.svg": "e69a4cc536bac38fa98c5c184f043c098b773a17bb204d4dc6d0954f3b55d3cf",
+      "public/assets/learning/analytical-topology-period.en.svg": "42993df6bedc8f7aea9440cc268d1ae481f54bed18c379ca96858f99abbe4b24",
+      "public/assets/learning/analytical-topology-period.ko.svg": "a5054594e283b44451a41e74aa33bbf28a98e7921ca4b86695938dbeb7f94839"
+    },
+    "sourceExportServedSvgPairs": 40,
+    "exportServedHtmlPairs": 20,
+    "reusedPriorFigureReviewsWithUnchangedHashes": 36,
+    "newFigureReviews": 4,
+    "newMobileScreenshotReviews": 4,
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "logs": {
+      "structure-research-domain-tests": {
+        "path": ".runtime/learning/structure-research-domain-tests.log",
+        "sha256": "101f2eb699a5933808dad3e14a91d549d4da694a26b407ec8801dcfced902dce"
+      },
+      "structure-research-lint": {
+        "path": ".runtime/learning/structure-research-lint.log",
+        "sha256": "3be436cfc280576162c8988ab0bf2da58c1cb1af605d4cca297edd0b2c7c9997"
+      },
+      "structure-research-content": {
+        "path": ".runtime/learning/structure-research-content.log",
+        "sha256": "cae16334d0d816cb4f9981be8422454c5186c14b964768b00780286cd813b72d"
+      },
+      "structure-research-build": {
+        "path": ".runtime/learning/structure-research-build.log",
+        "sha256": "ffab249ea04884847bb599f2181e4026d4d3e28e10649f4270311eab07a8a6ca"
+      },
+      "structure-research-types": {
+        "path": ".runtime/learning/structure-research-types.log",
+        "sha256": "6d339cc3c6b097244df96011008e228f3bc9a23bcef588e7d89e6265838f6660"
+      },
+      "structure-research-export": {
+        "path": ".runtime/learning/structure-research-export.log",
+        "sha256": "7693d86189e4ec43f9df04724c2cbf33caf0d974a41cccb2aa2004d36af557d2"
+      },
+      "analytical-research-content": {
+        "path": ".runtime/learning/analytical-research-content.log",
+        "sha256": "8d39521da40a0e5310fb02d941f48772e94ed9d64b3b9a2c4e8be6b43fac991b"
+      }
+    }
+  },
+  "toolingSha256": {
+    "scripts/learning/audit-analytical-research.cjs": "b8d266bef237508838c8e3955882ea1cb33a1ea7acd6c868e386a0f8b8296d88",
+    "scripts/learning/verify-structure-research.py": "37288ded4529293364275176062543ab52bdf7d2e12d7f5518bc6b2517e8883e",
+    "scripts/check-analytical-domain.cjs": "d078f05296d659cfdbbab381fff38d0355a63688ac128cf79b36d69f37758326"
+  },
+  "externalReferenceAvailability": {
+    "method": "HTTP prefix requests, at most 2048 bytes per reference; availability only, not full retrieval or mathematical validation.",
+    "checkedAt": "2026-11-12T11:52:33.524490+00:00",
+    "responses": [
+      {
+        "url": "https://arxiv.org/abs/1709.01975",
+        "status": 206,
+        "finalUrl": "https://arxiv.org/abs/1709.01975",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://arxiv.org/abs/2104.07475",
+        "status": 206,
+        "finalUrl": "https://arxiv.org/abs/2104.07475",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://arxiv.org/html/0912.0863v1",
+        "status": 206,
+        "finalUrl": "https://arxiv.org/html/0912.0863v1",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://arxiv.org/html/1405.5394v1",
+        "status": 206,
+        "finalUrl": "https://arxiv.org/html/1405.5394v1",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://arxiv.org/html/1605.07128v2",
+        "status": 206,
+        "finalUrl": "https://arxiv.org/html/1605.07128v2",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://arxiv.org/html/2112.12216v1",
+        "status": 206,
+        "finalUrl": "https://arxiv.org/html/2112.12216v1",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://arxiv.org/html/2302.10966v2",
+        "status": 206,
+        "finalUrl": "https://arxiv.org/html/2302.10966v2",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://arxiv.org/html/math-ph/0408004v2",
+        "status": 206,
+        "finalUrl": "https://arxiv.org/html/math-ph/0408004v2",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://arxiv.org/html/math/0505366v1",
+        "status": 206,
+        "finalUrl": "https://arxiv.org/html/math/0505366v1",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://arxiv.org/pdf/quant-ph/9702006",
+        "status": 206,
+        "finalUrl": "https://arxiv.org/pdf/quant-ph/9702006",
+        "contentType": "application/pdf",
+        "prefixIsPdf": true,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://courses.physics.ucsd.edu/2019/Winter/physics141/Assignments/stoermer-verlet.pdf",
+        "status": 206,
+        "finalUrl": "https://courses.physics.ucsd.edu/2019/Winter/physics141/Assignments/stoermer-verlet.pdf",
+        "contentType": "application/pdf",
+        "prefixIsPdf": true,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://davidtong.org/teaching/classical-dynamics/dynhtml/S2",
+        "status": 200,
+        "finalUrl": "https://davidtong.org/teaching/classical-dynamics/dynhtml/S2",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://davidtong.org/teaching/classical-dynamics/dynhtml/S4",
+        "status": 200,
+        "finalUrl": "https://davidtong.org/teaching/classical-dynamics/dynhtml/S4",
+        "contentType": "text/html; charset=utf-8",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html",
+        "status": 206,
+        "finalUrl": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html",
+        "contentType": "text/html",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/9579/sicm_edition_2.zip/chapter006.html",
+        "status": 200,
+        "finalUrl": "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/9579/sicm_edition_2.zip/chapter006.html",
+        "contentType": "text/html",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://ocw.mit.edu/courses/2-003j-dynamics-and-control-i-spring-2007/resources/lec01/",
+        "status": 206,
+        "finalUrl": "https://ocw.mit.edu/courses/2-003j-dynamics-and-control-i-spring-2007/resources/lec01/",
+        "contentType": "text/html",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://ocw.mit.edu/courses/2-003j-dynamics-and-control-i-spring-2007/resources/lec13/",
+        "status": 206,
+        "finalUrl": "https://ocw.mit.edu/courses/2-003j-dynamics-and-control-i-spring-2007/resources/lec13/",
+        "contentType": "text/html",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://ocw.mit.edu/courses/2-003j-dynamics-and-control-i-spring-2007/resources/lec14/",
+        "status": 206,
+        "finalUrl": "https://ocw.mit.edu/courses/2-003j-dynamics-and-control-i-spring-2007/resources/lec14/",
+        "contentType": "text/html",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://people.math.ethz.ch/~acannas/Papers/lsg.pdf",
+        "status": 206,
+        "finalUrl": "https://people.math.ethz.ch/~acannas/Papers/lsg.pdf",
+        "contentType": "application/pdf",
+        "prefixIsPdf": true,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://people.math.wisc.edu/~htran24/HJ%20equations-viscosity%20solutions%20and%20applications-v1.pdf",
+        "status": 206,
+        "finalUrl": "https://people.math.wisc.edu/~htran24/HJ%20equations-viscosity%20solutions%20and%20applications-v1.pdf",
+        "contentType": "application/pdf",
+        "prefixIsPdf": true,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://underactuated.mit.edu/multibody.html",
+        "status": 206,
+        "finalUrl": "https://underactuated.mit.edu/multibody.html",
+        "contentType": "text/html",
+        "prefixIsPdf": false,
+        "accessDeniedPage": false
+      },
+      {
+        "url": "https://unige.ch/~hairer/poly_geoint/week2.pdf",
+        "status": 206,
+        "finalUrl": "https://unige.ch/~hairer/poly_geoint/week2.pdf",
+        "contentType": "application/pdf",
+        "prefixIsPdf": true,
+        "accessDeniedPage": false
+      }
+    ]
+  },
+  "reproduce": [
+    "node scripts/learning/audit-analytical-research.cjs # requires Git baseline d486291",
+    "python3 scripts/learning/verify-structure-research.py --json",
+    "SUANLAB_TEST_BASE=http://127.0.0.1:43309 node scripts/check-analytical-domain.cjs",
+    "npm run lint",
+    "npm run validate:content",
+    "npm run build",
+    "npm run typecheck",
+    "npm run check:export"
+  ],
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 40,
+    "reviewedTopics": 396,
+    "remainingDomains": 11,
+    "remainingTopics": 113,
+    "introductoryTopicsComplete": 362
+  },
+  "nextDomain": "waves-optics",
+  "limits": "Registered examples and stated theoretical assumptions reviewed; finite numerical checks are not universal certification. Full repository CI and public deployment are separate."
+}

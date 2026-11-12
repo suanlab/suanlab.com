@@ -184,6 +184,133 @@ $(N,h)$, $(2N,h/2)$, $(4N,h/4)$를 비교한다. 끝나는 물리 시간은 모�
 
 이 예가 모든 구속 문제에서 RATTLE의 정확한 에너지 보존이나 사영 신경망의 전역 symplectic 성질을 증명하지는 않는다. 원 그림과 접선 화살표만으로 검증을 끝내는 주장에 대해, 이해하고 직접 계산할 수 있는 반례를 제공한다.
 
+## 연구 확장: 상태 의존 관측 시각은 위상 사상의 검사를 바꾼다
+
+기본 RATTLE 증명에서는 초기 상태를 바꿀 때 하나의 보폭 h를 고정한다. 제어기가 입력마다 다른 양의 시간을 선택하면 무엇이 달라질까? 적분·구속 오차가 비교를 흐리지 않도록 정확한 물리 흐름 자체를 사용해 이 문제를 분리할 수 있다.
+
+이번 내용은 관측 시간의 보충 모델이며 기본 RATTLE 구현에 적응형 제어기를 추가하지 않는다. 적응 변분 구성은 추가 가정 아래 기하 구조를 유지할 수 있다. [Duruisseaux·Schmitt·Leok](https://arxiv.org/abs/1709.01975)을 참고하자. 아래 명시적 사상과 충돌은 직접 유도하며 모든 가변 보폭이 실패한다는 규칙을 적용하지 않는다.
+
+### 고정 물리 시간과 고정 관측 횟수 구분하기
+
+자유 원의 원통에서 국소 누적 각도와 각운동량 L을 쓰자.
+
+$$
+I=mR^2,\quad E=\frac{L^2}{2I},\qquad
+\Phi_h(\theta,L)=(\theta+hL/I,L),\quad h\text{ fixed}.
+$$
+
+공통의 고정 h에서는 정준 shear다. 이제 보고하는 경과 시간이 입력 상태에 매끄럽게 의존한다고 하자. 구현한 전체 사상을 미분하면 다음과 같다.
+
+$$
+\Psi(\theta,L)=(\theta+(L/I)h(\theta,L),L),\qquad
+D\Psi=\begin{pmatrix}1+(L/I)h_\theta&h/I+(L/I)h_L\\0&1\end{pmatrix},\quad
+\det D\Psi=1+\frac LIh_\theta.
+$$
+
+오른쪽 위 성분의 단위는 1/Js이고 행렬식은 무차원이다. 미분 중 h를 억지로 고정하면 제어기 미분을 빠뜨려 다른 사상을 검사한다. 이 입력들은 관측 횟수는 같아도 경과한 물리 시간이 같을 필요는 없다.
+
+### 각각의 개별 궤적을 정확하게 유지하기
+
+매끄럽고 주기적인 시계를 다음처럼 정하자.
+
+$$
+h(\theta)=h_0(1+\varepsilon\sin\theta),\quad h_0>0,\quad |\varepsilon|<1,\qquad
+h\ge h_0(1-|\varepsilon|)>0,\quad \det D\Psi=1+\frac{Lh_0\varepsilon}{I}\cos\theta.
+$$
+
+각 입력에서 theta'는 반환한 양의 시간 h에서의 정확한 물리적 각도다. 그 시각의 에너지·각운동량·Cartesian 원/접선 조건은 모두 맞다. 그러나 이웃한 입력을 서로 다른 시각에 관측하므로 행렬식은 일반적으로 1이 아니다.
+
+이는 고정 시간 Hamilton 흐름의 Liouville 정리와 모순되지 않는다. 자기 실제 보고 시각에서 비교한 적응형 정확 관측이 부정확하다는 뜻도 아니다. 같은 관측 횟수의 민감도와 같은 물리 시간의 민감도는 서로 다른 질문에 답한다.
+
+### 양의 경과 시간에서도 fold 구성하기
+
+I=1 kg m², L=1 Js, h0=3 s, epsilon=0.5로 두자. 시계는 1.5초에서 4.5초 사이다. Theta=pi에서는 경과 시간이 양수여도 행렬식이 −0.5다. 이 음의 미분은 이웃한 초기 각도의 순서를 뒤집을 뿐, 어떤 입자의 양의 각속도를 뒤집는 것이 아니다.
+
+서로 다른 세 초기 각도가 같은 최종 누적 각도로 가기도 한다. 아래의 0이 아닌 근으로 구성할 수 있다.
+
+$$
+\sigma=1.5\sin\sigma,\quad 0<\sigma<\pi,\qquad
+\theta_0=\pi-\sigma,\ \pi,\ \pi+\sigma,\quad
+h=(3+\sigma,\ 3,\ 3-\sigma)\,\mathrm{s},\qquad
+\theta'=\pi+3\quad\text{in the stated SI example}.
+$$
+
+각 경과 시간은 서로 다르다. 시계를 유지하면 초기 각도 theta'−(L/I)h를 복원하여 겉보기 모호함을 없앨 수 있다. 시계를 버리면 정확한 가변 시간 관측이 여러 초기 상태를 하나로 보내는 물리 시간 흐름처럼 보일 수 있다. 물리적 초기값 유일성이 실패한 것은 아니다.
+
+| 초기 각도 (rad) | 경과 h (s) | 최종 각도 (rad) | 축약 행렬식 |
+|---|---|---|---|
+| 1.645811 | 4.495782 | 6.141593 | 0.887583 |
+| 3.141593 | 3 | 6.141593 | −0.5 |
+| 4.637374 | 1.504218 | 6.141593 | 0.887583 |
+
+세 경우 모두 에너지는 0.5 J, 각운동량은 1 Js다. 값은 소수 여섯 자리까지 반올림했다.
+
+```python
+from math import pi, sin, cos
+
+# I=L=1 in SI units; h0=3 s, epsilon=.5. Find the nonzero collision root.
+lo, hi = .1, pi
+for _ in range(80):
+    mid = (lo+hi)/2
+    if mid-1.5*sin(mid) < 0:
+        lo = mid
+    else:
+        hi = mid
+sigma = (lo+hi)/2
+for initial in [pi-sigma, pi, pi+sigma]:
+    elapsed = 3*(1+.5*sin(initial))
+    final = initial+elapsed
+    determinant = 1+1.5*cos(initial)
+    assert elapsed > 0 and abs(final-(pi+3)) < 1e-12
+    assert abs(final-elapsed-initial) < 1e-12
+    print(*(round(x, 6) for x in [initial, elapsed, final, determinant]))
+```
+
+### 여러 관측의 실제 시계 누적하기
+
+첫 시간을 관측 수에 곱하지 말고 매 단계 입력에서 제어기를 다시 평가하자. 그러면 정확한 자유 운동은 다음을 만족한다.
+
+$$
+t_N=\sum_{j=0}^{N-1}h(\theta_j,L),\qquad
+\theta_N=\theta_0+\frac LI t_N,\quad L_N=L,\quad E_N=\frac{L^2}{2I}.
+$$
+
+같은 관측 횟수의 사상이 면적을 바꾸어도 각 누적 위상은 자기 실제 시간과 일치한다. N에 가정한 고정 시간을 곱해 theta_N과 비교하면 다른 일정의 시간 오차를 만들어 낸다. 반대로 에너지와 원 잔차만 보고하면 사용한 시간 일정을 숨기게 된다.
+
+### RATTLE 가족에서도 제어기 미분 포함하기
+
+기본의 near-identity RATTLE 가족에도 같은 대입을 하면 정규적인 축약 사상은 다음과 같다.
+
+$$
+\theta'=\theta+\arcsin\left(\frac{Lh(\theta,L)}I\right),\quad L'=L,\qquad
+\det D\Psi_{\rm RATTLE}=1+\frac{Lh_\theta/I}{\sqrt{1-(Lh/I)^2}},\quad |Lh/I|<1.
+$$
+
+이 식은 보충 계산이며 기본 보폭은 계속 상수다. L/I=1/s, h0=0.5 s, epsilon=0.5이면 모든 각도에서 abs(Lh/I)≤0.75로 근의 정의역 안쪽이다. Theta=0과 pi의 행렬식은 1±0.25/sqrt(0.75)이므로 근 경계 문제가 없어도 면적은 바뀐다. 앞의 fold는 정확한 흐름을 사용하여 RATTLE 근 제한이 없다. 두 예제를 혼동하면 안 된다.
+
+### 상태 의존 예외를 명시적으로 확인하기
+
+시계가 L에만 의존하면, 예를 들어
+
+$$
+h(L)=h_0\left[1+\varepsilon\tanh(L/L_*)\right],\quad L_*>0,\quad |\varepsilon|<1,\qquad
+h_\theta=0\quad\Longrightarrow\quad\det D\Psi=1.
+$$
+
+정확한 자유 원 사상은 여전히 축약 면적을 보존한다. $L_*$는 양의 기준 각운동량이므로 hyperbolic tangent의 인수는 무차원이다. 자유 에너지에만 의존하는 시계도 각도 미분이 없다. 그래도 초기 운동량마다 경과 시간이 달라지므로 면적을 보존한다고 공통 고정 시간 관측이 되는 것은 아니다.
+
+h_theta=0인 정규 RATTLE shear도 행렬식이 1이다. 더 일반적인 구속계·확장 위상 공간·적응 변분 알고리즘에는 각각의 구성이 필요하다. 이 예외와 접히는 반례 어느 쪽도 모든 적응형 방법에 대한 보편적 판정을 주지 않는다.
+
+![서로 다른 양의 경과 시간에서 세 입력 각도가 같은 최종 각도를 갖는다. 같은 관측 횟수 사상에는 축약 Jacobian 행렬식이 음수인 영역이 있다.](/assets/learning/analytical-structure-observation-clock.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**정확한 궤적들이 비정준적인 같은 관측 횟수 사상을 만들 수 있는가?** **답:** 그렇다. 각 입력을 자기 실제 경과 시간의 정확한 해에서 평가하므로 그 시각의 물리적 검사는 통과한다. 입력들 사이의 사상은 시계도 미분해야 하며 일반적으로 위상면적을 보존하지 않는다.
+
+**Fold는 물리적 초기값 유일성을 위반하는가?** **답:** 아니다. 세 입력의 관측 시각이 다르다. 시각을 유지하면 관측을 구분할 수 있으며 고정 시간의 물리 흐름은 가역인 채로 남는다.
+
+**적응형 학습 시뮬레이터는 무엇을 저장하고 비교해야 하는가?** **답:** 실제 경과 시간을 보존하고 사상 성질을 주장할 때 전체 제어기를 미분한다. 정확도는 같은 물리 시간의 상태로 비교한다. 구조 논증이 원래 위상 공간·정규 구속 잎·확장 구성 중 무엇에 대한 것인지 보고한다.
+
 ## 해설과 함께 여섯 가지를 확인한다
 
 ### 문제 1

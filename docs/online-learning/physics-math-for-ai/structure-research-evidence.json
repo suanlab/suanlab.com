@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-12",
+  "status": "validated-two-unit-extension",
+  "baselineCommit": "6670be768a05a6b775912bb835b308c6816473bf",
+  "scope": {
+    "expandedUnits": [
+      "quartic-discrete-action-splitting",
+      "circle-rattle-projection-phase"
+    ],
+    "manuscripts": 4,
+    "localizedFigures": 4,
+    "originalManuscriptsPreserved": true,
+    "previousReviewEntriesPreserved": 677,
+    "reviewEntriesAfter": 681,
+    "cumulativeAnalyticalResearchUnits": 20,
+    "wholeDomainResearchReviewComplete": true
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/quartic-discrete-action-splitting.en.md",
+      "sha256": "8996d5c1cb82fcfb571e5239c2087778c6d1f92a764a633b86438c1697dba68c",
+      "previousSha256": "0cb6b9a4842c4fe3ab7b34117c4f2c3e99d3deec938967bc742e7242208206d3"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quartic-discrete-action-splitting.ko.md",
+      "sha256": "7723ab06cc3ce5a79f96bdd6fe4319242fd8449deddc3d52404e03b6f6d78d16",
+      "previousSha256": "46bac9b79e10d52946231b0b6d7eb74111e4f87771d5ac2bcdaf51dda6dddddc"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/circle-rattle-projection-phase.en.md",
+      "sha256": "a5c498afe4b1e4374908f7ea815ab1d1ca10cf8ac753fb5591ab2449b2a01315",
+      "previousSha256": "008bf5a7cbe00af228a1736dbf635d4158cb8d40058e47bcd8d34cf72270bd0f"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/circle-rattle-projection-phase.ko.md",
+      "sha256": "2a8092587ea70e72055cbf7e1a442beb9873ccc690bf7e044f42111bf5ab0b02",
+      "previousSha256": "e1082610ae3855965a135e77f7306a8ff9748c12d8c47fe689448e26ee22e637"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/analytical-structure-long-phase.en.svg",
+      "sha256": "07b3350597aacb1c106cee3991e772772d98c93eb817db055db749ffbfe7c6b8"
+    },
+    {
+      "path": "public/assets/learning/analytical-structure-long-phase.ko.svg",
+      "sha256": "ad2098f4355cd92f9bfd09103ec379f5071546346ccdfc5560692ee967f2139a"
+    },
+    {
+      "path": "public/assets/learning/analytical-structure-observation-clock.en.svg",
+      "sha256": "c1e53f4dc71ee46d3ff2b9c93e54560b326415156accb4fe015ca5d15234e018"
+    },
+    {
+      "path": "public/assets/learning/analytical-structure-observation-clock.ko.svg",
+      "sha256": "5616ce57c438e6ef611d76c717b36ce88887a4e0932f7051565c498fdc9f40a1"
+    }
+  ],
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-generalized-coordinates.test.ts",
+      "scripts/learning-stationary-action.test.ts",
+      "scripts/learning-lagrange-equations.test.ts",
+      "scripts/learning-hamiltonian-canonical.test.ts",
+      "scripts/learning-poisson-brackets.test.ts",
+      "scripts/learning-symplectic-geometry.test.ts",
+      "scripts/learning-noether-theorem.test.ts",
+      "scripts/learning-constraints-reduction.test.ts",
+      "scripts/learning-hamilton-jacobi.test.ts",
+      "scripts/learning-hamilton-jacobi-integration.test.ts",
+      "scripts/learning-structure-preserving.test.ts",
+      "scripts/learning-structure-preserving-integration.test.ts",
+      "scripts/learning-analytical-topology-research.test.ts",
+      "scripts/learning-coordinate-research.test.ts",
+      "scripts/learning-action-research.test.ts",
+      "scripts/learning-lagrange-research.test.ts",
+      "scripts/learning-canonical-research.test.ts",
+      "scripts/learning-symplectic-dimension-research.test.ts",
+      "scripts/learning-noether-research.test.ts",
+      "scripts/learning-constraint-research.test.ts",
+      "scripts/learning-hj-research.test.ts",
+      "scripts/learning-structure-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 390,
+    "selectedTestFailures": 0,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-structure-research.py --json",
+      "accumulatedClockTrajectories": 12,
+      "closedFormStates": 1620,
+      "controlledRattleStates": 108,
+      "exactInvariantStates": 1944,
+      "foldCollisionStates": 3,
+      "harmonicMatrixCases": 54,
+      "longHorizonCases": 4,
+      "modifiedGeneratorCases": 36,
+      "observationClockStates": 1458,
+      "stabilityBoundaryStates": 405
+    },
+    "pairedPythonCellsExecuted": 4,
+    "pairedDisplayEquationsPerUnit": [
+      8,
+      7
+    ],
+    "displayedExampleTableOutputsVerified": true,
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "build": "passed",
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "sourceFigurePreviewsReviewed": 4,
+    "mobileScreenshotsReviewed": 4,
+    "sourceExportServedSvgPairs": 40,
+    "exportServedHtmlPairs": 20,
+    "browser": {
+      "unitCount": 20,
+      "states": 160,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 60,
+      "explainedQuizzes": 40,
+      "conceptSelections": 80,
+      "persistenceCompletionGroups": 20,
+      "interactionLocale": "en",
+      "interactionWidth": 320,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "reportSha256": "c38b90bf11b6960d18279f456f04228bc518819a2eed9cc2e23e16ff0eb83aa3"
+    },
+    "changedUnitStatesWithinWholeDomainRun": 16,
+    "logs": {
+      "structure-research-domain-tests": {
+        "path": ".runtime/learning/structure-research-domain-tests.log",
+        "sha256": "101f2eb699a5933808dad3e14a91d549d4da694a26b407ec8801dcfced902dce"
+      },
+      "structure-research-lint": {
+        "path": ".runtime/learning/structure-research-lint.log",
+        "sha256": "3be436cfc280576162c8988ab0bf2da58c1cb1af605d4cca297edd0b2c7c9997"
+      },
+      "structure-research-content": {
+        "path": ".runtime/learning/structure-research-content.log",
+        "sha256": "cae16334d0d816cb4f9981be8422454c5186c14b964768b00780286cd813b72d"
+      },
+      "structure-research-build": {
+        "path": ".runtime/learning/structure-research-build.log",
+        "sha256": "ffab249ea04884847bb599f2181e4026d4d3e28e10649f4270311eab07a8a6ca"
+      },
+      "structure-research-types": {
+        "path": ".runtime/learning/structure-research-types.log",
+        "sha256": "6d339cc3c6b097244df96011008e228f3bc9a23bcef588e7d89e6265838f6660"
+      },
+      "structure-research-export": {
+        "path": ".runtime/learning/structure-research-export.log",
+        "sha256": "7693d86189e4ec43f9df04724c2cbf33caf0d974a41cccb2aa2004d36af557d2"
+      },
+      "analytical-research-content": {
+        "path": ".runtime/learning/analytical-research-content.log",
+        "sha256": "8d39521da40a0e5310fb02d941f48772e94ed9d64b3b9a2c4e8be6b43fac991b"
+      }
+    }
+  },
+  "sources": [
+    {
+      "url": "https://arxiv.org/html/math-ph/0408004v2",
+      "role": "Chin and Scuro, sections III–V: harmonic factorization and modified frequency; long-horizon bounds derived in the lesson"
+    },
+    {
+      "url": "https://arxiv.org/abs/1709.01975",
+      "role": "Duruisseaux, Schmitt and Leok: extended adaptive framework context; explicit clock maps derived in the lesson"
+    }
+  ],
+  "toolingSha256": {
+    "scripts/learning/audit-analytical-research.cjs": "b8d266bef237508838c8e3955882ea1cb33a1ea7acd6c868e386a0f8b8296d88",
+    "scripts/learning/verify-structure-research.py": "37288ded4529293364275176062543ab52bdf7d2e12d7f5518bc6b2517e8883e",
+    "scripts/check-analytical-domain.cjs": "d078f05296d659cfdbbab381fff38d0355a63688ac128cf79b36d69f37758326"
+  },
+  "wholeDomainAudit": "analytical-mechanics-research-audit.md",
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 40,
+    "reviewedTopics": 396,
+    "remainingDomains": 11,
+    "remainingTopics": 113,
+    "introductoryTopicsComplete": 362
+  }
+}
