@@ -129,6 +129,130 @@ An independent reference generator differentiates Cartesian energies symbolicall
 
 Downward rest and perfectly upright rest are equilibrium checks. Exact cardinal identities keep the represented equilibria stationary. Upright equilibrium is physically unstable to perturbations; a zero plotted derivative at the exactly specified state does not establish robustness. A short complex-looking trajectory or numerical energy drift is insufficient evidence of chaos.
 
+## Research extension: identify the mass scale with physical observations
+
+A video can reveal angles and angular velocities very accurately while leaving an absolute mass scale undetermined. In this frictionless gravity-only model, multiplying both masses changes energy and rod forces but does not change the timed trajectory. This provides a concrete identifiability test for a learned Lagrangian.
+
+### Scale both inertial and gravitational masses
+
+Keep positive lengths, known $g$, the fixed pivot and ideal rods. There is no applied force besides gravity and constraint reactions. Scale both masses by the same dimensionless $\sigma>0$:
+
+$$
+m_i^{(\sigma)}=\sigma m_i,\quad\sigma>0,\qquad
+L_\sigma=\sigma L,\quad M_\sigma=\sigma M,\quad
+\boldsymbol c_\sigma=\sigma\boldsymbol c,\quad G_\sigma=\sigma G,\qquad
+\mathcal E(L_\sigma)=\sigma\mathcal E(L).
+$$
+
+Dividing the unforced equations by $\sigma$ recovers the same acceleration field. With the same complete angular initial state, the solutions agree on their common interval of existence, without rescaling physical time. In the same potential-zero convention:
+
+$$
+q_\sigma(t)=q_1(t),\quad\dot q_\sigma(t)=\dot q_1(t),\qquad
+E_\sigma=\sigma E_1,\quad p_\sigma=\sigma p_1,\quad
+R_{j,\sigma}=\sigma R_{j,1}.
+$$
+
+The rod-force relation follows directly from $R_2=m_2(a_2-g_{\rm vec})$ and $R_1=m_1(a_1-g_{\rm vec})+R_2$. Positive definiteness of the mass matrix is retained at every positive scale; it does not select kilograms. This scaling changes the kinetic Hessian and is not a total derivative.
+
+Use the earlier moving state $a=\pi/2$, $b=0$, rates $(1,-1)$ rad/s, unit lengths, $g=10$ m/s² and base masses $(1,1)$ kg. Exact initial values are:
+
+| $\sigma$ | Initial $\ddot a$ / (rad/s²) | Initial energy / J | Initial rod-one $R_x$ / N |
+|---|---|---|---|
+| 1/2 | -21/2 | 43/4 | -1/2 |
+| 1 | -21/2 | 43/2 | -1 |
+| 2 | -21/2 | 43 | -2 |
+
+The fractional scale is part of this supplementary family. Native integer mass controls can directly compare the middle and last rows. A calibrated force sensor or energy measurement supplies information absent from angles alone.
+
+### A small raw residual can be a scale artifact
+
+Evaluate the Euler–Lagrange residual at one fixed candidate path or local trial state, rather than silently changing the candidate with the parameters. In this same absolute-angle basis:
+
+$$
+r_\sigma=\sigma r_1,\qquad
+\|r_\sigma\|_2^2=\sigma^2\|r_1\|_2^2,\qquad
+M_\sigma^{-1}r_\sigma=M^{-1}r_1
+=\ddot q_{\rm trial}-\ddot q_{\rm model}.
+$$
+
+An unconstrained learner can send $\sigma$ toward zero while keeping every mass positive, reducing an unnormalized squared residual without improving the predicted acceleration. The zero-mass endpoint itself is outside the model. The native mass interval remains unchanged; this limiting argument concerns a broader learned positive-mass family. Mass normalization removes this trivial loss collapse but still does not identify the scale. It also does not make a fixed coordinate norm invariant under arbitrary coordinate changes.
+
+### Calibrate with an informative known force
+
+A known physical force on the second point provides a generalized input. Keep its newton value fixed while changing the candidate masses:
+
+$$
+Q_{\rm tip}=J_{\rm tip}^T\boldsymbol F,\qquad
+\sigma\left(M\ddot q_\sigma+\boldsymbol c+G\right)=Q_{\rm tip}.
+$$
+
+At one fixed configuration and velocity, subtract the two forced acceleration equations:
+
+$$
+\ddot q_\sigma-\ddot q_1
+=\left(\frac1\sigma-1\right)M^{-1}Q_{\rm tip}
+\quad\text{at the same }(q,\dot q).
+$$
+
+Thus a nonzero $Q_{\rm tip}$ breaks this common-scale ambiguity within the stated model. A force absorbed entirely by the ideal constraints has $Q_{\rm tip}=0$ and does not distinguish the scale through angular acceleration. Calibration must excite an observable direction.
+
+For a separate downward-rest probe with unit base masses and lengths, a horizontal tip force of 1 N gives the following numerical SI values:
+
+$$
+M=\begin{pmatrix}2&1\\1&1\end{pmatrix},\qquad
+Q_{\rm tip}=\begin{pmatrix}1\\1\end{pmatrix},\qquad
+\ddot q_\sigma=\begin{pmatrix}0\\1/\sigma\end{pmatrix}
+\quad\text{at downward rest, horizontal tip force }1\,\mathrm N.
+$$
+
+The mass matrix is in kg m², generalized force in N m and angular acceleration in rad/s². A vertical force at that same downward configuration instead has zero generalized input. The known horizontal force is a Python companion; the native dynamics lab remains the specified gravity-only system.
+
+![Identical gravity-only trajectories and mass-scale calibration at downward rest](/assets/learning/analytical-lagrange-scale.en.svg)
+
+The left panel starts from the moving reference used in the table; the right panel starts from downward rest. They are different specified experiments. The independent Cartesian-projection/RK4 construction compares three mass scales over 2 s at 201 output times. Scale agreement checks the symmetry of the model, not the absolute accuracy of a finite step. The existing refined DOP853 comparisons and step diagnostics remain separate evidence for trajectory accuracy.
+
+For AI dynamics learning, specify which parameters are identifiable from which sensors, keep input calibration fixed, and test more than energy conservation or a raw residual.
+
+### Execute the scale and calibration checks
+
+The standard-library cell reproduces the table, the horizontal-force response and an off-equation trial whose raw loss shrinks with mass scale.
+
+```python
+from fractions import Fraction as Q
+
+def solve(M, rhs):
+    d = M[0][0]*M[1][1]-M[0][1]*M[1][0]
+    return [(M[1][1]*rhs[0]-M[0][1]*rhs[1])/d,
+            (M[0][0]*rhs[1]-M[1][0]*rhs[0])/d]
+
+for sigma in map(Q, ['1/2', '1', '2']):
+    # Moving reference: a=pi/2, b=0, rates=(1,-1), g=10, unit lengths.
+    M = [[2*sigma, Q(0)], [Q(0), sigma]]
+    acceleration = solve(M, [-21*sigma, sigma])
+    energy = 43*sigma/2
+    rod1_x = -sigma
+    assert acceleration == [Q(-21, 2), Q(1)]
+    print(sigma, acceleration[0], energy, rod1_x)
+    # A DIFFERENT configuration: downward rest with horizontal tip force 1 N.
+    down_M = [[2*sigma, sigma], [sigma, sigma]]
+    forced = solve(down_M, [Q(1), Q(1)])
+    assert forced == [0, 1/sigma]
+    print('calibrated downward-rest response:', forced)
+
+for sigma in map(Q, ['1', '1/2', '1/4']):
+    M = [[2*sigma, sigma], [sigma, sigma]]
+    residual = [2*sigma, sigma]  # Trial acceleration (1,0) at downward rest.
+    assert sum(r*r for r in residual) == 5*sigma*sigma
+    assert solve(M, residual) == [1, 0]
+# A smaller raw residual did not improve this acceleration mismatch.
+```
+
+**Research questions with answers**
+
+- Does exact angle reconstruction fix the absolute masses? **Answer:** No. Common positive mass scaling preserves this gravity-only timed motion.
+- Does mass-normalizing the residual calibrate kilograms? **Answer:** No. It removes a scale-dependent loss effect while leaving the physical scale unidentified.
+- Does every known tip force identify the scale from angles? **Answer:** No. Its generalized input must be nonzero; a purely normal force at downward rest is absorbed by the constraints.
+
 ## Exercises with explanations
 
 1. Why can M be diagonal while c is nonzero? **Solution:** A zero cosine cross term at one angle does not make its sine derivative zero. At δ=π/2, the cross entry is zero but the velocity-dependent terms remain.

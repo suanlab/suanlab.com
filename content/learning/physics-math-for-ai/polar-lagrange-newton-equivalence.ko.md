@@ -110,6 +110,137 @@ m=1, f=2를 유지하되 두 초기 속도를 0으로 두고 (1,0)에서 시작�
 
 원점에서는 극좌표의 각도·속도 역변환이 정규 상태를 만들 수 없다. 구현은 극좌표 상태를 미정으로 반환하고 해당 속도 곡선을 원점 앞뒤로 나눈다. 유한한 직교 궤적은 계속 표시한다. 정규 샘플 사이에 생기는 원점 통과 시각도 해석적으로 구해 삽입하므로 극좌표 곡선이 미정 지점을 가로질러 이어지지 않는다. 조회 시각의 알려진 사분면 위상은 항등식으로 판정한다. 다른 사건 시각은 해석적 근의 소수 평가이며 원점 위치는 그 근의 항등식에 따라 0으로 둔다. 작은 양의 반지름을 임의로 삽입하지 않는다. 원점 가까이에서 정의는 되지만 조건이 나빠지는 경우는 정확한 원점 실패와 구분한다.
 
+## 연구 확장: 궤적만으로 Lagrangian을 식별할 수 있는가
+
+일정한 속도로 움직이는 자유 수레에서 위치와 시간은 측정할 수 있다. 그러나 그 운동을 만든 변분 함수가 직접 측정되는 것은 아니다. 속도 Hessian이 양의 정부호인 서로 다른 Lagrangian 후보들도 이런 궤적을 모두 맞출 수 있다. 적합 결과가 물리적으로 식별되었다고 판단하기 전에 가설의 범위를 명시하자.
+
+### 더 넓은 운동 Lagrangian 후보 만들기
+
+학습 예제를 기존 실습의 자유 분기 $f=0$으로 제한해 퍼텐셜이 없는 경우를 보자. 직교 좌표에서 다음 후보를 생각할 수 있다.
+
+$$
+s=\boldsymbol v\cdot\boldsymbol v,\qquad
+L_\lambda(\boldsymbol v)=\frac m2s+\frac\lambda4s^2,\qquad m>0,\quad\lambda\ge0.
+$$
+
+$m$은 kg, $s$는 m²/s², $\lambda$는 kg s²/m² 단위이므로 $L_\lambda$의 두 항은 모두 에너지 단위다. 0이 아닌 $\lambda$는 기존의 자연적인 이차 운동에너지 모델 밖에 있는 비이차 후보다. 추가 계수는 보충 Python 실험에서 사용한다. 기존 조작에 계수를 추가하거나 진동수가 0이 아닌 조화 분기까지 동등하다고 주장하는 것은 아니다.
+
+### 양의 곡률만으로 후보를 고를 수는 없다
+
+물리적 속도에 대해 미분하면 다음과 같다.
+
+$$
+\boldsymbol p_\lambda=(m+\lambda s)\boldsymbol v,\qquad
+H_\lambda=\frac{\partial^2L_\lambda}{\partial\boldsymbol v\,\partial\boldsymbol v}
+=(m+\lambda s)I+2\lambda\boldsymbol v\boldsymbol v^T.
+$$
+
+0이 아닌 벡터 $u$에 대해 $u^TH_\lambda u=(m+\lambda s)|u|^2+2\lambda(v\cdot u)^2>0$이다. 0이 아닌 속도에서 수직·평행 방향의 고유값은 $m+\lambda s$, $m+3\lambda s$이며, 속도가 0이면 둘 다 $m$이다. 모든 후보의 속도·운동량 사상은 정칙하다. 다만 $\lambda>0$일 때 이 응답 행렬은 속도에 의존하므로 일정한 Newton 질량 행렬과는 다르다.
+
+후보는 위치에 의존하지 않는다. 따라서 Euler–Lagrange 방정식과 정칙한 극좌표로 끌어온 식은 다음과 같다.
+
+$$
+\mathcal E_x=H_\lambda\ddot{\boldsymbol x}=0,\qquad
+\mathcal E_q=J^TH_\lambda(J\ddot q+\dot J\dot q)=0,\qquad
+\frac{\partial^2\widetilde L_\lambda}{\partial\dot q\,\partial\dot q}=J^TH_\lambda J,\quad r>0.
+$$
+
+$r>0$에서 $J$와 $H_\lambda$가 가역이므로 모든 자유 해는 $\ddot x=0$을 만족한다. 극좌표 방정식도 앞에서 유도한 회전 기저 식과 같다. 끌어온 속도 Hessian 역시 양의 정부호다. 원점에서는 좌표가 여전히 유효하지 않으며 운동 Lagrangian 후보를 바꿔도 랭크 결함을 고칠 수 없다.
+
+### 관측량과 전체 끝점 고정 최적해 비교하기
+
+위치가 같더라도 운동량과 시간에 독립적인 에너지는 같지 않을 수 있다.
+
+$$
+E_\lambda=\boldsymbol p_\lambda\cdot\boldsymbol v-L_\lambda
+=\frac m2s+\frac{3\lambda}{4}s^2.
+$$
+
+보존되는 후보 에너지가 곧 보정된 에너지 측정값은 아니다. 더 나아가 엄격한 볼록성과 Jensen 부등식으로 $T>0$의 매끄러운 끝점 고정 경로에 대해 다음을 얻는다.
+
+$$
+S_\lambda[\boldsymbol x]\ge
+T L_\lambda\!\left(\frac{\boldsymbol x(T)-\boldsymbol x(0)}{T}\right),\qquad
+\text{equality iff }\boldsymbol v(t)\text{ is constant a.e.}
+$$
+
+따라서 같은 직선 경로가 모든 후보에서 유일한 작용 최소다. 단지 미분방정식의 해만 공유하는 것이 아니다. 최적 경로를 맞추거나 각 후보의 자체 에너지가 보존됨을 확인하는 것만으로는 $\lambda$를 고를 수 없으며 작용값 자체는 다르다.
+
+### 속도를 명시하고 보정된 힘으로 탐침하기
+
+물리적 힘의 관례를 고정하고 강제 Euler–Lagrange 방정식에 $\boldsymbol F$를 가한다. 초기 응답은 다음과 같다.
+
+$$
+H_\lambda\boldsymbol a=\boldsymbol F,\qquad
+H_1\big|_{m=1,\,v=(1,1)}=\begin{pmatrix}5&2\\2&5\end{pmatrix},\qquad
+\boldsymbol a\big|_{F=(1,0)}=\frac1{21}\begin{pmatrix}5\\-2\end{pmatrix}.
+$$
+
+예제 행렬의 수치는 SI 단위이며 $H$는 kg, 가속도는 m/s²다. $m=1$ kg, $v=(1,1)$ m/s, $F=(1,0)$ N에서 다음과 같이 계산한다.
+
+| $\lambda$ / (kg s²/m²) | $E_\lambda$ / J | 초기 $a_x$ / (m/s²) | 초기 $a_y$ / (m/s²) |
+|---|---|---|---|
+| 0 | 1 | 1 | 0 |
+| 1/2 | 5/2 | 3/8 | -1/8 |
+| 1 | 4 | 5/21 | -2/21 |
+
+![같은 자유 궤적과 서로 다른 보정된 초기 힘 응답](/assets/learning/analytical-lagrange-kinetic.ko.svg)
+
+이 후보에서 $F_y=0$은 $p_y$를 일정하게 유지한다. $p_y=(m+\lambda s)v_y$의 속력 의존 계수가 두 속도 성분을 결합하므로 표처럼 y 방향 가속도가 생긴다.
+
+이는 동일한 0이 아닌 속도에서의 초기 가속도이며 강제 궤적을 적분한 결과가 아니다. 속도가 0인 순간에 한 번만 탐침하면 모든 후보에서 $H_\lambda=mI$이므로 사차 항을 식별할 수 없다. 측정 정확도뿐 아니라 어떤 상태를 자극했는지도 중요하다.
+
+### 방정식 대칭과 작용의 준대칭 구분하기
+
+$dF(x,t)/dt$는 속도에 대한 아핀 식이므로 속도 Hessian이 0이다. 따라서 0이 아닌 Hessian 변화는 전미분 게이지가 아니다. 물리적 대칭 가정으로도 후보를 구분할 수 있다. x 방향의 일정한 Galilean boost $u$에 대해 다음이 성립한다.
+
+$$
+L_0(\boldsymbol v+u\boldsymbol e_x)-L_0(\boldsymbol v)
+=\frac d{dt}\left(mu x+\frac12mu^2t\right),\qquad
+H_\lambda(u\boldsymbol e_x)-H_\lambda(0)
+=\lambda u^2\begin{pmatrix}3&0\\0&1\end{pmatrix}.
+$$
+
+$\lambda>0$, $u\ne0$이면 뒤의 차이가 0이 아니므로 boost에 따른 변화를 위치·시간 함수의 전미분으로 쓸 수 없다. 자유 방정식은 boost에 불변이어도 모든 후보 작용이 통상적인 Galilean 준불변성을 갖는 것은 아니다. 자연적인 이차 후보나 이 작용 원리를 강제하는 학습기는 추가 물리 가정을 사용한다. 그 가정을 궤적 자료와 함께 명시해야 한다.
+
+### 실행하고 추론의 조건 점검하기
+
+표준 라이브러리 코드로 표와 boost Hessian 검사를 재현한다.
+
+```python
+from fractions import Fraction as Q
+
+def candidate(lam, v):
+    m = Q(1)
+    s = sum(x*x for x in v)
+    p = [(m+lam*s)*x for x in v]
+    H = [[(m+lam*s)*int(i == j)+2*lam*v[i]*v[j]
+          for j in range(2)] for i in range(2)]
+    energy = m*s/2+3*lam*s*s/4
+    return p, H, energy
+
+# SI: m=1 kg, v=(1,1) m/s, F=(1,0) N. Responses are initial accelerations.
+for lam in map(Q, ['0', '1/2', '1']):
+    p, H, energy = candidate(lam, [Q(1), Q(1)])
+    det = H[0][0]*H[1][1]-H[0][1]*H[1][0]
+    acceleration = [H[1][1]/det, -H[1][0]/det]
+    assert H[0][0] > 0 and det > 0
+    assert [sum(H[i][j]*acceleration[j] for j in range(2))
+            for i in range(2)] == [1, 0]
+    print(lam, energy, *acceleration)
+    zero_H = candidate(lam, [Q(0), Q(0)])[1]
+    boost_H = candidate(lam, [Q(1), Q(0)])[1]
+    assert boost_H[0][0]-zero_H[0][0] == 3*lam
+# All candidates produce free straight paths; a calibrated forced response
+# and the usual Galilean action principle supply additional information.
+```
+
+**연구 질문과 답**
+
+- 양의 속도 Hessian과 일치하는 자유 궤적으로 자연 운동에너지를 식별하는가? **답:** 아니다. 더 넓은 이 후보 가족은 두 검사를 모두 통과한다.
+- 경계항의 모호성만 설명한 것인가? **답:** 아니다. 전미분은 이런 속도 의존 Hessian 변화를 만들 수 없다.
+- 정지 상태의 힘 측정 한 번으로 $\lambda$를 식별하는가? **답:** 아니다. 그 순간 Hessian은 $mI$다. 유익한 0이 아닌 속도 탐침이나 명시적인 물리 모델 가정이 필요하다.
+
 ## 해설이 있는 연습 문제
 
 1. 각도 방정식의 2는 어디서 나오는가? **해설:** r²thetadot를 곱의 미분법으로 미분한다. r²의 미분은 2r rdot이므로 r²thetaddot+2r rdot thetadot가 된다.

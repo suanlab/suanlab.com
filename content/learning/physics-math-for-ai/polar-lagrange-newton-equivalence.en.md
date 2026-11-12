@@ -110,6 +110,137 @@ Keep m=1 and f=2, but set both initial rates to zero and start at (1,0). The pat
 
 Radius and inverse polar angle/rates cannot form a regular coordinate description at that point. The implementation returns an undefined polar state and splits polar-rate curves around it. It retains the finite Cartesian trajectory. Analytic radial crossing times are inserted even when they fall between the regular output samples, so a polar curve never bridges an undefined origin. Known cardinal phase identities identify represented query-time origins exactly; other event times are floating-point evaluations of analytic roots, with zero position supplied by the root identity. No artificial small positive radius is inserted. Near an origin the chart remains defined but can be poorly conditioned, which is a different issue.
 
+## Research extension: a trajectory does not identify its Lagrangian
+
+A free cart moving at constant velocity supplies position and time data, but it does not directly report the function whose variation generated that motion. Different candidate Lagrangians can fit every such trajectory, even when their velocity Hessians are positive. We will make the hypothesis class explicit before calling a fit physically identified.
+
+### Construct a broader kinetic hypothesis class
+
+Restrict the training example to the native free branch $f=0$, so the potential vanishes. In Cartesian coordinates consider:
+
+$$
+s=\boldsymbol v\cdot\boldsymbol v,\qquad
+L_\lambda(\boldsymbol v)=\frac m2s+\frac\lambda4s^2,\qquad m>0,\quad\lambda\ge0.
+$$
+
+Here $m$ is in kg, $s$ in m²/s² and $\lambda$ in kg s²/m², so both terms in $L_\lambda$ have energy units. For nonzero $\lambda$ this is a nonquadratic candidate outside the native natural kinetic model. The extra coefficient is introduced in this supplementary Python experiment. It is not another native slider or a claim of equivalence for the nonzero-frequency harmonic branch.
+
+### Positive curvature still leaves different models
+
+Differentiate with respect to physical velocity:
+
+$$
+\boldsymbol p_\lambda=(m+\lambda s)\boldsymbol v,\qquad
+H_\lambda=\frac{\partial^2L_\lambda}{\partial\boldsymbol v\,\partial\boldsymbol v}
+=(m+\lambda s)I+2\lambda\boldsymbol v\boldsymbol v^T.
+$$
+
+For any nonzero vector $u$, $u^TH_\lambda u=(m+\lambda s)|u|^2+2\lambda(v\cdot u)^2>0$. At nonzero velocity the transverse and longitudinal eigenvalues are $m+\lambda s$ and $m+3\lambda s$; at zero velocity both equal $m$. Thus every candidate has a regular velocity-to-momentum map. This response matrix is velocity dependent when $\lambda>0$; it is not the constant Newtonian mass matrix.
+
+The candidate has no position dependence, so its Euler–Lagrange equation and its regular polar pullback are:
+
+$$
+\mathcal E_x=H_\lambda\ddot{\boldsymbol x}=0,\qquad
+\mathcal E_q=J^TH_\lambda(J\ddot q+\dot J\dot q)=0,\qquad
+\frac{\partial^2\widetilde L_\lambda}{\partial\dot q\,\partial\dot q}=J^TH_\lambda J,\quad r>0.
+$$
+
+With $r>0$, invertibility of $J$ and $H_\lambda$ makes every free solution satisfy $\ddot x=0$. The polar equations are the same rotating-basis equations derived earlier. The pulled-back velocity Hessian is positive definite too. At the origin, the chart remains invalid; changing the kinetic candidate does not repair its rank failure.
+
+### Compare observables and the complete fixed-endpoint optimum
+
+Although the positions agree, the momentum and the time-independent energy need not agree:
+
+$$
+E_\lambda=\boldsymbol p_\lambda\cdot\boldsymbol v-L_\lambda
+=\frac m2s+\frac{3\lambda}{4}s^2.
+$$
+
+A conserved candidate energy is not yet a calibrated energy measurement. Moreover, strict convexity and Jensen’s inequality give, for smooth fixed-endpoint paths over $T>0$:
+
+$$
+S_\lambda[\boldsymbol x]\ge
+T L_\lambda\!\left(\frac{\boldsymbol x(T)-\boldsymbol x(0)}{T}\right),\qquad
+\text{equality iff }\boldsymbol v(t)\text{ is constant a.e.}
+$$
+
+Thus the same straight path is the unique action minimizer for every candidate, not merely a shared differential-equation solution. Matching the path optimum or verifying conservation of each candidate's own energy still does not choose $\lambda$. The action values themselves differ.
+
+### Use a calibrated force at a stated velocity
+
+Keep the physical force convention fixed and impose $\boldsymbol F$ through the forced Euler–Lagrange equation. Its initial response is:
+
+$$
+H_\lambda\boldsymbol a=\boldsymbol F,\qquad
+H_1\big|_{m=1,\,v=(1,1)}=\begin{pmatrix}5&2\\2&5\end{pmatrix},\qquad
+\boldsymbol a\big|_{F=(1,0)}=\frac1{21}\begin{pmatrix}5\\-2\end{pmatrix}.
+$$
+
+The numerical arrays in the example use SI units: $H$ is in kg and acceleration in m/s². For $m=1$ kg, $v=(1,1)$ m/s and $F=(1,0)$ N:
+
+| $\lambda$ / (kg s²/m²) | $E_\lambda$ / J | Initial $a_x$ / (m/s²) | Initial $a_y$ / (m/s²) |
+|---|---|---|---|
+| 0 | 1 | 1 | 0 |
+| 1/2 | 5/2 | 3/8 | -1/8 |
+| 1 | 4 | 5/21 | -2/21 |
+
+![Identical free trajectories and different calibrated initial force responses](/assets/learning/analytical-lagrange-kinetic.en.svg)
+
+For these candidates, $F_y=0$ holds $p_y$ constant. The speed-dependent coefficient in $p_y=(m+\lambda s)v_y$ couples the two velocity components, producing the nonzero y acceleration in the table.
+
+These are initial accelerations at the same nonzero velocity, not integrated forced trajectories. A single probe at zero velocity would give $H_\lambda=mI$ for all candidates and would not identify the quartic term. Excitation matters as well as measurement accuracy.
+
+### Distinguish equation symmetry from action quasi-symmetry
+
+Adding $dF(x,t)/dt$ changes a Lagrangian by an expression affine in velocity, whose velocity Hessian is zero. Our nonzero Hessian change is therefore not a total-derivative gauge. A physical symmetry assumption can also discriminate candidates. Under a constant Galilean boost $u$ along x:
+
+$$
+L_0(\boldsymbol v+u\boldsymbol e_x)-L_0(\boldsymbol v)
+=\frac d{dt}\left(mu x+\frac12mu^2t\right),\qquad
+H_\lambda(u\boldsymbol e_x)-H_\lambda(0)
+=\lambda u^2\begin{pmatrix}3&0\\0&1\end{pmatrix}.
+$$
+
+For $\lambda>0$ and $u\ne0$, the latter difference prevents the boost change from being a total derivative of a function of position and time. Free equations remain boost invariant, but these actions do not all have the usual Galilean quasi-invariance. A learner that enforces the natural quadratic class or this action principle is using an additional physical assumption. State that assumption alongside the trajectory data.
+
+### Execute and test the inference
+
+This standard-library cell reproduces the table and a boost-Hessian check.
+
+```python
+from fractions import Fraction as Q
+
+def candidate(lam, v):
+    m = Q(1)
+    s = sum(x*x for x in v)
+    p = [(m+lam*s)*x for x in v]
+    H = [[(m+lam*s)*int(i == j)+2*lam*v[i]*v[j]
+          for j in range(2)] for i in range(2)]
+    energy = m*s/2+3*lam*s*s/4
+    return p, H, energy
+
+# SI: m=1 kg, v=(1,1) m/s, F=(1,0) N. Responses are initial accelerations.
+for lam in map(Q, ['0', '1/2', '1']):
+    p, H, energy = candidate(lam, [Q(1), Q(1)])
+    det = H[0][0]*H[1][1]-H[0][1]*H[1][0]
+    acceleration = [H[1][1]/det, -H[1][0]/det]
+    assert H[0][0] > 0 and det > 0
+    assert [sum(H[i][j]*acceleration[j] for j in range(2))
+            for i in range(2)] == [1, 0]
+    print(lam, energy, *acceleration)
+    zero_H = candidate(lam, [Q(0), Q(0)])[1]
+    boost_H = candidate(lam, [Q(1), Q(0)])[1]
+    assert boost_H[0][0]-zero_H[0][0] == 3*lam
+# All candidates produce free straight paths; a calibrated forced response
+# and the usual Galilean action principle supply additional information.
+```
+
+**Research questions with answers**
+
+- Do a positive velocity Hessian and matching free trajectories identify the natural kinetic energy? **Answer:** No. Every member of this broader family passes both tests.
+- Is this only a boundary-term ambiguity? **Answer:** No. A total derivative cannot produce the velocity-dependent Hessian change.
+- Does one force measurement at rest identify $\lambda$? **Answer:** No. Its instantaneous Hessian is $mI$ there; use informative nonzero-speed probes or an explicit physical model-class assumption.
+
 ## Exercises with explanations
 
 1. Why does the angular equation contain a factor two? **Solution:** Differentiate r²thetadot using the product rule. The derivative of r² is 2r rdot, so the full coefficient is r²thetaddot+2r rdot thetadot.

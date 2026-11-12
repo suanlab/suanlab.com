@@ -129,6 +129,130 @@ c를 생략하면 (−10,0)을 얻어 물리적으로 다른 가속도를 예측
 
 아래쪽 정지와 정확한 위쪽 정지는 평형 검사다. 알려진 사분면 항등식으로 표현된 평형을 정지 상태로 유지한다. 위쪽 평형은 섭동에 불안정하므로 정확히 지정한 상태의 미분이 0이라는 사실을 강건성으로 해석하지 않는다. 짧은 복잡한 그림이나 수치 에너지 변화만으로 혼돈을 주장하지 않는다.
 
+## 연구 확장: 물리 관측으로 질량 척도 식별하기
+
+영상으로 각도와 각속도를 정밀하게 알아내더라도 절대 질량 척도는 결정되지 않을 수 있다. 이 마찰 없는 중력 모델에서는 두 질량을 함께 배율 조정하면 에너지·막대 힘은 바뀌지만 시각이 붙은 궤적은 바뀌지 않는다. 학습한 Lagrangian의 식별 가능성을 이 예제로 점검하자.
+
+### 관성·중력 질량을 함께 배율 조정하기
+
+양의 길이, 알려진 $g$, 고정 피벗과 이상적인 막대를 유지한다. 중력과 구속 반력 외의 가해진 힘은 없다. 두 질량에 같은 무차원 배율 $\sigma>0$을 곱하자.
+
+$$
+m_i^{(\sigma)}=\sigma m_i,\quad\sigma>0,\qquad
+L_\sigma=\sigma L,\quad M_\sigma=\sigma M,\quad
+\boldsymbol c_\sigma=\sigma\boldsymbol c,\quad G_\sigma=\sigma G,\qquad
+\mathcal E(L_\sigma)=\sigma\mathcal E(L).
+$$
+
+비강제 방정식을 $\sigma$로 나누면 같은 가속도 장을 얻는다. 완전한 초기 각도·각속도가 같으면 공통의 해 존재 구간에서 물리적 시간을 재조정하지 않고도 해가 일치한다. 퍼텐셜 영점을 같은 관례로 두면 다음과 같다.
+
+$$
+q_\sigma(t)=q_1(t),\quad\dot q_\sigma(t)=\dot q_1(t),\qquad
+E_\sigma=\sigma E_1,\quad p_\sigma=\sigma p_1,\quad
+R_{j,\sigma}=\sigma R_{j,1}.
+$$
+
+막대 힘의 관계는 $R_2=m_2(a_2-g_{\rm vec})$, $R_1=m_1(a_1-g_{\rm vec})+R_2$에서 바로 나온다. 모든 양의 배율에서 질량 행렬은 양의 정부호지만 그것만으로 kg을 결정할 수는 없다. 이 배율은 운동 Hessian을 바꾸므로 전미분이 아니다.
+
+앞의 움직이는 상태 $a=\pi/2$, $b=0$, 각속도 $(1,-1)$ rad/s, 단위 길이, $g=10$ m/s², 기준 질량 $(1,1)$ kg을 사용하면 정확한 초기값은 다음과 같다.
+
+| $\sigma$ | 초기 $\ddot a$ / (rad/s²) | 초기 에너지 / J | 초기 첫 막대 $R_x$ / N |
+|---|---|---|---|
+| 1/2 | -21/2 | 43/4 | -1/2 |
+| 1 | -21/2 | 43/2 | -1 |
+| 2 | -21/2 | 43 | -2 |
+
+분수 배율은 이 보충 가족에서 다룬다. 기존 정수 질량 조작으로는 가운데·마지막 행을 직접 비교할 수 있다. 보정된 힘 센서나 에너지 측정은 각도만으로는 얻지 못하는 정보를 준다.
+
+### 작은 원시 잔차가 척도의 효과일 수 있다
+
+매개변수에 따라 후보를 몰래 바꾸지 말고, 고정한 후보 경로나 국소 시험 상태에서 Euler–Lagrange 잔차를 평가하자. 같은 절대각 기저에서 다음이 성립한다.
+
+$$
+r_\sigma=\sigma r_1,\qquad
+\|r_\sigma\|_2^2=\sigma^2\|r_1\|_2^2,\qquad
+M_\sigma^{-1}r_\sigma=M^{-1}r_1
+=\ddot q_{\rm trial}-\ddot q_{\rm model}.
+$$
+
+제약 없는 학습기는 각 질량을 양수로 유지하면서 $\sigma$를 0에 가깝게 보내 원시 잔차 제곱을 줄일 수 있다. 가속도 예측이 나아진 것은 아니다. 질량이 정확히 0인 끝점은 모델 밖이다. 기존 질량 입력 구간은 그대로이며 이 극한은 더 넓은 학습 질량 가족에 대한 것이다. 질량 정규화는 이런 자명한 손실 붕괴를 없애지만 척도를 식별하지는 않는다. 또한 고정한 좌표 노름을 임의의 좌표 변환에 불변으로 만드는 것도 아니다.
+
+### 정보를 주는 알려진 힘으로 보정하기
+
+두 번째 질점의 알려진 물리적 힘은 일반화 입력을 준다. 후보 질량을 바꿀 때 힘의 newton 값을 고정하자.
+
+$$
+Q_{\rm tip}=J_{\rm tip}^T\boldsymbol F,\qquad
+\sigma\left(M\ddot q_\sigma+\boldsymbol c+G\right)=Q_{\rm tip}.
+$$
+
+한 고정한 배치·속도에서 두 강제 가속도 방정식을 빼면 다음과 같다.
+
+$$
+\ddot q_\sigma-\ddot q_1
+=\left(\frac1\sigma-1\right)M^{-1}Q_{\rm tip}
+\quad\text{at the same }(q,\dot q).
+$$
+
+따라서 명시한 모델 안에서 0이 아닌 $Q_{\rm tip}$는 공통 배율의 모호성을 깨뜨린다. 이상적인 구속에 완전히 흡수되는 힘은 $Q_{\rm tip}=0$이므로 각가속도로 척도를 구분하지 못한다. 보정 입력은 관측 가능한 방향을 자극해야 한다.
+
+별도의 아래쪽 정지 탐침에서 기준 질량·길이가 모두 1이고 수평 끝점 힘이 1 N이면 SI 수치는 다음과 같다.
+
+$$
+M=\begin{pmatrix}2&1\\1&1\end{pmatrix},\qquad
+Q_{\rm tip}=\begin{pmatrix}1\\1\end{pmatrix},\qquad
+\ddot q_\sigma=\begin{pmatrix}0\\1/\sigma\end{pmatrix}
+\quad\text{at downward rest, horizontal tip force }1\,\mathrm N.
+$$
+
+질량 행렬은 kg m², 일반화 힘은 N m, 각가속도는 rad/s² 단위다. 같은 아래쪽 배치에서 수직 힘은 일반화 입력이 0이다. 알려진 수평 힘은 Python 보충 예제에서 다루며 기존 동역학 실습은 명시한 중력계다.
+
+![같은 중력 궤적과 아래쪽 정지 상태의 질량 척도 보정](/assets/learning/analytical-lagrange-scale.ko.svg)
+
+왼쪽은 표의 움직이는 기준 상태, 오른쪽은 아래쪽 정지 상태에서 시작한다. 서로 다르게 명시한 두 실험이다. 독립적인 직교 투영/RK4 구성으로 세 질량 척도를 2초·201출력 시각에서 비교한다. 척도 일치는 모델의 대칭을 점검하며 유한 보폭의 절대 정확도를 보장하지는 않는다. 기존의 세분화한 DOP853 대조와 보폭 진단은 궤적 정확도의 별도 근거다.
+
+AI 동역학 학습에서는 어떤 센서로 어떤 매개변수를 식별하는지 명시하고 입력 보정을 고정하며, 에너지 보존이나 원시 잔차 이외의 근거도 확인해야 한다.
+
+### 척도와 보정 검사를 실행하기
+
+표준 라이브러리 코드로 표·수평 힘 응답과 질량 척도를 줄이면 원시 손실이 작아지는 비물리적 시험 가속도를 재현한다.
+
+```python
+from fractions import Fraction as Q
+
+def solve(M, rhs):
+    d = M[0][0]*M[1][1]-M[0][1]*M[1][0]
+    return [(M[1][1]*rhs[0]-M[0][1]*rhs[1])/d,
+            (M[0][0]*rhs[1]-M[1][0]*rhs[0])/d]
+
+for sigma in map(Q, ['1/2', '1', '2']):
+    # Moving reference: a=pi/2, b=0, rates=(1,-1), g=10, unit lengths.
+    M = [[2*sigma, Q(0)], [Q(0), sigma]]
+    acceleration = solve(M, [-21*sigma, sigma])
+    energy = 43*sigma/2
+    rod1_x = -sigma
+    assert acceleration == [Q(-21, 2), Q(1)]
+    print(sigma, acceleration[0], energy, rod1_x)
+    # A DIFFERENT configuration: downward rest with horizontal tip force 1 N.
+    down_M = [[2*sigma, sigma], [sigma, sigma]]
+    forced = solve(down_M, [Q(1), Q(1)])
+    assert forced == [0, 1/sigma]
+    print('calibrated downward-rest response:', forced)
+
+for sigma in map(Q, ['1', '1/2', '1/4']):
+    M = [[2*sigma, sigma], [sigma, sigma]]
+    residual = [2*sigma, sigma]  # Trial acceleration (1,0) at downward rest.
+    assert sum(r*r for r in residual) == 5*sigma*sigma
+    assert solve(M, residual) == [1, 0]
+# A smaller raw residual did not improve this acceleration mismatch.
+```
+
+**연구 질문과 답**
+
+- 각도를 정확히 복원하면 절대 질량이 정해지는가? **답:** 아니다. 공통 양의 질량 배율은 이 중력계의 시각이 붙은 운동을 보존한다.
+- 잔차를 질량 정규화하면 kg이 보정되는가? **답:** 아니다. 척도에 의존하는 손실 효과를 제거해도 물리 척도는 식별되지 않는다.
+- 알려진 끝점 힘이면 언제나 각도에서 척도를 식별하는가? **답:** 아니다. 일반화 입력이 0이 아니어야 한다. 아래쪽 정지 상태의 순수 법선 힘은 구속에 흡수된다.
+
 ## 해설이 있는 연습 문제
 
 1. M이 대각인데 c가 비영일 수 있는 이유는? **해설:** 한 각도에서 cos 결합 항이 0이어도 sin으로 나타나는 미분은 0이 아닐 수 있다. δ=π/2에서는 비대각 항이 0이지만 속도 관성 항은 남는다.

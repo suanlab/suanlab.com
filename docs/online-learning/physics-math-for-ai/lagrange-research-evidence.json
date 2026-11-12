@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-two-unit-extension",
+  "date": "2026-11-12",
+  "baselineCommit": "d3f55eb2b5d39b8a4ddf65ea76e334bef458204a",
+  "scope": {
+    "expandedUnits": [
+      "polar-lagrange-newton-equivalence",
+      "double-pendulum-lagrange-dynamics"
+    ],
+    "manuscripts": 4,
+    "localizedFigures": 4,
+    "originalManuscriptsPreserved": true,
+    "previousReviewEntriesPreserved": 653,
+    "reviewEntriesAfter": 657,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/polar-lagrange-newton-equivalence.en.md",
+      "sha256": "a385ba6d8a09e3fe9e6ebafe5dec2178bcf45da2b48bb928a9631292765aa595",
+      "previousSha256": "f79ce7a22b027ad5904051752d43fc075a169e3fe9ffdbdd83d0e7d4616f0f1c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/polar-lagrange-newton-equivalence.ko.md",
+      "sha256": "9cb1662e7fb1fb4363e347df619dd4be548426a6071bb159bb6c2544d667ab60",
+      "previousSha256": "997b923dbe19d092fc1bb2fc97a5d9693ca6eaee6715d0d2dc3b84cf37539303"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/double-pendulum-lagrange-dynamics.en.md",
+      "sha256": "959525ddb3744c5c674dc71c41be1983f721d0937258b9f8f0180de420c56a3d",
+      "previousSha256": "24153a29283762141187d0ec6768aaf52d0bd858982ce7995271267a67ecce23"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/double-pendulum-lagrange-dynamics.ko.md",
+      "sha256": "87b7603a2650d9e1795a07c2c9a730841dab4333e6a5d7e5a4d9d0365a321394",
+      "previousSha256": "48aa9772a966823973649a355f6a74fc817f222a5318e934be25cc01c67508a0"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/analytical-lagrange-kinetic.en.svg",
+      "sha256": "8cc39e95cd8aaa6f4948fb64005492a66aa98d142f8d5c9766c73c65439dfcd5"
+    },
+    {
+      "path": "public/assets/learning/analytical-lagrange-kinetic.ko.svg",
+      "sha256": "2c7f6d875a885f0f5f9d6df046b7abe66cd326c3df495560a6741f7f2514958a"
+    },
+    {
+      "path": "public/assets/learning/analytical-lagrange-scale.en.svg",
+      "sha256": "8476b3321917a1a8f63ce74acfb8067eeb92e57e1d3fe171e4fa9c8f8b623531"
+    },
+    {
+      "path": "public/assets/learning/analytical-lagrange-scale.ko.svg",
+      "sha256": "f4f6fbfc442320cac706a8186543f910bc8d8d63432907fea7bf1b94c5a868f6"
+    }
+  ],
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-generalized-coordinates.test.ts",
+      "scripts/learning-stationary-action.test.ts",
+      "scripts/learning-lagrange-equations.test.ts",
+      "scripts/learning-hamiltonian-canonical.test.ts",
+      "scripts/learning-poisson-brackets.test.ts",
+      "scripts/learning-symplectic-geometry.test.ts",
+      "scripts/learning-noether-theorem.test.ts",
+      "scripts/learning-constraints-reduction.test.ts",
+      "scripts/learning-hamilton-jacobi.test.ts",
+      "scripts/learning-hamilton-jacobi-integration.test.ts",
+      "scripts/learning-structure-preserving.test.ts",
+      "scripts/learning-structure-preserving-integration.test.ts",
+      "scripts/learning-analytical-topology-research.test.ts",
+      "scripts/learning-coordinate-research.test.ts",
+      "scripts/learning-action-research.test.ts",
+      "scripts/learning-lagrange-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 361,
+    "selectedTestFailures": 0,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-lagrange-research.py",
+      "kineticResponseStates": 72,
+      "boostHessianChecks": 12,
+      "massScaleStates": 216,
+      "calibratedForceComparisons": 432,
+      "projectionRk4Trajectories": 3,
+      "samplesPerTrajectory": 201,
+      "physicalDurationSeconds": 2,
+      "stepSizeSeconds": 0.00125
+    },
+    "nativeReferenceSampleStates": 402,
+    "nativeMassScaleSamplePairs": 603,
+    "pairedPythonCellsExecuted": 4,
+    "pairedDisplayEquationsPerUnit": [
+      7,
+      6
+    ],
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "build": "passed",
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "browser": {
+      "unitCount": 2,
+      "states": 16,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 6,
+      "explainedQuizzes": 4,
+      "conceptSelections": 8,
+      "persistenceCompletionGroups": 2,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "command": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_LAGRANGE_RESEARCH_REPORT=.runtime/learning/lagrange-research-browser.json node scripts/check-lagrange-research.cjs"
+    },
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "registry": {
+      "units": 650,
+      "guides": 1969
+    },
+    "sourceExportServedSvgPairs": 4,
+    "exportServedHtmlPairs": 2,
+    "priorDomainBrowserBaseline": {
+      "commit": "a3110d1",
+      "states": 160,
+      "evidence": "docs/online-learning/physics-math-for-ai/analytical-topology-research-evidence.json"
+    },
+    "sourceFigurePreviewsReviewed": 4,
+    "mobileScreenshotsReviewed": 4
+  },
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 39,
+    "reviewedTopics": 386,
+    "remainingDomains": 12,
+    "remainingTopics": 123,
+    "introductoryTopicsComplete": 362
+  }
+}
