@@ -110,6 +110,122 @@ $$
 
 단자 전압 예측이 목표이면 회로식·초기값·전력 수지를 확인합니다. E/B 예측까지 주장한다면 공간 잔차·원천·경계·전파와 근사 조건도 확인해야 합니다. 서로 다른 목표를 하나의 손실값으로 뭉치면 중요한 결함이 가려질 수 있습니다. 집중 소자와 저주파 가정의 배경은 [Feynman II §22–1](https://www.feynmanlectures.caltech.edu/II_22.html), 준정적 법칙의 구분은 [Haus·Melcher §3.2](https://web.mit.edu/6.013_book/www/chapter3/3.2.html)를 참고하세요.
 
+## 연구 확장: 수동 분극 기억과 초기 층
+
+### 커패시터에도 내부 기억이 있을 수 있다
+
+이상적 커패시터는 전하 C V를 순간 관계로 사용합니다. 여기에 벡터 분극 밀도와 다른 coulomb 단위의 완화 분극 전하 p를 추가합니다. Cinf는 순간 커패시턴스, DeltaC는 저주파에서 더해지는 커패시턴스입니다. 일정한 이상 전원과 양의 매개변수를 사용하는 보충 집중 구성 모형이며 새 장 해법이나 기존 RC 실습의 추가 제어가 아닙니다. 단자 전류는 순간 성분과 내부 가지를 함께 충전합니다.
+
+$$
+Q=C_\infty V+p,\qquad I=\dot Q=(V_s-V)/R,\qquad C_\infty,\Delta C,R,\tau_p>0.
+$$
+
+### 수동 회로 소자로 가지 만들기
+
+커패시터 DeltaC와 저항 tau_p/DeltaC를 직렬로 연결하고 그 가지를 Cinf와 병렬로 둡니다. 가지 커패시터 전압은 p/DeltaC, 전류는 p의 시간 미분입니다. 나머지 전압이 가지 저항에 걸려 첫 식을 주며 단자 전하 보존이 둘째 식을 줍니다. 이제 초기 전압 Vi와 가지 전하 pi라는 두 초기 자료가 필요합니다. 초기 단자 전압만으로 내부 상태는 정해지지 않습니다. 전압·전류는 원래의 수동 부호 약속을 유지합니다.
+
+$$
+\tau_p\dot p+p=\Delta C\,V,\qquad \dot V=\frac{(V_s-V)/R-(\Delta C\,V-p)/\tau_p}{C_\infty}.
+$$
+
+### 인과적 기억을 직접 쓰기
+
+분극의 일차 방정식을 풀면 감쇠하는 초기 준비 항과 과거 전압의 적분이 나옵니다. 관측 시간까지의 값만 들어가므로 한 주파수에서의 적합으로 추측하지 않고 이 모형의 인과성을 보입니다. 전압이 tau_p보다 빨리 변하면 p는 평형값 DeltaC V를 즉시 따라가지 못합니다. 반대로 p를 DeltaC V로 대체하려면 시간 척도와 호환되는 초기 준비가 필요합니다. 전파·프린징과 선택한 완화 시간의 미시 기작은 생략합니다.
+
+$$
+p(t)=p_i e^{-t/\tau_p}+\frac{\Delta C}{\tau_p}\int_0^t e^{-(t-u)/\tau_p}V(u)\,du.
+$$
+
+### 저장과 소산은 다른 항이다
+
+단자 전류에 V를 곱하고 가지 식을 적용합니다. 순간·가지 커패시터는 U의 두 항을 저장하고 내부 저항은 Pd를 소산합니다. 외부 저항까지 포함하면 아래 집중 회로 수지입니다. 이상 전원이 전력을 흡수하는 경우에도 Pd는 음이 아닙니다. 평형 밖에서 저주파 커패시턴스 곱하기 V 제곱의 절반만 사용하면 독립 내부 상태를 놓칩니다. 확장 회로의 일관된 수지도 기존 근사 간극 E/B 재구성을 정확한 장치 전체 Maxwell 해로 만들지는 않습니다.
+
+$$
+U=\tfrac12C_\infty V^2+\frac{p^2}{2\Delta C},\quad P_d=\frac{\tau_p}{\Delta C}\dot p^2\ge0,\qquad V_sI=RI^2+\dot U+P_d.
+$$
+
+### 주파수 공간에서도 수동성 확인하기
+
+어드미턴스는 초기 상태 0과 Laplace 변수 s를 사용합니다. 첨두 phasor exp(−i omega t)에는 s=−i omega를 대입합니다. 실수부가 음이 아니므로 평균 내부 입력 전력은 Re(Y) 곱하기 전압 크기 제곱의 절반입니다. 저주파 커패시턴스는 Cinf+DeltaC, 고주파의 주도 허수항 계수는 Cinf에 접근합니다. 내부 손실과 외부 R 손실은 다른 항입니다. 적합한 단일 가지가 모든 주파수·모든 실제 유전체를 설명하는 것은 아닙니다.
+
+$$
+Y(s)=sC_\infty+\frac{s\Delta C}{1+s\tau_p},\qquad \operatorname{Re}Y(-i\omega)=\frac{\Delta C\,\tau_p\omega^2}{1+\omega^2\tau_p^2}\ge0.
+$$
+
+### 하나의 RC 비율 대신 두 안정 감쇠율
+
+평형 V=Vs, p=DeltaC Vs를 빼고 2×2 선형계를 만듭니다. 감쇠율 다항식은 lambda 제곱−S lambda+eta rho입니다. 양의 판별식과 곱으로 두 감쇠율이 서로 다르고 실수 양수임을 보입니다. 느린 감쇠율은 큰 양수의 가까운 차를 빼지 않도록 곱 관계로 계산합니다. 두 감쇠 모드의 합은 semilog 그림에서 기울기가 달라질 수 있으며 한 지수로 취급하면 분극 상태를 지웁니다. 이 수동 RC 망에는 진동하는 자연 모드가 없습니다.
+
+$$
+\eta=(RC_\infty)^{-1},\quad\rho=\tau_p^{-1},\quad\beta=\Delta C/C_\infty,\quad S=\eta+(1+\beta)\rho,\quad d=(\eta-\rho)^2+2\beta\rho(\eta+\rho)+\beta^2\rho^2>0,\quad\lambda_f=\frac{S+\sqrt d}{2},\quad\lambda_s=\frac{2\eta\rho}{S+\sqrt d},\quad\lambda_s\lambda_f=\eta\rho.
+$$
+
+### 초기 자료를 모두 정한 방전 추적하기
+
+표는 표시한 SI 매개변수와 처음에 분극하지 않은 가지를 사용합니다. 전원 전압은 0이지만 순간 커패시터에 처음 0.5 joule이 저장됩니다. 분극 전하는 처음 증가한 뒤 감소하고 전체 저장량은 감소합니다. 코드는 두 모드·두 상태·저장량·순간 내부 손실을 계산합니다. R=1 ohm의 전류는 −V입니다. 독립 ODE와 전력 이력의 적분으로 상태와 수지를 다른 경로에서 확인할 수 있습니다. 이 경로에도 수치 오차가 있으며 일반 장치 오차 상한은 아닙니다.
+
+$$
+C_\infty=\Delta C=1\,\mathrm F,\ R=1\,\Omega,\ \tau_p=1\,\mathrm s,\ V_s=0,\ V_i=1\,\mathrm V,\ p_i=0:\quad\theta=t/(1\,\mathrm s),\quad r_{s,f}=\frac{3\mp\sqrt5}{2},\quad\lambda_{s,f}=r_{s,f}/(1\,\mathrm s),\quad\frac{V}{1\,\mathrm V}=\frac{r_f-2}{\sqrt5}e^{-r_s\theta}+\frac{2-r_s}{\sqrt5}e^{-r_f\theta},\quad\frac{p}{1\,\mathrm C}=\frac{e^{-r_s\theta}-e^{-r_f\theta}}{\sqrt5}.
+$$
+
+### 빠른 완화가 유효 초기 전압을 바꿀 수 있다
+
+R·Cinf·DeltaC와 유계 전원을 고정하고 tau_p를 0으로 보냅니다. 짧은 내부 층 동안 외부 전류가 전달하는 순전하는 주도 차수에서 사라지므로 Q가 근사적으로 보존됩니다. 내부 재분배가 고르는 V_after는 Vi와 다를 수 있습니다. 층 시간은 고립된 가지의 불균형 V−p/DeltaC에서 나옵니다. 선택 상태 식은 고정 전하의 고립 재분배에서는 정확하지만 유한 R 회로의 초기 접합 자료로 쓰는 것은 특이 극한 명제이며 유한 tau_p에서 정확한 등식이 아닙니다.
+
+$$
+Q_i=C_\infty V_i+p_i,\qquad V_{\rm after}=\frac{Q_i}{C_\infty+\Delta C},\qquad p_{\rm after}=\Delta C\,V_{\rm after},\qquad t_{\rm layer}\sim\frac{\tau_p C_\infty}{C_\infty+\Delta C}.
+$$
+
+### 짧은 층에서도 유한 에너지가 소산된다
+
+준비 상태의 저장량에서 접합 상태의 저장량을 빼면 아래 음이 아닌 제곱입니다. 완전한 고립 재분배의 열과 정확히 같습니다. 따라서 준비가 호환되지 않으면 층이 임의로 짧아져도 유한 에너지를 잃습니다. Cinf=DeltaC=1, Vi=1, pi=0이면 층 뒤 전압은 1/2, 손실 저장량은 1/4 joule에 접근합니다. pi=DeltaC Vi인 준비에서는 이 손실이 0입니다. 커패시턴스만 바꾸고 Vi를 유지하면 초기 실험도 몰래 바뀝니다.
+
+$$
+U_i-U_{\rm after}=\frac{C_\infty\Delta C}{2(C_\infty+\Delta C)}\left(V_i-\frac{p_i}{\Delta C}\right)^2\ge0.
+$$
+
+### 외부 축약 회로를 접합하고 장은 따로 점검하기
+
+줄어드는 층 밖의 고정 양의 시간에서는 축약 커패시턴스가 Cinf+DeltaC이고 초기 접합 값은 V_after입니다. t를 0으로 보내는 극한과 tau_p를 0으로 보내는 극한은 교환되지 않을 수 있습니다. tau_p를 정확히 0으로 놓으면 미분방정식 하나가 제거되므로 이중 상태 식의 보통 대입이 아닙니다. DeltaC 제거도 남은 가지 전하가 없어야 하는 별도 가지 제거 모형입니다. 기존 이상 RC 실습은 이 무가지 비교입니다. 장 호환성·전파 척도·남은 Faraday 식은 원래대로 검사해야 합니다.
+
+$$
+R(C_\infty+\Delta C)\dot V_{\rm outer}+V_{\rm outer}=V_s,\qquad V_{\rm outer}(t)=V_s+(V_{\rm after}-V_s)e^{-t/[R(C_\infty+\Delta C)]}\quad(t>0\text{ fixed as }\tau_p\to0).
+$$
+
+| t (s) | V (V) | p (C) | U (J) | Pd (W) |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 1.00000000 | 0.00000000 | 0.50000000 | 1.00000000 |
+| 0.25000000 | 0.62727759 | 0.17406835 | 0.21188848 | 0.20539862 |
+| 1.00000000 | 0.24142772 | 0.27260894 | 0.06630149 | 0.00097227 |
+| 4.00000000 | 0.05999745 | 0.09703209 | 0.00650746 | 0.00137157 |
+
+```python
+from math import sqrt, exp
+# Cinf=DeltaC=1 F, R=1 ohm, tau_p=1 s, Vs=0, Vi=1 V, pi=0 C.
+root = sqrt(5)
+slow, fast = (3-root)/2, (3+root)/2
+for t in [0, 0.25, 1, 4]:
+    es, ef = exp(-slow*t), exp(-fast*t)
+    voltage = (fast-2)/root*es + (2-slow)/root*ef
+    polarization_charge = (es-ef)/root
+    energy = (voltage**2 + polarization_charge**2)/2
+    dielectric_power = (voltage-polarization_charge)**2
+    values = [t, voltage, polarization_charge, energy, dielectric_power]
+    print(" ".join(f"{x:.8f}" for x in values))
+```
+
+[Feynman II 22–1절](https://www.feynmanlectures.caltech.edu/II_22.html)과 [Haus·Melcher 3.2절](https://web.mit.edu/6.013_book/www/chapter3/3.2.html)은 집중 회로·준정적 근사의 배경입니다. 수동 완화 가지·에너지·감쇠율·초기 층 접합은 표시한 회로 식에서 직접 유도합니다.
+
+![완화 커패시터 상태·두 소산 경로·초기 층 접합](/assets/learning/electromagnetism-relaxing-capacitor-energy.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**완화 커패시터를 초기 전압만으로 정할 수 있는가?** **답:** 아니다. 분극 전하는 독립 상태여서 같은 Vi라도 pi가 다르면 이후 전압·내부 손실이 달라진다.
+
+**층 지속 시간이 사라지면 열도 사라지는가?** **답:** 아니다. 호환되지 않는 고정 전하 준비는 음이 아닌 제곱으로 주어진 유한 초과 저장량을 잃을 수 있다.
+
+**확장 회로 수지가 간극 Maxwell 장을 검증하는가?** **답:** 아니다. 이 집중 저장·손실 모형을 검증한다. 별도 장 재구성은 원천·경계와 두 curl 식을 계속 검사해야 한다.
+
 ## 풀이가 있는 연습 문제
 
 ### 연습 1

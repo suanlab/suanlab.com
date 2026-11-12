@@ -110,6 +110,125 @@ Repeated rows with different normalized observations can be inconsistent with th
 
 Compare actual electric and motional circulations with finite-area flux and the differentiated moving flux. Then check the inference stage using an independent linear solve and exact-input high-precision geometry references. Label voltage, averaged field, field rate, and initial flux distinctly in the training data. A small voltage loss cannot establish recovery of an unidentifiable static component. These numerical comparisons remain selected observations within the declared family. Background on fixed and moving induction paths is in [Feynman II §§17–1–17–2](https://www.feynmanlectures.caltech.edu/II_17.html); real readout circuits and sensor backreaction require additional modelling.
 
+## Research extension: aperture transfer and invisible spatial modes
+
+### Specify a spatial Fourier field and its source scope
+
+Keep the ideal rigid circular material loop, normal plus z and fixed orientation. Consider a local imposed field varying along x; b is a complex peak amplitude in tesla, k is in inverse metres and omega is in radians per second. Physical fields are real parts. The displayed electric field supplies Faraday law for k>0. Charge/current maintaining this family must be inferred from Maxwell equations; arbitrary k and omega are not assumed to be vacuum radiation. Probe loading, motion backreaction and a readout circuit remain omitted.
+
+$$
+\widetilde B_z=b\,e^{i(kx-\omega t)},\quad k>0,\qquad\widetilde E_y=(\omega/k)\widetilde B_z,\quad\widetilde E_x=\widetilde E_z=0,\qquad\partial_x\widetilde E_y=-\partial_t\widetilde B_z.
+$$
+
+### Integrate the aperture instead of sampling its centre
+
+Write every disk point as its centre plus R times a point in the unit disk. The spatial Fourier phase factors into a centre phase and a dimensionless disk integral. Angular integration gives J0 and radial integration gives 2 J1(q)/q. Thus H is a spatial transfer function, not a propagation velocity or a point-field calibration constant valid for every spatial spectrum. Its sign can change because opposite portions of the disk cancel, even though the local field is nonzero.
+
+$$
+\widetilde\Phi=\pi R^2 H(kR)b\,e^{i(ko_x-\omega t)},\qquad H(q)=\frac1\pi\int_{u^2+v^2\le1}e^{iqu}\,du\,dv=\frac{2J_1(q)}q.
+$$
+
+### The uniform-field limit is regular
+
+The Bessel series gives H(0)=1 and a controlled small-aperture expansion. For q between zero and one the decreasing alternating tail bounds the omitted correction as shown. q=0 can mean a spatially uniform field with a finite coil area; it does not mean the coil has collapsed. For k=0 use the regular uniform-field Faraday construction already used in the native lab, rather than divide by k. At R=0 the limiting average may exist, but measured flux/area and normalized voltage are undefined. The code uses the bounded series for q up to four; it does not replace the full transfer by its quadratic approximation there.
+
+$$
+H(q)=\sum_{m=0}^\infty\frac{(-1)^m(q^2/4)^m}{m!(m+1)!},\quad H(0)=1,\qquad 0\le H(q)-(1-q^2/8)\le q^4/192\quad(0\le q\le1).
+$$
+
+### Motion changes temporal sampling but not the aperture
+
+Let the centre move at constant velocity v along x. Differentiating the flux along that trajectory introduces Omega=omega−k v. Direct integration of E plus v cross B gives the same sign and separates the transformer and motional contributions. The spatial H(kR) remains unchanged for this rigid nonrotating disk. A static nonuniform field can therefore produce emf through motion, while motion matching the phase speed makes this sampled flux constant. Rotation or changing material contacts would require another observation model.
+
+$$
+o_x=o_0+v t,\quad\Omega=\omega-kv,\qquad\widetilde{\mathcal E}=-\frac{d(N\widetilde\Phi)}{dt}=i\Omega N\pi R^2 H(kR)b\,e^{i(ko_x-\omega t)}.
+$$
+
+### Two distinct mechanisms can hide a field
+
+At an ideal positive zero q0 of J1, area cancellation makes flux and emf vanish for every centre and translation velocity at that fixed radius. At Omega=0, emf vanishes because sampled flux is constant, even when H is nonzero. A fixed coil also cannot infer a static uniform offset from induction voltage alone. These mechanisms should have different labels in a training set. A tiny measured response is not proof of an exact mathematical null; noise and arithmetic can hide a nonzero sensitivity.
+
+$$
+J_1(q_0)=0,\ q_0>0:\quad H(q_0)=0;\qquad\Omega=0:\quad\widetilde{\mathcal E}=0\ \text{even if }H(kR)\ne0.
+$$
+
+### Recover the original quadratic disk correction
+
+Taylor-expand a smooth field near the disk centre. Odd displacements cancel, each coordinate has mean square R squared over four, and the leading correction involves the transverse Laplacian. The remainder is O(R to the fourth) with bounded fourth derivatives near the disk. For the native quadratic field that remainder is exactly zero and the correction is g R squared over two. For a plane mode the Laplacian is minus k squared times B, recovering 1−q squared over eight. This bridge compares disk averages and their leading bias; it does not identify the full quadratic field with a plane Fourier field.
+
+$$
+\langle B\rangle_{\rm disk}=B(\mathbf o)+\frac{R^2}{8}\Delta_\perp B(\mathbf o)+O(R^4),\qquad B=B_0+g(x^2+y^2)\ \Longrightarrow\ \langle B\rangle_{\rm disk}=B(\mathbf o)+gR^2/2.
+$$
+
+### State the unknown before designing a second coil
+
+Assume one known spatial wavenumber, known temporal frequency, known constant trajectories and calibrated complex voltage phasors at a common time origin. Each coil then observes the same unknown complex amplitude b with known coefficient c. The least-squares estimate below exists when the combined coefficient norm is nonzero. Data from different moving coils have different observed temporal frequencies and must first be fitted with their declared Omega; raw simultaneous voltages cannot be combined as if they were one phasor. Unknown spectra, timing, geometry and readout dynamics are separate inverse problems.
+
+$$
+m_j=c_jb+n_j,\qquad c_j=i\Omega_jN_j\pi R_j^2H(kR_j)e^{iko_{0j}},\qquad\widehat b=\frac{\sum_j c_j^*m_j}{\sum_j|c_j|^2}\quad\left(\sum_j|c_j|^2>0\right).
+$$
+
+### Sensitivity controls conditional noise amplification
+
+Apply Cauchy–Schwarz to the estimation error to obtain the norm bound. It assumes the declared exact forward model, calibrated coefficients and additive phasor errors. It does not include geometry uncertainty or model discrepancy. If every c is zero, no amplitude estimate follows from these voltages; a regularizer would choose a value rather than recover information. A nonzero but small norm gives uniqueness with poor stability. Report the sensitivity as well as the rank, and specify whether sensor noise is in volts or already normalized by area.
+
+$$
+|\widehat b-b|\le\frac{\|n\|_2}{\|c\|_2};\qquad\|c\|_2=0\ \Longrightarrow\ b\ \text{is unidentifiable from these voltages}.
+$$
+
+### Radius diversity can expose a particular aperture null
+
+Take two fixed one-turn coils of radii R0 and R0/2. The smaller coil has one-quarter the area, so its contribution to physical voltage sensitivity carries that factor. The table reports signed H, its quadratic approximation, normalized one-coil gain, and combined gain normalized by omega pi R0 squared. At a zero for the larger aperture, the smaller can retain sensitivity. This is conditional recovery of one declared Fourier amplitude, not a theorem that two radii reconstruct an arbitrary spatial field.
+
+$$
+R_1=R_0,\ R_2=R_0/2,\ N_1=N_2=1,\ v_1=v_2=0,\ \omega>0:\qquad\frac{\|c\|_2}{\omega\pi R_0^2}=\sqrt{H(q)^2+\frac{H(q/2)^2}{16}},\qquad q=kR_0.
+$$
+
+### Keep an ideal null distinct from its decimal approximation
+
+The sign-changing bracket below is verified by exact rational series sums with an alternating-tail bound. Continuity therefore supplies a positive root inside it; the half-radius transfer is safely nonzero. Since q0<4, the alternating-series lower bound for q0/2<2 gives the strict half-radius bound below. A rounded double approximation to that root is outside the narrow bracket and has a nonzero transfer, so the verifier never clips it to zero. The ideal null example uses the mathematically defined root; numerical plots mark an approximation. Independent disk and oriented line quadratures check transfer and motion, while the native quadratic lab remains unchanged.
+
+$$
+3.8317059702075123156144<q_0<3.8317059702075123156145,\qquad H(q_0)=0,\quad H(q_0/2)\ge1-q_0^2/32>\tfrac12.
+$$
+
+| q | H(q) | quadratic transfer | one-coil gain | two-radius gain |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 1.00000000 | 1.00000000 | 1.00000000 | 1.03077641 |
+| 1.00000000 | 0.88010117 | 0.87500000 | 0.88010117 | 0.91283738 |
+| 2.00000000 | 0.57672481 | 0.50000000 | 0.57672481 | 0.61727031 |
+| 4.00000000 | -0.03302166 | -1.00000000 | 0.03302166 | 0.14791433 |
+
+```python
+from math import fsum, sqrt
+# Bounded q<=4; q=0 uses the continuous transfer, not a zero-area measurement.
+def transfer(q):
+    term, terms = 1.0, [1.0]
+    for m in range(1, 70):
+        term *= -q*q/(4*m*(m+1))
+        terms.append(term)
+    return fsum(terms)
+for q in [0, 1, 2, 4]:
+    h = transfer(q)
+    quadratic = 1-q*q/8
+    one_gain = abs(h)
+    pair_gain = sqrt(h*h+transfer(q/2)**2/16)
+    values = [q, h, quadratic, one_gain, pair_gain]
+    print(" ".join(f"{x:.8f}" for x in values))
+```
+
+[NIST DLMF §10.2](https://dlmf.nist.gov/10.2) defines the Bessel series and [§10.21](https://dlmf.nist.gov/10.21) discusses its zeros. The disk observation operator, moving-loop sign, conditional inverse and root bracket here are derived and checked separately under the declared probe assumptions.
+
+![Disk transfer zeros, radius diversity and motion-dependent observation](/assets/learning/electromagnetism-coil-aperture-blind-modes.en.svg)
+
+### Research questions with explanations
+
+**Can translation remove an aperture zero for the same rigid radius?** **Answer:** No. It changes the sampled frequency and centre phase, but multiplies the same zero H(kR). Radius or observation-model diversity is needed.
+
+**Why does a half-radius coil carry a factor one-quarter in voltage sensitivity?** **Answer:** Its area is one-quarter. Ignoring that gain would compare normalized averages while claiming a comparison of physical voltage noise.
+
+**Is the double approximation of a Bessel root an exact blind mode?** **Answer:** No. The certified bracket and exact-input series distinguish the ideal root from its rounded representation and its small nonzero response.
+
 ## Exercises with explanations
 
 ### Exercise 1

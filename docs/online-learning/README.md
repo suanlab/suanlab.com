@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-13 회로·센서 연구 보강: [수동 분극 기억·초기 층과 Fourier 개구 전달·비관측 모드](physics-math-for-ai/circuit-research-status.md)를 한영 네 원고·그림 네 개에 추가했다. 선택 55검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 18/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 유효 모델이다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제를 유지한다.
+
 2026-11-13 Gauge freedom 연구 보강: [시공간 링크 게이지 몫과 Lorenz 제약 에너지·경계 유입](physics-math-for-ai/gauge-research-status.md)을 한영 네 원고·그림 네 개에 추가했다. 선택 53검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 16/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 회로·센서다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제를 유지한다.
 
 2026-11-13 매질·경계 연구 보강: [쌍극자층의 약한 극한·에너지와 결맞음 전기 시트 흡수](physics-math-for-ai/materials-research-status.md)를 한영 네 원고·그림 네 개에 추가했다. 선택 53검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 14/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 gauge freedom이다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제를 유지한다.
