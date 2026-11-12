@@ -108,6 +108,105 @@ $$
 
 별도 검증은 실제 삼차원 구면 법선과 E·n, J·n을 합산하고, 전하와 전기장의 시간 차분 및 전류의 공간 차분을 비교한다. 방사 대칭 예제는 좋은 출발점이지만 일반 격자·경계·난해한 장에서의 정확도 보장을 제공하지 않는다.
 
+## 연구 확장: 연속 결함과 Gauss 보정의 비용
+
+### 두 이산 의무를 따로 추적하기
+
+N≥3개의 균일 주기 변에 종방향 전기장을 둡니다. E_j는 절점 j에서 j+1로 나가는 변의 값이며 첨자는 N을 법으로 순환합니다. 전하 밀도는 절점에, 전류는 변에 놓입니다. 이 제한된 갱신에는 종방향 자기 curl 항이 없습니다. g는 전하 밀도 단위로 정의합니다. 기존 방사형 단원의 장 발산 잔차와는 ε 인자만큼 다릅니다. Ampere 갱신을 정의에 대입하면 다음 항등식이 각 항별로 성립합니다. 일관된 연속 방정식 갱신은 기존 g를 유지하고, 지속적인 결함 r은 Gauss 오차를 누적합니다.
+
+$$
+(GE)_j=\frac{E_j-E_{j-1}}{\Delta z},\quad g=\epsilon GE-\rho,\quad [G]={\rm m}^{-1},\quad[g]={\rm C\,m}^{-3}.
+$$
+
+$$
+E_{\rm raw}^{n+1}=E^n-\frac{\Delta t}{\epsilon}J^{n+1/2},\quad r=\frac{\rho^{n+1}-\rho^n}{\Delta t}+GJ^{n+1/2},\quad g_{\rm raw}^{n+1}=g^n-\Delta t\,r.
+$$
+
+### 요청한 원천을 표현할 수 있는지 먼저 확인하기
+
+GE를 합하면 모든 나가는 변이 양과 음으로 한 번씩 나타나 상쇄됩니다. 따라서 주기 Gauss 법칙에는 셀의 총전하가 0이라는 조건이 필요합니다. A_c는 일정한 단면적입니다. 주기 E를 어떻게 바꾸어도 잔차의 상수 성분은 바뀌지 않으며 Cauchy–Schwarz 부등식으로 아래 하한을 얻습니다. 이는 닫힌 주기 모형의 해 존재 조건입니다. 원래 방사형 해는 경계 전류가 있는 유계 영역이므로 이 주기 영전하 가정을 적용하지 않습니다. 평균 전하를 조용히 빼는 것은 물리적 원천을 바꾸거나 중성화 배경을 도입하는 일입니다.
+
+$$
+\mathbf1^TGE=0\ \Longrightarrow\ \mathbf1^T\rho=0,\quad Q_{\rm cell}=A_c\Delta z\,\mathbf1^T\rho,\quad\|\epsilon GE-\rho\|_2\ge\sqrt N\,|\overline\rho|.
+$$
+
+### 가장 작은 호환 장 보정을 유도하기
+
+평균이 0인 결함에 대해 이 균일 격자에서 Euclidean 변화량이 가장 작은 보정을 구합니다. 나눈 제약 GδE=−g/ε에 승수 p/ε를 도입하면 δE=−Gᵀp/ε이고, 제약에 대입하면 GGᵀp=g입니다. 행렬의 상수 영벡터 때문에 p의 평균을 0으로 고정하고 호환 자료만 풉니다. 물리 단위로 p는 C/m, δE는 V/m입니다. 최소성을 보이려면 다른 가능한 보정을 δE+h, Gh=0으로 씁니다. δE가 Gᵀ의 치역에 있으므로 교차 항은 0이고 제곱 노름에는 ||h||²가 더해집니다. 다른 격자나 물리 가중치에는 그에 맞는 수반과 계량이 필요합니다.
+
+$$
+\min_{\delta E}\frac12\|\delta E\|_2^2\quad\text{subject to}\quad\epsilon G\delta E=-g:\qquad GG^Tp=g,\quad\mathbf1^Tp=0,\quad\delta E=-\frac{G^Tp}{\epsilon},\quad E_c=E_{\rm raw}+\delta E.
+$$
+
+### 장 보정은 물리량을 바꾼다
+
+G가 상수 변 장을 0으로 보내므로 평균 E는 유지됩니다. 그러나 점별 E·전하에 작용하는 힘·에너지는 일반적으로 바뀝니다. 따라서 게이지 변환이 아닙니다. 한 시점 보정이 같은 처방 전류를 이전 Ampere 단계와 소급하여 일치시키지는 않습니다. 이전 Gauss 결함이 0이라면 아래 유효 전류로 그 한 단계를 재해석할 때 이산 연속 방정식도 복원됩니다. 여기서는 전류를 명시적으로 바꿉니다. 원천 이력을 그대로 두어 모든 Maxwell 법칙을 만족시켰다는 근거가 아닙니다.
+
+$$
+\overline{E_c}=\overline{E_{\rm raw}},\quad J_{\rm eff}=J-\frac{\epsilon\delta E}{\Delta t},\quad g^n=0\ \Longrightarrow\ \frac{\rho^{n+1}-\rho^n}{\Delta t}+GJ_{\rm eff}=0.
+$$
+
+### 언제 에너지가 줄고 언제 늘어나는지 이해하기
+
+목표 전하가 0이면 보정된 E는 G의 핵에, 보정량은 Gᵀ의 치역에 놓입니다. 직교성으로 정확한 에너지 분해를 얻습니다. 목표 전하가 0이 아닌 호환 자료이면 제약은 아핀 집합이므로 교차 항이 사라진다고 할 수 없습니다. 제곱을 전개하면 아래 일반 변화량을 얻고 부호는 양수·음수 모두 가능합니다. 따라서 임의의 비영 목표 전하에 대해 ‘Gauss 보정은 항상 에너지를 없앤다’고 말하면 틀립니다.
+
+$$
+U(E)=\frac{\epsilon A_c\Delta z}{2}\|E\|_2^2,\qquad\rho=0:\quad E_c\perp\delta E,\quad U(E_{\rm raw})=U(E_c)+U(\delta E).
+$$
+
+$$
+U(E_c)-U(E_{\rm raw})=\epsilon A_c\Delta z\left(E_{\rm raw}^T\delta E+\frac12\|\delta E\|_2^2\right).
+$$
+
+### 단위를 선언한 네 변 예제를 계산하기
+
+양의 장 척도 E_*, 전하 밀도 척도 ρ_*=εE_*/Δz, 에너지 척도 U_*=εA_cΔzE_*²를 사용합니다. 모자는 각각 이 척도로 나눈 무차원 장·전하이고 G_hat=Δz G입니다. 네 변의 명시적 무차원 의사역행렬은 상수 벡터를 0으로 보냅니다. G_hat G_hatᵀ를 곱하면 평균 0 절점 공간의 사영이 되므로 역할을 직접 검증할 수 있습니다. p_hat=(G_hat G_hatᵀ)^+ g_hat, E_c_hat=E_raw_hat−G_hatᵀ p_hat로 계산합니다. 선택한 원천의 합은 모든 α에서 0입니다. α=0이면 원래 장을 모두 제거하고, α=1이면 변화가 없고, α=2이면 장은 두 배·에너지는 네 배입니다. Python 셀은 실제 사영을 계산하고 결과 Gauss 법칙을 검사한 뒤 표를 출력합니다. 이들은 별도 보충 격자 계산이며 방사형 실습의 새 제어 기능이 아닙니다.
+
+$$
+\widehat G=\Delta zG,\quad(\widehat G\widehat G^T)^+=\frac1{16}\begin{pmatrix}5&-1&-3&-1\\-1&5&-1&-3\\-3&-1&5&-1\\-1&-3&-1&5\end{pmatrix},\quad (\widehat G\widehat G^T)(\widehat G\widehat G^T)^+=I-\frac{\mathbf1\mathbf1^T}{4}.
+$$
+
+$$
+\widehat E_{\rm raw}=(1,0,-1,0)^T,\quad\widehat\rho=\alpha(1,-1,-1,1)^T,\quad\widehat E_c=\alpha\widehat E_{\rm raw},\quad\frac{U(E_{\rm raw})}{U_*}=1,\quad\frac{U(E_c)}{U_*}=\alpha^2,\quad\frac{\|g\|_2}{\rho_*}=2|1-\alpha|.
+$$
+
+| alpha | 원래 결함 / rho_* | 원래 U / U_* | 보정 U / U_* |
+| --- | --- | --- | --- |
+| 0.00000000 | 2.00000000 | 1.00000000 | 0.00000000 |
+| 0.50000000 | 1.00000000 | 1.00000000 | 0.25000000 |
+| 1.00000000 | 0.00000000 | 1.00000000 | 1.00000000 |
+| 2.00000000 | 2.00000000 | 1.00000000 | 4.00000000 |
+
+```python
+from math import sqrt
+M = [[5,-1,-3,-1],[-1,5,-1,-3],
+     [-3,-1,5,-1],[-1,-3,-1,5]]
+E = [1.0, 0.0, -1.0, 0.0]
+div = lambda x: [x[j]-x[(j-1)%4] for j in range(4)]
+for alpha in [0.0, 0.5, 1.0, 2.0]:
+    rho = [alpha*x for x in div(E)]
+    assert sum(rho) == 0, "Incompatible periodic source"
+    g = [d-r for d,r in zip(div(E),rho)]
+    p = [sum(m*x for m,x in zip(row,g))/16 for row in M]
+    Ec = [E[j]-(p[j]-p[(j+1)%4]) for j in range(4)]
+    assert div(Ec) == rho
+    raw = sum(x*x for x in E)/2
+    corrected = sum(x*x for x in Ec)/2
+    print(f"{alpha:.8f} {sqrt(sum(x*x for x in g)):.8f} {raw:.8f} {corrected:.8f}")
+```
+
+기존 방사형 실습은 독립적인 대조를 제공합니다. 고정 전하 오프셋은 연속 방정식과 총전류를 바꾸지 않지만 시간에 따라 Gauss 결함을 유지합니다. 경계 공급이 있는 그 기하는 주기 사영과 다릅니다. [Gkeyll Maxwell 문서](https://gkeyll.readthedocs.io/en/latest/dev/maxwell-eigensystem.html)는 수치 문맥에서 발산 제어 접근을 논의합니다. 여기의 유한 사영·호환 조건·유효 전류 항등식·에너지 예제는 표시한 행렬에서 유도하며 해당 해법의 벤치마크 결과를 주장하지 않습니다.
+
+![연속 오차·보정 변 장·전기 에너지](/assets/learning/electromagnetism-periodic-gauss-repair.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**주기 장 보정으로 비영 총전하를 해결할 수 있는가?** **답:** 아니다. 주기 발산의 합은 항상 0이다. 평균 원천 변경이나 배경 추가는 물리 문제를 바꾼다.
+
+**최소 Gauss 보정은 항상 에너지를 줄이는가?** **답:** 아니다. 목표 전하 0의 직교 항등식은 특별하다. 이 아핀 예제의 alpha=2에서는 U_*에서 4 U_*로 늘어난다.
+
+**Gauss 보정 통과는 원래 원천 이력을 보증하는가?** **답:** 아니다. 한 시점 보정은 장을 바꾼다. 호환 Ampere 단계를 유지하려면 일반적으로 명시적으로 바꾼 유효 전류가 필요하다.
+
 ## 연습과 해설
 
 전류의 법선을 먼저 정하고 계산하자.

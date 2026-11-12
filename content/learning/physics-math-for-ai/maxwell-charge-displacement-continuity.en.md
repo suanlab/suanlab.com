@@ -108,6 +108,105 @@ A generative model trained only on conservation may miss a constant density offs
 
 Separate references sum actual three-dimensional sphere normals against E and J, and compare time differences of charge and electric field with spatial differences of current. This symmetric example is a starting point, not an accuracy guarantee for general meshes, boundaries, or difficult fields.
 
+## Research extension: continuity defects and the cost of Gauss correction
+
+### Track two discrete obligations separately
+
+Consider a longitudinal electric field on N≥3 equally spaced periodic edges. E_j labels the outgoing edge from node j to node j+1; indices wrap modulo N. Charge density lives at the nodes and current on the edges. There is no longitudinal magnetic curl term in this restricted update. Define g with charge-density units; it differs by a factor ε from the original radial lesson’s field-divergence residual. Substitution of the Ampere step into this definition proves the next identity term by term. A consistent continuity update keeps an existing g unchanged, while a persistent defect r accumulates a Gauss error.
+
+$$
+(GE)_j=\frac{E_j-E_{j-1}}{\Delta z},\quad g=\epsilon GE-\rho,\quad [G]={\rm m}^{-1},\quad[g]={\rm C\,m}^{-3}.
+$$
+
+$$
+E_{\rm raw}^{n+1}=E^n-\frac{\Delta t}{\epsilon}J^{n+1/2},\quad r=\frac{\rho^{n+1}-\rho^n}{\Delta t}+GJ^{n+1/2},\quad g_{\rm raw}^{n+1}=g^n-\Delta t\,r.
+$$
+
+### Check whether the requested source is representable
+
+Every outgoing edge occurs once positively and once negatively in the sum of GE. Therefore periodic Gauss law requires zero total cell charge. A_c is the constant cross-sectional area. The constant component of the residual cannot be changed by any periodic E; Cauchy–Schwarz gives the lower bound below. This is a solvability condition for this closed periodic model. The original radial solution is on a bounded domain with boundary current and is not subject to this periodic zero-charge assumption. Silently subtracting the mean charge introduces a different physical source or neutralizing background.
+
+$$
+\mathbf1^TGE=0\ \Longrightarrow\ \mathbf1^T\rho=0,\quad Q_{\rm cell}=A_c\Delta z\,\mathbf1^T\rho,\quad\|\epsilon GE-\rho\|_2\ge\sqrt N\,|\overline\rho|.
+$$
+
+### Derive the smallest compatible field correction
+
+For a zero-mean defect, seek the smallest Euclidean change on this uniform grid. Use the divided constraint GδE=−g/ε and multiplier p/ε to obtain δE=−Gᵀp/ε; imposing the constraint yields GGᵀp=g. The matrix has the constant null vector, so fix the mean of p to zero and solve only compatible data. In physical units p has units C/m and δE has units V/m. To prove minimality, any other feasible correction is δE+h with Gh=0. Its cross term is zero because δE lies in the range of Gᵀ; its squared norm therefore adds ||h||². Different meshes or physical weights require the corresponding adjoint and metric.
+
+$$
+\min_{\delta E}\frac12\|\delta E\|_2^2\quad\text{subject to}\quad\epsilon G\delta E=-g:\qquad GG^Tp=g,\quad\mathbf1^Tp=0,\quad\delta E=-\frac{G^Tp}{\epsilon},\quad E_c=E_{\rm raw}+\delta E.
+$$
+
+### A field correction changes physics
+
+The mean E is preserved because G times a constant edge field is zero. But pointwise E, forces on charges and energy generally change: this is not a gauge transformation. Correcting one snapshot does not retroactively make the same prescribed current obey the previous Ampere step. If the previous Gauss defect was zero, reinterpreting that single corrected step with the effective current below restores discrete continuity as well. This explicitly changes the current; it is not evidence that an unchanged source history satisfies all Maxwell equations.
+
+$$
+\overline{E_c}=\overline{E_{\rm raw}},\quad J_{\rm eff}=J-\frac{\epsilon\delta E}{\Delta t},\quad g^n=0\ \Longrightarrow\ \frac{\rho^{n+1}-\rho^n}{\Delta t}+GJ_{\rm eff}=0.
+$$
+
+### Understand when energy falls and when it rises
+
+For zero target charge, the corrected E is in ker G and the correction lies in range Gᵀ. Orthogonality gives an exact energy decomposition. For a nonzero compatible charge target, the constraint is affine: the cross term need not vanish. Expansion of the square gives the general energy change below, whose sign can be either positive or negative. Thus “Gauss cleaning always removes energy” is not a valid statement for arbitrary nonzero target charge.
+
+$$
+U(E)=\frac{\epsilon A_c\Delta z}{2}\|E\|_2^2,\qquad\rho=0:\quad E_c\perp\delta E,\quad U(E_{\rm raw})=U(E_c)+U(\delta E).
+$$
+
+$$
+U(E_c)-U(E_{\rm raw})=\epsilon A_c\Delta z\left(E_{\rm raw}^T\delta E+\frac12\|\delta E\|_2^2\right).
+$$
+
+### Work a four-edge example in declared scales
+
+Let E_* be a positive field scale, ρ_*=εE_*/Δz and U_*=εA_cΔzE_*². Hats denote fields and charge divided by these scales; G_hat=Δz G. For four edges the explicit dimensionless pseudoinverse below annihilates constants. Multiplying by G_hat G_hatᵀ gives the projector onto zero-mean node vectors, which verifies rather than assumes its role. Use p_hat=(G_hat G_hatᵀ)^+ g_hat and E_c_hat=E_raw_hat−G_hatᵀ p_hat. The chosen source has zero sum for every α. For α=0 the correction removes all of the raw field; for α=1 it changes nothing; for α=2 it doubles the field and quadruples the energy. The Python cell computes the projection, checks the resulting Gauss law and prints the table. These are supplementary grid calculations, not new controls in the radial lab.
+
+$$
+\widehat G=\Delta zG,\quad(\widehat G\widehat G^T)^+=\frac1{16}\begin{pmatrix}5&-1&-3&-1\\-1&5&-1&-3\\-3&-1&5&-1\\-1&-3&-1&5\end{pmatrix},\quad (\widehat G\widehat G^T)(\widehat G\widehat G^T)^+=I-\frac{\mathbf1\mathbf1^T}{4}.
+$$
+
+$$
+\widehat E_{\rm raw}=(1,0,-1,0)^T,\quad\widehat\rho=\alpha(1,-1,-1,1)^T,\quad\widehat E_c=\alpha\widehat E_{\rm raw},\quad\frac{U(E_{\rm raw})}{U_*}=1,\quad\frac{U(E_c)}{U_*}=\alpha^2,\quad\frac{\|g\|_2}{\rho_*}=2|1-\alpha|.
+$$
+
+| alpha | raw defect / rho_* | raw U / U_* | corrected U / U_* |
+| --- | --- | --- | --- |
+| 0.00000000 | 2.00000000 | 1.00000000 | 0.00000000 |
+| 0.50000000 | 1.00000000 | 1.00000000 | 0.25000000 |
+| 1.00000000 | 0.00000000 | 1.00000000 | 1.00000000 |
+| 2.00000000 | 2.00000000 | 1.00000000 | 4.00000000 |
+
+```python
+from math import sqrt
+M = [[5,-1,-3,-1],[-1,5,-1,-3],
+     [-3,-1,5,-1],[-1,-3,-1,5]]
+E = [1.0, 0.0, -1.0, 0.0]
+div = lambda x: [x[j]-x[(j-1)%4] for j in range(4)]
+for alpha in [0.0, 0.5, 1.0, 2.0]:
+    rho = [alpha*x for x in div(E)]
+    assert sum(rho) == 0, "Incompatible periodic source"
+    g = [d-r for d,r in zip(div(E),rho)]
+    p = [sum(m*x for m,x in zip(row,g))/16 for row in M]
+    Ec = [E[j]-(p[j]-p[(j+1)%4]) for j in range(4)]
+    assert div(Ec) == rho
+    raw = sum(x*x for x in E)/2
+    corrected = sum(x*x for x in Ec)/2
+    print(f"{alpha:.8f} {sqrt(sum(x*x for x in g)):.8f} {raw:.8f} {corrected:.8f}")
+```
+
+The existing radial lab gives an independent contrast: a fixed charge offset leaves continuity and total current unchanged but preserves a Gauss defect over time. Its boundary-fed geometry is different from the periodic projection. [Gkeyll’s Maxwell documentation](https://gkeyll.readthedocs.io/en/latest/dev/maxwell-eigensystem.html) discusses divergence-control approaches as numerical context. The finite projection, compatibility condition, effective-current identity and energy examples here follow from the displayed matrices; they are not a benchmark claim about that solver.
+
+![Continuity error, corrected edge fields and electric energy](/assets/learning/electromagnetism-periodic-gauss-repair.en.svg)
+
+### Research questions with explanations
+
+**Can periodic field cleaning fix a nonzero total charge?** **Answer:** No. Every periodic divergence has zero sum. Altering the mean source or adding a background changes the physical problem.
+
+**Does the smallest Gauss correction always lower energy?** **Answer:** No. The zero-target orthogonal identity is special. At alpha=2 in this affine example energy rises from U_* to 4 U_*.
+
+**Does corrected Gauss law certify the original source history?** **Answer:** No. A single snapshot correction changes the field. Keeping a compatible Ampere step generally requires the explicitly changed effective current.
+
 ## Exercises with explanations
 
 Specify the current normal before calculating.

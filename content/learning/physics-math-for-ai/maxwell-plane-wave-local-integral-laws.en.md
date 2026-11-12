@@ -96,6 +96,97 @@ Neural field training can include divergence and curl residuals. Their units and
 
 Comparing analytic formulas from the same family is not independent proof. Separate Python references use five-point spatial/time differences and time differences of SciPy surface integrals. Observed discrepancies describe selected cases, not certified bounds. Radiation, induction, materials, energy flow, and wave packets are developed in later lessons.
 
+## Research extension: staggered waves, dispersion and a critical endpoint
+
+### Place the two fields on different clocks
+
+A simulation can satisfy its update equations exactly and still propagate at the wrong speed. To see why, keep this supplement separate from the analytic-wave controls above. Use a uniform one-dimensional periodic grid with positive constant coefficients and no sources. E means the x component and B the y component. Store E at integer positions and times; store B halfway between both positions and times. The Courant number s measures how far the physical wave travels in one step, in grid spacings.
+
+$$
+\partial_t E_x=-c^2\partial_z B_y,\quad\partial_t B_y=-\partial_z E_x,\quad c=(\epsilon\mu)^{-1/2},\quad s=\frac{c\Delta t}{\Delta z}.
+$$
+
+$$
+B_{j+1/2}^{n+1/2}=B_{j+1/2}^{n-1/2}-\frac{\Delta t}{\Delta z}(E_{j+1}^n-E_j^n),\qquad E_j^{n+1}=E_j^n-\frac{c^2\Delta t}{\Delta z}(B_{j+1/2}^{n+1/2}-B_{j-1/2}^{n+1/2}).
+$$
+
+### Reduce the whole grid to a two-number experiment
+
+For a resolved periodic standing mode, a and b have the same units V/m because b scales B by c. The stored pair is staggered in time. Subtract adjacent cosines in the B update: the result is −2 sin(q/2) sin(q(j+1/2)). Subtract adjacent sines in the E update and obtain +2 sin(q/2) cos(qj). Thus b first becomes b+θa, then a becomes a−θb_new. This gives the following matrix, rather than assuming a continuous derivative on the mesh. The uniform q=0 fields are constant under the updates; the sine basis below degenerates there.
+
+$$
+E_j^n=a_n\cos(qj),\quad cB_{j+1/2}^{n-1/2}=b_n\sin(q(j+1/2)),\quad q=\frac{2\pi m}{N}\in(0,\pi],\quad\theta=2s\sin(q/2).
+$$
+
+$$
+\binom{a_{n+1}}{b_{n+1}}=M_\theta\binom{a_n}{b_n},\qquad M_\theta=\begin{pmatrix}1-\theta^2&-\theta\\\theta&1\end{pmatrix},\quad\det M_\theta=1,\quad\operatorname{tr}M_\theta=2-\theta^2.
+$$
+
+### Separate phase accuracy from bounded amplification
+
+The characteristic polynomial is λ²−(2−θ²)λ+1. When 0<θ<2 its roots are exp(±iν), yielding the principal dispersion branch below. Here ν is the phase advance per step, not the continuum frequency. For 0<s<1 the phase speed depends on q. At s=1, ν=q for every interior 0<q<π in this one-dimensional model. That exact phase relation alone does not establish a bound for all stored grid data.
+
+$$
+\cos\nu=1-\theta^2/2,\quad\sin^2(\nu/2)=s^2\sin^2(q/2),\quad\nu=2\arcsin(s\sin(q/2)),\quad\frac{v_{\rm phase}}{c}=\frac{\nu}{sq}.
+$$
+
+### Ask what the conserved quantity controls
+
+Multiply the two-by-two matrices to verify the invariant. Its cross term remembers the staggered time levels. It is not simply the simultaneous physical electric-plus-magnetic energy. The two eigenvalues of Q are positive when |θ|<2, so constant I controls ordinary amplitude. Since θ/2≤s, the bound is uniform over resolved modes when 0<s<1. This is a finite-grid power bound for the stated lossless periodic update, not a stability certificate for three dimensions, material dispersion or absorbing layers.
+
+$$
+I_n=a_n^2+b_n^2+\theta a_nb_n=u_n^TQ_\theta u_n,\quad Q_\theta=\begin{pmatrix}1&\theta/2\\\theta/2&1\end{pmatrix},\quad M_\theta^TQ_\theta M_\theta=Q_\theta,\quad\lambda(Q_\theta)=1\pm\theta/2.
+$$
+
+$$
+0<s<1:\qquad (1-s)\|u_n\|^2\le I_n=I_0\le(1+s)\|u_0\|^2,\qquad\|u_n\|^2\le\frac{1+s}{1-s}\|u_0\|^2.
+$$
+
+### Inspect the endpoint instead of discarding it
+
+An even grid contains the alternating Nyquist mode q=π. At s=1, θ=2: the eigenvalue −1 is repeated but M has only one independent eigenvector. More explicitly, K=M+I is nonzero and K²=0, so Mⁿ=(−1)ⁿ(I−nK). Starting from (1,0) gives the exact growing example below. The invariant is now only (a+b)²; its level lines no longer enclose the state. For θ>2 the roots are real and reciprocal and one has magnitude greater than one. Generic states grow exponentially; the special decaying eigenline does not bound arbitrary data.
+
+$$
+s=1,\ q=\pi,\ u_0=(1,0)^T:\quad a_n=(-1)^n(2n+1),\quad b_n=(-1)^{n+1}2n,\quad I_n=(a_n+b_n)^2=1,\quad\|u_n\|^2=8n^2+4n+1.
+$$
+
+$$
+\theta>2:\qquad\rho(M_\theta)=\frac{\theta^2-2+\sqrt{(\theta^2-2)^2-4}}{2}>1.
+$$
+
+### Use consistent initialization and read the small table
+
+The endpoint example concerns arbitrary staggered stored data. It does not say that every Courant-one run grows. Averaging the existing analytic waves with directions +z and −z gives E=cos(kz)cos(ckt) and cB=sin(kz)sin(ckt), with unit amplitude. At kΔz=π and Δt=Δz/c, its samples at E time 0 and B time −Δt/2 have (a,b)=(1,−1). This is the bounded eigenline: the sign flips each step and a²+b² stays 2. In contrast, setting the stored B to zero gives the growing (1,0) state. Source preparation matters at this exceptional mode. The cell below advances eight steps from that latter state. Its invariant stays one even when the ordinary amplitude becomes large. Normalized amplitudes are in units of the initial E amplitude.
+
+| theta | a after 8 steps | b after 8 steps | invariant |
+| --- | --- | --- | --- |
+| 0.50000000 | -0.41813660 | -0.80984497 | 1.00000000 |
+| 1.00000000 | -1.00000000 | 1.00000000 | 1.00000000 |
+| 1.50000000 | -0.41764832 | 1.27432251 | 1.00000000 |
+| 2.00000000 | 17.00000000 | -16.00000000 | 1.00000000 |
+
+```python
+for theta in [0.5, 1.0, 1.5, 2.0]:
+    a, b = 1.0, 0.0
+    for _ in range(8):
+        b = b + theta * a
+        a = a - theta * b
+    invariant = a*a + b*b + theta*a*b
+    print(f"{theta:.8f} {a:.8f} {b:.8f} {invariant:.8f}")
+```
+
+[Schneider’s FDTD Chapter 7](https://eecs.wsu.edu/~schneidj/ufdtd/chap7.pdf) supplies the staggered dispersion background. The invariant, explicit Jordan-endpoint example and prepared-data comparison above are derived here. The existing lab still evaluates analytic fields; it does not expose a new grid solver.
+
+![Phase dispersion, stored amplitudes and invariant contours](/assets/learning/electromagnetism-staggered-wave-stability.en.svg)
+
+### Research questions with explanations
+
+**Does constant I prove bounded fields at theta=2?** **Answer:** No. I=(a+b)² is only semidefinite. The (1,0) example has I=1 and a²+b²=8n²+4n+1.
+
+**Must every Courant-one initialization grow?** **Answer:** No. The prepared Nyquist state (1,−1) lies on the bounded eigenline. Exact interior phase dispersion and an arbitrary-data endpoint bound are separate claims.
+
+**Is this invariant the same-time physical field energy?** **Answer:** No. It couples amplitudes stored at different time levels. Use its positive-definiteness range and a separate physical-energy diagnostic.
+
 ## Exercises with explanations
 
 Write signs and units before calculating, then compare with the explanations.
