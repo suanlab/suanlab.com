@@ -113,6 +113,141 @@ The spatial panel shows both actual paths and center motion in meters over ten s
 
 Initial P,L,E are exact rational calculations from the integer control codes. Trigonometric trajectories and query residuals are floating-point evaluations of the analytic solution. Independent numerical integration checks both particle motion and accumulated internal work; heat or work is not invented from a residual to make a test pass.
 
+## Research extension: budget externally modulated stiffness before testing energy conservation
+
+Can a pair retain total momentum and angular momentum while its mechanical energy grows? Yes, if an external controller changes its interaction. This extension develops exercise six into an exactly reproducible example. It separates force cancellation, torque cancellation and energy supplied by a parameter change.
+
+The native experiment above holds k fixed throughout a run and evaluates its analytic trajectory. The time-dependent protocol below is a standalone thought experiment and Python calculation. Keep constant positive particle masses, fixed inertial lab axes and a central force pair F1=−k(t)z,F2=−F1. The controller stays outside the selected particle system and supplies parameter work without a net force or torque in this idealization.
+
+### Differentiate the energy that actually depends on time
+
+Use the center/relative decomposition already derived, with P the total momentum:
+
+$$
+M=m_1+m_2,\quad \mu=\frac{m_1m_2}{M},\quad z=q_1-q_2,\quad w=\dot z,\qquad
+E=\frac{\lVert P\rVert^2}{2M}+\frac\mu2\lVert w\rVert^2+\frac{k(t)}2\lVert z\rVert^2.
+$$
+
+The center kinetic term is constant because total force cancels. Differentiating the relative kinetic term uses μw'=−kz. Differentiating V requires both the changing separation and the changing parameter:
+
+$$
+\dot K=-kz\cdot w,\qquad
+\dot V=kz\cdot w+\frac{\dot k}2\lVert z\rVert^2,\qquad
+\dot E=\frac{\dot k}2\lVert z\rVert^2.
+$$
+
+The two k z dot w terms cancel; the explicit time derivative survives. A model that preserves P and L has not thereby established constant E. Units help interpret the remaining term: k' has units N/(m s), so k' times squared separation is power in watts. Its time integral is work in joules, rather than impulse.
+
+### Account for a finite stiffness switch
+
+For an ideal finite jump of k, position and velocity are continuous. A finite force jump does not give the particles a Dirac impulse. The controlled potential changes at the same position, producing:
+
+$$
+\Delta W=\frac{k_{\mathrm{after}}-k_{\mathrm{before}}}{2}\lVert z\rVert^2,
+\qquad E(t)-E(0)=W_{\mathrm{control}}(0,t).
+$$
+
+Sum this contribution at every switch and include the smooth parameter-work integral on any smooth segment. Do not invent controller work from an unexplained trajectory residual. Here it is independently specified by the changes in k and the switch positions. A real finite-speed controller instead follows the smooth power law and may require its own dynamical state.
+
+### Compose two exact quarter periods
+
+Choose m1=m2=2 kg, so μ=1 kg. A constant-frequency segment of duration pi/(2 omega) maps each Cartesian component exactly by:
+
+$$
+\begin{pmatrix}z_j\\w_j\end{pmatrix}_{\!\mathrm{after}}
+=Q_\omega\begin{pmatrix}z_j\\w_j\end{pmatrix}_{\!\mathrm{before}},\qquad
+Q_\omega=\begin{pmatrix}0&1/\omega\\-\omega&0\end{pmatrix},\qquad
+\Delta t=\frac{\pi}{2\omega}.
+$$
+
+The off-diagonal entries carry seconds and inverse seconds; position and velocity are different physical quantities. Now hold k_hi=4 N/m,omega_hi=2 s^-1 for pi/4 s, then k_lo=1 N/m,omega_lo=1 s^-1 for pi/2 s, and return to k_hi. With numerical SI values for the two frequencies:
+
+$$
+Q_1Q_2=\begin{pmatrix}-2&0\\0&-1/2\end{pmatrix},\qquad
+(z,w)\longmapsto(w/2,-2z)\longmapsto(-2z,-w/2),\qquad
+T=\frac{3\pi}{4}\ \mathrm{s}.
+$$
+
+The period matrix has determinant one and eigenvalues −2 and −1/2. It preserves the relative cross product while amplifying the initial-position direction and contracting the initial-velocity direction. Positive stiffness in every segment does not supply a constant-energy or uniform-amplitude guarantee under this externally powered protocol. Not every initial state grows: the z0=0 direction contracts. This linear parametric instability is not a demonstration of chaos.
+
+### Track the actual pair and the supplied work
+
+Set the stationary center R=0 and P=0. The particles have positions ±z/2 and velocities ±w/2. At n complete cycles, just after returning to the high stiffness:
+
+$$
+z_n=(-2)^nz_0,\quad w_n=(-1/2)^nw_0,\quad
+L_n=\mu(z_n\times w_n)=L_0,\qquad
+E_n=\frac{k_{\mathrm{hi}}}{2}4^n\lVert z_0\rVert^2
++\frac\mu2\,4^{-n}\lVert w_0\rVert^2.
+$$
+
+Here L is also the total lab angular momentum because the center contribution vanishes. For z0=(1,0) m,w0=0, the exact work budget is:
+
+| cycle n | z_x (m) | E_n (J) | accumulated controller work (J) |
+|---|---:|---:|---:|
+| 0 | 1 | 2 | 0 |
+| 1 | −2 | 8 | 6 |
+| 2 | 4 | 32 | 30 |
+| 3 | −8 | 128 | 126 |
+
+![Energy rises from 2 to 8, 32 and 128 joules as stiffness is switched between positive values; the energy and stiffness panels share time but use different units.](/assets/learning/classical-parametric-pair-work.en.svg)
+
+The upper energy axis uses base-two logarithmic spacing with ticks labelled in joules; the lower axis is stiffness in N/m. At zero separation the high-to-low switch does no work. At maximum separation the low-to-high switch adds energy. Energy stays constant between switches. The plotted scalar example has L=0; it does not imply that growth requires zero angular momentum.
+
+Indeed z0=(1,0) m,w0=(0,1) m/s has L=1 kg m²/s. Its energy changes from 5/2 J to 65/8 J in the first cycle while L stays one. The first switch can extract energy and the second supply more: account for both, rather than treating each switch as necessarily positive work.
+
+### Reproduce with exact quarter-period arithmetic
+
+The code uses fractions and exact quarter-period maps, with μ=1 and numerical SI values. It checks two initial velocities over cycles zero through five, every constant-segment energy and both switch works. The matrix composition and formulas above establish the general identities; the finite examples check their implementation.
+
+```python
+from fractions import Fraction as F
+
+def dot(a, b):
+    return sum(x*y for x, y in zip(a, b))
+
+def cross(a, b):
+    return a[0]*b[1]-a[1]*b[0]
+
+def energy(z, w, k):
+    return (dot(w, w)+k*dot(z, z))/2  # reduced mass = 1
+
+def quarter(z, w, omega):
+    return tuple(x/omega for x in w), tuple(-omega*x for x in z)
+
+for initial_w in [(F(0), F(0)), (F(0), F(1))]:
+    z, w = (F(1), F(0)), initial_w
+    E0, L0, work = energy(z, w, F(4)), cross(z, w), F(0)
+    print("initial relative velocity:", initial_w)
+    for n in range(6):
+        assert z == (F((-2)**n), F(0))
+        assert w == tuple(x*F(-1, 2)**n for x in initial_w)
+        assert cross(z, w) == L0
+        assert energy(z, w, F(4))-E0 == work
+        assert energy(z, w, F(4)) == 2*F(4)**n+dot(initial_w, initial_w)*F(1, 4)**n/2
+        print(n, "E:", energy(z, w, F(4)), "L:", L0, "work:", work)
+        if n == 5:
+            break
+        before = energy(z, w, F(4))
+        z, w = quarter(z, w, F(2))
+        assert energy(z, w, F(4)) == before
+        work += (F(1)-4)*dot(z, z)/2
+        before = energy(z, w, F(1))
+        z, w = quarter(z, w, F(1))
+        assert energy(z, w, F(1)) == before
+        work += (F(4)-1)*dot(z, z)/2
+```
+
+The quarter-period times pi/4 and pi/2 do not lie exactly on the native 0.1 s query grid. Growing states can also leave its bounded position/velocity input ranges. Reproduce the protocol with this independent code, rather than describing a sequence of native runs as an exact implementation. The unchanged constant-k widget remains useful for its original closed-pair conservation experiment.
+
+### Worked questions for learned conservation constraints
+
+1. **Does zero total force imply zero supplied energy?** No. Pair-force cancellation constrains P; the controller changes the interaction potential through k(t). Use the independently declared work term.
+2. **Does determinant one prevent growth?** No. This period matrix expands one direction and contracts another. Preservation of a cross product or phase-area element does not bound each state component.
+3. **What should a learned surrogate report?** State whether k is a fixed coefficient or an input protocol, record the controller-work convention and compare time-dependent states. P/L penalties alone cannot identify that protocol or validate its energy budget.
+
+The switched protocol and values are derived here. The system-boundary and center/relative reasoning follows the conservation-law background cited below.
+
 ## Six exercises with worked solutions
 
 1. **Exercise: internal oscillation.** Set equal1kg masses at(−1,0),(1,0), both initially at rest, with k=1. **Solution:** ω=√2 and q1x=−cos(√2t),q2x=cos(√2t). Total P=L=0 but particles move. K=2sin²(√2t),V=2cos²(√2t),so E=2J.

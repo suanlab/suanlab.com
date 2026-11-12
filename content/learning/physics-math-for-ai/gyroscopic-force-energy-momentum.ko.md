@@ -104,6 +104,151 @@ $$
 
 초기 K,L,I와 안내 중심 좌표는 입력 코드의 정확한 유리수 계산입니다. 삼각함수 운동은 수치 평가입니다. Ω 부호로 굽는 방향을, q0로 기준점에 따른 각운동량 이력을 바꾸고 Ω=0으로 자유 극한을 확인하세요. 이 입력은 장식용 효과가 아니라 선언한 운동 모형을 바꿉니다.
 
+## 연구 확장: 불변량이 정확해도 숨을 수 있는 수치 위상 오차
+
+수치 궤적이 운동에너지보다 더 많은 양을 보존하면서도 지정한 시각의 위치는 틀릴 수 있습니다. 유도 중심과 수정 각운동량 불변량까지 보존하는 예제를 구성합니다. 궤도의 모양을 검사하는 것과 그 궤도를 따라 움직이는 시간을 검사하는 일이 다른 이유입니다.
+
+원래 실습은 위의 해석적 흐름을 계산합니다. 아래 암시적 중점법은 독립 비교이며 기존 계산기를 대체하거나 새 시간 간격 조작을 추가한 것이 아닙니다. 같은 양의 일정 질량·고정 실험실 축·일정 부호 있는 Omega를 유지합니다. J는 90도 회전 연산이며 J의 제곱은 음의 항등 연산입니다.
+
+### 중점 방정식을 명시적으로 풀기
+
+시간 간격 h>0에서 중점 속도를 정의하고 두 변수를 일관되게 갱신합니다.
+
+$$
+\bar v_n=\frac{v_n+v_{n+1}}2,\qquad
+v_{n+1}-v_n=h\Omega J\bar v_n,\qquad
+q_{n+1}-q_n=h\bar v_n.
+$$
+
+새 속도 항을 왼쪽으로 옮기면 a=h Omega/2에서 (I−aJ)v_next=(I+aJ)v입니다. (I−aJ)(I+aJ)=(1+a²)I이므로 모든 실수 a에서 선형식을 풀 수 있습니다. 속도 사상과 부호 있는 주 회전각은 다음과 같습니다.
+
+$$
+a=\frac{h\Omega}{2},\quad
+R_h=\frac{(1-a^2)I+2aJ}{1+a^2},\quad
+v_{n+1}=R_hv_n,\qquad
+\theta_h=2\arctan(h\Omega/2).
+$$
+
+행렬 안의 I는 항등 연산입니다. 각도는 −pi와 pi 사이이며 Omega와 부호가 같습니다. Omega=0이면 속도 사상은 항등이고 위치는 h v만큼 전진합니다. 유한한 유도 중심을 정의하지 않고 자유 운동 분기를 정확하게 계산합니다.
+
+### 표본을 보기 전에 운동에너지 보존 증명하기
+
+두 노름 제곱의 차이를 중점 속도로 인수분해합니다.
+
+$$
+\Delta K=m\bar v_n\cdot(v_{n+1}-v_n)
+=mh\Omega\bar v_n\cdot J\bar v_n=0,\qquad
+\left(\frac{1-a^2}{1+a^2}\right)^2+\left(\frac{2a}{1+a^2}\right)^2=1.
+$$
+
+계수의 항등식으로도 R_h가 실수 산술에서 정확한 회전 행렬임을 알 수 있습니다. 따라서 일정 에너지는 모든 간격에 대한 이 이산 방법의 대수적 성질입니다. 부동소수점 구현에는 여전히 반올림 오차가 있을 수 있습니다. 아래 분수 코드는 유리수 준비에서 이 모호함을 제거합니다.
+
+### 유도 중심과 다른 각운동량 불변량도 확인하기
+
+Omega가 0이 아니면 연속 모형과 같은 C를 사용합니다. 위치 갱신도 일관되므로 C의 차이 역시 사라집니다. 이 절의 L=m(q×v)는 한 입자의 실험실 역학적 각운동량입니다. 원래 수정 불변량을 I_ang로 적어 행렬의 항등 연산과 구분합니다.
+
+$$
+C=q+\frac{Jv}{\Omega},\qquad
+\Delta C=h\bar v_n+\frac{J(h\Omega J\bar v_n)}{\Omega}=0,\qquad
+I_{\mathrm{ang}}=L-\frac{m\Omega}{2}\lVert q\rVert^2
+=\frac{m}{2\Omega}\lVert v\rVert^2-\frac{m\Omega}{2}\lVert C\rVert^2
+\quad(\Omega\ne0).
+$$
+
+C의 노름 제곱을 전개하고 q·Jv=−(q×v)를 사용하면 이 관계가 나옵니다. 일정 속력과 C는 I_ang도 일정하게 만듭니다. 수치 위치는 정확한 궤적과 같은 원 위에 있습니다. 따라서 이 세 불변량 검사만으로 원 위의 시간별 점이 맞는지는 정해지지 않습니다. Omega=0에서는 이 표현에서 Omega로 나누지 말고 자유 운동을 직접 계산하세요.
+
+### 방법이 실제로 전진시키는 위상 찾기
+
+정확한 속도는 한 단계에 h Omega만큼 회전하지만 이 방법은 theta_h만큼 회전합니다. 물리 시간 t=n h에서 n단계 뒤에는 다음과 같습니다.
+
+$$
+n\theta_h-\Omega nh
+=-\frac{t\Omega^3h^2}{12}+O\!\left(t|\Omega|^5h^4\right),\qquad
+ t=nh,\quad |h\Omega|\ll1.
+$$
+
+이 작은 간격 전개는 무차원 |h Omega|가 작을 때 적용됩니다. 에너지 드리프트가 아니라 누적된 부호 있는 위상 오차입니다. 고정된 경과 시간에서는 h의 이차 오차입니다. 큰 간격에서는 절단한 급수가 아니라 정확한 arctan 식을 사용하세요. 반지름이 일정한 안정적 회전도 주파수는 상당히 틀릴 수 있습니다.
+
+### 네 단계 반례 계산하기
+
+m=1 kg,Omega=1 s^-1,q0=(0,0) m,v0=(1,0) m/s,h=2 s로 둡니다. theta_h=pi/2이므로 네 단계 뒤 t=8 s에서 위치·속도가 모두 초기값으로 돌아옵니다. 해석적 궤적은 다른 위치를 줍니다.
+
+$$
+q_4^{\mathrm{mid}}=(0,0),\qquad
+q^{\mathrm{exact}}(8)=(\sin8,1-\cos8)\ \mathrm{m},\qquad
+\lVert q^{\mathrm{exact}}(8)-q_4^{\mathrm{mid}}\rVert
+=2|\sin4|\ \mathrm{m}\approx1.513604991\ \mathrm{m}.
+$$
+
+| 진단 | 8초의 중점법 | 8초의 정확한 흐름 |
+|---|---|---|
+| 위치 (m) | (0,0) | (sin 8,1−cos 8) |
+| 운동에너지 (J) | 1/2 | 1/2 |
+| 유도 중심 (m) | (0,1) | (0,1) |
+| 수정 각운동량 불변량 (kg m²/s) | 0 | 0 |
+
+![해석적 궤도와 중점법의 네 위치는 같은 원 위에 있지만, 정확한 8초 위치인 별 표시와 출발점으로 돌아온 수치 위치는 다릅니다.](/assets/learning/classical-midpoint-gyro-phase.ko.svg)
+
+두 위치 축은 m이며 단위 길이가 같습니다. 파랑은 연속 해석적 경로이고 주황 네모는 0~4로 번호를 붙인 이산 중점법 위치입니다. 주황 점선은 순서를 연결할 뿐 물리적인 중간 궤적이 아닙니다. 별은 정확한 8초 위치입니다. 시작점과 수치적 네 번째 위치는 같지만 해석적 끝점과 약 1.514 m 떨어집니다.
+
+원래 실습에서는 이 비교의 정확한 해 쪽을 확인할 수 있습니다. 질량 코드 1,Omega 코드 10,영 초기 위치,속도 코드 (10,0),시간 코드 80을 사용하세요. 주황 중점법 위치를 계산하는 기능은 아닙니다. Omega를 잘못 학습한 모형도 에너지를 보존할 수 있으므로 잘못된 힘 계수와 시간 이산화 오차를 구분한 뒤 예측 오류의 원인을 진단하세요.
+
+### 유리수 갱신과 명시적 자유 운동으로 재현하기
+
+코드는 m=1과 유리수 초기 상태를 사용합니다. 부호·영 값을 포함한 네 각진동수와 네 간격에서 각각 100단계의 K,I_ang,C를 정확히 비교합니다. Omega=0에서는 중심 공식을 사용하지 않고 자유 운동 위치와 일정 속도를 검사합니다. 마지막 사인 계산은 해석적 끝점 오차를 부동소수점으로 보여줄 뿐 유리수 불변량 항등식의 인증에 사용하지 않습니다. 독립 준비는 기존 실습의 제한된 입력 격자와 같을 필요가 없습니다.
+
+```python
+from fractions import Fraction as F
+from math import sin, hypot
+
+def dot(a, b):
+    return sum(x*y for x, y in zip(a, b))
+
+def J(v):
+    return (-v[1], v[0])
+
+def midpoint(q, v, omega, h):
+    a = h*omega/2
+    c, s = (1-a*a)/(1+a*a), 2*a/(1+a*a)
+    vn = (c*v[0]-s*v[1], s*v[0]+c*v[1])
+    return tuple(x+h*(u+w)/2 for x, u, w in zip(q, v, vn)), vn
+
+def invariants(q, v, omega):
+    K = dot(v, v)/2  # mass = 1
+    I = q[0]*v[1]-q[1]*v[0]-omega*dot(q, q)/2
+    C = None if omega == 0 else tuple(x+y/omega for x, y in zip(q, J(v)))
+    return K, I, C
+
+for omega in map(F, [0, 1, -1, "1/10"]):
+    for h in map(F, ["1/10", "1/2", 2, 4]):
+        q0, v0 = (F(1), F(2)), (F(3), F(-1))
+        q, v = q0, v0
+        expected = invariants(q, v, omega)
+        for n in range(1, 101):
+            q, v = midpoint(q, v, omega, h)
+            assert invariants(q, v, omega) == expected
+            if omega == 0:
+                assert q == tuple(x+n*h*u for x, u in zip(q0, v0))
+                assert v == v0
+print("16 preparations x 100 exact-rational invariant checks passed")
+q, v = (F(0), F(0)), (F(1), F(0))
+for _ in range(4):
+    q, v = midpoint(q, v, F(1), F(2))
+assert q == (0, 0) and v == (1, 0)
+assert invariants(q, v, F(1)) == (F(1, 2), F(0), (F(0), F(1)))
+error = 2*abs(sin(4))
+assert abs(error-hypot(sin(8), 2*sin(4)**2)) < 1e-14
+print("four-step position error (m):", error)
+```
+
+### 학습 시뮬레이터를 위한 해설 문제
+
+1. **네 단계 예제에서 어떤 진단이 통과하나요?** K,C,I_ang가 정확히 같고 모든 위치가 올바른 원 위에 있습니다. 그래도 시간별 위치·속도 비교는 실패합니다.
+2. **모든 간격에서 에너지가 보존되면 모든 간격이 정확한가요?** 아닙니다. 반지름을 정할 뿐 theta_h=h Omega를 보장하지 않습니다. Omega의 부호를 뒤집으면 위상 오차의 부호도 뒤집히지만 누락된 시간 정보는 그대로입니다.
+3. **연구 결과는 어떤 근거를 추가로 보고해야 하나요?** 시간별 궤적·간격 정련·선언한 힘 법칙·독립 참조 상태를 포함하세요. 불변량 잔차는 해당 항등식을 뒷받침하며 전체 동역학을 식별하는 검사가 아닙니다.
+
+중점법의 정의와 기하적 적분 배경은 [Hairer의 Lecture 2](https://www.unige.ch/~hairer/poly_geoint/week2.pdf), 수치 흐름과 원래 흐름의 구분은 [Lecture 3](https://www.unige.ch/~hairer/poly_geoint/week3.pdf)를 참고하세요. 회전 식과 반례는 이 힘 법칙에서 직접 유도했으며 모든 비선형 중점법 문제가 물리 에너지를 보존한다고 주장하지 않습니다.
+
 ## 풀이가 있는 여섯 연습
 
 1. **연습: 일 없는 굽힘.** m=1,Ω=1,q0=0,v0=(1,0)이면? **풀이:** v=(cos t,sin t),q=(sin t,1−cos t),K=1/2J입니다. 외력이 비영이고 운동량을 회전시킵니다.
