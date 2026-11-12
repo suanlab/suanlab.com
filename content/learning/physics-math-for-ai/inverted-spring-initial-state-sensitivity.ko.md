@@ -104,6 +104,165 @@ $$
 
 연구에서는 상태 변수, 관측 정밀도, 시간 구간, 단위와 노름을 함께 보고해야 합니다. 한 숫자의 증폭률만 제시하지 말고 방향 의존성도 확인하세요. 계산식 자체의 잔차뿐 아니라 별도 행렬 지수와 ODE 적분으로 결과를 대조해야 합니다.
 
+## 연구 확장: 빠진 속도를 관측하되 예측 오차도 확인한다
+
+### 사진 두 장은 완전한 상태의 정보를 줄 수 있다
+
+위치 한 번의 관측에는 속도가 빠져 있다. 힘 법칙을 알고 서로 다른 두 시각을 안다면 두 번째 관측으로 그 정보를 보충할 수 있다. 정확한 이상 법칙 m x''=kx,m>0,k≥0을 유지한다. 아래 계산에는 관측 편향·질량이나 강성의 불확실성·시간 오차는 포함하지 않는다.
+
+k>0에서 λ=√(k/m)>0의 단위는 s⁻¹이고 관측 간격 Δ>0의 단위는 초다. 두 위치는
+
+$$
+\begin{pmatrix}x(0)\\x(\Delta)\end{pmatrix}
+=\begin{pmatrix}1&0\\\cosh(\lambda\Delta)&\sinh(\lambda\Delta)/\lambda\end{pmatrix}
+\begin{pmatrix}x_0\\v_0\end{pmatrix},\qquad
+v_0=\lambda\frac{x(\Delta)-x_0\cosh(\lambda\Delta)}{\sinh(\lambda\Delta)}.
+$$
+
+를 만족한다. 관측 행렬의 행렬식은 sinh(λΔ)/λ>0이므로 정확한 두 위치로 x₀,v₀를 유일하게 정한다. Δ=0이면 관측이 겹쳐 속도를 알아내지 못한다. 알려진 선형 모델의 관측 가능성에 대한 결과이며 사진 두 장으로 미지의 힘 법칙까지 알아낸다는 뜻은 아니다.
+
+이 행렬에 수치 조건수를 붙이려면 먼저 위치·속도의 단위 척도를 정해야 한다. 여기서는 실제 물리 단위의 관측 오차를 전달해 문제를 살핀다.
+
+### 날카로운 속도 오차 상계를 유도한다
+
+y₀=x₀+d₀,yΔ=x(Δ)+dΔ이고 각각 |d₀|,|dΔ|≤ε m라고 하자. 측정 역산식과 정확한 역산식을 빼고 삼각 부등식을 사용하면
+
+$$
+|\widehat v_0-v_0|\le\lambda\epsilon\frac{1+\cosh(\lambda\Delta)}{\sinh(\lambda\Delta)}
+=\lambda\epsilon\coth(\lambda\Delta/2).
+$$
+
+이다. 두 오차가 반대 부호일 때 등호가 가능하므로 주어진 오차 상자에서 날카롭다. λΔ가 작으면 상계는 약 2ε/Δ다. 거의 같은 시간의 사진 두 장으로 속도를 구하려면 잡음 있는 두 위치를 빼야 한다. 정확한 역함수가 있다고 그 차분도 신뢰할 수 있는 것은 아니다. 간격이 커지면 쌍곡함수 비율이 1로 가므로 이상 모델의 초기 속도 오차 상계는 λε로 간다.
+
+오래 기다리는 만큼 실제 장치가 그 힘 법칙을 유지해야 하는 시간도 길어진다. 이 상계가 모델 오차를 흡수하거나 큰 변위에서도 불안정한 이차 퍼텐셜이 실제로 유효함을 인증하지는 않는다.
+
+### 보간과 외삽의 불확실성은 다르다
+
+속도를 소거해 두 관측에서 위치를 직접 쓰면
+
+$$
+\widehat x(t)=\frac{\sinh(\lambda(\Delta-t))}{\sinh(\lambda\Delta)}y_0+
+\frac{\sinh(\lambda t)}{\sinh(\lambda\Delta)}y_\Delta.
+$$
+
+이다. 0≤t≤Δ에서는 두 계수가 음이 아니며 합은 cosh(λ(t−Δ/2))/cosh(λΔ/2)≤1이다. 따라서 보간 위치 오차는 ε 이하이고 중간 시각의 최악 상계는 ε/cosh(λΔ/2)다. 동역학이 불안정하다고 두 관측으로 제약한 모든 보간 오차가 커지는 것은 아니다.
+
+t≥Δ에서는 첫 계수의 부호가 바뀌어 오차 상자에 대한 날카로운 상계가
+
+$$
+|\widehat x(t)-x(t)|\le\epsilon
+\frac{\sinh(\lambda(t-\Delta))+\sinh(\lambda t)}{\sinh(\lambda\Delta)}
+=\epsilon\frac{\sinh(\lambda(t-\Delta/2))}{\sinh(\lambda\Delta/2)}\qquad(t\ge\Delta).
+$$
+
+가 된다. 외삽 시간이 길어지면 커진다. 두 관측을 정확히 맞춘 관측 잔차가 0이어도 미래 상태는 불확실할 수 있다. 학습 모델이 두 사진을 완벽히 맞추는 것과 미래를 잘 정하는 것은 별개다.
+
+λ=1 s⁻¹,ε=0.001 m에서 마지막 관측보다 1초 뒤를 예측하면 다음과 같다.
+
+| 간격 Δ (s) | 초기 속도 오차 상계 (m/s) | t=Δ+1 s의 위치 오차 상계 (m) |
+|---|---:|---:|
+| 0.1 | 0.020016664 | 0.025066688 |
+| 1 | 0.002163953 | 0.004086161 |
+| 2 | 0.001313035 | 0.003086161 |
+
+![관측 간격에 따른 속도 복원과 미래 위치 오차](/assets/learning/classical-initial-observation.ko.svg)
+
+두 패널 모두 위 매개변수를 사용하고 세로축은 로그축이다. 위는 m/s의 속도 오차, 아래는 m의 위치 오차다. 주어진 관측 오차에 대한 최악 상계이지 모든 측정 쌍에서 실제로 발생하는 오차는 아니다.
+
+### 강성 0의 극한과 실제 입력을 명시한다
+
+λ=0인 자유 입자는
+
+$$
+v_0=\frac{x(\Delta)-x_0}{\Delta},\quad
+|\widehat v_0-v_0|\le\frac{2\epsilon}{\Delta},\qquad
+\widehat x(t)=\left(1-\frac t\Delta\right)y_0+\frac t\Delta y_\Delta,\quad
+|\widehat x(t)-x(t)|\le\epsilon\left(\left|1-\frac t\Delta\right|+\left|\frac t\Delta\right|\right)
+\quad(\lambda=0).
+$$
+
+로 계산한다. 보간 위치 상계는 ε, t≥Δ에서는 ε(2t/Δ−1)다. 이 식을 직접 쓰면 쌍곡함수 식에서 0으로 나누는 일을 피한다.
+
+실제 입력 `[1,1,10,-10,10,10,10]`을 넣자. 초기 위치는 모두 1 m지만 속도는 −1,+1 m/s다. t=1 s에서 위치는 e⁻¹,e여서 두 번째 사진이 두 완전한 상태를 구별한다. 시간 코드를 20으로 바꾸면 t=2 s의 비교다. 자유 입자 입력 `[2,0,10,5,10,-5,20]`의 t=2 s 위치는 2,0 m이며 초기 속도 ±1/2 m/s를 복원한다.
+
+기존 실습의 입력은 여전히 초기 상태다. 측정·역산 입력이 새로 생긴 것은 아니다. 잡음 상자 역산은 별도 Python 확장으로 실행한다.
+
+### 관측 실험을 실행한다
+
+다음 표준 라이브러리 셀은 144상태와 각 상태의 네 오차 모서리, 보간·외삽, 속도 상계에 도달하는 반대 부호를 검사한다. 출력이 비교표를 재현한다. 부동소수점 허용오차로 수치 검산하며 날카로운 상계는 위 유도에서 나온다.
+
+```python
+from math import cosh, sinh, sqrt
+from itertools import product
+
+
+def position(rate, x0, v0, time):
+    return x0 + v0 * time if rate == 0 else (
+        x0 * cosh(rate * time) + v0 * sinh(rate * time) / rate)
+
+
+def infer_velocity(rate, gap, first, second):
+    if gap <= 0 or rate < 0:
+        raise ValueError('Use nonnegative rate and strictly positive time gap.')
+    return ((second - first) / gap if rate == 0 else
+            rate * (second - first * cosh(rate * gap)) / sinh(rate * gap))
+
+
+def velocity_bound(rate, gap, error):
+    return 2 * error / gap if rate == 0 else (
+        rate * error * (1 + cosh(rate * gap)) / sinh(rate * gap))
+
+
+def predict_position(rate, gap, first, second, time):
+    if rate == 0:
+        return (1 - time / gap) * first + time / gap * second
+    return (sinh(rate * (gap - time)) * first + sinh(rate * time) * second) / sinh(rate * gap)
+
+
+def position_bound(rate, gap, time, error):
+    if rate == 0:
+        return error * (abs(1 - time / gap) + abs(time / gap))
+    return error * (abs(sinh(rate * (gap - time))) + abs(sinh(rate * time))) / sinh(rate * gap)
+
+
+def observation_checks():
+    count = 0
+    for rate, gap, x0, v0 in product([0, .5, 1, 2], [.1, .5, 1, 2], [-1, 0, 1], [-1, .5, 1]):
+        last = position(rate, x0, v0, gap)
+        assert abs(infer_velocity(rate, gap, x0, last) - v0) < 2e-12
+        error = .001
+        for da, db in product([-error, error], repeat=2):
+            estimate = infer_velocity(rate, gap, x0 + da, last + db)
+            assert abs(estimate - v0) <= velocity_bound(rate, gap, error) + 2e-12
+            for time in [gap / 2, gap, gap + 1]:
+                predicted = predict_position(rate, gap, x0 + da, last + db, time)
+                actual = position(rate, x0, v0, time)
+                bound = position_bound(rate, gap, time, error)
+                assert abs(predicted - actual) <= bound + 2e-11
+                if time <= gap:
+                    assert bound <= error + 1e-15
+        count += 1
+    # Opposite signs attain the velocity bound; each bound is not merely a loose
+    # consequence of the same numerical inverse operation.
+    for gap in [.1, 1, 2]:
+        v = infer_velocity(1, gap, -.001, .001)
+        assert abs(v - velocity_bound(1, gap, .001)) < 1e-15
+        print('Gap, velocity bound, one-second extrapolation bound:', gap,
+              velocity_bound(1, gap, .001), position_bound(1, gap, gap + 1, .001))
+    print(f'{count} observation states: exact recovery and four noise corners passed')
+
+
+observation_checks()
+```
+
+### 연구 질문과 풀이
+
+1. **두 번째 사진이면 언제나 속도를 식별하는가?** 법칙과 Δ>0를 알고 정확하게 계산할 때 가능하다. 같은 시각 Δ=0에서는 불가능하다. 힘 매개변수·시간·관측 편향이 미지라면 문제가 달라진다.
+2. **완벽한 적합이 신뢰할 미래를 뜻하는가?** 아니다. 잡음 있는 두 위치도 2차원 선형 상태 공간에서는 정확히 통과하는 궤도를 정할 수 있다. 외삽 오차에는 커지는 오차 상계가 남는다.
+3. **중간 보간은 왜 각 관측 상계보다 좋을 수 있는가?** 두 관측이 같은 궤도를 제약하기 때문이다. λ>0에서는 양의 가중치 합이 1보다 작지만 외삽에는 음의 가중치가 생겨 최악 오차를 키운다.
+
+유일성과 해의 분리 조건은 [Wisconsin 미분방정식 노트](https://people.math.wisc.edu/~angenent/519.2016s/notes/uniqueness.html)를 참고한다. 위 관측 역산과 단위별 상계는 명시한 선형 힘 법칙에서 직접 유도했다.
+
 ## 해설이 있는 연습 문제
 
 1. **한 위치에서 두 미래.** m=k=1, x0=1에서 v0=−1과 v0=1을 비교하세요. **해설:** 모드 계수는 각각 (0, 1)과 (1, 0)입니다. 2초 위치는 e^(−2)와 e²이고 속도도 각각 −e^(−2)와 e²입니다. 위치만 같으며 완전한 초기 상태는 다릅니다.

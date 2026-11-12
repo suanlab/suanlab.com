@@ -104,6 +104,165 @@ A dynamics model that receives position alone may predict a conditional average 
 
 When fitting or reversing trajectories, report the state variables, observation precision, time horizon, units and norm. Compare sensitivity directions instead of reporting one universal amplification number. Independent matrix exponentials and ODE integrations validate the formulas; a small residual from the same implementation is not independent evidence of correctness.
 
+## Research extension: observe the missing velocity without overlooking prediction error
+
+### Two photographs can provide a complete state
+
+One position observation leaves velocity unknown. A second observation at a known different time can supply the missing information if the force law is known. Keep the exact ideal law m x''=kx with m>0 and k≥0; measurement bias, uncertain mass or stiffness, and timing error are not included in the calculation below.
+
+For k>0 let λ=√(k/m)>0 in s⁻¹, and let the observation gap be Δ>0 seconds. The two positions obey
+
+$$
+\begin{pmatrix}x(0)\\x(\Delta)\end{pmatrix}
+=\begin{pmatrix}1&0\\\cosh(\lambda\Delta)&\sinh(\lambda\Delta)/\lambda\end{pmatrix}
+\begin{pmatrix}x_0\\v_0\end{pmatrix},\qquad
+v_0=\lambda\frac{x(\Delta)-x_0\cosh(\lambda\Delta)}{\sinh(\lambda\Delta)}.
+$$
+
+The observation matrix has determinant sinh(λΔ)/λ>0. Thus the exact positions determine x₀ and v₀ uniquely. At Δ=0 the two observations coincide and cannot identify velocity. This is a linear observability statement for this known model, not a claim that two photographs recover an unknown force law.
+
+Do not attach a numerical condition number to this matrix without first specifying scales for position and velocity. Instead, propagate observation errors in their physical units.
+
+### Derive a sharp velocity error bound
+
+Suppose y₀=x₀+d₀ and yΔ=x(Δ)+dΔ, with independent bounds |d₀|,|dΔ|≤ε metres. Subtract the exact inversion formula from the measured one and apply the triangle inequality:
+
+$$
+|\widehat v_0-v_0|\le\lambda\epsilon\frac{1+\cosh(\lambda\Delta)}{\sinh(\lambda\Delta)}
+=\lambda\epsilon\coth(\lambda\Delta/2).
+$$
+
+Opposite error signs attain the bound, so it is sharp for the stated error box. When λΔ is small, the bound behaves like 2ε/Δ: two almost simultaneous photographs require subtracting two noisy position values. Exact invertibility does not make that subtraction reliable. The hyperbolic ratio tends to one at large gap, giving the limiting initial-velocity bound λε within this ideal model.
+
+Longer waiting also extends the time during which a real apparatus must satisfy the assumed law. These bounds do not absorb model error or certify that a quadratic unstable potential remains physically applicable at large displacement.
+
+### Interpolation and extrapolation have different uncertainty
+
+Eliminate velocity and write a position prediction directly from the two observations:
+
+$$
+\widehat x(t)=\frac{\sinh(\lambda(\Delta-t))}{\sinh(\lambda\Delta)}y_0+
+\frac{\sinh(\lambda t)}{\sinh(\lambda\Delta)}y_\Delta.
+$$
+
+For 0≤t≤Δ both coefficients are nonnegative. Their sum is cosh(λ(t−Δ/2))/cosh(λΔ/2)≤1. Therefore the interpolated position error is at most ε; at the midpoint the worst-case bound is ε/cosh(λΔ/2). Instability of the dynamics does not force every constrained interpolation error to grow.
+
+For t≥Δ the first coefficient changes sign. The sharp box-error bound becomes
+
+$$
+|\widehat x(t)-x(t)|\le\epsilon
+\frac{\sinh(\lambda(t-\Delta))+\sinh(\lambda t)}{\sinh(\lambda\Delta)}
+=\epsilon\frac{\sinh(\lambda(t-\Delta/2))}{\sinh(\lambda\Delta/2)}\qquad(t\ge\Delta).
+$$
+
+It grows with the extrapolation horizon. Fitting both observations exactly gives zero observation residual even when the future state is uncertain. A learned model can therefore fit the two images perfectly while its extrapolation remains poorly constrained.
+
+At λ=1 s⁻¹ and ε=0.001 m, extrapolating one second beyond the second observation gives:
+
+| Gap Δ (s) | Initial velocity error bound (m/s) | Position error bound at t=Δ+1 s (m) |
+|---|---:|---:|
+| 0.1 | 0.020016664 | 0.025066688 |
+| 1 | 0.002163953 | 0.004086161 |
+| 2 | 0.001313035 | 0.003086161 |
+
+![Observation spacing controls velocity recovery and future position error](/assets/learning/classical-initial-observation.en.svg)
+
+Both panels use the parameters above and logarithmic vertical axes. The upper quantity is a velocity error in m/s; the lower is a position error in m. These are worst-case bounds over the declared observation errors, not errors realized by every pair of measurements.
+
+### Keep the zero-stiffness limit and the native controls explicit
+
+At λ=0 the free-particle formulas are
+
+$$
+v_0=\frac{x(\Delta)-x_0}{\Delta},\quad
+|\widehat v_0-v_0|\le\frac{2\epsilon}{\Delta},\qquad
+\widehat x(t)=\left(1-\frac t\Delta\right)y_0+\frac t\Delta y_\Delta,\quad
+|\widehat x(t)-x(t)|\le\epsilon\left(\left|1-\frac t\Delta\right|+\left|\frac t\Delta\right|\right)
+\quad(\lambda=0).
+$$
+
+For interpolation the position bound is ε, and for t≥Δ it is ε(2t/Δ−1). Computing these formulas directly avoids division by zero in the hyperbolic expression.
+
+Use native input `[1,1,10,-10,10,10,10]`: both initial positions are 1 m, but initial velocities are −1 and +1 m/s. At t=1 s their positions are e⁻¹ and e. A second photograph distinguishes the two complete states. Change the time code to 20 to compare at t=2 s. For the free limit, `[2,0,10,5,10,-5,20]` gives positions 2 and 0 m at t=2 s, recovering velocities ±1/2 m/s.
+
+The existing experiment still accepts initial-state controls. It does not acquire new measurement or inverse-estimation inputs here. The noise-box inversion is a standalone Python extension.
+
+### Execute the observation experiment
+
+This standard-library cell checks 144 states, four error corners per state, interpolation and extrapolation, and the opposite signs that attain the velocity bound. Its printed rows reproduce the comparison table. Floating-point tolerances check the formulas numerically; the sharp bounds follow from the derivation above.
+
+```python
+from math import cosh, sinh, sqrt
+from itertools import product
+
+
+def position(rate, x0, v0, time):
+    return x0 + v0 * time if rate == 0 else (
+        x0 * cosh(rate * time) + v0 * sinh(rate * time) / rate)
+
+
+def infer_velocity(rate, gap, first, second):
+    if gap <= 0 or rate < 0:
+        raise ValueError('Use nonnegative rate and strictly positive time gap.')
+    return ((second - first) / gap if rate == 0 else
+            rate * (second - first * cosh(rate * gap)) / sinh(rate * gap))
+
+
+def velocity_bound(rate, gap, error):
+    return 2 * error / gap if rate == 0 else (
+        rate * error * (1 + cosh(rate * gap)) / sinh(rate * gap))
+
+
+def predict_position(rate, gap, first, second, time):
+    if rate == 0:
+        return (1 - time / gap) * first + time / gap * second
+    return (sinh(rate * (gap - time)) * first + sinh(rate * time) * second) / sinh(rate * gap)
+
+
+def position_bound(rate, gap, time, error):
+    if rate == 0:
+        return error * (abs(1 - time / gap) + abs(time / gap))
+    return error * (abs(sinh(rate * (gap - time))) + abs(sinh(rate * time))) / sinh(rate * gap)
+
+
+def observation_checks():
+    count = 0
+    for rate, gap, x0, v0 in product([0, .5, 1, 2], [.1, .5, 1, 2], [-1, 0, 1], [-1, .5, 1]):
+        last = position(rate, x0, v0, gap)
+        assert abs(infer_velocity(rate, gap, x0, last) - v0) < 2e-12
+        error = .001
+        for da, db in product([-error, error], repeat=2):
+            estimate = infer_velocity(rate, gap, x0 + da, last + db)
+            assert abs(estimate - v0) <= velocity_bound(rate, gap, error) + 2e-12
+            for time in [gap / 2, gap, gap + 1]:
+                predicted = predict_position(rate, gap, x0 + da, last + db, time)
+                actual = position(rate, x0, v0, time)
+                bound = position_bound(rate, gap, time, error)
+                assert abs(predicted - actual) <= bound + 2e-11
+                if time <= gap:
+                    assert bound <= error + 1e-15
+        count += 1
+    # Opposite signs attain the velocity bound; each bound is not merely a loose
+    # consequence of the same numerical inverse operation.
+    for gap in [.1, 1, 2]:
+        v = infer_velocity(1, gap, -.001, .001)
+        assert abs(v - velocity_bound(1, gap, .001)) < 1e-15
+        print('Gap, velocity bound, one-second extrapolation bound:', gap,
+              velocity_bound(1, gap, .001), position_bound(1, gap, gap + 1, .001))
+    print(f'{count} observation states: exact recovery and four noise corners passed')
+
+
+observation_checks()
+```
+
+### Research questions with worked answers
+
+1. **Does a second photograph always identify velocity?** Under the known law and known Δ>0 it does in exact arithmetic. At the same time Δ=0 it does not. Unknown force parameters, timing or observation bias change the identification problem.
+2. **Does a perfect fit imply a reliable future?** No. Two noisy positions can always define an exact fitting trajectory in this two-dimensional linear state space. The extrapolation error still follows the growing box bound.
+3. **Why can midpoint interpolation be better than either observation bound?** Both observations constrain the same trajectory. Their positive interpolation weights sum to less than one for λ>0, whereas extrapolation uses a negative weight and amplifies the worst-case error.
+
+The uniqueness and separation framework is discussed in [Wisconsin's differential-equation notes](https://people.math.wisc.edu/~angenent/519.2016s/notes/uniqueness.html). The observation inverse and unit-specific error bounds above are directly derived for this declared linear force law.
+
 ## Exercises with explained solutions
 
 1. **Two futures from one photograph.** Let m=k=1 and x0=1. Compare v0=−1 and v0=1 at t=2. **Solution:** The modal coefficients are respectively (c+, c−)=(0, 1) and (1, 0). Positions are e^(−2) and e²; velocities are −e^(−2) and e². The positions initially match, but the complete initial states do not.

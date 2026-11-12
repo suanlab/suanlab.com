@@ -108,6 +108,173 @@ c=0이면 모든 실수 x에서 F=0인 매끄러운 자유 입자 법칙이 됩�
 
 추가 예측을 하려면 독립적으로 정당화한 정규화된 힘, 나중 시각의 측정값, 확률적 선택 법칙처럼 추가 정보를 명시해야 합니다. 추가 조건은 문제를 바꿉니다. 임의의 대기 시간 선택기를 원래 뉴턴 방정식의 결론으로 소개하지 않습니다. 상태 정보의 누락, 완전한 상태에 대한 민감도, 지정한 법칙의 비유일성을 구분하는 것이 핵심입니다.
 
+## 연구 확장: 정규화는 미래를 알아내는 대신 선택할 수 있다
+
+### 같은 법칙에 가까운 두 유일한 모델을 비교한다
+
+원래 법칙 x''=12c√(max(x,0)),c>0,x(0)=x'(0)=0에는 정지 해와 모든 대기 가지 c²max(t−τ,0)⁴가 있다. 정규화를 넣으면 다른 방정식이 된다. 그 변경이 무엇을 선택하는지 보려고 √길이 단위의 ε>0를 도입한다.
+
+$$
+a_\epsilon^A(x)=12c\left(\sqrt{\max(x,0)+\epsilon^2}-\epsilon\right),\qquad
+a_\epsilon^B(x)=12c\sqrt{\max(x,0)+\epsilon^2}.
+$$
+
+앞 단원의 위치 측정 오차와 달리 이 ε는 정규화 척도다. 고정 ε에서 두 가속도는 전역 Lipschitz이고 x에 대한 기울기 상수는 6c/ε 이하로 잡는다. max(x,0) 때문에 0에서 미분이 꺾일 수 있으므로 모든 점에서 매끄럽다고 주장하지 않는다. 그래도 각각의 일차 상태 초기값 문제에는 유일한 전역 해가 있다.
+
+두 가속도는 같은 원래 가속도로 균등하게 가까워진다.
+
+$$
+\sup_{x\in\mathbb R}|a_\epsilon^{A,B}(x)-12c\sqrt{\max(x,0)}|\le12c\epsilon.
+$$
+
+고정 질량을 곱하면 힘 오차는 12mcε 이하다. ε가 0으로 갈 때 Lipschitz 상수는 균등하지 않다. 따라서 근사 법칙들이 균등하게 가까워져도 선택하는 미래는 다를 수 있다.
+
+A는 aᴬε(0)=0이므로 0 초기값의 유일한 해가 정지다. B는 aᴮε(0)=12cε>0이므로 곧바로 양의 위치로 움직인다. 초기 상태는 같지만 양의 ε마다 방정식 자체가 다르다. 둘 중 무엇을 도입할지는 모델링 근거가 필요하며 원래 방정식에서 추가 정보로 알아낸 것이 아니다.
+
+### 움직이는 근사가 어디로 가는지 증명한다
+
+B는 t>0에서 위치와 속도가 모두 양수다. 가속도에 속도를 곱해 0 초기값부터 적분하면
+
+$$
+(x')^2=16c\left[(x+\epsilon^2)^{3/2}-\epsilon^3\right],\qquad
+t_\epsilon(x)=\int_0^x\frac{dz}{4\sqrt c\sqrt{(z+\epsilon^2)^{3/2}-\epsilon^3}}.
+$$
+
+이다. 원래 즉시 출발 가지의 역시간은 t₀(x)=x^(1/4)/√c다. z=r⁴로 치환하고 a³−ε³=(a−ε)(a²+aε+ε²),a−ε=r⁴/(a+ε)를 사용하면
+
+$$
+t_\epsilon(x)=\frac1{\sqrt c}\int_0^{x^{1/4}}g_\epsilon(r)\,dr,\quad
+g_\epsilon(r)=r\sqrt{\frac{a+\epsilon}{a^2+a\epsilon+\epsilon^2}},\quad a=\sqrt{r^4+\epsilon^2}.
+$$
+
+가 된다. 인수분해한 식은 수치 계산에서도 거의 같은 두 수의 뺄셈을 피한다. r>0에서 q=ε/r²,b=√(1+q²)로 두면 g²=1/[b+q²/(b+q)]이다. b−1≤q²/2,b+q≥1이므로 대괄호와 1의 차이는 3q²/2 이하다. D≥1에서 1−1/√D≤(D−1)/2를 쓰면
+
+$$
+0\le1-g_\epsilon(r)\le\min\left(1,\frac{3\epsilon^2}{4r^4}\right),\qquad
+0\le t_0(x)-t_\epsilon(x)\le\frac54\sqrt{\frac\epsilon c}=:\alpha_\epsilon.
+$$
+
+이다. 역시간 상계는 적분을 r=√ε에서 나누어 얻는다. 앞 구간은 √ε 이하, 꼬리 상계를 무한대까지 적분한 값은 √ε/4 이하다. 모든 x≥0에서 상수 5/4를 증명한 것이며 구적 잔차를 인증 상계로 바꿔 부른 것이 아니다.
+
+증가하는 역시간에 tε(xᴮε(t))=t를 넣으면
+
+$$
+c^2t^4\le x_\epsilon^B(t)\le c^2(t+\alpha_\epsilon)^4,\qquad
+\sup_{0\le t\le T}|x_\epsilon^B(t)-c^2t^4|\le
+c^2\bigl((T+\alpha_\epsilon)^4-T^4\bigr)\longrightarrow0.
+$$
+
+이다. 따라서 B는 모든 고정된 유한 시간 구간에서 원래의 **즉시 출발** 가지로 균등 수렴한다. A는 원래의 정지 가지에 남는다. 힘을 균등하게 근사했다는 것만으로 어느 원래 미래를 고를지 정해지지 않았다.
+
+### 위치뿐 아니라 완전한 상태를 확인한다
+
+제곱근 부등식 |√x−√y|≤√|x−y|로 위치 포함 구간을 가속도 상계로 전달한다. 같은 0 초기 속도에서 가속도 차이를 적분하면
+
+$$
+D_\epsilon(T)=c^2\bigl((T+\alpha_\epsilon)^4-T^4\bigr),\quad
+A_\epsilon(T)=12c\bigl(\sqrt{D_\epsilon(T)}+\epsilon\bigr),\qquad
+\sup_{0\le t\le T}|(x_\epsilon^B)''(t)-12c^2t^2|\le A_\epsilon(T),\quad
+\sup_{0\le t\le T}|(x_\epsilon^B)'(t)-4c^2t^3|\le T A_\epsilon(T).
+$$
+
+이다. Dε,Aε가 모두 0으로 가므로 유한 구간에서 위치·속도·가속도가 함께 균등 수렴한다. 선택되는 서로 다른 극한은 실제 Newton 궤도다. c=0이면 원래 법칙과 두 정규화가 모두 0이라 정지만 선택하며 c로 나누는 식은 사용하지 않는다.
+
+명시한 SI 단위에서 c=1일 때 t=1 s의 역시간 수치 계산은 다음과 같다. 상계 열은 소수 여섯 자리에서 올림한 값이며 상계 자체는 위 공식이다.
+
+| ε (√m) | A 위치 (m) | B 위치 근삿값 (m) | B의 해석적 상계 (m) |
+|---|---:|---:|---:|
+| 0.1 | 0 | 2.325399 | 3.790106 |
+| 0.01 | 0 | 1.333797 | 1.601807 |
+| 0.001 | 0 | 1.097866 | 1.167739 |
+| 0.0001 | 0 | 1.030210 | 1.050946 |
+
+![두 정규화가 서로 다른 원래 해로 수렴하는 예](/assets/learning/classical-initial-selection.ko.svg)
+
+회색 곡선은 모든 ε에서의 A 정지 해다. 파랑 선은 원래 즉시 출발 해 t⁴다. 색칠한 영역은 ε=0.01,0.0001의 B에 대한 **해석적 포함 구간**이며 계산한 B 궤도가 아니다. 실제 초기 위치는 정확히 0이어도 t=0에서 상계는 양수일 수 있다.
+
+### 독립적인 역시간 계산을 실행한다
+
+다음 표준 라이브러리 셀은 힘 오차·48개 역시간 비교·해석 역시간 상계를 검사한다. 이어 c=1,t=1의 역시간을 이분 탐색해 표를 재현하고 4,096·8,192분할 Simpson 값을 비교한다. 수렴 대조는 수치 검사이며 엄밀한 구적 오차 포함 구간은 아니다.
+
+```python
+from math import sqrt
+from itertools import product
+
+
+def regularized_acceleration(x, epsilon, coefficient, family):
+    root = sqrt(max(x, 0) + epsilon * epsilon)
+    return 12 * coefficient * (root - epsilon if family == 'A' else root)
+
+
+def release_clock(x, epsilon, coefficient=1.0, steps=4096):
+    """Numerical time integral, after x=r^4 removes the endpoint singularity.
+
+    The algebraic factorization avoids subtracting nearly equal cubic roots.
+    Simpson comparison is a numerical check, not a certified quadrature bound.
+    """
+    if x == 0:
+        return 0.0
+    if epsilon == 0:
+        return x ** .25 / sqrt(coefficient)
+    upper = x ** .25
+
+    def integrand(r):
+        a = sqrt(r ** 4 + epsilon * epsilon)
+        return r * sqrt((a + epsilon) / (a * a + a * epsilon + epsilon * epsilon))
+
+    step = upper / steps
+    return step * (integrand(0) + integrand(upper) + sum(
+        (4 if j % 2 else 2) * integrand(j * step) for j in range(1, steps))) / (3 * sqrt(coefficient))
+
+
+def regularization_checks():
+    count = 0
+    for coefficient, epsilon in product([.5, 1, 2], [.1, .01, .001, .0001]):
+        assert regularized_acceleration(0, epsilon, coefficient, 'A') == 0
+        for x in [-1, 0, 1e-8, .001, 1, 16]:
+            original = 12 * coefficient * sqrt(max(x, 0))
+            for family in ['A', 'B']:
+                assert abs(regularized_acceleration(x, epsilon, coefficient, family) - original) <= 12 * coefficient * epsilon + 2e-13
+        for x in [.01, .1, 1, 16]:
+            t0 = release_clock(x, 0, coefficient)
+            t1 = release_clock(x, epsilon, coefficient)
+            t2 = release_clock(x, epsilon, coefficient, 8192)
+            bound = 1.25 * sqrt(epsilon / coefficient)
+            assert abs(t1 - t2) < 2e-7
+            assert -2e-12 <= t0 - t2 <= bound + 2e-12
+            count += 1
+    print(f'{count} regularized-clock comparisons passed; force errors and rest family checked')
+
+
+regularization_checks()
+for epsilon in [.1, .01, .001, .0001]:
+    alpha = 1.25 * sqrt(epsilon)
+    lo, hi = 1.0, (1 + alpha) ** 4
+    for _ in range(32):
+        mid = (lo + hi) / 2
+        if release_clock(mid, epsilon) < 1:
+            lo = mid
+        else:
+            hi = mid
+    x = (lo + hi) / 2
+    assert 1 <= x <= (1 + alpha) ** 4
+    assert abs(release_clock(x, epsilon, steps=8192) - 1) < 3e-7
+    print(epsilon, x, (1 + alpha) ** 4)
+
+```
+
+저장소의 별도 독립 DOP853 계산은 A/B 궤도와 B의 에너지 첫 적분, 위치·속도·가속도 상계를 대조한다. 명시한 정규화 방정식의 수치 검산이며 물리적으로 선호해야 할 정규화를 찾아낸 것은 아니다.
+
+실제 실습은 계속 **원래** 법칙을 표시한다. `[1,2,0,10,10]`은 t=1 s에서 즉시 출발과 1초 대기 가지를 비교해 위치 1,0 m를 준다. 조회 시간을 20으로 바꾸면 t=2 s에서 16,1 m이며 진짜 정지는 0에 남는다. 이는 원래 해다. 위 A/B 정규화는 별도 Python 모델이지 실제 대기 시간 입력에 새로 부여한 뜻이 아니다.
+
+### 연구 질문과 풀이
+
+1. **정규화 뒤 유일하면 원래 법칙도 유일한가?** 아니다. 각 ε>0가 다른 방정식이다. 명시한 A와 B 극한은 같은 초기 상태에서 서로 다른 원래 해를 선택한다.
+2. **작은 균등 힘 오차만으로 정규화를 정당화할 수 있는가?** 여기서 미래를 선택하기에는 부족하다. 두 가족 모두 그 조건을 만족한다. 어떤 변경을 택할지 추가 물리·통계 가정을 밝혀야 한다.
+3. **이 증명이 모든 대기 가지나 모든 교란을 다루는가?** 아니다. 이 A 가족의 정지와 이 B 가족의 즉시 출발을 증명했다. 두 식으로 모든 대기를 선택하거나 임의의 잡음 모델도 같은 극한을 갖는다고 주장하지 않는다.
+
+Lipschitz 가정과 유일성은 [Wisconsin 노트](https://people.math.wisc.edu/~angenent/519.2016s/notes/uniqueness.html)와 [Sutherland의 존재·유일성 설명](https://www.math.stonybrook.edu/~scott/Book331/Existence_Solutions.html)을 참고한다. 위 두 정규화·역시간 포함 구간·완전 상태 수렴 상계는 직접 유도한 예제다.
+
 ## 해설이 있는 연습 문제
 
 1. **지연된 해 대입.** c=1, τ=1에서 t=2의 x, v, a를 구하세요. **해설:** s=1이므로 각각 1, 4, 12입니다. 힘은 12m이고 ma와 같습니다. t=1에서는 세 운동학 값이 모두 0이므로 대기 가지와 접합됩니다.

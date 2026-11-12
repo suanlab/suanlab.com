@@ -104,6 +104,173 @@ A trajectory optimizer may enforce the Newton residual, the initial state and E=
 
 To make a prediction, justify additional modeling information: for example an independently motivated regularized force, a measured later state, or a stochastic law with an explicit selection mechanism. Such additions change the problem. Do not present an arbitrary solution-family selector as a consequence of the original Newton equation. Distinguish missing state information, unstable dependence on a complete state, and genuine nonuniqueness of the specified law.
 
+## Research extension: a regularization can select a future rather than reveal one
+
+### Compare two uniquely solvable approximations of the same law
+
+The original law x''=12c√(max(x,0)), c>0, with x(0)=x'(0)=0 admits rest and every delayed branch c²max(t−τ,0)⁴. Adding a regularization makes a different equation. To see what that change can select, introduce ε>0 with units square root of length:
+
+$$
+a_\epsilon^A(x)=12c\left(\sqrt{\max(x,0)+\epsilon^2}-\epsilon\right),\qquad
+a_\epsilon^B(x)=12c\sqrt{\max(x,0)+\epsilon^2}.
+$$
+
+This ε is a regularization scale, unlike the position-measurement error in the preceding lesson. Both accelerations are globally Lipschitz for fixed ε, with an x-slope bound 6c/ε. They can have a derivative corner at zero because of max(x,0); they are not asserted to be smooth everywhere. Their first-order initial-value problems nevertheless have unique global solutions.
+
+Both approximate the same original acceleration uniformly:
+
+$$
+\sup_{x\in\mathbb R}|a_\epsilon^{A,B}(x)-12c\sqrt{\max(x,0)}|\le12c\epsilon.
+$$
+
+Multiplying by the fixed mass gives a force error bound 12mcε. The Lipschitz constants are not uniform as ε tends to zero. Approximate laws can therefore be uniformly close while their selected futures differ.
+
+Family A has aᴬε(0)=0. Its unique zero-data solution stays at rest. Family B has aᴮε(0)=12cε>0, so it moves to x>0 immediately. The initial state is identical, but for every positive ε the equations themselves differ. Choosing either modification requires a modeling justification; it is not additional information deduced from the original equation.
+
+### Prove what the moving approximation approaches
+
+For B, both position and velocity are positive for t>0. Multiply acceleration by velocity and integrate from the zero initial state:
+
+$$
+(x')^2=16c\left[(x+\epsilon^2)^{3/2}-\epsilon^3\right],\qquad
+t_\epsilon(x)=\int_0^x\frac{dz}{4\sqrt c\sqrt{(z+\epsilon^2)^{3/2}-\epsilon^3}}.
+$$
+
+For the original immediate branch the inverse time is t₀(x)=x^(1/4)/√c. Make the substitution z=r⁴ and factor a³−ε³=(a−ε)(a²+aε+ε²), using a−ε=r⁴/(a+ε). The regularized clock becomes
+
+$$
+t_\epsilon(x)=\frac1{\sqrt c}\int_0^{x^{1/4}}g_\epsilon(r)\,dr,\quad
+g_\epsilon(r)=r\sqrt{\frac{a+\epsilon}{a^2+a\epsilon+\epsilon^2}},\quad a=\sqrt{r^4+\epsilon^2}.
+$$
+
+The factored expression also avoids subtracting nearly equal numbers in a numerical clock calculation. For r>0 set q=ε/r² and b=√(1+q²). Then g²=1/[b+q²/(b+q)]. Since b−1≤q²/2 and b+q≥1, the bracket differs from one by at most 3q²/2. The inequality 1−1/√D≤(D−1)/2 for D≥1 gives
+
+$$
+0\le1-g_\epsilon(r)\le\min\left(1,\frac{3\epsilon^2}{4r^4}\right),\qquad
+0\le t_0(x)-t_\epsilon(x)\le\frac54\sqrt{\frac\epsilon c}=:\alpha_\epsilon.
+$$
+
+For the clock bound, split the r integral at √ε. The first segment contributes at most √ε. Integrating the tail bound to infinity contributes at most √ε/4. This proves the constant 5/4 for every x≥0; it is an analytic bound, not a quadrature residual promoted to a certificate.
+
+Invert the increasing clock by inserting tε(xᴮε(t))=t:
+
+$$
+c^2t^4\le x_\epsilon^B(t)\le c^2(t+\alpha_\epsilon)^4,\qquad
+\sup_{0\le t\le T}|x_\epsilon^B(t)-c^2t^4|\le
+c^2\bigl((T+\alpha_\epsilon)^4-T^4\bigr)\longrightarrow0.
+$$
+
+Family B therefore converges uniformly on each fixed finite time interval to the original **immediate** branch. Family A remains on the original stationary branch. Uniform approximation of the force alone has not specified which original future should be selected.
+
+### Check the complete state, not only position
+
+The square-root inequality |√x−√y|≤√|x−y| transfers the position enclosure to an acceleration bound. Integrating the acceleration difference from equal zero initial velocities gives
+
+$$
+D_\epsilon(T)=c^2\bigl((T+\alpha_\epsilon)^4-T^4\bigr),\quad
+A_\epsilon(T)=12c\bigl(\sqrt{D_\epsilon(T)}+\epsilon\bigr),\qquad
+\sup_{0\le t\le T}|(x_\epsilon^B)''(t)-12c^2t^2|\le A_\epsilon(T),\quad
+\sup_{0\le t\le T}|(x_\epsilon^B)'(t)-4c^2t^3|\le T A_\epsilon(T).
+$$
+
+Both Dε and Aε tend to zero. Position, velocity and acceleration all converge uniformly on each finite interval, so the distinction between the selected limits concerns genuine Newtonian trajectories. At c=0 both original and regularized laws vanish and select only rest; the formulas dividing by c are not used there.
+
+For c=1 in the declared SI units, numerical clock inversion gives the following positions at t=1 s. Upper-bound entries are rounded upward to six decimals; the formula above is the bound itself.
+
+| ε (√m) | A position (m) | B position, approximate (m) | Analytic B upper bound (m) |
+|---|---:|---:|---:|
+| 0.1 | 0 | 2.325399 | 3.790106 |
+| 0.01 | 0 | 1.333797 | 1.601807 |
+| 0.001 | 0 | 1.097866 | 1.167739 |
+| 0.0001 | 0 | 1.030210 | 1.050946 |
+
+![Two regularizations converge to different original solutions](/assets/learning/classical-initial-selection.en.svg)
+
+The gray curve is A's exact stationary solution for every ε. The blue line is the original immediate solution t⁴. The colored regions are **analytic enclosures** for B at ε=0.01 and 0.0001, not computed B trajectories. At t=0 the upper enclosure can be positive even though the actual initial position is exactly zero.
+
+### Execute an independent inverse-clock calculation
+
+The standard-library cell checks the force error, 48 clock comparisons and the analytic clock bound. It then bisects the clock at c=1,t=1 to reproduce the table, comparing 4,096- and 8,192-panel Simpson evaluations. That convergence comparison is a numerical check, not a rigorous quadrature error enclosure.
+
+```python
+from math import sqrt
+from itertools import product
+
+
+def regularized_acceleration(x, epsilon, coefficient, family):
+    root = sqrt(max(x, 0) + epsilon * epsilon)
+    return 12 * coefficient * (root - epsilon if family == 'A' else root)
+
+
+def release_clock(x, epsilon, coefficient=1.0, steps=4096):
+    """Numerical time integral, after x=r^4 removes the endpoint singularity.
+
+    The algebraic factorization avoids subtracting nearly equal cubic roots.
+    Simpson comparison is a numerical check, not a certified quadrature bound.
+    """
+    if x == 0:
+        return 0.0
+    if epsilon == 0:
+        return x ** .25 / sqrt(coefficient)
+    upper = x ** .25
+
+    def integrand(r):
+        a = sqrt(r ** 4 + epsilon * epsilon)
+        return r * sqrt((a + epsilon) / (a * a + a * epsilon + epsilon * epsilon))
+
+    step = upper / steps
+    return step * (integrand(0) + integrand(upper) + sum(
+        (4 if j % 2 else 2) * integrand(j * step) for j in range(1, steps))) / (3 * sqrt(coefficient))
+
+
+def regularization_checks():
+    count = 0
+    for coefficient, epsilon in product([.5, 1, 2], [.1, .01, .001, .0001]):
+        assert regularized_acceleration(0, epsilon, coefficient, 'A') == 0
+        for x in [-1, 0, 1e-8, .001, 1, 16]:
+            original = 12 * coefficient * sqrt(max(x, 0))
+            for family in ['A', 'B']:
+                assert abs(regularized_acceleration(x, epsilon, coefficient, family) - original) <= 12 * coefficient * epsilon + 2e-13
+        for x in [.01, .1, 1, 16]:
+            t0 = release_clock(x, 0, coefficient)
+            t1 = release_clock(x, epsilon, coefficient)
+            t2 = release_clock(x, epsilon, coefficient, 8192)
+            bound = 1.25 * sqrt(epsilon / coefficient)
+            assert abs(t1 - t2) < 2e-7
+            assert -2e-12 <= t0 - t2 <= bound + 2e-12
+            count += 1
+    print(f'{count} regularized-clock comparisons passed; force errors and rest family checked')
+
+
+regularization_checks()
+for epsilon in [.1, .01, .001, .0001]:
+    alpha = 1.25 * sqrt(epsilon)
+    lo, hi = 1.0, (1 + alpha) ** 4
+    for _ in range(32):
+        mid = (lo + hi) / 2
+        if release_clock(mid, epsilon) < 1:
+            lo = mid
+        else:
+            hi = mid
+    x = (lo + hi) / 2
+    assert 1 <= x <= (1 + alpha) ** 4
+    assert abs(release_clock(x, epsilon, steps=8192) - 1) < 3e-7
+    print(epsilon, x, (1 + alpha) ** 4)
+
+```
+
+A separate independent DOP853 calculation in the repository checks A/B trajectories, B's energy first integral and the position/velocity/acceleration bounds. It is a numerical cross-check of the declared regularized equations; it does not identify a physically preferred regularization.
+
+The native experiment continues to display the **original** law. Input `[1,2,0,10,10]` compares immediate and one-second-delayed branches at t=1 s, giving positions 1 and 0 m. Changing the query time to 20 gives 16 and 1 m at t=2 s; true rest stays at zero. These are original solutions. The A/B regularizations above are separate Python models, not meanings assigned to native wait controls.
+
+### Research questions with worked answers
+
+1. **Does uniqueness after regularization prove uniqueness of the original law?** No. Each ε>0 defines a different equation. The explicit A and B limits select different original solutions with the same initial state.
+2. **Can a regularization be justified only by a small uniform force error?** That criterion is insufficient for selecting a future here. Both families satisfy it. Additional physical or statistical assumptions must distinguish the modification.
+3. **Does the proof cover all delayed branches or all perturbations?** No. It proves rest for this A family and immediate release for this B family. It does not claim that every wait is selected by these two formulas or that arbitrary noisy models share their limit.
+
+For the role of Lipschitz assumptions in uniqueness, see [Wisconsin's notes](https://people.math.wisc.edu/~angenent/519.2016s/notes/uniqueness.html) and [Sutherland's existence and uniqueness discussion](https://www.math.stonybrook.edu/~scott/Book331/Existence_Solutions.html). The two regularizations, clock enclosure and complete-state convergence bounds above are explicit derived examples.
+
 ## Exercises with explained solutions
 
 1. **Check a delayed trajectory.** Use c=1 and tau=1. Find x, v and a at t=2. **Solution:** The elapsed time is s=1, so x=1, v=4 and a=12 in their respective units. The force is 12m; hence m*a=F exactly. At t=1 all three kinematic quantities are zero, matching the waiting branch.

@@ -189,4 +189,12 @@ This extension is a direct algebraic derivation for the existing update; no new 
 3. Add a damping force $-cv$ on paper and derive $dE/dt=-cv^2$.
 4. Compare methods at the same physical final time, not merely the same number of updates.
 
+### Worked solutions for the remaining exercises
+
+**2. Double the stiffness.** For k>0 at fixed mass, $\omega=\sqrt{k/m}$ becomes $\sqrt2\,\omega$. The strict bounded-motion condition for this constant-step symplectic Euler experiment is $h\omega<2$, so the admissible upper limit for $h$ decreases by a factor $1/\sqrt2$. Equality is the defective boundary discussed above and is not a bounded stable case for the stated nonzero initial displacement.
+
+**3. Include damping on paper.** For $m\dot v=-kq-cv$, $\dot q=v$ and $c\ge0$, differentiate the same physical energy: $\dot E=mv\dot v+kq\dot q=v(-kq-cv)+kqv=-cv^2\le0$. This is a continuous damped model. The on-page experiment still computes the undamped force law; the identity does not assert an exact dissipation law for a new discrete implementation.
+
+**4. Compare a common final time.** Choose a shared $T$ and step counts $N$ with $h=T/N$. For example $T=10$ s uses 100 steps at $h=0.1$ s and 200 steps at $h=0.05$ s. Compare position, velocity and physical-energy errors against the same exact state at $T$. The current widget always takes 100 steps, so changing its $h$ also changes the final time; its two endpoint numbers alone are not this fixed-time convergence experiment.
+
 See [MIT Classical Mechanics](https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/) for forces, energy and oscillation. The numerical method and checks above are specified directly for this teaching oscillator, not a validated model of contact or rigid-body motion.

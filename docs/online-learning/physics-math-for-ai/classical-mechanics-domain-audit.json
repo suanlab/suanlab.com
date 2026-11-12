@@ -1,0 +1,773 @@
+{
+  "date": "2026-11-12",
+  "domain": "classical-mechanics",
+  "status": "original-topic-review-complete",
+  "sourceBaseCommit": "c87209e",
+  "scope": {
+    "originalTopics": 10,
+    "units": 21,
+    "bilingualManuscripts": 42,
+    "originalExercisesPerLanguage": 124,
+    "pythonCellExecutions": 42
+  },
+  "tests": {
+    "files": 23,
+    "passed": 382
+  },
+  "testFiles": [
+    "scripts/learning-foundations.test.ts",
+    "scripts/learning-mechanics-modified-energy.test.ts",
+    "scripts/learning-classical-mechanics.test.ts",
+    "scripts/learning-classical-force-frame-research.test.ts",
+    "scripts/learning-impulse-center-of-mass.test.ts",
+    "scripts/learning-classical-impulse-research.test.ts",
+    "scripts/learning-work-energy.test.ts",
+    "scripts/learning-classical-work-research.test.ts",
+    "scripts/learning-angular-momentum.test.ts",
+    "scripts/learning-classical-angular-research.test.ts",
+    "scripts/learning-conservation-laws.test.ts",
+    "scripts/learning-classical-conservation-research.test.ts",
+    "scripts/learning-friction-constraints.test.ts",
+    "scripts/learning-classical-friction-research.test.ts",
+    "scripts/learning-central-force.test.ts",
+    "scripts/learning-classical-central-research.test.ts",
+    "scripts/learning-rotation-inertia.test.ts",
+    "scripts/learning-rotation-research.test.ts",
+    "scripts/learning-rigid-contact.test.ts",
+    "scripts/learning-contact-research.test.ts",
+    "scripts/learning-initial-state-role.test.ts",
+    "scripts/learning-initial-state-research.test.ts",
+    "scripts/learning-manuscript-preservation.test.ts"
+  ],
+  "reader": {
+    "states": 147,
+    "guidedExamples": 63,
+    "explainedQuestions": 42,
+    "conceptSelections": 84,
+    "pageErrors": 0,
+    "accessibilityViolations": 0,
+    "lastTwoUnitStates": 43,
+    "seedWorkedSolutionStates": 7
+  },
+  "content": {
+    "urls": 1885,
+    "publications": 293,
+    "projects": 51
+  },
+  "export": {
+    "routes": 1893,
+    "html": 1888
+  },
+  "prerequisiteClosureCount": 156,
+  "topics": [
+    {
+      "topic": {
+        "ko": "힘·질량·가속도",
+        "en": "Force, mass and acceleration"
+      },
+      "unitIds": [
+        "vector-force-superposition-dynamics",
+        "accelerating-observer-inertial-force"
+      ],
+      "review": "같은 양의 질량·관성계에서 벡터 합력을 쓰며 가속 좌표의 관성항을 실제 상호작용과 구분한다."
+    },
+    {
+      "topic": {
+        "ko": "운동량·충격량",
+        "en": "Momentum and impulse"
+      },
+      "unitIds": [
+        "finite-force-pulse-impulse-histories",
+        "two-particle-momentum-center-of-mass"
+      ],
+      "review": "유한 펄스의 같은 충격과 다른 변위를 비교하고, 계 경계별 내력·외력 및 질량중심 수지를 구분한다."
+    },
+    {
+      "topic": {
+        "ko": "일·에너지",
+        "en": "Work and energy"
+      },
+      "unitIds": [
+        "mechanics-energy",
+        "quartic-potential-work-allowed-states",
+        "damped-oscillator-work-power-heat"
+      ],
+      "review": "수정 에너지/물리 에너지·안정/위상·허용 상태/도달 시간을 구분한다. 감쇠의 일·열 수지와 임계 근을 따로 다룬다."
+    },
+    {
+      "topic": {
+        "ko": "각운동량·토크",
+        "en": "Angular momentum and torque"
+      },
+      "unitIds": [
+        "fixed-origin-angular-momentum-torque",
+        "central-harmonic-angular-momentum-area"
+      ],
+      "review": "고정 관성 기준점의 토크·각운동량과 중심에 대한 면적 법칙을 계산하며 임의 비교점의 변화를 확인한다."
+    },
+    {
+      "topic": {
+        "ko": "보존 법칙",
+        "en": "Conservation laws"
+      },
+      "unitIds": [
+        "isolated-central-pair-conservation",
+        "gyroscopic-force-energy-momentum"
+      ],
+      "review": "중심 내부 쌍의 P,L,E와 속도에 수직인 힘의 영 일률을 구분한다. 에너지 보존만으로 벡터 운동량을 추론하지 않는다."
+    },
+    {
+      "topic": {
+        "ko": "마찰·구속",
+        "en": "Friction and constraints"
+      },
+      "unitIds": [
+        "dry-friction-stopping-release",
+        "circular-guide-reaction-work"
+      ],
+      "review": "고정 수평 법선 하중의 정지/운동 마찰과 양방향 원형 가이드를 명시한다. 마찰열·부호 있는 일·반력의 일률을 구분한다."
+    },
+    {
+      "topic": {
+        "ko": "중심력",
+        "en": "Central forces"
+      },
+      "unitIds": [
+        "inverse-square-effective-potential",
+        "elliptic-kepler-time-area"
+      ],
+      "review": "고정 원천·양의 μ·원점 특이성을 명시한다. 방사 분기와 엄격한 타원 시간 실습을 구분하며 미세 오차/포물선 극한은 별도 예제다."
+    },
+    {
+      "topic": {
+        "ko": "회전·관성텐서",
+        "en": "Rotation and inertia tensors"
+      },
+      "unitIds": [
+        "point-mass-inertia-tensor",
+        "torque-free-euler-body-lab"
+      ],
+      "review": "순간 피벗 변경이 속도장도 바꿈을 명시한다. 실현 가능한 관성·몸체/실험실 수송·중간축·자세 위상을 검증한다."
+    },
+    {
+      "topic": {
+        "ko": "강체·접촉",
+        "en": "Rigid bodies and contact"
+      },
+      "unitIds": [
+        "frictionless-rod-contact-impulse",
+        "driven-wheel-rolling-sliding"
+      ],
+      "review": "단일 법선 순간 충돌과 연속 접촉을 분리한다. grazing 식별, 정지 한계, 상대 미끄럼 열과 작은 마찰의 극한 순서를 설명한다."
+    },
+    {
+      "topic": {
+        "ko": "초기 상태의 역할",
+        "en": "Role of initial states"
+      },
+      "unitIds": [
+        "inverted-spring-initial-state-sensitivity",
+        "nonlipschitz-newton-delayed-release"
+      ],
+      "review": "완전 상태·관측 역산·단위별 오차·비유일한 원래 법칙을 구분한다. 두 Lipschitz 정규화의 위치/속도/가속도 선택 극한을 유도한다."
+    }
+  ],
+  "manuscripts": [
+    {
+      "id": "mechanics-energy",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/mechanics-energy.en.md",
+      "sha256": "d104e09aa19bf33a837f7f68ba6a0df1c86f2a95f4d9d558a2b8f4b2f63a01f2",
+      "displayedEquations": 10,
+      "pythonCells": 1,
+      "originalExercises": 4
+    },
+    {
+      "id": "mechanics-energy",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/mechanics-energy.ko.md",
+      "sha256": "900fbc0bc2f9e9af5fd1769d948cd08a041e4ecc41261f21e0fd0cc27e184d56",
+      "displayedEquations": 10,
+      "pythonCells": 1,
+      "originalExercises": 4
+    },
+    {
+      "id": "vector-force-superposition-dynamics",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/vector-force-superposition-dynamics.en.md",
+      "sha256": "a1b9bd174fe075bfb98a1c565f6c602a383727ac344430d9d26ecda7ccf07bdb",
+      "displayedEquations": 11,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "vector-force-superposition-dynamics",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/vector-force-superposition-dynamics.ko.md",
+      "sha256": "0e95e461b70c2d199105be7ed96e86e5a565bcdff5124acca523569e5529c121",
+      "displayedEquations": 11,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "accelerating-observer-inertial-force",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/accelerating-observer-inertial-force.en.md",
+      "sha256": "69c5323e19b630a7181460a6db769d8ad882709a434e4c056f3148dc6a5b75f9",
+      "displayedEquations": 16,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "accelerating-observer-inertial-force",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/accelerating-observer-inertial-force.ko.md",
+      "sha256": "27669fba99a7b6bed59c77497cff710b355da50fcc21ed469dd4d7f56f52d2a9",
+      "displayedEquations": 16,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "finite-force-pulse-impulse-histories",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/finite-force-pulse-impulse-histories.en.md",
+      "sha256": "dbb33e50f9d36920522e7763e8dac1ac87866dc2e6d28eb16920a2d744416551",
+      "displayedEquations": 16,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "finite-force-pulse-impulse-histories",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/finite-force-pulse-impulse-histories.ko.md",
+      "sha256": "26016d2fe1816811571a77d77b3f9022c1909646ab99abe34cc80102fcd304b1",
+      "displayedEquations": 16,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "two-particle-momentum-center-of-mass",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/two-particle-momentum-center-of-mass.en.md",
+      "sha256": "e439a57a9facbb862267c9dee5b5aab8ff6b3826995a58af9d7f8c68b04254a1",
+      "displayedEquations": 18,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "two-particle-momentum-center-of-mass",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/two-particle-momentum-center-of-mass.ko.md",
+      "sha256": "a81abbaeb0b3b041b37514b1dabecd805752813f2ee01d3922b115f9f6440182",
+      "displayedEquations": 18,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "quartic-potential-work-allowed-states",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/quartic-potential-work-allowed-states.en.md",
+      "sha256": "c9a86417f75c4ea8934c0d741f38b6fd6505c78b63189be4a6fa3bb02422c9a4",
+      "displayedEquations": 17,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "quartic-potential-work-allowed-states",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/quartic-potential-work-allowed-states.ko.md",
+      "sha256": "44034be0e876688317fc95e66897006b5a8321c8cbc5b3d5083ed8cca4a08537",
+      "displayedEquations": 17,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "damped-oscillator-work-power-heat",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/damped-oscillator-work-power-heat.en.md",
+      "sha256": "2502502e4851a07d206ed63889350845ba20d7932d76efddcac3d2ef82c7767b",
+      "displayedEquations": 18,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "damped-oscillator-work-power-heat",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/damped-oscillator-work-power-heat.ko.md",
+      "sha256": "f60dec70b6b558929aef71fd6a10b89975c49a7c493876c9e37abe849e58eb9d",
+      "displayedEquations": 18,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "fixed-origin-angular-momentum-torque",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/fixed-origin-angular-momentum-torque.en.md",
+      "sha256": "c02dfc35b93dac69fba285f3e19fa5c36d17ce6c3937442f51d7647edee2d10a",
+      "displayedEquations": 13,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "fixed-origin-angular-momentum-torque",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/fixed-origin-angular-momentum-torque.ko.md",
+      "sha256": "d68a238a6dfc7633efab79a2196d4800dd693afc0fcc2910638f1a658b9a2783",
+      "displayedEquations": 13,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "central-harmonic-angular-momentum-area",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/central-harmonic-angular-momentum-area.en.md",
+      "sha256": "996411ddd69c2a0ca572366635942a558fe438cbbca42225b126e1cab3cab01f",
+      "displayedEquations": 15,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "central-harmonic-angular-momentum-area",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/central-harmonic-angular-momentum-area.ko.md",
+      "sha256": "077211b2d902e4bc29751c79f846f49960526d061e19a2bb734639207fbf5520",
+      "displayedEquations": 15,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "isolated-central-pair-conservation",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/isolated-central-pair-conservation.en.md",
+      "sha256": "9ad9835ae7216e29262552788e732bed20ef4af7eb4c05be22996494e4ee0fa1",
+      "displayedEquations": 17,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "isolated-central-pair-conservation",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/isolated-central-pair-conservation.ko.md",
+      "sha256": "0806fb966a6c699b1479848e2513d22f90c585dd8beb99e3aadabe72ad5f59b6",
+      "displayedEquations": 17,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "gyroscopic-force-energy-momentum",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/gyroscopic-force-energy-momentum.en.md",
+      "sha256": "3d05e584a73683eb725b2f5468bc5266fa753bcea06338e8fff74d6f532a544c",
+      "displayedEquations": 13,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "gyroscopic-force-energy-momentum",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/gyroscopic-force-energy-momentum.ko.md",
+      "sha256": "c0e3f09f349a12e7afcbf799286f5f2322ab93d4de85e4b9da4bfbbc9bfebd29",
+      "displayedEquations": 13,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "dry-friction-stopping-release",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/dry-friction-stopping-release.en.md",
+      "sha256": "fd50f83da568e68fc1109360683b849b2fa840ff931b95d181d046981f4e98c8",
+      "displayedEquations": 14,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "dry-friction-stopping-release",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/dry-friction-stopping-release.ko.md",
+      "sha256": "28bbcdd6b34bc8cdb5c69352f79bfd807a52f1136a646e668161017b56cdb688",
+      "displayedEquations": 14,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "circular-guide-reaction-work",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/circular-guide-reaction-work.en.md",
+      "sha256": "e91b9f55d7e539b38128ae1a2ae8e4b065dad6844c8cf08412add6ad40890e38",
+      "displayedEquations": 15,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "circular-guide-reaction-work",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/circular-guide-reaction-work.ko.md",
+      "sha256": "d8180a84f26cb88cd78c49c248397bf70ee82b36966f5b767113c3a34fc6b73c",
+      "displayedEquations": 15,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "inverse-square-effective-potential",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/inverse-square-effective-potential.en.md",
+      "sha256": "15373c82a660527d61d2f3e2ab57037641c0a9774ff00676f82c083b9d8c13be",
+      "displayedEquations": 14,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "inverse-square-effective-potential",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/inverse-square-effective-potential.ko.md",
+      "sha256": "efdcf62a06f6c2e8347ff46fa0c80ecdc43d57764afb6c84733212d093f160fc",
+      "displayedEquations": 14,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "elliptic-kepler-time-area",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/elliptic-kepler-time-area.en.md",
+      "sha256": "b255162e790458c979518eeed56ccc829f0063cdee3f804b7a009d749f559bdd",
+      "displayedEquations": 15,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "elliptic-kepler-time-area",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/elliptic-kepler-time-area.ko.md",
+      "sha256": "9cb3e70c30bda58737db29770188251ea697a201a60acd64f41cac1436e569a4",
+      "displayedEquations": 15,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "point-mass-inertia-tensor",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/point-mass-inertia-tensor.en.md",
+      "sha256": "c65b4d93604a9cec5536a3a5e92189efa1db91bcbd3e625bc0a782c236af41a9",
+      "displayedEquations": 16,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "point-mass-inertia-tensor",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/point-mass-inertia-tensor.ko.md",
+      "sha256": "c77b16ef3e545f47f05e834be78116f60629ab54bc01876e6d27e1c73a387506",
+      "displayedEquations": 16,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "torque-free-euler-body-lab",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/torque-free-euler-body-lab.en.md",
+      "sha256": "cd681624f522a3944d1934b25c5f184abc41f0c0d82cc7b150ade36ec07ddfaa",
+      "displayedEquations": 21,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "torque-free-euler-body-lab",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/torque-free-euler-body-lab.ko.md",
+      "sha256": "bcd9b5b9e491f72a1c27d6bc2e98f884199bf7a35fc510221a63f9e930bb2543",
+      "displayedEquations": 21,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "frictionless-rod-contact-impulse",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/frictionless-rod-contact-impulse.en.md",
+      "sha256": "df768fff12bd9b37230a66bbc25889e6aa9256380698099ef747f8c5fe2e207f",
+      "displayedEquations": 18,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "frictionless-rod-contact-impulse",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/frictionless-rod-contact-impulse.ko.md",
+      "sha256": "edae3cf0fccda83a8922995a879f3a906e6ba17b2b0efc08ff2f83557c44fbfd",
+      "displayedEquations": 18,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "driven-wheel-rolling-sliding",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/driven-wheel-rolling-sliding.en.md",
+      "sha256": "b583d8be648b1429ce3dc5809fbeae85f810fa68e0a10813595e9111607b7d61",
+      "displayedEquations": 16,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "driven-wheel-rolling-sliding",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/driven-wheel-rolling-sliding.ko.md",
+      "sha256": "625287d3ce847ec097c0c74872563d9cfebefde44dd148f6a8d7becc141b5320",
+      "displayedEquations": 16,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "inverted-spring-initial-state-sensitivity",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/inverted-spring-initial-state-sensitivity.en.md",
+      "sha256": "818888b575c69f019041b4911aab14c68a9b485b0c1c3f37b6bc90877f5cef53",
+      "displayedEquations": 12,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "inverted-spring-initial-state-sensitivity",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/inverted-spring-initial-state-sensitivity.ko.md",
+      "sha256": "b56456581420801dcac65b2a7a615b769b3acd2f35d3e37bcc0aec7d335bba3d",
+      "displayedEquations": 12,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "nonlipschitz-newton-delayed-release",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/nonlipschitz-newton-delayed-release.en.md",
+      "sha256": "a281d5551963efb84d4d4b1da1ebbbda635b229e4865606a5424db1256892aa6",
+      "displayedEquations": 12,
+      "pythonCells": 1,
+      "originalExercises": 6
+    },
+    {
+      "id": "nonlipschitz-newton-delayed-release",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/nonlipschitz-newton-delayed-release.ko.md",
+      "sha256": "f95dd4caf17349ba5fb617973167838525709f4a79c29d386ba71e65c535adb7",
+      "displayedEquations": 12,
+      "pythonCells": 1,
+      "originalExercises": 6
+    }
+  ],
+  "assetHashes": {
+    "public/assets/learning/classical-energy-invariant.en.svg": "fd48d0493a78166b142730137bec723ae65328a497955d690bb07251c08d3d4b",
+    "public/assets/learning/classical-energy-invariant.ko.svg": "8e009a905f9a058d973e299ab2eb888456fbf28888a96b24790c64e0a27488bb",
+    "public/assets/learning/classical-force-residual.en.svg": "332114a67d77521c17b94cb1bef4d41fc647a4da3b3a032eaa096b0c83d0125f",
+    "public/assets/learning/classical-force-residual.ko.svg": "cde8490523046fa233a70b6962576f09cb01cfa81cb810d007cdb915546f1763",
+    "public/assets/learning/classical-rotating-frame.en.svg": "2a7f8ece54e5db6d10899e05056cba82ea21aee94e19d54693f9b73724658bb6",
+    "public/assets/learning/classical-rotating-frame.ko.svg": "1ac7e669754bf902d68706e42017bd0a66c80086480648b5d8cdf4af39bc9944",
+    "public/assets/learning/classical-pulse-moments.en.svg": "6d2727166f4ad4e880864e2ff341c69b5b5d3917ef54cd47914f7d50cb576bca",
+    "public/assets/learning/classical-pulse-moments.ko.svg": "5fe1007507d33ced42c799a3e5bd0924ba885572fd8152b09a5ba2f5f2c97d45",
+    "public/assets/learning/classical-center-force-identification.en.svg": "d66f4cee4ba7584f3dee5c2fd578e8f7ed1b17593f04370e5743cae8e99d068b",
+    "public/assets/learning/classical-center-force-identification.ko.svg": "aac8b50e094947d946fc18252a2a68f4cd5ca5ff4dbb19d3d47d711e298bc4be",
+    "public/assets/learning/classical-quartic-separatrix.en.svg": "be91c15b1142454130bdb6c2aaf9dadb08629b34a6c0449870c68c8e074f7be7",
+    "public/assets/learning/classical-quartic-separatrix.ko.svg": "685e45c0a79e389d4778562345bb9879fbe870c4572ff8cde19ef890930a4770",
+    "public/assets/learning/classical-damped-certificate.en.svg": "efb8eeeece11f2622b13ad638c003287a38138cd0800e7b713f860a028264388",
+    "public/assets/learning/classical-damped-certificate.ko.svg": "3533a439d809f2c85086a659a8c1bd2994fd6d65db352c4a7aa8266831a3dc48",
+    "public/assets/learning/classical-moving-reference.en.svg": "a4e00760dd7f5548fecf50fec36b57b47ad1b4eb9dce17e48ed2832da443e014",
+    "public/assets/learning/classical-moving-reference.ko.svg": "49dc0926310f6cccfe532543f50f388eac34b6a2eadd29b4b24d769149832b43",
+    "public/assets/learning/classical-harmonic-invariant-geometry.en.svg": "a291c620c90449b5386687b1bbfc2edbb9c8062134a96d3e48a5f0e48c398d6b",
+    "public/assets/learning/classical-harmonic-invariant-geometry.ko.svg": "8980fb78d76844122641519520885c24e2fb341a01482173f4cc7e63a0938800",
+    "public/assets/learning/classical-parametric-pair-work.en.svg": "1d3bad03877e4bdc7e643e4a4922d7e801a12a9bcd769c8fd0dae18cec5643ea",
+    "public/assets/learning/classical-parametric-pair-work.ko.svg": "e4797e83bd8f37d27a6bc5839625d7976164b47a94697b81317091a219816380",
+    "public/assets/learning/classical-midpoint-gyro-phase.en.svg": "ec279ee18c41a7f5449f781e3c15f4ad28dc9f33759868bd9f564f5eb2a0bde5",
+    "public/assets/learning/classical-midpoint-gyro-phase.ko.svg": "62873f60ef65385e8e739475d61e582501733172abd61917ac3eba289e0b717c",
+    "public/assets/learning/classical-friction-identification.en.svg": "9cefb8ff83803cab474ea5372c1d3f2eb8514043585f37caa6360d748c7a50c2",
+    "public/assets/learning/classical-friction-identification.ko.svg": "2fd36b1afe1a1692c47408985565d8b544a2f1c266411520698f7754d4bd4c18",
+    "public/assets/learning/classical-moving-guide-work.en.svg": "2334cb7b757e3eea8ddef727011751a2c5a98c6ec3874e9f4dfe38593c93cf69",
+    "public/assets/learning/classical-moving-guide-work.ko.svg": "0a9754323ecdb9e27b3e3e1e4365106d518560a13aac025ff9faf0ea6cb2a0e7",
+    "public/assets/learning/classical-apsis-uncertainty.en.svg": "d8ccb799457605ab2b96547ccf88116a1f0c676fe9e706670c552426562e1420",
+    "public/assets/learning/classical-apsis-uncertainty.ko.svg": "0821d61cdc1706370a432e34b443a134d60e38878bf868bafc807d1cf0b4feae",
+    "public/assets/learning/classical-kepler-passage-limit.en.svg": "53b965a703fe9831087860672a178c7ed3901458923480f9f264ed8c441a0e19",
+    "public/assets/learning/classical-kepler-passage-limit.ko.svg": "0724721a44f52b01fa7e4c29f5f478e4d9668c9e7a9125f8bd181a67a5f9e16e",
+    "public/assets/learning/classical-rotation-shapes.en.svg": "c220ea5745484d7ac5f4a1ccb06ed9a6a3d6b8625d83adc05684b34320a0fb6f",
+    "public/assets/learning/classical-rotation-shapes.ko.svg": "eefc3e9457cc60bc65de65d5bd0a0e84bf3cc20dbe854b6ac18f45d456ef2381",
+    "public/assets/learning/classical-rotation-clock.en.svg": "e90f0ca74e92e2846670facab639356136af9d596a40a6d10a8295d09b310323",
+    "public/assets/learning/classical-rotation-clock.ko.svg": "28aca5e3b9877a285f0731eb17ec90526f97330952c807d49a0c9aa84bb183d7",
+    "public/assets/learning/classical-contact-grazing.en.svg": "2a9e134fcf1e230866a72611cc8f4b4edea6109c1f39f0ddd07d0b4ba3f088cd",
+    "public/assets/learning/classical-contact-grazing.ko.svg": "03b6a9cfc780f59da76f0b74e4e4990f7f1298777f6a8f247b9e3914a1d907a1",
+    "public/assets/learning/classical-contact-friction-limit.en.svg": "90882354aa371008b8fd1e8e9da08f3f81210b2dd10ed2e1f134510cab8c070b",
+    "public/assets/learning/classical-contact-friction-limit.ko.svg": "1922ad4a0a85c62ca9a73798ab6bbd958442ab7b333a27e9af3ee76363e596e2",
+    "public/assets/learning/classical-initial-observation.en.svg": "903f448e44867eeafe1575d0bc52d8230f1ea884cfee25fb45313fd750fbe01b",
+    "public/assets/learning/classical-initial-observation.ko.svg": "f5da76ede92a768d6bc24586812dc2f949bf50bdf7c50f2c11c574b4b8e49f27",
+    "public/assets/learning/classical-initial-selection.en.svg": "0fc7aae8a97ae57c9c39598ea9a384b2dab163057f471edf31e20b9c695e2efc",
+    "public/assets/learning/classical-initial-selection.ko.svg": "b8f45fb2e42f04f3580f2ea89637723f5d0a76391e540302b17f6c1d2645c2e8"
+  },
+  "referenceChecks": [
+    {
+      "url": "https://live.ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter31.pdf",
+      "status": 200,
+      "target": "https://live.ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter31.pdf"
+    },
+    {
+      "url": "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/9579/sicm_edition_2.zip/chapter001.html",
+      "status": 200,
+      "target": "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/9579/sicm_edition_2.zip/chapter001.html"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/5b68bc0342763cf099422af5a075940a_MIT16_07F09_Lec11.pdf",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/5b68bc0342763cf099422af5a075940a_MIT16_07F09_Lec11.pdf"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/5e1d8699338146e5127080b880b906d6_MIT16_07F09_Lec28.pdf",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/5e1d8699338146e5127080b880b906d6_MIT16_07F09_Lec28.pdf"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/dd277ec654440f4c2b5b07d6c286c3fd_MIT16_07F09_Lec26.pdf",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/dd277ec654440f4c2b5b07d6c286c3fd_MIT16_07F09_Lec26.pdf"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/f5b25c0af8ec4f76776221c148ea15b3_MIT16_07F09_Lec29.pdf",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/f5b25c0af8ec4f76776221c148ea15b3_MIT16_07F09_Lec29.pdf"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/resources/mit16_07f09_lec26/",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/resources/mit16_07f09_lec26/"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/16-346-astrodynamics-fall-2008/379eae1a78cf9ad58247058dffbae3ac_lec_03.pdf",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/16-346-astrodynamics-fall-2008/379eae1a78cf9ad58247058dffbae3ac_lec_03.pdf"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-ii-second-order-constant-coefficient-linear-equations/damped-harmonic-oscillators/",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-ii-second-order-constant-coefficient-linear-equations/damped-harmonic-oscillators/"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/2-003sc-engineering-dynamics-fall-2011/pages/angular-momentum-and-torque/",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/2-003sc-engineering-dynamics-fall-2011/pages/angular-momentum-and-torque/"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter8.pdf",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter8.pdf"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-12-rotations-and-translation-rolling/",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-12-rotations-and-translation-rolling/"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/17-6-velocity-and-acceleration-of-the-center-of-mass/",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/17-6-velocity-and-acceleration-of-the-center-of-mass/"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/90510e513af27a2dde30b890a61bbcd1_ch8magneti_field.pdf",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/90510e513af27a2dde30b890a61bbcd1_ch8magneti_field.pdf"
+    },
+    {
+      "url": "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/93b6bc699c653da0efd67170a90c7c81_kepler_prob.pdf",
+      "status": 200,
+      "target": "https://ocw.mit.edu/courses/8-282j-introduction-to-astronomy-spring-2006/93b6bc699c653da0efd67170a90c7c81_kepler_prob.pdf"
+    },
+    {
+      "url": "https://people.math.wisc.edu/~angenent/519.2016s/notes/uniqueness.html",
+      "status": 200,
+      "target": "https://people.math.wisc.edu/~angenent/519.2016s/notes/uniqueness.html"
+    },
+    {
+      "url": "https://underactuated.mit.edu/multibody.html",
+      "status": 200,
+      "target": "https://underactuated.mit.edu/multibody.html"
+    },
+    {
+      "url": "https://web.mit.edu/8.01t/www/materials/Presentations/Presentations_f10/Presentation_W14D1.pdf",
+      "status": 200,
+      "target": "https://web.mit.edu/8.01t/www/materials/Presentations/Presentations_f10/Presentation_W14D1.pdf"
+    },
+    {
+      "url": "https://www.grc.nasa.gov/WWW/K-12/BGP/newton2.html",
+      "headError": "HTTP Error 500: Internal Server Error",
+      "status": 200,
+      "target": "https://www.grc.nasa.gov/WWW/K-12/BGP/newton2.html",
+      "verifiedBy": "GET"
+    },
+    {
+      "url": "https://www.math.stonybrook.edu/~scott/Book331/Existence_Solutions.html",
+      "status": 200,
+      "target": "https://www.math.stonybrook.edu/~scott/Book331/Existence_Solutions.html"
+    },
+    {
+      "url": "https://www.ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter14.pdf",
+      "status": 200,
+      "target": "https://www.ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter14.pdf"
+    },
+    {
+      "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+      "status": 200,
+      "target": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf"
+    },
+    {
+      "url": "https://www.unige.ch/~hairer/poly_geoint/week3.pdf",
+      "status": 200,
+      "target": "https://www.unige.ch/~hairer/poly_geoint/week3.pdf"
+    }
+  ],
+  "fixtureRecordCounts": {
+    "accelerating-observer-independent.json": 1298,
+    "angular-momentum-independent.json": {
+      "fixed": 480,
+      "central": 480
+    },
+    "central-force-independent.json": {
+      "radial": 700,
+      "elliptic": 160,
+      "roots": 220
+    },
+    "conservation-laws-independent.json": {
+      "pair": 384,
+      "gyro": 480
+    },
+    "friction-constraints-independent.json": {
+      "friction": 480,
+      "guide": 320
+    },
+    "impulse-center-of-mass-independent.json": {
+      "pulse": 320,
+      "pair": 960
+    },
+    "initial-state-role-independent.json": {
+      "linear": 800,
+      "linearODE": 160,
+      "delayed": 700,
+      "postReleaseODE": 180
+    },
+    "rigid-contact-independent.json": {
+      "rod": 900,
+      "wheel": 1000,
+      "ode": 180
+    },
+    "rotation-inertia-euler-independent.json": 180,
+    "rotation-inertia-tensor-independent.json": 600,
+    "vector-newton-independent.json": 722,
+    "work-energy-independent.json": {
+      "quartic": 360,
+      "damped": 536
+    }
+  },
+  "wholeCurriculumComplete": false,
+  "remainingDomains": 12,
+  "remainingOriginalTopics": 123
+}

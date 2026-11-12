@@ -1,6 +1,6 @@
 # 두 위치 관측의 복원 오차와 정규화에 의한 해 선택
 
-2026-11-12. `inverted-spring-initial-state-sensitivity`·`nonlipschitz-newton-delayed-release`의 다음 계산 기반이다. 기존 한영 본문·실제 입력·독립 참조를 읽고, 상태의 관측 가능성과 비유일한 방정식의 정규화 선택을 확장했다. **한영 학습 본문 통합 전**이므로 완료 단원 수에 추가하지 않는다. 관측 오차·동역학의 불안정성·원래 법칙의 비유일성을 구분한다.
+2026-11-12. `inverted-spring-initial-state-sensitivity`·`nonlipschitz-newton-delayed-release`의 다음 계산 기반이다. 기존 한영 본문·실제 입력·독립 참조를 읽고, 상태의 관측 가능성과 비유일한 방정식의 정규화 선택을 확장했다. 아래는 통합 전의 계산 준비 기록이다. 이후 두 단원의 한영 본문·네 공개 그림에 통합하고 고전역학 21단원·10개 원주제 종합 대조를 마쳤다. [최종 근거와 적용 범위](classical-mechanics-domain-audit.md)를 따른다. 관측 오차·동역학의 불안정성·원래 법칙의 비유일성을 구분한다.
 
 ## 1. 두 위치로 초기 속도를 정할 수 있는 조건
 
@@ -143,3 +143,7 @@ npx tsx --test scripts/learning-initial-state-role.test.ts scripts/learning-init
 다음은 기존 본문·연습을 보존한 한영 통합, 공개 그림 현지화, 실제 입력·독립 참조·최종 reader·정적 출력 검증이다. 두 단원까지 보강해도 고전역학 10개 원주제 전체의 내용·선수 연결·수치·화면 대조를 종합하기 전에는 영역 전체 완료로 표시하지 않는다. 이후 해석역학부터 남은 영역을 교육과정 순서로 진행한다. 전체 51영역·509주제 범위를 유지한다.
 
 준비 검증: 기존 선형 expm/SVD 800건·독립 Newton ODE 160건·대기 다항식 700건·양의 상태 ODE 180건과 새 실제 관측 역산·자유 입자·원래 분리 가지 입력을 포함한 **2파일·선택 테스트 28개**가 통과했다. 정규화 A/B는 기존 실습 입력이 아니며 한영 본문·reader 통합은 다음 단계다.
+
+## 후속 통합 완료
+
+한영 원고에 관측 역산·예측 오차와 정규화의 완전 상태 수렴을 통합했다. 표준 라이브러리의 독립 역시간 이분 계산으로 B의 수치 비교표를 재현한다. 공개 자산은 `public/assets/learning/classical-initial-observation.{en,ko}.svg`, `classical-initial-selection.{en,ko}.svg`다. 준비 단계의 선택 28검사와 구분해 최종 두 단원 선택 검사는 119개, 영역 종합 검사는 23파일 382개다. 최종 상태와 다음 순서는 [종합 대조](classical-mechanics-domain-audit.md)를 따른다.

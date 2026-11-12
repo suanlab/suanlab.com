@@ -2,7 +2,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const { chromium } = require('playwright');
 const AxeBuilder = require('@axe-core/playwright').default;
-const base = process.env.SUANLAB_TEST_BASE || 'http://127.0.0.1:43299';
+const base = process.env.SUANLAB_TEST_BASE || 'http://127.0.0.1:4175';
 const route = '/book/online/physics-math-for-ai/mechanics-energy/';
 const report = process.env.SUANLAB_MECHANICS_ENERGY_REPORT || '.runtime/learning/classical-energy-browser.json';
 (async () => {
@@ -11,10 +11,11 @@ const report = process.env.SUANLAB_MECHANICS_ENERGY_REPORT || '.runtime/learning
   const rows = [], errors = [];
   async function open(lang, width, dark = false) {
     const context = await browser.newContext({ viewport: { width, height: 1000 }, reducedMotion: 'reduce', colorScheme: dark ? 'dark' : 'light' });
-    await context.addInitScript(({ lang, dark }) => {
+    await context.addInitScript(({ lang, dark, origin }) => {
+      if (location.origin !== origin) return;
       localStorage.setItem('suanlab-language', lang);
       localStorage.setItem('theme', dark ? 'dark' : 'light');
-    }, { lang, dark });
+    }, { lang, dark, origin: new URL(base).origin });
     await context.route('**/*', r => new URL(r.request().url()).origin === new URL(base).origin ? r.continue() : r.abort());
     const page = await context.newPage();
     page.on('pageerror', e => errors.push(e.message));
@@ -48,6 +49,16 @@ const report = process.env.SUANLAB_MECHANICS_ENERGY_REPORT || '.runtime/learning
           await page.waitForFunction(node => node.scrollLeft > 0, await region.elementHandle());
         }
       }
+    }
+    const solutions = page.getByRole('heading', { name: lang === 'en' ? 'Worked solutions for the remaining exercises' : '나머지 연습의 해설', exact: true });
+    assert.equal(await solutions.count(), 1);
+    const labels = lang === 'en' ? ['2. Double the stiffness.', '3. Include damping on paper.', '4. Compare a common final time.'] : ['2. 강성을 두 배로 바꾸기.', '3. 종이에서 감쇠를 포함하기.', '4. 같은 최종 시간에서 비교하기.'];
+    for (const label of labels) assert.equal(await page.locator('.ai-prose strong').filter({ hasText: label }).count(), 1);
+    if (width === 320 && !dark) {
+      await solutions.scrollIntoViewIfNeeded();
+      await page.screenshot({ path: `.runtime/learning/classical-seed-solutions-${lang}.png` });
+      await page.locator('.ai-prose strong').filter({ hasText: labels[2] }).scrollIntoViewIfNeeded();
+      await page.screenshot({ path: `.runtime/learning/classical-seed-fixed-time-${lang}.png` });
     }
     const violations = (await new AxeBuilder({ page }).include('.ai-book').withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations;
     assert.deepEqual(violations.map(v => v.id), []);
