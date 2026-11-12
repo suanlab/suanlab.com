@@ -110,6 +110,127 @@ $$
 
 학습한 축약 모델에는 어떤 관측량, 주파수 대역, 경계 조건, 숨은 상태가 정의되어 있나요? 한 주파수의 V/I에 잘 맞는 모델과 넓은 대역의 기울기·공간 에너지까지 맞는 모델은 검증 범위가 다릅니다. 이 가족의 보존 잔차나 해석식 일치는 독립 인증이 아닙니다. 역방향 ODE, 공간 구적, 주파수 차분, 고정밀 기준을 별도로 대조합니다. [Haus·Melcher §14.5](https://web.mit.edu/6.013_book/www/chapter14/14.5.html)는 정현파 전송선과 종단 조건의 배경 자료입니다. 실제 손실과 켜짐 과도로 확장할 때는 새 가정과 검증이 필요합니다.
 
+## 연구 확장: 양의 모드 회로와 생략 에너지 상한
+
+### 적합한 수 하나 대신 수동 회로 만들기
+
+한 주파수에서 맞춘 커패시턴스는 입력 전류를 재현해도 저장 에너지를 놓칠 수 있습니다. 더 강한 축약 모형은 양의 인덕터·커패시터를 실제로 지정하여 단자 응답과 내부 저장을 함께 검사합니다. 기존 무손실 개방 선로와 exp(+i omega t)를 유지합니다. T는 일방향 이동 시간이며 새로운 진동 주기가 아닙니다. 아래 주파수는 개방 선로의 극점으로 보충 병렬 가지를 구분합니다. 기존 선로 실습의 새 제어가 아닙니다.
+
+$$
+T=\ell/c,\quad C_{\rm tot}=C\ell,\quad\omega_n=\frac{(2n+1)\pi}{2T},\quad a_n=\frac8{\pi^2(2n+1)^2},\quad C_n=C_{\rm tot}a_n>0,\quad L_n=\frac{1}{\omega_n^2C_n}=\frac{L\ell}{2}>0.
+$$
+
+### 선로 응답을 극점별로 분해하기
+
+cosine 무한 곱의 로그를 영점 밖에서 미분합니다. 부분 분수는 극점을 피하는 콤팩트 구간에서 수렴하며 theta=0의 연속 극한으로 양의 가중치 합을 얻습니다. 각 극점은 정적 커패시턴스의 양의 몫을 가집니다. 이는 선언한 선로 응답의 정확한 전개이며 유한 훈련 주파수에 맞춘 적합이 아닙니다. theta=0의 비는 연속 극한으로 이해하며 0을 0으로 나누는 대입이 아닙니다.
+
+$$
+\cos\theta=\prod_{n=0}^\infty\left(1-\frac{4\theta^2}{(2n+1)^2\pi^2}\right),\qquad\frac{\tan\theta}{\theta}=\sum_{n=0}^\infty\frac{a_n}{1-(\omega/\omega_n)^2},\qquad\sum_{n=0}^\infty a_n=1,\quad\theta=\omega T.
+$$
+
+### 각 항을 직렬 LC 가지로 구현하기
+
+양의 주파수에서 직렬 인덕터·커패시터의 어드미턴스는 아래 식입니다. 가지 인덕턴스는 모두 전체 선로 인덕턴스의 절반이고 커패시턴스는 모드 번호에 따라 줄어듭니다. 병렬로 놓으면 전류가 더해집니다. 가지 공진 위에서는 서셉턴스가 음이어도 소자와 에너지는 양수입니다. 음의 정전 커패시터를 만들어내지 않고 유도성 응답을 수동적으로 구현합니다. 정확한 극점에서는 원래의 호환성 구분이 계속 필요합니다.
+
+$$
+Y(\omega)=\sum_{n=0}^\infty Y_n(\omega),\qquad Y_n=\frac{i\omega C_n}{1-\omega^2L_nC_n}=\frac{1}{i\omega L_n+(i\omega C_n)^{-1}}\quad(\omega>0).
+$$
+
+### 생략한 정적 커패시턴스 유지하기
+
+N개 가지를 유지하고 생략한 가지의 정적 가중치 합을 커패시터 하나로 대체합니다. N=0은 원래의 단일 커패시터 Ctot입니다. 유한 N의 잔여 커패시터는 양수여서 저주파 커패시턴스와 음이 아닌 저장량을 유지합니다. 모든 생략 공진과 가능한 내부 초기 상태를 유지하는 것은 아닙니다. N은 동적 LC 가지 수이고 잔여 커패시터는 별도임을 명시합니다. 정적 접합을 추가 진동 모드를 해상한 것으로 세면 안 됩니다.
+
+$$
+C_{\rm tail}=C_{\rm tot}-\sum_{n=0}^{N-1}C_n>0,\qquad Y_N=i\omega C_{\rm tail}+\sum_{n=0}^{N-1}\frac{i\omega C_n}{1-x_n},\qquad x_n=(\omega/\omega_n)^2.
+$$
+
+### 가지 변수에서 저장량 계산하기
+
+같은 단자 전압 Vin으로 유지한 가지를 풉니다. 인덕터에 전압 일부가 걸리므로 가지 커패시터 전압은 일반적으로 Vin과 다릅니다. 그 전압과 전류로 두 에너지 항을 따로 계산하면 극점 양쪽에서 합은 양수입니다. phasor 평균의 계수는 1/2이 아닌 1/4입니다. 공진 근처에서는 가지 상태가 클 수 있으므로 작은 단자 적합 오차가 개별 장·가지 상태의 오차도 제한하려면 그 대상을 검증에 포함해야 합니다.
+
+$$
+\widehat V_{C,n}=\frac{V_{in}}{1-x_n},\quad\widehat I_n=i\omega C_n\widehat V_{C,n},\quad V_{in}=\widehat V_{C,n}+i\omega L_n\widehat I_n,\qquad\overline U_n=\tfrac14 C_n|\widehat V_{C,n}|^2+\tfrac14 L_n|\widehat I_n|^2=\frac{|V_{in}|^2 C_n}{4}\frac{1+x_n}{(1-x_n)^2}.
+$$
+
+### 명시적 저장 모형으로 에너지 미분 복원하기
+
+잔여 커패시터와 가지 에너지를 더합니다. 각 서셉턴스를 주파수 미분해도 아래와 같은 결과입니다. 따라서 B/omega를 보통 커패시터로 간주하는 대신 지정한 양의 저장 소자로 응답 미분의 에너지 의미를 설명합니다. 항등식은 선택한 무손실 정현파 해에 대한 것입니다. 저항이 없어 임의 스위칭 과도가 사라지지 않으며 주파수 적합만으로 자유 진동의 초기 진폭은 정해지지 않습니다.
+
+$$
+Y_N=iB_N,\qquad\frac{dB_N}{d\omega}=C_{\rm tail}+\sum_{n=0}^{N-1}C_n\frac{1+x_n}{(1-x_n)^2}>0,\qquad\overline U_N=\frac{|V_{in}|^2}{4}\frac{dB_N}{d\omega}.
+$$
+
+### 유지한 극점 위에서 생략 응답 제한하기
+
+주파수는 첫 생략 극점 아래이며 모든 유지 극점을 피한다고 가정합니다. 생략한 x_n은 0~rho 제곱이고 정적 커패시터 항을 빼면 음이 아닌 증가 함수 x_n/(1−x_n)이 남습니다. 양의 생략 커패시턴스로 가중하여 더하면 상한입니다. 평가점이 극점을 피하면 일부 유지 극점 위의 대역도 가능합니다. 조건은 생략 모드에 대한 것입니다. 첫 생략 극점을 통과하는 균일 상한이 아니며 특이 주파수를 근처 값으로 자르는 근거도 아닙니다.
+
+$$
+0\le\omega<\omega_N,\quad\rho=\omega/\omega_N<1:\qquad B-B_N=\omega\sum_{n=N}^\infty C_n\frac{x_n}{1-x_n},\qquad 0\le B-B_N\le\omega C_{\rm tail}\frac{\rho^2}{1-\rho^2}.
+$$
+
+### 단자 오차와 별도로 에너지 제한하기
+
+생략 가지의 미분에서 정적 항을 빼면 x_n(3−x_n)/(1−x_n) 제곱이며 1 아래에서 음이 아닌 증가 함수입니다. 에너지 상한은 생략 극점까지의 거리에 대해 단자 상한과 다른 의존성을 가집니다. 목표 주파수 대역의 두 허용오차를 함께 만족하도록 모드 수를 고릅니다. 이는 지정한 정확 선로·가지 가중치의 해석 상한입니다. 산술·측정 매개변수 오차·손실·생략한 케이블 기하는 추가 문제입니다.
+
+$$
+\frac{dB}{d\omega}-\frac{dB_N}{d\omega}=\sum_{n=N}^\infty C_n\frac{x_n(3-x_n)}{(1-x_n)^2},\qquad 0\le\overline U-\overline U_N\le\frac{|V_{in}|^2 C_{\rm tail}}4\frac{\rho^2(3-\rho^2)}{(1-\rho^2)^2}.
+$$
+
+### 무차원 비교 실행하기
+
+표는 전기적 길이 theta=1에서 유지 가지 0·1·2·4개를 비교합니다. 단자 오차와 그 상한, 에너지 오차와 별도 상한을 보입니다. 아래 기준 척도로 나누므로 SI 커패시턴스가 작다고 큰 상대 에너지 오차가 작은 절대 잔차로 숨지 않습니다. 코드는 가지 합을 계산한 뒤 tan·sec 제곱과 비교합니다. 독립 복소 임피던스 풀이와 양의 커패시터·인덕터 에너지 합도 다른 수치 경로입니다. 어느 경로도 생략 모드 상한의 유도를 대신하지 않습니다.
+
+$$
+e_B=\frac{B-B_N}{\omega C_{\rm tot}},\qquad e_U=\frac{\overline U-\overline U_N}{C_{\rm tot}|V_{in}|^2/4}\qquad(\omega>0,\ |V_{in}|>0).
+$$
+
+### DC·극점·초기 상태의 의미 보존하기
+
+정확한 DC의 선택된 정적 가지 상태는 전류 0·전체 커패시턴스 Ctot입니다. 비영 주파수의 cosine을 완전 주기 평균한 뒤 주파수를 0으로 보내면 정적 에너지의 절반입니다. 정확한 유지 극점에서 비영 단자 구동은 유한 조화 해를 주지 못하고 영 구동은 자유 공진 진폭을 허용합니다. 반올림한 유한 위상은 다른 입력입니다. 검산기가 조건이 나쁜 비교를 거부할 수 있지만 이를 새 정확 물리 극점으로 선언하지 않습니다. 기존 상징적 극점·DC 제어의 의미를 유지합니다.
+
+$$
+U_{N,DC}=\tfrac12 C_{\rm tot}|V_{in}|^2,\qquad\lim_{\omega\to0^+}\overline U_N=\tfrac14 C_{\rm tot}|V_{in}|^2.
+$$
+
+| N | e_B | e_B 상한 | e_U | e_U 상한 |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 0.55740772 | 0.68147693 | 2.42551882 | 2.97325241 |
+| 1.00000000 | 0.00502333 | 0.00893262 | 0.01549119 | 0.02764029 |
+| 2.00000000 | 0.00077639 | 0.00163743 | 0.00234983 | 0.00496624 |
+| 4.00000000 | 0.00010414 | 0.00025346 | 0.00031319 | 0.00076292 |
+
+```python
+from math import pi, tan, cos, fsum
+# theta=omega*T=1; report dimensionless errors, not raw tiny SI energies.
+theta = 1.0
+for count in [0, 1, 2, 4]:
+    weights = [8/(pi*pi*(2*n+1)**2) for n in range(count)]
+    poles = [(2*n+1)*pi/2 for n in range(count)]
+    tail = 1-fsum(weights)
+    x = [(theta/p)**2 for p in poles]
+    ratio = tail+fsum(a/(1-z) for a, z in zip(weights, x))
+    slope = tail+fsum(a*(1+z)/(1-z)**2 for a, z in zip(weights, x))
+    rho2 = (theta/((2*count+1)*pi/2))**2
+    port_error = tan(theta)/theta-ratio
+    port_bound = tail*rho2/(1-rho2)
+    energy_error = 1/cos(theta)**2-slope
+    energy_bound = tail*rho2*(3-rho2)/(1-rho2)**2
+    values = [count, port_error, port_bound, energy_error, energy_bound]
+    print(" ".join(f"{value:.8f}" for value in values))
+```
+
+[NIST DLMF 4.22.2절](https://dlmf.nist.gov/4.22)은 cosine 무한 곱, [Haus·Melcher 14.5절](https://web.mit.edu/6.013_book/www/chapter14/14.5.html)은 정현파 선로·과도 응답의 배경입니다. 양의 가지 구현·서로 다른 절단 상한은 선언한 선로에서 직접 유도합니다.
+
+![양의 모드 절단·단자와 에너지 오차·생략 꼬리 상한](/assets/learning/electromagnetism-positive-modal-line-reduction.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**극점 위의 음의 B/omega는 음의 물리 커패시턴스를 요구하는가?** **답:** 아니다. 양의 직렬 LC 가지들의 병렬망도 그 주파수에서 유도성을 가지며 양의 저장 에너지를 유지한다.
+
+**모드를 자른 뒤 잔여 커패시터를 유지하는 이유는?** **답:** 생략한 양의 정적 커패시턴스를 보존한다. 생략 극점은 재현하지 않으므로 주파수·에너지 오차의 별도 상한이 필요하다.
+
+**작은 단자 상한이 같은 에너지 상한을 보장하는가?** **답:** 아니다. 미분 오차에는 표시한 극점 거리 인자가 추가된다. 두 목표를 함께 기준으로 모드 수를 정해야 한다.
+
 ## 풀이로 확인하기
 
 ### 연습 1

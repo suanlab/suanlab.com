@@ -110,6 +110,127 @@ $$
 
 When learning a reduced model, specify the observation, frequency band, boundary conditions, and hidden state. A model fitted to V/I at one frequency has a different validation scope from one predicting broadband slopes and spatial storage. Agreement between formulas from the same family is not independent certification. Compare reverse ODE integration, spatial quadrature, frequency differences, and high-precision references separately. [Haus and Melcher §14.5](https://web.mit.edu/6.013_book/www/chapter14/14.5.html) supplies background on sinusoidal transmission lines and terminations. Adding loss or switch-on transients requires new assumptions and validation.
 
+## Research extension: positive modal circuits and omitted-energy bounds
+
+### Replace a fitted number by a passive network
+
+A capacitance fitted at one frequency can reproduce input current yet miss stored energy. A stronger reduced model specifies actual positive inductors and capacitors whose port response and internal storage can both be checked. Keep the original lossless open line and exp(+i omega t) convention. Let T be the one-way travel time, not a new oscillator period. The frequencies below are its open-line poles. They label the proposed parallel branches; they are not new controls in the native line lab.
+
+$$
+T=\ell/c,\quad C_{\rm tot}=C\ell,\quad\omega_n=\frac{(2n+1)\pi}{2T},\quad a_n=\frac8{\pi^2(2n+1)^2},\quad C_n=C_{\rm tot}a_n>0,\quad L_n=\frac{1}{\omega_n^2C_n}=\frac{L\ell}{2}>0.
+$$
+
+### Resolve the line response into poles
+
+Use the infinite product for cosine and differentiate its logarithm away from its zeros. The resulting partial fractions converge on compact intervals avoiding the poles; taking the continuous limit at theta=0 gives the sum of positive weights. Each pole therefore contributes a positive share of the static capacitance. The expansion is an exact statement about this declared line response, not a fit to a finite set of training frequencies. The quotient at theta=0 is understood as its continuous limit, not an evaluation of zero divided by zero.
+
+$$
+\cos\theta=\prod_{n=0}^\infty\left(1-\frac{4\theta^2}{(2n+1)^2\pi^2}\right),\qquad\frac{\tan\theta}{\theta}=\sum_{n=0}^\infty\frac{a_n}{1-(\omega/\omega_n)^2},\qquad\sum_{n=0}^\infty a_n=1,\quad\theta=\omega T.
+$$
+
+### Realize each term with a series LC branch
+
+For positive frequency, the admittance of an inductor and capacitor in series has the displayed form. All branch inductances happen to equal one-half the total line inductance, while their capacitances decrease with mode index. Put these branches in parallel so their currents add. Above a branch resonance its susceptance can be negative even though both elements and its energy are positive. This gives a concrete passive realization of an inductive response without inventing a negative electrostatic capacitor. Exact poles still need the original compatibility distinction.
+
+$$
+Y(\omega)=\sum_{n=0}^\infty Y_n(\omega),\qquad Y_n=\frac{i\omega C_n}{1-\omega^2L_nC_n}=\frac{1}{i\omega L_n+(i\omega C_n)^{-1}}\quad(\omega>0).
+$$
+
+### Keep the omitted static capacitance
+
+Retain N branches and replace the omitted branches by one capacitor equal to their total static weight. N=0 recovers the original single capacitor Ctot. Every finite N has a positive residual capacitor, so this truncation preserves both low-frequency capacitance and nonnegative storage. It does not retain every omitted resonance or every possible internal initial state. Specify N as the number of dynamic LC branches; the residual capacitor is additional. This distinction prevents counting static matching as an extra resolved oscillation mode.
+
+$$
+C_{\rm tail}=C_{\rm tot}-\sum_{n=0}^{N-1}C_n>0,\qquad Y_N=i\omega C_{\rm tail}+\sum_{n=0}^{N-1}\frac{i\omega C_n}{1-x_n},\qquad x_n=(\omega/\omega_n)^2.
+$$
+
+### Calculate storage from the branch variables
+
+Solve a retained branch with the same terminal voltage Vin. Its capacitor voltage generally differs from Vin because part of the voltage lies across its inductor. Use that capacitor voltage and its current to calculate the two stored-energy terms separately. Their sum is positive on either side of a pole. The phasor averages contain one-quarter, not one-half. Near resonance these branch states can be large; a small port-fit error does not bound each field or branch state unless that is included in the validation target.
+
+$$
+\widehat V_{C,n}=\frac{V_{in}}{1-x_n},\quad\widehat I_n=i\omega C_n\widehat V_{C,n},\quad V_{in}=\widehat V_{C,n}+i\omega L_n\widehat I_n,\qquad\overline U_n=\tfrac14 C_n|\widehat V_{C,n}|^2+\tfrac14 L_n|\widehat I_n|^2=\frac{|V_{in}|^2 C_n}{4}\frac{1+x_n}{(1-x_n)^2}.
+$$
+
+### Recover the energy derivative through an explicit model
+
+Add the residual capacitor energy and all branch energies. Differentiating the branch susceptances gives exactly the same result below. This now explains the response-derivative energy relation using specified positive storage elements, rather than assigning the fitted B/omega to an ordinary capacitor. The identity is for the selected lossless sinusoidal solution. There is no resistor to make arbitrary switch-on transients decay, and a frequency-domain fit alone does not select the initial amplitudes of free oscillations.
+
+$$
+Y_N=iB_N,\qquad\frac{dB_N}{d\omega}=C_{\rm tail}+\sum_{n=0}^{N-1}C_n\frac{1+x_n}{(1-x_n)^2}>0,\qquad\overline U_N=\frac{|V_{in}|^2}{4}\frac{dB_N}{d\omega}.
+$$
+
+### Bound the response omitted above the retained poles
+
+Assume frequency is below the first omitted pole and avoids every retained pole. Each omitted x_n is then between zero and rho squared. Subtracting its static capacitor term leaves x_n/(1−x_n), a nonnegative increasing function. Sum with the positive omitted capacitances to obtain the bound. A band may lie above some retained poles if the evaluation points avoid them; the condition concerns the omitted modes. The bound is not uniform through the first omitted pole and does not justify clipping a singular frequency to a nearby one.
+
+$$
+0\le\omega<\omega_N,\quad\rho=\omega/\omega_N<1:\qquad B-B_N=\omega\sum_{n=N}^\infty C_n\frac{x_n}{1-x_n},\qquad 0\le B-B_N\le\omega C_{\rm tail}\frac{\rho^2}{1-\rho^2}.
+$$
+
+### Bound energy separately from terminal error
+
+The derivative of an omitted branch minus its static contribution is x_n(3−x_n)/(1−x_n) squared. This is nonnegative and increasing below one. The resulting energy bound has a different dependence on distance to the omitted pole than the response bound. Select enough modes for both target tolerances over the intended frequency band. These are analytic bounds for the exact specified line and exact branch weights; arithmetic, measured-parameter error, loss and unmodeled cable geometry are additional questions.
+
+$$
+\frac{dB}{d\omega}-\frac{dB_N}{d\omega}=\sum_{n=N}^\infty C_n\frac{x_n(3-x_n)}{(1-x_n)^2},\qquad 0\le\overline U-\overline U_N\le\frac{|V_{in}|^2 C_{\rm tail}}4\frac{\rho^2(3-\rho^2)}{(1-\rho^2)^2}.
+$$
+
+### Execute a dimensionless comparison
+
+The table fixes electrical length theta=1 and compares zero, one, two and four retained branches. It reports the terminal error and its upper bound, then the energy error and its own upper bound. Both use the reference scales below, so a tiny SI capacitance cannot make a large relative energy error look like a good absolute residual. The code computes branch sums before comparing with tan and sec squared. Independent complex-impedance branch solves and positive capacitor/inductor energy sums provide another numerical route. Neither route replaces the derivation of the omitted-mode bounds.
+
+$$
+e_B=\frac{B-B_N}{\omega C_{\rm tot}},\qquad e_U=\frac{\overline U-\overline U_N}{C_{\rm tot}|V_{in}|^2/4}\qquad(\omega>0,\ |V_{in}|>0).
+$$
+
+### Preserve DC, poles and initial-state semantics
+
+At exact DC the selected static branch state has zero currents and total capacitance Ctot. Averaging a nonzero-frequency cosine over full cycles and then taking frequency to zero gives half that static energy. At an exact retained pole a nonzero terminal drive has no finite harmonic solution, while zero drive permits a free resonant amplitude. A rounded finite phase near a pole is a different input; a verifier may decline an ill-conditioned comparison without declaring a new exact physical pole. The native symbolic-pole and DC controls keep their original meanings.
+
+$$
+U_{N,DC}=\tfrac12 C_{\rm tot}|V_{in}|^2,\qquad\lim_{\omega\to0^+}\overline U_N=\tfrac14 C_{\rm tot}|V_{in}|^2.
+$$
+
+| N | e_B | bound on e_B | e_U | bound on e_U |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 0.55740772 | 0.68147693 | 2.42551882 | 2.97325241 |
+| 1.00000000 | 0.00502333 | 0.00893262 | 0.01549119 | 0.02764029 |
+| 2.00000000 | 0.00077639 | 0.00163743 | 0.00234983 | 0.00496624 |
+| 4.00000000 | 0.00010414 | 0.00025346 | 0.00031319 | 0.00076292 |
+
+```python
+from math import pi, tan, cos, fsum
+# theta=omega*T=1; report dimensionless errors, not raw tiny SI energies.
+theta = 1.0
+for count in [0, 1, 2, 4]:
+    weights = [8/(pi*pi*(2*n+1)**2) for n in range(count)]
+    poles = [(2*n+1)*pi/2 for n in range(count)]
+    tail = 1-fsum(weights)
+    x = [(theta/p)**2 for p in poles]
+    ratio = tail+fsum(a/(1-z) for a, z in zip(weights, x))
+    slope = tail+fsum(a*(1+z)/(1-z)**2 for a, z in zip(weights, x))
+    rho2 = (theta/((2*count+1)*pi/2))**2
+    port_error = tan(theta)/theta-ratio
+    port_bound = tail*rho2/(1-rho2)
+    energy_error = 1/cos(theta)**2-slope
+    energy_bound = tail*rho2*(3-rho2)/(1-rho2)**2
+    values = [count, port_error, port_bound, energy_error, energy_bound]
+    print(" ".join(f"{value:.8f}" for value in values))
+```
+
+[NIST DLMF §4.22.2](https://dlmf.nist.gov/4.22) gives the cosine product; [Haus–Melcher §14.5](https://web.mit.edu/6.013_book/www/chapter14/14.5.html) supplies the sinusoidal line and transient context. The positive branch realization and the separate truncation bounds are derived here for the stated line.
+
+![Positive modal truncation, separate response and energy errors, and tail bounds](/assets/learning/electromagnetism-positive-modal-line-reduction.en.svg)
+
+### Research questions with explanations
+
+**Can a negative fitted B/omega above a pole require negative physical capacitance?** **Answer:** No. A parallel network of positive series LC branches can be inductive at that frequency while retaining positive stored energy.
+
+**Why keep a residual capacitor after truncating modes?** **Answer:** It preserves the positive omitted static capacitance. It does not reproduce the omitted poles, whose frequency and energy errors need separate bounds.
+
+**Does a small terminal bound guarantee the same energy bound?** **Answer:** No. The slope error has the additional distance-to-pole factors displayed above. Choose the mode count against both targets.
+
 ## Check your understanding with worked exercises
 
 ### Exercise 1

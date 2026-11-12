@@ -116,6 +116,134 @@ $$
 
 유효 매질을 학습한다면 낮은 주파수의 분산, 유한 적층의 R/T, 내부장, 에너지 흐름 중 무엇을 목표로 하는지 정하세요. 같은 평균 ε를 가진 구조도 고주파와 경계에서 다르게 보일 수 있습니다. 데이터 분할도 주파수·층 대비·두께·적층 수를 구분해야 합니다. [MIT OCW Lecture 23](https://ocw.mit.edu/courses/3-024-electronic-optical-and-magnetic-properties-of-materials-spring-2013/resources/mit3_024s13_2012lec23/)는 전달행렬과 주기 구조의 배경 자료입니다. 여기서 다룬 양의 무손실 수직 입사 가족을 넘어설 때는 구성식·편광·경계와 독립 기준을 다시 정해야 합니다.
 
+## 연구 확장: 벌크 닮음과 경계 위상
+
+### 단위 셀 비교 전에 상태를 고정하기
+
+양의 무손실 유전체·수직 입사·양쪽 진공 포트와 exp(−i omega t)를 유지합니다. 접선 상태는 E와 Zref H이며 개별 전진파 진폭이 아닙니다. 층 생성자는 Maxwell 식에서 직접 나옵니다. 행렬은 왼쪽 상태를 오른쪽으로 보내므로 먼저 만나는 재료가 곱의 오른쪽에 있습니다. 이 약속이 복소 반사 위상을 정합니다. 연구 계산도 기존 실습의 경계 상태를 쓰며 새 물질 결합 제어를 뜻하지 않습니다.
+
+$$
+A_j=\begin{pmatrix}0&1\\\epsilon_j&0\end{pmatrix},\quad M_1=e^{i\Omega f A_1},\quad M_2=e^{i\Omega(1-f)A_2},\quad M=M_2M_1,\qquad\psi=(E_y,Z_{ref}H_z)^T.
+$$
+
+### 순서 반전은 벌크 고윳값을 정확히 보존한다
+
+두 층을 뒤집으면 M2 M1이 M1 M2가 됩니다. 닮음 변환으로 이 가족의 모든 주파수에서 trace·determinant·Bloch 고윳값이 같습니다. 장파장 평균만 비교하는 것보다 강한 결과입니다. 그러나 닮음은 다른 절단 위치의 상태로 변환합니다. 유한 장치는 실제 입구·출구 경계가 정해져 있고 재료 순서를 바꾼다고 경계 벡터가 자동 변환되지는 않습니다. 벌크 동등성만으로 모든 유한 장치 관측을 결정할 수 없습니다.
+
+$$
+M_{rev}=M_1M_2=M_1MM_1^{-1},\qquad\operatorname{tr}M_{rev}=\operatorname{tr}M,\qquad\det M_{rev}=\det M=1.
+$$
+
+### 유한 적층의 대각 교환 추적하기
+
+개별 층의 두 대각 원소는 같습니다. 이 실수 무손실 구조의 행렬은 대각을 교환하면 비대각을 유지하면서 곱 순서를 뒤집습니다. N개 셀의 모든 층에 적용하면 아래 행렬입니다. 같은 진공 외부에서 전체 재료 순서를 뒤집는 경우입니다. 임의 층 순열로 대체하면 trace·전력 스펙트럼도 달라질 수 있습니다. N=0은 공통 항등행렬과 빈 진공 적층입니다.
+
+$$
+M^N=\begin{pmatrix}a&i b\\i c&d\end{pmatrix},\qquad M_{rev}^N=\begin{pmatrix}d&i b\\i c&a\end{pmatrix},\qquad a,b,c,d\in\mathbb R,\quad ad+bc=1.
+$$
+
+### 두 진공 경계를 풀기
+
+입구 벡터 (1+r,1−r), 출구 벡터 (t,t)에서 미지수 두 개를 소거하면 공통 분모와 반사 분자가 나옵니다. b·c는 실수 행렬 계수이며 자기 선속이나 파동 진폭이 아닙니다. 기준 평면은 대응하는 실제 입구·출구 면입니다. 기준 평면 이동만으로도 반사 위상이 추가될 수 있으므로 자료를 비교하기 전에 약속을 기록합니다. 독립 2×2 경계 풀이로도 같은 계산을 할 수 있습니다.
+
+$$
+\mathcal D=a+d-i(b+c),\qquad r=\frac{d-a+i(c-b)}{\mathcal D},\qquad t=\frac2{\mathcal D},\qquad r_{rev}=\frac{a-d+i(c-b)}{\mathcal D}.
+$$
+
+### 같은 전력에 다른 위상이 숨어 있다
+
+반전은 반사 분자의 실수부 부호를 바꾸고 허수부를 유지합니다. 따라서 크기 제곱과 투과 진폭은 같습니다. 복소 반사 진폭은 일반적으로 달라 위상 민감 측정은 R·T만으로 못 구분하는 순서를 구분합니다. r=0에서는 위상이 정의되지 않으므로 없는 반사장에 측정 위상을 주지 않습니다. 그림은 표시한 가장 작은 양의 주파수에서 시작하는 연속 반사 위상 가지를 따릅니다. Bloch 고윳값의 위상 펼침과는 별개입니다. 같은 전력이라는 명제는 이 상반·무손실 가족과 동일한 외부 포트를 가정하며 임의 손실·다른 포트 구조에 대한 주장이 아닙니다.
+
+$$
+t_{rev}=t,\qquad|r_{rev}|^2=|r|^2,\qquad R+T=1,\qquad r_{rev}-r=\frac{2(a-d)}{\mathcal D}.
+$$
+
+### 평균 생성자가 놓치는 첫 항 찾기
+
+Omega=0 근처에서 두 지수를 전개하고 log(I+X)를 전개합니다. 첫 항은 평균 생성자이며 순서는 이차 commutator에서 처음 나타납니다. commutator는 대각이며 재료 대비에 비례하고 반전하면 부호가 바뀝니다. 셀 원점 변환에 따라 바뀌므로 유일한 등방성 물성으로 부르면 안 됩니다. 여기의 로그는 항등행렬 근처 해석 가지이며 원래의 전역 Bloch 위상 펼침 문제를 풀지는 않습니다.
+
+$$
+\overline A=fA_1+(1-f)A_2,\quad[A_2,A_1]=(\epsilon_1-\epsilon_2)\begin{pmatrix}1&0\\0&-1\end{pmatrix},\qquad\log M=i\Omega\overline A-\frac{\Omega^2f(1-f)}2[A_2,A_1]+O(\Omega^3).
+$$
+
+### commutator와 관측 대비 연결하기
+
+한 셀을 직접 곱하면 정확한 대각 차이가 나옵니다. 주도항은 주파수의 이차입니다. r_rev−r에 대입하면 Bloch trace를 고정하면서 순서가 복소 반사에 처음 영향을 주는 방식을 봅니다. 동일 재료·없는 층에서는 정확히 사라집니다. 작은 이차 대비가 보편 유한 적층 오차 상한은 아닙니다. 고정 N의 저주파 계수·나머지는 해당 영역에서 해석해야 하고 스펙트럼 특징 근처에서는 민감도가 바뀔 수 있습니다.
+
+$$
+d-a=\left(\frac{n_1}{n_2}-\frac{n_2}{n_1}\right)\sin\delta_1\sin\delta_2=(\epsilon_1-\epsilon_2)f(1-f)\Omega^2+O(\Omega^4)\quad(N=1).
+$$
+
+### 대칭 절단은 이차 로그 항을 없앤다
+
+재료 1을 두 절반으로 나누어 재료 2의 양쪽에 둡니다. 대칭 셀은 비대칭 셀과 닮음이며 대각 원소가 같고 로그의 이차 commutator 항이 없습니다. 반복 벌크에는 유용한 표현이지만 N개 대칭 셀을 진공 경계에 놓으면 N개 비대칭 셀과 다른 실제 끝단 구조입니다. 따라서 표는 전력을 보존하는 순서 반전과 투과 전력을 바꿀 수 있는 대칭 실제 끝단을 구분합니다. 변화를 다른 벌크 고윳값 때문이라고 해석하면 안 됩니다.
+
+$$
+P=e^{i\Omega f A_1/2},\qquad M_{sym}=P M_2 P=PMP^{-1},\qquad\operatorname{tr}M_{sym}=\operatorname{tr}M,\qquad(M_{sym})_{11}=(M_{sym})_{22}.
+$$
+
+$$
+\log M_{sym}=i\Omega\overline A+O(\Omega^3),\qquad\log M_{rev}=i\Omega\overline A+\frac{\Omega^2f(1-f)}2[A_2,A_1]+O(\Omega^3).
+$$
+
+### 가지를 넘지 않고 국소 로그 검증하기
+
+종속 행렬 노름으로 X=M−I가 1 미만이면 수렴 멱급수로 log M을 별도 계산하고 정확 산술의 절단 꼬리 상한을 얻습니다. 이 상한은 부동소수 합산 오차를 포함하지 않고 모든 주파수의 물리 유효 매질을 인증하지 않습니다. Omega를 연속 절반으로 줄여 commutator까지 유지한 나머지와 대칭 평균 생성자의 나머지가 삼차로 줄어드는지 비교합니다. 수치 행렬 로그가 값을 준다는 이유만으로 이 근항등 구성을 밴드 경계 너머로 확장하지 않습니다.
+
+$$
+X=M-I,\quad\|X\|<1:\qquad\log M=\sum_{m=1}^{K}\frac{(-1)^{m+1}}mX^m+\mathcal R_K,\qquad\|\mathcal R_K\|\le\frac{\|X\|^{K+1}}{(K+1)(1-\|X\|)}.
+$$
+
+### 경계 비교 실행하기
+
+코드는 epsilon1=2·epsilon2=8·비율 1/3의 한 셀을 사용합니다. Omega·공통 half trace·복소 반사 대비 크기·투과 진폭 대비 크기·대칭/비대칭 실제 끝단 사이의 전력 대비를 기록합니다. 반전 투과 대비는 출력 정밀도에서 0이며 독립 계산은 출력 전 복소 값도 검사합니다. 기존 실습은 두 층 셀과 유한 적층을 유지하고 재료·보완 두께 비율을 교환해 반전을 나타냅니다. 대칭 끝단과 국소 행렬 로그는 보충 연구 모형입니다.
+
+| Omega | 공통 half trace | 반사 진폭 대비 | 반전 투과 대비 | 끝단 전력 대비 |
+| --- | --- | --- | --- | --- |
+| 0.05000000 | 0.99250891 | 0.00330248 | 0.00000000 | 0.00000235 |
+| 0.10000000 | 0.97014233 | 0.01285954 | 0.00000000 | 0.00003400 |
+| 0.20000000 | 0.88226449 | 0.04678289 | 0.00000000 | 0.00038409 |
+| 0.40000000 | 0.55542921 | 0.14411470 | 0.00000000 | 0.00244776 |
+
+```python
+from math import sqrt, sin, cos
+
+def product(a, b):
+    return [[sum(a[i][k]*b[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
+def layer(epsilon, width, omega):
+    n = sqrt(epsilon)
+    phase = omega*n*width
+    return [[cos(phase), 1j*sin(phase)/n], [1j*n*sin(phase), cos(phase)]]
+def scattering(m):
+    a, b = m[0]
+    c, d = m[1]
+    denominator = a+d-b-c
+    return (d-a+c-b)/denominator, 2/denominator
+for omega in [0.05, 0.1, 0.2, 0.4]:
+    first, second = layer(2, 1/3, omega), layer(8, 2/3, omega)
+    half = layer(2, 1/6, omega)
+    forward, reverse = product(second, first), product(first, second)
+    symmetric = product(product(half, second), half)
+    r, t = scattering(forward)
+    rr, tr = scattering(reverse)
+    rs, ts = scattering(symmetric)
+    trace = (forward[0][0]+forward[1][1]).real/2
+    values = [omega, trace, abs(rr-r), abs(tr-t), abs(abs(ts)**2-abs(t)**2)]
+    print(" ".join(f"{value:.8f}" for value in values))
+```
+
+[MIT OCW 강의 23](https://ocw.mit.edu/courses/3-024-electronic-optical-and-magnetic-properties-of-materials-spring-2013/resources/mit3_024s13_2012lec23/)은 층상 매질 전달·Bloch의 배경입니다. 반전 항등식·유한 포트 위상 비교·국소 로그·대칭 끝단의 구분은 표시한 E/H 약속으로 직접 유도합니다.
+
+![같은 벌크 trace·반전 반사 위상·다른 실제 끝단](/assets/learning/electromagnetism-bilayer-origin-boundary-phase.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**여기서 반전 적층을 전력만으로 구분할 수 있는가?** **답:** 선언한 동일 무손실 상반 포트에서는 R·T로 구분할 수 없다. 복소 반사 위상은 구분할 수 있다.
+
+**대칭 셀 끝단은 Bloch 고윳값을 바꾸는가?** **답:** 아니다. 셀 행렬은 닮음이다. 새로 절단한 유한 구조를 같은 진공 포트에 놓으면 실제 경계 문제가 바뀐다.
+
+**이차 commutator는 유일한 등방성 물성인가?** **답:** 아니다. 순서·셀 원점 표현에 따라 바뀐다. 유효 해석에는 전체 상태와 경계 변환도 함께 있어야 한다.
+
 ## 풀이로 확인하기
 
 ### 연습 1

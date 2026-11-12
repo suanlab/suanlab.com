@@ -116,6 +116,134 @@ $$
 
 When learning an effective medium, choose the target: low-frequency dispersion, finite-stack R/T, internal fields, or energy flow. Structures with the same average epsilon can differ at higher frequency and at boundaries. Split validation data by frequency, material contrast, thickness fraction, and period count. [MIT OCW Lecture 23](https://ocw.mit.edu/courses/3-024-electronic-optical-and-magnetic-properties-of-materials-spring-2013/resources/mit3_024s13_2012lec23/) supplies background on transfer matrices and periodic structures. Extending beyond this positive lossless normal-incidence family requires revisiting constitutive laws, polarization, boundaries, and independent reference calculations.
 
+## Research extension: bulk similarity and boundary phase
+
+### Fix the state before comparing unit cells
+
+Retain positive lossless dielectric layers, normal incidence, vacuum exterior ports and exp(−i omega t). The tangential state is E and Zref H, not separate forward-wave amplitudes. Its layer generator below follows directly from Maxwell equations. A matrix maps the left state to the right, so the first material encountered acts on the right of the product. These conventions determine the complex reflection phase. The research calculation uses the same boundary state as the native lab; no new material-coupling control is implied.
+
+$$
+A_j=\begin{pmatrix}0&1\\\epsilon_j&0\end{pmatrix},\quad M_1=e^{i\Omega f A_1},\quad M_2=e^{i\Omega(1-f)A_2},\quad M=M_2M_1,\qquad\psi=(E_y,Z_{ref}H_z)^T.
+$$
+
+### Reversal preserves the bulk eigenvalues exactly
+
+Reversing the two layers changes M2 M1 into M1 M2. The displayed similarity transformation proves equal trace, determinant and Bloch eigenvalues at every frequency in this family. It is stronger than comparing only a long-wave average. Nevertheless similarity transforms the state at a different cut. A finite device has specified physical entrance and exit interfaces, and its boundary vectors do not automatically transform when a material ordering is changed. Bulk equivalence therefore does not settle every finite-device observation.
+
+$$
+M_{rev}=M_1M_2=M_1MM_1^{-1},\qquad\operatorname{tr}M_{rev}=\operatorname{tr}M,\qquad\det M_{rev}=\det M=1.
+$$
+
+### Track the diagonal swap through a finite stack
+
+Each individual layer has equal diagonal entries. For matrices of this real lossless structure, swapping the diagonals reverses the multiplication order while keeping the off-diagonal entries. Applying that operation to all layers of N cells gives the matrices below. This is reversal of the entire material sequence with equal vacuum exteriors. Do not replace it by arbitrary permutations of layers: those can change the trace and power spectrum. The case N=0 is the common identity matrix and empty vacuum stack.
+
+$$
+M^N=\begin{pmatrix}a&i b\\i c&d\end{pmatrix},\qquad M_{rev}^N=\begin{pmatrix}d&i b\\i c&a\end{pmatrix},\qquad a,b,c,d\in\mathbb R,\quad ad+bc=1.
+$$
+
+### Solve the two vacuum boundaries
+
+Use the entrance vector (1+r,1−r) and exit vector (t,t). Eliminating the two unknowns gives the shared denominator and the two reflection numerators. Here b and c are real matrix coefficients, not magnetic flux or wave amplitudes. The reference planes are the corresponding physical entrance and exit surfaces. A translated reference plane can add another reflection phase; record that choice before comparing data. The same calculation can be performed with an independent two-by-two boundary solve.
+
+$$
+\mathcal D=a+d-i(b+c),\qquad r=\frac{d-a+i(c-b)}{\mathcal D},\qquad t=\frac2{\mathcal D},\qquad r_{rev}=\frac{a-d+i(c-b)}{\mathcal D}.
+$$
+
+### Equal powers can hide different phases
+
+Reversal changes the sign of the real part of the reflection numerator and preserves its imaginary part. Its squared magnitude and the transmission amplitude are therefore unchanged. The complex reflection amplitude generally changes, so a phase-sensitive measurement can distinguish the ordering even when R and T cannot. Where r=0 its phase is undefined; do not assign a measured phase to an absent reflected field. The figure follows a continuous reflection-phase branch anchored at the smallest plotted positive frequency; this is separate from unwrapping Bloch eigenvalues. These equal-power statements require this reciprocal lossless family and identical exterior ports. They are not claims about arbitrary lossy or unequal-port structures.
+
+$$
+t_{rev}=t,\qquad|r_{rev}|^2=|r|^2,\qquad R+T=1,\qquad r_{rev}-r=\frac{2(a-d)}{\mathcal D}.
+$$
+
+### Find the first term absent from the average generator
+
+Near Omega=0, expand the two exponentials and then log(I+X). The first term is the averaged generator. Multiplication order first appears through the commutator at second order. The commutator is diagonal and proportional to material contrast. Reversal flips its sign. Since it changes under a cell-origin transformation, this coefficient should not be labelled a unique isotropic material property. The logarithm used here is the analytic branch near identity; this expansion does not solve the original global Bloch-phase unwrapping problem.
+
+$$
+\overline A=fA_1+(1-f)A_2,\quad[A_2,A_1]=(\epsilon_1-\epsilon_2)\begin{pmatrix}1&0\\0&-1\end{pmatrix},\qquad\log M=i\Omega\overline A-\frac{\Omega^2f(1-f)}2[A_2,A_1]+O(\Omega^3).
+$$
+
+### Connect the commutator to an observable contrast
+
+For one cell, direct multiplication gives the exact difference of diagonal entries below. Its leading term is quadratic in frequency. Insert that difference into r_rev−r to see how order can first affect complex reflection while leaving the Bloch trace fixed. Equal materials or a missing layer remove this contribution exactly. A small quadratic contrast is not a universal finite-stack error bound: at fixed N its low-frequency coefficient and remainder must still be interpreted in their stated domain, and sensitivity can change near spectral features.
+
+$$
+d-a=\left(\frac{n_1}{n_2}-\frac{n_2}{n_1}\right)\sin\delta_1\sin\delta_2=(\epsilon_1-\epsilon_2)f(1-f)\Omega^2+O(\Omega^4)\quad(N=1).
+$$
+
+### A symmetric cut removes the quadratic logarithm term
+
+Split material one into two half layers and place material two between them. The symmetric cell is similar to the asymmetric cell and has equal diagonal entries. Its logarithm has no second-order commutator term. This is a useful representation for a repeating bulk, but N symmetric cells placed between vacuum interfaces form a different finite termination from N asymmetric cells. The table therefore distinguishes reversal, which preserves powers here, from the symmetric physical termination, which can change transmitted power. Do not attribute that change to different bulk eigenvalues.
+
+$$
+P=e^{i\Omega f A_1/2},\qquad M_{sym}=P M_2 P=PMP^{-1},\qquad\operatorname{tr}M_{sym}=\operatorname{tr}M,\qquad(M_{sym})_{11}=(M_{sym})_{22}.
+$$
+
+$$
+\log M_{sym}=i\Omega\overline A+O(\Omega^3),\qquad\log M_{rev}=i\Omega\overline A+\frac{\Omega^2f(1-f)}2[A_2,A_1]+O(\Omega^3).
+$$
+
+### Verify the local logarithm without crossing a branch
+
+When a subordinate matrix norm of X=M−I is less than one, the convergent power series supplies a separate computation of log M and an exact-arithmetic truncation-tail bound. That bound does not include floating-point summation error or certify a physical effective medium at all frequencies. Compare successively halved Omega: retaining the commutator leaves a cubic remainder, while the symmetric averaged generator also has a cubic remainder. Do not extend this near-identity construction through a band edge merely because a numerical matrix logarithm returns a value.
+
+$$
+X=M-I,\quad\|X\|<1:\qquad\log M=\sum_{m=1}^{K}\frac{(-1)^{m+1}}mX^m+\mathcal R_K,\qquad\|\mathcal R_K\|\le\frac{\|X\|^{K+1}}{(K+1)(1-\|X\|)}.
+$$
+
+### Execute a boundary comparison
+
+The code chooses epsilon1=2, epsilon2=8, fraction=1/3 and one cell. It records Omega, the common half trace, the complex reflection contrast magnitude, the transmission-amplitude contrast magnitude, and the power contrast between symmetric and asymmetric physical terminations. The reversed transmission contrast is zero to printed precision; the independent calculation also checks its complex value before formatting. The native lab remains the original two-layer cell and finite stack, with reversal represented by swapping materials and complementary thickness fraction. The symmetric termination and local matrix-log calculation are supplementary research models.
+
+| Omega | common half trace | reflection amplitude contrast | reversed transmission contrast | termination power contrast |
+| --- | --- | --- | --- | --- |
+| 0.05000000 | 0.99250891 | 0.00330248 | 0.00000000 | 0.00000235 |
+| 0.10000000 | 0.97014233 | 0.01285954 | 0.00000000 | 0.00003400 |
+| 0.20000000 | 0.88226449 | 0.04678289 | 0.00000000 | 0.00038409 |
+| 0.40000000 | 0.55542921 | 0.14411470 | 0.00000000 | 0.00244776 |
+
+```python
+from math import sqrt, sin, cos
+
+def product(a, b):
+    return [[sum(a[i][k]*b[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
+def layer(epsilon, width, omega):
+    n = sqrt(epsilon)
+    phase = omega*n*width
+    return [[cos(phase), 1j*sin(phase)/n], [1j*n*sin(phase), cos(phase)]]
+def scattering(m):
+    a, b = m[0]
+    c, d = m[1]
+    denominator = a+d-b-c
+    return (d-a+c-b)/denominator, 2/denominator
+for omega in [0.05, 0.1, 0.2, 0.4]:
+    first, second = layer(2, 1/3, omega), layer(8, 2/3, omega)
+    half = layer(2, 1/6, omega)
+    forward, reverse = product(second, first), product(first, second)
+    symmetric = product(product(half, second), half)
+    r, t = scattering(forward)
+    rr, tr = scattering(reverse)
+    rs, ts = scattering(symmetric)
+    trace = (forward[0][0]+forward[1][1]).real/2
+    values = [omega, trace, abs(rr-r), abs(tr-t), abs(abs(ts)**2-abs(t)**2)]
+    print(" ".join(f"{value:.8f}" for value in values))
+```
+
+[MIT OCW Lecture 23](https://ocw.mit.edu/courses/3-024-electronic-optical-and-magnetic-properties-of-materials-spring-2013/resources/mit3_024s13_2012lec23/) supplies layered-media transfer and Bloch context. The reversal identities, finite-port phase comparison, local logarithm and symmetric-termination distinction are derived explicitly here with the displayed E/H convention.
+
+![Equal bulk trace, reversed reflection phases and different physical terminations](/assets/learning/electromagnetism-bilayer-origin-boundary-phase.en.svg)
+
+### Research questions with explanations
+
+**Can reversed stacks be distinguished by power-only measurements here?** **Answer:** Not by R and T under the declared identical lossless reciprocal ports. Complex reflection can distinguish their phases.
+
+**Does a symmetric-cell termination change the Bloch eigenvalues?** **Answer:** No. Its cell matrix is similar. Placing the newly cut finite structure between unchanged vacuum ports changes the physical boundary problem.
+
+**Is the second-order commutator a unique isotropic material constant?** **Answer:** No. It changes with ordering and the cell-origin representation. The full state and boundary transformation must accompany any effective interpretation.
+
 ## Check your understanding with worked exercises
 
 ### Exercise 1
