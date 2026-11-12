@@ -131,6 +131,107 @@ The following map uses a positive reference speed V, density rho, dynamic viscos
 
 An inertial pressure scale rho V² and an advection clock L/V require a positive chosen V. Substituting an observed zero velocity into these scales can create a singular normalization without making the physical equations invalid. Matching Pe alone does not match compressibility, reaction, geometry or all boundary conditions. For AI surrogates, this distinction helps decide which input combinations can support transfer between experiments and which omitted mechanisms may invalidate it.
 
+## Research extension: physical and grid Peclet numbers
+
+The exact field above remains nonnegative, but a numerical approximation need not. Keep that physical problem and add a **separate discrete comparison**, with zero left concentration and a positive right concentration c-star. Use dimensionless nodal concentration C. Distinguish global Pe, signed cell p, and the earlier nonnegative grid Pe: the last is half the magnitude of p. Refining the mesh changes p while leaving the physical experiment unchanged.
+
+$$
+h=L/N,\quad C_i=c_i/c_*,\quad c(0)=0,\quad c(L)=c_*>0,\qquad\mathrm{Pe}=UL/D,\quad p=Uh/D=\mathrm{Pe}/N,\quad\mathrm{Pe}_{\rm grid}=|p|/2.
+$$
+
+Replace the first derivative by a centered difference and the second by its usual three-point difference. Multiplication by h²/D gives the recurrence below. When |p| is strictly less than two, both neighbor weights are positive and an interior value is a convex combination of its neighbors. This supplies a discrete maximum-principle argument with the imposed endpoints. It is a property of this steady stencil, not a general time-integration stability criterion.
+
+$$
+\left(1-\frac p2\right)C_{i+1}-2C_i+\left(1+\frac p2\right)C_{i-1}=0,\qquad C_0=0,\quad C_N=1.
+$$
+
+Subtract neighboring nodal values to solve the recurrence. Their difference is multiplied by q at each step. For p greater than two, q is negative, so successive differences alternate. At p = 0 solve the repeated-root recurrence directly to obtain a line. At p = 2 the upper coefficient vanishes: the original recurrence gives every interior node equal to the left boundary. Do not clip the denominator to manufacture a finite q. At p = -2 the reflected one-sided result holds.
+
+$$
+\delta_i=C_i-C_{i-1},\qquad\delta_{i+1}=q\delta_i,\quad q=\frac{1+p/2}{1-p/2},\qquad C_i=\frac{q^i-1}{q^N-1}\quad(p\notin\{0,-2,2\}).
+$$
+
+The coarse-grid example makes the failure visible without a simulation movie. The first and third interior concentrations are negative although the original boundary values and exact concentration are nonnegative. These values diagnose the centered approximation; they do not indicate a physical reaction, negative material mass or a failure of the continuum equation. Keep them in the comparison instead of clipping and renormalizing the numerical field.
+
+$$
+\mathrm{Pe}=10,\quad N=4:\qquad p=2.5,\quad q=-9,\quad(C_1,C_2,C_3)=\left(-\frac{10}{6560},\frac{80}{6560},-\frac{730}{6560}\right).
+$$
+
+For positive flow, use a backward first derivative for an upwind approximation. Its difference ratio is positive, avoiding the alternating solution. Taylor expansion shows an additional leading diffusion contribution U h/2. This explains excessive smearing, but it is not an exact effective diffusivity for every finite mesh or arbitrary transient. Negative flow needs the opposite upwind direction. A nonnegative answer can still have a large profile error.
+
+$$
+U>0:\quad U\frac{c_i-c_{i-1}}h=D\frac{c_{i+1}-2c_i+c_{i-1}}{h^2},\quad q_{\rm up}=1+p,\qquad D_{\rm leading}=D+\frac{Uh}{2}.
+$$
+
+A third construction integrates the steady constant-coefficient cell exactly. Introduce the Bernoulli function B, which is positive for every finite real argument and has a continuous value at zero. Its difference identity separates convection from diffusion. The positive coefficient property is analytic; a floating-point evaluation at extreme arguments still needs its own range handling.
+
+$$
+B(p)=\frac p{e^p-1}\ (p\ne0),\quad B(0)=1,\qquad B(p)>0,\quad B(-p)-B(p)=p.
+$$
+
+Within one cell solve the first-order relation D c-x = U c minus the constant flux, then impose its two endpoint values. The resulting edge flux uses physical concentrations, so its units are kg/(m² s). For positive p, evaluate B(p) using p exp(-p) divided by -expm1(-p), and B(-p) using p divided by the same denominator. The table stays in a moderate range; it is not an arbitrary-range implementation certificate.
+
+$$
+j_{i+1/2}=\frac Dh\left[B(-p)c_i-B(p)c_{i+1}\right],\qquad j=Uc-Dc_x\quad\text{within the constant-coefficient cell}.
+$$
+
+Give neighboring cells the same flux at a shared face. Their steady balances then yield a recurrence with positive Bernoulli weights for every p. On a uniform mesh its difference ratio is exp(p), recovering the continuum exponential. Shared fluxes also telescope over any union of cells, so internal contributions cancel. Positivity and conservation are separate properties that this construction has in the stated one-dimensional setting.
+
+$$
+j_{i+1/2}=j_{i-1/2}\quad\Longrightarrow\quad B(p)C_{i+1}-[B(p)+B(-p)]C_i+B(-p)C_{i-1}=0,\qquad q_{\rm fit}=B(-p)/B(p)=e^p.
+$$
+
+Because each cell relation is exact, the steady fitted nodal values match the analytic solution even on a nonuniform partition with the same constant U and D. That does not make linear interpolation between those nodes exact, nor certify a derivative inside an unresolved boundary layer. Variable coefficients, multidimensional geometry and transient time stepping require additional derivations. The original interactive lab still evaluates the analytic family rather than this new discretization.
+
+$$
+C_i^{\rm fit}=\frac{e^{\mathrm{Pe}\xi_i}-1}{e^{\mathrm{Pe}}-1}=C_{\rm exact}(\xi_i),\qquad\xi_i=x_i/L,\qquad\mathrm{Pe}=0:\ C_i^{\rm fit}=\xi_i.
+$$
+
+Physical similarity also needs corresponding mesh geometry if discrete results are compared. With the same number of cells and a consistently scaled spacing, both global Pe and cell p stay fixed. If the number of cells changes independently, identical physical Pe does not preserve the discrete equation. For a learned numerical surrogate, record mesh spacing or h/L and the scheme as well as physical parameters; otherwise numerical artifacts may be mistaken for a new physical regime.
+
+$$
+L'=aL,\quad D'=bD,\quad U'=(b/a)U,\quad h'=ah,\quad N'=N\quad\Longrightarrow\quad(\mathrm{Pe}',p')=(\mathrm{Pe},p).
+$$
+
+The table fixes physical Pe = 10 and four uniform cells. Columns are x/L, centered, upwind, fitted and exact concentrations divided by c-star. The left boundary is zero and the right is c-star; x/L = 1 is the prescribed endpoint, not an interior test. The fitted column uses the Bernoulli-weight recurrence, while the exact column uses the full-domain analytic formula. Matching eight displayed decimals is not an independent error certificate.
+
+| x/L | centered | upwind | fitted | exact |
+| --- | --- | --- | --- | --- |
+| 0.25000000 | -0.00152439 | 0.01677149 | 0.00050771 | 0.00050771 |
+| 0.50000000 | 0.01219512 | 0.07547170 | 0.00669285 | 0.00669285 |
+| 0.75000000 | -0.11128049 | 0.28092243 | 0.08204332 | 0.08204332 |
+| 1.00000000 | 1.00000000 | 1.00000000 | 1.00000000 | 1.00000000 |
+
+```python
+from math import expm1
+# Physical Pe=10, N=4, cL=0, cR=c_star>0.
+p, n = 2.5, 4
+q_center = (1+p/2)/(1-p/2)
+q_up = 1+p
+b_pos = p/expm1(p)
+b_neg = p/(-expm1(-p))
+q_fit = b_neg/b_pos
+for i in (1, 2, 3, 4):
+    xi = i/n
+    center = (q_center**i-1)/(q_center**n-1)
+    upwind = (q_up**i-1)/(q_up**n-1)
+    fitted = (q_fit**i-1)/(q_fit**n-1)
+    exact = expm1(10*xi)/expm1(10)
+    print(" ".join(f"{v:.8f}" for v in (xi, center, upwind, fitted, exact)))
+```
+
+The [official FiPy scheme documentation](https://www.ctcms.nist.gov/~wd15/fipy/documentation/numerical/scheme.html) supplies coefficient-positivity and exponential-scheme background. The signed recurrence, its zero-coefficient endpoints and dimensional cell flux are derived here. No FiPy solver is called by the current lab or by this example.
+
+![Negative centered nodes, upwind smearing and exact steady fitted nodal values at fixed physical Peclet number](/assets/learning/continuum-peclet-grid-positive-flux.en.svg)
+
+### Research questions with explanations
+
+**Do negative centered nodes prove negative physical concentration?** **Answer:** No. They expose a discrete approximation that lost the maximum principle. The exact nonnegative field is unchanged, and clipping would hide the numerical failure.
+
+**Does upwind positivity imply an accurate boundary layer?** **Answer:** No. Leading artificial diffusion can smear the layer. Compare actual values as well as sign and conservation.
+
+**Does fitted nodal exactness certify every gradient or transient?** **Answer:** No. It concerns the stated steady constant-coefficient cell problem. Reconstruction between unresolved nodes and time integration need their own checks.
+
 ## Six exercises with answers
 
 ### Exercise 1 — Change units

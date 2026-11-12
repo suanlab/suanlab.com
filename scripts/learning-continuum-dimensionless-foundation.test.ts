@@ -19,9 +19,15 @@ for (const [id, equations] of [['advection-diffusion-peclet-boundary-layer', 8],
   test(`${id}: complete bilingual explanations, matching equations and six answered problems render accessibly`, async () => {
     const result = await getLearningContent(id), math: string[][] = [];
     for (const locale of ['ko', 'en'] as const) {
-      const source = await readFile(`content/learning/physics-math-for-ai/${id}.${locale}.md`, 'utf8');
+      const fullSource = await readFile(`content/learning/physics-math-for-ai/${id}.${locale}.md`, 'utf8');
+      const start = fullSource.search(/^## (?:Research extension:|연구 확장:)/m);
+      assert.ok(start >= 0);
+      const end = fullSource.indexOf('\n## ', start + 4) + 1;
+      assert.ok(end > start);
+      const source = fullSource.slice(0, start) + fullSource.slice(end);
+      assert.equal((source.match(/^## /gm) || []).length, 13);
       const html = result[locale], outline = result.outline[locale];
-      assert.equal(outline.length, 13); assert.equal(new Set(outline.map(h => h.id)).size, 13);
+      assert.equal(outline.length, 14); assert.equal(new Set(outline.map(h => h.id)).size, 14);
       for (const h of outline) assert.ok(html.includes(`id="${h.id}"`));
       assert.doesNotMatch(html, /katex-error|<h1/); assert.match(html, /katex-display/);
       assert.match(html, /tabindex="0"/); assert.match(html, /aria-label=/);

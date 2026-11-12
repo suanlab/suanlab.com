@@ -137,6 +137,102 @@ Matching this diffusion-based Da is insufficient if another slab has appreciable
 
 For comparison with earlier mechanics, a viscoelastic Weissenberg number can be defined as relaxation time times a characteristic deformation rate, such as U/L. A Deborah number compares relaxation time with a declared observation time T. If T is a period, omega times relaxation time differs from relaxation time divided by T by a factor of two pi. Mach and Froude numbers compare still other terms. Each ratio requires its own specified scales and assumptions; our two scalar examples do not simulate all these systems.
 
+## Research extension: external supply and an additional Biot number
+
+The previous slab imposes its surface concentration directly. Now add a **finite external supply resistance** while preserving the same internal first-order consumption and sealed inner plane. A bulk reservoir has concentration cb, but the actual surface value cs must be determined. The mass-transfer coefficient hm has units m/s; it is not the mesh spacing h or a heat-transfer coefficient. Take hm nonnegative, D, L and area positive, and k nonnegative.
+
+$$
+Dc_{xx}-kc=0,\quad-Dc_x(0)=h_m[c_b-c_s],\quad c_x(L)=0,\quad c_s=c(0),\qquad[h_m]=\mathrm{m/s}.
+$$
+
+The internal differential equation and sealed condition give the same profile shape multiplied by the unknown surface value. Its surface flux is proportional to cs with an internal admittance a(k), also in m/s. At zero reaction this admittance is exactly zero. The concentration is still smooth through the slab; a finite penetration scale is not an abrupt reaction boundary.
+
+$$
+\phi=L\sqrt{k/D},\quad c(x)=c_s\frac{\cosh[\phi(1-x/L)]}{\cosh\phi},\quad a(k)=\sqrt{Dk}\tanh\phi,\quad a(0)=0,\qquad j(0)=a(k)c_s.
+$$
+
+Equate internal uptake a times cs with external supply hm times cb minus cs. For positive bulk concentration and nonzero total admittance, solving this scalar balance gives the surface fraction. A second dimensionless group appears: the mass-transfer Biot number. Two slabs with the same Da and geometry can now have different surface concentrations and different normalized profiles because their Biot numbers differ.
+
+$$
+\mathrm{Bi}_m=\frac{h_mL}{D},\qquad\frac{c_s}{c_b}=\frac{h_m}{h_m+a}=\frac{\mathrm{Bi}_m}{\mathrm{Bi}_m+\phi\tanh\phi}\quad(h_m+a>0).
+$$
+
+Integrate the actual consumption to obtain the total rate in kg/s. For two positive admittances the overall coefficient has additive reciprocal resistances. This is a consequence of the linear boundary law and first-order slab model, not a universal rule for arbitrary nonlinear kinetics. Physical area multiplies the flux only once; do not confuse the coefficient in m/s with the rate in kg/s.
+
+$$
+R=A\int_0^Lkc\,dx=Ac_b\frac{h_ma}{h_m+a}=Ac_bK_{\rm overall},\qquad\frac1{K_{\rm overall}}=\frac1{h_m}+\frac1a\quad(h_m,a>0).
+$$
+
+Define total effectiveness relative to a hypothetical slab everywhere at the bulk concentration, rather than everywhere at the actual surface concentration. It is the old internal effectiveness multiplied by the surface fraction. Both reference choices are legitimate when labeled, and generally give different numbers. This measured rate ratio requires positive k and cb. A zero-rate limit is a basis-function limit, not a measured nonzero denominator.
+
+$$
+\eta_{\rm total}=\frac{R}{kc_bAL}=\frac{\tanh\phi}{\phi}\frac{\mathrm{Bi}_m}{\mathrm{Bi}_m+\phi\tanh\phi}\quad(k,c_b>0).
+$$
+
+At fixed finite supply coefficient, arbitrarily rapid internal reaction cannot exceed the incoming supply ceiling. The surface concentration tends to zero as the internal admittance grows. In contrast, taking hm to infinity first recovers the earlier prescribed-surface problem. The faster-reaction behavior therefore depends on which boundary mechanism is held fixed; matching the original Da alone omits that information.
+
+$$
+\lim_{k\to\infty}R=Ah_mc_b\quad(0<h_m<\infty),\qquad\lim_{h_m\to\infty}R=Ac_b\sqrt{Dk}\tanh\phi.
+$$
+
+Differentiate the rate logarithm to quantify sensitivity. For positive k and hm, the internal chemical factor lies between one half and one. External resistance multiplies it by the surface fraction. When supply is limiting, a small surface fraction makes rate measurements weakly sensitive to the internal chemical constant, while sensitivity to hm approaches one. This is a practical inference issue even if the forward rate is computed accurately.
+
+$$
+\frac{\partial\log R}{\partial\log k}=\frac{h_m}{h_m+a}\left(\frac12+\frac\phi{\sinh(2\phi)}\right),\qquad\frac{\partial\log R}{\partial\log h_m}=\frac{a}{h_m+a}\quad(k,h_m,c_b>0).
+$$
+
+A single positive total rate also has an exact nonuniqueness. Let v be that rate divided by area and bulk concentration. Choose any chemical constant whose internal admittance exceeds v, then use the displayed positive hm. Infinitely many parameter pairs produce the same measured rate but different surface concentrations. The internal admittance increases continuously from zero to infinity. An additional surface measurement can separate supply and internal uptake under these declared assumptions; noise still affects the inversion.
+
+$$
+v=\frac{R}{Ac_b}>0,\quad a(k)>v:\qquad h_m=\frac{va(k)}{a(k)-v}>0,\quad\frac{c_s}{c_b}=\frac{v}{a(k)}.
+$$
+
+Keep the exact limiting controls distinct. No reaction with positive supply gives a uniform reservoir concentration. Reaction without supply gives the unique zero steady field. With neither supply nor reaction, both ends are sealed and every nonnegative constant field is stationary: the boundary reservoir is disconnected and initial inventory determines the eventual mean. The 0/0 surface formula must not select zero in this nonunique case. If cb is zero and total admittance is positive, the physical field is zero but its cb-normalized observation is undefined.
+
+$$
+\begin{cases}h_m>0,\ k=0:&c(x)=c_b,\ R=0,\\h_m=0,\ k>0:&c(x)=0,\ R=0,\\h_m=0,\ k=0:&c(x)=C\ge0\text{ arbitrary},\ R=0.\end{cases}
+$$
+
+For the uniquely determined steady states, similarity between the expanded experiments must preserve both Da and Biot number. The external transfer coefficient has to scale as diffusivity divided by length. With bulk concentration fixed and geometrically similar area, stored inventory and reaction rate scale differently as before. Holding hm fixed while applying only the old Da-preserving transformation generally destroys the normalized-profile collapse. The existing lab remains the prescribed-surface family; this Robin boundary is a supplemental model.
+
+$$
+L'=\alpha L,\quad D'=\beta D,\quad k'=(\beta/\alpha^2)k,\quad h_m'=(\beta/\alpha)h_m:\qquad(\mathrm{Da}',\mathrm{Bi}_m')=(\mathrm{Da},\mathrm{Bi}_m),\quad A'=\alpha^2A\Rightarrow R'=\alpha\beta R,\ M'=\alpha^3M.
+$$
+
+For the table use D = 1 m²/s, L = 1 m and k = 4/s, so phi = 2 and Da = 4. Columns are Biot number, surface fraction, rate divided by A cb D/L, total effectiveness and logarithmic k sensitivity. All columns are dimensionless. These are teaching scales, not fitted catalyst parameters. The figure uses the same family, with cb as its positive concentration scale.
+
+| Bi | surface | rate | effectiveness | k sensitivity |
+| --- | --- | --- | --- | --- |
+| 0.10000000 | 0.04930832 | 0.09506917 | 0.02376729 | 0.02826783 |
+| 1.00000000 | 0.34152362 | 0.65847638 | 0.16461909 | 0.19579110 |
+| 10.00000000 | 0.83835964 | 1.61640363 | 0.40410091 | 0.48062080 |
+| 100.00000000 | 0.98108416 | 1.89158437 | 0.47289609 | 0.56244293 |
+
+```python
+from math import tanh, sinh
+# phi=2: D=1 m^2/s, L=1 m, k=4/s; all outputs dimensionless.
+phi = 2.0
+admittance = phi*tanh(phi)  # a*L/D
+for bi in (0.1, 1.0, 10.0, 100.0):
+    surface = bi/(bi+admittance)
+    rate = bi*admittance/(bi+admittance)  # R/(A*cb*D/L)
+    effectiveness = rate/(phi*phi)
+    sensitivity = surface*(0.5+phi/sinh(2*phi))
+    print(" ".join(f"{v:.8f}" for v in (bi, surface, rate, effectiveness, sensitivity)))
+```
+
+The [Finlayson nondimensionalization text](https://faculty.washington.edu/finlayso/ebook/reaction/rxndiff/nondim.htm) explains Thiele and mass-transfer Biot time scales. The planar Robin balance, inverse family and sensitivity above are derived separately. They do not include reaction heat, variable properties or nonlinear multicomponent kinetics.
+
+![Same Damkohler number with different supply, reaction rates and chemical sensitivities](/assets/learning/continuum-damkohler-robin-supply-identification.en.svg)
+
+### Research questions with explanations
+
+**Does the same Damkohler number imply the same supplied slab?** **Answer:** No. Finite supply introduces a mass-transfer Biot number and changes the surface value and total rate.
+
+**Does a limiting rate identify the internal reaction constant precisely?** **Answer:** Not when external supply dominates. Chemical sensitivity can be very small, and one steady rate admits infinitely many positive supply/reaction pairs.
+
+**When reaction and supply both vanish, must the concentration be zero?** **Answer:** No. Any nonnegative constant is a steady state. Initial inventory or an additional constraint is needed; 0/0 is not a selected zero concentration.
+
 ## Six exercises with answers
 
 ### Exercise 1 — Whole thickness
