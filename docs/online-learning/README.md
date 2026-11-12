@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-12 연구 심화 진행: [4차원 symplectic의 Jacobi·측도·식별](physics-math-for-ai/symplectic-dimension-research-status.md)을 한영 두 편과 그림 두 개에 보강했다. 405위상점의 전체 pushforward·Jacobi·외미분, 810에너지/810가중 발산을 검산했다. 선택 370검사·빌드·타입·출력과 변경 단원 8화면·3안내·2퀴즈·1저장/완료가 통과했다. 기존 650단원·1,969안내와 이전 663검토 항목을 보존했다. [해석역학 연구 보강은 12/20단원](physics-math-for-ai/analytical-mechanics-topic-review.md)이며 다음은 Noether 두 단원이다. 입문 362/362 완료와 전체 대조 39영역·386주제/후속 12영역·123주제는 유지한다.
+
 2026-11-12 연구 심화 진행: [정준 동역학의 역변환·시계·축약](physics-math-for-ai/canonical-research-status.md)을 세 단원의 한영 6편에 보강했다. Legendre 270상태·비선형 좌표 108상태·각운동량 729상태와 같은 L/H의 반대 토크 반례를 검산했다. 선택 368검사·빌드·타입·출력과 변경 세 단원의 24화면·9안내·6퀴즈·3저장/완료가 통과했다. 기존 650단원·1,969안내와 657검토 항목을 보존했다. [해석역학 진행](physics-math-for-ai/analytical-mechanics-topic-review.md)은 연구 보강 11단원이며 다음은 남은 4차원 symplectic 사상과 Noether 단원이다. 전체 대조 39영역·386주제, 남은 12영역·123주제와 전체 51영역·509주제를 유지한다.
 
 2026-11-12 연구 심화 진행: [Lagrange 방정식의 후보 식별과 질량 척도](physics-math-for-ai/lagrange-research-status.md)를 한영 4편에 보강했다. 운동 응답 72상태·boost 12조건·질량 배율 216상태·보정 힘 432대조, 독립 투영/RK4와 실습의 402표본·실습 질량 배율 603시각을 확인했다. 선택 361검사·빌드·타입·출력, 변경 두 단원의 16화면·6안내·4퀴즈·2저장/완료가 통과했다. 기존 650단원·1,969안내와 653검토 항목을 보존했다. [해석역학 진행](physics-math-for-ai/analytical-mechanics-topic-review.md)은 연구 보강 8단원이며 다음은 남은 극좌표 Hamiltonian·Legendre 단원이다. 전체 원주제 대조 39영역·386주제, 남은 12영역·123주제와 전체 51영역·509주제를 유지한다.

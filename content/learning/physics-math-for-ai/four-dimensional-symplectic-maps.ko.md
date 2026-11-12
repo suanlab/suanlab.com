@@ -134,6 +134,139 @@ $$
 
 국소 정준 좌표가 존재한다고 모든 심플렉틱 다양체에 전역 직교 좌표 하나가 존재하는 것도 아니다. 전역 위상, 비선형 변환, 축약, 긴 시간 수치 적분은 별도 조건과 검증이 필요하다. 이번 단원은 정의와 결합된4차원 선형 변환족을 정확히 검사하는 입문 범위다.
 
+## 연구 확장: 에너지와 부피 보존만으로 Poisson 텐서를 판정할 수 없다
+
+[한 정준 쌍의 비선형 예제](/book/online/physics-math-for-ai/poisson-observable-canonical-flow/)에서는 위치에 따라 달라지는 계수 f를 J에 곱했다. 2차원에서는 모든 매끄러운 반대칭 텐서가 Jacobi 항등식을 만족한다. Jacobi 장애는 세 지표에 대해 교대적인데 좌표 방향은 둘뿐이기 때문이다. 이를 보고 고차원 학습 모델에도 같은 스칼라 곱을 적용하면 될 것처럼 느낄 수 있다. 이번 4차원 반례는 그 추론이 실패하는 지점을 직접 보여 준다.
+
+이번 내용은 비선형 좌표를 다루는 보충 계산이다. 위 기본 실습은 기존의 선형 사상·접벡터 쌍·폐곡선 작용을 그대로 계산한다. 아래 계수는 기본 실습에 추가한 슬라이더가 아니다.
+
+### 궤적을 맞추기 전에 항등식을 검사하기
+
+위치의 단위가 m, 운동량의 단위가 kg m/s인 두 정준 쌍을 사용한다. 양수 ell은 길이이므로 지수 함수의 인수는 무차원이다. 기본 실습과 같은 좌표 순서에서 다음 후보를 제안하자.
+
+$$
+Z=(Q_1,Q_2,P_1,P_2),\quad f(Q_1)=e^{Q_1/\ell},\quad\ell>0,\qquad
+J_4=\begin{pmatrix}0&I_2\\-I_2&0\end{pmatrix},\quad \Pi_{\rm bad}=fJ_4.
+$$
+
+이 행렬은 매끄럽고 반대칭이며 모든 유한한 점에서 가역이다. 미분 가능한 자율 Hamiltonian이라면 어떤 함수를 선택하든 정확한 에너지 검사를 통과한다. 그러나 Poisson bracket에는 모든 지표 삼중항의 Jacobi 계수 항등식도 필요하다.
+
+$$
+\dot Z=\Pi\nabla H,\qquad \dot H=\nabla H^T\Pi\nabla H=0,\qquad
+\mathcal J^{ijk}=\sum_a\bigl(\Pi^{ia}\partial_a\Pi^{jk}+\Pi^{ja}\partial_a\Pi^{ki}+\Pi^{ka}\partial_a\Pi^{ij}\bigr).
+$$
+
+여기서 편미분은 나머지 독립 Z 좌표를 고정한다. 반대칭 행렬을 같은 벡터의 양쪽에 끼운 스칼라는 0이므로 에너지의 시간 변화가 사라진다. 이 논증은 Jacobi 식에 들어가는 행렬 계수의 공간 미분에 대해서는 아무것도 보장하지 않는다.
+
+(Q2,P2,P1) 삼중항을 선택하자. 처음 두 중첩 bracket은 안쪽 bracket이 0이어서 사라진다. 마지막 항은 두 번째 정준 쌍의 계수를 첫 번째 정준 쌍의 방향으로 미분한다.
+
+$$
+\{Q_2,\{P_2,P_1\}\}+\{P_2,\{P_1,Q_2\}\}+\{P_1,\{Q_2,P_2\}\}
+=\{P_1,f\}=-f\,\partial_{Q_1}f=-\frac{f^2}{\ell}\ne0.
+$$
+
+결함의 단위는 길이의 역수이며 이 삼중항의 중첩 좌표 bracket 단위와 일치한다. Q1=0에서도 f=1일 뿐 결함은 사라지지 않는다. 이 점에서는 후보 행렬의 수치 자체가 정준 행렬과 정확히 같지만 계수의 미분은 다르다. 한 점의 행렬 일치와 그 근방의 구조 일치는 별개다. 따라서 이 후보는 에너지를 보존하는 반대칭 동역학을 만들지만, 해당 4차원 좌표 영역의 Poisson 구조는 아니다.
+
+### 실제 비선형 좌표 변환에서 텐서 유도하기
+
+첫 번째 운동량만 변환하고 두 번째 쌍은 그대로 두자. 모든 유한 실수 좌표에서 p1=P1/f, p2=P2로 역변환할 수 있다. 정준 bracket은 좌표 변환의 전체 미분을 통해 다음처럼 바뀐다.
+
+$$
+Q_1=q_1,\quad P_1=e^{q_1/\ell}p_1,\quad Q_2=q_2,\quad P_2=p_2,\qquad
+\Pi_{\rm good}=D\Phi\,J_4D\Phi^T
+=\begin{pmatrix}0&0&f&0\\0&0&0&1\\-f&0&0&0\\0&-1&0&0\end{pmatrix}.
+$$
+
+P1의 q1 미분이 추가로 존재하지만 첫 번째 쌍 안에서만 작용하므로 교차 쌍 bracket은 생기지 않는다. 특히 두 번째 기본 bracket은 여전히 1이다. 이 유도된 텐서는 Poisson이다. 미분동형사상에 대한 Jacobi 항등식의 불변성으로 증명하거나 독립적인 네 삼중항을 직접 검사할 수 있다. 두 블록에 모두 f를 곱한 후보는 이 좌표 변환의 pushforward와 다른 텐서다.
+
+이 단원의 omega(X_H,·)=dH 부호 규약에서 다음 비퇴화 형식들을 대응시키자.
+
+$$
+\omega_{\rm good}=f^{-1}dQ_1\wedge dP_1+dQ_2\wedge dP_2,\qquad
+\omega_{\rm bad}=f^{-1}(dQ_1\wedge dP_1+dQ_2\wedge dP_2),\qquad
+d\omega_{\rm bad}=-\frac{1}{\ell f}dQ_1\wedge dQ_2\wedge dP_2\ne0.
+$$
+
+올바른 형식의 첫 항에서 1/f를 미분하면 dQ1이 반복되어 wedge가 0이 된다. 두 번째 항의 계수는 상수다. 따라서 이 형식은 닫혀 있고 symplectic이다. 잘못된 형식은 비퇴화이지만 닫혀 있지 않다. 비퇴화는 각 점에서 벡터장을 풀 수 있게 해 주고, 닫힘은 그 이상의 기하학적 양립 조건을 제공한다. 이 부호 규약에서는 Poisson 행렬이 해당 형식 계수 행렬의 역행렬에 마이너스를 붙인 것과 같다.
+
+### 한 궤적이 건드리지 않는 블록 드러내기
+
+m>0에서 두 자율 Hamiltonian을 고려하자.
+
+$$
+H_1=\frac{e^{-2Q_1/\ell}P_1^2}{2m},\qquad
+H_2=\frac{P_2^2}{2m},\qquad
+(\dot Q_2)_{\rm good}=\frac{P_2}{m},\quad (\dot Q_2)_{\rm bad}=f\frac{P_2}{m}.
+$$
+
+H1은 첫 번째 쌍의 자유입자 Hamiltonian을 변환한 것이다. 그 기울기에는 두 번째 쌍 성분이 없다. 따라서 f가 1이 아닌 곳에서 두 번째 블록이 서로 달라도 두 텐서는 H1에 대해 전체 벡터장까지 정확히 같게 만든다. 이 Hamiltonian의 궤적을 완벽하게 관측해도 사용하지 않은 블록을 식별할 수 없다.
+
+H2는 그 블록을 직접 탐색한다. Q1=ell log(2), m=1 kg, P2=1 kg m/s이면 올바른 Q2 속도는 1 m/s, 잘못된 속도는 2 m/s다. H2 아래에서 Q1은 고정되므로 둘 다 정확한 일정 속도이며 수치 적분 오차가 아니다. 에너지는 양쪽 모두 일정하다. 올바른 텐서에서 정준 측도를 좌표 변환하여 얻는 양의 좌표 부피 밀도는 1/f다. 이는 좌표 변환 Jacobian 행렬식의 역수다.
+
+### 공통 보존 밀도마저 검사를 통과할 수 있다
+
+잘못된 텐서도 모든 매끄러운 자율 H에 대해 밀도 1/f의 가중 좌표 측도를 보존한다. 그 밀도를 벡터장에 곱하면 상수 정준 행렬이 남기 때문이다.
+
+$$
+\rho=\frac1f,\qquad \nabla\cdot(\rho\Pi_{\rm bad}\nabla H)=\nabla\cdot(J_4\nabla H)=0,\qquad
+\frac{\omega_{\rm bad}\wedge\omega_{\rm bad}}2
+=-f^{-2}dQ_1\wedge dQ_2\wedge dP_1\wedge dP_2.
+$$
+
+매끄러운 H의 혼합 이계 편미분은 대칭이고 J4는 반대칭이므로 발산이 0이다. 올바른 텐서도 같은 밀도를 보존한다. 첫 블록은 상수가 되고 두 번째 블록에 남는 계수 1/f는 그 블록에서 미분하는 두 좌표가 아닌 Q1에만 의존하기 때문이다.
+
+단 하나의 부피 검사보다 강한 공통 측도 보존을 얻었지만 Jacobi 결함은 여전히 사라지지 않는다. 잘못된 형식 자체의 최상차 wedge 밀도는 1/f가 아니라 1/f²다. 형식이 닫혀 있지 않으므로 이 wedge를 symplectic Liouville 측도라고 부를 수 없다. 별도로 맞춘 보존 밀도에서 닫힘을 역으로 추론하면 안 된다. 최상차 wedge의 마이너스 부호는 좌표의 방향 규약이고, 양의 측도에는 밀도의 절댓값을 쓴다. 모든 흐름 관련 주장은 벡터장 흐름이 존재하는 시간 구간에 한정하며 전역 시간 존재를 주장하지 않는다.
+
+![잘못된 스칼라 배율 텐서는 Jacobi 결함과 두 번째 쌍의 속도 오차를 보인다. 실제 pushforward는 결함이 0이고 기준 속도가 1이다.](/assets/learning/analytical-symplectic-dimension.ko.svg)
+
+### 작은 예제를 직접 재현하기
+
+아래 값은 ell=1 m일 때다. 셋째 열은 해당 Jacobi 결함에 ell을 곱한 무차원 수이며, 넷째 열은 실제 유도된 텐서의 같은 값이다.
+
+| Q1/ell | f | ell × 잘못된 결함 | ell × 올바른 결함 |
+|---|---|---|---|
+| −log(2) | 0.5 | −0.25 | 0 |
+| 0 | 1 | −1 | 0 |
+| log(2) | 2 | −4 | 0 |
+
+표준 라이브러리만 사용하는 다음 Python 셀을 실행하자. 첫 번째 쌍의 Hamiltonian이 차이를 숨기는 것도 확인한 뒤 두 번째 쌍을 탐색한다. 저장소의 독립 검증기는 여러 위상점에서 모든 Jacobi 삼중항, 전체 좌표 pushforward와 가중 발산을 추가로 대조한다.
+
+```python
+from math import exp, log, isclose
+
+# Coordinate order: Q1,Q2,P1,P2. SI: ell=m=P2=1.
+def bracket_matrix(f, uniform):
+    g = f if uniform else 1.0
+    return [[0, 0, f, 0], [0, 0, 0, g],
+            [-f, 0, 0, 0], [0, -g, 0, 0]]
+
+def jacobi_q2_p2_p1(q1, ell, uniform):
+    f = exp(q1/ell)
+    # Only {P1,{Q2,P2}} survives. Good second block is constant.
+    return -f*f/ell if uniform else 0.0
+
+for q1 in [-log(2), 0, log(2)]:
+    f = exp(q1)
+    good, bad = bracket_matrix(f, False), bracket_matrix(f, True)
+    grad_h1 = [-exp(-2*q1), 0, exp(-2*q1), 0]  # P1=m=ell=1
+    rate = lambda pi: [sum(a*b for a,b in zip(row, grad_h1)) for row in pi]
+    assert all(isclose(a,b) for a,b in zip(rate(good), rate(bad)))
+    print(round(q1, 6), round(f, 6),
+          round(jacobi_q2_p2_p1(q1, 1, True), 6),
+          jacobi_q2_p2_p1(q1, 1, False))
+# At f=2 the H2 position rate is 1 m/s versus 2 m/s.
+assert bracket_matrix(2, False)[1][3] == 1
+assert bracket_matrix(2, True)[1][3] == 2
+```
+
+### 해설이 있는 연구 질문
+
+**모든 H의 정확한 에너지 보존으로 학습한 Poisson 텐서를 인증할 수 있는가?** **답:** 아니다. 해당 이차 쌍의 반대칭성은 확인하지만 Jacobi 항등식에는 계수의 미분 제약이 더 들어간다. 위 명시적 삼중항은 모든 유한한 Q1에서 실패한다.
+
+**상수 학습 배율은 왜 이 장애를 피하는가?** **답:** f가 상수이면 모든 미분이 사라지므로 fJ4는 Poisson이다. 0이 아닌 상수이면 비퇴화이며 대응 형식도 닫혀 있다. 그래도 원하는 물리적 좌표 변환이나 시계까지 식별한 것은 아니다. 그것들은 의도한 변환과 관측으로 별도 확인해야 한다.
+
+**고차원 구조 감사에는 무엇이 필요한가?** **답:** 에너지·측도·궤적과 함께 독립 좌표 삼중항의 Jacobi 조건을 검사하고, 좌표 변환을 주장한다면 전체 pushforward도 검사한다. 각 블록에 기울기가 작용하는 Hamiltonian이나 개입을 탐색해야 한다. 유한 표본에서 작은 수치 결함을 얻은 것은 해당 표본의 근거이지 전체 정의역의 항등식이 아니다.
+
 ## 해설이 있는 연습 문제
 
 1. e_q1과 e_p1의 ω 값을 구하자. **해설:** 첫 행렬식이1 Js이고 둘째는0이다. 순서를 바꾸면−1 Js이며 같은 벡터를 두 번 넣으면0이다. 양의 길이와 다른 성질이다.

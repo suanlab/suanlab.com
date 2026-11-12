@@ -134,6 +134,139 @@ Volume preservation is a consequence, not an equivalent replacement in higher di
 
 Local canonical coordinates do not imply that every symplectic manifold has one global Cartesian chart. Global topology, nonlinear maps, reduction and long-time numerical integration require further arguments. This lesson establishes the definitions and a fully checked family of coupled four-dimensional linear maps.
 
+## Research extension: energy and volume do not certify a Poisson tensor
+
+The [nonlinear one-pair example](/book/online/physics-math-for-ai/poisson-observable-canonical-flow/) used a tensor fJ with a nonconstant scalar f. In two dimensions every smooth skew tensor satisfies the Jacobi identity: the Jacobi obstruction is alternating in three indices, and there are only two coordinate directions. It is tempting to use the same multiplication for a higher-dimensional learned model. The following four-dimensional counterexample shows exactly where that reasoning fails.
+
+This is a supplementary nonlinear coordinate calculation. The native laboratory above still computes its original linear maps, tangent pairings and loop actions. The coefficient below is not a new laboratory slider.
+
+### Test an identity before fitting trajectories
+
+Use two position-momentum pairs, positions in meters and momenta in kg m/s. The positive parameter ell is a length, so the exponential is dimensionless. In the same coordinate order as the native laboratory, propose
+
+$$
+Z=(Q_1,Q_2,P_1,P_2),\quad f(Q_1)=e^{Q_1/\ell},\quad\ell>0,\qquad
+J_4=\begin{pmatrix}0&I_2\\-I_2&0\end{pmatrix},\quad \Pi_{\rm bad}=fJ_4.
+$$
+
+The matrix is skew, smooth and invertible at every finite point. For an autonomous differentiable Hamiltonian it passes an exact energy test, regardless of which Hamiltonian is chosen. A Poisson bracket must also obey the Jacobi coefficient identity for every triple:
+
+$$
+\dot Z=\Pi\nabla H,\qquad \dot H=\nabla H^T\Pi\nabla H=0,\qquad
+\mathcal J^{ijk}=\sum_a\bigl(\Pi^{ia}\partial_a\Pi^{jk}+\Pi^{ja}\partial_a\Pi^{ki}+\Pi^{ka}\partial_a\Pi^{ij}\bigr).
+$$
+
+Here partial derivatives hold the other independent Z coordinates fixed. Skewness proves the first equality involving energy because a scalar quadratic pairing with a skew matrix is zero. It says nothing about the derivatives of the matrix coefficients in the Jacobi identity.
+
+Take the triple (Q2,P2,P1). The first two nested brackets vanish because the inner brackets are zero. The third differentiates the coefficient of the second canonical pair in the first pair's direction:
+
+$$
+\{Q_2,\{P_2,P_1\}\}+\{P_2,\{P_1,Q_2\}\}+\{P_1,\{Q_2,P_2\}\}
+=\{P_1,f\}=-f\,\partial_{Q_1}f=-\frac{f^2}{\ell}\ne0.
+$$
+
+The defect has units of inverse length, as does the nested coordinate bracket in this triple. It is nonzero even at Q1=0, where f=1 and the candidate matrix has exactly the canonical numerical value. Matching a matrix at one point does not match its coefficient derivatives there. Thus this candidate defines an energy-preserving skew dynamics, but it is not a Poisson structure on the four-dimensional chart.
+
+### Derive the actual nonlinear change of coordinates
+
+Transform only the first momentum and leave the second pair unchanged. The map is globally invertible for finite real coordinates, with p1=P1/f and p2=P2. The canonical bracket transforms by the full derivative:
+
+$$
+Q_1=q_1,\quad P_1=e^{q_1/\ell}p_1,\quad Q_2=q_2,\quad P_2=p_2,\qquad
+\Pi_{\rm good}=D\Phi\,J_4D\Phi^T
+=\begin{pmatrix}0&0&f&0\\0&0&0&1\\-f&0&0&0\\0&-1&0&0\end{pmatrix}.
+$$
+
+The extra derivative of P1 with respect to q1 does not introduce cross-pair brackets; it is confined to the first pair. In particular the second fundamental bracket remains one. This induced tensor is Poisson, either by invariance of the Jacobi identity under a diffeomorphism or by checking its four independent triples directly. Multiplying both blocks by f describes a different tensor, not the pushforward of this coordinate map.
+
+With the lesson's convention omega(X_H,·)=dH, associate the nondegenerate forms as follows:
+
+$$
+\omega_{\rm good}=f^{-1}dQ_1\wedge dP_1+dQ_2\wedge dP_2,\qquad
+\omega_{\rm bad}=f^{-1}(dQ_1\wedge dP_1+dQ_2\wedge dP_2),\qquad
+d\omega_{\rm bad}=-\frac{1}{\ell f}dQ_1\wedge dQ_2\wedge dP_2\ne0.
+$$
+
+For the good form, differentiating 1/f yields a repeated dQ1 in the first wedge term and hence zero; the second term is constant. It is closed and symplectic. The bad form is nondegenerate but not closed. Nondegeneracy supplies pointwise solvability for a vector field; closedness supplies the additional geometric compatibility. The Poisson matrices here equal minus the inverses of the corresponding form coefficient matrices, consistent with the stated sign convention.
+
+### Expose a block that one trajectory never probes
+
+Consider two autonomous Hamiltonians, with m>0:
+
+$$
+H_1=\frac{e^{-2Q_1/\ell}P_1^2}{2m},\qquad
+H_2=\frac{P_2^2}{2m},\qquad
+(\dot Q_2)_{\rm good}=\frac{P_2}{m},\quad (\dot Q_2)_{\rm bad}=f\frac{P_2}{m}.
+$$
+
+H1 is the transformed free-particle Hamiltonian of the first pair. Its gradient has no second-pair components. Both tensors therefore give exactly the same complete vector field for H1, even though their second blocks disagree everywhere f differs from one. A full trajectory under that one Hamiltonian cannot identify the unused block.
+
+H2 probes that block directly. At Q1=ell log(2), m=1 kg and P2=1 kg m/s, the correct Q2 rate is 1 m/s and the incorrect rate is 2 m/s. Q1 remains constant under H2, so these are exact constant rates, not numerical integration errors. Both energies remain constant. For the good tensor, the positive coordinate-volume density induced by the canonical measure is 1/f, the reciprocal Jacobian determinant of the coordinate map.
+
+### Even a common preserved density can pass
+
+The bad tensor also preserves the weighted coordinate measure with density 1/f for every smooth autonomous H. Multiplying its vector field by this density leaves the constant canonical matrix:
+
+$$
+\rho=\frac1f,\qquad \nabla\cdot(\rho\Pi_{\rm bad}\nabla H)=\nabla\cdot(J_4\nabla H)=0,\qquad
+\frac{\omega_{\rm bad}\wedge\omega_{\rm bad}}2
+=-f^{-2}dQ_1\wedge dQ_2\wedge dP_1\wedge dP_2.
+$$
+
+The divergence vanishes because mixed second derivatives of a smooth H are symmetric while J4 is skew. The good tensor preserves the same density: the first block becomes constant, and the remaining 1/f coefficient depends only on Q1, outside the second pair differentiated by that block.
+
+This agreement is stronger than merely passing one volume test, yet it still does not fix the Jacobi defect. The bad form's own top wedge has density 1/f², not 1/f. As the form is not closed, that top wedge is not a symplectic Liouville measure. Do not infer closedness from a separately fitted invariant density. The minus sign in the displayed top wedge records our coordinate orientation; the corresponding positive measure uses the absolute density. All statements are local in time wherever the vector field has a flow; no global existence claim follows.
+
+![The invalid scaled tensor has a nonzero Jacobi defect and the wrong second-pair rate, while the actual pushforward has zero defect and unit reference rate.](/assets/learning/analytical-symplectic-dimension.en.svg)
+
+### Calculate a small reproducible family
+
+The following values use ell=1 m. The third column is the dimensionless product ell times the indicated Jacobi defect. The fourth is the same product for the induced tensor.
+
+| Q1/ell | f | ell × bad defect | ell × good defect |
+|---|---|---|---|
+| −log(2) | 0.5 | −0.25 | 0 |
+| 0 | 1 | −1 | 0 |
+| log(2) | 2 | −4 | 0 |
+
+Run this standard-library Python cell. It also verifies that the first-pair Hamiltonian hides the disagreement, then probes the second pair. The independent repository verifier checks every Jacobi triple, the full coordinate pushforward and weighted divergences across many phase points.
+
+```python
+from math import exp, log, isclose
+
+# Coordinate order: Q1,Q2,P1,P2. SI: ell=m=P2=1.
+def bracket_matrix(f, uniform):
+    g = f if uniform else 1.0
+    return [[0, 0, f, 0], [0, 0, 0, g],
+            [-f, 0, 0, 0], [0, -g, 0, 0]]
+
+def jacobi_q2_p2_p1(q1, ell, uniform):
+    f = exp(q1/ell)
+    # Only {P1,{Q2,P2}} survives. Good second block is constant.
+    return -f*f/ell if uniform else 0.0
+
+for q1 in [-log(2), 0, log(2)]:
+    f = exp(q1)
+    good, bad = bracket_matrix(f, False), bracket_matrix(f, True)
+    grad_h1 = [-exp(-2*q1), 0, exp(-2*q1), 0]  # P1=m=ell=1
+    rate = lambda pi: [sum(a*b for a,b in zip(row, grad_h1)) for row in pi]
+    assert all(isclose(a,b) for a,b in zip(rate(good), rate(bad)))
+    print(round(q1, 6), round(f, 6),
+          round(jacobi_q2_p2_p1(q1, 1, True), 6),
+          jacobi_q2_p2_p1(q1, 1, False))
+# At f=2 the H2 position rate is 1 m/s versus 2 m/s.
+assert bracket_matrix(2, False)[1][3] == 1
+assert bracket_matrix(2, True)[1][3] == 2
+```
+
+### Research questions with explanations
+
+**Can exact energy preservation for every H certify a learned Poisson tensor?** **Answer:** No. It certifies skewness of the relevant quadratic pairing, while the Jacobi identity constrains coefficient derivatives. The explicit triple above fails at every finite Q1.
+
+**Why does a constant learned scaling avoid this particular obstruction?** **Answer:** If f is a constant, all its derivatives vanish and fJ4 is Poisson. For a nonzero constant it is nondegenerate and its associated form is closed. That still does not identify the desired physical coordinate map or physical clock; those require the intended transformation and observations.
+
+**What should a higher-dimensional structure audit include?** **Answer:** Check Jacobi across independent coordinate triples and the full pushforward when a chart is claimed, in addition to energy, measure and trajectories. Probe Hamiltonians or interventions whose gradients activate each block. Finite samples of a small numerical defect remain evidence on those samples rather than an identity on the full domain.
+
 ## Exercises with explanations
 
 1. Evaluate omega on e_q1 and e_p1. **Solution:** The first determinant is 1 Js and the second zero. Exchanging the vectors gives −1 Js, while pairing a vector with itself gives zero.

@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-one-unit-extension",
+  "date": "2026-11-12",
+  "baselineCommit": "3764e0b091cbe1cab32c28c0ea4aa8e78ede2d46",
+  "scope": {
+    "expandedUnits": [
+      "four-dimensional-symplectic-maps"
+    ],
+    "manuscripts": 2,
+    "localizedFigures": 2,
+    "originalManuscriptsPreserved": true,
+    "previousReviewEntriesPreserved": 663,
+    "reviewEntriesAfter": 665,
+    "cumulativeAnalyticalResearchUnits": 12,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/four-dimensional-symplectic-maps.en.md",
+      "sha256": "db445a48a9b65fb1e5111fcf450c826e7b576fa72d99816fc5ece7e46659b8b4",
+      "previousSha256": "aa273aaf822a1507eb37b3ff3f1cb38eb851cc4605d8869a14310eaadff296ab"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/four-dimensional-symplectic-maps.ko.md",
+      "sha256": "dfc6b87b805662e403cd5624c8890d34eb9a00a522cb26e3fae311342db852a1",
+      "previousSha256": "c728f39745def11caa613a333d02f4fb1722701b2a3399c3aed30c16372b6ae2"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/analytical-symplectic-dimension.en.svg",
+      "sha256": "a5697b4cdc58170ad8a66603a2959a41bbd7431244d83da8ca5895f7f01acaae"
+    },
+    {
+      "path": "public/assets/learning/analytical-symplectic-dimension.ko.svg",
+      "sha256": "4ec2cbeed01924516f19ddbcf3cb84b737bdb5e60276ceb9d1b7d56a53ae46b1"
+    }
+  ],
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-generalized-coordinates.test.ts",
+      "scripts/learning-stationary-action.test.ts",
+      "scripts/learning-lagrange-equations.test.ts",
+      "scripts/learning-hamiltonian-canonical.test.ts",
+      "scripts/learning-poisson-brackets.test.ts",
+      "scripts/learning-symplectic-geometry.test.ts",
+      "scripts/learning-noether-theorem.test.ts",
+      "scripts/learning-constraints-reduction.test.ts",
+      "scripts/learning-hamilton-jacobi.test.ts",
+      "scripts/learning-hamilton-jacobi-integration.test.ts",
+      "scripts/learning-structure-preserving.test.ts",
+      "scripts/learning-structure-preserving-integration.test.ts",
+      "scripts/learning-analytical-topology-research.test.ts",
+      "scripts/learning-coordinate-research.test.ts",
+      "scripts/learning-action-research.test.ts",
+      "scripts/learning-lagrange-research.test.ts",
+      "scripts/learning-canonical-research.test.ts",
+      "scripts/learning-symplectic-dimension-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 370,
+    "selectedTestFailures": 0,
+    "finalFocusedTests": 9,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-symplectic-dimension-research.py",
+      "energyChecks": 810,
+      "hiddenPairProbes": 3,
+      "pushforwardStates": 405,
+      "tensorStates": 405,
+      "weightedDivergenceChecks": 810
+    },
+    "pairedPythonCellsExecuted": 2,
+    "pairedDisplayEquationsPerUnit": [
+      7
+    ],
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "build": "passed",
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "basis": "unchanged registry sources from baseline commit"
+    },
+    "sourceExportServedSvgPairs": 2,
+    "exportServedHtmlPairs": 1,
+    "sourceFigurePreviewsReviewed": 2,
+    "mobileScreenshotsReviewed": 2,
+    "browser": {
+      "unitCount": 1,
+      "states": 8,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 3,
+      "explainedQuizzes": 2,
+      "conceptSelections": 4,
+      "persistenceCompletionGroups": 1,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "command": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_SYMPLECTIC_DIMENSION_REPORT=.runtime/learning/symplectic-dimension-research-browser.json node scripts/check-symplectic-dimension-research.cjs"
+    }
+  },
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 39,
+    "reviewedTopics": 386,
+    "remainingDomains": 12,
+    "remainingTopics": 123,
+    "introductoryTopicsComplete": 362
+  }
+}
