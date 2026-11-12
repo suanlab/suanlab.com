@@ -180,6 +180,111 @@ $$
 
 딱딱한 동공 경계는 미분 가능성도 제한합니다. 정해진 통과 대역 안에서 계수·위상을 바꾸는 것은 매끄러울 수 있지만, 준비한 이산 모드가 엄격한 차단을 넘으면 투과가 불연속으로 바뀝니다. 경사 기반 역설계에서는 물리적 근거가 있는 부드러운 동공이나 유한 물체 스펙트럼 등으로 이 이상화를 명시적으로 다뤄야 합니다. 자동 미분을 사용했다고 경계가 미분 가능해지는 것은 아닙니다.
 
+## 연구 확장: 제어한 기준광으로 상대 광동공 위상을 복원한다
+
+결맞은 강도 영상도 장 정보 일부를 잃지만 제어한 기준광으로 복소 교차항을 드러낼 수 있다. 네 번의 노출로 이루어진 위상 변경을 유도하고 식별하는 양과 전달 비율에 필요한 추가 보정을 구분한다. 기존 장 모델을 쓰는 보충 취득 절차이며 새 위상 변경·잡음 제어를 구현하는 것은 아니다.
+
+### 기준광·신호·좌표를 명시한다
+
+
+$$
+R=c_rH_c(\nu_r)e^{i2\pi\nu_r x},\quad S=c_sH_c(\nu_s)e^{i2\pi\nu_s x},\qquad E_\phi=Re^{i\phi}+S,\quad I_\phi=B+2\operatorname{Re}(ze^{-i\phi}),\quad B=|R|^2+|S|^2,\ z=R^*S.
+$$
+
+고정한 축소 좌표 x 하나에서 서로 다른 두 Fourier 차수를 준비한다. 알려진 복소 입력 계수는 cr, cs이며 기준 계수의 위상만 바꾼다. 노출 사이 장치 설정·상대 결맞음·검출기 보정을 고정한다. 두 장에 함께 곱한 공통 위상은 모든 강도에서 상쇄되고 안정해야 하는 것은 상대 위상이다. 장·강도는 기존 상대 정규화를 쓰며 보정된 와트가 아니다.
+
+### 반대 위상을 빼서 두 직교 성분을 복원한다
+
+
+$$
+z=\frac{I_0-I_\pi+i(I_{\pi/2}-I_{3\pi/2})}{4},\qquad B=\frac{I_0+I_\pi}{2}=\frac{I_{\pi/2}+I_{3\pi/2}}2.
+$$
+
+위상 0에서 교차항은 Re(z)의 두 배, pi/2에서는 Im(z)의 두 배다. 반대 위상에서는 같은 기준값을 유지하면서 부호가 뒤집혀 인자 4를 얻는다. 두 기준값 추정이 같은지는 유용한 일관성 검사지만 실제 장치의 위상 단계나 이득이 정확함을 증명하지는 않는다.
+
+
+$$
+2|z|\le B,\qquad |R|^2\in\left\{\frac{B+\sqrt{B^2-4|z|^2}}2,\frac{B-\sqrt{B^2-4|z|^2}}2\right\}.
+$$
+
+부등식은 두 파워의 산술·기하 평균 상계다. 근은 일반적인 두 장 역문제의 한계를 설명한다. 네 읽음은 B와 z를 식별하지만 어느 파워가 기준 파워인지는 일반적으로 구별하지 못한다. 기준광만의 보정이나 독립적으로 정당화한 사전 모델이 그 정보를 제공한다. 특정 광동공에 대한 추가 제약이 모호성을 줄일 수 있지만 조용히 가정해서는 안 된다.
+
+### 알려진 영이 아닌 기준에 대해서만 비율을 복원한다
+
+
+$$
+I_R=|R|^2>0,\quad \rho=\frac SR=\frac z{I_R}:\qquad\frac{H_c(\nu_s)}{H_c(\nu_r)}=\frac{c_r}{c_s}\frac z{I_R}e^{-i2\pi(\nu_s-\nu_r)x},\quad c_r c_s\ne0.
+$$
+
+IR은 추가 기준광 단독 노출 등으로 독립적으로 알아야 한다. 따라서 네 위상 읽음에 기준 보정을 더한 절차이며 네 강도만으로 언제나 전체 비율을 얻는다는 주장이 아니다. 알려진 입력 계수와 공간 위상을 명시적으로 제거한다. 유한한 탐침은 상대 전달 값을 표본화할 뿐 임의의 연속 광동공이나 절대 공통 위상을 복원하지 않는다. 실제 영상 밀도를 쓰면 네 강도와 IR에 같은 1/abs(m) 인자가 붙어 비율에서 상쇄된다.
+
+단위 진폭의 열린 광동공에서 fc=20,000 cycles/m, 주기 200 마이크로미터, 기준 차수 0·신호 차수 2이면 신호 주파수는 10,000 cycles/m다. x=0에서 q=2, b=0, cr=0.8, cs=0.5 exp(i0.7)을 택한다. 기존 광동공은 신호에 위상 q(0.5)²=0.5를 더한다. 따라서 R=0.8, S=0.5 exp(i1.2)이며 명시한 예제에서는 IR=0.64를 안다. 표와 코드는 축소 좌표 강도를 쓴다.
+
+| 기준 위상 (rad) | 강도 |
+|---|---|
+| 0 | 1.1798862 |
+| 1.57079633 | 1.63563127 |
+| 3.14159265 | 0.600113796 |
+| 4.71238898 | 0.144368731 |
+
+```python
+from cmath import exp
+from math import pi
+
+# Reduced-coordinate fields at x=0, passed reference and signal modes.
+reference = .8
+signal = .5*exp(1.2j)
+phases = [0, pi/2, pi, 3*pi/2]
+values = [abs(reference*exp(1j*phi)+signal)**2 for phi in phases]
+for phi, value in zip(phases, values):
+    print(format(phi, '.9g'), format(value, '.9g'))
+z = complex(values[0]-values[2], values[1]-values[3])/4
+assert abs(z-reference.conjugate()*signal) < 1e-14
+# This intensity is known independently, not inferred uniquely from four readings.
+reference_intensity = abs(reference)**2
+assert abs(z/reference_intensity-signal/reference) < 1e-14
+```
+
+### 읽음 오차와 기준광 조건성을 정량화한다
+
+
+$$
+\delta z=\frac{\eta_0-\eta_\pi+i(\eta_{\pi/2}-\eta_{3\pi/2})}{4}:\qquad |\delta z|\le\frac{\|\eta\|_2}{2\sqrt2},\quad |\delta\rho|\le\frac{\|\eta\|_2}{2\sqrt2 I_R}\quad\text{for fixed calibrated }I_R.
+$$
+
+실수 2×4 복원 행렬의 두 행은 직교하고 노름이 1/(2sqrt(2))이므로 정확한 연산자 노름을 얻는다. 교차항 복원 자체가 선형이어도 기준 강도가 약하면 비율의 조건성이 나빠진다. IR의 불확실성에는 추가 분모 오차가 생기며 이 조건부 상계는 그것을 포함하지 않는다.
+
+
+$$
+\operatorname{Var}(\operatorname{Re}\delta z)=\operatorname{Var}(\operatorname{Im}\delta z)=\sigma_N^2/8,\quad\mathbb E|\delta z|^2=\sigma_N^2/4,\quad\mathbb E|\delta\rho|^2=\frac{\sigma_N^2}{4I_R^2}.
+$$
+
+이 이차 모멘트 식은 읽음별 독립·평균 0·동일한 절대 오차 분산과 고정 IR을 가정하며 가우스 분포는 필요하지 않다. 고정 광자 예산·다른 이득·샷 잡음에서의 최적화가 아니다. 가정한 불확실성 모델을 보고하는 것이 의미 있는 역영상 결과의 일부다.
+
+
+$$
+\phi_{\rm actual}=\phi_{\rm nominal}+\varepsilon:\qquad\widehat z=e^{-i\varepsilon}z,\quad|\widehat z-z|=2|z|\,|\sin(\varepsilon/2)|.
+$$
+
+기준 위상 단계에 공통 오프셋이 있으면 추정 교차항이 회전하고 반복 노출을 평균해도 체계적 편향은 사라지지 않는다. 두 장에 함께 곱한 공통 위상과 달리 기준광에만 적용되는 상대 위상 오차다. 이득·균일하지 않은 단계 오차에는 별도의 모델이 필요하다.
+
+
+$$
+R=0:\quad I_\phi=|S|^2,\ z=0,\ S/R\text{ undefined};\qquad R\ne0,\ S=0:\quad\rho=0\text{ but its phase is undefined}.
+$$
+
+중앙 차폐는 DC 기준광을 막을 수 있다. 절차가 허용하면 알려진 다른 통과 차수를 택한다. 작은 수치 대체값으로 나누거나 완전 소멸 뒤 위상을 만들지 않는다. 추가 정보는 바뀐 보정된 결맞은 준비에서 나오며 수정하지 않은 강도 데이터의 모호성을 반박하는 것이 아니다.
+
+![제어한 네 기준 위상으로 복소 교차항의 두 직교 성분을 복원하지만 독립 보정 기준광이 약해지면 비율 오차 증폭이 커진다.](/assets/learning/waves-fourier-reference-probes.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**기준광 단독 보정 없이 네 읽음은 무엇을 식별하는가?** **답:** B와 복소 교차항 z를 복원한다. 일반적인 두 장 모델에서는 기준 파워를 구별하는 모호성이 남아 전체 전달 비율에는 추가 정보가 필요하다.
+
+**약하거나 차단된 기준광을 정규화로 해결할 수 있는가?** **답:** 아니다. 약한 IR은 비율 오차를 증폭하고 IR=0이면 비율은 정의되지 않는다. 다른 통과 기준을 쓰는 것은 수치 보정이 아니라 다른 준비다.
+
+**평균을 늘리면 위상 원점 오차가 사라지는가?** **답:** 같은 편향된 설정에서는 아니다. 추정 z는 기준 오프셋만큼 회전한 채 남으므로 독립 위상 보정이 필요하다.
+
 ## 해설 문제와 AI 연구 연결
 
 ### 1. 주파수의 물리적 위치 구하기

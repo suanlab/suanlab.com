@@ -179,6 +179,113 @@ Hard overlap boundaries can create corners in the OTF, and the magnitude or phas
 
 The point-source view and the grating view use separate coordinate windows. A grating profile contains at most four cycles across 129 samples, so display interpolation does not create a false low-frequency pattern at the highest supported input. This is a plotting choice for a continuous model, not the physical pixel sampling operator that the next lesson must introduce.
 
+## Research extension: identical incoherent images can hide opposite pupil phases
+
+A nonnegative PSF does not uniquely identify a complex pupil. We construct an exact ambiguity that preserves the entire PSF, complex OTF, throughput and every incoherent image under the stated model. Then we derive how a calibrated extra pupil phase can distinguish the two members of a restricted quadratic family. This is a supplementary two-exposure analysis, not a new native phase-retrieval solver.
+
+### Construct the ambiguity before discussing an optimizer
+
+
+$$
+h_P(x)=\int P(\nu)e^{i2\pi\nu x}d\nu,\quad Q(\nu)=P^*(-\nu):\qquad h_Q(x)=h_P^*(x).
+$$
+
+Assume the finite pupil is bounded and integrable, as in this lesson. Substitute minus nu in the inverse transform of Q to prove the identity. This is conjugation together with frequency reflection, not conjugation alone and not an arbitrary fitted global phase.
+
+
+$$
+|h_Q(x)|^2=|h_P(x)|^2,\quad\int|Q|^2d\nu=\int|P|^2d\nu:\qquad g_Q=g_P,\quad H_{I,Q}=H_{I,P},\quad I_Q=T(g_Q*I_{\rm obj})=T(g_P*I_{\rm obj})=I_P.
+$$
+
+For nonzero throughput the conditional kernels coincide, and the raw or reference-normalized kernels also coincide because pupil energy is unchanged. Equality of the PSF implies equality of the full complex OTF, not only its magnitude. Therefore every admissible nonnegative incoherent object gives the same image, including the same actual-coordinate magnification factor. More noiseless objects under this unchanged observation operator cannot distinguish these pupils. This statement does not cover a different coherent or partially coherent preparation.
+
+### Match the exact native phase convention
+
+
+$$
+P_{q,b}(\nu)=A(t)e^{i(qt^2+bt)},\quad t=\nu/f_c,\quad A(t)=A(-t)\text{ real}:\qquad P_{q,b}^*(-\nu)=P_{-q,b}(\nu).
+$$
+
+A is the even nonnegative amplitude mask, including any symmetric obstruction. Thus changing q to minus q while keeping b and the aperture unchanged leaves every incoherent image unchanged. There is no extra pi in the native quadratic phase; inserting one would change all numerical examples. A closed pupil also has identical zero raw images, but its conditional PSF and OTF remain undefined.
+
+
+$$
+A(t)=\mathbf1_{\{|t|<1\}},\quad \ell=2-|t|:\qquad H_q(t)=\frac\ell2\operatorname{sinc}(qt\ell)e^{ibt},\quad |t|<2,\quad\operatorname{sinc}u=\frac{\sin u}{u}.
+$$
+
+This clear-pupil formula follows by integrating the shifted-pupil product on its overlap interval of length ell. Its sinc factor is even in q, while the linear phase remains the same for both pupils. Outside the overlap the OTF is zero, and at zero frequency it is one. We now restrict the explicit diversity calculations to this clear pupil, b=0 and nonzero throughput; the earlier ambiguity proof allowed general even masks.
+
+### Change the preparation to obtain genuinely different information
+
+
+$$
+|1+e^{i(\theta+\varphi)}|^2-|1+e^{i(\theta-\varphi)}|^2=-4\sin\theta\sin\varphi.
+$$
+
+For two known passed coherent harmonics with one DC reference and b=0, theta is their spatial relative phase and phi is the signal quadratic phase. At theta=pi/2 and phi=0.5 the intensity difference is nonzero, even though the pupils with opposite q have identical incoherent PSFs. This does not contradict the ambiguity: the controlled coherent experiment measures cross terms that incoherent imaging discarded. The previous lesson derives their phase-cycled recovery.
+
+A second option retains incoherent illumination but adds a known quadratic phase d at the pupil before the second exposure. The candidate parameters then become q+d and minus q+d. This is an optical acquisition change, not multiplying an already formed intensity image by a complex phase.
+
+
+$$
+v=t\ell,\quad D(t)=H_{q+d}(t)-H_{-q+d}(t)=\frac\ell2\left[\operatorname{sinc}((q+d)v)-\operatorname{sinc}((d-q)v)\right]\quad(b=0).
+$$
+
+At t=0 both responses still equal one, so a DC reading alone supplies no diversity information. The table takes q=2 and d=1. The original two OTFs coincide, but the calibrated second acquisition compares q=3 and q=−1. These settings are within the existing supported phase range; no new control is claimed.
+
+| t=nu/fc | common H_2=H_-2 | second H_3 | second H_-1 |
+|---|---|---|---|
+| 0.25 | 0.767543502 | 0.644551038 | 0.847352514 |
+| 0.5 | 0.498747493 | 0.259357732 | 0.68163876 |
+| 0.75 | 0.318028594 | 0.0718187793 | 0.537387406 |
+| 1 | 0.227324357 | 0.0235200013 | 0.420735492 |
+
+```python
+from math import sin
+
+def sinc(x):
+    return 1 if x == 0 else sin(x)/x
+
+def otf(q, t):
+    length = max(0, 2-abs(t))
+    return length/2*sinc(q*t*length)
+
+# Clear pupil, b=0; native phase q*(nu/fc)^2, without an extra pi.
+for t in [.25, .5, .75, 1]:
+    common = otf(2, t)
+    assert abs(common-otf(-2, t)) < 1e-14
+    print(t, *(format(value, '.9g') for value in
+          [common, otf(3, t), otf(-1, t)]))
+```
+
+### Prove a finite-frequency distinction with a remainder bound
+
+
+$$
+\frac{D(t)}{\ell/2}=-\frac23qd\,v^2+\mathcal R,\qquad |\mathcal R|\le\frac{(q+d)^4+(d-q)^4}{120}\,v^4.
+$$
+
+Use sinc(u)=integral from 0 to 1 of cos(su) ds. Taylor remainder for cosine gives abs(sinc(u)−1+u²/6)≤u⁴/120 for real u; subtract the two expansions. The constant terms cancel and the squared-coefficient difference is 4qd. This provides an explicit error budget rather than only a small-frequency slogan.
+
+
+$$
+\frac23|qd|v^2>\frac{(q+d)^4+(d-q)^4}{120}v^4,\quad 0<|t|<2:\qquad |D(t)|\ge\frac\ell2\left[\frac23|qd|v^2-\frac{(q+d)^4+(d-q)^4}{120}v^4\right]>0.
+$$
+
+For fixed nonzero q and d this holds at sufficiently small nonzero t. It proves that these two candidates become distinguishable under the stated calibrated clear-pupil acquisition. It is not global uniqueness or uniform stability for an arbitrary pupil: unknown object structure, unknown diversity, finite frequency access, transfer zeros and noise still constrain inference. As q or d tends to zero, the distinction weakens. Compare complex transfer values rather than wrapped phase angles.
+
+The [MIT 2.71 coherence/OTF lecture](https://ocw.mit.edu/courses/2-71-optics-spring-2009/bebe78c6a2ae2603a0d1a3ea85e0b4ca_MIT2_71S09_lec22.pdf) and [TU Delft scalar diffraction](https://interactivetextbooks.tudelft.nl/tn2421/content/Chap6_Diffraction/DiffractiveOptics_2022_01Clean.html) supply the imaging framework. The exact ambiguity, calibrated pair comparison and remainder bound here are derived for the declared model.
+
+![Opposite quadratic pupil phases have the same incoherent OTF; a known added phase creates distinct second-exposure transfer curves at nonzero spatial frequencies.](/assets/learning/waves-fourier-pupil-ambiguity.en.svg)
+
+### Research questions with explanations
+
+**Can perfect incoherent images always recover pupil phase?** **Answer:** No. P and conjugate-reflected P have identical PSFs and every such image. An optimizer cannot recover information absent from the observation operator.
+
+**Does known diversity distinguish every arbitrary pupil?** **Answer:** That is not proved here. The bound distinguishes the two stated quadratic candidates under calibrated clear-pupil assumptions. A general inverse problem needs its own uniqueness and uncertainty analysis.
+
+**Can diversity be applied after intensity detection?** **Answer:** Multiplying the recorded intensity by a complex phase is not the optical pupil operation. The extra phase must affect the field before squaring and averaging.
+
 ## Explained exercises and research connections
 
 ### 1. Add two coincident sources

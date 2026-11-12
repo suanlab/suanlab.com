@@ -180,6 +180,111 @@ The experiment assumes ideal scalar paraxial lenses, one refractive index, coher
 
 The hard pupil also limits differentiability. A discrete prepared mode crossing a strict cutoff changes its transmission discontinuously, even though coefficient and phase variations within a fixed passband can be smooth. Gradient-based inverse design must address that idealization explicitly, for example with a physically justified smooth pupil or finite object spectrum. Automatic differentiation alone does not make a hard edge differentiable.
 
+## Research extension: recover a relative pupil phase with controlled reference probes
+
+A coherent intensity image loses some field information, but a controlled reference can reveal a complex cross term. We derive a four-exposure phase cycle and separate what it identifies from the extra calibration needed for a transfer ratio. This is a supplementary acquisition protocol using the existing field model, not a new native phase-cycle or noise control.
+
+### State the reference, the signal and the coordinate
+
+
+$$
+R=c_rH_c(\nu_r)e^{i2\pi\nu_r x},\quad S=c_sH_c(\nu_s)e^{i2\pi\nu_s x},\qquad E_\phi=Re^{i\phi}+S,\quad I_\phi=B+2\operatorname{Re}(ze^{-i\phi}),\quad B=|R|^2+|S|^2,\ z=R^*S.
+$$
+
+Use two distinct prepared Fourier orders at one fixed reduced coordinate x. Their known complex input coefficients are cr and cs. Vary only the reference coefficient phase. Keep device settings, relative coherence and detector calibration fixed across exposures. A common phase multiplying both fields cancels from every intensity; their relative phase is what must remain stable. Fields and intensities use the existing relative normalization, not calibrated watts.
+
+### Subtract opposite phases to recover both quadratures
+
+
+$$
+z=\frac{I_0-I_\pi+i(I_{\pi/2}-I_{3\pi/2})}{4},\qquad B=\frac{I_0+I_\pi}{2}=\frac{I_{\pi/2}+I_{3\pi/2}}2.
+$$
+
+At phase zero the cross term is twice Re(z); at pi/2 it is twice Im(z). Opposite phases reverse its sign and retain the same baseline, producing the factor four. Equality of the two baseline estimates is a useful consistency check, but it does not prove correct phase steps or equal gains in a real instrument.
+
+
+$$
+2|z|\le B,\qquad |R|^2\in\left\{\frac{B+\sqrt{B^2-4|z|^2}}2,\frac{B-\sqrt{B^2-4|z|^2}}2\right\}.
+$$
+
+The inequality is the arithmetic-geometric mean bound for the two powers. The roots explain a limitation of the general two-field inverse problem: four readings identify B and z but do not in general label which power is the reference power. A reference-only calibration, or an independently justified prior model, supplies that information. Additional known constraints on a particular pupil may reduce the ambiguity; do not silently assume them.
+
+### Recover a ratio only against a known nonzero reference
+
+
+$$
+I_R=|R|^2>0,\quad \rho=\frac SR=\frac z{I_R}:\qquad\frac{H_c(\nu_s)}{H_c(\nu_r)}=\frac{c_r}{c_s}\frac z{I_R}e^{-i2\pi(\nu_s-\nu_r)x},\quad c_r c_s\ne0.
+$$
+
+IR is independently known, for example from an extra reference-only exposure. Thus this is four phase-cycled readings plus reference calibration, not a claim that four intensities alone always recover the full ratio. Known input coefficients and spatial phase are removed explicitly. A finite number of such probes samples relative transfer values; it does not reconstruct an arbitrary continuous pupil or its absolute global phase. If actual image density is used instead, all four intensities and IR acquire the same factor 1/abs(m), which cancels in the ratio.
+
+For a clear unit-amplitude pupil, fc=20,000 cycles/m, period 200 micrometres, reference order 0 and signal order 2 give signal frequency 10,000 cycles/m. Take q=2, b=0, cr=0.8 and cs=0.5 exp(i0.7) at x=0. The native pupil adds phase q(0.5)²=0.5 to the signal. Therefore R=0.8 and S=0.5 exp(i1.2); IR=0.64 is known in this specified example. The table and code use the reduced-coordinate intensities.
+
+| reference phase (rad) | intensity |
+|---|---|
+| 0 | 1.1798862 |
+| 1.57079633 | 1.63563127 |
+| 3.14159265 | 0.600113796 |
+| 4.71238898 | 0.144368731 |
+
+```python
+from cmath import exp
+from math import pi
+
+# Reduced-coordinate fields at x=0, passed reference and signal modes.
+reference = .8
+signal = .5*exp(1.2j)
+phases = [0, pi/2, pi, 3*pi/2]
+values = [abs(reference*exp(1j*phi)+signal)**2 for phi in phases]
+for phi, value in zip(phases, values):
+    print(format(phi, '.9g'), format(value, '.9g'))
+z = complex(values[0]-values[2], values[1]-values[3])/4
+assert abs(z-reference.conjugate()*signal) < 1e-14
+# This intensity is known independently, not inferred uniquely from four readings.
+reference_intensity = abs(reference)**2
+assert abs(z/reference_intensity-signal/reference) < 1e-14
+```
+
+### Quantify readout and reference conditioning
+
+
+$$
+\delta z=\frac{\eta_0-\eta_\pi+i(\eta_{\pi/2}-\eta_{3\pi/2})}{4}:\qquad |\delta z|\le\frac{\|\eta\|_2}{2\sqrt2},\quad |\delta\rho|\le\frac{\|\eta\|_2}{2\sqrt2 I_R}\quad\text{for fixed calibrated }I_R.
+$$
+
+The real two-by-four reconstruction matrix has orthogonal rows of norm 1/(2sqrt(2)), giving its exact operator norm. Weak reference intensity makes the ratio poorly conditioned even though the cross-term reconstruction itself is linear. Uncertainty in IR would introduce an additional denominator error; this conditional bound does not cover it.
+
+
+$$
+\operatorname{Var}(\operatorname{Re}\delta z)=\operatorname{Var}(\operatorname{Im}\delta z)=\sigma_N^2/8,\quad\mathbb E|\delta z|^2=\sigma_N^2/4,\quad\mathbb E|\delta\rho|^2=\frac{\sigma_N^2}{4I_R^2}.
+$$
+
+These second-moment formulas assume independent zero-mean errors of equal absolute variance per reading and fixed IR. They need no Gaussian distribution. They are not an optimization under a fixed photon budget, unequal gains or shot noise. Reporting the assumed uncertainty model is part of a meaningful inverse-imaging result.
+
+
+$$
+\phi_{\rm actual}=\phi_{\rm nominal}+\varepsilon:\qquad\widehat z=e^{-i\varepsilon}z,\quad|\widehat z-z|=2|z|\,|\sin(\varepsilon/2)|.
+$$
+
+A common offset applied to the reference phase steps rotates the inferred cross term; averaging repeated exposures does not remove that systematic bias. This is a relative reference-only phase error, unlike a common phase multiplying both fields. Gains and nonuniform phase-step errors require their own model.
+
+
+$$
+R=0:\quad I_\phi=|S|^2,\ z=0,\ S/R\text{ undefined};\qquad R\ne0,\ S=0:\quad\rho=0\text{ but its phase is undefined}.
+$$
+
+A central obstruction can block a DC reference. Choose another known passed order if the protocol permits; do not divide by a small numerical sentinel or invent phase after complete extinction. The extra information comes from a changed, calibrated coherent preparation. It does not refute the ambiguity of unmodified intensity data.
+
+![Four controlled reference phases recover both quadratures of a complex cross term, while ratio error amplification grows for a weak independently calibrated reference.](/assets/learning/waves-fourier-reference-probes.en.svg)
+
+### Research questions with explanations
+
+**What do four readings identify without reference-only calibration?** **Answer:** They recover B and the complex cross term z. A general two-field model still has a reference-power labeling ambiguity, so a full transfer ratio needs extra information.
+
+**Can a weak or blocked reference be fixed by normalization?** **Answer:** No. A weak IR amplifies ratio error, while zero IR leaves the ratio undefined. A different passed reference is a different preparation, not a numerical repair.
+
+**Does more averaging remove a phase-origin error?** **Answer:** Not under the same biased phase settings. The inferred z remains rotated by the reference offset; independent phase calibration is needed.
+
 ## Explained exercises and an AI research path
 
 ### 1. Locate a frequency physically
