@@ -150,6 +150,125 @@ SI 단위에서 $k_1=k_2=0$, $m_1=1$, $m_2=2$, $\kappa=1$로 두면 제곱 주�
 
 12초에서 두 변위는 모두7 m이고 속도는 계속0.5 m/s다. 결합 용수철은 늘어나지 않으며 에너지는 $(m_1+m_2)(0.5)^2/2=0.375$ J다. 주파수가0이라는 사실은 속도나 운동에너지도0이라는 뜻이 아니다.
 
+## 연구 확장: 작은 고유진동수 간격에서는 모드 이름표가 민감해진다
+
+두 계산기가 진동수에는 동의하면서 상당히 다른 모드 방향을 돌려줄 수 있다. 부호를 맞추는 것만으로 모든 비교가 해결되지는 않는다. 중복 진동수 근처에서는 물리적 스프링 행렬의 작은 변화로 단순 모드가 유한한 각도만큼 회전해도 고정된 관측 구간의 물리 궤적은 가까울 수 있다. 모든 대칭행렬을 구현 가능한 스프링 계로 취급하지 않고 양의 스프링으로 이루어진 구체적 계열을 유도한다.
+
+### 같은 질량 기하와 물리 단위를 유지한다
+
+고정된 같은 질량 m, 기준 각주파수 omega0>0, 무차원 섭동 epsilon을 사용한다. alpha는 라디안 단위의 모드 각도이며 경과 시간이 아니다. 이 보충은 일반적인 서로 다른 질량의 원고를 정확히 풀리는 한 부분 계열로 제한한다.
+
+
+
+$$
+M=mI,\quad D_{\epsilon,\alpha}=\omega_0^2(I+\epsilon B_\alpha),\quad K=mD_{\epsilon,\alpha},\qquad
+B_\alpha=\begin{pmatrix}\cos2\alpha&\sin2\alpha\\\sin2\alpha&-\cos2\alpha\end{pmatrix},\quad B_\alpha^2=I,\qquad
+0<\epsilon<1/\sqrt2,\quad -\pi/2\le\alpha\le0,\quad m,\omega_0>0.
+$$
+
+D의 단위는 s⁻², K의 단위는 N/m이다. 실제 고정 스프링과 결합 스프링으로 전개하면 다음과 같다.
+
+
+
+$$
+\kappa=-m\omega_0^2\epsilon\sin2\alpha\ge0,\quad
+k_1=m\omega_0^2[1+\epsilon(\cos2\alpha+\sin2\alpha)],\quad
+k_2=m\omega_0^2[1+\epsilon(-\cos2\alpha+\sin2\alpha)],\qquad
+k_1,k_2\ge m\omega_0^2(1-\sqrt2\epsilon)>0,\quad \lambda_\pm=\omega_0^2(1\pm\epsilon).
+$$
+
+각도 제한은 결합 강성을 음이 아니게 하고 epsilon 상계는 모든 허용 각도에서 두 고정 강성을 양수로 유지한다. 모든 계열은 두 고유값을 공유하지만 일반적으로 서로 다른 스프링 계다. 기존 1/16 N/m 격자점 사이의 값은 보충 해석 예제이며 새로 허용한 제어값이 아니다.
+
+### 부호에 무관한 사영자를 비교한다
+
+
+
+$$
+u_+=(\cos\alpha,\sin\alpha)^T,\quad u_-=(-\sin\alpha,\cos\alpha)^T,\quad \phi_\pm=u_\pm/\sqrt m,\qquad
+P_+(\alpha)=\phi_+\phi_+^TM=u_+u_+^T=\frac{I+B_\alpha}{2},\quad P_-=I-P_+,\quad g=\lambda_+-\lambda_-=2\epsilon\omega_0^2.
+$$
+
+사영자는 임의적인 고유벡터 부호를 제거한다. 작은 간격 때문에 생기는 민감성까지 제거하지는 않는다. 서로 다른 두 허용 각도에 대해 2차원 행렬을 직접 계산하면 다음 연산자 노름 관계를 얻는다.
+
+
+
+$$
+\|P_+(\alpha)-P_+(\beta)\|_2=|\sin(\alpha-\beta)|,\qquad
+\|D_{\epsilon,\alpha}-D_{\epsilon,\beta}\|_2=2\epsilon\omega_0^2|\sin(\alpha-\beta)|,\qquad
+\frac{\|P_+(\alpha)-P_+(\beta)\|_2}{\|D_{\epsilon,\alpha}-D_{\epsilon,\beta}\|_2}=\frac1g.
+$$
+
+두 B 행렬의 차는 대칭이며 대각합이 0이고 고유값은 ±2 abs(sin(alpha−beta))이므로 노름 식이 증명된다. alpha=0, beta=−pi/4에서는 행렬 차가 0으로 가도 사영자 거리는 1/sqrt(2)를 유지한다. 비율의 단위는 제곱 진동수 간격의 역수에 맞게 s²이다.
+
+일반적인 부분공간 섭동 이론에서도 고유값 분리가 등장한다. [Yu·Wang·Samworth](https://arxiv.org/abs/1405.0680)를 참고할 수 있다. 여기서는 간격 가정을 확인하지 않고 일반 정리를 적용하는 대신 명시한 두 스프링 계열만 직접 증명한다. 질량이 다르면 같은 고정 질량 기하로 먼저 백색화한 뒤 노름을 비교한다.
+
+### 에너지 이름표에 생기는 변화를 확인한다
+
+물리적 변위 Q≠0에 대해 q0=Q e1에서 정지 상태로 놓는다. 초기 두 모드 에너지는 다음과 같다.
+
+
+
+$$
+E_+=\frac{m\omega_0^2Q^2}{2}(1+\epsilon)\cos^2\alpha,\quad
+E_-=\frac{m\omega_0^2Q^2}{2}(1-\epsilon)\sin^2\alpha,\qquad
+E=\frac{m\omega_0^2Q^2}{2}(1+\epsilon\cos2\alpha),\qquad \frac{E_+}{E}\longrightarrow\cos^2\alpha\quad(\epsilon\downarrow0).
+$$
+
+모든 각도의 전체 에너지는 같은 값에 가까워지지만 상위 모드의 극한 에너지 비율은 축퇴에 접근하는 경로에 의존한다. epsilon>0에서는 단순 모드를 갖는 서로 다른 물리 행렬이다. 그중 하나의 행렬 안에서 기저를 임의로 회전시키면 일반적으로 틀린다. epsilon=0에서는 실제로 같은 중복 진동수 계가 되고 기저 회전이 관례가 된다. 이 최소 예제에서 두 모드를 모두 합친 군집 사영자는 I이다.
+
+### 고정 시간의 물리적 안정성을 따로 증명한다
+
+
+
+$$
+U_\alpha=(u_+,u_-),\quad q_{\epsilon,\alpha}(t)=Q U_\alpha
+\begin{pmatrix}\cos(\omega_0\sqrt{1+\epsilon}\,t)&0\\0&\cos(\omega_0\sqrt{1-\epsilon}\,t)\end{pmatrix}U_\alpha^Te_1,\qquad
+q_{0}(t)=Q\cos(\omega_0t)e_1.
+$$
+
+직교성 덕분에 행렬 차는 두 스칼라 코사인 차 중 큰 값으로 상계된다. 코사인이 1-Lipschitz이고 아래쪽 가지의 진동수 변화가 더 크므로 다음을 얻는다.
+
+
+
+$$
+\sup_{0\le t\le T}\|q_{\epsilon,\alpha}(t)-q_0(t)\|_2\le |Q|T\,\delta\omega,\qquad
+\delta\omega=\omega_0(1-\sqrt{1-\epsilon})=\frac{\omega_0\epsilon}{1+\sqrt{1-\epsilon}}.
+$$
+
+고정된 유한 T에서는 alpha에 균일하게 0으로 간다. 증가하는 모든 관측 기간을 인증하지는 않는다. 표는 m=omega0=Q=1, T=5초에서 alpha=0과 −pi/4를 비교한다. 행렬 노름은 omega0²로, 마지막 열은 abs(Q)로 나눈 값이다.
+
+| epsilon | 행렬 차 / omega0² | 사영자 차 | 위치 차 / abs(Q) |
+|---|---|---|---|
+| 0.25 | 0.353553 | 0.707107 | 0.807759 |
+| 0.125 | 0.176777 | 0.707107 | 0.418910 |
+| 0.0625 | 0.088388 | 0.707107 | 0.211288 |
+| 0.03125 | 0.044194 | 0.707107 | 0.105871 |
+
+```python
+from math import sqrt, cos, sin, pi, hypot
+
+# m=omega0=Q=1 in SI units; compare alpha=0 and -pi/4 at T=5 s.
+for epsilon in [.25, .125, .0625, .03125]:
+    high, low = sqrt(1+epsilon), sqrt(1-epsilon)
+    alpha, t = -pi/4, 5
+    co, sn = cos(alpha), sin(alpha)
+    qa = (co*co*cos(high*t)+sn*sn*cos(low*t),
+          co*sn*(cos(high*t)-cos(low*t)))
+    qb = (cos(high*t), 0)
+    print(epsilon, round(sqrt(2)*epsilon, 6), round(1/sqrt(2), 6),
+          round(hypot(qa[0]-qb[0], qa[1]-qb[1]), 6))
+```
+
+![스프링 행렬의 섭동이 사라져도 모드 사영자 차는 유한하게 남지만 고정 시간의 물리적 위치 차는 줄어든다.](/assets/learning/waves-coupled-mode-gap.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**진동수를 정렬하면 모드 식별이 해결되는가?** **답:** 서로 다른 고유값의 순서는 정하지만 작은 간격에서는 방향이 작은 물리 섭동에도 민감할 수 있다. 간격·부호 불변 사영자·질량 기하를 함께 보고한다.
+
+**물리 예측 손실은 작은데 모드 이름표 손실은 클 수 있는가?** **답:** 그렇다. 고정 시간 상계가 0으로 가는 동안 두 rank-one 사영자는 떨어져 있을 수 있다. 물리적 출력과 잠재 기저 이름표를 구분해 비교해야 한다.
+
+**거의 중복된 모든 모드 쌍을 자유롭게 회전시켜도 되는가?** **답:** 아니다. 간격이 0이 아니면 각 모드는 여전히 자기 고유값 문제를 풀어야 한다. 임의 회전이 정확한 고유기저 자유도가 되는 것은 실제 중복 고유공간 안이다. 군집·궤적 비교는 다른 목적의 검사다.
+
 ## 해설이 있는 연습문제 여섯 개
 
 ### 문제 1: 힘 행렬 만들기

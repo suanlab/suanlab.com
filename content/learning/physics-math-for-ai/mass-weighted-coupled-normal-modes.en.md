@@ -148,6 +148,125 @@ Set $k_1=k_2=0$, $m_1=1$, $m_2=2$, $\kappa=1$ in SI units. One squared frequency
 
 At 12 s both displacements are 7 m and both velocities remain 0.5 m/s. The coupling spring stays unextended, and energy is $(m_1+m_2)(0.5)^2/2=0.375$ J. A zero frequency does not imply zero velocity or zero kinetic energy.
 
+## Research extension: a small frequency gap destabilizes mode labels
+
+Two solvers can agree on frequencies while returning substantially different mode directions. A sign correction alone cannot resolve every such comparison. Near a repeated frequency, a small change in the physical spring matrix can rotate a simple mode by a finite angle, even though physical trajectories remain close over a fixed observation window. We derive an explicit positive-spring family rather than treating every symmetric matrix as a realizable spring network.
+
+### Keep a common mass geometry and physical units
+
+Use equal fixed masses m, a reference angular frequency omega0>0 and a dimensionless perturbation epsilon. Alpha is a mode angle in radians, not an elapsed time. This supplement restricts the general unequal-mass chapter to one exactly solvable subfamily:
+
+
+
+$$
+M=mI,\quad D_{\epsilon,\alpha}=\omega_0^2(I+\epsilon B_\alpha),\quad K=mD_{\epsilon,\alpha},\qquad
+B_\alpha=\begin{pmatrix}\cos2\alpha&\sin2\alpha\\\sin2\alpha&-\cos2\alpha\end{pmatrix},\quad B_\alpha^2=I,\qquad
+0<\epsilon<1/\sqrt2,\quad -\pi/2\le\alpha\le0,\quad m,\omega_0>0.
+$$
+
+The units of D are s⁻² and those of K are N/m. Expanding the actual anchoring and coupling springs gives
+
+
+
+$$
+\kappa=-m\omega_0^2\epsilon\sin2\alpha\ge0,\quad
+k_1=m\omega_0^2[1+\epsilon(\cos2\alpha+\sin2\alpha)],\quad
+k_2=m\omega_0^2[1+\epsilon(-\cos2\alpha+\sin2\alpha)],\qquad
+k_1,k_2\ge m\omega_0^2(1-\sqrt2\epsilon)>0,\quad \lambda_\pm=\omega_0^2(1\pm\epsilon).
+$$
+
+The angular restriction supplies a nonnegative coupling; the epsilon bound keeps both anchors positive for every allowed angle. All members share the two eigenvalues but usually have different springs. Values between the native 1/16 N/m grid points are supplementary analytic examples, not new accepted controls.
+
+### Compare sign-invariant projectors
+
+
+
+$$
+u_+=(\cos\alpha,\sin\alpha)^T,\quad u_-=(-\sin\alpha,\cos\alpha)^T,\quad \phi_\pm=u_\pm/\sqrt m,\qquad
+P_+(\alpha)=\phi_+\phi_+^TM=u_+u_+^T=\frac{I+B_\alpha}{2},\quad P_-=I-P_+,\quad g=\lambda_+-\lambda_-=2\epsilon\omega_0^2.
+$$
+
+A projector removes the arbitrary eigenvector sign. It does not remove sensitivity caused by a small gap. For two different allowed angles, direct 2 by 2 multiplication gives the exact operator-norm relations:
+
+
+
+$$
+\|P_+(\alpha)-P_+(\beta)\|_2=|\sin(\alpha-\beta)|,\qquad
+\|D_{\epsilon,\alpha}-D_{\epsilon,\beta}\|_2=2\epsilon\omega_0^2|\sin(\alpha-\beta)|,\qquad
+\frac{\|P_+(\alpha)-P_+(\beta)\|_2}{\|D_{\epsilon,\alpha}-D_{\epsilon,\beta}\|_2}=\frac1g.
+$$
+
+The difference of the two B matrices is symmetric, has trace zero and has eigenvalues plus/minus 2 abs(sin(alpha−beta)); this proves the norm formulas. At alpha=0 and beta=−pi/4 the projector distance stays 1/sqrt(2) while the matrix difference tends to zero. The ratio has units s², as required for an inverse squared-frequency gap.
+
+Eigenvalue separation also appears in general subspace perturbation theory; see [Yu, Wang and Samworth](https://arxiv.org/abs/1405.0680). Our exact two-spring calculation proves only its stated family, rather than applying a general theorem without checking its gap hypotheses. For unequal masses, whiten with the same fixed mass metric before comparing these norms.
+
+### Check what happens to energy labels
+
+Release q0=Q e1 from rest, with Q≠0 a physical displacement. The two initial modal energies are
+
+
+
+$$
+E_+=\frac{m\omega_0^2Q^2}{2}(1+\epsilon)\cos^2\alpha,\quad
+E_-=\frac{m\omega_0^2Q^2}{2}(1-\epsilon)\sin^2\alpha,\qquad
+E=\frac{m\omega_0^2Q^2}{2}(1+\epsilon\cos2\alpha),\qquad \frac{E_+}{E}\longrightarrow\cos^2\alpha\quad(\epsilon\downarrow0).
+$$
+
+Total energy approaches the same value for all angles, while the limiting upper-mode fraction depends on the path to degeneracy. For epsilon>0 these are different physical matrices with simple modes: rotating a basis arbitrarily inside one such matrix would generally be wrong. At epsilon=0 they become the same repeated-frequency system, where a basis rotation really is a convention. The full two-mode cluster projector is I in this minimal example.
+
+### Prove fixed-time physical stability separately
+
+
+
+$$
+U_\alpha=(u_+,u_-),\quad q_{\epsilon,\alpha}(t)=Q U_\alpha
+\begin{pmatrix}\cos(\omega_0\sqrt{1+\epsilon}\,t)&0\\0&\cos(\omega_0\sqrt{1-\epsilon}\,t)\end{pmatrix}U_\alpha^Te_1,\qquad
+q_{0}(t)=Q\cos(\omega_0t)e_1.
+$$
+
+Orthogonality reduces the matrix difference to the larger of two scalar cosine differences. Since cosine is 1-Lipschitz and the larger frequency shift is the lower-branch shift,
+
+
+
+$$
+\sup_{0\le t\le T}\|q_{\epsilon,\alpha}(t)-q_0(t)\|_2\le |Q|T\,\delta\omega,\qquad
+\delta\omega=\omega_0(1-\sqrt{1-\epsilon})=\frac{\omega_0\epsilon}{1+\sqrt{1-\epsilon}}.
+$$
+
+For fixed finite T this tends to zero uniformly in alpha. It does not certify all growing horizons. The table uses m=omega0=Q=1, T=5 s and compares alpha=0 with −pi/4. The matrix norm is divided by omega0²; the last column is divided by abs(Q).
+
+| epsilon | matrix difference / omega0² | projector difference | position difference / abs(Q) |
+|---|---|---|---|
+| 0.25 | 0.353553 | 0.707107 | 0.807759 |
+| 0.125 | 0.176777 | 0.707107 | 0.418910 |
+| 0.0625 | 0.088388 | 0.707107 | 0.211288 |
+| 0.03125 | 0.044194 | 0.707107 | 0.105871 |
+
+```python
+from math import sqrt, cos, sin, pi, hypot
+
+# m=omega0=Q=1 in SI units; compare alpha=0 and -pi/4 at T=5 s.
+for epsilon in [.25, .125, .0625, .03125]:
+    high, low = sqrt(1+epsilon), sqrt(1-epsilon)
+    alpha, t = -pi/4, 5
+    co, sn = cos(alpha), sin(alpha)
+    qa = (co*co*cos(high*t)+sn*sn*cos(low*t),
+          co*sn*(cos(high*t)-cos(low*t)))
+    qb = (cos(high*t), 0)
+    print(epsilon, round(sqrt(2)*epsilon, 6), round(1/sqrt(2), 6),
+          round(hypot(qa[0]-qb[0], qa[1]-qb[1]), 6))
+```
+
+![A vanishing spring-matrix perturbation leaves a finite mode-projector difference, while finite-time physical position differences decrease.](/assets/learning/waves-coupled-mode-gap.en.svg)
+
+### Research questions with explanations
+
+**Does sorting frequencies fix mode identification?** **Answer:** It fixes an ordering for distinct eigenvalues, but the associated direction can remain highly sensitive to small physical perturbations when the gap is small. Report the gap, a sign-invariant projector and the chosen mass metric.
+
+**Can a small physical prediction loss coexist with a large mode-label loss?** **Answer:** Yes. The fixed-time bound tends to zero while the two rank-one projectors stay separated. The comparison must distinguish a physical output from a latent basis label.
+
+**May every nearly repeated pair be freely rotated?** **Answer:** No. At a nonzero gap each mode must still solve its own eigenproblem. Arbitrary rotations are exact eigenbasis freedoms only inside an actually repeated eigenspace; cluster and trajectory comparisons serve a different purpose.
+
 ## Six exercises with explained solutions
 
 ### Exercise 1: Build the force matrix

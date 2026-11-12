@@ -186,6 +186,123 @@ $\kappa=0$이면 둘째 질량은 초기 평형에 남고, $k>0$에서 첫 질�
 
 $A=0$이면 모든 물리 에너지가0이다. 에너지 비율은 분모가0이므로 미정이다. 계의 주파수 정보가 남는다는 사실이 관측된 0이 아닌 운동을 만들어 내지는 않는다.
 
+## 연구 확장: 가까운 스프링 모델이 장시간 상태 오차를 숨길 수 있다
+
+앞의 약결합 주의사항을 정량화할 수 있다. 일차 상위 진동수는 단순한 근삿값이 아니라 조금 다른 양의 스프링 계의 정확한 운동을 생성한다. 가까운 계는 자기 에너지를 보존하고 원래 계의 물리적 에너지 결함도 모든 시간에서 작게 유지한다. 그 두 사실이 왜 균일한 장시간 상태 상계를 주지 않는지 보인다.
+
+### 근사를 명시하고 초기 상태를 유지한다
+
+m,k,A>0를 고정하고 epsilon=kappa/k>0로 두며 원래처럼 (A,0)에서 정지 상태로 놓는다. 여기서 epsilon은 결합 비율로 앞 단원의 비등방성 매개변수와 다르다. 정확한 아래 진동수 omega0는 유지하고 위 진동수만 바꾼다.
+
+
+
+$$
+\omega_0=\sqrt{k/m},\quad \omega_+=\omega_0\sqrt{1+2\epsilon},\quad \omega_a=\omega_0(1+\epsilon),\qquad
+\delta=\omega_a-\omega_+=\frac{\omega_0\epsilon^2}{1+\epsilon+\sqrt{1+2\epsilon}}>0.
+$$
+
+유리화한 delta는 가까운 진동수끼리 빼는 계산을 피한다. 코사인 위치와 그 완전한 미분에서 omega+를 omegaa로 바꾸어 qa와 va를 복원한다. 지원하는 매개변수 안에서는 기존 실습의 근사 관례와 정확히 같으며 아래 보충 극한은 기존 격자·시간창보다 작은 결합과 긴 시간도 다룬다.
+
+### 정확히 대응하는 이웃 역학계를 식별한다
+
+
+
+$$
+\kappa_a=k\left(\epsilon+\frac{\epsilon^2}{2}\right),\quad \Delta\kappa=\kappa_a-\kappa=\frac{k\epsilon^2}{2},\qquad
+\omega_a^2=\frac{k+2\kappa_a}{m},\quad K_a-K=\Delta\kappa\begin{pmatrix}1&-1\\-1&1\end{pmatrix}.
+$$
+
+고정 강성과 질량은 바뀌지 않는다. 따라서 qa는 같은 네 초기값으로 m qaddot+Ka qa=0을 정확히 푼다. 양의 epsilon에서는 이웃 결합 강성도 양수다. 이 해석은 학습 동역학에도 유용하다. 일관된 예측이 다른 물리 매개변수에 대해서는 훌륭한 해일 수 있다.
+
+
+
+$$
+R(t)=m\ddot q_a+Kq_a=-\Delta\kappa\,A\cos(\omega_at)\begin{pmatrix}1\\-1\end{pmatrix},\qquad
+\|R(t)\|_2\le\frac{kA\epsilon^2}{\sqrt2}.
+$$
+
+q1a−q2a=A cos(omegaa t)를 사용하면 잔차를 얻는다. 단위는 N이며 시간에 균일한 상계다. 이웃 행렬로 평가해 항등적으로 0이 되는 잔차가 아니라 원래 방정식의 잔차다.
+
+### 두 물리적 에너지 함수를 비교한다
+
+
+
+$$
+E_\kappa(q,v)=\frac m2\|v\|_2^2+\frac k2\|q\|_2^2+\frac\kappa2(q_1-q_2)^2,\quad E_0=\frac{(k+\kappa)A^2}{2},\qquad
+E_{\kappa_a}(q_a,v_a)=\frac{(k+\kappa_a)A^2}{2},\qquad
+E_\kappa(q_a,v_a)-E_0=\frac{kA^2\epsilon^2}{4}\sin^2(\omega_at)\in\left[0,\frac{kA^2\epsilon^2}{4}\right].
+$$
+
+첫 번째 보존식은 정확한 이웃 동역학에서 나온다. 추가 스프링 에너지 Delta kappa (q1a−q2a)²/2와 원래 초기 에너지를 빼면 마지막 줄을 얻는다. 잘린 수정 에너지 진단이 아니라 모든 시간의 정확한 항등식이다. qa가 원래 에너지를 정확히 보존한다는 뜻은 아니다.
+
+### 반송 위상을 고르지 않고 물리적 상태 오차를 상계한다
+
+
+
+$$
+\mathcal D(t)=\left[\|q_a(t)-q(t)\|_2^2+\frac{\|v_a(t)-v(t)\|_2^2}{\omega_+^2}\right]^{1/2}.
+$$
+
+대괄호 안의 두 항은 모두 m² 단위다. 두 해의 대칭 모드는 같으므로 반대칭 모드만 오차에 기여한다. 정확한 위상 벡터는 (cos theta,sin theta), 근사 벡터는 (cos thetaa,(omegaa/omega+) sin thetaa)이다. 마지막 진동수 비율을 1로 바꾸면 벡터 노름의 변화는 delta/omega+ 이하이다. 두 단위 위상 벡터의 거리는 2 abs(sin((thetaa−theta)/2))이므로 다음을 얻는다.
+
+
+
+$$
+\left|\mathcal D(t)-\sqrt2 A\left|\sin\frac{\delta t}{2}\right|\right|\le\frac{A\delta}{\sqrt2\omega_+}.
+$$
+
+이 추정식은 빠른 반송 위상에 무관하다. 위치 오차만 보면 선택한 시각에서 0이 될 수 있지만 위치·속도 결합 척도는 위상 차를 계속 감지한다. abs(sin z)≤abs(z)이므로 다음을 얻는다.
+
+
+
+$$
+\sup_{0\le t\le T}\mathcal D(t)\le\frac{A\delta}{\sqrt2}\left(T+\frac1{\omega_+}\right),\qquad
+T_{\rm swap}=\frac\pi{\omega_+-\omega_0}\sim\frac\pi{\omega_0\epsilon},\quad \delta T_{\rm swap}\sim\frac\pi2\epsilon.
+$$
+
+고정 T의 오차는 O(epsilon²), 첫 맥놀이 척도에서는 O(epsilon)이다. 유용한 두 영역이지만 증가하는 모든 관측 기간을 포함하지는 않는다. 더 긴 관측 시간 계열을 고른다.
+
+
+
+$$
+T_\epsilon=\frac2{\omega_0\epsilon^2},\qquad \delta T_\epsilon=\frac2{1+\epsilon+\sqrt{1+2\epsilon}}\longrightarrow1,\qquad
+\frac{\mathcal D(T_\epsilon)}A\longrightarrow\sqrt2\sin(1/2)\simeq0.678010.
+$$
+
+모든 시간의 에너지 결함과 방정식 잔차는 0으로 가지만 이 상태 오차는 유한하게 남는다. 고정 시간 수렴과 첫 맥놀이 추정식에 모순되지 않는 증가 관측 기간의 결과다. 표는 SI 단위로 m=k=A=1을 고정한다. 표의 값은 반올림한 것이며 정확한 상계는 위의 식을 따른다. 처음 두 기간만 기존 128초 관측창 안에 있으며 점 조회는 512초까지 지원한다. 2,048초 행은 보충 닫힌 해 계산이다.
+
+| epsilon | T_epsilon (s) | 위상 차 (rad) | 상태 오차 / A | 에너지 오차 상계 (J) |
+|---|---|---|---|---|
+| 0.25 | 32 | 0.808164 | 0.552650 | 0.015625 |
+| 0.125 | 128 | 0.891649 | 0.608572 | 0.00390625 |
+| 0.0625 | 512 | 0.941992 | 0.642326 | 0.000976562 |
+| 0.03125 | 2048 | 0.969920 | 0.659496 | 0.000244141 |
+
+```python
+from math import sqrt, sin, cos, hypot
+
+# m=k=A=1 in SI units. Closed formulas; no thousands-step simulation.
+for epsilon in [.25, .125, .0625, .03125]:
+    t = 2/epsilon**2
+    high, approximate = sqrt(1+2*epsilon), 1+epsilon
+    delta = epsilon**2/(1+epsilon+sqrt(1+2*epsilon))
+    position = cos(approximate*t)-cos(high*t)
+    velocity = approximate*sin(approximate*t)/high-sin(high*t)
+    state_norm = hypot(position, velocity)/sqrt(2)
+    print(epsilon, t, round(delta*t, 6), round(state_norm, 6),
+          round(epsilon**2/4, 9))
+```
+
+![결합 비율의 제곱 역수에 비례하는 관측 기간에서 결합 상태 오차는 유한하게 남지만 원래 물리적 에너지 오차 상계는 줄어든다.](/assets/learning/waves-coupled-nearby-model.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**근사 운동은 어느 에너지를 정확히 보존하는가?** **답:** 결합 강성이 kappaa인 에너지다. 원래 결합 강성의 에너지에는 작은 양의 진동 결함이 있다. 각 진단에서 사용한 물리 매개변수를 보고한다.
+
+**작은 잔차와 에너지 오차가 모든 미래 상태를 인증하는가?** **답:** 아니다. 여기서는 둘 다 균일하게 O(epsilon²)이지만 epsilon⁻² 기간에 위상이 쌓여 결합 상태 오차가 유한하게 남는다. 정확도 주장에는 관측 척도가 필요하다.
+
+**학습된 약결합 모델은 어떻게 비교해야 하는가?** **답:** 네 초기값을 보존하고 이웃 매개변수 편향을 식별하며 물리적 에너지와 적합 모델 에너지를 나누어 보고한다. 고정 시간·맥놀이 척도·더 긴 물리 시간에서 위치와 속도를 함께 비교한다. 이 풀리는 한 쌍으로 비선형·다체 정리를 추론하지 않는다.
+
 ## 해설이 있는 연습문제 여섯 개
 
 ### 문제 1: 초기 상태 복원하기

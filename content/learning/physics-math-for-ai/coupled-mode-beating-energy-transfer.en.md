@@ -186,6 +186,123 @@ In the latter case with these initial conditions, the two half-coupling local en
 
 At $A=0$ all physical energies vanish. Energy fractions are unavailable because their denominator is zero. Intrinsic frequency information remains meaningful; it does not create a measured nonzero motion.
 
+## Research extension: a nearby spring model can hide a long-time state error
+
+The earlier weak-coupling warning can be quantified. The first-order upper frequency is not just an approximate number: it generates the exact motion of a slightly different positive-spring system. That nearby system preserves its own energy, and even its physical-energy defect for the original system stays small at every time. We show why neither fact supplies a uniform long-time state bound.
+
+### Specify the approximation and keep the initial state
+
+Keep m,k,A>0 fixed, set epsilon=kappa/k>0, and use the original release from (A,0) at rest. Here epsilon is the coupling ratio, distinct from the preceding chapter’s anisotropy parameter. The exact lower frequency remains omega0; only the upper frequency is replaced:
+
+
+
+$$
+\omega_0=\sqrt{k/m},\quad \omega_+=\omega_0\sqrt{1+2\epsilon},\quad \omega_a=\omega_0(1+\epsilon),\qquad
+\delta=\omega_a-\omega_+=\frac{\omega_0\epsilon^2}{1+\epsilon+\sqrt{1+2\epsilon}}>0.
+$$
+
+The rationalized delta avoids subtracting nearby frequencies. Reconstruct qa and va by replacing omega+ by omegaa in both cosine positions and their full derivatives. This is exactly the native approximation convention within its supported parameters; the supplemental limits below also consider smaller coupling and longer times than the native grid/window.
+
+### Identify the exact neighboring mechanical system
+
+
+
+$$
+\kappa_a=k\left(\epsilon+\frac{\epsilon^2}{2}\right),\quad \Delta\kappa=\kappa_a-\kappa=\frac{k\epsilon^2}{2},\qquad
+\omega_a^2=\frac{k+2\kappa_a}{m},\quad K_a-K=\Delta\kappa\begin{pmatrix}1&-1\\-1&1\end{pmatrix}.
+$$
+
+The anchoring stiffness and mass do not change. Thus qa solves m qaddot+Ka qa=0 exactly with the same four initial values. Positive epsilon keeps the nearby coupling positive. This interpretation is sometimes useful for learned dynamics: a coherent prediction may be an excellent solution of the wrong physical parameters.
+
+
+
+$$
+R(t)=m\ddot q_a+Kq_a=-\Delta\kappa\,A\cos(\omega_at)\begin{pmatrix}1\\-1\end{pmatrix},\qquad
+\|R(t)\|_2\le\frac{kA\epsilon^2}{\sqrt2}.
+$$
+
+Use q1a−q2a=A cos(omegaa t) to obtain the residual. Its units are N and its bound is uniform in time. It is a residual of the original equation, rather than one evaluated using the neighboring matrix that would vanish identically.
+
+### Compare both physical energy functions
+
+
+
+$$
+E_\kappa(q,v)=\frac m2\|v\|_2^2+\frac k2\|q\|_2^2+\frac\kappa2(q_1-q_2)^2,\quad E_0=\frac{(k+\kappa)A^2}{2},\qquad
+E_{\kappa_a}(q_a,v_a)=\frac{(k+\kappa_a)A^2}{2},\qquad
+E_\kappa(q_a,v_a)-E_0=\frac{kA^2\epsilon^2}{4}\sin^2(\omega_at)\in\left[0,\frac{kA^2\epsilon^2}{4}\right].
+$$
+
+The first equality follows from exact nearby dynamics. Subtract its extra spring energy Delta kappa (q1a−q2a)²/2 and subtract the original initial energy to obtain the last line. It is an exact all-time identity, not a truncated modified-energy diagnostic. It does not say that qa conserves the original energy exactly.
+
+### Bound a physical state error without choosing a carrier phase
+
+
+
+$$
+\mathcal D(t)=\left[\|q_a(t)-q(t)\|_2^2+\frac{\|v_a(t)-v(t)\|_2^2}{\omega_+^2}\right]^{1/2}.
+$$
+
+Both terms inside the brackets have units m². The symmetric mode is identical in the two solutions, so only the antisymmetric mode contributes. Its exact phase vector is (cos theta,sin theta), while the approximate vector is (cos thetaa,(omegaa/omega+) sin thetaa). Replacing that final frequency ratio by one changes the vector norm by at most delta/omega+. The distance between two unit phase vectors is 2 abs(sin((thetaa−theta)/2)), hence
+
+
+
+$$
+\left|\mathcal D(t)-\sqrt2 A\left|\sin\frac{\delta t}{2}\right|\right|\le\frac{A\delta}{\sqrt2\omega_+}.
+$$
+
+This estimate is independent of the fast carrier phase. A position-only error can vanish at selected times, but the combined position–velocity metric still detects the phase discrepancy. Since abs(sin z)≤abs(z),
+
+
+
+$$
+\sup_{0\le t\le T}\mathcal D(t)\le\frac{A\delta}{\sqrt2}\left(T+\frac1{\omega_+}\right),\qquad
+T_{\rm swap}=\frac\pi{\omega_+-\omega_0}\sim\frac\pi{\omega_0\epsilon},\quad \delta T_{\rm swap}\sim\frac\pi2\epsilon.
+$$
+
+At fixed T the error is O(epsilon²); over the first beat scale it is O(epsilon). These useful regimes do not include every increasing horizon. Choose a longer family of observation times:
+
+
+
+$$
+T_\epsilon=\frac2{\omega_0\epsilon^2},\qquad \delta T_\epsilon=\frac2{1+\epsilon+\sqrt{1+2\epsilon}}\longrightarrow1,\qquad
+\frac{\mathcal D(T_\epsilon)}A\longrightarrow\sqrt2\sin(1/2)\simeq0.678010.
+$$
+
+The all-time energy defect and equation residual go to zero, yet this state error stays finite. This is a growing-horizon result, consistent with fixed-time convergence and the first-beat estimate. The table fixes m=k=A=1 in SI units. Table values are rounded; the exact bounds are the expressions above. Only the first two durations fit the native 128 s observation window; point queries support up to 512 s. The 2,048 s row is a supplementary closed calculation.
+
+| epsilon | T_epsilon (s) | phase difference (rad) | state error / A | energy-error bound (J) |
+|---|---|---|---|---|
+| 0.25 | 32 | 0.808164 | 0.552650 | 0.015625 |
+| 0.125 | 128 | 0.891649 | 0.608572 | 0.00390625 |
+| 0.0625 | 512 | 0.941992 | 0.642326 | 0.000976562 |
+| 0.03125 | 2048 | 0.969920 | 0.659496 | 0.000244141 |
+
+```python
+from math import sqrt, sin, cos, hypot
+
+# m=k=A=1 in SI units. Closed formulas; no thousands-step simulation.
+for epsilon in [.25, .125, .0625, .03125]:
+    t = 2/epsilon**2
+    high, approximate = sqrt(1+2*epsilon), 1+epsilon
+    delta = epsilon**2/(1+epsilon+sqrt(1+2*epsilon))
+    position = cos(approximate*t)-cos(high*t)
+    velocity = approximate*sin(approximate*t)/high-sin(high*t)
+    state_norm = hypot(position, velocity)/sqrt(2)
+    print(epsilon, t, round(delta*t, 6), round(state_norm, 6),
+          round(epsilon**2/4, 9))
+```
+
+![On horizons proportional to inverse coupling squared, combined state error remains finite while the original physical-energy error bound decreases.](/assets/learning/waves-coupled-nearby-model.en.svg)
+
+### Research questions with explanations
+
+**Which energy does the approximate motion conserve exactly?** **Answer:** The energy with coupling kappaa. Its original-coupling energy has a small positive oscillatory defect. Report the physical parameters used by each diagnostic.
+
+**Do small residuals and small energy error certify every future state?** **Answer:** No. Here both are uniformly O(epsilon²), but the phase accumulates over an epsilon⁻² horizon and the combined state error stays finite. An accuracy claim needs its observation scale.
+
+**How should a learned weak-coupling model be compared?** **Answer:** Preserve the four initial values, identify the nearby parameter bias, report physical and fitted-model energies separately, and compare position plus velocity at fixed, beat-scale and longer physical times. Do not infer a nonlinear or many-body theorem from this solvable pair.
+
 ## Six exercises with explained solutions
 
 ### Exercise 1: Recover the initial state

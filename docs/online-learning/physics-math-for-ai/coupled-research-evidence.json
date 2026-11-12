@@ -1,0 +1,409 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-12",
+  "status": "validated-two-unit-extension",
+  "baselineCommit": "c1e70d55f7ff1e750836a102ef2e255bd12d667a",
+  "scope": {
+    "expandedUnits": [
+      "mass-weighted-coupled-normal-modes",
+      "coupled-mode-beating-energy-transfer"
+    ],
+    "manuscripts": 4,
+    "localizedFigures": 4,
+    "originalManuscriptsPreserved": true,
+    "unchangedOtherWaveManuscripts": 32,
+    "previousReviewEntriesPreserved": 685,
+    "reviewEntriesAfter": 689,
+    "sequentiallyReviewedWaveUnits": 4,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/mass-weighted-coupled-normal-modes.en.md",
+      "sha256": "1f5131a62f46fd4bf5d15f3e1d11192dad74031939edf81e14deae2d8268195f",
+      "originalSha256": "f32a291bf2873a75f2a2cf8dfb07c12e2c5915e3bd2395aa8108424f92ee4154",
+      "expanded": true
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/mass-weighted-coupled-normal-modes.ko.md",
+      "sha256": "ba62a3b08b65f48ee61e660854f81a6d9c020d0be7b492f9b8691a22721b0de5",
+      "originalSha256": "e42ad4cf7ae8939efb70eda389d3947400d59f3234c6643fd60d444e63d3b147",
+      "expanded": true
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-mode-beating-energy-transfer.en.md",
+      "sha256": "5d67f76af7474804c97610a1e55c2745addb60d988a041197b1d971e161231d3",
+      "originalSha256": "a92e39bd44c5a9a60149460d6e298b9f12cbcc5e9002f5f40b0cfa75688a45db",
+      "expanded": true
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-mode-beating-energy-transfer.ko.md",
+      "sha256": "4b5f4c843eb00de9046b308b909941bd6ce3a48ee1febaf1bd382813ec10f765",
+      "originalSha256": "5e0e8c11d5c7b667504c00732a85271c09884712f620acf96803c217200641a2",
+      "expanded": true
+    }
+  ],
+  "unchangedWaveManuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/sinusoidal-forcing-transient-response.en.md",
+      "sha256": "819107905895dbb9d129816ba6629d8cdba5b0286bbd04fd9c32736960fab5b1",
+      "originalSha256": "819107905895dbb9d129816ba6629d8cdba5b0286bbd04fd9c32736960fab5b1",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/sinusoidal-forcing-transient-response.ko.md",
+      "sha256": "c2362b0b4269e905286cbdca51d3a2eab9860b7dc7fc2a357bd9a423f72ca36e",
+      "originalSha256": "c2362b0b4269e905286cbdca51d3a2eab9860b7dc7fc2a357bd9a423f72ca36e",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/oscillator-frequency-response-power-resonance.en.md",
+      "sha256": "49c2e4ec86dbd064b372f2d2dfb5f6683aeb328bb96eddb40c45373cd70d0611",
+      "originalSha256": "49c2e4ec86dbd064b372f2d2dfb5f6683aeb328bb96eddb40c45373cd70d0611",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/oscillator-frequency-response-power-resonance.ko.md",
+      "sha256": "71d42f7553bc1cb726e1b279b8262891c9dab0229ae33950a653df2e1236ffad",
+      "originalSha256": "71d42f7553bc1cb726e1b279b8262891c9dab0229ae33950a653df2e1236ffad",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-chain-continuum-wave-limit.en.md",
+      "sha256": "54d4a22c4aae1e502ca2d0c340559bc422815067824bcae6e0b85365cea346f0",
+      "originalSha256": "54d4a22c4aae1e502ca2d0c340559bc422815067824bcae6e0b85365cea346f0",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-chain-continuum-wave-limit.ko.md",
+      "sha256": "c7776f6df273ca0e92b661814a3cb7ad2b398f737c06881f89d9063ae2d5a341",
+      "originalSha256": "c7776f6df273ca0e92b661814a3cb7ad2b398f737c06881f89d9063ae2d5a341",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/wave-initial-data-reflection-energy-flux.en.md",
+      "sha256": "0d5b0eb41304f243385d5ce3d9b8a7b824077271e2253030c6e391aaa69d2d09",
+      "originalSha256": "0d5b0eb41304f243385d5ce3d9b8a7b824077271e2253030c6e391aaa69d2d09",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/wave-initial-data-reflection-energy-flux.ko.md",
+      "sha256": "ed71355450678097db9e2087bf7eb57f0ae42d490fa9a0bbacfe4d4ecfcfb0c4",
+      "originalSha256": "ed71355450678097db9e2087bf7eb57f0ae42d490fa9a0bbacfe4d4ecfcfb0c4",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coherent-superposition-detector-averages.en.md",
+      "sha256": "7b000e4b5225776714465943ae47d07a894a7cd9153eba17ed6a3395b94a4b35",
+      "originalSha256": "7b000e4b5225776714465943ae47d07a894a7cd9153eba17ed6a3395b94a4b35",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coherent-superposition-detector-averages.ko.md",
+      "sha256": "f92f213a04e7f5693d92d0a98203e825ee6b6b3d9def3e36faa97a8df6281b03",
+      "originalSha256": "f92f213a04e7f5693d92d0a98203e825ee6b6b3d9def3e36faa97a8df6281b03",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-aperture-fresnel-fraunhofer.en.md",
+      "sha256": "0278900bc601da357e5a5136b426052d42d391bc1400e52960efab95b3c4b786",
+      "originalSha256": "0278900bc601da357e5a5136b426052d42d391bc1400e52960efab95b3c4b786",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-aperture-fresnel-fraunhofer.ko.md",
+      "sha256": "c82fba2078fe783fc38e7d61818223271e2bf6e95167c7184c58dc675dfc7840",
+      "originalSha256": "c82fba2078fe783fc38e7d61818223271e2bf6e95167c7184c58dc675dfc7840",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/dispersive-wave-packets-phase-group-velocity.en.md",
+      "sha256": "63eb94a452ce2a6559480d8aa9a931ff6b8507ef001b9f4b4ea146dd239c1ebe",
+      "originalSha256": "63eb94a452ce2a6559480d8aa9a931ff6b8507ef001b9f4b4ea146dd239c1ebe",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/dispersive-wave-packets-phase-group-velocity.ko.md",
+      "sha256": "5e1a1db508044bbb9e91e35c47dd053f5d157f0e1d9b3b7df7549042625b466d",
+      "originalSha256": "5e1a1db508044bbb9e91e35c47dd053f5d157f0e1d9b3b7df7549042625b466d",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/lattice-wave-packet-transport-dispersion.en.md",
+      "sha256": "0f650ea4cb7162fced696192744b6ec24cde5d51a16d277c8f73250b30a820d2",
+      "originalSha256": "0f650ea4cb7162fced696192744b6ec24cde5d51a16d277c8f73250b30a820d2",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/lattice-wave-packet-transport-dispersion.ko.md",
+      "sha256": "6776a2d636c6e1203fe481e56d22598d0487f772e02310c5a00efe1d585b9779",
+      "originalSha256": "6776a2d636c6e1203fe481e56d22598d0487f772e02310c5a00efe1d585b9779",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/jones-polarization-waveplates-analyzers.en.md",
+      "sha256": "7bf774a177503f12d6e0112b88f196ffc4349ad81f12162d8b36a7a5fe588ce7",
+      "originalSha256": "7bf774a177503f12d6e0112b88f196ffc4349ad81f12162d8b36a7a5fe588ce7",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/jones-polarization-waveplates-analyzers.ko.md",
+      "sha256": "70a5147f651a4bcb281871630c00473458ea5e9d24f5859d8e08f77978300517",
+      "originalSha256": "70a5147f651a4bcb281871630c00473458ea5e9d24f5859d8e08f77978300517",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stokes-coherency-polarization-tomography.en.md",
+      "sha256": "6ce155602b2c1c2c16a3fe398070e57976b9eb9ba78e689715d93dfd43c85a50",
+      "originalSha256": "6ce155602b2c1c2c16a3fe398070e57976b9eb9ba78e689715d93dfd43c85a50",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stokes-coherency-polarization-tomography.ko.md",
+      "sha256": "1d10a9691cd2810e357c9471de0a2bfea1f94688dca93269c410fb0d53e15d87",
+      "originalSha256": "1d10a9691cd2810e357c9471de0a2bfea1f94688dca93269c410fb0d53e15d87",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/paraxial-ray-matrices-thin-lens-imaging.en.md",
+      "sha256": "53d902d59c07672d52295c5cf3beebe7a549850b07aba9c8870d3cbf836f11ec",
+      "originalSha256": "53d902d59c07672d52295c5cf3beebe7a549850b07aba9c8870d3cbf836f11ec",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/paraxial-ray-matrices-thin-lens-imaging.ko.md",
+      "sha256": "b2f9d7ad48b768d454d6f62787e275978e2d7ad1eb1e4c6d76feedb34fc612ca",
+      "originalSha256": "b2f9d7ad48b768d454d6f62787e275978e2d7ad1eb1e4c6d76feedb34fc612ca",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gaussian-beam-focusing-ray-wave-limit.en.md",
+      "sha256": "cc51448b378f3e11d34c728f5fa48fafc35fa9714de0b5c1fa1d2f2c7b85b963",
+      "originalSha256": "cc51448b378f3e11d34c728f5fa48fafc35fa9714de0b5c1fa1d2f2c7b85b963",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gaussian-beam-focusing-ray-wave-limit.ko.md",
+      "sha256": "356487c38a11d41ed787482df7d7c1590c5ee48d5d81ea020a4dfc8981199012",
+      "originalSha256": "356487c38a11d41ed787482df7d7c1590c5ee48d5d81ea020a4dfc8981199012",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coherent-fourier-pupil-spatial-filtering.en.md",
+      "sha256": "1f90c556432fb6080989bcb2d00995c214f7835cb2978e64f031c67b6f8bce7f",
+      "originalSha256": "1f90c556432fb6080989bcb2d00995c214f7835cb2978e64f031c67b6f8bce7f",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coherent-fourier-pupil-spatial-filtering.ko.md",
+      "sha256": "525b3735ebaab611972812fcf1a97065850562c4a36a708d9b487c8945313e39",
+      "originalSha256": "525b3735ebaab611972812fcf1a97065850562c4a36a708d9b487c8945313e39",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/incoherent-psf-otf-image-formation.en.md",
+      "sha256": "48d409f61d721b820f64302dcac86934f499de15fb8a4261e93aa42733b8aa08",
+      "originalSha256": "48d409f61d721b820f64302dcac86934f499de15fb8a4261e93aa42733b8aa08",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/incoherent-psf-otf-image-formation.ko.md",
+      "sha256": "1aa75e34c6ca153c23d43ab05b9c5a8e43e6a7d64f871c20cda7b86df50f0427",
+      "originalSha256": "1aa75e34c6ca153c23d43ab05b9c5a8e43e6a7d64f871c20cda7b86df50f0427",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/pixel-aperture-sampling-aliasing.en.md",
+      "sha256": "a7d2265443e15378153c0964390a9e6fd46bc76ce68f311f67eff380e4a06276",
+      "originalSha256": "a7d2265443e15378153c0964390a9e6fd46bc76ce68f311f67eff380e4a06276",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/pixel-aperture-sampling-aliasing.ko.md",
+      "sha256": "7bd8e2d8051c7559fd58a44328e725d1990ed13d29bea08d8b40da63bdde32aa",
+      "originalSha256": "7bd8e2d8051c7559fd58a44328e725d1990ed13d29bea08d8b40da63bdde32aa",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/photon-counting-exposure-sensor-noise.en.md",
+      "sha256": "f31ff474ba507c4d86d01673afb602fd4ccf4b6c8ac38bdae6312162ceb9c781",
+      "originalSha256": "f31ff474ba507c4d86d01673afb602fd4ccf4b6c8ac38bdae6312162ceb9c781",
+      "expanded": false
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/photon-counting-exposure-sensor-noise.ko.md",
+      "sha256": "bf97c79d148332fd0733450731472bb73860e96827bf947b8544a2762d259228",
+      "originalSha256": "bf97c79d148332fd0733450731472bb73860e96827bf947b8544a2762d259228",
+      "expanded": false
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/waves-coupled-mode-gap.en.svg",
+      "sha256": "b70dbc6e44b4ff06956175fa125b61aca2b1e88e2f984a5356956ab003eba638"
+    },
+    {
+      "path": "public/assets/learning/waves-coupled-mode-gap.ko.svg",
+      "sha256": "7ee3f28d69848da0e919d289a64a05b2ff99846fd8da771df5f0b4d0ecdc9c9a"
+    },
+    {
+      "path": "public/assets/learning/waves-coupled-nearby-model.en.svg",
+      "sha256": "b1062a5619df90d954853475fb19a93df4341f249e04bf42f8a1e2ea7f01f3d5"
+    },
+    {
+      "path": "public/assets/learning/waves-coupled-nearby-model.ko.svg",
+      "sha256": "a2cece2989f4b2f28e8d8822a7547a2631a5e2e0522ec2c409e477a0205fea02"
+    }
+  ],
+  "priorResonanceEvidence": {
+    "path": "docs/online-learning/physics-math-for-ai/resonance-research-evidence.json",
+    "sha256": "b0e8bf1de4392b051afe4dc5531389be79ee16acb1c209ac2f3016bbae5b0063",
+    "manuscriptAndFigureHashesRechecked": 8
+  },
+  "verification": {
+    "selectedTestFiles": [
+      {
+        "path": "scripts/learning-coupled-modes.test.ts",
+        "sha256": "eeea473eb8b7457777a14a6c3735b8e56340bddb6d1ae34449b5ba4601e6c460"
+      },
+      {
+        "path": "scripts/learning-coupled-integration.test.ts",
+        "sha256": "89c2904db7e4b559fa9ef6daa9e9a01e0f042ed943779a13c8375170764233a6"
+      },
+      {
+        "path": "scripts/learning-coupled-research.test.ts",
+        "sha256": "9765aed8ab357c30bcc549d9a5831ee770ca9402a383057cad6dee5c3bff2672"
+      },
+      {
+        "path": "scripts/learning-manuscript-preservation.test.ts",
+        "sha256": "54bd28bb2268aea6dcad13a14c256df644e5ad6a6ef3805ab5462c6e9cc031b1"
+      }
+    ],
+    "selectedTests": 51,
+    "selectedTestFailures": 0,
+    "focusedTests": 12,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-coupled-research.py --json",
+      "degenerateBasisStates": 81,
+      "finiteTimeBounds": 540,
+      "longHorizonStates": 54,
+      "modalOdeStates": 540,
+      "nearbyModelStates": 360,
+      "physicalSpringFamilies": 135,
+      "projectorGapPairs": 135,
+      "rk4Refinements": 15
+    },
+    "pairedPythonCellsExecuted": 4,
+    "pairedDisplayEquationsPerUnit": [
+      7,
+      8
+    ],
+    "displayedExampleTableOutputsVerified": true,
+    "nativeSpectralFamilies": 2,
+    "nativePhysicalQueries": 8,
+    "nativeApproximationQueries": 6,
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "build": "passed",
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "registry": {
+      "units": 650,
+      "guides": 1969
+    },
+    "sourceExportServedSvgPairs": 4,
+    "exportServedHtmlPairs": 2,
+    "sourceFigurePreviewsReviewed": 4,
+    "mobileScreenshotsReviewed": 4,
+    "browser": {
+      "unitCount": 2,
+      "states": 16,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 6,
+      "explainedQuizzes": 4,
+      "conceptSelections": 8,
+      "persistenceCompletionGroups": 2,
+      "interactionLocale": "en",
+      "interactionWidth": 320,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "reportSha256": "6e68413535474af09cfb0bce69a5bd9768439e9dd3bed77ef852b069791a2bf2",
+      "command": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_COUPLED_RESEARCH_REPORT=.runtime/learning/coupled-research-browser.json node scripts/check-coupled-research.cjs"
+    },
+    "logs": {
+      "coupled-research-tests": {
+        "path": ".runtime/learning/coupled-research-tests.log",
+        "sha256": "972573b62bf696ec233458518673ee2f97f8dae596c05caaa62759a46f493745"
+      },
+      "coupled-research-focused": {
+        "path": ".runtime/learning/coupled-research-focused.log",
+        "sha256": "581161705b5f64b820776142b9ec9c247b497588c9d8726eb944fa8e5eaba506"
+      },
+      "coupled-research-lint": {
+        "path": ".runtime/learning/coupled-research-lint.log",
+        "sha256": "3be436cfc280576162c8988ab0bf2da58c1cb1af605d4cca297edd0b2c7c9997"
+      },
+      "coupled-research-content": {
+        "path": ".runtime/learning/coupled-research-content.log",
+        "sha256": "cae16334d0d816cb4f9981be8422454c5186c14b964768b00780286cd813b72d"
+      },
+      "coupled-research-build": {
+        "path": ".runtime/learning/coupled-research-build.log",
+        "sha256": "ffab249ea04884847bb599f2181e4026d4d3e28e10649f4270311eab07a8a6ca"
+      },
+      "coupled-research-types": {
+        "path": ".runtime/learning/coupled-research-types.log",
+        "sha256": "6d339cc3c6b097244df96011008e228f3bc9a23bcef588e7d89e6265838f6660"
+      },
+      "coupled-research-export": {
+        "path": ".runtime/learning/coupled-research-export.log",
+        "sha256": "7693d86189e4ec43f9df04724c2cbf33caf0d974a41cccb2aa2004d36af557d2"
+      }
+    }
+  },
+  "toolingSha256": {
+    "scripts/learning/verify-coupled-research.py": "47de5065bd349248772f8dcd089a323c521be5730240b38087cf2a943cb5fa9e",
+    "scripts/check-coupled-research.cjs": "cebe401f57cca9317f9a312452a3b9602986cd1ce1f91707c2e145f8d077a61b"
+  },
+  "sources": [
+    {
+      "url": "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/29afe7e96aadefce1bd80486771aeae9_MIT8_03SCF16_Text_Ch3.pdf",
+      "role": "Primary normal-mode and physical initial-value framework; exact spring family and long-time bounds derived in the manuscripts."
+    },
+    {
+      "url": "https://arxiv.org/abs/1405.0680",
+      "role": "Primary abstract: eigenvalue separation in subspace perturbation theory; no general Davis–Kahan bound is claimed to have been proved by the finite model checks."
+    }
+  ],
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 40,
+    "reviewedTopics": 396,
+    "remainingDomains": 11,
+    "remainingTopics": 113,
+    "introductoryTopicsComplete": 362
+  },
+  "nextUnits": [
+    "coupled-chain-continuum-wave-limit",
+    "wave-initial-data-reflection-energy-flux"
+  ],
+  "curriculumComplete": false
+}
