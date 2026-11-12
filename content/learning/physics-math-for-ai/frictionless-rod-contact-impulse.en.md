@@ -125,6 +125,209 @@ The rod geometry is identical before and after the ideal impact; only velocities
 
 The calculation reports exact rational balances for the discrete controls. The rod length uses a numerical square root, while inertia, impulse, velocities and energy are rational. Active restitution residuals are defined only on the closing branch; an inactive law is not reported as a failed restitution equation.
 
+## Research extension: project the velocity, then ask whether restitution is identifiable
+
+### The mass matrix defines the relevant distance
+
+An impact changes translation and spin together. To compare two candidate velocity changes, use the kinetic-energy metric rather than the ordinary Euclidean distance between their coordinate numbers. Keep the original frozen geometry, one frictionless floor contact, m>0, a≥0, h>0 and I=m(a²+h²)/3. Let v=(Vx,Vy,ω) be generalized velocity. Define
+
+$$
+M=\operatorname{diag}(m,m,I),\quad J=(0,1,a),\quad c=Jv,
+\qquad W=JM^{-1}J^{\mathsf T}>0,\quad
+n=\frac{M^{-1}J^{\mathsf T}}{W},\quad Jn=1,\quad P=\operatorname{Id}-nJ.
+$$
+
+The row J converts generalized velocity into the endpoint's normal speed. The vector n is a unit-normal-speed response, not an ordinary spatial unit vector: its components mix translation and rotation in the correct physical units. W is positive because the mass matrix is positive definite and J is nonzero.
+
+For a closing contact c<0 and e=0, the resulting velocity Pv is the unique solution of
+
+$$
+\min_{Jz\ge0}\frac12(z-v)^{\mathsf T}M(z-v).
+$$
+
+The admissible velocities do not move into the floor. A candidate z is measured by the energy-sized cost of changing v into z. To prove the minimizer, write every feasible candidate as
+
+$$
+z=Pv+t+\alpha n,\quad Jt=0,\quad\alpha\ge0,
+\qquad\frac12\|z-v\|_M^2=\frac12\|t\|_M^2+\frac{(\alpha-c)^2}{2W}
+\ge\frac{c^2}{2W}\quad(c<0).
+$$
+
+Here t is a tangent generalized velocity, not the physical time. The cross term vanishes because tᵀMn=Jt/W=0. Since c<0, choosing α≥0 cannot reduce (α−c)² below c². Equality requires t=0 and α=0, giving z=Pv. If c≥0, the original v is already feasible and gives cost zero; no impulse is applied.
+
+Thus P is the linear projection onto the boundary hyperplane on the **closing branch**. The complete plastic impact law projects onto the admissible half-space. Applying P indiscriminately to separating velocities would alter motion that needs no impact.
+
+### Reflection and contraction explain the energy budget
+
+The operators obey
+
+$$
+P^2=P,\quad P^{\mathsf T}M=MP,\qquad
+R=2P-\operatorname{Id},\quad R^2=\operatorname{Id},\quad R^{\mathsf T}MR=M.
+$$
+
+The first two identities describe an orthogonal projection in the mass metric. R is a reflection in that metric and conserves kinetic energy. It describes the e=1 update on the closing branch. The identity R²=Id concerns the linear operator: after a real impact the contact is separating, so applying the physical impact law again gives zero impulse, rather than automatically restoring the old velocity.
+
+Separate v into mass-orthogonal tangent and normal components. For c<0 and 0≤e≤1,
+
+$$
+v_T=Pv,\quad v_N=nJv,\quad v^+=v_T-ev_N,\qquad
+K^+=K_T+e^2K_N,\quad K_N=\frac{c^2}{2W},\quad
+K^--K^+=(1-e^2)\frac{c^2}{2W}.
+$$
+
+The tangent mode is unchanged, while the normal mode is reversed and scaled by e. The normal-mode kinetic energy shrinks by e². In particular, plastic contact does not remove tangent-mode energy and need not stop the object. This generalized normal mode usually includes COM motion and spin, so simply reversing COM vertical speed would be incorrect.
+
+Try native input `[1,2,2,0,-10,0,5]`. It gives m=a=h=1, I=2/3, W=5/2, c=−1 and e=1/2. The normal impulse is 3/5 N s. Afterwards Vy=−2/5 m/s, ω=9/10 rad/s and the endpoint normal speed is +1/2 m/s. Energy falls from 1/2 to 7/20 J, a loss of 3/20 J. A descending COM can coexist with an opening contact.
+
+### A stable state update can have an unstable parameter inverse
+
+At fixed geometry and e, the physical impulse is
+
+$$
+j(c)=-\frac{1+e}{W}\min(c,0).
+$$
+
+It is continuous and Lipschitz in c with constant (1+e)/W. Its left derivative at zero is −(1+e)/W and its right derivative is zero. A smooth branch derivative extended across zero misses the activation change. This matters when differentiating a simulator through a contact event.
+
+Now estimate e from measured speeds instead. Let the true incoming speed be −δ, δ>0, and the outgoing speed be eδ. Add errors d₋ and d₊ with absolute bound ζ. The ratio estimate satisfies
+
+$$
+\widehat e=\frac{e\delta+d_+}{\delta-d_-},\qquad
+|\widehat e-e|\le\frac{\zeta(1+e)}{\delta-\zeta}
+\quad(0\le\zeta<\delta,\;|d_-|,|d_+|\le\zeta).
+$$
+
+To obtain the bound, subtract e: the numerator becomes d₊+ed₋ and the denominator stays at least δ−ζ. A vanishingly small impulse is therefore compatible with poor restitution identification. For e=1/2 and ζ=0.001 m/s:
+
+| Closing speed δ (m/s) | Speed error ζ (m/s) | Error bound for e | Closing sign certified? |
+|---|---:|---:|---|
+| 0.1 | 0.001 | 1/66 | Yes |
+| 0.01 | 0.001 | 1/6 | Yes |
+| 0.001 | 0.001 | Ratio bound unavailable | No |
+
+When δ≤ζ the incoming interval can touch or cross zero. A prior 0≤e≤1 still bounds a clipped estimate, but it does not supply identifying information from the measured ratio. The failed denominator bound is not a claim that every physically constrained estimator becomes unbounded.
+
+![Continuous impulse update and deteriorating restitution identification](/assets/learning/classical-contact-grazing.en.svg)
+
+The upper panel uses m=a=h=1 and e=1/2. The lower panel uses ζ=0.001 m/s and only δ>ζ; both axes there are logarithmic. The vertical axes represent different quantities. Divergence of the ratio-error bound does not imply divergence of the impulse update.
+
+Native input `[1,2,2,0,-11,10,5]` gives c⁻=−1/10, impulse 3/50, c⁺=1/20 and energy loss 3/2000. Input `[1,2,2,0,-10,10,5]` is exactly nonclosing and applies no impulse. The finer δ=0.01 and 0.001 cases belong to the standalone measurement analysis; they do not extend the native velocity grid.
+
+### Execute exact projection and noise checks
+
+The following standard-library Python cell verifies projection/reflection identities in 27 geometries, 324 restitution states, feasible projection competitors and the speed-error bounds using exact fractions. It uses its own mass-matrix calculations rather than importing the site evaluator.
+
+```python
+from fractions import Fraction as Q
+from itertools import product
+
+
+def dot(a, b):
+    return sum(x * y for x, y in zip(a, b))
+
+
+def mv(a, v):
+    return [dot(row, v) for row in a]
+
+
+def mm(a, b):
+    return [[dot(row, col) for col in zip(*b)] for row in a]
+
+
+def transpose(a):
+    return [list(col) for col in zip(*a)]
+
+
+def kinetic(mass_diag, v):
+    return dot(mass_diag, [x * x for x in v]) / 2
+
+
+def operators(mass, a, h, restitution):
+    inertia = mass * (a * a + h * h) / 3
+    mass_diag = [mass, mass, inertia]
+    j = [Q(0), Q(1), a]
+    w = sum(x * x / m for x, m in zip(j, mass_diag))
+    normal = [x / m / w for x, m in zip(j, mass_diag)]
+    identity = [[Q(int(i == k)) for k in range(3)] for i in range(3)]
+    projection = [[identity[i][k] - normal[i] * j[k]
+                   for k in range(3)] for i in range(3)]
+    reflection = [[identity[i][k] - 2 * normal[i] * j[k]
+                   for k in range(3)] for i in range(3)]
+    update = [[identity[i][k] - (1 + restitution) * normal[i] * j[k]
+               for k in range(3)] for i in range(3)]
+    return mass_diag, j, w, normal, identity, projection, reflection, update
+
+
+def restitution_error_bound(delta, noise, restitution):
+    if not 0 <= noise < delta:
+        raise ValueError('Incoming speed must be separated from zero.')
+    return noise * (1 + restitution) / (delta - noise)
+
+
+def impact_checks():
+    cases = 0
+    for mass, a, h in product(map(Q, [1, 2, 4]), [Q(0), Q(1, 2), Q(3, 2)],
+                              [Q(1, 2), Q(1), Q(2)]):
+        d, j, w, n, identity, p, r, _ = operators(mass, a, h, Q(0))
+        m = [[d[i] if i == k else Q(0) for k in range(3)] for i in range(3)]
+        assert mm(p, p) == p
+        assert mm(transpose(p), m) == mm(m, p)
+        assert mm(r, r) == identity
+        assert mm(mm(transpose(r), m), r) == m
+        for e in [Q(0), Q(1, 2), Q(1)]:
+            *_, update = operators(mass, a, h, e)
+            for velocity in [[Q(0), Q(-1), Q(0)], [Q(1), Q(1, 2), Q(-1)],
+                             [Q(-1), Q(0), Q(1)], [Q(0), -a, Q(1)]]:
+                c = dot(j, velocity)
+                after = mv(update, velocity) if c < 0 else velocity[:]
+                impulse = -(1 + e) * min(c, Q(0)) / w
+                assert impulse >= 0
+                assert dot(j, after) == (-e * c if c < 0 else c)
+                loss = kinetic(d, velocity) - kinetic(d, after)
+                assert loss == ((1 - e * e) * c * c / (2 * w) if c < 0 else 0)
+                if e == 0:
+                    # Feasible competitors differ by a tangent and a nonnegative
+                    # normal component; compare the projection objective exactly.
+                    optimum = kinetic(d, [x - y for x, y in zip(after, velocity)])
+                    for tangent_x, tangent, opening in product(
+                            [Q(-1), Q(0), Q(1)], [Q(-1), Q(0), Q(1)],
+                            [Q(0), Q(1, 2), Q(1)]):
+                        offset = [tangent_x, -a * tangent, tangent]
+                        candidate = [x + y + opening * z for x, y, z in zip(after, offset, n)]
+                        assert dot(j, candidate) >= 0
+                        cost = kinetic(d, [x - y for x, y in zip(candidate, velocity)])
+                        assert cost >= optimum
+                        if tangent_x == tangent == opening == 0:
+                            assert cost == optimum
+                cases += 1
+    e, noise = Q(1, 2), Q(1, 1000)
+    for delta in [Q(1, 10), Q(1, 100)]:
+        bound = restitution_error_bound(delta, noise, e)
+        for incoming_error, outgoing_error in product([-noise, Q(0), noise], repeat=2):
+            estimate = (e * delta + outgoing_error) / (delta - incoming_error)
+            assert abs(estimate - e) <= bound
+        print('Incoming speed, restitution error bound:', delta, bound)
+    try:
+        restitution_error_bound(noise, noise, e)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('Grazing interval needs rejection')
+    print(f'27 geometries: projection/reflection identities; {cases} restitution states passed')
+
+
+impact_checks()
+```
+
+### Research questions with worked answers
+
+1. **Does e=0 solve subsequent floor contact?** No. It provides an instantaneous admissible velocity. Continued contact, gravity, changing geometry and possible further impacts require a time-evolution model, which this lesson does not infer.
+2. **Why can state prediction be stable while e is poorly estimated?** The forward impulse is Lipschitz at grazing, but the inverse divides two small contact speeds. Forward continuity does not guarantee inverse conditioning.
+3. **Can we apply elastic reflection twice to undo two real impacts?** The matrix squares to the identity, but the physical law switches branches. After the first update a separating contact receives no second impulse unless additional dynamics creates a new closing event.
+
+For the general mass-matrix and contact-Jacobian framework, see [MIT Underactuated Robotics, Multi-Body Dynamics](https://underactuated.mit.edu/multibody.html). The projection proof, noise bound and single-contact assumptions above define this worked example.
+
 ## Worked examples and exercises with solutions
 
 1. **A rising center, closing endpoint.** Set m=a=h=1, V=(0, 1/2), ω=−1 and e=1/2. **Solution:** I=2/3, c⁻=−1/2 and jn=3/10. The outgoing values are Vy=4/5, ω=−11/20 and c⁺=1/4. The endpoint impacts despite the rising center. Energy loss is3/80.

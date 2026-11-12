@@ -124,6 +124,154 @@ Time histories span0 to10s and explicitly include the query and any event in tha
 
 The control values, piecewise states, switching times and work budgets use exact rational arithmetic. Trigonometric drawing coordinates are numerical. A continuous-motion experiment at fixed height does not supply the normal impact map from the previous lesson.
 
+## Research extension: separate the slipping mode from the waiting-time limit
+
+### A zero-drive family has a conserved rolling mode
+
+A small friction coefficient can suggest a small eventual energy loss. That inference ignores the time needed to reach rolling. Isolate the issue by setting horizontal drive F=0 and clockwise torque τ=0, while retaining the original fixed COM height, normal load mg, g=10 m/s², I=κmR² with 0<κ≤1 and μs≥μk≥0. Use clockwise Ω and relative contact slip u=V−RΩ.
+
+The force and torque balances imply
+
+$$
+m\dot V=f,\qquad I\dot\Omega=-Rf,\qquad
+\Pi=mV+\frac{I}{R}\Omega=\text{constant}.
+$$
+
+Π is a conserved combination of translation and spin in this special family. It is not the horizontal COM momentum, which friction changes. Define the common rolling-mode speed and the effective slip mass:
+
+$$
+v_r=\frac{V+\kappa R\Omega}{1+\kappa},\quad
+m_{\rm eff}=\frac{m\kappa}{1+\kappa},\qquad
+V=v_r+\frac{\kappa}{1+\kappa}u,\quad
+R\Omega=v_r-\frac{1}{1+\kappa}u.
+$$
+
+Substitution into K=mV²/2+IΩ²/2 cancels the cross terms and gives
+
+$$
+K=\frac12m(1+\kappa)v_r^2+\frac12m_{\rm eff}u^2.
+$$
+
+The first term stays constant; only the relative-slip term is dissipated. The coordinates describe energy modes, not two separate physical objects. Friction can increase COM speed when the rim initially moves faster than the center, while the total kinetic energy still decreases.
+
+For example native input `[1,2,1,0,5,0,0,0,10,1]` begins with V₀=0 and Ω₀=1. At t=0.1 s the forward friction is +1 N, V=1/10 m/s, Ω=4/5 rad/s and Q=17/200 J. The center accelerates while energy is dissipated. At t=1 s both speeds are 1/3 in their respective units, final energy is 1/12 J and heat is 1/6 J.
+
+### Solve the slip mode and the rolling event
+
+For u₀≠0 and μk>0, kinetic friction is −μkmg sign(u). It changes slip at constant magnitude until slip vanishes:
+
+$$
+u(t)=\operatorname{sign}(u_0)\max\left(|u_0|-\frac{\mu_kmg}{m_{\rm eff}}t,0\right),\quad
+t_* =\frac{m_{\rm eff}|u_0|}{\mu_kmg},\qquad
+Q(t)=\frac12m_{\rm eff}(u_0^2-u(t)^2).
+$$
+
+After t_* the required static friction is zero, so the wheel rolls uniformly. There is no continuing dissipation after that event in this ideal zero-drive family. If u₀=0, the wheel already rolls; if μk=0 and u₀≠0, slip persists and no future event occurs.
+
+These formulas do not cover an arbitrary driven wheel. Nonzero force or torque changes Π, and a required rolling friction beyond the static bound can prevent sticking. The lesson's general piecewise model remains the reference for those cases.
+
+### The final loss and the time to see it answer different questions
+
+Take m=R=1, κ=1/2, V₀=1 and Ω₀=0. Then v_r=2/3, m_eff=1/3 and K₀=1/2 J. Every μk>0 eventually gives V=RΩ=2/3, K=1/3 J and Q=1/6 J. The waiting time is t_*=1/(30μk) seconds.
+
+| μk | Rolling onset (s) | V (m/s), Ω (rad/s) at t=1 s | Q (J) at t=1 s |
+|---|---|---|---:|
+| 0 | No future onset | 1, 0 | 0 |
+| 1/10 | 1/3 | 2/3, 2/3 | 1/6 |
+| 1/5 | 1/6 | 2/3, 2/3 | 1/6 |
+| 1/2 | 1/15 | 2/3, 2/3 | 1/6 |
+
+Reproduce these rows with `[1,2,10μk,0,5,0,0,10,0,10]`, using integer coefficient codes 0,1,2,5. At μk=1/10, change the time code to 3 or 4. The corresponding t=0.3 and 0.4 s queries bracket the event at 1/3 s: before it, u=1/10 and Q=33/200; after it, u=0 and Q=1/6. This makes the switch observable without replacing it by a nearby animation frame.
+
+![Small friction changes the waiting time more than the eventual heat](/assets/learning/classical-contact-friction-limit.en.svg)
+
+The upper panel plots heat for 0≤t≤2 s. The lower panel plots positive friction coefficients against their onset times on logarithmic axes. The μ=0 heat curve stays at zero. The μ=0.02 curve is an analytic illustration outside the native 0.1 coefficient grid. Arbitrarily long times and arbitrarily small positive coefficients also belong to the standalone family, not an expanded native control range.
+
+### Prove why the two limits do not commute
+
+Since Q̇=μkmg|u| and |u(t)|≤|u₀|,
+
+$$
+0\le Q(t,\mu_k)\le\mu_kmg|u_0|t,\qquad
+\sup_{0\le t\le T}Q(t,\mu_k)\le\mu_kmg|u_0|T\longrightarrow0
+\quad(\mu_k\downarrow0,\;T<\infty).
+$$
+
+Thus heat approaches zero uniformly on every fixed finite observation interval as friction tends to zero. But for every positive coefficient, waiting long enough removes the complete initial slip-mode energy. Consequently
+
+$$
+\lim_{\mu_k\downarrow0}\lim_{t\to\infty}Q(t,\mu_k)=\frac12m_{\rm eff}u_0^2,\qquad
+\lim_{t\to\infty}\lim_{\mu_k\downarrow0}Q(t,\mu_k)=0
+\quad(u_0\ne0).
+$$
+
+The order of limits changes the answer for nonzero initial slip. The plot's delayed rise is a consequence of this mechanism, not a numerical failure. For u₀=0 both sides are zero and there is no such discrepancy. A finite-duration dataset showing almost no heat cannot establish that the eventual loss also vanishes.
+
+For learning and experimental design, specify which quantity is observed: finite-time heat, event time or terminal heat. They have different sensitivity to μk. Terminal heat alone does not identify a positive coefficient in this family; event time can do so when the other parameters and initial slip are known. Measuring time and slip over a declared observation window provides information absent from a terminal-energy label.
+
+### Execute the exact modal calculation
+
+The cell below uses exact fractions to compute position, angle, speeds and heat from the conserved mode and the integral of slip. It checks 1,080 zero-drive states and reproduces the native table and event bracket. It does not import the site's branch integrator or claim to replace tests of the driven model.
+
+```python
+from fractions import Fraction as Q
+from itertools import product
+
+
+def free_wheel(mass, radius, kappa, mu, v0, omega0, time):
+    """Zero external force/torque, g=10, fixed height, clockwise omega."""
+    effective_mass = mass * kappa / (1 + kappa)
+    rolling_speed = (v0 + kappa * radius * omega0) / (1 + kappa)
+    slip0 = v0 - radius * omega0
+    magnitude = abs(slip0)
+    slope = mu * mass * 10 / effective_mass
+    event = magnitude / slope if slope > 0 and magnitude > 0 else None
+    slip = (1 if slip0 > 0 else -1 if slip0 < 0 else 0) * max(magnitude - slope * time, Q(0))
+    duration = min(time, event) if event is not None else time
+    signed_area = (1 if slip0 > 0 else -1 if slip0 < 0 else 0) * (
+        magnitude * duration - slope * duration * duration / 2)
+    velocity = rolling_speed + kappa * slip / (1 + kappa)
+    omega = (rolling_speed - slip / (1 + kappa)) / radius
+    position = rolling_speed * time + kappa * signed_area / (1 + kappa)
+    angle = (rolling_speed * time - signed_area / (1 + kappa)) / radius
+    heat = effective_mass * (slip0 * slip0 - slip * slip) / 2
+    energy = mass * velocity * velocity / 2 + kappa * mass * radius * radius * omega * omega / 2
+    rolling_energy = mass * (1 + kappa) * rolling_speed * rolling_speed / 2
+    assert energy == rolling_energy + effective_mass * slip * slip / 2
+    assert mass * v0 * v0 / 2 + kappa * mass * radius * radius * omega0 * omega0 / 2 == energy + heat
+    assert heat >= 0
+    return dict(velocity=velocity, omega=omega, position=position, angle=angle,
+                heat=heat, energy=energy, slip=slip, event=event)
+
+
+def wheel_checks():
+    count = 0
+    for m, r, k, mu, v, omega, t in product(
+            map(Q, [1, 2]), [Q(1, 2), Q(1)], [Q(1, 2), Q(1)],
+            [Q(0), Q(1, 10), Q(1, 5)], map(Q, [-1, 0, 1]), map(Q, [-1, 0, 1]),
+            [Q(0), Q(3, 10), Q(2, 5), Q(1), Q(10)]):
+        free_wheel(m, r, k, mu, v, omega, t)
+        count += 1
+    for mu in [Q(0), Q(1, 10), Q(1, 5), Q(1, 2)]:
+        s = free_wheel(Q(1), Q(1), Q(1, 2), mu, Q(1), Q(0), Q(1))
+        assert s['heat'] == (Q(1, 6) if mu > 0 else 0)
+        print('Native mu, event, V, Omega, heat:', mu, s['event'], s['velocity'], s['omega'], s['heat'])
+    for t, expected in [(Q(3, 10), Q(33, 200)), (Q(2, 5), Q(1, 6))]:
+        assert free_wheel(Q(1), Q(1), Q(1, 2), Q(1, 10), Q(1), Q(0), t)['heat'] == expected
+    print(f'{count} exact free-wheel mode and energy checks passed')
+
+
+wheel_checks()
+```
+
+### Research questions with worked answers
+
+1. **Does reducing positive μk reduce terminal heat?** Not for this fixed nonzero initial-slip, zero-drive family: terminal heat is m_eff u₀²/2. It increases the waiting time. At exactly μk=0, the terminal state changes because rolling is never reached.
+2. **Can friction accelerate the center while dissipating energy?** Yes. The initially spinning-wheel example increases COM kinetic energy while decreasing rotational energy by a larger amount. The relative-slip mode accounts for the loss.
+3. **Can terminal heat alone identify μk?** No. All positive values give the same label here. Event time depends on 1/μk, so timed observations add identifying information, subject to measurement error and the stated model assumptions.
+
+For general rolling dynamics, see [MIT8.01SC, Rotations and Translation—Rolling](https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-12-rotations-and-translation-rolling/). The zero-drive modal decomposition, finite-window bound and limit comparison above follow from the declared family.
+
 ## Worked examples and exercises with solutions
 
 1. **A center-driven rolling disk.** Use m=R=1, κ=1/2, μk=0.2, μs=0.4, F=3, τ=0 and start at rest. **Solution:** freq=−1, V̇=Ω̇=2. At1s, x=φ=1, V=Ω=2 and K=3=W. Static friction does−1J translational work and+1J rotational work, with zero net contact work and heat.

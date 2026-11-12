@@ -1,6 +1,43 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { frictionlessRodImpact as rod, drivenWheelContact as wheel } from '../src/lib/learning-rigid-contact';
+import { readFileSync } from 'node:fs';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import { getLearningContent } from '../src/lib/learning-content';
+
+for (const [id, equations, image] of [
+  ['frictionless-rod-contact-impulse', 7, 'classical-contact-grazing'],
+  ['driven-wheel-rolling-sliding', 6, 'classical-contact-friction-limit'],
+] as const) {
+  test(`paired contact research equations, executable cell, tables and real renderer: ${id}`, async () => {
+    const pairs = ['en', 'ko'].map(lang => {
+      const source = readFileSync(`content/learning/physics-math-for-ai/${id}.${lang}.md`, 'utf8');
+      const start = source.search(/^## (Research extension:|연구 확장:)/m);
+      const heading = lang === 'en' ? '## Worked examples and exercises with solutions' : '## 예제와 해설이 있는 연습문제';
+      const end = source.indexOf(heading, start);
+      assert.ok(start >= 0 && end > start);
+      const tree = unified().use(remarkParse).use(remarkGfm).use(remarkMath).parse(source.slice(start, end));
+      const tables = tree.children.filter(node => node.type === 'table');
+      assert.equal(tables.length, 1);
+      for (const row of tables[0].children) assert.equal(row.children.length, 4);
+      const math = tree.children.flatMap(node => node.type === 'math' ? [node.value] : []);
+      const code = tree.children.flatMap(node => node.type === 'code' && node.lang === 'python' ? [node.value] : []);
+      assert.equal(math.length, equations);
+      assert.equal(code.length, 1);
+      return { math, code };
+    });
+    assert.deepEqual(pairs[0], pairs[1]);
+    const content = await getLearningContent(id);
+    for (const lang of ['en', 'ko'] as const) {
+      assert.ok(!content[lang].includes('katex-error'));
+      assert.equal(content.outline[lang].filter(h => /Research extension:|연구 확장:/.test(h.title)).length, 1);
+      assert.ok(content[lang].includes(`${image}.${lang}.svg`));
+    }
+  });
+}
 
 test('quoted mass-metric examples change the contact normal mode while retaining tangential motion', () => {
   for (const [e, impulse, vy, omega, loss] of [

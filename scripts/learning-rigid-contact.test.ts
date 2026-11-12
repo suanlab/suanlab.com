@@ -101,7 +101,11 @@ test('results are fresh, finite and JSON-safe without mutable exact arithmetic l
 for(const id of ['frictionless-rod-contact-impulse','driven-wheel-rolling-sliding'])for(const language of ['ko','en']as const)test(`rigid-contact manuscript renders derivations, intuition and six explained exercises: ${id}.${language}`,async()=>{
   const fs=await import('node:fs/promises'),{getLearningContent}=await import('../src/lib/learning-content');
   const source=await fs.readFile(`content/learning/physics-math-for-ai/${id}.${language}.md`,'utf8'),content=await getLearningContent(id);
-  assert.ok((source.match(/^## /gm)||[]).length>=10);assert.equal((source.match(/^\d\. /gm)||[]).length,6);assert.ok(source.includes('https://'));
-  if(language==='en'){assert.ok(source.split(/\s+/).length>1000);assert.ok(!/[가-힣]/.test(source));assert.equal((source.match(/\*\*Solution:/g)||[]).length,6);}else {assert.ok((source.match(/[가-힣]/g)||[]).length>1000);assert.equal((source.match(/\*\*해설:/g)||[]).length,6);}
+  assert.ok((source.match(/^## /gm)||[]).length>=10);assert.ok(source.includes('https://'));
+  const heading=language==='en'?'## Worked examples and exercises with solutions':'## 예제와 해설이 있는 연습문제';
+  const start=source.indexOf(heading);assert.ok(start>=0,'The original exercise section must remain');
+  const end=source.indexOf('\n## ',start+heading.length),exercises=source.slice(start,end<0?undefined:end);
+  assert.deepEqual([...exercises.matchAll(/^(\d)\. /gm)].map(m=>Number(m[1])),[1,2,3,4,5,6]);
+  if(language==='en'){assert.ok(source.split(/\s+/).length>1000);assert.ok(!/[가-힣]/.test(source));assert.equal((exercises.match(/\*\*Solution:/g)||[]).length,6);}else {assert.ok((source.match(/[가-힣]/g)||[]).length>1000);assert.equal((exercises.match(/\*\*해설:/g)||[]).length,6);}
   assert.ok(content[language].includes('katex-display'));assert.ok(!content[language].includes('katex-error'));assert.ok(content.outline[language].length>=10);assert.equal(new Set(content.outline[language].map(x=>x.id)).size,content.outline[language].length);
 });

@@ -124,6 +124,154 @@ m=R=1, κ=1/2, μk=0.2, μs=0.4, F=τ=0, V0=1, Ω0=0으로 둡니다. 초기 f=�
 
 제어값·구간별 상태·사건 시각·일 예산은 정확한 유리수이고 그림의 삼각함수 좌표는 수치값입니다. 높이가 고정된 연속 운동 모델은 앞 단원의 법선 충돌 사상을 대신하지 않습니다.
 
+## 연구 확장: 미끄럼 모드와 기다리는 시간의 극한을 구분한다
+
+### 구동이 없는 가족에는 보존되는 굴림 모드가 있다
+
+마찰계수가 작으면 최종 에너지 손실도 작을 것처럼 보일 수 있다. 그러나 그 추론에는 굴림에 도달하는 시간이 빠져 있다. 문제를 분리하려고 수평 구동력 F=0, 시계방향 토크 τ=0으로 둔다. 기존의 고정 질량중심 높이·법선 하중 mg·g=10 m/s²·I=κmR²,0<κ≤1·μs≥μk≥0은 유지한다. 시계방향 Ω와 상대 접촉 미끄럼 u=V−RΩ를 사용한다.
+
+힘과 토크 수지는 다음을 준다.
+
+$$
+m\dot V=f,\qquad I\dot\Omega=-Rf,\qquad
+\Pi=mV+\frac{I}{R}\Omega=\text{constant}.
+$$
+
+Π는 이 특수 가족에서 병진과 회전을 묶은 보존량이다. 마찰 때문에 변하는 질량중심 수평 운동량과는 다르다. 공통 굴림 모드 속도와 유효 미끄럼 질량을
+
+$$
+v_r=\frac{V+\kappa R\Omega}{1+\kappa},\quad
+m_{\rm eff}=\frac{m\kappa}{1+\kappa},\qquad
+V=v_r+\frac{\kappa}{1+\kappa}u,\quad
+R\Omega=v_r-\frac{1}{1+\kappa}u.
+$$
+
+로 정의한다. K=mV²/2+IΩ²/2에 대입하면 교차항이 사라져
+
+$$
+K=\frac12m(1+\kappa)v_r^2+\frac12m_{\rm eff}u^2.
+$$
+
+이다. 첫 항은 일정하고 상대 미끄럼 항만 소산된다. 이는 에너지 모드의 좌표이며 서로 다른 두 물체가 아니다. 바퀴 둘레의 초기 속도가 질량중심보다 빠르면 마찰이 COM을 가속하면서도 총 운동에너지는 줄일 수 있다.
+
+실제 입력 `[1,2,1,0,5,0,0,0,10,1]`은 V₀=0,Ω₀=1로 시작한다. t=0.1 s에서 전방 마찰은 +1 N,V=1/10 m/s,Ω=4/5 rad/s,Q=17/200 J다. 중심은 빨라지지만 에너지는 소산된다. t=1 s에서는 각 단위에서 두 속도가 1/3이고 최종 에너지 1/12 J, 열 1/6 J다.
+
+### 미끄럼 모드와 굴림 사건을 푼다
+
+u₀≠0,μk>0에서 운동마찰은 −μkmg sign(u)다. 미끄럼이 사라지기 전까지 일정한 크기의 변화율을 만들어
+
+$$
+u(t)=\operatorname{sign}(u_0)\max\left(|u_0|-\frac{\mu_kmg}{m_{\rm eff}}t,0\right),\quad
+t_* =\frac{m_{\rm eff}|u_0|}{\mu_kmg},\qquad
+Q(t)=\frac12m_{\rm eff}(u_0^2-u(t)^2).
+$$
+
+가 된다. t_* 이후 필요한 정지마찰은 0이므로 일정한 속도로 구른다. 이상적인 무구동 가족에서는 그 뒤에 추가 소산이 없다. u₀=0이면 처음부터 굴림이고, μk=0,u₀≠0이면 미끄럼이 유지되어 미래 굴림 사건이 없다.
+
+이 식을 임의의 구동 바퀴에 적용하지 않는다. 힘이나 토크가 있으면 Π가 변하고, 굴림 요구 마찰이 정지 한계를 넘으면 붙지 못할 수 있다. 그런 경우는 기존의 일반 조각별 모델로 계산해야 한다.
+
+### 최종 손실과 그 손실을 볼 때까지의 시간은 다른 질문이다
+
+m=R=1,κ=1/2,V₀=1,Ω₀=0으로 두자. v_r=2/3,m_eff=1/3,K₀=1/2 J다. 모든 μk>0에서 충분히 기다리면 V=RΩ=2/3,K=1/3 J,Q=1/6 J다. 기다리는 시간은 t_*=1/(30μk) s다.
+
+| μk | 굴림 도달 시간 (s) | t=1 s의 V (m/s), Ω (rad/s) | t=1 s의 Q (J) |
+|---|---|---|---:|
+| 0 | 미래 도달 없음 | 1, 0 | 0 |
+| 1/10 | 1/3 | 2/3, 2/3 | 1/6 |
+| 1/5 | 1/6 | 2/3, 2/3 | 1/6 |
+| 1/2 | 1/15 | 2/3, 2/3 | 1/6 |
+
+실제 입력 `[1,2,10μk,0,5,0,0,10,0,10]`에 정수 계수 코드 0,1,2,5를 넣어 표를 재현한다. μk=1/10에서 시간 코드를 3 또는 4로 바꾸면 t=0.3,0.4 s로 사건 1/3 s를 사이에 둔다. 전자는 u=1/10,Q=33/200, 후자는 u=0,Q=1/6이다. 사건을 가까운 애니메이션 프레임으로 대신하지 않고 직접 관측할 수 있다.
+
+![작은 마찰이 최종 열보다 기다리는 시간을 바꾸는 예](/assets/learning/classical-contact-friction-limit.ko.svg)
+
+위 패널은 0≤t≤2 s의 열이다. 아래는 양의 마찰계수와 도달 시간의 로그축 비교다. μ=0인 열 곡선은 0에 남는다. μ=0.02는 실제 0.1 간격 계수 입력 밖의 해석 예시다. 임의로 긴 시간과 임의로 작은 양의 계수도 별도 가족이지 실제 입력 범위를 넓힌 것이 아니다.
+
+### 두 극한이 교환되지 않는 이유를 증명한다
+
+Q̇=μkmg|u|이고 |u(t)|≤|u₀|이므로
+
+$$
+0\le Q(t,\mu_k)\le\mu_kmg|u_0|t,\qquad
+\sup_{0\le t\le T}Q(t,\mu_k)\le\mu_kmg|u_0|T\longrightarrow0
+\quad(\mu_k\downarrow0,\;T<\infty).
+$$
+
+이다. 따라서 마찰이 0으로 갈 때 열은 고정된 모든 유한 관측 구간에서 균등하게 0으로 간다. 그러나 각 양의 계수에서 충분히 기다리면 초기 미끄럼 모드 에너지 전체를 소모한다. 따라서
+
+$$
+\lim_{\mu_k\downarrow0}\lim_{t\to\infty}Q(t,\mu_k)=\frac12m_{\rm eff}u_0^2,\qquad
+\lim_{t\to\infty}\lim_{\mu_k\downarrow0}Q(t,\mu_k)=0
+\quad(u_0\ne0).
+$$
+
+이다. 초기 미끄럼이 0이 아니면 극한의 순서가 답을 바꾼다. 그림에서 열이 늦게 올라오는 것은 이 기작의 결과이며 수치 실패가 아니다. u₀=0이면 양쪽이 모두 0이라 차이가 없다. 유한 시간 자료에서 열이 거의 없다고 관측한 것만으로 최종 손실도 없어진다고 결론 내릴 수 없다.
+
+학습·실험 설계에서는 유한 시간 열, 사건 시간, 최종 열 중 무엇을 관측하는지 정해야 한다. 각각 μk에 대한 민감도가 다르다. 이 가족에서는 최종 열만으로 양의 계수를 식별하지 못한다. 다른 매개변수와 초기 미끄럼을 알면 사건 시간으로 정보를 얻을 수 있다. 명시한 관측 구간의 시간·미끄럼 기록은 최종 에너지 표시에 빠진 정보를 추가한다.
+
+### 정확한 모드 계산을 실행한다
+
+다음 셀은 보존 모드와 미끄럼 적분으로 위치·각도·속도·열을 분수로 계산한다. 무구동 상태 1,080개를 검사하고 실제 표와 사건 전후를 재현한다. 사이트의 가지 적분기를 가져오거나 구동 모델의 검증을 대신하지 않는다.
+
+```python
+from fractions import Fraction as Q
+from itertools import product
+
+
+def free_wheel(mass, radius, kappa, mu, v0, omega0, time):
+    """Zero external force/torque, g=10, fixed height, clockwise omega."""
+    effective_mass = mass * kappa / (1 + kappa)
+    rolling_speed = (v0 + kappa * radius * omega0) / (1 + kappa)
+    slip0 = v0 - radius * omega0
+    magnitude = abs(slip0)
+    slope = mu * mass * 10 / effective_mass
+    event = magnitude / slope if slope > 0 and magnitude > 0 else None
+    slip = (1 if slip0 > 0 else -1 if slip0 < 0 else 0) * max(magnitude - slope * time, Q(0))
+    duration = min(time, event) if event is not None else time
+    signed_area = (1 if slip0 > 0 else -1 if slip0 < 0 else 0) * (
+        magnitude * duration - slope * duration * duration / 2)
+    velocity = rolling_speed + kappa * slip / (1 + kappa)
+    omega = (rolling_speed - slip / (1 + kappa)) / radius
+    position = rolling_speed * time + kappa * signed_area / (1 + kappa)
+    angle = (rolling_speed * time - signed_area / (1 + kappa)) / radius
+    heat = effective_mass * (slip0 * slip0 - slip * slip) / 2
+    energy = mass * velocity * velocity / 2 + kappa * mass * radius * radius * omega * omega / 2
+    rolling_energy = mass * (1 + kappa) * rolling_speed * rolling_speed / 2
+    assert energy == rolling_energy + effective_mass * slip * slip / 2
+    assert mass * v0 * v0 / 2 + kappa * mass * radius * radius * omega0 * omega0 / 2 == energy + heat
+    assert heat >= 0
+    return dict(velocity=velocity, omega=omega, position=position, angle=angle,
+                heat=heat, energy=energy, slip=slip, event=event)
+
+
+def wheel_checks():
+    count = 0
+    for m, r, k, mu, v, omega, t in product(
+            map(Q, [1, 2]), [Q(1, 2), Q(1)], [Q(1, 2), Q(1)],
+            [Q(0), Q(1, 10), Q(1, 5)], map(Q, [-1, 0, 1]), map(Q, [-1, 0, 1]),
+            [Q(0), Q(3, 10), Q(2, 5), Q(1), Q(10)]):
+        free_wheel(m, r, k, mu, v, omega, t)
+        count += 1
+    for mu in [Q(0), Q(1, 10), Q(1, 5), Q(1, 2)]:
+        s = free_wheel(Q(1), Q(1), Q(1, 2), mu, Q(1), Q(0), Q(1))
+        assert s['heat'] == (Q(1, 6) if mu > 0 else 0)
+        print('Native mu, event, V, Omega, heat:', mu, s['event'], s['velocity'], s['omega'], s['heat'])
+    for t, expected in [(Q(3, 10), Q(33, 200)), (Q(2, 5), Q(1, 6))]:
+        assert free_wheel(Q(1), Q(1), Q(1, 2), Q(1, 10), Q(1), Q(0), t)['heat'] == expected
+    print(f'{count} exact free-wheel mode and energy checks passed')
+
+
+wheel_checks()
+```
+
+### 연구 질문과 풀이
+
+1. **양의 μk를 줄이면 최종 열도 줄어드는가?** 고정된 비영 초기 미끄럼·무구동 가족에서는 아니다. 최종 열은 m_eff u₀²/2이고 기다리는 시간이 늘어난다. 정확히 μk=0이면 굴림에 도달하지 않아 최종 상태 자체가 달라진다.
+2. **마찰이 중심을 가속하면서 에너지를 소산할 수 있는가?** 그렇다. 처음 회전하는 바퀴는 COM 에너지가 증가하는 것보다 회전 에너지가 더 크게 감소한다. 상대 미끄럼 모드가 그 손실을 설명한다.
+3. **최종 열만으로 μk를 식별할 수 있는가?** 없다. 여기서는 모든 양의 값이 같은 표시를 준다. 사건 시간은 1/μk에 의존하므로 시간 관측이 추가 정보를 준다. 단 측정 오차와 모델 가정도 확인해야 한다.
+
+일반 굴림 동역학은 [MIT8.01SC 회전과 병진·굴림](https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-12-rotations-and-translation-rolling/)을 참고한다. 위 무구동 모드 분해·유한 구간 상계·극한 비교는 명시한 가족에서 유도했다.
+
 ## 예제와 해설이 있는 연습문제
 
 1. **중심 힘으로 구르는 원판.** m=R=1, κ=1/2, μk=0.2, μs=0.4, F=3, τ=0에서 정지 출발합니다. **해설:** freq=−1, V̇=Ω̇=2입니다. 1초에 x=φ=1, V=Ω=2, K=W=3입니다. 정지 마찰의 병진 일 −1J와 회전 일 +1J가 상쇄되어 접촉 일과 열은 0입니다.
