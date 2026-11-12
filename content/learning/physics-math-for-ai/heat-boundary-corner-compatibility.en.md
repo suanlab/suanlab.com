@@ -85,6 +85,86 @@ A physics-informed model often minimizes separate interior, initial and boundary
 
 Checking only sampled boundary points creates another gap between finite evidence and an all-time claim. Analytic constraints can enforce some conditions by construction, such as multiplying a candidate by a factor that vanishes at fixed endpoints. That design still leaves the initial profile and the interior equation to be checked. The appropriate architecture depends on the requested data and solution class.
 
+## Research extension: Construct a mild heat solution with incompatible corner values
+
+### A failed continuous corner condition is not every kind of nonexistence
+
+Normalize position by the rod length, temperature difference by a fixed amplitude, and time by L squared over kappa. On xi in (0,1), prescribe initial profile h=1 and zero Dirichlet values for every positive dimensionless time tau. A field continuous on the closed spacetime rectangle cannot satisfy both requirements at the two initial corners. We now construct a solution with a different, explicitly weaker initial interpretation: convergence to h in L2 over the open interval.
+
+Integrating h against the sine basis gives coefficient zero for even n and 4/(n pi) for odd n. Propagating each mode yields
+
+$$
+u(\xi,\tau)={4\over\pi}\sum_{j=1}^{\infty}
+{\sin((2j-1)\pi\xi)\over2j-1}
+e^{-(2j-1)^2\pi^2\tau},\qquad \tau>0.
+$$
+
+For every time bounded away from zero, the Gaussian decay in mode number dominates any polynomial factors from differentiating the series. The series and its needed derivatives therefore converge uniformly there. Termwise differentiation verifies the interior heat equation, and every term has zero endpoint values. This constructs the Dirichlet heat-semigroup solution, often called a mild solution for its L2 initial datum. It is not contained in the laboratory's three-coefficient candidate family.
+
+### Prove the initial condition in the declared norm
+
+Sine functions of different integer frequencies are orthogonal and each has squared L2 norm one half. Parseval's identity gives the error to the constant initial field:
+
+$$
+\|u(\cdot,\tau)-1\|_2^2
+={8\over\pi^2}\sum_{j=1}^{\infty}
+{\left(1-e^{-(2j-1)^2\pi^2\tau}\right)^2\over(2j-1)^2}
+\longrightarrow0\quad(\tau\downarrow0).
+$$
+
+Each summand tends to zero and is dominated by a summable inverse-square sequence. Dominated convergence proves the limit. Values assigned to h at just the endpoints do not affect its L2 class. However, retaining the continuous representative h=1 on the closed interval makes the corner conflict visible: for every positive tau, u(0,tau)=0 differs from h(0)=1. Uniform convergence on that closed interval is impossible. Smoothing for positive time does not restore joint continuity at the initial corners.
+
+![A constant initial temperature profile conflicts with zero endpoint values, yet positive-time sine-series profiles satisfy those endpoints and approach the initial state in L2, with narrow boundary layers near the ends.](/assets/learning/physical-heat-mild-corner-en.svg)
+
+### Certify a truncation before drawing it
+
+Let u_N retain the first N odd modes. Orthogonality gives its exact squared tail as a positive series. Since all omitted frequencies are at least 2N+1 and the sum over all integers above 2N is bounded by an integral, we obtain a convenient conservative bound:
+
+$$
+\|u-u_N\|_2^2={8\over\pi^2}\sum_{j>N}
+{e^{-2(2j-1)^2\pi^2\tau}\over(2j-1)^2}
+\le {4\over\pi^2N}e^{-2(2N+1)^2\pi^2\tau}.
+$$
+
+Taking a square root gives two divided by pi sqrt(N), times exp(−(2N+1)² pi² tau). At tau=0.001, this upper bound is about 0.0863 for N=5, 0.00259 for N=10, and 8.9e−9 for N=20. The bound is an L2 truncation estimate, not a bound on every derivative or on floating-point summation error. The plotted curves use 80 odd modes; connecting them does not change the stated initial solution concept.
+
+| Requirement | This constructed field | Why it matters |
+|---|---|---|
+| Interior heat equation for positive time | Satisfied by the differentiated series | Checks the evolution law |
+| Zero endpoint values at positive time | Satisfied term by term | Checks Dirichlet traces |
+| Initial convergence in L2 | Satisfied by the positive-series limit | Defines the initial condition here |
+| Continuous initial corners for h=1 | Not satisfied | A stronger requested problem would be different |
+
+### Worked research question
+
+**Question:** Should a learner label these data simply “no solution” after a corner check fails? **Answer:** It should name the excluded class. There is no solution continuous through those corners with the stated values, yet the L2-initial heat field above exists. This also matters when evaluating neural surrogates near an initial boundary layer: a large pointwise corner discrepancy and a small integral error answer different questions. The code evaluates finite positive series and prints an initial-error enclosure whose omitted tail is bounded by 4/(pi² M). These are numerical evaluations of analytic bounds; rounded endpoints are not certified interval arithmetic. No arbitrary-initial-function solver is added to the existing browser controls.
+
+```python
+from math import pi, exp, expm1, sin, sqrt, fsum
+def initial_error_enclosure(t,M=5000):
+    lower=8/(pi*pi)*fsum((-expm1(-(2*j-1)**2*pi*pi*t))**2/(2*j-1)**2 for j in range(1,M+1))
+    return lower,lower+4/(pi*pi*M)
+previous_lower=float('inf')
+for t in [.1,.01,.001,.0001]:
+    lower,upper=initial_error_enclosure(t)
+    assert upper<previous_lower
+    previous_lower=lower
+    print('time',t,'squared initial-error numerical enclosure',lower,upper)
+for N in [5,10,20]:
+    t=.001
+    finite_tail=8/(pi*pi)*fsum(exp(-2*(2*j-1)**2*pi*pi*t)/(2*j-1)**2 for j in range(N+1,N+5001))
+    bound=2/(pi*sqrt(N))*exp(-(2*N+1)**2*pi*pi*t)
+    assert sqrt(finite_tail)<=bound
+    print('odd modes',N,'truncation norm upper bound',bound)
+def profile(x,t,N=80):
+    if x in (0,1): return 0.0  # Analytically imposed endpoint values.
+    return 4/pi*fsum(sin((2*j-1)*pi*x)/(2*j-1)*exp(-(2*j-1)**2*pi*pi*t) for j in range(1,N+1))
+for t in [.001,.01,.1]:
+    assert profile(0,t)==profile(1,t)==0
+    assert abs(profile(0,t)-1)==1
+    print('time',t,'midpoint',profile(.5,t),'endpoint discrepancy',1)
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Which coefficients satisfy zero Dirichlet data for all times? **Solution:** Adding and subtracting the endpoint equations gives c0=c1=0; c2 is unrestricted.

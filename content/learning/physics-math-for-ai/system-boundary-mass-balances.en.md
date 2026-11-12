@@ -90,6 +90,87 @@ The implementation computes stored-mass change and cumulative boundary transfers
 
 Independent tests compare the implementation against rational matrix powers and separately accumulated crossings. These checks include zero masses, zero transfers, full exchange, full leakage, and long histories. They assess the finite transfer implementation rather than certify an arbitrary physical simulator.
 
+## Research extension: When a valid batch map has no continuous exchange generator
+
+### Conservation does not specify the time mechanism
+
+Set leakage to zero and retain just A and B. The one-operation matrix P_p is nonnegative and column-stochastic for every p between zero and one. Its total-mass direction has eigenvalue one; its contrast direction has eigenvalue lambda. The whole matrix can be recovered from these two directions:
+
+$$
+P_p=\begin{pmatrix}1-p&p\\p&1-p\end{pmatrix},\qquad
+M_n=A_n+B_n=M_0,\qquad D_n=A_n-B_n=(1-2p)^nD_0,\qquad \lambda=1-2p.
+$$
+
+Positive lambda preserves the sign of an initial imbalance, negative lambda reverses it after every operation, and zero lambda erases it in one operation. All three behaviors can conserve mass and preserve nonnegative stores. An invariant therefore constrains the dynamics without determining which dynamics produced it.
+
+### Derive the continuous-time restriction
+
+Compare this batch law with a specific continuous law: a symmetric, time-homogeneous, two-store exchange with finite rate k greater than or equal to zero. Let h be a positive duration, using the same time unit as k inverse. Adding and subtracting its two differential equations yields constant M and exponentially decaying D:
+
+$$
+\dot A=k(B-A),\quad \dot B=k(A-B),\qquad
+D(h)=e^{-2kh}D(0),\qquad
+p={1-e^{-2kh}\over2},\qquad
+k=-{\log(1-2p)\over2h}\quad(0\le p<\tfrac12).
+$$
+
+Thus every p below one half has such a finite generator, including k=0 at p=0. At p=1/2, P_p is singular, whereas a matrix exponential at finite time is invertible. At p above one half, its contrast eigenvalue is negative, which cannot equal exp(−2kh). Allowing different nonnegative forward and reverse rates in a homogeneous two-state Markov generator still gives nontrivial eigenvalue exp(−(a+b)h), which is positive. It does not rescue these cases. This statement concerns that two-state continuous model, not every apparatus with hidden states, memory, or a different observation map.
+
+For p=1/5 and h=1 minute, the equivalent symmetric rate is approximately 0.255412812 per minute. For p=4/5, a valid batch operation alternates the imbalance sign and has no such finite continuous generator. That is a model distinction, not a bug to repair by clipping p. Background on generators is available in [MIT's continuous-time Markov chain lecture](https://ocw.mit.edu/courses/18-445-introduction-to-stochastic-processes-spring-2015/resources/mit18_445s15_lecture21/); the two-direction calculation here is derived directly.
+
+### Sampling can hide the distinction
+
+Replacing p by 1−p negates lambda while leaving the total direction unchanged. Consequently their even-time operators agree, although odd-time operators generally differ:
+
+$$
+P_p^{2m}=P_{1-p}^{2m}\quad(m\ge1),\qquad
+P_p^2=P_{2p(1-p)}.
+$$
+
+The batch laws p=0.2 and p=0.8 therefore yield identical states whenever only every second operation is recorded. The first is embeddable in the specified continuous exchange law; the second is not. A perfect fit to the coarse records cannot decide between them. This aliasing concerns candidate transition laws, whereas the next lesson also studies ambiguity between candidate initial states with a known law.
+
+| Exchange fraction | Contrast eigenvalue | Finite symmetric continuous generator |
+|---|---|---|
+| 0 | 1 | Rate zero |
+| 1/5 | 3/5 | Positive finite rate |
+| 1/2 | 0 | None at positive finite duration |
+| 4/5 | −3/5 | None on these two stores |
+| 1 | −1 | None on these two stores |
+
+### Worked research question
+
+**Question:** If a learned transition map preserves total mass, nonnegativity, and every observed two-minute state, has it identified a one-minute diffusion law? **Answer:** No. The two batch matrices above are an exact counterexample. One must state the model class and time resolution, then check the intermediate dynamics or supply additional information. The code evaluates matrix powers and contrasts independently using exact fractions. It treats the rate's logarithm as a numerical value, not an exact rational identity. No new rate control or continuous solver is added to the existing laboratory.
+
+```python
+from fractions import Fraction as F
+from math import log, exp, isclose
+def P(p): return [[1-p,p],[p,1-p]]
+def mm(A,B):
+    return [[sum(A[i][k]*B[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
+def power(A,n):
+    R=[[F(1),F(0)],[F(0),F(1)]]
+    for _ in range(n): R=mm(R,A)
+    return R
+for p in [F(0),F(1,5),F(1,2),F(4,5),F(1)]:
+    A=P(p)
+    assert all(v>=0 for row in A for v in row)
+    assert all(sum(A[i][j] for i in range(2))==1 for j in range(2))
+    for n in range(1,10):
+        An=power(A,n)
+        state=[sum(An[i][j]*[8,2][j] for j in range(2)) for i in range(2)]
+        assert sum(state)==10 and state[0]-state[1]==6*(1-2*p)**n
+        assert power(A,2*n)==power(P(1-p),2*n)
+    assert mm(A,A)==P(2*p*(1-p))
+    if p<F(1,2):
+        k=-log(float(1-2*p))/2
+        assert isclose((1-exp(-2*k))/2,float(p),abs_tol=1e-15)
+        print('p',p,'finite rate per minute',k)
+    else:
+        print('p',p,'no finite two-store continuous generator')
+assert power(P(F(1,5)),1)!=power(P(F(4,5)),1)
+print('All exact even-time aliases agree; odd-time maps differ.')
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Why should leakage not be subtracted directly from the A-only balance? **Solution:** The leakage edge connects B to E. A has already accounted for its own exchange crossing; subtracting B's leakage from A would count a different boundary's outflow again.

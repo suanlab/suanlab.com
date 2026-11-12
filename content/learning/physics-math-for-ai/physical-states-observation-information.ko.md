@@ -86,6 +86,79 @@ $$
 
 같은 정보 없는 출력을 반복하는 대신 센서를 추가하거나 기록 일정을 바꾸는 것이 유용할 수 있습니다. 적절한 설계는 모형에 달려 있습니다. 절반 교환 예제는 초기 과도 기록의 중요성을, 작은 차이 예제는 이론적 구별 가능성을 잡음·분해능과 함께 평가해야 하는 이유를 보여줍니다.
 
+## 연구 확장: 관측 잡음으로 잃는 정보 정량화
+
+### 막연한 잡음 경고 대신 확률 법칙 추가하기
+
+초기 상태 (8,2,0)과 (2,8,0), 알려진 교환 비율 p, 누출 0, A 센서를 유지합시다. 이제 선택한 각 측정에 표준편차가 알려진 양수 sigma 킬로그램인 독립 Gaussian 잡음이 새로 생긴다고 가정합니다. 두 세계의 사전확률은 같습니다. 아래 계산을 위한 새 가정입니다. 기존 실습은 여전히 정확한 무잡음 기록을 비교하며 이 잡음을 표본 추출하지 않습니다.
+
+정수 분 n의 후보 평균 차이는 Delta_n=6(1−2p)^n 킬로그램입니다. 비어 있지 않은 유한 기록 창의 두 평균 벡터를 m_0, m_1, 공분산을 Sigma=sigma 제곱 곱하기 항등행렬이라 합시다. 두 Gaussian 로그 밀도를 전개하면 아래 최소 오류 판별 통계를 얻습니다. T가 양수이면 세계 0을 선택합니다.
+
+$$
+T=(m_0-m_1)^T\Sigma^{-1}\left(Y-{m_0+m_1\over2}\right),\qquad
+d^2=(m_0-m_1)^T\Sigma^{-1}(m_0-m_1)
+={36\over\sigma^2}\sum_{n=s}^{e}(1-2p)^{2n}.
+$$
+
+세계 0에서 T의 평균은 d 제곱의 절반, 분산은 d 제곱입니다. 세계 1에서는 같은 분산에 평균의 부호만 바뀝니다. 이 스칼라 Gaussian을 표준화하면 균형 사전의 Bayes 오류를 얻습니다. d=0이면 기록 법칙이 같아 최선의 판별도 오류가 1/2입니다.
+
+$$
+R^*=\Phi(-d/2),\qquad
+\text{advantage}=\tfrac12-R^*=\tfrac12\operatorname{erf}\!\left({d\over2\sqrt2}\right).
+$$
+
+advantage는 같은 사전확률로 추측할 때보다 오류를 얼마나 줄이는지 뜻합니다. 반올림한 오류를 1/2에서 빼면 차이가 전부 사라질 때도 이 식은 작은 이득을 계산합니다. 특정 후보 쌍과 명시한 Gaussian 법칙에 대한 결과이며 모든 상태의 식별이나 임의 잡음에 대한 강건성을 뜻하지 않습니다. 판별 규칙의 일반 틀은 [MIT 가설 검정 강의](https://ocw.mit.edu/courses/6-011-signals-systems-and-inference-spring-2018/e6055996bacfce70426cfb7a080c03aa_MIT6_011S18lec22.pdf)를 참고하고, 여기의 평균 차이 계산은 직접 유도했습니다.
+
+### 기다림의 비용 계산
+
+p=0.49, sigma=0.01 kg일 때 1분째 측정 한 번은 d=12입니다. 반면 20분째 측정의 평균 차이는 양수이지만 약 6.29 곱하기 10의 −34제곱 킬로그램입니다. 정확한 산술은 두 평균을 구분해도 분류 이득은 약 1.25 곱하기 10의 −32제곱에 불과합니다. 오류가 화면에 0.5로 표시된다고 정확한 이득이 0인 것은 아닙니다.
+
+![독립 Gaussian 잡음의 표준편차가 0.01킬로그램일 때 늦게 측정할수록 A 측정 한 번의 분류 이득이 감소한다. 교환 비율 0.49에서는 0.2보다 훨씬 빠르게 감소한다.](/assets/learning/physical-noisy-contrast-ko.svg)
+
+실제 초기 세계의 표지는 고정한 채 같은 실험과 기록 일정을 독립적으로 m번 반복하면 d 제곱은 m배가 됩니다. d가 양수이고 목표 오류가 0<alpha<1/2일 때 실수로 완화한 반복 횟수 문턱은 Gaussian 분위수로 구합니다. 실제 새 실험을 가정합니다. 저장한 기록을 복사한다고 정보가 늘어나지는 않습니다.
+
+$$
+m\ge\left({2\Phi^{-1}(1-\alpha)\over d}\right)^2.
+$$
+
+20분째 예제에서 alpha=0.05를 원하면 반복 횟수는 대략 10의 63제곱 규모입니다. 이는 모형 가정에 따른 자원 계산이며 현실적인 실험 권고나 부동소수점 분위수로 인증한 정확한 정수 최솟값이 아닙니다. p=1/2에서 0분 이후에만 기록하면 d는 정확히 0입니다. 이런 반복을 아무리 늘려도 초기 세계를 구분하지 못합니다. 관측 전에 상태 차이가 지워졌기 때문입니다.
+
+| 기록 선택 | 수학적 차이 | 명시한 법칙 아래 통계적 의미 |
+|---|---|---|
+| 1분째, p=0.49 | 0.12 kg | d=12, 매우 작지만 양수인 Bayes 오류 |
+| 20분째, p=0.49 | 양수지만 약 6.29e−34 kg | 분류 이득 약 1.25e−32 |
+| 임의의 지연 창, p=1/2 | 정확히 0 | 어떤 반복 횟수에서도 오류 1/2 |
+
+### 풀이가 있는 연구 질문
+
+**질문:** 관측을 늘리면 불완전한 센서 기록을 언제나 고칠 수 있을까요? **해설:** 아닙니다. 독립 기록은 0이 아닌 신호 대 잡음 거리를 개선할 수 있지만 정확히 지워진 차이를 되살리지는 못합니다. 미지 매개변수·상관 잡음·양자화에는 각각 맞는 우도가 필요합니다. 아래 코드는 차이 제곱합을 유리수로 계산하고 표준 라이브러리로 Gaussian 꼬리를 구합니다. 작은 이득을 보존하기 위해 erf를 직접 씁니다. 소수 확률값은 근사이며 정확한 포함률 인증이 아닙니다.
+
+```python
+from fractions import Fraction as F
+from math import sqrt, erfc, erf, log10
+from statistics import NormalDist
+def separation(p,start,end,sigma=F(1,100)):
+    assert 0<=p<=1 and 0<=start<=end and sigma>0
+    d2=sum((6*(1-2*p)**n/sigma)**2 for n in range(start,end+1))
+    d=sqrt(float(d2))
+    return d2,d,erfc(d/sqrt(8))/2,erf(d/sqrt(8))/2
+for start,end in [(1,1),(2,20),(20,20)]:
+    d2,d,risk,advantage=separation(F(49,100),start,end)
+    assert d2>0 and advantage>0
+    print('window',start,end,'distance',d,'error',risk,'advantage',advantage)
+assert separation(F(49,100),1,1)[0]==144
+assert separation(F(1,2),1,20)==(F(0),0.0,0.5,0.0)
+assert separation(F(1,2),0,0)[0]>0
+d=separation(F(49,100),20,20)[1]
+z=NormalDist().inv_cdf(.95)
+log10_repetitions=2*(log10(2*z)-log10(d))
+assert 63<log10_repetitions<64
+assert separation(F(49,100),20,20)[2]==.5
+assert separation(F(49,100),20,20)[3]>0
+print('log10 approximate repetition threshold',log10_repetitions)
+print('A rounded error of0.5 does not erase the positive erf advantage.')
+```
+
 ## 풀이가 있는 연습 문제
 
 1. **문제:** 누출이 없을 때 총량 기록으로 두 초기 상태를 구별하나요? **해설:** 두 합은 모든 시각에서 10kg이므로 불가능합니다.

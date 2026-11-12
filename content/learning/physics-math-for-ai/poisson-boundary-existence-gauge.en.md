@@ -98,6 +98,106 @@ A model trained only on derivative measurements cannot infer an additive tempera
 
 This example also separates an identifiability issue from inconsistent observations. Compatible derivative data with no reference give many solutions. Incompatible derivative data give no steady solution in the stated class. A learning loss can produce a compromise in either case, but a low objective value should not be interpreted as an existence or uniqueness theorem. Inspect the governing balance and the actual data constraints.
 
+## Research extension: Project incompatible source data and track the missing mean drift
+
+### Generalize the balance before choosing an offset
+
+Keep coordinate derivative data q_0 and q_1, but allow any continuous source f on a physical interval [0,L], with L positive. Direct integration of minus u second derivative equal to f gives a candidate with free constant C. Its right derivative matches exactly when the integrated defect c vanishes:
+
+$$
+u(x)=C+q_0x-\int_0^x(x-s)f(s)\,ds,\qquad
+c=q_1-q_0+\int_0^Lf(s)\,ds.
+$$
+
+This proves both necessity and sufficiency for a C2 solution with these derivative data: c=0 selects the correct right derivative, and then every C is allowed. Prescribing spatial mean mu chooses C by integrating once more:
+
+$$
+C=\mu-{q_0L\over2}+{1\over2L}\int_0^L(L-s)^2f(s)\,ds\quad(c=0).
+$$
+
+The constant-source formula from the laboratory is the special case with that source independent of x. A mean fixes the nullspace after compatibility; it never changes c. Here f has units K/m², q has units K/m, and c has units K/m. The integral for C has temperature units.
+
+### Define what a least-change repair actually changes
+
+Suppose the derivative data must stay fixed and you deliberately allow a source correction delta f. Among square-integrable corrections satisfying the required integral, Cauchy–Schwarz gives the minimum L2 change. Equality holds only for a constant correction almost everywhere:
+
+$$
+\int_0^L\delta f=-c,\qquad
+\|\delta f\|_2\ge {|c|\over\sqrt L},\qquad
+\delta f_*=-{c\over L},\qquad
+f_*=f-{c\over L}.
+$$
+
+This is the orthogonal projection of the source onto the affine compatibility set with fixed boundary gradients. It revises the source data. It is not a gauge choice and does not solve the original incompatible problem. Other choices of which data may change, or other error metrics, define different repairs and require separate justification.
+
+For example, use L=2 m, f(x)=2 K/m²+(1 K/m³)x, q_0=1 K/m, and q_1=−2 K/m. The source integral is 6 K/m, hence c=3 K/m. The minimum correction is −1.5 K/m², giving f_*(x)=0.5+x in the same coordinates. With mean mu=3 K, the corrected solution has C=8/3 K. The code checks its endpoint derivatives and mean by exact polynomial integration; a source correction must be reported with that solution.
+
+### Locate the discrepancy in a transient model
+
+The original incompatible data can still define a time-dependent heat model with a mean that keeps changing. For constant diffusivity kappa and the same fixed coordinate derivative data, integration of the transient law gives
+
+$$
+u_t=\kappa(u_{xx}+f),\qquad
+{d\bar u\over dt}={\kappa\over L}
+\left(q_1-q_0+\int_0^Lf\right)={\kappa c\over L}.
+$$
+
+Thus c nonzero forbids a steady mean rather than every transient field. For constant f=2, zero endpoint derivatives, and a uniform initial field mu_0, the exact solution is u=mu_0+2 kappa t. Projecting that source to zero would remove this uniform rise. It would hide a physical mean evolution if presented as a harmless offset convention. This transient identity is conditional on a sufficiently regular solution; it is not an existence proof for every prescribed initial profile.
+
+### Why a residual bound also needs a gauge
+
+If a candidate and a reference have the same boundary derivatives and mean, their difference e has zero derivative at both ends and zero mean. For minus e second derivative equal to r, integration by parts and the mean-zero Neumann Poincaré inequality give
+
+$$
+\|e'\|_2^2=\langle e,r\rangle,\qquad
+\|e\|_2\le {L\over\pi}\|e'\|_2,\qquad
+\|e\|_2\le {L^2\over\pi^2}\|r\|_2.
+$$
+
+For smooth mean-zero functions, expanding in cosine modes explains the Poincaré constant: the zero mode is absent and the first remaining frequency is pi/L. The residual must have zero integral under the matched derivative conditions. Without the same mean, an arbitrary constant e has r=0 but unbounded field error. This distinguishes a compatibility condition from a nullspace convention and from a stability estimate. The [MIT Poisson notes](https://ocw.mit.edu/courses/18-152-introduction-to-partial-differential-equations-fall-2011/4336b9d0607ac33f430908fdf4cb78ba_MIT18_152F11_lec_06.pdf) provide boundary-problem background; their Poisson sign convention differs from ours.
+
+| Intervention or premise | What it changes | What it cannot claim |
+|---|---|---|
+| Set the mean after c=0 | Selects an additive representative | Repair a nonzero compatibility defect |
+| Replace f by f−c/L | Revises the source to the compatibility set | Solve the unchanged original source problem |
+| Match mean and derivative traces | Removes the error's constant mode | Make sampled residuals a continuum norm bound |
+
+### Worked research question
+
+**Question:** Can a training pipeline silently subtract a source mean to make a Neumann solve succeed? **Answer:** It can define a modified problem that way, but must retain the original data, correction, and physical interpretation. A differentiable solver's numerical success does not validate the revised source. The code demonstrates the unique minimum source correction within a family of feasible perturbations, checks the exact corrected field, and verifies the inverse bound on a cosine eigenmode. These general-source calculations are standalone examples; the browser keeps its original constant-source controls.
+
+```python
+from fractions import Fraction as F
+from math import pi, sqrt, isclose
+L=F(2);q0=F(1);q1=F(-2);mu=F(3)
+a,b=F(2),F(1)  # f(x)=a+b*x, in the declared physical coordinates.
+integral=a*L+b*L**2/2
+defect=q1-q0+integral
+delta=-defect/L
+ac=a+delta
+assert defect==3 and ac==F(1,2)
+assert q1-q0+ac*L+b*L**2/2==0
+C=mu-q0*L/2+ac*L**2/6+b*L**3/24
+assert C==F(8,3)
+derivative_right=q0-ac*L-b*L**2/2
+computed_mean=C+q0*L/2-ac*L**2/6-b*L**3/24
+assert derivative_right==q1 and computed_mean==mu
+minimum_norm2=delta**2*L
+for beta in [F(-2),F(-1),F(0),F(1),F(2)]:
+    # Feasible correction delta+beta*(x-L/2); its extra term integrates to zero.
+    norm2=delta**2*L+beta**2*L**3/12
+    assert norm2>=minimum_norm2 and (norm2==minimum_norm2)==(beta==0)
+assert minimum_norm2==defect**2/L
+print('defect',defect,'constant source correction',delta,'corrected C',C,'mean',computed_mean)
+kappa=F(1,50)
+print('uniform transient mean slope for original f=2, zero gradients',2*kappa)
+epsilon=.1
+residual_norm=epsilon*sqrt(float(L)/2)
+field_norm=epsilon*float(L)**2/(pi*pi)*sqrt(float(L)/2)
+assert isclose(field_norm/residual_norm,float(L)**2/(pi*pi),rel_tol=1e-14)
+print('mean-zero cosine inverse norm ratio',field_norm/residual_norm)
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Solve -u''=2 with u(0)=u(1)=0. **Solution:** Integration gives -x squared+ax+b; the left value sets b=0 and the right sets a=1.

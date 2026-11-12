@@ -87,6 +87,79 @@ A model trained only on a conserved total may learn that total accurately while 
 
 Choosing an additional sensor or changing the recording schedule can be more informative than merely repeating the same uninformative output. The appropriate design depends on the model. The half-exchange example shows why recording an initial transient can matter, while the tiny-gap example shows why theoretical distinguishability must also be evaluated against noise and resolution.
 
+## Research extension: Quantify the information lost to observation noise
+
+### Add a probability law rather than a vague noise warning
+
+Retain the two initial worlds (8,2,0) and (2,8,0), a known exchange fraction p, zero leakage, and the A sensor. Now suppose each selected reading has fresh independent Gaussian noise of known positive standard deviation sigma kilograms. Give the worlds equal prior probability. These are new assumptions for the following calculation; the existing laboratory still compares exact noiseless records and does not sample this noise.
+
+At recorded integer minute n, the candidate mean gap is Delta_n=6(1−2p)^n kilograms. For any nonempty finite window, collect the means in vectors m_0 and m_1 and let Sigma=sigma squared times the identity matrix. Expanding the two Gaussian log densities yields the minimum-error decision statistic below. Choose world zero when T is positive.
+
+$$
+T=(m_0-m_1)^T\Sigma^{-1}\left(Y-{m_0+m_1\over2}\right),\qquad
+d^2=(m_0-m_1)^T\Sigma^{-1}(m_0-m_1)
+={36\over\sigma^2}\sum_{n=s}^{e}(1-2p)^{2n}.
+$$
+
+Under world zero, T has mean d squared over two and variance d squared; under world one its mean changes sign with the same variance. Standardizing this scalar Gaussian gives the balanced Bayes error. If d=0, the record laws agree and any best decision has error one half.
+
+$$
+R^*=\Phi(-d/2),\qquad
+\text{advantage}=\tfrac12-R^*=\tfrac12\operatorname{erf}\!\left({d\over2\sqrt2}\right).
+$$
+
+The advantage measures improvement over guessing with equal priors. This formula remains numerically useful when subtracting the rounded error from one half would lose the entire difference. It concerns the selected pair and the specified Gaussian law, not identification of every state or robustness to arbitrary noise. For the general decision-rule framework see [MIT's hypothesis-testing lecture](https://ocw.mit.edu/courses/6-011-signals-systems-and-inference-spring-2018/e6055996bacfce70426cfb7a080c03aa_MIT6_011S18lec22.pdf); the mean-gap specialization is derived here.
+
+### Compute the cost of waiting
+
+With p=0.49 and sigma=0.01 kg, one minute-one reading has d=12. A minute-twenty reading instead has a positive mean gap of about 6.29 times ten to the minus34 kg. Exact arithmetic can distinguish the two candidate means, but the resulting classification advantage is only about 1.25 times ten to the minus32. A displayed error of 0.5 does not make the exact advantage zero.
+
+![Classification advantage over equal-prior guessing decreases with delayed single A readings, far faster for exchange fraction 0.49 than 0.2; both use independent Gaussian noise with standard deviation 0.01 kilograms.](/assets/learning/physical-noisy-contrast-en.svg)
+
+For m independent repetitions of the same experiment and recording schedule, keeping the true initial-world label fixed, d squared multiplies by m. To attain a target error with 0<alpha<1/2 when d is positive, the real-valued repetition threshold follows from the Gaussian quantile. This assumes actual fresh experiments; copying a stored record does not create information.
+
+$$
+m\ge\left({2\Phi^{-1}(1-\alpha)\over d}\right)^2.
+$$
+
+The minute-twenty example needs a repetition count on the order of ten to the power63 for alpha=0.05. This is a model-based resource calculation, not a feasible experimental recommendation or an exact integer count certified by floating-point quantiles. At p=1/2 with recording beginning after minute zero, d is exactly zero, so no number of such repetitions distinguishes the initial worlds. The state difference was erased before observation.
+
+| Recording choice | Mathematical gap | Statistical implication under the stated law |
+|---|---|---|
+| Minute one, p=0.49 | 0.12 kg | d=12, very small positive Bayes error |
+| Minute twenty, p=0.49 | Positive but about 6.29e−34 kg | Advantage about 1.25e−32 |
+| Any delayed window, p=1/2 | Exactly zero | Error 1/2 for every repetition count |
+
+### Worked research question
+
+**Question:** Can more observations always fix an incomplete sensor record? **Answer:** No. Independent records can improve a nonzero signal-to-noise distance, but cannot resurrect an exactly erased difference. Unknown parameters, correlated noise, and quantization need their own likelihoods. The code computes the gap sum with exact fractions, evaluates Gaussian tails with the standard library, and uses erf directly to preserve tiny advantages. Decimal probabilities are approximations, not exact coverage certificates.
+
+```python
+from fractions import Fraction as F
+from math import sqrt, erfc, erf, log10
+from statistics import NormalDist
+def separation(p,start,end,sigma=F(1,100)):
+    assert 0<=p<=1 and 0<=start<=end and sigma>0
+    d2=sum((6*(1-2*p)**n/sigma)**2 for n in range(start,end+1))
+    d=sqrt(float(d2))
+    return d2,d,erfc(d/sqrt(8))/2,erf(d/sqrt(8))/2
+for start,end in [(1,1),(2,20),(20,20)]:
+    d2,d,risk,advantage=separation(F(49,100),start,end)
+    assert d2>0 and advantage>0
+    print('window',start,end,'distance',d,'error',risk,'advantage',advantage)
+assert separation(F(49,100),1,1)[0]==144
+assert separation(F(1,2),1,20)==(F(0),0.0,0.5,0.0)
+assert separation(F(1,2),0,0)[0]>0
+d=separation(F(49,100),20,20)[1]
+z=NormalDist().inv_cdf(.95)
+log10_repetitions=2*(log10(2*z)-log10(d))
+assert 63<log10_repetitions<64
+assert separation(F(49,100),20,20)[2]==.5
+assert separation(F(49,100),20,20)[3]>0
+print('log10 approximate repetition threshold',log10_repetitions)
+print('A rounded error of0.5 does not erase the positive erf advantage.')
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Under zero leakage, can sum records distinguish initial states (8,2,0) and (2,8,0)? **Solution:** No. Both sums remain ten kilograms at every time in this model.

@@ -98,6 +98,106 @@ $$
 
 또한 여러 해가 있는 문제와 데이터가 모순인 문제를 구분해야 합니다. 양립하지만 기준이 없으면 여러 해가 있고, 양립하지 않으면 이 정적 해 공간에는 해가 없습니다. 두 경우 모두 최적화는 타협 곡선을 만들 수 있습니다. 작은 손실을 존재·유일성 정리로 해석하지 말고 실제 데이터와 적분 수지를 확인해야 합니다.
 
+## 연구 확장: 비호환 source의 사영과 사라진 평균 변화 추적
+
+### 오프셋을 정하기 전에 균형을 일반화하기
+
+좌표 방향 미분 데이터 q_0, q_1은 유지하되 양의 길이 L인 물리 구간 [0,L]에서 연속인 임의 source f를 허용합시다. −u''=f를 직접 적분하면 자유 상수 C를 가진 후보를 얻습니다. 오른쪽 미분이 맞으려면 적분 결함 c가 0이어야 합니다.
+
+$$
+u(x)=C+q_0x-\int_0^x(x-s)f(s)\,ds,\qquad
+c=q_1-q_0+\int_0^Lf(s)\,ds.
+$$
+
+이는 주어진 미분 데이터의 C2 해에 대한 필요충분성을 보입니다. c=0이면 오른쪽 미분도 맞으며 모든 C가 허용됩니다. 공간 평균 mu를 주고 다시 적분하면 C가 결정됩니다.
+
+$$
+C=\mu-{q_0L\over2}+{1\over2L}\int_0^L(L-s)^2f(s)\,ds\quad(c=0).
+$$
+
+실습의 상수 source 공식은 f가 x에 무관한 특수한 경우입니다. 평균은 호환성을 확보한 뒤 영공간을 고정할 뿐 c를 바꾸지 않습니다. f의 단위는 K/m², q와 c는 K/m입니다. C의 적분식은 온도 단위입니다.
+
+### 최소 변경으로 무엇을 고치는지 정의하기
+
+미분 데이터는 고정하고 source 보정 delta f를 의도적으로 허용한다고 합시다. 필요한 적분을 만족하는 제곱 적분 가능 보정 중에서 Cauchy–Schwarz로 최소 L2 변화를 구합니다. 등호는 거의 모든 곳에서 상수인 보정에서만 성립합니다.
+
+$$
+\int_0^L\delta f=-c,\qquad
+\|\delta f\|_2\ge {|c|\over\sqrt L},\qquad
+\delta f_*=-{c\over L},\qquad
+f_*=f-{c\over L}.
+$$
+
+경계 기울기를 고정한 채 source를 호환성의 affine 집합으로 직교 사영한 것입니다. source 데이터를 수정합니다. gauge 선택이 아니며 원래의 비호환 문제를 푼 것도 아닙니다. 바꿔도 되는 데이터나 오차 계량을 다르게 정하면 다른 보정 문제가 되므로 별도의 정당화가 필요합니다.
+
+예를 들어 L=2 m, f(x)=2 K/m²+(1 K/m³)x를 쓰고 q_0=1 K/m, q_1=−2 K/m로 둡시다. source 적분은 6 K/m이므로 c=3 K/m입니다. 최소 보정은 −1.5 K/m²이고 같은 좌표에서 f_*(x)=0.5+x가 됩니다. 평균 mu=3 K를 정하면 보정한 해의 C는 8/3 K입니다. 코드는 정확한 다항식 적분으로 끝점 미분과 평균을 확인합니다. 이 해를 제시할 때는 source를 보정했다는 사실도 함께 알려야 합니다.
+
+### 불일치가 비정상 모형에서 어디로 가는지 확인하기
+
+원래 비호환 데이터도 평균이 계속 변하는 시간 의존 열 모형을 정의할 수 있습니다. 확산계수 kappa가 상수이고 같은 좌표 미분 데이터를 고정하면 비정상 법칙을 적분해 다음 식을 얻습니다.
+
+$$
+u_t=\kappa(u_{xx}+f),\qquad
+{d\bar u\over dt}={\kappa\over L}
+\left(q_1-q_0+\int_0^Lf\right)={\kappa c\over L}.
+$$
+
+따라서 c가 0이 아니면 정상 평균이 불가능한 것이지 모든 시간 의존 장이 불가능한 것은 아닙니다. 상수 f=2, 영 끝점 미분, 균일 초기 장 mu_0이면 정확한 해는 u=mu_0+2 kappa t입니다. 그 source를 0으로 사영하면 이 균일 상승이 사라집니다. 이를 무해한 오프셋 관례라고 제시하면 실제 평균 진화를 숨기게 됩니다. 이 비정상 항등식은 충분히 정칙인 해가 있다는 조건 아래의 결과이며 모든 초기 장에 대한 존재 증명이 아닙니다.
+
+### 잔차 상계에도 gauge가 필요한 이유
+
+후보와 기준 해의 경계 미분과 평균이 같으면 그 차이 e는 양 끝에서 미분이 0이고 평균도 0입니다. −e''=r에 대해 부분적분과 평균 0 Neumann Poincaré 부등식을 적용합니다.
+
+$$
+\|e'\|_2^2=\langle e,r\rangle,\qquad
+\|e\|_2\le {L\over\pi}\|e'\|_2,\qquad
+\|e\|_2\le {L^2\over\pi^2}\|r\|_2.
+$$
+
+매끄러운 평균 0 함수를 코사인 모드로 전개하면 Poincaré 상수가 설명됩니다. 영 모드는 없고 첫 남은 진동수는 pi/L입니다. 경계 미분이 같다는 조건 아래 잔차의 적분도 0이어야 합니다. 평균이 같지 않으면 임의의 상수 e는 r=0인데도 장 오차가 제한되지 않습니다. 호환성 조건·영공간 관례·안정성 추정을 구분하는 이유입니다. [MIT Poisson 강의](https://ocw.mit.edu/courses/18-152-introduction-to-partial-differential-equations-fall-2011/4336b9d0607ac33f430908fdf4cb78ba_MIT18_152F11_lec_06.pdf)는 경계 문제의 배경이며 여기와 Poisson 부호 관례가 다릅니다.
+
+| 조작 또는 가정 | 바뀌는 것 | 주장할 수 없는 것 |
+|---|---|---|
+| c=0 뒤 평균 지정 | 가산 상수 대표 선택 | 0이 아닌 호환성 결함 보정 |
+| f를 f−c/L로 대체 | source를 호환 집합으로 수정 | 그대로 둔 원래 source 문제 해결 |
+| 평균·미분 흔적 일치 | 오차의 상수 모드 제거 | 표본 잔차만으로 연속 노름 인증 |
+
+### 풀이가 있는 연구 질문
+
+**질문:** 학습 파이프라인이 Neumann 풀이를 성공시키려고 source 평균을 말없이 빼도 될까요? **해설:** 수정한 문제를 그렇게 정의할 수는 있지만 원 데이터·보정·물리적 의미를 남겨야 합니다. 미분 가능한 해법의 수치적 성공이 수정 source의 타당성을 보장하지 않습니다. 아래 코드는 가능한 섭동 가족에서 유일한 최소 source 보정을 보이고 정확한 보정 장을 검사하며 코사인 고유모드에서 역 상계를 확인합니다. 일반 source 계산은 독립 예제이고 브라우저는 기존 상수 source 조작을 유지합니다.
+
+```python
+from fractions import Fraction as F
+from math import pi, sqrt, isclose
+L=F(2);q0=F(1);q1=F(-2);mu=F(3)
+a,b=F(2),F(1)  # f(x)=a+b*x, in the declared physical coordinates.
+integral=a*L+b*L**2/2
+defect=q1-q0+integral
+delta=-defect/L
+ac=a+delta
+assert defect==3 and ac==F(1,2)
+assert q1-q0+ac*L+b*L**2/2==0
+C=mu-q0*L/2+ac*L**2/6+b*L**3/24
+assert C==F(8,3)
+derivative_right=q0-ac*L-b*L**2/2
+computed_mean=C+q0*L/2-ac*L**2/6-b*L**3/24
+assert derivative_right==q1 and computed_mean==mu
+minimum_norm2=delta**2*L
+for beta in [F(-2),F(-1),F(0),F(1),F(2)]:
+    # Feasible correction delta+beta*(x-L/2); its extra term integrates to zero.
+    norm2=delta**2*L+beta**2*L**3/12
+    assert norm2>=minimum_norm2 and (norm2==minimum_norm2)==(beta==0)
+assert minimum_norm2==defect**2/L
+print('defect',defect,'constant source correction',delta,'corrected C',C,'mean',computed_mean)
+kappa=F(1,50)
+print('uniform transient mean slope for original f=2, zero gradients',2*kappa)
+epsilon=.1
+residual_norm=epsilon*sqrt(float(L)/2)
+field_norm=epsilon*float(L)**2/(pi*pi)*sqrt(float(L)/2)
+assert isclose(field_norm/residual_norm,float(L)**2/(pi*pi),rel_tol=1e-14)
+print('mean-zero cosine inverse norm ratio',field_norm/residual_norm)
+```
+
 ## 연습 문제와 해설
 
 1. **문제:** −u″=2,양 끝 값 0을 풀어 보세요. **해설:** −x²+ax+b에서 왼쪽으로 b=0,오른쪽으로 a=1을 얻습니다.

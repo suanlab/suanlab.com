@@ -78,6 +78,94 @@ A learning system asked to predict wave futures from displacement-only snapshots
 
 For a heat model, independently predicting an arbitrary time derivative in addition to the temperature can violate the governing relation. Physics-based learning should distinguish independent state data from quantities implied by the law. It should also check the intended initial and boundary conditions, rather than relying only on an interior residual loss.
 
+## Research extension: From complete initial data to residual stability bounds
+
+### State a function class before proving uniqueness
+
+The coefficient argument above concerns one sine mode. We now compare sufficiently smooth fields on the whole interval, with identical homogeneous Dirichlet boundary values. Let e be the difference between a candidate and a reference solution. Use dimensionless position xi in (0,1), dimensionless field amplitude, and dimensionless time tau. Each law has its own time scale: L squared over kappa for heat, and L over c for waves. The following norms integrate over xi; they do not add quantities from two different physical systems.
+
+Assume enough regularity to differentiate the displayed integrals and integrate by parts, continuous initial traces in the relevant norms, and time-integrable L2 residuals. These are sufficient conditions for the estimates below. They are not an existence theorem for arbitrary data or a claim that every weak solution has pointwise corner traces.
+
+### Heat: one initial field and a dissipative bound
+
+Write the error equation with residual r_h. Multiplication by e and integration by parts removes the endpoint term because e vanishes there. The Dirichlet Poincaré inequality follows from the lowest sine frequency pi. Combining it with Cauchy–Schwarz bounds the growth of the L2 norm a:
+
+$$
+e_\tau-e_{\xi\xi}=r_h,\qquad
+\frac12\frac{d}{d\tau}\|e\|_2^2=-\|e_\xi\|_2^2+\langle e,r_h\rangle,
+\qquad \|e_\xi\|_2^2\ge\pi^2\|e\|_2^2.
+$$
+
+$$
+a(\tau)\le e^{-\pi^2\tau}a(0)
++\int_0^\tau e^{-\pi^2(\tau-s)}\|r_h(s)\|_2\,ds,
+\qquad a=\|e\|_2.
+$$
+
+For a positive norm this follows by dividing the energy inequality by a and applying an integrating factor. At a zero norm, use a_delta=sqrt(a squared plus delta squared): its derivative is at most minus pi squared a_delta plus pi squared delta plus the residual norm. Integrate, then let delta decrease to zero. Thus no division by zero is hidden in the argument. With identical initial temperatures and zero residual, the bound gives e=0. No independent initial temperature-rate function was needed.
+
+### Waves: the initial velocity remains in the energy
+
+For the wave equation, multiply the error equation by e_tau instead. The endpoint term vanishes because the homogeneous displacement trace also has zero time derivative. The energy contains both velocity and the spatial gradient of displacement:
+
+$$
+e_{\tau\tau}-e_{\xi\xi}=r_w,\qquad
+E=\tfrac12\left(\|e_\tau\|_2^2+\|e_\xi\|_2^2\right),\qquad
+E'=\langle e_\tau,r_w\rangle.
+$$
+
+$$
+b(\tau)=\sqrt{2E(\tau)}\le b(0)+\int_0^\tau\|r_w(s)\|_2\,ds,
+\qquad \|e(\tau)\|_2\le b(\tau)/\pi.
+$$
+
+Cauchy–Schwarz gives E' at most sqrt(2E) times the residual norm; a regularized square root again handles zero energy. Identical initial displacement and velocity give b(0)=0. If the residual also vanishes, the energy stays zero, and the Dirichlet condition removes the possible constant displacement. Without initial velocity equality, b(0) need not vanish even when the starting picture is identical. This is a field-level explanation of the first guided example.
+
+| Error problem with zero initial error | Residual norm bounded by epsilon | Consequence |
+|---|---|---|
+| Heat, homogeneous Dirichlet error | For every time in the interval | L2 error at most epsilon times (1−exp(−pi² tau))/pi² |
+| Wave, both initial fields matched | For every time in the interval | Energy norm at most epsilon times tau |
+| Interior residual only, boundary mismatch allowed | Same interior bound | The omitted boundary terms prevent these conclusions |
+
+### Use the estimate as a research contract
+
+For heat, a uniformly bounded residual gives a saturating L2 error allowance. For waves, this general estimate permits accumulation with time; it does not say every forcing attains the upper bound. A resonant sine-mode forcing supplies a concrete accumulating example in the code. These norms are not interchangeable with a pointwise error or with the average residual at finitely many training points. A rigorous sampled-to-continuous bound needs additional regularity and quadrature arguments.
+
+A worked normalized mode makes the comparison concrete. Put phi(xi)=sqrt(2) sin(pi xi), which has L2 norm one. A heat forcing epsilon phi with initial amplitude a_0 and a wave forcing epsilon cos(pi tau) phi with zero initial data give these amplitudes:
+
+$$
+q_h(\tau)=a_0e^{-\pi^2\tau}+{\epsilon\over\pi^2}(1-e^{-\pi^2\tau}),\qquad
+q_w(\tau)={\epsilon\tau\over2\pi}\sin(\pi\tau).
+$$
+
+The first reaches a bounded forced response; the resonant wave amplitude has an envelope growing linearly. These exact examples illustrate the estimates without claiming all errors have those forms.
+
+**Question:** Can a zero interior PINN loss certify the requested solution without checking initial and boundary data? **Answer:** No. The proof uses all of those conditions explicitly. If boundary errors are present, one must keep their terms or lift the boundary data before applying an estimate. The [MIT energy-method notes](https://ocw.mit.edu/courses/18-152-introduction-to-partial-differential-equations-fall-2011/ad3a71c522df2396b6248cf9b35aedea_MIT18_152F11_lec_13_14.pdf) provide broader background; the one-dimensional forced inequalities here are derived above. The code uses the unit-L2 mode sqrt(2) sin(pi xi), checks energy identities, and compares the heat response with independent Simpson integration. It is not an arbitrary-field PDE solver.
+
+```python
+from math import pi, exp, expm1, sin, cos, hypot, fsum, isclose
+epsilon=.1
+def simpson(f,t,n=2000):
+    if t==0: return 0.0
+    h=t/n
+    return h/3*(f(0)+f(t)+fsum((4 if j%2 else 2)*f(j*h) for j in range(1,n)))
+for t in [0,.1,1,2]:
+    q0=.2
+    q=q0*exp(-pi*pi*t)+epsilon*(-expm1(-pi*pi*t))/(pi*pi)
+    dq=(-pi*pi*q0+epsilon)*exp(-pi*pi*t)
+    assert isclose(q*dq,-pi*pi*q*q+q*epsilon,abs_tol=1e-12)
+    independent=q0*exp(-pi*pi*t)+simpson(lambda s:epsilon*exp(-pi*pi*(t-s)),t)
+    assert abs(q-independent)<1e-10
+    wave=epsilon*t*sin(pi*t)/(2*pi)
+    velocity=epsilon*(sin(pi*t)+pi*t*cos(pi*t))/(2*pi)
+    acceleration=epsilon*cos(pi*t)-epsilon*pi*t*sin(pi*t)/2
+    assert isclose(acceleration+pi*pi*wave,epsilon*cos(pi*t),abs_tol=1e-12)
+    energy_norm=hypot(velocity,pi*wave)
+    assert energy_norm<=epsilon*t+1e-12
+    assert isclose(velocity*(acceleration+pi*pi*wave),velocity*epsilon*cos(pi*t),abs_tol=1e-12)
+    print('time',t,'heat norm',q,'wave energy norm',energy_norm,'wave bound',epsilon*t)
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** For the wave mode, find q(0) and q'(0). **Solution:** Substitute t=0 to obtain a; differentiating first and then substituting gives b. These are separate coefficients.

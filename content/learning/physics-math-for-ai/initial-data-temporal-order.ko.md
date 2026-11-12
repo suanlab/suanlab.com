@@ -82,6 +82,94 @@ t=0을 대입하면 q(0)=a입니다. 먼저 미분한 뒤 t=0을 대입하면 q�
 
 반대로 열 모형에서는 온도와 무관한 시간 미분을 따로 예측하게 만들면 법칙과 충돌할 수 있습니다. 물리 기반 학습에서는 독립 데이터와 법칙에서 유도되는 양을 구분해야 합니다. 내부 미분 잔차뿐 아니라 처음 상태와 끝 조건도 요청한 문제에 맞는지 확인해야 합니다.
 
+## 연구 확장: 완전한 초기 데이터에서 잔차 안정성 상계까지
+
+### 유일성을 증명하기 전에 함수 종류를 정하기
+
+앞의 계수 논증은 한 사인 모드에 대한 것이었습니다. 이제 구간 전체의 충분히 매끄러운 장을 비교하되 두 장이 같은 영 Dirichlet 경계값을 만족한다고 합시다. 후보와 기준 해의 차이를 e라 씁니다. 위치 xi는 (0,1), 장의 진폭과 시간 tau도 무차원입니다. 각 법칙은 서로 다른 시간 척도를 씁니다. 열은 L 제곱/kappa, 파동은 L/c입니다. 아래 노름은 xi에 대해 적분하며 서로 다른 물리계의 양을 더하는 것이 아닙니다.
+
+적분을 미분하고 부분적분할 수 있는 정칙성, 관련 노름에서 연속인 초기 흔적, 시간에 대해 적분 가능한 L2 잔차를 가정합니다. 아래 추정에 충분한 조건입니다. 임의 데이터의 존재 정리나 모든 약한 해가 점별 모서리 흔적을 갖는다는 주장이 아닙니다.
+
+### 열: 초기 장 하나와 소산 상계
+
+잔차 r_h를 포함한 오차 방정식에 e를 곱해 부분적분합니다. e가 끝점에서 0이므로 경계항이 사라집니다. 가장 낮은 사인 진동수 pi에서 Dirichlet Poincaré 부등식을 얻습니다. Cauchy–Schwarz와 결합하면 L2 노름 a의 증가를 제어합니다.
+
+$$
+e_\tau-e_{\xi\xi}=r_h,\qquad
+\frac12\frac{d}{d\tau}\|e\|_2^2=-\|e_\xi\|_2^2+\langle e,r_h\rangle,
+\qquad \|e_\xi\|_2^2\ge\pi^2\|e\|_2^2.
+$$
+
+$$
+a(\tau)\le e^{-\pi^2\tau}a(0)
++\int_0^\tau e^{-\pi^2(\tau-s)}\|r_h(s)\|_2\,ds,
+\qquad a=\|e\|_2.
+$$
+
+노름이 양수이면 에너지 부등식을 a로 나누고 적분 인자를 적용합니다. 노름이 0인 곳에서는 a_delta=루트(a 제곱+delta 제곱)을 사용합니다. 그 도함수의 상계는 −pi 제곱 a_delta+pi 제곱 delta+잔차 노름입니다. 적분 후 delta를 0으로 보내면 됩니다. 0으로 나누는 단계를 숨기지 않는 것입니다. 초기 온도가 같고 잔차가 0이면 e=0입니다. 독립적인 초기 온도 변화율 함수는 필요하지 않았습니다.
+
+### 파동: 초기 속도가 에너지에 남습니다
+
+파동의 오차 방정식에는 e_tau를 곱합니다. 영 변위 경계 흔적의 시간 미분도 0이므로 경계항이 사라집니다. 에너지에는 속도와 변위의 공간 기울기가 모두 포함됩니다.
+
+$$
+e_{\tau\tau}-e_{\xi\xi}=r_w,\qquad
+E=\tfrac12\left(\|e_\tau\|_2^2+\|e_\xi\|_2^2\right),\qquad
+E'=\langle e_\tau,r_w\rangle.
+$$
+
+$$
+b(\tau)=\sqrt{2E(\tau)}\le b(0)+\int_0^\tau\|r_w(s)\|_2\,ds,
+\qquad \|e(\tau)\|_2\le b(\tau)/\pi.
+$$
+
+Cauchy–Schwarz로 E'의 상계를 루트(2E) 곱하기 잔차 노름으로 얻습니다. 정칙화한 제곱근을 쓰면 에너지 0도 처리됩니다. 초기 변위와 속도가 모두 같아야 b(0)=0입니다. 잔차도 0이면 에너지는 계속 0이고, Dirichlet 조건이 상수 변위의 가능성을 제거합니다. 초기 속도가 다르면 시작 그림이 같아도 b(0)은 0이 아닐 수 있습니다. 첫 안내 예제를 장 전체의 관점에서 설명한 것입니다.
+
+| 초기 오차가 0인 문제 | 잔차 노름이 epsilon 이하 | 결과 |
+|---|---|---|
+| 열, 영 Dirichlet 오차 | 해당 시간 구간 전체에서 | L2 오차는 epsilon 곱하기 (1−exp(−pi² tau))/pi² 이하 |
+| 파동, 두 초기 장 일치 | 해당 시간 구간 전체에서 | 에너지 노름은 epsilon 곱하기 tau 이하 |
+| 내부 잔차만 검사하고 경계 불일치 허용 | 같은 내부 상계 | 생략한 경계항 때문에 위 결론을 적용할 수 없음 |
+
+### 추정을 연구의 조건으로 사용하기
+
+열에서는 균일하게 제한한 잔차가 포화되는 L2 오차 허용량을 줍니다. 파동의 일반 추정은 시간에 따른 누적을 허용합니다. 모든 외력이 상계에 도달한다는 뜻은 아닙니다. 아래 코드의 공명 사인 모드 외력은 누적되는 구체적 예입니다. 이 노름은 점별 오차나 유한 학습점의 평균 잔차와 같지 않습니다. 표본에서 연속 상계로 가려면 정칙성·구적에 대한 추가 논증이 필요합니다.
+
+정규화한 모드로 구체적으로 비교합시다. phi(xi)=루트(2) sin(pi xi)는 L2 노름이 1입니다. 초기 진폭이 a_0이고 외력이 epsilon phi인 열 모드와, 초기 데이터가 0이고 외력이 epsilon cos(pi tau) phi인 파동 모드는 아래 진폭을 가집니다.
+
+$$
+q_h(\tau)=a_0e^{-\pi^2\tau}+{\epsilon\over\pi^2}(1-e^{-\pi^2\tau}),\qquad
+q_w(\tau)={\epsilon\tau\over2\pi}\sin(\pi\tau).
+$$
+
+첫 모드는 제한된 강제 응답에 접근하고 공명 파동 진폭의 포락선은 선형으로 증가합니다. 이 정확한 예가 추정을 설명하는 것이며 모든 오차가 이런 형태라는 뜻은 아닙니다.
+
+**질문:** 초기·경계 데이터를 확인하지 않은 채 PINN의 내부 손실 0만으로 요구한 해를 인증할 수 있을까요? **해설:** 아닙니다. 증명에서 그 조건들을 모두 사용했습니다. 경계 오차가 있다면 경계항을 유지하거나 경계 데이터를 lifting한 후 추정해야 합니다. [MIT 에너지 방법 강의](https://ocw.mit.edu/courses/18-152-introduction-to-partial-differential-equations-fall-2011/ad3a71c522df2396b6248cf9b35aedea_MIT18_152F11_lec_13_14.pdf)는 넓은 배경이며, 여기의 일차원 강제 오차 부등식은 위에서 유도했습니다. 아래 코드는 L2 노름이 1인 루트(2) sin(pi xi) 모드로 에너지 항등식을 검사하고 열 응답을 별도 Simpson 적분과 비교합니다. 임의 장의 PDE 해법을 구현한 것은 아닙니다.
+
+```python
+from math import pi, exp, expm1, sin, cos, hypot, fsum, isclose
+epsilon=.1
+def simpson(f,t,n=2000):
+    if t==0: return 0.0
+    h=t/n
+    return h/3*(f(0)+f(t)+fsum((4 if j%2 else 2)*f(j*h) for j in range(1,n)))
+for t in [0,.1,1,2]:
+    q0=.2
+    q=q0*exp(-pi*pi*t)+epsilon*(-expm1(-pi*pi*t))/(pi*pi)
+    dq=(-pi*pi*q0+epsilon)*exp(-pi*pi*t)
+    assert isclose(q*dq,-pi*pi*q*q+q*epsilon,abs_tol=1e-12)
+    independent=q0*exp(-pi*pi*t)+simpson(lambda s:epsilon*exp(-pi*pi*(t-s)),t)
+    assert abs(q-independent)<1e-10
+    wave=epsilon*t*sin(pi*t)/(2*pi)
+    velocity=epsilon*(sin(pi*t)+pi*t*cos(pi*t))/(2*pi)
+    acceleration=epsilon*cos(pi*t)-epsilon*pi*t*sin(pi*t)/2
+    assert isclose(acceleration+pi*pi*wave,epsilon*cos(pi*t),abs_tol=1e-12)
+    energy_norm=hypot(velocity,pi*wave)
+    assert energy_norm<=epsilon*t+1e-12
+    assert isclose(velocity*(acceleration+pi*pi*wave),velocity*epsilon*cos(pi*t),abs_tol=1e-12)
+    print('time',t,'heat norm',q,'wave energy norm',energy_norm,'wave bound',epsilon*t)
+```
+
 ## 연습 문제와 해설
 
 1. **문제:** 파동 모드에서 q(0),q′(0)은? **해설:** t=0을 대입하면 a이고, 먼저 미분하고 대입하면 b입니다. 두 계수는 독립적인 초기 정보를 담습니다.
