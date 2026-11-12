@@ -160,7 +160,7 @@ $$
 
 ### Work a four-edge example in declared scales
 
-Let E_* be a positive field scale, ρ_*=εE_*/Δz and U_*=εA_cΔzE_*². Hats denote fields and charge divided by these scales; G_hat=Δz G. For four edges the explicit dimensionless pseudoinverse below annihilates constants. Multiplying by G_hat G_hatᵀ gives the projector onto zero-mean node vectors, which verifies rather than assumes its role. Use p_hat=(G_hat G_hatᵀ)^+ g_hat and E_c_hat=E_raw_hat−G_hatᵀ p_hat. The chosen source has zero sum for every α. For α=0 the correction removes all of the raw field; for α=1 it changes nothing; for α=2 it doubles the field and quadruples the energy. The Python cell computes the projection, checks the resulting Gauss law and prints the table. These are supplementary grid calculations, not new controls in the radial lab.
+Let E∗ be a positive field scale, ρ∗=εE∗/Δz and U∗=εA_cΔzE∗². Hats denote fields and charge divided by these scales; G_hat=Δz G. For four edges the explicit dimensionless pseudoinverse below annihilates constants. Multiplying by G_hat G_hatᵀ gives the projector onto zero-mean node vectors, which verifies rather than assumes its role. Use p_hat=(G_hat G_hatᵀ)^+ g_hat and E_c_hat=E_raw_hat−G_hatᵀ p_hat. The chosen source has zero sum for every α. For α=0 the correction removes all of the raw field; for α=1 it changes nothing; for α=2 it doubles the field and quadruples the energy. The Python cell computes the projection, checks the resulting Gauss law and prints the table. These are supplementary grid calculations, not new controls in the radial lab.
 
 $$
 \widehat G=\Delta zG,\quad(\widehat G\widehat G^T)^+=\frac1{16}\begin{pmatrix}5&-1&-3&-1\\-1&5&-1&-3\\-3&-1&5&-1\\-1&-3&-1&5\end{pmatrix},\quad (\widehat G\widehat G^T)(\widehat G\widehat G^T)^+=I-\frac{\mathbf1\mathbf1^T}{4}.
@@ -170,7 +170,7 @@ $$
 \widehat E_{\rm raw}=(1,0,-1,0)^T,\quad\widehat\rho=\alpha(1,-1,-1,1)^T,\quad\widehat E_c=\alpha\widehat E_{\rm raw},\quad\frac{U(E_{\rm raw})}{U_*}=1,\quad\frac{U(E_c)}{U_*}=\alpha^2,\quad\frac{\|g\|_2}{\rho_*}=2|1-\alpha|.
 $$
 
-| alpha | raw defect / rho_* | raw U / U_* | corrected U / U_* |
+| alpha | raw defect / rho∗ | raw U / U∗ | corrected U / U∗ |
 | --- | --- | --- | --- |
 | 0.00000000 | 2.00000000 | 1.00000000 | 0.00000000 |
 | 0.50000000 | 1.00000000 | 1.00000000 | 0.25000000 |
@@ -203,7 +203,7 @@ The existing radial lab gives an independent contrast: a fixed charge offset lea
 
 **Can periodic field cleaning fix a nonzero total charge?** **Answer:** No. Every periodic divergence has zero sum. Altering the mean source or adding a background changes the physical problem.
 
-**Does the smallest Gauss correction always lower energy?** **Answer:** No. The zero-target orthogonal identity is special. At alpha=2 in this affine example energy rises from U_* to 4 U_*.
+**Does the smallest Gauss correction always lower energy?** **Answer:** No. The zero-target orthogonal identity is special. At alpha=2 in this affine example energy rises from U∗ to 4 U∗.
 
 **Does corrected Gauss law certify the original source history?** **Answer:** No. A single snapshot correction changes the field. Keeping a compatible Ampere step generally requires the explicitly changed effective current.
 

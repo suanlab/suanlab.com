@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-13 전자기학 종합 감사 중 [Maxwell 평문 기호의 Markdown 해석 문제](physics-math-for-ai/electromagnetism-symbol-repair.md)를 수정했다. 원문·수식·계산을 보존하고 487검사·40원고/40 Python/364연구 수식 대조·새 빌드·해당 두 단원 16화면을 검증했다. 전자기학 순차 보강 20/20은 유지하며 전체 160화면 종합 대조를 다시 진행한다. 영역 집계는 41/405 대조·10/104 후속을 유지한다.
+
 2026-11-13 유효 모델 연구 보강: [양의 LC 모드·생략 에너지 상한과 벌크 닮음·경계 반사 위상](physics-math-for-ai/effective-research-status.md)을 한영 네 원고·그림 네 개에 추가했다. 선택 59검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 20/20단원 순차 보강](physics-math-for-ai/electromagnetism-topic-review.md)을 마쳤으며 다음은 영역 전체 연구 종합 대조다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제는 유지한다.
 
 2026-11-13 회로·센서 연구 보강: [수동 분극 기억·초기 층과 Fourier 개구 전달·비관측 모드](physics-math-for-ai/circuit-research-status.md)를 한영 네 원고·그림 네 개에 추가했다. 선택 55검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 18/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 유효 모델이다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제를 유지한다.

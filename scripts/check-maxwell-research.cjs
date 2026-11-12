@@ -47,6 +47,9 @@ console.log(JSON.stringify({domain,labs:Object.fromEntries(domain.unitIds.map(id
         await page.evaluate(() => document.fonts.ready);
         await page.waitForFunction(dark => document.documentElement.classList.contains('dark') === dark, dark);
         assert.equal(await page.locator('.katex-error').count(), 0, id);
+        if (id === 'maxwell-charge-displacement-continuity') for (const symbol of ['E∗','ρ∗','U∗']) {
+          assert.ok(await page.locator('.ai-prose p').evaluateAll((nodes, symbol) => nodes.some(node => [...node.childNodes].some(child => child.nodeType === Node.TEXT_NODE && (child.textContent || '').includes(symbol))), symbol), `${id}: literal ${symbol} survives Markdown rendering outside KaTeX`);
+        }
         assert.ok(await page.locator('.ai-prose h2').count() >= 6, id);
         assert.equal(await page.locator('.ai-parameters input').count(), data.labs[id].controls.length, id);
         // The language attribute can update before React replaces the manuscript.

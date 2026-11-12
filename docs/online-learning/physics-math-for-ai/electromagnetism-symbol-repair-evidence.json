@@ -1,0 +1,619 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "status": "validated-symbol-only-repair",
+  "baselineCommit": "06f8c23b6f5e0972c7cd9ca2913f186cfb00999e",
+  "files": [
+    {
+      "path": "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.en.md",
+      "beforeSha256": "f4ec64c2fdcf24edb8d154b786414f957411063e7fa477975c101491e03e68a3",
+      "afterSha256": "b96affda6502f0cdfcb0cf932c8aba74b934addbcab50178f3a024d6cf0aa8fb",
+      "plainSymbolReplacements": {
+        "E_*": 3,
+        "ρ_*": 1,
+        "U_*": 5,
+        "rho_*": 1
+      },
+      "protectedMathAndCodeUnchanged": true,
+      "originalBodyUnchanged": true
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.ko.md",
+      "beforeSha256": "ddf2edf9e6da628999fdbad5726f9f423a33ecd517ee01505d2ae920fe0e2b9d",
+      "afterSha256": "37c8aed8de10ef9c5fd8bf42e24b5b7e3a6d0f669105e6a25f93eb81b136319d",
+      "plainSymbolReplacements": {
+        "E_*": 3,
+        "ρ_*": 1,
+        "U_*": 5,
+        "rho_*": 1
+      },
+      "protectedMathAndCodeUnchanged": true,
+      "originalBodyUnchanged": true
+    }
+  ],
+  "unexpectedEmphasisNodesBefore": 5,
+  "unexpectedResearchEmphasisNodesAfter": 0,
+  "plainReplacements": 20,
+  "preRepairRegression": {
+    "exitCode": 1,
+    "failedTests": 1,
+    "logSha256": "516d09e7f5a7a3d831646462d1ead1e685074843cab7ff53817617588e3c3c93"
+  },
+  "sourceAudit": {
+    "command": "node scripts/learning/audit-electromagnetism-research.cjs",
+    "reportSha256": "b0becb8df21e7ac6a61b0a9e45c7de22db646f9612a3294a3b534124752f0245",
+    "originalManuscriptsPreserved": 40,
+    "originalAnsweredExercises": 240,
+    "pythonExecutions": 40,
+    "displayedResearchEquations": 364,
+    "originalFormulaPairs": [
+      {
+        "id": "charge-superposition-test-field",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 9,
+        "koCount": 9,
+        "differences": []
+      },
+      {
+        "id": "charge-continuity-surface-current",
+        "whitespaceEquivalent": true,
+        "exactPair": false,
+        "enCount": 12,
+        "koCount": 12,
+        "differences": [
+          {
+            "index": 0,
+            "en": "x_c(t)=x_0+vt,\\qquad \\rho(x, t)=\\frac{Q_0}{A\\sigma\\sqrt{2\\pi}} \\exp\\!\\left[-\\frac{(x-x_c(t))^2}{2\\sigma^2}\\right].",
+            "ko": "x_c(t)=x_0+vt,\\qquad \\rho(x,t)=\\frac{Q_0}{A\\sigma\\sqrt{2\\pi}} \\exp\\!\\left[-\\frac{(x-x_c(t))^2}{2\\sigma^2}\\right]."
+          },
+          {
+            "index": 1,
+            "en": "\\mathbf J(x, t)=\\rho(x, t)v\\,\\widehat{\\mathbf x}.",
+            "ko": "\\mathbf J(x,t)=\\rho(x,t)v\\,\\widehat{\\mathbf x}."
+          },
+          {
+            "index": 3,
+            "en": "I=\\int_S\\mathbf J\\cdot\\mathbf n\\, dA =A_s\\mathbf J\\cdot\\mathbf n.",
+            "ko": "I=\\int_S\\mathbf J\\cdot\\mathbf n\\,dA =A_s\\mathbf J\\cdot\\mathbf n."
+          },
+          {
+            "index": 4,
+            "en": "Q_{[a, b]}(t)=A\\int_a^b\\rho(x, t)\\, dx,\\qquad I_{a,\\mathrm{out}}=-AJ_x(a, t),\\qquad I_{b,\\mathrm{out}}=AJ_x(b, t).",
+            "ko": "Q_{[a,b]}(t)=A\\int_a^b\\rho(x,t)\\,dx,\\qquad I_{a,\\mathrm{out}}=-AJ_x(a,t),\\qquad I_{b,\\mathrm{out}}=AJ_x(b,t)."
+          },
+          {
+            "index": 5,
+            "en": "\\frac{dQ_{[a, b]}}{dt} =-\\left(I_{a,\\mathrm{out}}+I_{b,\\mathrm{out}}\\right) =A\\left[J_x(a, t)-J_x(b, t)\\right].",
+            "ko": "\\frac{dQ_{[a,b]}}{dt} =-\\left(I_{a,\\mathrm{out}}+I_{b,\\mathrm{out}}\\right) =A\\left[J_x(a,t)-J_x(b,t)\\right]."
+          },
+          {
+            "index": 8,
+            "en": "Q_{[a, b]}=Q_0\\left[\\Phi(z_b)-\\Phi(z_a)\\right],\\qquad \\frac{dQ_{[a, b]}}{dt}=\\frac{Q_0v}{\\sigma}\\left[\\phi(z_a)-\\phi(z_b)\\right].",
+            "ko": "Q_{[a,b]}=Q_0\\left[\\Phi(z_b)-\\Phi(z_a)\\right],\\qquad \\frac{dQ_{[a,b]}}{dt}=\\frac{Q_0v}{\\sigma}\\left[\\phi(z_a)-\\phi(z_b)\\right]."
+          },
+          {
+            "index": 9,
+            "en": "Q_{[a, b]}(0)=\\Phi(0.8)-\\Phi(-0.5)\\approx0.479607063\\ \\mathrm C.",
+            "ko": "Q_{[a,b]}(0)=\\Phi(0.8)-\\Phi(-0.5)\\approx0.479607063\\ \\mathrm C."
+          },
+          {
+            "index": 10,
+            "en": "Q_{[a, b]}(t_1)-Q_{[a, b]}(t_0) =\\int_{t_0}^{t_1}A\\left[J_x(a, t)-J_x(b, t)\\right]dt.",
+            "ko": "Q_{[a,b]}(t_1)-Q_{[a,b]}(t_0) =\\int_{t_0}^{t_1}A\\left[J_x(a,t)-J_x(b,t)\\right]dt."
+          }
+        ]
+      },
+      {
+        "id": "gauss-symmetry-electrostatic-sphere",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 9,
+        "koCount": 9,
+        "differences": []
+      },
+      {
+        "id": "ampere-symmetry-steady-current-cylinder",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 12,
+        "koCount": 12,
+        "differences": []
+      },
+      {
+        "id": "electrostatic-potential-reference-path-work",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 9,
+        "koCount": 9,
+        "differences": []
+      },
+      {
+        "id": "magnetic-vector-potential-curl-gauge",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 12,
+        "koCount": 12,
+        "differences": []
+      },
+      {
+        "id": "maxwell-plane-wave-local-integral-laws",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 8,
+        "koCount": 8,
+        "differences": []
+      },
+      {
+        "id": "maxwell-charge-displacement-continuity",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 9,
+        "koCount": 9,
+        "differences": []
+      },
+      {
+        "id": "faraday-induction-fixed-moving-loop",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 10,
+        "koCount": 10,
+        "differences": []
+      },
+      {
+        "id": "electromagnetic-wave-equation-transverse-initial-data",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 9,
+        "koCount": 9,
+        "differences": []
+      },
+      {
+        "id": "poynting-source-work-local-balance",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 8,
+        "koCount": 8,
+        "differences": []
+      },
+      {
+        "id": "transverse-pulse-energy-flux-balance",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 10,
+        "koCount": 10,
+        "differences": []
+      },
+      {
+        "id": "dielectric-interface-free-bound-charge",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 8,
+        "koCount": 8,
+        "differences": []
+      },
+      {
+        "id": "normal-incidence-impedance-interface",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 10,
+        "koCount": 10,
+        "differences": []
+      },
+      {
+        "id": "time-dependent-gauge-field-invariance",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 12,
+        "koCount": 12,
+        "differences": []
+      },
+      {
+        "id": "lorenz-gauge-source-initial-compatibility",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 13,
+        "koCount": 13,
+        "differences": []
+      },
+      {
+        "id": "rc-circuit-field-closure-approximation",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 12,
+        "koCount": 12,
+        "differences": []
+      },
+      {
+        "id": "finite-area-coil-sensor-observability",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 12,
+        "koCount": 12,
+        "differences": []
+      },
+      {
+        "id": "transmission-line-lumped-limit-energy",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 12,
+        "koCount": 12,
+        "differences": []
+      },
+      {
+        "id": "layered-medium-bloch-effective-limit",
+        "whitespaceEquivalent": true,
+        "exactPair": true,
+        "enCount": 13,
+        "koCount": 13,
+        "differences": []
+      }
+    ],
+    "prerequisiteClosure": 159,
+    "exactCurrentLocalizedManuscriptsInExport": 40,
+    "researchQuestionsWithExplanations": 120
+  },
+  "regression": {
+    "files": 38,
+    "tests": 487,
+    "logSha256": "6797236b28f19dbb1c1a8ca5aeb4f616a4feb9444371ff445b63138dbd2dfc27"
+  },
+  "browser": {
+    "states": 16,
+    "targetUnitStatesWithLiteralSymbolChecks": 8,
+    "literalSymbols": [
+      "E∗",
+      "ρ∗",
+      "U∗"
+    ],
+    "guides": 6,
+    "quizzes": 4,
+    "concepts": 8,
+    "persistenceCompletionGroups": 2,
+    "pageErrors": 0,
+    "axeViolations": 0,
+    "reportSha256": "c94f86f55531fd57d54848aba08478865236c67dcd15bb342764d7b2fe9b3654",
+    "manualReviews": [
+      {
+        "path": ".runtime/learning/electromagnetism-symbol-repair-maxwell-plane-wave-local-integral-laws-en-320.png",
+        "sha256": "b8da0e80d8236d8d9dd39d31f72df0f7d200af59bbb332149bd7f2e373aaa3da"
+      },
+      {
+        "path": ".runtime/learning/electromagnetism-symbol-repair-maxwell-plane-wave-local-integral-laws-ko-320.png",
+        "sha256": "5a2c44ec5d9750237b690b72d094aac6e6f615c6a17a35b487180fefaeea2cf2"
+      },
+      {
+        "path": ".runtime/learning/electromagnetism-symbol-repair-maxwell-charge-displacement-continuity-en-320.png",
+        "sha256": "9b52cf6a2af3a41e8baa1208d318efdbccdae76c96623a53536341734a1b57fb"
+      },
+      {
+        "path": ".runtime/learning/electromagnetism-symbol-repair-maxwell-charge-displacement-continuity-ko-320.png",
+        "sha256": "9d9801723b19c70e73d3d36f099ab4fc43a8a2fcc08e8ed12bcfa26cd0851cc2"
+      }
+    ]
+  },
+  "build": {
+    "routes": 1893,
+    "htmlPages": 1888,
+    "checkExits": {
+      "tests": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T20:12:55.443607+00:00"
+      },
+      "lint": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T20:12:03.129439+00:00"
+      },
+      "content": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T20:12:03.995839+00:00"
+      },
+      "build": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T20:16:08.845049+00:00"
+      },
+      "types": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T20:17:15.534758+00:00"
+      },
+      "export": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T20:17:55.687511+00:00"
+      },
+      "source": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T20:22:51.154135+00:00"
+      },
+      "browser": {
+        "exitCode": 0,
+        "finishedAtUtc": "2026-11-12T20:18:51.922652+00:00"
+      }
+    }
+  },
+  "served": [
+    {
+      "path": "public/assets/learning/electromagnetism-probe-backreaction.en.svg",
+      "sha256": "31cea21fc4dd6d3640e1fee9537582952e7f8bb9987a994b439e2f0b6539c408"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-probe-backreaction.ko.svg",
+      "sha256": "d4a7a41d6a836a8cd58f74e9b13a7b55b1185d849b4e28ab5a632a99048270ec"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-current-nullspace.en.svg",
+      "sha256": "e16ee61f6fc2abce97c7b521eca7d2365de4c24f8c3a2baa52feb908ff707fd7"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-current-nullspace.ko.svg",
+      "sha256": "589acba4710f6fabc4b15b867ffc0c7357f3f84ac2cbb66b14086e9dae62b8f2"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-radial-density-inverse.en.svg",
+      "sha256": "232d76c9d09956293c68e99130adf798add6361c4ef61e654177aa01bcdcada3"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-radial-density-inverse.ko.svg",
+      "sha256": "06771346c9c6d4efa38d89100d6bc48fb05bce883d3e455b3c5106699055c630"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-skin-diffusion.en.svg",
+      "sha256": "4c290cba797755a4787a1bb72ae4bb195411bad48f887f7e68c4e04798129a2f"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-skin-diffusion.ko.svg",
+      "sha256": "60e8b079047c2711c8c3e983020774aa819e2d398e97687f1b946f49f7c3617f"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-weighted-potential-loops.en.svg",
+      "sha256": "fe1f13921162e435a5d843801123c6073e13b5bf40c43722c5b2e06b4fdd31c3"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-weighted-potential-loops.ko.svg",
+      "sha256": "f939353a96f0f8d525a4cc44c568dcde855b5a65e5c04b92eb430506cc169d8b"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-periodic-flux-obstruction.en.svg",
+      "sha256": "39d5ffc94cb6e0e5c917dede1be84b601f11228c9d297a141e24092c6ed55ce6"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-periodic-flux-obstruction.ko.svg",
+      "sha256": "2fc7b0344bad877803b24a5b0aa75e9eedfbd98286c6ccb43edab3d9567ff7bb"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-staggered-wave-stability.en.svg",
+      "sha256": "2e7cee0d2018b62b2db0adbedac782c139174b49758626e575869e07db3c9731"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-staggered-wave-stability.ko.svg",
+      "sha256": "88535eff801e86cc51a92311fad364cbfac136ac06dfec182123b52b4260070a"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-periodic-gauss-repair.en.svg",
+      "sha256": "951fda621e97d9a404fb31516e5e2df97bf0b7a0978e600c39def793f16d29ea"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-periodic-gauss-repair.ko.svg",
+      "sha256": "ca9770bb8e317f30c756cddef9dc98be6dfc2254a7703254db6522a0e681c801"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-induction-mechanical-backreaction.en.svg",
+      "sha256": "2d0f806271569e1ba40a31b423f509af55f751eacb8290ea32d892da0defcb30"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-induction-mechanical-backreaction.ko.svg",
+      "sha256": "00894e7a1c97150e384e85d3fee78fb2d79d8a203c2c61baaf7f977752bd0225"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-electric-snapshot-observability.en.svg",
+      "sha256": "bf1856e5eb6e873e5682dfede3b3ac496320098ce2fbb15aaf7a67aa988a2417"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-electric-snapshot-observability.ko.svg",
+      "sha256": "a04a06dc759fd17ca08707c150c530fee7092e7175fcac854929b06cf02d0dd2"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-power-invisible-current.en.svg",
+      "sha256": "52714d4ef609b083e191e159d17c4ae536fb282b77aeb522168ea207dbb0a2fb"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-power-invisible-current.ko.svg",
+      "sha256": "a9b4a3939b666f87e21bae0a8d9c16dfd3d51a074c600e8139e3ad974415e96c"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-vacuum-zero-flux-frame.en.svg",
+      "sha256": "0ba53d609b9c013001fc9016395d637fdda9b390deff752385eceeffdb0b1d55"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-vacuum-zero-flux-frame.ko.svg",
+      "sha256": "3c1a3f23c44029c0613bf1a403da270c8cf2b6c67f450070bb474212c72e8898"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-dipole-layer-limit.en.svg",
+      "sha256": "4dc71b47c5e7f5003d580d62b44bc4611fc3a965b73fbcd729c50e631db931f3"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-dipole-layer-limit.ko.svg",
+      "sha256": "fc888e5107ee2b39f84a7855cc0ee03d0b0f3e057fcb82d9e2688ebeb91d6492"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-coherent-sheet-absorption.en.svg",
+      "sha256": "b1b6082f44bd73cc010533eafb7f2d15728b48ef387e7b82e9eb17748639955f"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-coherent-sheet-absorption.ko.svg",
+      "sha256": "b3aeeb75adf61fa4d1a0ceb7667ca3350a98851b1fc87a210b8a30ba9faafdcc"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-spacetime-gauge-projection.en.svg",
+      "sha256": "fab4ab3384d1bd890b965b46e5a88d6e613f7a876fd1c403c0c931231df292a4"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-spacetime-gauge-projection.ko.svg",
+      "sha256": "286fe7a76abfc9155b06f56a8da57181c6870f66b05b3e826c8da17876409dcf"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-lorenz-constraint-energy.en.svg",
+      "sha256": "1d585481f73122d3735a4b120bc189a5902addaa516ddafca2350593d7d5a2ba"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-lorenz-constraint-energy.ko.svg",
+      "sha256": "9df33223eb5c0206517c8e3e598d3f95984fc39d1d89c2c506411338ade2de21"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-relaxing-capacitor-energy.en.svg",
+      "sha256": "2e3be2b430b81334d072a1dc6cefd1caf9ac8798ea653c963a936ea23686eaf8"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-relaxing-capacitor-energy.ko.svg",
+      "sha256": "5f3831fe82a79cd18ceb69a36138ab5dd95711eb16df86a1a42dbea97780f54d"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-coil-aperture-blind-modes.en.svg",
+      "sha256": "e1ac43a680b77b8143d08dc40ccc746c8e0e2f4cdefebe3e0336eaf43dea047b"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-coil-aperture-blind-modes.ko.svg",
+      "sha256": "6f8ab3714b6f396858f33b60285bbb4fd694f6e352d32d56c6b91f6121f3b2bb"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-positive-modal-line-reduction.en.svg",
+      "sha256": "58c9ab691e2b4668c2e3b7233c7fee29da59adabd07638f95290775e7ba94b71"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-positive-modal-line-reduction.ko.svg",
+      "sha256": "1a9b1946df9dfee3f9202518ac24298b78d40b579bc1c755adaeec6d5ae66584"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-bilayer-origin-boundary-phase.en.svg",
+      "sha256": "367fa0ac3eca8eb02a9f8e5359f60f44ffa978bdf2b231338c6b196ae294f4b8"
+    },
+    {
+      "path": "public/assets/learning/electromagnetism-bilayer-origin-boundary-phase.ko.svg",
+      "sha256": "5a0a880d688fc1d140992c691f6d2c8d7402ff3761407ffb8c739d5de52a1f3a"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/charge-superposition-test-field/index.html",
+      "sha256": "af3b7c0a487c3172403e9554ec087e9e6f4a601018a9086b8a8eab3d8e741aa6"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/charge-continuity-surface-current/index.html",
+      "sha256": "4deba6d194c2620693ee68ec30aa54f229f4d99bb84d66ee7dbe89c520790d9d"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/gauss-symmetry-electrostatic-sphere/index.html",
+      "sha256": "8e7b42d42fe91df8c9d1e19381279df8d050d546fb9d863bfda1922bb6c29984"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/ampere-symmetry-steady-current-cylinder/index.html",
+      "sha256": "20c91e33b633ef1316bff6085b9bb23da0ba5104714186d8f166a6c9f0a77942"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/electrostatic-potential-reference-path-work/index.html",
+      "sha256": "cfa13a0bc9ed956786ea1f26fc1dc36e212ba46b0ea0ea87a563ddeb2a034124"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/magnetic-vector-potential-curl-gauge/index.html",
+      "sha256": "e36455cf402486e37afffb8bf16dc1bb37ca19d745c7715344401a5e185bc50a"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/maxwell-plane-wave-local-integral-laws/index.html",
+      "sha256": "b729777106cc3ef8c10da256579992f8dcf04457ec8400fcda4fb96cebb4b659"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/maxwell-charge-displacement-continuity/index.html",
+      "sha256": "595060b2b9c47c43de7595e5875c1b2c248c9733b2a9bf33838a587f9e8bd913"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/faraday-induction-fixed-moving-loop/index.html",
+      "sha256": "31730f2fafba1daa6388aed1105fb3f1968f3dff71c7fe55602749ad3a7963a6"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/electromagnetic-wave-equation-transverse-initial-data/index.html",
+      "sha256": "464df4872115577952c4b73b310fdba8830a3de57e0aa4bc8bdfa1b7d9f2b84f"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/poynting-source-work-local-balance/index.html",
+      "sha256": "ff75e8e9fe6a04c2a16ffc452b4d813f55b103612afac46a0b857260d7808b7b"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/transverse-pulse-energy-flux-balance/index.html",
+      "sha256": "0040287d83ad4d18fcc6d279be756d61411a951bf822e6e2561ff88e25e0d52f"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/dielectric-interface-free-bound-charge/index.html",
+      "sha256": "84aa98c95a6fdde441ab667dc15e1dd96dd5cdef988981a8a33b2b506b3e13c6"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/normal-incidence-impedance-interface/index.html",
+      "sha256": "ff391b0a506f6a8bfea8b4b63cb4e60d788bc001279cb29a8ef1ca428ce7ddb9"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/time-dependent-gauge-field-invariance/index.html",
+      "sha256": "d719b7f3e641fa056793bf18614f7f1fe675b9e3fb0f94933b8ac301805c4655"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/lorenz-gauge-source-initial-compatibility/index.html",
+      "sha256": "0a247c08421f11ae2907888c49e2d940ebe80f5f7d200d53efbe8eaa26e7a13a"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/rc-circuit-field-closure-approximation/index.html",
+      "sha256": "c859da47af344e4138d881170175a29143c151bbd60a1dc08e1f719b144bf78b"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/finite-area-coil-sensor-observability/index.html",
+      "sha256": "758d74d07f0bc37f2e3a029fc300847c7a7d3f893fe0dd9fff9c38e374950aff"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/transmission-line-lumped-limit-energy/index.html",
+      "sha256": "6ba9669fe02fa3ad1f13b7768fc2d15013b6f11dfd320d159dd480a05c42c8d7"
+    },
+    {
+      "path": "out/book/online/physics-math-for-ai/layered-medium-bloch-effective-limit/index.html",
+      "sha256": "46216dfbf1025af2c96c0653ec1cf914c264f950dfdf27d67a7c908bf41a50a4"
+    }
+  ],
+  "previousResearchInputs": {
+    "total": 152,
+    "unchanged": 150,
+    "explicitSymbolOnlyRevisions": [
+      {
+        "path": "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.en.md",
+        "beforeSha256": "f4ec64c2fdcf24edb8d154b786414f957411063e7fa477975c101491e03e68a3",
+        "afterSha256": "b96affda6502f0cdfcb0cf932c8aba74b934addbcab50178f3a024d6cf0aa8fb"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.ko.md",
+        "beforeSha256": "ddf2edf9e6da628999fdbad5726f9f423a33ecd517ee01505d2ae920fe0e2b9d",
+        "afterSha256": "37c8aed8de10ef9c5fd8bf42e24b5b7e3a6d0f669105e6a25f93eb81b136319d"
+      }
+    ]
+  },
+  "ledger": {
+    "total": 757,
+    "previousEntriesUnchanged": 755,
+    "revisedEntries": 2,
+    "preElectromagnetismEntriesUnchanged": 717
+  },
+  "archivedPreRepairAudit": {
+    "path": ".runtime/learning/electromagnetism-research-before-symbol-repair",
+    "status": "terminated-for-confirmed-source-repair",
+    "wholeDomainComplete": false
+  },
+  "finalInputs": {
+    "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.en.md": "b96affda6502f0cdfcb0cf932c8aba74b934addbcab50178f3a024d6cf0aa8fb",
+    "content/learning/physics-math-for-ai/maxwell-charge-displacement-continuity.ko.md": "37c8aed8de10ef9c5fd8bf42e24b5b7e3a6d0f669105e6a25f93eb81b136319d",
+    "scripts/check-maxwell-research.cjs": "0a3d6ff3b4528b42e6d1f2d87aa5cb3f89e2fcd4e2460139dfd6fe3959d0f8ea",
+    "scripts/learning-maxwell-research.test.ts": "2533c67eb87d836e4e47357823b8c326a9f78a884eeb2dd673d989b20504f132",
+    "scripts/learning/audit-electromagnetism-research.cjs": "3a822d08637b42bfa7720de690abe1f998a50d45a6ae878a9dde36ee081afb05",
+    "scripts/fixtures/reviewed-learning-manuscripts.json": "afe350dadede750f4fe675adee9cec4b9fbce3d1e9024e5bc5a3c4e1fb4b7733"
+  },
+  "wholeDomainResearchReviewComplete": false,
+  "curriculumComplete": false,
+  "remainingReview": {
+    "reviewedDomains": 41,
+    "reviewedOriginalTopics": 405,
+    "pendingDomains": 10,
+    "pendingOriginalTopics": 104
+  },
+  "publicDeploymentConfirmed": false
+}
