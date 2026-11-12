@@ -111,9 +111,13 @@ test('invalid codes, singular radii and nonelliptic solver inputs reject explici
 for(const id of ['inverse-square-effective-potential','elliptic-kepler-time-area'])for(const language of ['ko','en']as const)test(`central-force manuscript renders complete equations and explained exercises: ${id}.${language}`,async()=>{
   const fs=await import('node:fs/promises'),{getLearningContent}=await import('../src/lib/learning-content');
   const source=await fs.readFile(`content/learning/physics-math-for-ai/${id}.${language}.md`,'utf8'),r=await getLearningContent(id);
-  assert.ok((source.match(/^## /gm)||[]).length>=10);assert.equal((source.match(/^\d\. /gm)||[]).length,6);assert.ok(source.includes('https://ocw.mit.edu/'));
-  if(language==='en'){assert.ok(source.split(/\s+/).length>1000);assert.ok(!/[가-힣]/.test(source));assert.equal((source.match(/\*\*Solution:/g)||[]).length,6);}
-  else {assert.ok((source.match(/[가-힣]/g)||[]).length>1000);assert.equal((source.match(/\*\*해설:/g)||[]).length,6);}
+  assert.ok((source.match(/^## /gm)||[]).length>=10);assert.ok(source.includes('https://ocw.mit.edu/'));
+  const heading=language==='en'?'## Worked examples and exercises with solutions':'## 예제와 해설이 있는 연습문제';
+  const start=source.indexOf(heading);assert.ok(start>=0,'The original exercise section must remain');
+  const end=source.indexOf('\n## ',start+heading.length),exercises=source.slice(start,end<0?undefined:end);
+  assert.deepEqual([...exercises.matchAll(/^(\d)\. /gm)].map(m=>Number(m[1])),[1,2,3,4,5,6]);
+  if(language==='en'){assert.ok(source.split(/\s+/).length>1000);assert.ok(!/[가-힣]/.test(source));assert.equal((exercises.match(/\*\*Solution:/g)||[]).length,6);}
+  else {assert.ok((source.match(/[가-힣]/g)||[]).length>1000);assert.equal((exercises.match(/\*\*해설:/g)||[]).length,6);}
   assert.ok(r[language].includes('katex-display'));assert.ok(!r[language].includes('katex-error'));assert.ok(r.outline[language].length>=10);assert.equal(new Set(r.outline[language].map(x=>x.id)).size,r.outline[language].length);
 });
 

@@ -114,6 +114,163 @@ E를 먼저 2π로 나눈 나머지로 바꾸면 전체 회전의 면적을 잃�
 
 표본화는 그림의 해상도 선택이며 운동 방정식을 대신하는 근사가 아닙니다. 조회 상태는 음함수 방정식을 직접 풀기 때문에 가장 가까운 미리 계산한 프레임을 고르는 방식과 다릅니다.
 
+## 연구 확장: 일주 주기가 발산해도 근점 통과 시간은 유한할 수 있다
+
+타원 궤도의 근점 반지름을 유지하면서 포물선 경계에 접근합니다. 전체 주기는 한없이 커지지만 가까운 고정 반지름까지 바깥 방향으로 가는 시간은 유한합니다. 원래 타원 조작 계열을 바꾸지 않고 이 극한과 별도의 포물선 시간 해를 유도합니다.
+
+양의 mu,rp를 유지하고 t=0에서 근점을 출발하며 바깥 방사 분기를 선택합니다. 같은 무차원 delta에서 다음이 성립합니다.
+
+$$
+\delta=1-e,\quad r_p=a\delta,\qquad
+\epsilon=-\frac{\mu\delta}{2r_p},\quad h^2=\mu r_p(2-\delta),\qquad
+T=2\pi\sqrt{\frac{r_p^3}{\mu}}\,\delta^{-3/2}.
+$$
+
+이제 질문은 시계입니다. 큰 긴반지름과 멀어진 먼점에서 돌아오는 긴 시간이 근점의 고정 근방을 느리게 통과한다는 뜻은 아닙니다. 원래 a≤4 m,e≤0.95 범위는 이 고정 rp 극한 계열 전체를 포함하지 않습니다.
+
+### 방사 정지점의 제곱근 제거하기
+
+바깥 분기에서 u=sqrt(r/rp−1)≥0로 정의하고 방사 에너지 식에 근점 에너지와 각운동량을 대입합니다.
+
+$$
+r=r_p(1+u^2),\qquad
+\dot r^2=\frac\mu{r_p}\frac{u^2[2-\delta(2+u^2)]}{(1+u^2)^2},\qquad
+\frac{dt}{du}=2\sqrt{\frac{r_p^3}{\mu}}\frac{1+u^2}{\sqrt{2-\delta(2+u^2)}}.
+$$
+
+초기 정지점의 방사 속도는 0이지만 시간 적분에서 u가 dr/du의 인자와 상쇄됩니다. 남은 분모가 양수인 동안 변환 적분핵은 매끄럽습니다. 타원의 u는 일반적으로 tan(f/2)가 아니므로 둘을 혼동하면 시계가 틀립니다.
+
+### 포물선 극한 적분하기
+
+delta=0이면 e=1이며 각운동량은 0이 아닙니다. u=tan(f/2)가 되고 시간 적분이 다항식이 됩니다.
+
+$$
+\delta=0:\quad u=\tan(f/2),\qquad
+t_B(U)=\sqrt{\frac{2r_p^3}{\mu}}\left(U+\frac{U^3}{3}\right).
+$$
+
+근점 시각을 0으로 정한 Barker 시간 관계입니다. h=0 방사 충돌 분기가 아니며 힘의 특이 원점을 지나가지 않습니다.
+
+### 전체 통과 구간에서 상계 증명하기
+
+고정 목표 R>rp와 대응하는 U를 선택합니다. 타원 적분핵을 포물선 적분핵과 (1−delta(1+u²/2))^(-1/2)의 곱으로 쓰면, 0≤u≤U에서 추가 인자는 1과 (1−delta A)^(-1/2) 사이에 있습니다.
+
+$$
+U=\sqrt{R/r_p-1}>0,\quad A=1+U^2/2,\quad 0\le\delta A<1,\qquad
+t_B(U)\le t_\delta(U)\le\frac{t_B(U)}{\sqrt{1-\delta A}}.
+$$
+
+엄격한 상한 조건은 목표가 먼점 이전임을 보장합니다. 조임으로 고정 R에서 t_delta→tB이고 차이는 tB[(1−delta A)^(-1/2)−1]=O(delta)로 제한됩니다. 유한 구적 격자의 결론이 아니라 연속적인 해석적 상계입니다. 동시에 R도 먼 먼점을 향해 보내는 극한은 다릅니다.
+
+rp=1 m,mu=2 m³/s²,R=2 m이면 U=1,tB=4/3 s입니다. delta=1/2에서는 a=2,e=1/2,n=1/2이고 이심근점이각 E=pi/2에서 반지름 2에 도달하므로 독립 시간은 pi−1 s입니다.
+
+| delta | 2 m까지 통과 시간 (s, 근삿값) | 일주 주기 (s, 근삿값) |
+|---|---:|---:|
+| 1/2 | 2.141592654 | 12.566371 |
+| 1/10 | 1.421506138 | 140.496295 |
+| 1/100 | 1.341407313 | 4442.882938 |
+| 1/1000 | 1.334134066 | 140496.294621 |
+| 1/1000000 | 1.333334133 | 4442882938.158366 |
+
+![포물선 경계에서 일주 주기는 발산하지만 고정 반지름 2미터까지의 시간은 유한한 Barker 극한과 해석적 상계 사이에 남습니다.](/assets/learning/classical-kepler-passage-limit.ko.svg)
+
+그림의 delta 범위는 0.0001~0.5입니다. 위는 일주 주기,아래는 고정 반지름 통과 시간이며 모두 s이지만 별도 축입니다. 주황은 해석적 상계,점선 수평선은 포물선 극한이고 로그 가로축에 delta=0인 점을 그린 것이 아닙니다.
+
+### 시간으로 포물선 위치·속도 복원하기
+
+양의 Barker 시간 척도 k의 단위는 s입니다. 쌍곡사인 삼중각 항등식으로 t/k=u+u³/3을 뒤집습니다.
+
+$$
+k=\sqrt{\frac{2r_p^3}{\mu}},\qquad
+u(t)=2\sinh\!\left(\frac13\operatorname{asinh}\frac{3t}{2k}\right),\quad
+q=r_p(1-u^2,2u),\quad
+v=\frac{2r_p}{k(1+u^2)}(-u,1),\quad r=r_p(1+u^2).
+$$
+
+반지름은 rp(1+u²)>0이고 속도는 위치를 올바르게 미분한 값이며 따로 그린 접선 화살표가 아닙니다. rp=1 m,mu=2 m³/s²이면 k=1 s입니다. t=4/3 s에서 u=1,q=(0,2) m,v=(−1,1) m/s,epsilon=0,h=2 m²/s입니다.
+
+원래 역제곱력 진단의 코드 (2,2,0,20,20,1)은 반지름 2에서 방사 속도 −1,+1 m/s와 접선 속도 1을 허용합니다. 위 시간 해는 그중 바깥 분기를 선택합니다. 타원 위젯에 포물선 시간 전파를 추가한 것이 아닙니다.
+
+### 타원 근 잔차와 위치 오차 연결하기
+
+유한한 통과 극한이 수치 조건화를 없애지는 않습니다. 타원 근 E_star와 근삿값 Ehat에서 e,a,M을 고정하고 rho를 정확한 수학적 Kepler 잔차라 합시다. 미분이 delta 이상인 단조성으로 첫 상계를 얻습니다. 타원 매개화의 미분 노름은 a 이하라 둘째를 얻습니다.
+
+$$
+F_e(E)=E-e\sin E,\quad F_e'(E)\ge\delta=1-e>0,\quad
+\rho=F_e(\widehat E)-M,\quad F_e(E_*)=M,\qquad
+|\widehat E-E_*|\le\frac{|\rho|}{\delta},\quad
+\lVert q(\widehat E)-q(E_*)\rVert\le\frac{a|\rho|}{\delta}
+=\frac{r_p|\rho|}{\delta^2}.
+$$
+
+고정 rp 계열은 a=rp/delta여서 보수적인 위치 오차 인자는 delta^(-2)로 커집니다. 작은 잔차가 위치 정확도를 뒷받침하려면 척도·정의역이 필요합니다. 부동소수점 잔차 보고가 수학적 잔차의 인증된 구간인 것은 아닙니다. 원래 독립 위치·속도 검사도 여전히 필요하며 기존 해석기의 결함을 주장하는 상계가 아닙니다.
+
+### 독립 구적과 명시적 시간 상태로 재현하기
+
+코드는 다섯 delta의 복합 Simpson 512/1024구간을 비교하고 해석적 통과 구간·특수 타원 시간 pi−1·다섯 포물선 상태를 검사합니다. 구적 비교는 수치 일관성 확인이며 적분 오차 인증이 아닙니다. 마지막 여섯 이동된 타원 근은 해석적 잔차 상계를 부동소수점으로 예시할 뿐 계산한 잔차를 엄밀한 인증으로 바꾸지 않습니다.
+
+```python
+from math import sqrt, pi, sinh, asinh, hypot, sin, cos
+
+def passage(delta, steps):
+    if not (0 <= delta < 2/3) or steps <= 0 or steps % 2:
+        raise ValueError("Use an even grid before the target apoapsis")
+    def integrand(u):
+        return sqrt(2)*(1+u*u)/sqrt(2-delta*(2+u*u))
+    dx = 1/steps
+    total = integrand(0)+integrand(1)
+    total += sum((4 if j % 2 else 2)*integrand(j*dx) for j in range(1, steps))
+    return total*dx/3
+
+tB = 4/3
+for delta in [.5, .1, .01, .001, .000001]:
+    t1, t2 = passage(delta, 512), passage(delta, 1024)
+    upper = tB/sqrt(1-1.5*delta)
+    assert abs(t1-t2) < 5e-11
+    assert tB-2e-11 <= t2 <= upper+2e-11
+    period = 2*pi/sqrt(2)*delta**(-1.5)
+    print("delta, passage time, analytic upper, period (s):", delta, t2, upper, period)
+assert abs(passage(.5, 1024)-(pi-1)) < 5e-11
+
+def parabolic(t):
+    u = 2*sinh(asinh(1.5*t)/3)
+    udot = 1/(1+u*u)
+    q, v = (1-u*u, 2*u), (-2*u*udot, 2*udot)
+    radius = 1+u*u
+    assert abs(u+u**3/3-t) < 2e-12*max(1, abs(t))
+    assert abs(hypot(*q)-radius) < 2e-12
+    assert abs((v[0]**2+v[1]**2)/2-2/radius) < 2e-12
+    assert abs(q[0]*v[1]-q[1]*v[0]-2) < 2e-12
+    return q, v
+
+for t in [0, .5, 4/3, 2, 10]:
+    print("parabolic time, position, velocity:", t, *parabolic(t))
+q, v = parabolic(4/3)
+assert max(abs(q[0]), abs(q[1]-2), abs(v[0]+1), abs(v[1]-1)) < 2e-12
+
+# Floating illustrations of the analytic residual-to-position bound.
+e, a, exact_E = .5, 2, pi/2
+M = (pi-1)/2
+for shift in [-.1, -.01, -.001, .001, .01, .1]:
+    Ehat = exact_E+shift
+    rho = Ehat-e*sin(Ehat)-M
+    qhat = (a*(cos(Ehat)-e), a*sqrt(1-e*e)*sin(Ehat))
+    position_error = hypot(qhat[0]+1, qhat[1]-sqrt(3))
+    analytic_bound = a*abs(rho)/(1-e)
+    assert position_error <= analytic_bound+2e-14
+print("six residual-to-position illustrations passed")
+```
+
+원래 타원 계열은 코드 (2,4,10,0,0,21,1)과 (2,4,10,0,0,22,1)로 특수 통과를 감쌀 수 있습니다. 2.1초 반지름은 2보다 작고 2.2초에는 더 크며 주기는 4pi s입니다. 임의의 고정 rp에서 포물선에 가까운 계열이나 새 포물선 식은 독립 스크립트로 재현하세요.
+
+### 궤도 시간 예측을 위한 해설 문제
+
+1. **큰 일주 주기는 2 m까지 긴 통과 시간을 뜻하나요?** 이 고정 rp 계열에서는 아닙니다. 먼 궤도 부분이 발산을 만들고 유한 창에는 명시적인 Barker 극한이 있습니다.
+2. **원래 타원 매개변수에 delta=0을 넣으면 안 되는 이유는?** 고정 rp에서 무한한 a가 필요하기 때문입니다. 별도 시간 매개화로 포물선 분기를 다루며 허용된 타원 조작 값이라고 설명하지 않습니다.
+3. **시간 의존 대리 모형에는 어떤 근거가 필요한가요?** 방사 분기·반지름 창·매개변수 불확실성·물리 시간 척도·독립 상태 참조를 명시하세요. 근·불변량·기하 검사는 서로 다른 주장을 뒷받침합니다.
+
+Barker·Kepler 시간 법칙은 [MIT 16.346 Lecture 3](https://ocw.mit.edu/courses/16-346-astrodynamics-fall-2008/379eae1a78cf9ad58247058dffbae3ac_lec_03.pdf)를 참고하세요. 구간 상계와 연구 예제는 선언한 고정 원천 모델에서 직접 유도했습니다.
+
 ## 예제와 해설이 있는 연습문제
 
 1. **원궤도 극한.** μ=a=1, e=0, 순행, t=1로 두세요. **해설:** n=1, E=M=1이고 q=(cos 1,sin 1), 속력과 반지름은 1, 주기는 2π입니다. 면적은 1/2입니다. e=0이므로 이 경우에만 타원 중심과 초점이 일치합니다.

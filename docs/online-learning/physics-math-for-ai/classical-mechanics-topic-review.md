@@ -1,6 +1,6 @@
 # 뉴턴 역학·강체 운동 원주제 대조 — 진행 중
 
-2026-11-12. 전체 10개 원주제·21단원 중 `mechanics-energy`·힘·가속 관측자·충격량·두 입자·사차 퍼텐셜·감쇠·각운동량·보존법칙·마찰·원형 가이드에 해당하는 13단원 한영 원고를 보강했다. 영역 전체 대조와 연구 심화는 미완료다. 누적 완료 집계는 38영역·376주제, 후속은 이 영역을 포함해 13영역·133주제로 유지한다. 기존 입문 집필 완료와 별개다.
+2026-11-12. 전체 10개 원주제·21단원 중 `mechanics-energy`·힘·가속 관측자·충격량·두 입자·사차 퍼텐셜·감쇠·각운동량·보존법칙·마찰·원형 가이드·역제곱력·Kepler 시간에 해당하는 15단원 한영 원고를 보강했다. 영역 전체 대조와 연구 심화는 미완료다. 누적 완료 집계는 38영역·376주제, 후속은 이 영역을 포함해 13영역·133주제로 유지한다. 기존 입문 집필 완료와 별개다.
 
 ## 첫 단원: 구조 보존과 안정성
 
@@ -138,21 +138,28 @@
 
 누적 **13/21단원** 보강이며 나머지는 **8단원**이다. 영역 전체 완료 집계는 올리지 않는다. 완료 영역 기준 38영역·376주제, 후속 13영역·133주제와 전체 51영역·509주제 범위를 유지한다.
 
-## 다음 역제곱력·Kepler 두 단원의 계산 기반
+## 역제곱력·Kepler 연구 확장 통합 — 2026-11-12
 
-[포물선 경계의 불확실성과 통과 시간](central-force-research-foundation.md)을 유도·검산했다. 먼점/주기 구간·속도 오차 전달·분류 경계 거부, 고정 근점의 포물선 통과 극한과 일반 부등식, 독립 구적·포물선 시간별 위치/속도를 두 Python과 그림 두 개로 준비했다. 세 실제 기하 입력·두 실제 타원 시각·특수 Kepler 근을 대조했다. 한영 학습 본문·최종 reader 통합 전이므로 위 13/21에 포함하지 않는다.
+[포물선 경계의 불확실성과 통과 시간](central-force-research-foundation.md)을 두 단원의 한영 본문·네 공개 그림에 통합했다. 기존 설명·6개 연습문제와 해설은 보존했다.
+
+- 역제곱력은 고정 근점의 비방사 궤도 가족에서 속도 오차→에너지/이심률 오차→먼점·주기 구간을 유도했다. 불확실성 구간이 포물선 경계를 포함하면 유한한 먼점을 인증할 수 없음을 설명한다. 큰 절대 민감도와 상대 조건수를 구분하고, 실제 속도 1.9·2·2.1 m/s 입력의 세 궤도 분류를 대조했다.
+- Kepler 시간은 일주 주기의 발산과 고정 반지름까지의 유한한 근점 통과 시간을 구분한다. 일반 적분의 상·하계, Barker 극한, 실제 시간의 위치·속도와 고정 e,a,M에서의 잔차→위치 오차 상계를 유도했다. 독립 Python의 구적 비교는 엄밀한 구적 오차 인증으로 표시하지 않는다. 포물선 해와 미세 오차 가족은 별도 실행 예제이며 기존 타원 실습의 입력 범위를 넓혔다고 주장하지 않는다.
+- **4파일·선택 테스트 120개**가 통과했다. 기존 독립 radial 700건·elliptic 160건·root 220건, 새 실제 입력·특수 근·한영 표/수식/코드와 실제 렌더·원고 보존을 포함한다. 이전의 전체 원고 번호 세기 검사는 원래 연습문제 절의 1–6 번호·6개 해설 보존 검사로 범위를 명확히 했다.
+- 네 원고의 Python 실행, 한영 수식·코드 일치와 기존 본문 보존, 이전 625개 검토 항목 보존을 확인했다. 검토 원고 기록은 **629개**다.
+- lint·콘텐츠 검증·정적 빌드·타입 검사·**1,888 HTML의 내부 링크/자산/앵커/사이트맵 검사**를 통과했다. 최종 출력과 네 SVG 원본의 바이트 일치를 확인했다.
+- 최종 브라우저 검사는 아래 실행 기록의 상태 수·상호작용 수를 기준으로 한다. 한영 320/768/1440px·다크 모드, 수식/표/코드의 키보드 스크롤, 이미지/목차, 안내 6개·실제 경계/인용 입력, 잘못된 입력 초안·복원, 저장·언어·문제·완료, 기존 에너지 단원과 21단원 지도를 포함한다. 전체 CI 완료와 공개 배포 완료는 별도 확인한다.
+
+브라우저 실행 결과: `Central force checks passed: 40 bilingual responsive/accessibility states, 6 interaction groups, 6 guided examples.`
+
+누적 **15/21단원** 보강이며 나머지는 **6단원**이다. 영역 전체 완료 집계는 올리지 않는다. 38영역·376주제 대조, 후속 13영역·133주제와 전체 51영역·509주제 범위를 유지한다.
 
 ## 남은 순서
 
-`inverse-square-effective-potential`, `elliptic-kepler-time-area`부터 나머지 8단원의 원고·실제 수치 모형·기존 근거를 대조하고 심화 내용을 작성한다. `mechanics-energy`는 foundation registry/evaluator이고 다른 20단원은 classical mechanics registry/evaluator이므로 전체 검증에는 두 구현을 모두 포함해야 한다. 이후 해석역학 등 나머지 영역도 교육과정 순서대로 진행한다. 전체 51영역·509개 주제의 범위를 유지한다.
+다음 여섯 단원의 원고·실제 수치 모형·기존 근거를 교육과정 순서대로 대조하고 심화한다. `mechanics-energy`는 foundation registry/evaluator이고 나머지 20단원은 classical mechanics registry/evaluator이므로 영역 전체 검증에는 두 구현이 모두 필요하다. 이후 해석역학 등 남은 영역을 순서대로 진행한다.
 
-다음 단원은 등록된 교육과정의 순서로 진행한다.
-
-1. `inverse-square-effective-potential` — 계산 기반 준비, 한영 본문 통합 전
-2. `elliptic-kepler-time-area` — 계산 기반 준비, 한영 본문 통합 전
-3. `point-mass-inertia-tensor`
-4. `torque-free-euler-body-lab`
-5. `frictionless-rod-contact-impulse`
-6. `driven-wheel-rolling-sliding`
-7. `inverted-spring-initial-state-sensitivity`
-8. `nonlipschitz-newton-delayed-release`
+1. `point-mass-inertia-tensor`
+2. `torque-free-euler-body-lab`
+3. `frictionless-rod-contact-impulse`
+4. `driven-wheel-rolling-sliding`
+5. `inverted-spring-initial-state-sensitivity`
+6. `nonlipschitz-newton-delayed-release`

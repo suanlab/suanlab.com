@@ -106,6 +106,142 @@ When h=0, the barrier vanishes and θ cannot be used as an independent variable.
 
 A negative-energy radial state has an outer turning radius −μ/ε and can approach the singular origin. A nonnegative-energy radial state has no finite outer turning radius. Initial radial direction still matters. The experiment reports the radial class and allowed radii, leaves conic geometry undefined, and supplies no invented collision continuation.
 
+## Research extension: certify an orbit family before reporting its distant turning point
+
+A tiny uncertainty near escape can produce a large interval of possible apoapsides and periods. A positive nominal estimate of an elliptic parameter does not certify that every compatible orbit is bound. This extension makes that statement quantitative, while preserving the native exact-sign test for its declared control inputs.
+
+Keep the same fixed-source acceleration and known positive mu. Start at a known periapsis radius rp with zero radial velocity and positive tangential speed vp. We use a nonradial periapsis family; the h=0 collision branch remains separate. Define the dimensionless distance delta from the parabolic boundary:
+
+$$
+\delta=1-e=2-\frac{r_pv_p^2}{\mu},\qquad
+\epsilon=-\frac{\mu\delta}{2r_p},\qquad h^2=\mu r_p(2-\delta).
+$$
+
+For delta<1 the starting point is periapsis and h is nonzero. Then 0<delta<1 gives a noncircular ellipse, delta=0 a parabola, and delta<0 a hyperbola. The identities use this initial-state preparation. They are not a replacement for the general eccentricity-vector calculation when radial speed is nonzero or the initial point is an apoapsis.
+
+### Identify the inverse dependence before drawing a finite window
+
+In the elliptic part of this family:
+
+$$
+a=\frac{r_p}{\delta},\qquad r_a=r_p\left(\frac2\delta-1\right),\qquad
+T=2\pi\sqrt{\frac{r_p^3}{\mu}}\,\delta^{-3/2}\quad(0<\delta<1).
+$$
+
+As delta approaches zero from above, periapsis stays fixed but the distant turning radius grows like its reciprocal and period like delta to the power −3/2. The original twelve-metre geometry window is a rendering choice. Its clipped endpoint cannot be used as that distant turning point.
+
+### Propagate a certified parameter interval
+
+Suppose rp and mu are known exactly, and an estimate d of delta has a certified absolute error eta. If the whole interval stays in 0<delta<1, the monotonicity of a and ra gives exact bounds:
+
+$$
+|\delta-d|\le\eta,\quad 0\le\eta<d,\quad d+\eta<1,\qquad
+\frac{r_p}{d+\eta}\le a\le\frac{r_p}{d-\eta},\qquad
+r_p\left(\frac2{d+\eta}-1\right)\le r_a\le r_p\left(\frac2{d-\eta}-1\right).
+$$
+
+Every bound keeps units: d and eta are dimensionless, while a,ra,rp are lengths. Period is increasing with a, so the same endpoints bound T. Its relative interval and the sensitivities are:
+
+$$
+\left(\frac d{d+\eta}\right)^{3/2}\le\frac{T}{T(d)}\le
+\left(\frac d{d-\eta}\right)^{3/2},\qquad
+\frac{dr_a}{d\delta}=-\frac{2r_p}{\delta^2},\qquad
+\frac{d\log T}{d\log\delta}=-\frac32.
+$$
+
+The large derivative of ra is an absolute sensitivity. When eta/d remains small, relative period uncertainty is controlled by that ratio; do not describe every relative perturbation as infinitely amplified. Near zero, a fixed absolute eta can instead become large relative to d, or cross the classification boundary entirely.
+
+Use rp=1 m,mu=2 m³/s²,d=1/100,eta=1/1000:
+
+| quantity | lower bound | nominal value | upper bound |
+|---|---|---|---|
+| a (m) | 1000/11 | 100 | 1000/9 |
+| ra (m) | 1989/11 | 199 | 1991/9 |
+| T² divided by 4pi²rp³/mu | (1000/11)³ | 100³ | (1000/9)³ |
+
+The period bounds are approximately 3851.021 and 5203.566 s, around nominal 4442.883 s. These are deterministic interval bounds under the stated calibration assumptions, not confidence intervals.
+
+![Apoapsis uncertainty grows near the parabolic boundary; a second panel shows that a positive nominal delta does not certify an ellipse when its interval includes zero.](/assets/learning/classical-apsis-uncertainty.en.svg)
+
+The upper panel uses logarithmic axes for d and apoapsis in metres, with eta=0.001 and only intervals contained in the elliptic family. The orange point is d=0.01,ra=199 m. The lower panel plots two dimensionless delta intervals against the zero boundary. It does not share the upper radius axis.
+
+### Refuse a finite apoapsis when the interval crosses escape
+
+For d=1/1000,eta=1/500 the admissible delta interval is [−1/1000,3/1000]. The nominal state is elliptic, but parabolic and hyperbolic states are also permitted. The useful decision is:
+
+$$
+0<d-\eta\le\delta\le d+\eta<1\ \Longrightarrow\ \text{noncircular ellipse},\qquad
+d-\eta\le0\le d+\eta\ \Longrightarrow\ \text{no finite apoapsis certificate for the whole interval}.
+$$
+
+An interval touching zero already includes a state with no finite apoapsis. Reporting a finite upper bound by substituting only the positive center would hide that possibility. This is uncertainty amplification and classification margin, rather than the exact full-history nonidentifiability of the earlier friction example. Additional precision or independent calibration may resolve it.
+
+### Carry velocity uncertainty into the dimensionless margin
+
+For a calibrated speed estimate vhat with an absolute error bound xi, expand the difference of squares and apply the triangle inequality:
+
+$$
+|v_p-\widehat v|\le\xi,\qquad
+\widehat\delta=2-\frac{r_p\widehat v^2}{\mu},\qquad
+|\delta-\widehat\delta|\le\frac{r_p}{\mu}\left(2|\widehat v|\xi+\xi^2\right).
+$$
+
+The right side is dimensionless: rp/mu multiplies a squared-speed error. An additional example uses vhat=1.99 m/s,xi=0.001 m/s with the same rp,mu. It gives delta_hat=399/20000 and an error bound 3981/2000000. These are distinct from the d=0.01 interval used in the table.
+
+If rp,mu or the exactly tangential initial preparation is uncertain too, this speed-only expression does not certify the full uncertainty. A rounded native velocity code also does not exactly represent an arbitrarily precise measurement. The native model correctly tests the rational energy of its specified inputs; this analysis does not allege a failure of that exact-sign calculation.
+
+### Reproduce exact intervals and native classification anchors
+
+The code uses fractions for the parameter intervals, speed-error propagation and energy signs. Only the period values use floating square roots and pi. It rejects an interval crossing the boundary rather than attaching a finite ellipse bound to it.
+
+```python
+from fractions import Fraction as F
+from math import pi, sqrt
+
+rp, mu = F(1), F(2)
+def ellipse_bounds(d, eta):
+    if not (0 <= eta < d and d+eta < 1):
+        raise ValueError("The whole interval must stay in 0 < delta < 1")
+    low, high = rp/(d+eta), rp/(d-eta)
+    return low, high, 2*low-rp, 2*high-rp
+
+d, eta = F(1, 100), F(1, 1000)
+a_lo, a_hi, ra_lo, ra_hi = ellipse_bounds(d, eta)
+assert (a_lo, a_hi, ra_lo, ra_hi) == (F(1000, 11), F(1000, 9), F(1989, 11), F(1991, 9))
+for delta in [d-eta, d, d+eta]:
+    a, ra = rp/delta, rp*(2/delta-1)
+    assert a_lo <= a <= a_hi and ra_lo <= ra <= ra_hi
+    assert (rp/(d+eta))**3 <= a**3 <= (rp/(d-eta))**3
+print("a and apoapsis bounds:", a_lo, a_hi, ra_lo, ra_hi)
+print("period bounds (s):", 2*pi*sqrt(float(a_lo**3/mu)), 2*pi*sqrt(float(a_hi**3/mu)))
+try:
+    ellipse_bounds(F(1, 1000), F(1, 500))
+except ValueError:
+    pass
+else:
+    raise AssertionError("A boundary-crossing interval must not certify an ellipse")
+vhat, xi = F(199, 100), F(1, 1000)
+dhat = 2-rp*vhat*vhat/mu
+error = rp*(2*abs(vhat)*xi+xi*xi)/mu
+for velocity in [vhat-xi, vhat, vhat+xi]:
+    assert abs((2-rp*velocity*velocity/mu)-dhat) <= error
+assert error == F(3981, 2000000)
+print("delta estimate and error bound:", dhat, error)
+for velocity in [F(19, 10), F(2), F(21, 10)]:
+    epsilon = velocity*velocity/2-mu/rp
+    print("native speed anchor and specific energy:", velocity, epsilon)
+```
+
+The original geometry control order is (mu,2r0,10vr,10vt,10rQuery,mass). Codes (2,2,0,19,20,1),(2,2,0,20,20,1),(2,2,0,21,20,1) give an ellipse, parabola and hyperbola with specific energies −39/200,0,41/200 m²/s² and periapsis 1 m. The finer delta family above is a standalone research calculation, not a newly available velocity-input resolution.
+
+### Worked questions for an orbital surrogate
+
+1. **Does a positive d establish a finite apoapsis for all compatible states?** Only when its certified interval stays strictly positive and within the declared family. A nominal label alone is insufficient.
+2. **Why can a twelve-metre picture be misleading near escape?** The geometric window clips large radii; it does not measure a physical turning point or close an unbound orbit.
+3. **Which information should an estimated period include?** Report the state preparation, units, calibration uncertainties, classification margin and propagated interval. Separate those from the numerical rendering and the exact diagnostics for a particular control code.
+
+The interval and sensitivity formulas are derived from the same inverse-square invariants used above.
+
 ## Worked examples and exercises with solutions
 
 1. **Circular equality.** Set μ=1, r₀=1, vᵣ₀=0 and vₜ₀=1. **Solution:** h=1, ε=−1/2 and e=0. The minimum is at rc=1. At queried r=2, Ueff=−3/8, so ε−Ueff=−1/8: that radius is forbidden for these conserved quantities.

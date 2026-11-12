@@ -106,6 +106,142 @@ h=0이면 장벽이 사라지고 각도를 독립변수로 바꾸는 과정이 �
 
 음의 에너지인 방사 운동은 바깥 전환 반지름 −μ/ε를 가지며 특이점에 접근할 수 있습니다. 에너지가 0 이상이면 유한한 바깥 전환점이 없습니다. 초기 속도의 방향도 별도로 중요합니다. 실험은 방사 분류와 허용 반지름을 표시하고, 성립하지 않는 원뿔곡선을 만들어 내거나 중심 충돌 이후를 이어 붙이지 않습니다.
 
+## 연구 확장: 먼점 거리를 보고하기 전에 궤도 계열 인증하기
+
+탈출 경계 부근의 작은 불확실성이 먼점과 주기의 큰 구간을 만들 수 있습니다. 타원 매개변수의 명목 추정값이 양수라고 가능한 모든 궤도가 결합되어 있다고 인증한 것은 아닙니다. 선언한 입력의 에너지 부호를 정확히 검사하는 원래 실습을 유지하면서 이 차이를 정량화합니다.
+
+같은 고정 원천 가속도와 알려진 양의 mu를 사용합니다. 알려진 근점 반지름 rp에서 방사 속도 0,양의 접선 속도 vp로 출발합니다. 비방사 근점 가족이며 h=0 충돌 분기는 별도로 유지합니다. 포물선 경계와의 무차원 거리 delta를 정의합니다.
+
+$$
+\delta=1-e=2-\frac{r_pv_p^2}{\mu},\qquad
+\epsilon=-\frac{\mu\delta}{2r_p},\qquad h^2=\mu r_p(2-\delta).
+$$
+
+delta<1이면 출발점은 근점이고 h가 0이 아닙니다. 0<delta<1은 비원형 타원,delta=0은 포물선,delta<0은 쌍곡선입니다. 이 항등식에는 해당 초기 준비를 사용했습니다. 방사 속도가 비영이거나 출발점이 먼점인 일반 경우의 이심률 벡터 계산을 대체하는 식이 아닙니다.
+
+### 유한한 그림 창을 그리기 전에 역수 의존성 찾기
+
+이 계열의 타원 구간에서는 다음과 같습니다.
+
+$$
+a=\frac{r_p}{\delta},\qquad r_a=r_p\left(\frac2\delta-1\right),\qquad
+T=2\pi\sqrt{\frac{r_p^3}{\mu}}\,\delta^{-3/2}\quad(0<\delta<1).
+$$
+
+delta가 양의 쪽에서 0에 접근하면 근점은 유지되지만 먼점은 역수로,주기는 delta의 −3/2 거듭제곱으로 커집니다. 원래 12 m 기하 창은 표시 선택입니다. 잘린 끝점을 먼점으로 사용하면 안 됩니다.
+
+### 인증된 매개변수 구간 전달하기
+
+rp,mu는 정확히 알고 delta 추정 d에 인증된 절대 오차 eta가 있다고 합시다. 전체 구간이 0<delta<1에 남으면 a와 ra의 단조성으로 정확한 상·하한을 얻습니다.
+
+$$
+|\delta-d|\le\eta,\quad 0\le\eta<d,\quad d+\eta<1,\qquad
+\frac{r_p}{d+\eta}\le a\le\frac{r_p}{d-\eta},\qquad
+r_p\left(\frac2{d+\eta}-1\right)\le r_a\le r_p\left(\frac2{d-\eta}-1\right).
+$$
+
+d,eta는 무차원이고 a,ra,rp는 길이입니다. T는 a에 단조 증가하므로 같은 끝점에서 주기도 감쌉니다. 상대 주기 구간과 민감도는 다음과 같습니다.
+
+$$
+\left(\frac d{d+\eta}\right)^{3/2}\le\frac{T}{T(d)}\le
+\left(\frac d{d-\eta}\right)^{3/2},\qquad
+\frac{dr_a}{d\delta}=-\frac{2r_p}{\delta^2},\qquad
+\frac{d\log T}{d\log\delta}=-\frac32.
+$$
+
+ra의 큰 미분값은 절대 민감도입니다. eta/d가 작게 유지되면 상대 주기 불확실성은 이 비율로 제한되므로 모든 상대 섭동이 무한히 증폭된다고 설명하면 안 됩니다. 0 부근에서는 고정된 절대 eta가 d에 비해 커지거나 분류 경계를 넘을 수 있습니다.
+
+rp=1 m,mu=2 m³/s²,d=1/100,eta=1/1000으로 둡니다.
+
+| 양 | 하한 | 명목값 | 상한 |
+|---|---|---|---|
+| a (m) | 1000/11 | 100 | 1000/9 |
+| ra (m) | 1989/11 | 199 | 1991/9 |
+| T²을 4pi²rp³/mu로 나눈 값 | (1000/11)³ | 100³ | (1000/9)³ |
+
+주기는 명목값 약 4442.883 s 주위에서 약 3851.021~5203.566 s입니다. 명시한 교정 가정의 결정론적 구간이며 신뢰구간이 아닙니다.
+
+![포물선 경계 부근에서 먼점 불확실성이 커집니다. 둘째 패널은 양의 명목 delta라도 구간에 0이 포함되면 타원을 인증할 수 없음을 보여 줍니다.](/assets/learning/classical-apsis-uncertainty.ko.svg)
+
+위 패널의 가로 d와 세로 먼점 m는 로그 눈금이며 eta=0.001에서 타원 가족 안에 남는 구간만 그립니다. 주황 점은 d=0.01,ra=199 m입니다. 아래는 무차원 delta 구간 두 개와 0 경계이며 위 반지름 축을 공유하지 않습니다.
+
+### 구간이 탈출 경계를 넘을 때 유한 먼점 거부하기
+
+d=1/1000,eta=1/500이면 허용 delta 구간은 [−1/1000,3/1000]입니다. 명목 상태는 타원이지만 포물선·쌍곡선도 가능합니다. 필요한 판단은 다음과 같습니다.
+
+$$
+0<d-\eta\le\delta\le d+\eta<1\ \Longrightarrow\ \text{noncircular ellipse},\qquad
+d-\eta\le0\le d+\eta\ \Longrightarrow\ \text{no finite apoapsis certificate for the whole interval}.
+$$
+
+구간이 0에 닿기만 해도 유한한 먼점이 없는 상태를 포함합니다. 양의 중심만 대입해 유한 상한을 보고하면 이 가능성을 숨깁니다. 이는 앞선 마찰 예제의 정확한 전체 이력 비식별성과 달리 불확실성 증폭·분류 여유의 문제입니다. 더 정밀한 관측이나 독립 교정으로 해결할 수 있습니다.
+
+### 속도 불확실성을 무차원 여유로 전달하기
+
+교정한 속도 추정 vhat에 절대 오차 xi가 있으면 제곱의 차이를 전개하고 삼각 부등식을 적용합니다.
+
+$$
+|v_p-\widehat v|\le\xi,\qquad
+\widehat\delta=2-\frac{r_p\widehat v^2}{\mu},\qquad
+|\delta-\widehat\delta|\le\frac{r_p}{\mu}\left(2|\widehat v|\xi+\xi^2\right).
+$$
+
+rp/mu와 속도 제곱 오차를 곱하므로 오른쪽은 무차원입니다. 별도 예제로 같은 rp,mu에서 vhat=1.99 m/s,xi=0.001 m/s를 쓰면 delta_hat=399/20000,오차 상계 3981/2000000입니다. 표의 d=0.01 구간과는 다른 준비입니다.
+
+rp,mu 또는 정확한 접선 초기 조건도 불확실하면 이 속도 전용 식만으로 전체 오차를 인증할 수 없습니다. 반올림한 원래 속도 코드가 임의로 정밀한 측정값을 정확히 나타내는 것도 아닙니다. 원래 모형은 지정한 입력의 유리수 에너지를 올바르게 검사하며, 이 분석은 그 정확한 부호 계산의 오류를 주장하는 것이 아닙니다.
+
+### 정확한 구간과 실제 분류 입력 재현하기
+
+코드는 매개변수 구간·속도 오차 전달·에너지 부호에 분수를 사용하고 주기 값에만 부동소수점 제곱근과 pi를 사용합니다. 경계를 넘는 구간에 유한 타원 상한을 붙이지 않고 거부합니다.
+
+```python
+from fractions import Fraction as F
+from math import pi, sqrt
+
+rp, mu = F(1), F(2)
+def ellipse_bounds(d, eta):
+    if not (0 <= eta < d and d+eta < 1):
+        raise ValueError("The whole interval must stay in 0 < delta < 1")
+    low, high = rp/(d+eta), rp/(d-eta)
+    return low, high, 2*low-rp, 2*high-rp
+
+d, eta = F(1, 100), F(1, 1000)
+a_lo, a_hi, ra_lo, ra_hi = ellipse_bounds(d, eta)
+assert (a_lo, a_hi, ra_lo, ra_hi) == (F(1000, 11), F(1000, 9), F(1989, 11), F(1991, 9))
+for delta in [d-eta, d, d+eta]:
+    a, ra = rp/delta, rp*(2/delta-1)
+    assert a_lo <= a <= a_hi and ra_lo <= ra <= ra_hi
+    assert (rp/(d+eta))**3 <= a**3 <= (rp/(d-eta))**3
+print("a and apoapsis bounds:", a_lo, a_hi, ra_lo, ra_hi)
+print("period bounds (s):", 2*pi*sqrt(float(a_lo**3/mu)), 2*pi*sqrt(float(a_hi**3/mu)))
+try:
+    ellipse_bounds(F(1, 1000), F(1, 500))
+except ValueError:
+    pass
+else:
+    raise AssertionError("A boundary-crossing interval must not certify an ellipse")
+vhat, xi = F(199, 100), F(1, 1000)
+dhat = 2-rp*vhat*vhat/mu
+error = rp*(2*abs(vhat)*xi+xi*xi)/mu
+for velocity in [vhat-xi, vhat, vhat+xi]:
+    assert abs((2-rp*velocity*velocity/mu)-dhat) <= error
+assert error == F(3981, 2000000)
+print("delta estimate and error bound:", dhat, error)
+for velocity in [F(19, 10), F(2), F(21, 10)]:
+    epsilon = velocity*velocity/2-mu/rp
+    print("native speed anchor and specific energy:", velocity, epsilon)
+```
+
+원래 기하 조작 순서는 (mu,2r0,10vr,10vt,10rQuery,mass)입니다. 코드 (2,2,0,19,20,1),(2,2,0,20,20,1),(2,2,0,21,20,1)은 각각 타원·포물선·쌍곡선이며 단위 질량당 에너지는 −39/200,0,41/200 m²/s²,근점은 1 m입니다. 더 미세한 delta 가족은 독립 연구 계산이며 새 속도 입력 정밀도가 추가된 것이 아닙니다.
+
+### 궤도 대리 모형을 위한 해설 문제
+
+1. **d가 양수이면 가능한 모든 상태의 먼점이 유한한가요?** 인증된 구간 전체가 엄격히 양수이고 선언한 계열 안에 남아야 합니다. 명목 분류만으로는 부족합니다.
+2. **탈출 부근에서 12 m 그림이 오해를 줄 수 있는 이유는?** 큰 반지름을 자르는 기하 창이며 물리적 먼점을 측정하거나 비결합 궤도를 닫은 것이 아니기 때문입니다.
+3. **추정 주기에는 어떤 정보가 필요한가요?** 초기 준비·단위·교정 불확실성·분류 여유·전달한 구간을 보고하세요. 수치 그림이나 특정 입력 코드의 정확한 진단과 구분해야 합니다.
+
+구간과 민감도 식은 위와 같은 역제곱력 불변량에서 직접 유도했습니다.
+
 ## 예제와 해설이 있는 연습문제
 
 1. **원궤도 등호.** μ=r₀=1, vᵣ₀=0, vₜ₀=1로 두세요. **해설:** h=1, ε=−1/2, e=0이고 rc=1입니다. 반지름 2에서는 Ueff=−3/8이므로 ε−Ueff=−1/8입니다. 보존량이 같은 상태로 그 반지름에 갈 수 없습니다.
