@@ -95,6 +95,175 @@ The table retains exact rational values for bounded integer control codes. Divid
 
 Try changing only d. The laboratory path, momentum and force stay fixed while comparison angular quantities change. Then set query time to zero in the first guided example: torque is zero at that instant, but the conservation flag correctly remains false.
 
+## Research extension: choose the momentum when the reference point moves
+
+The fixed-point derivation above uses lab momentum and a reference that stays still. With a moving reference, two quantities that are often both called “angular momentum about the point” differ: one retains lab momentum, while the other uses velocity relative to the point. Stating both choices prevents a false conservation test.
+
+This is a standalone planar extension. Keep a constant positive particle mass and an inertial laboratory with fixed, nonrotating axes. Let the reference A(t) be twice differentiable. The native controls still select two fixed points during each experiment; changing a marker between experiments does not implement the moving path derived here.
+
+### Define the two angular quantities
+
+Use the same lever arm in both definitions:
+
+$$
+\mathbf r=\mathbf q-\mathbf A(t),\quad \mathbf p=m\mathbf v,\qquad
+L_{\mathrm{lab}}=(\mathbf r\times\mathbf p)_z,\quad
+L_{\mathrm{rel}}=[\mathbf r\times m(\mathbf v-\dot{\mathbf A})]_z.
+$$
+
+Both quantities have units kg m²/s, so units alone cannot tell which one a dataset contains. The position of the reference and the velocity convention are both part of the label. In this section, the cross product always means its signed z component in the fixed lab axes.
+
+### Retain lab momentum and differentiate the lever arm
+
+The radius changes at v−A', not v. With p'=F and constant mass:
+
+$$
+\dot L_{\mathrm{lab}}
+=[(\mathbf v-\dot{\mathbf A})\times m\mathbf v]_z
++(\mathbf r\times\mathbf F)_z
+=\tau_A-(\dot{\mathbf A}\times\mathbf p)_z.
+$$
+
+The v cross mv term cancels; the reference-velocity term remains. The torque tau_A is still the physical lever-arm cross force. It can be zero even when L_lab changes. Integrating supplies the appropriate residual for this label:
+
+$$
+L_{\mathrm{lab}}(t)-L_{\mathrm{lab}}(0)
+=\int_0^t\tau_A(s)\,ds
+-\int_0^t[\dot{\mathbf A}(s)\times\mathbf p(s)]_z\,ds.
+$$
+
+A fixed reference makes the correction zero. A moving reference can also make it vanish if its velocity is parallel to momentum. The condition is a cross-product statement, not simply a test of whether the reference position changes.
+
+### Use relative momentum and obtain the acceleration term
+
+Now r'=v−A'. Differentiating r cross m r' cancels r' cross m r'. The remaining term gives:
+
+$$
+L_{\mathrm{rel}}=L_{\mathrm{lab}}-m(\mathbf r\times\dot{\mathbf A})_z,
+\qquad
+\dot L_{\mathrm{rel}}=[\mathbf r\times(\mathbf F-m\ddot{\mathbf A})]_z.
+$$
+
+The relative equation contains the translating-frame inertial term −mA''. When A moves at constant velocity, that term vanishes and the relative quantity obeys the physical torque balance. An accelerating reference generally requires its contribution. Rotating axes would require their own transformation as well; they are excluded from these formulas.
+
+The reference-velocity correction in the lab-momentum definition and the reference-acceleration correction in the relative definition are different, consistent consequences of their definitions. Selecting a different definition is not evidence for a new interaction with the particle.
+
+### Work an unforced particle example
+
+Choose m=1 kg and a force-free particle with q0=(1,0) m,v0=(0,1) m/s. Let A move right at 1 m/s. Using numerical SI time:
+
+$$
+\mathbf q=(1,t),\quad \mathbf v=(0,1),\quad
+\mathbf A=(t,0),\quad \mathbf r=(1-t,t),\qquad
+L_{\mathrm{lab}}=1-t,\quad L_{\mathrm{rel}}=1,\quad\tau_A=0.
+$$
+
+| t (s) | L_lab (kg m²/s) | L_rel (kg m²/s) | physical torque (N m) |
+|---|---|---|---|
+| 0 | 1 | 1 | 0 |
+| 1/2 | 1/2 | 1 | 0 |
+| 1 | 0 | 1 | 0 |
+| 2 | −1 | 1 | 0 |
+
+The naive residual L_lab(t)−L_lab(0)−integral tau_A is −t, although the force law is exactly satisfied. The missing integral of A' cross p equals +t and restores zero residual. At t=1, lab momentum is parallel to the lever arm, giving zero L_lab; the particle has not stopped.
+
+![A force-free particle moves vertically while the reference moves horizontally; lab-momentum angular momentum changes linearly, whereas relative-momentum angular momentum remains constant.](/assets/learning/classical-moving-reference.en.svg)
+
+The upper panel uses lab positions in metres with equal unit lengths on both axes. Markers and the radius arrow select t=1.5 s; the arrow is a spatial lever arm, not a force or velocity placed on a distance axis. The lower panel uses angular momentum versus time. Both curves refer to the same lab particle and reference path.
+
+### Accelerate the reference without adding a lab force
+
+Keep the same force-free particle but choose the following origin path:
+
+$$
+\mathbf A=(t^2/2,0),\quad\dot{\mathbf A}=(t,0),\quad\ddot{\mathbf A}=(1,0),
+\quad L_{\mathrm{lab}}=1-t^2/2,\quad L_{\mathrm{rel}}=1+t^2/2,
+\quad\dot L_{\mathrm{rel}}=t.
+$$
+
+Here tau_A=0 remains true. The lab-momentum derivative is −t, from the reference-velocity correction. The relative derivative is +t, because r cross (−mA'') equals +t. At 1 s the two angular quantities are 1/2 and 3/2 kg m²/s. Their different derivatives satisfy their respective balance laws.
+
+This also explains why changing a moving camera can change angular labels while the lab force and trajectory remain fixed. To compare learned predictions, first reconstruct which origin path and momentum convention generated the labels.
+
+### Verify complete polynomial identities
+
+The code represents a polynomial by its coefficients in increasing powers of time. It differentiates and multiplies those coefficients with exact fractions. For three choices of constant force and quadratic origin path, both balance laws are checked coefficient by coefficient, so the check covers every time in each declared polynomial example. The general smooth-path identities were derived above; the three examples are not a proof of every possible path.
+
+```python
+from fractions import Fraction as F
+
+def trim(p):
+    while len(p)>1 and p[-1]==0:
+        p.pop()
+    return p
+
+def add(a,b):
+    return trim([(a[i] if i<len(a) else F(0))
+                 +(b[i] if i<len(b) else F(0))
+                 for i in range(max(len(a),len(b)))])
+
+def scale(a,c):
+    return trim([c*x for x in a])
+
+def mul(a,b):
+    out=[F(0)]*(len(a)+len(b)-1)
+    for i,x in enumerate(a):
+        for j,y in enumerate(b):
+            out[i+j]+=x*y
+    return trim(out)
+
+def deriv(a):
+    return trim([i*a[i] for i in range(1,len(a))] or [F(0)])
+
+def cross(a,b):
+    return add(mul(a[0],b[1]),scale(mul(a[1],b[0]),F(-1)))
+
+def value(a,t):
+    return sum(x*t**i for i,x in enumerate(a))
+
+# Ascending polynomial coefficients; all numerical quantities use SI units.
+for mass,U,G in [(F(1),(1,0),(0,0)),
+                 (F(1),(0,0),(1,0)),
+                 (F(2),(1,1),(-1,1))]:
+    force=(F(0),F(0)) if mass==1 else (F(-1),F(0))
+    q=[[F(1),F(0),force[0]/(2*mass)],
+       [F(0),F(1),force[1]/(2*mass)]]
+    origin=[[F(0),F(U[i]),F(G[i])/2] for i in range(2)]
+    velocity=[deriv(x) for x in q]
+    origin_v=[deriv(x) for x in origin]
+    radius=[add(q[i],scale(origin[i],F(-1))) for i in range(2)]
+    momentum=[scale(x,mass) for x in velocity]
+    relative_p=[add(momentum[i],scale(origin_v[i],-mass))
+                for i in range(2)]
+    physical=[[x] for x in force]
+    torque=cross(radius,physical)
+    L_lab=cross(radius,momentum)
+    L_relative=cross(radius,relative_p)
+    effective=[add(physical[i],scale(deriv(origin_v[i]),-mass))
+               for i in range(2)]
+    assert deriv(L_lab)==add(torque,scale(cross(origin_v,momentum),F(-1)))
+    assert deriv(L_relative)==cross(radius,effective)
+    if mass==1 and U==(1,0):
+        assert L_lab==[F(1),F(-1)] and L_relative==[F(1)]
+        for t in [F(0),F(1,2),F(1),F(2)]:
+            print("t, L_lab, L_relative, torque:",t,
+                  value(L_lab,t),value(L_relative,t),value(torque,t))
+    if mass==1 and G==(1,0):
+        assert L_lab==[F(1),F(0),F(-1,2)]
+        assert L_relative==[F(1),F(0),F(1,2)]
+        print("accelerating origin at 1 s:",value(L_lab,F(1)),
+              value(L_relative,F(1)),value(deriv(L_relative),F(1)))
+print("Both balance laws verified coefficient by coefficient for three cases.")
+```
+
+### Worked questions for angular labels
+
+1. **Why can the first example have zero physical torque and changing L_lab?** Its reference velocity crossed with lab momentum is 1 N m, producing L_lab'=−1 N m. Torque alone is the fixed-point balance.
+2. **Which quantity is conserved for a free particle viewed from a constant-velocity translating origin?** L_rel, because the origin acceleration is zero. L_lab about that moving origin need not be conserved.
+3. **What metadata should accompany angular-momentum supervision?** Specify the origin path, axes, lab or relative momentum, and signed orientation. Compute the residual from the corresponding law before interpreting it as force-model error.
+
+All identities follow directly from the product rule and Newton's law. They extend the fixed-point analysis while preserving the fixed-reference meaning of the existing interactive controls.
+
 ## Six exercises with worked solutions
 
 1. **Exercise: changing lever arm.** Use m=1,q0=(1,0),v0=(0,1),F=(−1,0),O=0. Find the state at1s. **Solution:** q=(1/2,1),p=(−1,1),L=3/2 and τ=1. Initially L=1; the torque integral is1/2.

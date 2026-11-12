@@ -106,6 +106,180 @@ $$
 
 타원, 방사, 기준점을 옮긴 원운동 순서로 비교하세요. 초기 접선 속도 부호를 바꾸면 방향이 뒤집힙니다. 초기 벡터를 모두 0으로 만들면 정지한 퇴화 그림을 확인할 수 있습니다. 질량이나 강성은 주파수를 바꾸고 비교점만 바꾸면 실제 운동은 유지됩니다.
 
+## 연구 확장: 에너지와 중심 각운동량으로 타원 크기 복원하기
+
+원래 해는 사인·코사인 단위원의 선형 변환입니다. 이 성질로 두 불변량에서 모든 반축 길이를 복원하고 어떤 정보가 여전히 빠졌는지 알 수 있습니다. 이 확장의 L은 위에서 정한 부호를 사용하는 **힘의 중심**에 대한 각운동량입니다.
+
+### 궤도를 두 열의 선형 사상으로 바꾸기
+
+같은 등방 조화력과 일정 m,k>0에서 초기 벡터들을 C로 모읍니다.
+
+$$
+\omega=\sqrt{k/m},\quad C=\begin{pmatrix}\vert&\vert\\
+\mathbf q_0&\mathbf v_0/\omega\\\vert&\vert\end{pmatrix},\qquad
+\mathbf q(t)=C\begin{pmatrix}\cos\omega t\\\sin\omega t\end{pmatrix}.
+$$
+
+두 열의 단위는 길이입니다. 특잇값 분해 C=U Sigma V의 전치는 단위원의 방향을 바꾸고 두 직교 방향을 확대·축소한 뒤 실험실에서 다시 방향을 정합니다. 따라서 특잇값 sigma1,sigma2가 타원의 반축 길이입니다. rank1이면 선분, rank0이면 점입니다. 시간 적분 근사가 아니라 SVD의 기하학적 사용입니다.
+
+C의 Frobenius 노름 제곱은 특잇값 제곱의 합이며 행렬식은 부호 있는 면적 배율입니다. 역학적 정의를 대입합니다.
+
+$$
+E=\frac k2(\sigma_1^2+\sigma_2^2),\qquad
+L=m\omega\det C,\qquad
+\sigma_1^2\sigma_2^2=\frac{L^2}{mk},\quad \sigma_1\ge\sigma_2\ge0.
+$$
+
+m omega=sqrt(mk)이므로 곱 관계의 단위는 길이의 네제곱입니다. E는 J, L은 kg m²/s입니다.
+
+### 가능성 검사와 원운동 경계 유도하기
+
+두 반축에 산술·기하 평균 부등식을 적용하면 아래 첫 항등식이 나옵니다. 에너지를 전개하고 평면 내적·외적 항등식을 사용하면 둘째를 얻습니다.
+
+$$
+E-\omega|L|=\frac k2(\sigma_1-\sigma_2)^2\ge0,
+\qquad
+E^2-\omega^2L^2
+=\frac14(k\|\mathbf q_0\|^2-m\|\mathbf v_0\|^2)^2
++mk(\mathbf q_0\cdot\mathbf v_0)^2.
+$$
+
+음이 아닌 다항식 표현은 초기 상태에서 직접 검사할 수도 있습니다. E>0일 때 E=omega|L|이면 원입니다. 이는 초기 벡터가 수직이고 k|q0|²=m|v0|²인 조건과 같습니다. 예외적인 E=L=0은 반지름이 있는 원이 아니라 정지 원점입니다. E가 양수인데 L=0이면 움직임과 운동에너지가 있는 방사 운동입니다.
+
+학습한 불변량 요약도 E≥omega|L|을 만족해야 합니다. 양의 조화 퍼텐셜에서 음의 에너지나 음의 판별식은 불가능합니다. 제약을 제곱한 식만 사용하면 음의 에너지 오류를 놓칠 수 있습니다.
+
+### 두 불변량을 역으로 풀기
+
+반축 제곱의 합은 2E/k, 곱은 L²/(mk)입니다. 이차식을 풀면 다음을 얻습니다.
+
+$$
+\sigma_{1,2}^2=\frac{E\pm\sqrt{E^2-\omega^2L^2}}{k},\qquad
+\sigma_2^2=\frac{L^2/(mk)}{\sigma_1^2}\quad(E>0).
+$$
+
+둘째 식은 방사 운동 근처에서 유용합니다. 음의 근호를 빼는 식은 비슷한 두 수를 빼다가 작지만 0이 아닌 짧은 반축을 지울 수 있습니다. 코드는 분수로 판별식을 정확하게 유지하고 큰 근을 구한 뒤 곱으로 작은 근을 구합니다. 불가능한 입력의 음의 판별식을 0으로 덮지 않고 거부합니다.
+
+### 여섯 초기 상태 계산하기
+
+지정한 SI 단위에서 m=k=1로 둡니다. A는 q0=(2,0),v0=(0,1)이고 B는 둘을 90도 돌린 q0=(0,2),v0=(−1,0)입니다. C는 A의 속도를 뒤집습니다. D는 q0=(1,1),v0=(−1,1), E는 q0=v0=(1,0), O는 두 벡터가 모두 0입니다.
+
+| 경우 | E (J) | L (kg m²/s) | 반축 제곱 (m²) | 운동 |
+|---|---|---|---|---|
+| A | 5/2 | 2 | 4, 1 | 타원 |
+| B | 5/2 | 2 | 4, 1 | 회전한 타원 |
+| C | 5/2 | −2 | 4, 1 | 시계 방향 타원 |
+| D | 2 | 2 | 2, 2 | 원 |
+| E | 1 | 0 | 2, 0 | 방사 선분 |
+| O | 0 | 0 | 0, 0 | 정지 |
+
+A와 B는 E,L이 같지만 같은 실험실 축에서 긴 반축의 방향이 다릅니다. 어느 해든 시간을 이동시키면 불변량은 유지하면서 시작 위상이 달라집니다. 불변량은 반축 길이와 비영 L의 통과 방향은 정하지만 실험실 방향이나 시작 위상까지 정하지 못합니다.
+
+![에너지 5/2줄과 중심 각운동량 2 kg m²/s가 같은 두 타원은 긴 반축의 방향이 다릅니다. 네모는 같은 실험실에서 서로 다른 초기 위치를 표시합니다.](/assets/learning/classical-harmonic-invariant-geometry.ko.svg)
+
+두 위치 축은 m이며 단위 길이가 같습니다. 파랑 실선은 A, 주황 점선은 B이고 화살표는 시간 증가 방향입니다. 힘의 중심은 같은 원점이며 네모는 각 t=0입니다. 하나의 등방 힘 법칙에서 서로 다른 두 초기 조건을 비교합니다.
+
+### 반축을 부호 있는 면적과 연결하기
+
+한 비정지 주기 T=2pi/omega에서 중심 면적 속도를 적분합니다.
+
+$$
+A_{\mathrm{signed}}(T)=\int_0^{2\pi/\omega}\frac{L}{2m}\,dt
+=\frac{\pi L}{m\omega}=\pi\det C,\qquad
+A_{\mathrm{ellipse}}=\pi\sigma_1\sigma_2=\pi|\det C|.
+$$
+
+첫 양은 시계 방향 부호를 유지하고 둘째는 음이 아닌 기하학적 타원 넓이입니다. 여러 바퀴에서는 부호 있는 면적을 매번 더합니다. 방사 선분은 입자가 움직여도 두 넓이가 0입니다.
+
+고정 비교점의 순간 면적 속도는 변할 수 있지만 q(T)=q0이면 위치 보정이 사라져 한 주기 부호 면적은 같습니다. 이 사실 때문에 비교점의 순간 각운동량을 반축 식의 L로 사용해도 되는 것은 아닙니다.
+
+예를 들어 A의 비교점을 초기 위치와 같은 D=(2,0)으로 고르면 초기 L_D=0이지만 중심 L은 2입니다. 비교점 값을 역식에 대입하면 방사 선분이라고 잘못 추론합니다. 반축 복원에는 힘의 중심 불변량이 필요합니다.
+
+### 방사 운동의 상쇄와 원 근처 민감도를 구분하기
+
+방사 운동 근처의 뺄셈 상쇄를 피한다고 원 근처 역문제의 민감도까지 사라지지는 않습니다. 원의 에너지 E_ref에서 L을 고정한 채 양의 delta만큼 에너지를 늘려 봅시다.
+
+$$
+L=\frac{E_{\mathrm{ref}}}{\omega},\quad E=E_{\mathrm{ref}}+\delta,
+\qquad
+\sigma_1^2-\sigma_2^2=\frac{2}{k}\sqrt{2E_{\mathrm{ref}}\delta+\delta^2},
+\quad E_{\mathrm{ref}}>0,\ \delta>0.
+$$
+
+반축 제곱의 간격은 delta가 아니라 sqrt(delta)처럼 증가합니다. m=k=1,E_ref=2 J,delta=10^-6 J이면 약 0.0040000005 m²입니다. 따라서 원 경계 근처의 아주 작은 불변량 오차가 반축 간격도 비례해서 작다는 보장은 아닙니다. 거의 원인 복원을 해석하기 전에 불확실성과 가능성 여유를 함께 보고해야 합니다.
+
+### 정확한 불변량 산술로 재현하기
+
+초기 자료와 판별식에는 유리수를 사용하고 반축 크기 재구성에는 부동소수점을 씁니다. 불가능한 요약, 작지만 0이 아닌 방사 근처 짧은 반축, 원 근처 간격도 검사합니다. 독립 진단이며 기존 실습에 SVD 입력 기능을 추가한 것은 아닙니다.
+
+```python
+from fractions import Fraction as F
+from math import sqrt
+
+def dot(a,b):
+    return sum(x*y for x,y in zip(a,b))
+
+def cross(a,b):
+    return a[0]*b[1]-a[1]*b[0]
+
+def axes_squared(m,k,E,L):
+    if m<=0 or k<=0:
+        raise ValueError("Use positive mass and stiffness")
+    gap=E*E-k/m*L*L
+    if E<0 or gap<0:
+        raise ValueError("Infeasible oscillator invariants")
+    if E==0:
+        return (0.0,0.0)
+    large=(float(E)+sqrt(float(gap)))/float(k)
+    # Product/large avoids cancellation near a radial orbit.
+    small=float(L*L/(m*k))/large
+    return large,small
+
+m=k=F(1)  # kg, N/m; omega=1 per second
+cases=[("A",(2,0),(0,1)),("B",(0,2),(-1,0)),
+       ("C",(2,0),(0,-1)),("D",(1,1),(-1,1)),
+       ("E",(1,0),(1,0)),("O",(0,0),(0,0))]
+for name,q,v in cases:
+    q,v=tuple(map(F,q)),tuple(map(F,v))
+    E=(k*dot(q,q)+m*dot(v,v))/2
+    L=m*cross(q,v)
+    gap=E*E-k/m*L*L
+    assert gap==(k*dot(q,q)-m*dot(v,v))**2/4+m*k*dot(q,v)**2
+    large,small=axes_squared(m,k,E,L)
+    assert abs(large+small-2*float(E/k))<1e-12
+    assert abs(large*small-float(L*L/(m*k)))<1e-12
+    print("case, E, L, squared semiaxes:",name,E,L,(large,small))
+
+for E,L in [(F(1),F(2)),(F(-1),F(0))]:
+    try:
+        axes_squared(m,k,E,L)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("Invalid invariants were accepted")
+
+# An almost radial orbit; exact fractions retain the nonnegative gap.
+q,v=(F(1),F(0)),(F(0),F(1,10**8))
+E=(dot(q,q)+dot(v,v))/2;L=cross(q,v)
+large,small=axes_squared(m,k,E,L)
+assert small>0 and abs(small-1e-16)<1e-30
+print("near-radial squared minor axis:",small)
+
+# Fixed L=2, small energy excess above the circle E_ref=2 J.
+delta=F(1,10**6)
+large,small=axes_squared(m,k,F(2)+delta,F(2))
+expected=2*sqrt(float(4*delta+delta*delta))
+assert abs((large-small)-expected)<1e-12
+print("near-circle squared-axis separation:",round(expected,10))
+```
+
+### 풀이가 있는 연구 질문
+
+1. **m=k=1에서 E=1 J,L=2 kg m²/s는 가능한가요?** 아닙니다. omega=1/s인데 E<omega|L|이므로 모형과 일치하지 않습니다.
+2. **중심 L=0은 무엇을 인증하나요?** E>0이면 퇴화한 방사 궤도이고 E=0이면 정지점입니다. 일반적으로 정지를 인증하지는 않습니다.
+3. **실제 초기값 궤도를 복원하려면 무엇이 더 필요한가요?** 실험실 방향, 초기 위치·속도 또는 동등한 위상 정보와 힘의 중심·계수가 필요합니다. E,L 보존만으로는 그 선택이 남습니다.
+
+선언한 조화 초기값 해에서 기하·가능성·역식 모두를 유도했습니다. 면적 법칙을 보강하며 궤적·위상·힘 법칙 평가를 대신하지 않습니다.
+
 ## 풀이가 있는 여섯 연습
 
 1. **연습: 초기 조건의 타원.** m=k=1,q0=(2,0),v0=(0,1)이면? **풀이:** q=(2cos t,sin t),v=(−2sin t,cos t)입니다. LC=2, 에너지 5/2J, 면적 속도 1m²/s인 타원입니다.

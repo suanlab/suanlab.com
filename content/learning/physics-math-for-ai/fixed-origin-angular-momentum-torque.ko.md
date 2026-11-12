@@ -95,6 +95,175 @@ $$
 
 d만 바꾸어 보세요. 실제 경로와 운동량, 힘은 같고 비교점 각운동량은 달라집니다. 첫 안내 예제에서 시각을 0으로 바꾸면 그 순간 토크는 0이지만 전체 보존 판정은 여전히 거짓입니다.
 
+## 연구 확장: 기준점이 움직일 때 어떤 운동량을 쓰는가
+
+앞의 고정점 유도는 실험실 운동량과 움직이지 않는 기준점을 사용합니다. 기준점이 움직이면 그 점에 대한 각운동량이라고 부르는 두 양이 달라집니다. 실험실 운동량을 유지하는 정의와 기준점에 대한 상대 속도를 쓰는 정의입니다. 둘을 명시해야 잘못된 보존 검사를 피할 수 있습니다.
+
+아래는 평면의 독립 확장입니다. 일정한 양의 질량과 축이 회전하지 않는 관성 실험실을 유지하고, 기준점 A(t)는 두 번 미분 가능하다고 둡니다. 기존 실습은 한 실험 동안 두 점을 고정합니다. 실험 사이에 표시점을 바꾸는 기능이 여기서 유도하는 이동 경로를 구현한 것은 아닙니다.
+
+### 두 각운동량 정의하기
+
+같은 지레팔로 두 양을 정의합니다.
+
+$$
+\mathbf r=\mathbf q-\mathbf A(t),\quad \mathbf p=m\mathbf v,\qquad
+L_{\mathrm{lab}}=(\mathbf r\times\mathbf p)_z,\quad
+L_{\mathrm{rel}}=[\mathbf r\times m(\mathbf v-\dot{\mathbf A})]_z.
+$$
+
+둘 다 kg m²/s이므로 단위만 보고 자료가 어느 정의인지 알 수 없습니다. 기준점 위치와 속도의 규약 모두 학습 표지의 일부입니다. 이 절의 외적은 고정 실험실 축에서 부호 있는 z 성분을 뜻합니다.
+
+### 실험실 운동량을 유지하고 지레팔을 미분하기
+
+반지름의 변화율은 v가 아니라 v−A'입니다. p'=F와 일정 질량을 사용합니다.
+
+$$
+\dot L_{\mathrm{lab}}
+=[(\mathbf v-\dot{\mathbf A})\times m\mathbf v]_z
++(\mathbf r\times\mathbf F)_z
+=\tau_A-(\dot{\mathbf A}\times\mathbf p)_z.
+$$
+
+v와 mv의 외적은 상쇄되지만 기준점 속도 항은 남습니다. tau_A는 여전히 물리적인 지레팔×힘입니다. 토크가 0이어도 L_lab는 변할 수 있습니다. 적분하면 이 표지에 맞는 수지식을 얻습니다.
+
+$$
+L_{\mathrm{lab}}(t)-L_{\mathrm{lab}}(0)
+=\int_0^t\tau_A(s)\,ds
+-\int_0^t[\dot{\mathbf A}(s)\times\mathbf p(s)]_z\,ds.
+$$
+
+기준점이 고정이면 보정 항은 0입니다. 움직이더라도 기준점 속도와 운동량이 평행하면 사라질 수 있습니다. 위치가 변하는지만 검사하는 것이 아니라 외적 조건을 확인해야 합니다.
+
+### 상대 운동량을 쓰고 가속도 항 얻기
+
+이번에는 r'=v−A'입니다. r과 m r'의 외적을 미분하면 r'와 m r'의 외적이 사라지고 다음을 얻습니다.
+
+$$
+L_{\mathrm{rel}}=L_{\mathrm{lab}}-m(\mathbf r\times\dot{\mathbf A})_z,
+\qquad
+\dot L_{\mathrm{rel}}=[\mathbf r\times(\mathbf F-m\ddot{\mathbf A})]_z.
+$$
+
+상대 식에는 병진 좌표의 관성 항 −mA''가 들어갑니다. 일정 속도 기준점에서는 이 항이 0이므로 물리 토크 수지가 성립합니다. 기준점이 가속하면 일반적으로 그 기여가 필요합니다. 축까지 회전하는 경우에는 추가 변환이 필요하며 위 식에서는 제외했습니다.
+
+실험실 운동량 정의의 기준점 속도 보정과 상대 정의의 기준점 가속도 보정은 서로 다른 정의에서 일관되게 나온 결과입니다. 정의를 바꿨다는 사실이 새로운 입자 상호작용의 증거는 아닙니다.
+
+### 힘 없는 입자를 계산하기
+
+m=1 kg,q0=(1,0) m,v0=(0,1) m/s인 자유 입자와 오른쪽 1 m/s로 움직이는 A를 사용합니다. SI 시간 수치로 쓰면 다음과 같습니다.
+
+$$
+\mathbf q=(1,t),\quad \mathbf v=(0,1),\quad
+\mathbf A=(t,0),\quad \mathbf r=(1-t,t),\qquad
+L_{\mathrm{lab}}=1-t,\quad L_{\mathrm{rel}}=1,\quad\tau_A=0.
+$$
+
+| t (s) | L_lab (kg m²/s) | L_rel (kg m²/s) | 물리 토크 (N m) |
+|---|---|---|---|
+| 0 | 1 | 1 | 0 |
+| 1/2 | 1/2 | 1 | 0 |
+| 1 | 0 | 1 | 0 |
+| 2 | −1 | 1 | 0 |
+
+힘 법칙이 정확해도 L_lab(t)−L_lab(0)−물리 토크 적분이라는 잘못된 잔차는 −t입니다. 빠진 A'×p의 적분 +t를 포함하면 잔차가 0이 됩니다. t=1에서는 실험실 운동량과 지레팔이 평행하여 L_lab=0이지만 입자가 정지한 것은 아닙니다.
+
+![자유 입자는 수직으로 이동하고 기준점은 수평으로 이동합니다. 실험실 운동량을 쓰는 각운동량은 선형으로 변하지만 상대 운동량을 쓰면 일정합니다.](/assets/learning/classical-moving-reference.ko.svg)
+
+위쪽은 실험실 위치 m이며 가로·세로의 단위 길이가 같습니다. 표시점과 반지름 화살표는 t=1.5 s를 고릅니다. 화살표는 거리 축 위의 공간 지레팔이며 힘·속도를 거리로 놓은 것이 아닙니다. 아래쪽은 시간에 따른 각운동량입니다. 두 곡선 모두 같은 실험실 입자와 기준점 경로를 나타냅니다.
+
+### 실험실 힘을 더하지 않고 기준점 가속하기
+
+같은 자유 입자에 대해 기준점 경로를 다음으로 바꿉니다.
+
+$$
+\mathbf A=(t^2/2,0),\quad\dot{\mathbf A}=(t,0),\quad\ddot{\mathbf A}=(1,0),
+\quad L_{\mathrm{lab}}=1-t^2/2,\quad L_{\mathrm{rel}}=1+t^2/2,
+\quad\dot L_{\mathrm{rel}}=t.
+$$
+
+여전히 tau_A=0입니다. 실험실 운동량 정의의 미분은 기준점 속도 보정으로 −t입니다. 상대 정의는 r과 −mA''의 외적이 +t여서 미분이 +t입니다. 1초의 두 각운동량은 1/2과 3/2 kg m²/s이며 각자 수지식을 만족합니다.
+
+움직이는 카메라를 바꾸면 실험실 힘·궤적은 같은데 각운동량 표지가 달라질 수 있는 이유입니다. 학습 예측을 비교하려면 표지를 만든 기준점 경로와 운동량 규약부터 복원해야 합니다.
+
+### 다항식 항등식 전체 확인하기
+
+코드는 시간의 낮은 차수부터 다항식 계수를 저장하고 유리수로 미분·곱셈합니다. 일정 힘과 이차 기준점 경로 세 경우에서 두 수지식을 계수별로 검사하므로 선언한 각 다항식 예제의 모든 시간을 포함합니다. 일반적인 매끄러운 경로의 식은 앞에서 유도했으며 세 예제가 모든 경로를 증명하는 것은 아닙니다.
+
+```python
+from fractions import Fraction as F
+
+def trim(p):
+    while len(p)>1 and p[-1]==0:
+        p.pop()
+    return p
+
+def add(a,b):
+    return trim([(a[i] if i<len(a) else F(0))
+                 +(b[i] if i<len(b) else F(0))
+                 for i in range(max(len(a),len(b)))])
+
+def scale(a,c):
+    return trim([c*x for x in a])
+
+def mul(a,b):
+    out=[F(0)]*(len(a)+len(b)-1)
+    for i,x in enumerate(a):
+        for j,y in enumerate(b):
+            out[i+j]+=x*y
+    return trim(out)
+
+def deriv(a):
+    return trim([i*a[i] for i in range(1,len(a))] or [F(0)])
+
+def cross(a,b):
+    return add(mul(a[0],b[1]),scale(mul(a[1],b[0]),F(-1)))
+
+def value(a,t):
+    return sum(x*t**i for i,x in enumerate(a))
+
+# Ascending polynomial coefficients; all numerical quantities use SI units.
+for mass,U,G in [(F(1),(1,0),(0,0)),
+                 (F(1),(0,0),(1,0)),
+                 (F(2),(1,1),(-1,1))]:
+    force=(F(0),F(0)) if mass==1 else (F(-1),F(0))
+    q=[[F(1),F(0),force[0]/(2*mass)],
+       [F(0),F(1),force[1]/(2*mass)]]
+    origin=[[F(0),F(U[i]),F(G[i])/2] for i in range(2)]
+    velocity=[deriv(x) for x in q]
+    origin_v=[deriv(x) for x in origin]
+    radius=[add(q[i],scale(origin[i],F(-1))) for i in range(2)]
+    momentum=[scale(x,mass) for x in velocity]
+    relative_p=[add(momentum[i],scale(origin_v[i],-mass))
+                for i in range(2)]
+    physical=[[x] for x in force]
+    torque=cross(radius,physical)
+    L_lab=cross(radius,momentum)
+    L_relative=cross(radius,relative_p)
+    effective=[add(physical[i],scale(deriv(origin_v[i]),-mass))
+               for i in range(2)]
+    assert deriv(L_lab)==add(torque,scale(cross(origin_v,momentum),F(-1)))
+    assert deriv(L_relative)==cross(radius,effective)
+    if mass==1 and U==(1,0):
+        assert L_lab==[F(1),F(-1)] and L_relative==[F(1)]
+        for t in [F(0),F(1,2),F(1),F(2)]:
+            print("t, L_lab, L_relative, torque:",t,
+                  value(L_lab,t),value(L_relative,t),value(torque,t))
+    if mass==1 and G==(1,0):
+        assert L_lab==[F(1),F(0),F(-1,2)]
+        assert L_relative==[F(1),F(0),F(1,2)]
+        print("accelerating origin at 1 s:",value(L_lab,F(1)),
+              value(L_relative,F(1)),value(deriv(L_relative),F(1)))
+print("Both balance laws verified coefficient by coefficient for three cases.")
+```
+
+### 각운동량 표지를 위한 해설 문제
+
+1. **첫 예제에서 물리 토크가 0인데 L_lab가 변하는 이유는?** 기준점 속도와 실험실 운동량의 외적이 1 N m여서 L_lab'=−1 N m입니다. 토크만 사용하는 식은 고정점 수지입니다.
+2. **일정 속도 병진 기준점에서 자유 입자의 어떤 양이 보존되나요?** 기준점 가속도가 0이므로 L_rel입니다. 이동점에서 실험실 운동량으로 구한 L_lab는 보존되지 않을 수 있습니다.
+3. **각운동량 학습 표지에는 어떤 정보를 함께 기록하나요?** 기준점 경로·축·실험실/상대 운동량·부호 규약을 명시하세요. 해당 법칙으로 잔차를 계산한 뒤 힘 모형의 오차인지 해석해야 합니다.
+
+곱의 미분과 뉴턴 법칙에서 직접 유도했습니다. 기존 조작형 입력이 고정 기준점을 뜻한다는 사실을 유지하면서 해석을 확장합니다.
+
 ## 풀이가 있는 여섯 연습
 
 1. **연습: 변하는 지레팔.** m=1,q0=(1,0),v0=(0,1),F=(−1,0),O=0에서 1초 상태는? **풀이:** q=(1/2,1),p=(−1,1),L=3/2,τ=1입니다. 초기 L=1에 토크 적분 1/2가 더해집니다.
