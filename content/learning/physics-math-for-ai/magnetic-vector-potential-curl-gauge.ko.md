@@ -175,6 +175,112 @@ SI에서 일반적인 퍼텐셜 표현은 $\mathbf E=-\nabla V-\partial_t\mathbf
 
 독립 기준은 실제 게이지 변환된 퍼텐셜을 수치 미분하고 원천 경계에서 구간을 나누어 자기장 면적분을 계산한다. 해석 항등식과 독립 근거를 구분한다. $\mathbf A$를 학습하는 AI도 임의의 대표 하나와의 일치만 보지 말고 회전 정확도·경계 매끄러움·기준과 게이지 변화·방향 있는 선속으로 평가하자.
 
+## 연구 확장: 주기 퍼텐셜은 평균 자기 선속을 담지 못한다
+
+### 표현의 일부로 주기 조건을 명시한다
+
+앞의 무한 원통 게이지 예제는 선언한 비주기 원천 기하에서 정의됩니다. 반대 면을 같은 것으로 식별한 한 변 L>0의 정육면체를 별도 정적 예제로 사용합니다. 전역 단일값인 매끄러운 주기 벡터 퍼텐셜을 가정하며 여기의 미분 항등식에는 적어도 C²를 사용합니다. 단위는 T m입니다. 미분만이 아니라 퍼텐셜 자체가 주기적이라는 조건입니다.
+
+셀에서 curl의 각 성분을 적분하면 반대 면의 미분 기여가 상쇄됩니다. 따라서 이 표현으로 만든 자기장의 셀 평균은 0입니다. 이는 표현과 경계 조건의 제약입니다.
+
+$$
+\mathcal D=[0,L)^3,\quad\mathbf A(\mathbf x+L\mathbf e_i)=\mathbf A(\mathbf x),\quad\mathbf B=\nabla\times\mathbf A:\qquad\langle\mathbf B\rangle=\frac1{L^3}\int_{\mathcal D}\nabla\times\mathbf A\,d^3x=0.
+$$
+
+$$
+\Phi_z(z)=\int_0^L\!\int_0^LB_z(x,y,z)\,dx\,dy=\oint_{\partial[0,L]^2}\mathbf A\cdot d\boldsymbol\ell=0\qquad\text{for a smooth periodic }\mathbf A.
+$$
+
+### 기본 면 하나와 닫힌 표면을 구분한다
+
+셀의 정사각형 면에 Stokes를 적용해도 같은 장애가 나옵니다. A가 주기적이면 네 변 선적분은 반대 쌍끼리 상쇄됩니다. 좌표를 순환하면 다른 두 면 방향도 같습니다.
+
+0이 아닌 균일 장은 발산이 0이고 완전히 닫힌 정육면체를 통과하는 전체 선속도 0입니다. 그러나 개별 기본 xy 면의 선속은 0이 아닙니다. 유효한 지정 자기장이지만 매끄러운 전역 주기 A 하나의 curl은 될 수 없습니다. 한 면의 비영 선속은 자기 단극자가 아닙니다.
+
+$$
+\mathbf B_{\mathrm{const}}=(0,0,B_0),\quad B_0\ne0:\quad\nabla\cdot\mathbf B_{\mathrm{const}}=0,\quad\Phi_z^+=B_0L^2,\quad\Phi_z^-=-B_0L^2,\quad\int_{\partial\mathcal D}\mathbf B_{\mathrm{const}}\cdot\mathbf n\,dS=0.
+$$
+
+### 0이 아닌 Fourier 모드만 역으로 푼다
+
+평균 0이고 발산도 0인 유한 Fourier 합의 모드를 exp(i k dot x)로 씁니다. 아래 계수는 모드별 curl A=B와 Coulomb 게이지를 풉니다. 벡터 삼중곱 항등식으로 두 조건을 증명합니다. 실수 장을 만들 때 k와 −k의 켤레 계수를 짝지어야 합니다. 무한 급수로 확장하려면 정칙성·수렴 조건이 더 필요합니다.
+
+파수의 단위는 1/m이므로 A 계수의 단위는 T m입니다. 이 식은 k=0에 적용되지 않습니다. 0인 분모를 작은 수치 상수로 바꿔도 사라진 평균 자기장이 생기지는 않습니다.
+
+$$
+\mathbf k=\frac{2\pi}{L}\mathbf n\ne0,\quad\mathbf k\cdot\widehat{\mathbf B}_{\mathbf k}=0:\quad\widehat{\mathbf A}_{\mathbf k}=\frac{i\mathbf k\times\widehat{\mathbf B}_{\mathbf k}}{|\mathbf k|^2},\quad i\mathbf k\times\widehat{\mathbf A}_{\mathbf k}=\widehat{\mathbf B}_{\mathbf k},\quad i\mathbf k\cdot\widehat{\mathbf A}_{\mathbf k}=0.
+$$
+
+$$
+\langle\nabla\chi\rangle=0\quad(\chi\text{ smooth and periodic}),\qquad\nabla\times\mathbf a_0=0,\quad\nabla\cdot\mathbf a_0=0,\quad\oint_{C_i}\mathbf a_0\cdot d\boldsymbol\ell=(a_0)_iL.
+$$
+
+### 남는 상수 퍼텐셜을 별도로 유지한다
+
+주기 스칼라 게이지는 0이 아닌 계수를 i k와 스칼라 계수의 곱만큼 바꾸며 curl은 바꾸지 않습니다. Coulomb 게이지는 그 비영 모드의 기울기 자유도를 고정합니다. 상수 퍼텐셜 벡터 a0는 curl과 발산이 모두 0이지만 a0가 0이 아니면 매끄러운 주기 스칼라의 기울기가 아닙니다. 해당 기본 순환을 적분하면 알 수 있습니다.
+
+주기 퍼텐셜 평균을 고르는 것은 추가 표현 관례이며 B나 div A=0에서 추론되는 정보가 아닙니다. 보통 공간에서는 a0가 a0 dot x의 기울기지만 그 스칼라는 주기적이지 않습니다. 허용 영역과 게이지 종류를 고정해야 합니다. 이 고전적 보충 설명은 상수 퍼텐셜의 양자적 관측 가능성을 주장하지 않습니다.
+
+### 평균과 유한 요동 모드를 함께 표현한다
+
+균일한 z 성분과 코사인 요동 하나의 장을 사용합니다. 사인 퍼텐셜은 주기적이며 요동을 나타냅니다. 아핀 배경 퍼텐셜은 평균을 만듭니다. 이 예제에서 두 퍼텐셜의 발산은 모두 0이지만 B0가 0이 아니면 그 합은 주기적이지 않습니다. Curl은 dA_y/dx와 −dA_x/dy를 함께 쓰며 두 아핀 성분이 각각 B0/2를 줍니다. 한 단면의 A_y 그림에는 다른 방향 미분이 포함되지 않습니다.
+
+$$
+k=\frac{2\pi}{L},\quad\mathbf B_{\mathrm{tar}}=(0,0,B_0+B_1\cos kx):\qquad\mathbf A_{\mathrm p}=\left(0,\frac{B_1}{k}\sin kx,0\right),\quad\mathbf A_{\mathrm{bg}}=\frac{B_0}{2}(-y,x,0),\quad\nabla\times(\mathbf A_{\mathrm p}+\mathbf A_{\mathrm{bg}})=\mathbf B_{\mathrm{tar}}.
+$$
+
+$$
+\mathbf A_{\mathrm{bg}}(\mathbf x+L\mathbf e_x)-\mathbf A_{\mathrm{bg}}(\mathbf x)=\left(0,\frac{B_0L}{2},0\right),\qquad\mathbf A_{\mathrm{bg}}(\mathbf x+L\mathbf e_y)-\mathbf A_{\mathrm{bg}}(\mathbf x)=\left(-\frac{B_0L}{2},0,0\right).
+$$
+
+### 주기 퍼텐셜 학습이 맞추지 못하는 오차를 정량화한다
+
+아래 아핀 점프는 이 표현에 필요하며, 여전히 매끄럽고 주기적인 자기장의 불연속이 아닙니다. 상수 자기 배경을 출력으로 따로 유지하고 평균 0인 부분만 주기 curl로 나타낼 수도 있습니다. 이에 대응하는 전역 퍼텐셜에는 적절한 비주기 또는 패치 자료가 여전히 필요합니다.
+
+임의의 매끄러운 주기 시험 퍼텐셜에서 장 오차를 상수와 평균 0 부분으로 나눕니다. 교차항의 셀 평균은 0입니다. 따라서 최적화가 완벽하고 주기 퍼텐셜 모형이 아무리 풍부해도 없앨 수 없는 제곱 오차가 남습니다. 이 장 가족에서는 앞의 사인 퍼텐셜이 그 하한을 달성합니다. 이는 셀 적분 오차의 하한입니다. 유한한 점에서만 평가하는 손실은 표본 부족으로 이를 놓칠 수 있습니다.
+
+$$
+\mathbf B_{\mathrm{fluc}}=(0,0,B_1\cos kx):\quad\left\langle\left|\nabla\times\widetilde{\mathbf A}_{\mathrm p}-\mathbf B_{\mathrm{tar}}\right|^2\right\rangle=B_0^2+\left\langle\left|\nabla\times\widetilde{\mathbf A}_{\mathrm p}-\mathbf B_{\mathrm{fluc}}\right|^2\right\rangle\ge B_0^2\quad(\widetilde{\mathbf A}_{\mathrm p}\text{ smooth and periodic}).
+$$
+
+### 선속·퍼텐셜 단위를 넣어 예제를 계산한다
+
+L=2 m, B_ref=1 microtesla, B1=B_ref로 둡니다. B0=0.5 B_ref이면 +z 면 선속은 2 microweber이고 반대 면의 바깥 방향 선속은 −2 microweber입니다. 주기 curl만 사용하는 장의 최소 셀 RMS 오차는 0.5 microtesla이며 x 경계의 아핀 A_y 점프는 0.5 microtesla m입니다.
+
+표는 선속을 B_ref L², RMS를 B_ref, A_y 점프를 B_ref L로 정규화합니다. 이 정적 가족의 정확한 계산이며 자기유체 동역학의 시간 발전이나 특정 해법의 수렴 검사가 아닙니다.
+
+| B0 / B_ref | 면 선속 비율 | 최소 RMS 비율 | A_y 점프 비율 |
+| --- | --- | --- | --- |
+| -1 | -1 | 1 | -0.5 |
+| 0 | 0 | 0 | 0 |
+| 0.5 | 0.5 | 0.5 | 0.25 |
+| 1 | 1 | 1 | 0.5 |
+
+```python
+# Normalize B by B_ref and lengths by L where stated.
+for mean_ratio in [-1, 0, .5, 1]:
+    face_flux_ratio = mean_ratio
+    minimum_rms_ratio = abs(mean_ratio)
+    potential_jump_ratio = mean_ratio/2
+    print(*(format(t, '.9g') for t in
+            [mean_ratio, face_flux_ratio,
+             minimum_rms_ratio, potential_jump_ratio]))
+```
+
+기존 전류 0인 원통에서 상수 축 게이지 기울기를 더하면 A는 바뀌어도 B는 0입니다. 그 스칼라 게이지 c_z z는 보통 공간에서 유효하지만 c_z가 0이 아니면 z에 대해 주기적이지 않습니다. 이 대조는 영역의 차이를 검증하며 원통 실습에 주기 셀 기능을 추가하지 않습니다.
+
+[Mocz 등의 2.3절](https://arxiv.org/html/1606.02310#S2.SS3)은 주기·평균 장 기여의 분리를 논의합니다. 위 면 상쇄·Fourier 역변환·남는 상수 퍼텐셜 자유도·오차 하한은 매끄러운 정적 셀에서 직접 유도합니다. 그 논문의 수치 MHD 정확도를 이 보충 예제의 검증 근거로 사용하지 않습니다.
+
+![주기 장·사라진 평균 선속·아핀 퍼텐셜 점프](/assets/learning/electromagnetism-periodic-flux-obstruction.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**셀 한 면의 비영 선속은 div B=0을 위반하는가?** **답:** 아니다. 반대 바깥 방향 면이 상쇄된다. 장애는 자기 전하가 아니라 가정한 전역 주기 퍼텐셜에 있다.
+
+**0인 Fourier 모드의 분모를 작게 바꾸면 평균 장을 복원하는가?** **답:** 아니다. Curl은 상수 퍼텐셜 모드를 없앤다. 평균 자기장을 따로 유지하거나 표현을 바꿔야 한다.
+
+**Coulomb 게이지가 주기 A의 모든 성분을 고정하는가?** **답:** 아니다. 상수 벡터는 curl·발산으로 정해지지 않는다. 스칼라 게이지와의 관계는 허용한 주기 조건에 달려 있다.
+
 ## 해설이 있는 연습문제
 
 ### 연습 1 — 축의 퍼텐셜이0이 아니면

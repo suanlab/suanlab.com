@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-13 전위·벡터 퍼텐셜 연구 보강: [가중 전위차 복원·주기 표현의 평균 선속 장애](physics-math-for-ai/potentials-research-status.md)를 한영 네 원고·그림 네 개에 추가했다. 선택 53검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 6/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 Maxwell 방정식이다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제를 유지한다.
+
 2026-11-13 정전·정자기 연구 보강: [외부 자료의 내부 밀도 비식별·원통의 복소 자기 확산](physics-math-for-ai/statics-research-status.md)을 한영 네 원고·그림 네 개에 추가했다. 선택 58검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 4/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 전위·벡터 퍼텐셜이다. 전체 대조 41영역·405주제/후속 10영역·104주제와 전체 51영역·509주제를 유지한다.
 
 2026-11-13 전하·전류·장 연구 보강: [유한 탐침의 교란·순환 전류의 비식별](physics-math-for-ai/charge-research-status.md)을 두 단원의 한영 네 편·그림 네 개에 추가했다. 독립 계산·선택 75검사·새 빌드/1,888 HTML·변경 두 단원 16화면·6안내·4퀴즈·2저장/완료를 검증했다. [전자기학 순차 보강 2/20단원](physics-math-for-ai/electromagnetism-topic-review.md)이며 다음은 정전·정자기다. 전체 대조 41영역·405주제/후속 10영역·104주제와 51영역·509주제를 유지한다.

@@ -132,6 +132,111 @@ $$
 
 장 오차, 방향 있는 경로 적분, 전하 밀도와의 양립성, 기준 이동 실험을 각각 비교하자. 에너지 라벨로 학습한다면 전하와 에너지 기준도 정의해야 한다. 해석 잔차0을 일반적인 물리 검증으로 부르지 말고 가정과 독립 수치 근거를 함께 보고하자.
 
+## 연구 확장: 서로 다른 불확실성의 전위차를 복원하기
+
+### 세 측정값의 의미부터 선언한다
+
+단일값 정전위에서 얻은 정확한 끝점 차이는 A→B→C→A를 돌면 합이 0입니다. 실제 측정 차이는 그렇지 않을 수 있습니다. 잡음이 있는 세 전압 읽음에서 상대 절점 전위를 복원해 봅니다. 이 유한 측정 모형은 기존의 정확한 이차 전위·Bezier 경로 계산과 별개이며 그 실습에 잡음 제어를 추가하지 않습니다.
+
+각 읽음은 끝 전위에서 시작 전위를 뺀 방향입니다. 따라서 전기장 선적분의 음수입니다. d·y·phi의 단위는 V입니다. V_A=0을 정하면 미지의 두 상대 전위에서 임의 기준이 제거됩니다. 아래 행렬은 물성 법칙이 아니라 방향을 나타냅니다.
+
+$$
+\boldsymbol\varphi=(V_B-V_A,V_C-V_A)^T,\quad \mathbf d=D\boldsymbol\varphi,\quad D=\begin{pmatrix}1&0\\-1&1\\0&-1\end{pmatrix},\quad\mathbf c=(1,1,1)^T,\quad\mathbf c^T\mathbf d=0.
+$$
+
+$$
+\mathbf y=\mathbf d+\boldsymbol\epsilon,\qquad\mathbb E\boldsymbol\epsilon=0,\quad\Sigma=\operatorname{diag}(v_1,v_2,v_3),\quad v_i=\sigma_i^2>0\quad[\mathrm V^2].
+$$
+
+### 선언한 불확실성으로 보존적인 차이를 맞춘다
+
+먼저 오차가 독립이고 평균 0이며 양의 분산 v_i를 안다고 가정합니다. 단위는 V²입니다. 분산은 보정이나 별도 측정 모형에서 얻으며 이 잔차 세 개만으로 정하지 않습니다. 역분산 가중은 불확실한 관측의 영향을 줄입니다.
+
+D의 rank가 2이고 그 상이 방향 합 0인 평면 전체이므로 상대 절점 전위를 맞추는 것과 그 평면 안에서 변 차이를 맞추는 것은 같습니다. 제약 하나에 Lagrange 승수를 사용합니다. 아래 대수에는 Gaussian 오차 분포가 필요하지 않습니다.
+
+$$
+\min_{\mathbf c^T\widehat{\mathbf d}=0}\frac12(\widehat{\mathbf d}-\mathbf y)^T\Sigma^{-1}(\widehat{\mathbf d}-\mathbf y):\qquad\Sigma^{-1}(\widehat{\mathbf d}-\mathbf y)+\lambda\mathbf c=0.
+$$
+
+$$
+S=\mathbf c^T\mathbf y,\quad\lambda=\frac S{\mathbf c^T\Sigma\mathbf c},\qquad\widehat{\mathbf d}=\mathbf y-\frac{\Sigma\mathbf c\,S}{\mathbf c^T\Sigma\mathbf c}=:P\mathbf y.
+$$
+
+### 고리를 닫는 것만으로는 증명이 끝나지 않는다
+
+정상 조건에 c를 곱하면 lambda와 맞춘 차이를 얻습니다. 변 i의 보정은 순환 불일치에 v_i를 곱하고 전체 분산 합으로 나눈 값입니다. 같은 양을 나누는 것은 분산이 같을 때만 맞습니다. 사영은 일반적인 Euclidean 계량이 아니라 역공분산 계량에서 직교합니다.
+
+아래 항등식은 두 번 적용해도 같은 결과·정확한 고리 닫힘·가중 정규 방정식을 검증합니다. 최솟값은 최적화 목적에 쓴 1/2을 뺀 전체 잔차 제곱의 값입니다.
+
+$$
+P^2=P,\quad\mathbf c^TP=0,\quad D^T\Sigma^{-1}(\widehat{\mathbf d}-\mathbf y)=0,\qquad (\mathbf y-\widehat{\mathbf d})^T\Sigma^{-1}(\mathbf y-\widehat{\mathbf d})=\frac{S^2}{\mathbf c^T\Sigma\mathbf c}.
+$$
+
+$$
+\widehat V_A=C,\qquad\widehat V_B=C+\widehat d_1,\qquad\widehat V_C=C+\widehat d_1+\widehat d_2=C-\widehat d_3\qquad(C\text{ in volts}).
+$$
+
+### 기준 이동과 계측기 오프셋을 구분한다
+
+복원한 세 전위에 상수 C를 함께 더해도 맞춘 변 차이는 바뀌지 않습니다. 이것이 전위의 기준 자유도입니다. 모든 방향 계측 읽음에 같은 오프셋을 더하는 것은 다릅니다. 순환 합이 오프셋의 세 배만큼 바뀝니다. 계측기 오차를 무해한 전위 기준으로 취급하면 안 됩니다.
+
+실제 차이가 닫히고 오차 평균이 0이며 공분산이 Sigma이면 선형으로 맞춘 차이는 불편입니다. 사영으로 공분산을 전파합니다. 다음 식의 마지막 스칼라 분산은 대각 Sigma를 가정합니다. C는 고정된 기준이지 별도 확률 관측이 아닙니다.
+
+$$
+\operatorname{Cov}(\widehat{\mathbf d})=P\Sigma P^T=\Sigma-\frac{\Sigma\mathbf c\mathbf c^T\Sigma}{\mathbf c^T\Sigma\mathbf c},\qquad\Sigma\text{ diagonal}:\quad\operatorname{Var}(\widehat V_C-\widehat V_A)=\frac{v_3(v_1+v_2)}{v_1+v_2+v_3}.
+$$
+
+직접적인 해석도 가능합니다. V_C−V_A는 변 1과 2를 따라 구하거나 변 3을 뒤집어 구합니다. 독립 오차 가정에서 두 추정의 분산은 v1+v2와 v3입니다. 두 값을 역분산으로 평균하면 같은 상대 전위를 얻으며 그 분산은 위의 병렬 결합식입니다.
+
+### 오차가 상관되면 무엇이 달라지는지 명시한다
+
+알려진 양의 정부호 전체 Sigma에도 같은 제약 유도로 사영·행렬 공분산 식이 성립합니다. 대각 행렬의 단축식은 바꿔야 합니다. 구체적으로 분산 s²인 독립 변 잡음에, 그 잡음과 독립이고 평균 0·분산 tau²인 공통 계측기 오프셋을 더해 봅니다.
+
+$$
+\Sigma=s^2I+\tau^2\mathbf c\mathbf c^T:\quad\operatorname{Var}S=3s^2+9\tau^2,\qquad P=I-\frac{\mathbf c\mathbf c^T}{3},\quad\operatorname{Cov}(\widehat{\mathbf d})=s^2\left(I-\frac{\mathbf c\mathbf c^T}{3}\right).
+$$
+
+### 물리적 emf를 단정하지 않고 잡음 삼각형을 계산한다
+
+이 상관 예제에서는 맞춘 사영이 공통 순환 성분을 제거하지만 원래 순환 불일치의 불확실성은 tau와 함께 증가합니다. 상관은 불일치의 해석을 바꿉니다. 미지의 고정 편향을 평균 0인 확률 오프셋 모형으로 자동 설명할 수는 없습니다.
+
+정확한 상대 전위 (0,1,3) V를 준비하면 실제 변 차이는 (1,2,−3) V입니다. 한 관측 실현을 y=(1.1,1.8,−2.8) V로 두면 합은 0.1 V입니다. sigma1=sigma2=0.1 V로 두고 그 제곱 척도에 대한 v3를 바꿉니다. 표는 관측을 고정한 채 선언한 세 번째 읽음의 불확실성을 바꿉니다. 실제 분산을 추론하거나 가중치를 바꿀수록 한 실현의 정확도가 좋아진다고 증명하는 것이 아닙니다.
+
+잡음 순환이 0이 아니어도 이 정전기 준비와 양립합니다. 유도·비보존 장·위상 결함을 추론하려면 추가 물리·불확실성 근거가 필요합니다. 전위를 사용하는 학습 모델이 고리를 닫아도 자료 불확실성이나 모형 불일치는 크게 남을 수 있습니다.
+
+| v3 / s0 squared | 맞춘 d1 [V] | 맞춘 d2 [V] | 상대 V_C [V] |
+| --- | --- | --- | --- |
+| 0.25 | 1.05555556 | 1.75555556 | 2.81111111 |
+| 1 | 1.06666667 | 1.76666667 | 2.83333333 |
+| 4 | 1.08333333 | 1.78333333 | 2.86666667 |
+| 16 | 1.09444444 | 1.79444444 | 2.88888889 |
+
+```python
+y = [1.1, 1.8, -2.8]  # oriented differences, V
+s0 = .1                  # standard-deviation scale, V
+for multiplier in [.25, 1, 4, 16]:
+    variance = [s0*s0, s0*s0, multiplier*s0*s0]
+    cycle = sum(y)
+    fitted = [a-v*cycle/sum(variance) for a,v in zip(y,variance)]
+    relative_C = fitted[0]+fitted[1]
+    print(*(format(t, '.9g') for t in
+            [multiplier, fitted[0], fitted[1], relative_C]))
+```
+
+기존 이차 모형에서 H=diag(2,4,0) V/m², 선형 항 (0,1,0) V/m, 꼭짓점 (0,0,0), (1,0,0), (0,1,0) m를 사용하면 정확한 (1,2,−3) V 예제를 얻습니다. 실제 직선·곡선 장 적분의 부호는 d와 반대입니다. 공통 전위 기준을 어떻게 더해도 이 정확한 차이는 바뀌지 않습니다. 위 잡음 자료와 추정기는 별도 보충 계산입니다.
+
+[NIST 가중 최소제곱 지침](https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd432.htm)은 가중 기준의 배경을 제공합니다. 삼각형 제약·사영·기준 비교·불확실성 식은 선언한 측정 모형에서 직접 유도합니다.
+
+![가중 전압 복원과 불확실성](/assets/learning/electromagnetism-weighted-potential-loops.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**측정 고리가 0이 아니면 유도가 증명되는가?** **답:** 아니다. 잡음·오프셋이 있는 이 정전기 예제도 원래 고리 합이 0이 아니다. 물리·측정 가정을 검사해야 한다.
+
+**각 변에 보정의 삼분의 일을 주면 되는가?** **답:** 이 삼각형에서 독립 분산이 같을 때만 맞다. 알려진 불균일 분산이나 상관은 필요한 계량을 바꾼다.
+
+**공통 계측 오프셋은 전위 기준 이동인가?** **답:** 아니다. 기준 이동은 각 차이에서 상쇄되지만 방향 읽음의 공통 오프셋은 고리에 자신의 세 배를 더한다.
+
 ## 해설이 있는 연습문제
 
 ### 연습 1 — 지도의 숫자를 바꾸기

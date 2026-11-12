@@ -132,6 +132,111 @@ A potential parameterization enforces a conservative field structurally. It can 
 
 Compare field errors, oriented path integrals, charge-density compatibility and reference-shift experiments separately. Training on energy labels additionally requires the charge and energy reference to be defined. Report assumptions and independent numerical evidence rather than treating a zero analytic residual as a general physical validation.
 
+## Research extension: reconstructing potential differences with unequal uncertainty
+
+### Declare what the three measurements mean
+
+Exact endpoint differences from a single-valued electrostatic potential sum to zero around A→B→C→A. Real measured differences need not do so. We now reconstruct relative node potentials from three noisy voltage readings. This finite measurement model is separate from the native exact quadratic-potential and Bezier-path calculation; no noise control is added there.
+
+Orient each reading as final potential minus initial potential, so it is the negative of the electric-field line integral. The entries of d, y and phi have units V. Fixing V_A=0 removes the arbitrary reference for the two unknown relative node potentials. The matrix below encodes orientation rather than a material law.
+
+$$
+\boldsymbol\varphi=(V_B-V_A,V_C-V_A)^T,\quad \mathbf d=D\boldsymbol\varphi,\quad D=\begin{pmatrix}1&0\\-1&1\\0&-1\end{pmatrix},\quad\mathbf c=(1,1,1)^T,\quad\mathbf c^T\mathbf d=0.
+$$
+
+$$
+\mathbf y=\mathbf d+\boldsymbol\epsilon,\qquad\mathbb E\boldsymbol\epsilon=0,\quad\Sigma=\operatorname{diag}(v_1,v_2,v_3),\quad v_i=\sigma_i^2>0\quad[\mathrm V^2].
+$$
+
+### Fit a conservative set using declared uncertainties
+
+First assume independent, zero-mean errors with known positive variances v_i in V². The variances come from calibration or a separate measurement model, not from these three residuals alone. Inverse variance weighting gives less influence to an uncertain observation.
+
+Minimizing over relative node potentials is equivalent to minimizing over edge differences with zero oriented sum: D has rank two and its image is exactly that plane. Use a Lagrange multiplier for the one constraint. A Gaussian error distribution is not required for the algebra below.
+
+$$
+\min_{\mathbf c^T\widehat{\mathbf d}=0}\frac12(\widehat{\mathbf d}-\mathbf y)^T\Sigma^{-1}(\widehat{\mathbf d}-\mathbf y):\qquad\Sigma^{-1}(\widehat{\mathbf d}-\mathbf y)+\lambda\mathbf c=0.
+$$
+
+$$
+S=\mathbf c^T\mathbf y,\quad\lambda=\frac S{\mathbf c^T\Sigma\mathbf c},\qquad\widehat{\mathbf d}=\mathbf y-\frac{\Sigma\mathbf c\,S}{\mathbf c^T\Sigma\mathbf c}=:P\mathbf y.
+$$
+
+### Show why closing the loop is not the whole proof
+
+Multiplying stationarity by c gives lambda and the fitted differences. The correction to edge i is v_i times the cycle mismatch divided by the sum of variances. Equal division is correct only for equal variances. The projection is orthogonal in the inverse-covariance metric, not generally in the ordinary Euclidean metric.
+
+The identities below verify idempotence, exact closure and the weighted normal equations. They also give the minimized full squared residual, without the factor 1/2 used in the optimization objective.
+
+$$
+P^2=P,\quad\mathbf c^TP=0,\quad D^T\Sigma^{-1}(\widehat{\mathbf d}-\mathbf y)=0,\qquad (\mathbf y-\widehat{\mathbf d})^T\Sigma^{-1}(\mathbf y-\widehat{\mathbf d})=\frac{S^2}{\mathbf c^T\Sigma\mathbf c}.
+$$
+
+$$
+\widehat V_A=C,\qquad\widehat V_B=C+\widehat d_1,\qquad\widehat V_C=C+\widehat d_1+\widehat d_2=C-\widehat d_3\qquad(C\text{ in volts}).
+$$
+
+### Separate a reference shift from a meter offset
+
+A constant C can now be added to all three reconstructed potentials without changing any fitted edge difference. That is the reference freedom of a potential. Adding the same offset to every oriented meter reading is different: it changes the cycle sum by three times the offset. Do not treat an instrument error as a harmless potential reference.
+
+If the true differences close and the errors have zero mean with covariance Sigma, the linear fitted differences are unbiased. Propagate their covariance using the projection. The final scalar variance formula in the next display assumes diagonal Sigma; C is a fixed reference, not an additional random observation.
+
+$$
+\operatorname{Cov}(\widehat{\mathbf d})=P\Sigma P^T=\Sigma-\frac{\Sigma\mathbf c\mathbf c^T\Sigma}{\mathbf c^T\Sigma\mathbf c},\qquad\Sigma\text{ diagonal}:\quad\operatorname{Var}(\widehat V_C-\widehat V_A)=\frac{v_3(v_1+v_2)}{v_1+v_2+v_3}.
+$$
+
+There is also a direct interpretation: V_C−V_A can be estimated along edges 1 and 2, or by reversing edge 3. Under the independent-error assumption those two estimates have variances v1+v2 and v3. Their inverse-variance average is the same fitted relative potential, and its variance is the parallel combination shown above.
+
+### State what changes when errors are correlated
+
+The projection and matrix covariance formulas remain valid for a known positive-definite full Sigma by the same constrained derivation. The diagonal shortcut must then be replaced. As a concrete model, combine independent edge noise of variance s² with a zero-mean random common meter offset of variance tau², independent of that edge noise.
+
+$$
+\Sigma=s^2I+\tau^2\mathbf c\mathbf c^T:\quad\operatorname{Var}S=3s^2+9\tau^2,\qquad P=I-\frac{\mathbf c\mathbf c^T}{3},\quad\operatorname{Cov}(\widehat{\mathbf d})=s^2\left(I-\frac{\mathbf c\mathbf c^T}{3}\right).
+$$
+
+### Work one noisy triangle without claiming a physical emf
+
+In this correlated example the fitted projection removes the common loop component, but the uncertainty of the raw cycle mismatch grows with tau. Correlation changes how a mismatch is interpreted. An unknown fixed bias is not automatically covered by a zero-mean random-offset model.
+
+Prepare exact relative potentials (0,1,3) V, so the true edge differences are (1,2,−3) V. Let one observed realization be y=(1.1,1.8,−2.8) V; its sum is 0.1 V. Set sigma1=sigma2=0.1 V and vary v3 relative to that squared scale. The table changes the declared third-reading uncertainty while keeping the observations fixed. It does not infer the true variances or prove that one realization becomes more accurate when its weights change.
+
+A nonzero noisy cycle is compatible with this electrostatic preparation. Inferring induction, a nonconservative field or a topology defect would require additional physical and uncertainty evidence. A potential-based learner can enforce closure while retaining substantial data uncertainty or model mismatch.
+
+| v3 / s0 squared | fitted d1 [V] | fitted d2 [V] | relative V_C [V] |
+| --- | --- | --- | --- |
+| 0.25 | 1.05555556 | 1.75555556 | 2.81111111 |
+| 1 | 1.06666667 | 1.76666667 | 2.83333333 |
+| 4 | 1.08333333 | 1.78333333 | 2.86666667 |
+| 16 | 1.09444444 | 1.79444444 | 2.88888889 |
+
+```python
+y = [1.1, 1.8, -2.8]  # oriented differences, V
+s0 = .1                  # standard-deviation scale, V
+for multiplier in [.25, 1, 4, 16]:
+    variance = [s0*s0, s0*s0, multiplier*s0*s0]
+    cycle = sum(y)
+    fitted = [a-v*cycle/sum(variance) for a,v in zip(y,variance)]
+    relative_C = fitted[0]+fitted[1]
+    print(*(format(t, '.9g') for t in
+            [multiplier, fitted[0], fitted[1], relative_C]))
+```
+
+The native quadratic model can supply the exact (1,2,−3) V example with H=diag(2,4,0) V/m², linear term (0,1,0) V/m and vertices (0,0,0), (1,0,0), (0,1,0) m. Its actual straight and curved field integrals have the opposite sign to d. Adding an arbitrary common potential reference changes none of these exact differences. The noisy data and estimator above are supplementary.
+
+[NIST’s weighted-least-squares guidance](https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd432.htm) provides the weighted criterion. The triangle constraint, projection, reference comparison and uncertainty formulas are derived here for the declared measurement model.
+
+![Weighted voltage reconstruction and uncertainty](/assets/learning/electromagnetism-weighted-potential-loops.en.svg)
+
+### Research questions with explanations
+
+**Does a nonzero measured loop prove induction?** **Answer:** No. This electrostatic example with noisy or offset measurements also produces a nonzero raw loop. Test the physical and measurement assumptions.
+
+**Should each edge receive one third of the correction?** **Answer:** Only for equal independent variances in this triangle. Known unequal variances or correlations change the appropriate metric.
+
+**Is a common meter offset just a potential-reference change?** **Answer:** No. A reference shift cancels in each difference; a common oriented reading offset adds three times itself to the cycle.
+
 ## Exercises with explanations
 
 ### Exercise 1 — Shift the map

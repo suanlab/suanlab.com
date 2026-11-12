@@ -175,6 +175,112 @@ The implementation uses a regular interior expression and a `log1p` exterior exp
 
 Independent references instead differentiate the actual gauged potential numerically and integrate the magnetic field over rectangle surfaces, splitting at source interfaces. This separates algebraic identities from independent evidence. An AI model of $\mathbf A$ should be checked for curl accuracy, interface regularity, reference/gauge behavior and oriented flux, not merely for agreement with one arbitrary representative.
 
+## Research extension: periodic potentials cannot carry a mean magnetic flux
+
+### Specify periodicity as part of the representation
+
+The infinite-cylinder gauge example above lives in its declared nonperiodic source geometry. Change to a separate static example: a cubic cell of side L>0 with opposite faces identified. Assume a globally single-valued, smooth periodic vector potential, at least C² for the differential identities used here. Its units are T m. Periodic refers to the potential itself, not just to its derivatives.
+
+Integrate each component of its curl over the cell. Opposite-face derivative contributions cancel, so the magnetic field produced by that representation has zero cell mean. This is a constraint of the representation and boundary conditions.
+
+$$
+\mathcal D=[0,L)^3,\quad\mathbf A(\mathbf x+L\mathbf e_i)=\mathbf A(\mathbf x),\quad\mathbf B=\nabla\times\mathbf A:\qquad\langle\mathbf B\rangle=\frac1{L^3}\int_{\mathcal D}\nabla\times\mathbf A\,d^3x=0.
+$$
+
+$$
+\Phi_z(z)=\int_0^L\!\int_0^LB_z(x,y,z)\,dx\,dy=\oint_{\partial[0,L]^2}\mathbf A\cdot d\boldsymbol\ell=0\qquad\text{for a smooth periodic }\mathbf A.
+$$
+
+### Distinguish one fundamental face from a closed surface
+
+The same obstruction follows from Stokes on a square cell face. Its four edge integrals cancel in opposite pairs when A is periodic. Cyclic permutation gives the result for the other two face orientations.
+
+A uniform nonzero field is divergence-free and satisfies zero flux through the complete closed cube. Yet its flux through an individual fundamental xy face is not zero. Thus it is a valid prescribed magnetic field but cannot be curl of one smooth globally periodic A. Nonzero face flux is not a magnetic monopole.
+
+$$
+\mathbf B_{\mathrm{const}}=(0,0,B_0),\quad B_0\ne0:\quad\nabla\cdot\mathbf B_{\mathrm{const}}=0,\quad\Phi_z^+=B_0L^2,\quad\Phi_z^-=-B_0L^2,\quad\int_{\partial\mathcal D}\mathbf B_{\mathrm{const}}\cdot\mathbf n\,dS=0.
+$$
+
+### Invert only the nonzero Fourier modes
+
+For a zero-mean divergence-free finite Fourier sum, write modes as exp(i k dot x). The coefficient below solves curl A=B and Coulomb gauge mode by mode. The vector triple-product identity proves both statements. Pair conjugate coefficients at k and −k when constructing real fields. Extending this construction to infinite sums requires suitable regularity and convergence assumptions.
+
+Wave number has units 1/m, so the coefficient for A has units T m. The formula does not apply at k=0. Replacing its zero denominator by a small numerical constant cannot create the missing mean magnetic field.
+
+$$
+\mathbf k=\frac{2\pi}{L}\mathbf n\ne0,\quad\mathbf k\cdot\widehat{\mathbf B}_{\mathbf k}=0:\quad\widehat{\mathbf A}_{\mathbf k}=\frac{i\mathbf k\times\widehat{\mathbf B}_{\mathbf k}}{|\mathbf k|^2},\quad i\mathbf k\times\widehat{\mathbf A}_{\mathbf k}=\widehat{\mathbf B}_{\mathbf k},\quad i\mathbf k\cdot\widehat{\mathbf A}_{\mathbf k}=0.
+$$
+
+$$
+\langle\nabla\chi\rangle=0\quad(\chi\text{ smooth and periodic}),\qquad\nabla\times\mathbf a_0=0,\quad\nabla\cdot\mathbf a_0=0,\quad\oint_{C_i}\mathbf a_0\cdot d\boldsymbol\ell=(a_0)_iL.
+$$
+
+### Keep the remaining constant potential separate
+
+A periodic scalar gauge changes a nonzero coefficient by i k times its scalar coefficient; this does not change curl. Coulomb gauge fixes that nonzero-mode gradient freedom. A constant potential vector a0 has zero curl and divergence but is still not a gradient of a smooth periodic scalar unless it is zero: integrate around the corresponding fundamental cycle.
+
+Choosing the mean of the periodic potential is an extra representation convention, not something inferred from B or div A=0. On ordinary space a0 is the gradient of a0 dot x, but that scalar is not periodic. Keep the allowed domain and gauge class fixed. This classical supplement makes no quantum-observability claim about constant potentials.
+
+### Represent a mean plus a finite fluctuating mode
+
+Use a field with a uniform z component and one cosine fluctuation. The sinusoidal potential is periodic and represents the fluctuation. The affine background potential supplies the mean. Both are divergence-free as potentials in this example, but their sum is not periodic when B0 is nonzero. Curl uses both dA_y/dx and −dA_x/dy; each affine component contributes B0/2. A plot of A_y on one slice does not include the other derivative.
+
+$$
+k=\frac{2\pi}{L},\quad\mathbf B_{\mathrm{tar}}=(0,0,B_0+B_1\cos kx):\qquad\mathbf A_{\mathrm p}=\left(0,\frac{B_1}{k}\sin kx,0\right),\quad\mathbf A_{\mathrm{bg}}=\frac{B_0}{2}(-y,x,0),\quad\nabla\times(\mathbf A_{\mathrm p}+\mathbf A_{\mathrm{bg}})=\mathbf B_{\mathrm{tar}}.
+$$
+
+$$
+\mathbf A_{\mathrm{bg}}(\mathbf x+L\mathbf e_x)-\mathbf A_{\mathrm{bg}}(\mathbf x)=\left(0,\frac{B_0L}{2},0\right),\qquad\mathbf A_{\mathrm{bg}}(\mathbf x+L\mathbf e_y)-\mathbf A_{\mathrm{bg}}(\mathbf x)=\left(-\frac{B_0L}{2},0,0\right).
+$$
+
+### Quantify what a periodic-only learner cannot fit
+
+The affine jumps below are required by this representation. They are not discontinuities in the magnetic field, which stays smooth and periodic. A method can instead keep the constant magnetic background as an explicit output and represent only the zero-mean part by a periodic curl; a corresponding global potential still needs appropriate nonperiodic or patch data.
+
+For any smooth periodic trial potential, split the field error into its constant and zero-mean parts. Their cell-average cross term vanishes. This gives an irreducible squared error even with perfect optimization and arbitrarily rich periodic potential models. The sinusoidal potential above attains the bound for this field family. This is a cell-integral error floor; a loss evaluated at finitely many points can miss it through undersampling.
+
+$$
+\mathbf B_{\mathrm{fluc}}=(0,0,B_1\cos kx):\quad\left\langle\left|\nabla\times\widetilde{\mathbf A}_{\mathrm p}-\mathbf B_{\mathrm{tar}}\right|^2\right\rangle=B_0^2+\left\langle\left|\nabla\times\widetilde{\mathbf A}_{\mathrm p}-\mathbf B_{\mathrm{fluc}}\right|^2\right\rangle\ge B_0^2\quad(\widetilde{\mathbf A}_{\mathrm p}\text{ smooth and periodic}).
+$$
+
+### Work an example with flux and potential units
+
+Take L=2 m, B_ref=1 microtesla and B1=B_ref. For B0=0.5 B_ref, flux through the positive-z face is 2 microweber; the opposite outward face has −2 microweber. The minimum cell RMS error of a periodic-only curl is 0.5 microtesla, while the affine A_y jump across x is 0.5 microtesla m.
+
+The table normalizes flux by B_ref L², RMS by B_ref and the A_y jump by B_ref L. It is an exact calculation for this static family, not a magnetohydrodynamic evolution or a convergence test of a particular solver.
+
+| B0 / B_ref | face flux ratio | minimum RMS ratio | A_y jump ratio |
+| --- | --- | --- | --- |
+| -1 | -1 | 1 | -0.5 |
+| 0 | 0 | 0 | 0 |
+| 0.5 | 0.5 | 0.5 | 0.25 |
+| 1 | 1 | 1 | 0.5 |
+
+```python
+# Normalize B by B_ref and lengths by L where stated.
+for mean_ratio in [-1, 0, .5, 1]:
+    face_flux_ratio = mean_ratio
+    minimum_rms_ratio = abs(mean_ratio)
+    potential_jump_ratio = mean_ratio/2
+    print(*(format(t, '.9g') for t in
+            [mean_ratio, face_flux_ratio,
+             minimum_rms_ratio, potential_jump_ratio]))
+```
+
+In the native zero-current cylinder, a constant axial gauge gradient changes A but leaves B zero. Its scalar gauge c_z z is valid on ordinary space and is not periodic in z when c_z is nonzero. This checks the domain distinction, not a new periodic-cell feature in the cylinder lab.
+
+[Mocz and colleagues, section 2.3](https://arxiv.org/html/1606.02310#S2.SS3), discuss separating periodic and mean-field contributions. The face cancellation, Fourier inverse, remaining constant-potential freedom and error floor above are derived directly for this smooth static cell. No claim about that paper’s numerical MHD accuracy is used as evidence for our supplement.
+
+![Periodic field, missing mean flux and affine potential jumps](/assets/learning/electromagnetism-periodic-flux-obstruction.en.svg)
+
+### Research questions with explanations
+
+**Does nonzero flux through one cell face violate div B=0?** **Answer:** No. Opposite outward faces cancel. The obstruction is the assumed globally periodic potential, not a magnetic charge.
+
+**Can a small denominator at the zero Fourier mode restore the mean field?** **Answer:** No. Curl annihilates the zero potential mode. Carry the mean magnetic field separately or change the representation.
+
+**Does Coulomb gauge fix every component of periodic A?** **Answer:** No. The constant vector remains unconstrained by curl and divergence; its relation to a scalar gauge depends on the allowed periodicity class.
+
 ## Exercises with explanations
 
 ### Exercise 1 — A nonzero axis potential
