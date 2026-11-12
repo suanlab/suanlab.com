@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-two-unit-extension",
+  "date": "2026-11-12",
+  "baselineCommit": "58ca8f2070f5691d6abc3b4d6d3aa6805e8363aa",
+  "scope": {
+    "expandedUnits": [
+      "routh-cyclic-momentum-reduction",
+      "circle-dirac-constraint-geometry"
+    ],
+    "manuscripts": 4,
+    "localizedFigures": 4,
+    "originalManuscriptsPreserved": true,
+    "previousReviewEntriesPreserved": 669,
+    "reviewEntriesAfter": 673,
+    "cumulativeAnalyticalResearchUnits": 16,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/routh-cyclic-momentum-reduction.en.md",
+      "sha256": "551f3d19d3a6df3980458d1b74f2a9d8436c012e108701fcb3af4d29383d977b",
+      "previousSha256": "e5693189ea930263e962e946d55d11b4450b8a978c09c8a9752f7e1d76ba669a"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/routh-cyclic-momentum-reduction.ko.md",
+      "sha256": "3b6e29f842db5caeb02d1e6e0316b2603d68d8632ea7dc793c76e4725c362c01",
+      "previousSha256": "537cd0f506b186e7cfec4be67ce890febbf935f4bbd70446a3c952f72f562776"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/circle-dirac-constraint-geometry.ko.md",
+      "sha256": "a1241691ee368c484501809a7d1d08fec081c75b21ba10406445a375c5d1bc51",
+      "previousSha256": "ec7858f7a6189f9fc6f1306caa3b250e4d27d93cbab4c7a1e435dbcb198999be"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/circle-dirac-constraint-geometry.en.md",
+      "sha256": "b073020a12015319bacd17881cc17fb338098992fe4d4ba4ada513bd9591d1ae",
+      "previousSha256": "7d0ba4e0422c342c36f7fed0c2b895ca345dc9e03fcce62ea6ce6983f6dfd29c"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/analytical-constraint-nonholonomic.en.svg",
+      "sha256": "757133262902c90e89754f02a8a15abb0faba71162707206066a3b37ef94c121"
+    },
+    {
+      "path": "public/assets/learning/analytical-constraint-nonholonomic.ko.svg",
+      "sha256": "c41ff82aeb7c51e43c4558c68bb5733028cf537df1dd4ac8f7032925a2cf8299"
+    },
+    {
+      "path": "public/assets/learning/analytical-constraint-moving-circle.ko.svg",
+      "sha256": "0f35ede3da1a4c3cefa9b2387d2849f35b81334ed5cd458b4fba945544607c78"
+    },
+    {
+      "path": "public/assets/learning/analytical-constraint-moving-circle.en.svg",
+      "sha256": "c9783925be6a7d950862a5822b58fe4d60443e4c0b469772984ccf1226ec746b"
+    }
+  ],
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-generalized-coordinates.test.ts",
+      "scripts/learning-stationary-action.test.ts",
+      "scripts/learning-lagrange-equations.test.ts",
+      "scripts/learning-hamiltonian-canonical.test.ts",
+      "scripts/learning-poisson-brackets.test.ts",
+      "scripts/learning-symplectic-geometry.test.ts",
+      "scripts/learning-noether-theorem.test.ts",
+      "scripts/learning-constraints-reduction.test.ts",
+      "scripts/learning-hamilton-jacobi.test.ts",
+      "scripts/learning-hamilton-jacobi-integration.test.ts",
+      "scripts/learning-structure-preserving.test.ts",
+      "scripts/learning-structure-preserving-integration.test.ts",
+      "scripts/learning-analytical-topology-research.test.ts",
+      "scripts/learning-coordinate-research.test.ts",
+      "scripts/learning-action-research.test.ts",
+      "scripts/learning-lagrange-research.test.ts",
+      "scripts/learning-canonical-research.test.ts",
+      "scripts/learning-symplectic-dimension-research.test.ts",
+      "scripts/learning-noether-research.test.ts",
+      "scripts/learning-constraint-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 380,
+    "selectedTestFailures": 0,
+    "focusedTests": 12,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-constraint-research.py",
+      "admissibleLoopChecks": 48,
+      "collapsedCircleRejections": 12,
+      "movingCircleExactStates": 972,
+      "movingCirclePathStates": 420,
+      "nonholonomicPathStates": 405,
+      "nonholonomicStates": 405,
+      "vakonomicSnapshotChecks": 1215
+    },
+    "pairedPythonCellsExecuted": 4,
+    "pairedDisplayEquationsPerUnit": [
+      8,
+      8
+    ],
+    "displayedExampleTableOutputsVerified": true,
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "build": "passed",
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "basis": "unchanged registry sources from baseline commit"
+    },
+    "sourceExportServedSvgPairs": 4,
+    "exportServedHtmlPairs": 2,
+    "sourceFigurePreviewsReviewed": 4,
+    "mobileScreenshotsReviewed": 4,
+    "browser": {
+      "unitCount": 2,
+      "states": 16,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 6,
+      "explainedQuizzes": 4,
+      "conceptSelections": 8,
+      "persistenceCompletionGroups": 2,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "command": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_CONSTRAINT_RESEARCH_REPORT=.runtime/learning/constraint-research-browser.json node scripts/check-constraint-research.cjs"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://arxiv.org/html/1405.5394v1",
+      "sections": "3,6",
+      "role": "Lagrange-dAlembert/vakonomic distinction; standard particle with x/y exchanged and units restored"
+    },
+    {
+      "url": "https://arxiv.org/html/2302.10966v2",
+      "sections": "2 equations 6-7",
+      "role": "time-dependent second-class constraint correction"
+    }
+  ],
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 39,
+    "reviewedTopics": 386,
+    "remainingDomains": 12,
+    "remainingTopics": 123,
+    "introductoryTopicsComplete": 362
+  }
+}

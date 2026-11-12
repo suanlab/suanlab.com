@@ -170,6 +170,150 @@ Conversely, a network trained only to keep energy constant can preserve the wron
 
 This example is a second-class pair, not a local gauge redundancy. First-class constraints, gauge fixing, quantization and operator-ordering questions require additional constructions. The circle bracket is an entry point to those topics, not a claim that their full analysis has been implemented.
 
+## Research extension: a moving constraint changes the total time derivative
+
+The native circle is fixed in space. Its ideal reaction has zero power and a free constrained particle conserves kinetic energy. A prescribed expanding circle is a different physical experiment. Its reaction can do work even when the instantaneous Dirac bracket remains skew and regular.
+
+We now prescribe a smooth positive radius R(t), remove the external Cartesian force and retain the same mechanical momentum p=m qdot. This is a supplementary model, not a time control added to the native fixed-circle laboratory. The time-dependent bracket correction follows the general rule in N. Barros e Sá's [section 2, equations (6)–(7)](https://arxiv.org/html/2302.10966v2); the moving-circle specialization and exact solutions below are derived directly.
+
+### Differentiate the actual moving position relation
+
+Position compatibility now demands radial velocity Rdot. With the same one-half normalization as the original lesson,
+
+$$
+H=\frac{p\cdot p}{2m},\quad R(t)>0,\qquad
+\phi_1=\frac{q\cdot q-R(t)^2}{2},\quad
+\phi_2=q\cdot p-mR\dot R,\quad m>0.
+$$
+
+The momentum condition is obtained by differentiating the position relation and using p=m qdot. It is not the old tangency condition q dot p=0. In particular a nonzero normal momentum may be physically correct for this moving circle.
+
+At each fixed time the position/momentum gradients have the same form as before, and the constraint matrix is still invertible for q nonzero. Explicit partial time derivatives hold q and p fixed:
+
+$$
+s=q\cdot q,\quad C=\begin{pmatrix}0&s\\-s&0\end{pmatrix},\quad
+\partial_t\phi=\begin{pmatrix}-R\dot R\\-m(\dot R^2+R\ddot R)\end{pmatrix}.
+$$
+
+The two constraint derivatives have different units, m²/s and J. They cannot be combined into one unweighted numerical tolerance. On the intended surface s=R²>0, so the inverse uses the actual s, as in the native construction.
+
+### Add the affine correction from constraint compatibility
+
+The instantaneous Dirac bracket annihilates the constraint gradients. That fact alone does not cancel the explicit time terms. The correct total derivative of an observable is
+
+$$
+\frac{dF}{dt}=\{F,H\}_D-\{F,\phi_a\}(C^{-1})^{ab}\partial_t\phi_b+\partial_tF.
+$$
+
+To derive it, start with a total Hamiltonian H plus multipliers times the constraints. Enforcing zero total constraint derivatives gives C times the multiplier vector equal to minus the sum of the canonical constraint-Hamiltonian brackets and explicit constraint-time derivatives. Inserting that solution in Fdot yields the displayed formula with the stated minus sign.
+
+For F equal to either constraint, its Dirac-bracket term is zero. The middle term becomes minus its explicit time derivative because C times C inverse is the identity. The last term then cancels it exactly. The instantaneous Casimir identity and zero total derivative are therefore consistent, but they are not the same assertion when the functions depend on time.
+
+### Recover Newton motion and boundary work
+
+On the physical constraint surface the full corrected field reduces to
+
+$$
+J_z=q_xp_y-q_yp_x,\quad \dot J_z=0,\qquad
+\dot q=\frac pm,\quad
+\dot p=\left(\frac{m\ddot R}{R}-\frac{J_z^2}{mR^4}\right)q.
+$$
+
+The momentum rate is radial, so its torque is zero and angular momentum Jz is constant. The radial acceleration Rddot and centripetal requirement determine the reaction. Unlike the static case, physical velocity has a radial component, giving
+
+$$
+E=\frac m2\dot R^2+\frac{J_z^2}{2mR^2},\qquad
+\dot E=\left(m\ddot R-\frac{J_z^2}{mR^3}\right)\dot R
+=\dot p\cdot\dot q.
+$$
+
+This power is an exchange with the external device prescribing the radius. The bare H has no explicit time dependence, but the constraints do. Antisymmetry only forces the Dirac-bracket contribution {H,H}_D to vanish; it does not eliminate the extra time-constraint term in total Hdot. No contradiction with energy balance is involved.
+
+### Reconstruct a complete exact motion
+
+Take an initially positive radius R0, a constant radial speed c and restrict the interval so R remains positive. Integration of the angular rate Jz/(mR²) gives
+
+$$
+R=R_0+ct>0,\qquad
+\theta(t)=\begin{cases}
+\theta_0+\dfrac{J_z}{mc}\left(\dfrac1{R_0}-\dfrac1{R_0+ct}\right),&c\ne0,\\
+\theta_0+\dfrac{J_zt}{mR_0^2},&c=0.
+\end{cases}
+$$
+
+Then reconstruct the position and momentum from the rotating orthonormal vectors:
+
+$$
+e_r=(\cos\theta,\sin\theta),\quad e_\theta=(-\sin\theta,\cos\theta),\qquad
+q=Re_r,\quad p=mc\,e_r+\frac{J_z}{R}e_\theta.
+$$
+
+The first momentum term is the physical radial motion of the moving boundary. At c=0 the explicit separate branch recovers the native static-circle free solution and zero reaction power. At nonzero c, initializing with the old tangent momentum alone would violate the moving momentum condition. For c<0 the formula is valid only before collapse; no denominator clamp extends it through R=0.
+
+### Expose the instantaneous-bracket-only failure
+
+If one uses only {F,H}_D and the ordinary explicit derivative, omitting the middle term above, then
+
+$$
+\left(\frac{d\phi_1}{dt},\frac{d\phi_2}{dt}\right)_{\rm Dirac\ only}
+=(-Rc,-mc^2)\quad\text{for }R=R_0+ct.
+$$
+
+Even though the instantaneous constraints are Dirac Casimirs, their total rates are not zero. The uncorrected position rate projects away the needed radial velocity. It cannot keep pace with a moving circle. This is a continuous-model error, distinct from the integration drift of a finite numerical step.
+
+![The expanding circle preserves angular momentum while kinetic energy falls; its negative energy rate equals the radial reaction power.](/assets/learning/analytical-constraint-moving-circle.en.svg)
+
+### Calculate the work in one expanding example
+
+Choose m=1 kg, R0=1 m, c=0.5 m/s, Jz=1 Js and initial angle zero. Initially q=(1,0) m and p=(0.5,1) kg m/s. This state is consistent with the moving constraint, though it fails the native static-circle momentum condition. The numerical table is rounded to six decimal places.
+
+| t (s) | R (m) | E (J) | reaction power (W) |
+|---|---|---|---|
+| 0 | 1 | 0.625 | −0.5 |
+| 0.5 | 1.25 | 0.445 | −0.256 |
+| 1 | 1.5 | 0.347222 | −0.148148 |
+| 2 | 2 | 0.25 | −0.0625 |
+
+The energy change over two seconds is −0.375 J, equal to the integral of the reaction power. Angular momentum remains 1 Js throughout. The expanding boundary absorbs rotational kinetic energy while its radial kinetic contribution stays 0.125 J. A negative power here describes work on the particle by the constraint device; the opposite sign is the particle's power delivered to that device.
+
+```python
+from math import sin, cos
+
+def state(t, m=1, r0=1, c=.5, angular=1):
+    r = r0+c*t
+    if m <= 0 or r0 <= 0 or r <= 0:
+        raise ValueError("Require positive mass and radius")
+    theta = angular*t/(m*r0*r0) if c == 0 else angular*(1/r0-1/r)/(m*c)
+    er = [cos(theta), sin(theta)]
+    et = [-er[1], er[0]]
+    q = [r*x for x in er]
+    p = [m*c*x+angular*y/r for x,y in zip(er,et)]
+    assert abs(sum(x*y for x,y in zip(q,p))-m*r*c) < 1e-12
+    assert abs(q[0]*p[1]-q[1]*p[0]-angular) < 1e-12
+    energy = sum(x*x for x in p)/(2*m)
+    power = -angular*angular*c/(m*r**3)  # Linear R has Rddot=0.
+    return r, energy, power
+
+for t in [0, .5, 1, 2]:
+    print(t, *(round(x, 6) for x in state(t)))
+assert abs(state(1, c=0)[1]-.5) < 1e-12 and state(1, c=0)[2] == 0
+try:
+    state(2, r0=1, c=-.5)
+    raise AssertionError("Collapsed circle must reject")
+except ValueError:
+    pass
+```
+
+The independent verifier additionally constructs the entire constraint-gradient matrix and its inverse over exact rational states with nonzero Rddot, compares the corrected field to Newton's radial reaction, and differentiates reconstructed paths numerically. The printed example alone is not a test of the full general formula.
+
+### Research questions with explanations
+
+**Why does an ideal moving constraint do work?** **Answer:** Ideality concerns zero work on allowed virtual displacements at fixed time. Those are tangent to the instantaneous circle. The actual velocity additionally has radial speed Rdot, so a radial reaction can have nonzero physical power.
+
+**Does an autonomous bare Hamiltonian guarantee conserved energy here?** **Answer:** No. The prescribed constraints carry explicit time dependence and exchange energy with their driver. Keep the affine time correction in total observable derivatives, even if the instantaneous bracket is skew and {H,H}_D is zero.
+
+**Can the static-circle laboratory validate the new motion by changing only its momentum inputs?** **Answer:** No. Its equations assume a fixed radius and the old momentum condition. The moving problem requires different compatible initial data and the explicit time correction. A regular instantaneous tensor does not identify which physical constraint schedule is intended.
+
 ## Exercises with explained solutions
 
 1. **A missing condition.** At the physical free state above, compare the canonical rates of the two constraints.

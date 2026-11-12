@@ -165,6 +165,136 @@ An energy profile can vary with radius in this experiment while the directional 
 
 For learned reduced models, record the fixed momentum, regularity domain, reconstruction equations and energy convention. A small force gap at ell zero or at one radius can conceal a wrong reduction. A dimension count without the quotient or a finite singular limit can conceal a missing variable or an invalid chart.
 
+## Research extension: cyclic coordinates can exchange momentum through a velocity constraint
+
+The native Routh calculation fixes a genuinely conserved cyclic momentum in a regular unconstrained mechanical model. A velocity constraint changes the admissible virtual displacements and the reaction forces. Independence of the displayed Lagrangian from a coordinate no longer suffices to conclude that its mechanical momentum is constant.
+
+We use a dimensioned form of the standard nonholonomic particle, exchanging x and y relative to the particle discussed by Jiménez and Yoshimura in [section 6](https://arxiv.org/html/1405.5394v1). Their [section 3](https://arxiv.org/html/1405.5394v1) distinguishes the Lagrange–d'Alembert and vakonomic principles. The force, unit bookkeeping, explicit path and checks below are derived from the stated model. This is a three-dimensional Python companion, not a new option in the polar Routh laboratory.
+
+### Specify both the velocity constraint and the variation rule
+
+Take a free particle of mass m, with x,y,z in meters and a fixed reference length ell. The Lagrange–d'Alembert prescription restricts virtual displacements to the same linear distribution as the velocities:
+
+$$
+L=\frac m2(\dot x^2+\dot y^2+\dot z^2),\quad
+\dot z-\frac{x}{\ell}\dot y=0,\quad \alpha=dz-\frac{x}{\ell}dy,\qquad
+\delta z-\frac{x}{\ell}\delta y=0,\quad m>0,\ \ell>0.
+$$
+
+A virtual displacement is an instantaneous test displacement at a fixed time; it is not a finite motion. Ideal reaction forces annihilate these allowed displacements. The constraint is nonholonomic: locally it cannot be replaced by one position equation whose tangent planes are exactly this two-dimensional distribution. The Frobenius obstruction is explicit:
+
+$$
+d\alpha=-\ell^{-1}dx\wedge dy,\qquad
+\alpha\wedge d\alpha=-\ell^{-1}dx\wedge dy\wedge dz\ne0.
+$$
+
+There is no singular denominator at x=0: ell stays strictly positive. This regular distribution differs from the polar chart's singularity at radius zero. Nor does the condition merely freeze z; z velocity depends on both x and y velocity.
+
+### Derive the ideal reaction before claiming conservation
+
+The allowed virtual displacements have a one-dimensional annihilator. Therefore the ideal force must have the following direction, with a multiplier nu measured in newtons:
+
+$$
+m\ddot q=\nu(0,-x/\ell,1),\qquad
+\nu=\frac{m\ell\dot x\dot y}{\ell^2+x^2}.
+$$
+
+To determine nu, differentiate the velocity constraint once and insert the three acceleration equations. The factor 1+x²/ell² is positive, so this determines nu uniquely. In component form,
+
+$$
+\ddot x=0,\quad \ddot y=-\frac{x\dot x\dot y}{\ell^2+x^2},\quad
+\ddot z=\frac{\ell\dot x\dot y}{\ell^2+x^2},\qquad
+\dot E=\nu\left(\dot z-\frac{x}{\ell}\dot y\right)=0.
+$$
+
+The reaction does no work on admissible velocities. Energy is conserved, but py=m ydot and pz=m zdot generally change. Their rates are −nu x/ell and nu respectively. The Lagrangian is independent of both y and z, yet the corresponding unrestricted coordinate variations are not both allowed by the constraint. A pure z displacement is never admissible; pure y displacement is admissible only at x=0. Thus the unrestricted cyclic-coordinate Euler–Lagrange argument cannot be applied to those directions.
+
+This does not contradict the native Routh theorem. Its conserved-momentum hypothesis is absent here. Nonholonomic systems can have useful symmetry reductions or alternative Hamiltonian descriptions under additional conditions; this example does not rule out those constructions. It rules out declaring both py and pz constant just because their coordinates are absent from L.
+
+### Follow an exact energy-preserving path
+
+Let the initial position be zero and initial velocity (u,w,0), with u and w in m/s. For u nonzero, an exact solution is
+
+$$
+x=ut,\quad y=\frac{w\ell}{u}\operatorname{asinh}(ut/\ell),\quad
+z=\frac wu\left(\sqrt{\ell^2+u^2t^2}-\ell\right),\qquad u\ne0.
+$$
+
+Differentiating gives
+
+$$
+d=\sqrt{\ell^2+u^2t^2},\quad
+(\dot x,\dot y,\dot z)=(u,w\ell/d,wut/d),\qquad
+E=\frac m2(u^2+w^2).
+$$
+
+The case u=0 is a separate regular branch: x=z=0 and y=wt. It is not a singular physical state, even though the displayed divided formula needs its limit. At unit SI values m=ell=u=w=1, x=t, y=asinh(t), z=sqrt(1+t²)−1 and energy is 1 J. Momentum transfers from the y direction to the z direction while x momentum remains constant. The magnitude of the transverse momentum is constant even though its components are not.
+
+### Compare a different constrained variational problem
+
+Adding the velocity constraint to the action with a multiplier mu and then varying all coordinates gives the vakonomic equations:
+
+$$
+L_{\rm vak}=L+\mu\left(\dot z-\frac{x}{\ell}\dot y\right),\qquad
+m\ddot x=-\frac{\mu\dot y}{\ell},\quad
+m\ddot y=\frac{x\dot\mu+\mu\dot x}{\ell},\quad m\ddot z=-\dot\mu.
+$$
+
+Here mu has momentum units, unlike the force multiplier nu. The coordinate-cyclic conserved expressions of the augmented variational problem are m ydot−mu x/ell and m zdot+mu; they are not the original mechanical momenta.
+
+These equations are not the stated Lagrange–d'Alembert equations. Along the generic explicit path with nonzero u and w, matching the x equation would require mu=0 throughout the interval, since y velocity never vanishes. Matching z would simultaneously require mudot=−nu, which is nonzero. No such mu exists on an interval. Setting mu=0 at one instant can hide the difference there, but it cannot fix this incompatibility over time. The chosen physical reaction/variation rule matters; a velocity relation alone does not choose between these principles.
+
+### Read geometric path dependence separately from dynamics
+
+For any admissible path whose xy projection closes,
+
+$$
+\Delta z=\frac1\ell\oint x\,dy
+=\frac{\text{oriented }xy\text{ area}}\ell.
+$$
+
+The orientation is counterclockwise in the xy plane for positive area. For example, a rectangular xy loop of width a and height b accumulates z displacement ab/ell. Opposite traversal reverses the height gain. This is a geometric consequence of the velocity relation and Stokes' theorem, not a claim that the free dynamical solution follows that rectangular loop. The explicit free path above does not close in xy.
+
+![Individual y and z momenta change while the energy remains constant in the nonholonomic particle's unit-reference solution.](/assets/learning/analytical-constraint-nonholonomic.en.svg)
+
+### Reproduce the unit-reference momentum transfer
+
+All values below use the stated unit SI coefficients; py and pz have momentum units.
+
+| t (s) | py (kg m/s) | pz (kg m/s) | E (J) |
+|---|---|---|---|
+| 0 | 1 | 0 | 1 |
+| 0.5 | 0.894427 | 0.447214 | 1 |
+| 1 | 0.707107 | 0.707107 | 1 |
+| 2 | 0.447214 | 0.894427 | 1 |
+
+```python
+from math import sqrt, asinh
+
+# SI: m=ell=u=w=1. This is a companion, not a native radius profile.
+for t in [0, .5, 1, 2]:
+    d = sqrt(1+t*t)
+    x, y, z = t, asinh(t), d-1
+    vx, vy, vz = 1, 1/d, t/d
+    ax, ay, az = 0, -t/d**3, 1/d**3
+    energy = (vx*vx+vy*vy+vz*vz)/2
+    assert abs(vz-x*vy) < 1e-12
+    assert abs(az-vx*vy-x*ay) < 1e-12
+    assert abs(vx*ax+vy*ay+vz*az) < 1e-12
+    assert abs(energy-1) < 1e-12
+    print(t, round(vy, 6), round(vz, 6), round(energy, 6))
+```
+
+The analytic derivatives establish the continuous result; four sampled times illustrate it. The independent verifier additionally checks exact rational reaction states, both variational equations at snapshots, geometric loops and finite differences of the whole analytic family.
+
+### Research questions with explanations
+
+**Does zero reaction power force every cyclic mechanical momentum to be constant?** **Answer:** No. Power is one scalar contraction with velocity. The ideal force can redistribute momentum components while that contraction vanishes. This example has nonzero py and pz rates with exactly constant energy.
+
+**Can one simply substitute the velocity constraint into L and use unrestricted Euler–Lagrange equations?** **Answer:** Not for this specified Lagrange–d'Alembert system without deriving the resulting constrained variational rule. The allowed virtual displacements and reaction law carry information that such a substitution can discard.
+
+**What must a learned reduced model report?** **Answer:** State the constraint distribution, variation/reaction principle, actual conserved quantities and reconstruction law. A small energy error, a correct geometric loop relation or a coordinate-cyclic label does not by itself verify the intended dynamics.
+
 ## Exercises with explained solutions
 
 1. **Centrifugal sign.** In the first example, calculate the correct and naive radial forces at one meter.
