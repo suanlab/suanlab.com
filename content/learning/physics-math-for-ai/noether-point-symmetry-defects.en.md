@@ -147,6 +147,118 @@ A useful bound is $|\Delta Q|\le\int|D|dt+\int\|R\|\|\eta\|dt$. Each residual co
 
 An invariant neural-network loss is not automatically a mechanical action, and an optimization iterate is not automatically an Euler-Lagrange trajectory. To use Noether's theorem in AI research, specify the action, continuous transformation, boundary conditions and evolution law. Field currents, local gauge identities and higher-derivative actions require additional treatment beyond this finite-dimensional lesson.
 
+## Research extension: which residual directions do conserved charges observe?
+
+The off-shell identity is a projection: each characteristic contracts the vector residual into one charge rate. Several conserved scalars can still miss the same residual direction. To turn conservation into a dynamics certificate, inspect the span of the characteristics at the states actually visited. Counting named symmetries is not enough.
+
+This supplement uses free planar motion and combines generators already explained in the native laboratory. The new curved candidate below is a Python companion; it is not one of the six native path presets. No force law, preset or interface input changes.
+
+### Stack the characteristic vectors
+
+For the free model, choose the normalized x translation and planar rotation:
+
+$$
+L=\frac m2(\dot x^2+\dot y^2),\quad R=m\ddot q,\qquad
+\chi_1=(\ell,0),\quad\chi_R=(-y,x),\quad m>0,\ \ell>0.
+$$
+
+Both are global action symmetries with zero defect. Their corrected charges are Q1=ell times x momentum and QR=angular momentum. More generally, when a specified transformation has a nonzero defect, subtract that defect from its charge rate before interpreting the residual projection. Write the two measurements as a linear system:
+
+$$
+b=\begin{pmatrix}\dot Q_1-D_1\\\dot Q_R-D_R\end{pmatrix}
+=B^TR,\qquad B=\begin{pmatrix}\ell&-y\\0&x\end{pmatrix},\qquad \det B=\ell x.
+$$
+
+Columns of B are the characteristics, each measured in meters. R is a force vector, so b has units J, the rate of an action-valued charge. Dividing B by the fixed reference length ell gives a dimensionless matrix suitable for a numerical condition analysis. An unnormalized singular-value threshold would depend on arbitrary unit choices.
+
+When x is nonzero, the two measurements determine both residual components:
+
+$$
+x\ne0:\quad R_x=\frac{b_1}{\ell},\qquad
+R_y=\frac{b_R+(y/\ell)b_1}{x}.
+$$
+
+Thus if both defects vanish and both charges are constant continuously along a candidate staying in this full-rank region, that candidate satisfies the free equations. This is a conditional converse using this spanning family; one scalar conservation law alone has no such implication.
+
+### Find a whole missed motion, not an isolated singular point
+
+At x=0 and y nonzero, both characteristics are nonzero but parallel to the x direction. Their two contractions observe only Rx. Choose a time scale $t_*$ in seconds and the smooth candidate
+
+$$
+q(t)=\left(0,\ell\left[1+(t/t_*)^2\right]\right),\quad t_*>0,\qquad
+Q_1=\ell m\dot x=0,\quad Q_R=m(x\dot y-y\dot x)=0,\quad
+R=\left(0,\frac{2m\ell}{t_*^2}\right)\ne0.
+$$
+
+The y velocity increases with time, so the y momentum changes despite both displayed charges being exactly zero on the entire path. At unit SI reference values, the missing residual is 2 N. Both transformations remain genuine symmetries of the free model; the candidate violates the dynamics in their common unobserved direction.
+
+This is not the claim that a single rank-deficient point invalidates every trajectory certificate. If full rank holds on a dense set of times and the residual is continuous, vanishing there extends by continuity to the isolated missing times. Our counterexample stays inside the rank-deficient set for an interval, so that extension does not apply. At the origin the rotation characteristic itself is zero, but the example does not need that extra degeneracy: y stays positive.
+
+### Quantify the error amplification near rank loss
+
+For fixed, exactly known x and y, suppose the two inferred charge-rate measurements have bounded additive errors. Subtracting the exact reconstruction formula gives
+
+$$
+|\delta b_1|\le\epsilon_1,\quad |\delta b_R|\le\epsilon_R
+\quad\Longrightarrow\quad
+|\delta R_y|\le\frac{\epsilon_R+|y/\ell|\epsilon_1}{|x|}.
+$$
+
+The numerator has units J and the denominator meters, giving N. The bound is deterministic, not a confidence interval. It addresses measurement errors in the charge rates; uncertainty in positions, model defects or numerical differentiation would require additional terms. Charge differences at two endpoints are not instantaneous charge rates: cancellations inside an interval can hide a nonzero residual even with independent characteristics.
+
+At ell=y=1 m and both rate-error bounds 0.01 J, the bound on Ry error is 0.02 N at x=1 m, 0.2 N at x=0.1 m and 2 N at x=0.01 m. The matrix is still invertible at every one of these points, yet a small conservation-rate error is progressively weaker evidence about the force error. At x=0 the displayed formula is unavailable; replacing its denominator by a small clamp would manufacture a certificate.
+
+### Add an independent measurement direction
+
+Include y translation, whose characteristic is constant and independent of x translation:
+
+$$
+\chi_y=(0,\ell),\qquad B_{xy}=\ell I_2,\qquad
+\dot Q_y-D_y=\ell R_y,\qquad
+|\delta R_y|\le\epsilon_y/\ell.
+$$
+
+These two translations recover both components everywhere for the free model. On the curved counterexample the y-translation rate immediately reports the missing residual. Rotation remains a useful extra consistency check, but adds no missing rank where it is parallel to x translation. For a different potential, first verify each transformation's actual defect; adding a named symmetry without deriving its identity is not enough.
+
+![Near x=0 the translation and rotation measurements amplify rate errors; at x=0 both charges stay zero while the independent y momentum changes.](/assets/learning/analytical-noether-rank.en.svg)
+
+### Reproduce the bound and the hidden candidate
+
+The table uses ell=y=1 m, epsilon1=epsilonR=0.01 J and a y-translation rate error bounded by 0.01 J. The last column uses the independent translation pair, with no division by x.
+
+| x/ell | rank of B | Ry error bound (N) | translation-pair bound (N) |
+|---|---|---|---|
+| 1 | 2 | 0.02 | 0.01 |
+| 0.1 | 2 | 0.2 | 0.01 |
+| 0.01 | 2 | 2 | 0.01 |
+| 0 | 1 | unavailable | 0.01 |
+
+```python
+# SI reference values: m=ell=t_*=1, y=ell, rate errors 0.01 J.
+for x in [1.0, .1, .01, 0.0]:
+    rank = 2 if x != 0 else 1
+    bound = .02/abs(x) if x else None
+    print(x, rank, None if bound is None else round(bound, 6), .01)
+
+# A whole wrong free path, not just a zero rate at one query time.
+for t in [0, .5, 1, 2]:
+    x, y, vx, vy, ax, ay = 0, 1+t*t, 0, 2*t, 0, 2
+    q1, qr = vx, x*vy-y*vx
+    b1, br, by = ax, -y*ax+x*ay, ay
+    assert (q1, qr, b1, br) == (0, 0, 0, 0)
+    assert by == 2  # Adding y translation detects the missing residual.
+```
+
+The polynomial expressions establish the full-path counterexample; the printed times merely illustrate it. In research code, inspect the smallest singular value of a dimensionless characteristic matrix along the candidate, as well as the defects and the residual. A sampled rank check covers those states, not unobserved regions.
+
+### Research questions with explanations
+
+**Do two different symmetry names guarantee two independent diagnostics?** **Answer:** No. Translation and rotation are distinct transformations, but their characteristics are parallel on the entire counterexample. Their number exceeds the number of residual directions they observe there.
+
+**Can a very small charge-rate loss certify a small force residual near x=0?** **Answer:** Only with a quantitative lower bound on the relevant characteristic matrix's conditioning and the other measurement errors controlled. The explicit 1/abs(x) factor makes a uniform certificate impossible for this measurement pair near its rank-loss set.
+
+**Does adding y translation prove that every learned model is physically correct?** **Answer:** No. It completes the residual projections for this specified free action, characteristic normalization and exact continuous rates. An incorrect action, wrong defects, sampling error or a different physical force law still needs separate checks.
+
 ## Exercises with explained solutions
 
 1. **Uniform force.** In the force-driven translation example, find the charge at two seconds when $\gamma=0$.

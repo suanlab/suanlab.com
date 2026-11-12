@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-12 연구 심화 진행: [Noether의 잔차 식별·작용 대칭](physics-math-for-ai/noether-research-status.md)을 두 단원의 한영 네 편과 그림 네 개에 보강했다. 특성 324상태·오차 부호 1,296대조·숨은 경로 32상태·사차 boost 324상태·위상 생성자 432상태를 검산했다. 선택 375검사·표/기호 표시·빌드·타입·출력과 변경 두 단원 16화면·6안내·4퀴즈·2저장/완료가 통과했다. 기존 650단원·1,969안내와 665검토 항목을 보존했다. [해석역학 보강은 14/20단원](physics-math-for-ai/analytical-mechanics-topic-review.md)이며 다음은 구속 두 단원이다. 입문 362/362 완료와 전체 대조 39영역·386주제/후속 12영역·123주제는 유지한다.
+
 2026-11-12 연구 심화 진행: [4차원 symplectic의 Jacobi·측도·식별](physics-math-for-ai/symplectic-dimension-research-status.md)을 한영 두 편과 그림 두 개에 보강했다. 405위상점의 전체 pushforward·Jacobi·외미분, 810에너지/810가중 발산을 검산했다. 선택 370검사·빌드·타입·출력과 변경 단원 8화면·3안내·2퀴즈·1저장/완료가 통과했다. 기존 650단원·1,969안내와 이전 663검토 항목을 보존했다. [해석역학 연구 보강은 12/20단원](physics-math-for-ai/analytical-mechanics-topic-review.md)이며 다음은 Noether 두 단원이다. 입문 362/362 완료와 전체 대조 39영역·386주제/후속 12영역·123주제는 유지한다.
 
 2026-11-12 연구 심화 진행: [정준 동역학의 역변환·시계·축약](physics-math-for-ai/canonical-research-status.md)을 세 단원의 한영 6편에 보강했다. Legendre 270상태·비선형 좌표 108상태·각운동량 729상태와 같은 L/H의 반대 토크 반례를 검산했다. 선택 368검사·빌드·타입·출력과 변경 세 단원의 24화면·9안내·6퀴즈·3저장/완료가 통과했다. 기존 650단원·1,969안내와 657검토 항목을 보존했다. [해석역학 진행](physics-math-for-ai/analytical-mechanics-topic-review.md)은 연구 보강 11단원이며 다음은 남은 4차원 symplectic 사상과 Noether 단원이다. 전체 대조 39영역·386주제, 남은 12영역·123주제와 전체 51영역·509주제를 유지한다.

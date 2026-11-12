@@ -168,6 +168,139 @@ $\epsilon$은 비교 경로를 바꾸며 미소 생성자와 그 전하의 정�
 
 학습한 동역학에서도 힘의 법칙이 올바르게 변환되는지, 전체 잔차가 작은지, 적절한 경계항을 사용했는지, 물리 단위가 일치하는지 각각 검사해야 합니다. 작용 항등식만을 학습 목표로 삼으면 운동방정식을 만족하지 않는 후보도 통과할 수 있습니다. 보존되는 스칼라 하나만 확인해도 진화 법칙을 놓칠 수 있습니다. 이산 적분기로 확장하려면 이산 변분 원리를 유도해야 합니다. 연속 정리를 표본 시각에 대입했다고 자동으로 이산 Noether 정리가 되는 것은 아닙니다.
 
+## 연구 확장: 같은 자유 운동 방정식에서도 boost charge는 달라질 수 있다
+
+기본 이차 모델에는 boost 경계항과 보존되는 보정 charge가 있다. [사차 운동항 예제](/book/online/physics-math-for-ai/polar-lagrange-newton-equivalence/)는 자유 궤적의 일치만으로 작용을 식별할 수 없음을 보여 주었다. 이제 1차원 공간에서 그 차이가 대칭에 주는 결과를 직접 유도하자.
+
+이번 보충은 기본 모델의 외력을 없애고 대표식의 게이지항도 제외한 뒤 운동 Lagrangian을 바꾼다. Lambda는 보충 모델의 계수이며 기존 슬라이더가 아니다. 기본의 시간 의존 외력 다항식 실습은 그대로 유지한다.
+
+### 정칙인 비이차 작용에서 출발하기
+
+v는 속도, m은 양의 질량이며 음이 아닌 lambda의 단위는 kg s²/m²다.
+
+$$
+L_\lambda(v)=\frac m2v^2+\frac\lambda4v^4,\quad
+p=mv+\lambda v^3,\quad M(v)=\frac{dp}{dv}=m+3\lambda v^2>0,\qquad
+R=M(v)\dot v,\quad m>0,\ \lambda\ge0.
+$$
+
+속도 Hessian M(v)가 양수이므로 Euler–Lagrange 방정식 R=0은 가속도 0과 동치다. 따라서 이 가족 전체는 같은 자유 직선 운동을 갖는다. 해에 일정 속도를 더해도 다른 해가 되므로 모든 lambda에서 자유 운동 방정식은 통상적인 Galilean boost를 허용한다.
+
+그 사실만으로 지정한 작용의 준대칭을 증명한 것은 아니다. 단위가 m/s인 $u_*$로 무한소 보통 boost를 정규화하고 변환 매개변수는 무차원으로 두자. 익숙한 이차 모델의 경계항을 시도하면 다음을 얻는다.
+
+$$
+\chi=u_*t,\quad B_0=mu_*q,\quad
+D=\delta L_\lambda-\dot B_0=\lambda u_*v^3,\qquad
+Q_b=u_*(tp-mq),\quad \dot Q_b=D+u_*tR.
+$$
+
+항등식은 off shell에서도 성립한다. Lambda>0이고 속도가 0이 아닌 물리적 자유 운동에서는 잔차가 사라져도 결함은 남는다. 보정 표현 Qb는 lambda·$u_*$·v³의 일정 변화율로 이동한다. Noether 정리가 실패한 것이 아니다. 보통 boost가 이 작용의 준대칭이라는 전제가 성립하지 않는다.
+
+### 점 경계항을 바꾸어도 결함이 사라지지 않는 이유
+
+일차 점 준대칭의 끝점 함수 B(q,t)를 미분하면 독립 속도에 대해 affine인 식만 얻는다.
+
+$$
+\delta L_\lambda=u_*(mv+\lambda v^3),\qquad
+\frac{dB(q,t)}{dt}=B_qv+B_t.
+$$
+
+왼쪽에는 lambda>0이고 변환이 비자명할 때 속도의 세제곱 항이 있다. 모든 독립 속도에서 이를 맞추는 B(q,t)는 존재하지 않는다. 선택한 일정 속도 경로 하나에서만 맞추는 것은 모델의 변분 대칭 증명이 아니다. 점 변환은 그대로 둔 채 경계항에 매끄러운 속도 의존성을 허용하면 가속도의 계수 B_v가 추가된다. 모든 off-shell 경로에서 같으려면 이 계수가 0이어야 하므로 결국 같은 장애로 돌아온다.
+
+예외인 이차 경우 lambda=0에서는 장애가 없고 기본 자유 boost 경계항을 회복한다. Lambda>0에서도 선택한 정지 경로에서는 결함이 0일 수 있다. 그러나 그 속도 한 점의 결과가 전체 결함을 영함수로 만들지는 않는다.
+
+### 실제로 보존되는 위상공간 생성자 찾기
+
+운동량은 속도에 대해 엄격히 증가하며 속도가 양·음의 무한대로 갈 때 각각 같은 쪽 무한대로 간다. 따라서 전역의 매끄러운 역함수 v(p)가 있다. 이 역함수로 Legendre Hamiltonian을 정의하자.
+
+$$
+p=mv(p)+\lambda v(p)^3,\qquad
+H(p)=pv(p)-L_\lambda(v(p)),\qquad H_p=v(p).
+$$
+
+Legendre 표현을 미분하면 v(p)의 미분 항들이 상쇄되어 H_p=v(p)만 남는다. 자유 흐름에서는 p가 일정하고 qdot=v(p)다. 따라서 초기 위치를 나타내는 표현과 그 작용 차원의 생성자는 다음을 만족한다.
+
+$$
+I=q-tv(p),\qquad G=p_*I,\qquad
+\partial_tG+\{G,H\}=-p_*v+p_*H_p=0,\quad p_*>0.
+$$
+
+양의 기준 $p_*$는 운동량 단위이므로 G는 작용 단위다. I는 보존되지만 앞서 구한 보통 boost charge와 같지는 않다. I의 보존은 일반화된 위상공간 변분 대칭과 양립한다. G가 만드는 정준 무한소 변환을 사용하자.
+
+$$
+\delta q=G_p=-\frac{p_*t}{M(v)},\qquad
+\delta p=-G_q=-p_*,\qquad
+\delta v=-\frac{p_*}{M(v)}.
+$$
+
+Lambda>0이면 이 변환의 속도 변화는 현재 운동량에 의존한다. 모든 상태에 똑같이 작용하는 일정 속도 점 boost와 다른 변환이다. 단위 SI 계수와 $p_*$=1 kg m/s에서 v=0의 속도 변화는 −1 m/s, v=1 m/s에서는 −0.25 m/s다. 이차 극한에서는 속도 매개변수 −$p_*$/m인 보통 boost가 된다. 이 선택은 앞서 정규화한 boost 생성자의 부호를 반대로 잡은 것이다.
+
+### 위상 작용의 경계항 직접 확인하기
+
+고정 시간 정준 변분 delta q=G_p, delta p=−G_q에 대해 위상 작용 적분 함수의 일차 변분은 다음과 같다.
+
+$$
+\delta(p\dot q-H)=\frac{d}{dt}\bigl(p\,\delta q-G\bigr)
++\partial_tG+\{G,H\}.
+$$
+
+p delta q에 곱의 미분법을 적용하고 임의의 위상공간 곡선을 따라 G를 미분하자. pdot G_p 항들이 상쇄되고 남은 Hamiltonian 미분이 {q,p}=1인 정준 규약의 bracket을 만든다. 이 항등식에는 운동 방정식이 필요하지 않다. 여기서는 G_t+{G,H}=0이므로 위상 작용의 변화가 경계항 p delta q−G로만 남는다.
+
+이것은 고유한 특성과 경계항을 갖는 다른 변분 대칭을 확인한 것이다. 사차 작용에서 보통 점 boost를 대칭으로 되살린 것이 아니다. 그 유한 정준 변환은 p_epsilon=p−epsilon $p_*$, q_epsilon=q+t[v(p−epsilon $p_*$)−v(p)]다. 속도 변화는 출발 상태에 의존한다. 자유 궤적에서는 같은 I를 유지하면서 다른 자유 해로 보낸다.
+
+![사차 자유 모델에서 보통 boost 표현은 변하지만 위상 생성자는 일정하다. 위상 생성자가 만드는 속도 변화는 현재 상태에 의존한다.](/assets/learning/analytical-noether-boost.ko.svg)
+
+### 하나의 물리적 자유 궤적 계산하기
+
+m=1 kg, lambda=1 kg s²/m², q0=1 m, v0=$u_*$=1 m/s, $p_*$=1 kg m/s로 두자. 그러면 p=2 kg m/s이고 명시한 SI 수치에서 q=1+t, Qb=t−1 Js다. I=1 m, G=1 Js는 모두 일정하다.
+
+| t (s) | 보통 Qb (Js) | I (m) | 위상 G (Js) |
+|---|---|---|---|
+| 0 | −1 | 1 | 1 |
+| 0.5 | −0.5 | 1 | 1 |
+| 1 | 0 | 1 | 1 |
+| 2 | 1 | 1 | 1 |
+
+Charge는 1초에 0을 지나지만 변화율은 여전히 1 J다. 값·변화율·경로 전체의 보존은 서로 다른 질문이다. 표준 라이브러리 코드로 운동량을 역변환하고 표를 재현하자.
+
+```python
+def velocity(p, m, lam):
+    if m <= 0 or lam < 0:
+        raise ValueError("Require m>0 and lambda>=0")
+    if lam == 0 or p == 0:
+        return p/m
+    sign = -1 if p < 0 else 1
+    lo, hi = 0.0, abs(p)/m
+    for _ in range(80):
+        mid = (lo+hi)/2
+        if m*mid+lam*mid**3 < abs(p):
+            lo = mid
+        else:
+            hi = mid
+    return sign*(lo+hi)/2
+
+# SI: m=lambda=u_*=p_*=q0=v0=1, so p=2 and q=1+t.
+for t in [0, .5, 1, 2]:
+    q, p = 1+t, 2
+    v = velocity(p, 1, 1)
+    qb, invariant = t*p-q, q-t*v
+    print(t, round(qb, 6), round(invariant, 6), round(invariant, 6))
+    assert abs(invariant-1) < 1e-12
+# G's velocity shift depends on the state, unlike a constant boost.
+assert abs(-1/(1+3*velocity(0,1,1)**2)+1) < 1e-12
+assert abs(-1/(1+3*velocity(2,1,1)**2)+.25) < 1e-12
+```
+
+저장소의 독립 검증기는 H와 G를 수치 미분하고 Hamilton 방정식을 만족하지 않는 곡선까지 포함하여 임의의 위상 곡선에서 작용 경계항을 확인한다. 이는 on-shell 자유 예제와 다른 검증 근거다.
+
+### 해설이 있는 연구 질문
+
+**두 정칙 Lagrangian의 자유 궤적이 같으면 점 Noether charge도 같아야 하는가?** **답:** 아니다. 운동량 사상과 작용 대칭이 다를 수 있다. 여기서는 모든 방정식이 가속도 0으로 줄어들지만, 점 경계항을 갖는 보통 점 boost 준대칭은 이차 모델에만 있다.
+
+**보존량 I는 boost charge가 없다는 설명과 모순되는가?** **답:** 아니다. 그 정준 생성자의 특성은 운동량에 의존한다. 일반화된 위상공간 변환과 보통의 일정 속도 점 boost는 서로 다른 변환이다.
+
+**궤적으로 기계적 작용을 학습할 때 무엇을 의미하는가?** **답:** 자유 궤적만으로는 운동항 가족의 모호함이 남는다. 작용을 식별했다고 주장하려면 보정된 힘과 응답·운동량 규약·정당화한 변분 대칭 같은 추가 정보가 필요하다. 보존 스칼라 손실을 추가해도 변환과 경계항 가정을 명시하지 않으면 의도한 작용을 선택하지 못한다.
+
 ## 해설이 있는 연습문제
 
 1. **유한 경계의 두 끝점.** 자유 예제에서 작용 차이는 왜12 Js가 아니라10 Js인가요?

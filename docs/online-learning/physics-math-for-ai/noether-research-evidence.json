@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-two-unit-extension",
+  "date": "2026-11-12",
+  "baselineCommit": "fea4487e6a07edafaa7a4bf784ea743cba03e7c7",
+  "scope": {
+    "expandedUnits": [
+      "noether-point-symmetry-defects",
+      "noether-boost-time-boundaries"
+    ],
+    "manuscripts": 4,
+    "localizedFigures": 4,
+    "originalManuscriptsPreserved": true,
+    "previousReviewEntriesPreserved": 665,
+    "reviewEntriesAfter": 669,
+    "cumulativeAnalyticalResearchUnits": 14,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/noether-point-symmetry-defects.ko.md",
+      "sha256": "fd370634d394ad9b0706ae4305115bedc8270b48966bc8dc7adea650cdb37708",
+      "previousSha256": "841de614af65d315a2eb74d164e038221f6a32a158a145e3446e90e842e07e7e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/noether-point-symmetry-defects.en.md",
+      "sha256": "16feca83f663346cebabd5aecf5338efb3d601764bc1572972fdf0035d3c2f94",
+      "previousSha256": "7e8281c7293fd8d9421911f9f7ecd7225af693a2a7c2654304e6d7a81f8ba423"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/noether-boost-time-boundaries.en.md",
+      "sha256": "fa6588cd1016ddd186cbb9ca17399634aa1b5c3d8484ce7966e1684ebb87ef9d",
+      "previousSha256": "f6fd011e9e8406f9ee803c924678445a65ac4b9280186fc27eacf56329e6b886"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/noether-boost-time-boundaries.ko.md",
+      "sha256": "7c84212b0df4b726fe2602d969565b184c9013111a506e42f433a6bb777046cf",
+      "previousSha256": "a83a818e82d46c6c2d37f4755959416cc0361ac6ab8a2f45df770d953fdeba3f"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/analytical-noether-rank.en.svg",
+      "sha256": "d007ba3ba4d7069d504824dfe68c92794dd45e321f84fba121d5977f5aaccd5a"
+    },
+    {
+      "path": "public/assets/learning/analytical-noether-rank.ko.svg",
+      "sha256": "299960243ffe1c881b50a4d3356a02b638dd18a2225b97fa1ae4a73751e6ce6f"
+    },
+    {
+      "path": "public/assets/learning/analytical-noether-boost.ko.svg",
+      "sha256": "c245bd5f8bfaeae7a0551721e7b5068779dda2e48d14969ad0204532ebf3094b"
+    },
+    {
+      "path": "public/assets/learning/analytical-noether-boost.en.svg",
+      "sha256": "51d60585df894a9f5d0e4081d4aa611ee65996d39e59edd717e3c5f1b45e9282"
+    }
+  ],
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-generalized-coordinates.test.ts",
+      "scripts/learning-stationary-action.test.ts",
+      "scripts/learning-lagrange-equations.test.ts",
+      "scripts/learning-hamiltonian-canonical.test.ts",
+      "scripts/learning-poisson-brackets.test.ts",
+      "scripts/learning-symplectic-geometry.test.ts",
+      "scripts/learning-noether-theorem.test.ts",
+      "scripts/learning-constraints-reduction.test.ts",
+      "scripts/learning-hamilton-jacobi.test.ts",
+      "scripts/learning-hamilton-jacobi-integration.test.ts",
+      "scripts/learning-structure-preserving.test.ts",
+      "scripts/learning-structure-preserving-integration.test.ts",
+      "scripts/learning-analytical-topology-research.test.ts",
+      "scripts/learning-coordinate-research.test.ts",
+      "scripts/learning-action-research.test.ts",
+      "scripts/learning-lagrange-research.test.ts",
+      "scripts/learning-canonical-research.test.ts",
+      "scripts/learning-symplectic-dimension-research.test.ts",
+      "scripts/learning-noether-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 375,
+    "selectedTestFailures": 0,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-noether-research.py",
+      "characteristicStates": 324,
+      "errorBoundChecks": 1296,
+      "phaseGeneratorStates": 432,
+      "quarticBoostStates": 324,
+      "rankDeficientPathStates": 32
+    },
+    "pairedPythonCellsExecuted": 4,
+    "pairedDisplayEquationsPerUnit": [
+      6,
+      7
+    ],
+    "displayedExampleTableOutputsVerified": true,
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "build": "passed",
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "basis": "unchanged registry sources from baseline commit"
+    },
+    "sourceExportServedSvgPairs": 4,
+    "exportServedHtmlPairs": 2,
+    "sourceFigurePreviewsReviewed": 4,
+    "mobileScreenshotsReviewed": 4,
+    "browser": {
+      "unitCount": 2,
+      "states": 16,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 6,
+      "explainedQuizzes": 4,
+      "conceptSelections": 8,
+      "persistenceCompletionGroups": 2,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "command": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_NOETHER_RESEARCH_REPORT=.runtime/learning/noether-research-browser.json node scripts/check-noether-research.cjs"
+    }
+  },
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 39,
+    "reviewedTopics": 386,
+    "remainingDomains": 12,
+    "remainingTopics": 123,
+    "introductoryTopicsComplete": 362
+  }
+}
