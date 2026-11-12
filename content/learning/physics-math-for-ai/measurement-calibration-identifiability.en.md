@@ -90,6 +90,76 @@ At a zero target count, no target sample mean exists. At a zero reference count,
 
 With positive noise, a Gaussian sample mean has the full real line as its support. An exact queried real number still has point probability zero; support compatibility is not a positive-probability claim about that singleton. With zero noise, the law becomes a point mass and a different queried mean is incompatible with the configured oracle world. The interface flags that case while leaving the algebraic query clearly distinguished from generated data.
 
+## Research extension: Spend a measurement budget and distinguish common from reference uncertainty
+
+### Repetition is a resource allocation problem
+
+After the fixed bias has been removed with an exact reference, the independent-stream model gives variance sigma_R squared divided by n_R plus sigma_C squared divided by n_C. Let each target measurement have positive cost c_R and each calibration measurement have positive cost c_C, with a positive total budget C. Assume positive known noise scales, independent errors, no setup cost, and that both counts are positive. First relax counts to positive real numbers to expose the design principle.
+
+By Cauchy–Schwarz, pair the vectors (sigma_R/sqrt(n_R), sigma_C/sqrt(n_C)) and (sqrt(c_R n_R), sqrt(c_C n_C)). Their inner product is constant. This proves a lower bound and its equality condition:
+
+$$
+V={\sigma_R^2\over n_R}+{\sigma_C^2\over n_C},\quad
+c_Rn_R+c_Cn_C=C,\qquad
+V\ge {\left(\sigma_R\sqrt{c_R}+\sigma_C\sqrt{c_C}\right)^2\over C},\qquad
+{n_R\over n_C}={\sigma_R\sqrt{c_C}\over\sigma_C\sqrt{c_R}}.
+$$
+
+Higher noise calls for more observations, but a more expensive stream receives fewer observations relative to its noise. Equal counts are optimal only under the corresponding equality of these ratios. The formula is not an instruction to take fractional measurements: enumerate feasible integer pairs before scheduling an experiment. If a noise scale is zero, the positive-noise interior optimum no longer applies; define whether a sample is still required to obtain its mean.
+
+### Work an integer budget
+
+Use C=100 cost units, c_R=1, c_C=4, sigma_R=2 centimeters, and sigma_C=1 centimeter. The continuous solution has counts 50 and 12.5, with variance 0.16 square centimeters. Exact enumeration gives two integer minimizers, (52,12) and (48,13), both with variance 25/156. Equal counts (20,20) exhaust the same budget but yield variance 1/4. For a fixed positive calibration count, spending infinitely many target samples still leaves the calibration variance floor identified earlier.
+
+![Independent measurement variance as calibration count changes under a budget of one hundred. Counts twelve and thirteen tie for the integer optimum; adding an independent reference variance shifts the entire curve upward.](/assets/learning/physical-calibration-budget-en.svg)
+
+The plot holds the budget fixed and takes n_R=100−4n_C. Its orange curve adds an independent reference standard uncertainty of 0.5 centimeters, a separate model extension. The browser laboratory retains an exact reference and independent streams; it does not contain a budget optimizer or the extra uncertainty controls.
+
+### Shared effects and an uncertain reference are different
+
+Suppose the same random disturbance G appears additively in the target and calibration means with the same coefficient. Subtraction cancels G exactly. Equivalently, the covariance term in the variance of a difference cancels the two appearances of its variance. Adding the two marginal variances while ignoring their covariance would overstate uncertainty.
+
+$$
+\operatorname{Var}(\bar R-\bar C)=\operatorname{Var}(\bar R)+\operatorname{Var}(\bar C)-2\operatorname{Cov}(\bar R,\bar C).
+$$
+
+In contrast, if the assigned reference value has an independent zero-mean error E with variance tau squared, the corrected estimate gains that error once. Under these explicit stochastic assumptions its variance is V+tau squared, and more target or reference readings cannot eliminate tau squared. This is not the same as the existing deterministic drift bound: a bounded unknown discrepancy expands a coverage radius by its bound and has no assigned variance without a probability model. Independence and common influence bookkeeping follow the framework in [JCGM 100:2008, sections 5.1–5.2](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf); the budget example is derived here.
+
+| Effect | Operation in the corrected estimate | Repetition alone removes it? |
+|---|---|---|
+| Independent target/calibration noise | Two inverse-count variance terms | Yes, if both counts grow |
+| Identical additive disturbance in both means | Exact cancellation | No repetition is needed for cancellation |
+| Independent assigned-reference error | Add tau squared to variance | No |
+| Unknown drift with a deterministic bound | Add the bound to a nominal radius | No stochastic variance is implied |
+
+### Worked research question
+
+**Question:** With the numbers above and tau=0.5 centimeters, what is the best integer-design variance? **Answer:** It is 25/156+1/4=16/39 square centimeters. The optimizer is unchanged because the extra term is constant. This statement assumes an independent assigned-reference error; a shared calibration chain or unequal common-mode coefficients require the full covariance model. The code enumerates integer designs with exact fractions and checks common-mode cancellation separately.
+
+```python
+from fractions import Fraction as F
+designs=[]
+for nc in range(1,25):
+    nr=100-4*nc
+    variance=F(4,nr)+F(1,nc)
+    designs.append((variance,nr,nc))
+best=min(v for v,_,_ in designs)
+winners=[(nr,nc) for v,nr,nc in designs if v==best]
+assert best==F(25,156) and winners==[(52,12),(48,13)]
+assert best > F(16,100)
+assert F(4,20)+F(1,20)==F(1,4)
+tau2=F(1,4)
+assert best+tau2==F(16,39)
+print('integer optima',winners,'variance',best,'with reference error',best+tau2)
+var_g=F(9)
+vr,vc=F(4,52),F(1,12)
+with_common=(vr+var_g)+(vc+var_g)-2*var_g
+assert with_common==vr+vc==best
+for common in [F(-7),F(0),F(13,2)]:
+    assert (F(10)+common)-(F(6)+common)+5==9
+print('common-mode variance cancels; independent reference variance remains')
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Does a standard error of 0.1 centimeters bound a fixed bias by 0.1? **Solution:** No. It describes variation around the reading mean x+b. The unknown fixed offset is not identified by the standard error.

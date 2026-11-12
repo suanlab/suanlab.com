@@ -71,6 +71,81 @@ Codes zero through thirteen select dimension one, length, time, mass, force, ene
 
 Try an entropy reference. Its temperature exponent is minus one, making the otherwise similar energy vector fail. Try electric charge, which combines current and time rather than any length or mass powers. These examples make the additional four base coordinates operational rather than merely a decorative list. Supported integer ranges are a teaching choice, not a claim that all physical dimensions fit between minus three and three.
 
+## Research extension: Unit changes as a group action and the limits of dimension checking
+
+### Why an exponent vector predicts a transformation
+
+Think of a measurement record as a physical quantity plus a coordinate convention. Let every new base unit be a positive multiple of its old unit. For a quantity with exponent vector d, define the multiplier chi below. It converts the size of a derived unit, while its reciprocal converts the number representing a fixed quantity. Restrict this discussion to multiplicative changes; temperature origins need an extra rule.
+
+$$
+\chi_d(\alpha)=\prod_{i=1}^7\alpha_i^{d_i},\qquad
+q'=\chi_d(\alpha)^{-1}q,\qquad
+\chi_d(\alpha\beta)=\chi_d(\alpha)\chi_d(\beta).
+$$
+
+The last identity follows by multiplying powers coordinate by coordinate. It proves that converting in two stages agrees with converting once using the product of the scales. The identity scale leaves q fixed, and reciprocal scales undo a conversion. This is a group action on numerical coordinates. Integer exponents suffice for the current laboratory; positive scales also allow real powers when those powers are part of a separately defined quantity model.
+
+### Derive a necessary condition for addition
+
+Suppose a proposed identity adds two scalar terms of the same quantity kind. If their dimensions are d and e, the numerical terms acquire different factors unless the dimensions agree. If coordinate j differs, vary only alpha_j: the ratio of the two factors changes as a nonzero power. Thus a fixed, dimensionless numerical coefficient cannot make the addition unit-covariant for arbitrary independent base-unit changes. A coefficient carrying its own dimensions must instead be included in the check.
+
+$$
+\chi_d(\alpha)=\chi_e(\alpha)\ \text{for every }\alpha_i>0
+\quad\Longleftrightarrow\quad d=e.
+$$
+
+To prove the reverse implication is necessary, set alpha_j to exp(s), all other scales to one, and differentiate the equality at s=0. This gives d_j=e_j for every coordinate. The statement concerns transformation factors, not a single zero-valued measurement: zero can hide a mismatch at one query. Equal dimensions still do not make energy and torque interchangeable, and matching factors do not determine physical coefficients.
+
+### Separate scale, origin, and reference
+
+A logarithmic feature needs a stated nonzero reference of the same kind, with a positive ratio. Converting both measured length and reference preserves their ratio. Taking the logarithm of the bare length number instead shifts the feature by minus the logarithm of the length-unit scale. That shift can silently alter a trained model's intercept.
+
+$$
+\log(q'/q'_{\rm ref})=\log(q/q_{\rm ref}),\qquad
+\log q'=\log q-\log\chi_d(\alpha)\quad(q>0).
+$$
+
+Absolute temperature supplies a different warning. The Celsius coordinate is the Kelvin numerical temperature minus 273.15 when their unit increments have the same size. Temperature differences therefore retain their numbers, but ratios of Celsius coordinates are not ratios of thermodynamic temperatures. This affine offset is not encoded by the seven exponents. The [BIPM SI Brochure](https://www.bipm.org/en/publications/si-brochure/) supplies the quantity and unit conventions; the group calculation here is a direct derivation.
+
+| Operation | Required information | What the exponent vector misses |
+|---|---|---|
+| Multiply compatible scalar quantities | Add dimension exponents | Domains and quantity kinds |
+| Add two terms | Same kind and matching dimensions after coefficients | Vector frame and scientific meaning |
+| Form a log feature | Positive ratio to a stated reference | Reference provenance |
+| Convert an absolute temperature coordinate | Scale and origin | The additive offset |
+
+### Worked research question
+
+**Question:** Can a model pass every dimension check yet change its prediction after a unit conversion? **Answer:** Yes. For example, its input can use a dimensional logarithm with an untransformed intercept, or its loss can combine residual numbers using fixed weights. The next lesson derives the loss-weight transformation. The code checks composition with exact rational scales and demonstrates the logarithm and temperature distinctions; it does not implement a general quantity-type checker.
+
+```python
+from fractions import Fraction as F
+from math import log, isclose
+def multiplier(d, scales):
+    out = F(1)
+    for exponent, scale in zip(d, scales):
+        out *= scale ** exponent
+    return out
+a = [F(1,100), F(1,1000), F(1), F(1), F(1), F(1), F(1)]
+b = [F(1), F(1), F(1,1000), F(1), F(1), F(1), F(1)]
+ab = [x*y for x,y in zip(a,b)]
+for d in ([1,0,0,0,0,0,0], [2,1,-2,0,0,0,0], [0,0,0,0,0,0,0]):
+    q = F(6)
+    staged = q/multiplier(d,a)/multiplier(d,b)
+    direct = q/multiplier(d,ab)
+    assert staged == direct
+    print('dimension', d, 'converted', direct)
+length, reference = F(6), F(2)
+assert (100*length)/(100*reference) == length/reference
+assert isclose(log(float(100*length))-log(float(length)), log(100))
+kelvin = [F(27315,100), F(28315,100)]
+celsius = [t-F(27315,100) for t in kelvin]
+assert kelvin[1]-kelvin[0] == celsius[1]-celsius[0] == 10
+assert celsius[0] == 0
+print('invariant log ratio', log(float(length/reference)))
+print('temperature increment', kelvin[1]-kelvin[0], 'K; Celsius ratio undefined')
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Derive pressure dimensions from force divided by area. **Solution:** Subtract two length exponents from force, giving length exponent minus one, mass exponent one, and time exponent minus two. The pressure reference verifies those coordinates.

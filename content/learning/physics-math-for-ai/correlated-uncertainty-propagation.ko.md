@@ -92,6 +92,72 @@ $$
 
 조작기는 정수 평균, 0.1 단위 표준불확실성, 0.01 단위 잠재 계수를 사용합니다. 따라서 지원 모멘트 식을 정확한 정수 분자로 나타낼 수 있습니다. 분산의 공통 분모는 1억, 평균의 공통 분모는 1만입니다. 작은 음수를 임의로 잘라 0으로 만드는 대신 정수로 비음성과 특이성을 검사합니다. 화면의 나눗셈, 제곱근, 곡선 좌표는 수치 근사입니다.
 
+## 연구 확장: Gaussian 이차 전파의 정확식과 같은 공분산의 반례
+
+### 곱의 불확실성은 일반 이차 계산의 특수한 경우입니다
+
+delta를 평균 0, 양의 준정부호 공분산 Sigma의 Gaussian 벡터, H를 대칭 행렬이라 합시다. 상수 f_0, 기울기 g와 Hessian H로 정확한 이차 관측량을 씁니다. 이는 정확한 다항식 모형입니다. 임의의 비선형 함수를 이차에서 절단해도 정확하다는 주장이 아닙니다.
+
+$$
+Y=f_0+g^T\delta+\tfrac12\delta^TH\delta,\qquad
+\mathbb EY=f_0+\tfrac12\operatorname{tr}(H\Sigma),\qquad
+\operatorname{Var}(Y)=g^T\Sigma g+\tfrac12\operatorname{tr}(H\Sigma H\Sigma).
+$$
+
+평균은 이차 합을 전개하고 E(delta_i delta_j)=Sigma_ij를 대입해 얻습니다. 중심 Gaussian의 모든 삼차 모멘트가 0이므로 선형 항과 중심화한 이차 항의 공분산은 0입니다. 이차 항의 분산에서는 네 첨자를 전개하고 아래 세 짝짓기를 적용합니다. 첫 항은 평균의 제곱과 소거되고, 대칭성 때문에 나머지 두 항의 기여가 같습니다.
+
+$$
+\mathbb E[\delta_i\delta_j\delta_k\delta_l]
+=\Sigma_{ij}\Sigma_{kl}+\Sigma_{ik}\Sigma_{jl}+\Sigma_{il}\Sigma_{jk}.
+$$
+
+Sigma가 특이해도 표준 Gaussian Z에 대해 delta=A Z로 쓰고 전개하면 같은 식이 성립합니다. H가 부정부호여도 이차 분산 항은 음수가 아닙니다. 그 trace는 대칭 행렬 Sigma 제곱근 H Sigma 제곱근의 Frobenius 노름 제곱과 같기 때문입니다. 공분산의 역행렬은 필요하지 않습니다. 일반적인 비Gaussian 입력에서는 삼차 모멘트의 교차 항이 0이 아닐 수 있고 사차 모멘트도 다를 수 있습니다.
+
+### 상관된 곱의 식을 회복하기
+
+X Z에서는 f_0=mu_X mu_Z, g=(mu_Z,mu_X), H의 대각은 0, 두 비대각 원소는 1로 놓습니다. c=Cov(X,Z)라 하면 앞서 나온 평균 보정 c와 추가 분산 sigma_X 제곱 sigma_Z 제곱+c 제곱을 회복합니다. 평균이 모두 0, 분산이 모두 1, c=1/2이면 일차 분산은 0이지만 정확한 Gaussian 곱의 평균은 1/2, 분산은 5/4입니다.
+
+다른 중심 분포를 만들어 봅시다. (1,1), (−1,−1)에 각각 확률 3/8을, (1,−1), (−1,1)에 각각 1/8을 둡니다. 두 좌표의 분산은 여전히 1, 공분산은 1/2입니다. 그러나 곱은 항상 1 또는 −1이므로 그 제곱은 언제나 1입니다. 곱의 평균은 1/2, 분산은 3/4입니다. 따라서 같은 공분산 행렬만으로는 분포 가정 없이 비선형 출력 불확실성을 결정할 수 없습니다.
+
+| 중심 입력 모형 | 공분산 비대각 원소 | 곱의 평균 | 곱의 분산 |
+|---|---|---|---|
+| 분산이 1인 결합 Gaussian | 1/2 | 1/2 | 5/4 |
+| 위 네 점 부호 분포 | 1/2 | 1/2 | 3/4 |
+| 평균에서의 일차 전파 | 1/2 | 0 | 0 |
+
+마지막 행은 평균 근처의 국소 근사이며 세 번째 입력 분포가 아닙니다. 입력이 Gaussian이어도 곱은 일반적으로 Gaussian이 아닙니다. 표준편차만으로 Gaussian 95퍼센트 구간을 정당화할 수 없습니다. 일차 공분산 전파와 범위는 [JCGM 100:2008의 5절](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf)을 참고하며, 여기의 정확한 이차 항등식과 유한 반례는 직접 유도했습니다.
+
+### 풀이가 있는 연구 질문
+
+**질문:** 물리 대리모형의 Hessian을 자동 미분하면 이 분산 공식도 정확해질까요? **해설:** 관측량이 정확한 이차식이고 선언한 Gaussian 입력 법칙이 맞을 때만 그렇습니다. 비이차 함수에는 적절한 모멘트를 사용한 나머지항 분석이 필요합니다. 공분산이 작다는 사실만으로 전역 오차 인증이 되지는 않습니다. 아래 코드는 네 점 법칙을 유한 열거로 계산하고 Gaussian 이차 모멘트를 네 첨자로 직접 전개한 뒤 trace 공식과 비교합니다.
+
+```python
+from fractions import Fraction as F
+from itertools import product
+S=[[F(1),F(1,2)],[F(1,2),F(1)]]
+H=[[F(0),F(1)],[F(1),F(0)]]
+g=[F(0),F(0)]
+def mm(A,B):
+    return [[sum(A[i][k]*B[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
+def trace(A): return sum(A[i][i] for i in range(2))
+for H,g in [(H,g),([[F(2),F(1)],[F(1),F(-2)]],[F(1),F(2)])]:
+    mean=trace(mm(H,S))/2
+    linear=sum(g[i]*S[i][j]*g[j] for i,j in product(range(2),repeat=2))
+    fourth=sum(H[i][j]*H[k][l]*(S[i][j]*S[k][l]+S[i][k]*S[j][l]+S[i][l]*S[j][k]) for i,j,k,l in product(range(2),repeat=4))/4
+    variance=linear+fourth-mean**2
+    by_trace=linear+trace(mm(mm(H,S),mm(H,S)))/2
+    assert variance==by_trace
+    print('Gaussian quadratic mean',mean,'variance',variance)
+points=[(1,1,F(3,8)),(-1,-1,F(3,8)),(1,-1,F(1,8)),(-1,1,F(1,8))]
+assert sum(p*x for x,z,p in points)==sum(p*z for x,z,p in points)==0
+assert sum(p*x*x for x,z,p in points)==sum(p*z*z for x,z,p in points)==1
+mean=sum(p*x*z for x,z,p in points)
+variance=sum(p*(x*z-mean)**2 for x,z,p in points)
+assert mean==F(1,2) and variance==F(3,4)
+assert F(1)+S[0][1]**2==F(5,4)
+print('same-covariance sign product mean',mean,'variance',variance)
+```
+
 ## 풀이가 있는 연습 문제
 
 1. **문제:** 두 표준불확실성이 1이고 공분산이 1이면 합의 분산은? **해설:** 1+1+2=4입니다. 공분산을 빼면 잘못된 값 2를 얻습니다.

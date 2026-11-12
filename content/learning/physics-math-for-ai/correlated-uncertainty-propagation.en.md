@@ -93,6 +93,72 @@ Sum and difference outputs use centimeters, so their variances use square centim
 
 The controls use integer means, uncertainty scales in tenths, and a latent coefficient in hundredths. Supported moment formulas can be represented with exact integer numerators. Variance numerators share denominator one hundred million, and mean numerators share denominator ten thousand. Those comparisons establish nonnegative variance and singularity without rounding a small negative value away. Displayed divisions, square roots, and curve coordinates are numerical approximations.
 
+## Research extension: Exact Gaussian quadratic propagation and a same-covariance counterexample
+
+### The product lesson is a general quadratic calculation
+
+Let delta be a centered Gaussian vector with positive-semidefinite covariance Sigma, and let H be symmetric. Consider an exactly quadratic observable, written using a constant f_0, a gradient vector g, and its Hessian H. This is an exact polynomial model, not a claim that truncating an arbitrary nonlinear function at second order is exact.
+
+$$
+Y=f_0+g^T\delta+\tfrac12\delta^TH\delta,\qquad
+\mathbb EY=f_0+\tfrac12\operatorname{tr}(H\Sigma),\qquad
+\operatorname{Var}(Y)=g^T\Sigma g+\tfrac12\operatorname{tr}(H\Sigma H\Sigma).
+$$
+
+To derive the mean, expand the quadratic sum and use E(delta_i delta_j)=Sigma_ij. The covariance between the linear and centered quadratic terms is zero because every centered Gaussian third moment vanishes. For the quadratic variance, expand four indices and apply the three pairings below. The first pairing cancels the square of the mean; symmetry makes the other two contributions equal.
+
+$$
+\mathbb E[\delta_i\delta_j\delta_k\delta_l]
+=\Sigma_{ij}\Sigma_{kl}+\Sigma_{ik}\Sigma_{jl}+\Sigma_{il}\Sigma_{jk}.
+$$
+
+These identities remain valid for singular Sigma: write delta=A Z for a standard Gaussian vector of the appropriate rank and expand. The quadratic variance term is nonnegative even when H is indefinite. Indeed its trace equals the squared Frobenius norm of the symmetric matrix Sigma-to-the-one-half H Sigma-to-the-one-half. No covariance inverse is needed. A general non-Gaussian input can have a nonzero third-moment cross term and different fourth moments.
+
+### Recover the correlated product
+
+For X Z, set f_0=mu_X mu_Z, g=(mu_Z,mu_X), and H with zero diagonal and off-diagonal entries one. If c denotes Cov(X,Z), substitution gives the earlier mean correction c and the additional variance sigma_X squared sigma_Z squared plus c squared. At zero means, unit variances and c=1/2, the first-order variance is zero, but the exact Gaussian product mean is 1/2 and its variance is 5/4.
+
+Now construct a different centered distribution: put probabilities 3/8 at each of (1,1) and (−1,−1), and 1/8 at each of (1,−1) and (−1,1). Both coordinates still have variance one and covariance 1/2. Their product is always either one or minus one, so its square is always one. Its mean is 1/2 and variance is 3/4. The same covariance matrix therefore does not determine a nonlinear output's uncertainty without distributional assumptions.
+
+| Centered input model | Covariance off-diagonal | Product mean | Product variance |
+|---|---|---|---|
+| Joint Gaussian, unit variances | 1/2 | 1/2 | 5/4 |
+| Four-point sign distribution above | 1/2 | 1/2 | 3/4 |
+| First-order propagation at zero means | 1/2 | 0 | 0 |
+
+The last row is a local approximation at the means, not a third input law. The product is generally non-Gaussian even when the inputs are Gaussian. Its standard deviation alone cannot justify a Gaussian 95 percent interval. The first-order covariance treatment and its scope are described in [JCGM 100:2008, section 5](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf); the exact quadratic identity and finite counterexample here are derived explicitly.
+
+### Worked research question
+
+**Question:** Can automatic differentiation of a physical surrogate's Hessian make this variance formula exact? **Answer:** Only if the observable is exactly quadratic and the declared Gaussian input law is correct. For a nonquadratic function, one also needs a remainder analysis with appropriate moments; a small covariance does not by itself provide a global error certificate. The code separately evaluates the four-point law by finite enumeration and the Gaussian quadratic moment by four-index expansion, then compares the latter with the trace expression.
+
+```python
+from fractions import Fraction as F
+from itertools import product
+S=[[F(1),F(1,2)],[F(1,2),F(1)]]
+H=[[F(0),F(1)],[F(1),F(0)]]
+g=[F(0),F(0)]
+def mm(A,B):
+    return [[sum(A[i][k]*B[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
+def trace(A): return sum(A[i][i] for i in range(2))
+for H,g in [(H,g),([[F(2),F(1)],[F(1),F(-2)]],[F(1),F(2)])]:
+    mean=trace(mm(H,S))/2
+    linear=sum(g[i]*S[i][j]*g[j] for i,j in product(range(2),repeat=2))
+    fourth=sum(H[i][j]*H[k][l]*(S[i][j]*S[k][l]+S[i][k]*S[j][l]+S[i][l]*S[j][k]) for i,j,k,l in product(range(2),repeat=4))/4
+    variance=linear+fourth-mean**2
+    by_trace=linear+trace(mm(mm(H,S),mm(H,S)))/2
+    assert variance==by_trace
+    print('Gaussian quadratic mean',mean,'variance',variance)
+points=[(1,1,F(3,8)),(-1,-1,F(3,8)),(1,-1,F(1,8)),(-1,1,F(1,8))]
+assert sum(p*x for x,z,p in points)==sum(p*z for x,z,p in points)==0
+assert sum(p*x*x for x,z,p in points)==sum(p*z*z for x,z,p in points)==1
+mean=sum(p*x*z for x,z,p in points)
+variance=sum(p*(x*z-mean)**2 for x,z,p in points)
+assert mean==F(1,2) and variance==F(3,4)
+assert F(1)+S[0][1]**2==F(5,4)
+print('same-covariance sign product mean',mean,'variance',variance)
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Compute the sum variance for two unit uncertainties and covariance one. **Solution:** One plus one plus two equals four. Omitting covariance would incorrectly give two.

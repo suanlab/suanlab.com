@@ -85,6 +85,74 @@ Supported physical inputs are integers, and unit factors are integer powers of t
 
 Mass does not affect this prescribed trajectory because acceleration is an independent input. It does affect the force required to realize that acceleration and the kinetic energy at each instant. If the physical force rather than acceleration were fixed, changing mass would require a different model relationship. Read the controlled quantities before interpreting a sensitivity experiment.
 
+## Research extension: Transform the metric of a physics-informed loss
+
+### A coordinate-consistent simulator can still train inconsistently
+
+Suppose a dimensionless parameter theta predicts a length of theta meters and a speed of theta meters per second. Observations are one meter and three meters per second. Divide the two errors by reference scales of one meter and one meter per second. In these normalized coordinates, the residual vector is (theta minus one, theta minus three). The toy model cannot fit both observations exactly; that deliberate mismatch makes the weighting choice observable.
+
+Consider a positive-definite residual metric W. Under an invertible linear change of residual coordinates S, demand equality of the complete objective for every theta, not just agreement at one fitted value:
+
+$$
+L(\theta)=r(\theta)^TWr(\theta),\qquad r'=Sr,\qquad
+W'=S^{-T}WS^{-1},\qquad r'^TW'r'=r^TWr.
+$$
+
+Substitution cancels S and its transpose. Thus objective values and minimizer sets agree. If S is fixed independently of theta and r is differentiable, gradients with respect to the same theta agree as well. This does not assert identical floating-point optimizer trajectories if parameters, preconditioners, or stopping tolerances are also changed.
+
+### Derive a unit-dependent fitted parameter
+
+For diagonal weights, differentiation gives a weighted average of the two incompatible targets. Initially both weights are one, so the optimum is two. Express only the length error in centimeters while leaving the speed error in meters per second. Numerically S is diag(100,1). Here we change the numerical residual coordinates; if the physical reference scales are converted together with the errors before normalization, the normalized residuals already stay fixed. If the code retains unit weights, it multiplies the first squared residual by 10000. The new optimum moves almost to one:
+
+$$
+\widehat\theta={w_1+3w_2\over w_1+w_2},\qquad
+\widehat\theta_{\rm naive}={10000+3\over10000+1},\qquad
+W'_{\rm coherent}=\operatorname{diag}(10^{-4},1).
+$$
+
+![Normalized loss has its minimum at theta two; rescaling the length residual by one hundred with unchanged weights moves the minimum near one, while transformed weights recover the original curve.](/assets/learning/physical-loss-metric-en.svg)
+
+The diagram divides each curve by its own positive leading quadratic coefficient and subtracts its minimum to compare minimizer locations. It does not suggest that the raw losses have equal magnitude. The coherent loss equals the original loss before this display normalization too.
+
+| Residual coordinates | Metric entries | Optimum |
+|---|---|---|
+| Original normalized pair | 1, 1 | 2 |
+| Length multiplied by 100, unchanged weights | 1, 1 | 10003/10001 |
+| Length multiplied by 100, coherent weights | 1/10000, 1 | 2 |
+
+### Relate the metric to measurement uncertainty
+
+When a residual is modeled as a centered Gaussian vector with a fixed positive-definite covariance Sigma, its negative log likelihood has quadratic term one half r-transpose Sigma-inverse r. A coordinate change gives Sigma'=S Sigma S-transpose, so the inverse covariance transforms by the same rule as W. The log determinant changes by a constant if S is fixed and Sigma is independent of theta; it does not alter the optimizer in that setting. If covariance parameters are learned, the determinant term must be retained. Singular covariances require explicit support constraints and cannot be handled by casually taking an ordinary inverse.
+
+Physics residuals need justified reference scales or uncertainty models of their own. Choosing weights to improve optimization is a separate modeling decision and should be declared. Unit covariance establishes consistency of a chosen objective; it cannot prove that these two observations, the simulator, or their uncertainty assumptions are physically adequate.
+
+### Worked research question
+
+**Question:** Does standardizing the network input guarantee unit-independent training? **Answer:** No. Outputs, derivatives in the governing equations, coefficients, residual scales, and the metric all matter. For fixed reference scales, the code proves exact rational equality for many parameter values, compares the two analytic minima, and verifies gradient equality. It is a standalone example rather than an additional control in the trajectory laboratory.
+
+```python
+from fractions import Fraction as F
+def loss(t, scales, weights):
+    return sum(w*(s*(t-y))**2 for s,w,y in zip(scales,weights,[F(1),F(3)]))
+def grad(t, scales, weights):
+    return 2*sum(w*s*s*(t-y) for s,w,y in zip(scales,weights,[F(1),F(3)]))
+original = ([F(1),F(1)],[F(1),F(1)])
+coherent = ([F(100),F(1)],[F(1,10000),F(1)])
+naive = ([F(100),F(1)],[F(1),F(1)])
+for n in range(-20,41):
+    t = F(n,10)
+    assert loss(t,*original) == loss(t,*coherent)
+    assert grad(t,*original) == grad(t,*coherent)
+for name,args in [('original',original),('coherent',coherent),('naive',naive)]:
+    scales,weights=args
+    effective=[s*s*w for s,w in zip(scales,weights)]
+    optimum=(effective[0]+3*effective[1])/sum(effective)
+    assert grad(optimum,*args)==0
+    print(name,'optimum',optimum,'loss',loss(optimum,*args))
+assert loss(F(2),*original) < loss(F(1),*original)
+assert loss(F(2),*naive) > loss(F(1),*naive)
+```
+
 ## Exercises with worked solutions
 
 1. **Exercise:** Change only the mass input from one to five with velocity and acceleration fixed. **Solution:** The trajectory remains identical; force and kinetic energy multiply by five. This follows from the prescribed-acceleration design.
