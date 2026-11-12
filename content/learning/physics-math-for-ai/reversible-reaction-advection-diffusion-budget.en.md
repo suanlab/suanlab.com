@@ -118,6 +118,105 @@ First hold transport fixed and vary the forward rate. Compare the two colored sp
 
 For a physics-informed model, a small training residual is only one diagnostic. Check concentrations and derivatives against an independently constructed field, integrate actual sources over physical windows and test the source-omission control. The accompanying references use high-precision differentiation and integration, separate from the product implementation. Reusing the same formula to define and validate every term can make a sign error invisible. Extensions with spatially varying initial fractions, unequal diffusivities or temperature-dependent rates require new derivations and tests.
 
+## Research extension: spatial composition and conditional information
+
+A detector may see exactly half A and half B in the **whole tube** while one side is predominantly A and the other predominantly B. Extend the model to spatially varying composition while keeping common constant transport. For this supplement take strictly positive reaction rates, positive initial masses and positive Gaussian widths. The equilibrium weights are therefore positive. A zero rate is outside the logarithmic formulas below; retain the earlier rate-zero discussion rather than substituting zero into a log or a denominator.
+
+$$
+k_f,k_b>0,\quad\lambda=k_f+k_b,\quad\pi_A=\frac{k_b}{\lambda},\quad\pi_B=\frac{k_f}{\lambda},\qquad Q=\begin{pmatrix}-k_f&k_b\\k_f&-k_b\end{pmatrix}.
+$$
+
+First transport each initial species cloud without reaction. Call these two carrier fields GA and GB. They may have different initial means and widths, but share U, D and actual area A. Their initial masses are in kg and the fields are in kg/m³. This is a pair of full-line Gaussian profiles, including their tails. A finite drawing does not supply a wall or replace the full-domain integral.
+
+$$
+G_i(x,t)=\frac{M_{i0}}{A\sqrt{2\pi v_i(t)}}\exp\!\left[-\frac{(x-\mu_{i0}-Ut)^2}{2v_i(t)}\right],\quad v_i(t)=\sigma_{i0}^2+2Dt,\quad \partial_tG_i+U\partial_xG_i=D\partial_{xx}G_i.
+$$
+
+Reaction acts through the constant two-by-two matrix Q. Its exponential has the displayed form. Every entry is nonnegative for nonnegative time and each column sums to one. Because the same spatial transport operator acts on both components, it commutes with this constant reaction matrix: transport the initial profiles and then mix them using the matrix exponential. Differentiation verifies both coupled PDEs and the original initial conditions. Unequal diffusivities or spatially varying rates generally destroy this simple commutation.
+
+$$
+\begin{pmatrix}c_A\\c_B\end{pmatrix}=\begin{pmatrix}\pi_A+\pi_Be^{-\lambda t}&\pi_A(1-e^{-\lambda t})\\\pi_B(1-e^{-\lambda t})&\pi_B+\pi_Ae^{-\lambda t}\end{pmatrix}\begin{pmatrix}G_A\\G_B\end{pmatrix}.
+$$
+
+Adding the species recovers the sum of the two transported carriers, usually a Gaussian mixture rather than a single Gaussian. Integrating first gives the same exponential law for the **global** species fraction as before. The global fraction depends on initial masses, not on where those masses were placed. Consequently a global composition time series can miss spatial errors even when it is exactly correct.
+
+$$
+c=c_A+c_B=G_A+G_B,\quad M=M_{A0}+M_{B0},\qquad\frac{M_A(t)}M=\pi_A+\left(\frac{M_{A0}}M-\pi_A\right)e^{-\lambda t}.
+$$
+
+Now divide cA by the current total concentration c at each finite position. Substituting cA = f c into the PDE gives an additional drift-like term involving the carrier gradient. It comes from the cross term in the second derivative of a product. Omitting it while allowing f to vary in space is not the earlier time-only model. If f is spatially uniform, both gradient contributions vanish and the original scalar reaction ODE is recovered.
+
+$$
+f=\frac{c_A}{c},\qquad f_t+Uf_x=Df_{xx}+2D\frac{c_x}{c}f_x-k_ff+k_b(1-f).
+$$
+
+Measure departure of the **local label distribution** from the equilibrium label weights, while retaining the current carrier c. This is conditional information weighted by physical mass. Its units are kg; no molecular entropy constant or thermodynamic temperature has been supplied to turn it into J/K. A spatially nonuniform carrier can have H equal to zero when every local label fraction equals its equilibrium weight. Thus H alone does not measure all disequilibrium in the concentration field.
+
+$$
+F=c_A\log\frac{c_A}{\pi_Ac}+c_B\log\frac{c_B}{\pi_Bc},\qquad\mathcal H=A\int_{\mathbb R}F\,dx\ge0,\qquad[\mathcal H]=\mathrm{kg}.
+$$
+
+To derive its evolution, regard F as a function of the two positive species concentrations. Its two first derivatives are logarithmic relative label concentrations. Differentiating these again gives a positive semidefinite Hessian. Contract that Hessian with the species gradients to obtain the nonnegative diffusion term below. This calculation includes the changing total carrier; freezing the carrier in the reference would give a different derivative.
+
+$$
+\partial_{c_A}F=\log\frac{c_A}{\pi_Ac},\quad\partial_{c_B}F=\log\frac{c_B}{\pi_Bc},\qquad\frac{(c_{A,x})^2}{c_A}+\frac{(c_{B,x})^2}{c_B}-\frac{c_x^2}{c}=\frac{cf_x^2}{f(1-f)}\ge0.
+$$
+
+The reaction contribution is also nonpositive. Let forward turnover be a positive number a and reverse turnover a positive number b: (a-b) log(a/b) is nonnegative because the logarithm is increasing. Detailed balance of the two equilibrium weights makes the reaction contraction exactly this expression with a minus sign. Positive gross turnover at local equilibrium can coexist with zero net contribution, just as in the original example.
+
+$$
+\nabla_{(c_A,c_B)}F\cdot Q\begin{pmatrix}c_A\\c_B\end{pmatrix}=-(k_fc_A-k_bc_B)\log\frac{k_fc_A}{k_bc_B}\le0.
+$$
+
+Apply the chain rule, integrate over the whole tube and use Gaussian decay to remove boundary transport. Common advection contributes no net information change. Diffusion reduces composition gradients, and reaction reduces departure from local equilibrium. Both have kg/s units after area and spatial integration. This is an analytic identity for the declared positive smooth family; a residual-bearing neural prediction or a finite observation window requires additional terms. To evaluate small complements numerically, keep both positive species rather than forming the second one from a rounded fraction.
+
+$$
+\dot{\mathcal H}=-DA\int_{\mathbb R}\frac{cf_x^2}{f(1-f)}\,dx-A\int_{\mathbb R}(k_fc_A-k_bc_B)\log\frac{k_fc_A}{k_bc_B}\,dx\le0,\qquad[\dot{\mathcal H}]=\mathrm{kg/s}.
+$$
+
+For a concrete symmetric control, put one unit-mass cloud on each side, choose equal rates and widths, and set U to zero. The global A fraction stays exactly one half while the local fraction follows the hyperbolic-tangent expression. At the center symmetry gives one half, but away from it the fractions and net sources differ. The spatial integral of each source is zero, even though conversion and local redistribution remain active. Equal global masses therefore do not prove local equilibrium or correct spatial prediction.
+
+$$
+k_f=k_b=k,\quad M_{A0}=M_{B0},\quad\mu_{A0}=-\ell,\quad\mu_{B0}=\ell,\quad U=0,\quad v=\sigma_0^2+2Dt:\qquad\frac{M_A(t)}M=\frac12,\quad f(x,t)=\frac12\left[1-e^{-2kt}\tanh\!\left(\frac{\ell x}{v}\right)\right].
+$$
+
+The table uses equal initial masses of 1 kg, means -1 and +1 m, standard deviations 0.5 m, area 1 m², U = 0, D = 0.2 m²/s and both rates 1/s. Columns are time in s, global A mass fraction, and local A fractions at x = -1, 0 and +1 m. Fractions are dimensionless. The first figure uses these same fields; its information panel numerically integrates a broad finite interval as a diagnostic, not a rigorous infinite-tail certificate.
+
+| t | global A | A at -1 | A at 0 | A at +1 |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 0.50000000 | 0.99966465 | 0.50000000 | 0.00033535 |
+| 0.10000000 | 0.50000000 | 0.90853826 | 0.50000000 | 0.09146174 |
+| 0.40000000 | 0.50000000 | 0.72127009 | 0.50000000 | 0.27872991 |
+| 1.00000000 | 0.50000000 | 0.56170352 | 0.50000000 | 0.43829648 |
+
+```python
+from math import exp, sqrt, pi
+# U=0, D=0.2 m^2/s, kf=kb=1/s, sigma0=0.5 m,
+# initial means -1 and +1 m, each initial mass 1 kg, area 1 m^2.
+for t in (0.0, 0.1, 0.4, 1.0):
+    variance = 0.25+0.4*t
+    decay = exp(-2*t)
+    local = []
+    for x in (-1.0, 0.0, 1.0):
+        ga = exp(-(x+1)**2/(2*variance))/sqrt(2*pi*variance)
+        gb = exp(-(x-1)**2/(2*variance))/sqrt(2*pi*variance)
+        ca = ((1+decay)*ga+(1-decay)*gb)/2
+        local.append(ca/(ga+gb))
+    print(" ".join(f"{v:.8f}" for v in (t, 0.5, *local)))
+```
+
+The [Stephan linear reaction-diffusion paper](https://link.springer.com/article/10.1007/s00526-021-02089-0) provides two-species and entropy-structure background on a bounded no-flux domain. The whole-line commuting mixture and conditional-information balance above are derived separately; no fast-reaction convergence theorem is claimed for this example. These are supplemental calculations, not new spatial-composition controls in the existing lab.
+
+![Stationary global composition can hide local conversion and spatial label gradients](/assets/learning/continuum-reaction-spatial-composition-information.en.svg)
+
+### Research questions with explanations
+
+**Does a stationary global half-and-half mixture prove local equilibrium?** **Answer:** No. In the separated-cloud control, local composition and sources vary in space while each whole-line species mass remains constant.
+
+**Can the time-only fraction be reused for arbitrary initial composition?** **Answer:** No. The fraction PDE has spatial derivatives and a carrier-gradient term. The matrix construction handles this common-transport case without imposing a uniform fraction.
+
+**Does zero conditional information mean that diffusion has stopped?** **Answer:** No. Equilibrium label fractions can coexist with a nonuniform carrier that still spreads. Conditional label information does not observe all carrier dynamics.
+
 ## Exercises with worked answers
 
 ### Exercise 1 — Find the equilibrium
