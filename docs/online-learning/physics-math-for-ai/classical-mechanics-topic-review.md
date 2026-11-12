@@ -94,6 +94,10 @@
 
 누적 9/21단원 보강이며 영역 전체 완료 집계를 올리지 않는다. 완료 영역 기준 38영역·376주제, 후속 13영역·133주제와 전체 51영역·509주제 범위를 유지한다.
 
+## 다음 두 단원의 연구 확장 기반
+
+`990a418`의 각운동량 게시 후 [두 입자·속도 의존 힘의 계산 기반](conservation-laws-research-foundation.md)을 작성했다. 시간 변조 강성의 외부 일·정확한 주기 증폭과, 에너지/유도 중심/수정 불변량을 모두 보존하는 중점법의 위상 오차를 유도했다. 두 독립 Python 예제·실제 정확한 흐름의 8초 입력·설명 SVG 두 개를 검산·검토했다. 아직 한영 학습 본문에 통합하거나 reader 검증을 마친 단계가 아니므로 누적은 9/21단원, 나머지는 12단원이다.
+
 ## 남은 순서
 
 `isolated-central-pair-conservation`, `gyroscopic-force-energy-momentum`부터 나머지 12단원의 원고·실제 수치 모형·기존 근거를 대조하고 심화 내용을 작성한다. `mechanics-energy`는 foundation registry/evaluator이고 다른 20단원은 classical mechanics registry/evaluator이므로, 전체 검증에서 두 구현을 모두 포함해야 한다. 이후 해석역학 등 나머지 영역도 교육과정 순서대로 진행한다. 전체 51영역·509개 주제의 범위를 유지한다.
