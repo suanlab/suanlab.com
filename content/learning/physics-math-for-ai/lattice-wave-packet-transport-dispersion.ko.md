@@ -171,6 +171,120 @@ AI 모델은 초기 상태와 재료 매개변수에서 미래 변위·국소 �
 
 독립 기준값은 실제 실수 운동방정식 행렬의 지수함수를 사용하고, 별도 FFT로 해석장을 복원한다. 이를 유한 스펙트럼 모델과 대조하면 제품의 정현식을 다시 평가한 결과끼리 비교하는 것보다 강한 검사가 된다. 수학 기반을 검증한 뒤에도 독자 화면·설명·조작은 별도로 통합 검증해야 한다.
 
+## 연구 확장: 에너지 배분과 수송을 구분한다
+
+스프링은 두 격자점을 연결하므로 에너지를 어느 끝점에 배분할지는 관례다. 기존 계산기는 각 스프링을 반씩 나눈다. 이제 다른 국소 밀도와 그에 맞는 전류의 계열을 유도한다. 전체 에너지는 같지만 모든 순간 진단량이 불변인 것은 아니다. 이 보충 내용은 기존 제어나 중심 임계값을 바꾸지 않는다.
+
+### 서로 맞는 밀도와 전류를 유도한다
+
+
+$$
+K_j=\frac{m v_j^2}{2},\quad V_j=\frac{\kappa(q_{j+1}-q_j)^2}{2},\qquad e_j^\alpha=K_j+\alpha V_{j-1}+(1-\alpha)V_j,\qquad
+J_j^\alpha=-\kappa(q_{j+1}-q_j)[(1-\alpha)v_{j+1}+\alpha v_j],\quad 0\le\alpha\le1.
+$$
+
+첨자는 주기적이고 간격은 a이다. K, V, e의 단위는 줄, J는 와트다. alpha는 시간에 따라 고정한다. 모든 밀도는 음이 아니며 합하면 같은 역학적 에너지 E를 얻는다. 스프링 에너지를 미분하고 질량 곱하기 가속도가 스프링 힘이라는 식을 쓰면 다음을 얻는다.
+
+
+$$
+\delta=\alpha-\tfrac12,\quad e_j^\alpha-e_j^{1/2}=\delta(V_{j-1}-V_j),\quad J_j^\alpha-J_j^{1/2}=\delta\dot V_j,\qquad\dot e_j^\alpha=J_{j-1}^\alpha-J_j^\alpha.
+$$
+
+밀도 차이는 이산 발산이며 합이 0이다. 전류 보정이 필수다. 밀도를 바꾼 뒤 원래 화살표를 그대로 쓰면 일반적으로 국소 보존이 깨진다. 격자점은 왼쪽 전류를 받고 오른쪽 전류를 잃으므로 부호가 정해진다.
+
+### 전체 플럭스 속도가 불변인 조건을 명시한다
+
+
+$$
+v_E^\alpha=\frac{a\sum_jJ_j^\alpha}{E},\quad V_{\rm tot}=\sum_jV_j:\qquad v_E^\alpha-v_E^{1/2}=\frac{a\delta}{E}\frac{dV_{\rm tot}}{dt},\qquad
+\left|\frac1T\int_0^T(v_E^\alpha-v_E^{1/2})dt\right|=\left|\frac{a\delta[V_{\rm tot}(T)-V_{\rm tot}(0)]}{ET}\right|\le\frac{a|\delta|}{T}.
+$$
+
+E>0인 무손실 유한 주기 격자를 가정한다. 0≤Vtot≤E이므로 시간 평균 차이는 경계 항을 T로 나눈 값으로 상계된다. 임의 초기 데이터에서 순간적으로 같다는 결론은 나오지 않는다. 다만 기존 묶음은 영 모드나 Nyquist 모드가 없는 분해 가능한 양의 진행 모드를 사용한다. 이 경우 이산 직교성으로 전체 퍼텐셜 에너지가 일정하다.
+
+
+$$
+V_{\rm tot}=E/2,\qquad v_E^\alpha=v_E^{1/2}=\frac{\sum_n E_n v_g(k_n)}{\sum_nE_n}\quad\text{for the native traveling-mode preparation}.
+$$
+
+분해 가능한 서로 다른 진행 조화 모드는 일정한 운동·퍼텐셜 에너지 절반씩을 기여하고 격자점 합에서 교차 항이 상쇄된다. 따라서 이 특정 전체 항등식은 위의 모든 배분에서 유지된다. 그래도 국소 밀도·전류·원형 중심은 다를 수 있다. 정지파나 반대 방향 진행파로 확장할 때는 이 가정이 중요하다.
+
+### 다른 준비 상태인 정지파로 검사한다
+
+
+$$
+q_j=A\cos(kja)\cos\omega t,\quad\omega=2\sqrt{\kappa/m}\sin(ka/2),\quad\frac{V_{\rm tot}}E=\cos^2\omega t,\qquad
+\sum_jJ_j^{1/2}=0,\qquad v_E^\alpha=-a\delta\omega\sin(2\omega t).
+$$
+
+분해 가능한 영 모드·Nyquist 모드 이외의 모드에서는 무늬가 정지해 있지만 불균등 배분은 0이 아닌 순간 플럭스 속도 진단값을 줄 수 있다. 이는 저장 에너지의 배분 효과이며 정지 무늬의 이동·입자 속도·초광속 흐름의 증거가 아니다. 초기 상태가 다르므로 기존 진행 모드 항등식과 모순되지 않는다. 기존 주기 격자 단원에서는 이 정지 상태를 준비할 수 있지만 묶음 제어에 정지파 스위치를 추가하는 것은 아니다.
+
+N=8, L=8 m, a=1 m, m=1 kg, kappa=1 N/m, A=0.1 m, 모드 1을 사용한다. 표는 변위와 속도에서 링크 전류를 다시 계산하며 속도 단위는 m/s, 위상은 라디안이다.
+
+| omega t | Vtot / E | 속도, alpha=0 | 속도, alpha=0.5 | 속도, alpha=1 |
+|---|---|---|---|---|
+| 0 | 1.0 | 0 | 0 | 0 |
+| 0.392699 | 0.853553 | 0.270598 | 0 | -0.270598 |
+| 0.785398 | 0.5 | 0.382683 | 0 | -0.382683 |
+| 1.178097 | 0.146447 | 0.270598 | 0 | -0.270598 |
+
+```python
+from math import cos, sin, sqrt, pi
+
+n = 8
+mass = stiffness = spacing = 1
+omega = 2*sqrt(stiffness/mass)*sin(pi/n)
+def shown(x):
+    r = round(x, 6)
+    return 0 if r == 0 else r  # Display only; no physical clipping.
+for phase in [0, pi/8, pi/4, 3*pi/8]:
+    q = [.1*cos(2*pi*j/n)*cos(phase) for j in range(n)]
+    v = [-.1*omega*cos(2*pi*j/n)*sin(phase) for j in range(n)]
+    link = [stiffness*(q[(j+1)%n]-q[j])**2/2 for j in range(n)]
+    energy = sum(mass*x*x/2 for x in v)+sum(link)
+    speeds = []
+    for alpha in [0, .5, 1]:
+        current = [-stiffness*(q[(j+1)%n]-q[j])*
+                   ((1-alpha)*v[(j+1)%n]+alpha*v[j]) for j in range(n)]
+        speeds.append(spacing*sum(current)/energy)
+    print(*(shown(x) for x in [phase, sum(link)/energy, *speeds]))
+```
+
+### 원형 중심과 순 플럭스를 구분한다
+
+
+$$
+Z_\alpha=\frac1E\sum_j e_j^\alpha e^{i\theta_j},\quad\theta_j=2\pi j/N:\qquad Z_\alpha-Z_{1/2}=\frac{\delta(e^{i2\pi/N}-1)}E\sum_jV_j e^{i\theta_j},\qquad
+|Z_\alpha-Z_{1/2}|\le2|\delta|\sin(\pi/N)\frac{V_{\rm tot}}E\le2|\delta|\sin(\pi/N).
+$$
+
+링크 가중합에서 첨자를 옮긴다. 기존 준비 상태에서는 Vtot/E=1/2이므로 마지막 상계가 절반으로 줄어든다. 복소 모멘트의 작은 변화가 영점 근처 각도 변화를 균일하게 상계하지는 않는다. 국소 보존에서 다음 식도 얻는다.
+
+
+$$
+\dot Z_\alpha=\frac{e^{i2\pi/N}-1}{E}\sum_j J_j^\alpha e^{i\theta_j},\qquad\dot x_c=\frac{L}{2\pi}\operatorname{Im}\frac{\dot Z_\alpha}{Z_\alpha}\quad(Z_\alpha\ne0).
+$$
+
+이 식은 전류의 첫 공간 조화 성분을 쓰지만 vE는 가중치 없는 합을 쓴다. 서로 다른 진단량은 같을 필요가 없다. 미분은 영점에서 떨어진 국소적으로 펼친 각도에 대한 것이다. 경계 이음매나 정의되지 않은 중심을 가로질러 감긴 좌표를 미분하면 안 된다. 기존 모멘트 크기 임계값 1e−10은 그대로다.
+
+
+$$
+w_0=E_{\rm ref}(1+\varepsilon),\quad w_{N/2}=E_{\rm ref}(1-\varepsilon),\quad w_j=0\text{ otherwise},\quad|\varepsilon|<1:\qquad
+Z=\varepsilon,\quad x_c=\begin{cases}0&\varepsilon>0,\\L/2&\varepsilon<0,\\\text{undefined}&\varepsilon=0.\end{cases}
+$$
+
+짝수 N에서 모든 변위를 0, 속력 크기를 sqrt(2w/m)로 두면 이 비음 가중치를 초기 운동 에너지로 실현할 수 있다. epsilon=0 양쪽의 임의로 가까운 초기 상태가 반대 중심 각도를 갖는다. 이는 서로 다른 초기 상태의 계열이며 불연속 시간 궤적이나 빠른 에너지 전달이 아니다. 모멘트 크기 abs(epsilon)를 함께 보고하면 조건성을 드러낼 수 있다. 각도만으로 수송을 추론하지 않는다.
+
+![정지파 플럭스 진단값은 국소 배분에 의존하며 별도의 가까운 초기 상태들은 조건성이 나쁜 원형 중심을 갖는다.](/assets/learning/waves-dispersion-energy-allocation.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**밀도만 바꾸고 전류 화살표는 유지해도 되는가?** **답:** 일반적으로 안 된다. 추가 밀도 발산에 대응해 전류에 delta 곱하기 링크 에너지 미분을 더해야 국소 수지가 유지된다.
+
+**모든 배분이 기존 군속도 항등식을 주는가?** **답:** 명시한 양의 진행 모드 준비 상태에서는 전체 퍼텐셜 에너지가 일정하므로 그렇다. 임의 정지파나 혼합 준비에서는 미분 보정과 시간 평균 상계를 유지한다.
+
+**중심 각도가 빨리 바뀌면 에너지도 빨리 수송되는가?** **답:** 아니다. 모멘트 크기가 0에 가까우면 각도의 조건성이 나쁘거나 정의되지 않는다. 전체 밀도와 대응 전류를 보고 배분 관례와 모멘트 크기를 보고한다.
+
 ## 해설 문제
 
 ### 문제 1 — 같은 물질을 더 잘게 나누기

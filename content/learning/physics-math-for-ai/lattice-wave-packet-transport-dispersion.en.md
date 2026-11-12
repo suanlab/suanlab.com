@@ -171,6 +171,120 @@ Use zero amplitude, narrow bandwidth, a translated center and a wide-band carrie
 
 Reference generation uses the exponential of the real physical evolution matrix and reconstructs the analytic field through an independent FFT. Comparing that result with the finite spectral model checks more than re-evaluating its own trigonometric expression. A verified mathematical foundation still needs a separately tested reader interface before it counts as an integrated homepage topic.
 
+## Research extension: separate energy allocation from transport
+
+A spring connects two sites, so assigning its energy to one endpoint is a convention. The native calculator splits each spring equally. We now derive a family of alternative local densities and their matching currents. Total energy stays fixed, but not every instantaneous diagnostic is invariant. This supplement changes no native control or center threshold.
+
+### Derive a matching density and current
+
+
+$$
+K_j=\frac{m v_j^2}{2},\quad V_j=\frac{\kappa(q_{j+1}-q_j)^2}{2},\qquad e_j^\alpha=K_j+\alpha V_{j-1}+(1-\alpha)V_j,\qquad
+J_j^\alpha=-\kappa(q_{j+1}-q_j)[(1-\alpha)v_{j+1}+\alpha v_j],\quad 0\le\alpha\le1.
+$$
+
+Indices are periodic and spacing is a. K, V and e have units joules; J has units watts. Alpha is fixed in time. Every density is nonnegative and summing it gives the same mechanical energy E. Differentiate the spring energy and use m times acceleration equal to the spring force:
+
+
+$$
+\delta=\alpha-\tfrac12,\quad e_j^\alpha-e_j^{1/2}=\delta(V_{j-1}-V_j),\quad J_j^\alpha-J_j^{1/2}=\delta\dot V_j,\qquad\dot e_j^\alpha=J_{j-1}^\alpha-J_j^\alpha.
+$$
+
+The density difference is a discrete divergence and sums to zero. The current correction is essential: retaining the original arrows after changing the density would generally violate local conservation. A site receives its left current and loses its right current, which fixes the signs.
+
+### State when the global flux speed is invariant
+
+
+$$
+v_E^\alpha=\frac{a\sum_jJ_j^\alpha}{E},\quad V_{\rm tot}=\sum_jV_j:\qquad v_E^\alpha-v_E^{1/2}=\frac{a\delta}{E}\frac{dV_{\rm tot}}{dt},\qquad
+\left|\frac1T\int_0^T(v_E^\alpha-v_E^{1/2})dt\right|=\left|\frac{a\delta[V_{\rm tot}(T)-V_{\rm tot}(0)]}{ET}\right|\le\frac{a|\delta|}{T}.
+$$
+
+Assume E>0 and a lossless finite periodic chain. Since 0≤Vtot≤E, the time-averaged difference is bounded by a boundary term divided by T. Instantaneous equality does not follow for arbitrary initial data. However, the native packet uses resolved positive traveling modes with no zero or Nyquist mode. Discrete orthogonality then makes the total potential energy constant:
+
+
+$$
+V_{\rm tot}=E/2,\qquad v_E^\alpha=v_E^{1/2}=\frac{\sum_n E_n v_g(k_n)}{\sum_nE_n}\quad\text{for the native traveling-mode preparation}.
+$$
+
+Each distinct resolved traveling harmonic contributes constant total kinetic and potential halves; cross terms cancel in the site sum. Therefore this particular global identity survives every allocation above. Local densities, currents and circular centers can still differ. Its hypotheses matter when extending the model to standing or counterpropagating waves.
+
+### Test a standing wave as a different preparation
+
+
+$$
+q_j=A\cos(kja)\cos\omega t,\quad\omega=2\sqrt{\kappa/m}\sin(ka/2),\quad\frac{V_{\rm tot}}E=\cos^2\omega t,\qquad
+\sum_jJ_j^{1/2}=0,\qquad v_E^\alpha=-a\delta\omega\sin(2\omega t).
+$$
+
+For a resolved nonzero, non-Nyquist mode the pattern stands still, yet an unequal allocation can yield a nonzero instantaneous flux-speed diagnostic. This is stored-energy bookkeeping, not motion of the standing pattern, particle speed or evidence of superluminal flow. It does not contradict the native traveling-mode identity because its initial state is different. The existing periodic-chain lesson can prepare this standing state; the packet controls do not gain a standing-wave switch.
+
+Use N=8, L=8 m, a=1 m, m=1 kg, kappa=1 N/m, A=0.1 m and mode 1. The table recomputes link currents from displacement and velocity; it reports speeds in m/s and phase in radians.
+
+| omega t | Vtot / E | speed, alpha=0 | speed, alpha=0.5 | speed, alpha=1 |
+|---|---|---|---|---|
+| 0 | 1.0 | 0 | 0 | 0 |
+| 0.392699 | 0.853553 | 0.270598 | 0 | -0.270598 |
+| 0.785398 | 0.5 | 0.382683 | 0 | -0.382683 |
+| 1.178097 | 0.146447 | 0.270598 | 0 | -0.270598 |
+
+```python
+from math import cos, sin, sqrt, pi
+
+n = 8
+mass = stiffness = spacing = 1
+omega = 2*sqrt(stiffness/mass)*sin(pi/n)
+def shown(x):
+    r = round(x, 6)
+    return 0 if r == 0 else r  # Display only; no physical clipping.
+for phase in [0, pi/8, pi/4, 3*pi/8]:
+    q = [.1*cos(2*pi*j/n)*cos(phase) for j in range(n)]
+    v = [-.1*omega*cos(2*pi*j/n)*sin(phase) for j in range(n)]
+    link = [stiffness*(q[(j+1)%n]-q[j])**2/2 for j in range(n)]
+    energy = sum(mass*x*x/2 for x in v)+sum(link)
+    speeds = []
+    for alpha in [0, .5, 1]:
+        current = [-stiffness*(q[(j+1)%n]-q[j])*
+                   ((1-alpha)*v[(j+1)%n]+alpha*v[j]) for j in range(n)]
+        speeds.append(spacing*sum(current)/energy)
+    print(*(shown(x) for x in [phase, sum(link)/energy, *speeds]))
+```
+
+### Distinguish a circular center from a net flux
+
+
+$$
+Z_\alpha=\frac1E\sum_j e_j^\alpha e^{i\theta_j},\quad\theta_j=2\pi j/N:\qquad Z_\alpha-Z_{1/2}=\frac{\delta(e^{i2\pi/N}-1)}E\sum_jV_j e^{i\theta_j},\qquad
+|Z_\alpha-Z_{1/2}|\le2|\delta|\sin(\pi/N)\frac{V_{\rm tot}}E\le2|\delta|\sin(\pi/N).
+$$
+
+Shift the index in the weighted link sum. For the native preparation Vtot/E=1/2 improves the last bound by a factor of two. A small change in this complex moment does not uniformly bound its angle near zero. From local conservation one also obtains
+
+
+$$
+\dot Z_\alpha=\frac{e^{i2\pi/N}-1}{E}\sum_j J_j^\alpha e^{i\theta_j},\qquad\dot x_c=\frac{L}{2\pi}\operatorname{Im}\frac{\dot Z_\alpha}{Z_\alpha}\quad(Z_\alpha\ne0).
+$$
+
+This uses the first spatial harmonic of current, whereas vE uses its unweighted sum. Different diagnostics need not agree. The derivative is for a locally unwrapped angle away from zero; never differentiate a wrapped coordinate across a seam or an undefined center. The native resultant threshold remains 1e−10.
+
+
+$$
+w_0=E_{\rm ref}(1+\varepsilon),\quad w_{N/2}=E_{\rm ref}(1-\varepsilon),\quad w_j=0\text{ otherwise},\quad|\varepsilon|<1:\qquad
+Z=\varepsilon,\quad x_c=\begin{cases}0&\varepsilon>0,\\L/2&\varepsilon<0,\\\text{undefined}&\varepsilon=0.\end{cases}
+$$
+
+For even N these nonnegative weights can be realized as initial kinetic energies with all displacements zero and speed magnitudes sqrt(2w/m). Arbitrarily close initial states on either side of epsilon=0 have opposite center angles. This is a family of different initial states, not a discontinuous time trajectory or rapid energy transfer. Reporting the resultant abs(epsilon) reveals the conditioning; do not infer transport from the angle alone.
+
+![Standing-wave flux diagnostics depend on local allocation; separately, different nearby initial states have an ill-conditioned circular center.](/assets/learning/waves-dispersion-energy-allocation.en.svg)
+
+### Research questions with explanations
+
+**Can the density change while keeping the same current arrows?** **Answer:** Generally no. The added divergence in density requires delta times the link-energy derivative in current to preserve local balance.
+
+**Does every allocation give the native group-velocity identity?** **Answer:** For the stated positive traveling-mode preparation, yes, because total potential energy is constant. For arbitrary standing or mixed preparations, keep the derivative correction and time-average bound.
+
+**Does a rapidly changing center angle prove rapid energy transport?** **Answer:** No. Near a zero resultant the angle is ill-conditioned or undefined. Inspect the full density and matched currents, state the allocation and report the resultant.
+
 ## Explained exercises
 
 ### Exercise 1 — Refine the same material

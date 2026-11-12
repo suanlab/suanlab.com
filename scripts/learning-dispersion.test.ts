@@ -90,7 +90,8 @@ test('unsupported nonfinite,negative,aliased or ill-sized physical inputs are re
 });
 for(const id of['dispersive-wave-packets-phase-group-velocity','lattice-wave-packet-transport-dispersion'])for(const lang of['ko','en']as const)test(`${id}.${lang}: detailed theory,six explained exercises and strict KaTeX rendering`,async()=>{
  const{readFile}=await import('node:fs/promises'),{getLearningContent}=await import('../src/lib/learning-content');const raw=await readFile(`content/learning/physics-math-for-ai/${id}.${lang}.md`,'utf8'),rendered=await getLearningContent(id);
- assert.ok(raw.length>6500);assert.equal(rendered.outline[lang].length,16);assert.equal(rendered.outline.ko.length,rendered.outline.en.length);assert.equal(new Set(rendered.outline[lang].map(h=>h.id)).size,16);assert.ok(rendered[lang].includes('katex-display'));assert.ok(!rendered[lang].includes('katex-error'));
+ assert.ok(raw.length>6500);assert.equal(rendered.outline[lang].length,17);assert.equal(rendered.outline.ko.length,rendered.outline.en.length);assert.equal(new Set(rendered.outline[lang].map(h=>h.id)).size,17);assert.ok(rendered[lang].includes('katex-display'));assert.ok(!rendered[lang].includes('katex-error'));
+ const sections=raw.match(/^## /gm)||[],research=raw.match(/^## (?:Research extension:|연구 확장:).*\n[\s\S]*?(?=^## )/gm)||[];assert.equal(research.length,1);assert.equal(sections.length,17);assert.equal((raw.replace(research[0],'').match(/^## /gm)||[]).length,16);
  assert.equal((raw.match(/^### (?:Exercise|문제) [1-6]/gm)||[]).length,6);assert.equal((raw.match(lang==='en'?/\*\*Solution:\*\*/g:/\*\*해설:\*\*/g)||[]).length,6);assert.doesNotMatch(raw,/TODO|TBD|coming soon/i);if(lang==='en')assert.doesNotMatch(raw,/[가-힣]/);
 });
 

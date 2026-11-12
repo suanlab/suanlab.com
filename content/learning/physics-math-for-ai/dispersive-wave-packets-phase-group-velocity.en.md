@@ -153,6 +153,101 @@ Use $\beta=0$ as a no-spreading control and $A=0$ as an undefined-observable con
 
 Independent Fourier quadrature tests the closed form, symbolic substitution tests its equation and real-space integration tests moments. Agreement among several rearrangements of one copied expression would supply weaker evidence. Rendering and meaningful interactions still require separate verification after these mathematics checks.
 
+## Research extension: quantify omitted cubic dispersion
+
+The quadratic envelope above is an exact solution of its stated model. Its accuracy for another dispersion relation is a different question. A small omitted coefficient can accumulate a large phase over a long observation. We compare two lossless models with exactly the same initial Gaussian spectrum, then separate field error, centroid motion and physical interpretation. The cubic coefficient is a supplementary calculation, not a new native slider.
+
+### Choose a common initial state and error scale
+
+
+$$
+p=k-k_0,\quad\omega_2(p)=\omega_0+v_g p+\frac{\beta p^2}{2},\quad\omega_3(p)=\omega_2(p)+\frac{\gamma p^3}{6},\qquad h=\frac{\gamma t}{\sigma^3}.
+$$
+
+Assume A>0, sigma>0 and real coefficients. Gamma has units m³/s, beta has units m²/s and h is dimensionless. Each spectral component changes only its phase. The polynomial is a declared mathematical dispersion model; it need not describe all wave numbers of a real material. Let psi2 and psi3 denote the two complex fields, using the same unitary Fourier convention and initial amplitude width sigma.
+
+
+$$
+\rho_\sigma(p)=\frac{\sigma}{\sqrt\pi}e^{-\sigma^2p^2},\quad\|\psi_0\|_2^2=A^2\sigma\sqrt\pi,\qquad
+D^2(t)=\frac{\|\psi_3-\psi_2\|_2^2}{\|\psi_0\|_2^2}=\int_{-\infty}^{\infty}\frac{e^{-q^2}}{\sqrt\pi}\,4\sin^2\!\left(\frac{hq^3}{12}\right)dq,\quad q=\sigma p.
+$$
+
+Plancherel turns a spatial field error into a Gaussian average of the squared phase difference. Common carrier, translation and quadratic phases cancel, so this relative error is independent of beta and vg. The nonnegative sine-squared integrand avoids subtracting two nearly equal overlaps. A conserved norm does not make the fields equal.
+
+### Derive a bound before choosing the observation horizon
+
+
+$$
+\mathbb E_{\rho_\sigma}p^6=\frac{15}{8\sigma^6},\qquad D(t)\le\min\!\left(2,\sqrt{\frac5{96}}\frac{|\gamma t|}{\sigma^3}\right).
+$$
+
+Apply abs(exp(iz)−1)≤min(2,abs(z)) and integrate the sixth Gaussian moment. Repeated integration by parts gives the factor 15/8. This is an exact model bound, not a claim that the numerical integral is certified to every printed digit. A narrower initial packet has a broader spectrum and amplifies the omitted cubic term as sigma to the power −3.
+
+
+$$
+h_0\ne0,\quad t_\gamma=\frac{h_0\sigma^3}{\gamma}:\qquad D(t_\gamma)=D(h_0)>0\quad\text{as }\gamma\to0\text{ with }h_0/\gamma>0.
+$$
+
+For every fixed time the error tends to zero with gamma. Along the growing positive-time horizon above it stays nonzero: the sine-squared integrand is positive on a set of positive measure. A claim of uniform long-time accuracy therefore needs an explicit time scale.
+
+### Compute what the intensity centroid actually measures
+
+
+$$
+\langle x\rangle_3=x_0+t\left(v_g+\frac{\gamma}{4\sigma^2}\right),\qquad\operatorname{Var}_3 x=\frac{\sigma^2}{2}+\frac{\beta^2t^2}{2\sigma^2}+\frac{\gamma^2t^2}{8\sigma^4}.
+$$
+
+In Fourier space position evolves as x(t)=x(0)+t omega-prime(p). For the unchirped initial Gaussian, the symmetrized covariance of initial position with p or p² is zero. Use E p=E p³=0, E p²=1/(2 sigma²) and Var(p²)=1/(2 sigma⁴). The centroid speed is the spectral average of omega-prime, which equals vg for the quadratic model but acquires the displayed finite-bandwidth shift here. The cubic intensity is generally not Gaussian: its mean and variance do not specify its full profile. These are squared-field moments, not a mechanical-energy center or a signal-front velocity.
+
+### Keep Gaussian tails when using a band-limited remainder estimate
+
+
+$$
+|r(p)|\le K|p|^3/6\quad(|p|\le P),\quad\omega_{\rm actual}=\omega_2+r\text{ real}:\qquad D^2\le\frac{5K^2t^2}{96\sigma^6}+4\operatorname{erfc}(\sigma P).
+$$
+
+Inside the band, use the same phase inequality and bound its sixth moment by the full Gaussian moment. Outside, use the worst squared distance 4 between two unit phasors. The normalized spectral probability outside the band is erfc(sigma P), not the amplitude-tail expression with an extra square root of two. This estimate requires real dispersion outside the band too; unspecified absorption does not satisfy that unit-phasor assumption.
+
+
+$$
+\sup_x|\psi_3-\psi_2|\le\min\!\left(2A,\frac{2A}{3\sqrt{2\pi}}\frac{|\gamma t|}{\sigma^3}\right).
+$$
+
+The spectral L1 triangle inequality gives this absolute pointwise bound: integrate abs(p)³ exp(−sigma² p²/2), whose value is 4/sigma⁴. It does not control relative error or phase at field zeros. The following table uses the exact spectral error integral; values are rounded to nine significant digits. Simpson integration over q in [−8,8] omits at most 4 erfc(8) from D²; discretization error is checked separately by refinement.
+
+| h | relative field error D | L2 upper bound | centroid shift / sigma |
+|---|---|---|---|
+| 0.25 | 0.0567041208 | 0.0570544331 | 0.0625 |
+| 0.5 | 0.111459278 | 0.114108866 | 0.125 |
+| 1 | 0.210457805 | 0.228217732 | 0.25 |
+| 2 | 0.362955786 | 0.456435465 | 0.5 |
+
+```python
+from math import exp, sin, sqrt, pi
+
+def error(h, n=40000):
+    step = 16/n
+    def f(q):
+        return exp(-q*q)/sqrt(pi)*4*sin(h*q**3/12)**2
+    squared = step/3*(f(-8)+f(8)+sum(
+        (4 if j % 2 else 2)*f(-8+j*step) for j in range(1, n)))
+    return sqrt(squared)
+
+for h in [.25, .5, 1, 2]:
+    print(h, *(format(value, '.9g') for value in
+          [error(h), sqrt(5/96)*h, h/4]))
+```
+
+![Cubic dispersion changes a Gaussian intensity profile and accumulates a norm error below the analytic bound.](/assets/learning/waves-dispersion-cubic-remainder.en.svg)
+
+### Research questions with explanations
+
+**Is a small gamma sufficient?** **Answer:** Specify bandwidth and time: the governing dimensionless quantity is abs(gamma t)/sigma³. The growing-horizon sequence defeats a coefficient-only argument.
+
+**Must the centroid move at vg?** **Answer:** It does in the stated quadratic Gaussian model. Cubic dispersion shifts the spectral average derivative by gamma/(4 sigma²), even with a symmetric initial spectrum.
+
+**Does norm conservation certify physical energy or causality?** **Answer:** No. The norm belongs to the declared lossless field model. Mechanical energy, material validity and information fronts need additional physical structure.
+
 ## Explained exercises
 
 ### Exercise 1 — Which width is measured?
