@@ -143,6 +143,158 @@ $$
 
 시간 이력은 0~10초를 다루며 조회 시각을 실제 적분 정지점으로 포함합니다. 조회 자세는 가까운 그림 프레임을 고른 값이 아닙니다. 보존량 곡선은 수치 해와 정확한 초기 기준을 비교합니다. 단위 각속도 주축의 선형 안정성 표시는 모든 현재 상태의 전역 안정성 판정과 구분하세요.
 
+## 연구 확장: 보존량만으로 회전 시계의 정확성을 판단하지 않는다
+
+### 국소 불안정성과 하나의 정확한 비선형 궤도를 연결한다
+
+모델이 에너지와 각운동량 크기를 재현해도 특정 시각의 몸체 성분은 틀릴 수 있다. 이를 보려고 관성계에서 질량중심이 고정되고 외부 토크가 없으며 주축 텐서가 I=diag(3,4,5) kg m²인 물체를 택한다. 실제 실습의 이차 모멘트 A=3,B=2,C=1로 실현 가능한 관성이다. Euler 식은
+
+$$
+\dot\omega=f(\omega)=\left(-\frac{\omega_2\omega_3}{3},\frac{\omega_3\omega_1}{2},-\frac{\omega_1\omega_2}{5}\right).
+$$
+
+이 된다. Ω>0를 rad/s로 정하고 다음 몸체 좌표 각속도를 생각하자.
+
+$$
+\lambda=\frac{\Omega}{\sqrt{15}},\qquad
+\omega_1=\sqrt{\frac23}\,\Omega\operatorname{sech}(\lambda t),\quad
+\omega_2=\Omega\tanh(\lambda t),\quad
+\omega_3=\sqrt{\frac25}\,\Omega\operatorname{sech}(\lambda t).
+$$
+
+sech u=1/cosh u이며 λ의 단위는 s⁻¹이다. 모든 초기조건을 나타내는 일반식이 아니라 특별한 비선형 해다. 다음 항등식으로 미분한다.
+
+$$
+\frac{d}{du}\operatorname{sech}u=-\operatorname{sech}u\tanh u,\quad
+\frac{d}{du}\tanh u=\operatorname{sech}^2u,\qquad
+\lambda\sqrt{\frac23}=\frac{\Omega}{3}\sqrt{\frac25},\quad
+\lambda\Omega=\frac{\Omega^2}{2}\sqrt{\frac23}\sqrt{\frac25}.
+$$
+
+첫 성분의 미분은 첫 계수 관계에 따라 −ω₂ω₃/3이다. 둘째 성분의 미분은 둘째 관계에 따라 ω₃ω₁/2이다. 나머지는 λ√(2/5)=Ω√(2/3)/5에서 나온다. 선형화한 식뿐 아니라 세 비선형 Euler 식을 모두 만족한다.
+
+t→−∞에서는 몸체 성분이 (0,−Ω,0)에, t→∞에서는 (0,Ω,0)에 접근한다. 반대 방향의 두 중간축 회전을 잇는 궤도다. 보존량의 등위 집합에서 이웃한 운동 유형을 나누는 분리 궤도의 한 가지다. 국소 변화율 λ는 중간축 성장률과 연결되지만 완전한 비선형 운동은 tanh와 sech에 의해 유계다. 지수 근사를 뒤집힘 전체로 연장하면 이런 포화를 놓친다.
+
+### 보존량의 등위를 먼저 유도한다
+
+sech²u+tanh²u=1을 사용하면
+
+$$
+K=\frac12(3\omega_1^2+4\omega_2^2+5\omega_3^2)=2\Omega^2,\qquad
+|L|^2=9\omega_1^2+16\omega_2^2+25\omega_3^2=16\Omega^2.
+$$
+
+이다. 위 수치 계수는 명시한 SI 관성을 사용한다. K의 단위는 J, |L|²의 단위는 kg² m⁴/s²다. Ω=1이면 K=2 J, |L|²=16 kg² m⁴/s²다. 공통 등위를 소거하면
+
+$$
+|L|^2-2I_2K=-3\omega_1^2+5\omega_3^2=0\qquad(I_2=4).
+$$
+
+이다. 우리가 선택한 가지의 양의 첫째·셋째 성분은 ω₃=√(3/5)ω₁을 만족한다. 같은 보존량 조건에는 다른 가지와 극한의 주축 회전도 포함된다. 보존량만으로 초기값과 시간 진행이 유일하게 정해지지 않는다.
+
+t=0의 초기값은 (√(2/3)Ω,0,√(2/5)Ω)다. Ω=1일 때 무리수 성분은 기존 0.1 rad/s 정수 입력으로 정확히 지정할 수 없다. 따라서 다음 해석해는 **별도 Python 예제**다. 실제 실습의 입력 범위를 넓혔다고 표시하지 않는다.
+
+실제 입력 `[3,2,1,0,10,0,0,100]`은 t=10 s에서 순수한 중간축 회전이다. 자세는 회전하지만 몸체 성분은 (0,1,0)을 유지한다. `[3,2,1,1,10,0,0,100]`은 유한 교란이 있는 다른 궤도로 K₀=403/200 J, |L₀|²=1609/100이다. 위의 해석 분리 궤도와 다르다. 관성텐서가 같다는 이유로 다른 초기조건의 해를 서로 바꾸어 사용하면 안 된다.
+
+### 초기값과 보존량은 같지만 시계가 틀리는 경우
+
+참 해를 ω(t)라 하고 같은 곡선을 c=1.1배의 속도로 따라가는 후보를 정의한다.
+
+$$
+\widetilde\omega(t)=\omega(ct),\quad\widetilde\omega(0)=\omega(0),\qquad
+\frac{d\widetilde\omega}{dt}-f(\widetilde\omega)=(c-1)f(\widetilde\omega).
+$$
+
+초기 몸체 성분은 정확히 같다. 모든 시각의 에너지와 각운동량 제곱 크기도 같다. 그러나 f가 0이 아닌 곳에서 명시한 실제 시간의 Euler 식을 만족하지 못한다. Ω=1, t=√15 s에서 최대 성분 오차는 약 0.039780 rad/s, Euler 미분 잔차의 최댓값은 약 0.010114 rad/s²다.
+
+| 시간 t (s) | 정확한 ω₂ (rad/s) | 잘못된 시계의 ω₂ (rad/s) | 최대 성분 오차 (rad/s) |
+|---|---:|---:|---:|
+| 0 | 0 | 0 | 0 |
+| √15 | 0.761594 | 0.800499 | 0.039780 |
+| 2√15 | 0.964028 | 0.975743 | 0.038280 |
+
+![초기 각속도와 보존량이 같아도 서로 다른 두 시계](/assets/learning/classical-rotation-clock.ko.svg)
+
+위 패널은 둘째 몸체 성분을 비교한다. 아래는 세 성분 중 최대 절대 오차이므로 최댓값을 만드는 성분이 중간에 바뀔 수 있다. 가로 좌표 λt는 무차원이며 모두 Ω=1이다. 주황 점은 λt=1, 즉 표의 t=√15 s 사례다. 두 곡선의 K와 |L|²는 같은 상수다. 작은 보존량 잔차만으로 시간 진행의 정확성을 판단하지 못한다.
+
+이는 물리 정보 기반 학습과 직접 연결된다. 보존량 벌점은 궤도를 허용 집합에 묶을 수 있지만 그 집합을 따라 이동하는 속도까지 강제하지 못한다. 시간별 관측·운동방정식 잔차·독립적인 위상 기준으로 누락된 정보를 보충해야 한다. 미분 잔차를 유한 차분으로 구하면 차분 오차도 생긴다. 이 예제는 문제를 분리하려고 해석 미분을 사용한다.
+
+### 해석 검산을 자세 검증과 구분해 실행한다
+
+다음 셀은 표준 라이브러리만 사용해 Ω와 시간의 483개 조합을 검사한다. 해석 미분을 Euler 벡터장과 직접 비교하고 두 보존량과 잘못된 시계를 대조한다. 부동소수점 허용오차를 사용한 검산이며 엄밀한 구간 ODE 인증은 아니다. 마지막 출력이 위 표를 재현한다.
+
+```python
+from math import cosh, sqrt, tanh
+
+
+def separatrix(t, omega=1.0):
+    """Body components and their analytic time derivative; I=(3,4,5)."""
+    rate = omega / sqrt(15)
+    u = rate * t
+    sech = 1 / cosh(u)
+    v = tanh(u)
+    w = [sqrt(2 / 3) * omega * sech, omega * v,
+         sqrt(2 / 5) * omega * sech]
+    derivative = [-rate * w[0] * v, omega * rate * sech ** 2,
+                  -rate * w[2] * v]
+    return w, derivative
+
+
+def euler_rhs(w):
+    x, y, z = w
+    return [-y * z / 3, z * x / 2, -x * y / 5]
+
+
+def invariants(w):
+    return (sum(i * x * x / 2 for i, x in zip([3, 4, 5], w)),
+            sum((i * x) ** 2 for i, x in zip([3, 4, 5], w)))
+
+
+def separatrix_checks():
+    count = 0
+    for omega in [.5, 1, 2]:
+        for j in range(-80, 81):
+            t = j * sqrt(15) / (20 * omega)
+            w, derivative = separatrix(t, omega)
+            rhs = euler_rhs(w)
+            assert max(abs(a - b) for a, b in zip(derivative, rhs)) < 2e-14
+            k, l2 = invariants(w)
+            assert abs(k - 2 * omega ** 2) < 2e-14
+            assert abs(l2 - 16 * omega ** 2) < 2e-13
+            count += 1
+    t = sqrt(15)
+    w, _ = separatrix(t)
+    wrong, wrong_derivative = separatrix(1.1 * t)
+    error = max(abs(a - b) for a, b in zip(w, wrong))
+    assert .038 < error < .040
+    residual = max(abs(1.1 * a - b)
+                   for a, b in zip(wrong_derivative, euler_rhs(wrong)))
+    assert residual > .009
+    assert separatrix(0)[0] == separatrix(1.1 * 0)[0]
+    assert abs(invariants(wrong)[0] - 2) < 1e-14
+    assert abs(invariants(wrong)[1] - 16) < 1e-13
+    print(f'{count} analytic Euler/invariant samples passed')
+    print('Wrong clock at t=sqrt(15): max angular-velocity error, ODE residual:',
+          error, residual)
+
+
+separatrix_checks()
+for t in [0, sqrt(15), 2 * sqrt(15)]:
+    w, _ = separatrix(t)
+    wrong, _ = separatrix(1.1 * t)
+    print(t, w[1], wrong[1], max(abs(a-b) for a,b in zip(w,wrong)))
+```
+
+이 공식이 주는 것은 **몸체 각속도**다. 실험실 자세와 고정된 실험실 각운동량 방향을 얻으려면 초기 자세를 정하고 자세 수송 식도 풀어야 한다. |L|²의 보존만으로 실험실 벡터 L까지 올바르다고 판단하지 않는다. 기존 독립 회전행렬 참조와 quaternion 진단은 여전히 필요하다.
+
+### 연구 질문과 풀이
+
+1. **초기값과 두 스칼라 보존량을 맞추고도 시간이 틀릴 수 있는가?** 그렇다. ω(1.1t)가 직접적인 반례다. 벡터장이 0이 아닌 곳에서 미분 잔차는 예측 상태의 0.1f다.
+2. **정확히 중간축으로 도는 상태는 왜 그대로 있는가?** 몸체 성분 식의 평형이기 때문이다. 불안정성은 근처 상태의 문제다. 분리 궤도는 무한 시간에서만 그 평형에 접근하므로 유한 시각 초기값 문제의 유일성과 충돌하지 않는다.
+3. **이 해석 가지를 검사하면 자세 적분 전체가 검증되는가?** 아니다. 몸체 각속도와 자세 수송은 결합 문제의 서로 다른 부분이다. 이 해는 몸체 동역학의 한 참조이며 자세·좌표 관례·일반 초기조건의 검사를 대신하지 않는다.
+
+수송 방정식과 국소 안정성은 [MIT16.07 Lecture28](https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/5e1d8699338146e5127080b880b906d6_MIT16_07F09_Lec28.pdf)을 참고한다. 위의 정확한 가지와 잘못된 시계는 명시한 가정 아래 직접 대입해 검산할 수 있다.
+
 ## 예제와 해설이 있는 연습문제
 
 1. **구형 관성.** A=B=C=1, ω₀=(1,1,1), 초기 자세는 단위행렬입니다. **해설:** 세 모멘트는 2, K=3, |L|²=12입니다. 몸체 각속도는 일정하지만 물체는 그 방향을 축으로 속력 √3으로 돕니다. 몸체에 고정된 벡터의 실험실 성분은 일반적으로 변합니다.

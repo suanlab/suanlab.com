@@ -1,6 +1,43 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { pointMassInertia, torqueFreeEuler } from '../src/lib/learning-rotation-inertia';
+import { readFileSync } from 'node:fs';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import { getLearningContent } from '../src/lib/learning-content';
+
+for (const [id, columns, image] of [
+  ['point-mass-inertia-tensor', [4, 2], 'classical-rotation-shapes'],
+  ['torque-free-euler-body-lab', [4], 'classical-rotation-clock'],
+] as const) {
+  test(`paired research derivations, code, tables and real rendering: ${id}`, async () => {
+    const pairs = ['en', 'ko'].map(lang => {
+      const source = readFileSync(`content/learning/physics-math-for-ai/${id}.${lang}.md`, 'utf8');
+      const start = source.search(/^## (Research extension:|연구 확장:)/m);
+      const heading = lang === 'en' ? '## Worked examples and exercises with solutions' : '## 예제와 해설이 있는 연습문제';
+      const end = source.indexOf(heading, start);
+      assert.ok(start >= 0 && end > start);
+      const tree = unified().use(remarkParse).use(remarkGfm).use(remarkMath).parse(source.slice(start, end));
+      const tables = tree.children.filter(node => node.type === 'table');
+      assert.equal(tables.length, columns.length);
+      for (const [i, table] of tables.entries()) for (const row of table.children) assert.equal(row.children.length, columns[i]);
+      const math = tree.children.flatMap(node => node.type === 'math' ? [node.value] : []);
+      const code = tree.children.flatMap(node => node.type === 'code' && node.lang === 'python' ? [node.value] : []);
+      assert.equal(math.length, 6);
+      assert.equal(code.length, 1);
+      return { math, code };
+    });
+    assert.deepEqual(pairs[0], pairs[1]);
+    const content = await getLearningContent(id);
+    for (const lang of ['en', 'ko'] as const) {
+      assert.ok(!content[lang].includes('katex-error'));
+      assert.equal(content.outline[lang].filter(h => /Research extension:|연구 확장:/.test(h.title)).length, 1);
+      assert.ok(content[lang].includes(`${image}.${lang}.svg`));
+    }
+  });
+}
 
 const shapeA = [4, 1, 1, 1, 2, 2, 0, 10, 10, 0, 0, 0];
 const shapeB = [1, 1, 4, 2, 2, 1, 0, 10, 10, 0, 0, 0];

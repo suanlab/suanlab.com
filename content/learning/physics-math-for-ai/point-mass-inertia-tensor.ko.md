@@ -116,6 +116,190 @@ $$
 
 공간 투영 그림의 길이와 각도는 세 차원의 정확한 자가 아닙니다. 계산은 원래 세 차원 좌표를 사용합니다. 정확한 유리수 텐서·점질량 합과 수치 고유값·회전 기하도 구분해 읽으세요.
 
+## 연구 확장: 텐서의 복원과 물체의 복원을 구분한다
+
+### 회전 측정에는 어떤 정보가 남는가?
+
+로봇이나 학습 시뮬레이터가 물체의 회전으로 관성텐서를 추정한다고 하자. 행렬의 모든 성분을 알아내면 물체도 알아낸 것처럼 느낄 수 있다. 그러나 이 행렬은 질량 분포의 몇 가지 공간 모멘트만 기록한다. 연구에서는 어떤 서로 다른 물체가 정확히 같은 관측을 만드는지 먼저 질문해야 한다.
+
+질량중심을 원점에 놓고 양의 점질량을 사용한다. 질량의 이차 모멘트 행렬 S와 관성텐서의 관계는
+
+$$
+S=\sum_i m_i r_i r_i^{\mathsf T},\qquad
+I=\operatorname{tr}(S)\operatorname{Id}-S,\qquad
+S=\frac{\operatorname{tr}(I)}{2}\operatorname{Id}-I.
+$$
+
+이다. trace를 취하면 tr(I)=2tr(S)이므로 마지막 역변환이 나온다. I를 알면 S는 알지만 각 위치와 질량은 이미 합산되어 있다. 질량 분포를 소수의 통계량으로 압축한 다대일 변환이다.
+
+물리적으로 실현 가능한 행렬에는 대칭성과 양의 정부호성보다 강한 조건이 있다. 모든 방향 n에 대해
+
+$$
+n^{\mathsf T}Sn=\sum_i m_i(n\cdot r_i)^2\ge0,\qquad
+\frac{I_j+I_k-I_i}{2}\ge0\quad(\{i,j,k\}=\{1,2,3\}).
+$$
+
+이다. S를 대각화하면 그 고유값이 (I_j+I_k−I_i)/2이므로 둘째 부등식이 나온다. diag(1,1,3)은 양의 정부호지만 대응하는 S=diag(3/2,3/2,−1/2)는 불가능하다. 제곱 위치의 질량 가중 합이 음수일 수 없기 때문이다. 양의 정부호 행렬을 출력하는 신경망만으로 물리적 관성텐서를 보장하지 못한다.
+
+이상적인 점질량 모델에서는 구성에 의한 역방향 증명도 가능하다. 총질량 M>0를 정하고 양의 준정부호 S의 정규직교 고유벡터를 u_j라 하면
+
+$$
+S=\sum_{j=1}^{3}s_j u_j u_j^{\mathsf T},\quad s_j\ge0,
+\qquad m_{j,+}=m_{j,-}=\frac{M}{6},\qquad
+r_{j,\pm}=\pm\sqrt{\frac{3s_j}{M}}\,u_j.
+$$
+
+로 배치한다. 각 쌍은 s_j u_j u_jᵀ를 기여하고 여섯 질량의 합은 M, 질량중심은 0이다. s_j=0이면 해당 쌍은 원점에 놓인다. 이는 이상적인 점질량 모델의 실현 가능성을 증명한다. 재료·외형·제작 가능한 연결 구조까지 정한 것은 아니다.
+
+### 관성 측정으로 구별되지 않는 두 형상
+
+다음 표의 질량은 ± 쌍의 **한 점**의 질량이다. 위치는 m, 질량은 kg이며 연결 막대는 이상적인 무질량 막대로 둔다.
+
+| 형상 | x축 쌍: 질량, 위치 | y축 쌍: 질량, 위치 | z축 쌍: 질량, 위치 |
+|---|---|---|---|
+| A | 4, ±1/2 | 1, ±1 | 1, ±1 |
+| B | 1, ±1 | 1, ±1 | 4, ±1/2 |
+
+직접 합산하면
+
+$$
+M_A=M_B=12\ \mathrm{kg},\quad S_A=S_B=2\operatorname{Id}\ \mathrm{kg\,m^2},
+\quad I_A=I_B=4\operatorname{Id}\ \mathrm{kg\,m^2},
+\qquad\sum_i m_i x_i^4=\begin{cases}1/2&\text{A},\\2&\text{B}\end{cases}\ \mathrm{kg\,m^4}.
+$$
+
+이다. 위 SI 계수에서 두 물체 모두 L=4ω, K=2‖ω‖²를 준다. 공통 자세를 회전해도 결과가 같다. 총질량까지 같으므로 평행축 정리에 따라 어느 공통 피벗에서도 관성텐서가 같다. 그러나 x의 사차 모멘트는 다르다. 밀도 영상이나 다른 공간 관측을 추가하면 구별할 수 있다.
+
+두 분포는 공간 회전으로 대응할 수 있다. 그렇다고 고정 실험실 좌표에서의 식별 문제가 사라지지 않는다. 등방적인 관성은 그 방향 정보도 잃었기 때문이다. 이 예제는 명시한 좌표에서의 분포 복원 문제이며 모든 가능한 동치 관계에서 두 형상이 다르다는 주장이 아니다.
+
+![질량과 관성은 같지만 점질량 분포가 다른 두 형상](/assets/learning/classical-rotation-shapes.ko.svg)
+
+그림은 xz 투영이다. 색칠한 점의 면적은 한 점의 질량에 비례한다. 빈 표시는 이 투영에서만 겹치는 두 y축 점의 위치다. 일곱 번째 질량을 추가한 것이 아니다.
+
+실제 실습의 입력 순서 `[m1,m2,m3,2a,2b,2c,2s,10ωx,10ωy,10ωz,10d,방향코드]`에 다음 값을 넣어 비교한다.
+
+```text
+A: [4,1,1,1,2,2,0,10,10,0,0,0]
+B: [1,1,4,2,2,1,0,10,10,0,0,0]
+```
+
+둘 다 K=4 J, L=(4,4,0) kg m²/s다. 두 입력의 `10d`를 10으로 바꾸면 O=(1,0,0), I_O=diag(4,16,16) kg m², K=10 J, 질량중심 병진 에너지=6 J다. 여전히 두 분포는 구별되지 않는다. 여기서 피벗 변경은 주어진 속도장도 바꾸는 새로운 물리적 회전의 비교다. 같은 운동의 관측 기준점만 옮긴 것으로 해석하지 않는다.
+
+### 여섯 에너지 관측으로 복원하는 것은 행렬이다
+
+알려진 각속도 척도 ω_*>0를 정한다. 세 축 방향 ω_*e_i와 세 축 쌍 방향 ω_*(e_i+e_j)의 에너지를 측정하고 이차형식을 전개하면
+
+$$
+I_{ii}=\frac{2K(\omega_*e_i)}{\omega_*^2},\qquad
+I_{ij}=\frac{K(\omega_*(e_i+e_j))-K(\omega_*e_i)-K(\omega_*e_j)}{\omega_*^2}.
+$$
+
+이다. 이 여섯 선형 측정은 6차원 대칭 행렬 공간을 생성한다. 임의로 고른 여섯 방향이면 충분하다는 뜻은 아니다. 외적 ωωᵀ이 그 공간을 생성해야 한다. 대각 구조나 xz 구조를 미리 알면 미지수가 줄지만 이는 추가 사전 정보다.
+
+실제 기하 입력 `[1,1,1,2,4,6,1,10,10,0,0,0]`을 고정하고 세 각속도만 바꾸자. 해당 텐서는
+
+$$
+I=\begin{pmatrix}26&0&-3\\0&41/2&0\\-3&0&21/2\end{pmatrix}\ \mathrm{kg\,m^2}.
+$$
+
+이다. ω_*=1 rad/s에서 정확한 에너지는 다음과 같다.
+
+| 각속도 방향 | 에너지 (J) |
+|---|---:|
+| e₁ | 13 |
+| e₂ | 41/4 |
+| e₃ | 21/4 |
+| e₁+e₂ | 93/4 |
+| e₁+e₃ | 61/4 |
+| e₂+e₃ | 31/2 |
+
+예를 들어 K(e₁+e₃)−K(e₁)−K(e₃)=−3이 되어 위 단위에서 음의 교차항을 복원한다. 축 방향 측정만으로는 이 항을 놓친다. 이렇게 텐서 전체를 복원해도 앞의 A와 B는 구별하지 못한다. 측정 잡음이 있으면 에너지를 빼는 과정에서 오차도 전달된다. 불확실성·방향 설계·물리적 제약까지 검토해야 한다.
+
+### 독립적인 점질량 합을 실행한다
+
+다음 셀은 표준 라이브러리만 사용한다. 두 분포의 모멘트를 분수로 합산하고, 이동한 피벗의 텐서를 다시 계산하며, 여섯 에너지로 전단된 행렬을 복원한다. diag(1,1,3)의 음의 이차 모멘트도 확인한다.
+
+```python
+from fractions import Fraction as Q
+
+
+def geometry(masses, lengths):
+    points = []
+    for j, (mass, length) in enumerate(zip(masses, lengths)):
+        for sign in [-1, 1]:
+            position = [Q(0)] * 3
+            position[j] = sign * Q(length)
+            points.append((Q(mass), position))
+    return points
+
+
+def second_moment(points):
+    return [[sum(m * r[i] * r[j] for m, r in points)
+             for j in range(3)] for i in range(3)]
+
+
+def inertia(points):
+    s = second_moment(points)
+    trace = sum(s[j][j] for j in range(3))
+    return [[(trace if i == j else 0) - s[i][j]
+             for j in range(3)] for i in range(3)]
+
+
+def energy(tensor, velocity):
+    return sum(velocity[i] * tensor[i][j] * velocity[j]
+               for i in range(3) for j in range(3)) / 2
+
+
+def shape_checks():
+    a = geometry([4, 1, 1], [Q(1, 2), 1, 1])
+    b = geometry([1, 1, 4], [1, 1, Q(1, 2)])
+    expected = [[Q(4 if i == j else 0) for j in range(3)]
+                for i in range(3)]
+    assert inertia(a) == inertia(b) == expected
+    assert sum(m for m, _ in a) == sum(m for m, _ in b) == 12
+    assert energy(expected, [1, 1, 0]) == 4
+    fourth = [sum(m * r[0] ** 4 for m, r in p) for p in [a, b]]
+    assert fourth == [Q(1, 2), Q(2)]
+    # Recompute point sums about O=(1,0,0), not just a tensor formula.
+    shifted = [[(m, [r[0] - 1, r[1], r[2]]) for m, r in p]
+               for p in [a, b]]
+    ip = [[Q(4), Q(0), Q(0)], [Q(0), Q(16), Q(0)],
+          [Q(0), Q(0), Q(16)]]
+    assert inertia(shifted[0]) == inertia(shifted[1]) == ip
+    assert energy(ip, [1, 1, 0]) == 10
+
+    # Six energies reconstruct a general symmetric tensor, not its geometry.
+    original = [[Q(26), Q(0), Q(-3)], [Q(0), Q(41, 2), Q(0)],
+                [Q(-3), Q(0), Q(21, 2)]]
+    axes = [[Q(int(i == j)) for i in range(3)] for j in range(3)]
+    diagonal_energy = [energy(original, w) for w in axes]
+    recovered = [[Q(0) for _ in range(3)] for _ in range(3)]
+    for i in range(3):
+        recovered[i][i] = 2 * diagonal_energy[i]
+        for j in range(i):
+            w = [axes[i][k] + axes[j][k] for k in range(3)]
+            recovered[i][j] = recovered[j][i] = (
+                energy(original, w) - diagonal_energy[i] - diagonal_energy[j])
+    assert recovered == original
+    impossible = [Q(1), Q(1), Q(3)]
+    s_diag = [sum(impossible) / 2 - x for x in impossible]
+    assert s_diag == [Q(3, 2), Q(3, 2), Q(-1, 2)]
+    print('Same mass/tensor, different fourth moments:', *fourth)
+    print('COM/pivot energies (J): 4, 10; six-probe reconstruction passed')
+    return a, b
+
+
+shape_checks()
+```
+
+### 연구 질문과 풀이
+
+1. **관측 방향을 반복해서 회전하면 A와 B를 구별할 수 있는가?** 없다. 등방 텐서와 총질량이 같으므로 명시한 강체 관성 응답은 공통 각속도·자세·피벗마다 동일하다. 방향을 바꾸는 것만으로 누락된 사차 모멘트 관측이 생기지 않는다.
+2. **실현 가능한 텐서라면 형상은 유일한가?** 아니다. 대칭 쌍의 구성은 한 실현을 줄 뿐이다. 두 실제 입력은 총질량을 알아도 비유일함을 보여준다. 추가 형상·재료 사전 정보로 후보를 줄일 수 있지만 그 조건을 밝혀야 한다.
+3. **왜 축 쌍의 회전을 사용하는가?** 순수 축은 대각 성분만 측정한다. 축 쌍은 에너지 차분으로 교차항을 드러낸다. 행렬을 식별하는 문제와 분포를 식별하는 문제를 구분해야 한다.
+
+관성의 기본 정의는 [MIT16.07 Lecture26](https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/dd277ec654440f4c2b5b07d6c286c3fd_MIT16_07F09_Lec26.pdf)을 참고한다. 위 분포·관측 계산·실현 구성은 각 가정을 명시해 직접 검산할 수 있다.
+
 ## 예제와 해설이 있는 연습문제
 
 1. **등방 예제.** ±x,±y,±z 위치에 단위 질량을 놓고 O=0, ω=(1,1,0)으로 두세요. **해설:** I=4Id, L=(4,4,0), K=4입니다. 모든 방향이 주축이므로 표시된 고유기저는 가능한 선택 중 하나입니다.

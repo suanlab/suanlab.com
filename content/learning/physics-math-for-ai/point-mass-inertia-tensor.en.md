@@ -115,6 +115,190 @@ Positions, pivot and velocities transform by the same R. The scalar energy is un
 
 A projected spatial diagram should be read as a projection, not as an exact ruler for three-dimensional lengths or angles. Physical calculations use the original three-dimensional coordinates. Numerical eigenvectors and rotated geometry are also distinct from the exact rational tensor entries and point sums.
 
+## Research extension: identify the tensor without claiming to identify the object
+
+### What information survives a rotational measurement?
+
+Suppose a robot or learned simulator estimates a rigid object's inertia from motion. Recovering every entry of the matrix can feel like recovering the object. The matrix actually records a small set of spatial moments. A useful research question is therefore: which different objects produce exactly the same observations?
+
+Keep the center of mass at the origin and use positive point masses. Define the mass second-moment matrix S. Its relation to inertia is
+
+$$
+S=\sum_i m_i r_i r_i^{\mathsf T},\qquad
+I=\operatorname{tr}(S)\operatorname{Id}-S,\qquad
+S=\frac{\operatorname{tr}(I)}{2}\operatorname{Id}-I.
+$$
+
+Taking a trace gives tr(I)=2tr(S), which proves the inverse formula. Knowing I determines S, but the individual positions and masses have already been summed out. This is a many-to-one compression of the mass distribution.
+
+Physical realizability imposes more than symmetry and positive definiteness. For every direction n,
+
+$$
+n^{\mathsf T}Sn=\sum_i m_i(n\cdot r_i)^2\ge0,\qquad
+\frac{I_j+I_k-I_i}{2}\ge0\quad(\{i,j,k\}=\{1,2,3\}).
+$$
+
+The second inequality follows by diagonalizing S; its eigenvalues are (I_j+I_k−I_i)/2. For example diag(1,1,3) is positive definite, but its inferred S is diag(3/2,3/2,−1/2). A negative squared-position moment is impossible. A positive-definite matrix output layer alone therefore does not ensure a physically realizable inertia tensor.
+
+There is also a constructive converse for ideal point masses. Let M>0 be any chosen total mass and let the u_j be orthonormal eigenvectors of a positive-semidefinite S:
+
+$$
+S=\sum_{j=1}^{3}s_j u_j u_j^{\mathsf T},\quad s_j\ge0,
+\qquad m_{j,+}=m_{j,-}=\frac{M}{6},\qquad
+r_{j,\pm}=\pm\sqrt{\frac{3s_j}{M}}\,u_j.
+$$
+
+Each antipodal pair contributes s_j u_j u_jᵀ, all six masses sum to M, and their center of mass is zero. A zero s_j places that pair at the origin. This proves realizability in the ideal point-mass model. It does not specify a material, enclosing shape or manufacturable connecting structure.
+
+### Two shapes that no inertia experiment distinguishes
+
+In the following table each mass is the mass of **one** member of a ± pair; distances are in metres and masses in kilograms. The connecting rods remain ideal and massless.
+
+| Shape | x pair: mass, position | y pair: mass, position | z pair: mass, position |
+|---|---|---|---|
+| A | 4, ±1/2 | 1, ±1 | 1, ±1 |
+| B | 1, ±1 | 1, ±1 | 4, ±1/2 |
+
+Direct sums give
+
+$$
+M_A=M_B=12\ \mathrm{kg},\quad S_A=S_B=2\operatorname{Id}\ \mathrm{kg\,m^2},
+\quad I_A=I_B=4\operatorname{Id}\ \mathrm{kg\,m^2},
+\qquad\sum_i m_i x_i^4=\begin{cases}1/2&\text{A},\\2&\text{B}\end{cases}\ \mathrm{kg\,m^4}.
+$$
+
+Both objects give L=4ω and K=2‖ω‖² with the stated SI coefficients. They remain indistinguishable under any common orientation. Because their total masses also agree, their tensors about any common displaced pivot agree by the parallel-axis theorem. Yet their fourth x moments differ. A density image or another spatial observation can distinguish them.
+
+The two distributions can be related by a spatial rotation. That does not restore identifiability in a fixed laboratory frame: their isotropic inertia has lost that orientation information as well. This example concerns recovering a distribution in declared coordinates; it does not assert the two shapes are inequivalent under every possible equivalence relation.
+
+![Different point distributions with the same mass and inertia](/assets/learning/classical-rotation-shapes.en.svg)
+
+The drawing is an xz projection. Colored marker area is proportional to each point's mass. The hollow marker identifies the two y-axis points that overlap only in this projection. It does not add a seventh mass.
+
+Reproduce the comparison in the actual experiment using the declared control order `[m1,m2,m3,2a,2b,2c,2s,10ωx,10ωy,10ωz,10d,orientation]`:
+
+```text
+A: [4,1,1,1,2,2,0,10,10,0,0,0]
+B: [1,1,4,2,2,1,0,10,10,0,0,0]
+```
+
+Both produce K=4 J and L=(4,4,0) kg m²/s. Change control `10d` to 10 in both: O=(1,0,0), I_O=diag(4,16,16) kg m², K=10 J and COM translation energy=6 J. The distributions are still indistinguishable. This pivot comparison changes the imposed velocity field; it is a new physical rotation comparison, rather than a reference change for an unchanged motion.
+
+### Six energy probes recover a matrix, not a distribution
+
+Let ω_*>0 be a known angular-speed scale. Measure energy at three axis spins ω_*e_i and three pair spins ω_*(e_i+e_j). Expanding the quadratic form gives
+
+$$
+I_{ii}=\frac{2K(\omega_*e_i)}{\omega_*^2},\qquad
+I_{ij}=\frac{K(\omega_*(e_i+e_j))-K(\omega_*e_i)-K(\omega_*e_j)}{\omega_*^2}.
+$$
+
+These six linear measurements span the six-dimensional space of symmetric matrices. Arbitrary choices of six directions need not work: their outer products ωωᵀ must span that space. A known diagonal or xz structure can reduce the number of unknowns, but that is additional prior information.
+
+Use the native geometry `[1,1,1,2,4,6,1,10,10,0,0,0]` and vary only the three spin controls. It has
+
+$$
+I=\begin{pmatrix}26&0&-3\\0&41/2&0\\-3&0&21/2\end{pmatrix}\ \mathrm{kg\,m^2}.
+$$
+
+At ω_*=1 rad/s, the exact energies are:
+
+| Spin direction | Energy (J) |
+|---|---:|
+| e₁ | 13 |
+| e₂ | 41/4 |
+| e₃ | 21/4 |
+| e₁+e₂ | 93/4 |
+| e₁+e₃ | 61/4 |
+| e₂+e₃ | 31/2 |
+
+For example K(e₁+e₃)−K(e₁)−K(e₃)=−3 in the stated units, recovering the negative cross term. Axis-only measurements would have missed it. This complete tensor recovery still cannot distinguish shapes A and B. With noisy observations, subtracting energies propagates measurement error; uncertainty, probe design and physical constraints must also be analyzed.
+
+### Execute the independent point sums
+
+This standard-library Python cell constructs both distributions, sums their moments using exact fractions, recomputes the shifted-pivot tensor and reconstructs the sheared matrix from six energies. It also rejects the proposed diag(1,1,3) tensor through its negative second moment.
+
+```python
+from fractions import Fraction as Q
+
+
+def geometry(masses, lengths):
+    points = []
+    for j, (mass, length) in enumerate(zip(masses, lengths)):
+        for sign in [-1, 1]:
+            position = [Q(0)] * 3
+            position[j] = sign * Q(length)
+            points.append((Q(mass), position))
+    return points
+
+
+def second_moment(points):
+    return [[sum(m * r[i] * r[j] for m, r in points)
+             for j in range(3)] for i in range(3)]
+
+
+def inertia(points):
+    s = second_moment(points)
+    trace = sum(s[j][j] for j in range(3))
+    return [[(trace if i == j else 0) - s[i][j]
+             for j in range(3)] for i in range(3)]
+
+
+def energy(tensor, velocity):
+    return sum(velocity[i] * tensor[i][j] * velocity[j]
+               for i in range(3) for j in range(3)) / 2
+
+
+def shape_checks():
+    a = geometry([4, 1, 1], [Q(1, 2), 1, 1])
+    b = geometry([1, 1, 4], [1, 1, Q(1, 2)])
+    expected = [[Q(4 if i == j else 0) for j in range(3)]
+                for i in range(3)]
+    assert inertia(a) == inertia(b) == expected
+    assert sum(m for m, _ in a) == sum(m for m, _ in b) == 12
+    assert energy(expected, [1, 1, 0]) == 4
+    fourth = [sum(m * r[0] ** 4 for m, r in p) for p in [a, b]]
+    assert fourth == [Q(1, 2), Q(2)]
+    # Recompute point sums about O=(1,0,0), not just a tensor formula.
+    shifted = [[(m, [r[0] - 1, r[1], r[2]]) for m, r in p]
+               for p in [a, b]]
+    ip = [[Q(4), Q(0), Q(0)], [Q(0), Q(16), Q(0)],
+          [Q(0), Q(0), Q(16)]]
+    assert inertia(shifted[0]) == inertia(shifted[1]) == ip
+    assert energy(ip, [1, 1, 0]) == 10
+
+    # Six energies reconstruct a general symmetric tensor, not its geometry.
+    original = [[Q(26), Q(0), Q(-3)], [Q(0), Q(41, 2), Q(0)],
+                [Q(-3), Q(0), Q(21, 2)]]
+    axes = [[Q(int(i == j)) for i in range(3)] for j in range(3)]
+    diagonal_energy = [energy(original, w) for w in axes]
+    recovered = [[Q(0) for _ in range(3)] for _ in range(3)]
+    for i in range(3):
+        recovered[i][i] = 2 * diagonal_energy[i]
+        for j in range(i):
+            w = [axes[i][k] + axes[j][k] for k in range(3)]
+            recovered[i][j] = recovered[j][i] = (
+                energy(original, w) - diagonal_energy[i] - diagonal_energy[j])
+    assert recovered == original
+    impossible = [Q(1), Q(1), Q(3)]
+    s_diag = [sum(impossible) / 2 - x for x in impossible]
+    assert s_diag == [Q(3, 2), Q(3, 2), Q(-1, 2)]
+    print('Same mass/tensor, different fourth moments:', *fourth)
+    print('COM/pivot energies (J): 4, 10; six-probe reconstruction passed')
+    return a, b
+
+
+shape_checks()
+```
+
+### Research questions with worked answers
+
+1. **Can repeated rotated measurements distinguish A and B?** No. Their common isotropic tensor and total mass make the stated rigid inertia responses identical for every common spin, orientation and pivot. Rotating the measurement alone does not create a missing fourth-moment observation.
+2. **Does physical realizability identify a unique shape?** No. The antipodal construction provides one realization; the two explicit native shapes show nonuniqueness even when total mass is supplied. Additional shape or material priors can restrict the answer but must be stated.
+3. **Why use pair spins?** A pure axis probes only one diagonal entry. Pair spins expose cross terms through the energy difference. Matrix identifiability and distribution identifiability are separate questions.
+
+For the underlying inertia definitions, see [MIT16.07 Lecture26](https://ocw.mit.edu/courses/16-07-dynamics-fall-2009/dd277ec654440f4c2b5b07d6c286c3fd_MIT16_07F09_Lec26.pdf). The distributions, probe calculations and realizability construction above state their own assumptions and can be checked directly.
+
 ## Worked examples and exercises with solutions
 
 1. **Isotropic example.** Put one unit mass at each of the six positions ±x,±y,±z, with O=0 and ω=(1,1,0). **Solution:** IC=IO=4Id, L=(4,4,0) and K=4. Every direction is principal; a displayed eigenbasis is a choice rather than a unique geometric feature.
