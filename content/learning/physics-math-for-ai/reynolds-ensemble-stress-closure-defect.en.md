@@ -146,6 +146,103 @@ Actual turbulence involves interacting scales and, often, a cascade whose direct
 
 For an AI closure, record what the input actually identifies. Training on mean velocity alone across changing forcing can merge physically different ensembles into the same input. Including forcing, geometry, wall distance and the averaging definition can reduce that ambiguity, but does not prove sufficiency for every flow. Check covariance realizability, momentum balance, signed energy transfer and generalization to held-out regimes. A fitted scalar viscosity should not silently fill undefined ratios with zero.
 
+## Research extension: close the actual fluctuation forcing-work budget
+
+The original lab reports the mean budget and explicitly leaves the complete fluctuation forcing-work budget unverified. This supplement closes that additional budget for the same manufactured fields. It does not replace the lab outputs or turn the ensemble into a turbulent simulation. Keep both velocity components and both components of the actual force. The force is per volume; no extra density factor is needed when it is dotted with velocity to form power density.
+
+$$
+\boldsymbol u=\boldsymbol U+\boldsymbol u^{\prime},\quad\boldsymbol U=(U,0),\quad\langle\boldsymbol u^{\prime}\rangle=0,\qquad\boldsymbol f=\langle\boldsymbol f\rangle+\boldsymbol f^{\prime}.
+$$
+
+Define three actual forcing powers over the periodic cell. The zero mean of the velocity departure makes the fluctuating-force and full-force expressions for fluctuation work equal. Cross terms disappear only after the declared ensemble average. A single member at one phase need not have zero cross work. Each listed integral includes the physical height, period and span width, giving watts rather than a local per-area quantity.
+
+$$
+F_m=LW\int_0^H U\langle f_x\rangle\,dy,\quad F_f=LW\int_0^H\langle\boldsymbol u^{\prime}\cdot\boldsymbol f^{\prime}\rangle\,dy=LW\int_0^H\langle\boldsymbol u^{\prime}\cdot\boldsymbol f\rangle\,dy,\quad F_{\rm total}=F_m+F_f.
+$$
+
+Use the gradient form of the integrated viscous power. Incompressibility, periodicity and zero wall velocity make it equivalent to the integral of twice dynamic viscosity times the squared strain-rate tensor. Those densities need not agree pointwise. Separating mean and departure gradients removes their averaged cross term. Dynamic viscosity mu already contains the mass dimension; multiplying these expressions by rho again would give the wrong units.
+
+$$
+D_m=\mu LW\int_0^H U_y^2\,dy,\qquad D_f=\mu LW\int_0^H\langle\|\nabla\boldsymbol u^{\prime}\|_F^2\rangle\,dy\ge0,\qquad D_{\rm total}=D_m+D_f.
+$$
+
+Dot each steady momentum equation with its own velocity and integrate. The advective work becomes a boundary flux; the no-slip walls and periodic faces remove it. Integrating viscous work by parts leaves negative dissipation. Pressure is zero in this manufactured family. The result is a total budget with no Reynolds transfer term: exchange between mean and fluctuations cannot create or destroy the combined kinetic energy.
+
+$$
+LW\int_0^H\langle\boldsymbol u\cdot\boldsymbol f\rangle\,dy=D_m+D_f,\qquad\frac{dK_{\rm total}}{dt}=F_{\rm total}-D_{\rm total}=0.
+$$
+
+The previously derived mean budget retains its signed transfer P. Subtract that budget from the independently integrated total budget to obtain the fluctuation budget. Positive P removes mean energy and supplies the fluctuations. It has opposite signs in the two equations. Steadiness means each complete right-hand side vanishes, not that its individual powers are zero. The same cancellation must hold in a model that reports both budgets.
+
+$$
+0=F_m-D_m-P,\qquad0=F_f-D_f+P,\qquad P=-\rho LW\int_0^H R_{uv}U_y\,dy=LW\frac{4\rho abkU_bc}{1155H}.
+$$
+
+Compute fluctuation dissipation from actual velocity gradients, rather than assigning it as a budget residual. Streamfunction differentiation produces two identical mixed-derivative contributions, one in each velocity component. Omitting either loses a factor of two in that part. All y derivatives below are physical derivatives. This is also a direct way to detect a model that forgot the height scale while differentiating a normalized coordinate.
+
+$$
+\langle\|\nabla\boldsymbol u^{\prime}\|_F^2\rangle=k^2(a^2\phi_y^2+b^2\chi_y^2)+\frac12(a^2\phi_{yy}^2+b^2\chi_{yy}^2)+\frac{k^4}{2}(a^2\phi^2+b^2\chi^2).
+$$
+
+The polynomial basis allows every height integral to be checked exactly. These are dimensionless integrals in xi, so changing back to y still contributes H and the derivative factors. Both rows have positive moments. They quantify different wall-normal shapes; equal streamfunction amplitudes a and b therefore do not generally give equal fluctuation dissipation.
+
+$$
+\int_0^1(\phi^2,\phi_{\xi}^2,\phi_{\xi\xi}^2)\,d\xi=\left(\frac1{630},\frac2{105},\frac45\right),\qquad\int_0^1(\chi^2,\chi_{\xi}^2,\chi_{\xi\xi}^2)\,d\xi=\left(\frac1{6930},\frac2{315},\frac47\right).
+$$
+
+Combine those moments to obtain the full fluctuation loss in watts. This expression contains squared amplitudes and is nonnegative for nonnegative dynamic viscosity. It is derived from the gradient integral independently of the transfer. The forcing work can then be compared with D-f minus P, rather than defined by that difference. In the verifier the two actual force components are evaluated separately before spatial integration.
+
+$$
+D_f=\mu LW\left[a^2\left(\frac{Hk^4}{1260}+\frac{2k^2}{105H}+\frac2{5H^3}\right)+b^2\left(\frac{Hk^4}{13860}+\frac{2k^2}{315H}+\frac2{7H^3}\right)\right].
+$$
+
+Choose positive transfer but reduce molecular viscosity. Fluctuations can then receive more power from the mean than they dissipate, while remaining steady because their own forcing extracts the excess. Negative forcing work is not negative viscosity or negative total dissipation. At exactly zero viscosity the mean forcing supplies P and the fluctuation forcing removes P. The total forcing work is zero although both exchanges can remain nonzero.
+
+$$
+P>D_f\ge0\Rightarrow F_f=D_f-P<0;\qquad\mu=0:\quad(F_m,F_f,F_{\rm total})=(P,-P,0).
+$$
+
+The table fixes the original example geometry and amplitudes while varying mu. Its columns distinguish molecular losses from exchange and forcing work. Changing b to minus b reverses P without changing either molecular loss. Setting c to zero removes the integrated exchange, although local exchange can remain. An AI model that matches only total work could still allocate mean and fluctuation powers incorrectly; test each independent integral and its zero controls. No evolved turbulent cascade or universal closure is claimed.
+
+$$
+b\mapsto-b:\ (D_m,D_f,P)\mapsto(D_m,D_f,-P),\qquad c=0:\ P=0,\ F_m=D_m,\ F_f=D_f.
+$$
+
+The table uses the declared teaching geometry above. Columns are mu in Pa s, mean loss, fluctuation loss, mean-to-fluctuation transfer and fluctuation forcing work, with all powers in watts. Its forcing column uses the derived balance for the compact example; independent actual-force quadrature supplies the separate check.
+
+| mu | Dmean | Dfluct | transfer | Ffluct |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 0.00000000 | 0.00000000 | 0.00152320 | -0.00152320 |
+| 0.00100000 | 0.01668814 | 0.00042232 | 0.00152320 | -0.00110087 |
+| 0.01000000 | 0.16688140 | 0.00422323 | 0.00152320 | 0.00270004 |
+| 0.10000000 | 1.66881402 | 0.04223232 | 0.00152320 | 0.04070912 |
+
+```python
+from math import pi
+# H=2 m, k=1.5/m, W=1 m, rho=1 kg/m^3, Ub=0.8 m/s.
+h, k, w, rho, ub, c, a, b = 2., 1.5, 1., 1., .8, .25, 1., .7
+lw = 2*pi/k*w
+transfer = lw*4*rho*a*b*k*ub*c/(1155*h)
+for mu in (0., .001, .01, .1):
+    mean_loss = mu*lw*ub*ub/h*(12+36*c*c/5)
+    fluct_loss = mu*lw*(a*a*(h*k**4/1260+2*k*k/(105*h)+2/(5*h**3))
+                 +b*b*(h*k**4/13860+2*k*k/(315*h)+2/(7*h**3)))
+    forcing = fluct_loss-transfer
+    print(" ".join(f"{v:.8f}" for v in (mu, mean_loss, fluct_loss, transfer, forcing)))
+```
+
+[INL/MOOSE Reynolds-averaging theory](https://mastodon.inl.gov/modules/navier_stokes/rans_theory.html) supplies averaging and closure background. The complete forcing-work and dissipation integrals here are derived separately for the explicitly forced streamfunction ensemble.
+
+![Independent mean, fluctuation and total forcing powers versus viscosity](/assets/learning/continuum-reynolds-fluctuation-forcing-budget.en.svg)
+
+### Research questions with explanations
+
+**Can negative fluctuation forcing work violate nonnegative dissipation?** **Answer:** No. If transfer supplies more than fluctuations dissipate, their forcing removes the excess while the state stays steady. Molecular dissipation remains nonnegative.
+
+**Why retain the vertical force when mean vertical velocity is zero?** **Answer:** Its mean work is zero, but its correlated work with vertical fluctuations need not vanish. The complete fluctuation and total budgets use both components.
+
+**Does a correct total budget prove correct mean and fluctuation budgets?** **Answer:** No. An incorrect exchange can cancel between the two. Compare actual forces, gradient integrals and signed transfer separately.
+
 ## Six exercises with explained answers
 
 1. **Why does changing the sign of b leave the variances unchanged?** Each diagonal entry depends on amplitude squares. R-uv contains the product a times b, so its sign reverses. Variance and cross transport encode different information.

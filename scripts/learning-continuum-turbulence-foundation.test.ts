@@ -6,8 +6,12 @@ import { getLearningContent } from '../src/lib/learning-content';
 test('Reynolds closure reading has aligned bilingual equations, graduate explanations, actual units and six answered exercises', async () => {
   const id = 'reynolds-ensemble-stress-closure-defect', result = await getLearningContent(id), equations: string[][] = [];
   for (const locale of ['ko', 'en'] as const) {
-    const source = await readFile(`content/learning/physics-math-for-ai/${id}.${locale}.md`, 'utf8'), html = result[locale], headings = result.outline[locale];
-    assert.equal(headings.length, 12); assert.equal(new Set(headings.map(h => h.id)).size, 12);
+    const fullSource = await readFile(`content/learning/physics-math-for-ai/${id}.${locale}.md`, 'utf8'), html = result[locale], headings = result.outline[locale];
+    const start = fullSource.search(/^## (?:Research extension:|연구 확장:)/m); assert.ok(start >= 0);
+    const end = fullSource.indexOf('\n## ', start + 4) + 1; assert.ok(end > start);
+    const source = fullSource.slice(0, start) + fullSource.slice(end);
+    assert.equal((source.match(/^## /gm) || []).length, 12);
+    assert.equal(headings.length, 13); assert.equal(new Set(headings.map(h => h.id)).size, 13);
     for (const h of headings) assert.ok(html.includes(`id="${h.id}"`));
     assert.doesNotMatch(html, /katex-error|<h1/); assert.match(html, /katex-display/); assert.match(html, /tabindex="0"/); assert.match(html, /aria-label=/);
     assert.equal((source.match(/^\d\. \*\*/gm) || []).length, 6);

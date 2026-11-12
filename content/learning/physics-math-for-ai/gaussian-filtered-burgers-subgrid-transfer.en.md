@@ -186,6 +186,102 @@ Within a noiseless continuous two-mode model at finite width, Gaussian multiplie
 
 An AI closure must therefore state its observation operator, available resolution and training distribution. Filter width, molecular viscosity, forcing, physical units and coordinate conventions belong in that specification. Test residual stress, its divergence and signed energy transfer separately: a good stress fit need not give an accurate gradient. Check different widths and frames without leaking the target modes into the inputs. A two-mode benchmark is a controlled unit of evidence, not proof of a universal closure.
 
+## Research extension: nested Gaussian filters and a transfer counterexample
+
+Apply a second, independently declared Gaussian filter to the already filtered velocity. Both widths are physical standard deviations, with periodic continuation and constant width as before. This is a controlled experiment on the same two-mode field, not a numerical mesh refinement or a full LES solver. The result of two filters has a larger standard deviation given by adding variances. Adding widths directly would describe a different observation operator.
+
+$$
+w=G_{\ell}u,\quad v=G_{\Delta}w=G_{\sigma}u,\qquad\sigma=\sqrt{\ell^2+\Delta^2},\quad\ell,\Delta\ge0.
+$$
+
+There are now three distinct local variances. Tau describes the first filtering of the full field. T describes the combined filtering of that same full field. L describes the second filtering applied only to w; it is often called the Leonard contribution in a two-filter decomposition. The latter cannot generally be computed from v squared alone. Every definition has units of velocity squared and uses the stated normalized positive kernel.
+
+$$
+\tau=G_{\ell}(u^2)-w^2,\qquad T=G_{\sigma}(u^2)-v^2,\qquad L=G_{\Delta}(w^2)-v^2.
+$$
+
+Insert and subtract the second filtering of w squared. The composition rule immediately gives an exact stress identity. It is a bookkeeping relation for the actual fields, not a fitted closure or an assumption that the two filters are projections. The first term transports already unresolved variance through the second filter; L adds the variance newly lost from the first resolved field. Their sum is the full variance at the combined observation scale.
+
+$$
+T=G_{\Delta}\!\left[G_{\ell}(u^2)-w^2\right]+\left[G_{\Delta}(w^2)-v^2\right]=G_{\Delta}\tau+L.
+$$
+
+Positivity supplies a structural check. A positive Gaussian sends a nonnegative variance to a nonnegative function; L is itself a variance. Thus neither stress contribution is negative in this scalar problem. This positivity does not transfer to a signed off-diagonal Navier–Stokes stress or automatically determine the direction of energy transfer. Rounding cancellation at tiny width also needs a stable evaluation rather than arbitrary clipping.
+
+$$
+\tau\ge0,\quad G_{\Delta}\tau\ge0,\quad L\ge0,\qquad T\ge L,\quad T\ge G_{\Delta}\tau.
+$$
+
+Use the same coarse velocity gradient for both parts of coarse transfer. Multiplying the exact stress identity gives an exact transfer split at that gradient. A positive gradient makes both contributions negative wherever their stresses are positive; a negative gradient makes them positive. This is exchange under the original sign convention, rather than a statement about negative molecular dissipation.
+
+$$
+\Pi_{\sigma}=-\frac12Tv_x=\Pi_{\rm inherited}+\Pi_L,\qquad\Pi_{\rm inherited}=-\frac12(G_{\Delta}\tau)v_x,\quad\Pi_L=-\frac12Lv_x.
+$$
+
+This split is not the same as filtering the old transfer. The old transfer used w-x before filtering, whereas the inherited term uses v-x after filtering. Differentiation commutes with these constant-width filters, but multiplication does not. Accurate stress predictions at two scales therefore need not imply the corresponding transfer relation unless the velocity gradients and products are handled consistently.
+
+$$
+G_{\Delta}\Pi_{\ell}=-\frac12G_{\Delta}(\tau w_x),\qquad\Pi_{\rm inherited}=-\frac12(G_{\Delta}\tau)(G_{\Delta}w_x),\qquad G_{\Delta}\Pi_{\ell}\ne\Pi_{\sigma}\ \text{in general}.
+$$
+
+The two-mode family makes the distinction explicit. Write p and q for the first-mode attenuation of each filter. Higher harmonics receive their squared-index powers. The combined first-mode attenuation is p times q, matching the variance-addition width. Current amplitudes A and B can be taken from any declared time in the original family. A constant velocity offset cancels from every stress at corresponding positions.
+
+$$
+p=e^{-(k\ell)^2/2},\quad q=e^{-(k\Delta)^2/2},\qquad G_{\ell}:n\mapsto p^{n^2},\quad G_{\Delta}:n\mapsto q^{n^2},\quad G_{\sigma}:n\mapsto(pq)^{n^2}.
+$$
+
+Take an unweighted mean over the actual periodic cell. A normalized periodic filter preserves that mean, so filtering the fine transfer leaves its integral unchanged. The coarse transfer instead has the combined attenuation. Its generally different mean proves that the two functions cannot be identical. Multiply means by rho, cross-sectional area and physical period to recover the original whole-cell powers.
+
+$$
+\langle G_{\Delta}\Pi_{\ell}\rangle=\langle\Pi_{\ell}\rangle=-\frac{kA^2B}{4}(p^2-p^8),\qquad\langle\Pi_{\sigma}\rangle=-\frac{kA^2B}{4}\left[(pq)^2-(pq)^8\right].
+$$
+
+Choose exact attenuation ratios for a reproducible counterexample. They correspond to positive finite physical widths, not a zero or an infinite filter. The nonzero difference remains after integrating over a whole period. It does not contradict the exact stress identity: that identity uses the common coarse gradient and includes L. A verifier should test this counterexample as well as the identity to avoid enforcing an incorrect transfer rule.
+
+$$
+A=1,\ B=-\frac12,\ k=1,\ p=\frac34,\ q=\frac23:\qquad\langle G_{\Delta}\Pi_{\ell}-\Pi_{\sigma}\rangle=\frac{14175}{524288}>0.
+$$
+
+Keep both zero-width endpoints. With a zero second width, L vanishes and the coarse stress and transfer reduce to the fine ones. With a zero first width, the inherited stress vanishes and all combined stress is L. Adding a constant velocity does not change either variance or transfer at corresponding positions, although velocity and energy flux themselves change. These tests expose operator mistakes before fitting an AI closure. The original lab remains a single-filter analytic family.
+
+$$
+\Delta=0:\ L=0,\ T=\tau,\ \Pi_{\sigma}=\Pi_{\ell};\qquad\ell=0:\ \tau=0,\ T=L;\qquad u\mapsto u+C:\ (\tau,T,L)\mapsto(\tau,T,L).
+$$
+
+The table fixes p=3/4 and changes the test filter. Columns are q, Delta and combined sigma in metres, fine mean transfer and coarse mean transfer in m²/s³. The first row is the exact zero-test-width control. Rounded decimal agreement is not an independent convolution certificate.
+
+| q | Delta | sigma | fine mean | coarse mean |
+| --- | --- | --- | --- | --- |
+| 1.00000000 | -0.00000000 | 0.75852762 | 0.05779839 | 0.05779839 |
+| 0.66666667 | 0.90051664 | 1.17741002 | 0.05779839 | 0.03076172 |
+| 0.50000000 | 1.17741002 | 1.40059220 | 0.05779839 | 0.01752924 |
+| 0.25000000 | 1.66510922 | 1.82974120 | 0.05779839 | 0.00439434 |
+
+```python
+from math import sqrt, log
+# A=1 m/s, B=-0.5 m/s, k=1/m; p=3/4.
+p = 0.75
+ell = sqrt(-2*log(p))
+fine = (p*p-p**8)/8
+for q in (1., 2/3, .5, .25):
+    delta = sqrt(-2*log(q))
+    sigma = sqrt(ell*ell+delta*delta)
+    coarse = ((p*q)**2-(p*q)**8)/8
+    print(" ".join(f"{v:.8f}" for v in (q, delta, sigma, fine, coarse)))
+```
+
+The [UW ME544 LES notes](https://courses.washington.edu/mengr544/handouts/hd-les.pdf) provide filtering background. [Germano (1992), section 3](https://www.ams.jhu.edu/~eyink/Turbulence/classics/Germano92.pdf) develops the generalized two-filter stress identity. We specialize it to the stated Gaussian standard deviations and derive the two-mode transfer counterexample.
+
+![Nested positive stresses, signed coarse transfers and unequal mean transfers](/assets/learning/continuum-gaussian-nested-filter-stress-transfer.en.svg)
+
+### Research questions with explanations
+
+**Should two Gaussian standard deviations simply be added?** **Answer:** No. Their variances add: the combined width is sqrt(ell squared plus Delta squared). This follows from the Fourier multipliers or Gaussian convolution.
+
+**Does the stress identity imply filtering fine transfer gives coarse transfer?** **Answer:** No. The identity uses one coarse gradient. Filtering the old stress-gradient product is a different operation, as the explicit unequal means show.
+
+**Do nonnegative stress contributions force forward transfer?** **Answer:** No. Transfer also contains the signed velocity gradient. Nonnegative variances can produce either transfer direction.
+
 ## Six exercises with explained answers
 
 1. **Why does a wider filter suppress the second mode faster?** Its wavenumber is twice as large, so the Gaussian exponent is four times as large. Equal initial amplitudes do not imply equal filtered amplitudes.
