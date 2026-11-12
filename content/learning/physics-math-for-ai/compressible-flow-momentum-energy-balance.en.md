@@ -112,6 +112,127 @@ Using log1p and expm1 alone is insufficient if their dimensionless argument has 
 
 First use material expansion to verify constant mass, momentum and kinetic energy alongside falling internal energy. Reverse to compression, then compare relative transport for fixed and translating intervals. Next inspect the omitted-pressure-work control, exact a=0 and a tiny nonzero a. A learned model needs a thermodynamic relation and initial, boundary and observation information in addition to conservation equations. Report units, scales and tolerances separately for each budget. Distinguish identities assembled from shared formulas from independent quadrature, finite-difference and particle-ODE observations.
 
+## Research extension: conservative jumps and entropy admissibility
+
+### Declare a new model rather than inserting a shock into the smooth lab
+
+The original affine experiment excludes shocks. To ask whether three conservation budgets are enough for research validation, introduce a separate planar ideal-gas discontinuity with positive density and pressure. The gas is calorically perfect: gamma and the positive specific heat cv are constant. The displayed dimensionless entropy uses the same positive pressure and density references on both sides. Its additive reference will cancel in an entropy difference. This is a jump model, not a resolved viscous shock profile or an additional native flow control.
+
+$$
+e=\frac{p}{(\gamma-1)\rho},\quad h=e+\frac p\rho,\quad \gamma>1,\quad c_v>0,\qquad \sigma=\frac{s_{\rm specific}-s_{\rm ref}}{c_v}=\log\frac p{p_{\rm ref}}-\gamma\log\frac\rho{\rho_{\rm ref}}.
+$$
+
+### Derive the jump condition from a shrinking interval
+
+Let the discontinuity move at speed D, with constant state 1 on its left and state 2 on its right. Write square brackets for right minus left. Integrate each conservation equation over an interval around the interface and shrink its width. Boundary transport leaves the flux jump and motion of the stored jump contributes minus D times the state jump. Their cancellation is the Rankine–Hugoniot condition. It compares mass, momentum and energy separately, with their separate units; their raw residuals should not be added as one dimensional score.
+
+$$
+U=(\rho,\rho u,\mathcal E),\quad\mathcal E=\frac p{\gamma-1}+\frac12\rho u^2,\quad F=(\rho u,\rho u^2+p,(\mathcal E+p)u),\qquad [F]-D[U]=0.
+$$
+
+### Use the shock frame to expose three invariants
+
+Set v equal to the laboratory velocity minus D. Assume flow enters from the left, so the common relative mass flux j is positive. The mass jump gives the first equality; the momentum jump then gives constant p+jv. Combine the energy jump with those two relations, or consistently transform energy into the shock frame, to obtain constant stagnation enthalpy h+v squared over two. A moving boundary removes advected storage, but pressure work remains. Replacing the laboratory energy flux by an unrelated shock-frame expression without transforming its state would mix frames.
+
+$$
+v_j=u_j-D,\quad j=\rho_1v_1=\rho_2v_2>0,\qquad p_1+jv_1=p_2+jv_2,\qquad h_1+\tfrac12v_1^2=h_2+\tfrac12v_2^2.
+$$
+
+### Select the compressive branch with supersonic upstream flow
+
+Insert the ideal-gas relation into the three invariants. Besides the identical-state solution, eliminating downstream velocity and pressure yields the ratios below. Here upstream Mach number is measured relative to the shock. For M1 greater than one the density and pressure rise, velocity falls, and downstream relative Mach number is below one. At M1=1 this branch reaches the common-state limit, rather than a finite shock. Positive pressure and a nonzero sound-speed reference are required; vacuum and zero-temperature limits are outside this calculation.
+
+$$
+M_1=\frac{v_1}{\sqrt{\gamma p_1/\rho_1}}>1,\quad r=\frac{\rho_2}{\rho_1}=\frac{(\gamma+1)M_1^2}{(\gamma-1)M_1^2+2},\quad P=\frac{p_2}{p_1}=\frac{2\gamma M_1^2-(\gamma-1)}{\gamma+1},\quad v_2=v_1/r,\quad M_2^2=\frac{(\gamma-1)M_1^2+2}{2\gamma M_1^2-(\gamma-1)}<1.
+$$
+
+### Conservation does not include the entropy direction
+
+For a smooth adiabatic ideal gas, specific entropy is transported with the flow. An admissible irreversible shock instead has nonnegative entropy production. The piecewise constant jump gives the distributional coefficient below for entropy divided by cv. The corresponding physical entropy production is cv times that expression. Because j is positive, the entropy must increase from left to right. This is an inequality with a direction, whereas the three conservative jump equations are equalities that by themselves do not select that direction.
+
+$$
+\Delta\sigma=\log P-\gamma\log r,\qquad \partial_t(\rho\sigma)+\partial_x(\rho u\sigma)=j\Delta\sigma\,\delta(x-Dt)\ge0.
+$$
+
+### Prove the sign instead of relying on a plotted example
+
+Set z to upstream Mach number squared and substitute the pressure and density ratios into the entropy difference. Differentiation yields the positive expression below. All denominator factors are positive for gamma greater than one and z greater than one, and the difference starts from zero at z=1. Its integral is therefore strictly positive for every finite compressive shock in this family. Near Mach one the small increase can be numerically hard to resolve; a rounded zero is not a new exact isentropic shock. The symbolic sign proof and a floating-point evaluation play different roles.
+
+$$
+z=M_1^2:\quad \Delta\sigma(1)=0,\qquad \frac{d\Delta\sigma}{dz}=\frac{2\gamma(\gamma-1)(z-1)^2}{z[(\gamma-1)z+2][2\gamma z-(\gamma-1)]}>0\quad(z>1).
+$$
+
+### Swap the same states as a negative control
+
+Keep D fixed and reverse which state lies on the left and right. Both flux differences and state differences change sign, so all three conservation jumps still vanish. The same positive relative mass flux now travels from the denser slower state to the lighter faster state, and the entropy production becomes negative. This expansion shock is excluded by the entropy condition. A physical smooth expansion fan is a different space-time solution; one must not relabel the reversed discontinuity as that fan merely because its endpoints look plausible.
+
+$$
+(U_L,U_R)=(U_2,U_1):\quad[F]-D[U]=0,\qquad j(\sigma_R-\sigma_L)=-j\Delta\sigma<0.
+$$
+
+### Check Galilean transformations using all stored quantities
+
+A common coordinate boost adds b to the fluid and shock velocities. Pressure and density stay fixed, while momentum and total energy change as displayed. Transform the coordinate trajectory as well. Relative speeds, Mach numbers, ratios and entropy production remain the same. The laboratory jump conditions still hold because the transformed energy equation is a linear combination of the old mass, momentum and energy equations. Altering velocity while leaving momentum or energy unchanged is a different inconsistent request, not a symmetry check.
+
+$$
+u'=u+b,\quad D'=D+b,\quad \rho'=\rho,\quad p'=p,\quad (\rho u)'=\rho u+b\rho,\quad\mathcal E'=\mathcal E+b\rho u+\tfrac12b^2\rho,\qquad u'-D'=u-D.
+$$
+
+### Work one jump with exact rational arithmetic
+
+Use density reference 1 kg/m³ and velocity reference 1 m/s, hence pressure reference 1 Pa and sound speed one in the upstream state. The numbers below are dimensionless relative to those declared scales; flux components use the corresponding mass, force-per-area and energy-per-area-time scales. With gamma=7/5 and M1=2, the three common shock-frame fluxes are 2, 33/7 and 9. Both sides have stagnation enthalpy 9/2 in the velocity-squared reference. The table also includes the identical-state Mach-one limit, plus three compressive examples. Python computes jump fluxes with exact fractions before evaluating logarithms for entropy.
+
+$$
+\gamma=\tfrac75,\quad M_1=2,\quad (\rho_1,v_1,p_1)=(1,2,\tfrac57),\quad(\rho_2,v_2,p_2)=(\tfrac83,\tfrac34,\tfrac{45}{14}),\quad D=0:\quad F_1=F_2=(2,\tfrac{33}7,9),\quad h_j+\tfrac12v_j^2=\tfrac92.
+$$
+
+### Keep energy conservation and irreversibility together
+
+The slower downstream flow has higher specific enthalpy, while total transported enthalpy plus kinetic energy remains constant. An entropy increase does not mean total-energy flux disappeared. Conversely, using only advected energy E v drops pressure work and leaves the displayed nonzero jump in general. A real shock has dissipative microscopic structure; these inviscid jump states encode its net balances and admissibility without resolving that structure. This additional verification example retains the original affine lab, its no-shock assumptions and its independent pressure-work negative control.
+
+$$
+h_2-h_1=\tfrac12(v_1^2-v_2^2)>0,\qquad j(h_1+\tfrac12v_1^2)=j(h_2+\tfrac12v_2^2),\qquad (\mathcal E_2v_2-\mathcal E_1v_1)=-[pv]\quad(D=0).
+$$
+
+| Mach | density ratio | pressure ratio | entropy change / cv | energy flux jump |
+| --- | --- | --- | --- | --- |
+| 1.00000000 | 1.00000000 | 1.00000000 | 0.00000000 | 0.00000000 |
+| 1.25000000 | 1.42857143 | 1.65625000 | 0.00521109 | 0.00000000 |
+| 2.00000000 | 2.66666667 | 4.50000000 | 0.13091644 | 0.00000000 |
+| 3.00000000 | 3.85714286 | 10.33333333 | 0.44547751 | 0.00000000 |
+
+```python
+from fractions import Fraction as F
+from math import log
+# Dimensionless: rho_ref=1 kg/m^3, speed_ref=1 m/s, p_ref=1 Pa.
+gamma = F(7,5)
+def energy_flux(rho,u,p):
+    energy = p/(gamma-1)+rho*u*u/2
+    return (energy+p)*u
+for mach in [F(1),F(5,4),F(2),F(3)]:
+    density_ratio = (gamma+1)*mach**2/((gamma-1)*mach**2+2)
+    pressure_ratio = (2*gamma*mach**2-(gamma-1))/(gamma+1)
+    rho1,u1,p1 = F(1),mach,1/gamma
+    rho2,u2,p2 = density_ratio,mach/density_ratio,p1*pressure_ratio
+    jump = energy_flux(rho2,u2,p2)-energy_flux(rho1,u1,p1)
+    assert jump==0
+    entropy = log(float(pressure_ratio))-float(gamma)*log(float(density_ratio))
+    values = [float(mach),float(density_ratio),float(pressure_ratio),entropy,float(jump)]
+    print(" ".join(f"{x:.8f}" for x in values))
+```
+
+[NASA Glenn normal-shock relations](https://www.grc.nasa.gov/www/k-12/airplane/normal.html) give the ideal-gas ratio and irreversibility background. The [Clawpack Euler Riemann notes](https://www.clawpack.org/riemann_book/html/Euler.html) explain the conservation variables and wave families. The sign proof, reversed-state negative control and exact boosted jump checks here follow from the displayed assumptions; neither source certifies this supplementary implementation.
+
+![Conservative shock states, reversed entropy sign and conserved energy transport](/assets/learning/continuum-shock-entropy-selection.en.svg)
+
+### Research questions with explanations
+
+**Do three exact jump conservation equations rule out an expansion shock?** **Answer:** No. Swapping the two states preserves those equations but reverses the entropy-production sign. An admissibility condition is additional information.
+
+**Does positive entropy production imply loss of total-energy flux?** **Answer:** No. Stagnation enthalpy and total-energy transport remain conserved while kinetic and internal contributions change.
+
+**Can a boost change velocity without changing the stored energy variable?** **Answer:** No. Total energy includes kinetic energy. Transform momentum, energy and shock trajectory together before checking invariance.
+
 ## Exercises with answers
 
 ### Exercise 1

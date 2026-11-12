@@ -83,3 +83,5 @@
 파동·진동·음향·광학은 [같은 최종 빌드의 18단원 연구 종합 대조](waves-optics-research-audit.md)를 통과했다. 전자기학도 [같은 최종 출력의 20단원 연구 종합 대조](electromagnetism-research-audit.md)를 통과했다. 다음은 연속체이며 전체 교육과정 완료 상태는 false로 유지한다.
 
 전자기학은 [양의 모드 축약·벌크 닮음과 경계 위상](effective-research-status.md)까지 **20/20단원 순차 보강**을 검증했다. 이후 [160화면·40원고·487검사의 연구 종합 대조](electromagnetism-research-audit.md)를 마쳐 위 42영역 집계에 포함했다.
+
+연속체는 [불연속 이동 창·엔트로피 허용성](continuum-conservation-research-status.md)의 두 단원을 최종 검증해 연구 순차 보강 **2/22**다. 다음은 [연속체 가정](continuum-physics-topic-review.md)이며 영역 전체 감사 전까지 위 42영역 집계를 유지한다.

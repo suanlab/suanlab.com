@@ -112,6 +112,130 @@ $$
 
 Begin with the worked example to establish units and signs, then compare fixed and material windows. Next move the window across a stationary density pattern to expose what an incorrect laboratory-frame flux misses. Finally compare small k, exact zero width and a positive width below coordinate resolution. A vanishing continuity residual does not identify the initial density or unobserved regions. Specify initial/boundary information, observations and tolerances alongside the equation. Report pointwise checks and interval balances separately when evaluating learned fields or conservation-constrained models.
 
+## Research extension: moving-window balances across a discontinuity
+
+### Replace the smooth pattern by a declared contact
+
+A river photograph can contain a sharp boundary between two densities. Keep a constant physical transport velocity v and cross-section A, but replace the cosine by the positive step below. H is zero on negative arguments and one on positive arguments; its value at zero will not determine any volume integral. Both boundaries may move independently, provided the interval remains ordered throughout the observation. This is a supplementary mass-transport model. With a common constant pressure and velocity it can also be embedded as an ideal-gas contact discontinuity, rather than a compressive shock.
+
+$$
+\rho(x,t)=\rho_L+[\rho]H(x-vt),\quad [\rho]=\rho_R-\rho_L,\quad \rho_L,\rho_R>0,\quad A>0,\quad L(t)=L_0+w_Lt<R(t)=R_0+w_Rt.
+$$
+
+### Conservation need not mean a classical derivative everywhere
+
+The density has no classical spatial derivative at its jump. In a distributional derivative, differentiating the moving step gives a delta term in time change and an equal opposite delta term in flux divergence. The cancellation holds across the jump as well as away from it. A delta records a finite integrated contribution concentrated on a moving interface; it is not a very large point sample to assign to one grid cell without a declared discretization.
+
+$$
+\partial_t\rho=-v[\rho]\delta(x-vt),\qquad\partial_x(v\rho)=v[\rho]\delta(x-vt),\qquad\partial_t\rho+\partial_x(v\rho)=0\quad\text{as distributions}.
+$$
+
+### Integrate the stored mass first
+
+The primitive of a step is its positive part. Integrating the actual density over the moving interval therefore gives the exact expression below. The bracket measures how much of the interval lies to the right of the interface. This formula covers an interface outside, inside or exactly on a boundary without inventing a new density at that one point. Density times area times length has units kilograms. The total mass on the infinite line remains infinite, so it is the finite-window quantity that we compare.
+
+$$
+z_+=\max(z,0),\qquad M(t)=A\left\{\rho_L[R(t)-L(t)]+[\rho]\bigl[(R(t)-vt)_+-(L(t)-vt)_+\bigr]\right\}.
+$$
+
+### Locate crossings before integrating a rate
+
+A boundary crosses the interface when its position equals vt. Each nonparallel boundary has the crossing time below. Keep only crossings inside the time interval, split there, and use a constant density trace on each open subinterval. If w equals v, a separated boundary never crosses; a coincident boundary stays on the interface. The latter has zero relative mass flux regardless of which trace is assigned at equality. We require positive window width throughout; coincident left and right boundaries are outside this finite-window experiment.
+
+$$
+t_L=-\frac{L_0}{w_L-v}\quad(w_L\ne v),\qquad t_R=-\frac{R_0}{w_R-v}\quad(w_R\ne v).
+$$
+
+### A corner in the mass curve is allowed
+
+Differentiating positive parts away from crossings recovers the relative face-flux formula. At an isolated crossing the one-sided mass slopes can differ, so a single instantaneous classical slope may not exist. The mass itself stays continuous and piecewise linear. Altering a bounded density value at the isolated crossing time cannot change a time integral. Do not compare a chosen one-point face trace with a derivative that does not exist, or treat that mismatch as a mass source.
+
+$$
+\dot M=A\left[\rho(L(t),t)(v-w_L)-\rho(R(t),t)(v-w_R)\right]\quad\text{for almost every }t.
+$$
+
+### Use the finite-time balance as the observation
+
+Integrate over each crossing-free subinterval and add the contributions. This proves the finite-time identity, including intervals whose endpoints are crossings. Reversing time limits reverses the signed change; zero duration gives zero change. When both boundaries move with v, stored mass is fixed even if the selected boundary lies on the contact. Uniform density is a separate limit: an independently expanding window can gain mass through its geometry even with no density contrast. The transport theorem and the physical continuity law still play different roles.
+
+$$
+M(t_1)-M(t_0)=A\int_{t_0}^{t_1}\left[\rho(L(t),t)(v-w_L)-\rho(R(t),t)(v-w_R)\right]dt.
+$$
+
+### A wrong jump speed can evade point samples
+
+Now move only the step at another speed s while retaining the flux v rho. Off the moving jump, the density and flux are constant and every classical residual sample is zero. At the jump the distributional defect below remains when s differs from v and the density contrast is nonzero. A finite set of ordinary collocation points away from the interface can therefore report zero loss for a nonconservative field. This is a negative control with the same declared flux, not a new source that is silently permitted to make the request valid.
+
+$$
+\rho_s=\rho_L+[\rho]H(x-st):\qquad r_s=\partial_t\rho_s+\partial_x(v\rho_s)=(v-s)[\rho]\delta(x-st).
+$$
+
+### A weak measurement sees the missed source
+
+Pair the defect with a smooth compactly supported test function in space and time. Its value samples the entire interface trajectory through the integral below. Choose a nonnegative test function that is positive on part of that trajectory to detect a nonzero constant-sign defect. A test supported away from the interface will still see zero, so one weak observation does not certify every possible defect. Multiple test scales and regions, initial data and boundary observations must match the research question. A grid approximation to this pairing needs its own quadrature and resolution check.
+
+$$
+\langle r_s,\varphi\rangle=(v-s)[\rho]\int\varphi(st,t)\,dt,\qquad \varphi\in C_c^\infty(\mathbb R^2).
+$$
+
+### Calculate a crossing without an arbitrary midpoint trace
+
+For the stated SI example, a stationary metre-wide window initially contains half of each density and stores 2 kg. As the interface moves right, the dense portion shrinks. At 0.5 s the interface reaches the right boundary and the mass becomes 1 kg; it stays there afterwards. Before that crossing the slope is minus 2 kg/s, and afterwards it is zero. The table reports stored mass and cumulative relative inflow, avoiding an undefined instantaneous slope at the corner. The code integrates flux on open subintervals with exact fractions before printing.
+
+$$
+A=1\,\mathrm{m^2},\ \rho_L=1,\ \rho_R=3\,\mathrm{kg/m^3},\ v=1\,\mathrm{m/s},\ L=-\tfrac12\,\mathrm m,\ R=\tfrac12\,\mathrm m:\quad \frac{M(t)}{1\,\mathrm{kg}}=1+2\left[(\tfrac12-\theta)_+-(-\tfrac12-\theta)_+\right],\quad\theta=t/(1\,\mathrm s).
+$$
+
+### Transform the observation together with the field
+
+A common Galilean coordinate boost transforms the interface, both window paths and physical velocity together. Relative velocities and the same physical stored mass remain unchanged. Moving only the interface instead is the wrong-speed negative control, not a change of observer. For AI verification, report finite-window storage, integrated relative inflow, jump geometry and the test-function support together. The existing cosine lab retains its smooth source family and controls; this section does not add a discontinuous solver or a new jump-speed input.
+
+$$
+x'=x+bt,\quad v'=v+b,\quad w_L'=w_L+b,\quad w_R'=w_R+b:\qquad v'-w_j'=v-w_j,\quad M'=M.
+$$
+
+| t (s) | M (kg) | mass change (kg) | integrated inflow (kg) | residual (kg) |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 2.00000000 | 0.00000000 | 0.00000000 | 0.00000000 |
+| 0.25000000 | 1.50000000 | -0.50000000 | -0.50000000 | 0.00000000 |
+| 0.50000000 | 1.00000000 | -1.00000000 | -1.00000000 | 0.00000000 |
+| 0.75000000 | 1.00000000 | -1.00000000 | -1.00000000 | 0.00000000 |
+
+```python
+from fractions import Fraction as F
+# SI: A=1 m^2, rho_L=1, rho_R=3 kg/m^3, v=1 m/s.
+left, right, v = F(-1,2), F(1,2), F(1)
+def mass(t):
+    return right-left+2*(max(right-v*t,F(0))-max(left-v*t,F(0)))
+def integrated_inflow(end):
+    cuts = sorted({F(0), end} | {t for t in [left/v,right/v] if 0<t<end})
+    total = F(0)
+    for a,b in zip(cuts,cuts[1:]):
+        t = (a+b)/2
+        rho_left = F(1) if left<v*t else F(3)
+        rho_right = F(1) if right<v*t else F(3)
+        total += v*(rho_left-rho_right)*(b-a)
+    return total
+for t in [F(0), F(1,4), F(1,2), F(3,4)]:
+    change = mass(t)-mass(F(0))
+    inflow = integrated_inflow(t)
+    assert change==inflow
+    values = [t,mass(t),change,inflow,change-inflow]
+    print(" ".join(f"{float(x):.8f}" for x in values))
+```
+
+The [Clawpack Euler Riemann notes](https://www.clawpack.org/riemann_book/html/Euler.html) supply contact and weak-conservation context. The positive-part storage, crossing-aware integration and missed-source example are derived here for the declared one-dimensional family.
+
+![Moving contact, continuous window mass and crossing-aware cumulative inflow](/assets/learning/continuum-contact-weak-window.en.svg)
+
+### Research questions with explanations
+
+**Can zero classical residual away from a jump prove mass conservation?** **Answer:** No. A wrong jump speed leaves a nonzero distributional source on the interface even though off-interface residuals vanish.
+
+**Must the mass derivative exist at the exact crossing time?** **Answer:** No. Its one-sided slopes can differ. The continuous stored mass and finite-time integrated balance remain defined.
+
+**Does uniform density make mass in every moving window constant?** **Answer:** No. A changing window width changes volume. Constant material-window mass requires boundaries that follow the transport velocity.
+
 ## Exercises with answers
 
 ### Exercise 1
