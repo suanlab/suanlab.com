@@ -128,6 +128,123 @@ The interactive view provides separate gain and mean-power panels with the same 
 
 The selected frequency represents one experiment in this family. A curve joining frequencies is not the time trajectory of a single mass. Pair the frequency view with an actual time trace when discussing startup. Preserve the existing site colors and distinguish curves by labels as well as color.
 
+## Research extension: positive absorption has a conserved spectral area
+
+Peak height and bandwidth describe only part of a response curve. A narrow peak can become arbitrarily tall without acquiring infinite total area. Here we prove a full positive-frequency integral for this ideal viscously damped oscillator, then ask what a finite measurement band actually captures. This is a derived supplement to the existing gain and power laboratory, not a broadband measurement feature.
+
+### Fix the sign and physical observable
+
+
+
+$$
+\chi_c(\Omega)=\frac1{k-m\Omega^2+ic\Omega},\quad m,k,c>0,\quad \Omega\ge0,\qquad
+\mathcal A_c(\Omega)=\Omega[-\operatorname{Im}\chi_c(\Omega)]=\frac{c\Omega^2}{(k-m\Omega^2)^2+c^2\Omega^2}.
+$$
+
+The convention remains exp(+i Omega t), so the imaginary part of susceptibility is negative at positive frequency. Its negative sign is not active energy generation. Multiplying by frequency converts it to the nonnegative absorption weight:
+
+
+
+$$
+\langle P\rangle=\frac{F_0^2}{2}\mathcal A_c(\Omega)\ge0,\qquad
+[\chi_c]=\mathrm{s^2/kg},\quad [\mathcal A_c]=\mathrm{s/kg},\quad \left[\int\mathcal A_c\,d\Omega\right]=\mathrm{kg^{-1}}.
+$$
+
+This is periodic steady-state input power; it is not a claim that instantaneous startup power is always positive. The real-power averaging and its convention follow the preceding derivation and [MIT 8.03SC chapter 2](https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/782069da3820fc514c10c26ae0c15b01_MIT8_03SCF16_Text_Ch2.pdf). The integral proof below is supplied explicitly for the present scalar model.
+
+### Derive the area instead of estimating a peak rectangle
+
+
+
+$$
+\int_0^\infty\mathcal A_c(\Omega)\,d\Omega=\frac\pi{2m},\qquad
+\int_0^\infty\langle P\rangle\,d\Omega=\frac{\pi F_0^2}{4m}\quad(F_0\text{ fixed across experiments}).
+$$
+
+The integral is independent of positive damping and stiffness, including critical and overdamped cases. It integrates separate periodic experiments at equal force amplitude. It is not heat accumulated during a time sweep. To prove it, put s=Omega/omega0 and gamma=c/(m omega0)>0:
+
+
+
+$$
+\omega_0=\sqrt{k/m},\quad \gamma=\frac{c}{m\omega_0},\qquad
+\int_0^\infty\mathcal A_c\,d\Omega=\frac{c}{m^2\omega_0}J_2,\quad
+J_j=\int_0^\infty\frac{s^j\,ds}{s^4+(\gamma^2-2)s^2+1}\quad(j=0,2).
+$$
+
+The positive quartic denominator makes both integrals finite. Substitute s=1/r in J0 to obtain J0=J2. Add them, then use u=s−1/s, whose derivative is 1+1/s²:
+
+
+
+$$
+2J_2=\int_0^\infty\frac{1+s^2}{s^4+(\gamma^2-2)s^2+1}\,ds
+=\int_{-\infty}^\infty\frac{du}{u^2+\gamma^2}=\frac\pi\gamma.
+$$
+
+The prefactor now cancels gamma and gives pi/(2m). No small-damping approximation or symmetric half-power assumption was used. Changing mass changes the area; changing damping redistributes it.
+
+### A vanishing pointwise response can keep finite spectral weight
+
+
+
+$$
+\Omega\ne\omega_0:\quad \mathcal A_c(\Omega)\longrightarrow0,\qquad
+\mathcal A_c(\Omega)\,d\Omega\ \rightharpoonup\ \frac\pi{2m}\delta_{\omega_0}\quad(c\downarrow0)\text{ on }(0,\infty).
+$$
+
+The last statement means convergence after integration against a continuous compactly supported test function. Away from any neighborhood of omega0, the integral tends to zero: on a bounded region the denominator stays away from zero, and the far tail is bounded as below. Total mass stays pi/(2m). Inside a shrinking neighborhood the peak becomes tall and narrow. This proves the stated weak limit; it is not the ordinary value of a bounded periodic solution at c=0 and exact resonance. There is no damping-independent integrable dominating curve, so interchanging pointwise limit and integration is invalid.
+
+### Report the actual observation band
+
+
+
+$$
+C_c(a,b)=\frac{2m}{\pi}\int_a^b\mathcal A_c(\Omega)\,d\Omega,\quad 0\le a<b,\qquad 0<C_c(a,b)<1.
+$$
+
+The table fixes m=k=1 in SI units. It compares a narrow band around 1 rad/s with the native frequency range 0–8 rad/s. Values are numerical fractions of the proved ideal full area, not independent measurements of that full area. Composite Simpson refinement is checked separately.
+
+| c (N s/m) | fraction in 0.8–1.2 rad/s | fraction in 0–8 rad/s | ideal full fraction |
+|---|---|---|---|
+| 0.05 | 0.920064 | 0.995979 | 1 |
+| 0.2 | 0.702791 | 0.983920 | 1 |
+| 1 | 0.241925 | 0.920008 | 1 |
+| 4 | 0.063445 | 0.702273 | 1 |
+
+```python
+from math import pi
+
+# m=k=1 in SI units. Fractions of the proved full positive-frequency area.
+def integrate(f, left, right, n=20000):
+    h = (right-left)/n
+    return h/3*(f(left)+f(right)+sum(
+        (4 if i % 2 else 2)*f(left+i*h) for i in range(1, n)))
+
+for c in [.05, .2, 1, 4]:
+    weight = lambda w: (2/pi)*c*w*w/((1-w*w)**2+c*c*w*w)
+    narrow = integrate(weight, .8, 1.2)
+    wide = integrate(weight, 0, 8)
+    print(c, round(narrow, 6), round(wide, 6), 1)
+    assert 0 < narrow < wide < 1
+```
+
+
+
+$$
+W\ge\sqrt2\,\omega_0:\qquad 0\le\int_W^\infty\mathcal A_c(\Omega)\,d\Omega\le\frac{4c}{m^2W}.
+$$
+
+For that tail bound, k≤m Omega²/2 implies |k−m Omega²|≥m Omega²/2, so the integrand is at most 4c/(m² Omega²). The bound is conservative and can exceed the whole area. Finite-band agreement alone cannot certify an infinite-band sum rule or exclude unobserved modes. A real actuator or sensor may cease to obey this ideal viscous single-mode model at high frequency.
+
+![Normalized absorption becomes narrower and taller as damping decreases, while its positive-frequency area remains one; finite-band cumulative fractions stay below one.](/assets/learning/waves-resonance-spectral-area.en.svg)
+
+### Research questions with explanations
+
+**Does a negative imaginary susceptibility violate passivity?** **Answer:** Not under exp(+i Omega t). Positive-frequency mean input power uses −Omega Im chi and is nonnegative; changing the Fourier convention also changes the imaginary sign.
+
+**Can a model pass every sampled off-resonance value yet miss the area?** **Answer:** Yes. A progressively narrower peak can lie between samples while pointwise values away from resonance vanish. Resolve the peak, report integration refinement and bound omitted tails.
+
+**Does this prove a sum rule for every learned sensor?** **Answer:** No. The proof assumes one linear viscous oscillator over all positive frequencies with calibrated physical susceptibility. Finite data, hidden modes, nonlinearity and measurement scaling require separate identification and physical assumptions.
+
 ## Six exercises with explanations
 
 1. **Choose the observable:** For $m=k=c=1$, which frequency maximizes displacement? **Answer:** $1/\sqrt2$ rad/s. The value 1 rad/s maximizes mean absorbed power instead.

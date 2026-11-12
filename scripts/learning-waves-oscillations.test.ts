@@ -169,7 +169,15 @@ for (const id of ['sinusoidal-forcing-transient-response', 'oscillator-frequency
     assert.ok(rendered[lang].includes('katex-display'));
     assert.ok(!rendered[lang].includes('katex-error'));
     assert.equal((raw.match(/^\d\. \*\*/gm) || []).length, 6);
-    assert.equal((raw.match(lang === 'en' ? /\*\*Answer:\*\*/g : /\*\*해설:\*\*/g) || []).length, 6);
+    const exerciseHeading = lang === 'en' ? '## Six exercises with explanations' : '## 해설이 있는 연습문제 여섯 개';
+    const start = raw.indexOf(exerciseHeading);
+    assert.ok(start >= 0);
+    const nextHeading = raw.indexOf('\n## ', start + exerciseHeading.length);
+    assert.ok(nextHeading > start);
+    const exercises = raw.slice(start, nextHeading);
+    // Research Q&A is separate from the six preserved numbered exercises.
+    assert.equal((exercises.match(/^\d\. \*\*/gm) || []).length, 6);
+    assert.equal((exercises.match(lang === 'en' ? /\*\*Answer:\*\*/g : /\*\*해설:\*\*/g) || []).length, 6);
     assert.ok(raw.length > 5500);
     assert.doesNotMatch(raw, /TODO|TBD|coming soon/i);
     if (lang === 'en') assert.doesNotMatch(raw, /[가-힣]/);

@@ -129,6 +129,123 @@ SI 단위에서 $m=1$, $k=2$, $c=2$, $F_0=1$로 두자. $c^2=4<4mk=8$이므로 �
 
 선택 주파수는 이 실험군 중 하나다. 주파수 사이를 연결한 곡선은 질량 하나의 시간 궤적이 아니다. 시작 과정을 설명할 때에는 실제 시간 응답을 함께 제시한다. 기존 홈페이지의 색상을 유지하되 곡선은 색뿐 아니라 이름으로도 구분한다.
 
+## 연구 확장: 양의 흡수 곡선에는 일정한 주파수 면적이 있다
+
+봉우리 높이와 대역폭은 응답 곡선의 일부만 설명한다. 좁은 봉우리는 전체 면적이 무한하지 않아도 얼마든지 높아질 수 있다. 여기서는 이상적인 점성 감쇠 진동자의 양의 주파수 전체 적분을 증명하고 유한 측정 대역이 실제로 얼마를 포착하는지 묻는다. 기존 이득·전력 실습의 유도 보충이며 광대역 측정 기능이 아니다.
+
+### 부호와 물리적 관측량을 고정한다
+
+
+
+$$
+\chi_c(\Omega)=\frac1{k-m\Omega^2+ic\Omega},\quad m,k,c>0,\quad \Omega\ge0,\qquad
+\mathcal A_c(\Omega)=\Omega[-\operatorname{Im}\chi_c(\Omega)]=\frac{c\Omega^2}{(k-m\Omega^2)^2+c^2\Omega^2}.
+$$
+
+관례는 exp(+i Omega t)이므로 양의 주파수에서 감수율의 허수부는 음수다. 이 음의 부호는 능동적인 에너지 생성을 뜻하지 않는다. 주파수를 곱하면 음이 아닌 흡수 가중치가 된다.
+
+
+
+$$
+\langle P\rangle=\frac{F_0^2}{2}\mathcal A_c(\Omega)\ge0,\qquad
+[\chi_c]=\mathrm{s^2/kg},\quad [\mathcal A_c]=\mathrm{s/kg},\quad \left[\int\mathcal A_c\,d\Omega\right]=\mathrm{kg^{-1}}.
+$$
+
+이는 주기 정상상태의 입력 전력이며 시작 과정의 순간 전력이 항상 양수라는 주장이 아니다. 실수 전력 평균과 관례는 앞의 유도 및 [MIT 8.03SC 2장](https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/782069da3820fc514c10c26ae0c15b01_MIT8_03SCF16_Text_Ch2.pdf)을 따른다. 아래 적분은 현재 스칼라 모델에 대해 직접 증명한다.
+
+### 봉우리 직사각형 대신 면적을 유도한다
+
+
+
+$$
+\int_0^\infty\mathcal A_c(\Omega)\,d\Omega=\frac\pi{2m},\qquad
+\int_0^\infty\langle P\rangle\,d\Omega=\frac{\pi F_0^2}{4m}\quad(F_0\text{ fixed across experiments}).
+$$
+
+적분은 양의 감쇠와 강성에 무관하며 임계감쇠·과다감쇠도 포함한다. 같은 힘 진폭을 사용하는 서로 다른 주기 실험을 적분한 것이며 시간에 따라 주파수를 훑을 때 누적되는 열이 아니다. 증명을 위해 s=Omega/omega0, gamma=c/(m omega0)>0로 둔다.
+
+
+
+$$
+\omega_0=\sqrt{k/m},\quad \gamma=\frac{c}{m\omega_0},\qquad
+\int_0^\infty\mathcal A_c\,d\Omega=\frac{c}{m^2\omega_0}J_2,\quad
+J_j=\int_0^\infty\frac{s^j\,ds}{s^4+(\gamma^2-2)s^2+1}\quad(j=0,2).
+$$
+
+양의 사차 분모 덕분에 두 적분은 모두 유한하다. J0에 s=1/r을 대입하면 J0=J2이다. 두 적분을 더한 뒤 도함수가 1+1/s²인 u=s−1/s를 사용한다.
+
+
+
+$$
+2J_2=\int_0^\infty\frac{1+s^2}{s^4+(\gamma^2-2)s^2+1}\,ds
+=\int_{-\infty}^\infty\frac{du}{u^2+\gamma^2}=\frac\pi\gamma.
+$$
+
+이제 앞 계수와 gamma가 상쇄되어 pi/(2m)을 얻는다. 작은 감쇠 근사나 반전력 구간의 대칭성은 사용하지 않았다. 질량을 바꾸면 면적이 바뀌고 감쇠를 바꾸면 그 면적의 분포가 바뀐다.
+
+### 점별로 사라지는 응답도 유한한 주파수 가중치를 유지할 수 있다
+
+
+
+$$
+\Omega\ne\omega_0:\quad \mathcal A_c(\Omega)\longrightarrow0,\qquad
+\mathcal A_c(\Omega)\,d\Omega\ \rightharpoonup\ \frac\pi{2m}\delta_{\omega_0}\quad(c\downarrow0)\text{ on }(0,\infty).
+$$
+
+마지막 진술은 연속이고 compact 지지를 갖는 시험 함수를 곱해 적분한 뒤의 수렴을 뜻한다. omega0의 임의 근방 밖에서는 적분이 0으로 간다. 유계 구간에서는 분모가 0에서 떨어져 있고 먼 꼬리는 아래처럼 상계되기 때문이다. 전체 질량은 pi/(2m)을 유지한다. 줄어드는 근방 안에서는 봉우리가 높고 좁아진다. 이것으로 약한 극한을 증명한다. c=0의 정확 공진에서 유계 주기해가 갖는 보통의 함수값이 아니다. 감쇠에 무관한 적분 가능한 지배 곡선이 없으므로 점별 극한과 적분을 교환할 수 없다.
+
+### 실제 관측 대역을 보고한다
+
+
+
+$$
+C_c(a,b)=\frac{2m}{\pi}\int_a^b\mathcal A_c(\Omega)\,d\Omega,\quad 0\le a<b,\qquad 0<C_c(a,b)<1.
+$$
+
+표는 SI 단위로 m=k=1을 고정한다. 1 rad/s 주변의 좁은 대역과 기존 주파수 범위 0–8 rad/s를 비교한다. 값은 증명한 이상적 전체 면적에 대한 수치 비율이며 전체 면적을 독립적으로 측정한 값이 아니다. 복합 Simpson 정련은 별도로 확인한다.
+
+| c (N s/m) | 0.8–1.2 rad/s 비율 | 0–8 rad/s 비율 | 이상적 전체 비율 |
+|---|---|---|---|
+| 0.05 | 0.920064 | 0.995979 | 1 |
+| 0.2 | 0.702791 | 0.983920 | 1 |
+| 1 | 0.241925 | 0.920008 | 1 |
+| 4 | 0.063445 | 0.702273 | 1 |
+
+```python
+from math import pi
+
+# m=k=1 in SI units. Fractions of the proved full positive-frequency area.
+def integrate(f, left, right, n=20000):
+    h = (right-left)/n
+    return h/3*(f(left)+f(right)+sum(
+        (4 if i % 2 else 2)*f(left+i*h) for i in range(1, n)))
+
+for c in [.05, .2, 1, 4]:
+    weight = lambda w: (2/pi)*c*w*w/((1-w*w)**2+c*c*w*w)
+    narrow = integrate(weight, .8, 1.2)
+    wide = integrate(weight, 0, 8)
+    print(c, round(narrow, 6), round(wide, 6), 1)
+    assert 0 < narrow < wide < 1
+```
+
+
+
+$$
+W\ge\sqrt2\,\omega_0:\qquad 0\le\int_W^\infty\mathcal A_c(\Omega)\,d\Omega\le\frac{4c}{m^2W}.
+$$
+
+꼬리 상계에서는 k≤m Omega²/2이므로 |k−m Omega²|≥m Omega²/2이고 적분 함수는 4c/(m² Omega²) 이하이다. 보수적인 상계라 전체 면적보다 클 수도 있다. 유한 대역의 일치만으로 무한 대역 합 규칙을 인증하거나 관측하지 않은 모드를 배제할 수 없다. 실제 구동기·센서는 높은 주파수에서 이상적인 점성 단일 모드 모델을 따르지 않을 수 있다.
+
+![감쇠를 줄이면 정규화 흡수가 높고 좁아지지만 양의 주파수 전체 면적은 1이며 유한 대역 누적 비율은 1보다 작다.](/assets/learning/waves-resonance-spectral-area.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**음의 감수율 허수부는 수동성을 위반하는가?** **답:** exp(+i Omega t) 관례에서는 아니다. 양의 주파수 평균 입력 전력은 −Omega Im chi를 사용하므로 음이 아니다. Fourier 관례를 바꾸면 허수부 부호도 바뀐다.
+
+**공진 밖의 모든 표본값을 맞추어도 면적을 놓칠 수 있는가?** **답:** 그렇다. 점점 좁은 봉우리가 표본 사이에 놓이는 동안 공진 밖의 점별 값은 사라질 수 있다. 봉우리를 분해하고 적분 정련과 누락 꼬리의 상계를 보고한다.
+
+**모든 학습 센서의 합 규칙을 증명한 것인가?** **답:** 아니다. 증명은 모든 양의 주파수에서 보정된 물리 감수율을 갖는 하나의 선형 점성 진동자를 가정한다. 유한 데이터·숨은 모드·비선형성·측정 척도에는 별도의 식별과 물리 가정이 필요하다.
+
 ## 해설이 있는 연습문제 여섯 개
 
 1. **관측량 선택:** $m=k=c=1$에서 변위가 최대인 주파수는? **해설:** $1/\sqrt2$ rad/s다. 1 rad/s는 평균 흡수 전력을 최대화한다.

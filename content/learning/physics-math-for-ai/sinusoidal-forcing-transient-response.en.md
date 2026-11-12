@@ -125,6 +125,118 @@ Over $T=2\pi$ s, input power and heat power are both $\cos^2t$ W. Each integral 
 
 Set $m=k=F_0=\Omega=1$, $c=0$, $x_0=v_0=0$. At $t=\pi/2$ s, $x=\pi/4$ m and $v=1/2$ m/s. Therefore $E=1/8+\pi^2/32$ J. The finite result is consistent with resonance: resonance predicts growing amplitude, not infinite displacement immediately after switching on.
 
+## Research extension: the order of weak damping and long observation
+
+The finite-time resonant response and the steady-state gain can both be correct while answering incompatible limit questions. Imagine waiting for a weakly damped swing to settle: reducing friction also lengthens the waiting time. We now make that competition explicit, including the intermediate time scale. This is a supplementary closed-form calculation, not a new control or an extension of the native laboratory beyond its 32 s bound.
+
+### Fix the physical initial-value problem
+
+Use exact resonant drive, zero initial data and strictly positive underdamping. Hold mass, stiffness and nonzero force amplitude fixed while damping varies:
+
+
+
+$$
+m\ddot x+c\dot x+kx=F_0\cos(\omega_0t),\quad x(0)=\dot x(0)=0,\quad \omega_0=\sqrt{k/m},\qquad
+\beta=\frac{c}{2m},\quad d=\sqrt{\omega_0^2-\beta^2},\quad m,k,F_0>0,\quad 0<\beta<\omega_0.
+$$
+
+Subtract the homogeneous solution that cancels the periodic particular velocity at startup. Differentiation gives both state components:
+
+
+
+$$
+x_c(t)=\frac{F_0}{c}\left[\frac{\sin(\omega_0t)}{\omega_0}-e^{-\beta t}\frac{\sin(dt)}d\right],\qquad
+v_c(t)=\frac{F_0}{c}\left[\cos(\omega_0t)-e^{-\beta t}\left(\cos(dt)-\frac\beta d\sin(dt)\right)\right].
+$$
+
+At t=0 the bracket in each component vanishes. The position has units of length: F0/c is a velocity and division by an angular frequency supplies time. The two large terms cancel as c becomes small; this formula is useful for analysis but is not a recommendation to replace the native augmented matrix exponential by subtraction of nearly equal floating-point numbers.
+
+### Take a finite-time limit first
+
+For every fixed finite t, expand the decay factor to first order in beta and note that d−omega0 is second order. The apparent division by c has a removable finite-time limit:
+
+
+
+$$
+\lim_{c\downarrow0}x_c(t)=\frac{F_0t}{2m\omega_0}\sin(\omega_0t),\qquad
+\lim_{c\downarrow0}v_c(t)=\frac{F_0}{2m\omega_0}\left[\sin(\omega_0t)+\omega_0t\cos(\omega_0t)\right].
+$$
+
+These are exactly the undamped initial-value state and its full derivative, including the derivative of the growing envelope. A statement at each fixed t does not give an error bound uniform over all future times.
+
+### Use an observable with an actual long-time limit
+
+Position keeps oscillating, so its ordinary long-time limit is unavailable. Instead normalize twice the mechanical energy by the resonant steady-state scale. Let B be the following deliberately conservative bound on the decaying state vector:
+
+
+
+$$
+S_c(t)=\frac{c^2}{F_0^2}\left[v_c(t)^2+\omega_0^2x_c(t)^2\right]=\frac{2c^2E_c(t)}{mF_0^2},\quad
+B=\sqrt{(1+\beta/d)^2+(\omega_0/d)^2},\qquad
+|S_c(t)-1|\le2Be^{-\beta t}+B^2e^{-2\beta t}.
+$$
+
+To prove the bound, write the scaled vector as a unit vector (cos omega0 t, sin omega0 t) minus exp(−beta t) times (cos dt−beta sin(dt)/d, omega0 sin(dt)/d). The second vector has norm at most B. Expanding its squared norm and using the triangle inequality gives the displayed estimate. For each fixed c>0 it tends to zero; B need not remain bounded near critical damping.
+
+
+
+$$
+\lim_{c\downarrow0}\lim_{t\to\infty}S_c(t)=1,\qquad
+\lim_{t\to\infty}\lim_{c\downarrow0}S_c(t)=0.
+$$
+
+The second result follows because the finite-time state remains finite while c² tends to zero. It does not say the undamped physical energy stays zero. The observable itself uses a damping-dependent normalization. The mismatch shows precisely why a settled frequency curve cannot replace startup when damping is also changing.
+
+### Resolve the crossover at a scaled observation time
+
+
+
+$$
+t=\frac\tau\beta,\quad \tau\ge0\text{ fixed},\qquad
+(\omega_0-d)t=\frac{\beta\tau}{\omega_0+d}\longrightarrow0,\qquad \beta/d\longrightarrow0.
+$$
+
+The rapid phase itself need not converge. Its two copies become equal, so the norm of their difference does converge. The scaled state approaches a rotating unit vector multiplied by 1−exp(−tau):
+
+
+
+$$
+\lim_{c\downarrow0}S_c\!\left(\frac\tau\beta\right)=(1-e^{-\tau})^2,\qquad \beta=\frac{c}{2m}.
+$$
+
+For small tau this behaves as tau²; for large tau it approaches one. A useful settling comparison therefore reports beta t, rather than seconds alone. The table fixes tau=1 and m=k=F0=1 in SI units. Finite-beta corrections oscillate and need not decrease monotonically. Times beyond 32 s are evaluated by the supplemental formula.
+
+| beta (1/s) | t (s) | S_c(t) | scaled-limit target |
+|---|---|---|---|
+| 0.2 | 5 | 0.368130 | 0.399576 |
+| 0.1 | 10 | 0.419481 | 0.399576 |
+| 0.05 | 20 | 0.407897 | 0.399576 |
+| 0.01 | 100 | 0.397531 | 0.399576 |
+
+```python
+from math import sin, cos, exp, sqrt
+
+# m=k=F0=1 in SI units. Closed formulas at t=1/beta.
+for beta in [.2, .1, .05, .01]:
+    c, t = 2*beta, 1/beta
+    d = sqrt(1-beta*beta)
+    x = (sin(t)-exp(-beta*t)*sin(d*t)/d)/c
+    v = (cos(t)-exp(-beta*t)*(cos(d*t)-beta*sin(d*t)/d))/c
+    scaled = c*c*(v*v+x*x)
+    target = (1-exp(-1))**2
+    print(beta, t, round(scaled, 6), round(target, 6))
+```
+
+![Resonant scaled energy reaches its steady level on the damping clock; curves approach the crossover law when plotted against beta times time.](/assets/learning/waves-resonance-limit-clock.en.svg)
+
+### Research questions with explanations
+
+**Does a divergent steady gain mean infinite displacement at switch-on?** **Answer:** No. The finite initial-value solution includes the canceling homogeneous contribution; its zero-damping limit is finite for each finite time.
+
+**Why can two correct limit calculations disagree?** **Answer:** Settling time diverges as damping vanishes. Uniformity in the observation horizon is missing, and the normalized observable must be held explicit.
+
+**What should a learned simulator be tested against?** **Answer:** Separate fixed-time convergence, fixed-damping settling and the joint scaled-time regime; keep initial data, physical units and energy normalization explicit. A short trajectory fit cannot certify the other regimes.
+
 ## Six exercises with explanations
 
 1. **Initial memory:** For the first example but $x_0=v_0=0$, find the homogeneous initial data. **Answer:** $a=0,b=-1$. The particular velocity is already 1 m/s, so the homogeneous part must cancel it initially.
