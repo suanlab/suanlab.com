@@ -18,9 +18,15 @@ for (const [id, count] of [['fourier-heat-diffusion-mode-budget', 15], ['gaussia
   test(`${id}: detailed matched bilingual equations, full outlines and six answered exercises render`, async () => {
     const result = await getLearningContent(id), math: string[][] = [];
     for (const locale of ['ko', 'en'] as const) {
-      const source = await readFile(`content/learning/physics-math-for-ai/${id}.${locale}.md`, 'utf8');
+      const fullSource = await readFile(`content/learning/physics-math-for-ai/${id}.${locale}.md`, 'utf8');
+      const start = fullSource.search(/^## (?:Research extension:|연구 확장:)/m);
+      assert.ok(start >= 0);
+      const end = fullSource.indexOf('\n## ', start + 4) + 1;
+      assert.ok(end > start);
+      const source = fullSource.slice(0, start) + fullSource.slice(end);
+      assert.equal((source.match(/^## /gm) || []).length, count);
       const html = result[locale], outline = result.outline[locale];
-      assert.equal(outline.length, count); assert.equal(new Set(outline.map(h => h.id)).size, count);
+      assert.equal(outline.length, count + 1); assert.equal(new Set(outline.map(h => h.id)).size, count + 1);
       for (const h of outline) assert.ok(html.includes(`id="${h.id}"`));
       assert.doesNotMatch(html, /katex-error|<h1/); assert.match(html, /katex-display/);
       assert.match(html, /tabindex="0"/); assert.match(html, /aria-label=/);

@@ -155,6 +155,99 @@ Start with zero advection and inspect left/right diffusive fluxes. Increase time
 
 For a learned transport model, report errors in concentration, flux, total mass, mean and variance separately. A peak-fitting loss can reward the wrong width; a finite display window can hide missing tail mass; and normalizing every predicted frame can conceal an incorrect PDE flux. Hold out advection speeds and diffusivities, preserve actual area and units, and use boundary budgets before interpreting local mass changes. This Gaussian field is a controlled benchmark for constant coefficients, not evidence of correct reactions, walls, mixture dynamics or individual molecular paths.
 
+## Research extension: diffusion can hide a persistent spatial error
+
+Suppose two transport predictions become hard to distinguish as both clouds broaden. Has their center error disappeared? Compare **two full-line Gaussian fields**, not two cropped pictures. Use the same tube area and positive masses, and normalize each concentration by its own conserved mass. The resulting p and q are probability densities along the tube, not physical volume concentrations. In this section q denotes the second probability density; it is unrelated to the heat flux symbol in the preceding chapter.
+
+$$
+p=\frac{Ac_p}{M_p},\qquad q=\frac{Ac_q}{M_q},\qquad\int_{\mathbb R}p\,dx=\int_{\mathbb R}q\,dx=1,\qquad[p]=[q]=\mathrm{m^{-1}},\quad M_p,M_q>0.
+$$
+
+Give the two clouds the same constant U and D, but allow different initial means and positive variances. Both means translate by the same amount, so their separation delta remains constant. Both variances receive the same increment. This shared evolution is essential to the comparison; a reference frozen at its initial shape is a different problem.
+
+$$
+p=\mathcal N(\mu_p,v_p),\quad q=\mathcal N(\mu_q,v_q),\quad\mu_i=\mu_{i0}+Ut,\quad v_i=v_{i0}+2Dt>0,\qquad\delta=\mu_p-\mu_q=\mu_{p0}-\mu_{q0}.
+$$
+
+Define the relative entropy K, also called KL divergence. The ratio p/q is dimensionless even though each density has units per metre. Insert their Gaussian logarithms, then use the first two moments under p to obtain the closed expression. The variance contribution is nonnegative because r - 1 - log r is nonnegative, and the center contribution is visibly nonnegative. K is dimensionless and is not automatically the thermodynamic entropy of the dissolved material.
+
+$$
+K(p\Vert q)=\int_{\mathbb R}p\log(p/q)\,dx=\frac12\left[\frac{v_p}{v_q}-1-\log\frac{v_p}{v_q}+\frac{\delta^2}{v_q}\right]\ge0.
+$$
+
+The spatial score difference measures how the two log profiles slope differently. Write x = mu-p + y: its value is -y/vp + (y + delta)/vq. Under p, y has mean zero and second moment vp. Squaring and averaging gives the relative Fisher information below. Its inverse-square-length units matter when it is multiplied by diffusivity.
+
+$$
+I_{\rm rel}=\int_{\mathbb R}p\left[\partial_x\log(p/q)\right]^2dx=\frac{(v_p-v_q)^2}{v_pv_q^2}+\frac{\delta^2}{v_q^2},\qquad[I_{\rm rel}]=\mathrm{m^{-2}}.
+$$
+
+Differentiate the integral defining K, using the PDE for **both** densities. Each density retains total integral one. Integrate by parts on the full line; the Gaussian tails make the boundary terms vanish. Contributions from their common uniform drift cancel, and diffusion leaves minus D times the score square. This identity uses a moving reference q with the same diffusion. It is not the derivative formula for an arbitrary fixed target, different drift or different diffusivity.
+
+$$
+p_t+Up_x=Dp_{xx},\quad q_t+Uq_x=Dq_{xx}\quad\Longrightarrow\quad\frac{d}{dt}K(p\Vert q)=-D\int_{\mathbb R}p\left[\partial_x\log(p/q)\right]^2dx.
+$$
+
+Substitute the Gaussian relative Fisher expression to see why K decreases. At zero diffusivity it stays constant while both clouds translate. With positive diffusivity it falls unless the normalized profiles coincide. A decreasing measure is useful evidence for this particular notion of distinguishability, but its definition alone does not bound every other error in the same units or with a time-independent constant.
+
+$$
+\dot K=-D\left[\frac{(v_p-v_q)^2}{v_pv_q^2}+\frac{\delta^2}{v_q^2}\right]\le0,\qquad[\dot K]=\mathrm{s^{-1}}.
+$$
+
+Compare a distance with spatial units: the least expected squared displacement over all joint couplings with these two marginals. Expanding that cost gives delta² + vp + vq minus twice their covariance. Cauchy–Schwarz bounds covariance by the product of standard deviations. The coupling X = mu-p + sqrt(vp) Z and Y = mu-q + sqrt(vq) Z, using the same standard normal Z, attains the lower bound. This proves the displayed optimal quadratic transport cost for this one-dimensional Gaussian pair.
+
+$$
+W_2^2(p,q):=\inf_{(X,Y)}\mathbb E[(X-Y)^2]=\delta^2+(\sqrt{v_p}-\sqrt{v_q})^2,\qquad[W_2^2]=\mathrm{m^2}.
+$$
+
+Now give the clouds equal initial variance and a nonzero center separation. Diffusion increases their shared width, so the same displacement occupies a smaller fraction of that width and K tends to zero. Nevertheless their centers stay delta metres apart, and the optimal squared transport cost remains delta² square metres. There is no contradiction: the distributions spread on an unbounded line and the comparison metrics measure different errors. A time-independent entropy-to-distance bound cannot be assumed without checking its reference-dependent constants.
+
+$$
+v_p=v_q=v_0+2Dt:\qquad K=\frac{\delta^2}{2(v_0+2Dt)}\longrightarrow0\ (D>0),\qquad W_2^2=\delta^2,\qquad\mu_p-\mu_q=\delta.
+$$
+
+A different negative control reveals what normalization removes. Keep exactly the same shape but use two kilograms in one cloud and one kilogram in the other. Their normalized densities agree and K is zero, while physical concentrations and masses differ. Thus a normalized shape loss must be accompanied by a separate physical mass budget. If either mass is exactly zero, that cloud has no mass-normalized density here; do not assign zero KL to an undefined comparison.
+
+$$
+M_p=2\mathrm{\ kg},\quad M_q=1\mathrm{\ kg},\quad p=q:\qquad K=0,\qquad c_p=2c_q,\qquad M_p-M_q=1\mathrm{\ kg}.
+$$
+
+For nearly equal variances, subtracting r from its logarithmic approximation can lose the small variance contribution. Form epsilon from the variance difference, use log1p, and, when needed, evaluate the convergent series with a stated truncation error. log1p alone does not remove the final subtraction. For a truncation after n = N and |epsilon| < 1, the absolute remainder is at most |epsilon| to power N+1 divided by (N+1)(1-|epsilon|). The table below uses exactly equal variances, so this contribution is exactly zero and only the center term remains.
+
+$$
+\epsilon=\frac{v_p-v_q}{v_q},\quad\frac{v_p}{v_q}-1-\log\frac{v_p}{v_q}=\epsilon-\operatorname{log1p}(\epsilon)=\sum_{n=2}^{\infty}\frac{(-1)^n\epsilon^n}{n}\quad(|\epsilon|<1).
+$$
+
+For the table, both initial variances are 1 m², D = 0.5 m²/s, and delta = 1 m; any common U gives the same entries. Columns are time in s, common variance in m², dimensionless KL, relative Fisher information in 1/m², and squared transport cost in m². Every positive-mass cloud retains its own mass throughout. The table does not evolve a second cloud inside the existing single-cloud interactive controls.
+
+| t | variance | KL | relative Fisher | W2 squared |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 1.00000000 | 0.50000000 | 1.00000000 | 1.00000000 |
+| 1.00000000 | 2.00000000 | 0.25000000 | 0.25000000 | 1.00000000 |
+| 4.00000000 | 5.00000000 | 0.10000000 | 0.04000000 | 1.00000000 |
+| 9.00000000 | 10.00000000 | 0.05000000 | 0.01000000 | 1.00000000 |
+
+```python
+# SI teaching scales: v0=1 m^2, D=0.5 m^2/s, delta=1 m.
+for t in (0.0, 1.0, 4.0, 9.0):
+    variance = 1+t
+    relative_entropy = 1/(2*variance)
+    fisher = 1/(variance*variance)
+    transport_cost = 1.0  # m^2, from the constant center separation
+    print(" ".join(f"{x:.8f}" for x in (t, variance, relative_entropy, fisher, transport_cost)))
+```
+
+The [Hirata–Nemoto–Yoshida paper](https://www.mdpi.com/1099-4300/14/8/1469) proves a moving-reference relative de Bruijn identity with a half-Laplacian convention. Here the common drift and physical D are stated explicitly, and the Gaussian and transport expressions are derived separately. The first two figure panels use initial centers 0 and 1 m; the last is a separate equal-center mass control. The plotted finite interval is not renormalized. Normalized information divergence, physical entropy, conserved mass and spatial error remain distinct observations.
+
+![Gaussian broadening reduces relative entropy while center separation and mass errors can remain](/assets/learning/continuum-gaussian-relative-information-distance.en.svg)
+
+### Research questions with explanations
+
+**Does KL tending to zero imply that cloud centers converge?** **Answer:** No. Equal-variance clouds can retain a fixed mean separation as diffusion broadens them. Their squared transport cost remains the squared separation.
+
+**May the moving-reference dissipation identity be used for a fixed target?** **Answer:** Not without a new derivation. Both p and q obey the same evolution in this identity; freezing q removes terms used in its proof.
+
+**Does zero normalized KL certify the correct physical mass?** **Answer:** No. Separate positive masses can normalize to the same shape. Check actual mass and flux budgets, and keep zero-mass normalized comparisons undefined.
+
 ## Exercises with explanations
 
 ### Exercise 1: variance or standard deviation

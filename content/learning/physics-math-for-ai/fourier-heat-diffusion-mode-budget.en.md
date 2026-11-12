@@ -136,6 +136,100 @@ Start with temperature and flux profiles at time zero. Identify a temperature ma
 
 For a learned model, evaluate the physical flux separately from the temperature reconstruction. A model can predict a plausible smoothed profile while using the wrong conductivity, area or boundary orientation. Hold out diffusivities and wave numbers, and report conservation and nonuniformity as separate tests. The macroscopic Fourier model has instantaneous mathematical propagation; this does not make it a microscopic or relativistic law. Variable materials, walls, sources and coupled fluid transport require additional assumptions and later models.
 
+## Research extension: conserved heat and increasing entropy
+
+The falling quadratic norm above is not entropy. To compute a physical entropy in this teaching model, add **local equilibrium** and an effective constant-capacity state relation over the same positive-temperature range. With no mechanical work or composition change in the model, take the local entropy increment to be C dT/T. The reference temperature is positive and sets only an additive entropy constant. This is an explicit constitutive assumption; the heat PDE alone does not provide every thermodynamic state relation.
+
+$$
+e=C(T-T_{\rm ref}),\qquad ds=\frac{C}{T}\,dT,\qquad s=C\log(T/T_{\rm ref}),\qquad[s]=\mathrm{J/(m^3K)}.
+$$
+
+Divide the local energy balance by temperature, then apply the product rule to q/T. The entropy flux is q/T, while the remaining nonnegative term is production. For the whole periodic rod, the entropy flux cancels across the two identified ends. For a shorter observation window it generally does not. The integral S has units J/K, and its production rate has units W/K. A local maximum of temperature can have zero local production even though other parts of the rod produce entropy.
+
+$$
+s_t+\partial_x(q/T)=-\frac{qT_x}{T^2}=\frac{\kappa T_x^2}{T^2}\ge0,\qquad\dot S=\int_V\frac{\kappa T_x^2}{T^2}\,dV\ge0.
+$$
+
+Why should a uniform final state have more entropy at the same energy? The logarithm is strictly concave. Jensen bounds the spatial average of log T by the log of the fixed mean temperature. Equality requires uniform temperature up to a set of zero volume. This statement compares states with the same mean and effective heat capacity. It does not claim that lowering the mean temperature would maximize entropy under the same constraint.
+
+$$
+S=\int_VC\log(T/T_{\rm ref})\,dV\le CV\log(\overline T/T_{\rm ref})=:S_{\rm eq},\qquad\overline T=\frac1V\int_VT\,dV.
+$$
+
+For the existing cosine family, the entropy integral can be evaluated exactly. Let theta = kx + phase, define a from the current amplitude, and factor the positive temperature ratio as below. Since |a| < 1, the new parameter |h| is less than one. Expand log(1 + h exp(i theta)) in its convergent power series: every nonconstant Fourier mode has zero period average. Adding the complex conjugate proves the displayed logarithmic integral. The algebra works for either sign of a; the lab retains its original |a(0)| at most 0.2.
+
+$$
+a(t)=\frac{B(t)}{\overline T},\quad r=\sqrt{1-a^2},\quad h=\frac{a}{1+r},\quad1+a\cos\theta=\frac{1+r}{2}(1+2h\cos\theta+h^2),\quad\frac1{2\pi}\int_0^{2\pi}\log(1+a\cos\theta)\,d\theta=\log\frac{1+r}{2}.
+$$
+
+Substitute the logarithmic integral into S. The initial-to-current difference removes the arbitrary reference temperature. As the absolute contrast shrinks, the square root rises and entropy increases. The field still contains exactly the same sensible energy over the periodic cell. Thus a temperature movie can become smoother without losing heat, while its entropy changes for a separately derived reason.
+
+$$
+S(t)=CV\log\frac{\overline T(1+\sqrt{1-a(t)^2})}{2T_{\rm ref}},\qquad S(t)-S(0)=CV\log\frac{1+\sqrt{1-a(t)^2}}{1+\sqrt{1-a(0)^2}}.
+$$
+
+Differentiate the exact entropy with a-dot = -alpha k² a and use C alpha = kappa. The result equals the independently integrated production. For positive conductivity and nonzero contrast it is positive; at exactly zero contrast or zero conductivity it vanishes. At zero conductivity the profile may remain nonuniform, so vanishing production alone does not prove equilibrium when transport has been disabled.
+
+$$
+\dot S=\kappa Vk^2\left(\frac1{\sqrt{1-a^2}}-1\right),\qquad[\dot S]=\mathrm{W/K},\qquad\dot E_{\rm cell}=0.
+$$
+
+A useful quantity with energy units is the **equilibrium-relative availability functional** A. Its integrand is nonnegative because y - 1 - log y is nonnegative for positive y. The temperature-difference term integrates to zero at fixed mean, leaving mean temperature times the entropy deficit. This definition measures departure from the chosen equilibrium. No external reservoir, work-extraction process or device efficiency is modeled, so the numerical value is not an observed output of an engine.
+
+$$
+\mathcal A=C\int_V\left[(T-\overline T)-\overline T\log(T/\overline T)\right]dV=\overline T(S_{\rm eq}-S)\ge0,\qquad[\mathcal A]=\mathrm J.
+$$
+
+For the cosine family this functional has a closed form and decreases at mean temperature times the entropy production. The energy that remains constant, the entropy that increases, and the functional that decreases now have explicit definitions. Reporting all three avoids using the ambiguous label “energy loss” for every falling curve.
+
+$$
+\mathcal A=CV\overline T\log\frac2{1+\sqrt{1-a^2}},\qquad\dot{\mathcal A}=-\overline T\dot S\le0.
+$$
+
+At small contrast, expand the square root and logarithm. The leading approximation is C divided by mean temperature times the original quadratic norm N. The units then become J as required. The relation is asymptotic, not exact at a finite contrast. In particular, N itself still has units K² m³ and cannot be relabeled as entropy or energy without the declared factors and approximation.
+
+$$
+N=\frac{V\overline T^2a^2}{4},\qquad\frac{\mathcal A}{CV\overline T}=\frac{a^2}{4}+O(a^4),\qquad\mathcal A\sim\frac C{\overline T}N\quad(a\to0).
+$$
+
+The exact expressions subtract numbers close to one when contrast is small. Rationalize the square-root deficit and use log1p to evaluate the logarithm without that avoidable cancellation. The production expression can be rationalized too. These moderate-range formulas do not certify arbitrary floating-point ranges: if the square a² is below range, preserve that limitation rather than calling a mathematically nonuniform state exactly uniform. Exact zero contrast remains a separate control.
+
+$$
+r=\sqrt{1-a^2},\qquad\log\frac2{1+r}=-\operatorname{log1p}\left(-\frac{a^2}{2(1+r)}\right),\qquad\frac1r-1=\frac{a^2}{r(1+r)}.
+$$
+
+The table keeps initial contrast a(0) = 0.2 and uses z = alpha k² t with positive conductivity. Its dimensionless columns are z, a, A/(C V mean-temperature), N/(V mean-temperature²), and S-dot/(kappa V k²). The near agreement of the two middle columns is the small-contrast approximation, not a unit conversion that erases their definitions. At zero conductivity the unscaled production is zero; this normalized ratio is not assigned by division by zero.
+
+| z | a | availability | quadratic | production |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 0.20000000 | 0.01015342 | 0.01000000 | 0.02062073 |
+| 0.50000000 | 0.12130613 | 0.00369926 | 0.00367879 | 0.00743980 |
+| 1.00000000 | 0.07357589 | 0.00135611 | 0.00135335 | 0.00271774 |
+| 2.00000000 | 0.02706706 | 0.00018321 | 0.00018316 | 0.00036651 |
+
+```python
+from math import exp, sqrt, log1p
+for z in (0.0, 0.5, 1.0, 2.0):
+    a = 0.2*exp(-z)
+    r = sqrt(1-a*a)
+    deficit = -log1p(-a*a/(2*(1+r)))
+    quadratic = a*a/4
+    production = a*a/(r*(1+r))
+    print(" ".join(f"{x:.8f}" for x in (z, a, deficit, quadratic, production)))
+```
+
+The [MIT 2.43 lecture 22 transcript](https://ocw.mit.edu/courses/2-43-advanced-thermodynamics-spring-2024/1Phl2hCqgjqGD4rbE_kdNag23OiPFhM1M_transcript.pdf) gives the local-equilibrium entropy-flux background. The periodic cosine integral and availability formulas are derived here. The figure takes phase zero. These are supplemental calculations; the current interactive lab retains its original energy and norm observations.
+
+![Conserved sensible energy, entropy production and equilibrium-relative availability](/assets/learning/continuum-heat-entropy-availability.en.svg)
+
+### Research questions with explanations
+
+**Can conserved sensible energy coexist with positive entropy production?** **Answer:** Yes. Internal conduction redistributes energy in the periodic rod without net loss, while the separately derived entropy production is nonnegative.
+
+**Is the quadratic temperature norm exactly the availability functional?** **Answer:** No. Multiplying N by C divided by mean temperature gives only the leading small-contrast approximation. Definitions and units must be retained.
+
+**Does zero production prove a uniform equilibrium?** **Answer:** Not if conductivity is zero. A nonuniform field then remains frozen. With positive conductivity, the production integral vanishes only when the temperature gradient vanishes almost everywhere in this smooth connected periodic model.
+
 ## Exercises with explanations
 
 ### Exercise 1: equal diffusivity
