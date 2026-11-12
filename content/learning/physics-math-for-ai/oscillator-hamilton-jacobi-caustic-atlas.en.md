@@ -188,6 +188,169 @@ For a generating-function model, compare derivative momenta, Hamilton-Jacobi res
 
 This example does not compute viscosity solutions, select a minimum among multivalued branches, add quantum phases, or prove that a learned action generalizes globally. Those require additional definitions and evidence. The exact oscillator provides an interpretable diagnostic setting for developing such research questions.
 
+## Research extension: a folded phase graph and a selected value function are different objects
+
+The native oscillator shows that a smooth phase flow can outlive a generating chart. It does not select a viscosity solution. This supplement introduces a different free-particle initial-value problem, with a nonlinear initial action, to derive what a minimum selection adds and what information it discards. The native oscillator's Hamiltonian, rational clock and chart controls remain unchanged.
+
+### Transport a nonlinear initial momentum graph
+
+Use position xi in meters and momentum in kg m/s. The initial action has units Js, so a has units Js/m⁴ and b has units Js/m²:
+
+$$
+H(p)=\frac{p^2}{2m},\quad S_{\rm ini}(\xi)=\frac a4\xi^4-\frac b2\xi^2,\qquad a,b,m>0.
+$$
+
+Each initial label xi carries momentum S_ini'(xi). The exact free phase flow transports the whole graph:
+
+$$
+p_0(\xi)=a\xi^3-b\xi,\quad
+x(\xi,t)=\left(1-\frac{bt}{m}\right)\xi+\frac{at}{m}\xi^3,\quad
+p(\xi,t)=p_0(\xi),\qquad t_c=\frac mb.
+$$
+
+At t_c the position derivative at xi=0 first vanishes. For later times the position projection folds. The phase graph itself stays smooth: its derivative is (1+t p0'/m,p0'), whose two entries cannot vanish together. The full phase map (q0,p0) to (q0+t p0/m,p0) is invertible at every time. Different initial labels sharing a final position still have different momenta.
+
+### Define an optimization problem in addition to the flow
+
+For t>0 define the Hopf–Lax value
+
+$$
+V(x,t)=\min_{\xi\in\mathbb R}\Phi(\xi;x,t),\qquad
+\Phi=S_{\rm ini}(\xi)+\frac{m(x-\xi)^2}{2t},\quad t>0.
+$$
+
+For a free particle, the kinetic action between xi and x is m(x−xi)²/(2t). This follows from Cauchy–Schwarz, with equality for constant velocity. Adding the initial action and minimizing over initial positions defines a new value function. It is not the action of one preselected phase initial condition. Because a>0, the objective grows to positive infinity as abs(xi) grows, so a finite global minimum is attained.
+
+Every minimizer must be a root of the stationary cubic, but a stationary root need not minimize:
+
+$$
+\Phi_\xi=a\xi^3+(m/t-b)\xi-mx/t=0,\qquad
+\Phi_{\xi\xi}=3a\xi^2+m/t-b.
+$$
+
+For t<t_c the second derivative is everywhere positive and the minimizer is unique. At t=t_c and x=0, the remaining objective is a positive quartic: the minimizer is still unique despite its zero Hessian. After that time, a different situation arises at the symmetric query.
+
+### Compare all three stationary branches
+
+At x=0 after the critical time,
+
+$$
+x=0,\quad t>t_c:\qquad
+\xi=0,\quad\xi_\pm=\pm\sqrt{\frac{b-m/t}{a}},\qquad
+V(0,t)=-\frac{(b-m/t)^2}{4a}.
+$$
+
+The center is a local maximum and the two nonzero roots are equal global minima. The phrase stationary action alone would not tell us which ones define V. Negative V here reflects the negative wells of the chosen initial action; it does not mean negative kinetic energy.
+
+For x>0, reflecting any negative xi to positive xi lowers the linear cross term −mx xi/t while leaving the even part unchanged. The positive half-line has exactly one stationary minimum that can win. The sign reverses for x<0. Thus the two winning branches exchange at x=0, producing the one-sided derivatives
+
+$$
+s(t)=\frac mt\sqrt{\frac{b-m/t}{a}}>0,\qquad
+V_x(0^-,t)=s(t),\quad V_x(0^+,t)=-s(t),\quad
+V_t(0,t)=-\frac{s(t)^2}{2m}.
+$$
+
+The value is continuous but has no unique spatial derivative there. Averaging the two momenta to zero would not produce the derivative of this cusp. Nor would the central stationary root become a minimizing branch because its momentum is zero.
+
+### Check the PDE and the nonsmooth condition
+
+On a smooth unique minimizing branch, differentiating the objective at that minimizing label cancels the derivative of the label because Phi_xi=0. Therefore
+
+$$
+\xi_*\text{ a smooth minimizing branch}:\qquad
+V_x=\frac{m(x-\xi_*)}{t},\quad
+V_t=-\frac{m(x-\xi_*)^2}{2t^2},\quad V_t+\frac{V_x^2}{2m}=0.
+$$
+
+At the critical flat minimum we do not invoke differentiable inversion of the stationary cubic; the localized value argument below still applies. At the cusp, a classical derivative is unavailable. A viscosity subsolution is tested by smooth functions touching the value from above; a supersolution is tested from below, with the opposite PDE inequality. For t>t_c the upper-test condition here is
+
+$$
+\varphi\text{ touches }V\text{ from above at }(0,t),\ t>t_c:\qquad
+\varphi_x\in[-s,s],\quad \varphi_t=-\frac{s^2}{2m},\quad
+\varphi_t+\frac{\varphi_x^2}{2m}\le0.
+$$
+
+The inequality follows since the upper-test slope lies between the two one-sided slopes. No smooth lower test can touch this downward cusp: its x slope would have to be at least the positive left slope and at most the negative right slope simultaneously. The supersolution condition there is consequently vacuous. This explains the viscosity test at the branch exchange without choosing an invented single momentum.
+
+### Respect the initial-data assumptions of the formula
+
+Tran's [Theorem 2.22, section 2.5.4](https://people.math.wisc.edu/~htran24/HJ%20equations-viscosity%20solutions%20and%20applications-v1.pdf) treats convex superlinear Hamiltonians with bounded uniformly continuous initial data. Our quartic initial action is not in that class globally. To apply the result locally, fix a compact interval K of query positions and choose an action level C above its maximum initial action. Set
+
+$$
+g_C(\xi)=\min(S_{\rm ini}(\xi),C),\quad C>\max_{x\in K}S_{\rm ini}(x),\qquad
+S_{\rm ini}(\xi)\ge C\ \Longrightarrow\
+g_C(\xi)+\frac{m(x-\xi)^2}{2t}\ge C>S_{\rm ini}(x)\ge V(x,t)\quad(x\in K).
+$$
+
+The capped function is globally bounded and Lipschitz: the original quartic is bounded below, and its derivative is bounded on the compact sublevel where it is not capped. A newly capped candidate cannot win, since the unchanged test xi=x already costs less than C. The capped and original value functions therefore coincide on K for every positive t. The bounded-data result applies there, and viscosity is a local property. This also gives the original initial value as t tends to zero locally. We do not infer uniqueness in an unspecified class of functions with arbitrary growth at infinity.
+
+This minimum selection is appropriate to the declared convex kinetic optimization problem. It is not a claim that every mechanical stationary action is a minimum. The [earlier Morse-index example](/book/online/physics-math-for-ai/harmonic-action-stationary-saddle/) explains why that broader claim would fail.
+
+![A smooth phase graph folds over position, a quartic endpoint objective has two equal minima, and selecting them gives a cusp in the Hopf–Lax value.](/assets/learning/analytical-hj-value-selection.en.svg)
+
+### Calculate stationary roots and minimum values
+
+Use a=b=m=1 in SI reference units and x=0. The critical time is 1 s. At that time the one minimizer is flat, rather than two distinct minimizers.
+
+| t (s) | distinct stationary roots | global minimizers | V(0,t) (Js) |
+|---|---|---|---|
+| 0.5 | 1 | 1 | 0 |
+| 1 | 1 | 1 | 0 |
+| 1.5 | 3 | 2 | −0.027778 |
+| 2 | 3 | 2 | −0.0625 |
+
+The standard-library code splits the cubic into monotone intervals, searches each one, and compares objective values. It uses numerical tolerances for these specified examples; the root counts and tie at x=0 are proved analytically above. Near a general fold, numerical classification needs its own error analysis.
+
+```python
+from math import sqrt
+
+# SI reference a=b=m=1. Split the cubic into monotone intervals.
+def branches(x, t):
+    if t <= 0:
+        raise ValueError("Require t>0; initial data are specified separately")
+    B, C = 1/t-1, -x/t
+    poly = lambda y: y**3+B*y+C
+    bound = 1+max(abs(B), abs(C))
+    cuts = [-bound, bound]
+    if B < 0:
+        turn = sqrt(-B/3)
+        cuts = [-bound, -turn, turn, bound]
+    roots = [y for y in cuts if abs(poly(y)) < 1e-12]
+    for lo, hi in zip(cuts, cuts[1:]):
+        if poly(lo)*poly(hi) >= 0:
+            continue
+        for _ in range(80):
+            mid = (lo+hi)/2
+            if poly(lo)*poly(mid) <= 0:
+                hi = mid
+            else:
+                lo = mid
+        roots.append((lo+hi)/2)
+    unique = []
+    for y in sorted(roots):
+        if not unique or abs(y-unique[-1]) > 1e-9:
+            unique.append(y)
+    costs = [y**4/4-y*y/2+(x-y)**2/(2*t) for y in unique]
+    best = min(costs)
+    winners = [y for y,cost in zip(unique,costs) if abs(cost-best) < 1e-10]
+    return unique, winners, best
+
+for t in [.5, 1, 1.5, 2]:
+    roots, winners, v = branches(0, t)
+    print(t, len(roots), len(winners), round(v, 6))
+assert branches(-.1, 2)[1][0] < 0 < branches(.1, 2)[1][0]
+```
+
+The independent verifier compares global minima with a separate dense objective grid, checks the bounded-data localization, differentiates V away from ties, and tests the cusp inequality with exact fractions. A finite grid check is not used as a replacement for the coercivity and branch arguments.
+
+### Research questions with explanations
+
+**Does a caustic mean that physical phase evolution becomes nonunique?** **Answer:** Not in this example. Each phase initial condition has a unique smooth free evolution. Nonuniqueness occurs when minimizing over initial labels or projecting the transported family onto position.
+
+**Why not keep every stationary branch as one differentiable action?** **Answer:** The declared value function chooses the lowest objective. After the critical time the center is a maximum and the two minima tie only at the symmetric query. The lower envelope cannot retain all their momenta as one derivative.
+
+**Does viscosity selection add physical damping to the particles?** **Answer:** No damping term is integrated here. This is a weak-solution criterion for a scalar optimization value. The full phase flow remains reversible; the selected scalar value discards branch information, so it cannot recover that entire flow by itself.
+
 ## Work through six checks with explanations
 
 ### Exercise 1

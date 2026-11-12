@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-two-unit-extension",
+  "date": "2026-11-12",
+  "baselineCommit": "2004c82ddaaa4b46b7363bf6a5d4d00e10fad7d0",
+  "scope": {
+    "expandedUnits": [
+      "uniform-force-hamilton-jacobi-family",
+      "oscillator-hamilton-jacobi-caustic-atlas"
+    ],
+    "manuscripts": 4,
+    "localizedFigures": 4,
+    "originalManuscriptsPreserved": true,
+    "previousReviewEntriesPreserved": 673,
+    "reviewEntriesAfter": 677,
+    "cumulativeAnalyticalResearchUnits": 18,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/uniform-force-hamilton-jacobi-family.en.md",
+      "sha256": "b9588a1e182098eaa42cab3ec90c05d9cb30977d17ae18753afd79033444f510",
+      "previousSha256": "1b0e218c1cf3b1d6ffbfd06a6a580b02644fdba6de3b8bbeb64af1fc64a910e2"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/uniform-force-hamilton-jacobi-family.ko.md",
+      "sha256": "f9e4cefc8718d1aa35e6f1ace03be4626b6ec9b5fe5001e7a637b1db835949ec",
+      "previousSha256": "1f80ad8d7463af18fb7991b7e100ca0aeb2f3e59cf960a97b46deda78aa07738"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/oscillator-hamilton-jacobi-caustic-atlas.ko.md",
+      "sha256": "6a37c1269d492cd6298c4f55f1676676fafe73c6269a459b8f2ab56b03410435",
+      "previousSha256": "870a677a08846322b75c8075a5702688c7a91eb2a639d40525c5a306b590b367"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/oscillator-hamilton-jacobi-caustic-atlas.en.md",
+      "sha256": "6d80a23bcfca9da15e5c3c008694929206ef84d7139db9ec6bbc672b6b94472f",
+      "previousSha256": "a95db58f09067865841ddc87954888700fb073da2a80b8a9d2e64e4ef57d2424"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/analytical-hj-residual-gradients.ko.svg",
+      "sha256": "d8480708ed5c08e86c5265f23e95ab27c1a8dd1b9db68845b10317a205656980"
+    },
+    {
+      "path": "public/assets/learning/analytical-hj-residual-gradients.en.svg",
+      "sha256": "3dc8839062dd8d4907b363b6d972deab8dd91edd327b858c5ed99c4354c3d304"
+    },
+    {
+      "path": "public/assets/learning/analytical-hj-value-selection.ko.svg",
+      "sha256": "9b4d8b53b68f6f305d682ec5150e8d82cc4ca9e91320533dcd3103c5a31d8e8d"
+    },
+    {
+      "path": "public/assets/learning/analytical-hj-value-selection.en.svg",
+      "sha256": "95d2025831c06f510dc8401cb9b4e553e287c5cd421d57e064dca56c5d1b9611"
+    }
+  ],
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-generalized-coordinates.test.ts",
+      "scripts/learning-stationary-action.test.ts",
+      "scripts/learning-lagrange-equations.test.ts",
+      "scripts/learning-hamiltonian-canonical.test.ts",
+      "scripts/learning-poisson-brackets.test.ts",
+      "scripts/learning-symplectic-geometry.test.ts",
+      "scripts/learning-noether-theorem.test.ts",
+      "scripts/learning-constraints-reduction.test.ts",
+      "scripts/learning-hamilton-jacobi.test.ts",
+      "scripts/learning-hamilton-jacobi-integration.test.ts",
+      "scripts/learning-structure-preserving.test.ts",
+      "scripts/learning-structure-preserving-integration.test.ts",
+      "scripts/learning-analytical-topology-research.test.ts",
+      "scripts/learning-coordinate-research.test.ts",
+      "scripts/learning-action-research.test.ts",
+      "scripts/learning-lagrange-research.test.ts",
+      "scripts/learning-canonical-research.test.ts",
+      "scripts/learning-symplectic-dimension-research.test.ts",
+      "scripts/learning-noether-research.test.ts",
+      "scripts/learning-constraint-research.test.ts",
+      "scripts/learning-hj-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 385,
+    "selectedTestFailures": 0,
+    "focusedTests": 12,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-hj-research.py",
+      "characteristicIdentityStates": 2496,
+      "differentiablePdeChecks": 648,
+      "hopfLaxStates": 810,
+      "oscillatoryStates": 6561,
+      "shockTests": 108,
+      "singularMixedHessianCases": 96,
+      "smallResidualCounterexamples": 567
+    },
+    "pairedPythonCellsExecuted": 4,
+    "pairedDisplayEquationsPerUnit": [
+      8,
+      9
+    ],
+    "displayedExampleTableOutputsVerified": true,
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "build": "passed",
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "basis": "unchanged registry sources from baseline commit"
+    },
+    "sourceExportServedSvgPairs": 4,
+    "exportServedHtmlPairs": 2,
+    "sourceFigurePreviewsReviewed": 4,
+    "mobileScreenshotsReviewed": 4,
+    "browser": {
+      "unitCount": 2,
+      "states": 16,
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "expandedGuides": 6,
+      "explainedQuizzes": 4,
+      "conceptSelections": 8,
+      "persistenceCompletionGroups": 2,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "command": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_HJ_RESEARCH_REPORT=.runtime/learning/hj-research-browser.json node scripts/check-hj-research.cjs"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://people.math.wisc.edu/~htran24/HJ%20equations-viscosity%20solutions%20and%20applications-v1.pdf",
+      "sections": "2.5.4, Theorem 2.22",
+      "role": "convex superlinear H and bounded uniformly continuous initial-data hypothesis; quartic localization is derived in this lesson"
+    }
+  ],
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 39,
+    "reviewedTopics": 386,
+    "remainingDomains": 12,
+    "remainingTopics": 123,
+    "introductoryTopicsComplete": 362
+  }
+}

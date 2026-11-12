@@ -178,6 +178,132 @@ A useful experiment records the Hamiltonian, units, parameter domain, initial-st
 
 A small sampled residual does not prove a global theorem. A canonical architecture does not by itself make the transformed Hamiltonian vanish. This finite polynomial experiment illustrates these distinctions exactly; it does not establish convergence of neural PDE training, solve arbitrary control problems, or supply a global theory beyond this family.
 
+## Research extension: a small PDE residual need not give a small force residual
+
+The native polynomial example distinguishes a canonical generating map from a Hamilton–Jacobi solution. We can sharpen that diagnosis: derivatives of the PDE residual, together with the inverse mixed Hessian, control the errors of a frozen-label phase candidate. A small residual value alone does not control those derivatives.
+
+The oscillatory family below is a free-particle Python companion. Its epsilon is a new dimensionless parameter, not the native lambda slider. We keep the native constant-force model and its polynomial tests unchanged.
+
+### Derive the two phase-equation residuals
+
+Let H be independent of the generating parameter alpha, and assume S is sufficiently differentiable on a chart with nonzero mixed derivative. Define the candidate by holding both labels fixed:
+
+$$
+\mathcal R(q,\alpha,t)=S_t+H(q,S_q,t),\qquad
+p=S_q,\quad \beta=S_\alpha,\quad \dot\alpha=\dot\beta=0,\quad S_{q\alpha}\ne0.
+$$
+
+All Hamiltonian derivatives below are evaluated at (q,S_q,t). Differentiating beta=S_alpha along that candidate gives S_alphaq qdot+S_alphat=0. Differentiating the PDE residual with respect to alpha and then q yields
+
+$$
+e_q:=\dot q-H_p=-\frac{\mathcal R_\alpha}{S_{q\alpha}},\qquad
+e_p:=\dot p+H_q=\mathcal R_q-S_{qq}\frac{\mathcal R_\alpha}{S_{q\alpha}}.
+$$
+
+The first error has velocity units and the second force units. The residual itself has energy units, its alpha derivative has velocity units, and its q derivative has force units. These are different diagnostics. Near a zero mixed Hessian the inversion also amplifies errors; at zero it cannot define this local frozen-label reconstruction.
+
+### Keep canonicality while making an increasingly fine perturbation
+
+Choose positive mass m, reference length ell, duration T and momentum reference $p_*$. For epsilon>0 use
+
+$$
+S_\varepsilon=\alpha q-\frac{\alpha^2t}{2m}
++p_*\ell\varepsilon^2\frac tT\sin\left(\frac q{\ell\varepsilon}\right),\qquad
+H=\frac{p^2}{2m},\quad m,\ell,T,p_*,\varepsilon>0.
+$$
+
+The added action has uniformly small amplitude on 0≤t≤T. Its phase oscillates on the shrinking length ell times epsilon. The mixed derivative stays exactly one, so no chart conditioning problem explains what follows:
+
+$$
+S_{q\alpha}=1,\quad q=\beta+\frac{\alpha t}{m},\quad
+p_\varepsilon=\alpha+p_*\varepsilon\frac tT\cos\varphi,\qquad
+\varphi=\frac q{\ell\varepsilon}.
+$$
+
+The selected position is still the reference free trajectory, but the inferred momentum generally differs from m qdot. We are testing that candidate phase curve, not replacing the physical free force. In particular the force residual below means the error in its momentum equation; it does not say that this selected position has acquired a nonzero acceleration.
+
+### Bound the residual uniformly, not just at sampled points
+
+Direct differentiation gives
+
+$$
+\mathcal R_\varepsilon=\frac{p_*\ell\varepsilon^2}{T}\sin\varphi
++\frac{\alpha p_*\varepsilon}{m}\frac tT\cos\varphi
++\frac{p_*^2\varepsilon^2}{2m}\left(\frac tT\right)^2\cos^2\varphi.
+$$
+
+Bounding sine and cosine in absolute value by one gives a bound valid at every position and on the declared parameter/time range:
+
+$$
+0\le t\le T,\quad |\alpha|\le P
+\quad\Longrightarrow\quad
+|\mathcal R_\varepsilon|\le\frac{p_*\ell\varepsilon^2}{T}
++\frac{Pp_*\varepsilon}{m}+\frac{p_*^2\varepsilon^2}{2m}.
+$$
+
+Here P is a fixed momentum bound, separate from the reference $p_*$. Thus the PDE residual tends uniformly to zero as epsilon tends to zero on this range. The action error is at most $p_*\ell\varepsilon^2$, and its position-derivative error at most $p_*\varepsilon$. Neither statement bounds the second derivatives that enter the candidate's momentum rate.
+
+### Exhibit a force residual that stays finite
+
+Using the first two derived identities, or differentiating the candidate directly, gives
+
+$$
+e_q=-\frac{p_*\varepsilon}{m}\frac tT\cos\varphi,\qquad
+e_p=\frac{p_*\varepsilon}{T}\cos\varphi
+-\frac{p_*\alpha t}{m\ell T}\sin\varphi.
+$$
+
+The second term in e_p does not contain a small epsilon factor. A rapidly changing small momentum perturbation can have an order-one time derivative along the candidate. To make this exact while holding the physical initial state fixed, choose
+
+$$
+\varepsilon_n=\frac1{\pi/2+2\pi n},\quad n=0,1,\ldots,\quad
+\beta=0,\quad\alpha=\frac{m\ell}{T},\qquad
+q(T)=\ell,\quad p_\varepsilon(T)=\alpha,\quad e_q(T)=0,\quad
+\mathcal R_\varepsilon(T)=\frac{p_*\ell\varepsilon_n^2}{T},\quad e_p(T)=-\frac{p_*}{T}.
+$$
+
+At the query, position, inferred momentum and velocity equation agree with the reference state. The PDE residual decreases quadratically along this sequence, but the momentum-equation residual remains −$p_*$/T. The entire candidate starts from the same q0=0 and p0=alpha, since the perturbation has a factor t. It is not a physical phase solution between those endpoints merely because one queried state passes.
+
+This counterexample does not invalidate comparison estimates for values of viscosity solutions under their hypotheses. Those estimates concern values, not an automatic uniform bound on differentiated momentum or force errors. To certify phase dynamics here one needs derivative-residual control and chart regularity as well.
+
+![The uniform PDE-residual bound and selected residual decrease with epsilon, while the selected momentum-equation error stays at minus one newton.](/assets/learning/analytical-hj-residual-gradients.en.svg)
+
+### Reproduce the fixed-state sequence
+
+Use m=ell=T=$p_*$=alpha=1 in their SI reference units. Values are rounded to six decimal places. The last column is a momentum-equation residual, not a newly imposed force.
+
+| n | epsilon | PDE residual (J) | e_p (N) |
+|---|---|---|---|
+| 0 | 0.636620 | 0.405285 | −1 |
+| 1 | 0.127324 | 0.016211 | −1 |
+| 4 | 0.037448 | 0.001402 | −1 |
+| 16 | 0.009794 | 0.000096 | −1 |
+
+```python
+from math import pi, sin, cos
+
+# SI: m=ell=T=p_*=alpha=1, beta=0, query time T=1.
+for n in [0, 1, 4, 16]:
+    eps = 1/(pi/2+2*pi*n)
+    phase = 1/eps
+    p = 1+eps*cos(phase)
+    residual = -.5+eps*eps*sin(phase)+p*p/2
+    momentum_rate_error = eps*cos(phase)-sin(phase)
+    assert abs(p-1) < 1e-12
+    assert abs(momentum_rate_error+1) < 1e-12
+    print(n, round(eps, 6), round(residual, 6), round(momentum_rate_error, 6))
+```
+
+The sequence identity proves the limiting claim; the four rows illustrate it. The independent verifier checks the generic characteristic identities with exact fractions, differentiates oscillatory actions and momenta, and tests several reference scales.
+
+### Research questions with explanations
+
+**Does a small PDE loss certify accurate differentiated dynamics?** **Answer:** Not by itself. The reconstruction identities involve residual derivatives and the inverse mixed Hessian, which a value-only loss does not bound. This example keeps that Hessian equal to one and still has a fixed momentum-equation error.
+
+**Can a correct state at one time hide an incorrect candidate flow?** **Answer:** Yes. At T every member of the displayed sequence has the correct q and p, while its instantaneous momentum rate is wrong. State matching and vector-field matching require separate evidence.
+
+**What should a learned generating-function audit include?** **Answer:** Check the declared H, labels and chart; both Hamilton equations; residual derivatives in appropriately scaled units; and coverage relative to any oscillation length. Report the domain of the bound rather than interpreting a few small residual samples as a global derivative estimate.
+
 ## Work through six checks with explanations
 
 ### Exercise 1

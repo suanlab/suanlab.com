@@ -178,6 +178,132 @@ Hamiltonian과 단위, 매개변수 정의역, 초기 상태 이름표, 혼합 H
 
 정준 구조를 내장한 모형이라도 새 Hamiltonian이 사라지는지는 별도다. 이 유한 다항식 실험은 그 구분을 정확히 드러내지만 신경망 PDE 훈련의 수렴, 임의 제어 문제의 해, 일반적인 전역 적분 가능성까지 증명하지 않는다. 이 한계를 적는 일은 후속 연구에서 무엇을 새로 보여야 하는지 정하는 데 도움이 된다.
 
+## 연구 확장: 작은 PDE 잔차가 작은 힘 잔차를 보장하지는 않는다
+
+기본 다항식 예제는 정준 생성 사상과 Hamilton–Jacobi 해를 구분한다. 이 진단을 더 정밀하게 만들 수 있다. PDE 잔차의 미분과 혼합 Hessian의 역수가 고정 이름표 위상 후보의 오차를 결정한다. 잔차 값이 작다는 사실만으로 그 미분까지 제어할 수는 없다.
+
+아래 진동 함수 가족은 자유입자의 Python 보충 예제다. Epsilon은 새로운 무차원 매개변수이며 기본 lambda 슬라이더가 아니다. 기본 등힘 모델과 다항식 검사는 그대로 유지한다.
+
+### 두 위상 방정식의 잔차 유도하기
+
+H는 생성 매개변수 alpha에 의존하지 않으며, S는 혼합 미분이 0이 아닌 좌표 영역에서 충분히 매끄럽다고 하자. 두 이름표를 고정하여 후보를 정의한다.
+
+$$
+\mathcal R(q,\alpha,t)=S_t+H(q,S_q,t),\qquad
+p=S_q,\quad \beta=S_\alpha,\quad \dot\alpha=\dot\beta=0,\quad S_{q\alpha}\ne0.
+$$
+
+이하 H의 미분은 모두 (q,S_q,t)에서 평가한다. 후보를 따라 beta=S_alpha를 미분하면 S_alphaq qdot+S_alphat=0이다. PDE 잔차를 alpha와 q로 각각 미분하면 다음을 얻는다.
+
+$$
+e_q:=\dot q-H_p=-\frac{\mathcal R_\alpha}{S_{q\alpha}},\qquad
+e_p:=\dot p+H_q=\mathcal R_q-S_{qq}\frac{\mathcal R_\alpha}{S_{q\alpha}}.
+$$
+
+첫 오차는 속도 단위, 둘째는 힘 단위다. 잔차 자체는 에너지 단위이며 alpha 미분은 속도, q 미분은 힘 단위다. 서로 다른 진단이므로 하나로 섞으면 안 된다. 혼합 Hessian이 0에 가까워지면 역변환이 오차를 더 증폭한다. 0인 곳에서는 이 국소 고정 이름표 복원 자체를 정의할 수 없다.
+
+### 정준성을 유지하면서 점점 미세한 교란 만들기
+
+양의 질량 m, 기준 길이 ell, 시간 T와 운동량 기준 $p_*$를 정하자. Epsilon>0에서 다음을 사용한다.
+
+$$
+S_\varepsilon=\alpha q-\frac{\alpha^2t}{2m}
++p_*\ell\varepsilon^2\frac tT\sin\left(\frac q{\ell\varepsilon}\right),\qquad
+H=\frac{p^2}{2m},\quad m,\ell,T,p_*,\varepsilon>0.
+$$
+
+추가한 작용의 진폭은 0≤t≤T에서 균일하게 작다. 위상은 줄어드는 길이 ell·epsilon에서 진동한다. 혼합 미분은 정확히 1이므로 뒤의 현상을 좌표 조건수 탓으로 돌릴 수 없다.
+
+$$
+S_{q\alpha}=1,\quad q=\beta+\frac{\alpha t}{m},\quad
+p_\varepsilon=\alpha+p_*\varepsilon\frac tT\cos\varphi,\qquad
+\varphi=\frac q{\ell\varepsilon}.
+$$
+
+선택 위치는 여전히 기준 자유 궤적이지만 추론한 운동량은 일반적으로 m qdot와 다르다. 검사하는 대상은 이 위상 후보이며 물리적 자유 힘을 바꾼 것이 아니다. 특히 아래의 힘 잔차는 그 운동량 방정식의 오차다. 선택한 위치가 0이 아닌 가속도를 얻었다는 뜻은 아니다.
+
+### 표본뿐 아니라 전체 영역에서 잔차 제한하기
+
+직접 미분하면 다음과 같다.
+
+$$
+\mathcal R_\varepsilon=\frac{p_*\ell\varepsilon^2}{T}\sin\varphi
++\frac{\alpha p_*\varepsilon}{m}\frac tT\cos\varphi
++\frac{p_*^2\varepsilon^2}{2m}\left(\frac tT\right)^2\cos^2\varphi.
+$$
+
+Sine과 cosine의 절댓값이 1 이하라는 사실로 모든 위치와 명시한 매개변수/시간 영역에 유효한 상계를 얻는다.
+
+$$
+0\le t\le T,\quad |\alpha|\le P
+\quad\Longrightarrow\quad
+|\mathcal R_\varepsilon|\le\frac{p_*\ell\varepsilon^2}{T}
++\frac{Pp_*\varepsilon}{m}+\frac{p_*^2\varepsilon^2}{2m}.
+$$
+
+여기서 P는 기준 $p_*$와 별개인 고정 운동량 상계다. 따라서 epsilon이 0으로 가면 PDE 잔차는 이 영역에서 균일하게 0으로 간다. 작용 오차는 $p_*\ell\varepsilon^2$ 이하, 위치 미분 오차는 $p_*\varepsilon$ 이하다. 그러나 어느 주장도 후보 운동량의 변화율에 들어가는 이계 미분을 제한하지 않는다.
+
+### 사라지지 않는 힘 잔차 제시하기
+
+앞의 두 항등식을 쓰거나 후보를 직접 미분하면 다음을 얻는다.
+
+$$
+e_q=-\frac{p_*\varepsilon}{m}\frac tT\cos\varphi,\qquad
+e_p=\frac{p_*\varepsilon}{T}\cos\varphi
+-\frac{p_*\alpha t}{m\ell T}\sin\varphi.
+$$
+
+e_p의 둘째 항에는 작은 epsilon 인수가 없다. 작지만 빠르게 바뀌는 운동량 교란은 후보를 따라 유한한 시간 미분을 가질 수 있다. 물리적 초기 상태를 고정한 채 이를 정확히 보이도록 다음을 선택하자.
+
+$$
+\varepsilon_n=\frac1{\pi/2+2\pi n},\quad n=0,1,\ldots,\quad
+\beta=0,\quad\alpha=\frac{m\ell}{T},\qquad
+q(T)=\ell,\quad p_\varepsilon(T)=\alpha,\quad e_q(T)=0,\quad
+\mathcal R_\varepsilon(T)=\frac{p_*\ell\varepsilon_n^2}{T},\quad e_p(T)=-\frac{p_*}{T}.
+$$
+
+조회 시각에는 위치·추론 운동량·속도 방정식이 기준 상태와 일치한다. PDE 잔차는 이 수열을 따라 제곱 비율로 줄어들지만 운동량 방정식의 잔차는 −$p_*$/T로 남는다. 교란에 t 인수가 있으므로 전체 후보는 같은 q0=0, p0=alpha에서 출발한다. 한 조회 상태를 통과한다고 그 사이의 물리적 위상 해가 되는 것은 아니다.
+
+이 반례는 가정을 만족하는 viscosity 해의 값에 대한 비교 추정을 반박하지 않는다. 그 추정은 함수 값에 관한 것이며 미분된 운동량·힘 오차의 균일한 상계를 자동으로 제공하지 않는다. 여기서 위상 동역학을 인증하려면 좌표 정규성과 함께 잔차 미분의 제어도 필요하다.
+
+![Epsilon이 줄면 PDE 잔차의 균일 상계와 선택 잔차는 감소하지만, 선택 운동량 방정식의 오차는 −1 N으로 남는다.](/assets/learning/analytical-hj-residual-gradients.ko.svg)
+
+### 고정 상태 수열 재현하기
+
+각 SI 기준 단위에서 m=ell=T=$p_*$=alpha=1로 둔다. 값은 소수 여섯 자리까지 반올림했다. 마지막 열은 새로 부과한 힘이 아니라 운동량 방정식의 잔차다.
+
+| n | epsilon | PDE 잔차 (J) | e_p (N) |
+|---|---|---|---|
+| 0 | 0.636620 | 0.405285 | −1 |
+| 1 | 0.127324 | 0.016211 | −1 |
+| 4 | 0.037448 | 0.001402 | −1 |
+| 16 | 0.009794 | 0.000096 | −1 |
+
+```python
+from math import pi, sin, cos
+
+# SI: m=ell=T=p_*=alpha=1, beta=0, query time T=1.
+for n in [0, 1, 4, 16]:
+    eps = 1/(pi/2+2*pi*n)
+    phase = 1/eps
+    p = 1+eps*cos(phase)
+    residual = -.5+eps*eps*sin(phase)+p*p/2
+    momentum_rate_error = eps*cos(phase)-sin(phase)
+    assert abs(p-1) < 1e-12
+    assert abs(momentum_rate_error+1) < 1e-12
+    print(n, round(eps, 6), round(residual, 6), round(momentum_rate_error, 6))
+```
+
+수열 항등식이 극한 주장을 증명하며 네 행은 이를 예시한다. 독립 검증기는 정확분수로 일반 특성 항등식을 확인하고 진동 작용·운동량을 미분하며 여러 기준 척도를 대조한다.
+
+### 해설이 있는 연구 질문
+
+**작은 PDE 손실이 미분한 동역학의 정확도를 인증하는가?** **답:** 그 자체로는 아니다. 복원 항등식에는 잔차 미분과 혼합 Hessian의 역수가 들어가며 값만의 손실은 이를 제한하지 않는다. 이 예제는 Hessian을 1로 유지해도 일정한 운동량 방정식 오차를 갖는다.
+
+**한 시각의 정확한 상태가 잘못된 후보 흐름을 숨길 수 있는가?** **답:** 그렇다. 표시한 수열은 T에서 q,p가 모두 맞지만 순간 운동량 변화율은 틀리다. 상태 일치와 벡터장 일치에는 각각의 근거가 필요하다.
+
+**학습한 생성함수 감사에는 무엇을 포함해야 하는가?** **답:** 지정한 H·이름표·좌표 영역, 두 Hamilton 방정식, 적절한 단위 척도의 잔차 미분, 진동 길이에 비춘 검사 범위를 확인한다. 몇 개의 작은 잔차 표본을 전역 미분 추정으로 해석하지 말고 상계의 정의역을 보고한다.
+
 ## 해설과 함께 여섯 가지를 확인한다
 
 ### 문제 1

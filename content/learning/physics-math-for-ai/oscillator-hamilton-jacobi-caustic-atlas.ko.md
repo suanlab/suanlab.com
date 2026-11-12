@@ -190,6 +190,169 @@ $$
 
 이 예는 점성해를 계산하거나 여러 작용 가지 중 최소를 선택하지 않는다. 양자 위상도 추가하지 않으며 학습한 작용의 전역 일반화를 증명하지 않는다. 그런 확장은 각각 정의와 별도 근거가 필요하다. 정확한 조화진동자는 그 연구 질문과 검증기를 이해하기 쉽게 마련하는 출발점이다.
 
+## 연구 확장: 접힌 위상 그래프와 선택한 가치 함수는 다른 대상이다
+
+기본 조화진동자는 매끄러운 위상 흐름이 생성함수 좌표계보다 오래 지속될 수 있음을 보여 주지만 viscosity 해를 선택하지는 않는다. 이번 보충에서는 비선형 초기 작용을 가진 별도의 자유입자 초기값 문제를 도입하여 최소값 선택이 더하는 조건과 버리는 정보를 유도한다. 기본 조화진동자의 Hamiltonian·유리수 시계·좌표 조작은 그대로 유지한다.
+
+### 비선형 초기 운동량 그래프 운반하기
+
+위치 xi의 단위는 m, 운동량은 kg m/s다. 초기 작용 단위가 Js이므로 a의 단위는 Js/m⁴, b는 Js/m²다.
+
+$$
+H(p)=\frac{p^2}{2m},\quad S_{\rm ini}(\xi)=\frac a4\xi^4-\frac b2\xi^2,\qquad a,b,m>0.
+$$
+
+각 초기 이름표 xi는 운동량 S_ini'(xi)를 갖는다. 정확한 자유 위상 흐름으로 그래프 전체를 운반하자.
+
+$$
+p_0(\xi)=a\xi^3-b\xi,\quad
+x(\xi,t)=\left(1-\frac{bt}{m}\right)\xi+\frac{at}{m}\xi^3,\quad
+p(\xi,t)=p_0(\xi),\qquad t_c=\frac mb.
+$$
+
+t_c에서 xi=0의 위치 미분이 처음 0이 된다. 그 이후에는 위치 투영이 접힌다. 그러나 위상 그래프 자체는 매끄럽다. 그 미분은 (1+t p0'/m,p0')이며 두 성분이 동시에 0일 수 없기 때문이다. 전체 위상 사상 (q0,p0)에서 (q0+t p0/m,p0)으로의 변환은 언제나 가역이다. 같은 최종 위치에 도달한 서로 다른 초기 이름표도 운동량은 다르다.
+
+### 흐름에 더하여 최적화 문제 정의하기
+
+t>0에서 Hopf–Lax 값을 정의하자.
+
+$$
+V(x,t)=\min_{\xi\in\mathbb R}\Phi(\xi;x,t),\qquad
+\Phi=S_{\rm ini}(\xi)+\frac{m(x-\xi)^2}{2t},\quad t>0.
+$$
+
+자유입자가 xi와 x를 잇는 운동의 운동항 작용은 m(x−xi)²/(2t)다. Cauchy–Schwarz로 그 하한을 얻으며 일정 속도에서 등호가 성립한다. 여기에 초기 작용을 더한 뒤 초기 위치 전체에서 최소화하면 새로운 가치 함수를 정의한다. 미리 선택한 위상 초기값 하나의 작용과 같지는 않다. a>0이므로 abs(xi)가 커지면 목적함수는 양의 무한대로 가며, 유한한 전역 최소값이 달성된다.
+
+모든 최소점은 정상점 삼차식의 근이어야 하지만 정상근이라고 최소점인 것은 아니다.
+
+$$
+\Phi_\xi=a\xi^3+(m/t-b)\xi-mx/t=0,\qquad
+\Phi_{\xi\xi}=3a\xi^2+m/t-b.
+$$
+
+t<t_c에서는 이계 미분이 모든 곳에서 양수이므로 최소점이 유일하다. t=t_c, x=0에서는 남는 목적함수가 양의 사차식이다. Hessian이 0이어도 최소점은 여전히 하나다. 그 이후 대칭 조회점에서는 다른 상황이 생긴다.
+
+### 세 정상 가지를 모두 비교하기
+
+임계 시간 이후 x=0에서는 다음과 같다.
+
+$$
+x=0,\quad t>t_c:\qquad
+\xi=0,\quad\xi_\pm=\pm\sqrt{\frac{b-m/t}{a}},\qquad
+V(0,t)=-\frac{(b-m/t)^2}{4a}.
+$$
+
+중앙은 국소 최대이고 0이 아닌 두 근이 같은 전역 최소값을 준다. 정상 작용이라는 말만으로 어느 가지가 V를 정의하는지 정할 수 없다. 여기서 V가 음수인 것은 선택한 초기 작용에 음의 우물이 있기 때문이지 운동에너지가 음수라는 뜻이 아니다.
+
+x>0에서 음의 xi를 양수로 반사하면 짝함수 부분은 같지만 선형 교차항 −mx xi/t가 낮아진다. 양의 반직선에는 선택될 수 있는 정상 최소점이 정확히 하나다. x<0에서는 부호가 반대다. 따라서 승리하는 두 가지가 x=0에서 교대하며 다음 한쪽 미분을 만든다.
+
+$$
+s(t)=\frac mt\sqrt{\frac{b-m/t}{a}}>0,\qquad
+V_x(0^-,t)=s(t),\quad V_x(0^+,t)=-s(t),\quad
+V_t(0,t)=-\frac{s(t)^2}{2m}.
+$$
+
+가치는 연속이지만 그 점에서 유일한 공간 미분은 없다. 두 운동량을 평균하여 0으로 두어도 이 cusp의 미분을 얻는 것이 아니다. 중앙 정상근의 운동량이 0이라는 이유로 그 가지가 최소 가지가 되는 것도 아니다.
+
+### PDE와 매끄럽지 않은 점의 조건 검사하기
+
+최소점이 유일하고 매끄럽게 변하는 가지에서 그 이름표를 따라 목적함수를 미분하면 Phi_xi=0이므로 이름표 미분 항이 사라진다. 따라서 다음이 성립한다.
+
+$$
+\xi_*\text{ a smooth minimizing branch}:\qquad
+V_x=\frac{m(x-\xi_*)}{t},\quad
+V_t=-\frac{m(x-\xi_*)^2}{2t^2},\quad V_t+\frac{V_x^2}{2m}=0.
+$$
+
+임계 시각의 평평한 최소점에서는 정상 삼차식의 미분 가능한 역변환을 가정하지 않는다. 아래 국소 가치 논증은 그 점에도 적용된다. Cusp에서는 고전적 미분을 쓸 수 없다. Viscosity 부분해는 값에 위에서 접하는 매끄러운 시험함수로 검사하고, 상위해는 아래에서 접하는 시험함수로 반대 부등식을 검사한다. t>t_c에서 이 예제의 위쪽 시험 조건은 다음과 같다.
+
+$$
+\varphi\text{ touches }V\text{ from above at }(0,t),\ t>t_c:\qquad
+\varphi_x\in[-s,s],\quad \varphi_t=-\frac{s^2}{2m},\quad
+\varphi_t+\frac{\varphi_x^2}{2m}\le0.
+$$
+
+위쪽 시험함수의 기울기가 양쪽 기울기 사이에 있으므로 부등식이 성립한다. 아래로 뾰족한 이 cusp에는 매끄러운 아래쪽 시험함수가 접할 수 없다. 그 x 기울기는 양의 왼쪽 기울기 이상이면서 음의 오른쪽 기울기 이하여야 하기 때문이다. 따라서 그 점의 상위해 조건은 검사할 함수가 없어 자동 충족된다. 존재하지 않는 단일 운동량을 만들지 않고도 가지 교대의 viscosity 조건을 이해할 수 있다.
+
+### 공식의 초기값 가정 지키기
+
+Tran의 [정리 2.22, 2.5.4절](https://people.math.wisc.edu/~htran24/HJ%20equations-viscosity%20solutions%20and%20applications-v1.pdf)은 볼록·초선형 Hamiltonian과 유계 균등 연속 초기값을 다룬다. 사차 초기 작용은 전역에서 그 클래스에 속하지 않는다. 결과를 국소적으로 적용하려면 조회 위치의 compact 구간 K를 고정하고 그곳의 초기 작용 최대값보다 큰 작용 수준 C를 선택하자.
+
+$$
+g_C(\xi)=\min(S_{\rm ini}(\xi),C),\quad C>\max_{x\in K}S_{\rm ini}(x),\qquad
+S_{\rm ini}(\xi)\ge C\ \Longrightarrow\
+g_C(\xi)+\frac{m(x-\xi)^2}{2t}\ge C>S_{\rm ini}(x)\ge V(x,t)\quad(x\in K).
+$$
+
+원래 사차식은 아래로 유계이고 잘리지 않는 compact 준위 집합에서 미분이 유계이므로 자른 함수는 전역 유계 Lipschitz 함수다. 새로 잘린 후보는 선택될 수 없다. 바뀌지 않은 시험 xi=x가 이미 C보다 작은 비용을 주기 때문이다. 따라서 자른 함수와 원래 함수의 가치는 K에서 모든 양의 t에 대해 같다. 그 영역에 유계 초기값 결과를 적용할 수 있고 viscosity 성질은 국소적이다. 이 논증은 t가 0으로 갈 때 원래 초기값도 국소적으로 회복한다. 무한대 성장 조건을 명시하지 않은 모든 함수 클래스의 유일성을 추론하지는 않는다.
+
+이 최소값 선택은 지정한 볼록 운동항 최적화 문제에 맞는 선택이다. 모든 역학적 정상 작용이 최소라는 주장은 아니다. [앞의 Morse 지수 예제](/book/online/physics-math-for-ai/harmonic-action-stationary-saddle/)는 그런 일반화가 실패하는 이유를 설명한다.
+
+![매끄러운 위상 그래프의 위치 투영이 접히고, 사차 끝점 목적함수의 같은 두 최소값을 선택하면 Hopf–Lax 가치에 cusp가 생긴다.](/assets/learning/analytical-hj-value-selection.ko.svg)
+
+### 정상근과 최소값 계산하기
+
+각 SI 기준 단위에서 a=b=m=1, x=0으로 두자. 임계 시간은 1초다. 그 시각에는 서로 다른 두 최소점이 아니라 평평한 하나의 최소점이 있다.
+
+| t (s) | 서로 다른 정상근 | 전역 최소점 | V(0,t) (Js) |
+|---|---|---|---|
+| 0.5 | 1 | 1 | 0 |
+| 1 | 1 | 1 | 0 |
+| 1.5 | 3 | 2 | −0.027778 |
+| 2 | 3 | 2 | −0.0625 |
+
+표준 라이브러리 코드는 삼차식을 단조 구간으로 나누어 각각 탐색한 뒤 목적함수 값을 비교한다. 지정한 예제에는 수치 허용오차를 사용하며 x=0의 근 개수와 동률은 앞에서 해석적으로 증명했다. 일반적인 fold 근처의 수치 분류에는 별도의 오차 분석이 필요하다.
+
+```python
+from math import sqrt
+
+# SI reference a=b=m=1. Split the cubic into monotone intervals.
+def branches(x, t):
+    if t <= 0:
+        raise ValueError("Require t>0; initial data are specified separately")
+    B, C = 1/t-1, -x/t
+    poly = lambda y: y**3+B*y+C
+    bound = 1+max(abs(B), abs(C))
+    cuts = [-bound, bound]
+    if B < 0:
+        turn = sqrt(-B/3)
+        cuts = [-bound, -turn, turn, bound]
+    roots = [y for y in cuts if abs(poly(y)) < 1e-12]
+    for lo, hi in zip(cuts, cuts[1:]):
+        if poly(lo)*poly(hi) >= 0:
+            continue
+        for _ in range(80):
+            mid = (lo+hi)/2
+            if poly(lo)*poly(mid) <= 0:
+                hi = mid
+            else:
+                lo = mid
+        roots.append((lo+hi)/2)
+    unique = []
+    for y in sorted(roots):
+        if not unique or abs(y-unique[-1]) > 1e-9:
+            unique.append(y)
+    costs = [y**4/4-y*y/2+(x-y)**2/(2*t) for y in unique]
+    best = min(costs)
+    winners = [y for y,cost in zip(unique,costs) if abs(cost-best) < 1e-10]
+    return unique, winners, best
+
+for t in [.5, 1, 1.5, 2]:
+    roots, winners, v = branches(0, t)
+    print(t, len(roots), len(winners), round(v, 6))
+assert branches(-.1, 2)[1][0] < 0 < branches(.1, 2)[1][0]
+```
+
+독립 검증기는 별도의 촘촘한 목적함수 격자와 전역 최소값을 비교하고, 유계 초기값 국소화·동률 바깥의 V 미분·정확분수 cusp 부등식도 검사한다. 유한 격자를 coercivity와 가지 논증의 대체물로 사용하지는 않는다.
+
+### 해설이 있는 연구 질문
+
+**Caustic이면 물리적 위상 진화가 비유일해지는가?** **답:** 이 예제에서는 아니다. 각 위상 초기값은 유일하고 매끄러운 자유 진화를 갖는다. 비유일성은 초기 이름표를 최소화하거나 운반된 가족을 위치로 투영할 때 생긴다.
+
+**모든 정상 가지를 하나의 미분 가능한 작용으로 유지하면 안 되는가?** **답:** 지정한 가치는 가장 낮은 목적함수를 선택한다. 임계 시간 이후 중앙은 최대이고 두 최소점은 대칭 조회점에서만 동률이다. 아래쪽 포락선은 이 모든 운동량을 하나의 미분으로 유지할 수 없다.
+
+**Viscosity 선택이 입자에 물리적 감쇠를 추가하는가?** **답:** 여기서는 감쇠항을 적분하지 않는다. 스칼라 최적화 값에 대한 약한 해의 판정 조건이다. 전체 위상 흐름은 가역인 채로 남고, 선택한 스칼라 값은 가지 정보를 버리므로 그것만으로 전체 흐름을 복원할 수 없다.
+
 ## 해설과 함께 여섯 가지를 확인한다
 
 ### 문제 1
