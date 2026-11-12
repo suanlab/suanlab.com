@@ -112,6 +112,111 @@ r=0에서는 각도 열이 사라져 J의 랭크가 1이 되고 운동에너지 
 
 학습한 상태 인코더가 관측한 곡선의 에너지는 보존하면서 다른 방향을 붕괴시킬 수 있습니다. 국소 랭크, 단위, 힘의 일 쌍대성, 가속도 기하 항과 유한 섭동의 정의역을 함께 확인해야 유효한 역학 좌표인지 판단할 수 있습니다.
 
+## 연구 확장: 퍼텐셜의 곡률은 탐침 경로와 함께 읽는다
+
+직교 좌표에서 양의 강성을 가진 용수철도 각도에 대한 보통의 이계도함수는 음수가 될 수 있다. 좌표를 바꿔 용수철이 불안정해진 것이 아니라, 기하를 함께 해석해야 한다는 신호다. 카메라를 중심으로 탐침을 원운동시키는데 용수철의 중심은 다른 곳에 있다고 생각하자. 이 탐침은 직선이 아닌 굽은 물리적 경로를 따른다.
+
+### 중심이 이동한 조화 퍼텐셜에서 시작하기
+
+퍼텐셜의 중심을 $(a,0)$으로 두자. 질량 $m$의 단위는 kg, 강성 $k$는 N/m, 길이 $a,r$는 m다. 이 보충 퍼텐셜은 아래 Python 셀에서 계산한다. 기존 조작은 순간 기하와 입력한 힘을 해석하는 실습이다.
+
+$$
+V(x,y)=\frac{k}{2}\big[(x-a)^2+y^2\big],\qquad
+V(r,\theta)=\frac{k}{2}(r^2+a^2-2ar\cos\theta),\quad m,k,a,r>0.
+$$
+
+극좌표에서 보통의 편미분을 계산하면 다음과 같다.
+
+$$
+\partial_iV=\begin{pmatrix}k(r-a\cos\theta)\\kar\sin\theta\end{pmatrix},\qquad
+\partial_i\partial_jV=
+\begin{pmatrix}k&ka\sin\theta\\ka\sin\theta&kar\cos\theta\end{pmatrix}.
+$$
+
+$r=a$, $\theta=\pi$에서 각도 성분은 $-ka^2$다. 이 미분은 반지름이 일정한 원을 따라 이동할 때의 퍼텐셜 변화를 올바르게 계산한다. 그러나 직교 좌표의 직선 변위를 뜻하거나 평형을 보장하지는 않는다. 실제로 이 점의 물리적 힘은 0이 아니다. 반지름을 실제 고리로 구속한다면 별개의 역학계가 된다.
+
+### 좌표 탐침 자체의 굽음을 분리하기
+
+운동에너지 계량에서 얻는 연결은 회전하는 기저의 효과를 반영한다. 극좌표의 0이 아닌 계수는 다음과 같다.
+
+$$
+G=m\begin{pmatrix}1&0\\0&r^2\end{pmatrix},\qquad
+\Gamma^r_{\theta\theta}=-r,\qquad
+\Gamma^\theta_{r\theta}=\Gamma^\theta_{\theta r}=\frac1r.
+$$
+
+이는 Levi–Civita 연결 계수다. 예를 들어 $\Gamma^r_{\theta\theta}=-(2m)^{-1}\partial_r(mr^2)=-r$, $\Gamma^\theta_{r\theta}=(2mr^2)^{-1}\partial_r(mr^2)=1/r$로 계산한다.
+
+공변 Hessian은 퍼텐셜 기울기와 연결의 수축을 빼서 구한다. 반복되는 위·아래 첨자 $\ell$에 대해 합한다.
+
+$$
+(\nabla^2V)_{ij}=\partial_i\partial_jV-\Gamma^\ell_{ij}\partial_\ell V
+=\begin{pmatrix}k&0\\0&kr^2\end{pmatrix}
+=J^T(kI)J=\frac{k}{m}G.
+$$
+
+예를 들어 혼합 성분은 $ka\sin\theta-(kar\sin\theta)/r=0$이다. 각도 성분은 $kar\cos\theta+r k(r-a\cos\theta)=kr^2$다. 이는 직교 Hessian $kI$를 $J$로 끌어온 값과 같다. 임계점에서는 기울기가 0이어서 연결 보정도 사라진다. 임계점 밖에서는 보통의 Hessian을 좌표 텐서로 다룰 수 없다.
+
+### 방향 곡률을 비교하고 고유진동수와 구분하기
+
+순수 각도 방향의 이차 계수를 해당 운동에너지 계수로 나누면 s$^{-2}$ 단위의 값을 비교할 수 있다.
+
+$$
+c_{\theta,\rm ordinary}=\frac{\partial_\theta^2 V}{G_{\theta\theta}}
+=\frac{ka\cos\theta}{mr},\qquad
+c_{\theta,\rm covariant}=\frac{(\nabla^2V)_{\theta\theta}}{G_{\theta\theta}}=\frac{k}{m}.
+$$
+
+![중심이 이동한 용수철의 보통 각도 곡률과 공변 곡률](/assets/learning/analytical-polar-hessian.ko.svg)
+
+| $\theta$ | 보통 각도 곡률 / s$^{-2}$ | 공변 곡률 / s$^{-2}$ |
+|---|---|---|
+| $0$ | 1 | 1 |
+| $\pi/2$ | 0 | 1 |
+| $\pi$ | -1 | 1 |
+
+표는 위의 SI 단위에서 $m=k=a=r=1$을 사용한다. 보통 미분 열은 한 방향의 Rayleigh 비이며, 결합된 Hessian의 전체 스펙트럼이 아니다. $\theta=\pi/2$에서는 보통 Hessian의 혼합 성분도 0이 아니다. 움직이는 궤적을 따라서는 공변 곡률 하나만으로도 일반적인 안정성 판정을 내릴 수 없다. 기준 운동과 완전한 섭동 방정식이 필요하다.
+
+이 특정 직교 용수철에서는 완전한 섭동 방정식을 직접 쓸 수 있다.
+
+$$
+\ddot{\boldsymbol x}=-\frac{k}{m}(\boldsymbol x-(a,0)),\qquad
+\delta\ddot{\boldsymbol x}=-\frac{k}{m}\delta\boldsymbol x,\qquad
+(r_*,\theta_*)=(a,0),\quad \omega^2=\frac{k}{m}.
+$$
+
+정칙한 평형점 $(a,0)$에서는 두 Hessian이 일치하고 두 작은 진동의 각진동수는 $\sqrt{k/m}$다. $r=0$에서는 직교 퍼텐셜이 매끄럽더라도 극좌표 역변환이 유효하지 않다. AI 에너지 모델의 미분을 비교할 때는 계량과 정의역을 명시하고, 검사한 점이 평형인지 밝혀야 한다.
+
+### 실행하고 해석하기
+
+표준 라이브러리 코드로 표와 혼합 성분의 상쇄를 재현한다.
+
+```python
+from math import cos, sin, pi
+
+# SI values: m=1 kg, k=1 N/m, a=r=1 m.
+for theta in [0, pi/2, pi]:
+    r = a = m = k = 1.0
+    gradient = [k*(r-a*cos(theta)), k*a*r*sin(theta)]
+    ordinary = [[k, k*a*sin(theta)],
+                [k*a*sin(theta), k*a*r*cos(theta)]]
+    covariant = [[ordinary[0][0], ordinary[0][1]-gradient[1]/r],
+                 [ordinary[1][0]-gradient[1]/r,
+                  ordinary[1][1]+r*gradient[0]]]
+    assert abs(covariant[0][1]) < 1e-14
+    assert abs(covariant[1][1]-k*r*r) < 1e-14
+    print(round(theta/pi, 6), round(ordinary[1][1]/(m*r*r), 6),
+          round(covariant[1][1]/(m*r*r), 6))
+# The second column is a directional curvature, not a stability verdict.
+# At theta=pi the physical point is accelerating toward x=a.
+```
+
+**연구 질문과 답**
+
+- 음의 각도 미분은 계산 오류인가? **답:** 아니다. 반지름이 일정한 굽은 탐침 경로를 기술한다. 이를 구속 없는 평형의 안정성으로 해석하는 것이 오류다.
+- 보통 Hessian이 합동 변환만으로 바뀌는 경우는? **답:** 임계점이나 선형 좌표 변환이다. 일반적인 비선형 변환에서는 기울기를 포함한 연쇄법칙 항이 추가된다.
+- 작은 반지름을 더하면 원점을 고칠 수 있는가? **답:** 없다. 유효한 직교 좌표나 다른 정칙 표현을 사용해야 한다.
+
 ## 해설이 있는 연습 문제
 
 1. **각속도와 접선 속도.** r=2m, θ=0, ṙ=1m/s, ω=2rad/s에서 속도를 구하세요. **해설:** 반지름 성분은 (1, 0), 각운동 성분은 (0, 4)m/s이므로 v=(1, 4)입니다. 각속도 2를 접선 속도로 그대로 쓰면 틀립니다.

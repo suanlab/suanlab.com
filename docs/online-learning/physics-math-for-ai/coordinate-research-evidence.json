@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "status": "validated-two-unit-extension",
+  "date": "2026-11-12",
+  "baselineCommit": "a3110d1",
+  "scope": {
+    "expandedUnits": [
+      "polar-generalized-velocity-force-metric",
+      "double-pendulum-generalized-mass-metric"
+    ],
+    "manuscripts": 4,
+    "localizedFigures": 4,
+    "originalManuscriptsPreserved": true,
+    "previousReviewEntriesPreserved": 645,
+    "reviewEntriesAfter": 649,
+    "wholeDomainResearchReviewComplete": false
+  },
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/polar-generalized-velocity-force-metric.en.md",
+      "sha256": "410d11ad7170960081b0731bde47ca33d442c922842ddfeb468c7b3ab471bad1",
+      "previousSha256": "72f9cca31525daf2ac7c01bf0a5af1c028ec1fef04627c0a4f632796ffabe3c3"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/polar-generalized-velocity-force-metric.ko.md",
+      "sha256": "741e2b4491abb20f47cb2e34824dcd5809f25e8cf72b19ca659e3147d05159c0",
+      "previousSha256": "36e273396c201cf3d093362e225eddab81e608ed3d614c85710b15e981e6f010"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/double-pendulum-generalized-mass-metric.en.md",
+      "sha256": "75eb347a4711c4d7459d1b4708f2c70716948eb58a040867257edf91549fbdf5",
+      "previousSha256": "d0037b5289abb65eb51c1a146655f3ebb7ccc54a6efb2326da67eeef1df6c6cc"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/double-pendulum-generalized-mass-metric.ko.md",
+      "sha256": "a1f0ae39a6f56fa9086e16b9294cbd07237369f9d6e7d0ae9aadaa4354d019e5",
+      "previousSha256": "443bc18fc4dbefd52ed6be2b192b4c75a57f282cf5ad25b7d8f919eafcc69d71"
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/learning/analytical-polar-hessian.en.svg",
+      "sha256": "43da6a0d175cf336b51317b5c8918233ecde8834a85a3991557ca9f6b9b2361d"
+    },
+    {
+      "path": "public/assets/learning/analytical-polar-hessian.ko.svg",
+      "sha256": "20d2c885954d53d80658effa98318ba8ab0c514bd81fed34318e3094a246d21c"
+    },
+    {
+      "path": "public/assets/learning/analytical-pendulum-modes.en.svg",
+      "sha256": "64b6bc646c46a87380934d291c20107755ddd49d53f2319b4adc0447e94236f5"
+    },
+    {
+      "path": "public/assets/learning/analytical-pendulum-modes.ko.svg",
+      "sha256": "2e54dacd0840af654682e167706c5a42caa149bc348dba65cc9b95ffd64177f6"
+    }
+  ],
+  "verification": {
+    "selectedTestFiles": [
+      "scripts/learning-generalized-coordinates.test.ts",
+      "scripts/learning-stationary-action.test.ts",
+      "scripts/learning-lagrange-equations.test.ts",
+      "scripts/learning-hamiltonian-canonical.test.ts",
+      "scripts/learning-poisson-brackets.test.ts",
+      "scripts/learning-symplectic-geometry.test.ts",
+      "scripts/learning-noether-theorem.test.ts",
+      "scripts/learning-constraints-reduction.test.ts",
+      "scripts/learning-hamilton-jacobi.test.ts",
+      "scripts/learning-hamilton-jacobi-integration.test.ts",
+      "scripts/learning-structure-preserving.test.ts",
+      "scripts/learning-structure-preserving-integration.test.ts",
+      "scripts/learning-analytical-topology-research.test.ts",
+      "scripts/learning-coordinate-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ],
+    "selectedTests": 351,
+    "selectedTestFailures": 0,
+    "independentPython": {
+      "command": "python3 scripts/learning/verify-coordinate-research.py",
+      "polarHessianStates": 216,
+      "exactCoordinatePairs": 54,
+      "nonlinearTrajectories": 6,
+      "stepHalvingComparisons": 6,
+      "comparisonTimeSeconds": 2,
+      "amplitudesRadians": [
+        0.04,
+        0.02,
+        0.01
+      ]
+    },
+    "pairedPythonCellsExecuted": 4,
+    "lint": "passed",
+    "contentValidation": {
+      "urls": 1885,
+      "publications": 293,
+      "projects": 51
+    },
+    "build": "passed",
+    "browser": {
+      "unitCount": 2,
+      "states": 16,
+      "lightWidths": [
+        320,
+        768,
+        1440
+      ],
+      "darkWidths": [
+        1440
+      ],
+      "locales": [
+        "ko",
+        "en"
+      ],
+      "expandedGuides": 6,
+      "explainedQuizzes": 4,
+      "conceptSelections": 8,
+      "persistenceCompletionGroups": 2,
+      "pageErrors": 0,
+      "accessibilityViolations": 0,
+      "command": "SUANLAB_TEST_BASE=http://127.0.0.1:43309 SUANLAB_COORDINATE_RESEARCH_REPORT=.runtime/learning/coordinate-research-browser.json node scripts/check-coordinate-research.cjs"
+    },
+    "buildRoutes": 1893,
+    "exportHtmlPages": 1888,
+    "typecheck": "passed",
+    "exportChecks": "passed",
+    "sourceExportServedSvgPairs": 4,
+    "exportServedHtmlPairs": 2,
+    "registry": {
+      "units": 650,
+      "guides": 1969
+    },
+    "priorDomainBrowserBaseline": {
+      "commit": "a3110d1",
+      "states": 160,
+      "evidence": "docs/online-learning/physics-math-for-ai/analytical-topology-research-evidence.json"
+    },
+    "sourceFigurePreviewsReviewed": 4,
+    "mobileScreenshotsReviewed": 2
+  },
+  "remainingReview": {
+    "originalDomains": 51,
+    "originalTopics": 509,
+    "reviewedDomains": 39,
+    "reviewedTopics": 386,
+    "remainingDomains": 12,
+    "remainingTopics": 123,
+    "introductoryTopicsComplete": 362
+  }
+}

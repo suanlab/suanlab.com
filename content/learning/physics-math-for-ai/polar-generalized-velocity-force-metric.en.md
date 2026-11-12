@@ -113,6 +113,111 @@ Trigonometric geometry, matrix values, reconstructed accelerations and finite-pr
 
 In learned mechanics, an encoder can preserve energy on a sampled curve while collapsing an unobserved coordinate direction. Checking a scalar invariant alone does not establish a valid state chart. Validate local rank, units, force duality, curvature terms and the actual domain of a finite perturbation.
 
+## Research extension: potential curvature depends on how a probe moves
+
+A positive Cartesian spring stiffness can produce a negative ordinary angular second derivative. That is a useful geometric warning, rather than evidence that changing coordinates made the spring unstable. Imagine moving a probe on a circle about the camera, while the spring center is elsewhere: the probe follows a curved physical path.
+
+### Start with a displaced harmonic potential
+
+Let the potential center be $(a,0)$, with mass $m$ in kg, stiffness $k$ in N/m, and lengths $a,r$ in m. This supplementary potential is evaluated by the Python cell below; the native controls retain their instantaneous geometry and applied-force interpretation.
+
+$$
+V(x,y)=\frac{k}{2}\big[(x-a)^2+y^2\big],\qquad
+V(r,\theta)=\frac{k}{2}(r^2+a^2-2ar\cos\theta),\quad m,k,a,r>0.
+$$
+
+Ordinary differentiation in the polar coordinates gives:
+
+$$
+\partial_iV=\begin{pmatrix}k(r-a\cos\theta)\\kar\sin\theta\end{pmatrix},\qquad
+\partial_i\partial_jV=
+\begin{pmatrix}k&ka\sin\theta\\ka\sin\theta&kar\cos\theta\end{pmatrix}.
+$$
+
+At $r=a$ and $\theta=\pi$, the angular entry is $-ka^2$. This derivative correctly describes potential change along the constant-radius circle. It does not describe a straight Cartesian displacement or establish equilibrium. In fact the physical force there is nonzero. A real ring constraint would define a different mechanical system.
+
+### Remove the curvature of the coordinate probe
+
+The kinetic metric determines the connection that accounts for the turning basis. Its nonzero polar coefficients are:
+
+$$
+G=m\begin{pmatrix}1&0\\0&r^2\end{pmatrix},\qquad
+\Gamma^r_{\theta\theta}=-r,\qquad
+\Gamma^\theta_{r\theta}=\Gamma^\theta_{\theta r}=\frac1r.
+$$
+
+These are the Levi–Civita coefficients. For example, $\Gamma^r_{\theta\theta}=-(2m)^{-1}\partial_r(mr^2)=-r$ and $\Gamma^\theta_{r\theta}=(2mr^2)^{-1}\partial_r(mr^2)=1/r$.
+
+The covariant Hessian subtracts the potential gradient contracted with this connection. Sum over the repeated upper/lower index $\ell$:
+
+$$
+(\nabla^2V)_{ij}=\partial_i\partial_jV-\Gamma^\ell_{ij}\partial_\ell V
+=\begin{pmatrix}k&0\\0&kr^2\end{pmatrix}
+=J^T(kI)J=\frac{k}{m}G.
+$$
+
+For example, the mixed entry is $ka\sin\theta-(kar\sin\theta)/r=0$. The angular entry is $kar\cos\theta+r k(r-a\cos\theta)=kr^2$. This agrees with pulling the Cartesian Hessian $kI$ back through $J$. The correction vanishes at a critical point because the gradient vanishes there. Away from a critical point, an ordinary Hessian is not a coordinate tensor.
+
+### Compare directional curvatures without inventing modes
+
+Divide the pure angular quadratic coefficient by its kinetic coefficient to compare quantities with units of s$^{-2}$:
+
+$$
+c_{\theta,\rm ordinary}=\frac{\partial_\theta^2 V}{G_{\theta\theta}}
+=\frac{ka\cos\theta}{mr},\qquad
+c_{\theta,\rm covariant}=\frac{(\nabla^2V)_{\theta\theta}}{G_{\theta\theta}}=\frac{k}{m}.
+$$
+
+![Ordinary angular curvature and covariant curvature for a displaced spring](/assets/learning/analytical-polar-hessian.en.svg)
+
+| $\theta$ | Ordinary angular curvature / s$^{-2}$ | Covariant curvature / s$^{-2}$ |
+|---|---|---|
+| $0$ | 1 | 1 |
+| $\pi/2$ | 0 | 1 |
+| $\pi$ | -1 | 1 |
+
+The table uses $m=k=a=r=1$ in the stated SI units. Its ordinary column is a directional Rayleigh quotient, not the full spectrum of the coupled Hessian. At $\theta=\pi/2$ the mixed ordinary entry is nonzero. Even a covariant curvature value alone is not a general stability verdict along a moving trajectory; the reference motion and full perturbation equation matter.
+
+For this specific Cartesian spring the complete perturbation equation is available directly:
+
+$$
+\ddot{\boldsymbol x}=-\frac{k}{m}(\boldsymbol x-(a,0)),\qquad
+\delta\ddot{\boldsymbol x}=-\frac{k}{m}\delta\boldsymbol x,\qquad
+(r_*,\theta_*)=(a,0),\quad \omega^2=\frac{k}{m}.
+$$
+
+At the regular equilibrium $(a,0)$, both Hessians coincide and the two small-oscillation frequencies are $\sqrt{k/m}$. At $r=0$ the polar inverse remains invalid, even though the Cartesian potential is smooth. For AI energy models, compare derivatives with an explicit metric and domain, and state whether the tested point is an equilibrium.
+
+### Execute and interpret
+
+The standard-library cell reproduces the table and the cancelled mixed term.
+
+```python
+from math import cos, sin, pi
+
+# SI values: m=1 kg, k=1 N/m, a=r=1 m.
+for theta in [0, pi/2, pi]:
+    r = a = m = k = 1.0
+    gradient = [k*(r-a*cos(theta)), k*a*r*sin(theta)]
+    ordinary = [[k, k*a*sin(theta)],
+                [k*a*sin(theta), k*a*r*cos(theta)]]
+    covariant = [[ordinary[0][0], ordinary[0][1]-gradient[1]/r],
+                 [ordinary[1][0]-gradient[1]/r,
+                  ordinary[1][1]+r*gradient[0]]]
+    assert abs(covariant[0][1]) < 1e-14
+    assert abs(covariant[1][1]-k*r*r) < 1e-14
+    print(round(theta/pi, 6), round(ordinary[1][1]/(m*r*r), 6),
+          round(covariant[1][1]/(m*r*r), 6))
+# The second column is a directional curvature, not a stability verdict.
+# At theta=pi the physical point is accelerating toward x=a.
+```
+
+**Research questions with answers**
+
+- Is the negative angular derivative a calculation error? **Answer:** No. It describes a curved constant-radius probe; treating it as unconstrained equilibrium stability would be the error.
+- When does an ordinary Hessian transform by congruence alone? **Answer:** At a critical point, or under a linear coordinate change; otherwise the gradient contributes additional chain-rule terms.
+- Does adding a small radius repair the origin? **Answer:** No. Use a valid Cartesian chart or another regular description.
+
 ## Exercises with explained solutions
 
 1. **Rates are not Cartesian components.** Set r=2 m, theta=0, rdot=1 m/s and omega=2 rad/s. **Solution:** The radial and tangential velocities are (1, 0) and (0, 4) m/s, so v=(1, 4). Treating the angular rate itself as tangential speed would give the wrong second component.

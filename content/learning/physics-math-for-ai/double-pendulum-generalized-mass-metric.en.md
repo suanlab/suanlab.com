@@ -126,6 +126,127 @@ The lab supplies geometry, compatible instantaneous velocities, a mass metric, p
 
 In particular, M(q)*qddot=Q alone is not generally the full nonlinear double-pendulum equation. Velocity-dependent geometric terms and the chosen force convention matter. The later Lagrange-equation lesson derives those terms. For AI applications, a valid geometric decoder, a positive kinetic metric and a correct force pullback are essential checks before claiming a learned time-evolution model.
 
+## Research extension: normal frequencies use both mass and stiffness
+
+The metric eigenvalues changed when we switched from absolute to relative angles. A measured oscillation frequency must not change with that bookkeeping choice. The missing ingredient is the potential Hessian, expressed in the same coordinates as the kinetic metric.
+
+### Linearize at a stated equilibrium
+
+Use positive masses, lengths and gravity, no applied tip force, and the downward equilibrium $q_*=(a,b)=(0,0)$. Angles are dimensionless. Evaluate the existing mass metric there:
+
+$$
+M_*=\begin{pmatrix}(m_1+m_2)l_1^2&m_2l_1l_2\\m_2l_1l_2&m_2l_2^2\end{pmatrix},\qquad
+V=-(m_1+m_2)gl_1\cos a-m_2gl_2\cos b.
+$$
+
+Expand the potential to second order and keep first-order equations in the small displacement $\xi$. The reference velocity is zero, so the nonlinear velocity terms contribute no first-order term:
+
+$$
+K_*=\nabla_q^2V(0)=\begin{pmatrix}(m_1+m_2)gl_1&0\\0&m_2gl_2\end{pmatrix},\qquad
+M_*\ddot\xi+K_*\xi=0,\qquad K_*v=\omega^2M_*v.
+$$
+
+Here $M_*$ has units of kg m² and $K_*$ of J, so $\omega^2$ has units of s$^{-2}$. Positive definiteness of both matrices gives positive squared frequencies. This conclusion uses the equilibrium, positive parameters and conservative model; it is not a rule for arbitrary driven or damped systems.
+
+### Transform both quadratic forms
+
+Relative displacement uses the same angle convention as the earlier geometry:
+
+$$
+\xi=A\eta,\quad A=\begin{pmatrix}1&0\\1&1\end{pmatrix},\qquad
+M_{\rm rel}=A^TM_*A,\quad K_{\rm rel}=A^TK_*A,\quad v_{\rm rel}=A^{-1}v.
+$$
+
+Both energy and the spectral equation are preserved. In particular:
+
+$$
+M_{\rm rel}^{-1}K_{\rm rel}=A^{-1}(M_*^{-1}K_*)A,\qquad
+\det(K_{\rm rel}-\lambda M_{\rm rel})=\det(A)^2\det(K_*-\lambda M_*).
+$$
+
+An invertible $A$ multiplies the characteristic determinant by a nonzero constant, leaving its roots unchanged. Equivalently, the two dynamical matrices are similar. A congruence transformation of $M$ alone does not preserve its ordinary eigenvalues. In numerical work, a symmetric generalized eigensolver or a mass-normalized factorization avoids treating $M^{-1}K$ as an ordinary symmetric matrix.
+
+### Work a coupled two-mass example
+
+Choose $m_1=2$ kg, $m_2=1$ kg, $l_1=l_2=1$ m, and $g=1$ m/s² for transparent arithmetic. The following matrices list their numerical SI values; mass and stiffness retain their different physical units:
+
+$$
+M_*=\begin{pmatrix}3&1\\1&1\end{pmatrix},\quad
+K_*=\begin{pmatrix}3&0\\0&1\end{pmatrix},\quad
+M_{\rm rel}=\begin{pmatrix}6&2\\2&1\end{pmatrix},\quad
+K_{\rm rel}=\begin{pmatrix}4&1\\1&1\end{pmatrix}.
+$$
+
+Writing $\lambda$ for the numerical squared frequency in s$^{-2}$ gives:
+
+$$
+\det(K_*-\lambda M_*)=2\lambda^2-6\lambda+3,\qquad
+\lambda_\pm=\frac{3\pm\sqrt3}{2},\quad
+\omega_\pm=\sqrt{\lambda_\pm},\quad
+v_-=\begin{pmatrix}1\\\sqrt3\end{pmatrix},\quad
+v_+=\begin{pmatrix}1\\-\sqrt3\end{pmatrix}.
+$$
+
+| Quantity | Absolute angles | Relative angles |
+|---|---|---|
+| $\mathrm{tr}(M)$ / (kg m²) | 4 | 7 |
+| $\mathrm{tr}(K)$ / J | 4 | 5 |
+| $\omega_-^2$ / s$^{-2}$ | 0.633975 | 0.633975 |
+| $\omega_+^2$ / s$^{-2}$ | 2.366025 | 2.366025 |
+
+The ordinary matrix traces change, while the two frequencies agree. Relative mode components are $(1,\sqrt3-1)$ and $(1,-\sqrt3-1)$; applying $A$ recovers the absolute vectors above. To compare with the native lab gravity $g=10$ m/s², multiply squared frequencies by 10 and frequencies by $\sqrt{10}$. The native lab still evaluates instantaneous geometry; this cell performs the supplementary linearization.
+
+### Read mode shapes and approximation limits
+
+Distinct modes are orthogonal in the mass inner product, rather than necessarily in the coordinate Euclidean dot product:
+
+$$
+v_-^TM_*v_+=0,\qquad
+\widehat v_i=\frac{v_i}{\sqrt{v_i^TM_*v_i}},\qquad
+\xi_i(t)=\varepsilon v_i\cos(\omega_it),\quad \dot\xi_i(0)=0.
+$$
+
+![Linearized physical point displacements for the two pendulum modes](/assets/learning/analytical-pendulum-modes.en.svg)
+
+The figure uses $\varepsilon=0.03$ rad. The horizontal point displacements are $x_1\simeq l_1\xi_1$ and $x_2\simeq l_1\xi_1+l_2\xi_2$, so applying the coordinate change does not alter the plotted physical motion. These are linearized curves, not full nonlinear trajectories. A fixed-time check against an independently integrated nonlinear model shows angular errors shrinking by roughly eight when amplitude halves in these two examples. That finite experiment is consistent with the cubic leading correction of this symmetric equilibrium, and does not prove a uniform long-time error bound.
+
+The Taylor expansions $\sin\theta=\theta+O(\theta^3)$ and $\cos(a-b)=1+O((a-b)^2)$ explain the scaling: with angles and rates proportional to amplitude, the first omitted acceleration terms are cubic. The statement is about a fixed finite interval near this regular equilibrium.
+
+For AI systems, comparing spectra of learned mass matrices alone cannot validate a predicted oscillation frequency. State the equilibrium, align both quadratic forms, compare physical mode shapes, and separate linearization error from integration error.
+
+### Execute the generalized eigenvector check
+
+The standard-library cell checks the algebra and prints linearized physical positions at three times.
+
+```python
+from math import sqrt, cos
+
+# SI: m1=2 kg, m2=1 kg, l1=l2=1 m, g=1 m/s^2.
+M = [[3, 1], [1, 1]]
+K = [[3, 0], [0, 1]]
+for sign in [-1, 1]:
+    lam = (3+sign*sqrt(3))/2
+    omega = sqrt(lam)
+    v = [1, -sign*sqrt(3)]
+    relative = [v[0], v[1]-v[0]]
+    assert max(abs(sum((K[i][j]-lam*M[i][j])*v[j] for j in range(2)))
+               for i in range(2)) < 2e-15
+    assert abs(relative[0]-v[0]) < 1e-14
+    assert abs(relative[0]+relative[1]-v[1]) < 1e-14
+    print(round(lam, 6), round(omega, 6), [round(x, 6) for x in relative])
+    for t in [0, 1, 2]:
+        q = [.03*x*cos(omega*t) for x in v]
+        # Linearized horizontal positions, not nonlinear integration.
+        x1, x2 = q[0], q[0]+q[1]
+        print(t, round(x1, 6), round(x2, 6))
+```
+
+**Research questions with answers**
+
+- Must the eigenvalues of $M$ match between angle conventions? **Answer:** No. They depend on the coordinate basis; the generalized eigenvalues of the matched pair $(K,M)$ give the frequencies.
+- Are both modes necessarily orthogonal in the ordinary dot product? **Answer:** No. Here $v_-\cdot v_+=-2$, while $v_-^TM_*v_+=0$.
+- Does an exact eigenpair certify a large-amplitude trajectory? **Answer:** No. It solves the linearized system; nonlinear motion and numerical time integration require separate error checks.
+
 ## Exercises with explained solutions
 
 1. **Count compatible configuration freedoms.** Why are four point coordinates not four independent coordinates here? **Solution:** Two independent positive-length constraints remove two freedoms. C has rank two and J has two independent columns, so two generalized angles describe local configurations.
