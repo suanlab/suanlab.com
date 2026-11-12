@@ -82,4 +82,4 @@
 
 파동·진동·음향·광학은 [같은 최종 빌드의 18단원 연구 종합 대조](waves-optics-research-audit.md)를 통과했다. 다음은 [전자기학 연구 대조](electromagnetism-topic-review.md)이며 전체 교육과정 완료 상태는 false로 유지한다.
 
-전자기학은 [유한 탐침 교란·전하 자료의 순환 영공간](charge-research-status.md)부터 **2/20단원**의 연구 보강을 검증했다. 다음은 정전·정자기이며 영역 전체 대조 전이므로 위 41영역 집계는 유지한다.
+전자기학은 [탐침·순환 영공간](charge-research-status.md)에 이어 [내부 밀도 역문제·표피 효과](statics-research-status.md)까지 **4/20단원**을 검증했다. 다음은 전위·벡터 퍼텐셜이며 영역 전체 대조 전이므로 위 41영역 집계는 유지한다.

@@ -175,6 +175,135 @@ These extreme inputs test arithmetic contracts; they are not claims about a cont
 
 The analytic Ampere residual is useful for internal consistency, but is not independent verification when both sides share formulas. The reference generator instead integrates Biot–Savart contributions from infinite filaments over the cross section, using observer-centered ray/disk geometry. Separate tests numerically integrate the actual total vector field around a loop, including backgrounds. Compare these independent checks alongside symmetry, sign, units and interface behavior.
 
+## Research extension: skin effect separates uniform DC current from an Ohmic response
+
+### Change from a prescribed DC source to a conducting response
+
+The native cylinder prescribes a uniform steady current. It does not derive that current from an electric field. For this supplement take a long straight solid cylinder of radius R=a, with constant real permeability mu>0 and scalar conductivity sigma>0. Observe a cross section far from the ends, with a remote return path; neglect axial variation, proximity effects and end corrections. Prescribe a nonzero complex total-current amplitude calligraphic I, in A. Material parameters are ideal constants, not a fit to a specified metal over every frequency. Mu has units H/m, sigma has units S/m, and epsilon>0 is the permittivity in F/m.
+
+Use peak phasors with exp(+i omega t), omega>0. Neglect displacement current relative to Ohmic current, chi=omega epsilon/sigma much less than one. This magnetoquasistatic (MQS) assumption is distinct from a uniform-current assumption: the magnetic diffusion time tau_d has units s, and Omega may be large even when chi is small. No frequency control is added to the native magnetostatic calculator.
+
+$$
+J_z(r,t)=\operatorname{Re}\{\widehat J_z(r)e^{i\omega t}\},\quad\widehat J_z=\sigma\widehat E_z,\quad\chi=\frac{\omega\varepsilon}{\sigma}\ll1,\qquad\tau_d=\mu\sigma R^2,\quad\Omega=\omega\tau_d.
+$$
+
+$$
+\frac1r\frac{d(r\widehat B_\phi)}{dr}=\mu\sigma\widehat E_z,\qquad\frac{d\widehat E_z}{dr}=i\omega\widehat B_\phi\quad\Longrightarrow\quad\frac1r\frac d{dr}\left(r\frac{d\widehat E_z}{dr}\right)=i\omega\mu\sigma\widehat E_z.
+$$
+
+### Solve the regular radial diffusion equation
+
+The sign follows from Faraday: the azimuthal curl component is −dE_z/dr=−i omega B_phi. Together with Ampere without displacement current it yields the radial diffusion equation. Its regular axis solution is a modified Bessel function I0; the second independent solution is singular at the axis and is excluded. Delta has units m and kappa has units 1/m. The functions I_n below are Bessel functions; they are not the prescribed total-current amplitude.
+
+$$
+\delta=\sqrt{\frac2{\omega\mu\sigma}},\quad\kappa=\frac{1+i}{\delta},\quad z=\kappa R,\quad z^2=i\Omega:\qquad\widehat E_z(r)=C I_0(\kappa r)\quad\text{regular at }r=0.
+$$
+
+$$
+\mathcal I=2\pi\int_0^R\widehat J_z(r)r\,dr=\frac{2\pi\sigma C R}{\kappa}I_1(z),\qquad \mathcal I\ne0.
+$$
+
+The defining series below makes these functions concrete. Substituting it into the radial equation verifies the regular solution; termwise differentiation also gives the identity used for current normalization.
+
+$$
+I_n(w)=\sum_{m=0}^{\infty}\frac{(w/2)^{2m+n}}{m!(m+n)!}\quad(n=0,1),\qquad I_0(0)=1,\quad I_1(w)=\frac w2+O(w^3).
+$$
+
+### Check that current normalization has no spurious pole
+
+Integrate d[r I1(kappa r)]/dr=kappa r I0(kappa r) to normalize the solution. It remains important to justify division by I1(z). Suppose a nonzero regular solution had zero total current. Ampere then gives B_phi(R)=0 and Faraday gives E_z'(R)=0. Multiply the radial equation by the conjugate of E_z and integrate by parts.
+
+$$
+\left[r\widehat E_z^{\prime}\overline{\widehat E_z}\right]_0^R-\int_0^Rr|\widehat E_z^{\prime}|^2\,dr=i\omega\mu\sigma\int_0^Rr|\widehat E_z|^2\,dr:\quad\mathcal I=0\Rightarrow\widehat E_z^{\prime}(R)=0\Rightarrow\widehat E_z\equiv0.
+$$
+
+### Read both amplitude and phase across the section
+
+Under that homogeneous boundary condition the left side is real and nonpositive, while the right side is purely imaginary with a positive coefficient. Both integrals must vanish, so E_z is identically zero. Consequently a nonzero regular I0 solution cannot have I1(z)=0 on z²=i Omega with Omega>0. This is an energy argument, not an inference from failing to find a zero numerically.
+
+Define dimensionless current and magnetic profiles. Their boundary/axis limits are b(1)=1 and b(0)=0. Complex values encode phase as well as amplitude, so a plot of absolute current alone does not completely specify the response.
+
+$$
+\xi=\frac rR,\quad j(\xi)=\frac{\widehat J_z(r)}{\mathcal I/(\pi R^2)}=\frac{z I_0(z\xi)}{2I_1(z)},\qquad b(\xi)=\frac{\widehat B_\phi(r)}{\mu\mathcal I/(2\pi R)}=\frac{I_1(z\xi)}{I_1(z)}.
+$$
+
+$$
+Z_{\mathrm{int}}=\frac{\widehat E_z(R)}{\mathcal I}=R_{\mathrm{dc}}\frac{z I_0(z)}{2I_1(z)},\qquad R_{\mathrm{dc}}=\frac1{\pi\sigma R^2}\quad[\mathrm{\Omega/m}].
+$$
+
+### Recover the static model as a stated limit
+
+The internal impedance per unit length has units ohm/m. It uses the surface axial electric field divided by total current. It excludes the external inductance, return path, terminal contacts and end fields. It is not the total impedance of an isolated infinite wire.
+
+The convergent defining series for I0 and I1 gives the following small-Omega limit at fixed radius and material coefficients. Uniform current and the original linear interior B profile require Omega much less than one, not merely small chi. The low-frequency internal inductance per length is mu/(8 pi).
+
+$$
+\Omega\to0^+:\quad j(\xi)\to1,\quad b(\xi)\to\xi,\quad\frac{Z_{\mathrm{int}}}{R_{\mathrm{dc}}}=1+\frac{i\Omega}{8}+\frac{\Omega^2}{192}+O(\Omega^3),\qquad\frac{\operatorname{Im}Z_{\mathrm{int}}}{\omega}\to\frac\mu{8\pi}.
+$$
+
+### Verify passivity with the field energy balance
+
+Differentiate r E_z conjugate(B_phi)/mu, substitute the two radial field equations and integrate over the cross section. The boundary term is E_z(R) conjugate(calligraphic I). This gives the complex power identity below. The factor 1/2 appears only when converting peak phasors to average real power. Magnetic storage accounts for the positive imaginary term.
+
+$$
+Z_{\mathrm{int}}|\mathcal I|^2=2\pi\int_0^R\left(\frac{|\widehat J_z|^2}{\sigma}+\frac{i\omega}{\mu}|\widehat B_\phi|^2\right)r\,dr,\qquad P_{\mathrm{in,avg}}=\frac12\operatorname{Re}Z_{\mathrm{int}}|\mathcal I|^2.
+$$
+
+$$
+|\mathcal I|^2=\left|\int_A\widehat J_z\,dA\right|^2\le\pi R^2\int_A|\widehat J_z|^2\,dA\quad\Longrightarrow\quad\operatorname{Re}Z_{\mathrm{int}}\ge R_{\mathrm{dc}}.
+$$
+
+### Run a bounded numerical example
+
+Cauchy–Schwarz applied to the cross-sectional current integral gives the last inequality: at the same total current, a nonuniform complex current cannot dissipate less than a uniform DC distribution with the same conductivity. This does not certify a real conductor with unknown losses or frequency-dependent material laws.
+
+For orientation, ideal constants R=1 mm, mu=4 pi×10⁻⁷ H/m and sigma=10⁶ S/m give tau_d≈1.256637×10⁻⁶ s; Omega=1 corresponds to omega≈7.957747×10⁵ rad/s. This example is supplementary and is not a new native radius range. At Omega=32, R/delta=4, so magnetic diffusion strongly changes the current profile while the total current is held fixed.
+
+The code uses 61 terms of each defining series only for n=0,1 and 0<Omega≤32. It is checked independently against angular-integral representations; it is not a general special-function library for arbitrarily large complex arguments. Table values are the center-current magnitude and real/imaginary internal-impedance ratios. The imaginary column is positive for the stated time convention.
+
+| Omega | abs center j | Re Z / Rdc | Im Z / Rdc |
+| --- | --- | --- | --- |
+| 0.1 | 0.999973959 | 1.00005208 | 0.0124996745 |
+| 1 | 0.997404616 | 1.00518673 | 0.124675942 |
+| 10 | 0.803660705 | 1.3720872 | 1.02495076 |
+| 32 | 0.323501888 | 2.27380107 | 1.97099225 |
+
+```python
+import cmath
+
+def I(n, z):
+    assert n in (0, 1)
+    term = (z/2)**n
+    total = term
+    for m in range(1, 61):
+        term *= z*z/(4*m*(m+n))
+        total += term
+    return total
+
+for omega_scaled in [.1, 1, 10, 32]:
+    z = cmath.sqrt(1j*omega_scaled)
+    center = z/(2*I(1, z))
+    impedance = z*I(0, z)/(2*I(1, z))
+    print(*(format(t, '.9g') for t in
+            [omega_scaled, abs(center), impedance.real, impedance.imag]))
+```
+
+For a learned frequency-response surrogate, matching total current and the boundary magnetic field does not validate the interior phase or dissipation. The boundary value b(1)=1 is identical across these different profiles. Compare complex radial values, integrated current, the resistance lower bound and power balance together; one small residual is not a general accuracy certificate.
+
+The native cylinder checks only the zero-frequency limiting field and current density. It does not compute these complex profiles. The regular radial solution is exact within the declared magnetoquasistatic model, not an exact full-Maxwell description of all conductor geometries. A small series or quadrature error does not certify neglected displacement current, material laws or end effects.
+
+[MIT’s skin-effect chapter](https://web.mit.edu/6.013_book/www/chapter10/10.7.html) supplies magnetic-diffusion context. [NIST DLMF’s definition](https://dlmf.nist.gov/10.25#E2) and [angular integral](https://dlmf.nist.gov/10.32#E3) supply the two independent representations used here. Current normalization, nonzero-denominator argument, low-frequency expansion and internal power balance are derived for the specified cylindrical family.
+
+![Complex current profiles and internal impedance from magnetic diffusion](/assets/learning/electromagnetism-skin-diffusion.en.svg)
+
+### Research questions with explanations
+
+**Does negligible displacement current guarantee uniform current?** **Answer:** No. Chi controls that approximation; Omega controls radial magnetic diffusion. They are different dimensionless ratios.
+
+**Why is a positive imaginary impedance not a sign error?** **Answer:** The convention is exp(+i omega t). Internal magnetic storage gives the positive imaginary term and the low-frequency inductive limit.
+
+**Does this internal impedance determine a complete finite device?** **Answer:** No. Return paths, external inductance, contacts, ends and actual frequency-dependent materials require additional information and modeling.
+
 ## Exercises with explanations
 
 ### Exercise 1 — Half the radius

@@ -175,6 +175,135 @@ $r>a$에서는 전류원 장의 국소 회전이 0이다. 그런데 원통을 �
 
 해석적인 Ampere 잔차는 내부 일관성 확인에는 유용하다. 양쪽이 같은 공식을 공유한다면 독립 검증은 아니다. 기준값 생성기는 대신 무한 필라멘트의 Biot–Savart 기여를 단면 전체에서 적분한다. 관측점을 중심으로 한 광선과 원판의 교차 기하를 사용한다. 별도 검사는 배경장을 포함한 실제 전체 벡터를 경로를 따라 수치 적분한다. 이런 검사를 대칭, 부호, 단위와 경계 검사에 함께 사용하자.
 
+## 연구 확장: 표피 효과는 균일 직류와 Ohmic 응답을 구분한다
+
+### 지정한 직류 원천에서 전도 응답으로 바꾼다
+
+기존 원통은 균일한 정상 전류를 지정하며 전기장에서 그 전류를 유도하지 않습니다. 보충 계산에서는 반지름 R=a인 긴 직선 실체 원통과 일정한 실수 투자율 mu>0·스칼라 전도도 sigma>0를 사용합니다. 끝에서 먼 단면을 보고 귀환 경로도 멀다고 가정합니다. 축 방향 변화·근접 효과·끝 보정은 제외합니다. 0이 아닌 복소 전체 전류 진폭 calligraphic I를 A 단위로 지정합니다. 물성은 이상적인 상수이며 어떤 실제 금속의 모든 주파수 응답을 맞춘 값이 아닙니다. Mu의 단위는 H/m, sigma는 S/m이며 epsilon>0은 F/m 단위의 유전율입니다.
+
+omega>0, exp(+i omega t)와 피크 진폭 phasor를 사용합니다. Ohmic 전류에 비해 변위 전류가 작도록 chi=omega epsilon/sigma가 1보다 훨씬 작다고 둡니다. 이 자기준정적(MQS) 가정은 균일 전류 가정과 다릅니다. 자기 확산 시간 tau_d의 단위는 s이며 chi가 작아도 Omega는 클 수 있습니다. 기존 정자기 계산기에 주파수 제어를 추가하지 않습니다.
+
+$$
+J_z(r,t)=\operatorname{Re}\{\widehat J_z(r)e^{i\omega t}\},\quad\widehat J_z=\sigma\widehat E_z,\quad\chi=\frac{\omega\varepsilon}{\sigma}\ll1,\qquad\tau_d=\mu\sigma R^2,\quad\Omega=\omega\tau_d.
+$$
+
+$$
+\frac1r\frac{d(r\widehat B_\phi)}{dr}=\mu\sigma\widehat E_z,\qquad\frac{d\widehat E_z}{dr}=i\omega\widehat B_\phi\quad\Longrightarrow\quad\frac1r\frac d{dr}\left(r\frac{d\widehat E_z}{dr}\right)=i\omega\mu\sigma\widehat E_z.
+$$
+
+### 축에서 정칙인 반경 확산 방정식을 푼다
+
+부호는 Faraday 식에서 옵니다. 회전의 방위각 성분은 −dE_z/dr=−i omega B_phi입니다. 변위 전류를 뺀 Ampere 식과 결합하면 반경 확산 방정식이 됩니다. 축에서 정칙인 해는 수정 Bessel 함수 I0입니다. 두 번째 독립해는 축에서 특이하므로 제외합니다. Delta의 단위는 m, kappa는 1/m입니다. 아래 I_n은 Bessel 함수이며 지정한 전체 전류 진폭이 아닙니다.
+
+$$
+\delta=\sqrt{\frac2{\omega\mu\sigma}},\quad\kappa=\frac{1+i}{\delta},\quad z=\kappa R,\quad z^2=i\Omega:\qquad\widehat E_z(r)=C I_0(\kappa r)\quad\text{regular at }r=0.
+$$
+
+$$
+\mathcal I=2\pi\int_0^R\widehat J_z(r)r\,dr=\frac{2\pi\sigma C R}{\kappa}I_1(z),\qquad \mathcal I\ne0.
+$$
+
+아래 정의 급수로 이 함수들을 구체적으로 이해할 수 있습니다. 반경 방정식에 대입하면 정칙 해임을 확인할 수 있고 항별 미분으로 전류 정규화에 쓰는 항등식도 얻습니다.
+
+$$
+I_n(w)=\sum_{m=0}^{\infty}\frac{(w/2)^{2m+n}}{m!(m+n)!}\quad(n=0,1),\qquad I_0(0)=1,\quad I_1(w)=\frac w2+O(w^3).
+$$
+
+### 전류 정규화에 가짜 극점이 없는지 확인한다
+
+d[r I1(kappa r)]/dr=kappa r I0(kappa r)를 적분하여 해를 정규화합니다. I1(z)로 나누는 것도 정당화해야 합니다. 0이 아닌 정칙 해의 전체 전류가 0이라고 가정하면 Ampere 식에서 B_phi(R)=0이고 Faraday 식에서 E_z의 경계 미분도 0입니다. 반경 방정식에 E_z의 켤레를 곱하고 부분 적분합니다.
+
+$$
+\left[r\widehat E_z^{\prime}\overline{\widehat E_z}\right]_0^R-\int_0^Rr|\widehat E_z^{\prime}|^2\,dr=i\omega\mu\sigma\int_0^Rr|\widehat E_z|^2\,dr:\quad\mathcal I=0\Rightarrow\widehat E_z^{\prime}(R)=0\Rightarrow\widehat E_z\equiv0.
+$$
+
+### 단면의 진폭과 위상을 함께 읽는다
+
+그 동차 경계 조건에서 왼쪽은 0 이하의 실수이고 오른쪽은 양의 계수를 가진 순허수입니다. 두 적분이 모두 0이어야 하므로 E_z는 항등적으로 0입니다. 따라서 0이 아닌 정칙 I0 해에 대해 z²=i Omega, Omega>0 경로에서 I1(z)=0일 수 없습니다. 이는 영점을 수치적으로 찾지 못했다는 주장이 아니라 에너지 논증입니다.
+
+무차원 전류·자기장 분포를 정의합니다. 경계와 축에서 b(1)=1, b(0)=0입니다. 복소 값은 진폭과 위상을 함께 담으므로 전류 절댓값 그림만으로 응답 전체가 정해지지는 않습니다.
+
+$$
+\xi=\frac rR,\quad j(\xi)=\frac{\widehat J_z(r)}{\mathcal I/(\pi R^2)}=\frac{z I_0(z\xi)}{2I_1(z)},\qquad b(\xi)=\frac{\widehat B_\phi(r)}{\mu\mathcal I/(2\pi R)}=\frac{I_1(z\xi)}{I_1(z)}.
+$$
+
+$$
+Z_{\mathrm{int}}=\frac{\widehat E_z(R)}{\mathcal I}=R_{\mathrm{dc}}\frac{z I_0(z)}{2I_1(z)},\qquad R_{\mathrm{dc}}=\frac1{\pi\sigma R^2}\quad[\mathrm{\Omega/m}].
+$$
+
+### 조건을 명시한 극한에서 정적 모형을 복원한다
+
+단위 길이당 내부 임피던스의 단위는 ohm/m입니다. 표면의 축 방향 전기장을 전체 전류로 나눈 값입니다. 외부 인덕턴스·귀환 경로·단자 접촉·끝의 장은 포함하지 않습니다. 고립된 무한 도선의 전체 임피던스가 아닙니다.
+
+I0와 I1의 수렴하는 정의 급수에서 반지름·물성 계수를 고정한 작은 Omega 극한을 얻습니다. 균일 전류와 기존의 선형 내부 B 분포는 chi만 작다고 성립하지 않고 Omega도 1보다 훨씬 작아야 합니다. 저주파 내부 인덕턴스는 단위 길이당 mu/(8 pi)입니다.
+
+$$
+\Omega\to0^+:\quad j(\xi)\to1,\quad b(\xi)\to\xi,\quad\frac{Z_{\mathrm{int}}}{R_{\mathrm{dc}}}=1+\frac{i\Omega}{8}+\frac{\Omega^2}{192}+O(\Omega^3),\qquad\frac{\operatorname{Im}Z_{\mathrm{int}}}{\omega}\to\frac\mu{8\pi}.
+$$
+
+### 장 에너지 수지로 수동성을 확인한다
+
+r E_z conjugate(B_phi)/mu를 미분하고 두 반경 장 방정식을 대입한 뒤 단면에서 적분합니다. 경계항은 E_z(R) conjugate(calligraphic I)입니다. 아래 복소 전력 항등식을 얻으며, 피크 phasor를 평균 실전력으로 바꿀 때만 1/2이 붙습니다. 양의 허수 항은 자기 에너지 저장에 해당합니다.
+
+$$
+Z_{\mathrm{int}}|\mathcal I|^2=2\pi\int_0^R\left(\frac{|\widehat J_z|^2}{\sigma}+\frac{i\omega}{\mu}|\widehat B_\phi|^2\right)r\,dr,\qquad P_{\mathrm{in,avg}}=\frac12\operatorname{Re}Z_{\mathrm{int}}|\mathcal I|^2.
+$$
+
+$$
+|\mathcal I|^2=\left|\int_A\widehat J_z\,dA\right|^2\le\pi R^2\int_A|\widehat J_z|^2\,dA\quad\Longrightarrow\quad\operatorname{Re}Z_{\mathrm{int}}\ge R_{\mathrm{dc}}.
+$$
+
+### 범위를 제한한 수치 예제를 실행한다
+
+단면 전류 적분에 Cauchy–Schwarz를 적용하면 마지막 부등식이 나옵니다. 같은 전체 전류에서 복소 전류가 불균일하면 같은 전도도의 균일 직류 분포보다 소산이 작을 수 없습니다. 미지의 손실이나 주파수 의존 물성을 가진 실제 도체를 인증하는 결과는 아닙니다.
+
+척도를 보기 위해 R=1 mm, mu=4 pi×10⁻⁷ H/m, sigma=10⁶ S/m의 이상적인 상수를 사용하면 tau_d≈1.256637×10⁻⁶ s입니다. Omega=1은 omega≈7.957747×10⁵ rad/s에 해당합니다. 이 보충 예제가 기존 실습의 반지름 범위를 바꾸지는 않습니다. Omega=32에서는 R/delta=4이므로 전체 전류를 유지하면서도 자기 확산이 전류 분포를 크게 바꿉니다.
+
+코드는 n=0,1과 0<Omega≤32에서만 각 정의 급수의 61항을 사용합니다. 독립적인 각도 적분 표현과 대조하며, 임의로 큰 복소 인수의 범용 특수함수 라이브러리가 아닙니다. 표는 중심 전류의 크기와 내부 임피던스의 실수·허수 비율입니다. 선언한 시간 관례에서 허수 열은 양수입니다.
+
+| Omega | 중심 j 절댓값 | Re Z / Rdc | Im Z / Rdc |
+| --- | --- | --- | --- |
+| 0.1 | 0.999973959 | 1.00005208 | 0.0124996745 |
+| 1 | 0.997404616 | 1.00518673 | 0.124675942 |
+| 10 | 0.803660705 | 1.3720872 | 1.02495076 |
+| 32 | 0.323501888 | 2.27380107 | 1.97099225 |
+
+```python
+import cmath
+
+def I(n, z):
+    assert n in (0, 1)
+    term = (z/2)**n
+    total = term
+    for m in range(1, 61):
+        term *= z*z/(4*m*(m+n))
+        total += term
+    return total
+
+for omega_scaled in [.1, 1, 10, 32]:
+    z = cmath.sqrt(1j*omega_scaled)
+    center = z/(2*I(1, z))
+    impedance = z*I(0, z)/(2*I(1, z))
+    print(*(format(t, '.9g') for t in
+            [omega_scaled, abs(center), impedance.real, impedance.imag]))
+```
+
+주파수 응답을 학습하는 모델이 전체 전류와 경계 자기장을 맞춰도 내부 위상과 소산을 검증한 것은 아닙니다. 서로 다른 분포에서도 경계값 b(1)=1은 같습니다. 복소 반경 값·적분 전류·저항 하한·전력 수지를 함께 비교해야 하며 잔차 하나가 작다고 일반적인 정확도가 인증되지는 않습니다.
+
+기존 원통은 0주파수 극한의 장·전류 밀도만 대조하며 위 복소 분포를 계산하지 않습니다. 정칙 반경 해는 선언한 자기준정적 모형 안에서 정확한 해이지 모든 도체 형상의 정확한 전체 Maxwell 해가 아닙니다. 급수·구적 오차가 작다고 생략한 변위 전류·물성 법칙·끝 효과가 인증되는 것은 아닙니다.
+
+[MIT 표피 효과 교재](https://web.mit.edu/6.013_book/www/chapter10/10.7.html)는 자기 확산 배경을 제공합니다. [NIST DLMF 정의](https://dlmf.nist.gov/10.25#E2)와 [각도 적분](https://dlmf.nist.gov/10.32#E3)은 여기서 사용하는 두 독립 표현입니다. 전류 정규화·0이 아닌 분모의 논증·저주파 전개·내부 전력 수지는 지정한 원통 가족에서 직접 유도합니다.
+
+![자기 확산의 복소 전류 분포와 내부 임피던스](/assets/learning/electromagnetism-skin-diffusion.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**변위 전류가 작으면 전류는 균일한가?** **답:** 아니다. Chi는 그 근사를, Omega는 반경 자기 확산을 제어하며 서로 다른 무차원 비율이다.
+
+**양의 임피던스 허수부는 왜 부호 오류가 아닌가?** **답:** 시간 관례는 exp(+i omega t)이다. 내부 자기 저장이 양의 허수 항과 저주파 인덕턴스 극한을 준다.
+
+**내부 임피던스로 유한 장치 전체가 정해지는가?** **답:** 아니다. 귀환 경로·외부 인덕턴스·접촉·끝·실제 주파수 의존 물성에는 추가 정보와 모형이 필요하다.
+
 ## 해설이 있는 연습문제
 
 ### 문제 1 — 반지름의 절반

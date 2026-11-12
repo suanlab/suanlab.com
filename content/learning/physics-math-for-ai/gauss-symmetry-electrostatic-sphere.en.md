@@ -178,6 +178,101 @@ For a learned static field, combine independent potential gradients, closed-flux
 
 Keep the source distribution and observation geometry fixed when comparing methods. A conducting shell, a uniform volume sphere and a softened point charge can all look smooth in a plot, yet encode different interior physics. Near an interface, report the stencil, support region and convergence behavior rather than treating a small scalar residual as a universal accuracy guarantee.
 
+## Research extension: exterior observations can hide an interior density
+
+### Change the density while preserving its physical preparation
+
+A fixed total charge need not specify the charge density inside a volume. To make that failure explicit, replace the uniform nonconducting sphere by a one-parameter radial family. Write its known radius as R, the same radius called a above. Keep its center, positive total charge Q, rounded Coulomb coefficient k and zero external background fixed. The source is prescribed rather than obtained from conductor equilibrium or mechanical relaxation. Alpha is dimensionless; rho0 has units C/m³.
+
+For −1≤alpha≤1 the density remains strictly positive inside: the factor r²/R²−3/5 lies between −3/5 and 2/5. Positive alpha moves charge toward the outside; negative alpha concentrates it toward the center. No surface-charge sheet is added. The value assigned to density at the single interface does not affect a volume integral. This is a supplemental family, not a new density-profile control in the uniform-sphere lab.
+
+$$
+R>0,\quad Q>0,\quad \rho_0=\frac{3Q}{4\pi R^3},\quad -1\le\alpha\le1:\qquad\rho_\alpha(r)=\rho_0\left[1+\alpha\left(\frac{r^2}{R^2}-\frac35\right)\right]\quad(0\le r<R),\qquad\rho_\alpha=0\quad(r>R).
+$$
+
+$$
+4\pi\int_0^R\rho_\alpha(r)r^2\,dr=Q\left[1+3\alpha\left(\frac15-\frac35\frac13\right)\right]=Q.
+$$
+
+### Integrate enclosed charge before dividing by area
+
+The alpha term has zero total radial integral. Integrating it only as far as r, however, usually gives a nonzero contribution. This distinction is the source of the inverse ambiguity.
+
+$$
+\xi=\frac rR:\qquad\frac{Q_{\mathrm{enc},\alpha}(r)}Q=\begin{cases}\xi^3\left[1+\frac{3\alpha}{5}(\xi^2-1)\right],&0\le\xi\le1,\\1,&\xi\ge1.\end{cases}
+$$
+
+$$
+E_R=\frac{kQ}{R^2}:\qquad\frac{E_{r,\alpha}}{E_R}=\begin{cases}\xi\left[1+\frac{3\alpha}{5}(\xi^2-1)\right],&0\le\xi\le1,\\\xi^{-2},&\xi\ge1.\end{cases}
+$$
+
+### Include potential as an independent observable
+
+Gauss symmetry determines the signed radial field after the source family is declared. At the center use the regular vector expression E=(E_R/R)[1+(3 alpha/5)(r²/R²−1)] times the position vector, so E(0)=0 without an undefined radial direction. Integrating the field from infinity fixes the potential reference.
+
+$$
+V(\infty)=0:\qquad\frac{V_\alpha(r)}{kQ/R}=\begin{cases}\dfrac{3-\xi^2}{2}-\dfrac{3\alpha}{20}(1-\xi^2)^2,&0\le\xi\le1,\\\xi^{-1},&\xi\ge1.\end{cases}
+$$
+
+$$
+\alpha\ne\beta:\quad\rho_\alpha\ne\rho_\beta,\qquad(E_\alpha,V_\alpha)=(E_\beta,V_\beta)\quad(r\ge R),\qquad\partial_\alpha(E_\alpha,V_\alpha)=0\quad(r\ge R).
+$$
+
+### State what exterior data cannot identify
+
+Both exterior field and exterior potential are independent of alpha at every radius, including the boundary. This is stronger than a single matching flux: any number of exact exterior observations, in any direction, cannot distinguish these static spherical sources. The densities remain different inside. A learning loss using only those observations is flat along this family; regularization supplies a preference, not missing information.
+
+This construction proves nonuniqueness for the declared family. It is not a classification of arbitrary three-dimensional charge distributions. Radius, center, total charge and background are known here. Unknown nuisance parameters require a different identifiability analysis.
+
+### Put a field probe where it is sensitive
+
+For one radial field reading strictly inside, solve the linear dependence on alpha. The formula below gives both the estimate and its exact response to an additive signed reading error. The measured component and E_R use N/C. A noisy unconstrained estimate can leave [−1,1]; do not silently interpret an out-of-family estimate as a valid positive-density preparation.
+
+$$
+0<\xi<1:\quad\widehat\alpha=\frac{E_R\xi-E_{\mathrm{obs}}}{(3/5)E_R\xi(1-\xi^2)},\qquad E_{\mathrm{obs}}=E_{r,\alpha}+\delta E\quad\Longrightarrow\quad |\widehat\alpha-\alpha|=\frac{5|\delta E|}{3E_R\xi(1-\xi^2)}.
+$$
+
+$$
+\max_{0\le\xi\le1}\xi(1-\xi^2)=\frac{2}{3\sqrt3}\quad\text{at }\xi=\frac1{\sqrt3}:\qquad\min_{0<\xi<1}\frac{5}{3E_R\xi(1-\xi^2)}=\frac{5\sqrt3}{2E_R}.
+$$
+
+### Work a normalized and a physical example
+
+The sensitivity factor xi(1−xi²) is zero at the center and surface. Its derivative 1−3 xi² vanishes only at xi=1/sqrt(3) in the interior; the derivative changes from positive to negative there. This is the best location only for this known one-parameter family and the same absolute field-reading uncertainty at every candidate location. It is not a universal sensor placement result.
+
+A center field reading is blind, but a referenced center potential is not: the formula for V(0) depends on alpha. Different observables have different nullspaces. With R=1 m and Q=1 nC, E_R=9 N/C and kQ/R=9 V. For alpha=1, the half-radius field is 2.475 N/C, center potential is 12.15 V, and the field at 2R is still 2.25 N/C. At the best field-probe radius, a 0.01 N/C error gives an alpha-error bound of about 0.00481125.
+
+The table uses those nonzero normalization scales; its last column stays constant although the interior columns change.
+
+| alpha | E(R/2) / E_R | V(0) / (kQ/R) | E(2R) / E_R |
+| --- | --- | --- | --- |
+| -1 | 0.725 | 1.65 | 0.25 |
+| 0 | 0.5 | 1.5 | 0.25 |
+| 0.5 | 0.3875 | 1.425 | 0.25 |
+| 1 | 0.275 | 1.35 | 0.25 |
+
+```python
+for alpha in [-1, 0, .5, 1]:
+    x = .5
+    field_half = x*(1+3*alpha/5*(x*x-1))
+    potential_center = 1.5-3*alpha/20
+    field_outside = 1/2**2
+    print(*(format(t, '.9g') for t in
+            [alpha, field_half, potential_center, field_outside]))
+```
+
+The native uniform-sphere model checks the alpha=0 case and the common exterior field/potential. It cannot evaluate a nonuniform density internally. The independent supplement instead integrates shell potential and differentiates it. [MIT’s Gauss-law notes](https://web.mit.edu/8.02t/www/802TEAL3D/visualizations/coursenotes/modules/guide04.pdf) provide the symmetry framework; this density family, inverse ambiguity and probe-error calculation are derived above under their stated assumptions.
+
+![Radial densities, common exterior field and interior probe sensitivity](/assets/learning/electromagnetism-radial-density-inverse.en.svg)
+
+### Research questions with explanations
+
+**Do infinitely many exact exterior readings recover alpha?** **Answer:** No. Every member has the same complete exterior field and referenced potential, not merely the same total flux.
+
+**Is the central observation always useless?** **Answer:** No. The center field is blind to alpha, but a properly referenced center potential depends on it. State the observable.
+
+**Is R/sqrt(3) the best place for every sensor?** **Answer:** No. It minimizes the stated scalar error gain for known Q, R, center and background, with the same absolute radial-field error. Different noise and nuisance parameters change the design.
+
 ## Explained exercises
 
 ### Exercise 1 — Half-radius observation
