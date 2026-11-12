@@ -200,6 +200,121 @@ The far-field Gaussian divergence scale is $\lambda/(\pi w_*)$. The lens quadrat
 
 For a diagram, label all physical axes and any longitudinal/transverse stretching. Compare peak intensity together with the integrated quantity. Retain one preparation when moving the observation plane. Direct Fresnel references, q transport, the width decomposition and conservation each test a different aspect; agreement between two copies of the same formula is weaker evidence.
 
+## Research extension: sharp edges change which beam moments exist
+
+The Gaussian above has finite second moments. Finite integrated intensity alone does not guarantee that property after a hard aperture. We construct a separate one-dimensional Fresnel example, then regularize its edge to show that field-norm convergence does not control a whole-line RMS width. This does not add an aperture to the native two-dimensional Gaussian calculator.
+
+### Distinguish norm from derivative regularity
+
+
+$$
+\widehat\psi(p)=\frac1{\sqrt{2\pi}}\int\psi(x)e^{-ipx}dx,\quad N=\int|\psi|^2dx:\qquad \langle p^2\rangle=\frac{\int p^2|\widehat\psi(p)|^2dp}{N}=\frac{\int|\psi\prime(x)|^2dx}{N}\quad(\psi\in H^1).
+$$
+
+Here p is transverse wave number in m⁻¹, not mechanical momentum, and N has relative-field-squared metre units. The Sobolev condition H1 means that the field and its weak derivative are square integrable. Plancherel and the Fourier derivative identity give the displayed equality. For a nonzero even real field, the mean transverse wave number is zero, so the second moment is its variance. Merely belonging to L2 controls norm, not this weighted spectral integral.
+
+### A hard box has finite norm but infinite spectral variance
+
+
+$$
+\psi_0(x)=\mathbf1_{\{|x|<a\}},\quad N_0=2a,\quad\widehat\psi_0(p)=\frac{2\sin(ap)}{p\sqrt{2\pi}}:\qquad\frac1{N_0}\int_{-P}^{P}p^2|\widehat\psi_0(p)|^2dp=\frac1{\pi a}\left[P-\frac{\sin(2aP)}{2a}\right]\longrightarrow\infty.
+$$
+
+The limiting value of the transform at p=0 is 2a/sqrt(2pi). Away from zero its amplitude has a 1/p envelope. Multiplication by p² removes the decay from squared amplitude, leaving a nonnegative oscillation with positive mean. Equivalently, the two jumps give delta distributions in the weak derivative, not an L2 derivative. A finite numerical spectral cutoff always returns a finite value, but that is a different, cutoff-dependent statistic.
+
+### A finite pointwise field need not have a finite RMS
+
+
+$$
+k=2\pi/\lambda,\quad\widehat{U_z\psi}(p)=e^{-izp^2/(2k)}\widehat\psi(p),\qquad xU_z\psi=U_z\left(x\psi+\frac zk(-i\partial_x)\psi\right),\qquad
+|U_z\psi_0(x)|\le\sqrt{\frac{k}{2\pi z}}\,2a<\infty\quad(z>0),\qquad \|xU_z\psi_0\|_2=\infty\quad(z\ne0).
+$$
+
+Differentiate the spectral propagation phase to obtain the position identity. Since x psi0 is L2 but its weak derivative is not, a finite x Uz psi0 would imply an L2 derivative after applying the inverse unitary map, a contradiction. The pointwise bound instead uses the Fresnel kernel of constant magnitude and the finite L1 norm 2a. Thus a bounded displayed field can coexist with a divergent whole-line second moment; no infinite peak is being predicted. The identity extends from smooth fields in the distributional sense for the box.
+
+### Regularize the edge with an explicit finite-norm family
+
+
+$$
+\psi_\varepsilon(x)=\begin{cases}1,&|x|\le a,\\(a+\varepsilon-|x|)/\varepsilon,&a<|x|<a+\varepsilon,\\0,&|x|\ge a+\varepsilon,\end{cases}\quad\varepsilon>0,\qquad N_\varepsilon=2a+\frac{2\varepsilon}{3}.
+$$
+
+These are different preparations with the same plateau amplitude, not independently peak-normalized propagated images. Their integrated norms differ by the small added ramps. The field is continuous and piecewise linear; its weak derivative has finite steps rather than delta contributions.
+
+
+$$
+\int|\psi_\varepsilon\prime|^2dx=\frac2\varepsilon,\qquad \sigma_p^2=\frac1{\varepsilon(a+\varepsilon/3)}.
+$$
+
+Each ramp has length epsilon and derivative magnitude 1/epsilon, giving the factor two. Symmetry makes both position and transverse-wave-number means zero. A real input also has zero symmetrized position-wave-number covariance: the real part of the cross derivative integral vanishes. Therefore
+
+
+$$
+\sigma_x^2(0)=\frac{2a^3/3+2a^2\varepsilon/3+a\varepsilon^2/3+\varepsilon^3/15}{2a+2\varepsilon/3},\qquad\sigma_x^2(z)=\sigma_x^2(0)+\left(\frac zk\right)^2\sigma_p^2.
+$$
+
+The numerator comes from integrating x² times the squared plateau and ramps. The propagation formula follows from the position identity and the zero covariance. Every epsilon>0 gives finite moments, but at fixed nonzero z and k the second term diverges as 1/epsilon when the edge becomes sharp. A separable two-dimensional field psiEpsilon(x) g(y) with finite nonzero y norm has the same normalized x moments; this connects the example to a transverse slice without replacing the native axisymmetric Gaussian preparation.
+
+### Prove norm convergence without inferring moment convergence
+
+
+$$
+\frac{\|\psi_\varepsilon-\psi_0\|_2^2}{\|\psi_0\|_2^2}=\frac{\varepsilon}{3a}\longrightarrow0,\qquad\|U_z\psi_\varepsilon-U_z\psi_0\|_2=\|\psi_\varepsilon-\psi_0\|_2.
+$$
+
+Only the two added ramps contribute to this norm difference. Unitary propagation preserves it exactly. Nevertheless the squared-position observable is unbounded and its moments are not continuous under L2 convergence alone. This is why a small integrated field loss does not certify a fitted RMS beam width. The table scales lengths by a and fixes z/k=a². The ramp integrals are recomputed in Python; columns are dimensionless and rounded to nine significant digits.
+
+| epsilon / a | relative L2 field distance | a² sigma_p² | propagated RMS / a |
+|---|---|---|---|
+| 0.5 | 0.40824829 | 1.71428571 | 1.47720779 |
+| 0.2 | 0.25819889 | 4.6875 | 2.25144398 |
+| 0.1 | 0.182574186 | 9.67741935 | 3.1676337 |
+| 0.05 | 0.129099445 | 19.6721311 | 4.47401468 |
+
+```python
+from math import sqrt
+
+def integrate(f, lo, hi, n=2000):
+    step = (hi-lo)/n
+    return step/3*(f(lo)+f(hi)+sum(
+        (4 if j % 2 else 2)*f(lo+j*step) for j in range(1, n)))
+
+# Scale lengths by a; z/k=a^2. All four columns are dimensionless.
+a = 1
+for ratio in [.5, .2, .1, .05]:
+    epsilon = a*ratio
+    ramp = lambda x: (a+epsilon-x)/epsilon
+    norm = 2*a+2*integrate(lambda x: ramp(x)**2, a, a+epsilon)
+    x2 = (2*a**3/3+2*integrate(
+        lambda x: x*x*ramp(x)**2, a, a+epsilon))/norm
+    p2 = (2/epsilon)/norm
+    distance = sqrt((norm-2*a)/(2*a))
+    propagated_rms = sqrt(x2+a**4*p2)/a
+    print(ratio, *(format(value, '.9g') for value in
+          [distance, a*a*p2, propagated_rms]))
+```
+
+### Keep finite detector windows and physical validity explicit
+
+
+$$
+\sigma_{x,R}^2(z)=\frac{\int_{-R}^{R}x^2|U_z\psi(x)|^2dx}{\int_{-R}^{R}|U_z\psi(x)|^2dx}\le R^2\quad\text{for the centered even profiles and a nonzero window signal}.
+$$
+
+This is a windowed RMS statistic of an even intensity profile, not the whole-line moment. Its denominator is the captured signal and must be reported; zero captured signal has no normalized width. A finite camera, spectral cutoff or other measurement model changes the observable. The formal sharp-edge limit at fixed wavelength is a statement about the mathematical paraxial model: extremely narrow edges introduce large transverse wave numbers and do not certify full Maxwell propagation. No infinite experimentally measured width or calibrated power is claimed.
+
+The [MIT Fourier/Sobolev notes](https://math.mit.edu/~rbm/18-155-F17/L4.pdf) provide the regularity framework and [TU Delft scalar diffraction](https://interactivetextbooks.tudelft.nl/tn2421/content/Chap6_Diffraction/DiffractiveOptics_2022_01Clean.html) the propagation context. The box, ramp family and moment limits above are derived for the explicitly stated one-dimensional model.
+
+![Continuous aperture ramps approach a hard box in relative L2 norm while their propagated whole-line RMS grows; the two diagnostics are explicitly distinguished.](/assets/learning/waves-ray-aperture-moments.en.svg)
+
+### Research questions with explanations
+
+**Does finite integrated intensity imply finite RMS width?** **Answer:** No. The hard box has finite norm, but its spectral derivative moment and any nonzero-distance Fresnel whole-line position moment diverge. Pointwise boundedness is a separate property.
+
+**Can a small field-norm loss certify second moments?** **Answer:** Not by itself. The ramp family converges in L2 while its propagated second moment diverges. Additional weighted-norm or derivative control is needed.
+
+**Will a finite detector report the mathematical infinite RMS?** **Answer:** No. It reports a captured, window-dependent statistic. State the window, signal fraction and physical propagation assumptions before comparing it with a Gaussian width or whole-line moment.
+
 ## Explained exercises and AI research connections
 
 ### 1. Identify the width convention

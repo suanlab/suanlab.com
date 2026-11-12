@@ -165,6 +165,108 @@ Display a negative image coordinate with a distinct backward extension. Keep the
 
 For numerical review, compare direct updates $x_L=x_0+u\theta_0$, $\theta_+=\theta_0-x_L/f$ and $x_s=x_L+s\theta_+$ with the matrix result. Test positive and negative lenses, absent lens, displaced sensor, exact focal input and nearby floating values. These cases exercise different physical meanings, not merely different colours of the same picture.
 
+## Research extension: finite sensor data can coexist with divergent image uncertainty
+
+The image-distance derivative above is a local sensitivity. It does not prove that a global uncertainty distribution has a finite mean or variance. We now push a simple continuous preparation uncertainty through the exact thin-lens formula and compare it with observations at a specified finite sensor. This supplementary distribution is distinct from the native nine-ray angular fan; no uncertainty slider is added.
+
+### Put uncertainty on the actual object distance
+
+
+$$
+f>0,\quad u=f+d,\quad d\sim\operatorname{Uniform}[\mu-a,\mu+a],\quad 0<\mu<a,\quad f+\mu-a>0:\qquad v=f+\frac{f^2}{d}\quad(d\ne0).
+$$
+
+All lengths are in metres. Every object is real and lies before the lens because u>0. Some realizations have u<f and hence virtual images; others have u>f and real images. The exact focal preparation d=0 has probability zero under this continuous model and no finite image coordinate. Its small probability does not control the nearby large coordinates.
+
+### Transform the distribution and retain both branches
+
+
+$$
+w=v-f,\quad d=\frac{f^2}{w}:\qquad p_v(v)=\frac{f^2}{2a(v-f)^2}\quad\text{on }v\le f-\frac{f^2}{a-\mu}\ \text{or }v\ge f+\frac{f^2}{a+\mu},\qquad p_v(v)=0\text{ otherwise}.
+$$
+
+Use the input density 1/(2a) and the absolute Jacobian f²/w² separately on the negative and positive d branches. Their probabilities are (a−mu)/(2a) and (a+mu)/(2a). The gap in image coordinates is real in this distribution; joining the branches with a plotted line would invent impossible outputs. A negative image coordinate remains a backward extrapolation, not a detector location reached by forward light.
+
+
+$$
+R\ge\frac{f^2}{a-\mu}:\quad\Pr(|v-f|>R)=\frac{f^2}{aR},\qquad\mathbb E|v-f|=\infty,\quad\mathbb E(v-f)^2=\infty.
+$$
+
+The tail follows directly from abs(d)<f²/R. Its 1/R probability decay gives a logarithmically divergent first absolute moment and a divergent second moment. Each signed tail contributes an infinite first moment, so the ordinary mean of v does not exist; a chosen principal value is a different definition. Subtracting a nominal coordinate or a finite constant cannot restore a finite variance. Finite Monte Carlo samples always give finite empirical moments and cannot prove that the population moments exist.
+
+### Measure how a finite output cutoff hides the divergence
+
+
+$$
+T_2(R)=\mathbb E\!\left[(v-f)^2\mathbf1_{\{|v-f|\le R\}}\right]=\frac{f^2R}{a}-\frac{f^4}{2a}\left(\frac1{a-\mu}+\frac1{a+\mu}\right),\quad R\ge\frac{f^2}{a-\mu}.
+$$
+
+Integrate f⁴/d² only where abs(d)≥f²/R. T2 is an unnormalized truncated second moment in m², not a variance and not a conditional RMS. With f=0.1 m, mu=0.0005 m and a=0.001 m, the virtual-image probability is 1/4. The table changes only an analysis cutoff; it does not move the sensor or clip the native image-distance calculation.
+
+| cutoff R (m) | omitted probability | truncated second moment T2 (m²) |
+|---|---|---|
+| 20 | 0.5 | 66.6666667 |
+| 40 | 0.25 | 266.666667 |
+| 80 | 0.125 | 666.666667 |
+| 160 | 0.0625 | 1466.66667 |
+
+```python
+from math import isclose
+
+# Distances in metres; a continuous uncertainty model, not the nine-ray fan.
+f, mu, a = .1, .0005, .001
+assert 0 < mu < a and f+mu-a > 0
+for cutoff in [20, 40, 80, 160]:
+    h = f*f/cutoff
+    assert h <= a-mu or isclose(h, a-mu, rel_tol=1e-14, abs_tol=0)
+    tail = h/a
+    # Integrate f^4/d^2 on [-a+mu,-h] and [h,a+mu].
+    second = f**4/(2*a)*(2/h-1/(a-mu)-1/(a+mu))
+    print(cutoff, format(tail, '.9g'), format(second, '.9g'))
+```
+
+
+$$
+v_{\rm nominal}=f+\frac{f^2}{\mu}=20.1\ \mathrm m,\qquad\sigma_{v,\rm linear}=\frac{f^2}{\mu^2}\frac a{\sqrt3}\approx23.094\ \mathrm m.
+$$
+
+The linear prediction is finite, but the exact distribution has no ordinary standard deviation. The error is not incorrect floating-point division: extending a local derivative across a pole has changed the statistical conclusion. A nominal prediction need not equal a distribution mean.
+
+### Keep the finite sensor as a separate observable
+
+
+$$
+x_z=(1-z/f)x_0+[u(1-z/f)+z]\theta_0,\qquad z\ge0\text{ fixed}.
+$$
+
+This is the same sequential propagation as the native ray calculator: xL=x0+u theta0, output slope theta0−xL/f, then xz=xL+z times output slope. Here x0, theta0, f and sensor z are fixed; only u is uncertain. The formula is affine in u and has no image-distance denominator.
+
+
+$$
+\operatorname{Var}(x_z)=\theta_0^2(1-z/f)^2\frac{a^2}{3}.
+$$
+
+For the example above, x0=1 mm, theta0=0.01 rad and z=0.2 m give mean sensor height −0.005 mm and standard deviation about 5.7735 micrometres. These are finite uncertainty statistics of a single fixed-angle ray over the object-distance distribution. They are not the native fan RMS, a diffraction point-spread function or a claim of optical resolution. Divergent inferred conjugate-image moments do not imply divergent observations on this fixed sensor.
+
+### State a regime where a local expansion is controlled
+
+
+$$
+d=\mu+e,\quad |e|\le a<|\mu|:\qquad v-v_{\rm linear}=\frac{f^2e^2}{\mu^2(\mu+e)},\quad |v-v_{\rm linear}|\le\frac{f^2a^2}{\mu^2(|\mu|-a)}.
+$$
+
+This is a different uncertainty regime, bounded away from the pole. The identity follows by subtracting the exact first-order rational expansion; the denominator has magnitude at least abs(mu)−a. It gives an explicit absolute approximation budget rather than a generic instruction to make the noise small. For inverse-design losses, state whether the target is a conjugate coordinate, a finite sensor reading or a windowed statistic.
+
+![A small uniform object-distance uncertainty straddles the focal condition; its real and virtual image branches have inverse-square tails and a gap, with the plotted image window explicitly cropped.](/assets/learning/waves-ray-image-uncertainty.en.svg)
+
+### Research questions with explanations
+
+**Does zero probability of the exact pole guarantee finite uncertainty?** **Answer:** No. Arbitrarily close preparations produce inverse-square image-coordinate tails. Mean and variance require integrability, not merely exclusion of one point.
+
+**Must a fixed camera sensor inherit this divergent image variance?** **Answer:** No. Its coordinate is affine in u under the stated preparation. Report the correct observable instead of substituting a moving mathematical image plane.
+
+**When is linear uncertainty propagation defensible?** **Answer:** Specify a distribution bounded away from the pole and check the displayed remainder bound against the required precision. A finite simulation or a small nominal error bar alone is insufficient.
+
 ## Explained exercises and research extensions
 
 ### 1. Verify the real image without a matrix

@@ -198,6 +198,121 @@ $$
 
 그림의 물리 축과 종·횡 확대 배율을 표시하고, 중심 강도와 전체 적분량을 함께 비교합니다. 관측면을 바꿀 때 입력 준비는 유지합니다. 직접 Fresnel 적분, q 변환, 폭 분해, 적분 보존은 서로 다른 측면을 검사합니다. 같은 식을 복제한 두 함수의 일치는 이보다 약한 근거입니다.
 
+## 연구 확장: 날카로운 경계는 빔 모멘트의 존재를 바꾼다
+
+앞의 가우스는 유한 이차 모멘트를 갖는다. 적분 강도가 유한하다는 사실만으로 딱딱한 개구 뒤에서도 그 성질이 보장되지는 않는다. 별도의 일차원 Fresnel 예제를 만들고 경계를 완화해 장 노름 수렴이 전체 직선 RMS 폭을 제어하지 못함을 보인다. 기존 이차원 가우스 계산기에 개구를 추가하는 것은 아니다.
+
+### 노름과 미분 정칙성을 구분한다
+
+
+$$
+\widehat\psi(p)=\frac1{\sqrt{2\pi}}\int\psi(x)e^{-ipx}dx,\quad N=\int|\psi|^2dx:\qquad \langle p^2\rangle=\frac{\int p^2|\widehat\psi(p)|^2dp}{N}=\frac{\int|\psi\prime(x)|^2dx}{N}\quad(\psi\in H^1).
+$$
+
+여기서 p는 m⁻¹ 단위의 횡파수이며 역학적 운동량이 아니다. N의 단위는 상대 장 제곱 곱하기 미터다. Sobolev 조건 H1은 장과 약미분이 제곱 적분 가능하다는 뜻이다. Plancherel과 Fourier 미분 항등식이 위 등식을 준다. 영이 아닌 짝수 실수 장에서는 평균 횡파수가 0이므로 이차 모멘트가 분산이다. L2에 속한다는 사실만으로는 노름만 제어하며 이 가중 스펙트럼 적분은 제어하지 못한다.
+
+### 딱딱한 상자는 유한 노름과 무한 스펙트럼 분산을 갖는다
+
+
+$$
+\psi_0(x)=\mathbf1_{\{|x|<a\}},\quad N_0=2a,\quad\widehat\psi_0(p)=\frac{2\sin(ap)}{p\sqrt{2\pi}}:\qquad\frac1{N_0}\int_{-P}^{P}p^2|\widehat\psi_0(p)|^2dp=\frac1{\pi a}\left[P-\frac{\sin(2aP)}{2a}\right]\longrightarrow\infty.
+$$
+
+p=0에서 변환의 극한은 2a/sqrt(2pi)다. 영점 밖 진폭 포락선은 1/p처럼 줄어든다. 진폭 제곱에 p²을 곱하면 감쇠가 사라져 평균이 양수인 비음 진동이 남는다. 동등하게 두 점프의 약미분은 L2 미분이 아니라 델타 분포를 준다. 유한 수치 스펙트럼 절단은 언제나 유한한 값을 반환하지만 다른 절단 의존 통계다.
+
+### 점별 장이 유한해도 RMS가 유한한 것은 아니다
+
+
+$$
+k=2\pi/\lambda,\quad\widehat{U_z\psi}(p)=e^{-izp^2/(2k)}\widehat\psi(p),\qquad xU_z\psi=U_z\left(x\psi+\frac zk(-i\partial_x)\psi\right),\qquad
+|U_z\psi_0(x)|\le\sqrt{\frac{k}{2\pi z}}\,2a<\infty\quad(z>0),\qquad \|xU_z\psi_0\|_2=\infty\quad(z\ne0).
+$$
+
+스펙트럼 전파 위상을 미분하면 위치 항등식을 얻는다. x psi0는 L2이지만 약미분은 아니므로 x Uz psi0가 유한하다면 역유니터리 변환을 적용해 L2 미분을 얻게 되어 모순이다. 점별 상계는 크기가 일정한 Fresnel 핵과 유한 L1 노름 2a를 쓴다. 따라서 유계인 표시 장과 전체 직선 이차 모멘트 발산이 함께 존재할 수 있으며 무한한 최고값을 예측하는 것이 아니다. 상자에서는 매끄러운 장의 항등식을 분포의 의미로 확장한다.
+
+### 명시적인 유한 노름 계열로 경계를 완화한다
+
+
+$$
+\psi_\varepsilon(x)=\begin{cases}1,&|x|\le a,\\(a+\varepsilon-|x|)/\varepsilon,&a<|x|<a+\varepsilon,\\0,&|x|\ge a+\varepsilon,\end{cases}\quad\varepsilon>0,\qquad N_\varepsilon=2a+\frac{2\varepsilon}{3}.
+$$
+
+이는 평탄부 진폭이 같은 서로 다른 준비 상태이며 전파 영상을 각각 최고값으로 정규화한 것이 아니다. 추가한 경사 부분만큼 적분 노름이 다르다. 장은 연속인 구간별 선형 함수이고 약미분에는 델타 기여 대신 유한한 단계가 있다.
+
+
+$$
+\int|\psi_\varepsilon\prime|^2dx=\frac2\varepsilon,\qquad \sigma_p^2=\frac1{\varepsilon(a+\varepsilon/3)}.
+$$
+
+각 경사의 길이는 epsilon, 미분 크기는 1/epsilon이므로 인자 2를 얻는다. 대칭성으로 위치·횡파수 평균이 모두 0이다. 실수 입력의 대칭화 위치·횡파수 공분산도 교차 미분 적분의 실수부가 사라져 0이다. 따라서 다음과 같다.
+
+
+$$
+\sigma_x^2(0)=\frac{2a^3/3+2a^2\varepsilon/3+a\varepsilon^2/3+\varepsilon^3/15}{2a+2\varepsilon/3},\qquad\sigma_x^2(z)=\sigma_x^2(0)+\left(\frac zk\right)^2\sigma_p^2.
+$$
+
+분자는 평탄부와 경사 제곱에 x²을 곱해 적분한 값이다. 전파식은 위치 항등식과 영 공분산에서 나온다. epsilon>0에서는 모든 모멘트가 유한하지만 z와 k를 영이 아닌 값으로 고정하면 경계가 날카로워질 때 둘째 항이 1/epsilon처럼 발산한다. y 노름이 유한하고 영이 아닌 분리 가능한 이차원 장 psiEpsilon(x) g(y)도 같은 정규화 x 모멘트를 갖는다. 기존 축대칭 가우스 준비를 바꾸지 않고 횡단면 예제와 연결하는 방법이다.
+
+### 모멘트 수렴을 추론하지 않고 노름 수렴을 증명한다
+
+
+$$
+\frac{\|\psi_\varepsilon-\psi_0\|_2^2}{\|\psi_0\|_2^2}=\frac{\varepsilon}{3a}\longrightarrow0,\qquad\|U_z\psi_\varepsilon-U_z\psi_0\|_2=\|\psi_\varepsilon-\psi_0\|_2.
+$$
+
+두 추가 경사만 노름 차이에 기여한다. 유니터리 전파는 그 차이를 정확히 보존한다. 그러나 위치 제곱 관측량은 비유계이며 L2 수렴만으로 모멘트가 연속이지는 않다. 작은 적분 장 손실로 적합한 RMS 빔 폭을 인증할 수 없는 이유다. 표는 길이를 a로 나누고 z/k=a²을 고정한다. Python에서 경사 적분을 다시 계산하며 모든 열은 무차원이고 유효 숫자 아홉 자리로 반올림한다.
+
+| epsilon / a | 상대 L2 장 거리 | a² sigma_p² | 전파 RMS / a |
+|---|---|---|---|
+| 0.5 | 0.40824829 | 1.71428571 | 1.47720779 |
+| 0.2 | 0.25819889 | 4.6875 | 2.25144398 |
+| 0.1 | 0.182574186 | 9.67741935 | 3.1676337 |
+| 0.05 | 0.129099445 | 19.6721311 | 4.47401468 |
+
+```python
+from math import sqrt
+
+def integrate(f, lo, hi, n=2000):
+    step = (hi-lo)/n
+    return step/3*(f(lo)+f(hi)+sum(
+        (4 if j % 2 else 2)*f(lo+j*step) for j in range(1, n)))
+
+# Scale lengths by a; z/k=a^2. All four columns are dimensionless.
+a = 1
+for ratio in [.5, .2, .1, .05]:
+    epsilon = a*ratio
+    ramp = lambda x: (a+epsilon-x)/epsilon
+    norm = 2*a+2*integrate(lambda x: ramp(x)**2, a, a+epsilon)
+    x2 = (2*a**3/3+2*integrate(
+        lambda x: x*x*ramp(x)**2, a, a+epsilon))/norm
+    p2 = (2/epsilon)/norm
+    distance = sqrt((norm-2*a)/(2*a))
+    propagated_rms = sqrt(x2+a**4*p2)/a
+    print(ratio, *(format(value, '.9g') for value in
+          [distance, a*a*p2, propagated_rms]))
+```
+
+### 유한 검출기 창과 물리적 유효성을 명시한다
+
+
+$$
+\sigma_{x,R}^2(z)=\frac{\int_{-R}^{R}x^2|U_z\psi(x)|^2dx}{\int_{-R}^{R}|U_z\psi(x)|^2dx}\le R^2\quad\text{for the centered even profiles and a nonzero window signal}.
+$$
+
+이는 짝수 강도 프로파일의 창 RMS 통계이지 전체 직선 모멘트가 아니다. 분모는 포착한 신호이므로 함께 보고해야 하고 신호가 0이면 정규화 폭은 없다. 유한 카메라·스펙트럼 절단·다른 측정 모델은 관측량을 바꾼다. 고정 파장의 날카로운 경계 극한은 수학적 근축 모델에 대한 결과다. 극도로 좁은 경계는 큰 횡파수를 만들므로 전체 Maxwell 전파를 인증하지 않는다. 실험 측정 폭의 무한대나 보정된 파워를 주장하지 않는다.
+
+[MIT Fourier/Sobolev 강의](https://math.mit.edu/~rbm/18-155-F17/L4.pdf)는 정칙성 배경을, [TU Delft 스칼라 회절](https://interactivetextbooks.tudelft.nl/tn2421/content/Chap6_Diffraction/DiffractiveOptics_2022_01Clean.html)은 전파 배경을 제공한다. 위 상자·경사 계열·모멘트 극한은 명시한 일차원 모델에서 유도했다.
+
+![연속 개구 경사는 상대 L2 노름에서 딱딱한 상자로 접근하지만 전파 후 전체 직선 RMS는 커지며 두 진단을 명시적으로 구분한다.](/assets/learning/waves-ray-aperture-moments.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**적분 강도가 유한하면 RMS 폭도 유한한가?** **답:** 아니다. 딱딱한 상자는 유한 노름을 갖지만 스펙트럼 미분 모멘트와 영이 아닌 Fresnel 거리의 전체 직선 위치 모멘트가 발산한다. 점별 유계성은 별개의 성질이다.
+
+**작은 장 노름 손실로 이차 모멘트를 인증할 수 있는가?** **답:** 그것만으로는 안 된다. 경사 계열은 L2에서 수렴하지만 전파 이차 모멘트는 발산한다. 추가 가중 노름이나 미분 제어가 필요하다.
+
+**유한 검출기가 수학적 무한 RMS를 보고하는가?** **답:** 아니다. 포착한 창 의존 통계를 보고한다. 가우스 폭이나 전체 직선 모멘트와 비교하기 전에 창·신호 비율·물리적 전파 가정을 명시한다.
+
 ## 해설 문제와 AI 연구 연결
 
 ### 1. 폭 관례 환산하기
