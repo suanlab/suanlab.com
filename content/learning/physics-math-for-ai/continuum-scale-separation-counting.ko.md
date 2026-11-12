@@ -110,6 +110,123 @@ $$
 
 먼저 손계산 후보 구간을 확인하고 현재 ell만 작게 또는 크게 바꿔 어떤 조건이 실패하는지 설명하세요. 다음에는 L을 줄여 구간 자체가 사라지는 경우를 봅니다. 유한 저장소에서는 p를 바꾸어 Poisson 기준과 비교하세요. AI가 출력한 매끄러운 장의 보존 잔차가 작더라도 평균 길이·실제 계수 요동·시간 척도·경계·열적 완화와 구성 관계의 타당성은 별도로 확인해야 합니다. 다음 주제인 응력·변형에서는 평균장 사이의 힘과 기하를 더 상세히 다룹니다.
 
+## 연구 확장: 쌍 계수와 상관된 관측 창
+
+### 상관 입자 준비를 직접 구성하기
+
+기존 Fano 인자는 상관이 들어갈 위치를 표시하지만 상관 자체를 지정하지 않습니다. 3차원의 균일 Poisson 부모로 새 공간 계수 기준을 만듭니다. 각 부모는 x축 방향의 고정 거리 a만큼 떨어진 두 점을 둡니다. 부모 강도 단위는 역 cubic metre이고 전체 점 강도는 그 두 배입니다. 방향이 고정되므로 평행 이동에는 불변이지만 등방적이지는 않습니다. 배제 부피·충돌·상태식을 포함하지 않습니다. 아래 관측은 축에 맞춘 큐브이며 앞의 선밀도 kernel과 다릅니다.
+
+$$
+\{c_i\}\sim\mathrm{Poisson\ process}(\kappa)\ \text{on }\mathbb R^3,\quad x_{i,\pm}=c_i\pm\tfrac a2e_x,\quad a>0,\quad n=2\kappa,\quad K_W(c)=\mathbf1_W(c-\tfrac a2e_x)+\mathbf1_W(c+\tfrac a2e_x),\quad N_W=\sum_iK_W(c_i).
+$$
+
+### 독립 자식 대신 부모의 기여를 세기
+
+한 부모는 관측 창에 0·1·2개 점을 기여합니다. 이 정수 기여가 일정한 서로 겹치지 않는 영역으로 부모 공간을 나눕니다. 각 영역의 부모 수는 독립 Poisson 변수이므로 평균·분산을 합하면 표시한 적분입니다. 두 창에서는 두 기여의 곱으로 공분산을 얻습니다. 이 직접 구성은 상관된 자식 위치에 매끄러운 pair-correlation 밀도가 있다고 가정하지 않습니다. 결정적 변위는 특이한 상관 측도를 만들 수도 있습니다.
+
+$$
+\mathbb E N_W=\kappa\int K_W(c)\,dc,\quad\operatorname{Var}N_W=\kappa\int K_W(c)^2\,dc,\quad\operatorname{Cov}(N_W,N_B)=\kappa\int K_W(c)K_B(c)\,dc,\quad[\kappa]=\mathrm{m^{-3}}.
+$$
+
+### 겹침이 추가 분산을 정한다
+
+양의 변 길이 ell인 축 정렬 큐브에서 두 자식이 모두 들어오게 하는 부모 영역의 겹침 부피를 I라 둡니다. x 방향 겹침 길이는 ell−a의 양의 부분이고 다른 두 길이는 ell입니다. 두 소속 indicator 합을 제곱하면 교집합의 두 배가 추가됩니다. 평균 수는 같은 강도의 균일 Poisson 준비와 정확히 같은 n 곱하기 부피지만 큐브가 쌍 거리보다 넓으면 분산이 커집니다. Fano 인자는 독립적으로 적합한 상수가 아니라 이 기하의 결과입니다.
+
+$$
+V=\ell^3,\quad I=(\ell-a)_+\ell^2,\qquad\mu=nV,\quad\operatorname{Var}N_W=n(V+I),\quad F_\ell=1+I/V=1+(1-a/\ell)_+.
+$$
+
+### 한 창의 전체 계수 법칙 유도하기
+
+정확히 한 자식을 기여하는 부모와 두 자식을 기여하는 부모를 나눕니다. 겹치지 않는 부모 영역의 부피는 각각 V−I의 두 배와 I이므로 아래 독립 변수 X·Y를 얻습니다. X+2Y에서 평균·분산·확률 생성함수가 직접 나옵니다. ell≤a이면 I=0으로 주변 계수는 정확히 Poisson입니다. 그렇지 않으면 평균이 그대로여도 Poisson 분포일 필요가 없습니다. 이 앙상블 명제를 증명하기 위해 Monte Carlo 실현을 만들 필요는 없습니다.
+
+$$
+X\sim\operatorname{Poisson}(2\kappa(V-I)),\quad Y\sim\operatorname{Poisson}(\kappa I),\quad X\perp Y,\quad N_W=X+2Y,\quad \mathbb E[z^{N_W}]=\exp\{2\kappa(V-I)(z-1)+\kappa I(z^2-1)\}.
+$$
+
+### 빈 관측과 일치 극한 점검하기
+
+생성 변수에 0을 대입하면 빈 창 확률입니다. 같은 평균의 독립 준비보다 쌍 준비는 빈 창을 더 자주 만들면서 분산을 키울 수 있습니다. a가 정확히 0이면 두 자식이 겹쳐 다중도 2의 counting measure가 되며 서로 다른 점의 단순 집합과 구분합니다. 계수는 짝수이고 Fano 인자는 2입니다. 주 모형은 양의 간격을 사용합니다. 반면 영크기 창은 평균이 0이고 관측 상대 잡음 비율이 없으므로 정확히 잡음 없는 물질이라고 표시하지 않습니다.
+
+$$
+\mathbb P(N_W=0)=e^{-\kappa(2V-I)}\ge e^{-nV},\quad 1\le F_\ell\le2,\qquad a=0\ \text{as a multiplicity-counting limit}:\quad N_W=2\operatorname{Poisson}(\kappa V).
+$$
+
+### 인접 창은 부모를 공유할 수 있다
+
+한 면을 공유하지만 겹치지 않는 두 큐브를 둡니다. 한 자식이 각 창에 들어가면 같은 부모가 두 창에 기여합니다. x 방향에서 가능한 부모 중심 구간은 거리 a와 함께 0에서 자라 a=ell에서 길이 ell에 도달하고 a=2ell에서 다시 0으로 줄어듭니다. 횡단 면적은 ell 제곱입니다. 겹침 부피에 부모 강도를 곱하면 공분산입니다. 이 식은 축 정렬 인접 큐브·결정적 변위에 대한 것이며 방향·거리 분포·창 형상을 바꾸면 교집합 기하를 다시 구해야 합니다.
+
+$$
+W=[0,\ell)^3,\quad B=[\ell,2\ell)\times[0,\ell)^2:\qquad\operatorname{Cov}(N_W,N_B)=\kappa\ell^2(\ell-|a-\ell|)_+.
+$$
+
+### Poisson 주변 분포가 창의 독립성을 뜻하지 않는다
+
+a=ell이면 각 큐브 안의 이중 기여가 없어 개별 계수는 Poisson입니다. 그러나 공유 부모가 평균의 절반인 양의 인접 공분산을 줍니다. 따라서 계수 차이의 분산은 독립 창 계산의 평균 두 배가 아니라 평균입니다. 부모 Poisson 과정의 독립 증분과 모순되지 않습니다. 자식 창이 부모 공간에서 겹치는 영역에 의존하기 때문입니다. 주변 분포의 보정만으로 다중 창 AI 손실에 필요한 의존성을 놓칠 수 있습니다.
+
+$$
+a=\ell:\quad N_W,N_B\ \text{each}\sim\operatorname{Poisson}(\mu),\quad\operatorname{Cov}(N_W,N_B)=\mu/2,\quad\operatorname{Corr}(N_W,N_B)=1/2,\quad\operatorname{Var}(N_W-N_B)=\mu.
+$$
+
+### 잡음 허용오차를 척도 의존 조건으로 바꾸기
+
+상대 분산은 Fano 인자를 평균으로 나눈 값입니다. 이 모형에서는 ell에 대해 연속이며 엄격히 감소합니다. 아래 조각별 미분은 각 영역에서 음수이고 ell=a에는 꺾임이 있을 수 있습니다. 양의 ell을 0으로 보내면 상대 요동은 무한대, 크게 하면 0으로 가므로 모든 양의 허용오차에 유일한 양의 문턱이 있습니다. 이 문턱은 앙상블 계수 관측에 대한 것이며 Maxwell 속도 분포·시간 완화·물질 구성 법칙을 증명하지 않습니다.
+
+$$
+C_V^2=\frac{1+(1-a/\ell)_+}{n\ell^3},\qquad\frac{dC_V^2}{d\ell}=\begin{cases}-3/(n\ell^4),&0<\ell<a,\\(-6\ell+4a)/(n\ell^5),&\ell>a,\end{cases}\quad<0.
+$$
+
+### 새 문턱과 기존 proxy 결합하기
+
+Fano 인자가 1~2 사이이므로 상관 계수 문턱은 독립 Poisson 문턱과 그 세제곱근 2배 사이입니다. 상한은 충분한 길이이며 일반적으로 정확한 최솟값은 아닙니다. 선언한 충돌·해상도 proxy와 결합할 때는 계수 하한만 바꿉니다. 선택한 부등식은 등호를 포함하지만 넓은 척도 분리를 증명하지는 않습니다. 수치 격자를 세분화하는 것만으로 물리 부모 강도·쌍 거리·관측 잡음이 바뀌지 않습니다.
+
+$$
+\ell_P=(n\epsilon^2)^{-1/3},\quad C_V(\ell_C)=\epsilon:\qquad\ell_P\le\ell_C\le2^{1/3}\ell_P,\quad\max(\ell_C,c\lambda)\le\ell\le\eta L.
+$$
+
+### 재현 가능한 척도 비교 계산하기
+
+양의 길이 기준 a_ref를 두고 간격은 그 기준, 수밀도는 기준 부피당 4로 정합니다. 허용오차 1/4이면 상관 문턱은 기준 길이보다 크고 아래 다항식으로 정해집니다. 근은 7/4와 15/8 사이이며 상대 잡음의 단조성으로 해당 교차를 구분합니다. 표는 큐브 크기 네 개의 기대 수·Fano 인자·상대 표준편차·평균으로 나눈 인접 공분산입니다. 마지막 열은 Fano=1일 때만 상관계수와 같습니다. Python은 정확한 기하를 구한 뒤 표시용 제곱근을 취합니다. 기존 Poisson/binomial 척도 실습은 유지하며 새 쌍 거리 제어를 제공하지 않습니다.
+
+$$
+a=a_{\rm ref},\quad n=4/a_{\rm ref}^3,\quad\epsilon=1/4,\quad x=\ell/a_{\rm ref}>1:\quad C_V\le\epsilon\ \Longleftrightarrow\ x^4/4-2x+1\ge0,\qquad 7/4<x_C<15/8.
+$$
+
+| ell / a_ref | 기대 수 | Fano 인자 | 상대 표준편차 | 인접 공분산 / 평균 |
+| --- | --- | --- | --- | --- |
+| 0.50000000 | 0.50000000 | 1.00000000 | 1.41421356 | 0.00000000 |
+| 1.00000000 | 4.00000000 | 1.00000000 | 0.50000000 | 0.50000000 |
+| 2.00000000 | 32.00000000 | 1.50000000 | 0.21650635 | 0.25000000 |
+| 4.00000000 | 256.00000000 | 1.75000000 | 0.08267973 | 0.12500000 |
+
+```python
+from fractions import Fraction as F
+from math import sqrt
+# Lengths / a_ref; n*a_ref^3=4, separation/a_ref=1.
+a, n = F(1), F(4)
+for ell in [F(1,2),F(1),F(2),F(4)]:
+    volume = ell**3
+    overlap = max(ell-a,F(0))*ell**2
+    mean = n*volume
+    variance = n*(volume+overlap)
+    fano = variance/mean
+    covariance = n/2*ell**2*max(ell-abs(a-ell),F(0))
+    values = [float(ell),float(mean),float(fano),sqrt(float(variance))/float(mean),float(covariance/mean)]
+    print(" ".join(f"{x:.8f}" for x in values))
+```
+
+[Waagepetersen의 공간 점 과정 강의](https://spatstat.org/Aalborg2022/notes/lecturesRW.pdf)의 Campbell 합·Poisson 독립성 절은 확률 배경입니다. 결정적 쌍 구성·축 정렬 큐브 겹침·계수 문턱 비교는 여기서 유도하며 적합한 유체 측정이나 국소 평형 인증이 아닙니다.
+
+![부모 겹침·척도 의존 계수 분산·의존적인 Poisson 주변 분포](/assets/learning/continuum-paired-count-window-covariance.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**각 큐브의 계수가 Poisson이면 큐브끼리 독립인가?** **답:** 아니다. a=ell이면 각 주변 분산은 평균과 같지만 이웃 큐브가 부모를 공유하여 공분산이 mu/2다.
+
+**공분산을 평균으로 나눈 열이 언제나 상관계수인가?** **답:** 아니다. 이 같은 크기 창의 상관계수는 Fano 곱하기 평균인 분산으로 나눈다. 두 비는 Fano가 1일 때만 같다.
+
+**상관 계수 척도가 가능하면 유체 모형이 인증되는가?** **답:** 아니다. 선언한 계수·충돌·해상도 proxy를 확인한다. 운동론·시간 척도·경계·구성 가정은 별도다.
+
 ## 풀이가 있는 연습 문제
 
 ### 연습 1

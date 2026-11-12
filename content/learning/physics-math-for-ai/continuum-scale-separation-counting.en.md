@@ -110,6 +110,123 @@ $$
 
 First verify the worked feasible interval. Change only the selected ell to identify which condition fails at small or large widths. Then shrink L until the interval itself disappears. In the finite reservoir, vary p and compare binomial and Poisson noise. For an AI-predicted field, also document measured fluctuations, averaging scale, time scales, boundaries and constitutive assumptions. A small conservation residual does not replace these checks. The next topic develops stress and deformation.
 
+## Research extension: paired counts and correlated observation windows
+
+### Construct a correlated population explicitly
+
+The existing Fano factor marks where correlations matter but does not specify them. Build a new spatial counting benchmark from homogeneous Poisson parents in three dimensions. Each parent places two points at a fixed separation a along the x axis. The parent intensity has units inverse cubic metres and the total point intensity is twice as large. This construction is translation-invariant but not isotropic, because the direction is fixed. It includes no excluded volume, collisions or equation of state. The observation below is an aligned cube, not the preceding line-density kernel.
+
+$$
+\{c_i\}\sim\mathrm{Poisson\ process}(\kappa)\ \text{on }\mathbb R^3,\quad x_{i,\pm}=c_i\pm\tfrac a2e_x,\quad a>0,\quad n=2\kappa,\quad K_W(c)=\mathbf1_W(c-\tfrac a2e_x)+\mathbf1_W(c+\tfrac a2e_x),\quad N_W=\sum_iK_W(c_i).
+$$
+
+### Count contributions of a parent, not independent children
+
+A parent contributes zero, one or two points to an observation window. Partition parent space into disjoint regions on which these integer contributions are fixed. The parent counts in those regions are independent Poisson variables, so adding their means and variances gives the displayed integrals. For two windows use the product of the two contributions to obtain covariance. This direct construction avoids assuming that correlated child positions have a smooth pair-correlation density; deterministic offsets can instead produce singular correlation measures.
+
+$$
+\mathbb E N_W=\kappa\int K_W(c)\,dc,\quad\operatorname{Var}N_W=\kappa\int K_W(c)^2\,dc,\quad\operatorname{Cov}(N_W,N_B)=\kappa\int K_W(c)K_B(c)\,dc,\quad[\kappa]=\mathrm{m^{-3}}.
+$$
+
+### The overlap determines the extra variance
+
+For an axis-aligned cube of positive side ell, the parent regions that put its two children inside overlap in volume I. Along x their overlap length is the positive part of ell minus a; the other two lengths remain ell. Squaring the sum of the two membership indicators adds twice the intersection. The mean count stays n times the volume, exactly as in a homogeneous Poisson population of the same intensity, but variance increases once the cube is wider than the pair separation. The resulting Fano factor is a consequence of this geometry, not an independently fitted constant.
+
+$$
+V=\ell^3,\quad I=(\ell-a)_+\ell^2,\qquad\mu=nV,\quad\operatorname{Var}N_W=n(V+I),\quad F_\ell=1+I/V=1+(1-a/\ell)_+.
+$$
+
+### Derive the entire one-window count law
+
+Separate parents that contribute exactly one child from parents that contribute two. Their disjoint parent regions have volumes 2(V−I) and I, respectively, yielding independent variables X and Y below. Adding X plus twice Y gives the mean, variance and probability-generating function directly. When ell is no greater than a, I is zero and the marginal count is exactly Poisson. Otherwise the count need not be Poisson even though its mean remains unchanged. No Monte Carlo realization is needed to establish this ensemble statement.
+
+$$
+X\sim\operatorname{Poisson}(2\kappa(V-I)),\quad Y\sim\operatorname{Poisson}(\kappa I),\quad X\perp Y,\quad N_W=X+2Y,\quad \mathbb E[z^{N_W}]=\exp\{2\kappa(V-I)(z-1)+\kappa I(z^2-1)\}.
+$$
+
+### Check empty observations and the coincident limit
+
+Setting the generating variable to zero gives the empty-window probability. Relative to an independent population with the same mean, pairs can make empty windows more likely while increasing variance. When a is exactly zero, both children coincide: this is a counting measure with multiplicity two, not a simple set of distinct points. It gives an even-valued count and Fano factor two. The primary model uses positive separation. Zero window size instead has zero mean and no observed relative-noise ratio, so it must not be reported as exact noiseless matter.
+
+$$
+\mathbb P(N_W=0)=e^{-\kappa(2V-I)}\ge e^{-nV},\quad 1\le F_\ell\le2,\qquad a=0\ \text{as a multiplicity-counting limit}:\quad N_W=2\operatorname{Poisson}(\kappa V).
+$$
+
+### Adjacent windows can share parents
+
+Now consider two nonoverlapping cubes that share a face. A parent contributes to both if one child lands in each. Along x, the admissible parent-centre interval grows from zero with separation a, reaches length ell at a=ell, and shrinks back to zero at a=2ell. The transverse area is ell squared. Multiplying the overlap volume by parent intensity gives covariance. The formula concerns these aligned neighbouring cubes and deterministic offsets; other orientations, separation distributions or window shapes require their own intersection geometry.
+
+$$
+W=[0,\ell)^3,\quad B=[\ell,2\ell)\times[0,\ell)^2:\qquad\operatorname{Cov}(N_W,N_B)=\kappa\ell^2(\ell-|a-\ell|)_+.
+$$
+
+### Poisson marginals do not imply independent windows
+
+At a equal to ell, each individual cube has no internal double contribution, so its count is Poisson. Yet shared parents give a positive adjacent covariance equal to half the mean. The variance of the count difference is consequently mean, rather than twice mean as an independent-window calculation would predict. This does not contradict independent increments of a Poisson parent process: the child windows depend on overlapping regions in parent space. Marginal calibration alone can therefore miss the dependence relevant to a multi-window AI loss.
+
+$$
+a=\ell:\quad N_W,N_B\ \text{each}\sim\operatorname{Poisson}(\mu),\quad\operatorname{Cov}(N_W,N_B)=\mu/2,\quad\operatorname{Corr}(N_W,N_B)=1/2,\quad\operatorname{Var}(N_W-N_B)=\mu.
+$$
+
+### Turn the noise tolerance into a scale-dependent condition
+
+The relative variance is Fano divided by mean. For this specific model it is continuous and strictly decreasing with ell. The piecewise derivatives below are negative on their respective domains; a corner can occur at ell=a. The relative fluctuation tends to infinity at vanishing positive ell and to zero for large ell, so every positive tolerance selects a unique positive threshold. A threshold is about this ensemble count observable. It does not establish a Maxwellian velocity distribution, temporal relaxation or a material constitutive law.
+
+$$
+C_V^2=\frac{1+(1-a/\ell)_+}{n\ell^3},\qquad\frac{dC_V^2}{d\ell}=\begin{cases}-3/(n\ell^4),&0<\ell<a,\\(-6\ell+4a)/(n\ell^5),&\ell>a,\end{cases}\quad<0.
+$$
+
+### Combine the new threshold with the original proxies
+
+Since Fano lies between one and two, the correlated count threshold lies between the independent Poisson threshold and its cube-root-of-two multiple. The upper bound is sufficient, not generally the exact minimum. Replace only the count lower limit when combining it with the declared collision and resolution proxies. Equality is permitted by the chosen inequalities but does not prove a broad separation of scales. A finer numerical mesh cannot by itself change the physical parent intensity, pair separation or observable noise.
+
+$$
+\ell_P=(n\epsilon^2)^{-1/3},\quad C_V(\ell_C)=\epsilon:\qquad\ell_P\le\ell_C\le2^{1/3}\ell_P,\quad\max(\ell_C,c\lambda)\le\ell\le\eta L.
+$$
+
+### Calculate a reproducible scale comparison
+
+Choose a positive length reference a_ref, separation equal to that reference and number density four per reference volume. With tolerance one quarter, the correlated threshold is above one reference length and is selected by the polynomial below. Its root lies between 7/4 and 15/8; monotonic relative noise identifies the relevant crossing. The table uses four cube sizes and reports expected count, Fano factor, relative standard deviation and adjacent covariance divided by mean. That final column is a correlation coefficient only when Fano equals one. Python uses exact geometry before taking a square root for display. The existing Poisson/binomial scale lab remains unchanged and gains no new pair-separation control.
+
+$$
+a=a_{\rm ref},\quad n=4/a_{\rm ref}^3,\quad\epsilon=1/4,\quad x=\ell/a_{\rm ref}>1:\quad C_V\le\epsilon\ \Longleftrightarrow\ x^4/4-2x+1\ge0,\qquad 7/4<x_C<15/8.
+$$
+
+| ell / a_ref | expected count | Fano factor | relative standard deviation | adjacent covariance / mean |
+| --- | --- | --- | --- | --- |
+| 0.50000000 | 0.50000000 | 1.00000000 | 1.41421356 | 0.00000000 |
+| 1.00000000 | 4.00000000 | 1.00000000 | 0.50000000 | 0.50000000 |
+| 2.00000000 | 32.00000000 | 1.50000000 | 0.21650635 | 0.25000000 |
+| 4.00000000 | 256.00000000 | 1.75000000 | 0.08267973 | 0.12500000 |
+
+```python
+from fractions import Fraction as F
+from math import sqrt
+# Lengths / a_ref; n*a_ref^3=4, separation/a_ref=1.
+a, n = F(1), F(4)
+for ell in [F(1,2),F(1),F(2),F(4)]:
+    volume = ell**3
+    overlap = max(ell-a,F(0))*ell**2
+    mean = n*volume
+    variance = n*(volume+overlap)
+    fano = variance/mean
+    covariance = n/2*ell**2*max(ell-abs(a-ell),F(0))
+    values = [float(ell),float(mean),float(fano),sqrt(float(variance))/float(mean),float(covariance/mean)]
+    print(" ".join(f"{x:.8f}" for x in values))
+```
+
+[Waagepetersen’s spatial point-process lectures](https://spatstat.org/Aalborg2022/notes/lecturesRW.pdf), sections on Campbell sums and Poisson independence, provide the probability background. The deterministic pair construction, aligned-cube overlaps and count-threshold comparison are derived here; they are not fitted fluid measurements or a local-equilibrium certificate.
+
+![Parent overlap, scale-dependent count variance and dependent Poisson marginals](/assets/learning/continuum-paired-count-window-covariance.en.svg)
+
+### Research questions with explanations
+
+**Do Poisson counts in each cube establish independence between cubes?** **Answer:** No. At a=ell the marginal variances equal their means but neighbouring cubes share parents and have covariance mu/2.
+
+**Is the column covariance divided by mean always a correlation coefficient?** **Answer:** No. For these equal windows the correlation divides by variance, which equals Fano times mean. The two ratios coincide only at Fano one.
+
+**Does a feasible correlated-count scale certify a fluid model?** **Answer:** No. It checks the declared count, collision and resolution proxies. Kinetics, time scales, boundaries and constitutive assumptions remain separate.
+
 ## Exercises with answers
 
 ### Exercise 1

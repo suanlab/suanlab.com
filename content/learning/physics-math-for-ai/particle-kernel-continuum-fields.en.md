@@ -108,6 +108,121 @@ $$
 
 Begin with opposite velocities and compare zero mean motion with nonzero dispersion. Give both particles the same velocity to remove that dispersion. Then reduce h to expose narrow peaks and empty regions, and increase it to merge information from neighbours. Finally vary the width rate to isolate observation-induced terms. Several microscopic configurations can share the same limited averages, so smooth outputs and small conservation residuals do not uniquely recover particle states or establish local equilibrium.
 
+## Research extension: energy moments and an unobserved flux
+
+### Extend the same ballistic observation
+
+Keep the finite positive masses, straight particle trajectories and fixed compact kernel already defined. Set the width rate to zero for this calculation. No force, collision or temperature law is added. A moment is a spatially weighted sum of a power of particle velocity; it is not another particle drawn from a new distribution. M0 and M1 are the existing density and mass flux. On a line the second moment has units energy per length and the third moment has units power. These differ from three-dimensional energy density and heat flux per area.
+
+$$
+M_k(x,t)=\sum_i m_i v_i^k W_h(x-X_i-v_it),\quad k=0,1,2,3,\quad \rho=M_0,\quad [M_2]=\mathrm{J/m},\quad[M_3]=\mathrm W.
+$$
+
+### Derive the next equation in the hierarchy
+
+Differentiate a kernel along each straight trajectory. Its time derivative contributes minus vi times its spatial derivative, so the kth moment requires the next velocity moment as its flux. For k=2, dividing by two gives exact energy transport. Integrating the normalized kernel over the whole line recovers the sum of the fixed particle kinetic energies. The compact kernel is C1, sufficient for these first derivatives, even at its support edge. A finite observation window instead requires its boundary energy flux; it does not automatically contain all particle energy.
+
+$$
+\partial_tM_k+\partial_xM_{k+1}=0\ (k=0,1,2),\quad E=M_2/2,\quad F_E=M_3/2,\quad E_t+\partial_xF_E=0,\quad\int_{\mathbb R}E\,dx=\tfrac12\sum_i m_i v_i^2.
+$$
+
+### Separate mean motion from velocity dispersion
+
+Where density is positive, define the local mean velocity and centred second moment. Expanding each squared velocity about that mean gives the split below. K measures energy in mean motion and D energy in the unresolved velocity spread. D is nonnegative, but calling it a thermodynamic internal energy or assigning a temperature requires additional physical assumptions. At a location with no support, raw moments and raw energy are zero, while the observed mean velocity and this ratio-based decomposition are not defined.
+
+$$
+\rho>0:\quad u=M_1/\rho,\quad S=M_2-\rho u^2\ge0,\quad K=\tfrac12\rho u^2,\quad D=\tfrac12S,\quad E=K+D.
+$$
+
+### An energy flux needs a third centred moment
+
+Expand vi cubed as (u+ci) cubed and use the vanishing weighted first centred moment. The remaining cubic contribution is q. The full transport includes advected energy, dispersion work S u and q. In this one-dimensional ballistic calculation q is a centred kinetic-energy transport, not an assumed Fourier heat-conduction law. Neither S nor q follows from local equilibrium here. A positive second moment places no universal sign on the odd third moment.
+
+$$
+q=\tfrac12\sum_i m_i(v_i-u)^3W_h,\qquad M_3=\rho u^3+3uS+2q,\qquad F_E=(E+S)u+q.
+$$
+
+### Derive mean-energy transport from the lower moments
+
+Use continuity and momentum, with momentum flux rho u squared plus S. Applying the product and quotient rules to K gives the first identity below. Adding the derivative of S u moves its transport to the left and leaves S times the velocity gradient as a local exchange. This is the one-dimensional dispersion-work term. Its sign depends on the local gradient. Moving a term between a stored rate and a flux changes the reported local budget, so keep the displayed convention when comparing two models.
+
+$$
+K_t+\partial_x(Ku)=-u\partial_xS,\qquad K_t+\partial_x[(K+S)u]=S\partial_xu.
+$$
+
+### The dispersion budget has the opposite exchange
+
+Subtract the mean-energy equation from total energy. The same exchange appears with a minus sign and cancels when both budgets are added. Thus even collisionless particles can exchange resolved mean and unresolved dispersion energy under the chosen observation. Nonnegative dispersion does not imply nonnegative entropy production, viscous heating or monotone dispersion energy. The process has no collisions and is reversible under reversal of the particle velocities and time. If the smoothing width changes, additional observation terms must be derived before using these fixed-width identities. The bottom figure uses a separate preparation: masses (1,2,3) kg, initial positions (−1/4,0,1/2) m, velocities (−1,1/2,2) m/s, h=3/4 m and t=1/4 s. It plots the two opposite exchange terms, not the complete local time derivative or an irreversible heating rate.
+
+$$
+D_t+\partial_x(Du+q)=-S\partial_xu,\qquad [S\partial_xu]=\mathrm{W/m}.
+$$
+
+### Construct positive populations with identical lower moments
+
+Place two particles at the same initial position and choose their mass fractions and velocities using a positive asymmetry parameter a and a positive speed reference. The fractions sum to one, the mean is zero and the variance is the same for every a. The third moment changes with a and changes sign under a to one over a. These identities hold for the entire initial spatial field because both particles share the same kernel centre. They do not state that the later fields remain equal: the particles then move to different positions.
+
+$$
+a>0:\quad v_-=-a v_{\rm ref},\quad v_+=v_{\rm ref}/a,\quad w_-=\frac1{1+a^2},\quad w_+=\frac{a^2}{1+a^2},\quad\sum w_jv_j=0,\quad\sum w_jv_j^2=v_{\rm ref}^2,\quad\sum w_jv_j^3=(a^{-1}-a)v_{\rm ref}^3.
+$$
+
+### Compare two fully specified preparations
+
+Take mass reference 1 kg and speed reference 1 m/s. The symmetric and asymmetric preparations below both have total mass 5 kg, zero mean, the same density, dispersion and total kinetic energy at t=0. Nevertheless their energy fluxes differ wherever the kernel is nonzero. The table evaluates four positive a values with exact fractions before printing mass fractions, common normalized variance and normalized centred flux. Normalizing q by rho times the reference speed cubed is allowed only inside positive support; it is not an observed quotient outside the particles.
+
+$$
+m_{\rm total}=5m_{\rm ref}:\quad a=1:\ (m_-,m_+)=(\tfrac52,\tfrac52)m_{\rm ref};\quad a=2:\ (m_-,m_+)=(1,4)m_{\rm ref};\quad\rho=5m_{\rm ref}W_h,\quad S=\rho v_{\rm ref}^2,\quad q_1=0,\quad q_2=-\tfrac34\rho v_{\rm ref}^3\quad(t=0).
+$$
+
+### Transform energy as well as velocity
+
+A common Galilean boost transforms the observation position and every particle trajectory together. Kernel weights and centred velocity differences are unchanged, hence S and q are invariant. Total kinetic energy is frame-dependent and changes with mass flux and density as shown. A comparison that boosts vi while retaining the old energy variable is not a symmetry test. The equality is local for corresponding observations, rather than a claim that a fixed laboratory coordinate sees the same particles after the change.
+
+$$
+x'=x+bt,\quad v_i'=v_i+b:\quad u'=u+b,\quad S'=S,\quad q'=q,\quad E'=E+bM_1+\tfrac12b^2\rho.
+$$
+
+### A closure choice can change the predicted evolution
+
+Retain the actual lower moments and energy, but omit q from the energy flux. The resulting residual is minus its spatial derivative. The symmetric example has q=0 initially; the asymmetric example generally has a nonzero gradient despite identical initial density, mean and dispersion. Thus even those entire initial lower-moment fields do not close the energy evolution. A fitted closure needs declared training states and independent flux observations. The native two-particle lab keeps its original density and second-moment controls; this supplementary calculation does not introduce an energy solver or assert a material constitutive law.
+
+$$
+F_{E,\rm omit}=(E+S)u:\qquad E_t+\partial_xF_{E,\rm omit}=-\partial_xq.
+$$
+
+| a | negative-velocity mass fraction | positive-velocity mass fraction | variance / v_ref squared | q / (rho v_ref cubed) |
+| --- | --- | --- | --- | --- |
+| 0.50000000 | 0.80000000 | 0.20000000 | 1.00000000 | 0.75000000 |
+| 1.00000000 | 0.50000000 | 0.50000000 | 1.00000000 | 0.00000000 |
+| 2.00000000 | 0.20000000 | 0.80000000 | 1.00000000 | -0.75000000 |
+| 4.00000000 | 0.05882353 | 0.94117647 | 1.00000000 | -1.87500000 |
+
+```python
+from fractions import Fraction as F
+# Coincident centres at t=0, positive density; normalize speed by v_ref.
+for a in [F(1,2), F(1), F(2), F(4)]:
+    wm, wp = 1/(1+a*a), a*a/(1+a*a)
+    vm, vp = -a, 1/a
+    mean = wm*vm+wp*vp
+    variance = wm*(vm-mean)**2+wp*(vp-mean)**2
+    flux = (wm*(vm-mean)**3+wp*(vp-mean)**3)/2
+    assert mean==0 and variance==1
+    values = [a,wm,wp,variance,flux]
+    print(" ".join(f"{float(x):.8f}" for x in values))
+```
+
+[MIT OCW 16.55, Lectures 13–14](https://ocw.mit.edu/courses/16-55-ionized-gases-fall-2014/resources/mit16_55f14_lecture13-14/) provides general kinetic-moment and energy-flux background. The fixed compact-kernel hierarchy, positive two-stream family and separate mean/dispersion budgets here are derived explicitly for this finite ballistic model.
+
+![Equal initial lower moments, different energy flux and opposite local exchange](/assets/learning/continuum-ballistic-energy-moment-closure.en.svg)
+
+### Research questions with explanations
+
+**Do density, mean velocity and dispersion determine energy flux?** **Answer:** No. The positive two-stream family fixes those initial fields while changing its centred third moment q.
+
+**Is positive dispersion enough to infer irreversible heating?** **Answer:** No. The local exchange has sign S times the velocity gradient and cancels in total energy. This ballistic model contains no collision mechanism.
+
+**Does an empty support measure a mean velocity of zero?** **Answer:** No. Raw energy can be zero there, but velocity requires division by positive density. The central decomposition is not an observed stationary state.
+
 ## Exercises with answers
 
 ### Exercise 1

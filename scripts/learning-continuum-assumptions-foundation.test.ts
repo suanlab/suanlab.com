@@ -16,9 +16,11 @@ for(const id of ['particle-kernel-continuum-fields','continuum-scale-separation-
     const result=await getLearningContent(id),equations:string[][]=[];
     for(const locale of ['ko','en'] as const){
       const source=await readFile(`content/learning/physics-math-for-ai/${id}.${locale}.md`,'utf8'),html=result[locale],outline=result.outline[locale];
-      assert.equal(outline.length,17);assert.equal(new Set(outline.map(h=>h.id)).size,outline.length);for(const h of outline)assert.ok(html.includes(`id="${h.id}"`));
+      const original=source.replace(/^## (?:Research extension:|연구 확장:)[\s\S]*?(?=^## )/m,'');
+      assert.equal((original.match(/^## /gm)||[]).length,17);
+      assert.equal(outline.length,18);assert.equal(new Set(outline.map(h=>h.id)).size,outline.length);for(const h of outline)assert.ok(html.includes(`id="${h.id}"`));
       assert.doesNotMatch(html,/katex-error|<h1/);assert.match(html,/katex-display/);assert.match(html,/tabindex="0"/);assert.match(html,/aria-label=/);
-      assert.equal((source.match(/^### (?:Exercise|연습) \d/gm)||[]).length,6);assert.equal((source.match(/\*\*(?:Answer|해설):\*\*/g)||[]).length,6);
+      assert.equal((original.match(/^### (?:Exercise|연습) \d/gm)||[]).length,6);assert.equal((original.match(/\*\*(?:Answer|해설):\*\*/g)||[]).length,6);
       if(locale==='en'){assert.doesNotMatch(html,/[가-힣]/);assert.ok(source.split(/\s+/).length>1400);}else assert.ok(source.length>5500);
       equations.push([...source.matchAll(/\$\$([\s\S]*?)\$\$/g)].map(m=>m[1].replace(/\s+/g,' ').trim()));
     }
