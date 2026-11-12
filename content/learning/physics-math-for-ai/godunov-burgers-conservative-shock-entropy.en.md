@@ -187,6 +187,101 @@ For a compressive shock, compare the exact front location with threshold crossin
 
 Training only on smooth data may fail to expose the distinction between conservative and advective forms. A face-sharing architecture helps enforce internal cancellation, but it does not choose the correct entropy solution, boundary condition, or stable time step. These require additional mathematical structure and targeted validation.
 
+## Research extension: spatial entropy structure and the time-step correction
+
+The original experiment uses actual Godunov and uncorrected Roe trajectories. This supplement constructs a different two-state flux to isolate spatial entropy structure. Keep the original nondimensional Burgers law and its quadratic mathematical entropy. Distinguish the physical entropy flux from the entropy potential: the latter is what appears in the two-state identity. The periodic teaching examples below do not replace the finite-interval Riemann experiment or its boundary ledgers.
+
+$$
+f(q)=q^2/2,\quad\eta(q)=q^2/2,\quad\psi(q)=q^3/3,\qquad\Psi(q)=qf(q)-\psi(q)=q^3/6.
+$$
+
+Set the two-state entropy defect to zero and factor the difference of cubes. This produces an entropy-conservative flux for this specified entropy pair. At equal states, its continuous expression gives the physical flux without dividing by a zero jump. It is symmetric in its states and can be shared across a face, so its periodic update conserves mass. Entropy conservation here describes the spatial operator, not yet a finite time-stepping method.
+
+$$
+(b-a)F_{\rm ec}(a,b)=\Psi(b)-\Psi(a),\qquad F_{\rm ec}(a,b)=\frac{a^2+ab+b^2}{6},\qquad F_{\rm ec}(a,a)=f(a).
+$$
+
+Averaging the physical fluxes is a different construction. Its entropy-variable work differs by a signed cube of the jump. Periodic mass conservation still holds, but the sign of the sum of those cubes need not be favorable. For the cyclic states zero, two, one, the semidiscrete quadratic entropy rate from this arithmetic-flux rule is positive one half. Sharing faces alone does not determine entropy behavior.
+
+$$
+F_{\rm av}(a,b)=\frac{a^2+b^2}{4},\qquad (b-a)F_{\rm av}-[\Psi(b)-\Psi(a)]=\frac{(b-a)^3}{12}.
+$$
+
+Add a nonnegative coefficient multiplying the state jump to the entropy-conservative baseline. The resulting interface defect is a nonnegative square. The coefficient may depend on the two states, provided it remains finite and nonnegative. No derivative of that coefficient is needed in this instantaneous entropy identity. This is a useful structural form for a learned flux, but it concerns one declared quadratic entropy rather than every convex entropy or every time integrator.
+
+$$
+F_{\alpha}=F_{\rm ec}-\frac{\alpha}{2}(b-a),\quad\alpha\ge0,\qquad D=\Psi(b)-\Psi(a)-(b-a)F_{\alpha}=\frac{\alpha}{2}(b-a)^2\ge0.
+$$
+
+Sum over periodic faces using the actual cell widths and rates. The entropy-potential jumps telescope, leaving minus the interface defects. An Euler step then adds the positive squared-rate term. For zero dissipation the spatial derivative is zero, but every positive Euler step with nonzero rates increases the quadratic entropy. This failure persists even for a very small step; it is not repaired by merely calling the flux entropy-conservative.
+
+$$
+E=\frac12\sum_ih_iq_i^2,\quad\dot E=-\sum_eD_e,\qquad E(q+\Delta tr)-E(q)=-\Delta t\sum_eD_e+\frac{\Delta t^2}{2}\sum_ih_ir_i^2.
+$$
+
+Use a separate three-cell periodic stencil with unit widths and initial states zero, two, one. Compute the three face values once, then all three cell rates together. Their sum vanishes. The state-weighted rate also vanishes for the entropy-conservative flux. These facts are exact rational identities and do not require a shock-position estimate or a continuum reference solution.
+
+$$
+q=(0,2,1),\quad F_{\rm ec}=\left(\frac23,\frac76,\frac16\right),\quad r=\left(-\frac12,-\frac12,1\right),\qquad\sum_ir_i=0,\quad\sum_iq_ir_i=0.
+$$
+
+After a step of one tenth, the first value falls below the original minimum. Negative Burgers states are allowed by the equation; the failure is departure from the initial range, not an intrinsically forbidden velocity sign. At the same time, the positive quadratic increment is retained exactly. Thus a zero spatial defect does not establish a maximum principle or a nonincreasing fully discrete entropy.
+
+$$
+\alpha=0,\quad\Delta t=\frac1{10}:\qquad q^1=\left(-\frac1{20},\frac{39}{20},\frac{11}{10}\right),\quad\Delta E=\frac3{400}>0,\quad\sum_iq_i^1=3.
+$$
+
+Now add constant alpha equal to two. The semidiscrete loss is strictly negative for this state. A small step decreases entropy, whereas a sufficiently large step lets the positive time correction win. Both runs still conserve mass exactly. The table compares separate one-step runs from the same initial state, keeping spatial dissipation and time-step size as distinct controls.
+
+$$
+\alpha=2:\quad r=\left(\frac52,-\frac72,1\right),\quad\dot E=-6,\quad\Delta E=-6\Delta t+\frac{39}{4}\Delta t^2,\qquad\Delta t=\frac7{10}:\ \Delta E=\frac{231}{400}>0.
+$$
+
+For a nonzero rate vector, the exact global quadratic budget supplies a step bound for that particular state and declared flux. It is a global entropy bound, not automatically the strongest cellwise bound, a monotonicity condition or a universal CFL number. At zero rate the actual state does not change and the ratio is unnecessary. A model should report the computed budget rather than fill a zero denominator with an invented admissible step.
+
+$$
+\sum_ih_ir_i^2>0:\qquad\Delta t\le\frac{2\sum_eD_e}{\sum_ih_ir_i^2}\Rightarrow\Delta E\le0;\qquad r=0:\ \Delta E=0.
+$$
+
+For AI research, parameterize a finite face dissipation by a square, share the resulting flux and retain the physical cell widths. This enforces the stated spatial quadratic entropy inequality by construction. It does not certify the chosen time step, monotonicity, all entropy pairs or the resolved shock limit. Test those separately using the original Godunov/Roe controls and independent references. The supplemental family is a design example, not a new option silently added to the interactive solver.
+
+$$
+F_{\theta}(a,b)=F_{\rm ec}(a,b)-\frac{\zeta_{\theta}(a,b)^2}{2}(b-a),\qquad D_{\theta}=\frac{\zeta_{\theta}(a,b)^2}{2}(b-a)^2\ge0.
+$$
+
+All table quantities are nondimensional. Columns are alpha, step, minimum updated state, entropy change and mass. Every row advances the same periodic state (0,2,1) once. A successful spatial entropy identity is distinct from the actual finite-step result.
+
+| alpha | dt | minimum | entropy change | mass |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 0.01000000 | -0.00500000 | 0.00007500 | 3.00000000 |
+| 0.00000000 | 0.10000000 | -0.05000000 | 0.00750000 | 3.00000000 |
+| 2.00000000 | 0.10000000 | 0.25000000 | -0.50250000 | 3.00000000 |
+| 2.00000000 | 0.70000000 | -0.45000000 | 0.57750000 | 3.00000000 |
+
+```python
+from fractions import Fraction as F
+# Nondimensional periodic unit-width cells; each row starts from q=(0,2,1).
+q = [F(0), F(2), F(1)]
+for alpha, dt in ((F(0),F(1,100)),(F(0),F(1,10)),(F(2),F(1,10)),(F(2),F(7,10))):
+    flux = [(a*a+a*b+b*b)/6-alpha*(b-a)/2 for a,b in zip(q,q[1:]+q[:1])]
+    rate = [flux[i-1]-flux[i] for i in range(3)]
+    new = [a+dt*b for a,b in zip(q,rate)]
+    change = (sum(v*v for v in new)-sum(v*v for v in q))/2
+    print(" ".join(f"{float(v):.8f}" for v in (alpha, dt, min(new), change, sum(new))))
+```
+
+[Tadmor, Acta Numerica 2003](https://math.umd.edu/~tadmor/pubs/files/Tadmor_Acta2003.pdf), especially the entropy-conservative and fully discrete discussions, provides the framework. The scalar flux, exact three-cell rates and finite-step budgets above are our explicit specialization.
+
+![Spatial dissipation, positive time corrections and range violations in separate Euler steps](/assets/learning/continuum-burgers-entropy-conservative-time-step.en.svg)
+
+### Research questions with explanations
+
+**Does an entropy-conservative spatial flux give an entropy-conservative Euler step?** **Answer:** No. For nonzero rates, Euler adds a strictly positive quadratic time correction. The zero-dissipation example increases entropy at every positive step size.
+
+**Does a negative updated Burgers state always violate the equation?** **Answer:** No. Signed states are valid. In this example it violates preservation of the initial range, exposing a missing maximum principle.
+
+**What does nonnegative learned dissipation actually guarantee here?** **Answer:** The declared semidiscrete quadratic entropy inequality with shared faces. Stable time integration, monotonicity and other entropy pairs remain separate requirements.
+
 ## Exercises with worked answers and primary sources
 
 1. **Find the wave for left state two and right state zero.** It is a compressive shock with speed one. At time 0.2 it has moved 0.2 length units. Its entropy defect is minus eight divided by twelve, or minus two thirds. The speed follows from the flux jump divided by the state jump.

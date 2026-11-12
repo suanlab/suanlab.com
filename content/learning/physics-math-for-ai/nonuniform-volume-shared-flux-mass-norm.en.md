@@ -188,6 +188,100 @@ Volume weights also affect training. A loss that counts every cell equally gives
 
 Conservation is only one requirement. Learned fluxes can be inconsistent on constant fields, violate positivity, destabilize time integration, or generalize poorly to a new mesh. Flux identification also has a null space: adding the same circulation to every edge of this ring leaves B times the flux unchanged. Cell trajectories alone cannot identify that circulation without additional information.
 
+## Research extension: physical volumes, stochastic averaging and convex entropy
+
+The previous chapter shows that a sufficiently small Euler step is a convex average and contracts a quadratic norm. Here we ask a stronger question: which structure preserves every convex measure of the concentration distribution? Restrict this supplement to zero advection, fixed positive cell volumes and symmetric nonnegative diffusive conductances. Write c for the same concentration state previously denoted q. Count each undirected edge once in an edge sum. A periodic ring is the original geometry; the same derivation works on a finite connected network.
+
+$$
+\dot c=Qc,\qquad Q_{ij}=\frac{g_{ij}}{V_i}\ (i\ne j),\quad Q_{ii}=-\sum_{j\ne i}\frac{g_{ij}}{V_i},\qquad g_{ij}=g_{ji}\ge0,\quad V_i>0.
+$$
+
+The matrix has nonnegative off-diagonal entries and zero row sums. Its invariant weights are physical volume fractions, rather than equal weights on cells of unequal size. Symmetry of the conductance gives detailed balance. These are finite reversible-generator properties. Concentration itself is not a probability of occupying a cell: different volumes store different masses at the same concentration. Keep that distinction when borrowing Markov-chain notation.
+
+$$
+Q\boldsymbol1=0,\quad\pi_i=\frac{V_i}{V_{\rm tot}},\quad V_{\rm tot}=\sum_iV_i,\qquad\pi^TQ=0,\quad\pi_iQ_{ij}=\frac{g_{ij}}{V_{\rm tot}}=\pi_jQ_{ji}.
+$$
+
+Choose a rate at least as large as every total departure rate; taking the maximum is convenient. Adding a scaled generator to the identity then gives a row-stochastic matrix. Each row computes a convex combination and the same volume weights remain invariant. The rate has units inverse seconds. If every conductance is zero, the generator is zero and the solution is the initial state exactly; division by a zero rate is unnecessary and invalid.
+
+$$
+\lambda=\max_i(-Q_{ii})>0,\qquad P=I+Q/\lambda,\quad P_{ij}\ge0,\quad P\boldsymbol1=\boldsymbol1,\quad\pi^TP=\pi^T;\qquad Q=0:\ c(t)=c(0).
+$$
+
+Expand the exponential using Q equal to lambda times P minus I. The coefficients are Poisson probabilities, so the exact evolution is a convex mixture of stochastic powers. This construction is called uniformization. It proves positivity and mass preservation without choosing an Euler step. The infinite identity is exact; a finite numerical sum still has truncation and rounding errors. The current interactive lab continues to execute explicit Euler and does not silently switch to this propagator.
+
+$$
+S(t)=e^{tQ}=e^{-\lambda t}\sum_{n=0}^{\infty}\frac{(\lambda t)^n}{n!}P^n,\qquad S(t)\boldsymbol1=\boldsymbol1,\quad\pi^TS(t)=\pi^T.
+$$
+
+Jensen applies row by row to any convex function defined on the concentration range. Multiplying by the invariant volumes and summing gives a whole-distribution contraction. The old quadratic norm is one member of this family. Absolute value and relative-entropy functions answer other questions. A stochastic row also keeps every concentration within the initial minimum and maximum. A correct mass ledger alone does not provide any of these additional statements.
+
+$$
+\Phi\ \text{convex}:\qquad\sum_iV_i\Phi(c_i(t))\le\sum_iV_i\Phi(c_i(0)),\qquad\min_jc_j(0)\le c_i(t)\le\max_jc_j(0).
+$$
+
+For nonnegative states with positive total mass, normalize actual cell masses into probabilities. Their stationary distribution is the volume fraction. The resulting relative entropy of concentrations equals total mass times a dimensionless Kullback–Leibler divergence. Its units are kilograms, not joules or thermodynamic entropy. The logarithm uses a dimensionless concentration ratio. The linear terms cancel because the physical mass and mean are fixed.
+
+$$
+M_0=\sum_iV_ic_i>0,\quad\bar c=M_0/V_{\rm tot},\quad p_i=V_ic_i/M_0,\qquad\mathcal H=\sum_iV_i\left[c_i\log(c_i/\bar c)-c_i+\bar c\right]=M_0\sum_ip_i\log(p_i/\pi_i)\ge0.
+$$
+
+For strictly positive concentrations, differentiate this functional using the physical face exchanges. Each edge pairs a concentration difference with the same-sign logarithmic difference. This makes its dissipation nonnegative. That argument is independent of a particular initial cosine. It is also a structural constraint for a learned diffusive conductance: sharing a flux and using nonnegative symmetric conductance provide different pieces of the proof.
+
+$$
+\frac{d\mathcal H}{dt}=-\sum_{\{i,j\}}g_{ij}(c_i-c_j)\log(c_i/c_j)\le0\qquad(c_i>0).
+$$
+
+A zero cell concentration is allowed in the entropy itself by the continuous zero-log-zero convention when the mean is positive. The logarithmic derivative at that initial state can be singular; do not report a fabricated finite zero. A connected positive-edge graph spreads any nonzero nonnegative inventory to every cell at positive time. Disconnected components instead retain separate masses and approach their own volume-weighted means. The all-zero state is a separate zero-inventory case, not a ratio with a manufactured mean.
+
+$$
+0\log0:=0\quad(\bar c>0),\qquad\bar c_{\mathcal C}=\frac{\sum_{i\in\mathcal C}V_ic_i(0)}{\sum_{i\in\mathcal C}V_i},\qquad c(0)=0\Rightarrow c(t)=0.
+$$
+
+The Euler matrix is stochastic only when its central coefficients stay nonnegative. Beyond that restriction, one quadratic norm can still decrease while the minimum principle fails. For three unit-volume cells on a ring with unit conductance, the nonconstant generator eigenvalues are both minus three. Quadratic contraction permits steps up to two thirds, while positivity for every nonnegative input requires a step no larger than one half. These are different intervals, even for this tiny exact system.
+
+$$
+c^{n+1}=(I+\Delta tQ)c^n,\qquad\Delta t\lambda\le1\Rightarrow I+\Delta tQ\ge0;\qquad Q=\begin{pmatrix}-2&1&1\\1&-2&1\\1&1&-2\end{pmatrix}:\quad\Delta t_{\rm pos}\le\frac12,\quad\Delta t_{L^2}\le\frac23.
+$$
+
+The explicit counterexample retains mass and decreases the quadratic norm while creating a negative concentration. Its absolute-value convex sum increases, demonstrating that one successful convex diagnostic does not establish all of them. Relative entropy is undefined for that negative state; clipping it would change both the numerical experiment and its mass. The table below compares several separate one-step experiments from the same initial state, not successive steps along one trajectory.
+
+$$
+c^0=(0,1,0),\quad\Delta t=\frac35:\quad c^1=\left(\frac35,-\frac15,\frac35\right),\quad\sum_ic_i^1=1,\quad\frac12\sum_i(c_i^1)^2=\frac{19}{50}<\frac12,\quad\sum_i|c_i^1|=\frac75>1.
+$$
+
+Table columns are step in seconds, minimum concentration in kg/m³, mass in kg, quadratic norm in kg²/m³ and volume-weighted absolute concentration in kg. Each row starts from the same unit-volume ring. The last two rows preserve mass and do not increase the quadratic norm, while violating positivity.
+
+| dt | minimum | mass | quadratic | absolute |
+| --- | --- | --- | --- | --- |
+| 0.10000000 | 0.10000000 | 1.00000000 | 0.33000000 | 1.00000000 |
+| 0.50000000 | 0.00000000 | 1.00000000 | 0.25000000 | 1.00000000 |
+| 0.60000000 | -0.20000000 | 1.00000000 | 0.38000000 | 1.40000000 |
+| 0.66666667 | -0.33333333 | 1.00000000 | 0.50000000 | 1.66666667 |
+
+```python
+from fractions import Fraction as F
+# Unit volumes (m^3), unit conductances (m^3/s), c0=(0,1,0) kg/m^3.
+for dt in (F(1,10), F(1,2), F(3,5), F(2,3)):
+    c = (dt, 1-2*dt, dt)
+    mass = sum(c)
+    quadratic = sum(v*v for v in c)/2
+    absolute = sum(abs(v) for v in c)
+    print(" ".join(f"{float(v):.8f}" for v in (dt, min(c), mass, quadratic, absolute)))
+```
+
+[Ward Whitt’s CTMC chapter, §3.4](https://www.columbia.edu/~ww2040/3106F11/CTMCchapter121906.pdf) develops uniformization. We apply the row-generator convention to the stated physical volumes and derive the entropy and Euler counterexample directly.
+
+![Stochastic diffusion versus Euler positivity and convex-diagnostic failures](/assets/learning/continuum-volume-markov-convex-entropy.en.svg)
+
+### Research questions with explanations
+
+**Does a smaller quadratic norm certify a nonnegative concentration?** **Answer:** No. The exact three-cell Euler example has mass one and quadratic norm 19/50, yet its middle concentration is minus one fifth. Its relative entropy is undefined.
+
+**Why do physical volume fractions appear as invariant probabilities?** **Answer:** Detailed balance uses conductance divided by the receiving row volume. Equal concentration means cell mass is proportional to volume; concentration itself is not cell probability.
+
+**What if conductances disconnect the graph?** **Answer:** Each connected component preserves its own inventory and has its own weighted mean. A global zero-entropy equilibrium need not be reached.
+
 ## Exercises with worked answers and further reading
 
 1. **Why can equal transferred masses produce unequal concentration changes?** Divide the incoming mass by each receiving volume. A 0.1 kg transfer changes a 1 m³ cell by 0.1 kg/m³ and a 2 m³ cell by 0.05 kg/m³. Conservation concerns mass, not equal concentration increments.

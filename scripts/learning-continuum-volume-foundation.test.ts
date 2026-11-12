@@ -5,9 +5,13 @@ import { getLearningContent } from '../src/lib/learning-content';
 test('nonuniform-volume chapter renders matched bilingual equations and six worked exercises', async () => {
     const id = 'nonuniform-volume-shared-flux-mass-norm', result = await getLearningContent(id), equations: string[][] = [];
     for (const locale of ['ko', 'en'] as const) {
-        const source = await readFile(`content/learning/physics-math-for-ai/${id}.${locale}.md`, 'utf8'), html = result[locale];
-        assert.equal(result.outline[locale].length, 14);
-        assert.equal(new Set(result.outline[locale].map(h => h.id)).size, 14);
+        const fullSource = await readFile(`content/learning/physics-math-for-ai/${id}.${locale}.md`, 'utf8'), html = result[locale];
+    const start=fullSource.search(/^## (?:Research extension:|연구 확장:)/m);assert.ok(start>=0);
+    const end=fullSource.indexOf('\n## ',start+4)+1;assert.ok(end>start);
+    const source=fullSource.slice(0,start)+fullSource.slice(end);
+    assert.equal((source.match(/^## /gm)||[]).length,14);
+        assert.equal(result.outline[locale].length, 15);
+        assert.equal(new Set(result.outline[locale].map(h => h.id)).size, 15);
         assert.doesNotMatch(html, /katex-error|<h1/);
         assert.match(html, /katex-display/);
         assert.match(html, /<table/);
