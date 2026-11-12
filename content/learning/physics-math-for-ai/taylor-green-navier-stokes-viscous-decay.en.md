@@ -142,6 +142,99 @@ First inspect the spatial velocity, pressure and vorticity at time zero. Display
 
 For a learned PDE model, reserve unseen viscosities and wave numbers for evaluation. Report divergence, dimensional momentum residuals, pressure-gauge handling, integrated energy and actual tracer motion separately. A low residual can hide a low-amplitude collapse, and an attractive streamline plot does not verify particle timing. This exact family is a controlled benchmark, not evidence that a model handles walls, shocks, arbitrary initial data or three-dimensional turbulent cascades.
 
+## Research extension: base-flow decay and prediction-error growth
+
+The original benchmark shows that a particular flow loses kinetic energy. Does a learned flow approaching that benchmark necessarily reduce its prediction error? Define another smooth, divergence-free solution v of the **same unforced equations**, with the same constant density, viscosity and periodic cell. It may have different initial data. The difference w is a velocity error, and its squared integral D is an error energy in J. This section derives a budget between solutions, not the residual of an arbitrary neural prediction.
+
+$$
+\mathbf w=\mathbf v-\mathbf u,\qquad\nabla\cdot\mathbf w=0,\qquad\mathcal D(t)=\frac\rho2\int_V|\mathbf w|^2\,dV,\qquad V=(2\pi/k)^2d.
+$$
+
+Subtract the two nonlinear momentum equations before taking a norm. Three transport terms appear: background transport of error, distortion of the background by error, and self-transport of error. The pressure difference is periodic. These assumptions allow integration by parts without wall flux or a pressure work contribution across an unmatched boundary.
+
+$$
+\partial_t\mathbf w+(\mathbf u\cdot\nabla)\mathbf w+(\mathbf w\cdot\nabla)\mathbf u+(\mathbf w\cdot\nabla)\mathbf w=-\frac{\nabla\pi}{\rho}+\nu\Delta\mathbf w,\qquad\pi=p_v-p_u.
+$$
+
+Dot the difference equation with rho times w and integrate. Background transport and self-transport vanish by periodicity and zero divergence; pressure does too. Viscosity gives a negative gradient integral. The remaining exchange samples the symmetric background strain S, since a vector contracted with an antisymmetric matrix gives zero. Its sign is not fixed. A decaying base flow can transfer energy into an error direction even though the kinetic energy of each full solution decreases.
+
+$$
+\dot{\mathcal D}=-\rho\int_V\mathbf w^TS(\mathbf u)\mathbf w\,dV-\rho\nu\int_V|\nabla\mathbf w|^2\,dV,\qquad S(\mathbf u)=Ak\begin{pmatrix}\sin(kx)\sin(ky)&0\\0&-\sin(kx)\sin(ky)\end{pmatrix}.
+$$
+
+Require **zero spatial mean error** for the next bound. The smallest nonzero Fourier wave number on this square is k, so Poincare supplies k². The pointwise largest absolute strain eigenvalue is at most |A|k. Combining these gives a scalar differential inequality. Both mean-zero status and the fundamental cell matter: a larger repeated domain permits longer waves and changes the Poincare constant.
+
+$$
+\int_V\mathbf w\,dV=0\ \Longrightarrow\ \int_V|\nabla\mathbf w|^2\,dV\ge k^2\int_V|\mathbf w|^2\,dV,\qquad\dot{\mathcal D}\le(2|A|k-2\nu k^2)\mathcal D.
+$$
+
+Integrate the inequality using the known exponential A. R is a Reynolds number for this amplitude and length 1/k; it is not U L/nu with L = 2pi/k. The dimensionless time z includes a factor two. For computation, evaluate 1-exp(-z) as -expm1(-z) when z is small. This is a conservative upper envelope, and its increase does not by itself prove growth of any actual error.
+
+$$
+\nu>0:\quad z=2\nu k^2t,\quad R=\frac{|U|}{\nu k},\qquad\mathcal D(t)\le\mathcal D(0)\exp\big[R(1-e^{-z})-z\big].
+$$
+
+For R at most one the envelope is nonincreasing. This is a sufficient condition from a norm estimate, not a universal physical transition Reynolds number. For R greater than one, differentiate the logarithm of the envelope: its derivative with respect to z is R exp(-z)-1. Its maximum is at log R. Treat zero viscosity separately rather than dividing by it. Even when the envelope eventually decreases, it need not be a sharp description of an individual solution.
+
+$$
+R>1:\quad z_{\rm peak}=\log R,\quad\log G_{\rm peak}=R-1-\log R;\qquad\nu=0:\quad\mathcal D(t)\le\mathcal D(0)e^{2|U|kt}.
+$$
+
+To demonstrate an actual positive **initial** budget, choose a two-mode stream function. The coefficients a and b have units m/s, and psi has units m²/s. Commuting derivatives makes this w divergence-free; both nonconstant modes have zero mean. It is a valid initial error, so u at time zero plus this w is admissible smooth initial velocity. Do not assume this two-mode form remains an exact solution at later times.
+
+$$
+\xi=kx,\quad\eta=ky,\quad\psi=\frac ak\cos\xi+\frac bk\cos(2\xi+\eta),\qquad\mathbf w=(\partial_y\psi,-\partial_x\psi)=\begin{pmatrix}-b\sin(2\xi+\eta)\\a\sin\xi+2b\sin(2\xi+\eta)\end{pmatrix}.
+$$
+
+Integrate the trigonometric products over one physical cell including depth. Orthogonality gives the first two integrals. Coupling to the background strain leaves the mixed a b term in the third, so changing the relative sign of the two modes changes production. Here U is the signed initial base amplitude, whereas R above uses its absolute value. The units are respectively m⁵/s², m³/s² and m⁵/s³ after the depth integral.
+
+$$
+\int_V|\mathbf w|^2\,dV=\frac V2(a^2+5b^2),\quad\int_V|\nabla\mathbf w|^2\,dV=\frac{k^2V}{2}(a^2+25b^2),\quad\int_V\mathbf w^TS(\mathbf u)\mathbf w\,dV=\frac{UkV}{2}ab\quad(t=0).
+$$
+
+Set b to minus one fifth of a, with a nonzero reference velocity. The strain contribution becomes positive when U is positive. At R = 20 with U positive the exact initial error budget is positive, although the base kinetic energy derivative remains negative. The value 10 here is specific to this chosen two-mode direction. It is not an instability threshold, an exponentially growing eigenmode, or a statement about its whole future trajectory. In contrast, two exact members of the Taylor–Green amplitude family have error energy decaying as exp(-4nu k²t).
+
+$$
+a=v_{\rm ref},\quad b=-v_{\rm ref}/5:\qquad\dot{\mathcal D}(0)=\rho Vv_{\rm ref}^2\big(Uk/10-\nu k^2\big)>0\quad\text{if }U>10\nu k,\ v_{\rm ref}\ne0.
+$$
+
+Finally remove the mean-zero assumption deliberately. A Galilean-shifted base flow plus a constant velocity b is another exact solution, with the pressure shifted by the same spatial argument. Its mean error is b at every time. Jensen or Cauchy–Schwarz gives a positive lower bound on D when b is nonzero. For a resting base, a constant velocity solution realizes the bound exactly. Simply adding b to the unshifted nonconstant base generally fails the equations. This control explains why a mean-free decay certificate cannot be reused for arbitrary mean error.
+
+$$
+\mathbf v(\mathbf x,t)=\mathbf u(\mathbf x-\mathbf b t,t)+\mathbf b,\quad p_v(\mathbf x,t)=p_u(\mathbf x-\mathbf b t,t),\qquad\overline{\mathbf w}=\mathbf b,\quad\mathcal D(t)\ge\frac{\rho V}{2}|\mathbf b|^2.
+$$
+
+The table takes U positive and nu positive. R is followed by the initial upper-bound rate divided by nu k², the exact two-mode initial budget divided by rho V v-ref² nu k², the envelope peak time z, and its peak gain. The gain is a bound on the squared-error integral, not on velocity amplitude. At R = 5 the bound can rise while this particular initial perturbation still decays; R = 20 gives positive initial production for it. No later trajectory of that perturbation is computed here.
+
+| R | bound rate | initial budget | peak z | bound gain |
+| --- | --- | --- | --- | --- |
+| 0.50000000 | -1.00000000 | -0.95000000 | 0.00000000 | 1.00000000 |
+| 1.00000000 | 0.00000000 | -0.90000000 | 0.00000000 | 1.00000000 |
+| 5.00000000 | 8.00000000 | -0.50000000 | 1.60943791 | 10.91963001 |
+| 20.00000000 | 38.00000000 | 1.00000000 | 2.99573227 | 8924115.04815937 |
+
+```python
+from math import exp, log
+for reynolds in (0.5, 1.0, 5.0, 20.0):
+    bound_rate = 2*(reynolds-1)
+    initial_budget = reynolds/10-1  # U positive, a=v_ref, b=-v_ref/5
+    peak_time = log(reynolds) if reynolds > 1 else 0.0
+    gain = exp(reynolds-1-peak_time) if reynolds > 1 else 1.0
+    print(" ".join(f"{x:.8f}" for x in (reynolds, bound_rate, initial_budget, peak_time, gain)))
+```
+
+The [Tanveer energy-method notes](https://people.math.osu.edu/tanveer.1/m865/lec5week.pdf) give integration-by-parts background. The finite-cell constants, Taylor–Green envelope and two-mode initial exchange are derived here. These estimates concern smooth solutions on their common existence interval and make no assertion about general three-dimensional regularity.
+
+![Error upper envelopes, exact initial two-mode budgets and persistent mean error](/assets/learning/continuum-perturbation-energy-exchange.en.svg)
+
+### Research questions with explanations
+
+**Does an increasing error upper bound prove instability?** **Answer:** No. The bound discards directional information. The two-mode calculation separately exhibits a positive initial budget, and even that does not prove sustained growth or a spectral instability.
+
+**Why cannot viscosity remove the mean error in this periodic problem?** **Answer:** The Laplacian of a spatial constant is zero, and the spatial mean momentum is conserved without forcing. A Galilean-shifted solution retains its nonzero mean difference.
+
+**Is this budget valid for any predicted movie with small PDE residual?** **Answer:** Not as written. The derivation assumes two actual divergence-free solutions with compatible periodic pressure and the same parameters. A residual-bearing prediction adds a forcing term to the difference budget that must be estimated separately.
+
 ## Exercises with explanations
 
 ### Exercise 1: the physical cell

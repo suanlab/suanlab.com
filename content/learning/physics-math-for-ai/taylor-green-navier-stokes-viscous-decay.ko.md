@@ -142,6 +142,99 @@ $$
 
 학습 PDE 모델에서는 보지 않은 점성과 파수를 평가용으로 남깁니다. 발산, 단위를 가진 운동량 잔차, 압력 기준 처리, 적분 에너지와 실제 입자 운동을 따로 보고합니다. 진폭을 무조건 작게 만드는 모델도 낮은 잔차를 얻을 수 있으며, 보기 좋은 유선만으로 입자의 시간 진행을 검증할 수는 없습니다. 이 정확 해 가족은 통제된 벤치마크이며 벽, 충격파, 임의 초기 자료나 삼차원 난류 에너지 전달을 다룬다는 증거는 아닙니다.
 
+## 연구 확장: 기준 유동 감쇠와 예측 오차 성장
+
+기존 벤치마크는 특정 유동의 운동 에너지가 줄어드는 모습을 보여줍니다. 그 해를 예측하는 학습 모델의 오차도 반드시 줄어들까요? 같은 밀도·점성·주기 셀에서 **동일한 무외력 방정식**을 만족하는 또 다른 매끄러운 비압축성 해 v를 둡니다. 초기 자료는 다를 수 있습니다. 차이 w는 속도 오차이고 제곱 적분 D는 J 단위의 오차 에너지입니다. 임의 신경망 예측의 잔차가 아니라 두 해 사이의 수지를 유도합니다.
+
+$$
+\mathbf w=\mathbf v-\mathbf u,\qquad\nabla\cdot\mathbf w=0,\qquad\mathcal D(t)=\frac\rho2\int_V|\mathbf w|^2\,dV,\qquad V=(2\pi/k)^2d.
+$$
+
+노름을 취하기 전에 두 비선형 운동량 방정식을 뺍니다. 배경이 오차를 옮기는 항, 오차가 배경을 변형하는 항, 오차의 자기 수송 항이 생깁니다. 압력 차도 주기적입니다. 이 가정 덕분에 벽 플럭스나 서로 맞지 않는 경계의 압력 일을 남기지 않고 부분 적분할 수 있습니다.
+
+$$
+\partial_t\mathbf w+(\mathbf u\cdot\nabla)\mathbf w+(\mathbf w\cdot\nabla)\mathbf u+(\mathbf w\cdot\nabla)\mathbf w=-\frac{\nabla\pi}{\rho}+\nu\Delta\mathbf w,\qquad\pi=p_v-p_u.
+$$
+
+차이 방정식에 rho 곱하기 w를 내적해 적분합니다. 배경·자기 수송과 압력은 주기성·발산 영으로 사라지고 점성은 음의 기울기 적분을 줍니다. 반대칭 행렬의 같은 벡터 이차형식은 영이므로 나머지 교환은 배경 변형률 속도 S만 봅니다. 이 교환의 부호는 고정되지 않습니다. 각 전체 해의 운동 에너지가 감소해도 감쇠하는 기준 유동에서 오차 방향으로 에너지가 전달될 수 있습니다.
+
+$$
+\dot{\mathcal D}=-\rho\int_V\mathbf w^TS(\mathbf u)\mathbf w\,dV-\rho\nu\int_V|\nabla\mathbf w|^2\,dV,\qquad S(\mathbf u)=Ak\begin{pmatrix}\sin(kx)\sin(ky)&0\\0&-\sin(kx)\sin(ky)\end{pmatrix}.
+$$
+
+다음 상계에는 **공간 평균 오차 영**을 요구합니다. 이 정사각형의 가장 작은 비영 Fourier 파수가 k이므로 Poincare 상수는 k²입니다. 점별 변형률 고윳값의 절댓값은 |A|k 이하입니다. 둘을 합쳐 스칼라 미분 부등식을 얻습니다. 평균 영과 기본 셀 크기가 모두 중요합니다. 더 큰 반복 영역에는 긴 파장이 허용되어 Poincare 상수가 달라집니다.
+
+$$
+\int_V\mathbf w\,dV=0\ \Longrightarrow\ \int_V|\nabla\mathbf w|^2\,dV\ge k^2\int_V|\mathbf w|^2\,dV,\qquad\dot{\mathcal D}\le(2|A|k-2\nu k^2)\mathcal D.
+$$
+
+이미 아는 지수 진폭 A를 사용해 부등식을 적분합니다. R은 진폭과 길이 1/k의 Reynolds 수이며 L = 2pi/k를 쓰는 U L/nu와 다릅니다. 무차원 시간 z에도 2가 들어갑니다. 작은 z에서는 1-exp(-z)를 -expm1(-z)로 계산합니다. 이 곡선은 보수적인 상한 포락선입니다. 상한이 증가한다는 사실만으로 실제 오차가 증가한다고 증명할 수는 없습니다.
+
+$$
+\nu>0:\quad z=2\nu k^2t,\quad R=\frac{|U|}{\nu k},\qquad\mathcal D(t)\le\mathcal D(0)\exp\big[R(1-e^{-z})-z\big].
+$$
+
+R이 1 이하면 상한이 증가하지 않습니다. 노름 추정에서 얻은 충분조건이며 보편적인 물리 전이 Reynolds 수가 아닙니다. R이 1보다 크면 포락선 로그를 z로 미분한 값은 R exp(-z)-1이므로 log R에서 최대입니다. 점성 영은 별도로 다루고 영으로 나누지 않습니다. 포락선이 나중에 감소하더라도 개별 해를 날카롭게 기술한다는 뜻은 아닙니다.
+
+$$
+R>1:\quad z_{\rm peak}=\log R,\quad\log G_{\rm peak}=R-1-\log R;\qquad\nu=0:\quad\mathcal D(t)\le\mathcal D(0)e^{2|U|kt}.
+$$
+
+실제로 양의 **초기** 오차 수지를 만들기 위해 두 모드 유선함수를 고릅니다. a와 b는 m/s, psi는 m²/s 단위입니다. 혼합 미분의 교환으로 w는 발산 영이며 두 비상수 모드의 평균도 영입니다. 시간 영의 기준 해에 이 w를 더한 값은 허용되는 매끄러운 초기 속도입니다. 이후에도 이 두 모드 모양이 정확 해로 유지된다고 가정하지 않습니다.
+
+$$
+\xi=kx,\quad\eta=ky,\quad\psi=\frac ak\cos\xi+\frac bk\cos(2\xi+\eta),\qquad\mathbf w=(\partial_y\psi,-\partial_x\psi)=\begin{pmatrix}-b\sin(2\xi+\eta)\\a\sin\xi+2b\sin(2\xi+\eta)\end{pmatrix}.
+$$
+
+깊이를 포함한 한 실제 주기 셀에서 삼각함수 곱을 적분합니다. 직교성으로 앞의 두 식을 얻습니다. 배경 변형률과 결합하면 셋째 식에 a b 교차 항이 남아 두 모드 상대 부호가 생성의 부호를 바꿉니다. 여기의 U는 부호 있는 초기 기준 진폭이고 앞의 R은 절댓값을 사용합니다. 깊이 적분 뒤 세 양의 단위는 차례로 m⁵/s², m³/s², m⁵/s³입니다.
+
+$$
+\int_V|\mathbf w|^2\,dV=\frac V2(a^2+5b^2),\quad\int_V|\nabla\mathbf w|^2\,dV=\frac{k^2V}{2}(a^2+25b^2),\quad\int_V\mathbf w^TS(\mathbf u)\mathbf w\,dV=\frac{UkV}{2}ab\quad(t=0).
+$$
+
+b를 a의 음의 오분의 일로 두고 a는 비영 기준 속도로 정합니다. U가 양수이면 변형률 기여가 양수가 됩니다. U가 양수인 R = 20에서는 정확한 초기 오차 변화율이 양수이지만 기준 운동 에너지 변화율은 음수입니다. 여기의 10은 이 두 모드 방향에만 해당합니다. 불안정성 문턱이나 지수 성장 고유모드, 전체 미래 궤적에 대한 주장이 아닙니다. 반면 Taylor–Green 진폭 가족 내부의 두 정확 해 사이 오차 에너지는 exp(-4nu k²t)로 감소합니다.
+
+$$
+a=v_{\rm ref},\quad b=-v_{\rm ref}/5:\qquad\dot{\mathcal D}(0)=\rho Vv_{\rm ref}^2\big(Uk/10-\nu k^2\big)>0\quad\text{if }U>10\nu k,\ v_{\rm ref}\ne0.
+$$
+
+마지막으로 평균 영 가정을 일부러 제거합니다. 기준 해의 공간 인자를 Galilean 이동시키고 상수 속도 b를 더하면 다른 정확 해이며 압력도 같은 인자로 이동시킵니다. 평균 오차는 항상 b입니다. Jensen 또는 Cauchy–Schwarz로 b가 비영일 때 D의 양의 하한을 얻습니다. 기준이 정지이면 상수 속도 해가 이 하한을 정확히 이룹니다. 공간 이동 없이 비상수 기준 해에 b만 더하면 일반적으로 방정식을 실패합니다. 평균 영 감쇠 인증을 임의 평균 오차에 재사용할 수 없는 이유입니다.
+
+$$
+\mathbf v(\mathbf x,t)=\mathbf u(\mathbf x-\mathbf b t,t)+\mathbf b,\quad p_v(\mathbf x,t)=p_u(\mathbf x-\mathbf b t,t),\qquad\overline{\mathbf w}=\mathbf b,\quad\mathcal D(t)\ge\frac{\rho V}{2}|\mathbf b|^2.
+$$
+
+표는 U와 nu가 양수입니다. R 다음 열은 초기 상계 변화율을 nu k²로 나눈 값, 정확한 두 모드 초기 수지를 rho V v-ref² nu k²로 나눈 값, 포락선 최대 시간 z, 최대 배율입니다. 배율은 속도 진폭이 아니라 제곱 오차 적분의 상한입니다. R = 5에서는 상계가 증가할 수 있어도 이 특정 초기 교란은 감소하고, R = 20에서는 양의 초기 수지를 얻습니다. 해당 교란의 이후 궤적을 계산한 것은 아닙니다.
+
+| R | 상계 변화율 | 초기 수지 | 최대 z | 상계 배율 |
+| --- | --- | --- | --- | --- |
+| 0.50000000 | -1.00000000 | -0.95000000 | 0.00000000 | 1.00000000 |
+| 1.00000000 | 0.00000000 | -0.90000000 | 0.00000000 | 1.00000000 |
+| 5.00000000 | 8.00000000 | -0.50000000 | 1.60943791 | 10.91963001 |
+| 20.00000000 | 38.00000000 | 1.00000000 | 2.99573227 | 8924115.04815937 |
+
+```python
+from math import exp, log
+for reynolds in (0.5, 1.0, 5.0, 20.0):
+    bound_rate = 2*(reynolds-1)
+    initial_budget = reynolds/10-1  # U positive, a=v_ref, b=-v_ref/5
+    peak_time = log(reynolds) if reynolds > 1 else 0.0
+    gain = exp(reynolds-1-peak_time) if reynolds > 1 else 1.0
+    print(" ".join(f"{x:.8f}" for x in (reynolds, bound_rate, initial_budget, peak_time, gain)))
+```
+
+[Tanveer 에너지 방법 강의 노트](https://people.math.osu.edu/tanveer.1/m865/lec5week.pdf)는 부분 적분 방법의 배경입니다. 유한 셀의 상수·Taylor–Green 포락선·두 모드 초기 교환은 여기서 유도합니다. 공통으로 매끄러운 해가 존재하는 구간의 추정이며 일반 삼차원 정칙성에 대한 주장이 아닙니다.
+
+![오차 상한 포락선과 정확한 초기 두 모드 수지 및 유지되는 평균 오차](/assets/learning/continuum-perturbation-energy-exchange.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**오차 상한 증가가 불안정성을 증명하나요?** **답:** 아닙니다. 상계에서 방향 정보가 사라집니다. 두 모드 계산은 별도로 양의 초기 수지를 보이지만 그것도 지속 성장이나 스펙트럼 불안정성을 증명하지는 않습니다.
+
+**이 주기 문제에서 점성은 왜 평균 오차를 없애지 못하나요?** **답:** 공간 상수의 라플라시안은 영이고 외력 없는 평균 운동량은 보존됩니다. Galilean 이동한 해는 비영 평균 차이를 유지합니다.
+
+**작은 PDE 잔차의 모든 예측 영상에 이 수지가 적용되나요?** **답:** 쓰인 그대로는 아닙니다. 유도는 같은 매개변수·양립하는 주기 압력의 실제 발산 영 해 두 개를 가정합니다. 잔차가 있는 예측에는 오차 수지에 강제 항이 추가되며 따로 추정해야 합니다.
+
 ## 해설이 있는 연습
 
 ### 연습 1: 실제 셀

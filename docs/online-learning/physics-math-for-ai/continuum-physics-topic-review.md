@@ -1,6 +1,6 @@
 # 연속체·유체·탄성·수송 11원주제 연구 대조 순서
 
-2026-11-13. 전자기학의 [20단원 연구 종합 대조](electromagnetism-research-audit.md)에 이어 연속체의 **11원주제·22단원·44한영 원고**를 기존 순서대로 검토한다. 기존 [입문 종합 감사](continuum-domain-final-audit.md)는 출발 근거이며 연구 심화 완료와 구분한다. 첫 두 단원의 [보존식 연구 보강](continuum-conservation-research-status.md)은 82검사·새 빌드·16화면 검증을 마쳤다. 이후 [연속체 가정 연구 보강](continuum-assumptions-research-status.md)도 46검사·새 빌드·16화면을 통과해 [응력·변형](continuum-stress-research-status.md)도 145검사·새 빌드·16화면을 통과해 순차 보강은 6/22이며 전체 **42영역·415주제 대조/9영역·94주제 후속**을 유지한다.
+2026-11-13. 전자기학의 [20단원 연구 종합 대조](electromagnetism-research-audit.md)에 이어 연속체의 **11원주제·22단원·44한영 원고**를 기존 순서대로 검토한다. 기존 [입문 종합 감사](continuum-domain-final-audit.md)는 출발 근거이며 연구 심화 완료와 구분한다. 첫 두 단원의 [보존식 연구 보강](continuum-conservation-research-status.md)은 82검사·새 빌드·16화면 검증을 마쳤다. 이후 [연속체 가정 연구 보강](continuum-assumptions-research-status.md)도 46검사·새 빌드·16화면을 통과해 [응력·변형](continuum-stress-research-status.md)도 145검사·새 빌드·16화면을 통과해 [유동](continuum-flow-research-status.md)도 128검사·새 빌드·16화면을 통과해 순차 보강은 8/22이며 전체 **42영역·415주제 대조/9영역·94주제 후속**을 유지한다.
 
 ## 원주제와 실제 등록 단원
 
@@ -26,7 +26,7 @@
 
 둘째 단원은 별도 이상 기체 점프에서 세 Rankine–Hugoniot 조건과 엔트로피 부호를 유도한다. 같은 상태의 좌우 반전은 세 보존을 통과하지만 엔트로피 조건을 실패한다. Galilean 변환에서는 속도·운동량·총에너지·점프 궤적을 함께 바꾼다. 기존 매끄러운 affine 실습을 충격파 해법으로 소개하지 않는다. 상세 범위는 [보강 설계](continuum-conservation-research-plan.md)를 따른다.
 
-응력·변형 두 단원은 기존 본문을 보존하고 방향 관측의 식별성과 공간 변형장의 적합성을 검증했다. 다음은 Euler/Navier–Stokes 두 단원의 유입 경계 조건과 기준 해·오차 에너지다.
+응력·변형 두 단원은 기존 본문을 보존하고 방향 관측의 식별성과 공간 변형장의 적합성을 검증했다. Euler/Navier–Stokes의 유입 경계와 기준 해·오차 에너지까지 검증했다. 다음은 열·물질 확산의 엔트로피 생성과 Gaussian 분포 비교다.
 
 ## 순차 검증과 완료 기준
 

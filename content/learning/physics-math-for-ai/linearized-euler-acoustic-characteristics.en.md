@@ -127,6 +127,99 @@ First activate a single acoustic mode and compare its crest displacement with it
 
 For a physics-informed model, record units and normalization separately for the three equation residuals: adding their dimensional magnitudes is not an invariant score. Hold out a mean-flow or sound-speed setting and test propagation, not only pointwise interpolation. A network can exploit a restricted training phase or confuse pressure-free contact with missing data. Check characteristic motion, finite-window budgets and the negative control as separate observations. These tests probe this family; they do not certify a general compressible-flow surrogate.
 
+## Research extension: incoming boundaries and a norm that sees contact
+
+A neural predictor may fit every interior equation while importing an unmeasured disturbance through an inappropriate boundary. Consider a **separate finite-interval problem** on 0 < x < L with the same uniform ideal-gas linearization. Here the background is strictly subsonic and rightward. Keep the acoustic characteristics from above, and rescale the contact variable to a velocity h. This rescaling lets all three squared amplitudes use one declared dimensional scale; it does not make the contact signal acoustic.
+
+$$
+w_+=u'+\frac{p'}{\rho_0c},\quad w_-=u'-\frac{p'}{\rho_0c},\quad h=\frac{s}{\rho_0c}=\frac{p'-c^2\rho'}{\rho_0c},\qquad 0<U<c.
+$$
+
+Each component is transported at its own constant speed. A plus characteristic reaches the interval through the left end; a minus characteristic reaches it through the right end. The contact signal also enters from the left. Initially compatible smooth data and boundary data are assumed. The original interactive experiment uses analytic waves on the line; it does not solve this new reflecting-boundary problem.
+
+$$
+(\partial_t+(U+c)\partial_x)w_+=0,\quad(\partial_t+(U-c)\partial_x)w_-=0,\quad(\partial_t+U\partial_x)h=0.
+$$
+
+The earlier acoustic density q sees velocity and pressure but misses a pure contact disturbance. Add a positive contact weight beta to obtain a norm of the **full linearized state**. This norm vanishes only when all three characteristic variables vanish. Beta is an arbitrary positive dimensionless comparison weight. Although the units match energy density, the new term is not a derived thermodynamic internal energy, and the whole expression is not the nonlinear gas energy.
+
+$$
+\mathcal E_\beta=\frac{\rho_0}{4}(w_+^2+w_-^2)+\frac{\beta\rho_0}{2}h^2,\quad\beta>0,\qquad[\mathcal E_\beta]=\mathrm{J/m^3}.
+$$
+
+Multiply each transport equation by its weighted characteristic amplitude and add. Constant coefficients turn every term into a derivative of a square. The acoustic flux has one positive and one negative speed contribution, whereas contact is advected with the background. This local identity is independent of a particular sinusoidal initial condition.
+
+$$
+\partial_t\mathcal E_\beta+\partial_x\mathcal F_\beta=0,\qquad\mathcal F_\beta=\frac{\rho_0}{4}\big[(U+c)w_+^2+(U-c)w_-^2\big]+\frac{\beta\rho_0U}{2}h^2.
+$$
+
+Integration gives the signed boundary budget. The integral has units J/m², and its time derivative has units W/m². A specified cross-sectional area would turn them into J and W. At the left end two independent incoming signals need rules; at the right end only one does. Prescribing density, velocity and pressure independently at both ends generally constrains outgoing information that is already determined by the interior.
+
+$$
+\frac{d}{dt}\int_0^L\mathcal E_\beta\,dx=\mathcal F_\beta(0,t)-\mathcal F_\beta(L,t),\qquad\text{incoming: }(w_+,h)|_{x=0},\ w_-|_{x=L}.
+$$
+
+Normalize acoustic amplitudes by their **norm flux**, rather than comparing raw velocities. Squared eta has units W/m². Equal eta magnitudes carry equal magnitudes of this acoustic norm flux even though the two laboratory propagation speeds differ. These are mathematical norm-flux variables, not an assumption about a physical sound-power meter.
+
+$$
+\eta_+=\sqrt{\frac{\rho_0(U+c)}4}\,w_+,\qquad\eta_-=\sqrt{\frac{\rho_0(c-U)}4}\,w_-,\qquad\mathcal F_\beta=\eta_+^2-\eta_-^2+\frac{\beta\rho_0U}{2}h^2.
+$$
+
+For a concrete homogeneous boundary contract, make each incoming acoustic eta a real scalar multiple of the outgoing eta at that end, with magnitude at most one. Set incoming contact to zero. An initial contact signal can leave at the right, but no contact signal is injected at the left. Negative reflection coefficients reverse sign and leave the squared budget unchanged.
+
+$$
+\eta_+(0,t)=r_L\eta_-(0,t),\quad\eta_-(L,t)=r_R\eta_+(L,t),\quad h(0,t)=0,\quad |r_L|,|r_R|\le1.
+$$
+
+Substitution makes every boundary contribution nonpositive. Thus the augmented integral cannot increase. Notice the reciprocal conversion factors for raw w amplitudes: the right-end incoming amplitude may exceed its outgoing counterpart while its incoming norm flux remains bounded. This calculation is a mathematical stability statement for the stated homogeneous contract. It does not identify a rigid-wall reflection law in a gas with nonzero mean throughflow, or certify thermodynamic passivity of a device.
+
+$$
+\begin{aligned}w_+(0,t)&=r_L\sqrt{\frac{c-U}{c+U}}\,w_-(0,t),\\w_-(L,t)&=r_R\sqrt{\frac{c+U}{c-U}}\,w_+(L,t),\\\frac{d}{dt}\int_0^L\mathcal E_\beta\,dx&=(r_L^2-1)\eta_-^2(0,t)+(r_R^2-1)\eta_+^2(L,t)-\frac{\beta\rho_0U}{2}h^2(L,t)\le0.\end{aligned}
+$$
+
+As a negative control, equate raw incoming and outgoing w at the left. The net acoustic flux is then positive: equal amplitudes have unequal transport speeds. If the right-end signal and contact signal vanish at that instant, the integrated norm grows. A pulse following a full acoustic round trip takes T; the normalized amplitude on its original branch is multiplied by rL times rR. This statement concerns noninteracting constant-speed characteristics and the declared contracts, not a simulation of nonlinear reflections.
+
+$$
+w_+(0,t)=w_-(0,t)=w\ \Longrightarrow\ \mathcal F_{\rm acoustic}(0,t)=\frac{\rho_0U}{2}w^2>0\quad(U>0,\ w\ne0),\qquad T=\frac{L}{U+c}+\frac{L}{c-U}.
+$$
+
+A second control isolates what the observation misses. Extend the initial contact profile by zero outside the interval and advect it at U with zero incoming contact. Both acoustic modes remain zero, so q is identically zero while density differs from the background. Since rho-prime = -rho-zero h/c in this control, choose |h-zero|/c small enough to retain positive density and the small-perturbation regime. The sin-to-the-fourth integral gives a strictly positive initial augmented norm. A pressure-only evaluation can therefore report perfect agreement while missing transported density information.
+
+$$
+w_+=w_-=0,\quad h(x,0)=h_0\sin^2(\pi x/L)\ (0\le x\le L):\qquad q=0,\quad\int_0^L\mathcal E_\beta(x,0)\,dx=\frac{3\beta\rho_0h_0^2L}{16}>0\quad(h_0\ne0).
+$$
+
+The table uses Mach number M = U/c. Columns are M, the left raw-amplitude conversion at rL = 1, the right conversion at rR = 1, round-trip time Tc/L, and the incoming/outgoing flux ratio of the incorrect equal-raw-amplitude rule at the left. All are dimensionless. A large right conversion near sonic flow does not contradict the norm contract; the outgoing and incoming speeds are different.
+
+| M | left factor | right factor | Tc/L | raw flux ratio |
+| --- | --- | --- | --- | --- |
+| 0.10000000 | 0.90453403 | 1.10554160 | 2.02020202 | 1.22222222 |
+| 0.30000000 | 0.73379939 | 1.36277029 | 2.19780220 | 1.85714286 |
+| 0.60000000 | 0.50000000 | 2.00000000 | 3.12500000 | 4.00000000 |
+| 0.90000000 | 0.22941573 | 4.35889894 | 10.52631579 | 19.00000000 |
+
+```python
+from math import sqrt
+for mach in (0.1, 0.3, 0.6, 0.9):
+    left = sqrt((1-mach)/(1+mach))
+    right = 1/left
+    trip = 2/(1-mach*mach)
+    raw_flux_ratio = (1+mach)/(1-mach)
+    print(" ".join(f"{x:.8f}" for x in (mach, left, right, trip, raw_flux_ratio)))
+```
+
+The [Guaily–Epstein paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC4293881/) supplies incoming-characteristic boundary background. The augmented norm, speed-weighted contracts, contact control and table here are derived separately. They are not a new boundary control in the existing lab.
+
+![Incoming and outgoing norm fluxes, speed conversions and the invisible acoustic contact direction](/assets/learning/continuum-subsonic-incoming-norm.en.svg)
+
+### Research questions with explanations
+
+**Can a zero acoustic loss certify zero density error?** **Answer:** No. In the contact-only control, q is zero but density is nonuniform. Measure a full-state quantity or report that the acoustic observation has a contact null direction.
+
+**Does a raw reflection coefficient of one imply zero boundary injection?** **Answer:** No. At the left boundary with U positive it produces positive acoustic norm flux. Convert using the declared characteristic-speed weights before judging the contract.
+
+**Can the same formula be used at a sonic point by clipping its denominator?** **Answer:** No. At U = c one characteristic has zero laboratory speed, and at U = 0 contact is stationary. Recount incoming and stationary information; do not invent a finite boundary conversion by clipping.
+
 ## Exercises with explanations
 
 ### Exercise 1: a stationary laboratory signal
