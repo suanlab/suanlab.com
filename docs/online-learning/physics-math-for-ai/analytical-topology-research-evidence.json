@@ -41,19 +41,19 @@
   "assets": [
     {
       "path": "public/assets/learning/analytical-topology-period.en.svg",
-      "sha256": "77a98240acaedd38c062edab28c65acb85bf08556b769785ce959d01bf368f53"
+      "sha256": "42993df6bedc8f7aea9440cc268d1ae481f54bed18c379ca96858f99abbe4b24"
     },
     {
       "path": "public/assets/learning/analytical-topology-period.ko.svg",
-      "sha256": "43a807635f2855f2e7849136b3bffeacf5b7694e46e730ec92f9f654e3f93f11"
+      "sha256": "a5054594e283b44451a41e74aa33bbf28a98e7921ca4b86695938dbeb7f94839"
     },
     {
       "path": "public/assets/learning/analytical-circle-gauge.ko.svg",
-      "sha256": "d722d352e3b325c175a65cb94db044d173d138a6739f119c2eefedfe1ce91fbf"
+      "sha256": "9bf7ee60b05123ba9d72021a0ce355e901b24e574e791cac3bf2d8fb45624303"
     },
     {
       "path": "public/assets/learning/analytical-circle-gauge.en.svg",
-      "sha256": "6691ae3b73a4c1a51c40f08ec1a59d6b2cb49f0583946ac1bb0738ad69c98e21"
+      "sha256": "3a2be5cbfddd37bfa8a9e6f6e1e39114ba408c3200e9fe737f71aea81e05609e"
     }
   ],
   "verification": {
@@ -125,7 +125,8 @@
       "prerequisiteClosure": 175,
       "acyclic": true,
       "unknownIds": 0
-    }
+    },
+    "svgWhitespaceNormalization": "Four SVG files normalized; equivalent XML geometry and text verified; static export copies synchronized."
   },
   "remainingReview": {
     "domains": 12,
