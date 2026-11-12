@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-13 최신: [응력 관측 식별성과 유한 변형장 적합성](physics-math-for-ai/continuum-stress-research-status.md)을 한영 4원고·4그림에 통합하고 관련 145검사·새 빌드·16화면을 검증했다. 연속체 연구 순차 보강은 **6/22단원**, 다음은 Euler/Navier–Stokes다. 영역 집계는 **42/415 대조·9/94 후속**이며 전체 교육과정은 미완료다. 아래 기록은 당시 상태다.
+
 2026-11-13 최신: [연속체 가정의 에너지 계층·쌍 계수 상관](physics-math-for-ai/continuum-assumptions-research-status.md)을 한영 4원고·4그림에 통합하고 관련 46검사·새 빌드·16화면을 검증했다. 연속체 연구 순차 보강은 **4/22단원**, 다음은 응력·변형이다. 영역 집계는 **42/415 대조·9/94 후속**이며 전체 교육과정 완료는 false다.
 
 2026-11-13 최신: [연속체 보존식의 약한 수지·엔트로피 허용성](physics-math-for-ai/continuum-conservation-research-status.md)을 한영 4원고·4그림에 통합하고 관련 82검사·새 빌드·16화면을 검증했다. 연속체 연구 순차 보강은 **2/22단원**이며 다음은 [연속체 가정](physics-math-for-ai/continuum-physics-topic-review.md)이다. 영역 집계는 **42/415 대조·9/94 후속**, 전체 교육과정 완료는 false를 유지한다.

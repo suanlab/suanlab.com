@@ -112,6 +112,120 @@ $$
 
 먼저 평행 이동과 정확한 회전에서 실제 길이·면적 보존을 확인하세요. 회전각을 키워 소변형률과 Green 값의 차이를 보고 단순 전단과 축 신장으로 넘어갑니다. 다음에는 I+omega J 대조와 작은 회전의 안정 보정을 비교합니다. AI가 예측한 변위장에서는 적합한 변형률 정의, 실제 점의 거리, 행렬식·경계 조건·재료 관계를 함께 확인해야 합니다. 작은 공유 잔차만으로 전체 변형장이나 실제 응력을 인증하지 않습니다.
 
+## 연구 확장: 척도 적합성과 전역 지도 점검
+
+### 척도가 실제 지도에서 나올 수 있는지 묻기
+
+기존 affine 가족은 변형 지도를 먼저 주므로 그 기울기의 적합성이 자동으로 성립합니다. 이번에는 매끄럽게 변하는 등방 길이 제곱 척도 C를 지정하고, 평면 기준 영역을 평면으로 보내는 매끄러운 방향 보존 지도가 이를 만들 수 있는지 거꾸로 묻습니다. C는 무차원이며 모든 점에서 양의 정부호이고 E는 대응하는 Green 목표입니다. 양수성은 국소 길이 제곱을 의미 있게 만들지만 변위를 제공하지는 않습니다. 이 새 운동학 문제에 구성 법칙·외력 해는 없습니다.
+
+$$
+C(X,Y)=e^{2\phi(X,Y)}I,\quad E=(C-I)/2,\quad\phi\in C^2,\quad C\succ0,\qquad[C]=[E]=[\phi]=1.
+$$
+
+### 모든 후보에는 국소 회전이 필요하다
+
+이 등방 목표의 후보 F는 각 특이값이 exp(phi)여야 하므로 극분해가 표시한 척도와 proper 회전의 곱입니다. 위치에 따른 회전을 허용합니다. theta=0만 검사하면 한 후보만 제외할 뿐 모든 후보의 실패를 증명하지 못합니다. 양의 행렬식과 연속 각도 lift가 있는 작은 단순 연결 영역에서 다룹니다. 3차원 곡면 임베딩이나 결함을 처방한 물체는 다른 실현 문제이며 이 평면 계산 밖입니다.
+
+$$
+F=\nabla\chi,\quad\det F>0,\quad F^TF=C=e^{2\phi}I\quad\Longrightarrow\quad F=e^\phi R(\theta).
+$$
+
+### 혼합 미분이 회전을 제한한다
+
+변형 기울기의 두 열은 같은 현재 위치 벡터의 편미분이므로 혼합 미분이 같아야 합니다. 첫 열을 exp(phi) 곱하기 (cos theta,sin theta), 둘째를 exp(phi) 곱하기 (−sin theta,cos theta)로 쓰고 미분한 뒤 두 방향에 투영하면 아래 스칼라 조건입니다. 각 행렬이 비특이하고 요구 길이비를 가져도 공간적으로 변하는 척도에 임의의 국소 회전을 붙일 수 없음을 보입니다.
+
+$$
+\partial_YF_{:,1}=\partial_XF_{:,2}\quad\Longrightarrow\quad\theta_X=-\phi_Y,\qquad\theta_Y=\phi_X.
+$$
+
+### 루프로 적분 장애 드러내기
+
+두 각도 조건을 다시 미분하고 각도의 혼합 미분을 같게 두면 phi가 harmonic이어야 합니다. 또는 필요한 각도 미분을 작은 반시계 닫힌 고리에 적분하고 Green 정리를 사용합니다. 단일값 각도 lift는 같은 값으로 돌아와야 합니다. 아래는 필요조건이며 모든 위상에서 모든 양의 척도를 실현했다는 뜻은 아닙니다. 매끄럽고 수축 가능한 작은 영역에서는 각도를 2pi 주기로 읽는다고 연속적으로 조절되는 작은 루프 결함이 사라지지 않습니다.
+
+$$
+\theta_{XY}=\theta_{YX}\quad\Longrightarrow\quad\Delta\phi=0,\qquad\oint_{\partial A}(-\phi_Y\,dX+\phi_X\,dY)=\int_A\Delta\phi\,dX\,dY=0.
+$$
+
+### 양수이지만 부적합한 목표 만들기
+
+무차원 alpha와 양의 길이 L로 아래 방사형 이차 phi를 고릅니다. Laplacian이 상수이므로 비영 alpha는 둘러싼 면적에 비례하는 비영 루프 결함을 만듭니다. 양 기준 좌표가 −L~L인 정사각형에서는 8alpha radian입니다. 특정 큰 고리의 값이 2pi 배수가 되어도 더 작은 수축 가능 고리에 비영 결함이 남습니다. 따라서 alpha가 비영이면 허용한 어떤 평면 국소 회전으로도 열린 영역에서 이 목표를 변형 기울기로 만들 수 없습니다.
+
+$$
+\phi=\frac{\alpha(X^2+Y^2)}{2L^2},\quad L>0:\qquad\Delta\phi=\frac{2\alpha}{L^2},\qquad\oint_{\partial[-L,L]^2}(-\phi_Y\,dX+\phi_X\,dY)=8\alpha.
+$$
+
+### 중심은 완전히 무변형처럼 보일 수 있다
+
+모든 alpha에서 중심의 목표 척도는 항등, Green 변형률은 0입니다. 모서리의 척도도 alpha 부호와 무관하게 양수입니다. 이러한 점별 검사로는 공간 적분 가능성의 실패를 보지 못합니다. 표에는 중심 Green 성분·모서리 척도 성분·무차원 Laplacian·사각 고리의 각도 결함을 기록합니다. alpha=0도 별도 적합한 항등 사례로 포함합니다. 비영 alpha에서 행렬 지수로 양의 출력을 만들었다는 것만으로 AI가 실제 변위장을 예측했다고 볼 수 없습니다.
+
+$$
+C(0,0)=I,\quad E(0,0)=0,\qquad C(L,L)=e^{2\alpha}I\succ0\quad\text{for every finite real }\alpha.
+$$
+
+### 정의를 바꾸지 않고 소변형 적합성과 연결하기
+
+별도의 소변형 목표 epsilon=phi I에서는 평면 Saint–Venant 조합이 같은 Laplacian으로 줄어듭니다. 충분히 매끄러운 변위의 대칭 기울기라면 0이어야 하므로 작은 변형에서 루프 장애와 연결됩니다. 그러나 이것이 임의 유한 Green 텐서의 적합성 공식은 아닙니다. E는 비선형 항과 원래 정의를 유지해야 합니다. 모든 유한 E에 선형 적합성 식을 적용하면 유효한 비선형 변형까지 거부할 수 있습니다.
+
+$$
+\varepsilon=\phi I:\quad\partial_{YY}\varepsilon_{XX}+\partial_{XX}\varepsilon_{YY}-2\partial_{XY}\varepsilon_{XY}=\Delta\phi\quad\text{(infinitesimal strain target)}.
+$$
+
+### 적합한 비균일 대조 구성하기
+
+phi를 X에 선형으로 두면 Laplacian이 사라지고 대응하는 각도는 Y에 선형입니다. 아래 명시적 지도는 독립적인 양성 대조입니다. 미분하면 요구 척도를 정확히 주고 회전도 위치에 따라 달라집니다. 따라서 공간적으로 변하는 등방 신장 자체가 금지되는 것은 아닙니다. alpha=0은 표시한 나눗셈에 대입하지 않고 항등 지도 극한으로 다룹니다. 지도는 길이 단위이고 그 기울기·척도·각도는 무차원입니다.
+
+$$
+\phi=\alpha X/L,\quad\theta=\alpha Y/L,\quad\alpha\ne0:\qquad\chi(X,Y)=\frac L\alpha\begin{pmatrix}e^{\alpha X/L}\cos(\alpha Y/L)-1\\e^{\alpha X/L}\sin(\alpha Y/L)\end{pmatrix}.
+$$
+
+### 기울기와 행렬식을 직접 점검하기
+
+두 현재 좌표를 미분해 F^TF와 행렬식을 구하면 아래 결과입니다. 수치 적합성 잔차와 별개로 국소 척도 실현·방향 보존을 확인합니다. 기준 좌표를 고정하고 alpha를 0으로 보내면 항등 지도입니다. 부동소수 차감으로 그 극한을 평가할 때는 expm1·삼각 차이 항등식이 필요할 수 있으며 모든 작은 alpha를 임의 정밀도로 평가한다고 주장하지 않습니다. 기존 affine 실습은 작은 회전·작은 변형률의 안정 계산을 유지합니다.
+
+$$
+(\nabla\chi)^T\nabla\chi=e^{2\alpha X/L}I,\quad\det\nabla\chi=e^{2\alpha X/L}>0,\qquad\alpha\to0:\ \chi(X,Y)\to(X,Y).
+$$
+
+### 국소 실현은 전역 단사성을 약속하지 않는다
+
+alpha가 비영이면 적합한 지도도 아래 양의 Y 이동 주기로 반복됩니다. 따라서 대응하는 두 기준점을 포함한 영역은 어디서나 양의 Jacobian이어도 그 점들을 같은 현재 위치로 보냅니다. 충분히 좁은 띠에서는 이 반복을 제외할 수 있지만 국소 적합성만으로 전역 영역 제한이나 비침투 조건이 주어지지는 않습니다. 연구 검증은 목표 척도·미분 적합성·기준 위상·경계 자료·전역 지도 검사를 나누어 보고해야 합니다. 그림은 alpha=1·−1/2≤X/L≤1/2와 두 기준 띠 0≤Y/L≤2pi·2pi≤Y/L≤4pi를 사용합니다. 기존 affine 제어는 이미 적합한 별도 비교로 유지합니다.
+
+$$
+P_Y=2\pi L/|\alpha|,\quad\alpha\ne0:\qquad\chi(X,Y+P_Y)=\chi(X,Y).
+$$
+
+| alpha | 중심 Green E11 | 모서리 C11 | L 제곱 laplacian phi | 사각 각도 결함 (rad) |
+| --- | --- | --- | --- | --- |
+| -0.20000000 | 0.00000000 | 0.67032005 | -0.40000000 | -1.60000000 |
+| 0.00000000 | 0.00000000 | 1.00000000 | 0.00000000 | 0.00000000 |
+| 0.10000000 | 0.00000000 | 1.22140276 | 0.20000000 | 0.80000000 |
+| 0.30000000 | 0.00000000 | 1.82211880 | 0.60000000 | 2.40000000 |
+
+```python
+from fractions import Fraction as F
+from math import exp
+# Coordinates / L. Radial phi=alpha*(X^2+Y^2)/(2*L^2).
+for alpha in [F(-1,5),F(0),F(1,10),F(3,10)]:
+    centre_green = F(0)
+    corner_metric = exp(float(2*alpha))
+    laplacian_scaled = 2*alpha
+    angle_defect = 8*alpha
+    values = [float(alpha),float(centre_green),corner_metric,float(laplacian_scaled),float(angle_defect)]
+    print(" ".join(f"{x:.8f}" for x in values))
+```
+
+[Bower 2.2.15절](https://solidmechanics.org/Text/Chapter2_2/Chapter2_2.htm)과 [MIT 16.20 Unit 4](https://ocw.mit.edu/courses/16-20-structural-mechanics-fall-2002/eaf046c2970c263862e604e70f89763e_unit4.pdf)는 소변형 적합성의 배경입니다. 유한 등방 목표·각도 루프 유도·명시적 conformal 지도는 별도로 유도하며 선형 변형률 식으로 일반 유한 변형 검사를 대체하지 않습니다.
+
+![루프 결함을 가진 양의 방사형 척도·국소 적합하지만 반복하는 지도](/assets/learning/continuum-metric-compatibility-loop.ko.svg)
+
+### 해설이 있는 연구 질문
+
+**모든 점의 양의 C가 평면 변위의 존재를 증명하는가?** **답:** 아니다. 방사형 목표는 비영 alpha에서 양의 국소 척도여도 필요한 각도 순환이 0이 아니다.
+
+**소변형 적합성 공식을 모든 유한 Green 텐서에 쓰는가?** **답:** 아니다. 유한 관계에는 비선형 기하가 있다. 여기의 선형 연결은 별도로 선언한 소변형 목표에 적용한다.
+
+**양의 Jacobian과 국소 척도 실현으로 전역 단사성이 증명되는가?** **답:** 아니다. 명시적 harmonic 대조는 충분히 넓은 영역에서 Y 방향으로 반복하여 다른 기준점을 같은 현재 점으로 보낸다.
+
 ## 풀이가 있는 연습 문제
 
 ### 연습 1

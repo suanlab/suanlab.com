@@ -112,6 +112,120 @@ An unavailable component need not make every directional observation unavailable
 
 Begin with translation and exact rotation, checking actual lengths and area. Increase the angle to expose the difference between infinitesimal and Green strain, then examine simple shear and axial extension. Compare the skew-increment control and tiny-angle corrections. For an AI-predicted displacement field, also check the chosen strain definition, mapped-point distances, determinant, boundary conditions and material relations. A small shared-formula residual does not certify an entire deformation field or its physical stress.
 
+## Research extension: compatible metrics and global map checks
+
+### Ask whether a metric can come from a map
+
+The original affine family supplies a deformation map first, so its gradient is compatible automatically. Reverse the question: prescribe a smoothly varying isotropic squared-length metric C and ask whether a smooth orientation-preserving map from a planar reference region into the plane can produce it. C is dimensionless and positive definite at every point, while E is the corresponding Green target. Positivity makes local squared lengths sensible but does not yet provide a displacement. This new kinematic problem contains no constitutive law or applied-force solution.
+
+$$
+C(X,Y)=e^{2\phi(X,Y)}I,\quad E=(C-I)/2,\quad\phi\in C^2,\quad C\succ0,\qquad[C]=[E]=[\phi]=1.
+$$
+
+### Every candidate needs a local rotation
+
+For this isotropic target, each singular value of a candidate F must be exp(phi). Its polar form therefore has the displayed scale times a proper rotation. A position-dependent rotation is allowed; simply testing the choice theta zero would reject only one candidate and would not prove that every candidate fails. Work on a small simply connected patch with a continuous angle lift and positive determinant. A three-dimensional curved-surface embedding or a body with prescribed defects is a different realization question and is outside this planar calculation.
+
+$$
+F=\nabla\chi,\quad\det F>0,\quad F^TF=C=e^{2\phi}I\quad\Longrightarrow\quad F=e^\phi R(\theta).
+$$
+
+### Mixed partial derivatives constrain the rotation
+
+The columns of a deformation gradient are partial derivatives of the same current-position vector. Their mixed derivatives must agree. Write the first column as exp(phi) times (cos theta,sin theta) and the second as exp(phi) times (−sin theta,cos theta). Differentiate and project onto those two directions. The two scalar conditions below follow. They show that a spatially varying scale cannot be paired with arbitrary local rotations, even when every individual matrix is nonsingular and has the requested length ratios.
+
+$$
+\partial_YF_{:,1}=\partial_XF_{:,2}\quad\Longrightarrow\quad\theta_X=-\phi_Y,\qquad\theta_Y=\phi_X.
+$$
+
+### A loop exposes an integration obstruction
+
+Differentiate the two angle conditions again and equate the mixed derivatives of the angle. This requires phi to be harmonic. Equivalently, integrate its required angle differential around a small counterclockwise closed loop and use Green’s theorem. A single-valued angle lift must return to the same value. The equality below is a necessary condition, not a claim that every positive metric on every topology has now been realized. On a contractible smooth patch, treating angle modulo two pi does not remove a continuously adjustable small-loop defect.
+
+$$
+\theta_{XY}=\theta_{YX}\quad\Longrightarrow\quad\Delta\phi=0,\qquad\oint_{\partial A}(-\phi_Y\,dX+\phi_X\,dY)=\int_A\Delta\phi\,dX\,dY=0.
+$$
+
+### Build a positive but incompatible target
+
+Choose the radial quadratic phi below with dimensionless alpha and positive length L. Its Laplacian is constant, so any nonzero alpha creates a nonzero loop defect proportional to enclosed area. For the square from minus L to L in both coordinates, it is eight alpha radians. Even if one particular large loop happens to give a multiple of two pi, smaller contractible loops retain a nonzero defect. Therefore no allowed planar local rotation can turn this target into a deformation gradient on an open patch when alpha is nonzero.
+
+$$
+\phi=\frac{\alpha(X^2+Y^2)}{2L^2},\quad L>0:\qquad\Delta\phi=\frac{2\alpha}{L^2},\qquad\oint_{\partial[-L,L]^2}(-\phi_Y\,dX+\phi_X\,dY)=8\alpha.
+$$
+
+### The centre can look completely unstrained
+
+At the centre the target metric is identity and Green strain is zero for every alpha. At the corner the metric remains positive for either sign of alpha. Those pointwise checks cannot see the spatial integrability failure. The table reports the central Green component, corner metric component, dimensionless Laplacian and square-loop angle defect. It deliberately includes alpha zero as the separate compatible identity case. For nonzero alpha, an exponentiated positive matrix output alone is insufficient evidence that an AI model predicts an actual displacement field.
+
+$$
+C(0,0)=I,\quad E(0,0)=0,\qquad C(L,L)=e^{2\alpha}I\succ0\quad\text{for every finite real }\alpha.
+$$
+
+### Connect to infinitesimal compatibility without changing definitions
+
+For a separate infinitesimal target epsilon equal to phi times identity, the planar Saint–Venant combination reduces to the same Laplacian. It must vanish if epsilon is the symmetric gradient of a sufficiently smooth displacement. This provides a small-deformation bridge to the loop obstruction. It is not the compatibility formula for an arbitrary finite Green tensor: E contains nonlinear terms and must keep its own definition. In particular, applying a linear compatibility equation to every finite E could reject a valid nonlinear deformation.
+
+$$
+\varepsilon=\phi I:\quad\partial_{YY}\varepsilon_{XX}+\partial_{XX}\varepsilon_{YY}-2\partial_{XY}\varepsilon_{XY}=\Delta\phi\quad\text{(infinitesimal strain target)}.
+$$
+
+### Construct a compatible nonuniform control
+
+Take phi linear in X, so its Laplacian vanishes, and choose the corresponding angle linear in Y. The explicit map below supplies an independent positive control. Its derivatives give the requested metric exactly; its rotation varies with position. Thus spatially varying isotropic stretch is not itself forbidden. Alpha zero is handled by the identity-map limit rather than by substituting into the displayed division by alpha. The map has length units, while its gradient, the scale and the angle are dimensionless.
+
+$$
+\phi=\alpha X/L,\quad\theta=\alpha Y/L,\quad\alpha\ne0:\qquad\chi(X,Y)=\frac L\alpha\begin{pmatrix}e^{\alpha X/L}\cos(\alpha Y/L)-1\\e^{\alpha X/L}\sin(\alpha Y/L)\end{pmatrix}.
+$$
+
+### Check the gradient and determinant directly
+
+Differentiate the two current coordinates, form F transpose F and compute the determinant. The results below verify local metric realization and orientation preservation independently of a numerical compatibility residual. At fixed reference coordinates the map tends to identity as alpha tends to zero. Evaluating that limit with floating-point subtraction can need expm1 and trigonometric difference identities; the supplementary example does not claim arbitrary-precision evaluation of every tiny alpha. The native affine lab keeps its existing stable small-angle and small-strain calculations.
+
+$$
+(\nabla\chi)^T\nabla\chi=e^{2\alpha X/L}I,\quad\det\nabla\chi=e^{2\alpha X/L}>0,\qquad\alpha\to0:\ \chi(X,Y)\to(X,Y).
+$$
+
+### Local realization does not promise global injectivity
+
+For nonzero alpha the compatible map repeats after the displayed positive shift in Y. A domain containing both corresponding reference points therefore maps them to the same current position despite positive Jacobian everywhere. On a sufficiently narrow strip this particular repetition can be excluded, but local compatibility alone does not impose such a global domain restriction or enforce noninterpenetration. A research validation should report the target metric, derivative compatibility, reference topology, boundary data and global map checks separately. The figure uses alpha=1, −1/2≤X/L≤1/2 and the two reference strips 0≤Y/L≤2pi and 2pi≤Y/L≤4pi. The existing affine controls remain a distinct, already compatible comparison.
+
+$$
+P_Y=2\pi L/|\alpha|,\quad\alpha\ne0:\qquad\chi(X,Y+P_Y)=\chi(X,Y).
+$$
+
+| alpha | centre Green E11 | corner C11 | L squared laplacian phi | square angle defect (rad) |
+| --- | --- | --- | --- | --- |
+| -0.20000000 | 0.00000000 | 0.67032005 | -0.40000000 | -1.60000000 |
+| 0.00000000 | 0.00000000 | 1.00000000 | 0.00000000 | 0.00000000 |
+| 0.10000000 | 0.00000000 | 1.22140276 | 0.20000000 | 0.80000000 |
+| 0.30000000 | 0.00000000 | 1.82211880 | 0.60000000 | 2.40000000 |
+
+```python
+from fractions import Fraction as F
+from math import exp
+# Coordinates / L. Radial phi=alpha*(X^2+Y^2)/(2*L^2).
+for alpha in [F(-1,5),F(0),F(1,10),F(3,10)]:
+    centre_green = F(0)
+    corner_metric = exp(float(2*alpha))
+    laplacian_scaled = 2*alpha
+    angle_defect = 8*alpha
+    values = [float(alpha),float(centre_green),corner_metric,float(laplacian_scaled),float(angle_defect)]
+    print(" ".join(f"{x:.8f}" for x in values))
+```
+
+[Bower §2.2.15](https://solidmechanics.org/Text/Chapter2_2/Chapter2_2.htm) and [MIT 16.20 Unit 4](https://ocw.mit.edu/courses/16-20-structural-mechanics-fall-2002/eaf046c2970c263862e604e70f89763e_unit4.pdf) give the infinitesimal compatibility background. The finite isotropic target, angle-loop derivation and explicit conformal map are derived separately here; the linear strain formula is not substituted for a general finite-strain test.
+
+![Positive radial metrics with loop defects and a locally compatible repeating map](/assets/learning/continuum-metric-compatibility-loop.en.svg)
+
+### Research questions with explanations
+
+**Does positive C at every point prove that a planar displacement exists?** **Answer:** No. The radial target has a nonzero required angle circulation for every nonzero alpha, despite positive local metrics.
+
+**Can the infinitesimal compatibility formula be used on every finite Green tensor?** **Answer:** No. The finite relation includes nonlinear geometry. The linear bridge here applies to its separately declared infinitesimal target.
+
+**Does a positive Jacobian and local metric realization prove global injectivity?** **Answer:** No. The explicit harmonic control repeats in Y on sufficiently wide domains, mapping distinct reference points to the same current point.
+
 ## Exercises with answers
 
 ### Exercise 1

@@ -108,6 +108,123 @@ A zero-area patch has zero integrated force, while a mathematical traction query
 
 Begin with the tilted-face calculation and normal reversal, then compare in-plane compression and pure shear. Inspect the affine field’s surface-force and moment integrals against independent volume observations, and retain the omitted-body-force control. A residual assembled from shared formulas is not an independent certificate. Static equilibrium alone does not identify displacements or material constants; compatibility, boundary data and constitutive information are also needed. The next unit measures deformation through actual mapped segments.
 
+## Research extension: stress identification from directional observations
+
+### Choose the unknown and the measured component
+
+Keep the same symmetric in-plane Cauchy stress at one point. Suppose each supplementary observation records only normal stress, rather than the complete traction vector. The three unknown parameters below have units pascals. Here p is the in-plane mean stress, not positive compressive fluid pressure, and tau is the fixed-coordinate xy component, not the signed shear on every tilted face. The Frobenius norm is proportional to the Euclidean norm of these parameters. This declares the comparison metric before discussing conditioning.
+
+$$
+\sigma=\begin{pmatrix}p+d&\tau\\\tau&p-d\end{pmatrix},\qquad s=(p,d,\tau)^T,\qquad\|\sigma\|_F^2=2\|s\|_2^2.
+$$
+
+### Derive one scalar observation
+
+Insert a unit normal into the quadratic normal projection. Double-angle identities give the displayed row of the forward map. Opposite normals represent the same scalar measurement, even though their full traction vectors reverse. The data refer to the same point and unchanged physical state; measurements after changing the material loading would be another inverse problem. We do not claim that cutting real samples repeatedly leaves their stresses unchanged or that these equations model an actual measuring instrument.
+
+$$
+n(\theta)=(\cos\theta,\sin\theta)^T:\qquad m(\theta)=n^T\sigma n=p+d\cos2\theta+\tau\sin2\theta,\quad m(\theta+\pi)=m(\theta).
+$$
+
+### Invert information rather than count readings
+
+Stack the known directions into A. With independent equal-variance errors the least-squares estimate has the form below whenever all three parameter directions are observable. Three distinct axes modulo pi give three distinct points on the double-angle unit circle; a line meets a circle in at most two points, so those three rows are independent. Repeating the same axis does not create the missing directions. Extra repeated observations can reduce noise in an observed component but cannot restore rank by themselves.
+
+$$
+m=As+e,\quad A_{j,:}=(1,\cos2\theta_j,\sin2\theta_j),\qquad\widehat s=(A^TA)^{-1}A^Tm\quad(\operatorname{rank}A=3).
+$$
+
+### Full traction is a different observation
+
+One complete traction vector supplies two components, but a symmetric two-dimensional stress still has one invisible direction. Add a multiple of the tangential dyad below and that traction does not change. Two nonparallel full-traction observations can determine the map, subject to the symmetry consistency relation between their cross projections. These facts do not contradict the three-scalar result, because the recorded data differ. A regularizer in an unobserved direction selects a stress; it does not demonstrate that the measurements identified it.
+
+$$
+t=\sigma n,\quad n^Tz=0,\quad\|n\|=\|z\|=1:\qquad (\sigma+\beta zz^T)n=t\quad\text{for every real }\beta.
+$$
+
+### Separate uniqueness from noise stability
+
+Subtract the true forward relation from the least-squares formula. The pseudoinverse norm gives the deterministic error bound, while independent zero-mean equal-variance errors give the covariance. A full-rank A can have a small minimum singular value and large noise amplification. The bound assumes calibrated directions and additive stress errors; it omits orientation uncertainty, instrument response and model discrepancy. If errors are correlated, the covariance and an appropriate weighted estimator must be derived for that declared model instead.
+
+$$
+\mathbb E e=0,\quad\operatorname{Cov}(e)=\nu^2I:\quad\operatorname{Cov}(\widehat s)=\nu^2(A^TA)^{-1},\quad\|\widehat s-s\|_2\le\frac{\|e\|_2}{\sigma_{\min}(A)},\quad[\nu]=\mathrm{Pa}.
+$$
+
+### Spread directions to balance the information
+
+For the three axes zero, sixty and one hundred twenty degrees, summing the double-angle columns makes the Gram matrix diagonal. The mean and the two deviatoric coordinates are uncorrelated in the resulting estimate under the stated noise model. This symmetric design attains condition number square root of two. The value is not one because each observation contains a full mean column while its two angular components share a fixed total squared length. Condition number alone is also not the size of an absolute stress uncertainty.
+
+$$
+(\theta_1,\theta_2,\theta_3)=(0,\pi/3,2\pi/3):\quad A^TA=\operatorname{diag}(3,3/2,3/2),\qquad\kappa_2(A)=\sqrt2.
+$$
+
+### Prove what is optimal under the declared metric
+
+For any three rows, the mean column has squared norm three, so the largest Gram eigenvalue is at least three. Restricting to the other two parameter coordinates gives a two-dimensional block with trace three; its smaller Rayleigh value is at most three halves. The smallest eigenvalue of the full matrix is no larger. This proves the displayed lower bound, attained by the preceding axes. It concerns three scalar observations with this variable scaling, not every sensor cost, noise correlation or choice of experimental objective.
+
+$$
+\lambda_{\max}(A^TA)\ge3,\qquad\lambda_{\min}(A^TA)\le3/2\quad\Longrightarrow\quad\kappa_2(A)\ge\sqrt2\quad\text{for three full-rank scalar observations}.
+$$
+
+### Nearly repeated directions retain rank but lose precision
+
+Choose axes zero, delta and twice delta. Subtracting the first row from the others and using trigonometric identities gives the determinant below. It remains positive for the declared interval, yet vanishes cubically as delta shrinks. Exact delta zero is a different rank-deficient input. A small nonzero determinant is not itself a complete condition-number calculation, and a rounded angle or determinant must not silently become an exact repeated axis. The next formula resolves the singular values directly.
+
+$$
+(\theta_1,\theta_2,\theta_3)=(0,\delta,2\delta),\quad0<\delta<\pi/2:\quad\det A=4\sin^2\delta\sin2\delta>0,\qquad\det A\sim8\delta^3\quad(\delta\to0).
+$$
+
+### Evaluate the small eigenvalue without cancellation
+
+Rotate the deviatoric parameter coordinates to centre the three axes. The Gram matrix splits into a two-by-two block and a scalar. The block has trace T and determinant D; obtain its smaller eigenvalue from the product, rather than subtracting two close large numbers. Combine it with the third eigenvalue to find the minimum singular value. The table reports determinant, minimum singular value, condition number and worst directional parameter variance divided by nu squared. It is a finite numerical comparison, not a universal floating-point error bound near rank loss.
+
+$$
+c=\cos2\delta,\quad T=4+2c^2,\quad D=8\sin^4\delta:\quad\lambda_+=\tfrac12(T+\sqrt{T^2-4D}),\quad\lambda_-=D/\lambda_+,\quad\lambda_0=2\sin^22\delta,\quad\sigma_{\min}(A)=\sqrt{\min(\lambda_-,\lambda_0)}.
+$$
+
+### Work the familiar three-axis example
+
+For zero, forty-five and ninety degrees the inverse can be written without a matrix solve. The original tensor [[3,1],[1,−1]] Pa produces normal observations (3,2,−1) Pa, yielding p=1, d=2 and tau=1 Pa. Independent measurement errors need not give independent recovered parameters: the displayed covariance includes a nonzero p–tau entry. An isotropic stress has no preferred principal axis even if its components are measured accurately; that physical axis nonuniqueness is separate from a rank-deficient observation matrix. The native traction and affine-force lab remains unchanged.
+
+$$
+\theta=(0,\pi/4,\pi/2):\quad p=\tfrac12(m_1+m_3),\quad d=\tfrac12(m_1-m_3),\quad\tau=m_2-p,\quad\operatorname{Cov}(\widehat s)/\nu^2=\begin{pmatrix}1/2&0&-1/2\\0&1/2&0\\-1/2&0&3/2\end{pmatrix}.
+$$
+
+| delta (degrees) | determinant A | minimum singular value | condition number | worst variance / nu squared |
+| --- | --- | --- | --- | --- |
+| 5.00000000 | 0.00527621 | 0.00881572 | 276.45298154 | 12867.20641698 |
+| 15.00000000 | 0.13397460 | 0.08083776 | 28.99405294 | 153.02820107 |
+| 30.00000000 | 0.86602540 | 0.33763747 | 6.20274201 | 8.77200187 |
+| 60.00000000 | 2.59807621 | 1.22474487 | 1.41421356 | 0.66666667 |
+
+```python
+from math import sin, cos, pi, sqrt
+for degrees in [5,15,30,60]:
+    delta = degrees*pi/180
+    c = cos(2*delta)
+    trace = 4+2*c*c
+    determinant = 8*sin(delta)**4
+    large = (trace+sqrt(trace*trace-4*determinant))/2
+    small = determinant/large
+    third = 2*sin(2*delta)**2
+    minimum, maximum = min(small,third), max(large,third)
+    det_A = 4*sin(delta)**2*sin(2*delta)
+    values = [float(degrees),det_A,sqrt(minimum),sqrt(maximum/minimum),1/minimum]
+    print(" ".join(f"{x:.8f}" for x in values))
+```
+
+[Alberta’s Cauchy stress notes](https://engcourses-uofa.ca/stress/cauchy-stress-as-a-linear-map/) supply the traction-map and symmetry background. The scalar observation model, null direction, noise calculation and conditional design bound are derived explicitly here; they do not certify an instrument or determine a constitutive response.
+
+![Directional stress measurements, clustered-axis conditioning and different observation scopes](/assets/learning/continuum-stress-directional-identification.en.svg)
+
+### Research questions with explanations
+
+**Do repeated measurements on one axis identify every stress component?** **Answer:** No. Repetition can reduce observed noise while leaving the same unobserved parameter directions.
+
+**Is a small nonzero determinant the same as an unidentifiable tensor?** **Answer:** No. The clustered design can remain invertible but amplify noise strongly. Exact rank loss and poor conditioning are different.
+
+**Does component identification always select a unique principal axis?** **Answer:** No. An isotropic in-plane stress has no preferred axis even when the measurement design identifies its components.
+
 ## Exercises with answers
 
 ### Exercise 1
