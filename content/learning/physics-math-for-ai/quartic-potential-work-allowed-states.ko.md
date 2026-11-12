@@ -110,6 +110,164 @@ $$
 
 조회 끝점 B에서 운동에너지, 힘과 속력 크기를 계산합니다. 주황 점은 허용된 조회 위치에만 표시하고 빈 원은 구간 경계입니다. 정확한 유리수 끝점 계산과 수치 근호로 계산한 경계·속력을 구분합니다. 다항식 곡선의 표본 그림으로 구간의 존재를 판정하는 것은 아닙니다.
 
+## 연구 확장: 분리궤도를 풀고 접근 시간을 계산하기
+
+장벽 에너지의 허용 구간은 연결되어 있지만 입자는 불안정한 원점을 유한 시간에 통과하지 않습니다. 정확한 궤적을 만들어 그 차이를 정량화할 수 있습니다. 아래 시간 해석은 독립 예제입니다. 기존 사차 실습은 시간 적분기 대신 퍼텐셜·힘·허용 상태를 계속 표시합니다.
+
+### 이중 우물과 물리 척도 정하기
+
+앞의 모형에서 a>0,b<0으로 제한하고 일정 m>0, 외력·감쇠 없음으로 둡니다. 퍼텐셜 기준은 원점에서 0으로 고릅니다.
+
+$$
+\beta=-b>0,\quad V(x)=\frac a4x^4-\frac\beta2x^2,\quad
+A=\sqrt{\frac{2\beta}{a}},\quad \omega=\sqrt{\frac\beta m},\qquad E=0.
+$$
+
+A는 길이, omega는 시간의 역수입니다. 에너지 0의 방향 전환 위치는 ±A이고 불안정 평형은 (x,v)=(0,0)입니다. 허용 위치의 사영 [−A,A]에는 서로 다른 운동에 속하는 상태들이 포함됩니다.
+
+### 비정지 정확한 궤적 구성하기
+
+쌍곡선 시컨트는 sech z=1/cosh z입니다. 바깥 방향 전환 시각이 t0인 양의 가지를 사용합니다.
+
+$$
+x(t)=A\operatorname{sech}(\omega(t-t_0)),\qquad
+v(t)=-A\omega\operatorname{sech}(\omega(t-t_0))\tanh(\omega(t-t_0)).
+$$
+
+t=t0에서 위치는 A, 속도는 0입니다. (sech z)'=−sech z tanh z와 tanh²z+sech²z=1로 한 번 더 미분합니다.
+
+$$
+\ddot x=\omega^2x\left(1-2\operatorname{sech}^2(\omega(t-t_0))\right)
+=\frac\beta m x-\frac a m x^3,\qquad m\ddot x=-V'(x).
+$$
+
+A²=2beta/a, omega²=beta/m을 사용했습니다. 에너지 곡선만이 아니라 미분 법칙을 확인한 것입니다. 운동·퍼텐셜 에너지도 정확히 상쇄됩니다.
+
+$$
+\frac m2v^2=\frac{\beta^2}{a}\operatorname{sech}^2z\tanh^2z,
+\qquad
+V(x)=-\frac{\beta^2}{a}\operatorname{sech}^2z\tanh^2z,
+\quad z=\omega(t-t_0).
+$$
+
+유한한 t에서는 cosh가 유한한 양수이므로 x(t)>0입니다. 시간이 양·음의 무한대로 가면 x와 v가 0으로 접근합니다. 전체 궤도는 먼 과거에 안장점에서 점근적으로 나와 A에서 방향을 바꾸고 다시 점근합니다. 이런 궤도를 homoclinic이라고 부릅니다. 부호를 뒤집은 해는 음의 쪽에 머물고, 원점 초기값은 별도의 정지 해입니다. 다항식 뉴턴 벡터장은 국소 Lipschitz이므로 같은 법칙에서 평형에 기다리다가 출발하는 해를 임의로 붙일 수 없습니다.
+
+바깥 방향 전환점에서 속도가 0이어도 평형은 아닙니다. 힘은 −beta A로 비영입니다. 기존 실습의 에너지 경계와 정지 상태 구분에도 맞습니다.
+
+### 유한한 측정 해상도의 도착 시간 구하기
+
+돌아오는 가지 t≥t0에서 양의 문턱 delta<A에 처음 도달하는 시각을 구합시다. sech를 뒤집으면 다음 식을 얻습니다.
+
+$$
+t_\delta-t_0=\frac1\omega\operatorname{arcosh}\frac A\delta,
+\qquad 0<\delta<A,\qquad
+\operatorname{arcosh}u=\log\left(u+\sqrt{u^2-1}\right).
+$$
+
+A/delta는 무차원입니다. delta가 작으면 시간은 log(2A/delta)/omega처럼 증가하고 delta가 0으로 갈 때 발산합니다. 측정 문턱 도달은 유한한 사건이지만 원점 자체에 도달하는 것은 아닙니다. 시뮬레이터가 도착을 보고한다면 문턱도 명시해야 합니다.
+
+a=1 J/m⁴,beta=2 J/m²,A=2 m,t0=0에서 다음과 같습니다.
+
+| delta (m) | 접근 시간, m=1 kg (s) | 접근 시간, m=4 kg (s) |
+|---|---|---|
+| 0.1 | 2.607989 | 5.215979 |
+| 0.01 | 4.236601 | 8.473202 |
+| 0.001 | 5.864779 | 11.729557 |
+
+질량을 바꿔도 허용 위치와 방향 전환 길이는 같지만 시간은 두 배가 됩니다. 원점을 통과하는 데 걸린 시간을 적은 표가 아닙니다.
+
+![에너지 0의 두 위상 공간 가지의 유한한 구간은 정지 원점과 분리되어 있습니다. 양의 위치 문턱을 줄이면 접근 시간이 로그 형태로 증가합니다.](/assets/learning/classical-quartic-separatrix.ko.svg)
+
+위쪽은 위치 m와 속도 m/s의 위상 그림입니다. m=1 kg에서 −2≤t≤2 s만 표시합니다. 빈 끝점은 그림의 시간 창이며 새 방향 전환점이 아닙니다. 화살표는 시간 증가 방향이고 검은 원점은 정지 상태입니다. 아래쪽은 문턱 축이 로그이며 두 질량의 정확한 시간을 비교합니다.
+
+### 작은 에너지 여유가 장시간 통과 여부를 바꾼다
+
+epsilon=E−V(0)를 장벽 위 에너지로 둡니다. E와 V에 같은 상수를 더해도 이 차이는 같습니다. 음수이면 원점이 금지되고 0이면 분리궤도이며 양수이면 비영 속도로 통과할 수 있습니다.
+
+0<d²≤beta/a인 고정 창 [−d,d]를 고르고 −d에서 양의 epsilon에 맞는 오른쪽 속도로 들어갑니다. 통과 시간은 다음과 같습니다.
+
+$$
+T_{\mathrm{cross}}(\epsilon)
+=\sqrt{\frac m2}\int_{-d}^{d}
+\frac{dx}{\sqrt{\epsilon+\beta x^2/2-a x^4/4}},\qquad \epsilon>0.
+$$
+
+창 안에서 사차 항은 최대 beta x²/4이므로 분모를 간단한 두 식으로 감쌉니다. 제곱근의 역수를 취하면 순서가 뒤집히고 비교 이차식을 적분하면 다음을 얻습니다.
+
+$$
+\epsilon+\frac\beta4x^2
+\le\epsilon+\frac\beta2x^2-\frac a4x^4
+\le\epsilon+\frac\beta2x^2,\quad |x|\le d,
+$$
+
+$$
+2\sqrt{\frac m\beta}\operatorname{arsinh}\left(d\sqrt{\frac\beta{2\epsilon}}\right)
+\le T_{\mathrm{cross}}(\epsilon)\le
+2\sqrt{\frac{2m}\beta}\operatorname{arsinh}\left(d\sqrt{\frac\beta{4\epsilon}}\right).
+$$
+
+양의 epsilon이 0으로 갈 때 양쪽 모두 로그로 증가합니다. epsilon의 단위가 에너지이므로 arsinh 안의 조합도 무차원입니다. 임의로 작은 양의 여유가 통과를 허용할 수 있지만 필요한 시간은 한없이 길어집니다.
+
+같은 초기 위치 −d에서 epsilon=0과 작은 양의 epsilon의 오른쪽 초기 속도는 연속적으로 가까워집니다. 나중의 통과 여부 차이는 장시간 문제이며 적분 가능한 일차원 계에서 유한 시간 혼돈을 입증한 것이 아닙니다. 어느 쪽 우물에 머무는지 판정하려면 에너지 허용 오차를 장벽 여유와 비교해야 합니다.
+
+### 궤적·시간·비교 상계 재현하기
+
+코드는 닫힌 해의 힘과 에너지를 직접 확인합니다. 양의 여유에서는 변수 변환으로 매끄럽게 만든 적분을 두 해상도로 계산하여 해석적 상·하계와 비교합니다. 수치 일치는 예시이며 연속 시간의 보장은 앞의 부등식 유도에서 나옵니다.
+
+```python
+from math import sqrt, cosh, tanh, acosh, asinh, sinh
+
+a, beta = 1.0, 2.0  # SI: V=a*x^4/4-beta*x^2/2
+A = sqrt(2*beta/a)
+for mass in [1.0,4.0]:
+    omega = sqrt(beta/mass)
+    for t in [-2.0,-1.0,0.0,1.0,2.0]:
+        s = 1/cosh(omega*t)
+        x, v = A*s, -A*omega*s*tanh(omega*t)
+        acc = omega**2*x*(1-2*s*s)
+        energy = mass*v*v/2+a*x**4/4-beta*x*x/2
+        assert abs(energy) < 1e-12
+        assert abs(mass*acc-(beta*x-a*x**3)) < 1e-12
+        assert x > 0
+    for delta in [0.1,0.01,0.001]:
+        time = acosh(A/delta)/omega
+        assert abs(A/cosh(omega*time)-delta) < 1e-12
+        print("mass, cutoff, approach time:",mass,delta,round(time,6))
+
+def simpson(f,end,n):
+    h = end/n
+    return h/3*(f(0)+f(end)
+                +4*sum(f(i*h) for i in range(1,n,2))
+                +2*sum(f(i*h) for i in range(2,n,2)))
+
+# Positive barrier margins; m=1 kg and window [-d,d], d=1 m.
+mass,d = 1.0,1.0
+assert a*d*d <= beta
+for margin in [0.1,0.001,0.000001]:
+    lower = 2*sqrt(mass/beta)*asinh(d*sqrt(beta/(2*margin)))
+    upper = 2*sqrt(2*mass/beta)*asinh(d*sqrt(beta/(4*margin)))
+    u_max = asinh(d*sqrt(beta/(2*margin)))
+    # x=sqrt(2*margin/beta)*sinh(u) removes the narrow central peak.
+    def f(u):
+        z = a*margin/beta**2 * sinh(u)**2*tanh(u)**2
+        assert z < 1
+        return 1/sqrt(1-z)
+    coarse = 2*sqrt(mass/beta)*simpson(f,u_max,4096)
+    fine = 2*sqrt(mass/beta)*simpson(f,u_max,8192)
+    assert abs(fine-coarse) < 1e-8
+    assert lower <= fine <= upper
+    print("margin, lower, quadrature, upper:",margin,
+          round(lower,6),round(fine,6),round(upper,6))
+```
+
+### 학습 동역학을 위한 해설 문제
+
+1. **a=1,beta=2,A=2 m에서 힘은?** −4 N입니다. 순간 정지하지만 우물 쪽으로 가속합니다. 반면 x=v=0의 힘은 0입니다.
+2. **원점 근처에서 문턱을 열 배 줄이면 m=1의 시간이 얼마나 더 필요한가요?** 점근적으로 log(10)/sqrt(2), 약 1.62817 s입니다. 일정 속도 접근이 아니라 로그 시간입니다.
+3. **보존 에너지 잔차가 매우 작으면 예측한 통과도 맞나요?** 장벽 여유, 초기값, 미분 식과 시간 범위를 기준과 비교해야 합니다. 장벽 여유가 0에 가까우면 절대 에너지 오차만으로 나중의 통과를 판정하지 못합니다.
+
+궤적과 비교 계산은 선언한 이중 우물에서 직접 유도했습니다. 기존의 허용 상태·시간 궤적 구분을 유지하면서 정확한 시간을 추가합니다.
+
 ## 풀이가 있는 여섯 연습
 
 1. **연습: 두 우물.** a=1,b=−2,E=−1/2,m=1이면 x=1은 허용되나요? **풀이:** V=−3/4이므로 K=1/4, 속력은 1/√2입니다. 원점은 V=0>E로 금지되고 허용 구간은 둘입니다.
