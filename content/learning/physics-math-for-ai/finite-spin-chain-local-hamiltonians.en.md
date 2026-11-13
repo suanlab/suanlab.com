@@ -204,6 +204,124 @@ The experiment covers1…4 sites, local XYZ and all nine two-site axes, with ope
 
 For AI research, assess state expressivity, optimization performance and physical-observable accuracy separately. A neural state with low energy should be accompanied by its Hamiltonian, graph, units, comparison bounds, variance, correlations and size analysis. Enforcing symmetry in a representation differs from obtaining a sharp measurement in one state. Later MPS material explains conditions for using smaller tensors and the freedom in representation coordinates.
 
+## Research extension: a finite avoided crossing and a large static response
+
+### Solve a complete small model before inferring a phase
+
+A field can strongly change a small system without defining a thermodynamic phase transition. Use two sites, one distinct edge and the Pauli energy convention:
+
+$$
+H=-JZ_0Z_1-h(X_0+X_1),\quad J>0,\quad h>0,\qquad
+ Q=X_0X_1,\quad[H,Q]=0,\quad M=Z_0+Z_1,\quad QMQ=-M.
+$$
+
+The spin-flip symmetry Q changes the sign of the longitudinal magnetization M. In the Bell basis it reduces the four-dimensional problem to two blocks:
+
+$$
+\Phi_\pm=(|00\rangle\pm|11\rangle)/\sqrt2,\quad
+ \Psi_\pm=(|01\rangle\pm|10\rangle)/\sqrt2,\qquad
+ H_{Q=+1}=\begin{pmatrix}-J&-2h\\-2h&J\end{pmatrix},\quad
+ H_{Q=-1}=\operatorname{diag}(-J,J),\quad R=\sqrt{J^2+4h^2}.
+$$
+
+The even block has eigenvalues −R,+R; the odd block has −J,+J. For h>0, −R is the unique lowest energy. Its Q symmetry forces every local Z mean to vanish. Diagonalizing that block, or differentiating its lowest energy, gives:
+
+$$
+E_0=-R,\quad\Delta_{\rm ord}=R-J=\frac{4h^2}{R+J}>0,\qquad
+ \langle Z_i\rangle=0,\quad\langle Z_0Z_1\rangle=J/R,\quad\langle X_i\rangle=2h/R.
+$$
+
+The ordered first gap includes multiplicity when levels meet. As h approaches0 it behaves as2h²/J. At exactly h=0 the ground space is two-dimensional: the ordered first gap is0, whereas the gap to the next distinct level is2J. The original diagonal reader reports the latter convention. These are different definitions at degeneracy, not a disagreement between spectra.
+
+### Correlation, local mixedness and response carry different information
+
+Tracing out one spin in the h>0 ground state gives:
+
+$$
+\rho_i=\tfrac12[I+(2h/R)X],\quad
+ \operatorname{spec}\rho_i=\left\{\frac{1+2h/R}{2},\frac{1-2h/R}{2}\right\},\quad
+ S_i=-\sum_{a=\pm}\lambda_a\ln\lambda_a.
+$$
+
+As h tends to0 from above, the ground state tends to Φ+, its local state tends to I/2, and its connected ZZ correlation tends to1. At large h/J the ground tends to the X product state, with vanishing local entropy. This is an analytic crossover at every fixed h>0 for two spins. A finite matrix calculation supplies no thermodynamic-limit scaling argument.
+
+Now add a longitudinal coefficient b, in the same energy unit. First-order perturbation of the nondegenerate ground vector gives its static susceptibility:
+
+$$
+H(b)=H-bM,\qquad
+ \chi=\left.\frac{d\langle M\rangle_b}{db}\right|_{b=0}
+ =2\sum_{n>0}\frac{|\langle n|M|g\rangle|^2}{E_n-E_0}
+ =\frac{4(R+J)}{R(R-J)},\quad
+ \operatorname{Var}_g(M)=2(1+J/R).
+$$
+
+Only Φ− contributes: M maps Φ+ to2Φ− and annihilates Ψ+. The ground's Φ+ weight is(R+J)/(2R), and Φ− lies a distance R−J above it. This proves the displayed sum and prefactor. χ is the response of total M, not per-site magnetization, and has inverse-energy units. Its divergence as4J/h² reflects the closing finite-system splitting.
+
+At zero transverse field, the longitudinal field selects an aligned product state. The two limiting experiments differ:
+
+$$
+h=0:\quad E_0(b)=-J-2|b|,\quad\langle M\rangle_b=2\operatorname{sgn}b\quad(b\ne0),\qquad
+ \lim_{b\to0^+}\lim_{h\to0^+}\langle M\rangle_b=2,\quad
+ \lim_{h\to0^+}\lim_{b\to0^+}\langle M\rangle_b=0.
+$$
+
+In the first order of limits, b selects a ground direction before it is removed. In the second, each fixed h>0 has a symmetric nondegenerate ground state and zero magnetization at b=0. Noncommuting limits at this two-spin degeneracy do not by themselves establish spontaneous symmetry breaking in an infinite system.
+
+### Keep the linear approximation inside its stated regime
+
+For exact arithmetic set J=1 and parametrize the root by a rational u:
+
+$$
+J=1,\quad0<u<1,\quad h=\frac{u}{1-u^2},\quad R=\frac{1+u^2}{1-u^2},\quad
+ \Delta_{\rm ord}=\frac{2u^2}{1-u^2},\quad\langle X_i\rangle=\frac{2u}{1+u^2},\quad
+ \chi=\frac{4(1-u^2)}{u^2(1+u^2)}.
+$$
+
+
+```python
+from fractions import Fraction as Q
+for u in [Q(1, 10), Q(1, 3), Q(1, 2), Q(3, 4)]:
+    h, root = u/(1-u*u), (1+u*u)/(1-u*u)
+    assert root*root == 1+4*h*h
+    gap = root-1
+    transverse = 2*h/root
+    response = 4*(root+1)/(root*gap)
+    print(u, h, gap, transverse, response)
+```
+
+| u | field h | ordered first gap | local X mean | total susceptibility |
+|---|---|---|---|---|
+| 1/10 | 10/99 | 2/99 | 20/101 | 39600/101 |
+| 1/3 | 3/8 | 1/4 | 3/5 | 144/5 |
+| 1/2 | 2/3 | 2/3 | 4/5 | 48/5 |
+| 3/4 | 12/7 | 18/7 | 24/25 | 448/225 |
+
+A large derivative is not a magnetization larger than2. The exact observable remains between−2 and2. A simple sufficient separation check follows from the norm of the field perturbation:
+
+$$
+\|M\|_2=2,\quad4|b|<\Delta_{\rm ord}(0)\ \Longrightarrow\
+ \Delta_{\rm ord}(b)\ge\Delta_{\rm ord}(0)-4|b|>0,\qquad
+ \langle M\rangle_b=\chi b+O(b^3)\quad(b\to0,\ h>0\text{ fixed}).
+$$
+
+Ordered eigenvalues each move by at most2|b|, hence the gap changes by at most4|b|. The strict bound keeps the ground branch isolated. Symmetry makes its magnetization an odd analytic function near b=0. This check does not provide a numerical bound for the omitted cubic coefficient, and linear extrapolation far beyond the small-field regime is unjustified.
+
+![For two spins at positive transverse field the ordered gap closes quadratically and total susceptibility grows strongly near zero field; these finite-system curves do not establish a thermodynamic critical point.](/assets/learning/quantum-many-body-research-finite-gap-response.en.svg)
+
+The table is exact and the figure uses dimensionless h/J. The ground-vector, spectrum and response derivations here are standalone examples. The existing general off-diagonal spin reader still marks its ground classification uncomputed and has no new spectrum, longitudinal-time evolution or susceptibility solver.
+
+#### Research check 1: an unexpectedly small splitting
+
+At J=1,h=3/8, R=5/4 and the ordered first gap is1/4. The ground has zero local Z means but ZZ=4/5 and local X=3/5. Different observables describe the same state without identifying a broken-symmetry product preparation.
+
+#### Research check 2: the factor of two in response
+
+At that point total χ=144/5, so the response of M/2 is72/5. Comparing a per-site simulation output with the total formula would create a factor-of-two error. Both coefficients refer to the Hamiltonian perturbation −bM.
+
+#### Research check 3: zero field and degeneracy
+
+At h=b=0, Φ+ is a valid ground state with zero magnetization and |00⟩ is another with magnetization2. No preferred one is selected by the zero-field Hamiltonian. The next distinct excitation costs2J, while an ordered eigenvalue list starts with two identical ground energies.
+
 ## 13. Six problems to predict and explain
 
 **1. Basis and phase.** Apply X₀ to the raw state z=|00〉+i|01〉. After normalization, what is the Y mean of the second spin?

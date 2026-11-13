@@ -255,6 +255,134 @@ The experiment handles1…4 ordered modes, onsite/density terms, general complex
 
 For new AI research, matching the algebra, conservation laws, sector and observable set matters more than reusing an occupation table. When approximating states with neural networks or tensors, verify signs, complex phase, number distributions and physical assumptions as well as energy and residuals. Matching one-body training statistics and matching a global fermionic state are different achievements. Small exact matrices supply reference evidence, without automatically proving large-system convergence, complexity or optimization success.
 
+## Research extension: Majorana covariance, Gaussian assumptions and finite zero modes
+
+### Repackage CAR without changing the mode ordering
+
+Use the same ordered annihilators as the original chapter. Their Hermitian combinations and a real antisymmetric covariance are:
+
+$$
+m_{2j}=c_j+c_j^\dagger,\quad m_{2j+1}=-i(c_j-c_j^\dagger),\quad
+ \{m_a,m_b\}=2\delta_{ab}I,\quad
+ \Gamma_{ab}=\frac i2\operatorname{Tr}(\rho[m_a,m_b]),\quad
+ \Gamma^{\mathsf T}=-\Gamma\in\mathbb R^{2m\times2m},\quad
+ \langle m_am_b\rangle=\delta_{ab}-i\Gamma_{ab},\quad I-i\Gamma\succeq0.
+$$
+
+For a complex coefficient vector z, positivity of ⟨(Σz_a m_a)†(Σz_b m_b)⟩ proves the Gram condition. Antisymmetry then bounds covariance singular values by1. Our sign convention gives Γ01=−1 for the one-mode vacuum. Check that example before comparing another convention. The m operators are parity-odd; their bilinear covariances are even and compatible with the stated observable algebra.
+
+A real antisymmetric coefficient matrix encodes a quadratic Hamiltonian:
+
+$$
+H=E_cI+\frac i4\sum_{a,b}A_{ab}m_am_b,\quad A^{\mathsf T}=-A\in\mathbb R^{2m\times2m},\qquad
+ \langle H\rangle=E_c-\tfrac14\operatorname{Tr}(A\Gamma),\qquad
+ \mu(n_j-\tfrac12)=\frac{i\mu}{2}m_{2j}m_{2j+1}.
+$$
+
+Sum both index orders; omitting that convention changes a factor of two. Since Γab=i⟨m_a m_b⟩ off the diagonal, direct substitution proves the trace formula. The constant Ec includes any occupation-to-centered-number shifts. The Majorana form and quadratic setting are described in [Kitaev's original paper](https://arxiv.org/pdf/cond-mat/0010440).
+
+The Heisenberg equation closes linearly for any initial density:
+
+$$
+\hbar\dot{\mathbf m}=A\mathbf m,\quad O(t)=e^{At/\hbar},\quad O^{\mathsf T}O=I,\qquad
+ \Gamma(t)=O(t)\Gamma(0)O(t)^{\mathsf T}.
+$$
+
+The matrix exponential is orthogonal because A is real antisymmetric. Expanding CAR in the commutator derives the linear equation, and substituting the transformed operators derives the covariance congruence. This is an exact statement for quadratic dynamics, not a claim that every initial state is Gaussian.
+
+### Two-point reconstruction needs a state-class assumption
+
+An even fermionic Gaussian state obeys Wick factorization: all higher even moments are determined by its two-point data. This includes thermal quadratic states and appropriate limiting pure states. Within that class:
+
+$$
+\rho\text{ Gaussian}:\quad
+ \rho\text{ pure}\ \Longleftrightarrow\ \Gamma^2=-I,\qquad
+ \langle n_in_j\rangle=\gamma_{ii}\gamma_{jj}-|\gamma_{ij}|^2+|F_{ij}|^2\quad(i\ne j),\quad
+ \gamma_{ij}=\langle c_i^\dagger c_j\rangle,\ F_{ij}=\langle c_ic_j\rangle.
+$$
+
+The occupation identity follows by applying Wick to c_i†c_i c_j†c_j with the signs from CAR. The pure-state covariance criterion is conditional on the Gaussian description; purity of an arbitrary physical state does not imply that equation. See [Bravyi's Gaussian-state definition and Wick relation](https://arxiv.org/pdf/quant-ph/0404180).
+
+A physical even four-mode pure state supplies a direct counterexample to unrestricted reconstruction:
+
+$$
+|v\rangle=(|0000\rangle+|1111\rangle)/\sqrt2,\quad\rho_*=I_{16}/16,\quad
+ \Gamma_v=\Gamma_*=0,\quad \gamma_v=\gamma_*=I_4/2,\quad F_v=F_*=0,\qquad
+ \langle n_0n_1\rangle_v=1/2,\quad\langle n_0n_1\rangle_*=1/4,\quad
+ \operatorname{Var}_v(N)=4,\quad\operatorname{Var}_*(N)=1.
+$$
+
+The cat's two occupied components differ by four particles, so no quadratic operator connects them. Both states have identical two-point data and every quadratic mean energy agrees, yet a density correlation and the number variance distinguish them. The maximally mixed state is Gaussian; the pure cat violates the displayed Wick prediction1/4 and is not. In particular, Γ=0 does not certify that the source has entropy4 ln2. These are analytic mixed/pure comparisons, not new mixed-input controls in the pure reader.
+
+### Exact odd zero operators do not prove a protected physical qubit
+
+For two modes, couple only the middle Majoranas:
+
+$$
+H_e=\frac{it}{2}m_1m_2,\quad t>0,\quad
+ [H_e,m_0]=[H_e,m_3]=0,\quad\{P,m_0\}=\{P,m_3\}=0,\qquad
+ H_e=-\frac t2(c_0^\dagger c_1+c_1^\dagger c_0+c_0^\dagger c_1^\dagger+c_1c_0),\quad
+ \operatorname{spec}H_e=\{-t/2,-t/2,t/2,t/2\}.
+$$
+
+The two outer odd operators commute with He because each anticommutes with both factors in its bilinear. They connect opposite-parity energy eigenstates. This explains the twofold mathematical degeneracy, but a coherent superposition of its two parity sectors is not an allowed physical pure preparation under this chapter's superselection assumption. The hopping and pairing signs in the displayed c expansion follow from the original creation-order convention.
+
+A permitted even coupling of the outer pair removes the degeneracy:
+
+$$
+H_{e,u}=\frac{it}{2}m_1m_2+\frac{iu}{2}m_0m_3,\quad[H_{e,u},P]=0,\qquad
+ E_{s,r}=\tfrac12(st+ru),\quad s,r\in\{-1,+1\},\quad
+ E_0=-\tfrac12(t+u),\quad\Delta_{\rm ord}=u\quad(0\le u\le t).
+$$
+
+The two bilinears commute and have independently selectable eigenvalues±1 after multiplication by i. Both sectors are still preserved by P. For u>0 there is a unique full-Fock ground state, even though parity conservation remains exact. Thus parity conservation alone does not prohibit this splitting. In a longer wire, locality and spatial separation become essential additional conditions; the two-mode example establishes no robust topological phase or exponential protection law.
+
+The exact table sets t=1 and keeps u in[0,1]. Its ordered gap includes eigenvalue multiplicity:
+
+
+```python
+from fractions import Fraction as Q
+for ratio in [Q(0), Q(1, 4), Q(1, 2), Q(1)]:
+    energies = sorted((s+r*ratio)/2 for s in [-1, 1] for r in [-1, 1])
+    gap = energies[1]-energies[0]  # ordered, with multiplicity
+    multiplicity = energies.count(energies[0])
+    zero_majoranas = 2 if ratio == 0 else 0
+    assert gap == ratio
+    print(ratio, energies[0], gap, zero_majoranas, multiplicity)
+```
+
+| outer coupling u/t | ground energy/t | ordered first gap/t | commuting linear Majoranas | ground multiplicity |
+|---|---|---|---|---|
+| 0 | -1/2 | 0 | 2 | 2 |
+| 1/4 | -5/8 | 1/4 | 0 | 1 |
+| 1/2 | -3/4 | 1/2 | 0 | 1 |
+| 1 | -1 | 1 | 0 | 1 |
+
+Finally, density interactions leave the quadratic class:
+
+$$
+H_{\rm int}=U n_0n_1:\qquad
+ \hbar\dot m_0=i[H_{\rm int},m_0]=U n_1m_1.
+$$
+
+This contains a number operator times a Majorana, not a constant-coefficient linear combination of the m vector. A closed covariance-only evolution rule therefore needs additional structure or approximation in an interacting model. A learned two-point simulator should state this restriction instead of inferring closure from a few matching initial moments.
+
+![A four-mode pure cat and maximally mixed state share zero Majorana covariance but different density correlations; a permitted even outer coupling splits the exact two-mode Majorana degeneracy.](/assets/learning/quantum-many-body-research-majorana-covariance-limits.en.svg)
+
+The table is exact. Quadratic covariance evolution and the two-mode spectral calculation are standalone derivations. The current reader keeps its general complex hopping/pairing, density interactions and parity tests; it has no new Gaussian reconstruction, time evolution or arbitrary off-diagonal ground solver.
+
+#### Research check 1: a single-mode sign check
+
+For H=μ(n−1/2), A01=μ and vacuum Γ01=−1. The trace formula gives−μ/2. An occupied mode gives+μ/2. Reversing the covariance convention while leaving the energy formula untouched would reverse these predictions.
+
+#### Research check 2: covariance matching is not a Gaussianity test
+
+For the four-mode cat, gamma=I/2 and F=0 would predict ⟨n0n1⟩=1/4 under Wick. The actual value is1/2. The missing information is in higher moments, not a failure of CAR or parity. Quadratic time evolution still propagates its covariance exactly while leaving this reconstruction gap unresolved.
+
+#### Research check 3: a split state still conserves parity
+
+At t=1,u=1/4 the energies are−5/8,−3/8,3/8,5/8. Their first separation is1/4 and the ground is unique. The Hamiltonian remains even. Exact degeneracy at u=0 and the existence of odd zero operators do not imply immunity to every even perturbation or permission to ignore parity sectors.
+
 ## 15. Eight problems about order and assumptions
 
 **1. Vacuum and exclusion.** Compare c₀†c₁†|vac〉, c₁†c₀†|vac〉and (c₀†)²|vac〉. Is the final result a normalized vacuum?

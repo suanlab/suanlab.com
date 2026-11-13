@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-13 최신: [Spin chain·fermion Fock 두 단원 연구 보강](physics-math-for-ai/quantum-many-body-research-status.md)을 마쳤다. 한영 4원고에 유한 gap·정적 응답·극한 순서와 Majorana·Gaussian/Wick·짝 섭동, 32수식·4 Python·4그림·12해설 문제를 추가했다. 격리 환경 285검사·빌드·타입·출력과 실제 reader 16상태를 검증했다. 양자 순차 대조는 **18/34단원**, 다음은 boson cutoff·MPS 두 단원이다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**과 기존 650단원·1,969안내·입문 362/362 완료를 유지한다. 아래는 이전 기록이다.
+
 2026-11-13 최신: [Rayleigh·Ritz 두 단원 연구 보강](physics-math-for-ai/quantum-variational-research-status.md)을 마쳤다. 한영 4원고에 검증한 들뜬 하한·분산·바닥공간 인증과 보완 공간·Schur 보정·잔차 확장, 32수식·4 Python·4그림·12해설 문제를 추가했다. 격리 환경 307검사·빌드·타입·출력과 실제 reader 16상태를 검증했다. 양자 순차 대조는 **16/34단원**, 다음은 spin chain·fermion Fock 두 단원이다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**과 기존 650단원·1,969안내·입문 362/362 완료를 유지한다. 아래는 이전 기록이다.
 
 2026-11-13 최신: [Schmidt·부분 trace와 PPT·CHSH 두 단원 연구 보강](physics-math-for-ai/quantum-entanglement-research-status.md)을 마쳤다. 한영 4원고에 곱상태 거리·표지 필터·평균 자원과 측정 witness·유한 신뢰 상한·보정·탐지력, 32수식·4 Python·4그림·12해설 문제를 추가했다. 격리 환경 366검사·빌드·타입·출력과 실제 reader 16상태를 검증했다. 양자 순차 대조는 **14/34단원**, 다음은 Rayleigh 에너지·분산과 비직교 Ritz 두 단원이다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**과 기존 650단원·1,969안내·입문 362/362 완료를 유지한다. 아래는 이전 기록이다.

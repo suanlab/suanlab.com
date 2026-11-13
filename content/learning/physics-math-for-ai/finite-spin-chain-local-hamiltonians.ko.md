@@ -204,6 +204,124 @@ $$
 
 AI 연구에서는 상태 가족의 표현력, 최적화 성능, 물리 관측의 정확성을 따로 평가해야 한다. 신경망 상태가 낮은 에너지를 얻었다면 어떤 H·그래프·단위에서, 어떤 비교 하한과 분산·상관·크기 분석을 사용했는지 제시하자. symmetry를 구조에 넣는 것과 한 상태의 측정값이 확정적인 것은 다르다. 다음 MPS 내용은 같은 물리 상태를 더 작은 tensor로 표현할 수 있는 조건과 표현 좌표의 자유도를 설명한다.
 
+## 연구 확장: 유한계의 avoided crossing과 큰 정적 응답
+
+### 작은 모형을 완전히 푼 뒤 상을 해석하기
+
+작은 계가 장에 크게 반응한다고 열역학적 상전이가 정의되지는 않는다. 두 site·서로 다른 edge 하나·Pauli 에너지 규약을 사용하자.
+
+$$
+H=-JZ_0Z_1-h(X_0+X_1),\quad J>0,\quad h>0,\qquad
+ Q=X_0X_1,\quad[H,Q]=0,\quad M=Z_0+Z_1,\quad QMQ=-M.
+$$
+
+Spin-flip 대칭 Q는 종방향 자기화 M의 부호를 바꾼다. Bell 기저에서4차원 문제를 두 블록으로 나눈다.
+
+$$
+\Phi_\pm=(|00\rangle\pm|11\rangle)/\sqrt2,\quad
+ \Psi_\pm=(|01\rangle\pm|10\rangle)/\sqrt2,\qquad
+ H_{Q=+1}=\begin{pmatrix}-J&-2h\\-2h&J\end{pmatrix},\quad
+ H_{Q=-1}=\operatorname{diag}(-J,J),\quad R=\sqrt{J^2+4h^2}.
+$$
+
+짝 블록의 고유값은 −R,+R이고 홀 블록은 −J,+J다. h>0이면 −R이 유일한 최저 에너지다. Q 대칭 때문에 각 국소 Z 평균은0이다. 블록 대각화나 최저 에너지 미분으로 다음을 얻는다.
+
+$$
+E_0=-R,\quad\Delta_{\rm ord}=R-J=\frac{4h^2}{R+J}>0,\qquad
+ \langle Z_i\rangle=0,\quad\langle Z_0Z_1\rangle=J/R,\quad\langle X_i\rangle=2h/R.
+$$
+
+순서상 첫 gap은 준위가 만날 때도 중복도를 포함한다. h가0으로 접근하면 약2h²/J다. 정확히 h=0이면 바닥 공간이2차원이라 순서상 첫 gap은0이지만 다음 서로 다른 준위까지의 gap은2J다. 기존 대각 reader는 후자를 사용한다. 축퇴에서 정의가 다른 것이지 스펙트럼이 모순된 것이 아니다.
+
+### 상관·국소 혼합도·응답은 다른 정보를 담는다
+
+h>0 바닥 상태에서 한 spin을 버리면 다음과 같다.
+
+$$
+\rho_i=\tfrac12[I+(2h/R)X],\quad
+ \operatorname{spec}\rho_i=\left\{\frac{1+2h/R}{2},\frac{1-2h/R}{2}\right\},\quad
+ S_i=-\sum_{a=\pm}\lambda_a\ln\lambda_a.
+$$
+
+h가 양의 쪽에서0으로 접근하면 바닥은 Φ+·국소 상태는 I/2·연결 ZZ는1로 간다. h/J가 크면 X 곱상태에 접근하며 국소 엔트로피가0으로 간다. 두 spin의 고정 h>0에서는 해석적인 crossover다. 유한 행렬 계산이 열역학적 극한의 scaling 논증을 제공하지는 않는다.
+
+같은 에너지 단위의 종방향 계수 b를 더하자. 비축퇴 바닥 벡터의1차 섭동으로 정적 susceptibility를 얻는다.
+
+$$
+H(b)=H-bM,\qquad
+ \chi=\left.\frac{d\langle M\rangle_b}{db}\right|_{b=0}
+ =2\sum_{n>0}\frac{|\langle n|M|g\rangle|^2}{E_n-E_0}
+ =\frac{4(R+J)}{R(R-J)},\quad
+ \operatorname{Var}_g(M)=2(1+J/R).
+$$
+
+M은 Φ+를2Φ−로 보내고 Ψ+는0으로 보내므로 Φ−만 기여한다. 바닥의 Φ+ 가중치는(R+J)/(2R)이고 Φ−는 R−J만큼 위에 있다. 이로써 합과 계수를 증명한다. χ는 site당 자기화가 아닌 전체 M의 응답이며 단위는 에너지 역수다. 4J/h² 발산은 유한계 splitting이 닫히는 결과다.
+
+횡장이0이면 종방향 장이 정렬 곱상태를 선택한다. 다음 두 극한 실험은 다르다.
+
+$$
+h=0:\quad E_0(b)=-J-2|b|,\quad\langle M\rangle_b=2\operatorname{sgn}b\quad(b\ne0),\qquad
+ \lim_{b\to0^+}\lim_{h\to0^+}\langle M\rangle_b=2,\quad
+ \lim_{h\to0^+}\lim_{b\to0^+}\langle M\rangle_b=0.
+$$
+
+첫 순서에서는 b가 바닥 방향을 선택한 뒤 제거된다. 두 번째에서는 고정 h>0마다 대칭적인 비축퇴 바닥이 있어 b=0 자기화가0이다. 이 두-spin 축퇴에서 극한이 교환되지 않는다고 무한계의 자발적 대칭 깨짐이 증명되지는 않는다.
+
+### 선형 근사를 명시한 영역 안에서 사용하기
+
+정확한 산술을 위해 J=1로 두고 제곱근을 유리수 u로 매개화한다.
+
+$$
+J=1,\quad0<u<1,\quad h=\frac{u}{1-u^2},\quad R=\frac{1+u^2}{1-u^2},\quad
+ \Delta_{\rm ord}=\frac{2u^2}{1-u^2},\quad\langle X_i\rangle=\frac{2u}{1+u^2},\quad
+ \chi=\frac{4(1-u^2)}{u^2(1+u^2)}.
+$$
+
+
+```python
+from fractions import Fraction as Q
+for u in [Q(1, 10), Q(1, 3), Q(1, 2), Q(3, 4)]:
+    h, root = u/(1-u*u), (1+u*u)/(1-u*u)
+    assert root*root == 1+4*h*h
+    gap = root-1
+    transverse = 2*h/root
+    response = 4*(root+1)/(root*gap)
+    print(u, h, gap, transverse, response)
+```
+
+| u | 장 h | 순서상 첫 gap | 국소 X 평균 | 전체 susceptibility |
+|---|---|---|---|---|
+| 1/10 | 10/99 | 2/99 | 20/101 | 39600/101 |
+| 1/3 | 3/8 | 1/4 | 3/5 | 144/5 |
+| 1/2 | 2/3 | 2/3 | 4/5 | 48/5 |
+| 3/4 | 12/7 | 18/7 | 24/25 | 448/225 |
+
+큰 미분값이 자기화가2를 넘는다는 뜻은 아니다. 정확한 관측량은 계속 −2와2 사이에 있다. 장 섭동의 노름으로 분리를 보장하는 한 충분조건을 얻는다.
+
+$$
+\|M\|_2=2,\quad4|b|<\Delta_{\rm ord}(0)\ \Longrightarrow\
+ \Delta_{\rm ord}(b)\ge\Delta_{\rm ord}(0)-4|b|>0,\qquad
+ \langle M\rangle_b=\chi b+O(b^3)\quad(b\to0,\ h>0\text{ fixed}).
+$$
+
+순서별 고유값이 각각 최대2|b| 이동하므로 gap 변화는 최대4|b|다. 엄격한 상계가 바닥 가지를 고립시킨다. 대칭 때문에 b=0 근처 자기화는 홀수 해석 함수다. 이 조건이 빠진3차 계수의 수치 상계까지 주지는 않으며 작은 장 영역 밖의 선형 외삽은 정당하지 않다.
+
+![양의 횡장을 갖는 두 spin에서 순서상 gap은 이차로 닫히고 전체 susceptibility는 영장 근처에서 크게 증가한다. 이 유한계 곡선은 열역학적 임계점의 증명이 아니다.](/assets/learning/quantum-many-body-research-finite-gap-response.ko.svg)
+
+표는 정확한 분수이며 그림은 무차원 h/J를 사용한다. 여기 바닥 벡터·스펙트럼·응답은 독립 예제다. 기존 일반 비대각 spin reader는 바닥 분류를 미계산으로 유지하며 새 spectrum·종방향 시간 전개·susceptibility solver를 제공하지 않는다.
+
+#### 연구 확인 1: 뜻밖에 작은 splitting
+
+J=1,h=3/8이면 R=5/4·순서상 첫 gap은1/4다. 바닥의 국소 Z 평균은0이지만 ZZ=4/5·국소 X=3/5다. 다른 관측량이 같은 상태를 설명하며 대칭 깨짐 곱 준비를 지정하지는 않는다.
+
+#### 연구 확인 2: 응답의2배 인자
+
+그 지점에서 전체 χ=144/5이므로 M/2의 응답은72/5다. Site당 출력과 전체 공식을 비교하면2배 오류를 만든다. 둘 다 Hamiltonian 섭동 −bM에 대한 계수다.
+
+#### 연구 확인 3: 영장과 축퇴
+
+h=b=0에서 Φ+는 자기화0인 바닥이고 |00⟩도 자기화2인 바닥이다. 영장 Hamiltonian이 둘 중 하나를 선호해 선택하지 않는다. 다음 서로 다른 들뜸은2J를 요구하지만 순서별 목록은 같은 바닥 에너지 두 개로 시작한다.
+
 ## 13. 예측하고 풀어 보는 여섯 문제
 
 **1. 기저와 위상.** 두 spin의 원시 상태 z=|00〉+i|01〉에 X₀를 작용시켜라. 정규화 뒤 두 번째 spin의 Y 평균은 얼마인가?

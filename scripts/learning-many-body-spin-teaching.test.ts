@@ -9,6 +9,7 @@ import {spinChainModel as model}from'../src/lib/learning-spin-chain';
 import {snapshotManyBodyInput,manyBodyInputKey,parseManyBodyInputDraft,parseManyBodyStoredInput}from'../src/lib/learning-many-body-input';
 import {getLearningContent}from'../src/lib/learning-content';
 import {spinGraphCameraDistance}from'../src/components/learning/many-body-spin-graph-engine';
+const originalManuscript=(s:string)=>{const start=s.search(/^## (Research extension:|연구 확장:)/m);if(start<0)return s;const end=s.indexOf('\n## ',start+4)+1;assert(end>start);return s.slice(0,start)+s.slice(end);};
 ensureTestArtifactDirectory('.runtime/learning/many-body-spin-teaching', { recursive: true });
 
 const runtime='.runtime/learning/many-body-spin-teaching';
@@ -50,8 +51,8 @@ test('three guided experiments and three explained questions use independent fix
 });
 
 test('the staged bilingual loader uses the full audited manuscript bytes with strict KaTeX',async()=>{
- for(const locale of['ko','en'])assert.equal(readFileSync(`content/learning/physics-math-for-ai/${unit.id}.${locale}.md`,'utf8'),readFileSync(`docs/online-learning/physics-math-for-ai/${unit.id}-chapter.${locale}.md`,'utf8'));
- const content=await getLearningContent(unit.id);for(const lang of['ko','en'] as const){assert.equal(content.outline[lang].length,14);assert(content[lang].includes('katex-display'));assert(!content[lang].includes('katex-error'));assert.equal((content[lang].match(/<table/g)||[]).length,3);}
+ for(const locale of['ko','en'])assert.equal(originalManuscript(readFileSync(`content/learning/physics-math-for-ai/${unit.id}.${locale}.md`,'utf8')),readFileSync(`docs/online-learning/physics-math-for-ai/${unit.id}-chapter.${locale}.md`,'utf8'));
+ const content=await getLearningContent(unit.id);for(const lang of['ko','en'] as const){assert.equal(content.outline[lang].length,15);assert(content[lang].includes('katex-display'));assert(!content[lang].includes('katex-error'));assert.equal((content[lang].match(/<table/g)||[]).length,4);}
 });
 
 test('camera fit contains every site sphere in portrait and wide viewports',()=>{for(const radius of[1.6,3,5.3])for(const aspect of[.45,1,2.5]){const d=spinGraphCameraDistance(radius,aspect),half=Math.atan(Math.tan(42*Math.PI/360)*Math.min(1,aspect));assert(d*Math.sin(half)>=radius*1.1);}});

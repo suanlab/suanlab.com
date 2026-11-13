@@ -255,6 +255,134 @@ $$
 
 새 AI 연구에서는 같은 점유 표를 쓰는지보다 대수·보존량·sector·관측 집합이 일치하는지가 중요하다. 신경망이나 tensor 표현으로 상태를 근사할 때는 에너지·잔차뿐 아니라 복소 위상, 순서 부호, N 분포와 선택한 물리 가정을 검증하자. 학습 데이터의 one-body 통계를 맞춘 것과 fermionic 전체 상태를 맞춘 것은 다른 주장이다. 작은 정확 행렬은 이를 점검할 기준이지만 큰 계의 수렴·복잡도나 최적화 성공을 자동 보장하지 않는다.
 
+## 연구 확장: Majorana 공분산·Gaussian 가정·유한 zero mode
+
+### 모드 순서를 유지하며 CAR 다시 표현하기
+
+기존 장의 순서 있는 소멸 연산자로 Hermitian 조합과 실수 반대칭 공분산을 정의한다.
+
+$$
+m_{2j}=c_j+c_j^\dagger,\quad m_{2j+1}=-i(c_j-c_j^\dagger),\quad
+ \{m_a,m_b\}=2\delta_{ab}I,\quad
+ \Gamma_{ab}=\frac i2\operatorname{Tr}(\rho[m_a,m_b]),\quad
+ \Gamma^{\mathsf T}=-\Gamma\in\mathbb R^{2m\times2m},\quad
+ \langle m_am_b\rangle=\delta_{ab}-i\Gamma_{ab},\quad I-i\Gamma\succeq0.
+$$
+
+복소 계수 z에 대해 ⟨(Σz_a m_a)†(Σz_b m_b)⟩≥0이 Gram 조건을 증명한다. 반대칭성을 더하면 공분산 특잇값은1 이하다. 이 부호 규약에서 한 모드 vacuum은 Γ01=−1이다. 다른 규약과 비교하기 전에 이 예를 확인하자. m은 parity-odd지만 이중선형 공분산은 even이므로 명시한 관측량 대수와 양립한다.
+
+실수 반대칭 계수 행렬은 quadratic Hamiltonian을 표현한다.
+
+$$
+H=E_cI+\frac i4\sum_{a,b}A_{ab}m_am_b,\quad A^{\mathsf T}=-A\in\mathbb R^{2m\times2m},\qquad
+ \langle H\rangle=E_c-\tfrac14\operatorname{Tr}(A\Gamma),\qquad
+ \mu(n_j-\tfrac12)=\frac{i\mu}{2}m_{2j}m_{2j+1}.
+$$
+
+두 인덱스 순서를 모두 더한다. 이 규약을 빼면2배 인자가 바뀐다. 비대각 Γab=i⟨m_a m_b⟩를 대입하면 trace 공식을 얻는다. 상수 Ec에는 점유수를 중심화할 때의 에너지 이동도 포함한다. Majorana 형태와 quadratic 설정은 [Kitaev 원 논문](https://arxiv.org/pdf/cond-mat/0010440)을 참고한다.
+
+임의 초기 밀도에 대해 Heisenberg 방정식은 선형으로 닫힌다.
+
+$$
+\hbar\dot{\mathbf m}=A\mathbf m,\quad O(t)=e^{At/\hbar},\quad O^{\mathsf T}O=I,\qquad
+ \Gamma(t)=O(t)\Gamma(0)O(t)^{\mathsf T}.
+$$
+
+A가 실수 반대칭이므로 지수 행렬은 orthogonal이다. 교환자에 CAR를 전개하면 선형 방정식을 얻고 변환한 연산자를 대입하면 공분산 congruence가 나온다. Quadratic 동역학의 정확한 문장이며 모든 초기 상태가 Gaussian이라는 주장은 아니다.
+
+### 이점 정보로 복원하려면 상태 클래스 가정이 필요하다
+
+Even fermionic Gaussian 상태는 Wick factorization을 만족하여 높은 차수의 even 모멘트가 이점 자료로 결정된다. Thermal quadratic 상태와 적절한 극한의 순수 상태를 포함한다. 이 클래스 안에서는 다음과 같다.
+
+$$
+\rho\text{ Gaussian}:\quad
+ \rho\text{ pure}\ \Longleftrightarrow\ \Gamma^2=-I,\qquad
+ \langle n_in_j\rangle=\gamma_{ii}\gamma_{jj}-|\gamma_{ij}|^2+|F_{ij}|^2\quad(i\ne j),\quad
+ \gamma_{ij}=\langle c_i^\dagger c_j\rangle,\ F_{ij}=\langle c_ic_j\rangle.
+$$
+
+점유 항등식은 c_i†c_i c_j†c_j에 CAR 부호를 유지하며 Wick을 적용해 얻는다. 순수 공분산 판정은 Gaussian 설명 아래의 것이며 임의 물리 상태의 순수성이 그 식을 뜻하지는 않는다. [Bravyi의 Gaussian 정의·Wick 관계](https://arxiv.org/pdf/quant-ph/0404180)를 참고한다.
+
+물리적인 짝 parity 네 모드 순수 상태가 무제한 복원의 반례다.
+
+$$
+|v\rangle=(|0000\rangle+|1111\rangle)/\sqrt2,\quad\rho_*=I_{16}/16,\quad
+ \Gamma_v=\Gamma_*=0,\quad \gamma_v=\gamma_*=I_4/2,\quad F_v=F_*=0,\qquad
+ \langle n_0n_1\rangle_v=1/2,\quad\langle n_0n_1\rangle_*=1/4,\quad
+ \operatorname{Var}_v(N)=4,\quad\operatorname{Var}_*(N)=1.
+$$
+
+Cat의 두 성분은 입자 수4가 달라 quadratic 연산자로 연결되지 않는다. 두 상태는 같은 이점 자료와 모든 quadratic 평균 에너지를 갖지만 밀도 상관·수 분산은 다르다. 최대 혼합은 Gaussian이며 순수 cat은 Wick 예측1/4를 위반하므로 아니다. 특히 Γ=0만으로 원천 엔트로피가4 ln2라고 인증할 수 없다. 이는 독립적인 혼합·순수 비교이며 pure reader의 새 혼합 입력 제어가 아니다.
+
+### 정확한 odd zero 연산자가 보호된 물리 qubit을 증명하지는 않는다
+
+두 모드에서 가운데 Majorana만 결합하자.
+
+$$
+H_e=\frac{it}{2}m_1m_2,\quad t>0,\quad
+ [H_e,m_0]=[H_e,m_3]=0,\quad\{P,m_0\}=\{P,m_3\}=0,\qquad
+ H_e=-\frac t2(c_0^\dagger c_1+c_1^\dagger c_0+c_0^\dagger c_1^\dagger+c_1c_0),\quad
+ \operatorname{spec}H_e=\{-t/2,-t/2,t/2,t/2\}.
+$$
+
+바깥 odd 연산자는 이중선형의 두 인자와 각각 반교환하므로 He와 교환한다. 서로 반대 parity의 에너지 고유상태를 연결하여2중 수학적 축퇴를 설명한다. 그러나 이 장의 superselection 아래 두 parity를 일관되게 중첩한 순수 준비는 허용하지 않는다. 표시한 c 전개의 hopping·pairing 부호는 원래 생성 순서에서 나온다.
+
+허용된 even 바깥 쌍 결합은 축퇴를 제거한다.
+
+$$
+H_{e,u}=\frac{it}{2}m_1m_2+\frac{iu}{2}m_0m_3,\quad[H_{e,u},P]=0,\qquad
+ E_{s,r}=\tfrac12(st+ru),\quad s,r\in\{-1,+1\},\quad
+ E_0=-\tfrac12(t+u),\quad\Delta_{\rm ord}=u\quad(0\le u\le t).
+$$
+
+두 이중선형은 서로 교환하며 i를 곱하면 독립적으로 ±1 고유값을 갖는다. P가 두 영역을 계속 보존한다. u>0이면 full-Fock 바닥은 유일하지만 parity 보존은 정확하다. 따라서 parity 보존만으로 이 splitting을 금지하지 못한다. 긴 wire에서는 locality·공간 분리가 추가 핵심 조건이며 두 모드 예제가 강건한 위상이나 지수적 보호 법칙을 증명하지 않는다.
+
+정확한 표는 t=1·u∈[0,1]을 사용한다. 순서상 gap은 고유값 중복도를 포함한다.
+
+
+```python
+from fractions import Fraction as Q
+for ratio in [Q(0), Q(1, 4), Q(1, 2), Q(1)]:
+    energies = sorted((s+r*ratio)/2 for s in [-1, 1] for r in [-1, 1])
+    gap = energies[1]-energies[0]  # ordered, with multiplicity
+    multiplicity = energies.count(energies[0])
+    zero_majoranas = 2 if ratio == 0 else 0
+    assert gap == ratio
+    print(ratio, energies[0], gap, zero_majoranas, multiplicity)
+```
+
+| 바깥 결합 u/t | 바닥 에너지/t | 순서상 첫 gap/t | 교환하는 선형 Majorana 수 | 바닥 중복도 |
+|---|---|---|---|---|
+| 0 | -1/2 | 0 | 2 | 2 |
+| 1/4 | -5/8 | 1/4 | 0 | 1 |
+| 1/2 | -3/4 | 1/2 | 0 | 1 |
+| 1 | -1 | 1 | 0 | 1 |
+
+마지막으로 밀도 상호작용은 quadratic 클래스를 벗어난다.
+
+$$
+H_{\rm int}=U n_0n_1:\qquad
+ \hbar\dot m_0=i[H_{\rm int},m_0]=U n_1m_1.
+$$
+
+수 연산자와 Majorana의 곱이 들어 있어 m 벡터의 상수 계수 선형 결합이 아니다. 따라서 상호작용 모형의 공분산만으로 닫힌 전개에는 추가 구조나 근사가 필요하다. 이점 자료 학습 simulator는 초기 몇 모멘트가 맞는다는 이유로 closure를 추론하지 말고 이 제약을 명시해야 한다.
+
+![네 모드 순수 cat과 최대 혼합은 Majorana 공분산0을 공유하지만 밀도 상관은 다르다. 허용된 even 바깥 결합이 두 모드의 정확한 Majorana 축퇴를 분리한다.](/assets/learning/quantum-many-body-research-majorana-covariance-limits.ko.svg)
+
+표는 정확한 분수다. Quadratic 공분산 전개·두 모드 스펙트럼은 독립 유도이며 기존 reader는 일반 복소 hopping/pairing·밀도 상호작용·parity 검사를 유지한다. Gaussian 복원·시간 전개·임의 비대각 바닥 solver를 새로 추가하지 않았다.
+
+#### 연구 확인 1: 한 모드 부호 확인
+
+H=μ(n−1/2)에서 A01=μ·vacuum Γ01=−1을 넣으면 trace 식은 −μ/2다. 점유 모드에서는 +μ/2다. 공분산 규약을 반대로 바꾸면서 에너지 공식을 그대로 두면 예측이 뒤집힌다.
+
+#### 연구 확인 2: 공분산 일치는 Gaussian 판정이 아니다
+
+네 모드 cat의 gamma=I/2·F=0에 Wick을 적용하면 ⟨n0n1⟩=1/4지만 실제는1/2다. 빠진 정보는 고차 모멘트이며 CAR나 parity가 실패한 것이 아니다. Quadratic 시간 전개는 그 공분산을 정확히 전파해도 이 복원 격차를 해결하지 않는다.
+
+#### 연구 확인 3: 분리된 상태도 parity를 보존한다
+
+t=1,u=1/4이면 에너지는 −5/8,−3/8,3/8,5/8이고 첫 간격은1/4·바닥은 유일하다. Hamiltonian은 여전히 even이다. u=0의 정확 축퇴와 odd zero 연산자가 모든 even 섭동에 대한 면역이나 parity 영역을 무시할 허가를 뜻하지 않는다.
+
 ## 15. 순서와 가정을 확인하는 여덟 문제
 
 **1. 진공과 exclusion.** c₀†c₁†|vac〉, c₁†c₀†|vac〉, (c₀†)²|vac〉를 비교하라. 마지막 결과가 정규화된 진공인가?
