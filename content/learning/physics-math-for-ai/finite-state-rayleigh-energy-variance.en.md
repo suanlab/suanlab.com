@@ -189,6 +189,128 @@ Moments, path derivatives and residuals are exact complex-rational calculations.
 
 Follow this sequence: predict the energy sector, inspect variance, identify the ground-space probability, then check whether a positive-gap bound is applicable. Compare a phase direction with an amplitude-transfer direction. Finally choose a path that reaches the zero vector and verify that its moments become undefined rather than zero. Optional motion should guide the reading of comparisons; it must not suggest physical time evolution that the input never specified.
 
+## Research extension: an excited-spectrum cutoff turns variance into a ground certificate
+
+### A residual becomes informative after the spectral sector is identified
+
+The original residual bound locates some nearby energy. Now assume that all energies outside the ground space lie above a separately justified cutoff β. Write λ1 for the next distinct energy above λ0, allowing a degenerate ground space. For a normalized trial state:
+
+$$
+\lambda_0<\beta\le\lambda_1,\quad E<\beta,\quad v=\operatorname{Var}(H),\quad d=\beta-E>0,\qquad
+ E-\frac{v}{\beta-E}\le\lambda_0\le E.
+$$
+
+The left inequality is the ground-energy form of the Temple bound. Its denominator is an energy separation and v has squared energy units. It needs E<β, not merely a small variance. For finite Hermitian H it follows by averaging a polynomial that is nonnegative at every spectral value:
+
+$$
+\langle(H-\lambda_0)(H-\beta)\rangle
+ =v+(E-\lambda_0)(E-\beta)\ge0,\qquad
+ (E-\lambda_0)(\beta-E)\le v.
+$$
+
+At λ0 the polynomial vanishes; above β both factors are nonnegative. Expanding its expectation gives the identity and division by β−E gives the bound. No ground eigenvector has to be computed for this algebra, but the cutoff hypothesis must come from evidence outside the trial loss. See [Zhu, Argentati and Knyazev, §2](https://arxiv.org/pdf/1207.3240) for the residual/spectral-separation setting.
+
+### Bound ground-space population without a known ground energy
+
+Let ℓ be the total excited probability. If ℓ>0, its conditional mean μe is at least β. Splitting the energy distribution into the ground level and the excited group gives:
+
+$$
+\ell=1-p_0,\quad \mu_e=\mathbb E[H\mid H\ne\lambda_0]\ge\beta,\qquad
+ v\ge\frac{\ell}{1-\ell}(\mu_e-E)^2\ge\frac{\ell}{1-\ell}d^2,\qquad
+ \ell\le\frac{v}{v+d^2},\quad p_0\ge\frac{d^2}{v+d^2}.
+$$
+
+To obtain the first bound, keep the variance between the two groups and drop the nonnegative variance within the excited group. Mean balance expresses the ground group's displacement in terms of μe−E. The assumption E<β implies ℓ<1. At ℓ=0 the desired inequality holds directly without defining μe. This is the one-sided variance, or Cantelli, geometry of this spectral distribution; it bounds the entire ground space, not a selected basis vector in it.
+
+One possible independent cutoff uses a reference matrix and a rigorously bounded perturbation. In the next display eigenvalues are ordered with multiplicity and the reference ground state is nondegenerate:
+
+$$
+H=H_{\rm ref}+V,\quad\|V\|_2\le\eta,\quad
+ \lambda_j(H_{\rm ref})-\eta\le\lambda_j(H)\le\lambda_j(H_{\rm ref})+\eta,\qquad
+ \lambda_1(H_{\rm ref})-\lambda_0(H_{\rm ref})>2\eta
+ \ \Longrightarrow\ \beta=\lambda_1(H_{\rm ref})-\eta\le\lambda_1(H).
+$$
+
+The ordered bounds follow from min–max because −ηI≤V≤ηI. The strict reference-gap condition preserves a nondegenerate ground level. This is one finite-matrix construction, not a claim that every many-body problem has an easily available norm bound. With a degenerate reference, its cluster and next distinct level need a separate multiplicity-aware argument.
+
+### Test sharpness, unsafe substitutions and uncertain inputs
+
+In a two-level system the estimates can be exact even when the trial is mostly excited:
+
+$$
+H=\operatorname{diag}(0,2),\quad p_1=q,\quad0\le q<1,\quad
+ E=2q,\quad v=4q(1-q),\quad\beta=2,\qquad
+ E-\frac{v}{\beta-E}=0,\quad\frac{v}{v+(\beta-E)^2}=q.
+$$
+
+At q=3/4 only one quarter of the state is ground, and the leakage bound correctly reports3/4. At q=1 the state is an exact excited eigenstate, E=β and v=0; the certificate is unavailable rather than a zero-error conclusion. Approaching this endpoint makes the denominator sensitive to input uncertainty.
+
+A higher Ritz estimate of an excited energy is an upper bound, not the required lower cutoff. Substitution can give a false theorem:
+
+$$
+H=\operatorname{diag}(0,1,9),\quad V_{\rm trial}=\operatorname{span}\{e_0,e_2\},\quad
+ \mu_1^{\rm Ritz}=9,\quad\psi=e_1,\quad E=1,\quad v=0,\qquad
+ 1-\frac0{9-1}=1>\lambda_0=0.
+$$
+
+The proposed β=9 misses the actual excited level1. The displayed result would put the true ground energy at least1, so it is invalid. A gap inferred only from a restricted subspace cannot exclude a missing low-energy direction in the full problem.
+
+For uncertain E and v, propagate directions of inequalities instead of evaluating a formula at convenient midpoints. A conservative enclosure is:
+
+$$
+E\in[E_L,E_U],\quad 0\le v\le v_U,\quad\lambda_1\ge\beta_L>E_U,\quad d_L=\beta_L-E_U,\qquad
+ E_L-\frac{v_U}{d_L}\le\lambda_0\le E_U,\qquad
+ 1-p_0\le\frac{v_U}{v_U+d_L^2}.
+$$
+
+Indeed, E≥EL while the subtraction v/(β−E) is at most vU/(βL−EU). The leakage expression grows with variance and decreases with the positive separation. This does not assume that the Temple expression is monotone in E. If EU≥βL, this particular certificate cannot be issued. Negative estimated variance is not a physical input to repair by silently setting it to zero.
+
+For the state q=1/4, the following valid but deliberately widened input enclosures illustrate a safe calculation:
+
+$$
+E\in[49/100,51/100],\quad v\in[74/100,76/100],\quad\beta_L=199/100,\quad
+ d_L=37/25,\qquad
+ -87/3700\le\lambda_0\le51/100,\quad 1-p_0\le475/1844.
+$$
+
+The true λ0=0 and leakage1/4 are inside these bounds. Statistical intervals would additionally need their justified joint confidence coverage; deterministic interval arithmetic alone is not that sampling guarantee.
+
+
+```python
+from fractions import Fraction as Q
+for q in [Q(0), Q(1, 4), Q(3, 4), Q(99, 100)]:
+    energy, variance = 2*q, 4*q*(1-q)
+    distance = 2-energy
+    assert distance > 0
+    lower = energy-variance/distance
+    leakage = variance/(variance+distance*distance)
+    assert lower == 0 and leakage == q
+    print(q, energy, variance, lower, leakage)
+```
+
+| excited probability q | energy | variance | Temple lower bound | leakage upper bound |
+|---|---|---|---|---|
+| 0 | 0 | 0 | 0 | 0 |
+| 1/4 | 1/2 | 3/4 | 0 | 1/4 |
+| 3/4 | 3/2 | 3/4 | 0 | 3/4 |
+| 99/100 | 99/50 | 99/2500 | 0 | 99/100 |
+
+![A justified excited cutoff separates the trial mean from the excited sector; the one-sided variance bound is sharp for a two-level source and remains unavailable at the excited eigenstate endpoint.](/assets/learning/quantum-variational-research-excited-cutoff-certificates.en.svg)
+
+The table uses exact fractions. The figure compares the sharp one-sided leakage bound with the weaker capped bound v/(β−E)². These are standalone cutoff and uncertainty calculations. The existing finite reader still reports its exact supplied-H diagnostics; it has no new external-cutoff or sampling-confidence input.
+
+#### Research check 1: the same variance, different ground weights
+
+At q=1/4 and3/4 the variance is3/4 in both cases, but leakage is1/4 and3/4. The mean and the cutoff separation identify which interpretation applies. Variance by itself cannot tell the two preparations apart.
+
+#### Research check 2: a wrong excited cutoff
+
+For the three-level counterexample, setting β=1 makes E<β fail. That is the correct refusal for the excited vector. Setting β=9 only makes the division possible by making a false spectral assertion; an internally consistent arithmetic result is not a certificate of the missing hypothesis.
+
+#### Research check 3: an unresolved denominator
+
+If an energy enclosure reaches the certified cutoff, do not divide by a tiny positive replacement. Report this certificate as unavailable or refine the input evidence. An optimizer's loss curve cannot resolve that inequality by itself. The exact Rayleigh principle still holds for every physical trial state.
+
 ## 13. Exercises with explanations
 
 **1. Raw normalization.** For H=diag(0,2) and z=(2,2i), compute N, E and variance.

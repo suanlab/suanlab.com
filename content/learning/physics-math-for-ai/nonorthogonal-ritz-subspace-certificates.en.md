@@ -193,6 +193,128 @@ A reproducible study should record basis construction, rank decisions, condition
 
 For the subspace/Galerkin viewpoint, compare [MIT numerical-methods lecture notes](https://ocw.mit.edu/courses/18-335j-introduction-to-numerical-methods-spring-2019/pages/week-7/); the positive-metric generalized eigenproblem is discussed in [Cornell matrix-computation notes](https://www.cs.cornell.edu/courses/cs6210/2025fa/lec/2025-11-03.html). The concrete plane, coordinate transformation and checks here are derived explicitly.
 
+## Research extension: the missing-space block, Schur correction and residual enrichment
+
+### Separate coordinates from the omitted physical sector
+
+The original Gram metric supplies an orthonormal frame Q for the same trial space. Complete it with an orthonormal exterior frame R. Both sectors are nonempty here. The symbol AV below is an orthonormal compression, distinct from the original B†HB coordinate matrix:
+
+$$
+Q=BS^{-1/2},\quad Q^\dagger Q=I,\quad [Q\ R]\text{ unitary},\qquad
+ \widehat H=[Q\ R]^\dagger H[Q\ R]=\begin{pmatrix}A_V&C^\dagger\\C&D\end{pmatrix},\quad
+ A_V=Q^\dagger HQ,\ C=R^\dagger HQ,\ D=R^\dagger HR.
+$$
+
+The coupling C records Hamiltonian action that crosses between sectors. Orthogonalizing a basis fixes its coordinate metric; it does not remove this physical coupling. If an eigenvector has sector coordinates (x,y), its second block equation can be solved only away from the exterior spectrum:
+
+$$
+E\notin\operatorname{spec}(D):\quad
+ y=-(D-EI)^{-1}Cx,\qquad
+ \left[A_V-C^\dagger(D-EI)^{-1}C\right]x=Ex.
+$$
+
+Substitution gives an energy-dependent effective matrix on the retained sector. This is finite block elimination, the basic [Feshbach–Schur mechanism](https://arxiv.org/pdf/2105.02058). It is not permission to invert a singular D−EI or to replace E by a convenient trial value without an error analysis.
+
+If the whole exterior block has a verified lower bound β, then below it:
+
+$$
+D\succeq\beta I,\quad E<\beta:\qquad
+ 0\preceq C^\dagger(D-EI)^{-1}C\preceq\frac{C^\dagger C}{\beta-E}.
+$$
+
+The correction is positive semidefinite and is subtracted from AV. The inverse bound follows by diagonalizing D. This explains why restricting a low state to the retained sector tends to raise its energy. The energy dependence and the exterior separation control whether a perturbative picture is reliable.
+
+### A two-by-two comparison bounds the missing-space energy error
+
+Suppose μ is the lowest retained Ritz energy, β bounds every exterior direction, and γ bounds the operator norm of C. For arbitrary sector components:
+
+$$
+\mu=\lambda_{\min}(A_V),\quad D\succeq\beta I,\quad\|C\|_2\le\gamma,\quad\beta>\mu,\qquad
+ \langle(x,y),\widehat H(x,y)\rangle\ge
+ \mu\|x\|^2+\beta\|y\|^2-2\gamma\|x\|\|y\|.
+$$
+
+The cross term is bounded by Cauchy–Schwarz. Minimizing the resulting real two-by-two quadratic form over the two component lengths gives:
+
+$$
+L=\frac{\mu+\beta-\sqrt{(\beta-\mu)^2+4\gamma^2}}2\le\lambda_0(H)\le\mu,\quad g=\beta-\mu>0,\qquad
+ 0\le\mu-\lambda_0(H)\le\frac{2\gamma^2}{g+\sqrt{g^2+4\gamma^2}}\le\frac{\gamma^2}{g}.
+$$
+
+The upper bound uses a retained trial vector. The stable expression for the error avoids subtracting nearly equal square roots when γ is small. Its final γ²/g bound is simpler but can be much looser. Verifying an exterior lower bound may itself be difficult; a small residual for one retained vector does not supply that bound. All energies and γ use the same energy unit.
+
+A one-dimensional retained sector makes the comparison exact:
+
+$$
+H_{\Delta,t}=\begin{pmatrix}0&t\\t&\Delta\end{pmatrix},\quad\Delta>0,\quad t\ge0,\quad
+ V=\operatorname{span}\{e_0\},\quad\mu=0,\quad\gamma=t,\quad\beta=\Delta,\qquad
+ \delta=\mu-\lambda_0=\frac{\sqrt{\Delta^2+4t^2}-\Delta}{2},\quad
+ w_{\rm outside}=\frac12\left(1-\frac{\Delta}{\sqrt{\Delta^2+4t^2}}\right).
+$$
+
+For t much smaller than Δ, energy error is approximately t²/Δ while exterior population is approximately t²/Δ². Energy error and vector leakage have different units and different gap dependence. Approaching Δ=0 invalidates treating t/Δ as a small parameter; the exact two-level solution remains the appropriate comparison. The general error certificate above was stated with β>μ.
+
+### Repair coordinates, then decide whether to enlarge the space
+
+Different orthonormal frames of the same space differ by a unitary. The physical quantities used in the block bound are unchanged. Even a raw state rescaling cannot change its normalized residual:
+
+$$
+Q'=QU,\quad U^\dagger U=I:\qquad
+ \lambda_{\min}(Q'^\dagger HQ')=\mu,\quad
+ \|R^\dagger HQ'\|_2=\|CU\|_2=\|C\|_2,\qquad
+ \psi=\alpha e_0\ (\alpha\ne0):\quad\frac{\|(H_{\Delta,t}-\mu)\psi\|}{\|\psi\|}=t.
+$$
+
+Thus making coordinate coefficients tiny does not repair the missing-space coupling. Conversely, improving a poorly conditioned Gram matrix can stabilize a solve while leaving the physical approximation error fixed.
+
+There is a direct enrichment experiment. Choose a normalized minimizing Ritz vector and its nonzero full residual. Galerkin orthogonality places that residual outside the existing trial space:
+
+$$
+H\psi=\mu\psi+r,\quad\|\psi\|=1,\quad r\perp V,\quad r\ne0,\quad
+ \zeta=r/\|r\|,\quad\nu=\zeta^\dagger H\zeta,\quad V_{\rm new}=V+\operatorname{span}\{\zeta\},\qquad
+ \mu_{\rm new}\le\frac{\mu+\nu-\sqrt{(\nu-\mu)^2+4\|r\|^2}}2<\mu.
+$$
+
+In the two-dimensional span of ψ and ζ the compressed matrix has diagonal entries μ,ν and off-diagonal entry ‖r‖. Its lower eigenvalue is strictly below μ. The enlarged space contains this pair, which proves the bound. If r=0 no new direction can be defined this way; an invariant retained space can still miss a lower exterior eigenstate. This is one step of improvement under its hypotheses, not a general convergence-rate theorem.
+
+For Δ=1, use t=u/(1−u²) with0≤u<1. The root √(1+4t²)=(1+u²)/(1−u²) is rational, so the exact comparison can be reproduced without floating eigenvalue decisions:
+
+
+```python
+from fractions import Fraction as Q
+for u in [Q(0), Q(1, 3), Q(1, 2), Q(3, 4)]:
+    coupling = u/(1-u*u)  # Delta = 1
+    root = (1+u*u)/(1-u*u)
+    assert root*root == 1+4*coupling*coupling
+    error = (root-1)/2
+    outside = (1-1/root)/2
+    assert error <= coupling*coupling
+    print(u, coupling, error, coupling*coupling, outside)
+```
+
+| u | coupling t | exact energy error | looser t squared bound | exterior population |
+|---|---|---|---|---|
+| 0 | 0 | 0 | 0 | 0 |
+| 1/3 | 3/8 | 1/8 | 9/64 | 1/10 |
+| 1/2 | 2/3 | 1/3 | 4/9 | 1/5 |
+| 3/4 | 12/7 | 9/7 | 144/49 | 9/25 |
+
+![The exact two-sector energy correction and exterior population depend on coupling relative to the exterior separation; a quadratic energy estimate becomes loose as that ratio grows.](/assets/learning/quantum-variational-research-complement-schur-enrichment.en.svg)
+
+The table is exact and the curves show the stated two-level model. The current reader retains its general nonorthogonal basis and residual diagnostics. It has no new exterior-bound input, automatic enrichment iteration or energy-dependent Schur solver.
+
+#### Research check 1: a small norm in the wrong sector
+
+Let H=diag(0,2), but retain only e1. The Ritz energy is2 and its full residual is zero, yet the omitted ground energy is0. Here C=0 and the exterior lower value0 is not above μ. The assumed exterior ordering fails, so the ground certificate cannot label this state exact ground merely from its residual.
+
+#### Research check 2: one residual direction solves the two-level example
+
+For H with Δ=1 and t=3/8, the retained e0 has residual(0,3/8). Adding its direction gives the complete two-dimensional space. The energy minimum decreases from0 to−1/8, the exact ground energy, and the exterior weight is1/10. This exactness is special to completing this two-dimensional model.
+
+#### Research check 3: coordinate repair versus model enrichment
+
+Apply an invertible complex shear to a larger retained basis and transform coefficients consistently. The orthogonal projector, retained Ritz minimum and norm of the physical coupling remain unchanged. Adding an independent exterior residual changes the projector and admissible states. Only the latter addresses this missing-direction approximation error; neither action alone proves a claimed rate for a general learned trial family.
+
 ## 13. Exercises with explanations
 
 **1. Why the denominator matters.** Use only b0=(1,0,1) with H=diag(0,1,3). What are the energy matrix, Gram matrix and energy?

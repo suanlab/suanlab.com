@@ -4,7 +4,7 @@
 
 현재 교재에는 650개 학습 단원과 1,969개 안내 실험이 등록되어 있다. 요청 당시 남은 입문 48개와 후속 입문 목록 362/362의 집필·검증은 끝났다. 이는 아래 6영역을 모두 미집필로 본다는 뜻이 아니다.
 
-양자 영역은 [상태·Hilbert 공간](quantum-state-research-status.md), [관측·축퇴 사영](quantum-observable-research-status.md), [시간 전개·pulse](quantum-unitary-research-status.md), [spin·각운동량](quantum-spin-research-status.md)에 이어 [density·dephasing](quantum-density-research-status.md), [covariance·공동 POVM](quantum-uncertainty-research-status.md), [Schmidt·유한 witness](quantum-entanglement-research-status.md)을 보강해 순차 **14/34단원**이다. 전체 영역 종합 대조 전에는 위의 완료 영역 수를 늘리지 않는다.
+양자 영역은 [상태·Hilbert 공간](quantum-state-research-status.md), [관측·축퇴 사영](quantum-observable-research-status.md), [시간 전개·pulse](quantum-unitary-research-status.md), [spin·각운동량](quantum-spin-research-status.md)에 이어 [density·dephasing](quantum-density-research-status.md), [covariance·공동 POVM](quantum-uncertainty-research-status.md), [Schmidt·유한 witness](quantum-entanglement-research-status.md), [Rayleigh·Schur 보정](quantum-variational-research-status.md)을 보강해 순차 **16/34단원**이다. 전체 영역 종합 대조 전에는 위의 완료 영역 수를 늘리지 않는다.
 
 ## 대조 기록이 연결된 45영역
 

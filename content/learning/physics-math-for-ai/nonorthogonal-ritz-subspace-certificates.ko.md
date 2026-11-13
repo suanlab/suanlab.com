@@ -193,6 +193,128 @@ $$
 
 부분공간·Galerkin 관점은 [MIT 수치 방법 강의](https://ocw.mit.edu/courses/18-335j-introduction-to-numerical-methods-spring-2019/pages/week-7/), 양의 metric 일반화 고유값 문제는 [Cornell 행렬 계산 강의](https://www.cs.cornell.edu/courses/cs6210/2025fa/lec/2025-11-03.html)와 대조할 수 있다. 이 장의 구체적인 평면·좌표 변환과 검산은 직접 유도했다.
 
+## 연구 확장: 빠진 공간 블록·Schur 보정·잔차 방향 확장
+
+### 좌표와 생략한 물리 영역을 분리하기
+
+기존 Gram metric으로 같은 시험 공간의 정규직교 frame Q를 얻고 외부 정규직교 frame R로 완성한다. 여기서는 두 영역이 모두 비어 있지 않다. 아래 AV는 정규직교 압축이며 원래 B†HB 좌표 행렬과 다르다.
+
+$$
+Q=BS^{-1/2},\quad Q^\dagger Q=I,\quad [Q\ R]\text{ unitary},\qquad
+ \widehat H=[Q\ R]^\dagger H[Q\ R]=\begin{pmatrix}A_V&C^\dagger\\C&D\end{pmatrix},\quad
+ A_V=Q^\dagger HQ,\ C=R^\dagger HQ,\ D=R^\dagger HR.
+$$
+
+결합 C는 두 영역을 가로지르는 Hamiltonian 작용을 기록한다. 기저의 정규직교화는 좌표 metric을 고치지만 물리 결합을 없애지 않는다. 고유벡터의 영역별 좌표가 (x,y)이면 두 번째 블록 방정식은 외부 스펙트럼 밖에서만 풀 수 있다.
+
+$$
+E\notin\operatorname{spec}(D):\quad
+ y=-(D-EI)^{-1}Cx,\qquad
+ \left[A_V-C^\dagger(D-EI)^{-1}C\right]x=Ex.
+$$
+
+이를 대입하면 보존 영역 위의 에너지 의존 유효 행렬을 얻는다. 유한 블록 소거이며 [Feshbach–Schur 방법](https://arxiv.org/pdf/2105.02058)의 기본 구조다. 특이한 D−EI를 역행렬로 만들거나 오류 분석 없이 E를 편리한 시험 값으로 대체할 허가는 아니다.
+
+외부 블록 전체의 검증된 하한이 β이면 그 아래에서 다음과 같다.
+
+$$
+D\succeq\beta I,\quad E<\beta:\qquad
+ 0\preceq C^\dagger(D-EI)^{-1}C\preceq\frac{C^\dagger C}{\beta-E}.
+$$
+
+보정은 양의 준정부호이며 AV에서 뺀다. D를 대각화하면 역행렬 상계를 얻는다. 따라서 낮은 상태를 보존 영역에 제한하면 에너지가 올라가는 이유를 설명한다. 에너지 의존성과 외부 분리가 섭동 직관의 유효성을 좌우한다.
+
+### 두-by-두 비교로 빠진 공간의 에너지 오류 제한하기
+
+μ는 최소 보존 Ritz 에너지, β는 모든 외부 방향의 하한, γ는 C 연산자 노름의 상한이라고 하자. 임의 영역 성분에 대해 다음과 같다.
+
+$$
+\mu=\lambda_{\min}(A_V),\quad D\succeq\beta I,\quad\|C\|_2\le\gamma,\quad\beta>\mu,\qquad
+ \langle(x,y),\widehat H(x,y)\rangle\ge
+ \mu\|x\|^2+\beta\|y\|^2-2\gamma\|x\|\|y\|.
+$$
+
+교차 항은 Cauchy–Schwarz로 제한한다. 두 성분 길이에 대한 실수 두-by-두 이차형식을 최소화하면 다음을 얻는다.
+
+$$
+L=\frac{\mu+\beta-\sqrt{(\beta-\mu)^2+4\gamma^2}}2\le\lambda_0(H)\le\mu,\quad g=\beta-\mu>0,\qquad
+ 0\le\mu-\lambda_0(H)\le\frac{2\gamma^2}{g+\sqrt{g^2+4\gamma^2}}\le\frac{\gamma^2}{g}.
+$$
+
+상한은 보존 시험 벡터를 사용한다. 안정된 오류 식은 γ가 작을 때 거의 같은 제곱근을 빼지 않는다. 마지막 γ²/g는 간단하지만 훨씬 느슨할 수 있다. 외부 하한의 검증 자체가 어려울 수 있으며 보존 벡터 하나의 작은 잔차로 그 하한을 얻지는 못한다. 모든 에너지와 γ는 같은 에너지 단위를 쓴다.
+
+보존 영역이1차원이면 비교가 정확한 예제를 만들 수 있다.
+
+$$
+H_{\Delta,t}=\begin{pmatrix}0&t\\t&\Delta\end{pmatrix},\quad\Delta>0,\quad t\ge0,\quad
+ V=\operatorname{span}\{e_0\},\quad\mu=0,\quad\gamma=t,\quad\beta=\Delta,\qquad
+ \delta=\mu-\lambda_0=\frac{\sqrt{\Delta^2+4t^2}-\Delta}{2},\quad
+ w_{\rm outside}=\frac12\left(1-\frac{\Delta}{\sqrt{\Delta^2+4t^2}}\right).
+$$
+
+t가 Δ보다 충분히 작으면 에너지 오류는 약 t²/Δ, 외부 확률은 약 t²/Δ²다. 에너지 오류와 벡터 leakage는 단위·gap 의존성이 다르다. Δ=0에 접근하면 t/Δ가 작다는 취급이 깨지므로 정확한 두 준위 해와 비교해야 한다. 앞의 일반 오류 인증은 β>μ에서 제시했다.
+
+### 좌표를 정비한 뒤 공간 확장 필요성 판단하기
+
+같은 공간의 서로 다른 정규직교 frame은 unitary로 연결된다. 블록 상계의 물리량은 바뀌지 않는다. Raw 상태의 재배율조차 정규화 잔차를 바꾸지 않는다.
+
+$$
+Q'=QU,\quad U^\dagger U=I:\qquad
+ \lambda_{\min}(Q'^\dagger HQ')=\mu,\quad
+ \|R^\dagger HQ'\|_2=\|CU\|_2=\|C\|_2,\qquad
+ \psi=\alpha e_0\ (\alpha\ne0):\quad\frac{\|(H_{\Delta,t}-\mu)\psi\|}{\|\psi\|}=t.
+$$
+
+따라서 좌표 계수를 작게 만든다고 빠진 공간 결합이 해결되지는 않는다. 반대로 조건이 나쁜 Gram 행렬을 개선하면 계산은 안정될 수 있어도 물리적 근사 오류는 그대로일 수 있다.
+
+직접 공간을 확장하는 실험도 가능하다. 정규화한 최소 Ritz 벡터와 영이 아닌 전체 잔차를 택하면 Galerkin 직교성 때문에 잔차가 기존 시험 공간 밖에 놓인다.
+
+$$
+H\psi=\mu\psi+r,\quad\|\psi\|=1,\quad r\perp V,\quad r\ne0,\quad
+ \zeta=r/\|r\|,\quad\nu=\zeta^\dagger H\zeta,\quad V_{\rm new}=V+\operatorname{span}\{\zeta\},\qquad
+ \mu_{\rm new}\le\frac{\mu+\nu-\sqrt{(\nu-\mu)^2+4\|r\|^2}}2<\mu.
+$$
+
+ψ·ζ의2차원 span에서 압축 행렬의 대각은 μ·ν, 비대각은 ‖r‖다. 작은 고유값은 μ보다 엄격히 낮다. 확장 공간이 이 두 방향을 포함하므로 상계를 얻는다. r=0이면 이 방법으로 새 방향을 정의할 수 없다. 불변인 보존 공간도 더 낮은 외부 고유상태를 놓칠 수 있다. 이는 가정 아래 한 단계 개선이며 일반 수렴률 정리가 아니다.
+
+Δ=1에서0≤u<1·t=u/(1−u²)를 쓰면 √(1+4t²)=(1+u²)/(1−u²)가 유리수다. 따라서 부동소수점 고유값 판정 없이 비교를 재현한다.
+
+
+```python
+from fractions import Fraction as Q
+for u in [Q(0), Q(1, 3), Q(1, 2), Q(3, 4)]:
+    coupling = u/(1-u*u)  # Delta = 1
+    root = (1+u*u)/(1-u*u)
+    assert root*root == 1+4*coupling*coupling
+    error = (root-1)/2
+    outside = (1-1/root)/2
+    assert error <= coupling*coupling
+    print(u, coupling, error, coupling*coupling, outside)
+```
+
+| u | 결합 t | 정확 에너지 오류 | 느슨한 t 제곱 상계 | 외부 확률 |
+|---|---|---|---|---|
+| 0 | 0 | 0 | 0 | 0 |
+| 1/3 | 3/8 | 1/8 | 9/64 | 1/10 |
+| 1/2 | 2/3 | 1/3 | 4/9 | 1/5 |
+| 3/4 | 12/7 | 9/7 | 144/49 | 9/25 |
+
+![정확한 두 영역 에너지 보정과 외부 확률은 외부 분리에 대한 결합의 비에 달려 있다. 그 비가 커지면 이차 에너지 추정은 느슨해진다.](/assets/learning/quantum-variational-research-complement-schur-enrichment.ko.svg)
+
+표는 정확한 분수이고 곡선은 명시한 두 준위 모형이다. 현재 reader는 일반 비직교 기저와 잔차 진단을 유지한다. 외부 하한 입력·자동 확장 반복·에너지 의존 Schur solver를 새로 제공하지 않는다.
+
+#### 연구 확인 1: 잘못된 영역의 작은 노름
+
+H=diag(0,2)에서 e1만 보존하면 Ritz 에너지는2·전체 잔차는0이지만 빠진 바닥 에너지는0이다. C=0이고 외부 하한0은 μ보다 높지 않다. 가정한 외부 순서가 실패하므로 잔차만으로 이 상태를 정확한 바닥 상태라고 인증할 수 없다.
+
+#### 연구 확인 2: 잔차 한 방향으로 두 준위 풀기
+
+Δ=1·t=3/8인 H에서 보존 e0의 잔차는(0,3/8)이다. 그 방향을 더하면 전체2차원 공간이 된다. 최소 에너지는0에서 정확한 바닥 에너지 −1/8로 내려가고 외부 확률은1/10이다. 전체 공간을 완성한 이2차원 예제의 특수한 정확성이다.
+
+#### 연구 확인 3: 좌표 정비와 모형 확장
+
+더 큰 보존 기저에 가역 복소 shear를 적용하고 계수를 일관되게 변환하면 직교 사영·보존 Ritz 최솟값·물리 결합 노름은 같다. 독립 외부 잔차를 더하면 사영과 허용 상태가 바뀐다. 후자가 이 빠진 방향의 근사 오류를 다루며 어느 동작도 일반 학습 시험 가족의 수렴률을 혼자 증명하지 않는다.
+
 ## 13. 해설이 있는 연습문제
 
 **1. 분모가 필요한 이유.** H=diag(0,1,3)에서 b0=(1,0,1)만 사용하라. 에너지 행렬, Gram 행렬과 에너지는 무엇인가?
