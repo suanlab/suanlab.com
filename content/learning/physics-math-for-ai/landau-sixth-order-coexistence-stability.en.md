@@ -164,6 +164,110 @@ Begin with **a=3/16,b=-1, three coexisting minima**. In the free-energy view ide
 
 Use **Root details** for curvature and energy excess, **Zoom root** for a local drawing, and **Full view** to restore the broad range. The order parameter lives on the real line; the plot range is not a constraint |m|≤1. Commit a,b,c,H with Enter or blur. Here b is the quartic coefficient and H is the field. The precision ceiling controls arithmetic, not temperature. The named unresolved example retains two global candidates at its cap; a complete root set does not imply a resolved global comparison. Static barrier rows identify an adjacent minimum and maximum, without specifying a switching time. Manual example steps remain available when motion is paused.
 
+## Research extension: give the scalar landscape a spatial interface
+
+The scalar polynomial compares uniform states. To ask whether a small region can change phase first, we must specify how neighboring values of m interact and what spatial geometry is allowed. This extension adds a gradient cost, derives one planar interface exactly, then states a near-coexistence approximation for a spherical droplet. The static calculator above still solves the original uniform polynomial.
+
+### Add a stiffness and keep the units explicit
+
+Use dimensionless m in three spatial dimensions, a positive density scale f₀ in J/m³, and a positive stiffness κ in J/m. The new continuum functional is
+
+$$
+\mathcal F[m]=\int_{\mathbb R^3}\left[\frac\kappa2|\nabla m|^2+f_0\Phi(m)\right]d^3x,\qquad [f_0]=\mathrm{J\,m^{-3}},\qquad [\kappa]=\mathrm{J\,m^{-1}}.
+$$
+
+This is a phenomenological coarse-grained model with constant stiffness. It is not a microscopic derivation, and it supplies no clock. At H=0,b<0 choose the original coexistence coefficients. Here b remains the quartic coefficient, not the Curie–Weiss field.
+
+$$
+a_* =\frac{3b^2}{16c},\qquad m_0^2=-\frac{3b}{4c},\qquad \Phi_*(m)=\frac c6m^2(m^2-m_0^2)^2.
+$$
+
+Consider only a planar interface from m=0 at x=−∞ to m=m₀ at x=+∞, with zero derivative at both ends. It is a different boundary-value problem from an interface between −m₀ and +m₀; the intervening coexisting phase matters in that problem. Varying the functional and multiplying the resulting equation by m′ gives a first integral. Its integration constant is zero because both endpoint potentials and gradients vanish.
+
+$$
+\kappa m''=f_0\Phi_*'(m),\qquad \frac\kappa2(m')^2=f_0\Phi_*(m).
+$$
+
+### Solve the interface and integrate its surface cost
+
+Choose the increasing profile. With u=m²/m₀² the first-order equation becomes logistic. This makes the squared order parameter a useful coordinate even though m itself is not a logistic function.
+
+$$
+m'=\sqrt{\frac{f_0c}{3\kappa}}m(m_0^2-m^2),\qquad u'=2m_0^2\sqrt{\frac{f_0c}{3\kappa}}u(1-u).
+$$
+
+Translation invariance lets us put the point u=1/2 at x=0. The length ℓ below is the logistic scale for u, not a uniquely defined experimental wall thickness. For example a 10–90% width of u is 2ℓ ln9, so a width convention must always be stated.
+
+$$
+u(x)=\frac1{1+e^{-x/\ell}},\qquad m(x)=m_0\sqrt{u(x)},\qquad \ell=\frac1{2m_0^2}\sqrt{\frac{3\kappa}{f_0c}}.
+$$
+
+The excess free energy per area, σ, includes both gradient and potential terms. The first integral makes those terms equal along the solution. Changing the integration variable from x to m yields an elementary polynomial integral on 0≤m≤m₀.
+
+$$
+\sigma=\int_{-\infty}^{\infty}\left[\frac\kappa2(m')^2+f_0\Phi_*(m)\right]dx=\int_0^{m_0}\sqrt{2\kappa f_0\Phi_*(m)}\,dm=\frac{m_0^4}{4}\sqrt{\frac{\kappa f_0c}{3}}.
+$$
+
+Its units are J/m². The scalar barrier height alone could not produce this number: κ and the spatial profile are indispensable. Rescaling κ by four doubles both ℓ and σ while leaving every uniform stationary point unchanged.
+
+### Leave coexistence slightly before asking for a critical droplet
+
+At exact coexistence the bulk phases have equal free-energy density. An isolated spherical interface then costs area without a bulk driving gain. To favor the ordered phase, explicitly change the preparation slightly, for example a=a_*−ε with ε>0 and small at H=0. The ordered minimum moves; its density becomes lower than the still metastable origin. Define Δf as that positive density difference. To leading order Δf≈f₀ ε m₀²/2.
+
+Approximate the resulting droplet by a sphere in a large homogeneous three-dimensional medium, with isotropic, curvature-independent tension equal to the coexistence σ. Neglect defects, walls, long-range fields and interactions with other droplets. In this thin-wall approximation,
+
+$$
+\Delta F(R)\simeq4\pi\sigma R^2-\frac{4\pi}{3}\Delta f\,R^3,\qquad \Delta f>0.
+$$
+
+The surface term penalizes small droplets; the volume term favors sufficiently large ones. Differentiating with respect to R gives the maximum along this radius coordinate. It is a saddle of the full field problem, not a stable droplet size.
+
+$$
+R_c=\frac{2\sigma}{\Delta f},\qquad \Delta F_c=\frac{16\pi\sigma^3}{3\Delta f^2},\qquad R_c\gg\ell.
+$$
+
+![A planar zero-to-positive coexistence interface and the thin-wall droplet free-energy competition between surface area and bulk volume.](/assets/learning/phase-transition-research-interface-droplet.en.svg)
+
+The lower panel is expressed relative to R_c and ΔF_c to make the barrier visible. It depicts the static approximation, not a simulated nucleation event. Large R_c/ℓ and a small departure from coexistence are necessary consistency checks; they do not quantify every neglected correction.
+
+For an illustrative scale choice a_*=1,b=−4,c=3,m₀=1,f₀=1 J/m³,κ=1 J/m, ℓ=0.5 m and σ=0.25 J/m². These deliberately simple numbers are not fitted material constants. The table varies a small positive driving density near coexistence, retaining σ at its coexistence value. Δf is in J/m³, ℓ and R_c in m, σ in J/m², and ΔF_c in J. Each row is an approximate thin-wall prediction, not an exact curved-interface solution. The coexistent local barrier density is 2f₀/27, larger than the chosen drives.
+
+| Δf | ℓ | σ | R_c | R_c/ℓ | ΔF_c |
+| --- | --- | --- | --- | --- | --- |
+| 0.0005 | 0.500 | 0.250 | 1000.000 | 2000.0 | 1047197.551 |
+| 0.0010 | 0.500 | 0.250 | 500.000 | 1000.0 | 261799.388 |
+| 0.0020 | 0.500 | 0.250 | 250.000 | 500.0 | 65449.847 |
+| 0.0050 | 0.500 | 0.250 | 100.000 | 200.0 | 10471.976 |
+
+```python
+from math import pi, sqrt
+
+f0, kappa, c, m0 = 1.0, 1.0, 3.0, 1.0
+ell = sqrt(3*kappa/(f0*c))/(2*m0*m0)
+sigma = m0**4*sqrt(kappa*f0*c/3)/4
+for drive in (0.0005, 0.001, 0.002, 0.005):
+    radius = 2*sigma/drive
+    barrier = 16*pi*sigma**3/(3*drive**2)
+    print(f'{drive:.4f}', f'{ell:.3f}', f'{sigma:.3f}',
+          f'{radius:.3f}', f'{radius/ell:.1f}', f'{barrier:.3f}')
+```
+
+### Research checks and boundaries of the new model
+
+#### Can Δf be positive while keeping the original coexistent preparation unchanged?
+
+**Research explanation.** No. Coexistence sets the two bulk depths equal. A positive Δf requires a new coefficient or field preparation. The interface formula used in the droplet estimate is its leading coexistence approximation; finite driving also perturbs the exact profile and tension.
+
+#### Why is the uniform barrier times a guessed volume insufficient?
+
+**Research explanation.** A droplet changes a local region and pays a gradient cost at its boundary. Area and volume scale differently with radius. A uniform path removes this geometry and cannot determine σ or R_c from the polynomial height alone.
+
+#### Does ΔF_c determine a rate in events per second?
+
+**Research explanation.** No. A stochastic dynamics, thermal noise convention, kinetic prefactor, temperature and observation volume would be needed. Even an Arrhenius-like exponential would require the dimensionless ratio ΔF_c/(kBT), not the dimensional barrier by itself. No such rate is predicted here.
+
+[Tong, section 5.5](https://davidtong.org/pdfs/teaching/statistical-physics/statphys5.pdf) motivates a gradient functional and area-cost domain walls in a quartic model. The sixth-order 0→m₀ profile, tension and spherical surface-minus-volume estimates above are separately derived for this stated extension. The existing uniform reader, its controls and its absence of physical dynamics remain the starting model.
+
 ## Six worked checks
 
 ### 1. Prove the three-way coexistence

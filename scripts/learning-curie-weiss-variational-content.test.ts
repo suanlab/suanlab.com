@@ -6,10 +6,10 @@ import { curieWeissVariationalModel as model } from '../src/lib/learning-curie-w
 const id='curie-weiss-variational-stability-limits';
 const source=(lang:'ko'|'en')=>readFileSync(`content/learning/physics-math-for-ai/${id}.${lang}.md`,'utf8');
 for(const lang of ['ko','en'] as const)test(`${lang}: detailed variational theory renders strict equations and worked explanations`,async()=>{
- const raw=source(lang),r=await getLearningContent(id),html=r[lang];assert.equal(r.outline[lang].length,15);assert.equal(new Set(r.outline[lang].map(x=>x.id)).size,15);
+ const raw=source(lang),r=await getLearningContent(id),html=r[lang];assert.equal(r.outline[lang].length,16);assert.equal(new Set(r.outline[lang].map(x=>x.id)).size,16);
  assert.equal((raw.match(/^### [1-6]\. /gm)||[]).length,6);assert.equal((raw.match(/\*\*(?:Explanation\.|해설\.)\*\*/g)||[]).length,6);
- assert.equal((html.match(/class="katex-display"/g)||[]).length,16);assert.equal((html.match(/aria-label="(?:Equation|수식) /g)||[]).length,16);
- assert.equal((html.match(/<table[^>]*tabindex="0"/g)||[]).length,2);assert.doesNotMatch(html,/katex-error|\$\$/);assert.doesNotMatch(raw,/^# |^---/m);
+ assert.equal((html.match(/class="katex-display"/g)||[]).length,23);assert.equal((html.match(/aria-label="(?:Equation|수식) /g)||[]).length,23);
+ assert.equal((html.match(/<table[^>]*tabindex="0"/g)||[]).length,3);assert.doesNotMatch(html,/katex-error|\$\$/);assert.doesNotMatch(raw,/^# |^---/m);
  if(lang==='en'){assert.ok(raw.split(/\s+/).length>2800);assert.doesNotMatch(html,/[가-힣]/);}else assert.ok((raw.match(/[가-힣]/g)||[]).length>5000);
 });
 test('translations share all equations and explicitly distinguish preparations and evidence limits',()=>{

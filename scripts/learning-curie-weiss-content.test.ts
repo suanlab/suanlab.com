@@ -7,12 +7,12 @@ const id = 'finite-curie-weiss-magnetization-symmetry';
 const source = (language: 'ko' | 'en') => readFileSync(`content/learning/physics-math-for-ai/${id}.${language}.md`, 'utf8');
 for (const language of ['ko', 'en'] as const) test(`${language}: finite symmetry, counting, responses and modal distinctions render as accessible detailed theory`, async () => {
   const raw = source(language), rendered = await getLearningContent(id), html = rendered[language];
-  assert.equal(rendered.outline[language].length, 15); assert.equal(new Set(rendered.outline[language].map(h => h.id)).size, 15);
+  assert.equal(rendered.outline[language].length, 16); assert.equal(new Set(rendered.outline[language].map(h => h.id)).size, 16);
   assert.equal((raw.match(/^### [1-6]\. /gm) ?? []).length, 6);
   assert.equal((raw.match(/\*\*(?:Explanation\.|해설\.)\*\*/g) ?? []).length, 6);
-  assert.equal((html.match(/class="katex-display"/g) ?? []).length, 17);
-  assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 17);
-  assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 3);
+  assert.equal((html.match(/class="katex-display"/g) ?? []).length, 24);
+  assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 24);
+  assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 4);
   assert.doesNotMatch(raw, /^# |^---/m); assert.doesNotMatch(html, /katex-error|\$\$/);
   if (language === 'en') { assert.ok(raw.split(/\s+/).length > 2400); assert.doesNotMatch(html, /[가-힣]/); }
   else assert.ok((raw.match(/[가-힣]/g) ?? []).length > 4500);

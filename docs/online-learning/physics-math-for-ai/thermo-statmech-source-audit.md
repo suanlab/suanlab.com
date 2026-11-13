@@ -67,3 +67,8 @@ Levin–Peres의 저자 공개 [Markov Chains and Mixing Times](https://pages.uo
 ## Boltzmann·Gibbs 연구 보강: 관측 설계와 표집 정확도
 
 [Berkeley 지수족 자료](https://stat210a.berkeley.edu/fall-2024/reader/exponential-families.html)의 평균·공분산 미분 관계, [Stanford Gibbs 자료](https://ermongroup.github.io/cs323-notes/probabilistic/gibbs/)의 조건부 갱신·Metropolis 구성, [Wibisono 2018 예제 1–2](https://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)의 Gaussian 정확 전이·ULA 정상 편향을 대조했다. 두 교정 온도의 기준 오즈·에너지 역산과 관측 우도, 상태 의존 선택의 반례·구성별 선택 비 보정은 여기서 지정한 모형으로 직접 유도한다. Gaussian 표는 무차원 정밀도와 알고리즘 단계를 사용한다. 정규화·조건부 정확성·반복 안정성·목표 보존·물리 시간의 의미를 서로 대신하지 않는다. 상세 검산 범위는 [Boltzmann·Gibbs 검증 기록](boltzmann-research-status.md)을 따른다.
+
+
+## 상전이·질서변수 연구 보강: 임계 요동·유한 가중치·계면
+
+[Cerf·Gorny 서론 인쇄 2–3쪽](https://www.imo.universite-paris-saclay.fr/~raphael.cerf/papers/cwsoc.pdf)의 일반화 Curie–Weiss 임계 극한과 [Tong 5장, 특히 5.5절](https://davidtong.org/pdfs/teaching/statistical-physics/statphys5.pdf)의 Landau·기울기 범함수·영역벽 배경을 대조했다. 전자의 뒤쪽 자기조직화 모형을 현재 이진 준비와 혼동하지 않는다. 이진 엔트로피의 꼬리 제어·Gamma 모멘트, 구속 계수 측도의 이산 Laplace 진폭·b=v/N 혼합, 6차 공존 0→m₀ 계면은 본문에서 직접 유도한다. Tong의 사차 벽 해를 6차 계면의 해로 인용하지 않는다. 구형 방울은 작은 양의 벌크 구동과 등방 3차원 얇은 계면을 새로 가정해 면적·부피를 계산한 근사다. 공존 계면 해·곡면 근사·동역학적 속도는 서로 대신하지 않는다. [검증 기록](phase-transition-research-status.md)의 유한 검산 범위와 전체 범위 미완료 표시를 유지한다.

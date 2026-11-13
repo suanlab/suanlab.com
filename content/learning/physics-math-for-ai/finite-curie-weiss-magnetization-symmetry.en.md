@@ -239,6 +239,104 @@ Start with **Two spins, multiplicities 1:2:1**. Before reading the bars, count t
 
 Enter N, K or b and press Enter or leave the field to commit. N must be an integer from 1 to 128; a fractional decimal must not become an integer merely through rounding. Use **Next state rows** to inspect distributions with more than sixteen rows. Changing the arithmetic precision ceiling changes the numerical resource limit, not the spin preparation. An unresolved observation must stay distinct from a forbidden state or exact zero. Automatic example scanning compares equilibria; it does not simulate a magnet's time evolution.
 
+## Research extension: a finite symmetric system can have critical fluctuations
+
+The signed mean alone hides an important experiment. Prepare the same finite system repeatedly at K=1,b=0 and record M. The histogram remains symmetric, but its width grows faster than it would for independent spins. A vanishing average therefore coexists with a growing response. We can predict the right rescaling and the entire limiting shape without introducing a finite-N singularity.
+
+### Let the first surviving entropy term set the scale
+
+Keep the original full-M² Hamiltonian and labeled-spin counting measure. Set X_N=M/N^(3/4). The exact macrostate weight is
+
+$$
+w_N(M)=\binom{N}{(N+M)/2}\exp\!\left(\frac{M^2}{2N}\right),\qquad P_N(M)=\frac{w_N(M)}{\sum_{M'}w_N(M')},\qquad X_N=N^{1/4}m.
+$$
+
+For independent spins, entropy penalizes a deviation with a quadratic exponent and M typically has scale sqrt(N). At critical coupling the interaction cancels precisely that quadratic penalty. The quartic entropy cost survives. Setting N m⁴ to order one gives m of order N^(−1/4), or M of order N^(3/4). This remains a shrinking magnetization per spin, even as the total magnetization fluctuates more strongly.
+
+$$
+s(m)=\ln2-\frac{m^2}{2}-\frac{m^4}{12}-\frac{m^6}{30}-\cdots,\qquad N\!\left[s(m)+\frac{m^2}{2}-\ln2\right]=-\frac{X_N^4}{12}+O(N^{-1/2})
+$$
+
+The remainder statement holds on bounded sets of the scaled coordinate, not uniformly up to m=±1. Stirling's formula also supplies a prefactor. On such bounded sets the lattice spacing in X is 2/N^(3/4), and the normalized mass divided by that spacing approaches a density. Plotting raw probability masses at different N would obscure this comparison.
+
+$$
+\binom{N}{N(1+m)/2}=\sqrt{\frac{2}{\pi N(1-m^2)}}e^{Ns(m)}[1+O(N^{-1})],\qquad \Delta X_N=\frac{2}{N^{3/4}}.
+$$
+
+A local Taylor expansion alone does not establish convergence of a whole distribution or its moments. Here all higher even entropy coefficients are negative, so s(m)+m²/2−ln2≤−m⁴/12. Inside any fixed |m|≤δ<1 the Stirling prefactor is bounded by a constant times N^(−1/2). Outside that interval the entropy bound and binomial type bound suppress the finite sum exponentially in N, including the endpoints. A central interval supplies a normalizer of order 2^N N^(1/4). These estimates control the tails after rescaling, also with fixed polynomial moment weights; Riemann sums then give the law and moments below. This argument uses the completely connected binary model and its specified preparation.
+
+$$
+X_N\Rightarrow X,\qquad f_X(x)=\frac{2}{12^{1/4}\Gamma(1/4)}e^{-x^4/12},\qquad x\in\mathbb R.
+$$
+
+### Read susceptibility and a shape diagnostic together
+
+The Gamma integral follows by substituting t=x⁴/12 into the integral over x>0. Odd moments vanish by reflection. The second and fourth moments determine both the response scale and the Binder shape statistic U. The latter is dimensionless and unchanged by multiplying the random variable by a nonzero constant.
+
+$$
+\mathbb E[X^{2r}]=12^{r/2}\frac{\Gamma((2r+1)/4)}{\Gamma(1/4)},\qquad \mathbb E[X^2]=\sqrt{12}\frac{\Gamma(3/4)}{\Gamma(1/4)},\qquad \mathbb E[X^4]=3.
+$$
+
+$$
+\frac{\chi_b(N)}{\sqrt N}=\mathbb E[X_N^2]\longrightarrow\mathbb E[X^2]\simeq1.170829,\qquad \chi_b(N)=\frac{\operatorname{Var}(M)}N.
+$$
+
+$$
+U_N=1-\frac{\mathbb E[M^4]}{3\mathbb E[M^2]^2}\longrightarrow U_*=1-\frac{1}{\mathbb E[X^2]^2}\simeq0.270520.
+$$
+
+A centered Gaussian has U=0; two equally weighted, infinitely narrow opposite peaks have U=2/3. The quartic law has a different shape from either. U is a diagnostic under stated sampling and finite-size conditions, not a universal test that proves a phase transition from four small systems. In particular every finite probability here remains analytic in K,b, and every finite zero-field mean remains exactly zero.
+
+![Scaled critical magnetization densities approaching a quartic law and finite-size Binder values approaching a non-Gaussian limit.](/assets/learning/phase-transition-research-critical-fluctuations.en.svg)
+
+The upper panel divides each lattice mass by its scaled spacing. The lower panel compares exact finite sums with the limiting shape statistic. Both panels use equilibrium probabilities, not a time trajectory or a sampler convergence claim.
+
+### Reproduce the finite sums before fitting an exponent
+
+The table reports N, E[X_N²], U_N, and χ_b. The following independent Python example deliberately goes beyond the existing calculator's N≤128 bound; it does not add or imply a new slider. Only the standard library is needed. Log weights avoid overflow and `fsum` reduces summation error; these are floating-point illustrations rather than certified arbitrary-precision intervals.
+
+| N | E[X_N²] | U_N | χ_b |
+| --- | --- | --- | --- |
+| 32 | 1.126622 | 0.333612 | 6.373139 |
+| 128 | 1.147692 | 0.301425 | 12.984656 |
+| 512 | 1.158990 | 0.285800 | 26.224955 |
+| 2048 | 1.164840 | 0.278115 | 52.714659 |
+
+```python
+from math import exp, fsum, lgamma, gamma, sqrt
+
+for n in (32, 128, 512, 2048):
+    ms = list(range(-n, n + 1, 2))
+    logs = [lgamma(n + 1) - lgamma((n + m)//2 + 1)
+            - lgamma((n - m)//2 + 1) + m*m/(2*n) for m in ms]
+    top = max(logs)
+    weights = [exp(x - top) for x in logs]
+    z = fsum(weights)
+    x2 = fsum(w*(m/n**0.75)**2 for w, m in zip(weights, ms))/z
+    x4 = fsum(w*(m/n**0.75)**4 for w, m in zip(weights, ms))/z
+    binder = 1 - x4/(3*x2*x2)
+    chi = sqrt(n)*x2
+    print(n, f'{x2:.6f}', f'{binder:.6f}', f'{chi:.6f}')
+```
+
+Doubling N would asymptotically multiply χ_b by sqrt(2), while an ordered two-peak phase at fixed K>1 instead has χ_b proportional to N. Comparing these scalings helps distinguish mechanisms behind large response. A fit over a short range can still be distorted by finite-size corrections.
+
+### Research checks and scope
+
+#### Why does a growing total-spin width not imply nonzero signed order?
+
+**Research explanation.** Reflection pairs every M with −M, leaving E[M]=0. Meanwhile E[M²] grows as N^(3/2). Dividing by N² shows E[m²] decreases as N^(−1/2). The fluctuation scale, signed expectation and selected thermodynamic branch answer different questions.
+
+#### What factor is missing if a histogram plots P_N(M) directly against X_N?
+
+**Research explanation.** The spacing changes with N. The density comparison requires P_N(M)/ΔX_N. Its Riemann-sum area is one, whereas an uncorrected mass curve becomes lower merely because there are more grid points per scaled interval.
+
+#### What happens to the standard quadratic approximation at K=1?
+
+**Research explanation.** Its curvature is zero, so a Gaussian formula would divide by zero and miss the N^(3/4) scale. Keeping the first positive quartic free-energy term gives a normalizable non-Gaussian law. This is a change of asymptotic approximation, not an infinite variance at finite N.
+
+For background, [Cerf and Gorny's introduction, pp. 2–3](https://www.imo.universite-paris-saclay.fr/~raphael.cerf/papers/cwsoc.pdf) recalls critical generalized Curie–Weiss limits; its later self-organized model is a different preparation. The binary critical density, moment constants, tail argument and finite sums used here are derived explicitly above. No spatial critical exponent or physical relaxation time follows from them.
+
 ## Six exercises with explanations
 
 ### 1. Zero mean without a zero configuration
