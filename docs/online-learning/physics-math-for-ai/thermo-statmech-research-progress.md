@@ -1,8 +1,8 @@
 # 열역학·평형 통계역학 연구 심화 진행표
 
-2026-11-13. 이 영역에는 이미 **11원주제·32등록 단원·64한영 원고**가 있다. [기존 입문 종합 감사](thermodynamics-domain-audit-stage12.md)는 32단원 전체의 출발 근거다. 미집필로 다시 세거나 22단원으로 범위를 줄이지 않는다. 전체 교육과정의 연구 대조는 **43영역·426주제 완료 / 8영역·83주제 후속**이며 이 영역의 종합 대조는 미완료다.
+2026-11-13. 이 영역에는 이미 **11원주제·32등록 단원·64한영 원고**가 있다. [기존 입문 종합 감사](thermodynamics-domain-audit-stage12.md)는 32단원 전체의 출발 근거다. 미집필로 다시 세거나 22단원으로 범위를 줄이지 않는다. 전체 교육과정의 연구 대조는 **44영역·437주제 완료 / 7영역·72주제 후속**이며 이 영역은 [32단원·256화면 연구 종합 대조](thermo-statmech-research-audit.md)를 마쳤다.
 
-현재 순차 연구 보강은 **32/32단원**이다. [유한계·열역학 극한 연구 보강](finite-size-research-status.md)까지 검증했다. 개별 단원 후속은 모두 연결했다. [영역 원고·예제 1차 대조](thermo-statmech-research-source-review.md)에서 64원고·64연구 예제·586연구 수식·선수 관계·현재 정적 렌더링을 확인했다. 종합 검토 중 찾은 [연구 그림 6개의 제목·축 잘림](thermo-research-svg-repair.md)을 수정하고 새 출력의 24화면을 재검사했다. **수정 출력에서 32단원 전체 화면 종합 대조**는 남아 있다.
+현재 순차 연구 보강은 **32/32단원**이며 영역 종합 검토도 완료했다. [종합 기록](thermo-statmech-research-audit.md)에서 64원고·64연구 Python·586연구 수식·384기존 풀이·선수 관계·현재 정적 렌더링과 256실제 화면을 확인했다. 다음은 [비평형 10원주제·17단원](nonequilibrium-research-progress.md)이다.
 
 ## 첫 연구 보강: 평형 점유 확률을 이용한 온도 추정
 
@@ -57,4 +57,4 @@
 
 본문의 실행 예제와 한영 수식·표·그림 경로·원문 보존은 `node_modules/.bin/tsx --test scripts/learning-thermometry-research.test.ts`로 확인한다. 별도 미시 상태 열거·확률 미분·횟수 우도·경계 계산은 `python3 scripts/learning/verify-thermometry-research.py`로 재현한다. 정적 출력 후 `SUANLAB_TEST_BASE=http://127.0.0.1:43309 node scripts/check-thermometry-research.cjs`를 실행한다. 브라우저 주소에는 실제 preview 포트를 사용한다.
 
-다음은 11원주제·32등록 단원·64한영 원고의 연구 종합 대조다. 현재 원고·실행 예제·선수 관계와 같은 최종 정적 출력의 실제 reader를 전체 범위에서 확인한 뒤 영역 완료를 집계한다. 이번 세 단원의 재현 범위는 [유한계 보강 기록](finite-size-research-status.md)을 따른다.
+열역학 영역의 종합 대조는 [현재 32단원·256화면 기록](thermo-statmech-research-audit.md)을 따른다. 다음은 [비평형 연구 진행표](nonequilibrium-research-progress.md)의 기존 17단원을 순서대로 대조한다.

@@ -4,9 +4,9 @@
 
 요청 당시 남은 **48개 입문 주제의 집필·검증은 완료**했다. 입문 목록은 **362/362개 검증·미완료 0개**이며, 교재에는 **650개 학습 단원·1,969개 안내 실험**이 등록되어 있다. [입문 완료 기록](remaining-introductory-queue.md)을 기준으로 확인한다.
 
-현재는 전체 **51영역·509개 원주제**의 내용 대조와 연구 심화를 진행한다. [연속체 11원주제·22단원·44한영 원고 연구 종합 대조](continuum-research-audit.md)까지 마쳐 **43영역·426주제**의 기록이 연결되었다. 후속은 **8영역·83주제**이며 다음은 **열역학과 평형 통계역학 11원주제**다. 기존 집필·독립 계산·Worker·화면 기록과 실제 원문을 먼저 읽고 부족한 연구 설명을 보강한다. [전체 영역 색인](domain-topic-review-index.md)을 따른다.
+현재는 전체 **51영역·509개 원주제**의 내용 대조와 연구 심화를 진행한다. [열역학 11원주제·32단원 연구 종합 대조](thermo-statmech-research-audit.md)까지 마쳐 **44영역·437주제**의 기록이 연결되었다. 후속은 **7영역·72주제**, 다음은 **비평형·확률열역학·복잡계 10원주제**다. 기존 집필·독립 계산·Worker·화면 근거를 먼저 읽고 부족한 연구 설명을 보강한다. [전체 영역 색인](domain-topic-review-index.md)을 따른다.
 
-열역학·평형 통계역학은 [연구 심화 진행표](thermo-statmech-research-progress.md)에 32등록 단원 전체를 연결했다. 두 수준계·열접촉·법칙·자유 에너지·미시·거시·ensemble·분배함수에 이어 [Boltzmann·Gibbs](boltzmann-research-status.md)와 [상전이·질서변수](phase-transition-research-status.md), [상관·요동](correlations-research-status.md), [상세평형](detailed-balance-research-status.md), [유한계·열역학 극한](finite-size-research-status.md)을 검증해 **32/32단원**이며 다음은 영역 종합 대조다. 기존 입문 32단원이 미집필이라는 뜻은 아니며 영역 종합 대조는 아직 미완료다.
+열역학은 [32/32단원 순차 연구 보강](thermo-statmech-research-progress.md), 그림 잘림 수정, 원고·예제·선수 관계·같은 출력의 **256화면 종합 검토**까지 통과했다. 다음 영역에는 이미 **17단원·34한영 원고**가 있다. [비평형 연구 진행표](nonequilibrium-research-progress.md)를 따르며 기존 입문을 미집필로 다시 세지 않는다.
 
 이하 분야별 설명은 이전 집필·검증 이력이며 현재 집계와 다음 순서는 위 문단을 따른다.
 
