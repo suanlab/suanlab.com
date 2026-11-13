@@ -137,6 +137,137 @@ A small latent representation need not be a sufficient predictive state. If two 
 
 Changing alpha alters the instantaneous matrix and the split between initial forcing and memory, but not the true aggregated trajectory. This distinguishes a lifting choice from a physical observation change. Our model uses one fixed partition of a finite discrete chain. Continuous time, fast-variable elimination, Markov limits with time-scale assumptions and initial layers, spatial blocking, renormalization, effective couplings and universality require separate derivations and further study. The finite checks here do not complete that larger scope.
 
+## Research extension: a predictive state can depend on observation history
+
+### Stationarity does not erase the past
+
+Return to the doubly stochastic example in section 5, prepared with its stationary micro law π=(1/3,1/3,1/3). Let Y be the observed block label A or B. A stationary distribution fixes one-time frequencies; it does not say that a previous observation becomes irrelevant once the current label is known.
+
+Compute a three-time observation probability by summing microscopic paths. For labels u,v,w, sum over starting, middle and final micro states in the corresponding blocks. The column convention remains the one used throughout this chapter.
+
+$$
+\Pr(Y_{k-1}=u,Y_k=v,Y_{k+1}=w)
+=\sum_{i\in u}\sum_{j\in v}\sum_{\ell\in w}\pi_iT_{ji}T_{\ell j}.
+$$
+
+Suppose the current label is A. If the previous label was B, the transition from state 2 puts conditional mass 1/4 in micro state 0 and 3/4 in state 1. If the previous label was A, the corresponding composition is 3/4 and 1/4. Applying the next exits to B gives
+
+$$
+\Pr(Y_{k+1}=B\mid Y_k=A,Y_{k-1}=A)=\frac38,\qquad
+\Pr(Y_{k+1}=B\mid Y_k=A,Y_{k-1}=B)=\frac58,
+\qquad \Pr(Y_{k+1}=B\mid Y_k=A)=\frac12.
+$$
+
+Both two-label histories have positive probability. Their different futures prove failure of the first-order Markov property even under stationary initialization. A model trained on only the current label averages the two answers. This is different from a poorly estimated transition matrix.
+
+### Quantify the information removed by the current label
+
+Conditional mutual information measures the reduction in ideal predictive log loss when one previous label is added. Use natural logarithms, so the unit is nats per prediction. The term for current B vanishes because that block identifies micro state 2 exactly. For current A, the two previous labels are equally likely and have complementary future probabilities.
+
+$$
+I(Y_{k+1};Y_{k-1}\mid Y_k)
+=\frac23\left[\frac58\ln\frac54+\frac38\ln\frac34\right]
+\approx0.02105596.
+$$
+
+This positive value is a population calculation from the specified chain, not a significance test on a finite record. A zero value in another example would establish conditional independence for these three variables under that preparation; it would not by itself prove independence from every longer history or strong lumpability for every initial law.
+
+### Replace a fixed lift with a conditioned probability state
+
+After an actually observed history y₀,…,yₖ, retain the conditional micro law βₖ. It is a normalized probability vector, unlike the signed hidden deviation h in the memory decomposition. Define diagonal masks for the deterministic observations.
+
+$$
+\beta_k(i)=\Pr(X_k=i\mid Y_0=y_0,\ldots,Y_k=y_k),\qquad
+M_A=\operatorname{diag}(1,1,0),\quad M_B=\operatorname{diag}(0,0,1).
+$$
+
+First propagate the conditional law, then select and normalize the newly observed block. Initialize by conditioning π on y₀. Only histories with positive likelihood permit this update.
+
+$$
+\beta_0=\frac{M_{y_0}\pi}{\mathbf1^\mathsf{T}M_{y_0}\pi},\qquad
+\widehat\beta_{k+1}=T\beta_k,\qquad
+\beta_{k+1}=\frac{M_{y_{k+1}}\widehat\beta_{k+1}}
+{\mathbf1^\mathsf{T}M_{y_{k+1}}\widehat\beta_{k+1}}.
+$$
+
+If the denominator is zero, the history is impossible under the model. Do not replace it with an arbitrary posterior. The transition matrix and initial law are known here; estimating them from observations is a separate inference problem.
+
+Conditioning the micro Markov property on the observed past shows why β is predictive. At any positive integer horizon r, the next observation law follows by propagation and aggregation.
+
+$$
+\Pr(Y_{k+r}=\cdot\mid Y_0,\ldots,Y_k)=CT^r\beta_k,\qquad r\geq1.
+$$
+
+When the current observation is A, write q=βₖ(0), so βₖ(1)=1−q. The one-step B probability directly displays the dependence on the inferred composition.
+
+$$
+\Pr(Y_{k+1}=B\mid Y_0,\ldots,Y_k)
+=\frac14q+\frac34(1-q)=\frac34-\frac q2
+\quad(Y_k=A).
+$$
+
+A fixed lift with α=1/2 always substitutes q=1/2. The filter instead updates q using the history. The probability state β is a sufficient predictive state for this known hidden model, but it need not have a finite set of possible values. Adding one previous label is useful in this example without proving that two labels contain the entire predictive history.
+
+### Compare prediction losses and four histories
+
+For a binary future indicator U=1{Yₖ₊₁=B}, the best squared-error predictor is its conditional probability. Comparing conditioning on Yₖ alone with conditioning on (Yₖ₋₁,Yₖ), the population loss reductions are
+
+$$
+\Delta\mathcal L_{\rm square}=\frac23\left(\frac18\right)^2=\frac1{96},\qquad
+\Delta\mathcal L_{\rm log}=I(Y_{k+1};Y_{k-1}\mid Y_k).
+$$
+
+These are ideal Bayes losses for the stated stationary chain. They do not guarantee a learned predictor attains the same improvement with limited data. For the full-history filter, compare four positive-likelihood histories. AAA and BAA share the same last two labels, yet have different future probabilities; even a two-label state loses information here.
+
+![History-dependent conditional micro composition and next-block probabilities for four observed histories](/assets/learning/coarse-predictive-research-conditional-state.en.svg)
+
+The upper panel shows the inferred fraction of state 0 within the current A block. The lower panel shows the corresponding next-B probability, compared with the fixed lift's value 1/2. These are exact conditional laws of the supplied chain, not frequencies estimated from simulated paths.
+
+```python
+from fractions import Fraction as F
+
+transition = [[F(1,2), F(1,4), F(1,4)],
+              [F(1,4), F(0), F(3,4)],
+              [F(1,4), F(3,4), F(0)]]
+for history in ["AA", "BA", "AAA", "BAA"]:
+    beta = [F(1,3)] * 3
+    likelihood = F(1)
+    for k, label in enumerate(history):
+        if k:
+            beta = [sum(transition[i][j]*beta[j] for j in range(3)) for i in range(3)]
+        masked = [v if (i < 2) == (label == "A") else F(0) for i, v in enumerate(beta)]
+        mass = sum(masked)
+        if not mass:
+            raise ValueError("Impossible observation history")
+        likelihood *= mass
+        beta = [v / mass for v in masked]
+    next_b = sum(transition[2][j]*beta[j] for j in range(3))
+    print(history, beta[0], beta[1], next_b, likelihood)
+```
+
+| History | β(0) | β(1) | Next B probability | History likelihood |
+| --- | --- | --- | --- | --- |
+| AA | 3/4 | 1/4 | 3/8 | 1/3 |
+| BA | 1/4 | 3/4 | 5/8 | 1/3 |
+| AAA | 7/10 | 3/10 | 2/5 | 5/24 |
+| BAA | 5/6 | 1/6 | 1/3 | 1/8 |
+
+### Research self-checks
+
+#### 1. Is stationary agreement enough to justify a one-label state?
+
+**Research explanation.** No. The one-time stationary macro law and the current-label transition can both be correct while AA and BA have different futures. A triple-observation calculation reveals information hidden by stationary averages.
+
+#### 2. Is the posterior the same object as the chosen lift or the signed deviation?
+
+**Research explanation.** No. A lift specifies a fixed reconstruction rule. The posterior conditions on an observation history and is a nonnegative normalized law. The hidden deviation is a signed algebraic remainder relative to a lift. Their purposes and update equations differ.
+
+#### 3. Does one positive conditional information value identify the full memory length?
+
+**Research explanation.** No. It proves that the current label alone is insufficient in this preparation. AAA and BAA also show that the last two labels are insufficient. A finite calculation of these examples does not establish the minimum length for every future prediction.
+
+[Shalizi's filtering derivation](https://www.stat.cmu.edu/~cshalizi/dst/18/lectures/24/lecture-24.html) gives context for conditional probability states. Here deterministic block masks, triple probabilities and loss differences are derived for the chapter's known three-state chain. The existing reader still propagates prepared distributions; this supplement does not add a path-observation filter to its controls.
+
 ## 14. Exercises with explanations
 
 **1. Distinguishing hidden preparations.** Do initial states 0 and 1 share a macro state, and what are their next B probabilities in the first table? Solution: both have probability one in A, but their next B probabilities are one quarter and three quarters. Current macro state alone cannot distinguish the correct futures.
