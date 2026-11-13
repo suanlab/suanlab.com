@@ -178,6 +178,113 @@ With D=0, an atomic law instead follows the deterministic drift. Its absence of 
 
 The preparation accepts exact rational coefficients within bounded interaction ranges: gamma up to 5/s, D up to 2m²/s, mean between −5 and 5m, variance up to 5m², T up to 10s, and N from 1 to 128. These bound numerical work, not the course's scope. A later spatial experiment must additionally specify its grid, boundary condition, conservation law and positivity restriction. It must not silently reuse this whole-line Gaussian solution as a finite-domain solver.
 
+## Research extension: infer a relaxation law from sampled positions
+
+### A histogram and a sequence answer different questions
+
+Suppose a researcher sees a Gaussian cloud with variance C. Many OU processes have that stationary histogram: multiplying both gamma and D by the same positive factor preserves C=D/gamma while changing the relaxation speed. Ordered observations carry the missing clock information. In this extension assume gamma>0, D>0, known positive spacing Delta, an exactly observed position, zero equilibrium mean, and independent driving noise. The observation spacing differs from the reader's internal Euler step. The calculations below are standalone examples, not additional lab controls.
+
+Condition the explicit SDE solution on the current position. Brownian increments over successive intervals are independent, so its sampled law is an autoregression with independent Gaussian innovations:
+
+$$
+X_{j+1}\mid X_j=x\sim\mathcal N(ax,q),\qquad a=e^{-\gamma\Delta},\quad q=\frac D\gamma(1-a^2)>0.
+$$
+
+The innovation variance q is a displacement variance in m², while D is a rate in m²/s. For small gamma Delta compute 1−exp(−2 gamma Delta) using `-expm1(-2*gamma*delta)` to avoid subtracting nearly equal numbers. The [MIT OU notes, Appendix A](https://ocw.mit.edu/courses/18-366-random-walks-and-diffusion-fall-2006/0a8bdd9c04730a715ad5d54640a3702a_lec14.pdf) derive the Gaussian transition from a fixed position. The inference and bias calculations here follow directly from that transition.
+
+### Derive the conditional likelihood before interpreting a fit
+
+For observations x0 through xn, multiply the n conditional transition densities. Their logarithm is
+
+$$
+\ell(a,q\mid x_0)=-\frac n2\log(2\pi q)-\frac1{2q}\sum_{j=0}^{n-1}(x_{j+1}-ax_j)^2.
+$$
+
+Take logarithms of numerical density values in fixed reference units. We condition on x0: including a parameter-dependent stationary density for x0 defines a different finite-sample likelihood. Differentiation first in a and then in q gives the unconstrained Gaussian regression estimates
+
+$$
+\widehat a=\frac{\sum_{j=0}^{n-1}x_jx_{j+1}}{\sum_{j=0}^{n-1}x_j^2},\qquad \widehat q=\frac1n\sum_{j=0}^{n-1}(x_{j+1}-\widehat a x_j)^2.
+$$
+
+These formulas require a positive denominator and a positive residual variance. They are the interior conditional maximum only when the result lies in 0<a<1 and q>0, the domain for a relaxing scalar OU model with gamma>0. If a fit gives a negative lag coefficient, do not take its real logarithm or silently clip it. Check uncertainty, measurement noise, the assumed equilibrium mean and model adequacy. At zero residual variance the positive-variance Gaussian likelihood can be unbounded. At a=1 the Brownian boundary has gamma=0; it needs its own limit q=2D Delta. With admissible a and q, invert the exact transition:
+
+$$
+\gamma=-\frac{\log a}{\Delta},\qquad D=\frac{\gamma q}{1-a^2},\qquad C=\frac D\gamma=\frac q{1-a^2}.
+$$
+
+Thus a sequence identifies both coefficients in the population under these assumptions. A stationary histogram alone identifies only C. Identification is not a finite-data accuracy guarantee: at very long spacing a is close to zero, and extracting a decay rate from a noisy correlation becomes difficult. At very short spacing, a fixed number of records covers little physical time. Specify both spacing and total duration when comparing experiments.
+
+### A convenient Euler fit can estimate the wrong physical coefficients
+
+If the same population transition is instead interpreted as one Euler step, its matching coefficients are
+
+$$
+\gamma_E=\frac{1-a}{\Delta},\qquad D_E=\frac q{2\Delta},\qquad \frac{\gamma_E}{\gamma}=\frac{1-e^{-z}}z,\quad \frac{D_E}{D}=\frac{1-e^{-2z}}{2z},\quad z=\gamma\Delta.
+$$
+
+Both ratios are below one for positive z. This is a discretization-induced population bias, separate from sampling fluctuation. It does not contradict the earlier upward stationary-variance bias of forward Euler with fixed physical gamma and D: that earlier comparison held the coefficients fixed, whereas this one fits different coefficients to the same observed transition. Replacing an estimator's sample size cannot remove this model mismatch at fixed Delta.
+
+![Population ratios of Euler-inferred OU relaxation and diffusion coefficients decrease as the observation interval increases.](/assets/learning/fokker-research-sampled-ou-inference.en.svg)
+
+The curves compare population coefficient ratios with the horizontal correct-value line at one. The horizontal variable is the observation interval in relaxation-time units. They show the bias of interpreting exact OU transitions as single Euler steps; they do not report statistical confidence bands or measured data.
+
+```python
+from math import exp, expm1
+for delta in [0.1, 0.5, 1.0, 2.0]:
+    gamma, diffusion = 1.0, 0.5
+    a = exp(-gamma * delta)
+    q = -diffusion / gamma * expm1(-2 * gamma * delta)
+    gamma_euler = (1 - a) / delta
+    diffusion_euler = q / (2 * delta)
+    print(f"{delta:.1f} {a:.6f} {q:.6f} "
+          f"{gamma_euler:.6f} {diffusion_euler:.6f}")
+```
+
+Use gamma=1/s and D=1/2m²/s. Each row lists Delta, the exact lag coefficient, the exact innovation variance and the coefficients an Euler transition would assign:
+
+| Delta [s] | a | q [m²] | gamma_E [1/s] | D_E [m²/s] |
+| --- | --- | --- | --- | --- |
+| 0.1 | 0.904837 | 0.090635 | 0.951626 | 0.453173 |
+| 0.5 | 0.606531 | 0.316060 | 0.786939 | 0.316060 |
+| 1.0 | 0.367879 | 0.432332 | 0.632121 | 0.216166 |
+| 2.0 | 0.135335 | 0.490842 | 0.432332 | 0.122711 |
+
+### Observation noise changes what a lag estimates
+
+Assume now a stationary OU process, independent centered observation errors with finite variance, independent errors across records, and errors independent of the entire process. Write their variance as sigma_epsilon². For covariance Rk at record lag k,
+
+$$
+Y_j=X_{j\Delta}+\varepsilon_j,\quad R_0=C+\sigma_\varepsilon^2,\quad R_k=Ca^k\ (k\geq1),\quad \mathbb E[\varepsilon_j\varepsilon_l]=\sigma_\varepsilon^2\mathbf1_{j=l}.
+$$
+
+A camera's independent position noise raises the variance at zero lag but leaves positive-lag covariances unchanged. Therefore a naive adjacent regression based on all observed variance is attenuated, while the population ratio of two positive lags recovers a:
+
+$$
+\frac{R_1}{R_0}=\frac{Ca}{C+\sigma_\varepsilon^2},\qquad \frac{R_2}{R_1}=a\quad(C>0,\ a>0).
+$$
+
+For C=1/2m², a=1/2 and noise variance1/2m², the naive ratio is1/4, but R2/R1 is1/2. At Delta=1s, using the naive ratio doubles the apparent relaxation rate from log2/s to log4/s. Ratios of estimated covariances may be noisy or undefined; these population identities do not promise an unbiased finite-sample estimator. Temporally correlated errors or motion blur break this simple correction. A hidden-state observation model is then a separate modeling problem.
+
+### Research self-checks
+
+#### R1. Can one histogram determine a clock?
+
+A stationary variance is1/2m². Compare (gamma,D)=(1,1/2) and (2,1) in consistent units.
+
+**Research explanation.** Their one-time Gaussian densities coincide. At a one-second separation their lag coefficients are exp(−1) and exp(−2); paired observations distinguish their joint laws. Without a known physical time calibration even those dimensionless lag coefficients do not supply an absolute rate in s⁻¹.
+
+#### R2. What does an admissible regression imply?
+
+Suppose population transition parameters are a=1/2 and q=3/8m² at Delta=1s. Recover exact and Euler-inferred coefficients.
+
+**Research explanation.** Exact gamma=log2/s and D=(log2)/2m²/s, with C=1/2m². Euler assigns gamma_E=1/2s⁻¹ and D_E=3/16m²/s. Both models share this one-step Gaussian kernel at these fitted parameters, but their interpretations between records differ. Increasing records at this unchanged spacing does not repair that interpretation.
+
+#### R3. Why is a second positive lag useful?
+
+For the noisy example above calculate R0, R1 and R2, and name a condition needed for their ratio.
+
+**Research explanation.** They are1,1/4,1/8m². Hence R1/R0=1/4 and R2/R1=1/2. Independent errors across records leave the positive lags clean; a correlated error process would add its own covariance there. The calculation uses a stationary latent process and a nonzero R1, not an arbitrary transient data window.
+
 ## Worked exercises
 
 ### 1. Verify a freely spreading law

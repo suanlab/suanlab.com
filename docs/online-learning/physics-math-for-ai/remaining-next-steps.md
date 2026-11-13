@@ -8,7 +8,7 @@
 
 열역학은 [32/32단원 순차 연구 보강](thermo-statmech-research-progress.md), 그림 잘림 수정, 원고·예제·선수 관계·같은 출력의 **256화면 종합 검토**까지 통과했다. 다음 영역에는 이미 **17단원·34한영 원고**가 있다. [비평형 연구 진행표](nonequilibrium-research-progress.md)를 따르며 기존 입문을 미집필로 다시 세지 않는다.
 
-비평형의 첫 세 master equation 단원은 [한영 연구 보강 검증](master-equation-research-status.md)을 마쳐 **3/17단원**이다. 다음은 OU 밀도·Euler 모멘트와 Fokker–Planck 셀 질량·경계이며 후속 14단원과 영역 종합 검토는 남아 있다.
+비평형의 첫 세 master equation 단원과 [Fokker–Planck 두 단원의 관측 추론·최초 도달](fokker-research-status.md)을 검증해 순차 보강은 **5/17단원**이다. 다음은 정상 Gaussian 순환 확률 흐름이며 후속 12단원과 영역 종합 검토는 남아 있다.
 
 이하 분야별 설명은 이전 집필·검증 이력이며 현재 집계와 다음 순서는 위 문단을 따른다.
 

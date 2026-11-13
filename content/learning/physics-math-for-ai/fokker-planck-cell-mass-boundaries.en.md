@@ -153,6 +153,123 @@ This upwind stationary law generally differs from cell integrals of the continuu
 
 The preparation has2..8 cells, L from1/2 to4m, gamma up to2/s, wind between−2 and2m/s, D up to1m²/s, T up to10s,1..128 time steps and cutoff0..256. Maximum departure rate times T is limited to64 for the independent time reference; reduce T or adjust the grid when this joint computation bound fails. These limits bound interaction cost and do not limit the curriculum. The reader uses native workers and separate view-only record selectors; changing preparation cancels the previous calculation.
 
+## Research extension: where and when does probability escape?
+
+### Turn escaped mass into a first-passage question
+
+The two escape accounts tell how much probability has left by a selected time. A researcher may instead ask which wall is eventually reached and how long that takes. For the same finite grid, these questions have exact linear equations. They require no Euler time stepping or arbitrary terminal cutoff.
+
+Retain the chapter's row-generator convention. Let A be the interior transient block and bL,bR its columns of escape rates. Assume every interior state reaches an absorbing account with probability one and finite mean time. This holds for this finite connected grid with D>0 and at least one absorbing wall. Define the Green matrix G:
+
+$$
+Q=\begin{pmatrix}A&b_L&b_R\\0&0&0\\0&0&0\end{pmatrix},\qquad A\mathbf1+b_L+b_R=0,\qquad G=\int_0^\infty e^{tA}\,dt=(-A)^{-1}.
+$$
+
+Entry Gij is expected time spent in cell j before absorption, starting from cell i; its unit is seconds. This is a matrix of occupation times, not a stochastic transition kernel. To prove the inverse identity, integrate the derivative of exp(tA); its limit is zero because the finite interior class is transient. A reflecting grid has no such decay and makes this inverse unavailable. At D=0 verify accessibility before solving.
+
+### Integrate survival and the escape flux
+
+For a specified starting cell i, survival is the sum of its interior transition probabilities. The identity E[T]=integral of P(T>t) gives the mean time vector tau. Integrating the right escape flux gives eventual right-exit probability uR:
+
+$$
+S_i(t)=(e^{tA}\mathbf1)_i,\qquad \tau=G\mathbf1,\qquad u_R=Gb_R,\quad u_L=Gb_L,\qquad u_L+u_R=\mathbf1.
+$$
+
+Multiplying these identities by −A produces backward equations:
+
+$$
+-A\tau=\mathbf1,\qquad -Au_R=b_R,\qquad -Au_L=b_L.
+$$
+
+One can also derive them by conditioning on the first holding time and next jump. This connects to the [Cambridge Markov-chain notes, Section3](https://www.statslab.cam.ac.uk/~rrw1/markov/M.pdf), which develop first-step equations in discrete time. Here holding times convert that argument into the stated finite continuous-time equations; the formulas are derived for this chapter's grid. With an initial interior probability row alpha, use alpha tau for mean time and alpha uR for right-exit probability. No survival renormalization appears.
+
+### Conditioning on an exit direction changes the time question
+
+Define wR as expected T times the indicator of eventual right exit. Its integrand includes t because the right escape flux is the density of exit time with that label. Integration by parts gives
+
+$$
+w_R=\int_0^\infty t e^{tA}b_R\,dt=G^2b_R=Gu_R,\qquad \mathbb E_i[T\mid R]=\frac{(w_R)_i}{(u_R)_i}\quad((u_R)_i>0).
+$$
+
+The conditional mean is undefined when the corresponding exit probability is zero. It is generally not the unconditional mean tau. For a mixed initial row alpha, the ratio is (alpha wR)/(alpha uR); averaging cellwise conditional means using the original alpha weights is incorrect because right-exit conditioning changes the starting-cell weights.
+
+Take the earlier two one-meter cells, no drift, D=1m²/s, and both walls absorbing. The half-cell boundary rate is2/s, so
+
+$$
+A=\begin{pmatrix}-3&1\\1&-3\end{pmatrix}\mathrm{s}^{-1},\quad b_R=\binom02\mathrm{s}^{-1},\quad G=\frac18\begin{pmatrix}3&1\\1&3\end{pmatrix}\mathrm{s}.
+$$
+
+Direct multiplication yields
+
+$$
+\tau=\binom{1/2}{1/2}\mathrm{s},\quad u_R=\binom{1/4}{3/4},\quad w_R=\binom{3/16}{5/16}\mathrm{s},\quad \mathbb E_1[T\mid R]=\frac34\mathrm{s}.
+$$
+
+Starting in the left cell, right exit is less likely and its conditional mean3/4s exceeds the unconditional mean1/2s. Left exit has probability3/4 and conditional mean5/12s. Weighting the two means by their exit probabilities gives (1/4)(3/4)+(3/4)(5/12)=1/2s. The same generator supplies all four quantities; none is a physical trajectory animation.
+
+### An exact grid solution still has spatial error
+
+For a continuum Brownian particle with diffusion D>0 on [0,ell] and absorbing endpoints, the backward ODE and its endpoint conditions yield
+
+$$
+D\tau_c^{\prime\prime}(x)=-1,\quad \tau_c(0)=\tau_c(\ell)=0,\qquad \tau_c(x)=\frac{x(\ell-x)}{2D},\qquad u_{R,c}(x)=\frac x\ell.
+$$
+
+Translate the chapter's interval by L; here ell=2L is total length, distinct from its half-width L. Divide it into K equal cells and retain the original half-cell escape rule. For this zero-drift uniform grid, substitution into every interior and endpoint row gives the exact discrete results
+
+$$
+x_i=(i+\tfrac12)\Delta x,\quad \tau_i=\frac{x_i(\ell-x_i)}{2D}+\frac{\Delta x^2}{8D},\qquad (u_R)_i=\frac{x_i}{\ell},\quad 0\leq i<K.
+$$
+
+Inside, the second difference of a quadratic equals its second derivative. At the boundary, adding the constant dx²/(8D) supplies the correction required by the half-cell rate2D/dx². Thus the splitting probability agrees with the continuum value at cell centers, while the mean time is too large by the same positive amount at every center. Agreement of one observable cannot certify all observables. This center-start comparison treats a discrete cell state as a point at its center; averaging continuum times over a uniformly occupied initial cell is a different comparison.
+
+![Two-cell exit-direction conditional times differ from the unconditional time, and pure-diffusion mean-time grid bias decreases quadratically.](/assets/learning/fokker-research-grid-first-passage.en.svg)
+
+The upper panel compares exact two-cell conditional exit times with the unconditional time. The lower panel shows center-start grid mean-time error on [0,2]m at D=1m²/s. The slope refers to spatial refinement of this particular pure-diffusion model. No general order claim for drift, irregular meshes or singular limits follows.
+
+```python
+from fractions import Fraction as F
+for cells in [2, 4, 8, 16]:
+    length, diffusion = F(2), F(1)
+    dx = length / cells
+    x = dx / 2
+    tau = x * (length - x) / (2 * diffusion) + dx**2 / (8 * diffusion)
+    right = x / length
+    bias = dx**2 / (8 * diffusion)
+    print(cells, dx, tau, right, bias)
+```
+
+All values below are exact fractions. The table lists cell count, width, mean time from the first cell, right-exit probability there, and the largest center-start mean-time error across the grid:
+
+| K | dx [m] | tau_0 [s] | u_R,0 | max bias [s] |
+| --- | --- | --- | --- | --- |
+| 2 | 1 | 1/2 | 1/4 | 1/8 |
+| 4 | 1/2 | 1/4 | 1/8 | 1/32 |
+| 8 | 1/4 | 1/8 | 1/16 | 1/128 |
+| 16 | 1/8 | 1/16 | 1/32 | 1/512 |
+
+The16-cell example extends beyond the interactive grid's8-cell bound and runs only in this standalone code. A linear solve of the transient matrix independently verifies these formulas. Solving it more accurately or increasing a Poisson cutoff removes no spatial bias. Changing walls instead changes the first-passage question itself.
+
+### Research self-checks
+
+#### R1. Which time does conditioning report?
+
+Start the two-cell example in its left cell. What are the right-exit probability, unconditional mean and right-conditioned mean?
+
+**Research explanation.** They are1/4,1/2s and3/4s. The joint first moment wR is3/16s, so divide it by1/4 to condition. Dividing the unconditional time1/2s by1/4 would give2s and answer no valid conditional expectation here.
+
+#### R2. Can a correct splitting probability hide a wrong time?
+
+For K=2, ell=2m and D=1m²/s, compare the first-cell grid and continuum center-start results.
+
+**Research explanation.** The center is x=1/2m. Both right-exit probabilities are1/4. The continuum mean is3/8s, whereas the grid mean is1/2s, a bias1/8s. The half-cell boundary rate preserves the linear splitting solution but requires a constant correction to the quadratic time solution.
+
+#### R3. When must the inverse be refused?
+
+Make both boundaries reflecting, or set all transfer and escape rates to zero. Can G=(−A)⁻¹ still produce a finite mean exit time?
+
+**Research explanation.** No. A now has a closed interior class and a zero eigenvalue. Exit never occurs in the zero-rate example, so mean time is infinite and conditioning on right exit is undefined. A pseudoinverse or a forced normalization would conceal the failed transience assumption rather than solve the specified absorption problem.
+
 ## Worked exercises
 
 ### 1. Convert mass to density under refinement

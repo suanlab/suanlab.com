@@ -1,6 +1,6 @@
 # 비평형·확률열역학·복잡계 연구 진행표
 
-2026-11-13. 이 영역에는 이미 **10원주제·17등록 단원·34한영 원고**가 있다. [기존 입문 종합 점검](nonequilibrium-introductory-audit.md)은 출발 근거이며 미집필로 다시 세지 않는다. 현재 추가 연구 절의 순차 보강 검증은 **3/17단원**, 영역 연구 종합 검토는 미완료다. 전체는 **44영역·437주제 대조 / 7영역·72주제 후속**이며 교육과정 완료 상태는 false다.
+2026-11-13. 이 영역에는 이미 **10원주제·17등록 단원·34한영 원고**가 있다. [기존 입문 종합 점검](nonequilibrium-introductory-audit.md)은 출발 근거이며 미집필로 다시 세지 않는다. 현재 추가 연구 절의 순차 보강 검증은 **5/17단원**, 영역 연구 종합 검토는 미완료다. 전체는 **44영역·437주제 대조 / 7영역·72주제 후속**이며 교육과정 완료 상태는 false다.
 
 ## 진행 원칙
 
@@ -15,8 +15,8 @@
 | `two-state-continuous-time-generator-euler` | master equation | [경로·별칭·재생 연구 보강 검증](master-equation-research-status.md) |
 | `poisson-uniformization-potential-events` | master equation | [경로·별칭·재생 연구 보강 검증](master-equation-research-status.md) |
 | `state-dependent-holding-time-jump-occupation` | master equation | [경로·별칭·재생 연구 보강 검증](master-equation-research-status.md) |
-| `ornstein-uhlenbeck-density-euler-moments` | Fokker-Planck | 기존 근거 대조 후 연구 보강 |
-| `fokker-planck-cell-mass-boundaries` | Fokker-Planck | 기존 근거 대조 후 연구 보강 |
+| `ornstein-uhlenbeck-density-euler-moments` | Fokker-Planck | [관측 추론·최초 도달 연구 보강 검증](fokker-research-status.md) |
+| `fokker-planck-cell-mass-boundaries` | Fokker-Planck | [관측 추론·최초 도달 연구 보강 검증](fokker-research-status.md) |
 | `stationary-gaussian-circulating-current` | 확률 흐름 | 기존 근거 대조 후 연구 보강 |
 | `continuous-cycle-path-reversal` | detailed balance와 그 위반 | 기존 근거 대조 후 연구 보강 |
 | `thermal-ou-fluctuation-response` | fluctuation-dissipation | 기존 근거 대조 후 연구 보강 |
@@ -34,4 +34,6 @@
 
 [첫 세 단원의 경로 정보·관측 간격 별칭·재생 시간 평균](master-equation-research-status.md)을 한영 6원고·6그림·84검사·24실제 화면에서 검증했다. 원문과 풀이 36개를 보존했고 추가한 표시 수식은 56개다. [자료 대조](nonequilibrium-research-source-audit.md)와 JSON 근거를 따른다.
 
-다음은 `ornstein-uhlenbeck-density-euler-moments`, `fokker-planck-cell-mass-boundaries`의 기존 원고·계산·입문 검증을 대조하고 연구 설명을 보강하는 것이다. 이후 확률 흐름 → 상세평형 위반 → 변동·소산 → 선형 응답 → 엔트로피 생성 → 확률열역학 → 동기화·임계 동역학 → coarse graining 순서를 따른다. 나머지 **14단원** 보강과 원래 **10주제의 영역 종합 검토**는 미완료다.
+[다음 두 Fokker–Planck 단원](fokker-research-status.md)도 한영 4원고·4그림·55검사·16실제 화면에서 검증했다. 기존 풀이 24개를 보존하고 관측 추론·Euler 계수 편향·방향별 최초 도달 시간·공간 오차를 보강했다.
+
+다음은 `stationary-gaussian-circulating-current`의 확률 흐름 연구 보강이다. 이후 상세평형 위반 → 변동·소산 → 선형 응답 → 엔트로피 생성 → 확률열역학 → 동기화·임계 동역학 → coarse graining 순서를 따른다. 나머지 **12단원** 보강과 원래 **10주제의 영역 종합 검토**는 미완료다.
