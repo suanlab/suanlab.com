@@ -199,6 +199,127 @@ This does not make the underlying transcendental logarithm exact. It also does n
 
 For example, preparation weights (MIN_VALUE,1024) with an identity sensor have a first-state probability below the smallest binary64 value. Its entropy and mutual information still round to a positive minimum subnormal value. Multiplying the original positive probability by its information factor before display preserves this contribution.
 
+## Research extension: repeated readings can share the same error
+
+Seeing the same answer twice can be fresh evidence or merely a copy of the first error. A single-reading channel does not distinguish those situations. To combine sensors or repeated observations, specify their joint conditional law, not just each instrument's marginal error rate.
+
+Keep one fixed fair binary input X and error probability 0<e<1/2. Compare conditionally independent errors with one shared error reused by every reading. The input does not evolve between readings, and no clock, energy, implementation or reset cost is specified. Both models have exactly the same channel for each individual reading.
+
+Each reading is the input xor its error bit. Independence must be stated conditional on X: even the independent-error model has readings correlated marginally through their common input.
+
+$$
+X\sim\operatorname{Bernoulli}(1/2),\qquad Y_j=X\mathbin{\mathrm{xor}}N_j,\quad P(N_j=1)=e,\quad0<e<1/2.
+$$
+
+Only the independent-error model permits multiplying the individual likelihoods. Reusing an error bit violates this factorization, even when every single sensor still has the advertised error probability.
+
+$$
+P(Y_1=y_1,\ldots,Y_n=y_n\mid X)=\prod_{j=1}^nP(Y_j=y_j\mid X)\quad\text{for conditionally independent errors}.
+$$
+
+For independent errors, the number K of ones in n readings is sufficient for inference about X. Conditional on K, permutations of the output pattern have equal likelihood under either input; discarding the order loses no information about X within this declared family.
+
+$$
+K=\sum_jY_j,\quad P(K=k\mid X=0)=\binom nk e^k(1-e)^{n-k},\quad P(K=k\mid X=1)=\binom nk(1-e)^k e^{n-k}.
+$$
+
+Bayes odds multiply by the likelihood ratio of the count. For a biased prior an extra prior-odds factor would be required; this equation uses the specified fair input.
+
+$$
+\frac{P(X=1\mid K=k)}{P(X=0\mid K=k)}=\left(\frac{1-e}{e}\right)^{2k-n}.
+$$
+
+Two agreeing ones at e=0.1 give a posterior of 81/82, while disagreement leaves the fair prior. More concentrated posteriors on some outcomes do not by themselves imply an improvement of every decision metric.
+
+$$
+n=2,\ e=1/10:\quad P(X=1\mid Y_1=Y_2=1)=81/82,\quad P(X=1\mid Y_1\ne Y_2)=1/2.
+$$
+
+The information chain rule measures genuinely new evidence through the conditional term. It does not say that total information equals twice the one-reading information. The second reading is partly redundant with the first.
+
+$$
+I(X;Y_1,Y_2)=I(X;Y_1)+I(X;Y_2\mid Y_1).
+$$
+
+For zero-one classification loss, optimal Bayes error sums the smaller joint mass for each count. The multiplicity is already inside the count law and must not be counted again. With e=0.1, one and two independent readings both have error 0.1 because of two-reading ties, even though mutual information increases.
+
+$$
+P_{\rm error}^{\rm MAP}=\sum_{k=0}^n\min\{P(X=0,K=k),P(X=1,K=k)\}.
+$$
+
+With a shared error, all readings are identical. Further copies reveal nothing beyond the first reading. After any number of agreeing ones the correct posterior is 1−e, not the increasingly confident independent-model posterior.
+
+$$
+N_1=\cdots=N_n=N:\quad Y_1=\cdots=Y_n,\quad I(X;Y_1,\ldots,Y_n)=\log2-h(e).
+$$
+
+The two models have identical single-reading channels but different joint agreement probabilities. Repeated agreement can therefore help diagnose the assumed dependence model if the experiment and input conditions are controlled.
+
+$$
+P(Y_1=Y_2\mid X)=(1-e)^2+e^2\quad\text{independent errors};\qquad P(Y_1=Y_2\mid X)=1\quad\text{shared error}.
+$$
+
+Compute information by averaging posterior uncertainty. Independent repeated readings cannot reveal more than the entropy of the one fixed input, however many are taken. These are information and decision quantities, not a thermodynamic measurement cost or a guarantee for sensors with unknown dependence.
+
+$$
+I_n=\log2-\sum_kP(K=k)h(P(X=1\mid K=k)),\qquad0\le I_n\le\log2,\quad h(p)=-p\log p-(1-p)\log(1-p).
+$$
+
+### Read information gain and false confidence
+
+The upper panel compares total information for independent and shared errors at e=0.1. The lower panel compares the posterior after all-one readings. Applying the independent formula to shared-error data creates growing confidence without new evidence. The table separately reports optimal decision error, which need not improve at every n.
+
+![Independent error readings gain information toward the input-entropy bound; shared-error copies add no information despite a falsely increasing independent-model posterior.](/assets/learning/micro-macro-repeated-sensors.en.svg)
+
+### Reproduce four reading counts
+
+Use a fair input and e=1/10. The code forms exact rational count-joint probabilities and approximates only the logarithms. Shared-model information and its all-one posterior remain unchanged; neither is inferred from the independent calculation.
+
+| Readings n | Independent I | Independent MAP error | Shared I | All-one posterior: independent | All-one posterior: shared |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 0.36806421 | 0.10000000 | 0.36806421 | 0.90000000 | 0.90000000 |
+| 2 | 0.51437472 | 0.10000000 | 0.36806421 | 0.98780488 | 0.90000000 |
+| 3 | 0.59778242 | 0.02800000 | 0.36806421 | 0.99863014 | 0.90000000 |
+| 5 | 0.66327904 | 0.00856000 | 0.36806421 | 0.99998307 | 0.90000000 |
+
+```python
+from fractions import Fraction as F
+from math import comb, log
+e = F(1,10)
+def h(p):
+    if p in [0,1]: return 0.0
+    return -float(p)*log(float(p))-float(1-p)*log(float(1-p))
+shared = log(2)-h(e)
+for n in [1,2,3,5]:
+    hidden, error = 0.0, F(0)
+    for k in range(n+1):
+        p0 = F(comb(n,k),2)*e**k*(1-e)**(n-k)
+        p1 = F(comb(n,k),2)*(1-e)**k*e**(n-k)
+        hidden += float(p0+p1)*h(p1/(p0+p1))
+        error += min(p0,p1)
+    posterior = (1-e)**n/((1-e)**n+e**n)
+    print(f"{n} {log(2)-hidden:.8f} {float(error):.8f} {shared:.8f} "
+          f"{float(posterior):.8f} {float(1-e):.8f}")
+```
+
+### Three research questions with explanations
+
+#### 1. Why do two readings improve information but not the shown classification error?
+
+**Explanation.** They change posterior uncertainty: agreeing readings are more decisive, while disagreements are tied. The averaged conditional entropy falls, so mutual information rises. With fair input and the stated zero-one loss, the tie contribution makes the two-reading Bayes error remain 0.1.
+
+#### 2. Can identical one-reading channels justify multiplying likelihoods?
+
+**Explanation.** No. Both error models have the same individual binary symmetric channel. Their joint conditional law differs. Shared errors make later readings copies of the first, so multiplying marginal likelihoods would invent evidence and overstate posterior confidence.
+
+#### 3. Does summarizing by K always preserve the input information?
+
+**Explanation.** Only under an appropriate specified family. Here independent identical error probabilities make the likelihood ratio depend solely on K, and the conditional distribution of order given K is input-independent. Unequal sensors, correlated errors or a changing input need a different sufficient representation.
+
+### Source and research boundary
+
+Conditional information, channel composition and chain rules follow [Polyanskiy and Wu, MIT 6.441, chapter 2](https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/184197ca5d5418da2415d37e929860b9_MIT6_441S16_chapter_2.pdf). The independent/shared comparison and Bayes-error examples are derived for this explicit finite experiment. Output diversity, repeated agreement and physical entropy production remain different claims.
+
 ## Worked exercises
 
 ### Exercise 1: Build and invert a joint table

@@ -16,9 +16,9 @@ test('noisy-observation bilingual manuscripts render shared math, tables, unique
     for (const link of source.matchAll(/\]\((https?:[^)]+)\)/g)) { assert.doesNotMatch(link[1], /\s/); assert.ok(new URL(link[1]).hostname); }
     assert.doesNotMatch(html, /katex-error|<h1|href="\.\.\//);
     assert.match(html, /katex-display/); assert.match(html, /role="region"/); assert.match(html, /tabindex="0"/);
-    assert.equal((html.match(/<table\b/g) ?? []).length, 3);
-    assert.equal((html.match(/<table\b(?=[^>]*tabindex="0")(?=[^>]*aria-label="[^"]+")[^>]*>/g) ?? []).length, 3);
-    assert.equal((source.match(/^## /gm) ?? []).length, 15);
+    assert.equal((html.match(/<table\b/g) ?? []).length, 4);
+    assert.equal((html.match(/<table\b(?=[^>]*tabindex="0")(?=[^>]*aria-label="[^"]+")[^>]*>/g) ?? []).length, 4);
+    assert.equal((source.match(/^## /gm) ?? []).length, 16);
     assert.equal((source.match(/^### (?:연습|Exercise) [1-6]:/gm) ?? []).length, 6);
     assert.equal((source.match(/\*\*(?:해설|Answer):\*\*/g) ?? []).length, 6);
     assert.equal(new Set(result.outline[language].map(x => x.id)).size, result.outline[language].length);
@@ -27,7 +27,7 @@ test('noisy-observation bilingual manuscripts render shared math, tables, unique
     else assert.ok((source.match(/[가-힣]/g) ?? []).length > 3500);
     equations.push([...source.matchAll(/\$\$([\s\S]*?)\$\$/g)].map(m => m[1].replace(/\s+/g, ' ').trim()));
   }
-  assert.equal(equations[0].length, 16); assert.deepEqual(equations[0], equations[1]);
+  assert.equal(equations[0].length, 26); assert.deepEqual(equations[0], equations[1]);
   assert.equal(result.outline.en.length, result.outline.ko.length);
 });
 test('worked joint tables and biased Bayes posteriors distinguish both conditional directions', () => {

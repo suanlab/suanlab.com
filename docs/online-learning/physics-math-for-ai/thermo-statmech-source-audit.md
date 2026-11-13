@@ -45,3 +45,10 @@ SI 단위에서는 온도K, 에너지J, 열용량J/K, 몰 열용량J/(mol K), �
 [Tong 1장의 정준 분포·자유 에너지](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf)와 [4장 4.2–4.4절의 일·엔트로피·환경 퍼텐셜](https://davidtong.org/pdfs/teaching/statistical-physics/statphys4.pdf) 관례를 이번 보충에 대조했다. 두 상태 준위 변경과 상세평형 전이율, 관성·점성 피스톤과 같은 온도조절기로 돌아가는 소산 열은 이 보충에 추가한 가정이다. 자료가 그 속도·수치 적분·실제 장치의 유한 열전달까지 인증한다고 소개하지 않는다.
 
 급격한 에너지 변경 직후의 초과 일을 즉각적인 생성 엔트로피로 부르지 않고 이후 고정 목표 완화와 구분한다. 피스톤은 위치만이 아닌 운동 에너지까지 가용 에너지에 포함하며 기체 단독 열과 기체·피스톤의 온도조절기 순열을 구별한다. 결정론적 거시 근사를 미시 피스톤의 정준 요동 법칙으로 확대하지 않는다. [자유 에너지 연구 보강 기록](free-energy-research-status.md)에 직접 유도·검산·reader 검증을 연결한다.
+
+
+## 미시·거시 연구 보강: 전이와 반복 관측
+
+Levin–Peres의 저자 공개 [Markov Chains and Mixing Times](https://pages.uoregon.edu/dlevin/MARKOV/markovmixing.pdf)의 1.3절(비주기성과 lazy 전이), 1.5절(정상 분포), 1.6절의 상세평형 명제를 대조했다. 정지 확률을 넣은 유한 껍질 교환은 여기서 직접 정의·열거한 예이며, 상태 수만으로 실제 동역학을 도출하지 않는다.
+
+[MIT 6.441 정보량 정의와 성질](https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/184197ca5d5418da2415d37e929860b9_MIT6_441S16_chapter_2.pdf)을 조건부 정보·KL 자료처리·chain rule의 배경으로 사용한다. 세 상태 투영의 기억·독립/공유 센서 비교는 명시한 유한 결합 법칙에서 직접 계산한다. 정보량을 물리 열비용으로 해석하지 않으며, 기존 reader 계산기에 없는 새 동역학을 조작 가능한 기능으로 소개하지 않는다. [검증 범위](micro-macro-research-status.md)를 따른다.

@@ -183,6 +183,133 @@ A multiplicity curve compares possible configurations. It does not say which tra
 
 Changing K compares different constrained shells. Changing N compares systems of different size. Neither control is automatically a physical heating protocol. A thermodynamic interpretation of a changing distribution needs a system boundary, environment, allowed transfers and dynamical law. Keep these ingredients separate from the finite combinatorial calculation.
 
+## Research extension: give the shell an exchange rule
+
+A hypergeometric histogram can be stationary without describing how a preparation gets there. Add a specific random exchange and ask whether the block count itself has closed dynamics. This also lets us separate a correct mean, a stationary law and actual convergence.
+
+Keep fixed N labeled binary sites, fixed K excitations and two nonempty blocks. At each integer attempt, with probability ρ choose one site uniformly from each block and swap their bits; otherwise do nothing. There is no energy change of the full fixed-K shell. The attempt index is not seconds, and this rule does not specify a physical exchange apparatus or its cost. The existing reader still computes counts rather than this new dynamics.
+
+If block A has a excitations, increasing a requires an empty A site and an occupied B site. Decreasing it requires the opposite pair. Counting those pairs gives the two transition probabilities.
+
+$$
+\lambda_a=\rho\frac{(N_A-a)(K-a)}{N_AN_B},\qquad\mu_a=\rho\frac{a(N_B-K+a)}{N_AN_B},\quad N_B=N-N_A.
+$$
+
+An equal-bit swap or a deliberately idle attempt leaves the count unchanged. Every microstate with the same a has these same probabilities, so this particular count projection is exactly Markov for every preparation. Empty blocks would make the denominators invalid; those static counting cases remain outside this exchange rule.
+
+$$
+T_{a,a+1}=\lambda_a,\quad T_{a,a-1}=\mu_a,\quad T_{a,a}=1-\lambda_a-\mu_a.
+$$
+
+The original hypergeometric law is the stationary candidate on the feasible count support. The probabilities are defined only where the binomial counts are positive.
+
+$$
+W(a)=\binom{N_A}{a}\binom{N_B}{K-a},\qquad\pi_a=\frac{W(a)}{\binom NK}.
+$$
+
+The neighboring binomial ratios show equal stationary flux in both directions. This verifies stationarity but does not, by itself, prove convergence of an arbitrary starting law.
+
+$$
+\pi_a\lambda_a=\pi_{a+1}\mu_{a+1},\qquad\pi T=\pi.
+$$
+
+Subtract the downward probability from the upward probability. The conditional mean increment is linear in the current count, even though the distribution need not yet be stationary.
+
+$$
+\mathbb E[A_{t+1}-A_t\mid A_t=a]=\lambda_a-\mu_a=\rho\frac{N_AK-Na}{N_AN_B}.
+$$
+
+Iterating that linear expectation gives an exact mean relaxation factor. A preparation whose mean already equals the stationary mean can still have the wrong histogram, as the table shows.
+
+$$
+\bar a=N_AK/N,\quad\eta=1-\frac{\rho N}{N_AN_B},\qquad\mathbb E A_t-\bar a=\eta^t(\mathbb E A_0-\bar a).
+$$
+
+A minimal counterexample has one site in each block and one excitation. With ρ=1 every attempt flips the count. Uniform probability is stationary, but a point preparation oscillates forever. Counting and detailed balance alone have not supplied mixing.
+
+$$
+N=2,\ N_A=N_B=K=1,\ \rho=1:\qquad T=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+$$
+
+Adding a half-probability idle step removes that example's period. More generally 0<ρ<1 gives a self-loop and connects the feasible count chain; a nontrivial finite chain then converges. At K=0 or K=N the count is already a singleton. A physical time scale still has not been specified.
+
+$$
+N=2,\ N_A=N_B=K=1,\ \rho=\tfrac12:\qquad T=\begin{pmatrix}1/2&1/2\\1/2&1/2\end{pmatrix}.
+$$
+
+For the next entropy comparison, prepare microstates uniformly conditional on their block count. Symmetry within each block preserves this property under the exchange rule. Only with that extra preparation assumption can the full-state entropy be recovered from the count law and multiplicities.
+
+$$
+p_t(x)=\frac{P_t(a)}{W(a)}\quad(A(x)=a),\qquad H(X_t)=H(A_t)+\sum_aP_t(a)\log W(a).
+$$
+
+Data processing with the stationary transition kernel makes count-to-stationary KL nonincreasing. The displayed identity then makes full-state entropy nondecreasing, but count entropy alone need not increase. This probability statement does not identify a bath entropy-production budget or an equilibration time for a real device.
+
+$$
+D(P_{t+1}\Vert\pi)\le D(P_t\Vert\pi),\qquad H(X_t)=\log\binom NK-D(P_t\Vert\pi).
+$$
+
+### Read opposite entropy trends
+
+The upper panel compares initially uniform counts with the hypergeometric target and the later count law. The lower panel separates full-state information entropy from count entropy. The latter starts at its maximum over five labels and decreases, while full-state entropy increases. A mean of two is unchanged throughout this example.
+
+![A lazy exchange preserves a fixed energy shell; full-state entropy rises while count entropy falls toward the hypergeometric law.](/assets/learning/micro-macro-shell-exchange.en.svg)
+
+### Reproduce a nonstationary law with the correct mean
+
+Use N=8, K=4, equal blocks and ρ=1/2. Initially each of the five feasible counts has probability 1/5, with uniform microstates inside each count. Probability updates use exact fractions; logarithms are ordinary numerical approximations. All entropies below are in nats, or Gibbs entropy divided by kB for the full microstate law.
+
+| Attempt t | Mean count | D to stationary | Count H | Full-state H | Total variation |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 2.00000000 | 0.81331805 | 1.60943791 | 3.43517719 | 0.37142857 |
+| 1 | 2.00000000 | 0.32251129 | 1.52970116 | 3.92598396 | 0.25178571 |
+| 2 | 2.00000000 | 0.12230314 | 1.41428792 | 4.12619210 | 0.16975446 |
+| 10 | 2.00000000 | 0.00001738 | 1.14198895 | 4.24847787 | 0.00224315 |
+
+```python
+from fractions import Fraction as F
+from math import comb, log
+N, NA, K, rho = 8, 4, 4, F(1,2)
+NB = N-NA
+W = [comb(NA,a)*comb(NB,K-a) for a in range(5)]
+pi = [F(w,comb(N,K)) for w in W]
+T = [[F(0) for _ in W] for _ in W]
+for a in range(5):
+    birth = rho*F((NA-a)*(K-a),NA*NB)
+    death = rho*F(a*(NB-K+a),NA*NB)
+    if a < 4: T[a][a+1] = birth
+    if a > 0: T[a][a-1] = death
+    T[a][a] = 1-birth-death
+P = [F(1,5)]*5  # uniform counts, uniform conditional microstates
+for t in range(11):
+    if t in [0,1,2,10]:
+        mean = float(sum(a*p for a,p in enumerate(P)))
+        D = sum(float(p)*log(float(p/q)) for p,q in zip(P,pi))
+        Hcount = -sum(float(p)*log(float(p)) for p in P)
+        Hmicro = Hcount+sum(float(p)*log(w) for p,w in zip(P,W))
+        TV = float(sum(abs(p-q) for p,q in zip(P,pi))/2)
+        print(f"{t} {mean:.8f} {D:.8f} {Hcount:.8f} {Hmicro:.8f} {TV:.8f}")
+    P = [sum(P[a]*T[a][b] for a in range(5)) for b in range(5)]
+```
+
+### Three research questions with explanations
+
+#### 1. Does the correct block mean certify equilibrium?
+
+**Explanation.** No. The initially flat count law already has mean two, but differs from the weights (1,16,36,16,1)/70. Its positive KL and total variation expose that mismatch. The exact mean recurrence tests one observable, not the entire distribution.
+
+#### 2. Why can count entropy decrease without contradicting the full-state result?
+
+**Explanation.** The labels have different multiplicities. Full-state entropy includes the expected log multiplicity hidden within each count. The Markov rule and conditional-uniform preparation make that full entropy increase, while a flat distribution over count labels can become less flat.
+
+#### 3. Why add an idle probability?
+
+**Explanation.** The two-site always-swap chain is periodic despite having the correct stationary law. The half-idle example reaches its stationary distribution in one step. In a larger finite connected chain an idle probability removes periodicity, but it does not supply a physical exchange rate.
+
+### Source and research boundary
+
+The stationary-chain and laziness framework is described in [Levin and Peres, Markov Chains and Mixing Times](https://pages.uoregon.edu/dlevin/MARKOV/markovmixing.pdf); KL contraction follows the [MIT 6.441 information-measure framework](https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/184197ca5d5418da2415d37e929860b9_MIT6_441S16_chapter_2.pdf). The exchange probabilities, preparation and examples are derived here for the declared shell. No universal dynamics follows from multiplicity alone.
+
 ## Worked exercises
 
 ### Exercise 1: Name the six compatible patterns

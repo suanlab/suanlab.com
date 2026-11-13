@@ -1,0 +1,1596 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "status": "validated-micro-macro-research-supplements",
+  "domain": "thermo-statmech",
+  "unitIds": [
+    "binary-shell-multiplicity-block-counts",
+    "finite-macro-partition-conditional-entropy",
+    "finite-noisy-macro-observation-channel"
+  ],
+  "registry": {
+    "units": 650,
+    "guides": 1969,
+    "domains": 51,
+    "topics": 509
+  },
+  "baselineCommit": "01d118b843db441684894b0a63de9f6ed3fc5452",
+  "otherDomainManuscriptsPreserved": [
+    {
+      "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md",
+      "sha256": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md",
+      "sha256": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md",
+      "sha256": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md",
+      "sha256": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md",
+      "sha256": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md",
+      "sha256": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md",
+      "sha256": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md",
+      "sha256": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md",
+      "sha256": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md",
+      "sha256": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md",
+      "sha256": "2b70f8129051d98f381f586070cbffb578c90e804669fa1d2295f2e5c9c3d9c4"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md",
+      "sha256": "c8884d8be4b5341daeae9e64b8c2b499352822663a867fc80bfc6a2afa2e1af5"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md",
+      "sha256": "cf1068c26a650b9dd65abb3d03e8cce0225d2480af49aafa9e56d4f273381a48"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md",
+      "sha256": "cabbaa81e0c2a28eaa9107910c512168a62e593dc651a818e97475f34299777f"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md",
+      "sha256": "3916532391a89710021232e47249b076af621113990007c5a42547b904fb1ae9"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md",
+      "sha256": "5d0a8f746486d28aebd5b5164617b2594bdefe3ea3af3082238ba0fdf44f0407"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md",
+      "sha256": "a20b9e72f85794d578ace76e22118bd1eee6898a00bc2fb84a2b5326a0b9652e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md",
+      "sha256": "2a7473a89a0f5288a92b80057cca25f82c120b7ff421d98f130d098342e4b113"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md",
+      "sha256": "79fd2af07f305bd235b4e1d1324dde87a20b8bef4dcd1cc4333176f97af3d85b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md",
+      "sha256": "1ab612949a826ac3dea1558fa52f7c667648804503f57dbbd47508157d9eef11"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.ko.md",
+      "sha256": "4bb4d08e7209d1e79a3d182a534fffdf3ca91f86af1794b6ab11661640790308"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.en.md",
+      "sha256": "e009fc56a05155ca0af0942b3c31268f51ef0064bcbd6b3e1910aa19ab336770"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.ko.md",
+      "sha256": "4a2ac611c35b21482cff6e862e52de3a2cc65681ebbaf4d27c3777d256dc2fe7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.en.md",
+      "sha256": "db01c9360f23c77e8d4ff7bf214ebfc46b9e376fdc5dad3c21a9d83a43265b13"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.ko.md",
+      "sha256": "fb46a0950c5ba61d2aa4a304ed01b56ab05220e94791562d4c9c8fca8fb764b0"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.en.md",
+      "sha256": "ee3e1c2d3a2d8a927622c41b0d54884310e3b49a790b0860e28961a10b0bfc5e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.ko.md",
+      "sha256": "273597601f2cc18ef81a4c16b19d30fd8824a0ed1fa211af07427d41a8a1a951"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.en.md",
+      "sha256": "b008dc6e7f1a3d555ae9f363465e9c4c81b66ca7acb047c70ed0450b5bcc8e32"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.ko.md",
+      "sha256": "920ba116208c2992905650b4bcbc366659807d018aeedd266d799d8643b73f57"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.en.md",
+      "sha256": "4a4b016de1dd21bdc3e5b9e2721f05a33b75befc3abb715d6a4d6a71da89f7e6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.ko.md",
+      "sha256": "eb446c6bec89621ee3e991ea0ebe897d94229315e41fd60eb4b9bdee8083c402"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.en.md",
+      "sha256": "561530d879493f38e0408eb37ad25be67d44dad388c7a30e12c242d9e22a144e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.ko.md",
+      "sha256": "087a1af9e81504130c9b059eb159f1fe678f7f832590312fb90861b971da1836"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.en.md",
+      "sha256": "d1aa8390bfd0fc56f887b4e2aab07f6373086aa940998b811196f44f3ec6fed7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.ko.md",
+      "sha256": "9bb8db5785e77ae769d89b2c7d537f15de00922f58789cba7e427a8297f6caec"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.en.md",
+      "sha256": "ac4d75c266edc9dbf81c4d5a1bea6a39f1f1953e7b1f222d635e0c82e3c9846f"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.ko.md",
+      "sha256": "e2c5d6cf78cd5470aa3625d334862310432ee7b581fd43450f60d1c34a276044"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.en.md",
+      "sha256": "fad9d696cc1191b8b8aa998f5a3ca11ed667c2ab048d8bfc10a11ce8e321541c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.ko.md",
+      "sha256": "8a418f2a12d092ff4caea78b90a74e677cf9552f7524b65366616010508c9706"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.en.md",
+      "sha256": "ea5bbf70c8056936fd6fc0be8058d93621471312c0bce6752690b7ef09a7aa90"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.ko.md",
+      "sha256": "4b0221ed4cc62924eab793c07b220a3dde609810cebb37e8af79d9491c514b4b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.en.md",
+      "sha256": "844d21fce5c5d31c200bde1fb304046c22cacef8f0a8619d9fc85b7ee564e5bf"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.ko.md",
+      "sha256": "a718b1ef4c9b86e7b7c9c109e909095e772acea8a83e97e655d6aaeab7e3adfd"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.en.md",
+      "sha256": "ed4cd67f693f56ad3229cc64595ccd0edde216f4cd78ea873bd7234723285d85"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.ko.md",
+      "sha256": "5e1879b6bd55ccc27d71a398fa919e03ca96904ae4a3edf210dc7613085a7ef1"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.en.md",
+      "sha256": "d2185361b111b05b9bba4375542642ff8820fa697dc3086d07b80cb8ff10582d"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.ko.md",
+      "sha256": "bf380b04692d01eccc7ade872c40223c0732f12dbd9f0415ad803cf2f3ec0a16"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.en.md",
+      "sha256": "7b63b7f733ab991c2cc4c33b4fa1c06ed818f40b085b64168de9206805d94946"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.ko.md",
+      "sha256": "6a5221c76efa732c71b201289fd024a7b87c7f2aed1c81c6a65f06692e23f02b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.en.md",
+      "sha256": "f82d282b4f9debb0be0cc673315f5bef998a922ba9d52c51eb079cc223c7ad8b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.ko.md",
+      "sha256": "5717437eb357f7d78652ff00fe41d261dc3b00d0777dd2042ea026ac910c4b42"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.en.md",
+      "sha256": "91cee8bb2d352358997a6eaf32691bf3c2f69578dcab5580e1a8aaef28a14305"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.ko.md",
+      "sha256": "87169cbf63ed0c25110b8070f927ecb1068de31846a7ff2c05b470a548213dd6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.en.md",
+      "sha256": "ac24140fd2b4e1a4091037a98d698e1b234f10b61a5ca65d9e3ae815862b93ba"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.ko.md",
+      "sha256": "6bf2e4df0cdb337c2c207f76449e9cf50e6171cb34edf86ad06c4c927043f58c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.en.md",
+      "sha256": "c1b8cd125800b5381367f54ae276aa5b75e8de704000b52f2d21967cdaffdab2"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/thermodynamics.ko.md",
+      "sha256": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/thermodynamics.en.md",
+      "sha256": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf"
+    }
+  ],
+  "previousResearchArtifactsPreserved": {
+    "content/learning/physics-math-for-ai/thermodynamics.en.md": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf",
+    "content/learning/physics-math-for-ai/thermodynamics.ko.md": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3",
+    "public/assets/learning/thermometry-information-scale.en.svg": "46ea259642757e2c948177d410f2a219401bdf12db8bde220c5c94178fa43f31",
+    "public/assets/learning/thermometry-information-scale.ko.svg": "598613ae723c70ea9cac1c8630dca3a936a486497ebb193f4bd9456210e88688",
+    "scripts/check-thermometry-research.cjs": "c781958ca72c404cbedaa82bdfa1550a93b1991e1d2178f2eb9d45dea9783231",
+    "scripts/learning-thermometry-research.test.ts": "60b9e791bc9d0c882863a5db94c6acc83f0c98665838f6e6d0c56aba10481b1f",
+    "scripts/learning/verify-thermometry-research.py": "bc96b222c3e871b4f50338fe0ff4f14c948ea5a3dfa39a1106591ba6eb81203f",
+    "scripts/learning/generate-thermometry-figures.py": "4f1063ab8e5ad72a43e0fd679962cd1091c9a863158f288ac78f4b0524283625",
+    "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca",
+    "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333",
+    "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903",
+    "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463",
+    "public/assets/learning/heat-work-contact-scale.en.svg": "c8b49365c1e0476c1ada8fd5c0289c40b2d71c1fc555063ac6d77657e7d38242",
+    "public/assets/learning/heat-work-contact-scale.ko.svg": "3f71ba83f6c79ee0c787dba8d736535b1efb3dfa795614e01b8ceba0a5328e33",
+    "public/assets/learning/heat-work-path-null-direction.en.svg": "a57b6e570e68b7b6712eb97d973da86b8124edb853548f24172db27e27ad6e02",
+    "public/assets/learning/heat-work-path-null-direction.ko.svg": "e03438687eb37072b64ec2a13361ff858efcc224c520158b1a557e459adae410",
+    "scripts/check-heat-work-research.cjs": "ebd1e2908aca89139c448204374544abd171c89f4abf50cffbec0e6f7c3501d3",
+    "scripts/learning-heat-work-research.test.ts": "4f43a9176d3c8f338bbb61f9b172097aca262435f21ff2ecd646d0defb3fd428",
+    "scripts/learning/verify-heat-work-research.py": "5c2f8d4b96a0ed26e719357e678ef0ba089374a91192f87a4abc5a9014d0f03a",
+    "scripts/learning/generate-heat-work-research-figures.py": "5cb22bf59ae85ea54f49218063f7c078ceac8cf0afd95a590a740663572c9531",
+    "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b",
+    "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8",
+    "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786",
+    "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb",
+    "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8",
+    "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529",
+    "public/assets/learning/laws-finite-source-work.en.svg": "36c3b8633806e7c14da8672e865abee52c0e0faa36ed18e435bd00ff063ac7a0",
+    "public/assets/learning/laws-finite-source-work.ko.svg": "094667fec150010fab665b4dd555d1ab73a53cac688e72180c9b47f760d6d1e2",
+    "public/assets/learning/laws-unrestored-device-reset.en.svg": "f2ea8dbaf637fca43cb4f91f02d8e868fd9829cad14c453a48a7ff142e7722a0",
+    "public/assets/learning/laws-unrestored-device-reset.ko.svg": "cd80277e8d52cb73f5f133b4f8414c792a42c6c75790a8352dfbadf8377f2a77",
+    "public/assets/learning/laws-growing-copy-low-temperature.en.svg": "9409cf6331a162a36f433026628bca7a216e5df205c614642dfa18b9334ea21d",
+    "public/assets/learning/laws-growing-copy-low-temperature.ko.svg": "d3eefa000445b8452f2fe48a04eaaec4af68d57acd473f84d160dd55db339ffe",
+    "scripts/check-thermodynamic-laws-research.cjs": "213fd76e88020ec2efde1f6961ae02f1911f7e4cdb4b7da936a2da13b593dacf",
+    "scripts/learning-thermodynamic-laws-research.test.ts": "396cb175abc3bc743980a3d2230f83684e414c2199a7474a2cec8a93becdd884",
+    "scripts/learning/verify-thermodynamic-laws-research.py": "87d2d3c1b193f455e88ca62557221fc601368628a3a32d17e938e465e9776a5d",
+    "scripts/learning/generate-laws-research-figures.py": "ab248b8f1b005380c8342a3b4204a00fa6ecdc29350a81b5127cad75fd0cc8bb",
+    "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md": "c8884d8be4b5341daeae9e64b8c2b499352822663a867fc80bfc6a2afa2e1af5",
+    "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md": "2b70f8129051d98f381f586070cbffb578c90e804669fa1d2295f2e5c9c3d9c4",
+    "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md": "cabbaa81e0c2a28eaa9107910c512168a62e593dc651a818e97475f34299777f",
+    "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md": "cf1068c26a650b9dd65abb3d03e8cce0225d2480af49aafa9e56d4f273381a48",
+    "public/assets/learning/free-energy-quench-relaxation.en.svg": "66845ac8b9da5a92e8a5f2a8eda0479da85c64ee4eb670cbfa9a0aa18a0aad0a",
+    "public/assets/learning/free-energy-quench-relaxation.ko.svg": "ebd93b0adcd311c9031f993616067dc4b07564dddde14f3243c868d16da8b22d",
+    "public/assets/learning/free-energy-inertial-piston-budget.en.svg": "4a3ef143dfc27000167846dcac3263e92869c78332548b89a7cde79df64360a0",
+    "public/assets/learning/free-energy-inertial-piston-budget.ko.svg": "c24670d8083bba2113075d5d17e73548b323712f954785b1df6843dd348d4cb1",
+    "scripts/check-free-energy-research.cjs": "cd11785dc950300ffe6eecfac0e3eab185c5347c991047a421b5674510581bfd",
+    "scripts/learning-free-energy-research.test.ts": "eb6574774960ae1366d231daee74ed9af9972e34d584570e941819d9c5f51a8f",
+    "scripts/learning/verify-free-energy-research.py": "c555b31157c0e6fd32f5e94850dd38f4698b3738eb367c5b4e5324d3d03ec57a",
+    "scripts/learning/generate-free-energy-research-figures.py": "55454b3132656b06d3308f0acec8655e512a50670e912eaab5e39e260874cfa7",
+    "scripts/learning-gas-free-energy-content.test.ts": "40c85dbb1aa94a7dc07357681b1bea194f1f7869754dc92d4a2c84fdc2f57496"
+  },
+  "ledger": {
+    "originalEntries": 817,
+    "currentEntries": 823,
+    "allOriginalEntriesPreserved": true
+  },
+  "scope": {
+    "originalDomainTopics": 11,
+    "registeredDomainUnits": 32,
+    "researchUnitsInThisBatch": 3,
+    "cumulativeSequentialResearchUnits": 11,
+    "remainingDomainUnits": 21,
+    "wholeDomainResearchReviewComplete": false,
+    "curriculumComplete": false
+  },
+  "manuscripts": [
+    {
+      "id": "binary-shell-multiplicity-block-counts",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md",
+      "originalSha256": "1f09442cec69f6771740ca5a56abd39faef9deee6fc7003961339c7b168e59a1",
+      "image": "shell-exchange",
+      "columns": 6,
+      "rows": [
+        [
+          "0",
+          "2.00000000",
+          "0.81331805",
+          "1.60943791",
+          "3.43517719",
+          "0.37142857"
+        ],
+        [
+          "1",
+          "2.00000000",
+          "0.32251129",
+          "1.52970116",
+          "3.92598396",
+          "0.25178571"
+        ],
+        [
+          "2",
+          "2.00000000",
+          "0.12230314",
+          "1.41428792",
+          "4.12619210",
+          "0.16975446"
+        ],
+        [
+          "10",
+          "2.00000000",
+          "0.00001738",
+          "1.14198895",
+          "4.24847787",
+          "0.00224315"
+        ]
+      ],
+      "marker": "## Research extension: give the shell an exchange rule",
+      "nextHeading": "## Worked exercises",
+      "updatedSha256": "22994935ed43b1238a2653ad433b9fba4844b21fa949513108e4d8e65121da3f"
+    },
+    {
+      "id": "binary-shell-multiplicity-block-counts",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md",
+      "originalSha256": "d326602499c3b341b075be8838b03b3cfba783eb8623550b43488e5825da2bf7",
+      "image": "shell-exchange",
+      "columns": 6,
+      "rows": [
+        [
+          "0",
+          "2.00000000",
+          "0.81331805",
+          "1.60943791",
+          "3.43517719",
+          "0.37142857"
+        ],
+        [
+          "1",
+          "2.00000000",
+          "0.32251129",
+          "1.52970116",
+          "3.92598396",
+          "0.25178571"
+        ],
+        [
+          "2",
+          "2.00000000",
+          "0.12230314",
+          "1.41428792",
+          "4.12619210",
+          "0.16975446"
+        ],
+        [
+          "10",
+          "2.00000000",
+          "0.00001738",
+          "1.14198895",
+          "4.24847787",
+          "0.00224315"
+        ]
+      ],
+      "marker": "## 연구 확장: 껍질에 교환 규칙을 추가하기",
+      "nextHeading": "## 풀이가 있는 연습",
+      "updatedSha256": "f5faeff2df6647774485ec8feb0c2425912fdeb308bed436515c0eeb966cca82"
+    },
+    {
+      "id": "finite-macro-partition-conditional-entropy",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md",
+      "originalSha256": "dbde3b93ae3f9720100fcb6c640c6753ab672dff3bb85ad7a12210b396b15dff",
+      "image": "coarse-memory",
+      "columns": 6,
+      "rows": [
+        [
+          "0.00000000",
+          "0.50000000",
+          "0.00000000",
+          "0.00000000",
+          "0.50000000",
+          "0.46209812"
+        ],
+        [
+          "0.30000000",
+          "0.45000000",
+          "0.17777778",
+          "0.16000000",
+          "0.40500000",
+          "0.08653929"
+        ],
+        [
+          "0.60000000",
+          "0.40000000",
+          "0.30000000",
+          "0.24000000",
+          "0.32000000",
+          "0.00940797"
+        ],
+        [
+          "1.00000000",
+          "0.33333333",
+          "0.33333333",
+          "0.22222222",
+          "0.22222222",
+          "0.00000000"
+        ]
+      ],
+      "marker": "## Research extension: a coarse reading can retain memory",
+      "nextHeading": "## Worked exercises",
+      "updatedSha256": "e5f21a6f59fdcf0e17dc8ae593ffcd207e030e04f1fd4abc2757cc45f8cc89a2"
+    },
+    {
+      "id": "finite-macro-partition-conditional-entropy",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md",
+      "originalSha256": "3f00318b01c7bd93e770bd745e1e535418629869402ad952d8ea2e0200ab9385",
+      "image": "coarse-memory",
+      "columns": 6,
+      "rows": [
+        [
+          "0.00000000",
+          "0.50000000",
+          "0.00000000",
+          "0.00000000",
+          "0.50000000",
+          "0.46209812"
+        ],
+        [
+          "0.30000000",
+          "0.45000000",
+          "0.17777778",
+          "0.16000000",
+          "0.40500000",
+          "0.08653929"
+        ],
+        [
+          "0.60000000",
+          "0.40000000",
+          "0.30000000",
+          "0.24000000",
+          "0.32000000",
+          "0.00940797"
+        ],
+        [
+          "1.00000000",
+          "0.33333333",
+          "0.33333333",
+          "0.22222222",
+          "0.22222222",
+          "0.00000000"
+        ]
+      ],
+      "marker": "## 연구 확장: 거친 눈금에는 기억이 남을 수 있다",
+      "nextHeading": "## 풀이가 있는 연습",
+      "updatedSha256": "3e1f7f9508fa6a5a5ad1db33a11b11b0eee91eecf4cbe043136db65d9bc0e4fc"
+    },
+    {
+      "id": "finite-noisy-macro-observation-channel",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md",
+      "originalSha256": "a97ed4d29978ba48e8f2703c0dfb18600002367ba2e15942a7658eca5e233e39",
+      "image": "repeated-sensors",
+      "columns": 6,
+      "rows": [
+        [
+          "1",
+          "0.36806421",
+          "0.10000000",
+          "0.36806421",
+          "0.90000000",
+          "0.90000000"
+        ],
+        [
+          "2",
+          "0.51437472",
+          "0.10000000",
+          "0.36806421",
+          "0.98780488",
+          "0.90000000"
+        ],
+        [
+          "3",
+          "0.59778242",
+          "0.02800000",
+          "0.36806421",
+          "0.99863014",
+          "0.90000000"
+        ],
+        [
+          "5",
+          "0.66327904",
+          "0.00856000",
+          "0.36806421",
+          "0.99998307",
+          "0.90000000"
+        ]
+      ],
+      "marker": "## Research extension: repeated readings can share the same error",
+      "nextHeading": "## Worked exercises",
+      "updatedSha256": "18528a5d21dc41daca84e8c3ba4b74ea96d06bc262bc10ea8192db361e70c54a"
+    },
+    {
+      "id": "finite-noisy-macro-observation-channel",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md",
+      "originalSha256": "7a64dee8bedd8062881d6ce9f2410b4a64e6c76b4f60cded48dfc85671e70efc",
+      "image": "repeated-sensors",
+      "columns": 6,
+      "rows": [
+        [
+          "1",
+          "0.36806421",
+          "0.10000000",
+          "0.36806421",
+          "0.90000000",
+          "0.90000000"
+        ],
+        [
+          "2",
+          "0.51437472",
+          "0.10000000",
+          "0.36806421",
+          "0.98780488",
+          "0.90000000"
+        ],
+        [
+          "3",
+          "0.59778242",
+          "0.02800000",
+          "0.36806421",
+          "0.99863014",
+          "0.90000000"
+        ],
+        [
+          "5",
+          "0.66327904",
+          "0.00856000",
+          "0.36806421",
+          "0.99998307",
+          "0.90000000"
+        ]
+      ],
+      "marker": "## 연구 확장: 반복 관측은 같은 오류를 공유할 수 있다",
+      "nextHeading": "## 풀이가 있는 연습",
+      "updatedSha256": "0491fbb5cfe9ade34594d3df47fc0467780fce503c922fad221e33b67f360c45"
+    }
+  ],
+  "originalExplainedExercisesPreserved": 36,
+  "newExplainedResearchQuestions": 18,
+  "displayedEquationsBothLocales": 60,
+  "executedPythonCells": 6,
+  "independentVerification": {
+    "status": "passed",
+    "enumeratedShells": 133,
+    "microscopicEntropySteps": 11,
+    "coarseMemoryKernels": 5,
+    "repeatedSensorPairs": 12
+  },
+  "selectedTests": {
+    "files": 15,
+    "tests": 276,
+    "failed": 0,
+    "logSha256": "1cee8c4d472504cc4ff03178e39dd487258e73481f80c204f88e71f28f3b17ac",
+    "intentionalExistingTestUpdates": "One H2 and ten displayed equations added to each manuscript; one accessible table added to partition and observation. Original content restored and hashed separately."
+  },
+  "checks": {
+    "lint": true,
+    "content": true,
+    "build": true,
+    "typecheck": true,
+    "export": true,
+    "generatedRoutes": 1893,
+    "htmlPages": 1888,
+    "contentUrls": 1885,
+    "logs": {
+      "lint.log": "3be436cfc280576162c8988ab0bf2da58c1cb1af605d4cca297edd0b2c7c9997",
+      "content.log": "cae16334d0d816cb4f9981be8422454c5186c14b964768b00780286cd813b72d",
+      "build.log": "ffab249ea04884847bb599f2181e4026d4d3e28e10649f4270311eab07a8a6ca",
+      "typecheck.log": "6d339cc3c6b097244df96011008e228f3bc9a23bcef588e7d89e6265838f6660",
+      "export.log": "7693d86189e4ec43f9df04724c2cbf33caf0d974a41cccb2aa2004d36af557d2"
+    }
+  },
+  "browserValidationFreeze": {
+    "inputs": 5396,
+    "outputs": 313,
+    "description": "Input/output hashes captured after build, before browser/export checks; unchanged at finalization. Documentation and runtime excluded.",
+    "inputManifestSha256": "53a698bc69d6685f82a1c02f502fd8e349ad400d1c0e7e2eb5179635d3402fb5",
+    "outputManifestSha256": "77a565b8eaafbf4e735c0e06c8ad394b46fe831e13f4eeec460b5c3d56b7dd75"
+  },
+  "browser": {
+    "unitIds": [
+      "binary-shell-multiplicity-block-counts",
+      "finite-macro-partition-conditional-entropy",
+      "finite-noisy-macro-observation-channel"
+    ],
+    "rows": [
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      }
+    ],
+    "errors": [],
+    "guides": [
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "example": 0
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "example": 1
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "example": 2
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "example": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "example": 1
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "example": 2
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "example": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "example": 1
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "example": 2
+      }
+    ],
+    "questions": [
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "question": 0
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "question": 1
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "question": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "question": 1
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "question": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "question": 1
+      }
+    ],
+    "concepts": [
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "step": 0
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "step": 1
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "step": 2
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "step": 3
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "step": 0
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "step": 1
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "step": 2
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "step": 3
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "step": 0
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "step": 1
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "step": 2
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "step": 3
+      }
+    ],
+    "interactions": [
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      }
+    ],
+    "assetBounds": [
+      {
+        "path": "public/assets/learning/micro-macro-shell-exchange.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/micro-macro-shell-exchange.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/micro-macro-coarse-memory.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/micro-macro-coarse-memory.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/micro-macro-repeated-sensors.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/micro-macro-repeated-sensors.ko.svg",
+        "outside": []
+      }
+    ]
+  },
+  "renderAndServedFiles": {
+    "status": "passed",
+    "rows": [
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "배치와-계기-눈금은-서로-다른-대상이다",
+            "title": "배치와 계기 눈금은 서로 다른 대상이다"
+          },
+          {
+            "id": "확률을-넣기-전에-유한-모형을-정의하자",
+            "title": "확률을 넣기 전에 유한 모형을 정의하자"
+          },
+          {
+            "id": "점유한-자리들을-골라-껍질을-세자",
+            "title": "점유한 자리들을 골라 껍질을 세자"
+          },
+          {
+            "id": "매끄러운-곡선을-그리기-전에-네-자리를-열거하자",
+            "title": "매끄러운 곡선을 그리기 전에 네 자리를 열거하자"
+          },
+          {
+            "id": "어떤-균등-준비인지-명시하자",
+            "title": "어떤 균등 준비인지 명시하자"
+          },
+          {
+            "id": "껍질의-엔트로피와-준비의-엔트로피",
+            "title": "껍질의 엔트로피와 준비의 엔트로피"
+          },
+          {
+            "id": "계기-눈금과-그-안의-숨은-정보를-나누자",
+            "title": "계기 눈금과 그 안의 숨은 정보를 나누자"
+          },
+          {
+            "id": "고정-껍질을-두-블록으로-나누자",
+            "title": "고정 껍질을 두 블록으로 나누자"
+          },
+          {
+            "id": "상호작용이-없어도-조건부-요동은-달라진다",
+            "title": "상호작용이 없어도 조건부 요동은 달라진다"
+          },
+          {
+            "id": "전형적인-구간과-정확한-최빈값은-다르다",
+            "title": "전형적인 구간과 정확한 최빈값은 다르다"
+          },
+          {
+            "id": "작은-확률과-숫자의0을-나누어-읽자",
+            "title": "작은 확률과 숫자의0을 나누어 읽자"
+          },
+          {
+            "id": "다른-관측에는-무엇이-더-필요한가",
+            "title": "다른 관측에는 무엇이 더 필요한가"
+          },
+          {
+            "id": "경우의-수는-동역학을-제공하지-않는다",
+            "title": "경우의 수는 동역학을 제공하지 않는다"
+          },
+          {
+            "id": "연구-확장-껍질에-교환-규칙을-추가하기",
+            "title": "연구 확장: 껍질에 교환 규칙을 추가하기"
+          },
+          {
+            "id": "풀이가-있는-연습",
+            "title": "풀이가 있는 연습"
+          },
+          {
+            "id": "실험으로-확인하기",
+            "title": "실험으로 확인하기"
+          }
+        ]
+      },
+      {
+        "id": "binary-shell-multiplicity-block-counts",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "a-pattern-and-a-meter-reading-are-different-objects",
+            "title": "A pattern and a meter reading are different objects"
+          },
+          {
+            "id": "define-the-finite-model-before-assigning-probability",
+            "title": "Define the finite model before assigning probability"
+          },
+          {
+            "id": "count-a-shell-by-choosing-its-occupied-positions",
+            "title": "Count a shell by choosing its occupied positions"
+          },
+          {
+            "id": "enumerate-four-sites-before-drawing-a-smooth-curve",
+            "title": "Enumerate four sites before drawing a smooth curve"
+          },
+          {
+            "id": "specify-which-uniform-preparation-you-mean",
+            "title": "Specify which uniform preparation you mean"
+          },
+          {
+            "id": "entropy-of-a-shell-and-entropy-of-a-preparation",
+            "title": "Entropy of a shell and entropy of a preparation"
+          },
+          {
+            "id": "split-uncertainty-into-the-meter-reading-and-its-hidden-details",
+            "title": "Split uncertainty into the meter reading and its hidden details"
+          },
+          {
+            "id": "divide-a-fixed-shell-between-two-blocks",
+            "title": "Divide a fixed shell between two blocks"
+          },
+          {
+            "id": "conditional-fluctuations-without-an-interaction",
+            "title": "Conditional fluctuations without an interaction"
+          },
+          {
+            "id": "typical-windows-and-exact-peak-values-are-different",
+            "title": "Typical windows and exact peak values are different"
+          },
+          {
+            "id": "keep-a-small-probability-separate-from-a-numerical-zero",
+            "title": "Keep a small probability separate from a numerical zero"
+          },
+          {
+            "id": "what-a-different-observation-would-require",
+            "title": "What a different observation would require"
+          },
+          {
+            "id": "counts-do-not-provide-dynamics",
+            "title": "Counts do not provide dynamics"
+          },
+          {
+            "id": "research-extension-give-the-shell-an-exchange-rule",
+            "title": "Research extension: give the shell an exchange rule"
+          },
+          {
+            "id": "worked-exercises",
+            "title": "Worked exercises"
+          },
+          {
+            "id": "explore-the-experiment",
+            "title": "Explore the experiment"
+          }
+        ]
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "계기-눈금은-무엇을-잊어버릴까",
+            "title": "계기 눈금은 무엇을 잊어버릴까"
+          },
+          {
+            "id": "준비-분포와-관측-사상을-지정하자",
+            "title": "준비 분포와 관측 사상을 지정하자"
+          },
+          {
+            "id": "관측값을-안-뒤-숨은-상태의-확률을-구하자",
+            "title": "관측값을 안 뒤 숨은 상태의 확률을 구하자"
+          },
+          {
+            "id": "네-상자에서-열-단위의-확률-질량을-따라가자",
+            "title": "네 상자에서 열 단위의 확률 질량을 따라가자"
+          },
+          {
+            "id": "정보의-연쇄법칙을-직접-유도하자",
+            "title": "정보의 연쇄법칙을 직접 유도하자"
+          },
+          {
+            "id": "상태-수는-숨은-정보의-상한을-주지만-값을-정하지-않는다",
+            "title": "상태 수는 숨은 정보의 상한을 주지만 값을 정하지 않는다"
+          },
+          {
+            "id": "같은-관측값이-서로-다른-준비를-숨길-수-있다",
+            "title": "같은 관측값이 서로 다른 준비를 숨길 수 있다"
+          },
+          {
+            "id": "균등하게-재구성하는-것은-추가-규칙이다",
+            "title": "균등하게 재구성하는 것은 추가 규칙이다"
+          },
+          {
+            "id": "관측-전후에-두-준비를-비교하자",
+            "title": "관측 전후에 두 준비를 비교하자"
+          },
+          {
+            "id": "어떤-관측은-비교를-그대로-보존한다",
+            "title": "어떤 관측은 비교를 그대로 보존한다"
+          },
+          {
+            "id": "숨은-갈라짐을-추측하는-대신-관측을-세분하자",
+            "title": "숨은 갈라짐을 추측하는 대신 관측을 세분하자"
+          },
+          {
+            "id": "질량0미정-조건부무한-kl을-나누어-읽자",
+            "title": "질량0·미정 조건부·무한 KL을 나누어 읽자"
+          },
+          {
+            "id": "작은-정보-차이를-표시값끼리-빼서-계산하지-말자",
+            "title": "작은 정보 차이를 표시값끼리 빼서 계산하지 말자"
+          },
+          {
+            "id": "연구-확장-거친-눈금에는-기억이-남을-수-있다",
+            "title": "연구 확장: 거친 눈금에는 기억이 남을 수 있다"
+          },
+          {
+            "id": "풀이가-있는-연습",
+            "title": "풀이가 있는 연습"
+          },
+          {
+            "id": "실험으로-확인하기",
+            "title": "실험으로 확인하기"
+          }
+        ]
+      },
+      {
+        "id": "finite-macro-partition-conditional-entropy",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "what-does-the-meter-forget",
+            "title": "What does the meter forget?"
+          },
+          {
+            "id": "specify-the-preparation-and-the-observation-map",
+            "title": "Specify the preparation and the observation map"
+          },
+          {
+            "id": "condition-on-a-reading-before-naming-its-hidden-state",
+            "title": "Condition on a reading before naming its hidden state"
+          },
+          {
+            "id": "follow-ten-units-of-probability-mass-through-four-boxes",
+            "title": "Follow ten units of probability mass through four boxes"
+          },
+          {
+            "id": "derive-the-information-chain-rule",
+            "title": "Derive the information chain rule"
+          },
+          {
+            "id": "counts-bound-hidden-information-but-do-not-fix-it",
+            "title": "Counts bound hidden information but do not fix it"
+          },
+          {
+            "id": "the-same-readings-can-hide-different-preparations",
+            "title": "The same readings can hide different preparations"
+          },
+          {
+            "id": "reconstructing-uniformly-is-an-additional-rule",
+            "title": "Reconstructing uniformly is an additional rule"
+          },
+          {
+            "id": "compare-two-preparations-before-and-after-observation",
+            "title": "Compare two preparations before and after observation"
+          },
+          {
+            "id": "when-does-the-reading-preserve-a-comparison",
+            "title": "When does the reading preserve a comparison?"
+          },
+          {
+            "id": "refine-the-reading-instead-of-guessing-the-hidden-split",
+            "title": "Refine the reading instead of guessing the hidden split"
+          },
+          {
+            "id": "separate-zero-mass-undefined-conditionals-and-infinite-kl",
+            "title": "Separate zero mass, undefined conditionals and infinite KL"
+          },
+          {
+            "id": "calculate-small-information-differences-without-subtracting-displays",
+            "title": "Calculate small information differences without subtracting displays"
+          },
+          {
+            "id": "research-extension-a-coarse-reading-can-retain-memory",
+            "title": "Research extension: a coarse reading can retain memory"
+          },
+          {
+            "id": "worked-exercises",
+            "title": "Worked exercises"
+          },
+          {
+            "id": "explore-the-experiment",
+            "title": "Explore the experiment"
+          }
+        ]
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "잡음이-있는-눈금은-새로운-확률변수다",
+            "title": "잡음이 있는 눈금은 새로운 확률변수다"
+          },
+          {
+            "id": "준비와-장치를-따로-지정하자",
+            "title": "준비와 장치를 따로 지정하자"
+          },
+          {
+            "id": "행의-확률-질량을-출력-열까지-따라가자",
+            "title": "행의 확률 질량을 출력 열까지 따라가자"
+          },
+          {
+            "id": "눈금을-본-뒤-원래-상태를-추론하자",
+            "title": "눈금을 본 뒤 원래 상태를 추론하자"
+          },
+          {
+            "id": "장치-잡음과-숨은-상태-불확실성을-구분하자",
+            "title": "장치 잡음과 숨은 상태 불확실성을 구분하자"
+          },
+          {
+            "id": "눈금이-실제로-알려주는-정보를-재자",
+            "title": "눈금이 실제로 알려주는 정보를 재자"
+          },
+          {
+            "id": "결정론적-군-관측을-특수한-경우로-되찾자",
+            "title": "결정론적 군 관측을 특수한 경우로 되찾자"
+          },
+          {
+            "id": "무작위-램프는-정보-없이-불확실성만-더할-수-있다",
+            "title": "무작위 램프는 정보 없이 불확실성만 더할 수 있다"
+          },
+          {
+            "id": "대칭-오류와-독립-잡음은-다르다",
+            "title": "대칭 오류와 독립 잡음은 다르다"
+          },
+          {
+            "id": "지워짐-관측은-언제-정보를-잃었는지-알려준다",
+            "title": "지워짐 관측은 언제 정보를 잃었는지 알려준다"
+          },
+          {
+            "id": "사전-분포가-바뀌면-같은-눈금의-뜻도-달라진다",
+            "title": "사전 분포가 바뀌면 같은 눈금의 뜻도 달라진다"
+          },
+          {
+            "id": "불가능한-사건과-사용하지-않은-규칙을-구별하자",
+            "title": "불가능한 사건과 사용하지 않은 규칙을 구별하자"
+          },
+          {
+            "id": "작은-정보량을-수치-계산에서도-보존하자",
+            "title": "작은 정보량을 수치 계산에서도 보존하자"
+          },
+          {
+            "id": "연구-확장-반복-관측은-같은-오류를-공유할-수-있다",
+            "title": "연구 확장: 반복 관측은 같은 오류를 공유할 수 있다"
+          },
+          {
+            "id": "풀이가-있는-연습",
+            "title": "풀이가 있는 연습"
+          },
+          {
+            "id": "실험으로-확인하기",
+            "title": "실험으로 확인하기"
+          }
+        ]
+      },
+      {
+        "id": "finite-noisy-macro-observation-channel",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "a-noisy-reading-is-a-new-random-variable",
+            "title": "A noisy reading is a new random variable"
+          },
+          {
+            "id": "specify-preparation-and-instrument-separately",
+            "title": "Specify preparation and instrument separately"
+          },
+          {
+            "id": "follow-probability-mass-from-rows-into-output-columns",
+            "title": "Follow probability mass from rows into output columns"
+          },
+          {
+            "id": "infer-the-state-after-a-reading",
+            "title": "Infer the state after a reading"
+          },
+          {
+            "id": "separate-instrument-noise-from-hidden-state-uncertainty",
+            "title": "Separate instrument noise from hidden state uncertainty"
+          },
+          {
+            "id": "measure-what-the-reading-reveals",
+            "title": "Measure what the reading reveals"
+          },
+          {
+            "id": "recover-deterministic-grouping-as-a-special-case",
+            "title": "Recover deterministic grouping as a special case"
+          },
+          {
+            "id": "a-random-lamp-can-add-uncertainty-without-information",
+            "title": "A random lamp can add uncertainty without information"
+          },
+          {
+            "id": "a-symmetric-error-is-not-the-same-as-independent-noise",
+            "title": "A symmetric error is not the same as independent noise"
+          },
+          {
+            "id": "an-erasure-tells-you-when-information-is-missing",
+            "title": "An erasure tells you when information is missing"
+          },
+          {
+            "id": "the-prior-changes-the-meaning-of-the-same-reading",
+            "title": "The prior changes the meaning of the same reading"
+          },
+          {
+            "id": "keep-impossible-events-and-unused-rules-distinct",
+            "title": "Keep impossible events and unused rules distinct"
+          },
+          {
+            "id": "preserve-small-information-quantities-numerically",
+            "title": "Preserve small information quantities numerically"
+          },
+          {
+            "id": "research-extension-repeated-readings-can-share-the-same-error",
+            "title": "Research extension: repeated readings can share the same error"
+          },
+          {
+            "id": "worked-exercises",
+            "title": "Worked exercises"
+          },
+          {
+            "id": "explore-the-experiment",
+            "title": "Explore the experiment"
+          }
+        ]
+      }
+    ],
+    "files": [
+      {
+        "path": "/book/online/physics-math-for-ai/binary-shell-multiplicity-block-counts/",
+        "sha256": "91da76573891091cefc98c189ffcce632937a9ad0fb8df96f3b2bdfa2858cae4",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/finite-macro-partition-conditional-entropy/",
+        "sha256": "52293ff0ed9fb3ce72d3a1ae6f15728812f5eaf354d07ff8c6fca3df5f68def4",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/finite-noisy-macro-observation-channel/",
+        "sha256": "21120edca71b6cbae97b44e5688483d8bfb19436414660807c4328630714a01d",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/micro-macro-shell-exchange.en.svg",
+        "sha256": "5f02a72e398fbae69e39bddc8e1eaa06cf3635be9bd46120a15cb7d7d1dbbe96",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/micro-macro-shell-exchange.ko.svg",
+        "sha256": "ca872b350149998d9fff11fe5bda6be477583de5103c9775870e7dfe37901661",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/micro-macro-coarse-memory.en.svg",
+        "sha256": "567958d9c85fae4b3349cb175549a05f7bf7f5fdc4340a93043dd86bc157cd23",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/micro-macro-coarse-memory.ko.svg",
+        "sha256": "df7aef062ad6d00746d8ec150e31934b7af8f97bdaaab00301f0b53f5b1186bd",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/micro-macro-repeated-sensors.en.svg",
+        "sha256": "8557e2b8dcd16606e3ca5676cd884572e32d6e67a2f811ef6a8572a45effd7b0",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/micro-macro-repeated-sensors.ko.svg",
+        "sha256": "0831eb3ff53a87f824c0c363e3109f01ed5703df812829ac02694c726c77a36f",
+        "sourceOutputAndServedEqual": true
+      }
+    ],
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "domains": 51,
+      "topics": 509
+    },
+    "domainUnits": [
+      "thermodynamics",
+      "finite-body-thermal-contact-heat-entropy",
+      "ideal-gas-two-path-heat-work",
+      "carnot-cycle-engine-refrigerator",
+      "two-reservoir-cycle-entropy-admissibility",
+      "gapped-spectrum-low-temperature-entropy",
+      "finite-spectrum-helmholtz-kl-variational",
+      "ideal-gas-helmholtz-gibbs-volume-availability",
+      "binary-shell-multiplicity-block-counts",
+      "finite-macro-partition-conditional-entropy",
+      "finite-noisy-macro-observation-channel",
+      "finite-binary-reservoir-canonical-comparison",
+      "canonical-binary-energy-fluctuations",
+      "grand-canonical-finite-occupancy-fluctuations",
+      "finite-spectrum-partition-cumulant-generators",
+      "coupled-binary-sites-partition-factorization",
+      "infinite-energy-ladder-normalization-cutoff",
+      "reference-measure-boltzmann-softmax-identifiability",
+      "finite-gibbs-conditionals-scan-support",
+      "quadratic-gaussian-gibbs-normalizability",
+      "finite-curie-weiss-magnetization-symmetry",
+      "curie-weiss-variational-stability-limits",
+      "landau-sixth-order-coexistence-stability",
+      "binary-connected-correlations-field-hessian",
+      "periodic-ising-ring-correlation-length",
+      "finite-correlated-average-ar1-uncertainty",
+      "stationary-flux-three-state-cycle",
+      "metropolis-hastings-proposal-balance",
+      "reversible-two-state-periodicity-mixing",
+      "boundary-growth-extensivity-additivity",
+      "spatial-density-self-averaging-correlations",
+      "two-phase-partition-zeros-rounding"
+    ]
+  },
+  "directVisualReview": [
+    {
+      "path": ".runtime/learning/micro-macro-research/shell-exchange.en.png",
+      "sha256": "ca020af19e46391453a4e77cbafdc1cb7c1525a4c498877e6ccdb0da00e000e5",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research/shell-exchange.ko.png",
+      "sha256": "8566405bc6c8dda5670204da4655081a01d265ecf9d860dd87efbc665816a772",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research/coarse-memory.en.png",
+      "sha256": "d770399a226d2518b3b5f212404c1a5e94e6ec9e9b8ba28024add23be163eb28",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research/coarse-memory.ko.png",
+      "sha256": "fb0bf751b31d1c47d09c654c0fcb7118e049ad677a847e32186f13c2a440184e",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research/repeated-sensors.en.png",
+      "sha256": "b9a28eee350a721fcbd6aa4cb9f53ad05c028354cb790998b8f86e0645ce94a4",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research/repeated-sensors.ko.png",
+      "sha256": "49cedd9acebe198e007c74e846be0ed5983cf9c6b9185a7f1e3959d7de2d1111",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research-binary-shell-multiplicity-block-counts-en-320.png",
+      "sha256": "23ad996729791ace5e05960bb8844b697f6b4e1e5cf802cf9e54c4fca3c00214",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research-binary-shell-multiplicity-block-counts-ko-320.png",
+      "sha256": "efd90c2d341b2e6abbc7d1d8774da798236b1dc187c4853d0e50a939a37552e2",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research-finite-macro-partition-conditional-entropy-en-320.png",
+      "sha256": "e06e5196aedcc9f48e5bd658575a0ecaa64724ca1cbe0de417d861f7801d3a7c",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research-finite-macro-partition-conditional-entropy-ko-320.png",
+      "sha256": "38ab547b5eba6a4d73281c9f844c31d4a93733155c98bfa4f10e825b0910279f",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research-finite-noisy-macro-observation-channel-en-320.png",
+      "sha256": "908650aa4fa9346ffec3827259ef2012b6b9ba40babb276623029f9d449db945",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    },
+    {
+      "path": ".runtime/learning/micro-macro-research-finite-noisy-macro-observation-channel-ko-320.png",
+      "sha256": "22b02c1ddaa449be29146c6ce436186a9d394c37065db877a4dc7952c090d039",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    }
+  ],
+  "artifacts": {
+    "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md": "22994935ed43b1238a2653ad433b9fba4844b21fa949513108e4d8e65121da3f",
+    "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md": "f5faeff2df6647774485ec8feb0c2425912fdeb308bed436515c0eeb966cca82",
+    "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md": "e5f21a6f59fdcf0e17dc8ae593ffcd207e030e04f1fd4abc2757cc45f8cc89a2",
+    "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md": "3e1f7f9508fa6a5a5ad1db33a11b11b0eee91eecf4cbe043136db65d9bc0e4fc",
+    "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md": "18528a5d21dc41daca84e8c3ba4b74ea96d06bc262bc10ea8192db361e70c54a",
+    "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md": "0491fbb5cfe9ade34594d3df47fc0467780fce503c922fad221e33b67f360c45",
+    "public/assets/learning/micro-macro-shell-exchange.en.svg": "5f02a72e398fbae69e39bddc8e1eaa06cf3635be9bd46120a15cb7d7d1dbbe96",
+    "public/assets/learning/micro-macro-shell-exchange.ko.svg": "ca872b350149998d9fff11fe5bda6be477583de5103c9775870e7dfe37901661",
+    "public/assets/learning/micro-macro-coarse-memory.en.svg": "567958d9c85fae4b3349cb175549a05f7bf7f5fdc4340a93043dd86bc157cd23",
+    "public/assets/learning/micro-macro-coarse-memory.ko.svg": "df7aef062ad6d00746d8ec150e31934b7af8f97bdaaab00301f0b53f5b1186bd",
+    "public/assets/learning/micro-macro-repeated-sensors.en.svg": "8557e2b8dcd16606e3ca5676cd884572e32d6e67a2f811ef6a8572a45effd7b0",
+    "public/assets/learning/micro-macro-repeated-sensors.ko.svg": "0831eb3ff53a87f824c0c363e3109f01ed5703df812829ac02694c726c77a36f",
+    "scripts/check-micro-macro-research.cjs": "ea987ef21b58b777b498599e6ea030dc9d30e6a260abfcec3f1f50de773a8964",
+    "scripts/learning-micro-macro-research.test.ts": "88dd5d4b64b175614f06197db09eb163d8c630661ae36c66d50e70a647ebe1c6",
+    "scripts/learning/verify-micro-macro-research.py": "368b2570bb91453f2b6c66e51d049f7b2df20a60dbd52d3e92b57575d91748e2",
+    "scripts/learning/generate-micro-macro-research-figures.py": "7d0e5f11b844b42a7278d13a14838e058c77a9973fee03437f6d72d2972edfbb",
+    "scripts/fixtures/reviewed-learning-manuscripts.json": "4a9fc0e379c2e658c9f1c16e86d17eefa2d7c1fe15c5e7048e06dbf99d7434ad",
+    "scripts/learning-binary-macrostates-content.test.ts": "7f97d6ae565237fe63c168fb2cbfedeefb996540c22fa19abcf8cea289c9ed9a",
+    "scripts/learning-macro-partition-content.test.ts": "278a84f6ed1691bf31f22a871a7e5925de23cdb49f10879aa00b4f60b98815fa",
+    "scripts/learning-noisy-macro-observation-content.test.ts": "333964c1332f4933e45362c71c5640b0430819d0f70fc2fb7b32ce15072da71f"
+  },
+  "overallReview": {
+    "completedDomains": 43,
+    "completedTopics": 426,
+    "remainingDomains": 8,
+    "remainingTopics": 83
+  },
+  "publicDeploymentConfirmed": false
+}

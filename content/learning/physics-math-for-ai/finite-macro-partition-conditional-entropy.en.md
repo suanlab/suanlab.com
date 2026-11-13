@@ -201,6 +201,135 @@ $$
 
 At the smallest/largest binary64 weight ratio this is about 10⁻¹⁸⁹⁵. It is finite and positive despite having no linear display value. Independent references use 4096 decimal digits to resolve it. Exact normalization does not make transcendental logs exact; those remain approximations with separately tested accuracy.
 
+## Research extension: a coarse reading can retain memory
+
+Knowing today's color need not be enough to predict tomorrow's color, even when the labeled microstate is a perfectly Markovian process. Different hidden states inside the same color can have different exit probabilities. A stationary one-step table may therefore fit one-step observations and still give wrong multi-step predictions.
+
+Add a three-state discrete-time chain to this static grouping lesson. With probability 1−r move around the cycle 0→1→2→0; with probability r redraw a state uniformly. Read A for states 0,1 and B for state 2. Use the stationary uniform microstate preparation. For 0<r<1 every transition is positive, so the microscopic chain is irreducible, aperiodic and mixing. Thus the memory example is not caused only by a periodic microscopic chain. Steps have no physical duration or heat budget.
+
+Write the transition matrix as a mixture of cycling and uniform resetting. At r=0 it is the deterministic cycle; at r=1 the states are independent uniform redraws.
+
+$$
+C=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix},\quad U_{ij}=1/3,\qquad T=(1-r)C+rU,\quad 0\le r\le1.
+$$
+
+Both components preserve the uniform law. The same color probabilities therefore hold at every step, while the hidden conditional state can depend on earlier colors.
+
+$$
+\pi=(1/3,1/3,1/3),\quad A=\{0,1\},\quad B=\{2\},\quad P(M_t=A)=2/3.
+$$
+
+For a projection to be Markov with the same transition rule for every initial law, all microstates inside a group must have the same total probability of entering every destination group. States 0 and 1 fail this condition for r<1.
+
+$$
+\sum_{j\in B}T_{0j}=r/3,\qquad\sum_{j\in B}T_{1j}=1-2r/3.
+$$
+
+At stationarity, conditioning only on A gives equal hidden weights, so the displayed one-step table Q has these entries. This averaging is valid for that conditional question; it is not proof that repeatedly multiplying Q predicts the observed process.
+
+$$
+Q_{AB}=P(M_{t+1}=B\mid M_t=A)=\frac12-\frac r6,\qquad Q_{BB}=r/3.
+$$
+
+A history-dependent hidden belief changes the next-color prediction. The formula makes the missing state explicit: the probability α₁ of hidden state 1, not just the color A.
+
+$$
+P(M_{t+1}=B\mid\text{history},M_t=A)=r/3+(1-r)\alpha_1,\quad\alpha_1=P(X_t=1\mid\text{history},M_t=A).
+$$
+
+After observing B then A, the previous microstate was exactly 2. Bayes conditioning gives the hidden state-1 weight below, which differs from one half except at the independent-reset endpoint.
+
+$$
+P(X_t=1\mid M_{t-1}=B,M_t=A)=\frac{r/3}{1-r/3}.
+$$
+
+Insert that posterior into the next-color prediction. At r=0.3, next B given A alone has probability 0.45, while next B after the history B,A has probability about 0.177778.
+
+$$
+P(M_{t+1}=B\mid M_{t-1}=B,M_t=A)=\frac{2(r/3)(1-2r/3)}{1-r/3}.
+$$
+
+The exact difference is positive for r<1. Because the conditioning history has positive probability, this is a direct failure of the Markov property for the coarse process under the stated stationary preparation.
+
+$$
+Q_{AB}-P(B\mid B,A)=\frac{(1-r)^2}{2(1-r/3)}>0\qquad(r<1).
+$$
+
+For a concrete prediction error, start with color B and ask for A then B. Multiplying the one-step table overestimates that event by one half of (1−r)². At r=0.3, the actual probability is 0.16 and the table prediction is 0.405.
+
+$$
+P(M_1=A,M_2=B\mid M_0=B)=2(r/3)(1-2r/3),\qquad Q_{BA}Q_{AB}-P(A,B\mid B)=\tfrac12(1-r)^2.
+$$
+
+Conditional mutual information quantifies this particular previous-step dependence. A positive value certifies memory at this lag; a zero value at one lag alone would not certify an arbitrary process as Markov. Here r=1 is independently known to be an iid redraw process.
+
+$$
+I(M_0;M_2\mid M_1)=\sum_{a,b,c:P_{abc}>0}P_{abc}\log\frac{P_{abc}P_b}{P_{ab}P_{bc}}\ge0.
+$$
+
+### Read one-step agreement and history disagreement
+
+The upper panel compares next-B probabilities with and without the preceding B reading. The lower panel compares the actual B→A→B probability conditional on the first B with the iterated-table prediction. For r>0 the underlying chain mixes, yet these curves disagree until r=1. Neither panel is an entropy-production or physical-time plot.
+
+![Different hidden exit probabilities make coarse colors history dependent, so a stationary one-step table can mispredict a two-step event.](/assets/learning/micro-macro-coarse-memory.en.svg)
+
+### Reproduce stationary color triples
+
+The code enumerates the full three-step microscopic law before grouping colors. r=0 is the periodic boundary; r=0.3 and 0.6 are positive mixing kernels; r=1 is an independent reset. Information is in nats. This supplements the reader and does not add a hidden dynamics control to its preparation editor.
+
+| r | Next B given A | Next B after B,A | Actual A,B given B | Iterated Q prediction | Conditional I |
+| --- | --- | --- | --- | --- | --- |
+| 0.00000000 | 0.50000000 | 0.00000000 | 0.00000000 | 0.50000000 | 0.46209812 |
+| 0.30000000 | 0.45000000 | 0.17777778 | 0.16000000 | 0.40500000 | 0.08653929 |
+| 0.60000000 | 0.40000000 | 0.30000000 | 0.24000000 | 0.32000000 | 0.00940797 |
+| 1.00000000 | 0.33333333 | 0.33333333 | 0.22222222 | 0.22222222 | 0.00000000 |
+
+```python
+from fractions import Fraction as F
+from math import log
+for r in [F(0),F(3,10),F(3,5),F(1)]:
+    T = [[r/3+(1-r)*int(j==(i+1)%3) for j in range(3)] for i in range(3)]
+    P = [[[F(0) for _ in range(2)] for _ in range(2)] for _ in range(2)]
+    group = [0,0,1]
+    for i in range(3):
+        for j in range(3):
+            for k in range(3):
+                P[group[i]][group[j]][group[k]] += T[i][j]*T[j][k]/3
+    cmi = 0.0
+    for a in range(2):
+        for b in range(2):
+            for c in range(2):
+                joint = P[a][b][c]
+                if not joint: continue
+                middle = sum(P[i][b][j] for i in range(2) for j in range(2))
+                left = sum(P[a][b]); right = sum(P[i][b][c] for i in range(2))
+                cmi += float(joint)*log(float(joint*middle/(left*right)))
+    nextB = F(1,2)-r/6
+    afterBA = 2*(r/3)*(1-2*r/3)/(1-r/3)
+    actual = 2*(r/3)*(1-2*r/3)
+    naive = (1-r/3)*nextB
+    print(f"{float(r):.8f} {float(nextB):.8f} {float(afterBA):.8f} "
+          f"{float(actual):.8f} {float(naive):.8f} {cmi:.8f}")
+```
+
+### Three research questions with explanations
+
+#### 1. Can a stationary color histogram certify a Markov state representation?
+
+**Explanation.** No. The histogram remains (2/3,1/3) for every r here, but hidden exit probabilities and posteriors affect future colors. A representation must preserve the predictive state required by its intended dynamics, not merely a stationary histogram.
+
+#### 2. Why is this not just the periodic-cycle pathology?
+
+**Explanation.** For 0<r<1 every microscopic transition is positive and the chain mixes. The two states grouped into A still have different B exit probabilities. Stationary averaging does not remove the dependence of their conditional mixture on the observed history.
+
+#### 3. Does positive conditional information mean a physical entropy cost was measured?
+
+**Explanation.** No. It measures predictive dependence in the specified probability law. No temperature, instrument implementation or heat port was defined. Additional history or a finer state can improve prediction without those information quantities automatically becoming joules or entropy production.
+
+### Source and research boundary
+
+The finite-channel conditioning and information identities follow [MIT 6.441, chapter 2](https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/184197ca5d5418da2415d37e929860b9_MIT6_441S16_chapter_2.pdf). The three-state kernel, grouped posterior and exact prediction error are direct derivations here. Static KL preservation for a pair of preparations and closure of a projected dynamics are separate requirements.
+
 ## Worked exercises
 
 ### Exercise 1: Recover a conditional preparation
