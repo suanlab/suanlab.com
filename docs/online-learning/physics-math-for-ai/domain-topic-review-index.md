@@ -71,7 +71,7 @@
 
 측정·역학·장·연속체에 이어 [열역학 11원주제·32단원·64한영 원고·256화면 연구 종합 대조](thermo-statmech-research-audit.md)를 연결했다. 현재 **44영역·437원주제 대조 / 7영역·72원주제 후속**이다. 열역학의 [32/32단원 순차 보강](thermo-statmech-research-progress.md)과 영역 종합 검토를 구분하며 다음은 [비평형 10원주제·기존 17단원](nonequilibrium-research-progress.md)이다.
 
-비평형은 경로·밀도·응답·확률열역학에 이어 [Hopf 등위상선·위상 응답](hopf-isochron-research-status.md)까지 **13/17단원**을 검증했다. 후속 4단원과 영역 종합 검토가 남아 있으며 위 완료 집계는 유지한다.
+비평형은 경로·밀도·응답·확률열역학·Hopf에 이어 [위상 점유·집단 스펙트럼](synchronization-statistics-research-status.md)까지 **15/17단원**을 검증했다. 후속 2단원과 영역 종합 검토가 남아 있으며 위 완료 집계는 유지한다.
 
 ## 확인 기준과 다음 순서
 

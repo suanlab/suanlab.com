@@ -1,6 +1,6 @@
 # 비평형·확률열역학·복잡계 연구 진행표
 
-2026-11-13. 이 영역에는 이미 **10원주제·17등록 단원·34한영 원고**가 있다. [기존 입문 종합 점검](nonequilibrium-introductory-audit.md)은 출발 근거이며 미집필로 다시 세지 않는다. 현재 추가 연구 절의 순차 보강 검증은 **13/17단원**, 영역 연구 종합 검토는 미완료다. 전체는 **44영역·437주제 대조 / 7영역·72주제 후속**이며 교육과정 완료 상태는 false다.
+2026-11-13. 이 영역에는 이미 **10원주제·17등록 단원·34한영 원고**가 있다. [기존 입문 종합 점검](nonequilibrium-introductory-audit.md)은 출발 근거이며 미집필로 다시 세지 않는다. 현재 추가 연구 절의 순차 보강 검증은 **15/17단원**, 영역 연구 종합 검토는 미완료다. 전체는 **44영역·437주제 대조 / 7영역·72주제 후속**이며 교육과정 완료 상태는 false다.
 
 ## 진행 원칙
 
@@ -25,8 +25,8 @@
 | `driven-two-state-heat-work` | stochastic thermodynamics | [엔트로피·확률열역학 연구 검증](entropy-thermal-research-status.md) |
 | `reservoir-resolved-two-state-heat-flow` | stochastic thermodynamics | [엔트로피·확률열역학 연구 검증](entropy-thermal-research-status.md) |
 | `hopf-amplitude-critical-relaxation` | synchronization·critical dynamics | [등위상선·자극 응답 연구 검증](hopf-isochron-research-status.md) |
-| `two-oscillator-locking-phase-slips` | synchronization·critical dynamics | 기존 근거 대조 후 연구 보강 |
-| `finite-kuramoto-collective-order` | synchronization·critical dynamics | 기존 근거 대조 후 연구 보강 |
+| `two-oscillator-locking-phase-slips` | synchronization·critical dynamics | [시간 점유·교란 스펙트럼 연구 검증](synchronization-statistics-research-status.md) |
+| `finite-kuramoto-collective-order` | synchronization·critical dynamics | [시간 점유·교란 스펙트럼 연구 검증](synchronization-statistics-research-status.md) |
 | `markov-partition-lumpability-memory` | coarse graining·유효 기술 | 기존 근거 대조 후 연구 보강 |
 | `linear-hidden-memory-markov-limit` | coarse graining·유효 기술 | 기존 근거 대조 후 연구 보강 |
 
@@ -44,4 +44,6 @@
 
 [Hopf 등위상선·위상 응답](hopf-isochron-research-status.md)도 한영 2원고·2그림·188검사·8실제 화면에서 검증했다. 진폭 회복 뒤 남는 위상·유한 자극·임계점 부근의 강제 근사 조건을 보강했고 기존 풀이 12개를 보존했다. 미등록이라는 오래된 상태 문장만 수정했다.
 
-다음은 `two-oscillator-locking-phase-slips`다. 집단 동조 → Markov 집계 → 선형 숨은 기억으로 이어진다. 나머지 **4단원** 보강과 원래 **10주제의 영역 종합 검토**는 미완료다.
+[위상 시간 점유·유한 집단 스펙트럼](synchronization-statistics-research-status.md)도 한영 4원고·4그림·249검사·16실제 화면에서 검증했다. 시간 평균의 정보 손실·관측 창·균형 상태의 성장률을 보강하고 기존 풀이 24개를 보존했다.
+
+다음은 `markov-partition-lumpability-memory`와 `linear-hidden-memory-markov-limit`다. 나머지 **2단원** 보강과 원래 **10주제의 영역 종합 검토**는 미완료다.

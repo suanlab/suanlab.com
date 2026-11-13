@@ -135,6 +135,137 @@ Reducing a population to a statistic resembles learning a representation. A mode
 
 Collective order in the Lorentzian reduction and individual amplitude in the Hopf normal form are different observables. A shared cubic saturation term does not license exchanging their meanings. A zero-center order-parameter bifurcation is not automatically an ordinary Hopf bifurcation either. Graphs, inertia, delay, noise, general coupling, finite-size effects, other frequency distributions, stability and the order of limits remain research topics. Passing tests for this small model does not complete those topics.
 
+## Research extension: zero collective order can hide growing disturbances
+
+### A stationary picture is not a recovery experiment
+
+The balanced configurations earlier in this chapter rotate without changing shape. That exact solution answers an existence question. To ask whether a nearby configuration returns, perturb each phase and differentiate the equations. The resulting Jacobian describes the initial growth or decay of small disturbances. Equal order observations can conceal different growth rates.
+
+For a frequency-locked solution, write θᵢ(t)=Ωt+αᵢ in a common rotating frame. Summing the equations first fixes Ω. The remaining equations must hold at the proposed phase configuration; an arbitrary snapshot is not a locked solution.
+
+$$
+\Omega=\overline\omega,\qquad
+0=\omega_i-\overline\omega+\frac K N\sum_j\sin(\alpha_j-\alpha_i),\qquad
+\theta_i=\Omega t+\alpha_i.
+$$
+
+Put θᵢ=Ωt+αᵢ+ηᵢ and keep terms linear in η. The Jacobian J is real symmetric for this all-to-all sine model. Its row sums vanish because a common phase shift changes no relative angle.
+
+$$
+\dot\eta=J\eta,\qquad
+J_{ij}=\frac K N\cos(\alpha_j-\alpha_i)\ (i\ne j),\qquad
+J_{ii}=-\frac K N\sum_{j\ne i}\cos(\alpha_j-\alpha_i),\qquad J\mathbf1=0.
+$$
+
+One zero eigenvalue always represents common rotation. Stability of relative phases concerns the transverse subspace whose components sum to zero. Additional zero eigenvalues need further analysis; do not silently classify them as attracting.
+
+### Positive edge weights give a local sufficient condition
+
+Group the terms for each unordered pair. The Jacobian has the quadratic form of a negative weighted graph Laplacian. Cosines can be negative, so the word Laplacian alone does not establish stability.
+
+$$
+\eta^\mathsf{T}J\eta
+=-\frac K N\sum_{i<j}\cos(\alpha_j-\alpha_i)(\eta_i-\eta_j)^2.
+$$
+
+If all phases fit in an arc of width D<π/2, every cosine is at least cos D>0. For zero-mean η, the sum of squared pair differences is N times its squared norm. Consequently the linearized perturbation obeys
+
+$$
+\eta^\mathsf{T}\mathbf1=0\Longrightarrow
+\eta^\mathsf{T}J\eta\leq-K\cos D\,\|\eta\|^2,\qquad
+\|\eta(t)\|\leq e^{-K\cos D\,t}\|\eta(0)\|\quad(K>0).
+$$
+
+This is a sufficient local test at an existing locked solution, not a proof that a solution exists for every frequency list or that a large disturbance returns. Other stable configurations need not satisfy this simple arc criterion. For identical natural frequencies, the aligned state gives the exact transverse rates.
+
+$$
+J_{\rm aligned}=-K\left(I-\frac{\mathbf1\mathbf1^\mathsf{T}}N\right),\qquad
+\lambda=0\text{ once},\quad -K\text{ with multiplicity }N-1.
+$$
+
+The common phase remains free while all relative perturbations decay locally at rate K. For N=1 there is no transverse direction. At K=0 there is no such attraction.
+
+### Balanced states reduce to a two-dimensional Gram matrix
+
+Now assume identical natural frequencies, N≥2 and exact Z₁=0. Every coupling sum vanishes, so the configuration is a relative equilibrium. Let cᵢ=cosαᵢ and sᵢ=sinαᵢ. Balance makes the full cosine row sum zero. Including its diagonal entry then gives a particularly simple Jacobian.
+
+$$
+J_{\rm balanced}=\frac K N(cc^\mathsf{T}+ss^\mathsf{T}),\qquad
+\operatorname{rank}J\leq2,\qquad
+c^\mathsf{T}\mathbf1=s^\mathsf{T}\mathbf1=0.
+$$
+
+The nonzero eigenvalues of BBᵀ and BᵀB agree, with B=[c s]. The smaller Gram matrix depends only on the second harmonic. Use cos²α=(1+cos2α)/2 and 2sinα cosα=sin2α.
+
+$$
+\frac K N B^\mathsf{T}B
+=\frac K2\begin{pmatrix}1+\operatorname{Re}Z_2&\operatorname{Im}Z_2\\
+\operatorname{Im}Z_2&1-\operatorname{Re}Z_2\end{pmatrix},\qquad
+Z_2=\frac1N\sum_j e^{2i\alpha_j},\qquad R_2=|Z_2|.
+$$
+
+Its two eigenvalues determine the possible growing modes. Zero entries in this pair add to the zero modes of the full matrix.
+
+$$
+\lambda_+=\frac K2(1+R_2),\qquad
+\lambda_-=\frac K2(1-R_2),\qquad
+\lambda_{3},\ldots,\lambda_N=0\quad\text{as a multiset for }N\geq2.
+$$
+
+At K>0 every exactly balanced state has at least one positive transverse eigenvalue, so it is unstable. For equal antiphase groups, R₂=1 gives one growth rate K. A regular polygon with N≥3 has R₂=0 and two growth rates K/2. The remaining zeros do not remove these growing directions. For N=2 the balanced antipodal pair has rates K and 0; there are no further entries.
+
+The spectrum formula requires exact first-harmonic balance and identical frequencies. R₂ alone does not determine the stability of a generic state. The aligned state also has R₂=1 yet has negative transverse rates. Thus the additional observation is useful only together with the hypotheses under which it identifies a property.
+
+### Four populations with reproducible rates
+
+Take N=4, K=3 and identical natural frequencies. Represent a phase by its unit vector (cosα,sinα). The tilted balanced configuration consists of two antipodal pairs whose directions have cosine 3/5. It has exact Z₁=0 and R₂=3/5. These specified configurations are distinct from random finite populations.
+
+![Three balanced four-oscillator configurations and the two possible growth rates as a function of second-harmonic order](/assets/learning/synchronization-statistics-research-balanced-spectrum.en.svg)
+
+The upper panels show the antiphase, square and tilted-pair configurations. All have R₁=0. The lower panel plots their normalized growth rates from the Gram matrix. The aligned comparison in the table is locally attracting in relative phase; the three balanced configurations are unstable despite their exact constant shapes.
+
+```python
+from math import hypot
+
+cases = {
+    "aligned": [(1, 0)] * 4,
+    "antiphase": [(1, 0), (1, 0), (-1, 0), (-1, 0)],
+    "square": [(1, 0), (0, 1), (-1, 0), (0, -1)],
+    "tilted": [(1, 0), (-1, 0), (0.6, 0.8), (-0.6, -0.8)],
+}
+for label, points in cases.items():
+    n = len(points)
+    first = hypot(sum(x for x, y in points), sum(y for x, y in points)) / n
+    second = hypot(sum(x*x-y*y for x, y in points), sum(2*x*y for x, y in points)) / n
+    rates = (-3.0, -3.0) if label == "aligned" else (1.5*(1+second), 1.5*(1-second))
+    print(f"{label} {first:.6f} {second:.6f} {rates[0]:.6f} {rates[1]:.6f}")
+```
+
+| Configuration | R₁ | R₂ | First indicated rate | Second indicated rate |
+| --- | --- | --- | --- | --- |
+| aligned | 1.000000 | 1.000000 | -3.000000 | -3.000000 |
+| antiphase | 0.000000 | 1.000000 | 3.000000 | 0.000000 |
+| square | 0.000000 | 0.000000 | 1.500000 | 1.500000 |
+| tilted | 0.000000 | 0.600000 | 2.400000 | 0.600000 |
+
+Rates are in s⁻¹. One common-phase zero is omitted from each row. The third transverse rate is −3 for alignment and 0 for each balanced example. The code uses the derived formulas for these preparations; an independent check diagonalizes the full Jacobian and compares perturbations of the original sine equations. Positive eigenvalues describe local growth, not unbounded exponential separation after a nonlinear trajectory has left the neighborhood.
+
+### Research self-checks
+
+#### 1. Does R₁=0 determine the fastest disturbance growth?
+
+**Research explanation.** No. The antiphase and square examples both have R₁=0, but their largest rates are K and K/2. At exact balance with identical frequencies, R₂ supplies the missing spectral information. Outside those assumptions, inspect the full configuration and Jacobian instead.
+
+#### 2. Does a decreasing potential make a balanced state stable?
+
+**Research explanation.** No. The earlier potential is −KN R₁²/2. Balanced states have value 0, while nearby states with nonzero R₁ have lower potential. A trajectory can move away while the potential decreases. A constant potential along one exact trajectory proves neither return nor stability.
+
+#### 3. What does the common-phase zero eigenvalue mean?
+
+**Research explanation.** It expresses rotational symmetry. Aligned populations can recover their relative phases without recovering one prescribed absolute phase. Additional zeros at balanced states are not equivalent to this symmetry, and the positive rates already prove instability. At K=0 every rate is zero, requiring a separate neutral classification.
+
+[The finite-size and stability discussion in Acebrón et al., section II.B](https://doi.org/10.1103/RevModPhys.77.137) supplies the model context. The finite-N quadratic form, balanced Gram spectrum and examples above are derived directly here. They do not assume the infinite Lorentzian reduction or establish stability for arbitrary learned networks. The existing reader retains its original population experiment; these spectral calculations are separate executable examples.
+
 ## 14. Exercises with explanations
 
 **1. Hidden antiphase order.** Find first and second order for phases 0,0,pi,pi. Solution: the first arrows sum to zero, while doubling every angle makes all four arrows equal to 1. Thus first order is 0 and second order is 1. A first-harmonic mean direction is undefined.
