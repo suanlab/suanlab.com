@@ -2,6 +2,8 @@
 
 2026-11-13. 이 영역에는 이미 **11원주제·32등록 단원·64한영 원고**가 있다. [기존 입문 종합 감사](thermodynamics-domain-audit-stage12.md)는 32단원 전체의 출발 근거다. 미집필로 다시 세거나 22단원으로 범위를 줄이지 않는다. 전체 교육과정의 연구 대조는 **43영역·426주제 완료 / 8영역·83주제 후속**이며 이 영역의 종합 대조는 미완료다.
 
+현재 순차 연구 보강은 **3/32단원**이다. [열접촉의 절대 척도·이상기체 경로의 관측 영방향](heat-work-research-status.md)을 검증했다. 다음은 Carnot 기관·냉동기이며 나머지 29단원 후속과 영역 종합 대조가 남아 있다.
+
 ## 첫 연구 보강: 평형 점유 확률을 이용한 온도 추정
 
 기존 `thermodynamics`의 한영 본문에 연구 절을 추가했다. 고정 스펙트럼·알려진 축퇴도·오차 없는 독립 평형 준비라는 가정 아래 열용량과 로그 온도의 Fisher 정보가 같음을 유도한다. 알려진 간격의 내부 최대우도 추정과 유한 표본 경계, 간격까지 미지수일 때 정보 행렬의 영방향을 비교한다. g=1의 상대 민감도 최대점과 두 물리 척도의 공통 배율 모호성을 그림으로 설명한다.
@@ -14,13 +16,13 @@
 
 ## 등록 단원별 후속 순서
 
-‘후속’은 기존 입문 내용이 없다는 뜻이 아니다. 원문·출처·독립 계산·Worker·학습 화면 근거를 먼저 읽고, 필요한 연구 설명과 예제를 보강한 뒤 실제 정적 reader를 검사한다. 아래 순서는 기존 단원 연결을 따르며 현재 첫 단원만 이번 연구 보강 검증에 포함한다.
+‘후속’은 기존 입문 내용이 없다는 뜻이 아니다. 원문·출처·독립 계산·Worker·학습 화면 근거를 먼저 읽고, 필요한 연구 설명과 예제를 보강한 뒤 실제 정적 reader를 검사한다. 아래 순서는 기존 단원 연결을 따르며 현재 첫 세 단원의 순차 연구 보강을 검증했다.
 
 | 단원 ID | 기존 대응 | 연구 보강 상태 |
 |---|---|---|
 | `thermodynamics` | 기존 입문 단원과의 연결 | 첫 보강 검증 |
-| `finite-body-thermal-contact-heat-entropy` | 온도·열·일 | 기존 근거 대조 후 후속 |
-| `ideal-gas-two-path-heat-work` | 온도·열·일 | 기존 근거 대조 후 후속 |
+| `finite-body-thermal-contact-heat-entropy` | 온도·열·일 | [열·일 연구 보강 검증](heat-work-research-status.md) |
+| `ideal-gas-two-path-heat-work` | 온도·열·일 | [열·일 연구 보강 검증](heat-work-research-status.md) |
 | `carnot-cycle-engine-refrigerator` | 열역학 법칙 | 기존 근거 대조 후 후속 |
 | `two-reservoir-cycle-entropy-admissibility` | 열역학 법칙 | 기존 근거 대조 후 후속 |
 | `gapped-spectrum-low-temperature-entropy` | 열역학 법칙 | 기존 근거 대조 후 후속 |
@@ -55,4 +57,4 @@
 
 본문의 실행 예제와 한영 수식·표·그림 경로·원문 보존은 `node_modules/.bin/tsx --test scripts/learning-thermometry-research.test.ts`로 확인한다. 별도 미시 상태 열거·확률 미분·횟수 우도·경계 계산은 `python3 scripts/learning/verify-thermometry-research.py`로 재현한다. 정적 출력 후 `SUANLAB_TEST_BASE=http://127.0.0.1:43309 node scripts/check-thermometry-research.cjs`를 실행한다. 브라우저 주소에는 실제 preview 포트를 사용한다.
 
-다음은 `finite-body-thermal-contact-heat-entropy`의 기존 원문과 독립 검산을 읽고, 온도 궤적에서 식별되는 열용량 비·완화율과 절대 열용량/연결 척도를 구분하는 연구 예제를 설계하는 것이다. 아직 그 설계·집필·화면 검증을 완료하지 않았다. 이후 나머지 등록 단원을 순서대로 대조하고 마지막에 영역 전체를 같은 출력에서 종합 검증한다.
+다음은 `carnot-cycle-engine-refrigerator`, `two-reservoir-cycle-entropy-admissibility`, `gapped-spectrum-low-temperature-entropy`의 기존 한영 원고·독립 계산·학습 화면·입문 감사 근거를 읽고 연구 설명을 보강하는 것이다. 이 세 단원 보강과 나머지 후속, 영역 전체의 같은 출력 종합 검증은 아직 완료하지 않았다. 새 두 단원의 재현 명령과 정확한 적용 범위는 [열·일 보강 기록](heat-work-research-status.md)을 따른다.
