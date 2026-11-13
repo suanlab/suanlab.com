@@ -188,6 +188,138 @@ $$
 
 A plot may look pure, but the small eigenvalue is positive. Independent symbolic rank and matrix calculations check this case. Limits such as M→∞ are different statements from equality at a bounded input.
 
+## Research extension: finite counts, physical estimates and the loss being minimized
+
+### Exact probabilities and observed frequencies have different contracts
+
+The preceding reconstruction used exact Born probabilities. Now introduce a separate sampling model. Prepare the same unknown qubit independently and measure calibrated Pauli axes. For axis i, record k_i positive results among N_i>0 trials. Linear inversion gives:
+
+$$
+\widehat r_i=2k_i/N_i-1,\quad \widehat\rho_{\rm lin}=\tfrac12(I+\widehat{\mathbf r}\cdot\boldsymbol\sigma),\quad
+ \lambda_\pm(\widehat\rho_{\rm lin})=\tfrac12(1\pm|\widehat{\mathbf r}|).
+$$
+
+Trace one and Hermiticity hold automatically, but positivity requires the estimated Bloch length to be at most1. Independent finite frequencies need not satisfy that joint constraint. An unphysical linear estimate can therefore be a sampling outcome of a valid source, not a proof that the source was nonphysical.
+
+Before imposing constraints, the coordinate estimates have:
+
+$$
+\mathbb E(\widehat r_i)=r_i,\qquad
+ \operatorname{Var}(\widehat r_i)=\frac{1-r_i^2}{N_i}.
+$$
+
+After a nonlinear physical projection the estimator generally becomes biased, and this variance formula no longer describes its full error. A fitted rank-one matrix likewise does not certify that the unknown source was exactly pure.
+
+One can still construct a conservative finite-sample confidence region. For ±1 outcomes, the centered log moment-generating function has second derivative at most1 and value and first derivative zero at the origin. Integrating that bound and optimizing the exponential tail estimate gives:
+
+$$
+\Pr(|\widehat r_i-r_i|\ge\epsilon_i)\le2e^{-N_i\epsilon_i^2/2},\quad
+ \epsilon_i=\sqrt{\frac{2\ln(6/\alpha)}{N_i}},\quad
+ \mathcal C=\{\mathbf s:|s_i-\widehat r_i|\le\epsilon_i\ \forall i,\ |\mathbf s|\le1\},\quad
+ \Pr(\mathbf r\in\mathcal C)\ge1-\alpha\quad(0<\alpha<1).
+$$
+
+The factor6 comes from two tails on each of three axes and a union bound. The box is centered on the raw coordinate estimates, then intersected with the Bloch ball. It is not a box silently recentered on a fitted vector. The bound can be wide for small samples; it quantifies that limitation rather than erasing it. It assumes stable calibrated measurements and independent identically prepared trials within each setting.
+
+### A distance projection is one specified statistical choice
+
+The nearest physical Bloch vector in ordinary Euclidean distance is radial clipping:
+
+$$
+\mathbf r_E=\frac{\widehat{\mathbf r}}{\max(1,|\widehat{\mathbf r}|)},\quad
+ \mathbf r_E=\operatorname*{argmin}_{|\mathbf s|\le1}|\mathbf s-\widehat{\mathbf r}|^2,\qquad
+ \|\rho(\mathbf s)-\widehat\rho_{\rm lin}\|_{\rm HS}^2=\tfrac12|\mathbf s-\widehat{\mathbf r}|^2.
+$$
+
+Inside the ball this leaves the data unchanged; outside, minimizing distance fixes the direction and puts the result on the sphere. The Hilbert–Schmidt identity explains exactly which matrix loss this minimizes. This is a nonlinear estimator applied to data, not a linear quantum channel acting on an input system. It does not automatically maximize a likelihood or produce a confidence interval.
+
+For independent binomial counts, a different objective is negative log likelihood:
+
+$$
+q_i(\mathbf s)=\tfrac12(1+s_i),\qquad
+ \ell(\mathbf s)=-\sum_{i=x,y,z}\bigl[k_i\ln q_i+(N_i-k_i)\ln(1-q_i)\bigr],\qquad
+ \mathbf r_{\rm ML}=\operatorname*{argmin}_{|\mathbf s|\le1}\ell(\mathbf s).
+$$
+
+The omitted binomial coefficients are constant in the candidate state. With 0<k_i<N_i, this loss is strictly convex in the coordinates, and its gradient and constrained first-order conditions are:
+
+$$
+\partial_{s_i}\ell=\frac{N_i(s_i-\widehat r_i)}{1-s_i^2},\qquad
+ \frac{N_i(s_i-\widehat r_i)}{1-s_i^2}+\lambda s_i=0,\quad
+ \lambda\ge0,\quad \lambda(|\mathbf s|^2-1)=0.
+$$
+
+Use the constraint (|s|²−1)/2 in the Lagrangian. The multiplier is shared across coordinates, but the counts N_i weight their gradients differently. These conditions explain why unequal sample allocations can move a likelihood fit away from an unweighted radial projection. Zero counts require their own continuous log-term conventions; the example below avoids that additional boundary.
+
+[Hradil's original state-estimation paper](https://arxiv.org/pdf/quant-ph/9609012) motivates imposing the physical constraint within likelihood reconstruction. The loss, confidence region and particular finite-count comparison here are derived explicitly; we are not implementing that paper's general reconstruction algorithm.
+
+### Same frequencies, different sample allocations
+
+Use the following datasets, all with the same raw frequencies:
+
+$$
+(k_x,N_x)=(9m,10m),\quad(k_y,N_y)=(9,10),\quad(k_z,N_z)=(5,10),\quad m=1,2,5,10,\quad
+ \widehat{\mathbf r}=(4/5,4/5,0),\quad \mathbf r_E=(1,1,0)/\sqrt2,\quad
+ \lambda_{\min}(\widehat\rho_{\rm lin})=\tfrac12(1-4\sqrt2/5)<0.
+$$
+
+The z counts are balanced. Setting s_z=0 improves their likelihood and leaves more of the ball available to x,y. The unconstrained x,y optimum is outside the disk. Strict convexity therefore puts the constrained optimum on the positive boundary arc, with each coordinate between3/5 and4/5. Parameterize it as:
+
+$$
+\mathbf s(\theta)=(\cos\theta,\sin\theta,0),\qquad
+ \ell'(\theta)=-\sin\theta\frac{N_x(\cos\theta-4/5)}{1-\cos^2\theta}
+ +\cos\theta\frac{N_y(\sin\theta-4/5)}{1-\sin^2\theta},\quad
+ \arccos(4/5)\le\theta\le\arcsin(4/5).
+$$
+
+The derivative changes sign across the bracket. Along this arc the coordinate gradients are nonpositive, so the second derivative consists of a positive Hessian term and a nonnegative curvature term; the root is unique. Bisection therefore solves this particular two-coordinate problem. It is not a general-purpose tomography optimizer.
+
+```python
+from math import acos, asin, cos, sin, log, sqrt
+for ratio in [1, 2, 5, 10]:
+    nx, ny = 10*ratio, 10
+    def derivative(theta):
+        x, y = cos(theta), sin(theta)
+        return -y*nx*(x-.8)/(1-x*x)+x*ny*(y-.8)/(1-y*y)
+    lo, hi = acos(.8), asin(.8)
+    for _ in range(100):
+        mid = (lo+hi)/2
+        if derivative(mid) < 0:
+            lo = mid
+        else:
+            hi = mid
+    x, y = cos((lo+hi)/2), sin((lo+hi)/2)
+    def loss(x, y):  # z data add the same constant 10*log(2)
+        return sum(-n*(.9*log((1+r)/2)+.1*log((1-r)/2))
+                   for n, r in [(nx, x), (ny, y)])
+    gain = loss(1/sqrt(2), 1/sqrt(2))-loss(x, y)
+    print(ratio, f"{x:.6f}", f"{y:.6f}",
+          f"{x*x+y*y:.6f}", f"{gain:.6f}")
+```
+
+| N_x/N_y | ML r_x | ML r_y | ML norm squared | likelihood gain |
+|---|---|---|---|---|
+| 1 | 0.707107 | 0.707107 | 1.000000 | 0.000000 |
+| 2 | 0.741587 | 0.670857 | 1.000000 | 0.032957 |
+| 5 | 0.772838 | 0.634604 | 1.000000 | 0.260028 |
+| 10 | 0.785717 | 0.618586 | 1.000000 | 0.711550 |
+
+![With unchanged empirical Bloch coordinates, increasing the x sample allocation moves the maximum-likelihood boundary fit away from the radial projection and increases its likelihood advantage.](/assets/learning/quantum-density-research-constrained-tomography.en.svg)
+
+The gain is the radial negative log likelihood minus the fitted negative log likelihood, so larger is better for the stated model. Rounded double-precision entries illustrate the calculation; they are not directed interval certificates. More x trials give its observed frequency more statistical weight even though the empirical means have not changed. The existing exact-ensemble reader has no count sampler, physical-estimate repair or uncertainty-region control: these are standalone inference examples.
+
+#### Research check 1: a negative reconstructed eigenvalue
+
+The empirical vector (4/5,4/5,0) has length4√2/5>1. Its smaller linear-estimate eigenvalue is negative. That rejects the reconstructed matrix as a state; it does not reject the possibility of the count record under a physical source.
+
+#### Research check 2: why can the fitted rank be one?
+
+A noisy record outside the ball has its nearest physical point on the boundary. Boundary rank can reflect the constraint and objective. Without a statistical uncertainty analysis it is not evidence of an exactly rank-one source, unlike the exact algebraic rank claims in the original calculator.
+
+#### Research check 3: what does the confidence statement cover?
+
+It covers the fixed unknown Bloch vector under the stated repeated-sampling model with probability at least1−α. The region uses the raw estimates and is then intersected with physical states. Projecting one point estimate does not justify reusing the unprojected variance as its uncertainty or declaring a Bayesian credible probability for the unknown state.
+
 ## 13. Exercises with explanations
 
 **1. Why does an equal choice of ψ and −ψ remain pure?**

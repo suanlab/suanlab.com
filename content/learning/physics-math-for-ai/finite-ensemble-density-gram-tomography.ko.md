@@ -188,6 +188,138 @@ $$
 
 그림은 순수해 보일 수 있지만 작은 고유값은 양수다. 독립 기호 rank와 행렬 계산으로 확인한다. M→∞라는 극한과 제한된 입력에서의 정확한 등식은 다른 명제다.
 
+## 연구 확장: 유한 계수·물리적 추정·최소화하는 손실
+
+### 정확한 확률과 관측 빈도의 계약은 다르다
+
+앞의 복원은 정확한 Born 확률을 사용했다. 이제 별도의 표본 모델을 도입하자. 같은 미지 qubit을 독립적으로 준비해 보정된 Pauli 축으로 측정한다. 축 i에서 N_i>0회 중 양의 결과를 k_i회 기록하면 선형 역산은 다음을 준다.
+
+$$
+\widehat r_i=2k_i/N_i-1,\quad \widehat\rho_{\rm lin}=\tfrac12(I+\widehat{\mathbf r}\cdot\boldsymbol\sigma),\quad
+ \lambda_\pm(\widehat\rho_{\rm lin})=\tfrac12(1\pm|\widehat{\mathbf r}|).
+$$
+
+Trace1과 Hermiticity는 자동이지만 양성에는 추정 Bloch 길이≤1이 필요하다. 각 유한 빈도는 이 공동 제약을 만족하지 않을 수 있다. 비물리적 선형 추정은 유효한 원천의 표본 결과일 수 있으며 원천이 비물리적이라는 증거가 아니다.
+
+제약 전 좌표 추정은 다음을 만족한다.
+
+$$
+\mathbb E(\widehat r_i)=r_i,\qquad
+ \operatorname{Var}(\widehat r_i)=\frac{1-r_i^2}{N_i}.
+$$
+
+비선형 물리적 사영 후에는 일반적으로 bias가 생기며 이 분산 식이 전체 오차를 설명하지 않는다. 적합한 rank-one 행렬도 미지 원천이 정확히 순수했다는 인증은 아니다.
+
+보수적인 유한 표본 신뢰영역은 만들 수 있다. ±1 결과의 중심화 로그 모멘트생성함수는 이차 미분이1 이하이며 원점의 값과 일차 미분이0이다. 이를 적분한 뒤 지수 꼬리 경계를 최적화하면 다음을 얻는다.
+
+$$
+\Pr(|\widehat r_i-r_i|\ge\epsilon_i)\le2e^{-N_i\epsilon_i^2/2},\quad
+ \epsilon_i=\sqrt{\frac{2\ln(6/\alpha)}{N_i}},\quad
+ \mathcal C=\{\mathbf s:|s_i-\widehat r_i|\le\epsilon_i\ \forall i,\ |\mathbf s|\le1\},\quad
+ \Pr(\mathbf r\in\mathcal C)\ge1-\alpha\quad(0<\alpha<1).
+$$
+
+계수6은 세 축의 양쪽 꼬리와 union bound에서 나온다. raw 좌표 추정을 중심으로 상자를 만들고 Bloch ball과 교차한다. 적합 벡터로 중심을 조용히 옮기는 상자가 아니다. 작은 표본에서 경계가 넓을 수 있지만 그 한계를 정량화한다. 보정된 측정이 안정적이며 각 설정에서 독립·동일 준비 시행이라는 가정이 필요하다.
+
+### 거리 사영은 특정한 통계 선택이다
+
+Euclidean 거리에서 가장 가까운 물리적 Bloch 벡터는 방사형 clipping이다.
+
+$$
+\mathbf r_E=\frac{\widehat{\mathbf r}}{\max(1,|\widehat{\mathbf r}|)},\quad
+ \mathbf r_E=\operatorname*{argmin}_{|\mathbf s|\le1}|\mathbf s-\widehat{\mathbf r}|^2,\qquad
+ \|\rho(\mathbf s)-\widehat\rho_{\rm lin}\|_{\rm HS}^2=\tfrac12|\mathbf s-\widehat{\mathbf r}|^2.
+$$
+
+Ball 안에서는 데이터를 유지하고 밖에서는 방향을 고정해 표면에 놓는다. Hilbert–Schmidt 항등식은 정확히 어느 행렬 손실을 최소화하는지 보여 준다. 데이터에 적용하는 비선형 추정기이지 입력 계에 작용하는 선형 quantum channel이 아니다. 우도 최대화나 신뢰구간을 자동으로 제공하지 않는다.
+
+독립 binomial 계수에는 별도의 음의 로그 우도 목적함수가 있다.
+
+$$
+q_i(\mathbf s)=\tfrac12(1+s_i),\qquad
+ \ell(\mathbf s)=-\sum_{i=x,y,z}\bigl[k_i\ln q_i+(N_i-k_i)\ln(1-q_i)\bigr],\qquad
+ \mathbf r_{\rm ML}=\operatorname*{argmin}_{|\mathbf s|\le1}\ell(\mathbf s).
+$$
+
+생략한 이항계수는 후보 상태와 무관한 상수다.0<k_i<N_i이면 손실은 좌표에 대해 엄밀히 볼록하며 gradient와 제약 일차 조건은 다음과 같다.
+
+$$
+\partial_{s_i}\ell=\frac{N_i(s_i-\widehat r_i)}{1-s_i^2},\qquad
+ \frac{N_i(s_i-\widehat r_i)}{1-s_i^2}+\lambda s_i=0,\quad
+ \lambda\ge0,\quad \lambda(|\mathbf s|^2-1)=0.
+$$
+
+Lagrangian에는 (|s|²−1)/2 제약을 사용한다. 승수는 공유하지만 N_i가 좌표별 gradient의 무게를 바꾼다. 따라서 불균등 표본 할당의 우도 적합은 무가중 방사형 사영과 달라질 수 있다. 영 계수에는 로그 항의 연속 규약이 별도로 필요하며 아래 예제에서는 그 경계를 피한다.
+
+[Hradil의 원래 상태 추정 논문](https://arxiv.org/pdf/quant-ph/9609012)은 우도 복원 안에서 물리적 제약을 부과하는 배경이다. 여기의 손실·신뢰영역·유한 계수 비교는 직접 유도하며 그 논문의 일반 복원 알고리즘을 구현한 것은 아니다.
+
+### 같은 빈도와 다른 표본 할당
+
+Raw 빈도가 모두 같은 다음 데이터셋을 쓰자.
+
+$$
+(k_x,N_x)=(9m,10m),\quad(k_y,N_y)=(9,10),\quad(k_z,N_z)=(5,10),\quad m=1,2,5,10,\quad
+ \widehat{\mathbf r}=(4/5,4/5,0),\quad \mathbf r_E=(1,1,0)/\sqrt2,\quad
+ \lambda_{\min}(\widehat\rho_{\rm lin})=\tfrac12(1-4\sqrt2/5)<0.
+$$
+
+z 계수는 균형이다. s_z=0으로 두면 그 우도가 좋아지고 x,y에 사용할 ball도 넓어진다. 무제약 x,y 최적점은 원판 밖이므로 엄밀한 볼록성에 의해 제약 최적점은 양의 경계 호에 놓이며 각 좌표는3/5부터4/5 사이다. 다음처럼 매개화하자.
+
+$$
+\mathbf s(\theta)=(\cos\theta,\sin\theta,0),\qquad
+ \ell'(\theta)=-\sin\theta\frac{N_x(\cos\theta-4/5)}{1-\cos^2\theta}
+ +\cos\theta\frac{N_y(\sin\theta-4/5)}{1-\sin^2\theta},\quad
+ \arccos(4/5)\le\theta\le\arcsin(4/5).
+$$
+
+미분은 bracket 양끝에서 부호를 바꾼다. 이 호에서는 좌표 gradient가 비양수이므로 이차 미분은 양의 Hessian 항과 비음의 곡률 항의 합이다. 따라서 근이 유일하고 이 특정 두 좌표 문제는 이분법으로 풀 수 있다. 범용 tomography 최적화기는 아니다.
+
+```python
+from math import acos, asin, cos, sin, log, sqrt
+for ratio in [1, 2, 5, 10]:
+    nx, ny = 10*ratio, 10
+    def derivative(theta):
+        x, y = cos(theta), sin(theta)
+        return -y*nx*(x-.8)/(1-x*x)+x*ny*(y-.8)/(1-y*y)
+    lo, hi = acos(.8), asin(.8)
+    for _ in range(100):
+        mid = (lo+hi)/2
+        if derivative(mid) < 0:
+            lo = mid
+        else:
+            hi = mid
+    x, y = cos((lo+hi)/2), sin((lo+hi)/2)
+    def loss(x, y):  # z data add the same constant 10*log(2)
+        return sum(-n*(.9*log((1+r)/2)+.1*log((1-r)/2))
+                   for n, r in [(nx, x), (ny, y)])
+    gain = loss(1/sqrt(2), 1/sqrt(2))-loss(x, y)
+    print(ratio, f"{x:.6f}", f"{y:.6f}",
+          f"{x*x+y*y:.6f}", f"{gain:.6f}")
+```
+
+| N_x/N_y | ML r_x | ML r_y | ML norm squared | likelihood gain |
+|---|---|---|---|---|
+| 1 | 0.707107 | 0.707107 | 1.000000 | 0.000000 |
+| 2 | 0.741587 | 0.670857 | 1.000000 | 0.032957 |
+| 5 | 0.772838 | 0.634604 | 1.000000 | 0.260028 |
+| 10 | 0.785717 | 0.618586 | 1.000000 | 0.711550 |
+
+![경험적 Bloch 좌표는 같지만 x 표본 할당을 늘리면 최대우도 경계 적합이 방사형 사영에서 이동하고 그 우도 이득이 커지는 모습을 비교한다.](/assets/learning/quantum-density-research-constrained-tomography.ko.svg)
+
+이득은 방사형 음의 로그 우도에서 적합 음의 로그 우도를 뺀 값이다. 지정한 모델에서 클수록 좋다. 표는 반올림한 배정밀도 예시이며 방향성 구간 인증이 아니다. 경험 평균이 같아도 x 시행이 많으면 그 빈도의 통계적 무게가 커진다. 기존 정확 ensemble reader에는 계수 표본기·물리적 추정 보정·불확실성 영역 제어가 없으며 독립 추론 예제다.
+
+#### 연구 확인 1: 복원된 음의 고유값
+
+경험 벡터 (4/5,4/5,0)의 길이는4√2/5>1이므로 작은 선형 추정 고유값은 음수다. 복원 행렬을 상태로 거부해야 한다. 물리적 원천에서 그 계수 기록이 관측될 가능성을 거부하는 것은 아니다.
+
+#### 연구 확인 2: 적합 rank가1일 수 있는 이유는?
+
+Ball 밖의 잡음 기록에서 가장 가까운 물리적 점은 경계다. 경계 rank는 제약과 목적함수의 결과일 수 있다. 통계적 불확실성 분석 없이는 원천이 정확히 rank-one이라는 증거가 아니며 원래 계산기의 정확 대수 rank와 다르다.
+
+#### 연구 확인 3: 신뢰 진술은 무엇을 덮는가?
+
+지정한 반복 표본 모델에서 고정된 미지 Bloch 벡터를 최소1−α 확률로 덮는다. 영역은 raw 추정에서 만들고 물리 상태와 교차한다. 점 추정 하나를 사영했다고 비사영 분산을 그대로 불확실성에 쓰거나 미지 상태의 Bayesian credible 확률이라고 선언할 수는 없다.
+
 ## 13. 해설과 함께 풀어보기
 
 **1. ψ와−ψ를 같은 확률로 골라도 순수한 이유는?**

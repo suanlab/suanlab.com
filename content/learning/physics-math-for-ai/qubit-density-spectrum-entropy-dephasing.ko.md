@@ -185,6 +185,129 @@ Bloch 벡터 등식과 행렬식 공식은 qubit에 해당한다. Trace norm과 
 
 엔트로피 계산은 로그를 취하기 전에 정확한 0을 분기한다. 양의 구간에서는 로그의 단조성을 이용해 경계를 만든다. 수치 관측이 해결되지 않으면 null을 유지할 수 있다. 이것은 0인 고유값의 로그가 정의되지 않아 null인 경우와 다르다. 독립 참조는 구현의 스칼라 공식을 반복하지 않고 일반 고유값 계산, 행렬 제곱근과 특이값을 사용한다.
 
+## 연구 확장: 유효한 채널들이 분할 가능한 시간 진화라는 보장은 없다
+
+### 물리적 map의 가족에는 추가 합성 검사가 필요하다
+
+Reader의 u는 시계가 아니다. 새 시간 의존 모델을 정의하려면 η(t)를 명시하고 η(0)=1에서 출발해 전체 E_η(t) 가족을 비교하자. 기존 dephasing map의 합성은 단순하다.
+
+$$
+\mathcal E_a\circ\mathcal E_b=\mathcal E_{ab},\qquad
+ \mathcal E_1=\operatorname{id},\qquad \mathcal E_0(\rho)=\operatorname{diag}(\rho).
+$$
+
+CP-divisibility는 모든 t≥s에서 E_η(t)=V_t,s E_η(s)를 만족하는 완전 양성·trace 보존 map V_t,s가 존재하는지 묻는다. 선택한 상태 하나의 생존이 아니라 모든 입력에 대한 중간 map의 진술이다. [Rivas·Huelga·Plenio](https://arxiv.org/pdf/0911.4270)는 이러한 전파 합성 기준을 다룬다.
+
+η(s)가0이 아니면 E_η(s)는 행렬 공간의 선형 map으로 가역이므로 중간 map이 유일하게 정해진다. 앞의 Choi 계산으로 완전 양성 조건을 얻는다.
+
+$$
+\eta(s)\ne0:\quad V_{t,s}=\mathcal E_{\kappa},\quad
+ \kappa=\frac{\eta(t)}{\eta(s)},\quad
+ \operatorname{spec}J(V_{t,s})=\{0,0,1-\kappa,1+\kappa\},\quad
+ V_{t,s}\ \text{CPTP}\ \Longleftrightarrow\ |\kappa|\le1.
+$$
+
+채널의 역이 채널이라는 보장은 없다. 특히 |η|가 커지면 횡방향 증폭이 필요하고 중간 Choi 고유값이 음수가 된다. 양 끝 map이 유효해도 그 중간 map이 구제되지는 않는다.
+
+### Coherence가 정확히 사라졌다면?
+
+η(s)=0에서는 역산 식을 쓸 수 없다. 대신 초기 X 고유상태 둘을 비교하자.
+
+$$
+\eta(s)=0:\quad[\exists V_{t,s}\ \text{CPTP}:\ \mathcal E_{\eta(t)}=V_{t,s}\mathcal E_{\eta(s)}]
+ \Longleftrightarrow\eta(t)=0,\qquad
+ \mathcal E_0(\rho_{+x})=\mathcal E_0(\rho_{-x})=I/2.
+$$
+
+η(t)≠0이면 V_t,s의 두 초기 입력은 I/2로 같았는데 나중 출력은 다르다. 단일 선형 map으로는 불가능하다. η(t)=0이면 항등 중간 map이면 충분하다. 비가역 점에서 작은 epsilon으로 나누지 않고 직접 처리하는 논증이다.
+
+이 쌍의 trace distance는 유용한 작동상 지표다.
+
+$$
+T(t)=\tfrac12\|\mathcal E_{\eta(t)}(\rho_{+x})-\mathcal E_{\eta(t)}(\rho_{-x})\|_1=|\eta(t)|,\qquad
+ T(V\rho,V\sigma)\le T(\rho,\sigma)\quad(V\ \text{CPTP}).
+$$
+
+CPTP map의 부등식은 효과0≤M≤I 전체에서 결과 확률 차이를 최적화하면 나온다. 쌍대 map은 그 효과를 같은 구간으로 되돌린다. 따라서 T의 증가는 이전 출력의 CPTP 후처리를 배제한다. [Breuer·Laine·Piilo](https://arxiv.org/pdf/0908.0238)는 이러한 구별 가능성 관점을 전개한다. 여기의 |η| 스칼라 검사와의 동치는 이 dephasing 가족에 한정되며 한 쌍으로 모든 일반 양자 과정을 특성화하지 않는다.
+
+### 비음의 율에서 단순한 시간 법칙이 나온다
+
+η가0이 아닌 미분 가능 구간에서 비대각 성분을 미분하면 다음과 같다.
+
+$$
+\dot\rho=\gamma(t)(Z\rho Z-\rho),\quad
+ \gamma(t)=-\frac{\dot\eta(t)}{2\eta(t)}\quad(\eta(t)\ne0),\qquad
+ \eta(t)=e^{-2\gamma t}\quad(\gamma\ge0\ \text{constant},\ \eta(0)=1).
+$$
+
+계수2는 ZρZ−ρ가 비대각 성분에−2를 곱하기 때문에 나온다. γ의 단위는 시간의 역수다. 상수 비음의 율은 양의 η가 감소하는 semigroup을 만든다. 시간 의존 비음의 율도 가역 구간에서는 |η|를 감소시킨다. 국소 율 식을 별도 분석 없이 영점 너머로 연장하면 안 된다.
+
+### 고정된 무작위 주파수는 물리적인 회복 예제를 준다
+
+준비 시 주파수 부호를 한 번 선택하고 한 시행 동안 유지하자. 두 unitary 회전을 평균한다.
+
+$$
+U_\pm(t)=e^{\mp i\Omega tZ/2},\qquad
+ \mathcal E_t(\rho)=\tfrac12 U_+(t)\rho U_+(t)^\dagger+\tfrac12 U_-(t)\rho U_-(t)^\dagger,
+ \qquad\eta(t)=\cos(\Omega t),\quad\Omega>0.
+$$
+
+각 시간 map은 unitary의 convex 혼합이므로 CPTP다. 구간 사이 noise가 상관된 일관적인 시간 실험이며 기존 보간 slider가 물리 시간이라는 주장이 아니다. 매 짧은 구간마다 새로 평균하면 부호를 다시 추출하므로 다른 과정이 된다.
+
+형식적인 율과 두 기준점은 다음과 같다.
+
+$$
+\gamma(t)=\frac\Omega2\tan(\Omega t)\quad(\cos(\Omega t)\ne0),\qquad
+ \eta(\pi/(2\Omega))=0,\quad\eta(\pi/\Omega)=-1,\quad
+ T(\pi/(2\Omega))=0,\quad T(\pi/\Omega)=1.
+$$
+
+영점과 이후 음의 끝점 사이에서는 |η|가 커진다. 그 구간에서 율이 정의되는 곳은 음수이며 CPTP 중간 map으로 이미 지운 구별을 복원할 수 없다. 율의 특이성이 영점의 유한 채널을 미정의로 만들지는 않는다. 끝점 η=−1의 개별 map은 유효한 unitary Z 채널이다.
+
+초기 +x에서 후속 +x 검사와 스펙트럼 엔트로피는 다음과 같다.
+
+$$
+p_{+x}(t)=\tfrac12(1+\eta(t)),\quad
+ S_{\rm bits}(t)=h_2\!\left(\frac{1+|\eta(t)|}{2}\right),\quad
+ h_2(p)=-p\log_2p-(1-p)\log_2(1-p),\quad 0\log_2 0:=0.
+$$
+
+0≤Ωt<π에서 q=tan(Ωt/2)이면 η=(1−q²)/(1+q²)다. 다음 코드는 η·확률을 정확한 분수로, entropy bits를 반올림해 계산한다. 현재 dephasing reader에 시간 율이나 noise 환경 제어를 추가하지 않는다.
+
+```python
+from fractions import Fraction as Q
+from math import log2
+for q in [Q(0), Q(1, 2), Q(1), Q(2)]:
+    eta = (1-q*q)/(1+q*q)  # q = tan(Omega*t/2), 0 <= Omega*t < pi
+    distance, probability = abs(eta), (1+eta)/2
+    eigenvalues = [(1+distance)/2, (1-distance)/2]
+    entropy = sum(-float(p)*log2(float(p)) for p in eigenvalues if 0 < p < 1)
+    print(q, eta, distance, probability, f"{entropy:.6f}")
+```
+
+| q | eta | distance | p_plus_x | entropy bits |
+|---|---|---|---|---|
+| 0 | 1 | 1 | 1 | 0.000000 |
+| 1/2 | 3/5 | 3/5 | 4/5 | 0.721928 |
+| 1 | 0 | 0 | 1/2 | 1.000000 |
+| 2 | -3/5 | 3/5 | 1/5 | 0.721928 |
+
+![고정 주파수 혼합에서 eta는 시간의 cos이고 구별 가능성은 0까지 줄었다가 회복한다. 지수 semigroup dephasing 및 단일 탐침의 entropy 곡선과 비교한다.](/assets/learning/quantum-density-research-dephasing-divisibility.ko.svg)
+
+지수 비교는 γ=Ω/2를 사용한다. 탐침 하나의 엔트로피만으로 전체 map을 진단할 수는 없다. 대각 초기 상태는 두 가족 내내 변하지 않는다. 여기서는 두 상태 거리와 중간 map 계산으로 차이를 확립한다. 회복이 개별 CPTP map의 거리 수축을 위반하지는 않는다. 이미 축약된 이전 계를 CPTP로 연속 후처리한 map이 나중 map일 수 없다는 뜻이다.
+
+#### 연구 확인 1: 두 끝점 합성하기
+
+E_(1/2) 뒤 E_(−1/2)를 적용하면 CPTP인 E_(−1/4)다. 하지만 E_(1/4)에서 E_(−1/2)에 도달하려면 유일한 중간 E_(−2)가 필요하고 Choi 행렬에 음의 고유값이 있다. 나중 끝점만이 아니라 비율을 검사해야 한다.
+
+#### 연구 확인 2: 완전 소거 뒤의 연속 후처리를 시도하기
+
+Ωs=π/2에서는 초기 X 고유상태 둘이 I/2가 된다. Ωt=π에서는 다시 다르다. 이전 축약 계에만 적용하는 map은 두 경우 같은 입력을 받으므로 두 나중 출력을 모두 재현할 수 없다. 그 축약 기술 밖의 상관된 정보가 중요하다.
+
+#### 연구 확인 3: 고정된 대각 탐침
+
+초기 Z 고유상태는 모든 E_η에서 순수한 그대로 유지된다. 그 entropy·fidelity 곡선으로는 횡방향 효과 전체를 놓친다. 준비 하나가 일정하다고 과정의 divisibility나 항등성을 인증할 수 없다.
+
 ## 13. 해설이 있는 연습문제
 
 **1. 작은 고유값에 다른 표현을 쓰는 이유는 무엇인가?**

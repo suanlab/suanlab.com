@@ -185,6 +185,129 @@ Density entries, purity, determinant, Pauli statistics, passive-basis coordinate
 
 The entropy calculation branches on exact zero before logarithms and uses monotonic log bounds for positive intervals. Unresolved numerical observations can remain null. That status differs from the null logarithm of a proven zero eigenvalue. The independent reference uses generic eigensolvers, matrix square roots and singular values rather than the production scalar formulas.
 
+## Research extension: valid channels need not form a divisible time evolution
+
+### A family of physical maps needs an additional composition test
+
+The reader's u parameter is not a clock. To define a new time-dependent model, explicitly choose η(t), start with η(0)=1 and compare the entire family E_η(t). Composition of the existing dephasing maps is simple:
+
+$$
+\mathcal E_a\circ\mathcal E_b=\mathcal E_{ab},\qquad
+ \mathcal E_1=\operatorname{id},\qquad \mathcal E_0(\rho)=\operatorname{diag}(\rho).
+$$
+
+CP-divisibility asks whether, for every t≥s, there exists a completely positive trace-preserving map V_t,s such that E_η(t)=V_t,s E_η(s). This is a statement about an intermediate map on every input, not the survival of one chosen state. [Rivas, Huelga and Plenio](https://arxiv.org/pdf/0911.4270) discuss this propagator composition criterion.
+
+When η(s) is nonzero, E_η(s) is invertible as a linear map on matrices. The intermediate map is therefore uniquely fixed. The earlier Choi calculation gives its complete-positivity condition:
+
+$$
+\eta(s)\ne0:\quad V_{t,s}=\mathcal E_{\kappa},\quad
+ \kappa=\frac{\eta(t)}{\eta(s)},\quad
+ \operatorname{spec}J(V_{t,s})=\{0,0,1-\kappa,1+\kappa\},\quad
+ V_{t,s}\ \text{CPTP}\ \Longleftrightarrow\ |\kappa|\le1.
+$$
+
+The inverse of a channel need not itself be a channel. In particular, increasing |η| requires a transverse amplification with a negative intermediate Choi eigenvalue. Validity of both endpoint maps does not rescue that intermediate map.
+
+### What if coherence has already vanished exactly?
+
+At η(s)=0 the inverse formula is unavailable. Instead compare the two initial X eigenstates:
+
+$$
+\eta(s)=0:\quad[\exists V_{t,s}\ \text{CPTP}:\ \mathcal E_{\eta(t)}=V_{t,s}\mathcal E_{\eta(s)}]
+ \Longleftrightarrow\eta(t)=0,\qquad
+ \mathcal E_0(\rho_{+x})=\mathcal E_0(\rho_{-x})=I/2.
+$$
+
+If η(t)≠0, the later outputs differ although both earlier inputs to V_t,s were I/2. No single linear map could do that. If η(t)=0, the identity intermediate map suffices. This argument treats the noninvertible point directly rather than dividing by a small epsilon.
+
+A useful operational witness is the trace distance of that pair:
+
+$$
+T(t)=\tfrac12\|\mathcal E_{\eta(t)}(\rho_{+x})-\mathcal E_{\eta(t)}(\rho_{-x})\|_1=|\eta(t)|,\qquad
+ T(V\rho,V\sigma)\le T(\rho,\sigma)\quad(V\ \text{CPTP}).
+$$
+
+For any CPTP map the inequality follows by optimizing the difference of an outcome probability over effects0≤M≤I: its adjoint maps such effects back into that same interval. Thus an increase of T forbids CPTP postprocessing of the earlier outputs. [Breuer, Laine and Piilo](https://arxiv.org/pdf/0908.0238) develop this distinguishability perspective. The equivalence with the scalar |η| test here belongs to this particular dephasing family; one pair does not characterize every general quantum process.
+
+### A nonnegative rate produces a simple time law
+
+On a differentiable interval where η is nonzero, differentiating the off-diagonal entries gives:
+
+$$
+\dot\rho=\gamma(t)(Z\rho Z-\rho),\quad
+ \gamma(t)=-\frac{\dot\eta(t)}{2\eta(t)}\quad(\eta(t)\ne0),\qquad
+ \eta(t)=e^{-2\gamma t}\quad(\gamma\ge0\ \text{constant},\ \eta(0)=1).
+$$
+
+The factor2 comes from ZρZ−ρ, which multiplies an off-diagonal entry by−2. Rate γ has inverse-time units. A constant nonnegative rate produces a semigroup with decreasing positive η. A time-dependent nonnegative rate similarly gives decreasing |η| on an invertible interval. The local rate formula cannot be carried through a zero without a separate analysis.
+
+### Static random frequencies give a physical revival example
+
+Choose the sign of a frequency once at preparation and keep it fixed during the run. Average the two corresponding unitary rotations:
+
+$$
+U_\pm(t)=e^{\mp i\Omega tZ/2},\qquad
+ \mathcal E_t(\rho)=\tfrac12 U_+(t)\rho U_+(t)^\dagger+\tfrac12 U_-(t)\rho U_-(t)^\dagger,
+ \qquad\eta(t)=\cos(\Omega t),\quad\Omega>0.
+$$
+
+Each time map is a convex mixture of unitaries, so it is CPTP. It is a consistent time-dependent experiment with correlated noise across intervals, not a claim that the existing interpolation slider is physical time. Averaging afresh after every short segment would instead resample the sign and define another process.
+
+The formal rate and two landmarks are:
+
+$$
+\gamma(t)=\frac\Omega2\tan(\Omega t)\quad(\cos(\Omega t)\ne0),\qquad
+ \eta(\pi/(2\Omega))=0,\quad\eta(\pi/\Omega)=-1,\quad
+ T(\pi/(2\Omega))=0,\quad T(\pi/\Omega)=1.
+$$
+
+Between the zero and the later negative endpoint, |η| increases. The rate is negative wherever defined on that interval, and no CPTP intermediate map can restore the erased distinction. The singular rate does not make the finite channel at the zero ill-defined. At the endpoint η=−1 the individual map is simply the valid unitary Z channel.
+
+For the initial +x state, the later +x test and spectral entropy are:
+
+$$
+p_{+x}(t)=\tfrac12(1+\eta(t)),\quad
+ S_{\rm bits}(t)=h_2\!\left(\frac{1+|\eta(t)|}{2}\right),\quad
+ h_2(p)=-p\log_2p-(1-p)\log_2(1-p),\quad 0\log_2 0:=0.
+$$
+
+Use q=tan(Ωt/2), so η=(1−q²)/(1+q²), on0≤Ωt<π. The next code uses exact fractions for η and probabilities, with rounded entropy in bits. It adds no time-rate or noise-environment control to the current dephasing reader.
+
+```python
+from fractions import Fraction as Q
+from math import log2
+for q in [Q(0), Q(1, 2), Q(1), Q(2)]:
+    eta = (1-q*q)/(1+q*q)  # q = tan(Omega*t/2), 0 <= Omega*t < pi
+    distance, probability = abs(eta), (1+eta)/2
+    eigenvalues = [(1+distance)/2, (1-distance)/2]
+    entropy = sum(-float(p)*log2(float(p)) for p in eigenvalues if 0 < p < 1)
+    print(q, eta, distance, probability, f"{entropy:.6f}")
+```
+
+| q | eta | distance | p_plus_x | entropy bits |
+|---|---|---|---|---|
+| 0 | 1 | 1 | 1 | 0.000000 |
+| 1/2 | 3/5 | 3/5 | 4/5 | 0.721928 |
+| 1 | 0 | 0 | 1/2 | 1.000000 |
+| 2 | -3/5 | 3/5 | 1/5 | 0.721928 |
+
+![A static-frequency mixture has eta equal to cos of time: distinguishability decreases to zero and then revives, unlike exponential semigroup dephasing; the entropy of one probe follows a different curve.](/assets/learning/quantum-density-research-dephasing-divisibility.en.svg)
+
+The exponential comparison uses γ=Ω/2. One probe's entropy alone is not a complete map diagnostic. A diagonal initial state would remain unchanged throughout both families. Here the two-state distance and intermediate-map calculation establish the relevant distinction. A revival does not violate trace-distance contraction of an individual CPTP map: it prevents the later map from being a CPTP continuation of the already reduced earlier system.
+
+#### Research check 1: compose two endpoints
+
+E_(1/2) followed by E_(−1/2) gives E_(−1/4), which is CPTP. But reaching E_(−1/2) from E_(1/4) would require the unique intermediate E_(−2), whose Choi matrix has a negative eigenvalue. Check the ratio, not only the later endpoint.
+
+#### Research check 2: try to continue after complete erasure
+
+At Ωs=π/2 both initial X eigenstates have become I/2. At Ωt=π they become distinct again. A map applied only to the earlier reduced system receives the same input in both cases, so it cannot reproduce both later outputs. Correlated information outside that reduced description matters.
+
+#### Research check 3: a constant diagonal probe
+
+For an initial Z eigenstate, every E_η leaves the state pure and unchanged. Its entropy and fidelity curves would hide the entire transverse effect. Constancy of this one preparation cannot certify divisibility or identity of the process.
+
 ## 13. Exercises with explanations
 
 **1. Why use the alternate formula for the smaller eigenvalue?**
