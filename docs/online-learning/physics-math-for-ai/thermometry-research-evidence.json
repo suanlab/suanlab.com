@@ -603,12 +603,12 @@
     "files": [
       {
         "path": "/assets/learning/thermometry-information-scale.en.svg",
-        "sha256": "a0f5bba52f8ab484533aab36fafa279372618dba77dbf7533793f853f03e7a0c",
+        "sha256": "46ea259642757e2c948177d410f2a219401bdf12db8bde220c5c94178fa43f31",
         "sourceOutputAndServedEqual": true
       },
       {
         "path": "/assets/learning/thermometry-information-scale.ko.svg",
-        "sha256": "012a8a262cd3a0c7833246ad19c6fe0dc293699d2caa9439640332ebc9cc3122",
+        "sha256": "598613ae723c70ea9cac1c8630dca3a936a486497ebb193f4bd9456210e88688",
         "sourceOutputAndServedEqual": true
       },
       {
@@ -670,12 +670,12 @@
   "artifacts": {
     "content/learning/physics-math-for-ai/thermodynamics.en.md": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf",
     "content/learning/physics-math-for-ai/thermodynamics.ko.md": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3",
-    "public/assets/learning/thermometry-information-scale.en.svg": "a0f5bba52f8ab484533aab36fafa279372618dba77dbf7533793f853f03e7a0c",
-    "public/assets/learning/thermometry-information-scale.ko.svg": "012a8a262cd3a0c7833246ad19c6fe0dc293699d2caa9439640332ebc9cc3122",
+    "public/assets/learning/thermometry-information-scale.en.svg": "46ea259642757e2c948177d410f2a219401bdf12db8bde220c5c94178fa43f31",
+    "public/assets/learning/thermometry-information-scale.ko.svg": "598613ae723c70ea9cac1c8630dca3a936a486497ebb193f4bd9456210e88688",
     "scripts/check-thermometry-research.cjs": "c781958ca72c404cbedaa82bdfa1550a93b1991e1d2178f2eb9d45dea9783231",
     "scripts/learning-thermometry-research.test.ts": "60b9e791bc9d0c882863a5db94c6acc83f0c98665838f6e6d0c56aba10481b1f",
     "scripts/learning/verify-thermometry-research.py": "bc96b222c3e871b4f50338fe0ff4f14c948ea5a3dfa39a1106591ba6eb81203f",
-    "scripts/learning/generate-thermometry-figures.py": "4c3c2d4a56878cfa64482a8bf3bf42f6d7e008f538a6a448d4b874187d015b03",
+    "scripts/learning/generate-thermometry-figures.py": "4f1063ab8e5ad72a43e0fd679962cd1091c9a863158f288ac78f4b0524283625",
     "scripts/fixtures/reviewed-learning-manuscripts.json": "ec8ac6ce9a4552ad370243e6286d0ae0d26ac32480a400ee2d72b8980847d4c7"
   },
   "overallReview": {
@@ -684,5 +684,24 @@
     "remainingDomains": 8,
     "remainingTopics": 83
   },
-  "publicDeploymentConfirmed": false
+  "publicDeploymentConfirmed": false,
+  "postBuildAssetFormatting": {
+    "changes": [
+      {
+        "path": "public/assets/learning/thermometry-information-scale.en.svg",
+        "previousSha256": "a0f5bba52f8ab484533aab36fafa279372618dba77dbf7533793f853f03e7a0c",
+        "currentSha256": "46ea259642757e2c948177d410f2a219401bdf12db8bde220c5c94178fa43f31",
+        "normalizedXmlSemanticsUnchanged": true,
+        "outputAssetSynchronized": true
+      },
+      {
+        "path": "public/assets/learning/thermometry-information-scale.ko.svg",
+        "previousSha256": "012a8a262cd3a0c7833246ad19c6fe0dc293699d2caa9439640332ebc9cc3122",
+        "currentSha256": "598613ae723c70ea9cac1c8630dca3a936a486497ebb193f4bd9456210e88688",
+        "normalizedXmlSemanticsUnchanged": true,
+        "outputAssetSynchronized": true
+      }
+    ],
+    "description": "Removed trailing line whitespace only; XML tags, normalized attributes, text and tree are unchanged. Public and exported SVGs were synchronized after the build; HTML and runtime bundles unchanged. No additional build or reader interaction run is claimed."
+  }
 }
