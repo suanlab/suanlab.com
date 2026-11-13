@@ -8,12 +8,12 @@ const id = 'finite-gibbs-conditionals-scan-support';
 const source = (lang: 'ko' | 'en') => readFileSync(`content/learning/physics-math-for-ai/${id}.${lang}.md`, 'utf8');
 for (const lang of ['ko', 'en'] as const) test(`${lang}: detailed Gibbs conditioning, flows, contraction, support and six explained exercises render accessible mathematics`, async () => {
   const text = source(lang), r = await getLearningContent(id), html = r[lang];
-  assert.equal(r.outline[lang].length, 15); assert.equal(new Set(r.outline[lang].map(h => h.id)).size, 15);
-  assert.equal((text.match(/\$\$/g) ?? []).length, 30);
+  assert.equal(r.outline[lang].length, 16); assert.equal(new Set(r.outline[lang].map(h => h.id)).size, 16);
+  assert.equal((text.match(/\$\$/g) ?? []).length, 50);
   assert.equal((text.match(/^\d\. \*\*/gm) ?? []).length, 6); assert.equal((text.match(/\*\*(?:Answer|해설):\*\*/g) ?? []).length, 6);
-  assert.equal((html.match(/class="katex-display"/g) ?? []).length, 15);
-  assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 15);
-  assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 2);
+  assert.equal((html.match(/class="katex-display"/g) ?? []).length, 25);
+  assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 25);
+  assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 3);
   assert.doesNotMatch(text, /^# |^---/m); assert.doesNotMatch(html, /katex-error|\$\$/);
   if (lang === 'en') { assert.ok(text.split(/\s+/).length >= 2500); assert.doesNotMatch(html, /[가-힣]/); }
   else assert.ok((text.match(/[가-힣]/g) ?? []).length >= 4800);

@@ -62,3 +62,8 @@ Levin–Peres의 저자 공개 [Markov Chains and Mixing Times](https://pages.uo
 ## 분배함수 연구 보강: 추정·주변화·꼬리
 
 [Tong 1장 1.3절](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf)의 정준 합·에너지 요동, [5장 5.2절](https://davidtong.org/pdfs/teaching/statistical-physics/statphys5.pdf)의 Ising Hamiltonian을 배경으로 대조했다. [Owen의 중요도 표집 9장](https://artowen.su.domains/mc/Ch-var-is.pdf) 도입과 9.1절의 출발 분포·우도비 정의 및 무한 분산 주의점을 확인했다. 유한 재가중 이차 모멘트·독립 묶음·로그 편향, 열린 세 스핀 합·조건부 에너지 분산·Fisher 손실, 기하 꼬리의 정확한 이차 모멘트 조건은 본문에서 지정한 모형으로 직접 계산한다. 미시 에너지를 온도 의존 축약 퍼텐셜과 바꾸거나 절단 적분을 원래 전체 분산으로 바꾸지 않는다. 범위와 재현은 [분배함수 검증 기록](partition-research-status.md)을 따른다.
+
+
+## Boltzmann·Gibbs 연구 보강: 관측 설계와 표집 정확도
+
+[Berkeley 지수족 자료](https://stat210a.berkeley.edu/fall-2024/reader/exponential-families.html)의 평균·공분산 미분 관계, [Stanford Gibbs 자료](https://ermongroup.github.io/cs323-notes/probabilistic/gibbs/)의 조건부 갱신·Metropolis 구성, [Wibisono 2018 예제 1–2](https://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)의 Gaussian 정확 전이·ULA 정상 편향을 대조했다. 두 교정 온도의 기준 오즈·에너지 역산과 관측 우도, 상태 의존 선택의 반례·구성별 선택 비 보정은 여기서 지정한 모형으로 직접 유도한다. Gaussian 표는 무차원 정밀도와 알고리즘 단계를 사용한다. 정규화·조건부 정확성·반복 안정성·목표 보존·물리 시간의 의미를 서로 대신하지 않는다. 상세 검산 범위는 [Boltzmann·Gibbs 검증 기록](boltzmann-research-status.md)을 따른다.

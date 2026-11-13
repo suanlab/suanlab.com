@@ -8,14 +8,14 @@ const id = 'reference-measure-boltzmann-softmax-identifiability';
 const source = (lang: 'ko' | 'en') => readFileSync(`content/learning/physics-math-for-ai/${id}.${lang}.md`, 'utf8');
 for (const lang of ['ko', 'en'] as const) test(`${lang}: substantial reference-measure theory, accessible math, tables and six explained exercises`, async () => {
   const text = source(lang), rendered = await getLearningContent(id), html = rendered[lang];
-  assert.equal(rendered.outline[lang].length, 14);
-  assert.equal(new Set(rendered.outline[lang].map(h => h.id)).size, 14);
-  assert.equal((text.match(/\$\$/g) ?? []).length, 22);
+  assert.equal(rendered.outline[lang].length, 15);
+  assert.equal(new Set(rendered.outline[lang].map(h => h.id)).size, 15);
+  assert.equal((text.match(/\$\$/g) ?? []).length, 42);
   assert.equal((text.match(/^\d\. \*\*/gm) ?? []).length, 6);
   assert.equal((text.match(/\*\*(?:Answer|해설):\*\*/g) ?? []).length, 6);
-  assert.equal((html.match(/class="katex-display"/g) ?? []).length, 11);
-  assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 11);
-  assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 3);
+  assert.equal((html.match(/class="katex-display"/g) ?? []).length, 21);
+  assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 21);
+  assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 4);
   assert.doesNotMatch(text, /^# |^---/m); assert.doesNotMatch(html, /katex-error|\$\$/);
   if (lang === 'en') { assert.ok(text.split(/\s+/).length >= 2400); assert.doesNotMatch(html, /[가-힣]/); }
   else assert.ok((text.match(/[가-힣]/g) ?? []).length >= 5000);

@@ -218,6 +218,119 @@ Exact binary Hamiltonian sums retain energy gaps under a large common offset. Ea
 
 Numerical stationarity residuals are displayed as intervals. Merely containing zero is not a proof of stationarity; the conditional construction supplies that proof. Similarly, reversibility and graph connectivity use the exact Hamiltonian and support, not a tolerance or a graph reconstructed from rounded transition values. The independent Decimal references compare all five kernels, flows, finite-step laws, contraction and distances for actual binary64 inputs, including rare and weak-interaction cases.
 
+## Research extension: a state-dependent coordinate choice can bias Gibbs sampling
+
+Updating the right conditional distribution is only part of a sampling rule. If the choice of which coordinate to update depends on the current state, a label can become sticky simply because it is rarely selected for replacement. We must include the selection policy in the transition kernel.
+
+For a separate example use two bits x₁,x₂∈{0,1}, zero energy and the uniform target over all four states. Each chosen bit is refreshed fairly. This maps to the zero-field, zero-coupling spin case through x=(σ+1)/2, but adds a new state-dependent selection rule. The reader’s existing fixed scan settings do not implement this new rule.
+
+Each conditional kernel alone preserves the uniform target and is reversible. It may redraw the same bit value, so diagonal transitions must be retained. The issue below concerns how these correct kernels are selected.
+
+$$
+\pi(x)=1/4,\qquad K_i(x,y)=\tfrac12\mathbf1\{y_{-i}=x_{-i}\},\quad i=1,2.
+$$
+
+When a is large, a zero first bit is often refreshed, while a one first bit is seldom refreshed. The policy favors retaining ones without changing either conditional redraw law. Endpoints a=0 or 1 are excluded because they can remove needed moves.
+
+$$
+q_1(x)=\begin{cases}a,&x_1=0,\\1-a,&x_1=1,\end{cases}\qquad q_2(x)=1-q_1(x),\quad0<a<1.
+$$
+
+A convex combination with constants preserves a shared stationary law. Here the coefficients vary with the departure state, so that argument no longer applies. Correct component conditionals do not automatically make the full adaptive kernel correct.
+
+$$
+K(x,y)=\sum_{i=1}^2q_i(x)K_i(x,y).
+$$
+
+The displayed stationary law uses state order 00,01,10,11. Balance the two first-bit flows to obtain mean a; the second bit remains conditionally fair. Direct multiplication verifies the full four-state stationarity. At a=0.9, the first-bit mean is 0.9 rather than its target 0.5.
+
+$$
+P(x_1:0\to1)=a/2,\quad P(x_1:1\to0)=(1-a)/2,\qquad\widetilde\pi=( (1-a)/2,(1-a)/2,a/2,a/2).
+$$
+
+The uncorrected chain can converge smoothly to the wrong law. Its first-bit mean has an exact recurrence, but the factor 1/2 describes that observable, not a universal full-chain mixing rate or physical relaxation time.
+
+$$
+\operatorname{TV}(\widetilde\pi,\pi)=|a-1/2|,\qquad m_k=a+(m_0-a)2^{-k}.
+$$
+
+For a chosen coordinate i, propose y from its target-reversible conditional kernel and then accept with this selection-ratio correction. This is a componentwise Metropolis correction; it accounts for the state-dependent probability of choosing the same coordinate in reverse.
+
+$$
+\alpha_i(x,y)=\min\!\left(1,\frac{q_i(y)}{q_i(x)}\right),\qquad q_i(x)>0.
+$$
+
+Reversibility of Kᵢ cancels the target and conditional ratios. The remaining minimum is symmetric in x,y. The proof also works for a nonuniform positive target with its correct conditional kernels, not just the uniform toy example.
+
+$$
+\pi(x)q_i(x)K_i(x,y)\alpha_i(x,y)=\pi(x)K_i(x,y)\min\{q_i(x),q_i(y)\}=\pi(y)q_i(y)K_i(y,x)\alpha_i(y,x).
+$$
+
+Rejected proposals stay at x. Including them makes each row sum to one and preserves the proved flux balance. Positive choices and conditional support must still connect the state space for convergence from every start; stationarity alone is weaker.
+
+$$
+K^{\rm corr}(x,y)=\sum_iq_i(x)K_i(x,y)\alpha_i(x,y)+\mathbf1_{x=y}\sum_{i,z}q_i(x)K_i(x,z)[1-\alpha_i(x,z)].
+$$
+
+The corrected first-bit moves balance equally. As a approaches one, the correction removes the bias but also makes first-bit changes rare. This is a correctness-versus-this-observable-speed comparison, not a general performance ranking of samplers.
+
+$$
+c=\tfrac12\min(a,1-a):\qquad P_{\rm corr}(0\to1)=P_{\rm corr}(1\to0)=c,\quad\pi_{\rm corr}(x_1=1)=1/2.
+$$
+
+For the same initial first bit, compare the corrected mean with the uncorrected recurrence. k counts attempted coordinate updates, including unchanged redraws and rejections. It is not accepted moves, sweeps or seconds.
+
+$$
+m_k^{\rm corr}=\tfrac12+(m_0-\tfrac12)[1-\min(a,1-a)]^k.
+$$
+
+### Read the comparison
+
+At a=0.9 the upper panel compares the biased stationary law with the uniform target retained by the correction. The lower panel starts the first bit at zero: the uncorrected mean approaches 0.9, whereas the corrected mean approaches 0.5 more slowly.
+
+![State-dependent Gibbs coordinate selection creates stationary bias; a selection-ratio correction restores the target while changing first-bit convergence.](/assets/learning/boltzmann-research-state-dependent-scan.en.svg)
+
+### Reproduce the example
+
+The following probabilities use exact fractions before eight-decimal printing. The initial first bit is zero and k=10 counts all attempted updates. These are distribution recurrences, not one random path or a new physical spin-flip simulation.
+
+| a | Biased stationary mean | Stationary TV | Corrected flip probability | Uncorrected mean at 10 | Corrected mean at 10 |
+| --- | --- | --- | --- | --- | --- |
+| 0.50000000 | 0.50000000 | 0.00000000 | 0.25000000 | 0.49951172 | 0.49951172 |
+| 0.70000000 | 0.70000000 | 0.20000000 | 0.15000000 | 0.69931641 | 0.48587624 |
+| 0.90000000 | 0.90000000 | 0.40000000 | 0.05000000 | 0.89912109 | 0.32566078 |
+| 0.99000000 | 0.99000000 | 0.49000000 | 0.00500000 | 0.98903320 | 0.04780896 |
+
+```python
+from fractions import Fraction as F
+for a in [F(1,2),F(7,10),F(9,10),F(99,100)]:
+    rate = min(a,1-a)
+    bias = abs(a-F(1,2))
+    flip = rate/2
+    uncorrected = a*(1-F(1,2)**10)
+    corrected = F(1,2)*(1-(1-rate)**10)
+    print(f"{float(a):.8f} {float(a):.8f} {float(bias):.8f} "
+          f"{float(flip):.8f} {float(uncorrected):.8f} {float(corrected):.8f}")
+```
+
+### Three research questions with explanations
+
+#### 1. Why does the correct conditional law not suffice?
+
+**Explanation.** The selected coordinate is part of the proposal. Making its selection state dependent changes forward and reverse flows. Correct component kernels with constant mixture weights preserve a shared target; departure-state-dependent weights need not.
+
+#### 2. May rejected proposals be omitted from the transition matrix?
+
+**Explanation.** No. They are self-loops. Removing them or renormalizing only accepted moves defines a different observed chain, which generally has a different stationary weighting.
+
+#### 3. Does fast convergence of one mean establish correct sampling?
+
+**Explanation.** No. The naive mean rapidly approaches the wrong value a. Check the target’s stationary fluxes, support connectivity and the intended observation count before interpreting convergence or comparing speed.
+
+### Source and research boundary
+
+The conditional-update and Metropolis background is the [Stanford Gibbs sampling notes](https://ermongroup.github.io/cs323-notes/probabilistic/gibbs/). The state-dependent selection, bias witness and componentwise correction are derived here for the explicit finite experiment. Fixed-scan preservation does not automatically justify an adaptive selection rule.
+
 ## Exercises with explained answers
 
 1. **Can one coordinate update sample the whole target?** Start at (--) on the full support and apply K1 repeatedly. **Answer:** The second spin stays −1. The first update samples the correct conditional given that value, and subsequent updates preserve that conditional. The chain never reaches either state with second spin +1, so it cannot converge to the strictly positive four-state target from this start.

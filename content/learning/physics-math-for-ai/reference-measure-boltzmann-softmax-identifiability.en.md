@@ -173,6 +173,124 @@ Variance uses the pair identity Σ_{i<j}p_i p_j(E_i−E_j)². This avoids subtra
 
 Independent Decimal references use the actual binary64 inputs and the stored numerical kB. They are recomputed at 400–1600 decimal digits and confirmed with 80 additional digits. These tests include forbidden labels, real reference weights, large reference rescaling, rare-event moments and both temperature boundaries. They verify this finite numerical model; these numerical checks alone do not prove that a renderer, sampling animation or physical experiment implements it correctly.
 
+## Research extension: separate reference odds from energy using two temperatures
+
+One photograph cannot tell whether a room was popular because it was cheap or because more doors led into it. Likewise, one Boltzmann probability vector can mix energy preference with reference weight. A second preparation at a different, calibrated temperature can separate those effects if the same energy and reference remain fixed.
+
+Use a two-label example with fixed positive real reference weights and fixed unknown energy difference Δ. The reference weights need not be integer degeneracies. Prepare independent systems at known positive inverse temperatures β₁ and β₂ and observe which label appears. This is an additional inference experiment; the reader still computes theoretical preparations rather than collecting sample counts.
+
+Δ has energy units and η is dimensionless. Both labels have positive reference weight, so finite parameters give interior probabilities. An energy origin and a common reference scale cancel from this normalized law.
+
+$$
+E_1-E_0=\Delta,\qquad\eta=\log(m_1/m_0),\qquad r_j=P_{\beta_j}(X=1)=\frac1{1+e^{\beta_j\Delta-\eta}}.
+$$
+
+Taking log odds turns the two competing effects into an intercept and a slope. At one known β, changing the intercept and slope together can leave the same observed probability.
+
+$$
+\ell_j=\log\frac{r_j}{1-r_j}=\eta-\beta_j\Delta.
+$$
+
+Subtract the two equations to remove the unknown reference odds, then recover them after the energy gap. This inverts exact preparation probabilities; it does not promise exact parameter recovery from two binary observations.
+
+$$
+\beta_2\ne\beta_1:\qquad\Delta=\frac{\ell_1-\ell_2}{\beta_2-\beta_1},\qquad\eta=\ell_1+\beta_1\Delta.
+$$
+
+Repeating the same temperature adds data but cannot remove this structural ambiguity. Distinct settings and calibrated β values supply the new direction of information. An unknown absolute temperature scale remains an additional calibration problem.
+
+$$
+\beta_1=\beta_2=\beta_0:\qquad(\eta,\Delta)\mapsto(\eta+\beta_0d,\Delta+d)\quad\Longrightarrow\quad r_j\mapsto r_j.
+$$
+
+Now state the finite-data model: Mⱼ independent binary observations at each setting, with all preparations mutually independent. Their empirical fractions fluctuate; exact zero or one in a finite batch is not a zero or one population probability.
+
+$$
+\log L_j=\sum_{a=1}^{M_j}\{X_{ja}\ell_j-\log(1+e^{\ell_j})\},\qquad M_j\ge1.
+$$
+
+Each centered observation contributes along the direction (1,−βⱼ). This makes the geometry visible: one temperature repeats one direction, whereas a distinct temperature rotates it.
+
+$$
+\nabla_{(\eta,\Delta)}\log L_j=\sum_a(X_{ja}-r_j)\begin{pmatrix}1\\-\beta_j\end{pmatrix},\qquad v_j=r_j(1-r_j).
+$$
+
+Independence makes score covariances add. The Fisher matrix is for coordinates (η,Δ), so its entries carry the corresponding inverse-energy units. It is not a covariance of temperature readings from a physical instrument.
+
+$$
+\mathcal I=\sum_{j=1}^2M_jv_j\begin{pmatrix}1&-\beta_j\\-\beta_j&\beta_j^2\end{pmatrix}.
+$$
+
+For interior probabilities and distinct known settings, the determinant is positive. Nearly equal temperatures or nearly saturated labels can still make inference poorly conditioned. Positive rank does not establish an estimator’s accuracy or attainment of an information bound.
+
+$$
+\det\mathcal I=M_1M_2v_1v_2(\beta_1-\beta_2)^2.
+$$
+
+A third setting supplies a model check: population log odds must be affine in calibrated β. Curvature rejects at least one of the joint fixed-energy, fixed-reference or observation assumptions. It does not say which assumption failed, and finite-sample residuals require uncertainty analysis.
+
+$$
+\ell(\beta)=\eta-\beta\Delta\quad\Longrightarrow\quad\frac{\ell_3-\ell_2}{\beta_3-\beta_2}=\frac{\ell_2-\ell_1}{\beta_2-\beta_1}\quad\text{for distinct settings}.
+$$
+
+Even many calibrated temperatures cannot recover the common energy zero or common reference normalization from label probabilities. The recovered quantities are energy differences and reference ratios, not those absolute gauges.
+
+$$
+E_i\mapsto E_i+c,\qquad m_i\mapsto a m_i\ (a>0):\qquad r_j\mapsto r_j\quad\text{at every }\beta_j.
+$$
+
+### Read the comparison
+
+The two models have the same log odds at one temperature but different slopes. A second temperature separates them. The lower panel varies the second setting while fixing the first, showing a zero Fisher determinant at coincident settings and weakened information when occupancy saturates.
+
+![Two calibrated temperature preparations separate fixed reference odds and an energy difference, while coincident settings leave a Fisher null direction.](/assets/learning/boltzmann-research-two-temperature-identification.en.svg)
+
+### Reproduce the example
+
+Choose a known energy unit E₀, Δ/E₀=1, m₁/m₀=2 and b₁=β₁E₀=0.5. The table varies b₂ and uses exact population probabilities. Its Fisher determinant is for one observation at each setting in coordinates (η,Δ/E₀); the inversion is not an estimate from those two observations. A dash marks the undefined equal-setting inverse.
+
+| Second b | First probability | Second probability | Fisher determinant | Recovered gap | Recovered eta |
+| --- | --- | --- | --- | --- | --- |
+| 0.50000000 | 0.54813724 | 0.54813724 | 0.00000000 | -- | -- |
+| 1.00000000 | 0.54813724 | 0.42388312 | 0.01512142 | 1.00000000 | 0.69314718 |
+| 2.00000000 | 0.54813724 | 0.21301396 | 0.09342293 | 1.00000000 | 0.69314718 |
+| 4.00000000 | 0.54813724 | 0.03533684 | 0.10342735 | 1.00000000 | 0.69314718 |
+
+```python
+from math import exp,log
+b1,gap,eta = 0.5,1,log(2)
+r1 = 1/(1+exp(b1*gap-eta))
+for b2 in [0.5,1,2,4]:
+    r2 = 1/(1+exp(b2*gap-eta))
+    determinant = r1*(1-r1)*r2*(1-r2)*(b1-b2)**2
+    recovered_gap = recovered_eta = "--"
+    if b2 != b1:
+        l1,l2 = log(r1/(1-r1)),log(r2/(1-r2))
+        d = (l1-l2)/(b2-b1)
+        recovered_gap = f"{d:.8f}"
+        recovered_eta = f"{l1+b1*d:.8f}"
+    print(f"{b2:.8f} {r1:.8f} {r2:.8f} {determinant:.8f} "
+          f"{recovered_gap} {recovered_eta}")
+```
+
+### Three research questions with explanations
+
+#### 1. Why are repeated observations at one temperature insufficient?
+
+**Explanation.** They reduce sampling uncertainty along the same log-odds direction, but η−β₀Δ remains the only identified combination. A different known β changes that direction; more samples at the original β do not.
+
+#### 2. Does the positive determinant guarantee a precise fitted gap?
+
+**Explanation.** No. Close settings, saturation, sample size and finite-data estimator behavior matter. The inverse formulas use true probabilities; empirical fractions can be zero or one and cannot be treated as exact population logits.
+
+#### 3. What remains unknown after many temperatures?
+
+**Explanation.** A common energy shift and common reference rescaling leave every label law unchanged. If the temperature scale is also unknown, additional scale ambiguity remains. Calibration and reference conventions are separate from fitting a normalized distribution.
+
+### Source and research boundary
+
+The score-covariance background is the [Berkeley exponential-family reader](https://stat210a.berkeley.edu/fall-2024/reader/exponential-families.html). The two-setting inversion, observation likelihood and determinant are direct calculations for this fixed two-label experiment. A physical temperature must be calibrated rather than inferred from an arbitrary softmax scale.
+
 ## Exercises with explained answers
 
 1. **Which middle-room probability is correct?** In the ideal three-level example, a friend assigns probability 4/9 to each of the two middle microstates. Explain the error. **Answer:** 4/9 belongs to the grouped level. Each equally counted room has probability 2/9, so their sum is 4/9. Giving each 4/9 changes normalization and double-counts multiplicity.

@@ -201,6 +201,125 @@ Precision adapts from 128 to 8192 bits. Resolved nonzero observations have a cer
 
 The independent references classify the actual binary inputs with exact Fraction arithmetic and compute the Gaussian identities with high-precision Decimal arithmetic. They include positive and negative boundary cases, common offsets, very small stiffness and temperature, density above one, means outside display range and orientation-reversing coordinate maps. These numerical checks validate the stated mathematical model; renderer, sampler and physical-apparatus claims need their own evidence.
 
+## Research extension: a stable Gaussian sampler can have the wrong covariance
+
+A bounded-looking cloud does not prove that a sampler has the desired equilibrium spread. An update can forget its starting point and settle into a perfectly well-defined Gaussian with the wrong width. Normalizing a target density, stabilizing an iteration and preserving that target are three separate questions.
+
+Keep the original positive-definite quadratic Gibbs law, center at its mean and divide energy by τ=kBT. Add an independent Gaussian-noise Euler sampling algorithm for these dimensionless coordinates. Its step η is an algorithm parameter; without a declared mobility or relaxation scale we do not identify it with physical seconds. The reader still plots static Gaussian preparations and has no new step-size control.
+
+P is precision, distinct from the energy-curvature matrix A. With the original dimensionless x coordinates, P and the following algorithm step are dimensionless. The target normalizes for every positive-definite P independently of the algorithm choice.
+
+$$
+y=x-\mu,\quad P=A/\tau\succ0,\qquad\pi(y)\propto e^{-y^{\mathsf T}Py/2},\quad\Sigma=P^{-1}.
+$$
+
+This specifies the whole sampling update, including independent noise. It is the unadjusted Euler/Langevin step for the standardized quadratic target. There is no accept/reject correction in this algorithm.
+
+$$
+y_{k+1}=(I-\eta P)y_k+\sqrt{2\eta}\,\xi_k,\qquad\xi_k\overset{\rm iid}{\sim}\mathcal N(0,I),\quad\eta>0.
+$$
+
+An orthonormal rotation keeps isotropic Gaussian noise standard. Each eigenmode is therefore a scalar autoregression. Inspecting these two multipliers is enough to derive the exact stability condition in this quadratic case.
+
+$$
+P=Q\operatorname{diag}(\lambda_i)Q^{\mathsf T}:\quad z=Q^{\mathsf T}y,\qquad z_{i,k+1}=(1-\eta\lambda_i)z_{i,k}+\sqrt{2\eta}\,\zeta_{i,k}.
+$$
+
+Independence removes the noise cross term. A stationary finite variance must balance the retained old variance against the newly added 2η. Stability of the deterministic mean is not yet a check that this balance equals the target variance.
+
+$$
+v_{i,k+1}=(1-\eta\lambda_i)^2v_{i,k}+2\eta.
+$$
+
+This strict condition makes every eigenmode forget its initial state and gives a finite Gaussian stationary covariance. It concerns the chosen numerical chain; violating it does not make the original positive-definite target non-normalizable.
+
+$$
+|1-\eta\lambda_i|<1\ \text{for every }i\quad\Longleftrightarrow\quad0<\eta<2/\lambda_{\max}.
+$$
+
+Solve the scalar variance balance inside the stability interval. Every positive step inflates every mode relative to its target. Running longer removes the transient but does not remove this stationary discretization bias.
+
+$$
+v_i^{(\eta)}=\frac{2\eta}{1-(1-\eta\lambda_i)^2}=\frac1{\lambda_i(1-\eta\lambda_i/2)}>\lambda_i^{-1}.
+$$
+
+The matrix form is a discrete Lyapunov equation. Check stability before taking the displayed inverse; outside the interval its algebraic inverse need not be a covariance. A direct rational linear-system solve independently verifies the finite examples.
+
+$$
+\Sigma_\eta=(P-\tfrac\eta2P^2)^{-1},\qquad\Sigma_\eta=(I-\eta P)\Sigma_\eta(I-\eta P)^{\mathsf T}+2\eta I.
+$$
+
+Compare the stationary Gaussian with the intended target in a stated direction. Each variance ratio rᵢ is dimensionless, and the divergence is in nats. A visually settled cloud can have positive KL; a covariance from the wrong stationary law is not a thermal response of the target.
+
+$$
+D(\mathcal N(0,\Sigma_\eta)\Vert\mathcal N(0,P^{-1}))=\tfrac12\sum_i[r_i-1-\log r_i],\qquad r_i=\lambda_i v_i^{(\eta)}.
+$$
+
+At the boundary the stiff mode alternates sign but accumulates noise variance indefinitely. From zero variance, v₂,k=k. The target stiff-mode variance remains 1/4. A dash in the table means no finite stationary covariance for this update, not a missing target distribution.
+
+$$
+\lambda=(1,4),\quad\eta=1/2:\qquad z_{2,k+1}=-z_{2,k}+\zeta_{2,k},\qquad v_{2,k+1}=v_{2,k}+1.
+$$
+
+For comparison this exact linear Gaussian transition preserves the target for any η>0. Multiply the old target covariance by the decay factors and add the specified independent noise covariance to check it. It is a special quadratic formula, not an exact transition for arbitrary nonlinear energies or a physical clock supplied by a density.
+
+$$
+y_{k+1}=e^{-\eta P}y_k+\nu_k,\quad\nu_k\sim\mathcal N\!\left(0,P^{-1}[I-e^{-2\eta P}]\right):\qquad\operatorname{Cov}_{\pi}(y_{k+1})=P^{-1}.
+$$
+
+### Read the comparison
+
+The upper panel shows how Euler stationary variances inflate for eigenvalues 1 and 4 as η approaches 0.5. The lower panel compares one-standard-deviation covariance ellipses at η=0.45 after a 45-degree eigenvector rotation. They are Gaussian geometry, not sampled paths or confidence regions for a fitted mean.
+
+![A positive-definite Gaussian target remains valid while a stable Euler sampler inflates its covariance and reaches a noisy stability boundary.](/assets/learning/boltzmann-research-gaussian-sampler-bias.en.svg)
+
+### Reproduce the example
+
+Use precision eigenvalues 1 and 4. The spectral radius is max |1−ηλ|. Euler columns refer to its stationary law only when η<1/2. The exact-linear-transition column retains the target stiff variance 1/4 at every displayed step. Calculations are theoretical moments, not empirical estimates from simulated samples.
+
+| Step eta | Spectral radius | Euler covariance trace | Euler stiff variance | Euler-target KL | Exact stiff variance |
+| --- | --- | --- | --- | --- | --- |
+| 0.05000000 | 0.95000000 | 1.30341880 | 0.27777778 | 0.00303691 | 0.25000000 |
+| 0.20000000 | 0.80000000 | 1.52777778 | 0.41666667 | 0.08079582 | 0.25000000 |
+| 0.45000000 | 0.80000000 | 3.79032258 | 2.50000000 | 3.36642262 | 0.25000000 |
+| 0.50000000 | 1.00000000 | -- | -- | -- | 0.25000000 |
+
+```python
+from fractions import Fraction as F
+from math import log
+lam = [F(1),F(4)]
+for step in [F(1,20),F(1,5),F(9,20),F(1,2)]:
+    radius = max(abs(1-step*l) for l in lam)
+    trace = stiff = divergence = "--"
+    if step < F(1,2):
+        v = [1/(l*(1-step*l/2)) for l in lam]
+        ratios = [float(l*a) for l,a in zip(lam,v)]
+        kl = sum(r-1-log(r) for r in ratios)/2
+        trace = f"{float(sum(v)):.8f}"
+        stiff = f"{float(v[1]):.8f}"
+        divergence = f"{kl:.8f}"
+    print(f"{float(step):.8f} {float(radius):.8f} {trace} "
+          f"{stiff} {divergence} {0.25:.8f}")
+```
+
+### Three research questions with explanations
+
+#### 1. Does a normalizable target imply a stable sampling step?
+
+**Explanation.** No. Positive-definite precision normalizes the target. The chosen Euler chain additionally requires η<2/λmax. The two conditions answer different questions and must be tested separately.
+
+#### 2. Will more iterations remove the inflated covariance?
+
+**Explanation.** No. Within the stable interval, longer runs approach Ση, which differs from the target for every positive step. Reducing transients and reducing discretization bias are distinct tasks. Independent sample count also does not change that invariant law.
+
+#### 3. Why can the exact linear transition take a larger step?
+
+**Explanation.** Its exponential decay and noise covariance are matched to preserve the Gaussian target exactly. Euler uses a first-order decay with different added noise. The exact quadratic construction does not provide an exact general sampler for nonlinear energies.
+
+### Source and research boundary
+
+The Gaussian exact transition and unadjusted Langevin bias agree with [Wibisono, examples 1–2](https://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf). The two-dimensional table, stability witness and rational Lyapunov checks are computed for the stated precision matrices. No physical relaxation scale or arbitrary-energy accuracy guarantee is inferred.
+
 ## Exercises with explained answers
 
 1. **Which matrix normalizes?** Compare [[1,1],[1,1+δ]] for positive, zero and negative δ. **Answer:** Its first leading minor is positive and its determinant is δ. Positive δ gives a proper full-plane Gaussian, zero leaves an unconfined direction, and negative δ gives negative curvature. A pseudoinverse or an eigenvalue cutoff changes the question rather than normalizing the original density.

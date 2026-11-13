@@ -41,7 +41,8 @@ for (const kind of kinds) test(`${kind}: actual registered reader renders detail
   const html = await getLearningContent(kind);
   for (const language of ['ko', 'en'] as const) {
     assert.ok(html.outline[language].length >= 10); assert.ok(html[language].length > 10000);
-    assert.doesNotMatch(html[language], /katex-error|NaN|undefined/);
+    // Explanatory prose may describe an undefined inverse; missing rendered values may not.
+    assert.doesNotMatch(html[language], /katex-error|\bNaN\b|>\s*undefined\s*<|="undefined"/);
     assert.ok(html[language].includes('class="katex"'));
   }
   const original = Object.getOwnPropertyDescriptor(globalThis, 'Worker'); let reads = 0;
