@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-13 최신: [불확정성·공동 POVM 두 단원 연구 보강](physics-math-for-ai/quantum-uncertainty-research-status.md)을 마쳤다. 한영 4원고에 여러 fluctuation·순도·실수/복소 rank와 공동 측정 원판·순차 구현·보정 noise, 32수식·4 Python·4그림·12해설 문제를 추가했다. 격리 환경 262검사·빌드·타입·출력과 실제 reader 16상태를 검증했다. 양자 순차 대조는 **12/34단원**, 다음은 Schmidt·부분 trace와 PPT·CHSH 두 단원이다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**과 기존 650단원·1,969안내·입문 362/362 완료를 유지한다. 아래는 이전 기록이다.
+
 2026-11-13 최신: [밀도행렬·tomography·dephasing 두 단원 연구 보강](physics-math-for-ai/quantum-density-research-status.md)을 마쳤다. 한영 4원고에 유한 계수·물리적 추정·우도/신뢰영역과 중간 CPTP·시간율·고정 주파수 회복, 32수식·4 Python·4그림·12해설 문제를 추가했다. 격리 환경 247검사·빌드·타입·출력과 실제 reader 16상태를 검증했다. 양자 순차 대조는 **10/34단원**, 다음은 covariance·uncertainty와 POVM·instrument 두 단원이다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**과 기존 650단원·1,969안내·입문 362/362 완료를 유지한다. 아래는 이전 기록이다.
 
 2026-11-13 최신: [Spin·각운동량 두 단원 연구 보강](physics-math-for-ai/quantum-spin-research-status.md)을 마쳤다. 한영 4원고에 회전 정보·검출기 민감도·국소 분산 경계와 coherent/cat의 곡률·전역 alias, 32수식·4 Python·4그림·12해설 문제를 추가했다. 격리 환경 242검사·빌드·타입·출력과 실제 reader 16상태를 검증했다. 양자 순차 대조는 **8/34단원**, 다음은 밀도행렬·Gram/tomography·entropy/dephasing 두 단원이다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**과 기존 650단원·1,969안내·입문 362/362 완료를 유지한다. 아래는 이전 기록이다.

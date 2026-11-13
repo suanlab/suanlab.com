@@ -150,6 +150,124 @@ $$
 
 계산은 비가환 공동 분포나 측정 장치를 제공하지 않는다. 일반 관측량 대각화·연속 파동함수·유한 표본 추론은 별도 작업이다. 행렬 원소의 분모가 크다고 실제 실험의 정확도가 보장되는 것도 아니다.
 
+## 연구 확장: 여러 fluctuation과 보정된 qubit 순도 항등식
+
+### 복소 모멘트 행렬 전체를 유지하기
+
+두 벡터 증명은 유한한 Hermitian 관측량 목록 전체로 확장된다. 같은 상태에서 각각 중심화하고 Hilbert–Schmidt fluctuation 벡터를 만들자.
+
+$$
+\Delta A_i=A_i-\operatorname{Tr}(\rho A_i)I,\quad Z_i=\Delta A_i\sqrt\rho,\quad
+ G_{ij}=\operatorname{Tr}(Z_i^\dagger Z_j)=V_{ij}+iC_{ij},\quad G\succeq0,\quad
+ V_{ij}=\tfrac12\operatorname{Tr}\rho\{\Delta A_i,\Delta A_j\},\quad
+ C_{ij}=\frac{\operatorname{Tr}\rho[A_i,A_j]}{2i}.
+$$
+
+임의의 복소 계수 z에 대해 z†Gz는 Σz_i Z_i의 제곱 노름이므로 음수가 아니다. 실수 계수 u에서는 uᵀVu가 Hermitian 관측량 Σu_iA_i의 분산이다. 두 선형 결합은 다르다. 허수 반대칭 부분은 실수 u에서 상쇄되지만 전체 Gram 행렬을 여전히 제약한다.
+
+양성은 선택한 두 관측량 부등식뿐 아니라 모든 principal minor 부등식을 준다. 비가환 관측량의 공동 분포나 장치를 만들지는 않는다. 지정한 상태의 모멘트 제약이다. 준비·장치의 구별은 [Ozawa §II](https://arxiv.org/pdf/quant-ph/0510083)의 배경을 따르며 아래 유한 Pauli 항등식은 직접 유도한다.
+
+### 세 Pauli의 스펙트럼 구하기
+
+목록을 X,Y,Z 순서로 두고 qubit Bloch 벡터 r를 사용하자. Pauli 곱셈으로 전체 행렬을 얻는다.
+
+$$
+\rho=\tfrac12(I+\mathbf r\cdot\boldsymbol\sigma),\quad s=|\mathbf r|\le1,\quad
+ G_{ij}=\delta_{ij}-r_ir_j+i\sum_k\varepsilon_{ijk}r_k,\quad
+ V=I_3-\mathbf r\mathbf r^{\mathsf T}.
+$$
+
+예를 들어 G_xy=−r_xr_y+i r_z다. 허수부의 양의 부호는 XY=iZ와 본문의 상단 공분산 규약에서 나온다. 내적의 켤레 자리를 잘못 적용하면 부호를 뒤집는다.
+
+Proper 실수 회전은 방향 tensor를 보존하고 모멘트 행렬을 congruence로 변환한다.
+
+$$
+R\in SO(3):\quad G(R\mathbf r)=R\,G(\mathbf r)R^{\mathsf T},\qquad
+ V(R\mathbf r)=R\,V(\mathbf r)R^{\mathsf T}.
+$$
+
+s>0이면 r를 (0,0,s)로 회전시킨다. G는 대각1·비대각 ±is의 2×2 블록과1−s² 항으로 나뉘고 V는 대각이다. 따라서:
+
+$$
+\operatorname{spec}G=\{1+s,1-s,1-s^2\},\qquad
+ \operatorname{spec}V=\{1,1,1-s^2\}.
+$$
+
+s=0에서는 세 고유값이 같아 특별한 Bloch 축이 없다. s=1이면 G의 rank는1, V의 rank는2다. 복소·실수 fluctuation 종속성을 동일하게 취급할 수 없다.
+
+### 특정 가정 아래 불확정성 slack으로 순도를 읽기
+
+행렬식이나 두 Pauli principal determinant를 구하면 다음과 같다.
+
+$$
+\det G=(1-s^2)^2,\quad
+ \det G_{\{i,j\}}=1-s^2=2\bigl[1-\operatorname{Tr}(\rho^2)\bigr]\quad(i\ne j).
+$$
+
+이 보정된 qubit 모델에서는 두 관측량의 Schrödinger slack이 순도를 정한다. 교환자 기대가 포함되므로 X,Y 쌍에서는 X·Y 평균 외에 r_z도 필요하다. 서로 다른 결과 히스토그램 두 개만으로 순도를 복원한 것이 아니다.
+
+더 일반적인 실수 Pauli 방향에는 중심화 모멘트의 쌍선형성을 쓰자. 두 방향이 만드는 평면의 정규직교 기저를 택하면 2×2 좌표 변환이 행렬식에 면적의 제곱을 곱한다. 따라서:
+
+$$
+A=\mathbf a\cdot\boldsymbol\sigma,\quad B=\mathbf b\cdot\boldsymbol\sigma:\qquad
+ v_Av_B-|c_{AB}|^2=(1-|\mathbf r|^2)|\mathbf a\times\mathbf b|^2.
+$$
+
+두 방향이 나란하면 모든 상태에서 slack이0이다. 거의 나란하면 혼합 상태여도 작다. 따라서 측정한 slack이 거의0이라는 사실만으로 거의 순수하다고 인증할 수 없다. 차원·관측량 보정·축 사이 각도·통계 오차가 중요하다. 일반 고차원 관측량 쌍은 이 qubit 항등식을 따르지 않는다.
+
+### 복소 종속성이 무잡음 실수 결합이라는 뜻은 아니다
+
++z 순수 상태는 유용한 끝점이다.
+
+$$
+\mathbf r=(0,0,1):\quad \Delta Y\psi=i\Delta X\psi,\quad\Delta Z\psi=0,\quad
+ \operatorname{rank}_{\mathbb C}G=1,\quad\operatorname{rank}_{\mathbb R}V=2,\quad
+ \operatorname{Var}(uX+vY)=u^2+v^2\quad(u,v\in\mathbb R).
+$$
+
+X,Y의 실수 공분산 부분행렬 V는 항등이므로 그 평면의 영이 아닌 실수 결합은 분산이 양수다. 반면 복소 fluctuation 벡터는 종속이고 복소 Gram 행렬식은0이다. 계수 i로 만든 iX−Y는 무잡음 히스토그램을 갖는 Hermitian 관측량이 아니다. 복소 최소제곱 투영의 계수와 관측량 타원의 실수 계수를 구별하는 이유다.
+
+앞의 기울어진 순수 예제를 포함하는 유리수 가족을 사용하자.
+
+$$
+\rho_s=\tfrac12\left[I+\tfrac s5(3X+4Y)\right],\quad 0\le s\le1,\quad
+ v_X=1-9s^2/25,\quad v_Y=1-16s^2/25,\quad c_{XY}=-12s^2/25.
+$$
+
+```python
+from fractions import Fraction as Q
+for s in [Q(0), Q(1, 4), Q(3, 5), Q(1)]:
+    purity = (1+s*s)/2
+    pair_slack = 1-s*s
+    full_determinant = pair_slack*pair_slack
+    rank = 1 if s == 1 else 3
+    assert pair_slack == 2*(1-purity)
+    print(s, purity, pair_slack, full_determinant, rank)
+```
+
+| s | purity | pair slack | three determinant | complex rank |
+|---|---|---|---|---|
+| 0 | 1/2 | 1 | 1 | 3 |
+| 1/4 | 17/32 | 15/16 | 225/256 | 3 |
+| 3/5 | 17/25 | 16/25 | 256/625 | 3 |
+| 1 | 1 | 0 | 0 | 1 |
+
+![같은 준비에서 만든 세 Pauli의 복소 Gram·실수 공분산 고유값이 순수 상태 경계에서 서로 다른 rank로 접근하는 모습을 비교한다.](/assets/learning/quantum-uncertainty-research-pauli-gram-purity.ko.svg)
+
+표는 정확한 분수다. 그림은 회전 불변 고유값이며 추가로 동시에 측정한 결과들이 아니다. 기존 두 관측량 reader는 쌍 계산기이며 세 관측량 모멘트 행렬 제어를 추가하지 않았다.
+
+#### 연구 확인 1: 최대 혼합 qubit
+
+r=0이면 세 분산은1, 모든 공분산은0이고 G·V는 모두 I₃다. 각 Pauli 쌍의 강한 slack은1, 순도는1/2다. 교환자 기대가0이라고 관측량 쌍이 compatible인 것은 아니다.
+
+#### 연구 확인 2: 거의 나란한 축
+
+최대 혼합 상태에서 θ만큼 벌어진 두 단위 방향을 택하면 강한 slack은 sin²θ다. 축이 겹치면0으로 가지만 순도는 계속1/2다. 작은 slack은 알려진 축 기하와 함께 해석해야 한다.
+
+#### 연구 확인 3: qutrit으로 항등식을 옮기지 않기
+
+본문의 순수 e₀ qutrit과 서로 다른 두 transition의 pair slack은1이다. 두 fluctuation은 독립적인 직교 방향이다. 차원·Pauli closure 가정이 깨졌으므로 qubit 순도 공식을 대입하면 잘못된 결론을 얻는다.
+
 ## 12. 해설 문제와 연구 연결
 
 **1. I/2에서 X,Y 교환자 기대가0이면 두 연산자는 호환되는가?**

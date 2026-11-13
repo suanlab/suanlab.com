@@ -159,6 +159,129 @@ Channel의 비정규화 Choi 행렬은 J=Σij Ψ(|i⟩⟨j|)⊗|i⟩⟨j|이며 
 
 표시 제곱근과 정규화 Kraus 원소는768bit 작업·바깥쪽512bit 보고 구간을 쓴다. 반대 부호의 상쇄는 구간 평가 전에 유리화한다. 해결되지 않은 구간을 예상 정리에 맞춰 잘라내지 않고 미해결로 보고한다. 일반 다중 qubit이나 임의 POVM을 입력하는 기능은 없다. Naimark dilation은 더 큰 계로 POVM을 구현할 수 있음을 설명하지만, 이 예제가 모든 구현을 시뮬레이션하지는 않는다.
 
+## 연구 확장: 두 noisy 판독이 같은 POVM을 갖는 조건
+
+### Compatibility는 모든 입력의 효과에 관한 조건이다
+
+준비 Gram 행렬은 공동 장치를 만들지 않았다. 이제 특정한 두 unsharp 관측량의 장치를 구성하자. 무차원 Z·X와 서로 다른 강도를 사용한다.
+
+$$
+E_s=\tfrac12(I+s\kappa Z),\quad F_t=\tfrac12(I+t\lambda X),\qquad
+ s,t\in\{-1,+1\},\quad 0\le\kappa,\lambda\le1.
+$$
+
+공동 POVM은 주변 효과가 E_s·F_t인 양의 효과 네 개다. 단순한 후보는 다음과 같다.
+
+$$
+G_{st}=\tfrac14(I+s\kappa Z+t\lambda X),\quad
+ \sum_tG_{st}=E_s,\quad\sum_sG_{st}=F_t,\quad
+ \operatorname{spec}G_{st}=\left\{\frac{1\pm\sqrt{\kappa^2+\lambda^2}}4\right\},\quad
+ G_{st}\succeq0\ \Longleftrightarrow\ \kappa^2+\lambda^2\le1.
+$$
+
+Z·X가 반교환하므로 고유값을 얻는다. 따라서 원판 조건은 충분하다. 이 unbiased·직교·이진 주변 효과에서는 필요하기도 하며 편리한 후보 하나의 한계만이 아니다.
+
+필요성을 보이려면 지정한 주변 효과를 갖는 임의의 qubit 효과 넷을 전개한다. 남은 자유도는 실수 c와 실수 벡터 d다.
+
+$$
+\widetilde G_{st}=\tfrac14\left[(1+stc)I+
+ (s\mathbf a+t\mathbf b+st\mathbf d)\cdot\boldsymbol\sigma\right],\quad
+ \mathbf a=\kappa\mathbf e_z,\quad\mathbf b=\lambda\mathbf e_x,\quad
+ |\mathbf a+\mathbf b|\le1+c,\quad|\mathbf a-\mathbf b|\le1-c,\quad
+ |\mathbf a+\mathbf b|+|\mathbf a-\mathbf b|\le2.
+$$
+
+양성에 의해 Bloch 분자의 길이는 scalar 부분 이하다. ++와 −−를 짝지어 삼각부등식을 쓰면 첫 길이 경계, +−와 −+를 짝지으면 둘째를 얻는다. 직교 a,b의 두 길이는 모두 √(κ²+λ²)이므로 합에서 같은 원판 조건이 나온다. [Busch·Heinosaari](https://arxiv.org/pdf/0706.1415)의 qubit compatibility 기하를 직교 경우에 적용한 것이다.
+
+날카로운 쌍 κ=λ=1은 원판 밖이다. 이는 모든 입력의 incompatibility이며 교환자 기대가0인 상태에서도 같다. 준비 폭 경계와 측정 compatibility는 별개다.
+
+### 지정한 순차 도구로 경계 구현하기
+
+먼저 E_s의 Lüders 도구를 수행하고 X를 날카롭게 측정하자. 두 번째 검출기를 첫 분기로 되당긴다.
+
+$$
+P_t^X=\tfrac12(I+tX),\quad h=\sqrt{1-\kappa^2},\qquad
+ \sqrt{E_s}\,P_t^X\sqrt{E_s}
+ =\tfrac14(I+s\kappa Z+thX).
+$$
+
+X 주변 강도는1이 아니라 h다. 따라서 순서 실험은 noisy Z와 noisy X의 공동 측정이며 초기 sharp 값의 장치 독립적인 공동 법칙이 아니다.
+
+두 번째 검출기도 강도 μ로 unsharp이면 유효 강도는 다음과 같다.
+
+$$
+F_t^{(\mu)}=\tfrac12(I+t\mu X),\quad0\le\mu\le1,\qquad
+ \lambda_{\rm effective}=\mu\sqrt{1-\kappa^2},\quad
+ \mu=\frac{\lambda}{\sqrt{1-\kappa^2}}\quad(\kappa<1).
+$$
+
+κ<1에서 원판 안의 모든 점을 이 방식으로 얻는다. κ=1이면 λ=0만 compatible이며 역산 식을 쓸 수 없다. 두 번째 공정한 동전 주변값은 수치 epsilon으로 나누어 정보를 만들 수 없다.
+
+도구 선택이 중요하다. 같은 첫 효과 E_s 뒤 본문의 prepare 도구를 쓰면 이후 X 검사는 공정한 동전이다. 보존된 각 Z 고유상태의 X 확률이 같기 때문이다. 첫 POVM만으로 특정 구현이 보존할 두 번째 주변 효과가 결정되지는 않는다. Joint measurability는 적절한 구현의 존재를 말하며 같은 첫 효과의 모든 instrument가 같다는 뜻은 아니다.
+
+### 두 pointer를 보정하고 잡음 계산하기
+
+효과 네 개의 후보에서 기록 법칙은 다음과 같다. 강도가 양수이면 불편 보정 pointer를 정의할 수 있다.
+
+$$
+p(s,t|\rho)=\operatorname{Tr}(\rho G_{st})=\tfrac14(1+s\kappa r_z+t\lambda r_x),\quad
+ M_Z=s/\kappa,\quad M_X=t/\lambda,\quad
+ \mathbb E M_Z=r_z,\quad\mathbb E M_X=r_x\quad(\kappa,\lambda>0).
+$$
+
+평균은 날카로운 관측량 평균과 같지만 이차 모멘트는 κ⁻²·λ⁻²다. 앞의 RMS 모멘트 식에 넣으면 다음을 얻는다.
+
+$$
+\epsilon_Z^2=\kappa^{-2}-1,\quad\epsilon_X^2=\lambda^{-2}-1,\qquad
+ \epsilon_Z^2\epsilon_X^2=\frac{(1-\kappa^2)(1-\lambda^2)}{\kappa^2\lambda^2}\ge1
+ \quad(\kappa,\lambda>0,\ \kappa^2+\lambda^2\le1).
+$$
+
+마지막 부등식은 양의 분모를 곱하면1−κ²−λ²≥0과 같다. 두 강도가 영이 아닌 경계에서 등호다. 지정한 공동 POVM의 보정된 주변 오차 둘에 관한 곱 관계다. 배제했던 보편적인 ε(A)η(B)≥C 대체가 아니다. 여기의 두 번째 양은 channel 교란이 아니라 다른 판독 오차다. [Ozawa의 jointly unbiased 판독 논의](https://arxiv.org/pdf/quant-ph/0510083)는 이 가정들이 중요한 이유를 설명한다.
+
+경계 위 유리수 점으로 tradeoff를 살펴보자.
+
+$$
+\kappa=\frac{1-u^2}{1+u^2},\quad\lambda=\frac{2u}{1+u^2},\quad0\le u\le1,\qquad
+ \kappa^2+\lambda^2=1.
+$$
+
+```python
+from fractions import Fraction as Q
+for u in [Q(0), Q(1, 3), Q(1, 2), Q(1)]:
+    kappa, second = (1-u*u)/(1+u*u), 2*u/(1+u*u)
+    assert kappa*kappa + second*second == 1
+    error_z = 1/(kappa*kappa)-1 if kappa else None
+    error_x = 1/(second*second)-1 if second else None
+    if error_z is not None and error_x is not None:
+        assert error_z*error_x == 1
+    label = lambda value: "undefined" if value is None else str(value)
+    print(u, kappa, second, label(error_z), label(error_x))
+```
+
+| u | kappa | lambda | error_Z squared | error_X squared |
+|---|---|---|---|---|
+| 0 | 1 | 0 | 0 | undefined |
+| 1/3 | 4/5 | 3/5 | 9/16 | 16/9 |
+| 1/2 | 3/5 | 4/5 | 16/9 | 9/16 |
+| 1 | 0 | 1 | undefined | 0 |
+
+![직교 unsharp 강도는 사분 원판 안에 있어야 하며 경계에서는 보정된 두 주변 오차 제곱이 역수 관계이고 끝점의 한 보정은 정의되지 않음을 보여 준다.](/assets/learning/quantum-uncertainty-research-joint-unsharp-readouts.ko.svg)
+
+끝점의 undefined는 사용할 수 없는 보정 pointer이며 그림을 위해 만든 큰 유한 오차가 아니다. 현재 reader는 이진 POVM·instrument를 비교하며 범용 4결과 공동 측정 제어를 추가하지 않았다. 효과와 순차 구성은 독립 유도다.
+
+#### 연구 확인 1: 같은 강도의 두 주변 효과
+
+κ=λ이면 compatibility에 κ≤1/√2가 필요하다. 등호에서 두 보정 RMS 오차 제곱은 각각1이다. 둘 다0.9로 만들면 표시한 후보 하나가 아니라 어떤 공동 후보에서도 음의 고유값이 필요하게 된다.
+
+#### 연구 확인 2: 확실한 준비가 장치 조건을 없애지는 않는다
+
++Z 입력의 본래 Z 분산은0이다. 그래도 모든 입력에서 두 주변 효과를 주장하는 장치는 원판을 만족해야 한다. 상태가 확실하다고 sharp Z·X 효과를 함께 구현할 수 있는 것은 아니다.
+
+#### 연구 확인 3: 오차와 교란 구별하기
+
+Sharp Z Lüders 측정의 Z 판독 오차는0이지만 후속 sharp X 검출기의 초기 X 주변은 완전히 정보가 없다. 보정 X pointer는 정의되지 않는다. 앞에서 계산한 양의 X RMS 교란과 모순되지 않으며 그 교란을 빠진 보정 pointer로 대체해서도 안 된다.
+
 ## 12. 해설 문제와 AI 연결
 
 **1. κ=0이면 교란도 없는가?**

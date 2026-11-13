@@ -159,6 +159,129 @@ The experiment accepts 22 owned integers of magnitude at most10⁶: a rational B
 
 Display square roots and explicit normalized Kraus entries use 768-bit work and outward 512-bit reporting. Opposite-sign cancellation is rationalized before interval evaluation. An unresolved interval is reported as unresolved rather than clipped to a presumed theorem. The calculator has no general multiqubit or arbitrary POVM input. Naimark dilation explains why POVMs can be realized with larger systems, but this example does not simulate every such realization.
 
+## Research extension: when two noisy readouts have a common POVM
+
+### Compatibility is a condition on effects for all inputs
+
+The preparation Gram matrix did not construct a joint apparatus. We now construct one for two specific unsharp observables. Use dimensionless Z and X, with separate strengths:
+
+$$
+E_s=\tfrac12(I+s\kappa Z),\quad F_t=\tfrac12(I+t\lambda X),\qquad
+ s,t\in\{-1,+1\},\quad 0\le\kappa,\lambda\le1.
+$$
+
+A joint POVM consists of four positive effects whose marginals are E_s and F_t. A simple candidate is:
+
+$$
+G_{st}=\tfrac14(I+s\kappa Z+t\lambda X),\quad
+ \sum_tG_{st}=E_s,\quad\sum_sG_{st}=F_t,\quad
+ \operatorname{spec}G_{st}=\left\{\frac{1\pm\sqrt{\kappa^2+\lambda^2}}4\right\},\quad
+ G_{st}\succeq0\ \Longleftrightarrow\ \kappa^2+\lambda^2\le1.
+$$
+
+The eigenvalues follow because Z and X anticommute. Thus the disk condition is sufficient. It is also necessary for these unbiased orthogonal binary marginals, not just a limitation of this convenient candidate.
+
+To prove necessity, expand any four qubit effects with the required marginals. Their remaining freedom is a real scalar c and real vector d:
+
+$$
+\widetilde G_{st}=\tfrac14\left[(1+stc)I+
+ (s\mathbf a+t\mathbf b+st\mathbf d)\cdot\boldsymbol\sigma\right],\quad
+ \mathbf a=\kappa\mathbf e_z,\quad\mathbf b=\lambda\mathbf e_x,\quad
+ |\mathbf a+\mathbf b|\le1+c,\quad|\mathbf a-\mathbf b|\le1-c,\quad
+ |\mathbf a+\mathbf b|+|\mathbf a-\mathbf b|\le2.
+$$
+
+Positivity bounds the lengths of the Bloch numerators by their scalar parts. Pairing ++ with −− and using the triangle inequality gives the first length bound; pairing +− with −+ gives the second. For orthogonal a,b both lengths equal √(κ²+λ²), so their sum forces the same disk condition. This is the orthogonal specialization of the qubit compatibility geometry in [Busch and Heinosaari](https://arxiv.org/pdf/0706.1415).
+
+The sharp pair κ=λ=1 lies outside the disk. This incompatibility concerns every input state and persists even for a state with zero commutator expectation. Preparation-width bounds and measurement compatibility are separate statements.
+
+### Realize the boundary by a specified sequential instrument
+
+First perform the Lüders instrument for E_s, then measure X sharply. Pull the second detector back through the first branch:
+
+$$
+P_t^X=\tfrac12(I+tX),\quad h=\sqrt{1-\kappa^2},\qquad
+ \sqrt{E_s}\,P_t^X\sqrt{E_s}
+ =\tfrac14(I+s\kappa Z+thX).
+$$
+
+Its X marginal has strength h, rather than1. The ordered experiment is therefore a joint measurement of noisy Z and noisy X; it is not an apparatus-independent joint law of the initial sharp values.
+
+If the second detector is itself unsharp with strength μ, the resulting effective strength is:
+
+$$
+F_t^{(\mu)}=\tfrac12(I+t\mu X),\quad0\le\mu\le1,\qquad
+ \lambda_{\rm effective}=\mu\sqrt{1-\kappa^2},\quad
+ \mu=\frac{\lambda}{\sqrt{1-\kappa^2}}\quad(\kappa<1).
+$$
+
+Every point inside the compatibility disk can be obtained this way for κ<1. At κ=1 only λ=0 is compatible and the inverse formula is unavailable. A fair-coin second marginal is not made informative by dividing by a numerical epsilon.
+
+The instrument choice matters. If we instead use the chapter's prepare instrument after the same first effects E_s, a subsequent X test is a fair coin: each retained Z eigenstate has equal X probabilities. The first POVM alone therefore does not determine which second marginal a particular realization preserves. Joint measurability asserts the existence of a suitable realization, not identical behavior of every instrument with those first effects.
+
+### Calibrate both pointers and account for their noise
+
+For the four-effect candidate, the records have the following law. Positive strengths allow unbiased calibrated pointer values:
+
+$$
+p(s,t|\rho)=\operatorname{Tr}(\rho G_{st})=\tfrac14(1+s\kappa r_z+t\lambda r_x),\quad
+ M_Z=s/\kappa,\quad M_X=t/\lambda,\quad
+ \mathbb E M_Z=r_z,\quad\mathbb E M_X=r_x\quad(\kappa,\lambda>0).
+$$
+
+Their means reproduce the sharp means, but their second moments are κ⁻² and λ⁻². Substituting these into the earlier RMS moment formula yields:
+
+$$
+\epsilon_Z^2=\kappa^{-2}-1,\quad\epsilon_X^2=\lambda^{-2}-1,\qquad
+ \epsilon_Z^2\epsilon_X^2=\frac{(1-\kappa^2)(1-\lambda^2)}{\kappa^2\lambda^2}\ge1
+ \quad(\kappa,\lambda>0,\ \kappa^2+\lambda^2\le1).
+$$
+
+The last inequality is equivalent to 1−κ²−λ²≥0 after multiplying by the positive denominators. Equality holds on the boundary when both strengths are nonzero. This is a product relation for two calibrated marginal errors of this specified joint POVM. It is not the rejected universal replacement ε(A)η(B)≥C: the second quantity here is another readout error, not channel disturbance. [Ozawa's discussion of jointly unbiased readouts](https://arxiv.org/pdf/quant-ph/0510083) explains why such hypotheses matter.
+
+Use rational points on the boundary to inspect the tradeoff:
+
+$$
+\kappa=\frac{1-u^2}{1+u^2},\quad\lambda=\frac{2u}{1+u^2},\quad0\le u\le1,\qquad
+ \kappa^2+\lambda^2=1.
+$$
+
+```python
+from fractions import Fraction as Q
+for u in [Q(0), Q(1, 3), Q(1, 2), Q(1)]:
+    kappa, second = (1-u*u)/(1+u*u), 2*u/(1+u*u)
+    assert kappa*kappa + second*second == 1
+    error_z = 1/(kappa*kappa)-1 if kappa else None
+    error_x = 1/(second*second)-1 if second else None
+    if error_z is not None and error_x is not None:
+        assert error_z*error_x == 1
+    label = lambda value: "undefined" if value is None else str(value)
+    print(u, kappa, second, label(error_z), label(error_x))
+```
+
+| u | kappa | lambda | error_Z squared | error_X squared |
+|---|---|---|---|---|
+| 0 | 1 | 0 | 0 | undefined |
+| 1/3 | 4/5 | 3/5 | 9/16 | 16/9 |
+| 1/2 | 3/5 | 4/5 | 16/9 | 9/16 |
+| 1 | 0 | 1 | undefined | 0 |
+
+![The orthogonal unsharp strengths must lie inside a quarter disk; on its boundary the two calibrated marginal error squares trade off reciprocally, with calibration unavailable at the endpoints.](/assets/learning/quantum-uncertainty-research-joint-unsharp-readouts.en.svg)
+
+The endpoint word undefined denotes an unavailable calibrated pointer, not a large finite error invented for the plot. The current reader compares a binary POVM and its instruments; it has not gained a general four-outcome joint-measurement control. These effects and the sequential construction are standalone derivations.
+
+#### Research check 1: two equally strong marginals
+
+Set κ=λ. Compatibility requires κ≤1/√2. At equality each calibrated RMS error square is1. Making both strengths0.9 would require negative eigenvalues in any joint candidate, not merely in the one written above.
+
+#### Research check 2: a certain preparation does not remove the device condition
+
+For input +Z the intrinsic Z variance is0. The same device must still satisfy the compatibility disk if it claims both marginals on every input. State certainty is not permission to build jointly sharp Z and X effects.
+
+#### Research check 3: keep errors and disturbance distinct
+
+For a sharp Z Lüders measurement, the Z readout error is0 but a later sharp X detector realizes a completely uninformative initial X marginal. Its calibrated X pointer is undefined. This does not contradict the nonzero RMS disturbance of X calculated earlier, nor justify replacing that disturbance by the missing calibrated pointer.
+
 ## 12. Exercises, explanations and connections to AI
 
 **1. Does κ=0 imply no disturbance?**

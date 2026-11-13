@@ -150,6 +150,124 @@ Moments, complex covariance, determinant slacks, decomposition and projection ac
 
 The computation supplies neither a noncommuting joint distribution nor a measurement apparatus. General observable diagonalization, continuous wavefunctions and finite-shot inference are different tasks. A large matrix-entry denominator is not a promise of experimental accuracy.
 
+## Research extension: several fluctuations and a calibrated qubit purity identity
+
+### Keep the entire complex moment matrix
+
+The two-vector proof extends to any finite list of Hermitian observables. Center each one in the same state and form Hilbert–Schmidt fluctuation vectors:
+
+$$
+\Delta A_i=A_i-\operatorname{Tr}(\rho A_i)I,\quad Z_i=\Delta A_i\sqrt\rho,\quad
+ G_{ij}=\operatorname{Tr}(Z_i^\dagger Z_j)=V_{ij}+iC_{ij},\quad G\succeq0,\quad
+ V_{ij}=\tfrac12\operatorname{Tr}\rho\{\Delta A_i,\Delta A_j\},\quad
+ C_{ij}=\frac{\operatorname{Tr}\rho[A_i,A_j]}{2i}.
+$$
+
+For any complex coefficients z, z†Gz is the squared norm of Σz_i Z_i and cannot be negative. For real coefficients u, uᵀVu is the variance of the Hermitian observable Σu_iA_i. These are different kinds of linear combination. The imaginary antisymmetric part cancels for real u but still constrains the full Gram matrix.
+
+Positivity supplies all principal-minor inequalities, not only a selected two-observable relation. This does not produce a joint distribution or an apparatus for incompatible observables. It is a constraint on moments of a specified state. The preparation-versus-device distinction follows the background discussed in [Ozawa §II](https://arxiv.org/pdf/quant-ph/0510083); the finite Pauli identities below are derived directly here.
+
+### Resolve the three-Pauli spectrum
+
+Use the ordered list X,Y,Z and a qubit Bloch vector r. Pauli multiplication gives the full matrix:
+
+$$
+\rho=\tfrac12(I+\mathbf r\cdot\boldsymbol\sigma),\quad s=|\mathbf r|\le1,\quad
+ G_{ij}=\delta_{ij}-r_ir_j+i\sum_k\varepsilon_{ijk}r_k,\quad
+ V=I_3-\mathbf r\mathbf r^{\mathsf T}.
+$$
+
+For example G_xy=−r_xr_y+i r_z. The plus sign of this imaginary part follows from XY=iZ and from the chapter's upper-right covariance convention. Conjugating the wrong inner-product slot would reverse it.
+
+A proper real rotation preserves the orientation tensor and transforms the moment matrices by congruence:
+
+$$
+R\in SO(3):\quad G(R\mathbf r)=R\,G(\mathbf r)R^{\mathsf T},\qquad
+ V(R\mathbf r)=R\,V(\mathbf r)R^{\mathsf T}.
+$$
+
+When s>0, rotate r to (0,0,s). Then G has a 2×2 block with diagonal1 and off-diagonal ±is, plus the entry1−s². V is diagonal in that frame. Hence:
+
+$$
+\operatorname{spec}G=\{1+s,1-s,1-s^2\},\qquad
+ \operatorname{spec}V=\{1,1,1-s^2\}.
+$$
+
+At s=0 all three eigenvalues coincide and there is no distinguished Bloch axis. At s=1, G has rank1 while V has rank2. The complex and real notions of fluctuation dependence cannot be identified.
+
+### An uncertainty slack can reveal purity under specific assumptions
+
+Taking the determinant, or any two-Pauli principal determinant, gives:
+
+$$
+\det G=(1-s^2)^2,\quad
+ \det G_{\{i,j\}}=1-s^2=2\bigl[1-\operatorname{Tr}(\rho^2)\bigr]\quad(i\ne j).
+$$
+
+For this calibrated qubit model the two-observable Schrödinger slack determines purity. It includes the commutator expectation: for X,Y that requires r_z as well as the X and Y means. It is not a reconstruction of purity from only two unrelated outcome histograms.
+
+For more general real Pauli directions, use bilinearity of the centered moments. Choose an orthonormal basis of the plane spanned by the two directions; its 2×2 change of coordinates multiplies the determinant by the squared area. This gives:
+
+$$
+A=\mathbf a\cdot\boldsymbol\sigma,\quad B=\mathbf b\cdot\boldsymbol\sigma:\qquad
+ v_Av_B-|c_{AB}|^2=(1-|\mathbf r|^2)|\mathbf a\times\mathbf b|^2.
+$$
+
+If the directions are parallel, the slack vanishes for every state. Near-parallel directions make it small even for a mixed state. Thus an almost-zero measured slack does not by itself certify almost-purity: dimension, observable calibration, axis separation and statistical errors matter. A generic higher-dimensional pair does not obey this qubit identity.
+
+### Complex dependence need not mean a noiseless real combination
+
+The +z pure state is an instructive endpoint:
+
+$$
+\mathbf r=(0,0,1):\quad \Delta Y\psi=i\Delta X\psi,\quad\Delta Z\psi=0,\quad
+ \operatorname{rank}_{\mathbb C}G=1,\quad\operatorname{rank}_{\mathbb R}V=2,\quad
+ \operatorname{Var}(uX+vY)=u^2+v^2\quad(u,v\in\mathbb R).
+$$
+
+Its X,Y covariance submatrix V is the identity, so every nonzero real combination in that plane has positive variance. Yet the complex fluctuation vectors are dependent and the complex Gram determinant vanishes. The coefficient i does not define a Hermitian combination iX−Y whose histogram would be noiseless. This is the same distinction behind using complex coefficients in a least-squares projection but real coefficients for an observable ellipse.
+
+For a rational family that includes the earlier tilted pure example, take:
+
+$$
+\rho_s=\tfrac12\left[I+\tfrac s5(3X+4Y)\right],\quad 0\le s\le1,\quad
+ v_X=1-9s^2/25,\quad v_Y=1-16s^2/25,\quad c_{XY}=-12s^2/25.
+$$
+
+```python
+from fractions import Fraction as Q
+for s in [Q(0), Q(1, 4), Q(3, 5), Q(1)]:
+    purity = (1+s*s)/2
+    pair_slack = 1-s*s
+    full_determinant = pair_slack*pair_slack
+    rank = 1 if s == 1 else 3
+    assert pair_slack == 2*(1-purity)
+    print(s, purity, pair_slack, full_determinant, rank)
+```
+
+| s | purity | pair slack | three determinant | complex rank |
+|---|---|---|---|---|
+| 0 | 1/2 | 1 | 1 | 3 |
+| 1/4 | 17/32 | 15/16 | 225/256 | 3 |
+| 3/5 | 17/25 | 16/25 | 256/625 | 3 |
+| 1 | 1 | 0 | 0 | 1 |
+
+![The three-Pauli complex Gram eigenvalues and real covariance eigenvalues approach different ranks at a pure-state boundary, despite being built from the same preparation.](/assets/learning/quantum-uncertainty-research-pauli-gram-purity.en.svg)
+
+The table uses exact fractions. The figure shows rotationally invariant eigenvalues, not extra simultaneously measured outcomes. The existing two-observable reader remains a pair calculator; a three-observable moment-matrix control has not been added.
+
+#### Research check 1: the maximally mixed qubit
+
+For r=0, all three variances equal1, all covariances vanish and both G and V equal I₃. Each Pauli pair has strong slack1 and purity is1/2. A zero commutator expectation did not make either operator pair compatible.
+
+#### Research check 2: nearly parallel axes
+
+For a maximally mixed state, choose unit directions separated by angle θ. Their strong slack is sin²θ, which tends to0 as the axes coincide although purity stays1/2. A small slack must be interpreted with the known axis geometry.
+
+#### Research check 3: do not transfer the identity to a qutrit
+
+The chapter's pure e₀ qutrit with two independent transitions has pair slack1. Its fluctuations span two independent orthogonal directions. Using the qubit purity formula there would give the wrong conclusion because the Pauli closure and dimension assumptions have failed.
+
 ## 12. Exercises, explanations and research directions
 
 **1. For I/2 with X,Y, does a zero commutator expectation imply compatible operators?**
