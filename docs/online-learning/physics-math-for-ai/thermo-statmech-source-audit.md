@@ -82,3 +82,8 @@ Levin–Peres의 저자 공개 [Markov Chains and Mixing Times](https://pages.uo
 ## 상세평형 연구 보강: 경로 정보와 추정 분산의 가정
 
 [Yang·Qian II–III절](https://arxiv.org/html/1904.01064v3)의 확률 측도 반전·요동 관계, [Peskun 2.1–2.2절](https://www2.stat.duke.edu/~scs/Courses/Stat376/Papers/ConvergeRates/Peskun1973.pdf)의 유한 상태 점근 분산 순서, [Levin·Peres 1·12·17장](https://pages.uoregon.edu/dlevin/MARKOV/markovmixing.pdf)의 Markov·스펙트럼·추정을 대조했다. Peskun 원문은 스캔 PDF의 인쇄 608·610쪽을 직접 확인했다. 균일 정상 삼각형의 경로 로그 비·단방향 지지 예외, 평균 0 부분공간의 Dirichlet/Poisson 유도와 세 상태 Barker 비교, 초기화별 이진 표본 평균 공분산·MSE·머무름 재설정은 지정 모형에서 직접 계산한다. 물리적 국소 상세평형을 가정하지 않은 통계적 비가역성에 열 단위를 부여하지 않는다. 같은 시도 수의 점근 분산 순서를 모든 유한 오차·분포 혼합·실행 시간 순서로 확대하지 않는다. [검증 기록](detailed-balance-research-status.md)의 재현 범위와 전체 미완료 표시를 유지한다.
+
+
+## 유한계 연구 보강: 작은 밀도 오차와 남는 확률 의존성
+
+[Tong 통계물리 5장](https://davidtong.org/pdfs/teaching/statistical-physics/statphys5.pdf)의 Ising·전이행렬 배경, [MIT 6.436J 강의19](https://ocw.mit.edu/courses/6-436j-fundamentals-of-probability-fall-2018/resources/mit6_436jf18_lec19/)의 균등 적분 가능성 정의와 모멘트 수렴 조건, [Mueller·Janke·Johnston](https://arxiv.org/html/1312.5984v2)의 두 상 가중치와 유한 크기 전이점 이동을 대조했다. 열린 사슬의 경계 KL·TV·상호 정보, IID/집단 혼합의 약한 극한·탈출 이차 모멘트, 다항 기준 가중 N^κ의 중심·영점·반응도 측도는 지정 모형에서 직접 유도했다. 원문의 지수 축퇴와 이 다항 모형은 다르며 원문의 크기 지수를 가져오지 않는다. 자유 에너지 밀도 수렴을 전체 확률 법칙의 TV 수렴이나 독립성으로, 약한 Gaussian 수렴을 이차 모멘트 수렴으로, 유한 모형 계산을 일반 열역학 극한 정리로 확대하지 않는다. [검증 기록](finite-size-research-status.md)의 재현 범위와 전체 미완료 표시를 유지한다.

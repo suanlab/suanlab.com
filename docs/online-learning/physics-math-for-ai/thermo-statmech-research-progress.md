@@ -2,7 +2,7 @@
 
 2026-11-13. 이 영역에는 이미 **11원주제·32등록 단원·64한영 원고**가 있다. [기존 입문 종합 감사](thermodynamics-domain-audit-stage12.md)는 32단원 전체의 출발 근거다. 미집필로 다시 세거나 22단원으로 범위를 줄이지 않는다. 전체 교육과정의 연구 대조는 **43영역·426주제 완료 / 8영역·83주제 후속**이며 이 영역의 종합 대조는 미완료다.
 
-현재 순차 연구 보강은 **29/32단원**이다. [경로 비가역성·수락 분산 순서·초기화 MSE](detailed-balance-research-status.md)까지 검증했다. 다음은 유한계와 열역학 극한 세 단원이며 나머지 3단원 후속과 영역 종합 대조가 남아 있다.
+현재 순차 연구 보강은 **32/32단원**이다. [유한계·열역학 극한 연구 보강](finite-size-research-status.md)까지 검증했다. 개별 단원 후속은 모두 연결했으며 **11원주제·32단원 영역 종합 대조**가 남아 있다.
 
 ## 첫 연구 보강: 평형 점유 확률을 이용한 온도 추정
 
@@ -16,7 +16,7 @@
 
 ## 등록 단원별 후속 순서
 
-‘후속’은 기존 입문 내용이 없다는 뜻이 아니다. 원문·출처·독립 계산·Worker·학습 화면 근거를 먼저 읽고, 필요한 연구 설명과 예제를 보강한 뒤 실제 정적 reader를 검사한다. 아래 순서는 기존 단원 연결을 따르며 현재 첫 스물아홉 단원의 순차 연구 보강을 검증했다.
+‘후속’은 기존 입문 내용이 없다는 뜻이 아니다. 원문·출처·독립 계산·Worker·학습 화면 근거를 먼저 읽고, 필요한 연구 설명과 예제를 보강한 뒤 실제 정적 reader를 검사한다. 아래 순서는 기존 단원 연결을 따르며 현재 32단원 전체의 순차 연구 보강을 검증했다.
 
 | 단원 ID | 기존 대응 | 연구 보강 상태 |
 |---|---|---|
@@ -49,12 +49,12 @@
 | `stationary-flux-three-state-cycle` | 상세평형 | [상세평형 연구 보강 검증](detailed-balance-research-status.md) |
 | `metropolis-hastings-proposal-balance` | 상세평형 | [상세평형 연구 보강 검증](detailed-balance-research-status.md) |
 | `reversible-two-state-periodicity-mixing` | 상세평형 | [상세평형 연구 보강 검증](detailed-balance-research-status.md) |
-| `boundary-growth-extensivity-additivity` | 유한계와 열역학 극한 | 기존 근거 대조 후 후속 |
-| `spatial-density-self-averaging-correlations` | 유한계와 열역학 극한 | 기존 근거 대조 후 후속 |
-| `two-phase-partition-zeros-rounding` | 유한계와 열역학 극한 | 기존 근거 대조 후 후속 |
+| `boundary-growth-extensivity-additivity` | 유한계와 열역학 극한 | [유한계 연구 보강 검증](finite-size-research-status.md) |
+| `spatial-density-self-averaging-correlations` | 유한계와 열역학 극한 | [유한계 연구 보강 검증](finite-size-research-status.md) |
+| `two-phase-partition-zeros-rounding` | 유한계와 열역학 극한 | [유한계 연구 보강 검증](finite-size-research-status.md) |
 
 ## 검증과 다음 단계
 
 본문의 실행 예제와 한영 수식·표·그림 경로·원문 보존은 `node_modules/.bin/tsx --test scripts/learning-thermometry-research.test.ts`로 확인한다. 별도 미시 상태 열거·확률 미분·횟수 우도·경계 계산은 `python3 scripts/learning/verify-thermometry-research.py`로 재현한다. 정적 출력 후 `SUANLAB_TEST_BASE=http://127.0.0.1:43309 node scripts/check-thermometry-research.cjs`를 실행한다. 브라우저 주소에는 실제 preview 포트를 사용한다.
 
-다음은 `boundary-growth-extensivity-additivity`, `spatial-density-self-averaging-correlations`, `two-phase-partition-zeros-rounding`의 기존 원고·계산·입문 감사 근거를 먼저 읽고 연구 설명을 보강한다. 나머지 3단원과 영역 전체 종합 검증은 미완료다. 이번 세 단원의 재현 범위는 [상세평형 보강 기록](detailed-balance-research-status.md)을 따른다.
+다음은 11원주제·32등록 단원·64한영 원고의 연구 종합 대조다. 현재 원고·실행 예제·선수 관계와 같은 최종 정적 출력의 실제 reader를 전체 범위에서 확인한 뒤 영역 완료를 집계한다. 이번 세 단원의 재현 범위는 [유한계 보강 기록](finite-size-research-status.md)을 따른다.

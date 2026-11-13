@@ -13,9 +13,9 @@ const printed = (q: Q) => { const { n, d } = fraction(q); return `${n}${d === Bi
 function tables(source: string) { return (source.match(/(?:^\|.*\|\n)+/gm) ?? []).map(group => group.trim().split('\n').slice(2).map(line => line.split('|').slice(1, -1).map(cell => cell.trim()))); }
 for (const language of ['ko', 'en'] as const) test(`${language}: two-phase manuscript renders complete math, ledgers, two diagrams and explained exercises`, async () => {
  const source = raw(language), content = await getLearningContent(id), html = content[language];
- assert.equal(content.outline[language].length, 16); assert.equal(new Set(content.outline[language].map(h => h.id)).size, 16);
+ assert.equal(content.outline[language].length, 17); assert.equal(new Set(content.outline[language].map(h => h.id)).size, 17);
  assert.equal((source.match(/^### [1-6]\. /gm) ?? []).length, 6); assert.equal((source.match(/\*\*(?:Explanation\.|해설\.)\*\*/g) ?? []).length, 6);
- assert.equal((html.match(/class="katex-display"/g) ?? []).length, 14); assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 14); assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 4); assert.equal((html.match(/<pre[^>]*tabindex="0"[^>]*role="region"/g) ?? []).length, 2);
+ assert.equal((html.match(/class="katex-display"/g) ?? []).length, 22); assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 22); assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 5); assert.equal((html.match(/<pre[^>]*tabindex="0"[^>]*role="region"/g) ?? []).length, 3);
  assert.match(html, /No intermediate configurations are allowed/); assert.match(html, /The four roots lie on the unit circle/); assert.doesNotMatch(html, /katex-error|\$\$|@@E\d/); assert.doesNotMatch(source, /^# |^---/m);
  if (language === 'en') { assert.ok(source.split(/\s+/).length > 2400); assert.doesNotMatch(html, /[가-힣]/); } else assert.ok((source.match(/[가-힣]/g) ?? []).length > 4200);
 });

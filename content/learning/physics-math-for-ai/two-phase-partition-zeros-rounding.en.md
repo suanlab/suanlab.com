@@ -259,6 +259,120 @@ At the default N=4,z=2, the two allowed weights are1 and16, so occupied probabil
 
 The root slider selects a root at the requested current N without changing N. ‘Log pressure-correction display’ reveals tiny positive DeltaN. Even if exp(NDeltaN) displays as one, open the certificate to inspect the positive lower bound for DeltaN. Activity or offset inputs disabled on a path remain stored and unused by that path. Size progress is not time, and complex-root terms are not probabilities.
 
+## Research extension: a subextensive reference weight can move the transition window
+
+The original two configurations have equal reference weights. A finite-size prefactor can change their balance even when it does not change the limiting pressure. We now specify a different two-branch law to calculate the resulting drift of the response peak and complex zeros. The original reader and its unit-circle roots remain correct for the original equal-weight law.
+
+### Declare the new reference measure before taking a limit
+
+Give the empty branch weight one and the occupied branch weight b_N=N^κ, with fixed κ>0. For integer κ this can represent N^κ distinct internal labels with the same occupied count K=N; these are additional labels, not newly allowed intermediate binary occupancies. Alternatively b_N is simply a specified positive reference weight. At fixed N it is independent of g.
+
+$$
+\widetilde Z_N(g)=1+N^\kappa e^{Ng},\qquad \widetilde p_N(g)=\frac{1}{1+\exp[-Ng-\kappa\ln N]}.
+$$
+
+Because ln b_N grows sublinearly in N, the pressure still approaches the same corner. For κ≥0 an explicit uniform bound is
+
+$$
+0\leq\frac{\ln\widetilde Z_N(g)}N-\max(0,g)\leq\frac{\ln(1+N^\kappa)}N\longrightarrow0.
+$$
+
+This assumption matters. A reference weight exp(aN) with a≠0 would shift the bulk branch pressure itself. The polynomial example is chosen so that the extensive limit stays the same while finite balance changes.
+
+### Separate the center drift from the rounding width
+
+Equal branch probability occurs when the total log odds vanish. Thus the finite center is
+
+$$
+g_{c,N}=-\frac{\kappa\ln N}{N},\qquad \widetilde p_N(g_{c,N})=\frac12.
+$$
+
+Differentiating at fixed N gives the same logistic peak shape as before, translated to this center. Its maximum response and 10–90% field width are
+
+$$
+\max_g\frac{d\widetilde p_N}{dg}=\frac N4,\qquad w_N=\frac{2\ln9}{N},\qquad \frac{|g_{c,N}|}{w_N}=\frac{\kappa\ln N}{2\ln9}\longrightarrow\infty.
+$$
+
+Both center and width tend to zero, but the center shifts by increasingly many widths. At g=0 the occupied probability is N^κ/(1+N^κ) and tends to one, although the limiting pressure still has its corner at zero. A polynomial preference can therefore select a branch at that exact field without changing the limiting free-energy density.
+
+To retain a nontrivial mixture, center the scaling variable correctly:
+
+$$
+g_N=\frac{u-\kappa\ln N}{N}\quad\Longrightarrow\quad\widetilde p_N(g_N)=\frac1{1+e^{-u}}.
+$$
+
+This is an exact finite identity. Using only g_N=u/N would instead let the extra log odds κln N dominate. An observed peak location and an observed width are separate scaling diagnostics.
+
+### Continue the specified new partition function into complex fields
+
+In the log-field plane, all zeros satisfy
+
+$$
+g_{k,N}=-\frac{\kappa\ln N}{N}+i\frac{(2k+1)\pi}{N},\qquad k\in\mathbb Z.
+$$
+
+Exponentiation identifies logarithm branches and gives N distinct activity zeros:
+
+$$
+z_{j,N}=N^{-\kappa/N}\exp\!\left(i\frac{(2j+1)\pi}{N}\right),\qquad j=0,\ldots,N-1.
+$$
+
+The closest log-field zeros have real part g_c,N and imaginary parts ±π/N. Their activity radius is N^(−κ/N), not one, and approaches one from below. Substituting z^N=−N^(−κ) verifies the new polynomial exactly. This does not violate a general circle theorem: we deliberately changed the reference law and are solving this particular polynomial, not invoking such a theorem.
+
+The positive real axis still has no finite-N zero. The peak center and the nearest zeros share the same real shift, while their imaginary distance and the real rounding width both scale as 1/N.
+
+### Treat the sharpening response as a unit-mass measure
+
+Let χ_N(g)=d p̃_N/dg. Its peak grows while its integral stays one. For any bounded continuous test function f, substituting u=N(g−g_c,N) gives
+
+$$
+\int_{\mathbb R}\chi_N(g)\,dg=1,\qquad \int_{\mathbb R}f(g)\chi_N(g)\,dg\longrightarrow f(0),\qquad \chi_N(g)\,dg\Rightarrow\delta_0.
+$$
+
+The logistic derivative is an integrable nonnegative density in u. Its total mass controls the tails, and g_c,N→0 permits dominated convergence. This is weak convergence of response measures, not a finite response value or probability weight located at a real zero. It recovers the distributional second derivative of the cornered limiting pressure without demanding uniform derivative convergence.
+
+![Density curves shifted by a growing reference degeneracy and nearest complex log-field zeros approaching the coexistence point.](/assets/learning/finite-size-research-degeneracy-shifted-zeros.en.svg)
+
+The upper panel uses κ=2 and compares an equal-weight reference. The lower panel plots the nearest conjugate log-field zeros at several sizes; the sequence is a size comparison, not time evolution. The table lists center, width, activity-root radius, occupied probability at g=0 and peak response. The code uses floating logarithms for illustration; the polynomial root identity above is the proof.
+
+| N | g_center | Width | Root radius | p(0) | Peak |
+| --- | --- | --- | --- | --- | --- |
+| 4 | -0.693147 | 1.098612 | 0.500000 | 0.941176 | 1.000000 |
+| 16 | -0.346574 | 0.274653 | 0.707107 | 0.996109 | 4.000000 |
+| 64 | -0.129965 | 0.068663 | 0.878126 | 0.999756 | 16.000000 |
+| 256 | -0.043322 | 0.017166 | 0.957603 | 0.999985 | 64.000000 |
+
+```python
+from math import exp, log
+
+kappa = 2
+for n in (4,16,64,256):
+    weight = n**kappa
+    center = -log(weight)/n
+    width = 2*log(9)/n
+    root_radius = exp(center)
+    at_zero = weight/(1+weight)
+    peak = n/4
+    print(n, f'{center:.6f}', f'{width:.6f}', f'{root_radius:.6f}',
+          f'{at_zero:.6f}', f'{peak:.6f}')
+```
+
+### Research checks and boundaries
+
+#### Does the same limiting pressure force the same finite coexistence weights?
+
+**Research explanation.** No. The log reference ratio is subextensive but can diverge. Here p̃_N(0) tends to one while the equal-weight model stays at one-half. The common pressure limit discards precisely that subextensive information.
+
+#### Can the unit-circle roots of the original reader be reused?
+
+**Research explanation.** No. They solve 1+z^N=0. The new law solves 1+N^κz^N=0, whose radius differs. The logarithmic representatives are infinite, whereas the distinct activity roots number N; do not count logarithm branches as new polynomial roots.
+
+#### Is the response's weak delta limit a finite-size singularity?
+
+**Research explanation.** No. Every finite response remains smooth on the real axis. A sequence of smooth unit-area peaks concentrates, and its measure limit is singular. Derivatives, measures and pointwise function values are distinct kinds of limit.
+
+[Mueller, Janke and Johnston](https://arxiv.org/html/1312.5984v2) motivate checking size-dependent phase degeneracy in finite-size scaling. Their exponentially degenerate lattice model is different; its exponents are not imported here. The polynomial-weight drift, roots and response-measure limit above are exact results of this declared extension, with the original equal-weight two-configuration reader preserved.
+
 ## Six exercises with explanations
 
 ### 1. Reconstruct the four-site probability ledger

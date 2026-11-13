@@ -240,6 +240,124 @@ In the default N=4,p=1/2,c=1/2 preparation, the whole system can receive one sha
 
 The count slider selects a point of the current law; it does not generate a random field. ‘Log probability display’ reveals rare mass without turning exact zero into a positive probability. Size controls increase N at the same p,c,epsilon and path. Variance-equivalent count concerns this density observable alone. An undisplayable tiny IID tail at large N is neither zero probability nor an infinite tail ratio.
 
+## Research extension: a Gaussian weak limit can miss the variance
+
+The previous example showed that a small collective weight can dominate a rare event. A second surprise appears in central-limit scaling: most fields can have an ordinary Gaussian central shape while rare collective fields carry a finite part of the variance. Distributional convergence does not automatically justify replacing second moments by those of the limit.
+
+### Scale the centered density and compare its probability law
+
+Fix 0<p<1 and v=p(1−p)>0, with collective weight c_N→0. Let W_N be the usual square-root-size fluctuation and W_N^I its independent-mode counterpart:
+
+$$
+W_N=\sqrt N(\rho-p),\qquad \mathcal L(W_N)=(1-c_N)\mathcal L(W_N^I)+c_N\big[(1-p)\delta_{-p\sqrt N}+p\delta_{(1-p)\sqrt N}\big].
+$$
+
+The two laws differ only on the collective-mode choice, so their TV distance is at most c_N. The IID Bernoulli central limit theorem then gives a weak limit for every vanishing collective weight, regardless of how quickly it vanishes:
+
+$$
+\|\mathcal L(W_N)-\mathcal L(W_N^I)\|_{\mathrm{TV}}\leq c_N\longrightarrow0,\qquad W_N\Rightarrow\mathcal N(0,v).
+$$
+
+This does not claim TV convergence to a continuous Gaussian: each finite W_N is discrete. The TV comparison is between the two discrete preparations at the same size. Weak convergence compares bounded continuous test functions and can lose a very small probability moving very far into the tails.
+
+The second moment sees that distant probability. Using the original covariance formula,
+
+$$
+\mathbb E[W_N^2]=v[1+(N-1)c_N],\qquad \mathbb E[W_N^2\mathbf1_{\mathrm{collective}}]=Nc_Nv.
+$$
+
+If c_N=c/N with c>0, the weak Gaussian has variance v but the finite second moments tend to v(1+c). If c_N=c/N^α with 0<α<1, they diverge despite exactly the same Gaussian weak limit. Density itself still self-averages for each α>0 because its unscaled variance tends to zero.
+
+### Identify the missing condition: uniform integrability
+
+A standard way to control passage of second moments is uniform integrability of the squared fluctuations:
+
+$$
+\lim_{R\to\infty}\sup_N\mathbb E[W_N^2\mathbf1_{|W_N|>R}]=0.
+$$
+
+It requires the second-moment contribution outside every sufficiently large fixed window to become uniformly small. For N large enough that both collective endpoints lie outside that window,
+
+$$
+\mathbb E[W_N^2\mathbf1_{|W_N|>R}]\geq Nc_Nv\qquad\bigl(R<\sqrt N\min(p,1-p)\bigr).
+$$
+
+At c_N=c/N, that lower bound is cv for arbitrarily large windows. The condition fails. The rare event's probability goes to zero, but its squared magnitude grows like N and compensates. This is a specific mechanism, not a failure of the central limit theorem or an assertion that all weak limits lose moments.
+
+### Standardizing by the actual variance need not repair the limit
+
+Let T_N divide the centered density by its exact finite standard deviation. It has mean zero and variance one at every finite N. For c_N=c/N^α with fixed 0<c≤1,
+
+$$
+T_N=\frac{\rho-p}{\sqrt{\operatorname{Var}(\rho)}},\qquad T_N\Rightarrow\begin{cases}\mathcal N(0,1),&\alpha>1,\\\mathcal N(0,(1+c)^{-1}),&\alpha=1,\\\delta_0,&0<\alpha<1.\end{cases}
+$$
+
+To derive this, divide the IID central fluctuation by sqrt(N Var(ρ)), then use its deterministic scale limit; the collective part still has vanishing probability. For α<1 the bulk shrinks to zero in these coordinates, while outliers carry the unit variance. The α=1 limiting Gaussian has variance below one. Neither conclusion contradicts finite Var(T_N)=1 because squared fluctuations are not uniformly integrable in those regimes.
+
+The fraction of the standardized second moment carried by collective fields makes this explicit:
+
+$$
+\mathbb E[T_N^2\mathbf1_{\mathrm{collective}}]=\frac{Nc_N}{1+(N-1)c_N}\longrightarrow\begin{cases}0,&\alpha>1,\\c/(1+c),&\alpha=1,\\1,&0<\alpha<1.\end{cases}
+$$
+
+The optional α=1/2 family is a new mathematical comparison, not an additional scaling control in the reader, which retains fixed, inverse-size and inverse-square choices. At c=0 the law is IID. At p=0 or1 the standardizing variance is zero and T_N is not defined; those cases are outside this extension's assumptions.
+
+![Second moments across vanishing collective-weight paths and the central standardized density compared with its narrower Gaussian weak limit.](/assets/learning/finite-size-research-rare-mode-limit-moments.en.svg)
+
+The upper panel fixes p=c=1/2 and compares N Var(ρ) for three α values. The lower panel shows only a central window for α=1,N=256: its rare collective atoms lie outside the plotted window. The omitted atoms are precisely why central visual agreement cannot certify the variance of the whole law.
+
+For the critical α=1 path, a theoretical central band has the limit below. Φ is the standard normal CDF, not a fitted sampling model:
+
+$$
+\Pr(|T_N|\leq1.96)\longrightarrow2\Phi(1.96\sqrt{1+c})-1.
+$$
+
+The table gives N, the actual second moment of W_N, the weak Gaussian's variance v, the collective second-moment contribution, the finite band probability and its limit. The exact rational event test squares both sides of the threshold inequality. The N=1024 row is a separate Python calculation beyond the reader's N≤512 range. These are probabilities under known p,c; they do not validate a plug-in confidence interval with estimated variance.
+
+| N | E[W²] | Weak variance | Rare E[W²] | Finite band | Limit band |
+| --- | --- | --- | --- | --- | --- |
+| 16 | 0.367188 | 0.250000 | 0.125000 | 0.948144 | 0.983627 |
+| 64 | 0.373047 | 0.250000 | 0.125000 | 0.975461 | 0.983627 |
+| 256 | 0.374512 | 0.250000 | 0.125000 | 0.983447 | 0.983627 |
+| 1024 | 0.374878 | 0.250000 | 0.125000 | 0.983444 | 0.983627 |
+
+```python
+from fractions import Fraction as F
+from math import comb, erf, sqrt
+
+p, c = F(1,2), F(1,2)
+v = p*(1-p)
+for n in (16,64,256,1024):
+    common = c/n
+    masses = [(1-common)*F(comb(n,j),2**n)
+              + common*((1-p if j==0 else 0)+(p if j==n else 0))
+              for j in range(n+1)]
+    variance = sum(m*(F(j,n)-p)**2 for j,m in enumerate(masses))
+    band = sum(m for j,m in enumerate(masses)
+               if (F(j,n)-p)**2 <= F(49,25)**2*variance)
+    rare_second = n*common*v
+    limit_band = erf(1.96*sqrt(1+float(c))/sqrt(2))
+    print(n, f'{float(n*variance):.6f}', f'{float(v):.6f}',
+          f'{float(rare_second):.6f}', f'{float(band):.6f}',
+          f'{limit_band:.6f}')
+```
+
+### Research checks and scope
+
+#### Does a convincing central histogram certify the variance?
+
+**Research explanation.** No. Vanishing mass at increasingly large scaled values is nearly invisible to bounded test functions but can contribute order one to squared error. Inspect tail contributions or a suitable integrability condition before replacing moments by their weak-limit values.
+
+#### Does finite unit variance force a unit-variance Gaussian weak limit?
+
+**Research explanation.** No. This specified family has Var(T_N)=1 but a narrower Gaussian limit at α=1 and a point-mass limit at α<1. Variance is an unbounded test function and does not follow from weak convergence alone.
+
+#### Is this an almost-sure statement about one growing field?
+
+**Research explanation.** No. The preparation defines a law at each size without a coupling across sizes. These are weak and moment statements about that family, not a claim about a single spatial realization or a general AI data stream.
+
+[MIT's uniform-integrability notes](https://ocw.mit.edu/courses/6-436j-fundamentals-of-probability-fall-2018/resources/mit6_436jf18_lec19/) provide the convergence-of-expectations background. The discrete-mixture TV bound, moment escape, normalization regimes and band probabilities are derived here. The existing collective-mode reader continues to compute its original finite law and controls.
+
 ## Six exercises with explanations
 
 ### 1. Reconstruct the four-site covariance ledger

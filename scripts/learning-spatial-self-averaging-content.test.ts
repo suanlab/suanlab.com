@@ -13,9 +13,9 @@ const printed = (q: Q) => { const { n, d } = fraction(q); return `${n}${d === Bi
 function tables(source: string) { return (source.match(/(?:^\|.*\|\n)+/gm) ?? []).map(group => group.trim().split('\n').slice(2).map(line => line.split('|').slice(1, -1).map(cell => cell.trim()))); }
 for (const language of ['ko', 'en'] as const) test(`${language}: spatial manuscript renders equations, keyboard-readable ledgers, a mode diagram and explained exercises`, async () => {
  const source = raw(language), content = await getLearningContent(id), html = content[language];
- assert.equal(content.outline[language].length, 16); assert.equal(new Set(content.outline[language].map(h => h.id)).size, 16);
+ assert.equal(content.outline[language].length, 17); assert.equal(new Set(content.outline[language].map(h => h.id)).size, 17);
  assert.equal((source.match(/^### [1-6]\. /gm) ?? []).length, 6); assert.equal((source.match(/\*\*(?:Explanation\.|해설\.)\*\*/g) ?? []).length, 6);
- assert.equal((html.match(/class="katex-display"/g) ?? []).length, 16); assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 16); assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 4);
+ assert.equal((html.match(/class="katex-display"/g) ?? []).length, 24); assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 24); assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 5);
  assert.match(html, /<pre[^>]*tabindex="0"[^>]*role="region"/); assert.match(html, /ONE MODE CHOICE FOR THE WHOLE FIELD/); assert.doesNotMatch(html, /katex-error|\$\$|@@E\d/); assert.doesNotMatch(source, /^# |^---/m);
  if (language === 'en') { assert.ok(source.split(/\s+/).length > 2400); assert.doesNotMatch(html, /[가-힣]/); } else assert.ok((source.match(/[가-힣]/g) ?? []).length > 4200);
 });
@@ -23,7 +23,7 @@ test('both translations preserve all displayed equations and the quantitative le
  const equations = (source: string) => [...source.matchAll(/\$\$([\s\S]*?)\$\$/g)].map(m => m[1].replace(/\s+/g, ''));
  assert.deepEqual(equations(raw('ko')), equations(raw('en')));
  for (const language of ['ko', 'en'] as const) {
-  assert.equal(tables(raw(language)).length, 4);
+  assert.equal(tables(raw(language)).length, 5);
   assert.deepEqual(tables(raw(language))[2].map(row => row.slice(1)), [['cv', '+∞', '0'], ['0', 'v(1+c)', '1/(1+c)'], ['0', 'v', '1']]);
  }
 });

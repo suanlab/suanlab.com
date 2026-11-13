@@ -268,6 +268,116 @@ Keep the default twelve-site preparation with opposite block spins. Three neares
 
 ‘One spatial-size step’ doubles the requested scale, capping the final step at the allowed maximum. ‘Choose spatial growth record’ selects an already computed row without changing the maximum requested scale. Read exact pair counts rather than counting schematic complete-graph lines, and retain the common energy unit E0. Size scanning compares spatial systems at the same preparation; it is not thermal relaxation or a time trajectory.
 
+## Research extension: control a thermal free energy without claiming full independence
+
+The previous ledger fixed a spin configuration. We now add a statistical preparation: all binary spin configurations are allowed, their counting measure is fixed, and the inverse temperature β is positive and finite. This lets us prove a free-energy bound from the cut energy. It also exposes a useful limitation: negligible free-energy change per site does not imply that the full probability laws become close.
+
+### Sum a uniform energy bound over every configuration
+
+Write the joined Hamiltonian as the two restricted Hamiltonians plus their interaction V. Keep the original couplings inside both blocks. Let Δ bound the absolute interaction for every configuration. For C nearest-neighbor cross bonds of magnitude J, Δ=JC is valid.
+
+$$
+H(\sigma_A,\sigma_B)=H_A(\sigma_A)+H_B(\sigma_B)+V(\sigma_A,\sigma_B),\qquad |V|\leq\Delta,\qquad Z_0=Z_AZ_B.
+$$
+
+Multiplying each uncoupled Boltzmann weight by exp(−βV) changes it by a factor between exp(−βΔ) and exp(βΔ). Positivity lets us sum these bounds before taking a logarithm:
+
+$$
+e^{-\beta\Delta}Z_AZ_B\leq Z\leq e^{\beta\Delta}Z_AZ_B,\qquad |\ln Z-\ln Z_A-\ln Z_B|\leq\beta\Delta.
+$$
+
+With F=−β⁻¹ln Z, the total free-energy difference is bounded in energy units. For a boundary-negligible growth path, the corresponding difference per site vanishes at fixed J and temperature.
+
+$$
+|F-F_A-F_B|\leq\Delta,\qquad \frac{|F-F_A-F_B|}{N}\leq\frac{JC}{N}\longrightarrow0\quad(C/N\to0).
+$$
+
+This is a sufficient boundary-control estimate, not a complete existence theorem for every thermodynamic limit. Geometry and interactions still need their hypotheses. For the global Kac graph the analogous interaction bound is J N_A N_B/N, which stays order N at a fixed macroscopic split. The resulting free-energy bound does not vanish per site; that fact alone also does not prove a nonzero actual free-energy difference at every temperature. An upper bound is not an equality.
+
+### Solve one open chain exactly
+
+Take a zero-field open nearest-neighbor Ising chain of N sites with K=βJ≥0, and cut one bond into blocks A,B. Summing the final spin successively gives a factor 2 cosh K for each bond. The initial spin has two choices, so
+
+$$
+Z_L=2(2\cosh K)^{L-1},\qquad \frac{Z_N}{Z_AZ_B}=\cosh K,\qquad \beta(F-F_A-F_B)=-\ln\cosh K.
+$$
+
+There is one cross bond, so the generic dimensionless bound is K. The exact magnitude ln cosh K is smaller. At fixed K, its per-site contribution vanishes as 1/N. This full thermal sum is a different calculation from the earlier uniform-block microstate energy.
+
+Let P be the joined Gibbs law and P₀ the product law of the two cut chains. Each boundary spin is fair by spin-flip symmetry. Under P₀ the two boundary spins are independent, giving the exact likelihood ratio
+
+$$
+\frac{P(\sigma_A,\sigma_B)}{P_0(\sigma_A,\sigma_B)}=\frac{e^{K\sigma_a\sigma_{a+1}}}{\cosh K},\qquad \mathbb E_P[\sigma_a\sigma_{a+1}]=\tanh K.
+$$
+
+### Distinguish a density limit from a global probability metric
+
+Integrating out either block multiplies the other block's original weight by the same constant cosh K. Thus its marginal law is unchanged. Nevertheless the joined blocks remain dependent. Their mutual information equals the relative entropy to P₀, and their total-variation separation is
+
+$$
+D_{\mathrm{KL}}(P\Vert P_0)=I_P(\sigma_A;\sigma_B)=K\tanh K-\ln\cosh K,\qquad \|P-P_0\|_{\mathrm{TV}}=\frac12\tanh K.
+$$
+
+Both stay strictly positive at fixed K>0 as N grows. To verify the TV expression, group configurations by whether the boundary spins agree. P₀ gives each group probability one-half; P shifts their probabilities to (1±tanh K)/2. More remote internal configurations contribute no extra likelihood-ratio factors.
+
+This does not prevent deep interior observations from decorrelating. For spins at depths d_A,d_B from the two sides of the cut, the unique open-chain path has d_A+d_B+1 bonds. Summing its transition factors gives
+
+$$
+\operatorname{Cov}_P(\sigma_{a-d_A},\sigma_{a+1+d_B})=(\tanh K)^{d_A+d_B+1}.
+$$
+
+For finite K, this tends to zero as those depths grow, while the interface correlation remains tanh K. Local bulk behavior, mutual information of entire blocks and free-energy density answer different questions. Even the relative entropy per site tends to zero in this example without total variation tending to zero.
+
+The exact open-chain pressure also has a directly verified limit:
+
+$$
+\frac{\ln Z_N}{N}=\ln(2\cosh K)-\frac{\ln\cosh K}{N}\longrightarrow\ln(2\cosh K).
+$$
+
+![One-bond free-energy error per site shrinking with size while global block dependence remains and deep-interior covariance decays.](/assets/learning/finite-size-research-boundary-free-energy-information.en.svg)
+
+The table uses K=1 and equal blocks. It lists |βΔF|/N, the bound K/N, block mutual information in nats, TV, and the covariance between two interior sites with d_A=d_B=N/4−1. The final distance is N/2−1 bonds. These sizes are a separate Python example, not extra temperature controls in the energy-only reader.
+
+| N | abs(βΔF)/N | Bound K/N | Block MI | TV | Bulk covariance |
+| --- | --- | --- | --- | --- | --- |
+| 8 | 5.422260e-02 | 1.250000e-01 | 0.327813 | 0.380797 | 4.417442e-01 |
+| 32 | 1.355565e-02 | 3.125000e-02 | 0.327813 | 0.380797 | 1.682109e-02 |
+| 128 | 3.388913e-03 | 7.812500e-03 | 0.327813 | 0.380797 | 3.536608e-08 |
+| 512 | 8.472282e-04 | 1.953125e-03 | 0.327813 | 0.380797 | 6.910647e-31 |
+
+```python
+from math import tanh, log, cosh
+
+k = 1.0  # Dimensionless beta*J in the separate thermal extension.
+t = tanh(k)
+for n in (8,32,128,512):
+    free_energy_density = log(cosh(k))/n
+    bound = k/n
+    mutual_information = k*t-log(cosh(k))
+    total_variation = t/2
+    distance = n//2-1
+    bulk_covariance = t**distance
+    print(n, f'{free_energy_density:.6e}', f'{bound:.6e}',
+          f'{mutual_information:.6f}', f'{total_variation:.6f}',
+          f'{bulk_covariance:.6e}')
+```
+
+### Research checks and limits
+
+#### What changed when we introduced a free energy?
+
+**Research explanation.** We specified a positive temperature and summed over every allowed binary configuration. The fixed selected configurations in the original energy ledger do not supply that ensemble by themselves. The new bound needs a uniform cut-energy bound over the whole summed state space.
+
+#### Does a small free-energy density difference prove independence of blocks?
+
+**Research explanation.** No. At fixed K>0 the open-chain example has vanishing free-energy change per site but constant positive TV and mutual information. A macroscopic block includes its boundary spin even when most of its sites lie far away.
+
+#### Does a nonvanishing upper bound prove a nonvanishing actual difference?
+
+**Research explanation.** No. The bound can be loose. A Kac interaction of order N prevents this particular vanishing-bound argument; deciding the actual thermal free energy requires an additional calculation, not reversal of the inequality.
+
+[Tong's chain treatment](https://davidtong.org/pdfs/teaching/statistical-physics/statphys5.pdf), section 5.3.1, supplies background on thermal spin sums. The open-boundary product, cut inequalities and probability-metric comparison above are derived here. No general ensemble-equivalence or arbitrary-shape limit theorem is being substituted for these explicit statements.
+
 ## Six explained exercises
 
 ### 1. Reconstruct the twelve-site ledger
