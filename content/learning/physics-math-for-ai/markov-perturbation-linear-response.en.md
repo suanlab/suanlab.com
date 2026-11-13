@@ -150,6 +150,142 @@ The asymptotic mean change is Re[h₀χₒ(Ω)exp(iΩt)]. Its amplitude is |h₀
 
 Do not use the same vertical axis for occupancy and kernel without labeling their different units. Probability paths, ensemble means and sensitivity coefficients need distinct explanations. The planned interface will keep fixed conceptual comparisons independent of saved free-experiment settings; it is not implemented by this manuscript.
 
+## Research extension: path scores, information and control sensitivity
+
+### Include waiting times in the control score
+
+The current reader implements independent fixed comparisons and a saved free experiment. This extension adds a standalone calculation of the control information carried by complete paths; it adds no new lab controls. Keep the six positive rates and the exponential handle from the chapter. Apply a constant small parameter h over a fixed T>0, holding eta fixed. Initialize every parameter value in the same original stationary law pi, not in a new pi(h).
+
+Differentiate the full path density, including the final censored wait. Let gij be the derivative of a jump's log rate. The complete-path score is
+
+$$
+g_{01}=\eta+\tfrac12,\quad g_{10}=\eta-\tfrac12,\quad g_{ij}=0\ \text{otherwise},\qquad S_T=\left.\partial_h\log w_h(\Gamma)\right|_{h=0}=\sum_{\text{jumps }i\to j}g_{ij}-\int_0^T\sum_{j\ne X_t}q_{X_tj}g_{X_tj}\,dt.
+$$
+
+The jump sum rewards rate changes on observed transitions. The integral subtracts changes in the hazard during all exposure time, including time with no jump. This compensator is essential: a record containing no departures still carries control information. The [Rao–Teh path density, Section 2, equation(2)](https://jmlr.org/papers/volume14/rao13a/rao13a.pdf) provides the rate-product and final-survival factors; our row convention is the transpose of its column convention.
+
+### Derive Fisher information from compensated counts
+
+Nij counts actual i→j jumps. Subtracting its integrated conditional intensity gives a counting-process martingale Mij. Different directed jumps cannot occur simultaneously, so their martingales have zero cross quadratic covariation. Under the unperturbed stationary process,
+
+$$
+M_{ij}(T)=N_{ij}(T)-\int_0^T\mathbf1_{X_t=i}q_{ij}\,dt,\quad S_T=\sum_{i\ne j}g_{ij}M_{ij}(T),\quad\mathbb E S_T=0,\quad\mathcal I_T=\mathbb E S_T^2=T\sum_{i\ne j}\pi_iq_{ij}g_{ij}^2.
+$$
+
+The squared-jump bracket has expected rate pi_i qij gij². Integrating it gives the second moment of the score. h and S are dimensionless; information per second has units s⁻¹. Counts on different edges need not be independent for this argument. Virtual self events in a uniformization representation must not be treated as extra physical departures in this score.
+
+If the initialization depended on h, an initial-law score would also appear. The formula above therefore belongs to the fixed-initialization experiment, not to a different experiment equilibrated separately at each parameter value.
+
+### Relate the path score to the measured response
+
+Differentiate the normalized path expectation. The bounded terminal observable and finite positive rate family allow the derivative at zero to pass through the fixed finite-time expectation:
+
+$$
+\chi_o(T)=\left.\partial_h\mathbb E_h[o(X_T)]\right|_0=\mathbb E_0[o(X_T)S_T]=\operatorname{Cov}_0(o(X_T),S_T).
+$$
+
+Here chi_o(T) is the constant-step susceptibility already defined in the chapter, not the impulse kernel at lag T. The [Seifert review, Section 8.2.2, equations(184)–(190)](https://arxiv.org/pdf/1205.4176) explains the path-weight and state-correlation response forms. Integrating its path score over the constant control interval gives this experiment's representation.
+
+Cauchy–Schwarz supplies an information bound:
+
+$$
+|\chi_o(T)|^2\leq\operatorname{Var}_\pi(o)\,\mathcal I_T,\qquad o=\mathbf1_{X=1}:\quad\operatorname{Var}_\pi(o)=\pi_1(1-\pi_1).
+$$
+
+For room 1 occupancy the terminal variance is the unperturbed stationary Bernoulli variance. The response can be small although the full path contains substantial information: a terminal state ignores intervening jumps and waits. This is a parameter-information bound. Substituting entropy production for Fisher information would require additional results and assumptions.
+
+### Compute score moments without simulating trajectories
+
+A useful independent check attaches a real tilt z to S. A short interval contributes exp(z gij) on a jump and exp(−z times its compensator) during waiting. This yields a positive, generally nonconservative tilted matrix:
+
+$$
+(K_z)_{ij}=q_{ij}e^{zg_{ij}}\ (i\ne j),\quad(K_z)_{ii}=q_{ii}-z\sum_{j\ne i}q_{ij}g_{ij},\qquad\mathbb E_0[e^{zS_T}o(X_T)]=\pi e^{TK_z}o.
+$$
+
+It is not a Markov generator for nonzero z. Its first and second derivatives are
+
+$$
+K_0=Q,\quad K_1:=\partial_zK_z|_0=Q_1,\quad(K_2)_{ij}:=(\partial_z^2K_z|_0)_{ij}=q_{ij}g_{ij}^2\ (i\ne j),\quad(K_2)_{ii}=0.
+$$
+
+K2 is not Q''(0): the latter also differentiates the escape-rate diagonal, whereas this matrix tilts the already-defined score. Differentiating pi exp(tKz) at z=0 gives moment rows u1_j=E[S_t 1(X_t=j)] and u2_j=E[S_t² 1(X_t=j)]:
+
+$$
+\dot u_1=u_1Q+\pi Q_1,\quad\dot u_2=u_2Q+2u_1Q_1+\pi K_2,\quad u_1(0)=u_2(0)=0,\qquad u_1(T)o=\chi_o(T),\quad u_2(T)\mathbf1=\mathcal I_T.
+$$
+
+The first equation is exactly the probability sensitivity equation. Multiplying the second by the all-ones column makes the Q and Q1 terms vanish, leaving the Fisher-information rate. This simultaneously checks the score covariance and conservation without inventing sampled trajectories.
+
+### Compare control handles with the same rate-ratio derivative
+
+Let Fplus and Fminus denote the two original directional edge flows. The rate-ratio derivative remains one for every eta, while path information varies:
+
+$$
+F_+=\pi_0a,\quad F_-=\pi_1d,\quad H=F_++F_-,\quad J=F_+-F_-,\qquad\frac{\mathcal I_T}{T}=F_+(\eta+\tfrac12)^2+F_-(\eta-\tfrac12)^2,\quad\eta_*=-\frac J{2H},\quad\min_\eta\frac{\mathcal I_T}{T}=\frac{F_+F_-}{H}.
+$$
+
+Differentiate the positive quadratic to find eta_star. For the worked background (2,3,4,1,1,1)/s, Fplus=34/38s⁻¹ and Fminus=11/38s⁻¹, so eta_star=−23/90 and the minimum rate is187/855s⁻¹. This minimizes path distinguishability for the specified ratio change; it does not maximize a chosen occupancy response or establish an optimal physical actuator.
+
+![Control-path Fisher information has a minimizing kinetic handle, while static occupancy response follows a different linear trend.](/assets/learning/response-research-control-path-information.en.svg)
+
+The upper panel shows the information-rate quadratic and its minimizing handle. The lower panel shows the original static room 1 susceptibility. A low-information handle and a large-response handle answer different design questions. In equilibrium the first-order source can be independent of eta even while path information changes through traffic.
+
+```python
+from fractions import Fraction as F
+
+forward_flow, backward_flow = F(34, 38), F(11, 38)
+traffic = forward_flow + backward_flow
+current = forward_flow - backward_flow
+eta_min = -current / (2 * traffic)
+for eta in [F(-1), F(0), eta_min, F(1)]:
+    information_rate = forward_flow * (eta + F(1, 2))**2
+    information_rate += backward_flow * (eta - F(1, 2))**2
+    initial_kernel = traffic / 2 + eta * current
+    static_susceptibility = (135 + 138 * eta) / 1444
+    print(eta, information_rate, initial_kernel, static_susceptibility)
+```
+
+All entries are exact fractions. Columns list eta, Fisher information per second, the initial room 1 response kernel per second and its static susceptibility. The static formula is the normalized stationary derivative derived earlier; the information rate comes from complete paths.
+
+| eta | I/T [1/s] | R(0+) [1/s] | chi(infinity) |
+| --- | --- | --- | --- |
+| -1 | 7/8 | -1/76 | -3/1444 |
+| 0 | 45/152 | 45/76 | 135/1444 |
+| -23/90 | 187/855 | 374/855 | 374/5415 |
+| 1 | 317/152 | 91/76 | 273/1444 |
+
+### A score estimator needs its own variance analysis
+
+For any fixed baseline beta, the score's zero mean preserves the response. Minimizing the estimator variance over a constant beta gives
+
+$$
+\mathbb E[(o(X_T)-\beta)S_T]=\chi_o(T),\qquad \beta_* =\frac{\mathbb E[o(X_T)S_T^2]}{\mathcal I_T}\quad(\mathcal I_T>0),\qquad\operatorname{Var}(\widehat\chi_M)=\frac{\operatorname{Var}((o(X_T)-\beta)S_T)}M.
+$$
+
+The final expression assumes M independent complete paths using the displayed baseline estimator. At I_T=0 do not use the baseline ratio. Centering by the known mean pi o is unbiased, but is not generally the variance-minimizing constant because S² reweights terminal outcomes. Estimating a baseline from the very same paths requires its own bias analysis.
+
+Information grows linearly in T while the static susceptibility stays finite in this mixing finite chain. Hence a longer path does not automatically make a terminal-observable score estimator efficient. Data analysis must specify the observed path, any missing waits, the baseline and dependence across samples. The exact response identity alone is not a finite-data precision guarantee for an AI controller.
+
+### Research self-checks
+
+#### R1. Why can a no-jump record have a nonzero score?
+
+Start in state0 and observe no jump up to T for a handle with nonzero g01. Find the score contribution from that event.
+
+**Research explanation.** The jump sum is empty, but the waiting integral gives−a g01 T. The unchanged 0→2 rate contributes zero. A quiet record carries evidence through its survival probability; counting only jumps would discard that evidence. This is a conditional path example, not the unconditional mean score, which is zero.
+
+#### R2. Does minimum information mean maximum static response?
+
+Compare eta=−23/90 and eta=1 in the worked background.
+
+**Research explanation.** The first minimizes the positive information quadratic. The static susceptibility grows linearly with eta here, so the second has a larger occupancy response. Neither criterion alone defines a universal optimum; one must specify an observable, perturbation constraint and estimation or control objective.
+
+#### R3. Why does the tilted second derivative have a different diagonal?
+
+Compare K2 with Q''(0) for the exponential rate handle.
+
+**Research explanation.** K2 counts squared score increments and has zero diagonal. Q''(0) is a second generator derivative and must keep row sums zero, giving diagonal−sum(qij gij²). Confusing them would make the second-moment source conserve mass and falsely predict zero Fisher information.
+
 ## 13. Exercises with explanations
 
 **1. Does increasing q01/q10 guarantee a positive initial response?** No. Insert η=−1 and the worked flows: (F01+F10)/2−J=45/76−46/76=−1/76/s. The ratio derivative omits changes in total traffic.

@@ -30,8 +30,8 @@ test('independent concepts, all24 guide presets and registered quizzes match the
   assert.deepEqual(learningGuides[kind].steps, lrConceptSteps[kind].map(({ title, explanation, formula, diagram }) => ({ title, explanation, formula, diagram })));
 });
 for (const lang of ['ko', 'en'] as const) test(`graduate reader manuscript renders in ${lang}`, async () => {
-  const content = await getLearningContent(kind); assert.equal(content.outline[lang].length, 14); assert(!content[lang].includes('katex-error'));
-  const source = readFileSync(`content/learning/physics-math-for-ai/${kind}.${lang}.md`, 'utf8'); assert.equal((source.match(/^\*\*\d\./gm) || []).length, 6); assert.equal((source.match(/\$\$[\s\S]*?\$\$/g) || []).length, 11);
+  const content = await getLearningContent(kind); assert.equal(content.outline[lang].length, 15); assert(!content[lang].includes('katex-error'));
+  const source = readFileSync(`content/learning/physics-math-for-ai/${kind}.${lang}.md`, 'utf8'); assert.equal((source.match(/^\*\*\d\./gm) || []).length, 6); assert.equal((source.match(/\$\$[\s\S]*?\$\$/g) || []).length, 20);
   const independent = JSON.parse(readFileSync('scripts/fixtures/linear-response-exact-preparation.json', 'utf8')).cases.find((c: { input: { a: number; b: number; c: number; d: number; e: number; f: number; kineticNumerator: number } }) => c.input.a === 2 && c.input.b === 3 && c.input.c === 4 && c.input.d === 1 && c.input.e === 1 && c.input.f === 1 && c.input.kineticNumerator === 0);
   const fractions = (independent.stationary as string[]).map(q => { const [n, d = '1'] = q.split('/'); return [BigInt(n), BigInt(d)]; });
   const gcd = (a: bigint, b: bigint): bigint => { while (b) [a, b] = [b, a % b]; return a; };

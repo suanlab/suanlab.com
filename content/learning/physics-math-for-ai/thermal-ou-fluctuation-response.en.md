@@ -196,6 +196,135 @@ The [Seifert review](https://arxiv.org/pdf/1205.4176), Sections8.2–8.3, motiva
 
 Further work includes nonlinear observables, nonstationary initial conditions, general perturbation operators, frequency-domain response and estimating derivatives from finite data. The separate linear-response and entropy-production topics remain ahead. This first solvable family does not exhaust fluctuation–dissipation theory or the research curriculum.
 
+## Research extension: response spectra, noise and probe work
+
+### Specify a Fourier convention before comparing curves
+
+An impulse response describes time lags. A sinusoidal experiment asks how the mean moves at a selected frequency after the switching transient has decayed. Keep the chapter's thermal assumptions mu,kappa,theta>0, gamma=mu kappa, D=mu theta and a stationary unforced covariance vI. Allow signed omega. Drive one coordinate with a deterministic sinusoidal force. With the exp(+i Omega t) input convention, the retarded transform is
+
+$$
+f(t)=\operatorname{Re}(F e^{i\Omega t}),\qquad \widehat\chi(\Omega)=\int_0^\infty\mathcal R(t)e^{-i\Omega t}\,dt=\mu(i\Omega I-A)^{-1}=\mu\frac{(\gamma+i\Omega)I+\omega R}{(\gamma+i\Omega)^2+\omega^2}.
+$$
+
+Omega is angular frequency in rad/s, not cycles/s. The susceptibility has units m/N. Its imaginary part carries a convention-dependent sign: exp(+i Omega t) means a passive equilibrium response has a negative imaginary part at positive frequency. The formula follows by integrating exp[(A−i Omega I)t]; positive gamma makes the boundary at infinity vanish. It describes the long-running periodic mean, not a force switched on without a transient. This frequency calculation is a standalone extension, not a new control in the current impulse/step reader.
+
+### A noise spectrum uses both positive and negative lags
+
+Define the two-sided spectral density matrix, keeping the existing covariance order E[X_t X_0 transpose]:
+
+$$
+S(\Omega)=\int_{-\infty}^{\infty}C(t)e^{-i\Omega t}\,dt,\qquad C(-t)=C(t)^T\quad(t>0).
+$$
+
+For negative lag, use the transpose relation, not exp(At) with a negative t. The latter would grow rather than represent the stationary covariance. Fourier transformation of the linear SDE, or separate integration on each half-line, gives
+
+$$
+H(\Omega)=(i\Omega I-A)^{-1},\qquad S(\Omega)=2D H(\Omega)H(\Omega)^\dagger,\qquad S=S^\dagger\succeq0.
+$$
+
+This spectrum describes the unforced stationary process, or centered fluctuations after subtracting the periodic forced mean. The dagger means complex conjugate transpose. S has units m²·s and is Hermitian positive semidefinite, even though an off-diagonal component may be imaginary. Using the chapter's coordinate indices 0 and 1 gives the explicit forms
+
+$$
+\mathcal D_\Omega=(\gamma^2+\omega^2-\Omega^2)^2+4\gamma^2\Omega^2,\quad S_{00}=\frac D{\gamma^2+(\Omega-\omega)^2}+\frac D{\gamma^2+(\Omega+\omega)^2},\quad S_{01}=\frac{4iD\omega\Omega}{\mathcal D_\Omega}.
+$$
+
+The first component is a sum of two Lorentzian peaks associated with opposite circular polarizations. The sign of the imaginary cross spectrum depends on rotation direction and the stated time order. An individual off-diagonal value is not a scalar power that must be real and nonnegative.
+
+### Derive the equilibrium relation, then test its driven use
+
+From the susceptibility matrix, direct division yields
+
+$$
+\operatorname{Im}\widehat\chi_{00}(\Omega)=\frac{\mu\Omega(\omega^2-\gamma^2-\Omega^2)}{\mathcal D_\Omega}.
+$$
+
+At zero rotation, substitution of D=mu theta recovers the spectral equilibrium fluctuation–dissipation relation:
+
+$$
+\omega=0:\qquad S_{00}(\Omega)=-\frac{2\theta}{\Omega}\operatorname{Im}\widehat\chi_{00}(\Omega)\quad(\Omega>0).
+$$
+
+The factor two belongs to this two-sided spectrum and the chosen retarded transform. A one-sided convention needs its own normalization. The [Seifert review, Section 8.2](https://arxiv.org/pdf/1205.4176) distinguishes equilibrium response identities from stationary driven ones. The Fourier formulas here are derived from this chapter's linear thermal model.
+
+For nonzero rotation, the same equilibrium replacement leaves a positive defect:
+
+$$
+S_{00}(\Omega)+\frac{2\theta}{\Omega}\operatorname{Im}\widehat\chi_{00}(\Omega)=\frac{4D\omega^2}{\mathcal D_\Omega}\quad(\Omega>0).
+$$
+
+Thus unchanged stationary variance does not restore the equilibrium frequency relation. For |omega|>gamma and sufficiently small positive Omega, the naive expression −2theta Im(chi00)/Omega is negative. The actual noise spectrum remains positive. This failure is a response-model mismatch; it is not a negative noise power or a negative bath temperature. At Omega=0 use a limit if needed, rather than dividing by zero.
+
+### A driven response can return work to a probe
+
+Apply force f0(t)=Re[F0 exp(i Omega t)] along coordinate 0, leaving the other probe component zero. Differentiate its periodic mean and average the product of force and mean displacement rate over a period:
+
+$$
+\overline P_{\rm probe}=\overline{f_0(t)\dot m_0(t)}=-\frac{|F_0|^2\Omega}{2}\operatorname{Im}\widehat\chi_{00}(\Omega),\qquad \overline P_{\rm probe}<0\iff\omega^2>\gamma^2+\Omega^2\quad(\Omega>0,\ F_0\ne0).
+$$
+
+This is the mean work rate of a smooth deterministic probe. Computing it from f0 times the mean derivative does not assign an ordinary velocity to Brownian sample paths. In equilibrium it is nonnegative. In the driven model it can be negative: the probe receives work while the nonconservative circulating force remains powered. This is only the probe's contribution, not the total work of all forces or a total heat balance.
+
+For mu=kappa=theta=1 and omega=2/s, the sign changes at Omega=sqrt(3)/s. The bath is still specified by theta=1J. Inferring a universal temperature from the driven imaginary susceptibility would mix the response of an active steady state with an equilibrium identity.
+
+![Driven OU noise remains positive while an equilibrium shortcut becomes negative; the probe work changes sign at a finite frequency.](/assets/learning/response-research-thermal-response-spectrum.en.svg)
+
+The upper panel compares the actual coordinate spectrum with the equilibrium shortcut for the driven coefficients above. The lower panel shows probe work rate divided by force amplitude squared; negative values mean work returned to that probe. The external rotational drive is not included in that plotted contribution.
+
+```python
+for frequency in [0.25, 0.5, 1.0, 2.0]:
+    mobility, stiffness, thermal, omega = 1.0, 1.0, 1.0, 2.0
+    gamma = mobility * stiffness
+    diffusion = mobility * thermal
+    z = gamma + 1j * frequency
+    chi00 = mobility * z / (z*z + omega*omega)
+    spectrum = diffusion / (gamma**2 + (frequency - omega)**2)
+    spectrum += diffusion / (gamma**2 + (frequency + omega)**2)
+    naive = -2 * thermal * chi00.imag / frequency
+    probe_power_per_force_squared = -frequency * chi00.imag / 2
+    print(f"{frequency:.2f} {chi00.real:.6f} {chi00.imag:.6f} "
+          f"{spectrum:.6f} {naive:.6f} "
+          f"{probe_power_per_force_squared:.6f}")
+```
+
+Rows list Omega, real and imaginary chi00 in m/N, actual and naive S00 in m²·s, and probe power per squared force in m/(N·s). These are floating population values, not noisy measurements or directed-rounding certificates.
+
+| Omega [1/s] | Re(chi00) | Im(chi00) | S00 | naive S00 | P/F² |
+| --- | --- | --- | --- | --- | --- |
+| 0.25 | 0.205551 | 0.029818 | 0.411102 | -0.238541 | -0.003727 |
+| 0.50 | 0.222812 | 0.058355 | 0.445623 | -0.233422 | -0.014589 |
+| 1.00 | 0.300000 | 0.100000 | 0.600000 | -0.200000 | -0.050000 |
+| 2.00 | 0.529412 | -0.117647 | 1.058824 | 0.117647 | 0.117647 |
+
+### Integrating the spectrum recovers the same cloud
+
+Circular polarization diagonalizes the spectrum, giving positive eigenvalues. Integration of each Lorentzian checks the normalization:
+
+$$
+\lambda_\pm(S)=\frac{2D}{\gamma^2+(\Omega\mp\omega)^2}>0,\qquad \frac1{2\pi}\int_{-\infty}^{\infty}S_{00}(\Omega)\,d\Omega=\frac D\gamma=v.
+$$
+
+Rotation redistributes spectral weight without changing its total integral. A histogram therefore misses both shifted frequency content and probe work. Resolving these from finite records additionally requires a sampling interval, observation duration, window convention and uncertainty analysis. The continuous spectrum is not automatically the spectrum of an aliased finite data record.
+
+### Research self-checks
+
+#### R1. Why does the equilibrium formula have a minus sign?
+
+At omega=0, calculate Im(chi00) for positive Omega and recover S00.
+
+**Research explanation.** Chi00=mu/(gamma+i Omega), so its imaginary part is−mu Omega/(gamma²+Omega²). Multiplication by−2theta/Omega gives2D/(gamma²+Omega²), the two-sided spectrum. Changing the input convention changes the response phase convention and must be tracked consistently.
+
+#### R2. Can a negative shortcut certify negative noise?
+
+Use gamma=D=mu=theta=1, omega=2/s and Omega=1/s. Compare the signs of the true spectrum and the shortcut.
+
+**Research explanation.** Chi00=(1+i)/(4+2i)=0.3+0.1i in m/N. The true spectrum is1/2+1/10=0.6m²·s, while the shortcut is−0.2m²·s. Their defect is0.8m²·s. The actual covariance spectrum stays positive; the equilibrium substitution is inappropriate for this driven state.
+
+#### R3. Where can the returned work come from?
+
+For the same case with |F0|=1N, compute the probe work rate and explain why the stationary histogram is insufficient to interpret it.
+
+**Research explanation.** The rate is−(1)(0.1)/2=−0.05W. The externally maintained rotational force can supply work to the probe. The Gaussian width remains v=1m² but does not describe that energy supply. This calculation does not give the total heat or an engine efficiency without including the other force contributions.
+
 ## Exercises with explanations
 
 ### 1. Recover the equilibrium kernel

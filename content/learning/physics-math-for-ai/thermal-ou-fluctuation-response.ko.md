@@ -196,6 +196,135 @@ $$
 
 비선형 관측량, 비정상 초기화, 일반 섭동 연산자, 주파수 응답과 유한 자료에서 미분을 추정하는 문제로 이어간다. 별도 주제인 linear response와 entropy production도 남아 있다. 이 첫 가해 모형만으로 요동·소산 이론이나 전체 연구 교육과정을 다 마쳤다고 판단하지 않는다.
 
+## 연구 확장: 응답 스펙트럼·잡음·탐침의 일
+
+### 곡선을 비교하기 전에 Fourier 약속을 정한다
+
+충격 응답은 시간 지연을 설명한다. 사인파 실험은 스위칭 과도가 사라진 뒤 선택한 주파수에서 평균이 어떻게 움직이는지 묻는다. 이 단원의 열적 가정 mu,kappa,theta>0, gamma=mu kappa, D=mu theta, 무강제 정상 공분산 vI를 유지하고 부호 있는 omega를 허용하자. 한 좌표를 결정론적 사인파 힘으로 구동한다. 입력 exp(+i Omega t) 약속에서 지연 변환은
+
+$$
+f(t)=\operatorname{Re}(F e^{i\Omega t}),\qquad \widehat\chi(\Omega)=\int_0^\infty\mathcal R(t)e^{-i\Omega t}\,dt=\mu(i\Omega I-A)^{-1}=\mu\frac{(\gamma+i\Omega)I+\omega R}{(\gamma+i\Omega)^2+\omega^2}.
+$$
+
+Omega는 rad/s 단위 각주파수이며 cycles/s와 다르다. 감수율의 단위는 m/N이다. 허수부 부호는 약속에 의존한다. exp(+i Omega t)를 사용하면 수동적인 평형 응답의 양의 주파수 허수부는 음수다. 식은 exp[(A−i Omega I)t]를 적분하면 나오며 양의 gamma가 무한대 경계항을 없앤다. 장시간 주기 평균을 설명하므로 스위칭 과도가 없는 즉시 응답으로 읽지 않는다. 이 주파수 계산은 별도 확장이며 현재 충격·계단 교재의 새 조작 기능은 아니다.
+
+### 잡음 스펙트럼에는 양과 음의 지연이 모두 들어간다
+
+기존 공분산 순서 E[X_t X_0 transpose]를 유지하여 양측 스펙트럼 밀도 행렬을 정의하자.
+
+$$
+S(\Omega)=\int_{-\infty}^{\infty}C(t)e^{-i\Omega t}\,dt,\qquad C(-t)=C(t)^T\quad(t>0).
+$$
+
+음의 지연에는 전치 관계를 쓰며 음의 t를 exp(At)에 그대로 넣지 않는다. 그렇게 하면 정상 공분산이 아니라 커지는 값을 얻는다. 선형 SDE의 Fourier 변환이나 양쪽 반직선의 별도 적분으로
+
+$$
+H(\Omega)=(i\Omega I-A)^{-1},\qquad S(\Omega)=2D H(\Omega)H(\Omega)^\dagger,\qquad S=S^\dagger\succeq0.
+$$
+
+이 스펙트럼은 무강제 정상 과정 또는 주기 강제 평균을 뺀 중심화된 요동을 설명한다. dagger는 복소 켤레 전치다. S의 단위는 m²·s이며 Hermitian 양의 준정부호다. 그렇다고 비대각 성분까지 실수여야 하는 것은 아니다. 이 단원의 좌표 인덱스 0,1을 사용하면
+
+$$
+\mathcal D_\Omega=(\gamma^2+\omega^2-\Omega^2)^2+4\gamma^2\Omega^2,\quad S_{00}=\frac D{\gamma^2+(\Omega-\omega)^2}+\frac D{\gamma^2+(\Omega+\omega)^2},\quad S_{01}=\frac{4iD\omega\Omega}{\mathcal D_\Omega}.
+$$
+
+첫 성분은 반대 원형 편광에 대응하는 두 Lorentzian 봉우리의 합이다. 허수 교차 스펙트럼의 부호는 회전 방향과 지정한 시간 순서에 의존한다. 비대각 값 하나를 실수·음이 아닌 스칼라 전력으로 읽으면 안 된다.
+
+### 평형 관계를 유도한 뒤 구동 상태에 시험한다
+
+감수율 행렬을 직접 나누어 허수부를 계산하면
+
+$$
+\operatorname{Im}\widehat\chi_{00}(\Omega)=\frac{\mu\Omega(\omega^2-\gamma^2-\Omega^2)}{\mathcal D_\Omega}.
+$$
+
+회전이 없으면 D=mu theta를 대입하여 주파수 영역 평형 변동·소산 관계를 얻는다.
+
+$$
+\omega=0:\qquad S_{00}(\Omega)=-\frac{2\theta}{\Omega}\operatorname{Im}\widehat\chi_{00}(\Omega)\quad(\Omega>0).
+$$
+
+계수 2는 이 양측 스펙트럼과 지연 변환 약속에 속한다. 단측 약속에는 그에 맞는 정규화가 필요하다. [Seifert 종설 8.2절](https://arxiv.org/pdf/1205.4176)은 평형 응답 항등식과 정상 구동 응답을 구별한다. 여기의 Fourier 식은 이 단원의 선형 열 모형에서 직접 유도했다.
+
+회전이 0이 아니면 같은 평형 대입에 양의 차이가 남는다.
+
+$$
+S_{00}(\Omega)+\frac{2\theta}{\Omega}\operatorname{Im}\widehat\chi_{00}(\Omega)=\frac{4D\omega^2}{\mathcal D_\Omega}\quad(\Omega>0).
+$$
+
+따라서 정상 분산이 같아도 주파수 평형 관계가 복원되지는 않는다. |omega|>gamma이고 양의 Omega가 충분히 작으면 단순 대입 −2theta Im(chi00)/Omega는 음수다. 실제 잡음 스펙트럼은 양수로 유지된다. 이는 응답 모형의 불일치이며 음의 잡음 전력이나 음의 열저장고 온도가 아니다. Omega=0에서는 필요하면 극한을 취하며 0으로 나누지 않는다.
+
+### 구동 응답은 탐침에 일을 돌려줄 수 있다
+
+좌표 0에 f0(t)=Re[F0 exp(i Omega t)]를 가하고 다른 탐침 성분은 0으로 두자. 주기 평균 변위를 미분하고 힘과 평균 변위 변화율의 곱을 한 주기 평균하면
+
+$$
+\overline P_{\rm probe}=\overline{f_0(t)\dot m_0(t)}=-\frac{|F_0|^2\Omega}{2}\operatorname{Im}\widehat\chi_{00}(\Omega),\qquad \overline P_{\rm probe}<0\iff\omega^2>\gamma^2+\Omega^2\quad(\Omega>0,\ F_0\ne0).
+$$
+
+매끄러운 결정론적 탐침의 평균 일률이다. f0와 평균 도함수로 계산하므로 Brownian 표본 경로에 보통 속도를 부여하지 않는다. 평형에서는 음수가 아니다. 구동 모형에서는 음수일 수 있다. 비보존 회전 힘을 계속 공급하는 동안 탐침이 일을 받는 경우다. 모든 힘의 총 일이나 전체 열수지가 아니라 탐침 기여만 계산했다.
+
+mu=kappa=theta=1, omega=2/s이면 Omega=sqrt(3)/s에서 부호가 바뀐다. 열저장고는 여전히 theta=1J다. 구동된 허수 감수율에서 보편적인 온도를 추론하면 능동 정상 상태 응답과 평형 항등식을 혼동한다.
+
+![구동 OU 잡음은 양수지만 평형 대입은 음수가 될 수 있고 유한 주파수에서 탐침 일률의 부호가 바뀌는 두 패널.](/assets/learning/response-research-thermal-response-spectrum.ko.svg)
+
+위 패널은 위 구동 계수에서 실제 좌표 스펙트럼과 평형 대입을 비교한다. 아래 패널은 탐침 일률을 힘 진폭 제곱으로 나눈 값이며 음수는 탐침에 돌아오는 일이다. 외부 회전 구동의 기여는 이 그래프에 포함하지 않았다.
+
+```python
+for frequency in [0.25, 0.5, 1.0, 2.0]:
+    mobility, stiffness, thermal, omega = 1.0, 1.0, 1.0, 2.0
+    gamma = mobility * stiffness
+    diffusion = mobility * thermal
+    z = gamma + 1j * frequency
+    chi00 = mobility * z / (z*z + omega*omega)
+    spectrum = diffusion / (gamma**2 + (frequency - omega)**2)
+    spectrum += diffusion / (gamma**2 + (frequency + omega)**2)
+    naive = -2 * thermal * chi00.imag / frequency
+    probe_power_per_force_squared = -frequency * chi00.imag / 2
+    print(f"{frequency:.2f} {chi00.real:.6f} {chi00.imag:.6f} "
+          f"{spectrum:.6f} {naive:.6f} "
+          f"{probe_power_per_force_squared:.6f}")
+```
+
+각 행은 Omega, m/N 단위 chi00 실수·허수부, m²·s 단위 실제·단순 대입 S00, m/(N·s) 단위 힘 제곱당 탐침 일률이다. 모집단 값의 부동소수점 계산이며 잡음 있는 측정이나 방향성 구간 인증은 아니다.
+
+| Omega [1/s] | Re(chi00) | Im(chi00) | S00 | 단순 대입 S00 | P/F² |
+| --- | --- | --- | --- | --- | --- |
+| 0.25 | 0.205551 | 0.029818 | 0.411102 | -0.238541 | -0.003727 |
+| 0.50 | 0.222812 | 0.058355 | 0.445623 | -0.233422 | -0.014589 |
+| 1.00 | 0.300000 | 0.100000 | 0.600000 | -0.200000 | -0.050000 |
+| 2.00 | 0.529412 | -0.117647 | 1.058824 | 0.117647 | 0.117647 |
+
+### 스펙트럼을 적분하면 같은 점 구름을 얻는다
+
+원형 편광으로 스펙트럼을 대각화하면 양의 고윳값을 얻는다. 각 Lorentzian의 적분으로 정규화를 확인한다.
+
+$$
+\lambda_\pm(S)=\frac{2D}{\gamma^2+(\Omega\mp\omega)^2}>0,\qquad \frac1{2\pi}\int_{-\infty}^{\infty}S_{00}(\Omega)\,d\Omega=\frac D\gamma=v.
+$$
+
+회전은 스펙트럼 무게를 옮기지만 전체 적분을 바꾸지 않는다. 따라서 히스토그램은 이동한 주파수 내용과 탐침 일을 모두 놓친다. 유한 기록에서 이를 구하려면 표본 간격·관측 길이·창 약속·불확실성 분석이 추가로 필요하다. 연속 스펙트럼이 별칭을 포함한 유한 자료의 스펙트럼과 자동으로 같지는 않다.
+
+### 연구 확인 문제
+
+#### R1. 평형 식에는 왜 음의 부호가 있는가?
+
+omega=0, 양의 Omega에서 Im(chi00)를 구하고 S00를 복원하라.
+
+**연구 풀이.** Chi00=mu/(gamma+i Omega)이므로 허수부는 −mu Omega/(gamma²+Omega²)다. −2theta/Omega를 곱하면 양측 스펙트럼 2D/(gamma²+Omega²)를 얻는다. 입력 약속을 바꾸면 응답 위상 약속도 일관되게 바꿔야 한다.
+
+#### R2. 음의 단순 대입이 음의 잡음을 인증하는가?
+
+gamma=D=mu=theta=1, omega=2/s, Omega=1/s에서 실제 스펙트럼과 단순 대입의 부호를 비교하라.
+
+**연구 풀이.** Chi00=(1+i)/(4+2i)=0.3+0.1i m/N이다. 실제 스펙트럼은 1/2+1/10=0.6m²·s지만 단순 대입은 −0.2m²·s이고 차이는 0.8m²·s다. 실제 공분산 스펙트럼은 양수이며 이 구동 상태에 평형 대입을 적용하는 것이 부적절하다.
+
+#### R3. 되돌려받는 일은 어디에서 오는가?
+
+같은 경우에 |F0|=1N으로 두고 탐침 일률을 구하라. 정상 히스토그램만으로 이를 해석할 수 없는 이유도 설명하라.
+
+**연구 풀이.** 일률은 −(1)(0.1)/2=−0.05W다. 외부에서 유지하는 회전 힘이 탐침에 일을 공급할 수 있다. Gaussian 폭 v=1m²는 그대로지만 그 에너지 공급을 설명하지 않는다. 다른 힘의 기여까지 포함하지 않았으므로 총 열이나 엔진 효율을 구한 계산은 아니다.
+
 ## 해설이 있는 연습 문제
 
 ### 1. 평형 커널을 복원하라
