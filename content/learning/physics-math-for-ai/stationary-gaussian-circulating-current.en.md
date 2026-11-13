@@ -175,6 +175,135 @@ Numerical logs use dimensionless ratios to1m⁻² for density and1/(m·s) for cu
 
 Interaction bounds are gamma,D in(0,2], omega in[−4,4]rad/s, probe coordinates in[−4,4]m, T in[0,4]s and N from1 to64, with bounded integer numerators and positive denominators. They limit numerical work, not course length or research scope. The reader uses native workers, exact linear-field samples and view-only record selection. Changing preparation terminates the previous calculation.
 
+## Research extension: how much time-direction information does sampling retain?
+
+### Replace an arrow picture by an observation model
+
+The stationary histogram does not determine the rotational direction. Paired positions contain more information, but their spacing can hide even a nonzero current. Keep this chapter's stationary whole-plane SDE with gamma,D>0, signed omega, and both coordinates even under reversal. Observe exact positions every known Delta>0 seconds, without measurement noise. This is an additional mathematical experiment; Delta is not a new control in the existing reader.
+
+The exact linear solution gives a Gaussian transition with an isotropic innovation independent of the current position:
+
+$$
+X_{j+1}\mid X_j=x\sim\mathcal N(Mx,qI),\quad M=a\operatorname{Rot}(\theta),\quad a=e^{-\gamma\Delta},\quad\theta=\omega\Delta,\quad q=v(1-a^2).
+$$
+
+Here v=D/gamma, a is dimensionless and q has units m². This q is an innovation variance, distinct from the earlier Euler amplification called q. The sampled transition is exact for the SDE, so the following information loss is not an Euler integration error.
+
+### Derive the log ratio of an ordered pair
+
+Let k_delta(y|x) denote that transition density. Compare the joint probability density of positions in one order with their density in the reversed order:
+
+$$
+L_\Delta(x,y)=\log\frac{p_\infty(x)k_\Delta(y\mid x)}{p_\infty(y)k_\Delta(x\mid y)}=\frac{2a\sin\theta}{q}(x_1y_2-x_2y_1).
+$$
+
+To obtain this, expand the two squared Gaussian residuals. Their radial difference is (1−a²)(|x|²−|y|²)/(2q), which cancels the stationary endpoint log density because q=v(1−a²). The remaining antisymmetric term is the signed parallelogram area x cross y. Reversing the pair flips its sign. A positive geometric area alone does not always mean a positive log ratio: its coefficient contains sin(theta), not simply omega.
+
+Conditional on Xj, the innovation has mean zero. The mean signed area therefore follows directly from the rotating conditional mean:
+
+$$
+\mathbb E[X_j\times X_{j+1}]=2va\sin\theta,\qquad x\times y:=x_1y_2-x_2y_1.
+$$
+
+Combining the last two equations yields the dimensionless pair relative entropy:
+
+$$
+K_\Delta:=\mathbb E[L_\Delta]=\frac{4a^2\sin^2\theta}{1-a^2}=\frac{4\sin^2(\omega\Delta)}{e^{2\gamma\Delta}-1}.
+$$
+
+The cancellation of v does not mean that zero noise is allowed. D>0 and the corresponding stationary initialization are used throughout. At D=0, the positive-density transition comparison and its KL formula are unavailable.
+
+### Extend to a sequence and distinguish two clocks
+
+For n transitions, the sum of pair log ratios telescopes the stationary endpoint factors. It is the log ratio of the full sampled sequence and its reversed sequence. Linearity of expectation needs no independence between adjacent pairs:
+
+$$
+R_n=\sum_{j=0}^{n-1}L_\Delta(X_j,X_{j+1}),\quad \mathbb E[R_n]=nK_\Delta,\qquad \rho_\Delta=\frac{K_\Delta}{\Delta}.
+$$
+
+K_delta is information per observed transition; rho_delta has units s⁻¹. They are mathematical path relative entropies, not heat measurements. The [Seifert review, Sections4.1–4.2](https://arxiv.org/pdf/1205.4176) explains comparisons of forward and reversed path weights. The Gaussian pair and spacing formulas here are direct calculations for this specified model.
+
+For a continuous record with T>0 the stationary endpoint term cancels the radial drift integral. The radial term is −gamma(|XT|²−|X0|²)/(2D); the stationary endpoint log density is its negative. The remaining log ratio is a stochastic signed-area integral:
+
+$$
+R_T=\frac\omega D\int_0^T(RX_t)\cdot\circ dX_t,\qquad \sigma_{\rm path}:=\frac{\mathbb E[R_T]}T=\frac{\omega^2}{D}\mathbb E|X_t|^2=\frac{2\omega^2}{\gamma}.
+$$
+
+The circle denotes a Stratonovich integral, not an ordinary derivative of a Brownian path. Its Itô correction vanishes because the rotational field has zero divergence. Taking its Itô expectation leaves omega times E|X|² in the drift term, while the martingale term has mean zero. Since E|X|²=2v, the stated rate follows. This comparison uses the stochastic SDE; the deterministic probability-flow ODE does not have its path law.
+
+For nonzero omega the fraction retained by sampling is
+
+$$
+\frac{\rho_\Delta}{\sigma_{\rm path}}=\left(\frac{\sin(\omega\Delta)}{\omega\Delta}\right)^2\frac{2\gamma\Delta}{e^{2\gamma\Delta}-1}\leq1\quad(\omega\ne0),\qquad \lim_{\Delta\downarrow0}\rho_\Delta=\sigma_{\rm path}.
+$$
+
+Use |sin z|≤|z| and exp(u)−1≥u for u>0 to verify the inequality. At omega=0 both rates are zero; do not divide them. Smaller observation intervals approach the continuous-record rate. There is no general monotonicity across arbitrary large intervals: the sine factor has aliases.
+
+### A reversible sampled chain can come from an irreversible diffusion
+
+At a whole or half rotation between records,
+
+$$
+\omega\Delta=k\pi\ \Longrightarrow\ M=(-1)^k aI,\quad p_\infty(x)k_\Delta(y\mid x)=p_\infty(y)k_\Delta(x\mid y),\quad K_\Delta=0.
+$$
+
+For nonzero integer k the continuous current remains nonzero, but every sampled sequence is reversible at that spacing. With odd k the conditional mean has a negative multiplier: this kernel is reversible yet differs from the zero-rotation OU kernel. Do not equate all reversible kernels. The identity uses exact multiples of pi; a rational approximation in the current controls is not an exact alias.
+
+More generally, let Z=(X0,X_delta,...,X_T), T=n Delta, and let the left-arrow measure mean reversal with the same stationary initialization. Removing the intervening continuous path cannot add KL information:
+
+$$
+T\sigma_{\rm path}-nK_\Delta=D_{\rm KL}(P_T\Vert P_T^{\leftarrow})-D_{\rm KL}(P_Z\Vert P_Z^{\leftarrow})\geq0,\qquad T=n\Delta.
+$$
+
+The KL chain rule identifies the difference with the mean KL between the two conditional bridge laws given Z. Thus a zero observed arrow does not prove zero microscopic path irreversibility. The equality of one-time densities provides an even coarser observation. Recovering a continuous rate from sparse data requires the dynamical assumptions, calibration and uncertainty analysis.
+
+![Sampled time-direction information vanishes at half-turn intervals, while the continuous path rate stays positive and pair-area signs can reverse.](/assets/learning/current-reversal-research-sampled-time-arrow.en.svg)
+
+The upper panel compares sampled and continuous-record information per second for gamma=D=omega=1. The lower panel shows mean signed pair area. Its sign reverses after Delta=pi seconds even though omega stays positive. Marked pi values denote analytical conditions, not exactly represented rational presets.
+
+```python
+from math import exp, expm1, sin
+for delta in [0.25, 1.0, 3.0, 4.0]:
+    gamma, diffusion, omega = 1.0, 1.0, 1.0
+    v = diffusion / gamma
+    a = exp(-gamma * delta)
+    area = 2 * v * a * sin(omega * delta)
+    pair_kl = 4 * sin(omega * delta)**2 / expm1(2 * gamma * delta)
+    rate = pair_kl / delta
+    full_rate = 2 * omega**2 / gamma
+    print(f"{delta:.2f} {a:.6f} {area:.6f} "
+          f"{rate:.6f} {rate / full_rate:.6f}")
+```
+
+Rows list observation interval, damping coefficient, mean signed area in m², sampled information per second and the fraction of the continuous rate retained. These are floating calculations of population values, not sample estimates or directed-rounding certificates.
+
+| Delta [s] | a | E[area] [m²] | rho [1/s] | rho / sigma |
+| --- | --- | --- | --- | --- |
+| 0.25 | 0.778801 | 0.385357 | 1.509646 | 0.754823 |
+| 1.00 | 0.367879 | 0.619120 | 0.443304 | 0.221652 |
+| 3.00 | 0.049787 | 0.014052 | 0.000066 | 0.000033 |
+| 4.00 | 0.018316 | -0.027723 | 0.000192 | 0.000096 |
+
+### Research self-checks
+
+#### R1. Does a negative sampled area prove clockwise dynamics?
+
+Set gamma=D=omega=1 and observe at Delta=4s. Interpret the expected area and information rate.
+
+**Research explanation.** The expected area is2exp(−4)sin4m², which is negative. The interval spans more than a half turn, so the short chord points in the opposite apparent direction. K_delta uses sin²4 and remains nonnegative. At this sparse spacing the area sign cannot identify the sign of the continuous angular rate without a frequency-range assumption.
+
+#### R2. What disappears at a half turn?
+
+Take omega Delta=pi with positive gamma and D. Compare the sampled mean multiplier, pair log ratio and continuous current.
+
+**Research explanation.** The multiplier is−aI. Its sampled kernel is reversible, so L_delta is zero for every pair. Nevertheless J=omega R x p_infinity is nonzero away from the origin. This is a loss of time-direction information, not a zero-current identity of the continuous SDE.
+
+#### R3. Does averaging overlapping pairs require independent pairs?
+
+Why is E[Rn]=nK_delta valid, and why does it not give a standard error equal to a single-pair deviation divided by sqrt(n)?
+
+**Research explanation.** Expectation is linear and each pair has the same stationary distribution. Neighboring pairs share a position and are generally dependent; the variance of their sum also includes time covariances. A confidence statement requires that dependence analysis or a justified estimation procedure. The population KL formula alone supplies neither.
+
 ## Worked exercises
 
 ### 1. Find the stationary current at a probe

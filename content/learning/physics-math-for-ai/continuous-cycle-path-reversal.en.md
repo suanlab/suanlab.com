@@ -137,6 +137,148 @@ Use the room/door diagram to read occupancy, gross flows and net currents separa
 
 Research extensions include finite-interval transition observations, hidden channels, coarse observations and odd time-reversal variables. A coarse record can hide currents; recovering microscopic dissipation from it requires assumptions and an observation model. These questions, general networks and physical entropy production remain part of the curriculum beyond this first family.
 
+## Research extension: finite-time fluctuation identities and rare-path averages
+
+### Pair each path with its full reversal
+
+A negative chosen-path log ratio does not contradict a nonnegative ensemble average. We can say more by pairing entire paths. Keep the strictly positive, time-independent six rates, stationary initialization and even state labels from this chapter. The observation duration T is fixed. The reversal map Theta reverses the states and their attached waits, including the final censored wait:
+
+$$
+R_T(\Gamma)=\log\frac{w_Q(\Gamma)}{w_Q(\Theta\Gamma)},\qquad \Theta^2=I,\qquad R_T(\Theta\Gamma)=-R_T(\Gamma).
+$$
+
+Reversing ordered jump times preserves the integration measure: its absolute Jacobian is one. Positive reverse rates and positive stationary probabilities ensure that every allowed path has a reversed counterpart. These support and initialization assumptions matter; an absorbing one-way model or a protocol reversed incorrectly is a different comparison.
+
+### Derive an integral identity and an individual-tail bound
+
+Multiplying the forward density by exp(−R) turns it into the reversed path density. Integrating over all paths, including zero-jump paths, gives
+
+$$
+\mathbb E[e^{-R_T}]=\int w_Q(\Gamma)\frac{w_Q(\Theta\Gamma)}{w_Q(\Gamma)}\,d\Gamma=1,\qquad \mathbb E[R_T]\geq0.
+$$
+
+The inequality follows from Jensen's inequality. Pairing paths at a fixed value r with their reversed counterparts also gives the detailed relation. Since exp(−R) is nonnegative, Markov's inequality yields a bound for a negative excursion:
+
+$$
+\Pr(R_T=r)=e^r\Pr(R_T=-r),\qquad \Pr(R_T\leq-h)\leq e^{-h}\quad(h>0).
+$$
+
+For this finite-state constant-rate model, R has a countable distribution determined by jump counts and endpoints. The first equality compares probability masses with their matching opposite masses. In a continuous-valued setting it is a density or measure identity, not a probability assigned to one exact real value. The bound holds for a fixed horizon and is not a claim about repeated stopping-time tests.
+
+The [Seifert review, Sections4.2 and6.3](https://arxiv.org/pdf/1205.4176) derives path-weight fluctuation identities and their jump-process counterpart. Here the normalized reversal argument is stated for the present stationary even-state model. Without energy and reservoir assumptions, R remains a dimensionless likelihood ratio, not a measured heat or work.
+
+### Solve a uniform ring at a finite horizon
+
+Now specialize the six rates: set all clockwise rates to a and all opposite rates to b, both positive. The stationary law is uniform. Independent Poisson clocks of rates a and b move the state forward and backward modulo 3. Simultaneous clock events have probability zero. Thus
+
+$$
+N_+\sim\operatorname{Pois}(aT),\quad N_-\sim\operatorname{Pois}(bT),\quad N_+\perp N_-,\quad R_T=(N_+-N_-)L,\quad L=\log(a/b).
+$$
+
+Nplus minus Nminus is an oriented jump count, not the final state difference modulo 3 and not the number of completed cycles. One clockwise jump already contributes log(a/b), while a completed clockwise cycle contributes three times that value. This convention avoids a factor-of-three mistake when comparing the earlier cycle affinity.
+
+Using the Poisson generating function separately for the two independent counts gives, for every real s at finite T,
+
+$$
+\mathbb E[e^{-sR_T}]=e^{T\psi(s)},\qquad \psi(s)=a(e^{-sL}-1)+b(e^{sL}-1),\qquad\psi(s)=\psi(1-s),\quad\psi(0)=\psi(1)=0.
+$$
+
+This is an exact finite-time transform, not a large-time approximation. The symmetry follows by substituting L=log(a/b); the two tilted terms exchange under s→1−s. At s=1 it recovers the integral identity. Differentiating at s=0 yields
+
+$$
+\mathbb E[R_T]=(a-b)TL,\qquad \operatorname{Var}(R_T)=(a+b)TL^2.
+$$
+
+When a=b, R is identically zero although jumps continue. At T=0 both counts vanish. At short positive times the atom with no events can carry much probability; a Gaussian fit to the log ratio can miss this feature.
+
+### Sum negative paths without renormalizing a cutoff
+
+For a>b, negativity means the backward count exceeds the forward count. Keep each count up to M and sum only those pairs:
+
+$$
+p^-_M=\sum_{i=0}^M\sum_{j=i+1}^M e^{-(a+b)T}\frac{(aT)^i(bT)^j}{i!j!}\leq\Pr(R_T<0)\leq p^-_M+\varepsilon_M\quad(a>b).
+$$
+
+The retained sum is below the true probability in exact arithmetic. A union bound controls any omitted count. For a Poisson mean lambda, successive tail weights are bounded by a geometric ratio once M+2>lambda:
+
+$$
+\varepsilon_M= B_M(aT)+B_M(bT),\qquad B_M(\lambda)=\frac{e^{-\lambda}\lambda^{M+1}/(M+1)!}{1-\lambda/(M+2)},\quad M+2>\lambda.
+$$
+
+The first omitted term has index M+1. Using lambda/(M+2) bounds all later ratios. Do not normalize either truncated count distribution or their negative subset; doing so changes the probability being calculated. The bound concerns omitted series terms, not floating-point rounding.
+
+![Negative oriented jump counts coexist with positive counts, while exponential-weight averages become less precise at longer durations.](/assets/learning/current-reversal-research-finite-time-path-fluctuations.en.svg)
+
+The upper panel shows finite-time oriented count probabilities at a=3/s, b=1/s and T=1s. Negative and positive counts coexist. The lower panel shows the relative standard error of an exponential-weight average over 10,000 independent complete paths, calculated from its exact variance. These are model calculations, not simulated samples or empirical confidence intervals.
+
+```python
+from math import exp, expm1, log, sqrt
+
+def poisson(mean, cutoff):
+    weights = [exp(-mean)]
+    for k in range(1, cutoff + 1):
+        weights.append(weights[-1] * mean / k)
+    tail_bound = weights[-1] * mean / (cutoff + 1)
+    tail_bound /= 1 - mean / (cutoff + 2)
+    return weights, tail_bound
+
+for duration in [0.1, 0.5, 1.0, 2.0]:
+    a, b, cutoff = 3.0, 1.0, 24
+    plus, tail_plus = poisson(a * duration, cutoff)
+    minus, tail_minus = poisson(b * duration, cutoff)
+    negative = sum(plus[i] * minus[j]
+                   for i in range(cutoff + 1)
+                   for j in range(i + 1, cutoff + 1))
+    mean = (a - b) * duration * log(a / b)
+    sd = sqrt((a + b) * duration) * log(a / b)
+    variance_weight = expm1(duration * (a * (b/a)**2
+                                     + b * (a/b)**2 - a - b))
+    print(f"{duration:.1f} {mean:.6f} {sd:.6f} "
+          f"{negative:.6f} {tail_plus + tail_minus:.2e} "
+          f"{variance_weight:.6f}")
+```
+
+Columns list T, mean and standard deviation of R, retained probability of R<0, omitted-mass bound, and variance of exp(−R). The displayed probabilities use binary floating point; the tiny printed omitted-mass bound does not certify an equally tiny total numerical error.
+
+| T [s] | E[R] | SD[R] | retained P(R<0) | omitted bound | Var(exp(-R)) |
+| --- | --- | --- | --- | --- | --- |
+| 0.1 | 0.219722 | 0.694823 | 0.071543 | 4.09e-39 | 0.704605 |
+| 0.5 | 1.098612 | 1.553672 | 0.121825 | 3.85e-22 | 13.391916 |
+| 1.0 | 2.197225 | 2.197225 | 0.093863 | 3.07e-15 | 206.127249 |
+| 2.0 | 4.394449 | 3.107345 | 0.048769 | 5.91e-09 | 42900.697233 |
+
+### Why checking an exact identity can be statistically expensive
+
+An exact mean of one does not imply a small variance. Evaluate the transform at s=2:
+
+$$
+\operatorname{Var}(e^{-R_T})=e^{T\psi(2)}-1=\exp\!\left[T\left(a(b/a)^2+b(a/b)^2-a-b\right)\right]-1.
+$$
+
+For a=3/s and b=1/s the exponent is16T/3 with T expressed in seconds. At T=1s the variance is about 206.127, so 10,000 independent paths give standard error about 0.1436 for their mean exp(−R). At T=2s the standard error is about 2.07: a finite sample may be far from one even though the theorem is exact. Negative-R paths are relatively uncommon but receive large weights. Increasing the duration does not automatically improve this estimator.
+
+For independent paths, divide the variance by their count to get the variance of the mean. Subsegments of one stationary path need not be independent. Error bars based only on typical positive-R paths can miss the weighted rare tail. A meaningful numerical check specifies the path-sampling law, duration, cutoff and uncertainty, rather than accepting a single approximate average as a proof.
+
+### Research self-checks
+
+#### R1. Where did the factor three go?
+
+For the uniform ring with a=3/s,b=1/s, compare a single forward jump, a completed forward cycle and the mean log ratio per second.
+
+**Research explanation.** The values are log3,3log3 and2log3/s. The last equals the edge circulation(2/3s) times the full-cycle affinity3log3. The net oriented count grows at2/s; it does not grow at the completed-cycle rate.
+
+#### R2. Does a zero value imply no motion?
+
+Compare T=0, positive T with a=b, and a path with equal forward and backward counts when a differs from b.
+
+**Research explanation.** At T=0 no time has elapsed. At balance, every path has R=0 although jumps occur. Away from balance a selected equal-count path also has R=0, while other paths carry nonzero values and the ensemble mean is positive. The reasons for zero are different.
+
+#### R3. Can more duration replace more independent paths?
+
+For a=3/s,b=1/s, compare the exponential-weight estimator at T=1s and T=2s with 10,000 independent paths.
+
+**Research explanation.** Both exact means are one. Their variances per path are exp(16/3)−1 and exp(32/3)−1, giving mean standard errors about 0.1436 and2.07. A longer horizon makes the rare-weight problem harder in this example. This does not invalidate the fluctuation identity or justify clipping large weights; it changes the uncertainty of its empirical check.
+
 ## Exercises with explanations
 
 ### 1. Verify a nonuniform stationary law
