@@ -158,6 +158,142 @@ Work plus heat gives the energy increase. Canonical dissipated work is about0.12
 
 Change only the initial occupancy to4/5 and the exponential work average becomes approximately0.552591. The same energy protocol with another initial preparation need not obey the uncorrected canonical-start relation.
 
+## Research extension: changing the preparation of an exponential-work estimate
+
+### Correct an initial distribution before testing an identity
+
+A work identity has both a dynamical protocol and an initial sampling law. Keep this chapter's two quenches, one heat bath and fixed energy scales. Let pi0 be the canonical initial law and let p be another initial distribution with both probabilities positive. Define the normalized exponential work:
+
+$$
+Y=e^{-\beta(W-\Delta F_{\rm eq})},\qquad\mathbb E_{\pi_0}Y=1,\qquad\beta=(k_BT)^{-1}.
+$$
+
+The canonical-start condition is the one in [Jarzynski's original equality, equation(2)](https://arxiv.org/pdf/cond-mat/9610209). Changing p generally changes the unweighted mean of Y. Reweighting only the initial state gives a different estimator with the same canonical target:
+
+$$
+Z=\frac{\pi_0(X_0)}{p(X_0)}Y,\qquad\mathbb E_pZ=\sum_x\pi_0(x)\mathbb E[Y\mid X_0=x]=1\quad(p(x)>0).
+$$
+
+The conditional dynamics given X0 must remain the same protocol. This is an exact finite-support change of measure, not a statement that the uncorrected physical work relation holds for every preparation. If an initial state is omitted while pi0 assigns it positive mass, the missing contribution cannot be recovered by a finite weight.
+
+### Minimize variance over initial-state proposals
+
+For each possible initial state, compute a conditional second moment. The second moment of the corrected weight separates into two initial contributions:
+
+$$
+b_x=\mathbb E[Y^2\mid X_0=x],\quad c_x=\pi_0(x)^2b_x,\qquad\operatorname{Var}_pZ=\sum_x\frac{c_x}{p(x)}-1.
+$$
+
+Cauchy–Schwarz, or a Lagrange multiplier with sum p=1, gives
+
+$$
+p_*(x)=\frac{\sqrt{c_x}}{\sum_y\sqrt{c_y}},\qquad\min_p\operatorname{Var}_pZ=\left(\sum_x\sqrt{c_x}\right)^2-1.
+$$
+
+The optimal proposal is proportional to the canonical probability times the conditional root-mean-square exponential work. It generally differs from the canonical initial law. Only the initial distribution is optimized; the hold dynamics and quenches are unchanged. Estimating these moments from pilot data adds a separate uncertainty problem.
+
+The normalization Y uses the known analytic free-energy difference of this solvable example. If that difference is unknown, the same optimization can use exp(−beta W) instead: multiplying all weights by one constant does not change p_star. The identity with mean one is a theoretical check, not an instruction to assume an unknown answer.
+
+### Calculate the four atoms before choosing a proposal
+
+The first hold's exact transition kernel is
+
+$$
+P_1(x,y)=\lambda\mathbf1_{x=y}+(1-\lambda)\pi_{r_1}(y),\qquad\lambda=e^{-\nu_1\tau_1}.
+$$
+
+For the existing example r0=1,r1=3,r2=2, the normalized work values are
+
+$$
+r_0=1,\ r_1=3,\ r_2=2:\qquad\pi_0=(1/2,1/2),\quad Y_{xy}=\begin{pmatrix}4/3&2\\4/9&2/3\end{pmatrix}_{xy}.
+$$
+
+They include the factor Z0/Z2=4/3. The final hold does no work and therefore does not enter this table or the optimal initial proposal. Sum the two conditional endpoint probabilities in each row to get
+
+$$
+\mathbb E[Y\mid0]=\frac{9-\lambda}{6},\quad\mathbb E[Y\mid1]=\frac{3+\lambda}{6},\qquad b_0=\frac{21-5\lambda}{9},\quad b_1=\frac{7+5\lambda}{27}.
+$$
+
+These formulas remain valid at zero first-hold time, lambda=1. Off-diagonal endpoint events then have zero probability, rather than constituting missing sampled paths. At lambda=0 the formula describes the fully relaxed limit, not exact equilibration after a finite positive time.
+
+![Changing initial state probability changes the corrected work variance and the uncorrected exponential mean, with a distinct optimum proposal.](/assets/learning/entropy-thermal-research-initial-work-reweighting.en.svg)
+
+The upper panel shows the variance of the corrected normalized work estimator against initial state 1 probability, with the analytic optimum marked. The lower panel shows its raw, uncorrected exponential mean. The first hold is 1s at clock 1/s; no sampled trajectories or confidence bands are drawn.
+
+```python
+from math import exp, log, sqrt
+
+attenuation = exp(-1.0)  # clock = 1/s, first hold = 1s
+pi_hold = [0.75, 0.25]
+transition = [[attenuation * (x == y)
+               + (1 - attenuation) * pi_hold[y]
+               for y in range(2)] for x in range(2)]
+y_weight = [[4/3, 2.0], [4/9, 2/3]]
+c = [0.25 * sum(transition[x][y] * y_weight[x][y]**2
+                for y in range(2)) for x in range(2)]
+optimal_one = sqrt(c[1]) / (sqrt(c[0]) + sqrt(c[1]))
+for initial_one in [0.2, 0.5, 0.8, optimal_one]:
+    initial = [1 - initial_one, initial_one]
+    raw = corrected = second = 0.0
+    for x in range(2):
+        for y in range(2):
+            mass = initial[x] * transition[x][y]
+            weight = 0.5 / initial[x] * y_weight[x][y]
+            raw += mass * y_weight[x][y]
+            corrected += mass * weight
+            second += mass * weight**2
+    preparation_kl = sum(p * log(2*p) for p in initial)
+    print(f"{initial_one:.6f} {raw:.6f} {corrected:.6f} "
+          f"{second - 1:.6f} {preparation_kl:.6f}")
+```
+
+Columns list initial state 1 probability, raw E[Y], corrected E[Z], Var[Z] and the preparation relative entropy D(p||pi0). All rows use the same quenches and first-hold dynamics. Values involving exponentials and square roots are floating calculations, not directed enclosures.
+
+| p(state 1) | E[Y] | E[Z] | Var[Z] | preparation KL |
+| --- | --- | --- | --- | --- |
+| 0.200000 | 1.263212 | 1.000000 | 0.074530 | 0.192745 |
+| 0.500000 | 1.000000 | 1.000000 | 0.228170 | 0.000000 |
+| 0.800000 | 0.736788 | 1.000000 | 1.763503 | 0.192745 |
+| 0.281684 | 1.191545 | 1.000000 | 0.031514 | 0.098611 |
+
+Changing the initial law is also a physical preparation change. For the specified energies its nonequilibrium free-energy excess is kBT D(p||pi0). Reducing estimator variance does not make that preparation resource free or prove that physical entropy production is minimized. If the physical experiment requires a canonical start, p cannot simply be replaced without changing the experiment.
+
+### An unbiased exponential mean does not give an unbiased free energy
+
+For M independent complete repetitions with a fixed full-support proposal,
+
+$$
+\overline Z_M=\frac1M\sum_{m=1}^M Z_m,\qquad\mathbb E\overline Z_M=1,\quad\operatorname{Var}(\overline Z_M)=\frac{\operatorname{Var}Z}{M}\quad\text{for independent runs}.
+$$
+
+Taking the logarithm changes the statistical question. Positivity and Jensen's inequality imply
+
+$$
+\widehat{\Delta F}=\Delta F_{\rm eq}-\beta^{-1}\ln\overline Z_M,\qquad\mathbb E\widehat{\Delta F}\geq\Delta F_{\rm eq},\quad\mathbb E\widehat{\Delta F}-\Delta F_{\rm eq}=\frac{\operatorname{Var}Z}{2\beta M}+o(M^{-1})\quad(M\to\infty).
+$$
+
+The last expression is a large-M delta-method expansion, not an exact finite-sample correction. In this fixed finite four-atom model all weights are positive and bounded, so its moment conditions hold. Optimizing the initial proposal reduces this asymptotic bias and variance, but does not remove uncertainty from a small data set. Correlated repetitions or a proposal fitted on the same observations require further analysis.
+
+### Research self-checks
+
+#### R1. Why is support important?
+
+Prepare only state 0 although the original canonical law assigns probability1/2 to state 1. Can initial weighting recover the full canonical exponential mean?
+
+**Research explanation.** No. The second state's canonical contribution is absent and its formal weight would divide by zero. Full support is needed for this exact initial-state change of measure. Assigning an observed mean of one after renormalizing the remaining events would change the target.
+
+#### R2. Does the best proposal minimize physical dissipation?
+
+Interpret the variance-minimizing row in the table relative to the canonical row.
+
+**Research explanation.** It minimizes the corrected estimator variance over initial probabilities with fixed dynamics. It changes the physical initial resource, measured here by D(p||pi0), and generally leaves raw E[Y] different from one. No thermodynamic optimization follows from this sampling criterion alone.
+
+#### R3. Can an initial proposal give zero variance in a limit?
+
+Set the first hold to zero, keeping r0=1 and r2=2. Use p(state 1)=1/3.
+
+**Research explanation.** The two quenches become one net quench. Only x=y remains; Y is 4/3 for state 0 and 2/3 for state 1. Multiplying by pi0/p gives Z=1 in both cases. The corrected variance is zero, but raw E[Y]=10/9. This exact importance-weight identity does not restore the uncorrected canonical-start relation for the changed preparation.
+
 ## 13. Exercises with explanations
 
 **1. Is raising a level without changing the state heat or work?** In this protocol it is work supplied by the external controller. A state transition at a fixed gap exchanges heat instead. Calling both an energy change does not identify the mechanism.

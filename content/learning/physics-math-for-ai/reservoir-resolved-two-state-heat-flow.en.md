@@ -165,6 +165,148 @@ Total state current is zero; actual production is3ln3/40≈0.082396nats/s. Condi
 
 AB absorbs ε from A and releases ε to B. BA carries the reverse heat transfer and negative production. Their state records are identical but their conditional probability ratio is3. A path such as AA or BB with cancelling heat is not a replacement for the ensemble production rate.
 
+## Research extension: heat-current fluctuations and finite-time boundary terms
+
+### Count a reservoir transfer before taking a long-time limit
+
+The reader already separates the two bath labels. Here we calculate the complete counting statistics of a specific channel as an independent mathematical extension, without adding a tilted-moment control. Keep the fixed gap, stationary initialization, even states and two positive bath couplings. Let KA count 0→1 jumps through A minus 1→0 jumps through A; define KB in the same way for B. Then
+
+$$
+K_A+K_B=X_T-X_0,\qquad Q_A=\varepsilon K_A,\quad Q_B=\varepsilon K_B.
+$$
+
+The sum is bounded by endpoints but each channel counter can grow without bound. For a negative gap, a positive state-count current and a positive heat current have opposite signs. Multiplying the count by the specified energy, rather than its state number, gives heat.
+
+### Derive the two-by-two tilted matrix
+
+Write aA,aB for the up rates and dA,dB for the down rates; a=aA+aB and d=dA+dB. Tilt only the A-labelled increments:
+
+$$
+L_\chi=\begin{pmatrix}-a&a_Ae^\chi+a_B\\d_Ae^{-\chi}+d_B&-d\end{pmatrix},\qquad\mathbb E e^{\chi K_A}=\pi e^{TL_\chi}\mathbf1.
+$$
+
+The diagonal remains the full physical exit rate, including both reservoirs. The row sums need not be zero at nonzero chi. Replacing them by zero would erase the counting weights and produce a different probability generator.
+
+The eigenvalue that is zero at chi=0 controls the logarithm of the moment at long times. Directly solving the quadratic characteristic equation gives
+
+$$
+k=a+d,\quad c_+=a_Ad_B,\quad c_-=a_Bd_A,\qquad\psi(\chi)=-\frac k2+\sqrt{\frac{k^2}{4}+c_+(e^\chi-1)+c_-(e^{-\chi}-1)}.
+$$
+
+The square root is the positive branch for real chi. The cross-channel products cplus and cminus correspond to the two directions of a completed transfer cycle. The resulting first two derivatives are
+
+$$
+J_A=\psi'(0)=\frac{c_+-c_-}{k},\qquad V_A=\psi''(0)=\frac{c_++c_-}{k}-\frac{2(c_+-c_-)^2}{k^3}.
+$$
+
+VA is the full variance growth per second, with no extra factor one-half. Heat has long-time variance rate epsilon²VA. Neither a stationary state histogram nor the unlabelled generator identifies these separate products without the channel model.
+
+### Finite-time variance includes a relaxation correction
+
+The instantaneous A traffic AA counts both directions. Starting from pi, a first- and second-count moment equation gives the exact result
+
+$$
+\mathbb E K_A=J_AT,\quad A_A=\pi_0a_A+\pi_1d_A,\qquad\operatorname{Var}K_A=V_AT+\frac{A_A-V_A}{k}(1-e^{-kT}).
+$$
+
+Write u1_i(t)=E[KA(t)1(Xt=i)]. Its explicit row decomposition and the variance derivative are
+
+$$
+u_1(t)=J_At\pi+\frac{1-e^{-kt}}k w,\quad w=\pi V_1-J_A\pi,\quad V_1=\begin{pmatrix}0&a_A\\-d_A&0\end{pmatrix},\qquad\frac d{dt}\operatorname{Var}K_A=A_A+\frac{2(1-e^{-kt})}k w\binom{a_A}{-d_A}.
+$$
+
+To see the correction, evolve the signed first-moment row. Its stationary component is JA t pi; its zero-sum component relaxes at k. Substitution into the second-moment equation yields the displayed exponential term. For two positive channels, AA−VA is positive. At short time the variance slope is AA; only at long time does it approach VA. Mean current times T is exact at all times, while variance rate times T is generally not.
+
+### Entropy and counted heat differ by an endpoint term
+
+Eliminate KB using the endpoint identity. The channel affinity and complete entropy become
+
+$$
+\mathcal A=\ln(c_+/c_-)=(b_B-b_A)\ln r,\quad\sigma=\mathcal A J_A,\qquad S_{\rm tot}=\mathcal A K_A+\left[\ln\frac{\pi_0}{\pi_1}-b_B\ln r\right](X_T-X_0).
+$$
+
+This makes the long-time entropy rate sigma=A JA explicit. The boundary term has zero ensemble mean in a stationary experiment but need not vanish on each open path. The reservoir-resolved physical interpretation uses the local detailed-balance assumptions stated earlier; [Esposito's multiple-reservoir formulation, SectionII](https://arxiv.org/pdf/1112.5410), supplies that framework. The binary eigenvalue and finite-time variance here are direct calculations.
+
+The eigenvalue has a reflection symmetry:
+
+$$
+\psi(\chi)=\psi(-\mathcal A-\chi),\qquad\psi(0)=\psi(-\mathcal A)=0.
+$$
+
+This long-time symmetry does not by itself imply that the finite-time heat-only exponential average is one. The full matrix exponential also contains its stationary initial and terminal factors. The exact integral identity applies to Stot, including its boundary term.
+
+### Use fluctuations only with their measured channel information
+
+The stationary long-time current uncertainty relation gives a lower bound on production:
+
+$$
+\sigma\geq\frac{2J_A^2}{V_A},\qquad\lim_{T\to\infty}\frac{\operatorname{Var}Q_A}{T}=\varepsilon^2 V_A\quad(J_A\ne0).
+$$
+
+This uses the same autonomous Markov hypotheses as the preceding entropy-production extension. At JA=0 the relative-precision fraction is unavailable. At epsilon=0 heat is identically zero even though labelled jump counts can still fluctuate. A state-only record that erased A and B cannot supply the channel counter required by the bound.
+
+In the worked example, 2JA²/VA=6/77s⁻¹ is below the actual sigma=3ln3/40s⁻¹. A lower bound is not a reconstruction of both bath temperatures or the entire entropy distribution.
+
+![Reservoir count variance contains a finite-time correction, while a tilted eigenvalue has reflection-symmetric zeros without finite-time normalization.](/assets/learning/entropy-thermal-research-reservoir-count-fluctuations.en.svg)
+
+The upper panel compares exact finite-time count variance with VA T for the worked two-bath model. The lower panel shows the counting eigenvalue, with zeros at 0 and −ln3. These eigenvalue zeros describe long-time logarithmic growth, not a finite-time exponential normalization.
+
+```python
+from math import expm1
+
+current = 3/40
+variance_rate = 231/1600
+channel_activity = 27/80
+for duration in [0.1, 0.5, 1.0, 2.0]:
+    relaxed = -expm1(-2 * duration)
+    mean_count = current * duration
+    long_time_variance = variance_rate * duration
+    exact_variance = (long_time_variance
+                      + (channel_activity - variance_rate) / 2 * relaxed)
+    heat_only_moment = 1 + relaxed / 16
+    print(f"{duration:.1f} {mean_count:.6f} {exact_variance:.6f} "
+          f"{long_time_variance:.6f} {heat_only_moment:.6f}")
+```
+
+Rows show duration, mean A count, exact count variance, asymptotic variance approximation and the heat-only exponential moment. Coefficients follow from the worked rates. Exponentials are floating calculations, not directed enclosures.
+
+| T [s] | E[K_A] | Var[K_A] | V_A T | E[exp(-A K_A)] |
+| --- | --- | --- | --- | --- |
+| 0.1 | 0.007500 | 0.031941 | 0.014438 | 1.011329 |
+| 0.5 | 0.037500 | 0.133227 | 0.072188 | 1.039508 |
+| 1.0 | 0.075000 | 0.227869 | 0.144375 | 1.054042 |
+| 2.0 | 0.150000 | 0.383544 | 0.288750 | 1.061355 |
+
+### Check the zero eigenvalue without dropping its boundary
+
+For the same r=3,bA=1,bB=2 and equal unit clocks, direct matrix exponentiation gives
+
+$$
+r=3,\ b_A=1,\ b_B=2,\ \nu_A=\nu_B=1\mathrm{s}^{-1}:\qquad J_A=\frac3{40}\mathrm{s}^{-1},\quad V_A=\frac{231}{1600}\mathrm{s}^{-1},\quad\mathbb E e^{-\mathcal A K_A}=1+\frac1{16}(1-e^{-2T/\mathrm{s}}).
+$$
+
+Thus a zero long-time logarithmic growth rate can coexist with a finite moment above one. Multiplying by the appropriate endpoint factor restores E[exp(−Stot)]=1. This distinction matters when estimating entropy from a finite heat record or fitting a tilted eigenvalue to data.
+
+### Research self-checks
+
+#### R1. Can a labelled counter fluctuate while heat is zero?
+
+Set r=1 and keep both positive couplings.
+
+**Research explanation.** The gap epsilon is zero, so QA=epsilon KA is zero on every path. KA can still fluctuate as jumps use different labels. The mean affinity and entropy production vanish. A count variance without an energy calibration is not a heat variance.
+
+#### R2. Is VA T exact at one second?
+
+Use the worked example and compare the two variance columns at T=1s.
+
+**Research explanation.** The exact value includes (AA−VA)(1−exp(−2))/2 in addition to VA T. This positive correction is not sampling error. Dividing a short-time variance by T therefore does not directly give the asymptotic coefficient, even with exact knowledge of the model.
+
+#### R3. Why can psi(−A)=0 coexist with a moment above one?
+
+Read the last table column and identify the missing entropy contribution.
+
+**Research explanation.** The eigenvalue determines growth proportional to time in the log moment, while finite initial/terminal factors remain. Heat-only A KA omits the endpoint term shown above. Restoring that term gives the complete stationary path entropy and its normalized reversed-law identity.
+
 ## 13. Exercises with explanations
 
 **1. Does zero total state current imply zero heat current?** No. The example has J_A=3/40/s and J_B=−3/40/s. These cancel in the population ledger while transferring energy between different reservoirs.

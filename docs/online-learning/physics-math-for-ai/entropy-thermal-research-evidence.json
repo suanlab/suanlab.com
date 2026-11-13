@@ -1,0 +1,1571 @@
+{
+  "date": "2026-11-13",
+  "scope": "Three existing entropy/stochastic-thermodynamics research supplements; original 51-domain/509-topic scope retained",
+  "baselineCommit": "20ff820fd1640b3b13021d81dab143a4eaff2f47",
+  "registeredDomainUnits": 17,
+  "originalDomainTopics": 10,
+  "sequentialResearchUnitsComplete": 12,
+  "remainingSequentialDomainUnits": 5,
+  "wholeDomainResearchReviewComplete": false,
+  "curriculumComplete": false,
+  "manuscripts": [
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-jump-path-entropy-production.ko.md",
+      "originalSha256": "2ac6ee45a045a51ae4df37f109efeeab4dd73541e52cd7401eb78be76b00c2a1",
+      "updatedSha256": "5f01e8f49f124aa9c4509ee14fe565e32133a56ce27e9200c4c09a01c5e7c1ca",
+      "addedDisplayEquations": 9,
+      "originalSolutionsPreserved": 6,
+      "addedResearchSolutions": 3
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-jump-path-entropy-production.en.md",
+      "originalSha256": "d6db583be1a20da9970e9bfbeddaad19aa058d52dc68d413d52b0d17b1a78e4b",
+      "updatedSha256": "c588f07f33c15e4bee9e899826dd84e55411b3636840c89cd3eb8d782e500125",
+      "addedDisplayEquations": 9,
+      "originalSolutionsPreserved": 6,
+      "addedResearchSolutions": 3
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/driven-two-state-heat-work.ko.md",
+      "originalSha256": "32d33152cdd069b897d62575d87c801c0ca689411eafef7c28302efb887fe2da",
+      "updatedSha256": "ded392414de8c8383a33e4038064cc9a31b50c102c81ec349d633af36228d731",
+      "addedDisplayEquations": 9,
+      "originalSolutionsPreserved": 6,
+      "addedResearchSolutions": 3
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/driven-two-state-heat-work.en.md",
+      "originalSha256": "516b96b5de4ec984f86541a71e8ff43742d121ecd62d72e5081d605e03494b71",
+      "updatedSha256": "8236697cc6e810dc4f52eb340c101083b3264b495745a5fe5617cfb2da4bcabd",
+      "addedDisplayEquations": 9,
+      "originalSolutionsPreserved": 6,
+      "addedResearchSolutions": 3
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reservoir-resolved-two-state-heat-flow.ko.md",
+      "originalSha256": "a3cd3a996c4a21861d8bb0e93d516c47dda39847cbed0d2ba0f15ac3b0fab975",
+      "updatedSha256": "2393416150485863896a64f21d62c42f7677ab451109cb013255e98456bef03a",
+      "addedDisplayEquations": 10,
+      "originalSolutionsPreserved": 6,
+      "addedResearchSolutions": 3
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reservoir-resolved-two-state-heat-flow.en.md",
+      "originalSha256": "2b51bc708c32125917170e1209ec35d8a11e68b9013a20b28adffe2466f6cd6b",
+      "updatedSha256": "29b017e5442390c33fcf5c7ccf20179e8fe34ec01f1bfc7d35edb0648cde773b",
+      "addedDisplayEquations": 10,
+      "originalSolutionsPreserved": 6,
+      "addedResearchSolutions": 3
+    }
+  ],
+  "independentVerification": {
+    "status": "passed",
+    "exactCurrentPreparations": 733,
+    "tiltedPolynomialPreparations": 255,
+    "maxPolynomialDifference": 5.684341886080802e-14,
+    "exactWorkPreparations": 256,
+    "exactInitialReweightings": 768,
+    "workPhysicalProposalPreparations": 4,
+    "workIncludesFullyRelaxedLimit": true,
+    "exactReservoirPreparations": 405,
+    "finiteCountMomentPreparations": 354,
+    "maxFiniteVarianceDifference": 2.4424906541753444e-15,
+    "maxFiniteMeanDifference": 3.9968028886505635e-15,
+    "scope": "Exact current-corrector, work reweighting and marked-channel identities; floating determinant and finite-time moment comparisons. No empirical confidence or directed-rounding certificate."
+  },
+  "tests": {
+    "passed": 487,
+    "failed": 0,
+    "files": [
+      "scripts/learning-entropy-production-preparation.test.ts",
+      "scripts/learning-entropy-production-protocol.test.ts",
+      "scripts/learning-entropy-production-integration.test.ts",
+      "scripts/learning-driven-thermal-preparation.test.ts",
+      "scripts/learning-reservoir-thermal-preparation.test.ts",
+      "scripts/learning-thermal-worker.test.ts",
+      "scripts/learning-thermal-interface.test.ts",
+      "scripts/learning-entropy-thermal-research.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts"
+    ]
+  },
+  "build": {
+    "routes": 1893,
+    "exportedHtml": 1888,
+    "validatedUrls": 1885,
+    "typecheckBeforeAndAfter": true,
+    "lint": true
+  },
+  "preservation": {
+    "otherManuscripts": [
+      {
+        "path": "content/learning/physics-math-for-ai/two-state-continuous-time-generator-euler.ko.md",
+        "sha256": "b1d3b0426bd34c5d0f9f0018006c4f18c037b5a347bec5a1ad841657f17319a6"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/two-state-continuous-time-generator-euler.en.md",
+        "sha256": "cc928d9afad0430300c8d1045d060f44ac9631a5b2afe9f2610853d7b5943a9c"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/poisson-uniformization-potential-events.ko.md",
+        "sha256": "b57ce36c7a1de5b4e06aa7f2fdd64686907424865e49e28f896be202c59dbca0"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/poisson-uniformization-potential-events.en.md",
+        "sha256": "374865521292124bedcb84cc139ecb1bae8fbfd415a3acfe23ebbf7b0cdb55a0"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/state-dependent-holding-time-jump-occupation.ko.md",
+        "sha256": "84c571ff798fc6f81a311daa2d61f0710a06b93a7992fcb7c0ffde3d666e7892"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/state-dependent-holding-time-jump-occupation.en.md",
+        "sha256": "9f99fe5357b6e71ff7e58385f042b2e45e4db2606d92aba3feb940448e44263a"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/ornstein-uhlenbeck-density-euler-moments.ko.md",
+        "sha256": "63056b95d4128f81ea89cffb977c8e8866ae342e413f69456fdd1e1a695d8c70"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/ornstein-uhlenbeck-density-euler-moments.en.md",
+        "sha256": "fad2ac13e20f04f4d03deed4fd999a46dcb766e673db517a2c92c1cbd4f11c34"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/fokker-planck-cell-mass-boundaries.ko.md",
+        "sha256": "d9d559dcec9288a657ba82b2a7f907eca22dcc10cbc9d79c5a4322c7a9753d21"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/fokker-planck-cell-mass-boundaries.en.md",
+        "sha256": "c7619b4bd08734fe9485452f1fb22db140fc85d0737a6761b17ee2530c114577"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/stationary-gaussian-circulating-current.ko.md",
+        "sha256": "02fb4221b46407f992ba1d67327e775d07387c21ee859d9a65095a4d40abe5a0"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/stationary-gaussian-circulating-current.en.md",
+        "sha256": "ebb853bcfca52a4f4d98276db8b1bdddc833947e069424b6ec542692edff4b02"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/continuous-cycle-path-reversal.ko.md",
+        "sha256": "4aa6fdf007a8d144e4a535242596d314a1483f08e4d538b69be02f012d797d3a"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/continuous-cycle-path-reversal.en.md",
+        "sha256": "bf598170037b2c96b3d6bd4bc2b813dadefe366d367634cf2e7f5648565aa9cb"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/thermal-ou-fluctuation-response.ko.md",
+        "sha256": "c0665a1891d1f813851344bc63258238c8a2c96e0d85546b3b636063b20a377a"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/thermal-ou-fluctuation-response.en.md",
+        "sha256": "29ab74b13553f333fe0df8f54bc4a7f335015f6ce4cf56f911bd3add97af3b49"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/markov-perturbation-linear-response.ko.md",
+        "sha256": "43d04090751ba2d03040617ad78b2360422f686a875842aaa93ac468802f133b"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/markov-perturbation-linear-response.en.md",
+        "sha256": "9fcaf1a6f358875095398f59522b4f1901d40f6c9c452d11958c989a1f19aca5"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/hopf-amplitude-critical-relaxation.ko.md",
+        "sha256": "4c0c04a3927cb1b1a021094394c6ceb8f279edf7f1e9434cbd3317a4d3bf3c87"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/hopf-amplitude-critical-relaxation.en.md",
+        "sha256": "3457c3617f645ea91d97ee473d63ab05fd59db3f331f88ccc2aa8508312ed010"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/two-oscillator-locking-phase-slips.ko.md",
+        "sha256": "5586c26ee23bb1897bb1619a58ccd6cc1292e3da6700c965792bcbb3c686f215"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/two-oscillator-locking-phase-slips.en.md",
+        "sha256": "ad0a65ed8a882e7b3802d92b16a386a9432ce425c61e9e88d65a551e5f9b8456"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-kuramoto-collective-order.ko.md",
+        "sha256": "7296249ad60024dcc8072c2af6b31df75fab16315c68aa02fbabf8d7aa245b19"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-kuramoto-collective-order.en.md",
+        "sha256": "b80fa56d26982673929d53077df445de6a7efa6f210a782d31c3eef9714a38e8"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/markov-partition-lumpability-memory.ko.md",
+        "sha256": "e78107c2d10ffa6121da1cb27ddb5ea1eeefdbc3f9407e07b3df63fd6b34172c"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/markov-partition-lumpability-memory.en.md",
+        "sha256": "40110b88535219b6e20ff9dc6a9f01ddb51ea93df4a94c262baeab0fd7269786"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/linear-hidden-memory-markov-limit.ko.md",
+        "sha256": "bcdd5ce3d56abfe3ed520ea217c195515a0308cff14e9a59b8a0eb0884ba02cd"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/linear-hidden-memory-markov-limit.en.md",
+        "sha256": "b6b61f40ff28afa0e722c9dc7dd3ff6f474b9e702c8369c30ad5c2e6dd428f3c"
+      }
+    ],
+    "priorResearchArtifacts": {
+      "content/learning/physics-math-for-ai/thermodynamics.en.md": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf",
+      "content/learning/physics-math-for-ai/thermodynamics.ko.md": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3",
+      "public/assets/learning/thermometry-information-scale.en.svg": "f7736559b4a36bc82944a78f9aa212f50497f6ab6828b930dccba3ad8fb8bc06",
+      "public/assets/learning/thermometry-information-scale.ko.svg": "1700a41b99acbd1e8f388b1a76c256757f10d4eba9b74b4073943af4be67d820",
+      "scripts/check-thermometry-research.cjs": "c781958ca72c404cbedaa82bdfa1550a93b1991e1d2178f2eb9d45dea9783231",
+      "scripts/learning-thermometry-research.test.ts": "60b9e791bc9d0c882863a5db94c6acc83f0c98665838f6e6d0c56aba10481b1f",
+      "scripts/learning/verify-thermometry-research.py": "bc96b222c3e871b4f50338fe0ff4f14c948ea5a3dfa39a1106591ba6eb81203f",
+      "scripts/learning/generate-thermometry-figures.py": "dde9631b640e66eae586f7f2910a68a0ce5fe0b05fa8e8efcacac4ea9acbc83e",
+      "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca",
+      "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333",
+      "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903",
+      "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463",
+      "public/assets/learning/heat-work-contact-scale.en.svg": "d5cb35c632f8a215e1b79b8a68fad2415bfd9e212298f77e150994f844c7e40c",
+      "public/assets/learning/heat-work-contact-scale.ko.svg": "70de21aeb17f0f5d68d2013835c7cddde18ddd5599b990c92ddf5fe110c46545",
+      "public/assets/learning/heat-work-path-null-direction.en.svg": "94b2a0b05f0333f0811cf78eb8992910f8ad3997f66391231c5cb879cbcbf979",
+      "public/assets/learning/heat-work-path-null-direction.ko.svg": "fbfec4ad3b99585d6ce221952fa09585aaa95e87500d7df4b393dba08753931c",
+      "scripts/check-heat-work-research.cjs": "ebd1e2908aca89139c448204374544abd171c89f4abf50cffbec0e6f7c3501d3",
+      "scripts/learning-heat-work-research.test.ts": "4f43a9176d3c8f338bbb61f9b172097aca262435f21ff2ecd646d0defb3fd428",
+      "scripts/learning/verify-heat-work-research.py": "5c2f8d4b96a0ed26e719357e678ef0ba089374a91192f87a4abc5a9014d0f03a",
+      "scripts/learning/generate-heat-work-research-figures.py": "55410994f41b63ac71d74942022d9522b23f712edfbacc86d83a37c1bf04fcae",
+      "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b",
+      "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8",
+      "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786",
+      "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb",
+      "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8",
+      "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529",
+      "public/assets/learning/laws-finite-source-work.en.svg": "36c3b8633806e7c14da8672e865abee52c0e0faa36ed18e435bd00ff063ac7a0",
+      "public/assets/learning/laws-finite-source-work.ko.svg": "094667fec150010fab665b4dd555d1ab73a53cac688e72180c9b47f760d6d1e2",
+      "public/assets/learning/laws-unrestored-device-reset.en.svg": "f2ea8dbaf637fca43cb4f91f02d8e868fd9829cad14c453a48a7ff142e7722a0",
+      "public/assets/learning/laws-unrestored-device-reset.ko.svg": "cd80277e8d52cb73f5f133b4f8414c792a42c6c75790a8352dfbadf8377f2a77",
+      "public/assets/learning/laws-growing-copy-low-temperature.en.svg": "9409cf6331a162a36f433026628bca7a216e5df205c614642dfa18b9334ea21d",
+      "public/assets/learning/laws-growing-copy-low-temperature.ko.svg": "d3eefa000445b8452f2fe48a04eaaec4af68d57acd473f84d160dd55db339ffe",
+      "scripts/check-thermodynamic-laws-research.cjs": "213fd76e88020ec2efde1f6961ae02f1911f7e4cdb4b7da936a2da13b593dacf",
+      "scripts/learning-thermodynamic-laws-research.test.ts": "396cb175abc3bc743980a3d2230f83684e414c2199a7474a2cec8a93becdd884",
+      "scripts/learning/verify-thermodynamic-laws-research.py": "87d2d3c1b193f455e88ca62557221fc601368628a3a32d17e938e465e9776a5d",
+      "scripts/learning/generate-laws-research-figures.py": "ab248b8f1b005380c8342a3b4204a00fa6ecdc29350a81b5127cad75fd0cc8bb",
+      "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md": "c8884d8be4b5341daeae9e64b8c2b499352822663a867fc80bfc6a2afa2e1af5",
+      "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md": "2b70f8129051d98f381f586070cbffb578c90e804669fa1d2295f2e5c9c3d9c4",
+      "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md": "cabbaa81e0c2a28eaa9107910c512168a62e593dc651a818e97475f34299777f",
+      "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md": "cf1068c26a650b9dd65abb3d03e8cce0225d2480af49aafa9e56d4f273381a48",
+      "public/assets/learning/free-energy-quench-relaxation.en.svg": "66845ac8b9da5a92e8a5f2a8eda0479da85c64ee4eb670cbfa9a0aa18a0aad0a",
+      "public/assets/learning/free-energy-quench-relaxation.ko.svg": "ebd93b0adcd311c9031f993616067dc4b07564dddde14f3243c868d16da8b22d",
+      "public/assets/learning/free-energy-inertial-piston-budget.en.svg": "4a3ef143dfc27000167846dcac3263e92869c78332548b89a7cde79df64360a0",
+      "public/assets/learning/free-energy-inertial-piston-budget.ko.svg": "c24670d8083bba2113075d5d17e73548b323712f954785b1df6843dd348d4cb1",
+      "scripts/check-free-energy-research.cjs": "cd11785dc950300ffe6eecfac0e3eab185c5347c991047a421b5674510581bfd",
+      "scripts/learning-free-energy-research.test.ts": "eb6574774960ae1366d231daee74ed9af9972e34d584570e941819d9c5f51a8f",
+      "scripts/learning/verify-free-energy-research.py": "c555b31157c0e6fd32f5e94850dd38f4698b3738eb367c5b4e5324d3d03ec57a",
+      "scripts/learning/generate-free-energy-research-figures.py": "55454b3132656b06d3308f0acec8655e512a50670e912eaab5e39e260874cfa7",
+      "scripts/learning-gas-free-energy-content.test.ts": "40c85dbb1aa94a7dc07357681b1bea194f1f7869754dc92d4a2c84fdc2f57496",
+      "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md": "22994935ed43b1238a2653ad433b9fba4844b21fa949513108e4d8e65121da3f",
+      "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md": "f5faeff2df6647774485ec8feb0c2425912fdeb308bed436515c0eeb966cca82",
+      "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md": "e5f21a6f59fdcf0e17dc8ae593ffcd207e030e04f1fd4abc2757cc45f8cc89a2",
+      "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md": "3e1f7f9508fa6a5a5ad1db33a11b11b0eee91eecf4cbe043136db65d9bc0e4fc",
+      "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md": "18528a5d21dc41daca84e8c3ba4b74ea96d06bc262bc10ea8192db361e70c54a",
+      "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md": "0491fbb5cfe9ade34594d3df47fc0467780fce503c922fad221e33b67f360c45",
+      "public/assets/learning/micro-macro-shell-exchange.en.svg": "5f02a72e398fbae69e39bddc8e1eaa06cf3635be9bd46120a15cb7d7d1dbbe96",
+      "public/assets/learning/micro-macro-shell-exchange.ko.svg": "ca872b350149998d9fff11fe5bda6be477583de5103c9775870e7dfe37901661",
+      "public/assets/learning/micro-macro-coarse-memory.en.svg": "567958d9c85fae4b3349cb175549a05f7bf7f5fdc4340a93043dd86bc157cd23",
+      "public/assets/learning/micro-macro-coarse-memory.ko.svg": "df7aef062ad6d00746d8ec150e31934b7af8f97bdaaab00301f0b53f5b1186bd",
+      "public/assets/learning/micro-macro-repeated-sensors.en.svg": "8557e2b8dcd16606e3ca5676cd884572e32d6e67a2f811ef6a8572a45effd7b0",
+      "public/assets/learning/micro-macro-repeated-sensors.ko.svg": "0831eb3ff53a87f824c0c363e3109f01ed5703df812829ac02694c726c77a36f",
+      "scripts/check-micro-macro-research.cjs": "ea987ef21b58b777b498599e6ea030dc9d30e6a260abfcec3f1f50de773a8964",
+      "scripts/learning-micro-macro-research.test.ts": "88dd5d4b64b175614f06197db09eb163d8c630661ae36c66d50e70a647ebe1c6",
+      "scripts/learning/verify-micro-macro-research.py": "368b2570bb91453f2b6c66e51d049f7b2df20a60dbd52d3e92b57575d91748e2",
+      "scripts/learning/generate-micro-macro-research-figures.py": "7d0e5f11b844b42a7278d13a14838e058c77a9973fee03437f6d72d2972edfbb",
+      "scripts/learning-binary-macrostates-content.test.ts": "7f97d6ae565237fe63c168fb2cbfedeefb996540c22fa19abcf8cea289c9ed9a",
+      "scripts/learning-macro-partition-content.test.ts": "278a84f6ed1691bf31f22a871a7e5925de23cdb49f10879aa00b4f60b98815fa",
+      "scripts/learning-noisy-macro-observation-content.test.ts": "333964c1332f4933e45362c71c5640b0430819d0f70fc2fb7b32ce15072da71f",
+      "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md": "659b82f1f3c19966a0b891a609262c5dd825c821d85d96cce09397313ea84a38",
+      "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md": "7accc5aded8e3db2843fb4f56153eb84654e08d00835c90585c684ba1d2d09f3",
+      "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md": "c1e84084c383f5306301b11bedca68e57a6efb0ff6bcafbc0823df1c61156e0b",
+      "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md": "d6297d9b2a0185ceb541329f16970702b03c71c49a824c8ea97e65b9fa18f734",
+      "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md": "8e7bc66f8f361767935d6f2198b3ca9fa099d0b98c73d017f55bc3d8063f026e",
+      "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md": "bb67de78a58e7781683bce9015b1c67623b2dc720228f4162a74e7b61d6e41bc",
+      "public/assets/learning/ensembles-reservoir-identification.en.svg": "e7574881238de852b90615b101da45032d35b51c0b12473a28295ea2a3169038",
+      "public/assets/learning/ensembles-reservoir-identification.ko.svg": "d86bfb8368754531a5783618bf80d1d428ae4675b5d3d73f7fd9316158e40a46",
+      "public/assets/learning/ensembles-driven-canonical-response.en.svg": "fe65fb6bef449133fb29c8c25caf4ed58fb20d975fdf8b686c3f07557d8aa3e9",
+      "public/assets/learning/ensembles-driven-canonical-response.ko.svg": "b1ffa231ddbca48f0ee17c78f4175289cca1c0926378a4ac34311284112d8870",
+      "public/assets/learning/ensembles-grand-response-rank.en.svg": "5ab9a0e0b99bbc0d0dce6f55f6f2384beacbf8effbd7795df858da9828141d40",
+      "public/assets/learning/ensembles-grand-response-rank.ko.svg": "664dfa43d78d60e0fe8ede7f864638fe87b593aab114444a89cb3825f089577f",
+      "scripts/check-ensembles-research.cjs": "2a3b4a028ca21918401a95c0d65174e0a0ddccf5652deb8f2ac8589fd5cbe5f7",
+      "scripts/learning-ensembles-research.test.ts": "1ebd47924059b2ddbd5037654bf8dca2cb5c448b69ab011fef4a15d9311b5024",
+      "scripts/learning/verify-ensembles-research.py": "4ac9327a6a6a83ba0048a230a991b03761695c58212f146ed7945a7bdc6d4c5f",
+      "scripts/learning/generate-ensembles-research-figures.py": "f9fc640776e3f0551c71232899cdf49331edca164f416e97b6c0d6e2edca9aa8",
+      "scripts/learning-finite-reservoir-content.test.ts": "1f23c70d15f7f616f2bc0f3688d9424f9204434aea123b64c62c138fddb9f1cc",
+      "scripts/learning-canonical-binary-content.test.ts": "2701304fcedb982262569544c3066a7126c4b95b07d3e63ee2028d43bb467ed2",
+      "scripts/learning-grand-occupancy-content.test.ts": "49a7b942d2b346036dc7c03b4e14ce572b7af33431e32e3bf5321b23d26de75b",
+      "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.en.md": "2a07370a5b7e9e02433a519feca4770e5dc92d4abde2c51abcfbb5cbd2fc79d1",
+      "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.ko.md": "458d333457c2c79c8e5bd32a41a67d2396eb814c90db75eaf524ef3385fc80fe",
+      "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.en.md": "3672271d8e236d12d8ba388125c7286e4bce189b1bff501f6128f99c358c4d78",
+      "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.ko.md": "e479e0d4b0409b0659e6d799fea3eccbfb5db4fbb4c2d17cc9e1001161d1d491",
+      "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.en.md": "93a17d5d1556bd352300119e2b10377b6a42f93ef8e85bef040c597a4b02c90a",
+      "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.ko.md": "cebf2452e4e59605cbfc36b426e0d08fa39b36b0494e59873b69c1449d91dafd",
+      "public/assets/learning/partition-research-finite-reweighting.en.svg": "1e547c8427aafe00ab57ff431f744456a9dae80e63d4575e3cef296aeba09f88",
+      "public/assets/learning/partition-research-finite-reweighting.ko.svg": "f35973331397444d70826cfa4178d69078edc2ccbfd119ec68e0f896ea971ac1",
+      "public/assets/learning/partition-research-hidden-spin-marginal.en.svg": "37dd446df42a91099bf97e827e20081ed78443234dff9ffca2682f075f9efc7f",
+      "public/assets/learning/partition-research-hidden-spin-marginal.ko.svg": "5bc94686bb98e02f098ab8abc441812f3f708a2ab53304730e93d202218c2988",
+      "public/assets/learning/partition-research-infinite-weight-variance.en.svg": "c2bc114f03d6e876020959ceca0c930278912860f966b2af1e393c21fafeb9d0",
+      "public/assets/learning/partition-research-infinite-weight-variance.ko.svg": "ec6ae98f4f2b126dc10bda09ddecefee7e80c9068a147fb4db78deaa60c633f7",
+      "scripts/check-partition-research.cjs": "9a42473bf5976192079a793907bfe1749d2cd71175a35cf39449511dbde1fd51",
+      "scripts/learning-partition-research.test.ts": "93cd698253094bc57e00cfdc6ff9d9be034b78ea8bbb5bbaa6d4eb51926007d4",
+      "scripts/learning/verify-partition-research.py": "dbbf7c4fd2b74be9f5c3bc9e6ab7b6b1ce4eeb36e084dfc4a7f952f2b0e2fc97",
+      "scripts/learning/generate-partition-research-figures.py": "e17d176295e11e2966c8432f50e1ff5ef4a5baf44af234587621432d2d7f82ee",
+      "scripts/learning-partition-cumulants-content.test.ts": "dfed3f54bec8a713a83200820e3ea5225fb173f85a051fd0053dba3c214f875f",
+      "scripts/learning-coupled-partition-content.test.ts": "704aa6011d2ecc0c860676d48a65a0d69caccde05a495102e8123c018ee01b9b",
+      "scripts/learning-energy-ladder-content.test.ts": "26d8f60ea87d7a02dee2c0d82e43f036b03974ff059292e0e0958a6f0077d9a2",
+      "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.en.md": "9414d5a81984054eb5e3b511347c4dc826a1cec2cdedb1b6c737fe7b3406acf0",
+      "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.ko.md": "3cdf160f7587cff201280543aa92952f612938f666fc63a344eca0bc86c64870",
+      "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.en.md": "92afb4f000b560600faf627e2b554284e81d87352023b10264fff73f19e1902f",
+      "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.ko.md": "fe68a6897a639c3c2dc9bb3f79ffe4fb40bc7670e74ae13f1f24a8b636f5bb36",
+      "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.en.md": "744ee865407ff297b29443cf73e0dadb4120db7977b636c606fcc60703b6e5d8",
+      "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.ko.md": "ed752023c3ab8542ad47f5308719a5471a85ec90921811d96158581b5398aa60",
+      "public/assets/learning/boltzmann-research-two-temperature-identification.en.svg": "96a19227c5d3e868cd8e6ae4b3668ed97ef7a246b6d82531f2a08e67426084ee",
+      "public/assets/learning/boltzmann-research-two-temperature-identification.ko.svg": "c6f5ff08393554f2048998b1f03f5a66bc757700cb8357b815cab7664c5e2ae7",
+      "public/assets/learning/boltzmann-research-state-dependent-scan.en.svg": "513ff5a18cf2046bfbe85095b4b3ce4cc50c26bb2da305546d67882ebcd1b036",
+      "public/assets/learning/boltzmann-research-state-dependent-scan.ko.svg": "141123252d0e5abca1b6abb1d814b21e16d6c83351e5270cc82450b50eb98813",
+      "public/assets/learning/boltzmann-research-gaussian-sampler-bias.en.svg": "fad6cc405f685616ce831c023fb98a5718de1c674e6fd31acfcd51f3d71ae4b2",
+      "public/assets/learning/boltzmann-research-gaussian-sampler-bias.ko.svg": "05d2093ac9e3b3a63c3e49d4f09f1f623406f4bbbb7a4e4c0c1861a6f101149c",
+      "scripts/check-boltzmann-research.cjs": "30ac5fd2d3c7b54017b4beb438b6fdaab3dc2d0b069288762e8cb99ea9d2e5d7",
+      "scripts/learning-boltzmann-research.test.ts": "b14a8ad6bc525f03883d75d9573a30fd2b87b86b41b19f2c5573cfda7a50c7ae",
+      "scripts/learning/verify-boltzmann-research.py": "24e08b04a2a606688a6cdd7a30f9fa417ade0300e46dc1dc0479895626ad3200",
+      "scripts/learning/generate-boltzmann-research-figures.py": "8a0c297d7655869f23e4e04ea446dd5249d07ac0d1f66fcf52a29f7f180c15b9",
+      "scripts/learning-weighted-boltzmann-content.test.ts": "71f93eab60226dbb8b3b7a329bd072cc71b49470c385a72516781991956e7dfd",
+      "scripts/learning-finite-gibbs-content.test.ts": "9814379a69d18502a1dff3d7f2adfeff53a3fc534ed6c57c42ea0e99eedc9768",
+      "scripts/learning-quadratic-gibbs-content.test.ts": "3a361346c9b8e82b19a649c6a162894815232d54ea34f0e76c799ef5cbccdab0",
+      "scripts/learning-boltzmann-gibbs-integration.test.ts": "e8f680959b8a032da1a6e4d6127249c9ed64568f5f9c4da1972f73b8375fcc83",
+      "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.en.md": "b150e3bc81a4abe6b70e85c698240da55d48badd890e728a5eec9c7ab8c18e3d",
+      "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.ko.md": "9e97975bd2648070bc135c5bfad9d65b30eb5d3beaf9f12938ad5607c0ea1943",
+      "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.en.md": "22c88397570919a6aa677ebd9cc4da49ab72af7fd3f3e04b236839722a59df0b",
+      "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.ko.md": "520ad2aff4c301946aaab527114a4392f98692cbb0c9e488513b463e33428b84",
+      "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.en.md": "af9c929b0df3200d77f66f0e3bf38d912e1f160e614b0ec08d7275183f1b0d77",
+      "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.ko.md": "f65bea07913365af004773010b34a6e022d86ca2d8756ef774b9083cbddf25d9",
+      "public/assets/learning/phase-transition-research-critical-fluctuations.en.svg": "cf4a4946f93d1019e7adc9726a8243c91ed9e3de33b71966d5611b71678286ce",
+      "public/assets/learning/phase-transition-research-critical-fluctuations.ko.svg": "c5bce67909998ba3caaeef7d58c8a1ba85e4c5ff413923132eb0eb962bcd810c",
+      "public/assets/learning/phase-transition-research-laplace-branch-weights.en.svg": "e270df2cef26516f8b3f156189708df3138143faafbb610e36b9f6b11db303a2",
+      "public/assets/learning/phase-transition-research-laplace-branch-weights.ko.svg": "08efc2ac61eb0b5aff8bf333590a45349f2ef98b2ccd74112fbab741cab878b0",
+      "public/assets/learning/phase-transition-research-interface-droplet.en.svg": "1830db3ab42386ed6659418930301cd1f1fc269aa1f80a1ee68b9ac05e3ed566",
+      "public/assets/learning/phase-transition-research-interface-droplet.ko.svg": "c13edea79f572074fdbaffc7bc1576c36204852628bf09c24e202d329ab50a36",
+      "scripts/learning/verify-phase-transition-research.py": "9efa89f7457567f1c6d822c703abf8e7a857c6617551b6d006cf79c807554853",
+      "scripts/learning/generate-phase-transition-research-figures.py": "022f1f46fe8fde6970ad1caee1dde5b699488cb4b03e0325d69f9ab261b8739f",
+      "scripts/learning-phase-transition-research.test.ts": "71948998591b1d0dfe9c0ed81e1dd7d5c7d2b1a5caceea3a1056cc9975b6c7ea",
+      "scripts/check-phase-transition-research.cjs": "e7fd87c8a74373ecd3352ee3ddbd559749f7dacb5be6d90787ae16d0faadff79",
+      "scripts/learning-curie-weiss-content.test.ts": "cba1e1d57df60dfaf0e5797ffc03f8648c1983a482d11dbe11906c773e7d9266",
+      "scripts/learning-curie-weiss-variational-content.test.ts": "c7297911b279309b8828c1b99ad4eccc05065716dc52704acaae09f18f4ca2f3",
+      "scripts/learning-landau-sixth-order-content.test.ts": "f28744b6068ee2a970e4f5f0c1b7e5411d15603ba2a7cd831224a1e2e114c74f",
+      "scripts/learning-phase-transitions-integration.test.ts": "8460a15001ac1b2f13f59b177b73fce464ea5caae89f2feaa6676cf53237ea90",
+      "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.en.md": "03baec7d35784db42139c73a7345c890a0ec9c37640c76a840626373b0adeec5",
+      "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.ko.md": "e171447041a557f917b4864b358f122a3970f2b1c9390110d9a95df510aa0e9f",
+      "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.en.md": "1aef513b803cad426841e8d0655634de42d67877ec36f2488876fd3ba6f0e549",
+      "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.ko.md": "effb8c078408995c6bda9b79d5a840781f0b398b197396ad6df20968241a7b9c",
+      "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.en.md": "294b98196495e7460ee353001d699bcc5347a3677691f8b22322f3be796e2153",
+      "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.ko.md": "ce29b6ccceb6b5c7c5161b86af6fc90068954f532b5888fdd2d46d265477427a",
+      "public/assets/learning/correlations-research-interaction-nuisance-information.en.svg": "451f4d991b215b9453430fd9c94cc7111e23b64a9907e9d50125ca4d6c9f2734",
+      "public/assets/learning/correlations-research-interaction-nuisance-information.ko.svg": "943bdf302fda0ffa2f1c5e3725b61e697113e997debefd6a92d607b090197a0f",
+      "public/assets/learning/correlations-research-ring-fourier-modes.en.svg": "98ede22c33df0c58dc3c6a6e7862f415f620d0d00cc765e06e2282b48b067541",
+      "public/assets/learning/correlations-research-ring-fourier-modes.ko.svg": "945daa48827de329cc1e46f831b1ad74da44853df7a7daed26ce1b1894d63075",
+      "public/assets/learning/correlations-research-ar1-efficient-mean.en.svg": "dd0be6e63094a478078cf87f20084a0105e4b85349ea5a9df6b853ba14427ce8",
+      "public/assets/learning/correlations-research-ar1-efficient-mean.ko.svg": "c6c753827fc54a85cfeea6a050eff8122bd9ce8ea8dfa59e1233d3dc27708f4c",
+      "scripts/learning/verify-correlations-research.py": "4264de0fe2a82e70a197190956992c36bbc07cb2eee9ae54db83793a769db500",
+      "scripts/learning/generate-correlations-research-figures.py": "1b232af27879699e520ee74b8f41cb810fe5c3994d0280571c5ced86adede063",
+      "scripts/learning-correlations-research.test.ts": "6211a8e5edad5fce2b9a2bc2b3df405712271ae28411b8a57f85262ebd35f280",
+      "scripts/check-correlations-research.cjs": "74ac25073b584b186017de931a3ea46350eaf7903b73bad551becb30bced203f",
+      "scripts/learning-binary-correlations-content.test.ts": "708871bad6be72081125f7fb0f2aec0826778c1b1b134ceff883e300ffceaff0",
+      "scripts/learning-periodic-ising-ring-content.test.ts": "5d36df8c5a20dcb031a03a02d2e1b66305fc0fb2d61adf8c282f23e98d8209e8",
+      "scripts/learning-ar1-average-content.test.ts": "0a13ba8b53a23a52a3c3a0e60ebff29e174d05f82e0ae1149dda6fc82ee2b2e2",
+      "scripts/learning-correlations-integration.test.ts": "76abb6794b9472f8e781f3de54efd59a72b6cd29098397d4120f71a1c6ec068e",
+      "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.en.md": "3f15f18ea1a3fe34edd6c5af679b37e8bc4a78ff14998e1d9f81e49d989fb135",
+      "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.ko.md": "aea2b8f5dfd816225d664cc5e0dca273886f8e2d708fd7af1b626df2b14b357e",
+      "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.en.md": "95fcbe917a13de4e171c410140c00c7c4457549e47775233b8e685ff21d5c62b",
+      "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.ko.md": "94b7727ec85bcecb4fecfa5ed29617dc5b95a2908e9f1bdd13ec50d5f5293b5c",
+      "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.en.md": "0f718670bb7ffbbfad1e6fd007b455eab1e31047987347c862904dde72126aca",
+      "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.ko.md": "ee20bf9d49603935156a911901e0969c946774eade57453940112c577fc68f51",
+      "public/assets/learning/detailed-balance-research-path-irreversibility.en.svg": "f9d82b3c11a79457811ff4fe9d441af62d471c420a4b250a752413d6eee13a04",
+      "public/assets/learning/detailed-balance-research-path-irreversibility.ko.svg": "6141c4b69d752bad4f0af4e02f3c878f9abe64937aee565bc1543a885bd54fe7",
+      "public/assets/learning/detailed-balance-research-acceptance-variance-order.en.svg": "0792d27e88e095fb062b9024eb94291661d940d73dbeedf3bde43ec89d275116",
+      "public/assets/learning/detailed-balance-research-acceptance-variance-order.ko.svg": "bb63132a8a0a35c0197c1693d8777a70cc9c91ba5a362443f7ac566f09c2dd8a",
+      "public/assets/learning/detailed-balance-research-initialization-laziness-error.en.svg": "02beff4b1d48d9cd3c7ce5b44a949e4094ffd1ded28f9c0cf863427d19081bf2",
+      "public/assets/learning/detailed-balance-research-initialization-laziness-error.ko.svg": "41b66e6238c5fc0695718b29ca4efb5606946078793f96d1da173ab691203c3f",
+      "scripts/learning/verify-detailed-balance-research.py": "6987652d0a447748398b60c473ff1abde54461d110396d16f42a0641e102d672",
+      "scripts/learning/generate-detailed-balance-research-figures.py": "5bb572f688af8b6b8e16ba1674d51fb3fd7dc763253c6b3c9e510e3d28882c2b",
+      "scripts/learning-detailed-balance-research.test.ts": "6301a848545b175203ed247deefca1acd1bbc56af9666f2d2cb9ba3756022673",
+      "scripts/check-detailed-balance-research.cjs": "b31fd902f75b54fdba05cf779d7832c763fc4cb88d0df4250d5460cc3ad08882",
+      "scripts/learning-stationary-cycle-content.test.ts": "d632cf21651268b54041558f071458185245f9e0f759f24110eeaf33d27ebe12",
+      "scripts/learning-hastings-proposal-content.test.ts": "2313f4b67e9ca289b9e0e788d8671e184fb0cf771899e65bdfa138701e517681",
+      "scripts/learning-two-state-mixing-content.test.ts": "225dacf31ebce523fc7a3afd582f886af17624def36a82a5bd9de5ef37e79808",
+      "scripts/learning-detailed-balance-integration.test.ts": "8761bdf0c0eaa578810e1510034659b6ba31727909bddf0f69f1b77285b01916",
+      "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.en.md": "06fe7998e95d7d6ada72b081c28541600cccd5f790c564b5a15e31d153141cfb",
+      "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.ko.md": "829c2017d1b5e570fa8984078578cc27c50f5bdbd68a98fc9c49f75a15be1ab0",
+      "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.en.md": "d6f70e85f732967c9c62d32e0cc4638de0c295a23e793d045b38c98c478bb674",
+      "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.ko.md": "c60f13ca57fb55ec98e88542677116416e9c9054ad24b1e5b2bae79f6743a7b7",
+      "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.en.md": "de221fce8b9a9c66c41dcb5e7f047f5aa0ac030c25efd2060f6985fed4417869",
+      "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.ko.md": "5cb430516287d00f9a4dca288e30aa1c21b239c3040c93f9333a9f11533845e5",
+      "public/assets/learning/finite-size-research-boundary-free-energy-information.en.svg": "1d8e45349ea246afb85e68945cdde587d1cdb7f7f7f520dfc06d4fa5c0e2b306",
+      "public/assets/learning/finite-size-research-boundary-free-energy-information.ko.svg": "f58a8b9eba2a934f439aa730902364f67ae958370979a4c063f979fecd5969c9",
+      "public/assets/learning/finite-size-research-rare-mode-limit-moments.en.svg": "88af75c5b412d39d678da01c3f075f2620607e7cf1eb83cc1409c19c100a0fb0",
+      "public/assets/learning/finite-size-research-rare-mode-limit-moments.ko.svg": "dbfa975aa827f6165818155bd5dc02bd506646f499fe556d5b8c809b28f80697",
+      "public/assets/learning/finite-size-research-degeneracy-shifted-zeros.en.svg": "7da041f4f89d47f7981c776b7ea655af0b5612a7b99f86bb0ee84ff1dd9d05c2",
+      "public/assets/learning/finite-size-research-degeneracy-shifted-zeros.ko.svg": "2e13180c36299589876095f1aaa8376722f04e36a3270b48f5e09aadbb477f68",
+      "scripts/learning/verify-finite-size-research.py": "e7a76ce327ffe7086dfe4217a3955861b104d48b55214082fce0a43e951a5582",
+      "scripts/learning/generate-finite-size-research-figures.py": "6227b2ea560c0017a905494e538db1f10bd42fe3fb6b6897a5221fc9b07eeb11",
+      "scripts/learning-finite-size-research.test.ts": "85578fed49722261ae85033a6e6a629fffd86c0cb9312912ea3c694ac4f4c13c",
+      "scripts/check-finite-size-research.cjs": "24613e0aad8515ca15b40b49ee3227e88a8d6e9de64bb0e236da16ce17f8b3ae",
+      "scripts/learning-boundary-extensivity-content.test.ts": "65698bd25236c80ad555e6f38f9341df7ce48ee8d0c68613ce9905a6c3681b41",
+      "scripts/learning-spatial-self-averaging-content.test.ts": "d46f97600340e2159ca38681a6e691e392da560213ac260c21fd7ef8f3b48811",
+      "scripts/learning-two-phase-rounding-content.test.ts": "6a3419345c2c7417bd6d09a21b62cf645540db0bc3e910d3598c8a0b5f709794",
+      "scripts/learning-finite-size-integration.test.ts": "7f2da7bad7979e3a7942b559a97826e1f5e0d86cac2082fe41a8ee8257729fb5",
+      "scripts/check-thermodynamics-research-figures.cjs": "ebe135b0f2af27eb54ea8fd5f5ba54de1cd1f22901f4818bf9f67eb4fd265f10",
+      "content/learning/physics-math-for-ai/two-state-continuous-time-generator-euler.ko.md": "b1d3b0426bd34c5d0f9f0018006c4f18c037b5a347bec5a1ad841657f17319a6",
+      "content/learning/physics-math-for-ai/two-state-continuous-time-generator-euler.en.md": "cc928d9afad0430300c8d1045d060f44ac9631a5b2afe9f2610853d7b5943a9c",
+      "content/learning/physics-math-for-ai/poisson-uniformization-potential-events.ko.md": "b57ce36c7a1de5b4e06aa7f2fdd64686907424865e49e28f896be202c59dbca0",
+      "content/learning/physics-math-for-ai/poisson-uniformization-potential-events.en.md": "374865521292124bedcb84cc139ecb1bae8fbfd415a3acfe23ebbf7b0cdb55a0",
+      "content/learning/physics-math-for-ai/state-dependent-holding-time-jump-occupation.ko.md": "84c571ff798fc6f81a311daa2d61f0710a06b93a7992fcb7c0ffde3d666e7892",
+      "content/learning/physics-math-for-ai/state-dependent-holding-time-jump-occupation.en.md": "9f99fe5357b6e71ff7e58385f042b2e45e4db2606d92aba3feb940448e44263a",
+      "public/assets/learning/master-equation-research-path-rate-information.ko.svg": "2295e13c385e8b3cf751a5022a13a2385bc6e142834b8f02f6db7be9384e286b",
+      "public/assets/learning/master-equation-research-path-rate-information.en.svg": "8784b0747ae1a15bddc5e8b74930dad01718c3cc95c6865df045cad48b76fb94",
+      "public/assets/learning/master-equation-research-sampled-generator-alias.ko.svg": "b37eb9d6f6330d6c6579b6de556fc019e1c96ee249ba922c886ebd04d03ed240",
+      "public/assets/learning/master-equation-research-sampled-generator-alias.en.svg": "4caf98d981e294079c75975b0c2df257d3e049af146b05ef0d54e1a6ec63bd94",
+      "public/assets/learning/master-equation-research-renewal-time-uncertainty.ko.svg": "eb42e1c0b56ff7fc77631c3efa5b13084485813e2c98b59da3e8ad456e7c4cf5",
+      "public/assets/learning/master-equation-research-renewal-time-uncertainty.en.svg": "15cff96bb466f0823595d29fbebe8c621f60bea6d0f7ef7492422ca3b4124b12",
+      "scripts/learning/verify-master-equation-research.py": "678677cd7f5a890b9c806c26c4b616300a07e6f181738443bbebf56f9b8f9320",
+      "scripts/learning/generate-master-equation-research-figures.py": "f3de5de7877e9dba7e64aa4ab489b318fbd81d0761a3073d8d2d8ef0ca510526",
+      "scripts/learning-master-equation-research.test.ts": "4c2805d3368cb2f6cc1767dc521e38e2e4f9ae0d6dfa9d310d50d30c920cbb8b",
+      "scripts/check-master-equation-research.cjs": "7b44d5e23b9172b5e6771e10717591299a0308c2c2316d5c28bfeeb9c75c0161",
+      "scripts/learning-master-equation-integration.test.ts": "c1b951537496f751de6579193e1a3b81c400b9276ee5642b2336ce4b81173f82",
+      "content/learning/physics-math-for-ai/ornstein-uhlenbeck-density-euler-moments.ko.md": "63056b95d4128f81ea89cffb977c8e8866ae342e413f69456fdd1e1a695d8c70",
+      "content/learning/physics-math-for-ai/ornstein-uhlenbeck-density-euler-moments.en.md": "fad2ac13e20f04f4d03deed4fd999a46dcb766e673db517a2c92c1cbd4f11c34",
+      "content/learning/physics-math-for-ai/fokker-planck-cell-mass-boundaries.ko.md": "d9d559dcec9288a657ba82b2a7f907eca22dcc10cbc9d79c5a4322c7a9753d21",
+      "content/learning/physics-math-for-ai/fokker-planck-cell-mass-boundaries.en.md": "c7619b4bd08734fe9485452f1fb22db140fc85d0737a6761b17ee2530c114577",
+      "public/assets/learning/fokker-research-sampled-ou-inference.ko.svg": "d5b87c37d168278c1fbfc1ed94e80fa39a245e5bba0feb03d43e8c6609dca37a",
+      "public/assets/learning/fokker-research-sampled-ou-inference.en.svg": "58610cf5082d8cea92f461596933f3d590d90d31ff4f7535fc61f3d1f2c85176",
+      "public/assets/learning/fokker-research-grid-first-passage.ko.svg": "0ce141614d2bd70517150c5d690761fe643ddb3679af3660d5a5c6b14520f80b",
+      "public/assets/learning/fokker-research-grid-first-passage.en.svg": "b4a79b5752368b39ea49919c4616931763e3ae758d24a60b228ab7a7ae65bd90",
+      "scripts/learning/verify-fokker-research.py": "85a1b7f2075c6422cbd1f7fc4c20882040c40658493db3aab63adb10ac464816",
+      "scripts/learning/generate-fokker-research-figures.py": "83995bfbf6424ac9a4af94c6bb0104f4ec65e357f6e0370a274ad53ebc2525e4",
+      "scripts/learning-fokker-research.test.ts": "f62f80af447420f5dbd2be0c5476821cb41a95bc623c080e58a05c22a41b39e3",
+      "scripts/check-fokker-research.cjs": "be9473d860a126f1ca02edaa8c24a7535175bd83e118f73719d43e871d2e3156",
+      "scripts/learning-fokker-planck-integration.test.ts": "35aadf4ef4db2e435a0ad9288b7a72957ad9b623c8b92a65ce021c37e5fc9ccf",
+      "content/learning/physics-math-for-ai/stationary-gaussian-circulating-current.ko.md": "02fb4221b46407f992ba1d67327e775d07387c21ee859d9a65095a4d40abe5a0",
+      "content/learning/physics-math-for-ai/stationary-gaussian-circulating-current.en.md": "ebb853bcfca52a4f4d98276db8b1bdddc833947e069424b6ec542692edff4b02",
+      "content/learning/physics-math-for-ai/continuous-cycle-path-reversal.ko.md": "4aa6fdf007a8d144e4a535242596d314a1483f08e4d538b69be02f012d797d3a",
+      "content/learning/physics-math-for-ai/continuous-cycle-path-reversal.en.md": "bf598170037b2c96b3d6bd4bc2b813dadefe366d367634cf2e7f5648565aa9cb",
+      "public/assets/learning/current-reversal-research-sampled-time-arrow.ko.svg": "41f1b15341f215e94d9098d569b71f9c6bfa31a4e28d2d203b6fb18e7cd3bb08",
+      "public/assets/learning/current-reversal-research-sampled-time-arrow.en.svg": "fb3c5a64e37ad315c0dfbf3511b9db54ca70943fa5e92de48d92328456d82855",
+      "public/assets/learning/current-reversal-research-finite-time-path-fluctuations.ko.svg": "05e1f2f7412504aa01b8f68733bc3d202adce5f19d2a01fe9b5145c4014d6456",
+      "public/assets/learning/current-reversal-research-finite-time-path-fluctuations.en.svg": "186a2022d581fe09e2debd030258a411de03ce50684953068f3097bd5fa9ad6b",
+      "scripts/learning/verify-current-reversal-research.py": "79d4c6e6108dfa9322ee26aa9f6b9f896eb8b6059f8f46b554508c0824325f43",
+      "scripts/learning/generate-current-reversal-research-figures.py": "c2e2b137772035fe1f2f2e15699b66c591341ef4b27eefaf6c6e106ee4643e9d",
+      "scripts/learning-current-reversal-research.test.ts": "a33ab79f85981ac09627178bee2890c14eec6619f5f50edb429e17f352450d52",
+      "scripts/check-current-reversal-research.cjs": "6dd3601e87c7e5c30047d66d22db77c549eb71974e8203a9b203979afb59575b",
+      "scripts/learning-probability-current-integration.test.ts": "afc6fcc02b218cf7c298806185b5f6fead3c7537404c7eea156a404b1f35099d",
+      "scripts/learning-cycle-reversal-integration.test.ts": "c98707f909facbe71cb3f00cf5b7f1921eb9f28bc458ded137abb4333e7a077a",
+      "content/learning/physics-math-for-ai/thermal-ou-fluctuation-response.ko.md": "c0665a1891d1f813851344bc63258238c8a2c96e0d85546b3b636063b20a377a",
+      "content/learning/physics-math-for-ai/thermal-ou-fluctuation-response.en.md": "29ab74b13553f333fe0df8f54bc4a7f335015f6ce4cf56f911bd3add97af3b49",
+      "content/learning/physics-math-for-ai/markov-perturbation-linear-response.ko.md": "43d04090751ba2d03040617ad78b2360422f686a875842aaa93ac468802f133b",
+      "content/learning/physics-math-for-ai/markov-perturbation-linear-response.en.md": "9fcaf1a6f358875095398f59522b4f1901d40f6c9c452d11958c989a1f19aca5",
+      "public/assets/learning/response-research-thermal-response-spectrum.ko.svg": "9723dbf444785037ab5ce6b4aff3f9982f7806f8371bfae1b1f0c01b22fd8c6e",
+      "public/assets/learning/response-research-thermal-response-spectrum.en.svg": "2434392f2097b837b49d3ba7af480326a90f325ca6b20cebc1a36e0d712a0af3",
+      "public/assets/learning/response-research-control-path-information.ko.svg": "0a816a569ccb88793716350dcf4bbc7362cf91f22b1d88aad4e72f4f18f00315",
+      "public/assets/learning/response-research-control-path-information.en.svg": "31614b2baaa9ef67838ce8f9493e98c7b5e4ef3a6b7fe8986a18dacd5bd1cda5",
+      "scripts/learning/verify-response-research.py": "255315bd9ffcb48d47b58aee3e3d4ddb95c4901eefd559116e1f1f7bfc6e5b96",
+      "scripts/learning/generate-response-research-figures.py": "b4b43c138ff7ef88a57e15a31e72d9729e7604ecc53f2f7741b795dc0d8beac3",
+      "scripts/learning-response-research.test.ts": "2c0fe59b4e18ec4767c4ee7dc9d80dce326ce1d6ed1a61f9e273c56d1b004271",
+      "scripts/check-response-research.cjs": "5e8361ef4b0087aa793e1ecdf660b67af6ff0a14154af998eb1c74f63aec5954",
+      "scripts/learning-fdt-integration.test.ts": "1f207ffd63465bddecd01c5878e92175185c70e4f8309ee58cac7807c70169b1",
+      "scripts/learning-linear-response-integration.test.ts": "e29bce81fc1c76ea9a1cb78a56e78f56134eb436473421d28731091c058f9eac"
+    },
+    "priorLedgerEntries": 883
+  },
+  "ledger": {
+    "previousEntriesPreserved": 883,
+    "currentEntries": 889
+  },
+  "freeze": {
+    "inputFiles": 5511,
+    "outputFiles": 313,
+    "inputManifestSha256": "0d652dcc8b828c75390cdf26bc59f8d60f4fca71ffbfd4781507304230da2346",
+    "outputManifestSha256": "9d29d6da47b1c9ae7a47b5ef616afc62e40063dd5bc15eb045dbd6b8c5148948"
+  },
+  "browserProcessExitCodes": [
+    {
+      "id": "stationary-jump-path-entropy-production",
+      "exitCode": 0,
+      "elapsedSeconds": 84.79189402121119,
+      "browserShutdownConfirmed": true,
+      "reportSha256": "c3d81f125b63457d2bd39a6710147de2c4d9362576edb1821a6152dc15cc0f50",
+      "logSha256": "e5b96de2176c1930be9f9196fc8991cd6d2f3c7c131bca3350b0d2754ffb7ac0"
+    },
+    {
+      "id": "driven-two-state-heat-work",
+      "exitCode": 0,
+      "elapsedSeconds": 90.84557971986942,
+      "browserShutdownConfirmed": true,
+      "reportSha256": "cdab8229000cb78e7b1244c82f1b47b86396f1655f54a24f2e34abd24bae1a08",
+      "logSha256": "e5b96de2176c1930be9f9196fc8991cd6d2f3c7c131bca3350b0d2754ffb7ac0"
+    },
+    {
+      "id": "reservoir-resolved-two-state-heat-flow",
+      "exitCode": 0,
+      "elapsedSeconds": 98.4222207358107,
+      "browserShutdownConfirmed": true,
+      "reportSha256": "1d0316770840a4551ebda494ed7a2b1b1be6136b0d650550463cacc7736bd9c9",
+      "logSha256": "e5b96de2176c1930be9f9196fc8991cd6d2f3c7c131bca3350b0d2754ffb7ac0"
+    }
+  ],
+  "browser": {
+    "rows": [
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      }
+    ],
+    "errors": [],
+    "guides": [
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "example": 0
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "example": 1
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "example": 2
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "example": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "example": 1
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "example": 2
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "example": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "example": 1
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "example": 2
+      }
+    ],
+    "questions": [
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "question": 0
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "question": 1
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "question": 2
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "question": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "question": 1
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "question": 2
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "question": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "question": 1
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "question": 2
+      }
+    ],
+    "concepts": [
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "step": 0
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "step": 1
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "step": 2
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "step": 3
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "step": 4
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "step": 5
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "step": 0
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "step": 1
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "step": 2
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "step": 3
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "step": 4
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "step": 5
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "step": 0
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "step": 1
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "step": 2
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "step": 3
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "step": 4
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "step": 5
+      }
+    ],
+    "interactions": [
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "concepts": 6,
+        "guides": 3,
+        "quizzes": 3,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "concepts": 6,
+        "guides": 3,
+        "quizzes": 3,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "concepts": 6,
+        "guides": 3,
+        "quizzes": 3,
+        "persistence": true,
+        "completion": true
+      }
+    ],
+    "assetBounds": [
+      {
+        "path": "public/assets/learning/entropy-thermal-research-current-precision-cost.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/entropy-thermal-research-current-precision-cost.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/entropy-thermal-research-initial-work-reweighting.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/entropy-thermal-research-initial-work-reweighting.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/entropy-thermal-research-reservoir-count-fluctuations.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/entropy-thermal-research-reservoir-count-fluctuations.ko.svg",
+        "outside": []
+      }
+    ],
+    "unitIds": [
+      "stationary-jump-path-entropy-production",
+      "driven-two-state-heat-work",
+      "reservoir-resolved-two-state-heat-flow"
+    ]
+  },
+  "renderAndServedFiles": {
+    "status": "passed",
+    "rows": [
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "1-정상-상태의-영상에도-방향이-있다",
+            "title": "1. 정상 상태의 영상에도 방향이 있다"
+          },
+          {
+            "id": "2-엔트로피의-이름보다-실험을-먼저-정한다",
+            "title": "2. 엔트로피의 이름보다 실험을 먼저 정한다"
+          },
+          {
+            "id": "3-통행량순흐름비가역성은-다르다",
+            "title": "3. 통행량·순흐름·비가역성은 다르다"
+          },
+          {
+            "id": "4-비음수-평균-생성률을-얻는다",
+            "title": "4. 비음수 평균 생성률을 얻는다"
+          },
+          {
+            "id": "5-구동-예제를-직접-확인한다",
+            "title": "5. 구동 예제를 직접 확인한다"
+          },
+          {
+            "id": "6-경로에는-대기시간도-들어간다",
+            "title": "6. 경로에는 대기시간도 들어간다"
+          },
+          {
+            "id": "7-열린-경로에는-경계항이-필요하다",
+            "title": "7. 열린 경로에는 경계항이 필요하다"
+          },
+          {
+            "id": "8-음수-실현과-양수-평균은-모순이-아니다",
+            "title": "8. 음수 실현과 양수 평균은 모순이 아니다"
+          },
+          {
+            "id": "9-정상-adjoint로-비교를-구체화한다",
+            "title": "9. 정상 adjoint로 비교를 구체화한다"
+          },
+          {
+            "id": "10-균일-고리에는-독립적인-횟수-해가-있다",
+            "title": "10. 균일 고리에는 독립적인 횟수 해가 있다"
+          },
+          {
+            "id": "11-기울인-연산자로-지수-평균을-계산한다",
+            "title": "11. 기울인 연산자로 지수 평균을 계산한다"
+          },
+          {
+            "id": "12-수학적-의미와-물리적-의미를-나눈다",
+            "title": "12. 수학적 의미와 물리적 의미를 나눈다"
+          },
+          {
+            "id": "연구-확장-엔트로피-생성과-흐름의-정밀도",
+            "title": "연구 확장: 엔트로피 생성과 흐름의 정밀도"
+          },
+          {
+            "id": "13-해설이-있는-연습-문제",
+            "title": "13. 해설이 있는 연습 문제"
+          },
+          {
+            "id": "14-적용-범위와-다음-학습",
+            "title": "14. 적용 범위와 다음 학습"
+          }
+        ]
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "1-a-stationary-film-can-still-have-a-direction",
+            "title": "1. A stationary film can still have a direction"
+          },
+          {
+            "id": "2-state-the-experiment-before-naming-an-entropy",
+            "title": "2. State the experiment before naming an entropy"
+          },
+          {
+            "id": "3-traffic-net-current-and-dissipation-are-distinct",
+            "title": "3. Traffic, net current and dissipation are distinct"
+          },
+          {
+            "id": "4-obtain-a-nonnegative-mean-rate",
+            "title": "4. Obtain a nonnegative mean rate"
+          },
+          {
+            "id": "5-check-a-concrete-driven-example",
+            "title": "5. Check a concrete driven example"
+          },
+          {
+            "id": "6-a-path-includes-the-waiting-times",
+            "title": "6. A path includes the waiting times"
+          },
+          {
+            "id": "7-an-open-path-needs-its-boundary-term",
+            "title": "7. An open path needs its boundary term"
+          },
+          {
+            "id": "8-a-negative-realization-does-not-violate-a-positive-mean",
+            "title": "8. A negative realization does not violate a positive mean"
+          },
+          {
+            "id": "9-the-stationary-adjoint-makes-the-comparison-concrete",
+            "title": "9. The stationary adjoint makes the comparison concrete"
+          },
+          {
+            "id": "10-a-homogeneous-ring-has-an-independent-counting-solution",
+            "title": "10. A homogeneous ring has an independent counting solution"
+          },
+          {
+            "id": "11-a-tilted-operator-computes-an-exponential-average",
+            "title": "11. A tilted operator computes an exponential average"
+          },
+          {
+            "id": "12-keep-mathematical-and-physical-interpretations-separate",
+            "title": "12. Keep mathematical and physical interpretations separate"
+          },
+          {
+            "id": "research-extension-entropy-production-and-current-precision",
+            "title": "Research extension: entropy production and current precision"
+          },
+          {
+            "id": "13-exercises-with-explanations",
+            "title": "13. Exercises with explanations"
+          },
+          {
+            "id": "14-scope-and-further-study",
+            "title": "14. Scope and further study"
+          }
+        ]
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "1-상태가-그대로인데-에너지가-변한다면",
+            "title": "1. 상태가 그대로인데 에너지가 변한다면"
+          },
+          {
+            "id": "2-에너지와-열-저장고를-먼저-지정한다",
+            "title": "2. 에너지와 열 저장고를 먼저 지정한다"
+          },
+          {
+            "id": "3-전이율에-물리적-조건을-넣는다",
+            "title": "3. 전이율에 물리적 조건을 넣는다"
+          },
+          {
+            "id": "4-두-번의-변화와-두-번의-기다림",
+            "title": "4. 두 번의 변화와 두 번의 기다림"
+          },
+          {
+            "id": "5-한-관측의-제1법칙",
+            "title": "5. 한 관측의 제1법칙"
+          },
+          {
+            "id": "6-확률은-지수적으로-이완한다",
+            "title": "6. 확률은 지수적으로 이완한다"
+          },
+          {
+            "id": "7-계-엔트로피와-저장고-엔트로피를-더한다",
+            "title": "7. 계 엔트로피와 저장고 엔트로피를 더한다"
+          },
+          {
+            "id": "8-실제-분포의-자유-에너지를-쓴다",
+            "title": "8. 실제 분포의 자유 에너지를 쓴다"
+          },
+          {
+            "id": "9-네-개-원자가-나타내는-전체-일-분포",
+            "title": "9. 네 개 원자가 나타내는 전체 일 분포"
+          },
+          {
+            "id": "10-jarzynski-관계의-초기화-조건",
+            "title": "10. Jarzynski 관계의 초기화 조건"
+          },
+          {
+            "id": "11-역프로토콜과-crooks-비교",
+            "title": "11. 역프로토콜과 Crooks 비교"
+          },
+          {
+            "id": "12-수치로-끝까지-적어-보기",
+            "title": "12. 수치로 끝까지 적어 보기"
+          },
+          {
+            "id": "연구-확장-지수-일-추정의-초기-준비를-바꾸기",
+            "title": "연구 확장: 지수 일 추정의 초기 준비를 바꾸기"
+          },
+          {
+            "id": "13-풀이가-있는-연습",
+            "title": "13. 풀이가 있는 연습"
+          },
+          {
+            "id": "14-적용-범위와-다음-학습",
+            "title": "14. 적용 범위와 다음 학습"
+          }
+        ]
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "1-energy-can-change-without-a-state-change",
+            "title": "1. Energy can change without a state change"
+          },
+          {
+            "id": "2-specify-energies-and-the-thermal-reservoir",
+            "title": "2. Specify energies and the thermal reservoir"
+          },
+          {
+            "id": "3-put-a-physical-condition-on-the-rates",
+            "title": "3. Put a physical condition on the rates"
+          },
+          {
+            "id": "4-two-quenches-and-two-periods-of-waiting",
+            "title": "4. Two quenches and two periods of waiting"
+          },
+          {
+            "id": "5-the-first-law-for-one-observation",
+            "title": "5. The first law for one observation"
+          },
+          {
+            "id": "6-probability-relaxes-exponentially",
+            "title": "6. Probability relaxes exponentially"
+          },
+          {
+            "id": "7-add-system-and-reservoir-entropy",
+            "title": "7. Add system and reservoir entropy"
+          },
+          {
+            "id": "8-use-the-free-energy-of-the-actual-distribution",
+            "title": "8. Use the free energy of the actual distribution"
+          },
+          {
+            "id": "9-four-atoms-describe-the-entire-work-distribution",
+            "title": "9. Four atoms describe the entire work distribution"
+          },
+          {
+            "id": "10-the-initialization-condition-in-jarzynskis-relation",
+            "title": "10. The initialization condition in Jarzynski's relation"
+          },
+          {
+            "id": "11-reverse-the-protocol-for-a-crooks-comparison",
+            "title": "11. Reverse the protocol for a Crooks comparison"
+          },
+          {
+            "id": "12-complete-a-numerical-ledger",
+            "title": "12. Complete a numerical ledger"
+          },
+          {
+            "id": "research-extension-changing-the-preparation-of-an-exponential-work-estimate",
+            "title": "Research extension: changing the preparation of an exponential-work estimate"
+          },
+          {
+            "id": "13-exercises-with-explanations",
+            "title": "13. Exercises with explanations"
+          },
+          {
+            "id": "14-scope-and-further-study",
+            "title": "14. Scope and further study"
+          }
+        ]
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "1-인구-사진만으로-열의-방향을-알-수-있을까",
+            "title": "1. 인구 사진만으로 열의 방향을 알 수 있을까"
+          },
+          {
+            "id": "2-에너지와-두-온도를-명시한다",
+            "title": "2. 에너지와 두 온도를 명시한다"
+          },
+          {
+            "id": "3-저장고별-국소-상세-균형",
+            "title": "3. 저장고별 국소 상세 균형"
+          },
+          {
+            "id": "4-합친-생성자는-정상분포를-정한다",
+            "title": "4. 합친 생성자는 정상분포를 정한다"
+          },
+          {
+            "id": "5-채널별-순환은-서로-상쇄된다",
+            "title": "5. 채널별 순환은 서로 상쇄된다"
+          },
+          {
+            "id": "6-저장고별-엔트로피는-음수일-수-있다",
+            "title": "6. 저장고별 엔트로피는 음수일 수 있다"
+          },
+          {
+            "id": "7-총-생성률의-비음수성",
+            "title": "7. 총 생성률의 비음수성"
+          },
+          {
+            "id": "8-표지를-지운-상태-영상은-가역적이다",
+            "title": "8. 표지를 지운 상태 영상은 가역적이다"
+          },
+          {
+            "id": "9-빠진-정보는-조건부-kl로-읽을-수-있다",
+            "title": "9. 빠진 정보는 조건부 KL로 읽을 수 있다"
+          },
+          {
+            "id": "10-한-경로의-열-장부",
+            "title": "10. 한 경로의 열 장부"
+          },
+          {
+            "id": "11-경로-역전과-적분-항등식",
+            "title": "11. 경로 역전과 적분 항등식"
+          },
+          {
+            "id": "12-같은-상태-경로의-네-채널-선택",
+            "title": "12. 같은 상태 경로의 네 채널 선택"
+          },
+          {
+            "id": "연구-확장-열-전류-요동과-유한-시간-끝점-항",
+            "title": "연구 확장: 열 전류 요동과 유한 시간 끝점 항"
+          },
+          {
+            "id": "13-풀이가-있는-연습",
+            "title": "13. 풀이가 있는 연습"
+          },
+          {
+            "id": "14-적용-범위와-다음-학습",
+            "title": "14. 적용 범위와 다음 학습"
+          }
+        ]
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "1-can-a-population-snapshot-reveal-heat-flow",
+            "title": "1. Can a population snapshot reveal heat flow?"
+          },
+          {
+            "id": "2-specify-the-energy-and-two-temperatures",
+            "title": "2. Specify the energy and two temperatures"
+          },
+          {
+            "id": "3-local-detailed-balance-for-each-reservoir",
+            "title": "3. Local detailed balance for each reservoir"
+          },
+          {
+            "id": "4-the-aggregate-generator-fixes-the-stationary-law",
+            "title": "4. The aggregate generator fixes the stationary law"
+          },
+          {
+            "id": "5-channel-currents-cancel-in-the-population-ledger",
+            "title": "5. Channel currents cancel in the population ledger"
+          },
+          {
+            "id": "6-a-reservoirs-entropy-change-can-be-negative",
+            "title": "6. A reservoir's entropy change can be negative"
+          },
+          {
+            "id": "7-nonnegative-total-production",
+            "title": "7. Nonnegative total production"
+          },
+          {
+            "id": "8-the-film-without-bath-labels-is-reversible",
+            "title": "8. The film without bath labels is reversible"
+          },
+          {
+            "id": "9-read-the-missing-information-as-conditional-kl",
+            "title": "9. Read the missing information as conditional KL"
+          },
+          {
+            "id": "10-heat-along-one-marked-path",
+            "title": "10. Heat along one marked path"
+          },
+          {
+            "id": "11-path-reversal-and-an-integral-identity",
+            "title": "11. Path reversal and an integral identity"
+          },
+          {
+            "id": "12-four-bath-words-for-the-same-state-path",
+            "title": "12. Four bath words for the same state path"
+          },
+          {
+            "id": "research-extension-heat-current-fluctuations-and-finite-time-boundary-terms",
+            "title": "Research extension: heat-current fluctuations and finite-time boundary terms"
+          },
+          {
+            "id": "13-exercises-with-explanations",
+            "title": "13. Exercises with explanations"
+          },
+          {
+            "id": "14-scope-and-further-study",
+            "title": "14. Scope and further study"
+          }
+        ]
+      }
+    ],
+    "files": [
+      {
+        "path": "/book/online/physics-math-for-ai/stationary-jump-path-entropy-production/",
+        "sha256": "b6d7501a68f8c3f4f0613fa8e5dffceefdff6b9964bc212b7132320cfdcc7cc6",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/driven-two-state-heat-work/",
+        "sha256": "4ad42a654bf181f2e847eef3b9e3edd85a7108a056fd92fe3d2deee6f3a61a38",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/reservoir-resolved-two-state-heat-flow/",
+        "sha256": "5481df2f138f184303c405808f6e8a42383706b149f519a3ad3fcffe2fb3fa98",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/entropy-thermal-research-current-precision-cost.en.svg",
+        "sha256": "8f0c7adf1f77f15fa0abae4a986df933a9c3f94a80f59086066ce3aeca7c7fd3",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/entropy-thermal-research-current-precision-cost.ko.svg",
+        "sha256": "c96bff925691251b8532d27d03a937911e0711ec2b0dd525d26e2aaf7043287b",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/entropy-thermal-research-initial-work-reweighting.en.svg",
+        "sha256": "dee0a18abf68975e74599a3b58a1d65f7dc4c487fb06f682a29446e716ced67e",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/entropy-thermal-research-initial-work-reweighting.ko.svg",
+        "sha256": "5ff6f029359463a7d61cc74bb2b1d7c7ffbe24c20193032413e016c525eea13f",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/entropy-thermal-research-reservoir-count-fluctuations.en.svg",
+        "sha256": "9bc9beb56da4f647973f2e4872da52553a6abe464d6c135c8e901aa3054f790e",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/entropy-thermal-research-reservoir-count-fluctuations.ko.svg",
+        "sha256": "8b5dbf6268543b8109589853cc4531149e4b1e46af086e9642958c89a57cff77",
+        "sourceOutputAndServedEqual": true
+      }
+    ],
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "domains": 51,
+      "topics": 509
+    },
+    "domainUnits": [
+      "two-state-continuous-time-generator-euler",
+      "poisson-uniformization-potential-events",
+      "state-dependent-holding-time-jump-occupation",
+      "ornstein-uhlenbeck-density-euler-moments",
+      "fokker-planck-cell-mass-boundaries",
+      "stationary-gaussian-circulating-current",
+      "continuous-cycle-path-reversal",
+      "thermal-ou-fluctuation-response",
+      "markov-perturbation-linear-response",
+      "stationary-jump-path-entropy-production",
+      "driven-two-state-heat-work",
+      "reservoir-resolved-two-state-heat-flow",
+      "hopf-amplitude-critical-relaxation",
+      "two-oscillator-locking-phase-slips",
+      "finite-kuramoto-collective-order",
+      "markov-partition-lumpability-memory",
+      "linear-hidden-memory-markov-limit"
+    ]
+  },
+  "directVisualReview": [
+    {
+      "path": ".runtime/learning/entropy-thermal-research/current-precision-cost.ko.png",
+      "sha256": "17aaa1673c06814e2b0d2d2b7d02fd0b99408cbe759ade011eba9b68844b8711",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/current-precision-cost.en.png",
+      "sha256": "f3bdc24d6e03e7c73b7fbc5bf77e5f42a6a6ddbab99914ba6529c2b6ac1bba80",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/initial-work-reweighting.ko.png",
+      "sha256": "1bc3a59b19ebffd9a628e3a6f7edf468f50400c5202ca6c69f1a64ad2519c384",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/initial-work-reweighting.en.png",
+      "sha256": "079113efb47dd1b970545163049321feb9a59452c726ac242bcd93e08f766a18",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/reservoir-count-fluctuations.ko.png",
+      "sha256": "45892f5603aa034365db7ab7ebc690b7ad11e527b136fd2fae417c6904902d77",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/reservoir-count-fluctuations.en.png",
+      "sha256": "15ad82c234d3e24e8398566d258005932543e323a2e9336ac6a822faeb5cd730",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/captures/reading-stationary-jump-path-entropy-production.ko.png",
+      "sha256": "b89549d1c63d03feff0bf88858a15d7cecf9f1f7e2bcc188eec340090ea733d6",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/captures/reading-driven-two-state-heat-work.ko.png",
+      "sha256": "cfdaab9955d50ec8466d980982c42de1eacc5789091133b0fd820e36b911aeb9",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/captures/reading-reservoir-resolved-two-state-heat-flow.ko.png",
+      "sha256": "1774ec2c0db809d8397ba7f30058b798f4802ca13f90d57a4589ce4ae2728748",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/captures/reading-stationary-jump-path-entropy-production.en.png",
+      "sha256": "4c93274812705944e9553a40e82d5293daed45fb2cab28ea26b968abf9a537cb",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/captures/reading-driven-two-state-heat-work.en.png",
+      "sha256": "488011aa610ec34fe0299ebaeedbc58ef7d5dc13cce26fd40551f7bb0763d1ee",
+      "directlyReviewed": true
+    },
+    {
+      "path": ".runtime/learning/entropy-thermal-research/captures/reading-reservoir-resolved-two-state-heat-flow.en.png",
+      "sha256": "d2c84a7ba7f16edc10f26c165715ecc0bfad82f98ad9bd6a66fd9641dc4761c1",
+      "directlyReviewed": true
+    }
+  ],
+  "normalReadingCaptures": {
+    "scope": "Three entropy/thermal research units and both locales; normal-reading mobile captures",
+    "rows": [
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "ko",
+        "path": ".runtime/learning/entropy-thermal-research/captures/reading-stationary-jump-path-entropy-production.ko.png",
+        "caption": {
+          "tag": "P",
+          "text": "위 패널은 로그 율 비에 따른 균일 고리의 정밀도 비용과 하한 2다. 아래 패널은 네 완전 생성자의 정확한 분산 비율을 비교한다. 회전을 뒤집으면 평균 전류는 음수여도 분산은 양수이고 엔트로피 생성은 음수가 아니다.",
+          "outside": [],
+          "paragraphBelowImage": true
+        },
+        "sha256": "b89549d1c63d03feff0bf88858a15d7cecf9f1f7e2bcc188eec340090ea733d6"
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "ko",
+        "path": ".runtime/learning/entropy-thermal-research/captures/reading-driven-two-state-heat-work.ko.png",
+        "caption": {
+          "tag": "P",
+          "text": "위 패널은 초기 상태 1 확률에 따른 보정 정규화 일 추정량의 분산과 해석적 최적값이다. 아래 패널은 보정하지 않은 지수 평균이다. 첫 hold는 시계 1/s에서 1초이며 표본 궤적이나 신뢰구간을 그린 것은 아니다.",
+          "outside": [],
+          "paragraphBelowImage": true
+        },
+        "sha256": "cfdaab9955d50ec8466d980982c42de1eacc5789091133b0fd820e36b911aeb9"
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "ko",
+        "path": ".runtime/learning/entropy-thermal-research/captures/reading-reservoir-resolved-two-state-heat-flow.ko.png",
+        "caption": {
+          "tag": "P",
+          "text": "위 패널은 대표 두 저장고 모형의 정확 유한 시간 계수 분산과 VA T를 비교한다. 아래 패널은 0과 −ln3에서 0인 계수 고윳값이다. 이 영 값은 장시간 로그 성장률이며 유한 시간 지수 정규화가 아니다.",
+          "outside": [],
+          "paragraphBelowImage": true
+        },
+        "sha256": "1774ec2c0db809d8397ba7f30058b798f4802ca13f90d57a4589ce4ae2728748"
+      },
+      {
+        "id": "stationary-jump-path-entropy-production",
+        "lang": "en",
+        "path": ".runtime/learning/entropy-thermal-research/captures/reading-stationary-jump-path-entropy-production.en.png",
+        "caption": {
+          "tag": "P",
+          "text": "The upper panel shows the homogeneous precision cost as a function of log rate ratio, with the lower bound 2. The lower panel compares exact variance rates from four complete generators. A reversed circulation has a negative mean current but a positive variance and nonnegative entropy production.",
+          "outside": [],
+          "paragraphBelowImage": true
+        },
+        "sha256": "4c93274812705944e9553a40e82d5293daed45fb2cab28ea26b968abf9a537cb"
+      },
+      {
+        "id": "driven-two-state-heat-work",
+        "lang": "en",
+        "path": ".runtime/learning/entropy-thermal-research/captures/reading-driven-two-state-heat-work.en.png",
+        "caption": {
+          "tag": "P",
+          "text": "The upper panel shows the variance of the corrected normalized work estimator against initial state 1 probability, with the analytic optimum marked. The lower panel shows its raw, uncorrected exponential mean. The first hold is 1s at clock 1/s; no sampled trajectories or confidence bands are drawn.",
+          "outside": [],
+          "paragraphBelowImage": true
+        },
+        "sha256": "488011aa610ec34fe0299ebaeedbc58ef7d5dc13cce26fd40551f7bb0763d1ee"
+      },
+      {
+        "id": "reservoir-resolved-two-state-heat-flow",
+        "lang": "en",
+        "path": ".runtime/learning/entropy-thermal-research/captures/reading-reservoir-resolved-two-state-heat-flow.en.png",
+        "caption": {
+          "tag": "P",
+          "text": "The upper panel compares exact finite-time count variance with VA T for the worked two-bath model. The lower panel shows the counting eigenvalue, with zeros at 0 and −ln3. These eigenvalue zeros describe long-time logarithmic growth, not a finite-time exponential normalization.",
+          "outside": [],
+          "paragraphBelowImage": true
+        },
+        "sha256": "d2c84a7ba7f16edc10f26c165715ecc0bfad82f98ad9bd6a66fd9641dc4761c1"
+      }
+    ],
+    "assetBounds": [
+      {
+        "path": "public/assets/learning/entropy-thermal-research-current-precision-cost.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/entropy-thermal-research-current-precision-cost.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/entropy-thermal-research-initial-work-reweighting.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/entropy-thermal-research-initial-work-reweighting.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/entropy-thermal-research-reservoir-count-fluctuations.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/entropy-thermal-research-reservoir-count-fluctuations.en.svg",
+        "outside": []
+      }
+    ],
+    "errors": []
+  },
+  "artifacts": {
+    "content/learning/physics-math-for-ai/stationary-jump-path-entropy-production.ko.md": "5f01e8f49f124aa9c4509ee14fe565e32133a56ce27e9200c4c09a01c5e7c1ca",
+    "content/learning/physics-math-for-ai/stationary-jump-path-entropy-production.en.md": "c588f07f33c15e4bee9e899826dd84e55411b3636840c89cd3eb8d782e500125",
+    "content/learning/physics-math-for-ai/driven-two-state-heat-work.ko.md": "ded392414de8c8383a33e4038064cc9a31b50c102c81ec349d633af36228d731",
+    "content/learning/physics-math-for-ai/driven-two-state-heat-work.en.md": "8236697cc6e810dc4f52eb340c101083b3264b495745a5fe5617cfb2da4bcabd",
+    "content/learning/physics-math-for-ai/reservoir-resolved-two-state-heat-flow.ko.md": "2393416150485863896a64f21d62c42f7677ab451109cb013255e98456bef03a",
+    "content/learning/physics-math-for-ai/reservoir-resolved-two-state-heat-flow.en.md": "29b017e5442390c33fcf5c7ccf20179e8fe34ec01f1bfc7d35edb0648cde773b",
+    "public/assets/learning/entropy-thermal-research-current-precision-cost.ko.svg": "c96bff925691251b8532d27d03a937911e0711ec2b0dd525d26e2aaf7043287b",
+    "public/assets/learning/entropy-thermal-research-current-precision-cost.en.svg": "8f0c7adf1f77f15fa0abae4a986df933a9c3f94a80f59086066ce3aeca7c7fd3",
+    "public/assets/learning/entropy-thermal-research-initial-work-reweighting.ko.svg": "5ff6f029359463a7d61cc74bb2b1d7c7ffbe24c20193032413e016c525eea13f",
+    "public/assets/learning/entropy-thermal-research-initial-work-reweighting.en.svg": "dee0a18abf68975e74599a3b58a1d65f7dc4c487fb06f682a29446e716ced67e",
+    "public/assets/learning/entropy-thermal-research-reservoir-count-fluctuations.ko.svg": "8b5dbf6268543b8109589853cc4531149e4b1e46af086e9642958c89a57cff77",
+    "public/assets/learning/entropy-thermal-research-reservoir-count-fluctuations.en.svg": "9bc9beb56da4f647973f2e4872da52553a6abe464d6c135c8e901aa3054f790e",
+    "scripts/learning/verify-entropy-thermal-research.py": "c369c2752ba8aef79670e8c085eded823e18dbe018386abd3009cdb66998fefb",
+    "scripts/learning/generate-entropy-thermal-research-figures.py": "c4798f8e771e1c1cc783a7e68b6895b1a38b6900446d1ff53b5a3aac4806c314",
+    "scripts/learning-entropy-thermal-research.test.ts": "fe94a97e82c1c6ad8c874ef3c0eadcf5c99238f410dcf87a9c8d96dd532a0dbd",
+    "scripts/check-entropy-thermal-research.cjs": "88241971aa4d2fc444a954fcefbc7ca58c3e0dbb18fbb3515217247be31801ac",
+    "scripts/learning-entropy-production-integration.test.ts": "63c9465945121dfdecb881555c831128b27160c82fa0caef9214b1ce89e38a86",
+    "scripts/learning-thermal-interface.test.ts": "4256ae831f694547cd9474a13fdd0817e38f11ac68fb4e69e24b953103b9e017",
+    "scripts/fixtures/reviewed-learning-manuscripts.json": "73fa4b4ede4fb5b3c88c86a3015807ee8b59af609c0ca5428af36dd24436edc8"
+  },
+  "overallReview": {
+    "completedDomains": 44,
+    "completedTopics": 437,
+    "remainingDomains": 7,
+    "remainingTopics": 72
+  },
+  "publicDeploymentConfirmed": false
+}

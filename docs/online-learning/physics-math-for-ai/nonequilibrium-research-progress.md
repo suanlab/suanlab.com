@@ -1,6 +1,6 @@
 # 비평형·확률열역학·복잡계 연구 진행표
 
-2026-11-13. 이 영역에는 이미 **10원주제·17등록 단원·34한영 원고**가 있다. [기존 입문 종합 점검](nonequilibrium-introductory-audit.md)은 출발 근거이며 미집필로 다시 세지 않는다. 현재 추가 연구 절의 순차 보강 검증은 **9/17단원**, 영역 연구 종합 검토는 미완료다. 전체는 **44영역·437주제 대조 / 7영역·72주제 후속**이며 교육과정 완료 상태는 false다.
+2026-11-13. 이 영역에는 이미 **10원주제·17등록 단원·34한영 원고**가 있다. [기존 입문 종합 점검](nonequilibrium-introductory-audit.md)은 출발 근거이며 미집필로 다시 세지 않는다. 현재 추가 연구 절의 순차 보강 검증은 **12/17단원**, 영역 연구 종합 검토는 미완료다. 전체는 **44영역·437주제 대조 / 7영역·72주제 후속**이며 교육과정 완료 상태는 false다.
 
 ## 진행 원칙
 
@@ -21,9 +21,9 @@
 | `continuous-cycle-path-reversal` | detailed balance와 그 위반 | [표본 시간 방향·유한 시간 요동 연구 검증](current-reversal-research-status.md) |
 | `thermal-ou-fluctuation-response` | fluctuation-dissipation | [스펙트럼·제어 경로 정보 연구 검증](response-research-status.md) |
 | `markov-perturbation-linear-response` | linear response | [스펙트럼·제어 경로 정보 연구 검증](response-research-status.md) |
-| `stationary-jump-path-entropy-production` | entropy production | 기존 근거 대조 후 연구 보강 |
-| `driven-two-state-heat-work` | stochastic thermodynamics | 기존 근거 대조 후 연구 보강 |
-| `reservoir-resolved-two-state-heat-flow` | stochastic thermodynamics | 기존 근거 대조 후 연구 보강 |
+| `stationary-jump-path-entropy-production` | entropy production | [엔트로피·확률열역학 연구 검증](entropy-thermal-research-status.md) |
+| `driven-two-state-heat-work` | stochastic thermodynamics | [엔트로피·확률열역학 연구 검증](entropy-thermal-research-status.md) |
+| `reservoir-resolved-two-state-heat-flow` | stochastic thermodynamics | [엔트로피·확률열역학 연구 검증](entropy-thermal-research-status.md) |
 | `hopf-amplitude-critical-relaxation` | synchronization·critical dynamics | 기존 근거 대조 후 연구 보강 |
 | `two-oscillator-locking-phase-slips` | synchronization·critical dynamics | 기존 근거 대조 후 연구 보강 |
 | `finite-kuramoto-collective-order` | synchronization·critical dynamics | 기존 근거 대조 후 연구 보강 |
@@ -40,4 +40,6 @@
 
 [열적 OU 변동·소산과 Markov 선형 응답](response-research-status.md)도 한영 4원고·4그림·233검사·16실제 화면에서 검증했다. 주파수 응답·잡음·탐침 일률과 경로 점수·Fisher 정보·기준선 추정을 보강했고 기존 풀이 24개를 보존했다.
 
-다음은 `stationary-jump-path-entropy-production`의 엔트로피 생성 연구 보강이다. 이후 확률열역학 → 동기화·임계 동역학 → coarse graining 순서를 따른다. 나머지 **8단원** 보강과 원래 **10주제의 영역 종합 검토**는 미완료다.
+[엔트로피 생성·확률열역학 세 단원](entropy-thermal-research-status.md)도 한영 6원고·6그림·487검사·24실제 화면에서 검증했다. 전류 정밀도·초기 중요도 재가중·저장고 계수 요동을 보강했고 기존 풀이 36개를 보존했다.
+
+다음은 `hopf-amplitude-critical-relaxation`이다. 동기화·임계 동역학 3단원 → coarse graining 2단원을 따른다. 나머지 **5단원** 보강과 원래 **10주제의 영역 종합 검토**는 미완료다.

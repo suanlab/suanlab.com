@@ -136,6 +136,143 @@ Path entropy in nats is a well-defined statistical quantity for the stated model
 
 For AI systems, a reversed event log can reveal directional statistical structure. It does not by itself measure the hardware's dissipated heat. Hidden states, sampling intervals, incorrect Markov assumptions and imperfect rate inference can all change what is observed. These are research questions rather than reasons to discard the path formulation.
 
+## Research extension: entropy production and current precision
+
+### Specify what is being counted
+
+A mean current says how fast a counter drifts. Its variance says how reproducible that drift is across independent realizations. Keep this chapter's autonomous positive-rate stationary chain and even state labels. Count every clockwise jump as +1 and every opposite jump as −1:
+
+$$
+K_T=\sum_{\text{jumps }i\to j}d_{ij},\quad d_{01}=d_{12}=d_{20}=1,\quad d_{ji}=-d_{ij},\qquad j=\frac{\mathbb E K_T}{T},\quad V=\lim_{T\to\infty}\frac{\operatorname{Var}K_T}{T}.
+$$
+
+K is an oriented jump count, not the number of completed circuits and not a terminal-state difference. The factor of three matters on this ring. V is the variance growth per second; some literature calls half this quantity a diffusion coefficient. We use the full variance rate throughout. The preceding Fisher-information bound concerns an imposed parameter response; the current uncertainty relation below concerns spontaneous stationary fluctuations.
+
+### Compute long-time variance using a tilted operator
+
+Tilt jump weights while leaving the physical escape diagonal unchanged:
+
+$$
+(Q_\chi)_{ij}=q_{ij}e^{\chi d_{ij}}\ (i\ne j),\quad (Q_\chi)_{ii}=Q_{ii},\qquad\psi(\chi)=\lim_{T\to\infty}\frac1T\ln\mathbb E e^{\chi K_T},\quad j=\psi'(0),\quad V=\psi''(0).
+$$
+
+For a finite irreducible positive-rate chain, the eigenvalue continuing from zero is the dominant real eigenvalue near zero tilt. Its derivatives give the mean and asymptotic variance rates. Finite-time moment derivatives instead come from the complete matrix exponential, including its initial and terminal factors. They need not equal T times the eigenvalue derivatives.
+
+An alternative calculation uses a Poisson equation. The conditional mean count rate in state i is bi. Its stationary mean is j=pi b. Solve
+
+$$
+b_i=\sum_{j\ne i}q_{ij}d_{ij},\qquad Qh=j\mathbf1-b,\quad\pi h=0.
+$$
+
+Solvability follows because pi(j1−b)=0; the normalization fixes the additive constant. Adding the bounded endpoint correction turns the centered current into a martingale:
+
+$$
+M_T=K_T+h(X_T)-h(X_0)-jT,\qquad V=\sum_{i\ne j}\pi_iq_{ij}(d_{ij}+h_j-h_i)^2.
+$$
+
+Each jump changes this martingale by dij+hj−hi. Its expected squared-jump rate gives V. The bounded endpoint term does not contribute to the variance divided by T in the long-time limit. This does not mean the term can be discarded in an exact finite-time variance or a path fluctuation relation.
+
+### State the uncertainty theorem with its scope
+
+For the present ring the mean count rate is three times the edge current. The steady-state thermodynamic uncertainty relation gives
+
+$$
+j=3J,\quad\sigma=J\mathcal A,\qquad\mathcal C=\frac{V\sigma}{j^2}\geq2\quad(j\ne0).
+$$
+
+The [Gingrich–Horowitz–Perunov–England paper, equation (8)](https://arxiv.org/pdf/1512.02212) supplies the general asymptotic current theorem for finite autonomous Markov jump dynamics. Our V is the long-time count variance rate in that convention. Here entropy is stationary path entropy in nats; identifying dissipated physical heat still needs the thermal assumptions introduced in the following units.
+
+At long times, relative count variance is approximately V/(j²T), so multiplying it by mean path entropy sigma T approaches C. A more reproducible nonzero current therefore constrains entropy production under these hypotheses. This is not an uncertainty formula for arbitrary time-dependent controllers, discrete-time records, hidden currents or nonstationary preparations. An empirical variance from a short record is not automatically V.
+
+### Prove the homogeneous case directly
+
+For equal clockwise rates alpha and reverse rates beta, independent direction clocks give exact finite-time moments:
+
+$$
+q_{\rm cw}=\alpha,\ q_{\rm ccw}=\beta:\qquad\mathbb E K_T=(\alpha-\beta)T,\quad\operatorname{Var}K_T=(\alpha+\beta)T,\quad\sigma=(\alpha-\beta)\ln(\alpha/\beta).
+$$
+
+Substitution gives an elementary form of the bound:
+
+$$
+\mathcal C=\frac{\alpha+\beta}{\alpha-\beta}\ln\frac\alpha\beta=x\coth(x/2)\geq2,\quad x=\ln(\alpha/\beta)\ne0,\qquad\mathcal C=2+\frac{x^2}{6}+O(x^4).
+$$
+
+For positive x, tanh(x/2)≤x/2 proves the inequality; the product is even for negative x. Near balance the limit approaches 2. Exactly at alpha=beta the mean current and entropy rate vanish, and the divided precision ratio is undefined. Motion and count fluctuations can remain. In this homogeneous case the finite-time variance is exactly VT; that special property should not be assumed for unequal rates.
+
+### Obtain an independent formula from the cubic characteristic equation
+
+For the three-state tilted matrix, products along opposite edges are unchanged. Only complete clockwise or reverse cycles acquire factors exp(±3chi). Its eigenvalue therefore satisfies
+
+$$
+\lambda^3+c_2\lambda^2+Z\lambda+abc(1-e^{3\chi})+def(1-e^{-3\chi})=0,\qquad c_2=a+b+c+d+e+f,\quad\lambda=\psi(\chi).
+$$
+
+At zero tilt lambda=0 and Z is the original sum of tree weights. Differentiating this equation once and twice produces
+
+$$
+j=\frac{3(abc-def)}Z,\qquad V=\frac{9(abc+def)-2c_2j^2}{Z}.
+$$
+
+These formulas independently check the Poisson-equation variance without choosing a normalization for h. They apply to this three-state oriented counter, not to an arbitrary network or observable.
+
+![A current precision cost approaches the bound two near balance; variance rates stay positive for four generators including a reversed cycle.](/assets/learning/entropy-thermal-research-current-precision-cost.en.svg)
+
+The upper panel shows the homogeneous precision cost as a function of log rate ratio, with the lower bound 2. The lower panel compares exact variance rates from four complete generators. A reversed circulation has a negative mean current but a positive variance and nonnegative entropy production.
+
+```python
+from fractions import Fraction as F
+from math import log
+
+cases = [
+    ("uniform", (3, 3, 3, 1, 1, 1)),
+    ("unequal", (2, 3, 4, 1, 1, 1)),
+    ("mixed", (1, 2, 5, 2, 1, 1)),
+    ("reverse", (1, 1, 1, 3, 3, 3)),
+]
+for label, rates in cases:
+    a, b, c, d, e, f = map(F, rates)
+    tree = [c*d + d*e + b*c, a*e + a*c + e*f,
+            b*f + a*b + d*f]
+    z = sum(tree)
+    current = 3 * (a*b*c - d*e*f) / z
+    variance_rate = (9 * (a*b*c + d*e*f)
+                     - 2 * sum(rates) * current**2) / z
+    entropy_rate = float(current / 3) * log(float(a*b*c / (d*e*f)))
+    precision_cost = float(variance_rate) * entropy_rate / float(current)**2
+    print(label, current, variance_rate,
+          f"{entropy_rate:.6f}", f"{precision_cost:.6f}")
+```
+
+The current and variance rates below are exact fractions. The entropy rates and precision costs use floating logarithms. Columns are case, j in 1/s, V in1/s, sigma in nats/s and dimensionless C. No path sampling or directed-rounding certificate is implied.
+
+| case | j [1/s] | V [1/s] | sigma [nats/s] | C |
+| --- | --- | --- | --- | --- |
+| uniform | 2 | 4 | 2.197225 | 2.197225 |
+| unequal | 69/38 | 52659/13718 | 1.923559 | 2.239527 |
+| mixed | 24/35 | 118476/42875 | 0.367872 | 2.161902 |
+| reverse | -2 | 4 | 2.197225 | 2.197225 |
+
+### Research self-checks
+
+#### R1. Why does a cycle convention not change the precision cost?
+
+Replace K by K/3, so the counter is measured in circuit units.
+
+**Research explanation.** The mean rate becomes j/3 and variance rate V/9. Their quotient V/j² is unchanged. Sigma also stays the same because it is a path property. Changing the count convention without changing its variance consistently would create a false factor of nine.
+
+#### R2. Is the equilibrium precision ratio equal to2?
+
+Compare exact balance with the limit of a weakly biased homogeneous ring.
+
+**Research explanation.** At exact balance j=0 and sigma=0, so C is not defined by division. Along nonzero biases tending to balance, x coth(x/2) approaches 2. The limit is meaningful; declaring the undefined equilibrium fraction to be a measured value is not.
+
+#### R3. Does a faster clock improve precision for free?
+
+Multiply every rate by a positive c while holding the physical observation duration fixed.
+
+**Research explanation.** The stationary law and affinity stay fixed. j,V and sigma all scale by c, preserving C. The long-time relative count variance decreases by 1/c, while entropy accumulated during the same duration increases by c. Comparing equal physical times differs from shortening the observation duration by c.
+
 ## 13. Exercises with explanations
 
 **1. Can two equal histograms have different entropy production rates?** Yes. The first two rows of the table both have uniform π, while their rates are0 and2ln3 nats/s. The histogram does not specify transition traffic or path probabilities.

@@ -158,6 +158,142 @@ r₀=1,r₁=3,r₂=2,ν₁=1/s,ν₂=2/s,τ₁=τ₂=1s,초기 p₁=1/2를 사�
 
 초기 p₁만4/5로 바꾸면 지수 일 평균은 약0.552591이다. 같은 준위 프로토콜이어도 초기화가 다르면 정준 초기화 관계를 그대로 적용할 수 없음을 보여 준다.
 
+## 연구 확장: 지수 일 추정의 초기 준비를 바꾸기
+
+### 항등식을 검사하기 전에 초기 분포를 보정한다
+
+일 항등식에는 동역학 프로토콜과 초기 표집 법칙이 함께 들어간다. 이 단원의 두 quench, 한 열저장고, 고정 에너지 척도를 유지하자. 정준 초기 법칙을 pi0, 두 확률이 모두 양수인 다른 초기 분포를 p라고 하자. 정규화한 지수 일을 정의하면
+
+$$
+Y=e^{-\beta(W-\Delta F_{\rm eq})},\qquad\mathbb E_{\pi_0}Y=1,\qquad\beta=(k_BT)^{-1}.
+$$
+
+정준 출발 조건은 [Jarzynski 원 논문의 등식 (2)](https://arxiv.org/pdf/cond-mat/9610209)에 들어 있다. p를 바꾸면 보통 가중하지 않은 Y 평균도 바뀐다. 초기 상태만 재가중하면 같은 정준 목표를 갖는 다른 추정량을 얻는다.
+
+$$
+Z=\frac{\pi_0(X_0)}{p(X_0)}Y,\qquad\mathbb E_pZ=\sum_x\pi_0(x)\mathbb E[Y\mid X_0=x]=1\quad(p(x)>0).
+$$
+
+X0에 조건을 건 동역학은 같은 프로토콜이어야 한다. 정확한 유한 지지집합 측도 변경이며 보정하지 않은 물리적 일 관계가 모든 준비에서 성립한다는 주장이 아니다. pi0가 양의 질량을 주는 상태를 초기화에서 제외하면 유한 가중치로 빠진 기여를 복원할 수 없다.
+
+### 초기 상태 제안 분포 안에서 분산을 최소화한다
+
+각 초기 상태에서 조건부 이차 모멘트를 계산하자. 보정 가중치의 이차 모멘트는 두 초기 기여로 분리된다.
+
+$$
+b_x=\mathbb E[Y^2\mid X_0=x],\quad c_x=\pi_0(x)^2b_x,\qquad\operatorname{Var}_pZ=\sum_x\frac{c_x}{p(x)}-1.
+$$
+
+Cauchy–Schwarz 또는 sum p=1인 Lagrange 승수로
+
+$$
+p_*(x)=\frac{\sqrt{c_x}}{\sum_y\sqrt{c_y}},\qquad\min_p\operatorname{Var}_pZ=\left(\sum_x\sqrt{c_x}\right)^2-1.
+$$
+
+최적 제안 분포는 정준 확률과 조건부 지수 일의 제곱평균제곱근의 곱에 비례한다. 일반적으로 정준 초기 법칙과 다르다. 초기 분포만 최적화하며 hold 동역학과 quench는 유지한다. 예비 자료에서 모멘트를 추정하면 별도의 불확실성 문제가 생긴다.
+
+Y의 정규화에는 이 가해 예제에서 알려진 해석적 자유에너지 차이를 썼다. 그 차이가 미지이면 exp(−beta W)로 같은 최적화를 할 수 있다. 모든 가중치에 같은 상수를 곱해도 p_star는 변하지 않는다. 평균 1의 항등식은 이론 확인이며 모르는 답을 이미 안다고 가정하는 절차가 아니다.
+
+### 제안 분포를 정하기 전에 네 원자를 계산한다
+
+첫 hold의 정확한 전이 커널은
+
+$$
+P_1(x,y)=\lambda\mathbf1_{x=y}+(1-\lambda)\pi_{r_1}(y),\qquad\lambda=e^{-\nu_1\tau_1}.
+$$
+
+기존 r0=1,r1=3,r2=2 예제의 정규화 일 값은
+
+$$
+r_0=1,\ r_1=3,\ r_2=2:\qquad\pi_0=(1/2,1/2),\quad Y_{xy}=\begin{pmatrix}4/3&2\\4/9&2/3\end{pmatrix}_{xy}.
+$$
+
+Z0/Z2=4/3 인자를 포함했다. 마지막 hold에서는 일을 하지 않으므로 이 표와 최적 초기 제안에 들어가지 않는다. 각 행에서 조건부 끝점 확률 둘을 합하면
+
+$$
+\mathbb E[Y\mid0]=\frac{9-\lambda}{6},\quad\mathbb E[Y\mid1]=\frac{3+\lambda}{6},\qquad b_0=\frac{21-5\lambda}{9},\quad b_1=\frac{7+5\lambda}{27}.
+$$
+
+첫 hold 시간이 0인 lambda=1에서도 성립한다. 이때 비대각 끝점 사건은 확률 0이지 빠뜨린 표본 경로가 아니다. lambda=0은 완전 이완 극한을 나타내며 유한 양의 시간에 정확히 평형화했다는 뜻은 아니다.
+
+![초기 상태 확률에 따른 보정 일 분산과 무보정 지수 평균의 변화 및 별도로 정해지는 최적 제안 분포.](/assets/learning/entropy-thermal-research-initial-work-reweighting.ko.svg)
+
+위 패널은 초기 상태 1 확률에 따른 보정 정규화 일 추정량의 분산과 해석적 최적값이다. 아래 패널은 보정하지 않은 지수 평균이다. 첫 hold는 시계 1/s에서 1초이며 표본 궤적이나 신뢰구간을 그린 것은 아니다.
+
+```python
+from math import exp, log, sqrt
+
+attenuation = exp(-1.0)  # clock = 1/s, first hold = 1s
+pi_hold = [0.75, 0.25]
+transition = [[attenuation * (x == y)
+               + (1 - attenuation) * pi_hold[y]
+               for y in range(2)] for x in range(2)]
+y_weight = [[4/3, 2.0], [4/9, 2/3]]
+c = [0.25 * sum(transition[x][y] * y_weight[x][y]**2
+                for y in range(2)) for x in range(2)]
+optimal_one = sqrt(c[1]) / (sqrt(c[0]) + sqrt(c[1]))
+for initial_one in [0.2, 0.5, 0.8, optimal_one]:
+    initial = [1 - initial_one, initial_one]
+    raw = corrected = second = 0.0
+    for x in range(2):
+        for y in range(2):
+            mass = initial[x] * transition[x][y]
+            weight = 0.5 / initial[x] * y_weight[x][y]
+            raw += mass * y_weight[x][y]
+            corrected += mass * weight
+            second += mass * weight**2
+    preparation_kl = sum(p * log(2*p) for p in initial)
+    print(f"{initial_one:.6f} {raw:.6f} {corrected:.6f} "
+          f"{second - 1:.6f} {preparation_kl:.6f}")
+```
+
+열은 초기 상태 1 확률, 원래 E[Y], 보정 E[Z], Var[Z], 준비 상대 엔트로피 D(p||pi0)다. 같은 quench와 첫 hold 동역학을 사용한다. 지수·제곱근 값은 부동소수점 계산이며 방향성 포함 구간이 아니다.
+
+| p(state1) | E[Y] | E[Z] | Var[Z] | 준비 KL |
+| --- | --- | --- | --- | --- |
+| 0.200000 | 1.263212 | 1.000000 | 0.074530 | 0.192745 |
+| 0.500000 | 1.000000 | 1.000000 | 0.228170 | 0.000000 |
+| 0.800000 | 0.736788 | 1.000000 | 1.763503 | 0.192745 |
+| 0.281684 | 1.191545 | 1.000000 | 0.031514 | 0.098611 |
+
+초기 법칙을 바꾸는 것은 물리적 준비 변경이기도 하다. 지정 에너지에서 비평형 자유에너지 초과분은 kBT D(p||pi0)다. 추정 분산이 줄어도 준비 자원이 공짜가 되거나 물리적 엔트로피 생성이 최소화되는 것은 아니다. 물리 실험이 정준 출발을 요구하면 p를 바꾸는 순간 실험도 달라진다.
+
+### 불편 지수 평균이 불편 자유에너지를 주지는 않는다
+
+고정된 완전 지지집합 제안으로 독립 반복 M개를 수행하면
+
+$$
+\overline Z_M=\frac1M\sum_{m=1}^M Z_m,\qquad\mathbb E\overline Z_M=1,\quad\operatorname{Var}(\overline Z_M)=\frac{\operatorname{Var}Z}{M}\quad\text{for independent runs}.
+$$
+
+로그를 취하면 통계적 질문이 바뀐다. 양수성과 Jensen 부등식에서
+
+$$
+\widehat{\Delta F}=\Delta F_{\rm eq}-\beta^{-1}\ln\overline Z_M,\qquad\mathbb E\widehat{\Delta F}\geq\Delta F_{\rm eq},\quad\mathbb E\widehat{\Delta F}-\Delta F_{\rm eq}=\frac{\operatorname{Var}Z}{2\beta M}+o(M^{-1})\quad(M\to\infty).
+$$
+
+마지막 식은 큰 M의 delta method 전개이며 정확한 유한 표본 보정이 아니다. 고정된 유한 네 원자 모형에서는 모든 가중치가 양수·유계라 모멘트 조건을 만족한다. 초기 제안을 최적화하면 이 점근 편향·분산이 줄지만 작은 자료의 불확실성이 없어지지는 않는다. 상관된 반복이나 같은 자료로 적합한 제안은 추가 분석이 필요하다.
+
+### 연구 확인 문제
+
+#### R1. 지지집합이 왜 중요한가?
+
+원래 정준 법칙은 상태 1에 확률 1/2을 주는데 상태 0만 준비했다. 초기 가중치로 전체 정준 지수 평균을 복원할 수 있는가?
+
+**연구 풀이.** 없다. 두 번째 상태의 정준 기여가 빠지고 형식적 가중치에는 0 나눗셈이 생긴다. 이 정확한 초기 측도 변경에는 완전 지지집합이 필요하다. 남은 사건을 재정규화하여 평균을 1로 맞추면 목표가 바뀐다.
+
+#### R2. 최적 제안은 물리적 소산을 최소화하는가?
+
+표의 분산 최소 행을 정준 행과 비교하여 해석하라.
+
+**연구 풀이.** 동역학을 고정한 채 초기 확률 안에서 보정 추정량 분산을 최소화한다. 물리적 초기 자원 D(p||pi0)가 달라지고 보통 원래 E[Y]는 1이 아니다. 이 표집 기준 하나에서 열역학적 최적화가 따라오지는 않는다.
+
+#### R3. 극한에서 초기 제안만으로 영 분산을 얻을 수 있는가?
+
+r0=1,r2=2를 유지하고 첫 hold를 0으로 두며 p(상태 1)=1/3을 사용하라.
+
+**연구 풀이.** 두 quench는 한 순 quench가 된다. x=y만 남아 Y는 상태 0에서 4/3, 상태 1에서 2/3이다. pi0/p를 곱하면 둘 다 Z=1이다. 보정 분산은 0이지만 원래 E[Y]=10/9다. 정확한 중요도 가중치 항등식이 바꾼 준비의 무보정 정준 출발 관계를 복원하지는 않는다.
+
 ## 13. 풀이가 있는 연습
 
 **1. 준위를 올렸는데 상태가 변하지 않았다면 열인가 일인가?** 이 프로토콜에서는 외부 제어에 의한 일이다. 반대로 고정 준위에서 상태가 올라가면 열을 받는다. 에너지 변화라는 한 단어만으로 두 기작을 합치지 않는다.

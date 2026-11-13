@@ -62,7 +62,7 @@ test('six independent concept comparisons, three guides and quizzes stay tied to
 });
 for (const language of ['ko', 'en'] as const) test(`graduate-level entropy manuscript in ${language} renders its14 sections,8 equations and6 solutions`, async () => {
   const html = await getLearningContent(kind), source = readFileSync(`content/learning/physics-math-for-ai/${kind}.${language}.md`, 'utf8');
-  assert.equal(html.outline[language].length, 14); assert.equal((source.match(/\$\$[\s\S]*?\$\$/g) || []).length, 8); assert.equal((source.match(/^\*\*\d\./gm) || []).length, 6); assert(!html[language].includes('katex-error'));
+  assert.equal(html.outline[language].length, 15); assert.equal((source.match(/\$\$[\s\S]*?\$\$/g) || []).length, 17); assert.equal((source.match(/^\*\*\d\./gm) || []).length, 6); assert(!html[language].includes('katex-error'));
   assert(source.includes('π=(17,11,10)/38')); assert(source.includes('J=23/38/s'));
   if (language === 'en') assert(!/[가-힣]/.test(source));
 });

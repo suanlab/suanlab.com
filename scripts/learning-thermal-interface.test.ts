@@ -40,8 +40,8 @@ for(const kind of thermalKinds){
   for(const text of ['1.000000000000000001','1e-9999','NaN','Infinity','1e10','-1'])assert.equal(editThermalDraft(input,'temperatureNumerator',text),null);
   assert.equal(editThermalDraft(input,'unknown','1'),null);assert.equal(thermalInputKey(input),before);assert(editThermalDraft(input,'temperatureNumerator','301'));assert.equal(thermalFields(input).length,kind===thermalKinds[0]?18:16);
  });
- for(const lang of ['ko','en'] as const)test(`${kind}.${lang} reader prose renders14 sections and10 equations without draft heading`,async()=>{
-  const html=await getLearningContent(kind),source=readFileSync(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8');assert.equal(html.outline[lang].length,14);assert.equal((source.match(/\$\$/g)||[]).length,20);assert(!/^# /m.test(source));assert(!html[lang].includes('katex-error'));if(lang==='en')assert(!/[가-힣]/.test(source));
+ for(const lang of ['ko','en'] as const)test(`${kind}.${lang} reader prose includes the verified research extension without a draft heading`,async()=>{
+  const html=await getLearningContent(kind),source=readFileSync(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8');assert.equal(html.outline[lang].length,15);assert.equal((source.match(/\$\$/g)||[]).length,kind===thermalKinds[0]?38:40);assert(!/^# /m.test(source));assert(!html[lang].includes('katex-error'));if(lang==='en')assert(!/[가-힣]/.test(source));
  });
 }
 test('thermal lab and fixed concept bundles keep both numerical engines out of the reader',async()=>{
