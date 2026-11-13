@@ -120,6 +120,122 @@ Production computes exact projected-vector norms. The independent symbolic refer
 
 No unitary evolution, general POVM, continuous-spectrum position measurement or environment model is supplied here. Ordinary matrix coordinates do not settle self-adjoint domains in infinite-dimensional spaces. General instruments can have different state updates; the explicit Lüders and refinement choices are essential assumptions.
 
+## Research extension: nondisturbance needs all preparations and a specified update
+
+### Turn the downstream question into an operator
+
+The earlier counterexample showed that agreement on one state does not certify commutativity. A stronger test compares B before and after the specified coarse Lüders measurement of A. In finite dimension the same block-dephasing formula acts on states and, by trace duality, on observables:
+
+$$
+\mathcal D_A(B)=\sum_iP_iBP_i,\quad H_B=\mathcal D_A(B)-B,\qquad
+ \Delta_\rho(B)=\operatorname{Tr}[B\mathcal D_A(\rho)]-\operatorname{Tr}(B\rho)=\operatorname{Tr}(\rho H_B).
+$$
+
+Here B is Hermitian, H_B is Hermitian, and Δ is a difference of expectations. If B is a yes/no projector, Δ is a probability difference. Multiplying the dephased operator on the left and right by spectral projectors removes every off-diagonal block:
+
+$$
+P_i\mathcal D_A(B)P_j=\delta_{ij}P_iBP_i,\qquad
+ [\Delta_\rho(B)=0\ \text{for all }\rho]\ \Longleftrightarrow\ H_B=0\ \Longleftrightarrow\ [P_i,B]=0\ \text{for all }i.
+$$
+
+For the first equivalence, a Hermitian operator with zero expectation in every pure state must vanish: test its eigenvectors. For the second, the block identity forces all off-diagonal blocks of B to vanish; conversely a block-diagonal B commutes with every P_i and is unchanged by dephasing. Because the eigenvalues of A are distinct labels of these projectors, this is also equivalent to [A,B]=0.
+
+The all-state quantifier matters. For a fixed B the largest disturbance over preparations is:
+
+$$
+\max_{\|v\|=1}|\Delta_{|v\rangle\langle v|}(B)|=\|H_B\|_{\rm op}.
+$$
+
+Choose an eigenvector of H_B whose eigenvalue has largest absolute value to attain the bound. A single blind preparation can give Δ=0 even when this maximum is positive. This finite sharp-projector result agrees with the introduction to [Busch and Singh's Lüders theorem paper](https://arxiv.org/pdf/1304.0054); their further unsharp generalizations are not being assumed here.
+
+### A finite set of probes can reconstruct this disturbance
+
+In C³, use the three standard basis states and, for each pair i<j, the two states (e_i+e_j)/√2 and (e_i+i e_j)/√2. There are nine known preparations, enough to reconstruct a Hermitian matrix from its expectations:
+
+$$
+h_i=\langle e_i|H_B|e_i\rangle,\quad
+ h^+_{ij}=\langle(e_i+e_j)/\sqrt2|H_B|(e_i+e_j)/\sqrt2\rangle,\quad
+ h^{\mathrm i}_{ij}=\langle(e_i+\mathrm i e_j)/\sqrt2|H_B|(e_i+\mathrm i e_j)/\sqrt2\rangle,
+ \quad \operatorname{Re}(H_B)_{ij}=h^+_{ij}-\tfrac12(h_i+h_j),\quad
+ \operatorname{Im}(H_B)_{ij}=\tfrac12(h_i+h_j)-h^{\mathrm i}_{ij}.
+$$
+
+The minus sign in the imaginary probe follows from the conjugate-linear first inner-product slot. These are expectations of H_B, obtainable by comparing the corresponding B experiments before and after A. Exact zero on all nine probes proves H_B=0 in this finite calibrated model. Finite-shot estimates are not exact zeros; statistical error and preparation/calibration errors would need separate bounds. This is an operator test with known inputs, not tomography from a single unknown state.
+
+### Repeatability leaves freedom inside a degenerate block
+
+Return to the chapter's P onto e_0 and Q onto the e_1/e_2 plane. There is another repeatable instrument, besides coarse Lüders and the earlier rank-one refinement. After the Q outcome, rotate the relative phase inside Q:
+
+$$
+P=|e_0\rangle\langle e_0|,\quad Q=I-P,\quad A=P+2Q,\quad
+ U_\theta=\operatorname{diag}(1,1,e^{i\theta}),\quad K_P=P,\quad K_Q=U_\theta Q,\quad
+ \sum_{s=P,Q}K_s^\dagger K_s=I,\qquad AK_P=K_P,\quad AK_Q=2K_Q.
+$$
+
+The matrices K_P,K_Q specify the unnormalized branch vectors. Completeness makes their total squared norm one for every input. Their ranges stay in the correct eigenspaces, so immediately measuring the value of A again repeats the first value with certainty. Yet K_Q is generally not Q. Repeatability alone has not selected the Lüders update.
+
+Use the same degenerate superposition and later projector as before:
+
+$$
+\psi=\tfrac1{\sqrt2}(e_1+e_2),\quad B=|\psi\rangle\langle\psi|,\quad
+ \rho_{\rm coarse}=|\psi\rangle\langle\psi|,\quad
+ \rho_{\rm fine}=\tfrac12(|e_1\rangle\langle e_1|+|e_2\rangle\langle e_2|),\quad
+ \psi_\theta=\tfrac1{\sqrt2}(e_1+e^{i\theta}e_2).
+$$
+
+All three procedures report A=2 with certainty. The coarse output is the original pure state, the refinement is mixed, and the internal rotation remains pure. Their downstream tests distinguish them:
+
+$$
+p_B^{\rm coarse}=1,\quad p_B^{\rm fine}=\tfrac12,\quad
+ p_B^{\rm rotate}=|\langle\psi|\psi_\theta\rangle|^2=\tfrac12(1+\cos\theta),\quad
+ \operatorname{Tr}(\rho_{\rm fine}^2)=\tfrac12,\quad \operatorname{Tr}[(|\psi_\theta\rangle\langle\psi_\theta|)^2]=1.
+$$
+
+A and B commute, but the internal rotation can still change B. This does not contradict the theorem above: that theorem fixed the coarse Lüders instrument. Replacing the update changes its hypothesis. At θ=π the rotated state is orthogonal to the original, although the A result repeats and the output stays pure.
+
+### Compute exact phase rotations without trigonometric rounding
+
+Use a rational half-angle parameter t to produce an exact unit complex number:
+
+$$
+t=\tan(\theta/2),\quad c=\frac{1-t^2}{1+t^2},\quad s=\frac{2t}{1+t^2},\quad
+ c^2+s^2=1,\quad e^{i\theta}=c+is,\quad p_B^{\rm rotate}=\frac1{1+t^2}\quad(-\pi<\theta<\pi).
+$$
+
+The standalone code below computes the later probability. The existing reader compares coarse Lüders and a deterministic refinement; it has no added internal-unitary slider. The phase parameter is an instrument choice, not elapsed Schrödinger time.
+
+```python
+from fractions import Fraction as Q
+for t in [Q(0), Q(1, 2), Q(1), Q(2)]:
+    cosine, sine = (1-t*t)/(1+t*t), 2*t/(1+t*t)
+    probability = (1+cosine)/2
+    assert cosine*cosine + sine*sine == 1
+    print(t, cosine, sine, probability, Q(1))
+```
+
+| t | cos(theta) | sin(theta) | p_B | purity |
+|---|---|---|---|---|
+| 0 | 1 | 0 | 1 | 1 |
+| 1/2 | 3/5 | 4/5 | 4/5 | 1 |
+| 1 | 0 | 1 | 1/2 | 1 |
+| 2 | -3/5 | 4/5 | 1/5 | 1 |
+
+![Three instruments all report the same degenerate value: the coarse later-test probability is one, refinement gives one half, and a repeatable internal rotation changes it continuously while purity stays one.](/assets/learning/quantum-observable-research-repeatable-block-rotation.en.svg)
+
+The orange curve crosses the refinement line at θ=π/2, but their purities differ. Equal downstream probability for one chosen test also does not imply identical output states or identical instruments.
+
+#### Research check 1: a noncommuting operator hidden from one probe
+
+Let A=diag(1,2,2), B project onto (e_0+e_1)/√2, and prepare e_2. Then Δ=0 for that input. In the e_0/e_1 plane H_B has off-diagonal entries −1/2 and norm 1/2. The plus state in that plane witnesses Δ=−1/2. A blind state did not prove nondisturbance.
+
+#### Research check 2: repeat the value after a phase flip
+
+At θ=π the Q branch maps (e_1+e_2)/√2 to (e_1−e_2)/√2. Both states lie in Q and return A=2 certainly. The later B probability changes from one to zero. Purity stays one, so purity alone cannot certify preservation of a particular state.
+
+#### Research check 3: check the complex-probe sign
+
+If a Hermitian disturbance matrix has H_01=i, H_10=−i and zero diagonal in that plane, its expectation on (e_0+i e_1)/√2 is −1. The reconstruction gives Im H_01=0−(−1)=1. A transpose without conjugation would reverse this inference.
+
 ## 11. Exercises with explanations
 
 **1. If λ=μ=5, how many spectral outcomes does A have?**

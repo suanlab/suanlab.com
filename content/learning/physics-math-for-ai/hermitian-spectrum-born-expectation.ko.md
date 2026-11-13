@@ -102,6 +102,120 @@ $$
 
 독립 참조는 생산 사영 분해를 그대로 믿지 않고 기호 고유벡터와 직교화한 고유공간을 사용한다. 대조 성공은 이 유한 가족을 지지한다. 무한 차원 스펙트럼 정리를 증명하는 것은 아니다.
 
+## 연구 확장: 안정적인 관측값과 불연속인 이상적 측정
+
+### 보정 오차로 무엇을 제한할 수 있는가?
+
+모델이나 보정 과정에서 얻은 관측량은 대개 정확하지 않다. 정규화 준비 ψ를 고정하고 두 유한 Hermitian 행렬을 비교하자. 연산자 노름은 단위 입력의 벡터 길이를 얼마나 크게 바꿀 수 있는지 잰다. 오차가 η 이하이면 Cauchy–Schwarz로 평균의 차이를 제한할 수 있다.
+
+$$
+\widetilde A=A+E,\quad A=A^\dagger,\quad E=E^\dagger,\quad \|E\|_{\rm op}\le\eta,
+ \qquad |\langle\widetilde A\rangle_\psi-\langle A\rangle_\psi|=|\langle\psi|E|\psi\rangle|\le\eta.
+$$
+
+이 식은 동일한 상태에서 두 모집단 평균을 비교한다. 유한 횟수 실험의 표본 불확실성과 다르다. 표준편차에도 유용한 경계가 있다. Q_ψ가 ψ에 나란한 성분을 제거하면 (A−⟨A⟩)ψ가 남는다. 역삼각부등식을 적용하자.
+
+$$
+Q_\psi=I-|\psi\rangle\langle\psi|,\quad \sigma_\psi(A)=\|Q_\psi A\psi\|,
+ \qquad |\sigma_\psi(\widetilde A)-\sigma_\psi(A)|\le\|Q_\psi E\psi\|\le\eta.
+$$
+
+여기서는 표준편차를 쓴다. A·η와 단위가 같기 때문이다. 분산의 단위는 제곱이므로 분산에도 그대로 η 경계를 주장하면 차원이 맞지 않는다. 대신 분산 차이는 η에 두 표준편차의 합을 곱한 값으로 제한할 수 있다.
+
+정렬된 고유값도 안정적이다. 오름차순 고유값의 유한 차원 최소–최대 표현은 다음과 같다.
+
+$$
+\lambda_k(A)=\min_{\dim S=k}\ \max_{v\in S,\,\|v\|=1}\langle v|A|v\rangle,
+ \qquad |\lambda_k(\widetilde A)-\lambda_k(A)|\le\eta,\quad \lambda_1\le\cdots\le\lambda_d.
+$$
+
+마지막 경계는 모든 단위 벡터의 Rayleigh 몫 변화가 η 이하임에서 나온다. 각 부분공간에서 최대를 취하고 다시 최소를 취해도 부등식이 유지된다. 두 행렬을 바꾸어 반대쪽 경계를 얻는다. 이것은 수치 고유값의 경계이며, 간격이 닫힐 때 개별 고유공간의 방향까지 보장하지 않는다.
+
+### 고유값을 합치는 일에는 측정 도구의 선택이 필요하다
+
+본문의 C² 모형에서 특히 단순한 보정 가족을 살펴보자.
+
+$$
+A_\epsilon=\epsilon Z,\quad \|A_\epsilon-0\|_{\rm op}=|\epsilon|,\quad
+ \lambda_\pm=\pm|\epsilon|,\quad P_\pm=\tfrac12(I\pm\operatorname{sgn}(\epsilon)Z)\quad(\epsilon\ne0).
+$$
+
+ε가 0이 아니면 언제나 서로 다른 두 결과가 있다. 음의 ε에서는 정렬된 값과 사영을 함께 뒤집는다. ε=0이면 관측량은 영행렬이고 유일한 스펙트럼 사영은 I다. 이때 sgn ε가 들어간 표시식을 서로 다른 결과의 스펙트럼 분해로 사용하면 안 된다.
+
+ε=0에서도 |0⟩와 |1⟩을 계속 구별해 기록하는 실험은 추가 기록이 있는 세분화다. 영 관측량의 coarse 스펙트럼 Lüders 측정과 다르다. 실제 검출기의 유한 분해능도 도구 모델의 일부로 지정해야 한다. 수치 허용오차 하나가 그 모델을 대신하지 않는다.
+
+수치 관측값은 수렴해도 이상적 상태 갱신은 수렴하지 않을 수 있다. 상수 K를 갖는 실수 Lipschitz 판독 함수 f에 대해 스펙트럼 분포는 다음을 준다.
+
+$$
+|\mathbb E_\psi f(A_\epsilon)-f(0)|
+ \le\sum_{s\in\{-,+\}}p_s|f(\lambda_s)-f(0)|\le K|\epsilon|,
+ \qquad |f(x)-f(y)|\le K|x-y|.
+$$
+
+이것은 스칼라 영 관측량으로 접근하는 이 가족의 경계다. 모든 스칼라 Lipschitz 함수가 임의의 비가환 행렬 쌍에서 operator Lipschitz라고 주장하는 것이 아니다. 이 예제만으로도 판독값 비교와 후속 상태 비교가 다른 과제임을 알 수 있다.
+
+### 퍼짐이 사라져도 후속 교란은 남을 수 있다
+
+모든 ε에서 plus 상태를 준비하자.
+
+$$
+\psi=\tfrac1{\sqrt2}(1,1),\quad \rho=|\psi\rangle\langle\psi|,\quad
+ \langle A_\epsilon\rangle=0,\quad \sigma_\psi(A_\epsilon)=|\epsilon|,\quad
+ \operatorname{Var}_\psi(A_\epsilon)=\epsilon^2.
+$$
+
+고유값 순서로 정렬된 사영 대신 고정 계산 기저 사영을 P_0·P_1로 쓰자. 이상적인 비선택 스펙트럼 갱신은 ε가 0이 아니면 두 분기, 0이면 한 분기를 갖는다.
+
+$$
+\mathcal D_\epsilon(\rho)=\begin{cases}P_0\rho P_0+P_1\rho P_1=I/2,&\epsilon\ne0,\\ \rho,&\epsilon=0,\end{cases}
+ \qquad P_0=|0\rangle\langle0|,\quad P_1=|1\rangle\langle1|.
+$$
+
+후속 yes/no 검사 B는 원래 plus 상태가 보존됐는지 묻는다. 직접 곱하면 다음을 얻는다.
+
+$$
+B=|\psi\rangle\langle\psi|,\quad
+ \operatorname{Tr}[B\mathcal D_\epsilon(\rho)]=\begin{cases}1/2,&\epsilon\ne0,\\1,&\epsilon=0,\end{cases}
+ \qquad \operatorname{Tr}[\mathcal D_\epsilon(\rho)^2]=\begin{cases}1/2,&\epsilon\ne0,\\1,&\epsilon=0.\end{cases}
+$$
+
+평균과 표준편차는 영 관측량의 값으로 접근하지만, 후속 확률은 정확한 축퇴에 도달하기 전까지 계속 1/2다. 지정한 이상적 스펙트럼 도구 가족의 불연속이며 실제 장치가 반드시 불연속적으로 반응한다는 주장이 아니다. 비교하는 갱신 규칙은 [Preskill §2.1의 사영 규칙](https://www.preskill.caltech.edu/ph219/chap2_15.pdf)을 따른다. 위의 극한 예제와 보정 경계는 여기서 직접 유도했다.
+
+다음 독립 계산은 표를 정확히 재현한다. 기존 reader에서는 signed gap을 바꾸어 εZ 가족을 준비할 수 있다. 이 보충에 유한 분해능 검출기 시뮬레이션을 추가한 것은 아니다.
+
+```python
+from fractions import Fraction as Q
+for epsilon in [Q(1), Q(1, 4), Q(1, 16), Q(0)]:
+    sigma, variance = abs(epsilon), epsilon*epsilon
+    purity = Q(1, 2) if epsilon else Q(1)
+    later_probability = Q(1, 2) if epsilon else Q(1)
+    assert sigma*sigma == variance
+    print(epsilon, sigma, variance, purity, later_probability)
+```
+
+| epsilon | sigma | variance | purity | p_B |
+|---|---|---|---|---|
+| 1 | 1 | 1 | 1/2 | 1/2 |
+| 1/4 | 1/4 | 1/16 | 1/2 | 1/2 |
+| 1/16 | 1/16 | 1/256 | 1/2 | 1/2 |
+| 0 | 0 | 0 | 1 | 1 |
+
+![스펙트럼 간격이 닫히면 표준편차는 연속적으로 감소하지만 후속 plus 상태 확률은 영점 밖에서 1/2를 유지하고 정확한 영점에서 1이 되는 비교.](/assets/learning/quantum-observable-research-closing-spectral-gap.ko.svg)
+
+ε=0의 빈 점은 두 분기 극한값, 채운 점은 한 분기의 영 관측량 도구에 해당한다. 두 점을 보간해 장치의 시간 궤적으로 이어 읽으면 안 된다.
+
+#### 연구 확인 1: 어느 불확실성을 제한했는가?
+
+관측량 단위로 η=0.02이면 모집단 평균과 표준편차는 각각 최대 0.02만큼 변한다. 표본 모델과 시행 횟수 없이는 유한 시행 신뢰구간에 관한 결론을 내릴 수 없다. 분산 경계에는 제곱 단위가 필요하다.
+
+#### 연구 확인 2: 음의 ε에서 접근하기
+
+ε=−1/4이면 낮은 고유값은 |0⟩에, ε=1/4이면 |1⟩에 연결된다. plus 상태의 두 확률은 각각 1/2이며 결과를 무시한 dephasing 출력도 같다. 표시 순서를 정렬한다고 coherence가 복원되지는 않는다.
+
+#### 연구 확인 3: 영점에서도 내부 기록을 유지하기
+
+ε=0에서도 검출기가 계산 기저 분기를 기록한다면 후속 B 확률은 계속 1/2다. 이 도구 역시 매번 수치 0을 보고하지만 사영 I만 갖는 coarse Lüders 도구와 다르다. 값의 히스토그램만으로 구현을 식별할 수 없다.
+
 ## 11. 풀이가 있는 연습
 
 **1. (1,i)의 bra가 왜 (1,−i)인가?**

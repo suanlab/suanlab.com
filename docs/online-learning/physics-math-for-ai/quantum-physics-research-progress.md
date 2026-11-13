@@ -1,6 +1,6 @@
 # 양자역학과 양자정보 연구 진행표
 
-2026-11-13. 기존 **11원주제·34등록 단원·68한영 원고**를 출발점으로 삼는다. 새 순차 연구 대조는 **2/34단원**이며 기존 집필을 미완료로 다시 세는 집계가 아니다. 이전 영역은 [비평형 연구 종합 대조](nonequilibrium-research-audit.md)를 마쳤다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**, 교육과정 완료 상태는 false다.
+2026-11-13. 기존 **11원주제·34등록 단원·68한영 원고**를 출발점으로 삼는다. 새 순차 연구 대조는 **4/34단원**이며 기존 집필을 미완료로 다시 세는 집계가 아니다. 이전 영역은 [비평형 연구 종합 대조](nonequilibrium-research-audit.md)를 마쳤다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**, 교육과정 완료 상태는 false다.
 
 ## 진행 원칙
 
@@ -14,8 +14,8 @@
 |---|---|
 | `complex-state-rays-basis-amplitudes` | [연구 보강·한영 계산·실제 화면 검증 완료](quantum-state-research-status.md) |
 | `wavefunction-l2-projection-completeness` | [연구 보강·한영 계산·실제 화면 검증 완료](quantum-state-research-status.md) |
-| `hermitian-spectrum-born-expectation` | 기존 원고·근거 대조 후 보강 여부 결정 |
-| `degenerate-projectors-sequential-observation` | 기존 원고·근거 대조 후 보강 여부 결정 |
+| `hermitian-spectrum-born-expectation` | [연구 보강·한영 계산·실제 화면 검증 완료](quantum-observable-research-status.md) |
+| `degenerate-projectors-sequential-observation` | [연구 보강·한영 계산·실제 화면 검증 완료](quantum-observable-research-status.md) |
 | `two-level-spectral-schrodinger-evolution` | 기존 원고·근거 대조 후 보강 여부 결정 |
 | `piecewise-hamiltonian-pulse-time-ordering` | 기존 원고·근거 대조 후 보강 여부 결정 |
 | `spin-half-measurement-su2-rotation` | 기존 원고·근거 대조 후 보강 여부 결정 |
@@ -51,4 +51,4 @@
 
 [양자 상태 자료 대조](quantum-state-source-audit.md)와 [관측 자료 대조](quantum-observables-source-audit.md), [양자정보 아홉 단원 통합](quantum-information-integration-status.md)을 포함한 기존 단계별 근거를 유지한다. 이 링크들은 이번 새 연구 대조의 완료 표시가 아니다.
 
-앞의 두 단원은 [연구 확장 검증](quantum-state-research-status.md)을 마쳤다. 다음은 `hermitian-spectrum-born-expectation`와 `degenerate-projectors-sequential-observation`의 기존 원고·참조·화면을 대조하는 일이다. 상태·관측·시간 전개·spin·밀도·측정·얽힘·변분·다체·회로/채널·정보의 원래 11주제 순서를 유지한다. 전체 34단원의 대조와 영역 종합 검토 전에는 양자 영역 완료로 집계하지 않는다.
+앞의 네 단원은 [상태·Hilbert 공간](quantum-state-research-status.md)과 [관측·축퇴 사영](quantum-observable-research-status.md)의 연구 확장 검증을 마쳤다. 다음은 `two-level-spectral-schrodinger-evolution`과 `piecewise-hamiltonian-pulse-time-ordering`의 기존 원고·참조·화면을 대조하는 일이다. 상태·관측·시간 전개·spin·밀도·측정·얽힘·변분·다체·회로/채널·정보의 원래 11주제 순서를 유지한다. 전체 34단원의 대조와 영역 종합 검토 전에는 양자 영역 완료로 집계하지 않는다.

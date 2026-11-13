@@ -120,6 +120,122 @@ $$
 
 unitary 시간 진화, 일반 POVM, 연속 스펙트럼 위치 측정, 환경 모형을 제공하지 않는다. 유한 행렬 좌표만으로 무한 차원 연산자의 자기수반 정의역을 결정하지도 않는다. 일반 측정 도구는 다른 갱신을 가질 수 있으므로 여기서 명시한 Lüders와 세분화 선택은 필수 가정이다.
 
+## 연구 확장: 무교란에는 모든 준비와 지정된 갱신이 필요하다
+
+### 후속 관측의 질문을 연산자로 바꾸기
+
+앞의 반례는 한 상태에서 결과가 같다고 가환성을 보증할 수 없음을 보여 주었다. 더 강한 검사는 지정된 coarse Lüders A 측정 전후의 B를 비교한다. 유한 차원에서는 trace 쌍대성에 의해 같은 block dephasing 식을 상태와 관측량에 적용할 수 있다.
+
+$$
+\mathcal D_A(B)=\sum_iP_iBP_i,\quad H_B=\mathcal D_A(B)-B,\qquad
+ \Delta_\rho(B)=\operatorname{Tr}[B\mathcal D_A(\rho)]-\operatorname{Tr}(B\rho)=\operatorname{Tr}(\rho H_B).
+$$
+
+B와 H_B는 Hermitian이며 Δ는 기댓값의 차이다. B가 yes/no 사영이면 Δ는 확률 차이다. dephasing된 연산자의 양옆에 스펙트럼 사영을 곱하면 비대각 블록이 모두 제거된다.
+
+$$
+P_i\mathcal D_A(B)P_j=\delta_{ij}P_iBP_i,\qquad
+ [\Delta_\rho(B)=0\ \text{for all }\rho]\ \Longleftrightarrow\ H_B=0\ \Longleftrightarrow\ [P_i,B]=0\ \text{for all }i.
+$$
+
+첫 동치는 모든 순수 상태에서 기댓값이 0인 Hermitian 연산자는 영행렬이라는 사실을 쓴다. 고유벡터들을 대입하면 확인할 수 있다. 두 번째는 블록 항등식으로 B의 비대각 블록이 모두 0임을 얻고, 역으로 block-diagonal B는 모든 P_i와 가환하여 dephasing으로 변하지 않음을 보이면 된다. A의 서로 다른 고유값이 이 사영들의 라벨이므로 [A,B]=0과도 동치다.
+
+‘모든 상태’라는 조건이 중요하다. 고정된 B에서 준비를 바꾸어 얻는 최대 교란은 다음과 같다.
+
+$$
+\max_{\|v\|=1}|\Delta_{|v\rangle\langle v|}(B)|=\|H_B\|_{\rm op}.
+$$
+
+H_B의 고유값 중 절댓값이 가장 큰 것의 고유벡터를 택하면 경계에 도달한다. 보지 못하는 준비 하나에서는 Δ=0이어도 이 최댓값은 양수일 수 있다. 이 유한 sharp 사영 결과는 [Busch·Singh의 Lüders 정리 논문 도입부](https://arxiv.org/pdf/1304.0054)와 일치한다. 여기서는 그 논문의 추가 unsharp 일반화를 가정하지 않는다.
+
+### 유한한 탐침 준비로 교란을 복원하기
+
+C³에서 표준 기저 상태 셋과 각 i<j에 대한 (e_i+e_j)/√2, (e_i+i e_j)/√2를 사용하자. 알려진 준비 아홉 개의 기댓값으로 Hermitian 행렬을 복원할 수 있다.
+
+$$
+h_i=\langle e_i|H_B|e_i\rangle,\quad
+ h^+_{ij}=\langle(e_i+e_j)/\sqrt2|H_B|(e_i+e_j)/\sqrt2\rangle,\quad
+ h^{\mathrm i}_{ij}=\langle(e_i+\mathrm i e_j)/\sqrt2|H_B|(e_i+\mathrm i e_j)/\sqrt2\rangle,
+ \quad \operatorname{Re}(H_B)_{ij}=h^+_{ij}-\tfrac12(h_i+h_j),\quad
+ \operatorname{Im}(H_B)_{ij}=\tfrac12(h_i+h_j)-h^{\mathrm i}_{ij}.
+$$
+
+허수 탐침의 음의 부호는 내적 첫 자리의 켤레 선형성에서 나온다. H_B의 기댓값은 해당 준비에서 A 전후 B 실험을 비교해 얻는다. 이 유한 보정 모델에서 아홉 값이 정확히 0이면 H_B=0이다. 유한 시행 추정은 정확한 0이 아니므로 표본 오차와 준비·보정 오차를 따로 제한해야 한다. 알려진 입력을 이용하는 연산자 검사이며 단일 미지 상태로부터의 tomography가 아니다.
+
+### 반복 가능해도 축퇴 블록 안의 자유도는 남는다
+
+P는 e_0, Q는 e_1/e_2 평면으로의 사영이다. coarse Lüders와 앞의 rank-one 세분화 외에도 반복 가능한 도구가 있다. Q 결과를 얻은 뒤 그 안에서 상대 위상을 회전시키자.
+
+$$
+P=|e_0\rangle\langle e_0|,\quad Q=I-P,\quad A=P+2Q,\quad
+ U_\theta=\operatorname{diag}(1,1,e^{i\theta}),\quad K_P=P,\quad K_Q=U_\theta Q,\quad
+ \sum_{s=P,Q}K_s^\dagger K_s=I,\qquad AK_P=K_P,\quad AK_Q=2K_Q.
+$$
+
+K_P·K_Q는 정규화하지 않은 분기 벡터를 지정한다. 완전성에 의해 모든 입력에서 분기 제곱 노름의 합은 1이다. 출력 범위가 올바른 고유공간 안에 있으므로 A의 값을 즉시 다시 측정하면 첫 결과가 확실히 반복된다. 그러나 K_Q는 일반적으로 Q와 다르다. 반복 가능성만으로 Lüders 갱신이 선택되지는 않는다.
+
+앞에서 사용한 축퇴 중첩과 후속 사영을 그대로 쓰자.
+
+$$
+\psi=\tfrac1{\sqrt2}(e_1+e_2),\quad B=|\psi\rangle\langle\psi|,\quad
+ \rho_{\rm coarse}=|\psi\rangle\langle\psi|,\quad
+ \rho_{\rm fine}=\tfrac12(|e_1\rangle\langle e_1|+|e_2\rangle\langle e_2|),\quad
+ \psi_\theta=\tfrac1{\sqrt2}(e_1+e^{i\theta}e_2).
+$$
+
+세 절차 모두 A=2를 확실히 보고한다. coarse 출력은 원래 순수 상태, 세분화 출력은 혼합 상태이며 내부 회전 출력은 여전히 순수 상태다. 후속 검사로 구별할 수 있다.
+
+$$
+p_B^{\rm coarse}=1,\quad p_B^{\rm fine}=\tfrac12,\quad
+ p_B^{\rm rotate}=|\langle\psi|\psi_\theta\rangle|^2=\tfrac12(1+\cos\theta),\quad
+ \operatorname{Tr}(\rho_{\rm fine}^2)=\tfrac12,\quad \operatorname{Tr}[(|\psi_\theta\rangle\langle\psi_\theta|)^2]=1.
+$$
+
+A와 B는 가환하지만 내부 회전은 B를 바꿀 수 있다. 앞의 정리와 모순되지 않는다. 그 정리는 coarse Lüders 도구를 고정했다. 갱신을 교체하면 가정이 달라진다. θ=π에서는 A 결과가 반복되고 순수성이 유지되면서도 원래 상태와 직교한다.
+
+### 삼각함수 반올림 없이 정확한 위상 회전 계산하기
+
+유리수 반각 매개변수 t로 정확한 단위 복소수를 만들 수 있다.
+
+$$
+t=\tan(\theta/2),\quad c=\frac{1-t^2}{1+t^2},\quad s=\frac{2t}{1+t^2},\quad
+ c^2+s^2=1,\quad e^{i\theta}=c+is,\quad p_B^{\rm rotate}=\frac1{1+t^2}\quad(-\pi<\theta<\pi).
+$$
+
+다음 독립 코드는 후속 확률을 계산한다. 기존 reader는 coarse Lüders와 결정적인 세분화를 비교하며 내부 unitary slider를 추가하지 않았다. 위상 매개변수는 도구의 선택이며 Schrödinger 경과 시간이 아니다.
+
+```python
+from fractions import Fraction as Q
+for t in [Q(0), Q(1, 2), Q(1), Q(2)]:
+    cosine, sine = (1-t*t)/(1+t*t), 2*t/(1+t*t)
+    probability = (1+cosine)/2
+    assert cosine*cosine + sine*sine == 1
+    print(t, cosine, sine, probability, Q(1))
+```
+
+| t | cos(theta) | sin(theta) | p_B | purity |
+|---|---|---|---|---|
+| 0 | 1 | 0 | 1 | 1 |
+| 1/2 | 3/5 | 4/5 | 4/5 | 1 |
+| 1 | 0 | 1 | 1/2 | 1 |
+| 2 | -3/5 | 4/5 | 1/5 | 1 |
+
+![세 도구가 같은 축퇴 값을 보고하지만 후속 확률은 coarse에서 1, 세분화에서 1/2이며 반복 가능한 내부 회전에서는 연속적으로 달라지고 순수성은 1인 비교.](/assets/learning/quantum-observable-research-repeatable-block-rotation.ko.svg)
+
+주황 곡선은 θ=π/2에서 세분화 선과 만나지만 순수성은 다르다. 선택한 후속 검사 하나의 확률이 같아도 출력 상태나 도구 전체가 같다는 뜻은 아니다.
+
+#### 연구 확인 1: 한 탐침이 보지 못하는 비가환 연산자
+
+A=diag(1,2,2), B를 (e_0+e_1)/√2로의 사영으로 두고 e_2를 준비하면 Δ=0이다. 그러나 e_0/e_1 평면에서 H_B의 비대각 성분은 −1/2이고 노름은 1/2다. 그 평면의 plus 상태는 Δ=−1/2를 드러낸다. 보지 못하는 상태가 무교란을 증명하지는 못했다.
+
+#### 연구 확인 2: 위상 반전 뒤에도 같은 값 반복하기
+
+θ=π에서 Q 분기는 (e_1+e_2)/√2를 (e_1−e_2)/√2로 보낸다. 둘 다 Q 안에 있어 A=2를 확실히 돌려준다. 후속 B 확률은 1에서 0으로 바뀐다. 순수성은 1이므로 순수성만으로 특정 상태의 보존을 보증할 수 없다.
+
+#### 연구 확인 3: 복소 탐침의 부호 확인하기
+
+해당 평면에서 Hermitian 교란 행렬이 H_01=i, H_10=−i이고 대각이 0이면 (e_0+i e_1)/√2에서 기댓값은 −1이다. 복원식은 Im H_01=0−(−1)=1을 준다. 켤레 없는 전치를 쓰면 추론 부호를 뒤집는다.
+
 ## 11. 풀이가 있는 연습
 
 **1. λ=μ=5이면 A의 스펙트럼 결과는 몇 개인가?**

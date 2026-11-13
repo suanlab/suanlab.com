@@ -102,6 +102,120 @@ Normalized coordinates may involve square roots. They are returned with directed
 
 The independent reference uses symbolic eigenvectors and orthonormalized eigenspaces rather than trusting the production projector decomposition. A successful comparison supports this finite family. It does not prove an infinite-dimensional spectral theorem.
 
+## Research extension: stable values and a discontinuous ideal measurement
+
+### What does a calibration error actually bound?
+
+An observable reconstructed from a model or calibration is rarely exact. Keep the same normalized preparation ψ and compare two finite Hermitian matrices. The operator norm is the largest change in vector length over unit inputs. If its error is bounded by η, Cauchy–Schwarz immediately controls the mean:
+
+$$
+\widetilde A=A+E,\quad A=A^\dagger,\quad E=E^\dagger,\quad \|E\|_{\rm op}\le\eta,
+ \qquad |\langle\widetilde A\rangle_\psi-\langle A\rangle_\psi|=|\langle\psi|E|\psi\rangle|\le\eta.
+$$
+
+This compares two population means on the same state, not the sampling uncertainty from a finite number of experimental trials. The standard deviation also has a useful bound. The projection Q_ψ removes the component parallel to ψ, leaving (A−⟨A⟩)ψ. The reverse triangle inequality gives:
+
+$$
+Q_\psi=I-|\psi\rangle\langle\psi|,\quad \sigma_\psi(A)=\|Q_\psi A\psi\|,
+ \qquad |\sigma_\psi(\widetilde A)-\sigma_\psi(A)|\le\|Q_\psi E\psi\|\le\eta.
+$$
+
+Use standard deviation here: it has the same units as A and η. Variance has squared units, so asserting the same η bound for variance would be dimensionally wrong. For example, the bound on its difference can instead use η times the sum of the two standard deviations.
+
+Ordered eigenvalues are stable as well. For ascending eigenvalues the finite-dimensional minimum–maximum characterization says:
+
+$$
+\lambda_k(A)=\min_{\dim S=k}\ \max_{v\in S,\,\|v\|=1}\langle v|A|v\rangle,
+ \qquad |\lambda_k(\widetilde A)-\lambda_k(A)|\le\eta,\quad \lambda_1\le\cdots\le\lambda_d.
+$$
+
+To see the last bound, every unit-vector Rayleigh quotient changes by at most η; taking a maximum on each subspace and then a minimum preserves that inequality. Interchange the two matrices to obtain the other direction. This argument bounds numerical values, not individual eigenspace orientations near a closing gap.
+
+### Why merging eigenvalues needs a separate instrument decision
+
+Consider a particularly transparent calibration family in the chapter's C² model:
+
+$$
+A_\epsilon=\epsilon Z,\quad \|A_\epsilon-0\|_{\rm op}=|\epsilon|,\quad
+ \lambda_\pm=\pm|\epsilon|,\quad P_\pm=\tfrac12(I\pm\operatorname{sgn}(\epsilon)Z)\quad(\epsilon\ne0).
+$$
+
+For every nonzero ε there are two distinct outcomes. Negative ε reverses their ordered labels and projectors together. At ε=0 the observable is zero and its sole spectral projector is I: the displayed formula involving sgn ε is no longer the spectral decomposition into distinct outcomes.
+
+An experiment that keeps resolving |0⟩ and |1⟩ at ε=0 is a refinement with an extra record. It is different from the coarse spectral Lüders measurement of the zero observable. A real detector's finite resolution must likewise be specified as part of an instrument model; a numerical tolerance alone is not such a model.
+
+Numerical values can converge while their ideal state update does not. For any real scalar Lipschitz readout f with constant K, the spectral distribution gives:
+
+$$
+|\mathbb E_\psi f(A_\epsilon)-f(0)|
+ \le\sum_{s\in\{-,+\}}p_s|f(\lambda_s)-f(0)|\le K|\epsilon|,
+ \qquad |f(x)-f(y)|\le K|x-y|.
+$$
+
+This bound concerns this family approaching the scalar zero observable. It does not claim that every scalar Lipschitz function is operator Lipschitz for arbitrary noncommuting matrix pairs. The example already shows why comparing readout values and comparing subsequent states are different tasks.
+
+### A vanishing spread can hide a fixed downstream disturbance
+
+Prepare the plus state for every ε:
+
+$$
+\psi=\tfrac1{\sqrt2}(1,1),\quad \rho=|\psi\rangle\langle\psi|,\quad
+ \langle A_\epsilon\rangle=0,\quad \sigma_\psi(A_\epsilon)=|\epsilon|,\quad
+ \operatorname{Var}_\psi(A_\epsilon)=\epsilon^2.
+$$
+
+Write P_0 and P_1 for the fixed computational projectors, as opposed to projectors sorted by eigenvalue. The ideal nonselective spectral update has two branches for any nonzero ε, but one branch at zero:
+
+$$
+\mathcal D_\epsilon(\rho)=\begin{cases}P_0\rho P_0+P_1\rho P_1=I/2,&\epsilon\ne0,\\ \rho,&\epsilon=0,\end{cases}
+ \qquad P_0=|0\rangle\langle0|,\quad P_1=|1\rangle\langle1|.
+$$
+
+A later yes/no test B asks whether the original plus state survived. Direct multiplication gives:
+
+$$
+B=|\psi\rangle\langle\psi|,\quad
+ \operatorname{Tr}[B\mathcal D_\epsilon(\rho)]=\begin{cases}1/2,&\epsilon\ne0,\\1,&\epsilon=0,\end{cases}
+ \qquad \operatorname{Tr}[\mathcal D_\epsilon(\rho)^2]=\begin{cases}1/2,&\epsilon\ne0,\\1,&\epsilon=0.\end{cases}
+$$
+
+Thus both the mean and standard deviation approach the zero-observable values, yet the later probability stays at one half until the exact degeneracy. This is a discontinuity of the stipulated ideal spectral-instrument family, not a claim that a physical apparatus must respond discontinuously. The [projection rule in Preskill §2.1](https://www.preskill.caltech.edu/ph219/chap2_15.pdf) specifies the update being compared; the limiting example and calibration bounds above are derived directly here.
+
+The following standalone calculation reproduces the table exactly. The existing reader can prepare the εZ family by changing the signed gap; this supplement adds no finite-resolution detector simulation.
+
+```python
+from fractions import Fraction as Q
+for epsilon in [Q(1), Q(1, 4), Q(1, 16), Q(0)]:
+    sigma, variance = abs(epsilon), epsilon*epsilon
+    purity = Q(1, 2) if epsilon else Q(1)
+    later_probability = Q(1, 2) if epsilon else Q(1)
+    assert sigma*sigma == variance
+    print(epsilon, sigma, variance, purity, later_probability)
+```
+
+| epsilon | sigma | variance | purity | p_B |
+|---|---|---|---|---|
+| 1 | 1 | 1 | 1/2 | 1/2 |
+| 1/4 | 1/4 | 1/16 | 1/2 | 1/2 |
+| 1/16 | 1/16 | 1/256 | 1/2 | 1/2 |
+| 0 | 0 | 0 | 1 | 1 |
+
+![As a spectral gap closes, the standard deviation decreases continuously, while the later plus-state probability remains one half away from zero and equals one at zero.](/assets/learning/quantum-observable-research-closing-spectral-gap.en.svg)
+
+The open point at ε=0 belongs to the two-branch limiting value. The filled point belongs to the one-branch zero-observable instrument. Do not join them with an interpolated apparatus trajectory.
+
+#### Research check 1: which uncertainty has been bounded?
+
+If η=0.02 in the observable's units, the population mean and standard deviation each change by at most 0.02. This says nothing about finite-shot confidence intervals unless a sampling model and trial count are supplied. A variance bound needs squared units.
+
+#### Research check 2: approach from negative ε
+
+For ε=−1/4 the lower eigenvalue is attached to |0⟩, whereas for ε=1/4 it is attached to |1⟩. On the plus state both probabilities are one half, and ignoring the label gives the same dephased output. Sorting labels cannot restore coherence.
+
+#### Research check 3: keep the internal record at zero
+
+If the detector still records the computational basis branch when ε=0, the later B probability remains one half. That instrument is consistent with reporting the number zero every time, but is not the coarse Lüders instrument with projector I. A value histogram alone does not identify the implementation.
+
 ## 11. Exercises with explanations
 
 **1. Why is the bra of (1,i) equal to (1,−i)?**
