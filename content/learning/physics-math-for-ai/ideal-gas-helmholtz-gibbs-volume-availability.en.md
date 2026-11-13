@@ -160,6 +160,130 @@ The numerical calculation also distinguishes a structural zero from a cancellati
 
 The tiny examples test the encoded mathematical model, including its supplied binary inputs and approximate R. They do not establish experimental accuracy beyond the precision of physical parameters or constants. Numerical resolution and physical uncertainty are separate questions.
 
+## Research extension: an inertial piston can pass through the potential minimum
+
+Place a piston exactly at the pressure-balanced volume, but give it an outward velocity. The potential slope is zero, yet the piston keeps moving. Some kinetic energy becomes potential excess. A potential minimum specifies a resting equilibrium, not every state that happens to pass that coordinate.
+
+We explicitly add a deterministic isothermal model. Keep A=nRT>0, fixed external P>0 and positive volume. A uniform ideal gas remains at an ideal thermostat temperature T; a piston has mass m, constant area $A_p$ and linear viscous coefficient b. All viscous heat goes to that same thermostat. The external pressure load is an ideal work store. Noise, finite heat-transfer response, dry friction and other mechanical stores are absent. This is a macroscopic dynamical idealization, not the canonical fluctuation law of a microscopic piston.
+
+Choose the piston coordinate z=V/$A_p$. Dividing Newton's equation by the piston area gives the effective volume inertia $m_V$ in kg/m⁴ and damping ζ in Pa·s/m³. The force per area is internal minus external pressure.
+
+$$
+m_V\ddot V+\zeta\dot V=A/V-P,\qquad m_V=m/A_p^2>0,\quad\zeta=b/A_p^2\ge0.
+$$
+
+Add the piston kinetic energy to the original constrained-potential excess. Both terms have joule units. Knowing V alone no longer specifies this available mechanical energy.
+
+$$
+K=\tfrac12m_V\dot V^2,\qquad\mathcal L=K+\Phi(V)-\Phi(V_*),\qquad V_*=A/P.
+$$
+
+Differentiate along the added mechanical law. Total available energy decreases through viscous dissipation. The potential part alone need not decrease: it can receive kinetic energy during overshoot.
+
+$$
+\frac{d\mathcal L}{dt}=\dot V[m_V\ddot V+P-A/V]=-\zeta\dot V^2\le0.
+$$
+
+Scale volume by $V_*$ and time by the inertial time $t_*$. The dimensionless damping d compares viscous and inertial effects. Primes below denote derivatives in τ, while dots in the preceding dimensional equations denote seconds.
+
+$$
+t_*=\sqrt{m_V V_*^2/A},\quad x=V/V_*,\quad\tau=t/t_*,\quad d=\zeta t_*/m_V.
+$$
+
+The dimensionless state includes x and its velocity. The potential h retains the same minimum as the original landscape, while the kinetic term supplies a second state coordinate.
+
+$$
+x^{\prime\prime}+d x^\prime=1/x-1,\qquad h(x)=x-1-\log x,\qquad e=\mathcal L/A=\tfrac12(x^\prime)^2+h(x).
+$$
+
+Only total e has the nonpositive derivative. The derivative of h can have either sign. In the example x(0)=1 and x′(0)=0.8, h starts at zero and subsequently grows while e decreases.
+
+$$
+e^\prime=-d(x^\prime)^2,\qquad h^\prime(\tau)=(1-1/x)x^\prime.
+$$
+
+Linearization near x=1 gives damped-oscillator roots. For 0<d<2 the local motion is underdamped; this approximation requires small displacement. In the full model h diverges as x approaches zero or infinity, so a finite-energy continuous solution stays in a positive bounded volume range. For d>0 its only invariant zero-dissipation state is rest at x=1, giving asymptotic relaxation. For d=0 nontrivial trajectories conserve energy rather than relax.
+
+$$
+x=1+y:\quad y^{\prime\prime}+d y^\prime+y=0\quad\text{to first order},\qquad r_\pm=(-d\pm\sqrt{d^2-4})/2.
+$$
+
+The thermal boundary must match the added store. Let $Q_{\rm sys}$ be net heat from the thermostat into gas plus piston. It includes heat entering the isothermal gas and viscous heat returned to the same bath. Internal gas energy is constant, so the change in piston kinetic energy remains in the first law. This net heat differs from heat into the gas alone.
+
+$$
+Q_{\rm sys}=P(V_f-V_i)+(K_f-K_i).
+$$
+
+Gas entropy changes by nR log($V_f$/$V_i$); the ideal mechanical piston and work store add no entropy. Combining that change with −$Q_{\rm sys}$/T gives the production integral below. It includes the kinetic-energy difference that was absent from the original no-mechanical-store endpoint example.
+
+$$
+\Sigma=nR\log(V_f/V_i)-Q_{\rm sys}/T=\frac{\mathcal L_i-\mathcal L_f}{T}=\int\frac{\zeta\dot V^2}{T}\,dt\ge0.
+$$
+
+After complete relaxation with positive damping, the bath has received the initial available energy as dissipation measured by TΣ. Starting at $V_*$ with nonzero velocity therefore still produces entropy. The old potential-only expression is recovered when initial and final kinetic stores vanish. None of this gives a finite equilibration time or validates arbitrary numerical time steps.
+
+$$
+\Sigma_\infty=\frac{K_i+\Phi(V_i)-\Phi(V_*)}{T}\qquad(\zeta>0,\ V_f\to V_*,\ \dot V_f\to0).
+$$
+
+### Read overshoot and the decreasing total
+
+The upper panel plots x versus inertial time τ for d=0.4 and initial (x,x′)=(1,0.8). The lower panel separates h, kinetic energy divided by A, and their total e. Rising h is compatible with decreasing e. The original reader still compares static volumes; the extra clock belongs only to this declared model.
+
+![An initially moving piston crosses the pressure-balanced volume; potential excess may rise while kinetic plus potential energy decreases through damping.](/assets/learning/free-energy-inertial-piston-budget.en.svg)
+
+### Reproduce four numerical states
+
+The supplement uses fixed-step RK4 with Δτ=0.001, not the existing reader calculator. x and x′ are dimensionless, h and e are normalized by A, and the last column is TΣ/A. These are numerical approximations checked against an independent local Taylor expansion and step refinement. Monitor positive volume and the energy budget; a general positivity or error certificate is not supplied.
+
+| τ | x | x′ | h(x) | Total e | TΣ/A |
+| --- | --- | --- | --- | --- | --- |
+| 0.00000000 | 1.00000000 | 0.80000000 | 0.00000000 | 0.32000000 | 0.00000000 |
+| 0.50000000 | 1.34988601 | 0.58551421 | 0.04986586 | 0.22127930 | 0.09872070 |
+| 1.00000000 | 1.57967682 | 0.33320315 | 0.12245654 | 0.17796871 | 0.14203129 |
+| 3.00000000 | 1.42541791 | -0.36864137 | 0.07095287 | 0.13890110 | 0.18109890 |
+
+```python
+from math import log
+d, x, v, dt = 0.4, 1.0, 0.8, 0.001
+initial = v*v/2+x-1-log(x)
+def rhs(x, v):
+    return v, 1/x-1-d*v
+for step in range(3001):
+    if step in [0, 500, 1000, 3000]:
+        h = x-1-log(x)
+        energy = v*v/2+h
+        generated = initial-energy  # T*Sigma/A
+        print(f"{step*dt:.8f} {x:.8f} {v:.8f} {h:.8f} "
+              f"{energy:.8f} {generated:.8f}")
+    if step == 3000:
+        break
+    a, b = rhs(x, v)
+    c, f = rhs(x+dt*a/2, v+dt*b/2)
+    g, j = rhs(x+dt*c/2, v+dt*f/2)
+    k, l = rhs(x+dt*g, v+dt*j)
+    x += dt*(a+2*c+2*g+k)/6
+    v += dt*(b+2*f+2*j+l)/6
+```
+
+### Three research questions with explanations
+
+#### 1. Why can h increase after starting at its minimum?
+
+**Explanation.** The piston starts with kinetic energy and positive velocity. Pressure balance cancels the pressure force at that coordinate, not the velocity. Kinetic energy can move into h while viscosity reduces their total. Position-only data would miss the energy store driving this overshoot.
+
+#### 2. Does the same equilibrium imply the same trajectory or convergence?
+
+**Explanation.** No. Inertia, damping and initial velocity are extra information. Positive damping gives relaxation in the stated deterministic model; zero damping generally preserves oscillation energy. The landscape alone chooses none of these dynamics, and adding thermal fluctuations would require a different stochastic model.
+
+#### 3. When is the old potential-only entropy budget insufficient?
+
+**Explanation.** When a mechanical store has a nonzero initial or final change. Here total production depends on the decrease of K plus constrained potential, and net thermostat heat equals pressure-load work plus ΔK. If both kinetic endpoints vanish, the earlier conditional endpoint expression is recovered.
+
+### Source and research boundary
+
+[David Tong, Classical Thermodynamics, section 4.4](https://davidtong.org/pdfs/teaching/statistical-physics/statphys4.pdf) supplies the fixed-environment potential convention. Newtonian force balance, the viscous law and thermostat routing are additional assumptions derived into the displayed energy and entropy balances here. This supplement does not establish finite-rate heat-transfer feasibility or identify an arbitrary learned gradient flow with physical piston motion.
+
 ## Research interpretation
 
 The same discipline applies when building an optimization objective: specify what is fixed, which variables are free, and what each added term means. A pressure-volume term has units, a reservoir interpretation and a thermodynamic derivation. An arbitrary machine-learning regularizer does not inherit those properties just because it changes an objective's minimum.

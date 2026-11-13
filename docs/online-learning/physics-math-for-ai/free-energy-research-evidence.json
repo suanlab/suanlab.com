@@ -1,0 +1,1208 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "status": "validated-free-energy-research-supplements",
+  "baselineCommit": "2fca16644b03f02a9a903b39601fa6bed667c777",
+  "domain": "thermo-statmech",
+  "unitIds": [
+    "finite-spectrum-helmholtz-kl-variational",
+    "ideal-gas-helmholtz-gibbs-volume-availability"
+  ],
+  "registry": {
+    "units": 650,
+    "guides": 1969,
+    "domains": 51,
+    "topics": 509
+  },
+  "scope": {
+    "originalDomainTopics": 11,
+    "registeredDomainUnits": 32,
+    "researchUnitsInThisBatch": 2,
+    "cumulativeSequentialResearchUnits": 8,
+    "remainingDomainUnits": 24,
+    "wholeDomainResearchReviewComplete": false,
+    "curriculumComplete": false
+  },
+  "manuscripts": [
+    {
+      "id": "finite-spectrum-helmholtz-kl-variational",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md",
+      "originalSha256": "ca2682e88d8000119b077d1fcb6d881ae72a6b3fa16337e63f503f81b2875019",
+      "image": "quench-relaxation",
+      "columns": 5,
+      "rows": [
+        [
+          "0.00000000",
+          "0.25000000",
+          "0.09233152",
+          "0.00000000",
+          "0.00000000"
+        ],
+        [
+          "0.50000000",
+          "0.19097960",
+          "0.03734530",
+          "0.05498621",
+          "-0.12968108"
+        ],
+        [
+          "1.00000000",
+          "0.15518192",
+          "0.01473671",
+          "0.07759480",
+          "-0.20833662"
+        ],
+        [
+          "3.00000000",
+          "0.10746806",
+          "0.00030324",
+          "0.09202828",
+          "-0.31317468"
+        ]
+      ],
+      "marker": "## Research extension: a quench, a new target and thermal relaxation",
+      "nextHeading": "## Connection to learning and inference",
+      "updatedSha256": "c8884d8be4b5341daeae9e64b8c2b499352822663a867fc80bfc6a2afa2e1af5"
+    },
+    {
+      "id": "finite-spectrum-helmholtz-kl-variational",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md",
+      "originalSha256": "1988db280860ef74557a2bcaca959b7ae08a0b232ff1bd2a1b99394b47ac060b",
+      "image": "quench-relaxation",
+      "columns": 5,
+      "rows": [
+        [
+          "0.00000000",
+          "0.25000000",
+          "0.09233152",
+          "0.00000000",
+          "0.00000000"
+        ],
+        [
+          "0.50000000",
+          "0.19097960",
+          "0.03734530",
+          "0.05498621",
+          "-0.12968108"
+        ],
+        [
+          "1.00000000",
+          "0.15518192",
+          "0.01473671",
+          "0.07759480",
+          "-0.20833662"
+        ],
+        [
+          "3.00000000",
+          "0.10746806",
+          "0.00030324",
+          "0.09202828",
+          "-0.31317468"
+        ]
+      ],
+      "marker": "## 연구 확장: 급격한 준위 변경과 새 목표로의 열적 완화",
+      "nextHeading": "## 학습과 추론으로 연결하기",
+      "updatedSha256": "2b70f8129051d98f381f586070cbffb578c90e804669fa1d2295f2e5c9c3d9c4"
+    },
+    {
+      "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md",
+      "originalSha256": "6e695972c365e36840c19e359f762a8084eac87e97e131743599ef329a69f44e",
+      "image": "inertial-piston-budget",
+      "columns": 6,
+      "rows": [
+        [
+          "0.00000000",
+          "1.00000000",
+          "0.80000000",
+          "0.00000000",
+          "0.32000000",
+          "0.00000000"
+        ],
+        [
+          "0.50000000",
+          "1.34988601",
+          "0.58551421",
+          "0.04986586",
+          "0.22127930",
+          "0.09872070"
+        ],
+        [
+          "1.00000000",
+          "1.57967682",
+          "0.33320315",
+          "0.12245654",
+          "0.17796871",
+          "0.14203129"
+        ],
+        [
+          "3.00000000",
+          "1.42541791",
+          "-0.36864137",
+          "0.07095287",
+          "0.13890110",
+          "0.18109890"
+        ]
+      ],
+      "marker": "## Research extension: an inertial piston can pass through the potential minimum",
+      "nextHeading": "## Research interpretation",
+      "updatedSha256": "cabbaa81e0c2a28eaa9107910c512168a62e593dc651a818e97475f34299777f"
+    },
+    {
+      "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md",
+      "originalSha256": "623093cfd35890f9b0304cf33bc15e99c744e18418c829ba61d59b5c93c99f44",
+      "image": "inertial-piston-budget",
+      "columns": 6,
+      "rows": [
+        [
+          "0.00000000",
+          "1.00000000",
+          "0.80000000",
+          "0.00000000",
+          "0.32000000",
+          "0.00000000"
+        ],
+        [
+          "0.50000000",
+          "1.34988601",
+          "0.58551421",
+          "0.04986586",
+          "0.22127930",
+          "0.09872070"
+        ],
+        [
+          "1.00000000",
+          "1.57967682",
+          "0.33320315",
+          "0.12245654",
+          "0.17796871",
+          "0.14203129"
+        ],
+        [
+          "3.00000000",
+          "1.42541791",
+          "-0.36864137",
+          "0.07095287",
+          "0.13890110",
+          "0.18109890"
+        ]
+      ],
+      "marker": "## 연구 확장: 관성이 있는 피스톤은 퍼텐셜 최소점을 통과한다",
+      "nextHeading": "## 연구에서의 해석",
+      "updatedSha256": "cf1068c26a650b9dd65abb3d03e8cce0225d2480af49aafa9e56d4f273381a48"
+    }
+  ],
+  "originalExplainedExercisesPreserved": 24,
+  "newExplainedResearchQuestions": 12,
+  "displayedEquationsBothLocales": 40,
+  "executedPythonCells": 4,
+  "independentVerification": {
+    "status": "passed",
+    "quenchRelaxationBudgets": 54,
+    "identicalGapPreparations": 3,
+    "pistonTaylorTrajectories": 6,
+    "pistonHeatEntropyBudgets": 18,
+    "rk4RefinementComparisons": 36,
+    "positiveVolumeAndOvershootExample": true
+  },
+  "otherDomainManuscriptsPreserved": [
+    {
+      "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md",
+      "sha256": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md",
+      "sha256": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md",
+      "sha256": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md",
+      "sha256": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md",
+      "sha256": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md",
+      "sha256": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md",
+      "sha256": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md",
+      "sha256": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md",
+      "sha256": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md",
+      "sha256": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md",
+      "sha256": "d326602499c3b341b075be8838b03b3cfba783eb8623550b43488e5825da2bf7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md",
+      "sha256": "1f09442cec69f6771740ca5a56abd39faef9deee6fc7003961339c7b168e59a1"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md",
+      "sha256": "3f00318b01c7bd93e770bd745e1e535418629869402ad952d8ea2e0200ab9385"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md",
+      "sha256": "dbde3b93ae3f9720100fcb6c640c6753ab672dff3bb85ad7a12210b396b15dff"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md",
+      "sha256": "7a64dee8bedd8062881d6ce9f2410b4a64e6c76b4f60cded48dfc85671e70efc"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md",
+      "sha256": "a97ed4d29978ba48e8f2703c0dfb18600002367ba2e15942a7658eca5e233e39"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md",
+      "sha256": "3916532391a89710021232e47249b076af621113990007c5a42547b904fb1ae9"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md",
+      "sha256": "5d0a8f746486d28aebd5b5164617b2594bdefe3ea3af3082238ba0fdf44f0407"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md",
+      "sha256": "a20b9e72f85794d578ace76e22118bd1eee6898a00bc2fb84a2b5326a0b9652e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md",
+      "sha256": "2a7473a89a0f5288a92b80057cca25f82c120b7ff421d98f130d098342e4b113"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md",
+      "sha256": "79fd2af07f305bd235b4e1d1324dde87a20b8bef4dcd1cc4333176f97af3d85b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md",
+      "sha256": "1ab612949a826ac3dea1558fa52f7c667648804503f57dbbd47508157d9eef11"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.ko.md",
+      "sha256": "4bb4d08e7209d1e79a3d182a534fffdf3ca91f86af1794b6ab11661640790308"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.en.md",
+      "sha256": "e009fc56a05155ca0af0942b3c31268f51ef0064bcbd6b3e1910aa19ab336770"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.ko.md",
+      "sha256": "4a2ac611c35b21482cff6e862e52de3a2cc65681ebbaf4d27c3777d256dc2fe7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.en.md",
+      "sha256": "db01c9360f23c77e8d4ff7bf214ebfc46b9e376fdc5dad3c21a9d83a43265b13"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.ko.md",
+      "sha256": "fb46a0950c5ba61d2aa4a304ed01b56ab05220e94791562d4c9c8fca8fb764b0"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.en.md",
+      "sha256": "ee3e1c2d3a2d8a927622c41b0d54884310e3b49a790b0860e28961a10b0bfc5e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.ko.md",
+      "sha256": "273597601f2cc18ef81a4c16b19d30fd8824a0ed1fa211af07427d41a8a1a951"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.en.md",
+      "sha256": "b008dc6e7f1a3d555ae9f363465e9c4c81b66ca7acb047c70ed0450b5bcc8e32"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.ko.md",
+      "sha256": "920ba116208c2992905650b4bcbc366659807d018aeedd266d799d8643b73f57"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.en.md",
+      "sha256": "4a4b016de1dd21bdc3e5b9e2721f05a33b75befc3abb715d6a4d6a71da89f7e6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.ko.md",
+      "sha256": "eb446c6bec89621ee3e991ea0ebe897d94229315e41fd60eb4b9bdee8083c402"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.en.md",
+      "sha256": "561530d879493f38e0408eb37ad25be67d44dad388c7a30e12c242d9e22a144e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.ko.md",
+      "sha256": "087a1af9e81504130c9b059eb159f1fe678f7f832590312fb90861b971da1836"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.en.md",
+      "sha256": "d1aa8390bfd0fc56f887b4e2aab07f6373086aa940998b811196f44f3ec6fed7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.ko.md",
+      "sha256": "9bb8db5785e77ae769d89b2c7d537f15de00922f58789cba7e427a8297f6caec"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.en.md",
+      "sha256": "ac4d75c266edc9dbf81c4d5a1bea6a39f1f1953e7b1f222d635e0c82e3c9846f"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.ko.md",
+      "sha256": "e2c5d6cf78cd5470aa3625d334862310432ee7b581fd43450f60d1c34a276044"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.en.md",
+      "sha256": "fad9d696cc1191b8b8aa998f5a3ca11ed667c2ab048d8bfc10a11ce8e321541c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.ko.md",
+      "sha256": "8a418f2a12d092ff4caea78b90a74e677cf9552f7524b65366616010508c9706"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.en.md",
+      "sha256": "ea5bbf70c8056936fd6fc0be8058d93621471312c0bce6752690b7ef09a7aa90"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.ko.md",
+      "sha256": "4b0221ed4cc62924eab793c07b220a3dde609810cebb37e8af79d9491c514b4b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.en.md",
+      "sha256": "844d21fce5c5d31c200bde1fb304046c22cacef8f0a8619d9fc85b7ee564e5bf"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.ko.md",
+      "sha256": "a718b1ef4c9b86e7b7c9c109e909095e772acea8a83e97e655d6aaeab7e3adfd"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.en.md",
+      "sha256": "ed4cd67f693f56ad3229cc64595ccd0edde216f4cd78ea873bd7234723285d85"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.ko.md",
+      "sha256": "5e1879b6bd55ccc27d71a398fa919e03ca96904ae4a3edf210dc7613085a7ef1"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.en.md",
+      "sha256": "d2185361b111b05b9bba4375542642ff8820fa697dc3086d07b80cb8ff10582d"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.ko.md",
+      "sha256": "bf380b04692d01eccc7ade872c40223c0732f12dbd9f0415ad803cf2f3ec0a16"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.en.md",
+      "sha256": "7b63b7f733ab991c2cc4c33b4fa1c06ed818f40b085b64168de9206805d94946"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.ko.md",
+      "sha256": "6a5221c76efa732c71b201289fd024a7b87c7f2aed1c81c6a65f06692e23f02b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.en.md",
+      "sha256": "f82d282b4f9debb0be0cc673315f5bef998a922ba9d52c51eb079cc223c7ad8b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.ko.md",
+      "sha256": "5717437eb357f7d78652ff00fe41d261dc3b00d0777dd2042ea026ac910c4b42"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.en.md",
+      "sha256": "91cee8bb2d352358997a6eaf32691bf3c2f69578dcab5580e1a8aaef28a14305"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.ko.md",
+      "sha256": "87169cbf63ed0c25110b8070f927ecb1068de31846a7ff2c05b470a548213dd6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.en.md",
+      "sha256": "ac24140fd2b4e1a4091037a98d698e1b234f10b61a5ca65d9e3ae815862b93ba"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.ko.md",
+      "sha256": "6bf2e4df0cdb337c2c207f76449e9cf50e6171cb34edf86ad06c4c927043f58c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.en.md",
+      "sha256": "c1b8cd125800b5381367f54ae276aa5b75e8de704000b52f2d21967cdaffdab2"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/thermodynamics.ko.md",
+      "sha256": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/thermodynamics.en.md",
+      "sha256": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf"
+    }
+  ],
+  "previousResearchArtifactsPreserved": {
+    "content/learning/physics-math-for-ai/thermodynamics.en.md": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf",
+    "content/learning/physics-math-for-ai/thermodynamics.ko.md": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3",
+    "public/assets/learning/thermometry-information-scale.en.svg": "46ea259642757e2c948177d410f2a219401bdf12db8bde220c5c94178fa43f31",
+    "public/assets/learning/thermometry-information-scale.ko.svg": "598613ae723c70ea9cac1c8630dca3a936a486497ebb193f4bd9456210e88688",
+    "scripts/check-thermometry-research.cjs": "c781958ca72c404cbedaa82bdfa1550a93b1991e1d2178f2eb9d45dea9783231",
+    "scripts/learning-thermometry-research.test.ts": "60b9e791bc9d0c882863a5db94c6acc83f0c98665838f6e6d0c56aba10481b1f",
+    "scripts/learning/verify-thermometry-research.py": "bc96b222c3e871b4f50338fe0ff4f14c948ea5a3dfa39a1106591ba6eb81203f",
+    "scripts/learning/generate-thermometry-figures.py": "4f1063ab8e5ad72a43e0fd679962cd1091c9a863158f288ac78f4b0524283625",
+    "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca",
+    "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333",
+    "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903",
+    "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463",
+    "public/assets/learning/heat-work-contact-scale.en.svg": "c8b49365c1e0476c1ada8fd5c0289c40b2d71c1fc555063ac6d77657e7d38242",
+    "public/assets/learning/heat-work-contact-scale.ko.svg": "3f71ba83f6c79ee0c787dba8d736535b1efb3dfa795614e01b8ceba0a5328e33",
+    "public/assets/learning/heat-work-path-null-direction.en.svg": "a57b6e570e68b7b6712eb97d973da86b8124edb853548f24172db27e27ad6e02",
+    "public/assets/learning/heat-work-path-null-direction.ko.svg": "e03438687eb37072b64ec2a13361ff858efcc224c520158b1a557e459adae410",
+    "scripts/check-heat-work-research.cjs": "ebd1e2908aca89139c448204374544abd171c89f4abf50cffbec0e6f7c3501d3",
+    "scripts/learning-heat-work-research.test.ts": "4f43a9176d3c8f338bbb61f9b172097aca262435f21ff2ecd646d0defb3fd428",
+    "scripts/learning/verify-heat-work-research.py": "5c2f8d4b96a0ed26e719357e678ef0ba089374a91192f87a4abc5a9014d0f03a",
+    "scripts/learning/generate-heat-work-research-figures.py": "5cb22bf59ae85ea54f49218063f7c078ceac8cf0afd95a590a740663572c9531",
+    "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b",
+    "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8",
+    "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786",
+    "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb",
+    "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8",
+    "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529",
+    "public/assets/learning/laws-finite-source-work.en.svg": "36c3b8633806e7c14da8672e865abee52c0e0faa36ed18e435bd00ff063ac7a0",
+    "public/assets/learning/laws-finite-source-work.ko.svg": "094667fec150010fab665b4dd555d1ab73a53cac688e72180c9b47f760d6d1e2",
+    "public/assets/learning/laws-unrestored-device-reset.en.svg": "f2ea8dbaf637fca43cb4f91f02d8e868fd9829cad14c453a48a7ff142e7722a0",
+    "public/assets/learning/laws-unrestored-device-reset.ko.svg": "cd80277e8d52cb73f5f133b4f8414c792a42c6c75790a8352dfbadf8377f2a77",
+    "public/assets/learning/laws-growing-copy-low-temperature.en.svg": "9409cf6331a162a36f433026628bca7a216e5df205c614642dfa18b9334ea21d",
+    "public/assets/learning/laws-growing-copy-low-temperature.ko.svg": "d3eefa000445b8452f2fe48a04eaaec4af68d57acd473f84d160dd55db339ffe",
+    "scripts/check-thermodynamic-laws-research.cjs": "213fd76e88020ec2efde1f6961ae02f1911f7e4cdb4b7da936a2da13b593dacf",
+    "scripts/learning-thermodynamic-laws-research.test.ts": "396cb175abc3bc743980a3d2230f83684e414c2199a7474a2cec8a93becdd884",
+    "scripts/learning/verify-thermodynamic-laws-research.py": "87d2d3c1b193f455e88ca62557221fc601368628a3a32d17e938e465e9776a5d",
+    "scripts/learning/generate-laws-research-figures.py": "ab248b8f1b005380c8342a3b4204a00fa6ecdc29350a81b5127cad75fd0cc8bb"
+  },
+  "ledger": {
+    "originalEntries": 813,
+    "currentEntries": 817,
+    "allOriginalEntriesPreserved": true
+  },
+  "selectedTests": {
+    "files": 12,
+    "tests": 197,
+    "failed": 0,
+    "logs": {
+      "tests.log": "45597ff055c83c3bb78fe9828b1a97bf57dccc234f427c240fe91d3d3310d5fb",
+      "prior-research-tests.log": "8a464a0b151540a759f82919e6cb0f88c2d3777043290ea4fcb22913c5f273c0"
+    },
+    "intentionalExistingTestUpdate": "Gas manuscript H2 count changes from 15 to 16 for the one added research section; exact original manuscript restoration is separately checked."
+  },
+  "checks": {
+    "lint": true,
+    "content": true,
+    "build": true,
+    "typecheck": true,
+    "export": true,
+    "generatedRoutes": 1893,
+    "htmlPages": 1888,
+    "contentUrls": 1885,
+    "logs": {
+      "lint.log": "3be436cfc280576162c8988ab0bf2da58c1cb1af605d4cca297edd0b2c7c9997",
+      "content.log": "cae16334d0d816cb4f9981be8422454c5186c14b964768b00780286cd813b72d",
+      "build.log": "ffab249ea04884847bb599f2181e4026d4d3e28e10649f4270311eab07a8a6ca",
+      "types.log": "6d339cc3c6b097244df96011008e228f3bc9a23bcef588e7d89e6265838f6660",
+      "export.log": "7693d86189e4ec43f9df04724c2cbf33caf0d974a41cccb2aa2004d36af557d2"
+    }
+  },
+  "scopedInputFreeze": {
+    "files": 4965,
+    "description": "Scoped source, learning assets, tools, fixtures, tests and configuration; excludes docs and runtime.",
+    "manifest": ".runtime/learning/free-energy-research/frozen-inputs.json",
+    "sha256": "756ea7b611ac555df311cdf67b0e307d90251bc466311aac1ced198c12c7d015",
+    "unchangedBeforeAndAfter": true
+  },
+  "outputFreeze": {
+    "files": 310,
+    "description": "Target HTML/SVG plus shared exported Next.js static assets.",
+    "manifest": ".runtime/learning/free-energy-research/frozen-output.json",
+    "sha256": "a57e239a46d147833bd657836cf144415140fa4b8316f8cedfa76a00423f4238",
+    "unchangedBeforeAndAfter": true
+  },
+  "browser": {
+    "unitIds": [
+      "finite-spectrum-helmholtz-kl-variational",
+      "ideal-gas-helmholtz-gibbs-volume-availability"
+    ],
+    "rows": [
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      }
+    ],
+    "errors": [],
+    "guides": [
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "example": 0
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "example": 1
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "example": 2
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "example": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "example": 1
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "example": 2
+      }
+    ],
+    "questions": [
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "question": 0
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "question": 1
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "question": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "question": 1
+      }
+    ],
+    "concepts": [
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "step": 0
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "step": 1
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "step": 2
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "step": 3
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "step": 0
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "step": 1
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "step": 2
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "step": 3
+      }
+    ],
+    "interactions": [
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      }
+    ],
+    "assetBounds": [
+      {
+        "path": "public/assets/learning/free-energy-quench-relaxation.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/free-energy-quench-relaxation.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/free-energy-inertial-piston-budget.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/free-energy-inertial-piston-budget.ko.svg",
+        "outside": []
+      }
+    ]
+  },
+  "renderAndServedFiles": {
+    "status": "passed",
+    "rows": [
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "가장-낮은-에너지만으로-답할-수-없는-이유",
+            "title": "가장 낮은 에너지만으로 답할 수 없는 이유"
+          },
+          {
+            "id": "상태-공간과-제약-그리고-단위",
+            "title": "상태 공간과 제약 그리고 단위"
+          },
+          {
+            "id": "정준-목표-분포-유도하기",
+            "title": "정준 목표 분포 유도하기"
+          },
+          {
+            "id": "자유에너지-차이를-유도하기",
+            "title": "자유에너지 차이를 유도하기"
+          },
+          {
+            "id": "각-미시상태에서-양수인-차이-보기",
+            "title": "각 미시상태에서 양수인 차이 보기"
+          },
+          {
+            "id": "직접-그릴-수-있는-두-상태-그래프",
+            "title": "직접 그릴 수 있는 두 상태 그래프"
+          },
+          {
+            "id": "축퇴도는-한-번만-세기",
+            "title": "축퇴도는 한 번만 세기"
+          },
+          {
+            "id": "에너지-영점을-옮겨도-같은-문제다",
+            "title": "에너지 영점을 옮겨도 같은 문제다"
+          },
+          {
+            "id": "hamiltonian을-고정한-채-온도-바꾸기",
+            "title": "Hamiltonian을 고정한 채 온도 바꾸기"
+          },
+          {
+            "id": "작은-확률과-작은-차이를-구분하기",
+            "title": "작은 확률과 작은 차이를 구분하기"
+          },
+          {
+            "id": "양의-온도와-영온도-극한",
+            "title": "양의 온도와 영온도 극한"
+          },
+          {
+            "id": "변분-지형은-시계를-제공하지-않는다",
+            "title": "변분 지형은 시계를 제공하지 않는다"
+          },
+          {
+            "id": "연구-확장-급격한-준위-변경과-새-목표로의-열적-완화",
+            "title": "연구 확장: 급격한 준위 변경과 새 목표로의 열적 완화"
+          },
+          {
+            "id": "학습과-추론으로-연결하기",
+            "title": "학습과 추론으로 연결하기"
+          },
+          {
+            "id": "풀이가-있는-연습",
+            "title": "풀이가 있는 연습"
+          },
+          {
+            "id": "실험으로-확인하기",
+            "title": "실험으로 확인하기"
+          }
+        ]
+      },
+      {
+        "id": "finite-spectrum-helmholtz-kl-variational",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "why-the-lowest-energy-is-not-the-whole-answer",
+            "title": "Why the lowest energy is not the whole answer"
+          },
+          {
+            "id": "state-space-constraints-and-units",
+            "title": "State space, constraints and units"
+          },
+          {
+            "id": "derive-the-canonical-target",
+            "title": "Derive the canonical target"
+          },
+          {
+            "id": "derive-the-free-energy-gap",
+            "title": "Derive the free-energy gap"
+          },
+          {
+            "id": "see-positivity-one-microstate-at-a-time",
+            "title": "See positivity one microstate at a time"
+          },
+          {
+            "id": "a-two-state-graph-you-can-reconstruct",
+            "title": "A two-state graph you can reconstruct"
+          },
+          {
+            "id": "count-degeneracy-exactly-once",
+            "title": "Count degeneracy exactly once"
+          },
+          {
+            "id": "shift-the-zero-without-changing-the-problem",
+            "title": "Shift the zero without changing the problem"
+          },
+          {
+            "id": "change-temperature-while-keeping-the-hamiltonian-fixed",
+            "title": "Change temperature while keeping the Hamiltonian fixed"
+          },
+          {
+            "id": "resolve-small-probabilities-and-small-gaps",
+            "title": "Resolve small probabilities and small gaps"
+          },
+          {
+            "id": "positive-temperature-and-the-zero-temperature-limit",
+            "title": "Positive temperature and the zero-temperature limit"
+          },
+          {
+            "id": "a-variational-landscape-does-not-supply-a-clock",
+            "title": "A variational landscape does not supply a clock"
+          },
+          {
+            "id": "research-extension-a-quench-a-new-target-and-thermal-relaxation",
+            "title": "Research extension: a quench, a new target and thermal relaxation"
+          },
+          {
+            "id": "connection-to-learning-and-inference",
+            "title": "Connection to learning and inference"
+          },
+          {
+            "id": "worked-exercises",
+            "title": "Worked exercises"
+          },
+          {
+            "id": "explore-the-experiment",
+            "title": "Explore the experiment"
+          }
+        ]
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "어느-환경이-변화-방향을-정할까요",
+            "title": "어느 환경이 변화 방향을 정할까요?"
+          },
+          {
+            "id": "제어하는-모형",
+            "title": "제어하는 모형"
+          },
+          {
+            "id": "등온-압력을-적분하기",
+            "title": "등온 압력을 적분하기"
+          },
+          {
+            "id": "기준값만으로-정해지지-않는-것",
+            "title": "기준값만으로 정해지지 않는 것"
+          },
+          {
+            "id": "압력-항을-가진-두-함수",
+            "title": "압력 항을 가진 두 함수"
+          },
+          {
+            "id": "힘과-곡률로-평형-찾기",
+            "title": "힘과 곡률로 평형 찾기"
+          },
+          {
+            "id": "음수가-되지-않는-차이",
+            "title": "음수가 되지 않는 차이"
+          },
+          {
+            "id": "평형-gibbs-함수의-자연-변수",
+            "title": "평형 Gibbs 함수의 자연 변수"
+          },
+          {
+            "id": "조건부-엔트로피-수지",
+            "title": "조건부 엔트로피 수지"
+          },
+          {
+            "id": "가역-일과-비교하기",
+            "title": "가역 일과 비교하기"
+          },
+          {
+            "id": "수치-예제",
+            "title": "수치 예제"
+          },
+          {
+            "id": "가까운-상태와-기준을-읽는-방법",
+            "title": "가까운 상태와 기준을 읽는 방법"
+          },
+          {
+            "id": "연구-확장-관성이-있는-피스톤은-퍼텐셜-최소점을-통과한다",
+            "title": "연구 확장: 관성이 있는 피스톤은 퍼텐셜 최소점을 통과한다"
+          },
+          {
+            "id": "연구에서의-해석",
+            "title": "연구에서의 해석"
+          },
+          {
+            "id": "풀이가-있는-연습",
+            "title": "풀이가 있는 연습"
+          },
+          {
+            "id": "출처",
+            "title": "출처"
+          }
+        ]
+      },
+      {
+        "id": "ideal-gas-helmholtz-gibbs-volume-availability",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "which-environment-decides-the-direction",
+            "title": "Which environment decides the direction?"
+          },
+          {
+            "id": "the-controlled-model",
+            "title": "The controlled model"
+          },
+          {
+            "id": "integrate-the-isothermal-pressure",
+            "title": "Integrate the isothermal pressure"
+          },
+          {
+            "id": "what-the-reference-does-not-determine",
+            "title": "What the reference does not determine"
+          },
+          {
+            "id": "two-functions-with-pressure-terms",
+            "title": "Two functions with pressure terms"
+          },
+          {
+            "id": "equilibrium-from-force-and-curvature",
+            "title": "Equilibrium from force and curvature"
+          },
+          {
+            "id": "a-nonnegative-gap",
+            "title": "A nonnegative gap"
+          },
+          {
+            "id": "natural-variables-of-the-equilibrium-gibbs-function",
+            "title": "Natural variables of the equilibrium Gibbs function"
+          },
+          {
+            "id": "a-conditional-entropy-budget",
+            "title": "A conditional entropy budget"
+          },
+          {
+            "id": "reversible-work-as-a-comparison",
+            "title": "Reversible work as a comparison"
+          },
+          {
+            "id": "a-numerical-example",
+            "title": "A numerical example"
+          },
+          {
+            "id": "read-nearby-states-and-references-carefully",
+            "title": "Read nearby states and references carefully"
+          },
+          {
+            "id": "research-extension-an-inertial-piston-can-pass-through-the-potential-minimum",
+            "title": "Research extension: an inertial piston can pass through the potential minimum"
+          },
+          {
+            "id": "research-interpretation",
+            "title": "Research interpretation"
+          },
+          {
+            "id": "exercises-with-worked-answers",
+            "title": "Exercises with worked answers"
+          },
+          {
+            "id": "sources",
+            "title": "Sources"
+          }
+        ]
+      }
+    ],
+    "files": [
+      {
+        "path": "/book/online/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational/",
+        "sha256": "da45c293df18d697002bbc36343b5df8ba5441f27037bca2e45442a898984c49",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability/",
+        "sha256": "c9958f3dde180525b9ec4eb1d86c7ed53d419f7d551b14cb9abd5cdf85c92943",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/free-energy-quench-relaxation.en.svg",
+        "sha256": "66845ac8b9da5a92e8a5f2a8eda0479da85c64ee4eb670cbfa9a0aa18a0aad0a",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/free-energy-quench-relaxation.ko.svg",
+        "sha256": "ebd93b0adcd311c9031f993616067dc4b07564dddde14f3243c868d16da8b22d",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/free-energy-inertial-piston-budget.en.svg",
+        "sha256": "4a3ef143dfc27000167846dcac3263e92869c78332548b89a7cde79df64360a0",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/free-energy-inertial-piston-budget.ko.svg",
+        "sha256": "c24670d8083bba2113075d5d17e73548b323712f954785b1df6843dd348d4cb1",
+        "sourceOutputAndServedEqual": true
+      }
+    ],
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "domains": 51,
+      "topics": 509
+    },
+    "domainUnits": [
+      "thermodynamics",
+      "finite-body-thermal-contact-heat-entropy",
+      "ideal-gas-two-path-heat-work",
+      "carnot-cycle-engine-refrigerator",
+      "two-reservoir-cycle-entropy-admissibility",
+      "gapped-spectrum-low-temperature-entropy",
+      "finite-spectrum-helmholtz-kl-variational",
+      "ideal-gas-helmholtz-gibbs-volume-availability",
+      "binary-shell-multiplicity-block-counts",
+      "finite-macro-partition-conditional-entropy",
+      "finite-noisy-macro-observation-channel",
+      "finite-binary-reservoir-canonical-comparison",
+      "canonical-binary-energy-fluctuations",
+      "grand-canonical-finite-occupancy-fluctuations",
+      "finite-spectrum-partition-cumulant-generators",
+      "coupled-binary-sites-partition-factorization",
+      "infinite-energy-ladder-normalization-cutoff",
+      "reference-measure-boltzmann-softmax-identifiability",
+      "finite-gibbs-conditionals-scan-support",
+      "quadratic-gaussian-gibbs-normalizability",
+      "finite-curie-weiss-magnetization-symmetry",
+      "curie-weiss-variational-stability-limits",
+      "landau-sixth-order-coexistence-stability",
+      "binary-connected-correlations-field-hessian",
+      "periodic-ising-ring-correlation-length",
+      "finite-correlated-average-ar1-uncertainty",
+      "stationary-flux-three-state-cycle",
+      "metropolis-hastings-proposal-balance",
+      "reversible-two-state-periodicity-mixing",
+      "boundary-growth-extensivity-additivity",
+      "spatial-density-self-averaging-correlations",
+      "two-phase-partition-zeros-rounding"
+    ]
+  },
+  "directVisualReview": [
+    {
+      "path": ".runtime/learning/free-energy-research/quench-relaxation-en.png",
+      "sha256": "94563708fcb7c22af17391a5e3c5397f0879a0473330385e3c4935f9c61ed4c2",
+      "directlyReviewed": true,
+      "scope": "Full original-size figure preview"
+    },
+    {
+      "path": ".runtime/learning/free-energy-research/quench-relaxation-ko.png",
+      "sha256": "364215d81e6d7d51319533fc13a039cd47aa2f8f302a604685ecfff78eeff947",
+      "directlyReviewed": true,
+      "scope": "Full original-size figure preview"
+    },
+    {
+      "path": ".runtime/learning/free-energy-research/inertial-piston-budget-en.png",
+      "sha256": "9741650f2a168c260c47ae5f3d3c9d2e01a511421869884714d2a776f2bdba82",
+      "directlyReviewed": true,
+      "scope": "Full original-size figure preview"
+    },
+    {
+      "path": ".runtime/learning/free-energy-research/inertial-piston-budget-ko.png",
+      "sha256": "56e7b1a429b154f5c51713cafcbab3cae2f7cd2bac652098e51e14461c9578fe",
+      "directlyReviewed": true,
+      "scope": "Full original-size figure preview"
+    },
+    {
+      "path": ".runtime/learning/free-energy-research-finite-spectrum-helmholtz-kl-variational-en-320.png",
+      "sha256": "48b88247b6dbd7d8843d1a5ef83a504d54bf0aea3556a8446404ec5d47738509",
+      "directlyReviewed": true,
+      "scope": "Mobile capture around the research figure, not the whole manuscript"
+    },
+    {
+      "path": ".runtime/learning/free-energy-research-finite-spectrum-helmholtz-kl-variational-ko-320.png",
+      "sha256": "ff4cde4ff4e32b14af1cacc75783e4764fd7a89d9d073ef62c3107f65c46eb4d",
+      "directlyReviewed": true,
+      "scope": "Mobile capture around the research figure, not the whole manuscript"
+    },
+    {
+      "path": ".runtime/learning/free-energy-research-ideal-gas-helmholtz-gibbs-volume-availability-en-320.png",
+      "sha256": "297cfad43f73428b9c3ef54b40e4d409fb535ad4962c3856282e20a094ad7de4",
+      "directlyReviewed": true,
+      "scope": "Mobile capture around the research figure, not the whole manuscript"
+    },
+    {
+      "path": ".runtime/learning/free-energy-research-ideal-gas-helmholtz-gibbs-volume-availability-ko-320.png",
+      "sha256": "bcd368dc5f8d3befdd524078952d4a3d63ee7be072c3927abe25304b98b9d11b",
+      "directlyReviewed": true,
+      "scope": "Mobile capture around the research figure, not the whole manuscript"
+    }
+  ],
+  "artifacts": {
+    "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md": "c8884d8be4b5341daeae9e64b8c2b499352822663a867fc80bfc6a2afa2e1af5",
+    "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md": "2b70f8129051d98f381f586070cbffb578c90e804669fa1d2295f2e5c9c3d9c4",
+    "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md": "cabbaa81e0c2a28eaa9107910c512168a62e593dc651a818e97475f34299777f",
+    "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md": "cf1068c26a650b9dd65abb3d03e8cce0225d2480af49aafa9e56d4f273381a48",
+    "public/assets/learning/free-energy-quench-relaxation.en.svg": "66845ac8b9da5a92e8a5f2a8eda0479da85c64ee4eb670cbfa9a0aa18a0aad0a",
+    "public/assets/learning/free-energy-quench-relaxation.ko.svg": "ebd93b0adcd311c9031f993616067dc4b07564dddde14f3243c868d16da8b22d",
+    "public/assets/learning/free-energy-inertial-piston-budget.en.svg": "4a3ef143dfc27000167846dcac3263e92869c78332548b89a7cde79df64360a0",
+    "public/assets/learning/free-energy-inertial-piston-budget.ko.svg": "c24670d8083bba2113075d5d17e73548b323712f954785b1df6843dd348d4cb1",
+    "scripts/check-free-energy-research.cjs": "cd11785dc950300ffe6eecfac0e3eab185c5347c991047a421b5674510581bfd",
+    "scripts/learning-free-energy-research.test.ts": "eb6574774960ae1366d231daee74ed9af9972e34d584570e941819d9c5f51a8f",
+    "scripts/learning/verify-free-energy-research.py": "c555b31157c0e6fd32f5e94850dd38f4698b3738eb367c5b4e5324d3d03ec57a",
+    "scripts/learning/generate-free-energy-research-figures.py": "55454b3132656b06d3308f0acec8655e512a50670e912eaab5e39e260874cfa7",
+    "scripts/fixtures/reviewed-learning-manuscripts.json": "d45a2886807575b1ffef78a689214c1ef03b07b2f4d141b89d91117c1df6b806",
+    "scripts/learning-gas-free-energy-content.test.ts": "40c85dbb1aa94a7dc07357681b1bea194f1f7869754dc92d4a2c84fdc2f57496"
+  },
+  "overallReview": {
+    "completedDomains": 43,
+    "completedTopics": 426,
+    "remainingDomains": 8,
+    "remainingTopics": 83
+  },
+  "publicDeploymentConfirmed": false
+}

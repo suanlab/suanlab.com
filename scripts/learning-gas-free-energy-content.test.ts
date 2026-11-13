@@ -12,7 +12,7 @@ test('gas free-energy manuscripts render paired equations, accessible formulas a
     assert.match(html, /katex-display/); assert.match(html, /role="region"/); assert.match(html, /tabindex="0"/);
     assert.equal((source.match(/^### (?:연습|Exercise) [1-6]:/gm) ?? []).length, 6);
     assert.equal((source.match(/\*\*(?:해설|Answer):\*\*/g) ?? []).length, 6);
-    assert.equal((source.match(/^## /gm) ?? []).length, 15);
+    assert.equal((source.match(/^## /gm) ?? []).length, 16);
     assert.equal(new Set(result.outline[language].map(h => h.id)).size, result.outline[language].length);
     for (const heading of result.outline[language]) assert.ok(html.includes(`id="${heading.id}"`));
     if (language === 'en') { assert.doesNotMatch(source, /[가-힣]/); assert.ok(source.split(/\s+/).length > 1600); }

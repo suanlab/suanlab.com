@@ -151,6 +151,122 @@ The identity orders candidate distributions at a fixed T and Hamiltonian. It sup
 
 For a reservoir relaxation experiment with no work input and a fixed Hamiltonian, an endpoint balance can relate a free-energy decrease to total entropy production under the appropriate system–bath assumptions. Arbitrary optimization updates do not automatically meet those assumptions. The distinction between fixed-temperature and fixed-pressure potentials is developed in [Tong, section4.4](https://davidtong.org/pdfs/teaching/statistical-physics/statphys4.pdf).
 
+## Research extension: a quench, a new target and thermal relaxation
+
+A distribution can be exactly canonical, then suddenly have a positive free-energy gap because the energy levels changed while its probabilities did not. That jump is work stored in a nonequilibrium preparation; it is not yet entropy produced by relaxation. We specify a transition law to see where the stored gap subsequently goes.
+
+Use a separate two-microstate example with ground energy zero and excited energy $E_j$, not the original three-state lab. The bath has fixed T>0, and both gaps are finite and positive. Initially the system is equilibrated with gap $E_a$. At time zero an ideal externally controlled classical level shift changes it to $E_b$ without changing occupations or exchanging heat. No coherence, measurement feedback or bath-temperature change is included. All energies below are per copy.
+
+Define dimensionless gaps and the two canonical targets. The target changes from $\pi_a$ to $\pi_b$ at the quench. Relative entropy must always name which of these targets is being used.
+
+$$
+e_j=E_j/(k_BT),\quad Z_j=1+e^{-e_j},\quad p_j=\frac1{1+e^{e_j}},\quad\pi_j=(1-p_j,p_j)\qquad(j=a,b).
+$$
+
+Because the probabilities and their entropy are unchanged at the instantaneous shift, the change of mean energy is work on the system. This work-on convention is explicit; there is no boundary volume work in this example.
+
+$$
+W_{\rm on}=(E_b-E_a)p_a,\qquad Q_{\rm quench}=0,\qquad\Delta S_{\rm quench}=0.
+$$
+
+Subtract the two equilibrium free energies. The excess work above that equilibrium difference is exactly the new nonequilibrium gap. Calling this positive excess immediate entropy generation would be wrong: the ideal quench itself exchanged no heat and changed no entropy.
+
+$$
+\Delta F_{\rm eq}=-k_BT\log(Z_b/Z_a),\qquad W_{\rm ex}=W_{\rm on}-\Delta F_{\rm eq}=k_BT D(\pi_a\Vert\pi_b).
+$$
+
+Now hold $E_b$ and T fixed and supply a particular Markov transition law. The forward and reverse stationary fluxes agree. The rate scale γ has units s⁻¹ and is an added modeling choice; it cannot be inferred from the free-energy landscape alone.
+
+$$
+k_{01}=\gamma p_b,\quad k_{10}=\gamma(1-p_b),\quad(1-p_b)k_{01}=p_b k_{10},\qquad\gamma>0.
+$$
+
+The master equation gives exponential relaxation. Distinct positive γ values reach the same equilibrium with different clocks. This explicitly added dynamics does not turn the existing lab's comparison scan into a physical trajectory.
+
+$$
+\dot p=k_{01}(1-p)-k_{10}p=-\gamma(p-p_b),\qquad p(t)=p_b+(p_a-p_b)e^{-\gamma t}.
+$$
+
+During relaxation there is no work input. The change of mean energy is heat into the system, which can be negative. System entropy can change with either sign, so it is essential to include the bath contribution.
+
+$$
+Q(t)=E_b[p(t)-p_a],\qquad\Delta S(t)=k_B\{H[p(t)]-H[p_a]\},\quad H[p]=-p\log p-(1-p)\log(1-p).
+$$
+
+The complete system–bath production equals the decrease of the fixed-target KL. This follows by inserting the canonical log probability into the endpoint entropy balance, with no further large-system limit.
+
+$$
+\Sigma(t)=\Delta S(t)-Q(t)/T=k_B\{D(\pi_a\Vert\pi_b)-D((1-p(t),p(t))\Vert\pi_b)\}\ge0.
+$$
+
+Differentiate the KL along the specified master equation. The two factors have the same sign because log odds increase with p. Thus production is nonnegative for the interior probabilities used here. This is a property of this declared thermal dynamics, not a general rule for arbitrary optimizer updates.
+
+$$
+\dot\Sigma=k_B\gamma(p-p_b)\log\frac{p(1-p_b)}{p_b(1-p)}\ge0,\qquad 0<p,p_b<1.
+$$
+
+Account for both stages together. The initial energy uses $E_a$, while the final energy uses $E_b$. Omitting the quench work would make the subsequent heat look like a failure of energy conservation.
+
+$$
+E_b p(t)-E_a p_a=W_{\rm on}+Q(t).
+$$
+
+At a finite observation time, excess work is split between a remaining free-energy gap and produced entropy multiplied by T. Only after complete relaxation does the first term vanish. The target-relative gap can jump upward at the externally driven quench even though it decreases during the subsequent fixed-target relaxation.
+
+$$
+W_{\rm ex}=k_BT D((1-p(t),p(t))\Vert\pi_b)+T\Sigma(t).
+$$
+
+### Read the target jump and remaining resource
+
+The upper panel shows continuous excited occupancy and the discontinuous canonical target at t=0. The lower panel separates the current-target KL from accumulated Σ/kB. Their sum after the quench is the initial excess divided by kBT. Before the quench the old-target gap is zero. The time axis is seconds only because γ was specified.
+
+![A sudden target change creates a free-energy gap with unchanged occupancy; fixed-target thermal relaxation converts that gap into system–bath entropy production.](/assets/learning/free-energy-quench-relaxation.en.svg)
+
+### Reproduce one finite relaxation
+
+Take $E_a$/(kBT)=log3, $E_b$/(kBT)=log9 and γ=1 s⁻¹. Initial excited occupancy is 1/4 and the new equilibrium occupancy is 1/10. The table evaluates the exact finite-model solution at ordinary scales. Heat is normalized by kBT, whereas production is divided by kB.
+
+| t (s) | Excited p(t) | Remaining D | Σ/kB | Q/(kBT) |
+| --- | --- | --- | --- | --- |
+| 0.00000000 | 0.25000000 | 0.09233152 | 0.00000000 | 0.00000000 |
+| 0.50000000 | 0.19097960 | 0.03734530 | 0.05498621 | -0.12968108 |
+| 1.00000000 | 0.15518192 | 0.01473671 | 0.07759480 | -0.20833662 |
+| 3.00000000 | 0.10746806 | 0.00030324 | 0.09202828 | -0.31317468 |
+
+```python
+from math import exp, log
+ea, eb, gamma = log(3.0), log(9.0), 1.0
+pa, pb = 1/(1+exp(ea)), 1/(1+exp(eb))
+def kl(p):
+    return p*log(p/pb)+(1-p)*log((1-p)/(1-pb))
+initial_gap = kl(pa)
+for t in [0.0, 0.5, 1.0, 3.0]:
+    p = pb+(pa-pb)*exp(-gamma*t)
+    gap = kl(p)
+    generated = initial_gap-gap
+    heat = eb*(p-pa)  # Q/(kB T)
+    print(f"{t:.8f} {p:.8f} {gap:.8f} {generated:.8f} {heat:.8f}")
+```
+
+### Three research questions with explanations
+
+#### 1. Does an upward KL jump at the quench violate nonnegative production?
+
+**Explanation.** No. The reference distribution changed through external work. The ideal shift produces no entropy immediately; it stores an excess relative to the new equilibrium. The monotonicity claim applies only after the Hamiltonian and bath are held fixed with the specified transition law.
+
+#### 2. Can the variational minimum determine γ?
+
+**Explanation.** No. Any positive γ in these rates gives the same detailed-balance target and a different relaxation time. A microscopic coupling model or measured kinetics is needed to select that scale. A scan index or training iteration is not automatically seconds.
+
+#### 3. Where is the excess work before relaxation is complete?
+
+**Explanation.** It is divided between kBT times the remaining KL and T times the accumulated system–bath production. The latter is not the system entropy change alone. The energy balance separately includes work from the level shift and heat from the fixed-gap relaxation.
+
+### Source and research boundary
+
+[David Tong, Statistical Physics, sections 1.3.1–1.3.4](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf) supplies the fixed-spectrum canonical/free-energy conventions; [Classical Thermodynamics, sections 4.2–4.4](https://davidtong.org/pdfs/teaching/statistical-physics/statphys4.pdf) supplies work and entropy bookkeeping. The quench protocol and Markov rates are explicitly added here and checked independently. They are not a newly implemented control in the original three-state comparison lab.
+
 ## Connection to learning and inference
 
 For a normalized finite target proportional to exp(−energy/scale), an objective containing expected energy and negative entropy can be rewritten as a scaled KL plus a constant. This is an algebraic bridge to variational inference. The target, scale, support and direction of KL must all be specified.

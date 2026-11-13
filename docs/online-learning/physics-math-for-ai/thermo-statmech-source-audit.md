@@ -38,3 +38,10 @@ SI 단위에서는 온도K, 에너지J, 열용량J/K, 몰 열용량J/(mol K), �
 [Tong 4장](https://davidtong.org/pdfs/teaching/statistical-physics/statphys4.pdf)의 Carnot·엔트로피·기준 온도 자유 에너지·제3법칙 관례와 [1장](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf)의 고정 스펙트럼 정준 모멘트를 대조했다. 새 유한 열원 경로, 비순환 끝점 자원 항과 독립 복사본의 N,T 동시 수열은 여기서 추가한 직접 유도이며 원문에 그 사례의 구현이나 검증이 있다고 주장하지 않는다.
 
 고정 저장고와 유한 열용량 물체의 경계, 장치 순환 복귀와 복원에 드는 일, 고정 N에서 미분한 열용량과 N까지 바꾸는 수열 미분을 각각 구별한다. Poisson 개수 극한은 이항 확률의 유한 곱과 꼬리 상한으로 설명한다. 독립 복사본의 평형 확률 조건을 상호작용 물질의 상전이 또는 유한 시간 냉각 비용으로 확대하지 않는다. 범위와 실제 검사 근거는 [열역학 법칙 연구 보강](thermodynamic-laws-research-status.md)에 연결한다.
+
+
+## 2026-11-13: 자유 에너지와 명시적 동역학
+
+[Tong 1장의 정준 분포·자유 에너지](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf)와 [4장 4.2–4.4절의 일·엔트로피·환경 퍼텐셜](https://davidtong.org/pdfs/teaching/statistical-physics/statphys4.pdf) 관례를 이번 보충에 대조했다. 두 상태 준위 변경과 상세평형 전이율, 관성·점성 피스톤과 같은 온도조절기로 돌아가는 소산 열은 이 보충에 추가한 가정이다. 자료가 그 속도·수치 적분·실제 장치의 유한 열전달까지 인증한다고 소개하지 않는다.
+
+급격한 에너지 변경 직후의 초과 일을 즉각적인 생성 엔트로피로 부르지 않고 이후 고정 목표 완화와 구분한다. 피스톤은 위치만이 아닌 운동 에너지까지 가용 에너지에 포함하며 기체 단독 열과 기체·피스톤의 온도조절기 순열을 구별한다. 결정론적 거시 근사를 미시 피스톤의 정준 요동 법칙으로 확대하지 않는다. [자유 에너지 연구 보강 기록](free-energy-research-status.md)에 직접 유도·검산·reader 검증을 연결한다.
