@@ -1636,5 +1636,16 @@
     "remainingDomains": 8,
     "remainingTopics": 83
   },
-  "publicDeploymentConfirmed": false
+  "publicDeploymentConfirmed": false,
+  "browserExecution": {
+    "firstObservedProcessExitCode": 143,
+    "firstIndividualChecksReachedPassedLog": true,
+    "repeatProcessExitCode": 0,
+    "repeatAll24ChecksPassed": true,
+    "repeatReportIdentical": true,
+    "sourceAndStaticOutputHashesUnchanged": true,
+    "reviewedImageHashesUnchanged": true,
+    "firstLogSha256": "db261acf70c9c3020ff8bb7245534589e881195f1e2ce46a9dcba8ed0397330b",
+    "repeatLogSha256": "db261acf70c9c3020ff8bb7245534589e881195f1e2ce46a9dcba8ed0397330b"
+  }
 }

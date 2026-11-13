@@ -24,6 +24,8 @@ lint·콘텐츠 1,885 URL/293논문/51프로젝트·새 빌드 1,893경로·타�
 
 한영 320/768/1440px 라이트와 한영 1440px 다크 **24화면**, 안내 해설 9개·퀴즈 6개·개념 선택 12개·저장/완료 3그룹을 확인했다. 페이지 오류·Axe 위반은 0이다. 목차·영어 한글 누출·그림 로딩·가로 넘침·표/수식/코드의 키보드 스크롤과 SVG 글자 경계도 검사했다. 원본 그림 6개와 그림 주변 모바일 캡처 6개를 직접 검토했다. 캡처는 전체 원고의 시각 검토를 뜻하지 않는다. 공개 배포는 push 뒤 별도 확인한다.
 
+첫 화면 검사 실행은 개별 검증 통과 로그 뒤 프로세스 종료 코드 143을 반환했다. 동일한 입력·정적 출력·검토 이미지 해시를 유지한 채 24화면과 상호작용 검사를 다시 실행했고, 같은 결과와 정상 종료 코드 0을 확인했다.
+
 ## 재현과 다음 순서
 
 `node_modules/.bin/tsx --test scripts/learning-boltzmann-research.test.ts`, `python3 scripts/learning/verify-boltzmann-research.py`로 재현한다. 빌드·preview 후 `SUANLAB_TEST_BASE=http://127.0.0.1:43309 node scripts/check-boltzmann-research.cjs`를 실행한다. 실제 preview 포트를 사용한다. 그림 재생성은 Matplotlib/NumPy·Noto CJK 환경의 `python3 scripts/learning/generate-boltzmann-research-figures.py`다.
