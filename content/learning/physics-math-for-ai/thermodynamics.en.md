@@ -112,6 +112,116 @@ Change only T from one to five while keeping the gap and g fixed, then change g.
 
 **Explanation.** Selecting T changes the table's probabilities and thermodynamic state quantities. Both plotted curves still sweep the same positive temperature grid at fixed gap and g, so they retain their shape. Changing g changes that family and both entropy readouts. Neither operation supplies a physical path or a heat/work boundary condition. Relating an entropy difference to heat requires a defined process and its reversibility assumptions; the finite equilibrium table does not provide them.
 
+## Research extension: can occupancy be a thermometer?
+
+Imagine preparing the same tiny probe in equilibrium many times and asking only whether its energy is ground or excited. More excited observations suggest a warmer reservoir, but a nearly frozen probe seldom changes its answer; a very hot probe has nearly saturated occupancy. Neither extreme is automatically informative. We now derive a quantitative limit on this intuition.
+
+Keep the original finite spectrum, known positive integer degeneracy g, a unique ground state and kB=1. Energies are independent of temperature. Each observation is an ideal, error-free energy-level label from a fresh independent equilibrium preparation at the same positive T. The observations below are a specified inference experiment, separate from the existing deterministic lab curves. A time series of correlated measurements does not satisfy these sampling assumptions. Restoring SI units replaces x by Δ/(kB T) and C here by physical heat capacity divided by kB.
+
+Write X=1 for an excited energy-level observation. Its probability includes every excited microstate. The sufficient statistic M counts excited outcomes among N preparations; naming which of the g equal-energy excited microstates occurred adds no temperature information when g and the spectrum are known.
+
+$$
+x=\Delta/T,\qquad p=\frac{g e^{-x}}{1+g e^{-x}},\qquad X\in\{0,1\}.
+$$
+
+The count follows a binomial law. This is a probability model for repeated observations, whereas the original chart evaluates an equilibrium distribution without drawing samples.
+
+$$
+\Pr(M=m)=\binom Nm p^m(1-p)^{N-m},\qquad M=\sum_{n=1}^{N}X_n.
+$$
+
+Differentiate at fixed Δ and g. Since U=Δp and energy takes only the values zero and Δ, the response of mean energy to temperature is controlled by its variance. C is dimensionless under the chosen kB=1 convention.
+
+$$
+\frac{\partial p}{\partial T}=\frac{\Delta}{T^2}p(1-p),\qquad C=\frac{\partial U}{\partial T}=x^2p(1-p)=\frac{\operatorname{Var}(E)}{T^2}.
+$$
+
+For a dimensionless logarithmic temperature θ, choose any fixed reference T*. The score measures how much the log probability changes under a small fractional temperature change. Its mean is zero; squaring and averaging gives Fisher information per preparation. Thus the same C measures both thermal response and local statistical sensitivity.
+
+$$
+\theta=\log(T/T_*),\qquad \partial_\theta\log\Pr(X)=x(X-p),\qquad I_{\theta\theta}=C.
+$$
+
+Independence adds information: N preparations give N times the one-preparation value. The Cramér–Rao inequality below applies to estimators unbiased for T in a neighborhood of an interior positive parameter, under the usual differentiability assumptions. It is a lower bound, not a confidence interval, a guarantee of attainable accuracy, or a statement that an arbitrary fitted estimator is unbiased.
+
+$$
+\operatorname{Var}(\widehat T)\ge\frac{T^2}{NC},\qquad \frac{\sqrt{\operatorname{Var}(\widehat T)}}{T}\ge\frac{1}{\sqrt{NC}}.
+$$
+
+The interior maximum-likelihood estimate inverts the observed fraction. For example, g=1, Δ=1 and M=250 of N=1000 give T̂=1/log(3), about 0.910239 in the chosen energy units. Finite-sample noise matters: if M=0, the likelihood has its supremum as T approaches zero. If M/N is at least g/(1+g), it has its supremum as T tends to infinity. These cases have no finite positive maximizer. Do not clip them into a claimed finite estimate or insert the random MLE into an unbiased-estimator theorem.
+
+$$
+\widehat p=M/N,\qquad \widehat T=\frac{\Delta}{\log[g(1-\widehat p)/\widehat p]},\qquad 0<\widehat p<\frac{g}{1+g}.
+$$
+
+Now suppose Δ is also unknown and only the binary labels are recorded. With a fixed reference Δ*, the two log-parameter scores point in opposite directions. An increased gap and a decreased temperature both suppress excitation.
+
+$$
+\eta=\log(\Delta/\Delta_*),\qquad \nabla_{(\theta,\eta)}\log\Pr(X)=x(X-p)(1,-1).
+$$
+
+The information matrix has rank one for every finite positive x. Multiplying it by the common-scale direction gives zero. No number of independent repetitions of this same label experiment removes that null direction.
+
+$$
+I_{(\theta,\eta)}=C\begin{pmatrix}1&-1\\-1&1\end{pmatrix},\qquad I(1,1)^{\mathsf T}=0.
+$$
+
+Indeed a simultaneous positive rescaling of T and Δ leaves the entire count distribution unchanged, even though the physical mean energy rescales. Calibrated gap spectroscopy, an absolute energy measurement or another independent physical reference can supply the missing scale. A tighter fit to labels alone cannot. This claim concerns the stated observation model; calibrated measurements of numerical energy values would be a different experiment.
+
+$$
+(T,\Delta)\mapsto(aT,a\Delta),\quad a>0:\qquad p\mapsto p,\quad U\mapsto aU.
+$$
+
+For known gap, the best operating ratio for fractional-temperature sensitivity maximizes C, rather than occupancy itself. The logarithmic derivative gives the stationary condition. For g=1 it has a unique positive solution x≈2.399357: the left side is strictly increasing from zero to infinity. C vanishes at both positive-temperature extremes, so this point is the global maximum, not a phase transition. The condition and numerical value are specific to this finite spectrum and the chosen relative-error objective; maximizing information about absolute T while varying T at fixed Δ is a different optimization.
+
+$$
+\frac{d\log C}{dx}=\frac2x-(1-2p),\qquad g=1:\quad x\tanh(x/2)=2.
+$$
+
+### Read the sensitivity and ambiguity diagram
+
+The left panel plots information per independent preparation against x for g=1; its orange marker is the fractional-sensitivity maximum. The right panel marks three different physical pairs with the same ratio x=1 and therefore the same occupancy. The line depicts an exact observational ambiguity, not uncertainty caused by a small sample. All axes and numerical examples use the original kB=1 convention. The diagram and executable supplement do not add a new lab control.
+
+![Information peaks at an intermediate gap-to-temperature ratio; common scaling of gap and temperature leaves occupancy unchanged.](/assets/learning/thermometry-information-scale.en.svg)
+
+### Reproduce four operating points
+
+For N=1000 and g=1, the last column is the relative standard-deviation lower bound for an unbiased estimator under the assumptions above. Smaller values indicate a less restrictive bound, not measured errors. The second operating point, x=1, gives approximately 7.13%; the optimum gives approximately 4.77%.
+
+| x = Δ/T | Excited probability p | C = information per preparation | Relative SD lower bound |
+| --- | --- | --- | --- |
+| 0.20000000 | 0.45016600 | 0.00990066 | 0.31781022 |
+| 1.00000000 | 0.26894142 | 0.19661193 | 0.07131733 |
+| 2.39935728 | 0.08322172 | 0.43922884 | 0.04771496 |
+| 8.00000000 | 0.00033535 | 0.02145521 | 0.21589054 |
+
+```python
+from math import exp, sqrt
+for x in [0.2, 1.0, 2.3993572805154677, 8.0]:
+    p = 1.0 / (1.0 + exp(x))  # known g = 1
+    C = x * x * p * (1.0 - p)
+    bound = 1.0 / sqrt(1000 * C)
+    print(f"{x:.8f} {p:.8f} {C:.8f} {bound:.8f}")
+```
+
+### Three research questions with explanations
+
+#### 1. Can more data distinguish (T, Δ)=(1,1) from (2,2)?
+
+**Explanation.** No, if the recorded data are only the specified labels. Both give x=1 and the same probability for every finite label sequence. The information null vector (1,1) describes this common-scale change locally; the exact scaling identity establishes it globally. Calibrating one physical energy scale changes the inference problem.
+
+#### 2. Why does p close to one half fail to give the best thermometer for g=1?
+
+**Explanation.** A balanced Bernoulli observation has large variance, but its probability changes only weakly with fractional temperature at very high T. Information is x²p(1−p), including that sensitivity factor. It tends to zero when x tends to zero, and also when the probe freezes at large x. The finite intermediate maximum follows from the derivative above.
+
+#### 3. Does N=1000 ensure a finite temperature estimate or 4.77% accuracy?
+
+**Explanation.** No. A sample can lie at a likelihood boundary, and the numerical lower bound assumes an interior parameter and an unbiased estimator. It is neither an error bar for this particular sample nor a finite-sample guarantee for the nonlinear MLE. Correlated readings or detector errors would additionally change the likelihood and information. Specify those mechanisms before claiming the same bound.
+
+### Sources and research boundary
+
+The canonical variance–heat-capacity identity is supported by [MIT, Micro-canonical and Canonical Ensembles, problem 1](https://web.mit.edu/esfaki/www/8.08_files/canonical.pdf) and [David Tong, Statistical Physics, sections 1.3.1–1.3.2](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf). The binomial likelihood, score, matrix null direction and operating-point calculation are derived here for the explicitly declared observation model. They do not establish thermometer performance for an interacting probe, a noisy detector or a neural network. In an energy-based model, a score scale and a temperature-like scale can likewise be confounded algebraically, but physical temperature requires physical calibration.
+
 ## Source and next steps
 
 For canonical probabilities and energy moments, see [MIT Statistical Physics: Micro-canonical and Canonical Ensembles](https://web.mit.edu/esfaki/www/8.08_files/canonical.pdf). The finite-level calculation above is this book's specified teaching model. Compare it with the finite-spectrum, low-temperature and connected-correlation readers before adding interactions. Keep exact finite statements, numerical display limits and research hypotheses separate.

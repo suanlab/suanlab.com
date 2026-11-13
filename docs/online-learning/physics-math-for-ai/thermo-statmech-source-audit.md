@@ -15,3 +15,10 @@
 SI 단위에서는 온도K, 에너지J, 열용량J/K, 몰 열용량J/(mol K), 압력Pa, 부피m³를 구분한다. R=N_Ak_B의 SI 정의와 실제 수치 표현은 [NIST 상수표](https://physics.nist.gov/cuu/Constants/Table/allascii.txt)를 기준으로 확인한다. 수학적 상수의 정의와 코드의 이진 근사값을 구별한다.
 
 [1장 Fundamentals](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf)는 이후 앙상블·분배함수의 후보 자료다. 이번 준비에서 그 전체 내용이나 뒤의 기체·상전이 장을 모두 읽었다고 주장하지 않는다. 해당 주제 집필 때 측도·축퇴도·유한계·극한·상호작용 관례를 실제로 읽고 추가한다. 기존 두 수준계 단원을 보존하며, 물리적 열역학과 AI의 지수 점수 사이에는 상태 에너지·저장고·단위라는 조건이 필요함을 유지한다.
+
+
+## 2026-11-13: 두 수준계의 온도 추정 보강
+
+[MIT 앙상블 자료 문제 1](https://web.mit.edu/esfaki/www/8.08_files/canonical.pdf)의 정준 에너지 분산–열용량 항등식과 [Tong 1장 1.3.1–1.3.2절](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf)의 고정 스펙트럼 정준 모멘트 관례를 첫 연구 보강에 대조했다. 여기서는 kB=1이고 C는 SI 열용량/kB에 대응한다. 두 자료를 통계적 추정기의 성능 인증으로 인용하지 않는다.
+
+독립·동일 온도 평형 준비의 오차 없는 준위 표지라는 관측 모형을 추가했다. 그 이항 우도에서 로그 온도 점수·정보를 직접 유도하고, 미지 간격의 공통 척도 영방향과 g=1 상대 민감도 최대점을 별도로 계산한다. 불편 추정량에 관한 정보 하한을 유한 표본 MLE의 정확도 보장으로 바꾸지 않는다. 상관·검출 잡음·상호작용은 이번 관측 모형 밖이다. 자세한 진행과 후속 범위는 [연구 심화 진행표](thermo-statmech-research-progress.md)를 따른다.

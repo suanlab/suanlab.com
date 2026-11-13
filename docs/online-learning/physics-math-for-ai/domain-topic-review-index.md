@@ -71,6 +71,8 @@
 
 측정·단위·물리 모델링의 [9개 원주제·20단원](physical-modeling-topic-review.md)에 이어 뉴턴 역학·강체 운동의 [10개 원주제·21단원 종합 대조](classical-mechanics-domain-audit.md)를 연결했다. 해석역학의 [10원주제·20단원 연구 대조](analytical-mechanics-research-audit.md)·파동의 [9원주제·18단원 연구 대조](waves-optics-research-audit.md)·전자기학의 [10원주제·20단원 연구 대조](electromagnetism-research-audit.md)과 [연속체 11원주제·22단원 연구 종합 대조](continuum-research-audit.md)까지 연결해 현재 43영역·426개 원주제의 기록이 있으며 다음은 열역학·평형 통계역학 11개다.
 
+열역학·평형 통계역학의 [32단원 연구 심화 진행표](thermo-statmech-research-progress.md)를 연결했다. 첫 두 수준계 보강 **1/32단원**을 검증했으며 영역 종합 대조와 나머지 31단원 후속은 남아 있다. 위 완료 집계에는 추가하지 않는다.
+
 ## 확인 기준과 다음 순서
 
 - 원주제의 정의·가정·논증, 대학원생을 위한 직관·수치 예제·개념 시각화와 연습 해설을 원고·등록 단원에 대조한다.

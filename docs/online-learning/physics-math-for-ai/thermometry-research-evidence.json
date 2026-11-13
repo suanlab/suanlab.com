@@ -1,0 +1,688 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "status": "validated-first-thermo-statmech-research-supplement",
+  "baselineCommit": "90337c84073c9facf0899f275aadbeb75de12d04",
+  "domain": "thermo-statmech",
+  "unitId": "thermodynamics",
+  "scope": {
+    "originalTopics": 11,
+    "registeredDomainUnits": 32,
+    "researchUnitsInThisSupplement": 1,
+    "remainingUnitsToReview": 31,
+    "wholeDomainResearchReviewComplete": false,
+    "curriculumComplete": false
+  },
+  "registry": {
+    "units": 650,
+    "guides": 1969,
+    "domains": 51,
+    "topics": 509
+  },
+  "manuscripts": [
+    {
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/thermodynamics.en.md",
+      "originalSha256": "58c2b34a66bcbcc3e6ef4c94b171bc7fbd0144e1e2e485462f56e7e775bac21b",
+      "updatedSha256": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf",
+      "marker": "## Research extension: can occupancy be a thermometer?",
+      "nextHeading": "## Source and next steps",
+      "rows": [
+        [
+          "0.20000000",
+          "0.45016600",
+          "0.00990066",
+          "0.31781022"
+        ],
+        [
+          "1.00000000",
+          "0.26894142",
+          "0.19661193",
+          "0.07131733"
+        ],
+        [
+          "2.39935728",
+          "0.08322172",
+          "0.43922884",
+          "0.04771496"
+        ],
+        [
+          "8.00000000",
+          "0.00033535",
+          "0.02145521",
+          "0.21589054"
+        ]
+      ]
+    },
+    {
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/thermodynamics.ko.md",
+      "originalSha256": "cbd39803e0920a32e57a44e18331c4e0901034db8569609fb757d75723e6713a",
+      "updatedSha256": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3",
+      "marker": "## 연구 확장: 들뜬 상태 관측만으로 온도를 잴 수 있을까?",
+      "nextHeading": "## 근거와 다음 학습",
+      "rows": [
+        [
+          "0.20000000",
+          "0.45016600",
+          "0.00990066",
+          "0.31781022"
+        ],
+        [
+          "1.00000000",
+          "0.26894142",
+          "0.19661193",
+          "0.07131733"
+        ],
+        [
+          "2.39935728",
+          "0.08322172",
+          "0.43922884",
+          "0.04771496"
+        ],
+        [
+          "8.00000000",
+          "0.00033535",
+          "0.02145521",
+          "0.21589054"
+        ]
+      ]
+    }
+  ],
+  "originalExercisesPreserved": 12,
+  "newExplainedQuestions": 6,
+  "displayedEquationsBothLocales": 20,
+  "executedPythonCells": 2,
+  "independentVerification": {
+    "namedStateCases": 27,
+    "finiteCountLaws": 81,
+    "boundaryCountCases": 4,
+    "method": "Enumerated named microstates and count laws; independent log-probability differentiation and heat response; exact scale invariance; maximum bracketing and boundary likelihood checks. Finite checks support the declared model, not arbitrary physical probes."
+  },
+  "otherDomainManuscriptsPreserved": [
+    {
+      "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md",
+      "sha256": "bfbce40069eb907c65c398911804b21c69e41753b3a336a64045bb20850f5927"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md",
+      "sha256": "ac6832c0f769f298d6c8fcc041e50ca6f2c27ad841e162172fa53ac14c1fef9f"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md",
+      "sha256": "2775f557c57463175f262902d76ef3470ab6f26041dcadfb603d21e273288d4e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md",
+      "sha256": "9a18abd589b5659dadfc1e3a0506780aa34a5f5ef67ecd6afa9ce180e299cdda"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md",
+      "sha256": "65e254a26d33b431e1d79fd6d0b2496c36dc8241c9ef473f0933b95508ef545b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md",
+      "sha256": "28714dbb65f26093e5c00521e111b8e6d4452bc518be87b244d30d3215e8dc47"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md",
+      "sha256": "faf477ca33a6fb917cf05568d4118cbb04b5969b3d9e6fff5589bbd321f76791"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md",
+      "sha256": "1ba3913e39f372c132f95e7da4a55f17105e66e06236218c6ffaebc2c730e019"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md",
+      "sha256": "07723d8e8729643d6d50079d1c510d2344ab9d9352fdda9522837d058c596add"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md",
+      "sha256": "03951d879a75d0f28cdacb980160361538198dd4a09404d257e3091a5c8672b6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md",
+      "sha256": "1988db280860ef74557a2bcaca959b7ae08a0b232ff1bd2a1b99394b47ac060b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md",
+      "sha256": "ca2682e88d8000119b077d1fcb6d881ae72a6b3fa16337e63f503f81b2875019"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md",
+      "sha256": "623093cfd35890f9b0304cf33bc15e99c744e18418c829ba61d59b5c93c99f44"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md",
+      "sha256": "6e695972c365e36840c19e359f762a8084eac87e97e131743599ef329a69f44e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md",
+      "sha256": "d326602499c3b341b075be8838b03b3cfba783eb8623550b43488e5825da2bf7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md",
+      "sha256": "1f09442cec69f6771740ca5a56abd39faef9deee6fc7003961339c7b168e59a1"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md",
+      "sha256": "3f00318b01c7bd93e770bd745e1e535418629869402ad952d8ea2e0200ab9385"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md",
+      "sha256": "dbde3b93ae3f9720100fcb6c640c6753ab672dff3bb85ad7a12210b396b15dff"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md",
+      "sha256": "7a64dee8bedd8062881d6ce9f2410b4a64e6c76b4f60cded48dfc85671e70efc"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md",
+      "sha256": "a97ed4d29978ba48e8f2703c0dfb18600002367ba2e15942a7658eca5e233e39"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md",
+      "sha256": "3916532391a89710021232e47249b076af621113990007c5a42547b904fb1ae9"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md",
+      "sha256": "5d0a8f746486d28aebd5b5164617b2594bdefe3ea3af3082238ba0fdf44f0407"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md",
+      "sha256": "a20b9e72f85794d578ace76e22118bd1eee6898a00bc2fb84a2b5326a0b9652e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md",
+      "sha256": "2a7473a89a0f5288a92b80057cca25f82c120b7ff421d98f130d098342e4b113"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md",
+      "sha256": "79fd2af07f305bd235b4e1d1324dde87a20b8bef4dcd1cc4333176f97af3d85b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md",
+      "sha256": "1ab612949a826ac3dea1558fa52f7c667648804503f57dbbd47508157d9eef11"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.ko.md",
+      "sha256": "4bb4d08e7209d1e79a3d182a534fffdf3ca91f86af1794b6ab11661640790308"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.en.md",
+      "sha256": "e009fc56a05155ca0af0942b3c31268f51ef0064bcbd6b3e1910aa19ab336770"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.ko.md",
+      "sha256": "4a2ac611c35b21482cff6e862e52de3a2cc65681ebbaf4d27c3777d256dc2fe7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.en.md",
+      "sha256": "db01c9360f23c77e8d4ff7bf214ebfc46b9e376fdc5dad3c21a9d83a43265b13"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.ko.md",
+      "sha256": "fb46a0950c5ba61d2aa4a304ed01b56ab05220e94791562d4c9c8fca8fb764b0"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.en.md",
+      "sha256": "ee3e1c2d3a2d8a927622c41b0d54884310e3b49a790b0860e28961a10b0bfc5e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.ko.md",
+      "sha256": "273597601f2cc18ef81a4c16b19d30fd8824a0ed1fa211af07427d41a8a1a951"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.en.md",
+      "sha256": "b008dc6e7f1a3d555ae9f363465e9c4c81b66ca7acb047c70ed0450b5bcc8e32"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.ko.md",
+      "sha256": "920ba116208c2992905650b4bcbc366659807d018aeedd266d799d8643b73f57"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.en.md",
+      "sha256": "4a4b016de1dd21bdc3e5b9e2721f05a33b75befc3abb715d6a4d6a71da89f7e6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.ko.md",
+      "sha256": "eb446c6bec89621ee3e991ea0ebe897d94229315e41fd60eb4b9bdee8083c402"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.en.md",
+      "sha256": "561530d879493f38e0408eb37ad25be67d44dad388c7a30e12c242d9e22a144e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.ko.md",
+      "sha256": "087a1af9e81504130c9b059eb159f1fe678f7f832590312fb90861b971da1836"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.en.md",
+      "sha256": "d1aa8390bfd0fc56f887b4e2aab07f6373086aa940998b811196f44f3ec6fed7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.ko.md",
+      "sha256": "9bb8db5785e77ae769d89b2c7d537f15de00922f58789cba7e427a8297f6caec"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.en.md",
+      "sha256": "ac4d75c266edc9dbf81c4d5a1bea6a39f1f1953e7b1f222d635e0c82e3c9846f"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.ko.md",
+      "sha256": "e2c5d6cf78cd5470aa3625d334862310432ee7b581fd43450f60d1c34a276044"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.en.md",
+      "sha256": "fad9d696cc1191b8b8aa998f5a3ca11ed667c2ab048d8bfc10a11ce8e321541c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.ko.md",
+      "sha256": "8a418f2a12d092ff4caea78b90a74e677cf9552f7524b65366616010508c9706"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.en.md",
+      "sha256": "ea5bbf70c8056936fd6fc0be8058d93621471312c0bce6752690b7ef09a7aa90"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.ko.md",
+      "sha256": "4b0221ed4cc62924eab793c07b220a3dde609810cebb37e8af79d9491c514b4b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.en.md",
+      "sha256": "844d21fce5c5d31c200bde1fb304046c22cacef8f0a8619d9fc85b7ee564e5bf"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.ko.md",
+      "sha256": "a718b1ef4c9b86e7b7c9c109e909095e772acea8a83e97e655d6aaeab7e3adfd"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.en.md",
+      "sha256": "ed4cd67f693f56ad3229cc64595ccd0edde216f4cd78ea873bd7234723285d85"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.ko.md",
+      "sha256": "5e1879b6bd55ccc27d71a398fa919e03ca96904ae4a3edf210dc7613085a7ef1"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.en.md",
+      "sha256": "d2185361b111b05b9bba4375542642ff8820fa697dc3086d07b80cb8ff10582d"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.ko.md",
+      "sha256": "bf380b04692d01eccc7ade872c40223c0732f12dbd9f0415ad803cf2f3ec0a16"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.en.md",
+      "sha256": "7b63b7f733ab991c2cc4c33b4fa1c06ed818f40b085b64168de9206805d94946"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.ko.md",
+      "sha256": "6a5221c76efa732c71b201289fd024a7b87c7f2aed1c81c6a65f06692e23f02b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.en.md",
+      "sha256": "f82d282b4f9debb0be0cc673315f5bef998a922ba9d52c51eb079cc223c7ad8b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.ko.md",
+      "sha256": "5717437eb357f7d78652ff00fe41d261dc3b00d0777dd2042ea026ac910c4b42"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.en.md",
+      "sha256": "91cee8bb2d352358997a6eaf32691bf3c2f69578dcab5580e1a8aaef28a14305"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.ko.md",
+      "sha256": "87169cbf63ed0c25110b8070f927ecb1068de31846a7ff2c05b470a548213dd6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.en.md",
+      "sha256": "ac24140fd2b4e1a4091037a98d698e1b234f10b61a5ca65d9e3ae815862b93ba"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.ko.md",
+      "sha256": "6bf2e4df0cdb337c2c207f76449e9cf50e6171cb34edf86ad06c4c927043f58c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.en.md",
+      "sha256": "c1b8cd125800b5381367f54ae276aa5b75e8de704000b52f2d21967cdaffdab2"
+    }
+  ],
+  "ledger": {
+    "originalEntries": 801,
+    "currentEntries": 803,
+    "allOriginalEntriesPreserved": true
+  },
+  "selectedTests": {
+    "files": 4,
+    "tests": 50,
+    "failed": 0,
+    "logs": {
+      "tests.log": "6abcefd020cfa3474d89807f71ce04eb74738000a790437c040d1ddd0f1927f5",
+      "preservation-tests.log": "9ccf7b31e093598f423b9ae95af95ebea29c9fb82a942cd25b29b66134fc9244"
+    }
+  },
+  "checks": {
+    "lint": true,
+    "content": true,
+    "build": true,
+    "typecheck": true,
+    "export": true,
+    "generatedRoutes": 1893,
+    "htmlPages": 1888,
+    "contentUrls": 1885,
+    "logs": {
+      "lint.log": "3be436cfc280576162c8988ab0bf2da58c1cb1af605d4cca297edd0b2c7c9997",
+      "content.log": "cae16334d0d816cb4f9981be8422454c5186c14b964768b00780286cd813b72d",
+      "build.log": "ffab249ea04884847bb599f2181e4026d4d3e28e10649f4270311eab07a8a6ca",
+      "types.log": "6d339cc3c6b097244df96011008e228f3bc9a23bcef588e7d89e6265838f6660",
+      "export.log": "7693d86189e4ec43f9df04724c2cbf33caf0d974a41cccb2aa2004d36af557d2"
+    }
+  },
+  "browser": {
+    "unitIds": [
+      "thermodynamics"
+    ],
+    "rows": [
+      {
+        "id": "thermodynamics",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "thermodynamics",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "thermodynamics",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "thermodynamics",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "thermodynamics",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "thermodynamics",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "thermodynamics",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "thermodynamics",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      }
+    ],
+    "errors": [],
+    "guides": [
+      {
+        "id": "thermodynamics",
+        "example": 0
+      },
+      {
+        "id": "thermodynamics",
+        "example": 1
+      },
+      {
+        "id": "thermodynamics",
+        "example": 2
+      }
+    ],
+    "questions": [
+      {
+        "id": "thermodynamics",
+        "question": 0
+      },
+      {
+        "id": "thermodynamics",
+        "question": 1
+      }
+    ],
+    "concepts": [
+      {
+        "id": "thermodynamics",
+        "step": 0
+      },
+      {
+        "id": "thermodynamics",
+        "step": 1
+      },
+      {
+        "id": "thermodynamics",
+        "step": 2
+      },
+      {
+        "id": "thermodynamics",
+        "step": 3
+      }
+    ],
+    "interactions": [
+      {
+        "id": "thermodynamics",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      }
+    ]
+  },
+  "currentBilingualRenderAndServedFiles": {
+    "status": "passed",
+    "rows": [
+      {
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "미시-확률에서-물리량으로",
+            "title": "미시 확률에서 물리량으로"
+          },
+          {
+            "id": "canonical-가중치",
+            "title": "Canonical 가중치"
+          },
+          {
+            "id": "두-상태-손계산",
+            "title": "두 상태 손계산"
+          },
+          {
+            "id": "축퇴도와-미시-상태-세기",
+            "title": "축퇴도와 미시 상태 세기"
+          },
+          {
+            "id": "온도-극한",
+            "title": "온도 극한"
+          },
+          {
+            "id": "곡선-읽기",
+            "title": "곡선 읽기"
+          },
+          {
+            "id": "ai-연결과-연구-한계",
+            "title": "AI 연결과 연구 한계"
+          },
+          {
+            "id": "온도와-축퇴도를-실제-실험에서-비교하자",
+            "title": "온도와 축퇴도를 실제 실험에서 비교하자"
+          },
+          {
+            "id": "해설이-있는-여섯-연습문제",
+            "title": "해설이 있는 여섯 연습문제"
+          },
+          {
+            "id": "연구-확장-들뜬-상태-관측만으로-온도를-잴-수-있을까",
+            "title": "연구 확장: 들뜬 상태 관측만으로 온도를 잴 수 있을까?"
+          },
+          {
+            "id": "근거와-다음-학습",
+            "title": "근거와 다음 학습"
+          }
+        ]
+      },
+      {
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "from-microscopic-probabilities-to-physical-quantities",
+            "title": "From microscopic probabilities to physical quantities"
+          },
+          {
+            "id": "define-the-canonical-weights",
+            "title": "Define the canonical weights"
+          },
+          {
+            "id": "work-the-two-state-reference",
+            "title": "Work the two-state reference"
+          },
+          {
+            "id": "degeneracy-changes-what-must-be-counted",
+            "title": "Degeneracy changes what must be counted"
+          },
+          {
+            "id": "temperature-limits",
+            "title": "Temperature limits"
+          },
+          {
+            "id": "read-the-plotted-curves",
+            "title": "Read the plotted curves"
+          },
+          {
+            "id": "ai-connections-and-research-limits",
+            "title": "AI connections and research limits"
+          },
+          {
+            "id": "connect-temperature-and-degeneracy-to-the-experiment",
+            "title": "Connect temperature and degeneracy to the experiment"
+          },
+          {
+            "id": "six-exercises-with-explanations",
+            "title": "Six exercises with explanations"
+          },
+          {
+            "id": "research-extension-can-occupancy-be-a-thermometer",
+            "title": "Research extension: can occupancy be a thermometer?"
+          },
+          {
+            "id": "source-and-next-steps",
+            "title": "Source and next steps"
+          }
+        ]
+      }
+    ],
+    "files": [
+      {
+        "path": "/assets/learning/thermometry-information-scale.en.svg",
+        "sha256": "a0f5bba52f8ab484533aab36fafa279372618dba77dbf7533793f853f03e7a0c",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/thermometry-information-scale.ko.svg",
+        "sha256": "012a8a262cd3a0c7833246ad19c6fe0dc293699d2caa9439640332ebc9cc3122",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/thermodynamics/",
+        "sha256": "9dfbcbb0da9a053852ce3912d615f14d4c9d9632ee76f32db0b1955e10b34722",
+        "sourceOutputAndServedEqual": true
+      }
+    ],
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "domains": 51,
+      "topics": 509
+    },
+    "domainUnits": [
+      "thermodynamics",
+      "finite-body-thermal-contact-heat-entropy",
+      "ideal-gas-two-path-heat-work",
+      "carnot-cycle-engine-refrigerator",
+      "two-reservoir-cycle-entropy-admissibility",
+      "gapped-spectrum-low-temperature-entropy",
+      "finite-spectrum-helmholtz-kl-variational",
+      "ideal-gas-helmholtz-gibbs-volume-availability",
+      "binary-shell-multiplicity-block-counts",
+      "finite-macro-partition-conditional-entropy",
+      "finite-noisy-macro-observation-channel",
+      "finite-binary-reservoir-canonical-comparison",
+      "canonical-binary-energy-fluctuations",
+      "grand-canonical-finite-occupancy-fluctuations",
+      "finite-spectrum-partition-cumulant-generators",
+      "coupled-binary-sites-partition-factorization",
+      "infinite-energy-ladder-normalization-cutoff",
+      "reference-measure-boltzmann-softmax-identifiability",
+      "finite-gibbs-conditionals-scan-support",
+      "quadratic-gaussian-gibbs-normalizability",
+      "finite-curie-weiss-magnetization-symmetry",
+      "curie-weiss-variational-stability-limits",
+      "landau-sixth-order-coexistence-stability",
+      "binary-connected-correlations-field-hessian",
+      "periodic-ising-ring-correlation-length",
+      "finite-correlated-average-ar1-uncertainty",
+      "stationary-flux-three-state-cycle",
+      "metropolis-hastings-proposal-balance",
+      "reversible-two-state-periodicity-mixing",
+      "boundary-growth-extensivity-additivity",
+      "spatial-density-self-averaging-correlations",
+      "two-phase-partition-zeros-rounding"
+    ]
+  },
+  "visualReview": {
+    "method": "Directly viewed both original-size rendered figure previews and both mobile reader captures. Mobile captures cover the figure neighborhood, not the complete manuscript.",
+    "files": {
+      ".runtime/learning/thermometry-research/figure-en.png": "b7e11a34431199d70befc6bde5a56dcb632d0b64159823831d54e0538c196070",
+      ".runtime/learning/thermometry-research/figure-ko.png": "a68973ebaec2d3e216a7c76bdcc0c0d4c3ab9a1dc6d5b1520a8319afae0bf156",
+      ".runtime/learning/thermometry-research-thermodynamics-en-320.png": "09bb09e267b4cb5156695429541df7c53b9507a223418fb1553d6ad4d7d23298",
+      ".runtime/learning/thermometry-research-thermodynamics-ko-320.png": "2ec676a331e4749eb181f8d07f2f26a556e1d442a84553c5c81f8ab2637a9625"
+    }
+  },
+  "artifacts": {
+    "content/learning/physics-math-for-ai/thermodynamics.en.md": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf",
+    "content/learning/physics-math-for-ai/thermodynamics.ko.md": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3",
+    "public/assets/learning/thermometry-information-scale.en.svg": "a0f5bba52f8ab484533aab36fafa279372618dba77dbf7533793f853f03e7a0c",
+    "public/assets/learning/thermometry-information-scale.ko.svg": "012a8a262cd3a0c7833246ad19c6fe0dc293699d2caa9439640332ebc9cc3122",
+    "scripts/check-thermometry-research.cjs": "c781958ca72c404cbedaa82bdfa1550a93b1991e1d2178f2eb9d45dea9783231",
+    "scripts/learning-thermometry-research.test.ts": "60b9e791bc9d0c882863a5db94c6acc83f0c98665838f6e6d0c56aba10481b1f",
+    "scripts/learning/verify-thermometry-research.py": "bc96b222c3e871b4f50338fe0ff4f14c948ea5a3dfa39a1106591ba6eb81203f",
+    "scripts/learning/generate-thermometry-figures.py": "4c3c2d4a56878cfa64482a8bf3bf42f6d7e008f538a6a448d4b874187d015b03",
+    "scripts/fixtures/reviewed-learning-manuscripts.json": "ec8ac6ce9a4552ad370243e6286d0ae0d26ac32480a400ee2d72b8980847d4c7"
+  },
+  "overallReview": {
+    "completedDomains": 43,
+    "completedTopics": 426,
+    "remainingDomains": 8,
+    "remainingTopics": 83
+  },
+  "publicDeploymentConfirmed": false
+}
