@@ -140,6 +140,128 @@ $$
 
 This is sensitivity near the selected initial preparation. It does not by itself decide identifiability of all coefficients or stability of a learning algorithm.
 
+## Research extension: the phase that survives amplitude recovery
+
+### A clock reading is more than a polar angle
+
+Suppose two arrows have the same direction but different lengths. With c≠0 they initially rotate at different speeds. After both lengths recover to the attracting circle, a permanent angular offset can remain. To predict the eventual clock reading, attach a correction to the current polar angle. This corrected variable is the asymptotic phase. Points with equal corrected phase form an isochron; they approach the same moving point on the cycle at the same physical time.
+
+Assume μ>0, g>0 and Ω\*≠0. Set a=c/g and r\*=sqrt(μ/g). For every nonzero state define a circle-valued phase, with a continuous lift along a trajectory when needed.
+
+$$
+\phi=\theta-a\ln(r/r_*),\qquad
+\dot\phi=\omega-cr^2-a(\mu-gr^2)=\Omega_*,\qquad
+\Omega_*=\omega-c\mu/g.
+$$
+
+This cancellation is exact for our specified unforced polynomial model, even away from the cycle. It is not a general formula for every Hopf system after truncation. On the cycle φ=θ. Away from it, equal θ does not imply equal φ. An isochron is a logarithmic spiral when a≠0 and a radial ray when a=0.
+
+$$
+\theta=\phi+a\ln(r/r_*),\qquad
+v=\frac{r_*^2}{r^2}-1,\qquad
+\dot v=-2\mu v,\qquad -1<v<\infty.
+$$
+
+The radial coordinate v has an exactly exponential evolution. It is not r−r\*, which is only locally exponential. Since r→r\*, the angular difference between the trajectory and the cycle point with phase φ(t) tends to zero. The origin is excluded: its angle is undefined and the logarithm diverges. When Ω\*=0 the same algebra supplies a conserved label for a circle of equilibria, not a periodic clock. At μ≤0 this attracting-cycle construction is unavailable.
+
+### From an impulse to a permanent phase shift
+
+At a point (x,y), differentiate φ with respect to Cartesian state. Denote this gradient by Z. Phase is in radians; do not confuse Z with the complex population order parameter in the later chapter.
+
+$$
+Z(x,y)=\nabla\phi=\frac1{r^2}\begin{pmatrix}-y-ax\\x-ay\end{pmatrix},\qquad
+\|Z\|=\frac{\sqrt{1+a^2}}r,\qquad
+Z\cdot F=\Omega_*.
+$$
+
+Here F is the unforced Cartesian vector field. Along the cycle Z obeys the adjoint equation below. Its normalization is Ω\*, because φ is an angular phase. For a time coordinate φ/Ω\*, the corresponding normalization is 1.
+
+$$
+\frac{dZ}{dt}=-[DF]^\mathsf{T}Z,\qquad
+Z_*(\phi)=\frac1{r_*}
+\begin{pmatrix}-\sin\phi-a\cos\phi\\\cos\phi-a\sin\phi\end{pmatrix}.
+$$
+
+A brief impulse is modeled here as a prescribed instantaneous state displacement h, followed by the original unforced flow. It is not an additional control on the existing reader. Start on the cycle at polar angle θ, and write its dimensionless displacement in the local radial/tangential frame as w. For |w|<1 the branch connected to zero displacement is unambiguous.
+
+$$
+w=\frac{(h_x+ih_y)e^{-i\theta}}{r_*},\qquad
+\Delta\phi=\operatorname{Im}\log(1+w)-a\operatorname{Re}\log(1+w).
+$$
+
+This is already the lasting phase difference: after the pulse both corrected phases advance at the same Ω\*. A radial outward displacement can therefore change the eventual clock reading even though it causes no immediate change in polar angle. The first-order phase response and an explicit remainder bound follow from the series for the complex logarithm.
+
+$$
+\Delta\phi_{\rm lin}=\operatorname{Im}w-a\operatorname{Re}w=Z_*\cdot h,\qquad
+|\Delta\phi-\Delta\phi_{\rm lin}|
+\leq\frac{\sqrt{1+a^2}|w|^2}{2(1-|w|)}.
+$$
+
+The bound is a finite-displacement statement for |w|<1; it becomes loose near that boundary. Larger displacements need a branch and basin check. A pulse landing exactly at the origin has no phase. Do not assign it a finite shift by extending the linear response formula.
+
+### Why weak forcing becomes harder near onset
+
+For a specified additive force f(x,y,t), the off-origin chain rule gives exact amplitude and phase equations. The radial component of f changes r, and r also changes the phase sensitivity.
+
+$$
+\dot r=\mu r-gr^3+e_r\cdot f,\qquad
+\dot\phi=\Omega_*+Z(x,y)\cdot f,\qquad e_r=(x,y)/r.
+$$
+
+Replacing Z by its cycle value gives a phase-only approximation. Using r≈r\* and θ≈φ requires amplitude disturbances to stay small. A useful local scale check compares a sustained force with the radial restoring rate 2μ times the cycle radius. It is a consistency estimate, not an error theorem for arbitrary forcing.
+
+$$
+\frac{|f|}{2\mu r_*}\ll1,\qquad
+\frac{|h|}{r_*}\ll1,\qquad
+\|Z_*\|=\sqrt{1+a^2}\sqrt{g/\mu}.
+$$
+
+With g,c and the absolute forcing scale fixed, the sustained-force ratio grows as μ⁻³ᐟ² and impulse sensitivity grows as μ⁻¹ᐟ². Meanwhile radial recovery slows. An exact unforced phase coordinate therefore does not guarantee an accurate forced phase-only model near onset. This distinction matters when fitting oscillator models to neural or learned latent dynamics.
+
+### A radial pulse you can reproduce
+
+Choose μ=g=c=1, ω=2, so r\*=1 and Ω\*=1 rad/s. A radial pulse h=κ r\*eᵣ has w=κ. For κ>−1 the exact shift is −ln(1+κ); its first-order estimate is −κ. The code and table compare these, with the conservative bound above. No sampled trajectories or confidence intervals are used.
+
+![Logarithmic isochrons meeting the attracting cycle and exact versus linear radial pulse phase shifts](/assets/learning/hopf-isochron-research-phase-response.en.svg)
+
+The upper panel connects states with the same asymptotic clock reading; equal geometric angles on different circles generally have different readings. The lower panel compares exact and linear pulse responses for a=1. The marked example κ=0.5 has no instantaneous angular jump, yet its lasting phase shift is about −0.405 rad.
+
+```python
+from math import log1p, sqrt
+
+for kappa in [0.01, 0.1, 0.5, -0.5]:
+    exact = -log1p(kappa)
+    linear = -kappa
+    error = abs(exact - linear)
+    bound = sqrt(2) * kappa**2 / (2 * (1 - abs(kappa)))
+    print(f"{kappa:.2f} {exact:.6f} {linear:.6f} {error:.6f} {bound:.6f}")
+```
+
+| κ | Exact Δφ | Linear Δφ | Absolute error | Bound |
+| --- | --- | --- | --- | --- |
+| 0.01 | -0.009950 | -0.010000 | 0.000050 | 0.000071 |
+| 0.10 | -0.095310 | -0.100000 | 0.004690 | 0.007857 |
+| 0.50 | -0.405465 | -0.500000 | 0.094535 | 0.353553 |
+| -0.50 | 0.693147 | 0.500000 | 0.193147 | 0.353553 |
+
+The larger inward response comes from approaching the phase singularity at the origin. The same absolute pulse is more disruptive on a smaller cycle. For example, decreasing μ from 1 to 1/4 with g=1 halves r\*, doubles the infinitesimal sensitivity and multiplies the sustained-force ratio by 8.
+
+### Research self-checks
+
+#### 1. Can two different radii have the same eventual clock reading?
+
+**Research explanation.** Yes. Choose θ₂−θ₁=a ln(r₂/r₁). Then φ₂=φ₁, so the two states have identical corrected phase at every later time. Both approach the same point of the moving cycle. If their initial angles were equal instead, the lasting shift would be −a ln(r₂/r₁).
+
+#### 2. Does rapid radial relaxation erase a radial pulse's phase shift?
+
+**Research explanation.** No. For a≠0 the transient change of rotation integrates to the fixed shift −a ln(1+κ). Faster recovery and the size of that integrated shift are distinct properties. For a=0 radial pulses leave phase unchanged, while tangential pulses can still shift it.
+
+#### 3. Does the exact off-cycle phase remove all approximation error under forcing?
+
+**Research explanation.** No. The exact equation retains Z(x,y), hence the amplitude and its history. Replacing it by Z\*(φ) discards that information. Near μ=0 a fixed pulse is no longer small relative to r\* and radial recovery is slow. A model containing only phase must justify those scales separately.
+
+[Wedgwood et al., Introduction and Fig. 1](https://pmc.ncbi.nlm.nih.gov/articles/PMC3582465/) motivate isochrons, infinitesimal phase response and limits of strong-attraction assumptions. The formulas, remainder bound and numerical examples here are direct derivations for this chapter's coefficient convention. The reader already provides the original amplitude experiment, Worker calculation and fixed comparisons; this supplement adds standalone theory and Python, without an impulse simulator.
+
 ## 13. Six questions with explained solutions
 
 **1. Find the two half-decay times in the critical example.** Solution:ρ reaches1/2 at1/2s, while r reaches1/2 at3/2s. Halving r quarters ρ.
@@ -158,6 +280,6 @@ This is sensitivity near the selected initial preparation. It does not by itself
 
 The production calculation uses exact rational sign/equality and directed256-bit exponential, logarithm, square-root and trigonometric enclosures. Large accumulated angles are neither wrapped nor used to renormalize the state. Independent enclosures for x²+y²−ρ and the log-amplitude balance are distinguished from algebraic identities. Record density does not change physical time or the analytic flow.
 
-The independent reference imports no production modules. It computes a2×2matrix exponential for reciprocal squared amplitude at220digits. Finite reference cases are not a machine proof for all inputs. Reader, Worker and visualization registration are still pending, as are the pairwise and collective families.
+The independent reference imports no production modules. It computes a2×2matrix exponential for reciprocal squared amplitude at220digits. Finite reference cases are not a machine proof for all inputs. The reader, Worker, visualization and the pairwise and collective families are now registered; their integration evidence is linked in the research progress record.
 
 For AI research, distinguish rotating latent dynamics, sustained amplitude and recovery after perturbation. This toy model is not a universal model of neural networks or measured systems. Next we study relative phase after amplitude stabilization and the information lost by collective order observations.
