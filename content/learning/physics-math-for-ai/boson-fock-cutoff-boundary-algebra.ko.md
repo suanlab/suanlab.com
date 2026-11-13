@@ -250,6 +250,133 @@ Number처럼 unbounded한 관측에는 이 식을 유한 상수의 보장으로 
 
 Coherent 가족에서는 분포를 구체적으로 알기 때문에 mean number 차이를μp_top으로 계산할 수 있다. AI 학습에서 norm loss·number moments·energy·quadrature·operator projection의 오차를 나누어 기록하는 이유다. 원래 모델·state family·관측 집합과 cutoff 규칙이 다른 학습 문제의 점수를 바로 비교해서는 안 된다.
 
+## 연구 확장: 경계의 이력이 시간 전개의 cutoff 오차를 좌우한다
+
+### 같은 초기 상태의 두 전개 비교하기
+
+정적인 Poisson tail과 시간 전개 중 누적한 오류는 다르다. H는 self-adjoint이고 유한 궤적을 전체 공간에 넣었을 때 그 operator domain에 머물며 잔차가 적분 가능하다고 하자. 아래 driven oscillator의 모든 유한 Fock 벡터는 이 조건을 만족한다. 처음에는 정규화 상태가 cutoff 안에 있다고 둔다.
+
+$$
+P=\Pi_C,\quad H_C=PHP\big|_{\operatorname{Ran}P},\quad
+ \psi_C(t)=e^{-iH_Ct/\hbar}\psi_0,\quad P\psi_0=\psi_0,\quad\|\psi_0\|=1,\qquad
+ r_C(t)=(I-P)HP\psi_C(t),\quad
+ e^{-iHt/\hbar}\psi_0-\psi_C(t)
+ =-\frac i\hbar\int_0^t e^{-iH(t-s)/\hbar}r_C(s)\,ds.
+$$
+
+유한 궤적을 미분하고 전체 방정식과 뺀 뒤 전체 unitary로 적분하면 Duhamel 항등식을 얻는다. 부분공간 밖으로 나가는 경로를 포함한다. Unitarity·삼각부등식으로 잔차 노름의 시간 적분이 오류를 제한한다. 유한 행렬이 무한 CCR을 만족한다고 가정하지 않는다.
+
+선형 drive oscillator에서 cutoff를 넘는 것은 빠진 생성 단계 하나뿐이다.
+
+$$
+H=\hbar\omega\hat n+fa^\dagger+f^*a,\quad\omega>0,\qquad
+ r_C(t)=f\sqrt{C+1}\langle C|\psi_C(t)\rangle|C+1\rangle,\quad
+ B_C(t)=\frac{|f|\sqrt{C+1}}\hbar\int_0^t\sqrt{p_C(s)}\,ds,\quad
+ \|e^{-iHt/\hbar}\psi_0-\psi_C(t)\|\le B_C(t),\quad
+ p_C(s)=|\langle C|\psi_C(s)\rangle|^2.
+$$
+
+여기 최상위 확률은 정규화한 유한 동역학 상태의 값이다. 원래 coherent tail이나 별도로 정규화한 정적 투영의 top 확률이 아니다. |f|의 단위가 에너지이므로 hbar로 나누고 시간을 적분하면 무차원 상계가 된다. [Tong 등의 연구](https://arxiv.org/pdf/2110.06942)도 정적 절단뿐 아니라 동역학 오류를 구별한다. 여기 간단한 경계 잔차 식은 이 모형에서 직접 유도한다.
+
+원래 초기 상태도 근사했다면 unitarity가 그 초기 벡터 오류를 보존한다. 정규화한 두 순수 궤적과 같은 유계 관측량에 대해 다음과 같다.
+
+$$
+d_0=\|\psi_{\rm full}(0)-\psi_C(0)\|,\quad
+ D_{\rm tr}(t)\le\min\{1,d_0+B_C(t)\},\qquad
+ |\langle A\rangle_{\rm full}-\langle A\rangle_C|
+ \le2\|A\|\min\{1,d_0+B_C(t)\}\quad(A\text{ bounded}).
+$$
+
+정규화 초기 투영의 보존 무게가 S이면 앞에서 구한 d0=sqrt(2(1−sqrt(S)))다. 유한 전개 오류는 그 위에 더해진다. Trace-distance를1로 제한해도 수 연산자 같은 무계 관측량의 노름이 유한해지지는 않는다. 상태 오류와 연산자 절단은 여전히 별개다.
+
+### 유한계의 귀환이 큰 물리 오류를 감추기
+
+H를 완전제곱으로 쓰거나 coherent 진폭 방정식을 풀면 정확한 vacuum 궤적을 얻는다.
+
+$$
+\psi_{\rm full}(0)=|0\rangle:\quad
+ \alpha(t)=-\frac f{\hbar\omega}(1-e^{-i\omega t}),\quad
+ \mu(t)=\frac{4|f|^2}{\hbar^2\omega^2}\sin^2(\omega t/2),\quad
+ \psi_{\rm full}(t)=e^{i\phi(t)}|\alpha(t)\rangle,\quad
+ \phi(t)=\frac{|f|^2}{\hbar^2\omega^2}(\omega t-\sin\omega t).
+$$
+
+전역 위상은 Duhamel 벡터 차이에 중요하지만 trace distance·점유 확률에는 영향을 주지 않는다. Drive를 oscillator 에너지 척도와 같게 하고 점유0·1만 남기자.
+
+$$
+f=\hbar\omega,\quad\tau=\omega t,\quad C=1:\qquad
+ \frac{H_1}{\hbar\omega}=\begin{pmatrix}0&1\\1&1\end{pmatrix},\quad
+ p_1(\tau)=\frac45\sin^2(\sqrt5\tau/2),\quad
+ B_1(\tau)=\frac{4\sqrt2}{5}[1-\cos(\sqrt5\tau/2)]
+ \quad(0\le\tau\le2\pi/\sqrt5).
+$$
+
+두-by-두 행렬 대각화로 p1을 얻는다. 표시한 시간 구간에서는 sine 부호가 같아 sqrt(p1)을 적분하면 B1이다. 첫 정확한 유한 귀환에서는 다음과 같다.
+
+$$
+\tau_*=2\pi/\sqrt5:\quad p_1(\tau_*)=0,\quad
+ \rho_1(\tau_*)=|0\rangle\langle0|,\quad
+ \mu_{\rm full}(\tau_*)=4\sin^2(\pi/\sqrt5)>0,\qquad
+ D_{\rm tr}(\rho_{\rm full},\rho_1)=\sqrt{1-e^{-\mu_{\rm full}}},\quad
+ B_1(\tau_*)=8\sqrt2/5.
+$$
+
+유한 밀도가 vacuum으로 돌아가 top 확률은0이지만 전체는 아직 vacuum 아닌 coherent 상태여서 그 vacuum과 trace distance가1에 가깝다. 누적 상계는 사라지지 않고1보다 커서 cap 뒤에는 유용하지 않다. 끝점 경계 진단만으로는 부족하다는 반례이지 모든 적분 상계가 예리하다는 주장은 아니다.
+
+### 적분 인증에는 표본보다 구간 근거가 필요하다
+
+각 시간 구간 전체에 유효한 상부 envelope가 있으면 보수적 적분식을 얻는다.
+
+$$
+p_C(s)\le u_j\quad\text{for every }s\in[t_j,t_{j+1}]:\qquad
+ B_C(T)\le\frac{|f|\sqrt{C+1}}\hbar\sum_j(t_{j+1}-t_j)\sqrt{u_j}.
+$$
+
+몇 표본의 최댓값이 자동으로 그런 envelope는 아니다. 해석적 상계·정당화한 미분 enclosure·검증된 적분 논증 등이 필요하다. pC≤1의 자명한 envelope는 항상 가능하지만 느슨할 수 있다. 매끄러운 그림과 수렴해 보이는 사다리꼴 합만으로 방향성 오류 인증을 얻지는 못한다.
+
+반 주기 안의 값은 유리수 각도 매개화로 부동소수점 없이 검사할 수 있다.
+
+$$
+v=\tan(\sqrt5\tau/4),\quad\tau=\frac4{\sqrt5}\arctan v,\quad0\le v\le1,\qquad
+ \cos(\sqrt5\tau/2)=\frac{1-v^2}{1+v^2},\quad
+ \sin(\sqrt5\tau/2)=\frac{2v}{1+v^2},\quad
+ \frac{B_1}{\sqrt2}=\frac{8v^2}{5(1+v^2)}.
+$$
+
+
+```python
+from fractions import Fraction as Q
+for v in [Q(0), Q(1, 4), Q(1, 2), Q(1)]:
+    cosine, sine = (1-v*v)/(1+v*v), 2*v/(1+v*v)
+    top = Q(4, 5)*sine*sine
+    bound_over_sqrt2 = Q(4, 5)*(1-cosine)
+    assert cosine*cosine+sine*sine == 1
+    print(v, cosine, sine, top, bound_over_sqrt2)
+```
+
+| v | cosine | sine | 유한 top 확률 | B1 / sqrt(2) |
+|---|---|---|---|---|
+| 0 | 1 | 0 | 0 | 0 |
+| 1/4 | 15/17 | 8/17 | 256/1445 | 8/85 |
+| 1/2 | 3/5 | 4/5 | 64/125 | 8/25 |
+| 1 | 0 | 1 | 4/5 | 4/5 |
+
+![Coherent와 유한 상태의 실제 trace distance를 cutoff별로 비교한다. Cutoff1의 top 확률이0으로 돌아와도 누적 경계 오류 상계는 양수로 남는다.](/assets/learning/quantum-representation-research-boundary-history-dynamics.ko.svg)
+
+표는 정확하다. 곡선은 더 큰 유한 행렬을 무한 이론으로 간주하는 대신 해석적 oscillator와 독립 유한 전개를 비교한다. 독립 동역학 예제이며 기존 reader는 정적 연산자·상태 비교를 유지한다. 새 시간 전개·검증 적분 제어를 추가하지 않았다.
+
+#### 연구 확인 1: 잘못된 귀환 시점의 빈 경계
+
+tau*=2pi/sqrt(5)에서 유한 cutoff1 밀도는 vacuum이지만 원래 평균 점유는0이 아닌4sin²(pi/sqrt(5))다. 유한 끝점 top 확률0에서 양의 tail과 큰 상태 거리를 추론할 수 없다. 과거의 바깥 방향 작용이 중요하다.
+
+#### 연구 확인 2: drive 없이 보존한 초기 상태
+
+f=0이면 number Hamiltonian이 모든 점유 부분공간을 보존해 잔차가0이다. 보존한 초기 벡터의 전체·유한 전개는 정확히 같다. 다른 초기 상태에서 버린 진폭까지 복원되지는 않으므로 초기 근사 오류는 별도로 세어야 한다.
+
+#### 연구 확인 3: 같은 관측량과 유효한 envelope
+
+유계 projector에는 trace-distance 추정을 사용할 수 있다. 무한 number의 전역 노름에 유한 cutoff C를 넣을 수는 없다. 마찬가지로 top 확률의 표본0 하나로 주변 구간 전체의 상부 envelope를0으로 정당화하지 못한다. 관측량과 구간 근거를 모두 명시한 뒤 오류 상계를 발행하자.
+
 ## 16. 경계와 상태를 구별하는 여덟 문제
 
 **1. Ladder와 trace.** C=2에서 a_C†a_C·a_Ca_C†·교환자의 대각을 구하고 trace를 비교하라.

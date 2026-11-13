@@ -195,6 +195,127 @@ For a three-qubit product state carried on bonds4, the active-entry count is8+32
 
 A well-ordered norm contraction with dense matrix multiplication has familiar polynomial costs in n,d,D. The current reference-friendly implementation also reports dense summand slots for its chosen loops. Those slots are not measured runtime, minimal operations or bit complexity. Exact rational numerators can grow. Asking the reader to display every dense amplitude necessarily asks for exponentially many outputs regardless of how efficiently a single norm was contracted.
 
+## Research extension: transfer spectra, correlation length and gauge conditioning
+
+### Build an exactly normalized bond-two family
+
+Choose a physical bit at each site and use the following nonnegative matrices and open boundaries:
+
+$$
+0\le p\le1,\quad T=\begin{pmatrix}p&1-p\\1-p&p\end{pmatrix},\quad
+ A^0=\begin{pmatrix}\sqrt p&\sqrt{1-p}\\0&0\end{pmatrix},\quad
+ A^1=\begin{pmatrix}0&0\\\sqrt{1-p}&\sqrt p\end{pmatrix},\quad
+ L=(1,1)/\sqrt2,\quad R=\frac{(1,1)^{\mathsf T}}{\sqrt p+\sqrt{1-p}}.
+$$
+
+Each A has only one nonzero row. Multiplying a physical string fixes that row path, so for N sites:
+
+$$
+\psi_{s_1\cdots s_N}=L A^{s_1}\cdots A^{s_N}R
+ =\frac1{\sqrt2}\prod_{j=1}^{N-1}\sqrt{T_{s_j,s_{j+1}}},\qquad
+ |\psi_{s_1\cdots s_N}|^2=\frac12\prod_{j=1}^{N-1}T_{s_j,s_{j+1}},\quad\|\psi\|^2=1.
+$$
+
+Summing over the last bit repeatedly uses the row sums of T and proves normalization. The Z-basis probabilities equal those of a stationary two-state Markov chain. The quantum state is their coherent square-root superposition, not the diagonal classical mixture. Other measurement bases can distinguish these objects.
+
+### A virtual transfer map explains a physical correlation
+
+Define the right-to-left transfer map in the convention below. Its fixed matrix I, fixed dual functional ell and spectrum can all be checked by multiplying two-by-two matrices:
+
+$$
+\mathcal E(X)=\sum_s A^sX(A^s)^\dagger,\quad
+ \mathcal E(I)=I,\quad\mathcal E(Z)=\lambda Z,\quad\lambda=2p-1,\quad
+ \operatorname{spec}\mathcal E=\{1,\lambda,0,0\},\quad
+ \ell=I/2+\sqrt{p(1-p)}X,\quad\mathcal E^\dagger(\ell)=\ell,\quad\operatorname{Tr}\ell=1.
+$$
+
+Here X and Z in the transfer formulas are virtual Pauli matrices. Ell is a virtual trace functional, not automatically the reduced density of a physical site. With the specified finite boundaries, contracting an unmeasured boundary site reaches these stationary environments. Alternatively the finite Z correlations follow directly from the Markov probability law.
+
+Insert the physical Z by subtracting the two Kraus-like terms. The resulting connected correlation for separation r>=1, wherever both sites exist, is:
+
+$$
+\mathcal E_Z(X)=A^0X(A^0)^\dagger-A^1X(A^1)^\dagger,\quad
+ \mathcal E_Z(I)=Z,\quad\mathcal E_Z(Z)=\lambda I,\qquad
+ \langle Z_i\rangle=0,\quad C_{ZZ}(r)=\lambda^r,\quad
+ \xi=-\frac1{\ln|\lambda|}\quad(0<|\lambda|<1).
+$$
+
+The first insertion produces virtual Z, propagation multiplies it by lambda for each step, and the second insertion returns lambda I. The zero local means make the raw and connected ZZ correlations equal. Negative lambda gives alternating signs, while its absolute value controls the envelope. Distances and xi are measured in lattice spacings, not physical time. These transfer ideas are discussed in [Schollwöck, §4.2.2](https://arxiv.org/pdf/1008.3477); this particular family and its finite-boundary proof are developed here.
+
+A fixed bond capacity does not impose a uniform upper bound on this correlation length:
+
+$$
+p=1-\varepsilon,\quad\varepsilon\downarrow0:\qquad
+ \lambda=1-2\varepsilon,\quad\xi\sim\frac1{2\varepsilon},\quad
+ D=2\ \text{throughout}.
+$$
+
+The limiting p=1 state has long-range ZZ order with bond dimension2. At p=1/2 correlations vanish beyond the same site, so the logarithmic expression with lambda=0 should be read via that direct statement, not a division by a guessed small eigenvalue.
+
+### Preserve the physical state when changing virtual coordinates
+
+Use an invertible complex G at every virtual bond, including the boundary transformations. For column-vectorized virtual matrices:
+
+$$
+A'^s=G^{-1}A^sG,\quad L'=LG,\quad R'=G^{-1}R,\quad
+ S=\overline G\otimes G,\quad E'=S^{-1}ES,\quad\kappa_2(S)=\kappa_2(G)^2,\qquad
+ \|E'^r-P'\|_2\le\kappa_2(S)\|E^r-P\|_2,\quad
+ P'=S^{-1}PS\quad(0<p<1).
+$$
+
+E is the matrix of the transfer superoperator and P is its stationary spectral projector in the interior0<p<1. Similarity preserves its eigenvalues, but a nonunitary gauge can enlarge norms and numerical prefactors. The condition-number factor follows by submultiplicativity; it is a bound, not necessarily attained. Gauge-invariant physical contractions transform their boundaries and operator insertions consistently. An enlarged raw transfer norm does not by itself mean a larger physical correlation.
+
+The two endpoints of the simplest comparison illustrate different rank usage:
+
+$$
+p=1:\quad\psi=(|0\cdots0\rangle+|1\cdots1\rangle)/\sqrt2,\quad C_{ZZ}(r)=1;\qquad
+ p=\tfrac12:\quad\psi=|+\rangle^{\otimes N},\quad C_{ZZ}(r)=0\quad(r\ge1).
+$$
+
+At p=1/2 the allocated bond2 is redundant for a product state; a minimal bond1 representation exists. At p=1 the GHZ correlations do not decay and there are multiple peripheral fixed directions. A generic statement that every finite-D MPS must have finite correlation length would fail on this example. No parent Hamiltonian or its excitation gap has been specified here.
+
+Choose N>=5 for the distance-four column; this analytic family does not expand the reader's size limit.
+
+
+```python
+from fractions import Fraction as Q
+for p in [Q(1, 4), Q(1, 2), Q(3, 4), Q(1)]:
+    second = 2*p-1
+    print(p, second, second, second**2, second**4)
+```
+
+| parameter p | lambda | CZZ(1) | CZZ(2) | CZZ(4) |
+|---|---|---|---|---|
+| 1/4 | -1/2 | -1/2 | 1/4 | 1/16 |
+| 1/2 | 0 | 0 | 0 | 0 |
+| 3/4 | 1/2 | 1/2 | 1/4 | 1/16 |
+| 1 | 1 | 1 | 1 | 1 |
+
+For a more general transfer operator, diagonalizability is another assumption to check. A size-two Jordan block provides the elementary warning:
+
+$$
+J_\lambda=\lambda I+N,\quad N^2=0,\quad\lambda\ne0:\qquad
+ J_\lambda^r=\lambda^rI+r\lambda^{r-1}N\quad(r\ge1).
+$$
+
+Its powers carry a polynomial prefactor as well as the exponential. This is a conditional linear-algebra comparison; our explicit family above does not need such a prefactor. In addition, an observable may have zero overlap with a subleading mode. A fitted decay length therefore requires specifying the transfer spectrum, insertions, boundaries and asymptotic regime, rather than reading one matrix eigenvalue as every possible observable's decay.
+
+![A bond-two family has alternating, decaying or long-range connected ZZ correlations; its correlation length grows without increasing the allocated bond dimension.](/assets/learning/quantum-representation-research-transfer-correlation-gauge.en.svg)
+
+The table is exact. These are analytic transfer-family and conditioning examples, not an implementation of an infinite-MPS solver or a canonicalization/truncation sweep. The existing finite reader keeps its general complex rational tensors, environments and scale/shear comparison.
+
+#### Research check 1: the sign survives odd distances
+
+At p=1/4, lambda=−1/2 and xi=1/ln2. The correlations at distances1,2,4 are−1/2,1/4,1/16. At p=3/4 they have the same magnitudes but opposite signs at odd distance. Fitting only even separations loses that information.
+
+#### Research check 2: long range with a small bond
+
+At p=1, only all-zero and all-one strings survive. For N>=2, one-site Z means vanish but every distinct pair has ZZ=1. Bond dimension2 is enough for this nondecaying correlation. Its transfer spectrum has an additional eigenvalue1, so the isolated-leading-mode exponential argument does not apply.
+
+#### Research check 3: a large coordinate prefactor
+
+For G=diag(g,1) with g>0, kappa2(G)=max(g,1/g), and the transfer similarity can have condition number kappa2(G)². The physical state and exact ZZ table stay fixed when both boundaries transform. A penalty on virtual matrices or an intermediate norm can change without changing the physical target.
+
 ## 15. Eight exercises with worked explanations
 
 **1. Trace a path.** Evaluate the raw amplitudes000,111 and101 for the displayed GHZ tensors, and obtain the squared norm.

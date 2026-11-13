@@ -195,6 +195,127 @@ $$
 
 행렬 곱 순서를 잘 잡은 norm 수축은 n,d,D에 대해 알려진 다항 비용을 가진다. 현재 기준 친화적인 구현은 선택한 반복문의 dense summand slot 수도 별도로 표시한다. 이 수는 실제 실행 시간·최소 연산 수·bit complexity가 아니다. 정확 유리수의 분자와 분모도 커질 수 있다. 모든 진폭을 화면에 출력하라는 요구에는 그 자체로 지수적인 출력 개수가 필요하다. 한 노름의 효율적인 수축과 전체 벡터 출력의 비용을 섞지 않는다.
 
+## 연구 확장: transfer 스펙트럼·상관 길이·gauge 조건
+
+### 정확히 정규화한 bond2 가족 만들기
+
+각 site의 물리 bit와 다음 비음수 행렬·열린 경계를 택하자.
+
+$$
+0\le p\le1,\quad T=\begin{pmatrix}p&1-p\\1-p&p\end{pmatrix},\quad
+ A^0=\begin{pmatrix}\sqrt p&\sqrt{1-p}\\0&0\end{pmatrix},\quad
+ A^1=\begin{pmatrix}0&0\\\sqrt{1-p}&\sqrt p\end{pmatrix},\quad
+ L=(1,1)/\sqrt2,\quad R=\frac{(1,1)^{\mathsf T}}{\sqrt p+\sqrt{1-p}}.
+$$
+
+각 A는 영이 아닌 행이 하나다. 물리 문자열을 곱하면 그 행 경로가 정해져 N site에 대해 다음과 같다.
+
+$$
+\psi_{s_1\cdots s_N}=L A^{s_1}\cdots A^{s_N}R
+ =\frac1{\sqrt2}\prod_{j=1}^{N-1}\sqrt{T_{s_j,s_{j+1}}},\qquad
+ |\psi_{s_1\cdots s_N}|^2=\frac12\prod_{j=1}^{N-1}T_{s_j,s_{j+1}},\quad\|\psi\|^2=1.
+$$
+
+마지막 bit부터 합하면 T의 행 합을 반복해 정규화를 증명한다. Z 기저 확률은 정류 두 상태 Markov chain과 같지만 양자 상태는 그 확률의 coherent 제곱근 중첩이며 대각 고전 혼합이 아니다. 다른 측정 기저는 둘을 구별할 수 있다.
+
+### 가상 transfer map으로 물리 상관 설명하기
+
+아래 규약의 오른쪽→왼쪽 transfer map을 정의한다. 고정 행렬 I·고정 쌍대 함수 ell·스펙트럼은 모두 두-by-두 곱으로 확인할 수 있다.
+
+$$
+\mathcal E(X)=\sum_s A^sX(A^s)^\dagger,\quad
+ \mathcal E(I)=I,\quad\mathcal E(Z)=\lambda Z,\quad\lambda=2p-1,\quad
+ \operatorname{spec}\mathcal E=\{1,\lambda,0,0\},\quad
+ \ell=I/2+\sqrt{p(1-p)}X,\quad\mathcal E^\dagger(\ell)=\ell,\quad\operatorname{Tr}\ell=1.
+$$
+
+Transfer 식의 X·Z는 가상 Pauli 행렬이다. Ell은 가상 trace 함수이며 곧바로 물리 site의 축약 밀도가 아니다. 명시한 유한 경계에서는 관측하지 않는 경계 site 하나를 수축하면 이 정류 환경에 도달한다. 유한 Z 상관은 Markov 확률 법칙에서도 직접 얻는다.
+
+두 Kraus형 항의 차이로 물리 Z를 삽입한다. 두 site가 존재하는 거리 r>=1의 연결 상관은 다음과 같다.
+
+$$
+\mathcal E_Z(X)=A^0X(A^0)^\dagger-A^1X(A^1)^\dagger,\quad
+ \mathcal E_Z(I)=Z,\quad\mathcal E_Z(Z)=\lambda I,\qquad
+ \langle Z_i\rangle=0,\quad C_{ZZ}(r)=\lambda^r,\quad
+ \xi=-\frac1{\ln|\lambda|}\quad(0<|\lambda|<1).
+$$
+
+첫 삽입이 가상 Z를 만들고 전파 단계마다 lambda를 곱하며 두 번째 삽입이 lambda I로 돌아간다. 국소 평균이0이라 원래·연결 ZZ 상관이 같다. 음수 lambda는 부호 교대를 만들고 절댓값은 envelope를 정한다. 거리·xi의 단위는 물리 시간이 아닌 격자 간격이다. Transfer 관점은 [Schollwöck §4.2.2](https://arxiv.org/pdf/1008.3477)를 참고하며 이 가족과 유한 경계의 증명은 여기서 직접 구성했다.
+
+고정 bond capacity가 상관 길이의 균일한 상한을 정하지는 않는다.
+
+$$
+p=1-\varepsilon,\quad\varepsilon\downarrow0:\qquad
+ \lambda=1-2\varepsilon,\quad\xi\sim\frac1{2\varepsilon},\quad
+ D=2\ \text{throughout}.
+$$
+
+p=1 극한은 bond2로 장거리 ZZ 질서를 갖는다. p=1/2에서는 서로 다른 site 상관이 사라지므로 lambda=0의 로그 식은 그 직접 결과로 읽고 임의 작은 고유값으로 나누지 않는다.
+
+### 가상 좌표 변경에서도 물리 상태 보존하기
+
+경계까지 포함해 각 virtual bond에 가역 복소 G를 적용한다. 가상 행렬을 열 방향 vectorization하면 다음과 같다.
+
+$$
+A'^s=G^{-1}A^sG,\quad L'=LG,\quad R'=G^{-1}R,\quad
+ S=\overline G\otimes G,\quad E'=S^{-1}ES,\quad\kappa_2(S)=\kappa_2(G)^2,\qquad
+ \|E'^r-P'\|_2\le\kappa_2(S)\|E^r-P\|_2,\quad
+ P'=S^{-1}PS\quad(0<p<1).
+$$
+
+E는 transfer superoperator의 행렬이고 P는0<p<1 내부의 정류 spectral projector다. Similarity는 고유값을 보존하지만 비unitary gauge는 노름·수치 prefactor를 키울 수 있다. 조건수 인자는 노름의 곱 상계로 얻으며 반드시 달성되는 값은 아니다. 물리적 gauge 불변 수축은 경계·연산자 삽입까지 일관되게 변환한다. Raw transfer 노름 증가가 곧 물리 상관 증가를 뜻하지는 않는다.
+
+가장 간단한 비교의 두 경우는 실제 rank 사용도 다르다.
+
+$$
+p=1:\quad\psi=(|0\cdots0\rangle+|1\cdots1\rangle)/\sqrt2,\quad C_{ZZ}(r)=1;\qquad
+ p=\tfrac12:\quad\psi=|+\rangle^{\otimes N},\quad C_{ZZ}(r)=0\quad(r\ge1).
+$$
+
+p=1/2에서는 곱상태에 할당한 bond2가 중복이며 최소 bond1 표현이 가능하다. p=1에서는 GHZ 상관이 감쇠하지 않고 주변 스펙트럼의 고정 방향이 여러 개다. 모든 유한-D MPS의 상관 길이가 유한하다는 일반 문장은 여기서 실패한다. 이 절은 parent Hamiltonian이나 그 excitation gap을 명시하지 않았다.
+
+거리4 열은 N>=5를 택한다. 이 해석적 가족이 reader의 크기 제한을 늘리는 것은 아니다.
+
+
+```python
+from fractions import Fraction as Q
+for p in [Q(1, 4), Q(1, 2), Q(3, 4), Q(1)]:
+    second = 2*p-1
+    print(p, second, second, second**2, second**4)
+```
+
+| 파라미터 p | lambda | CZZ(1) | CZZ(2) | CZZ(4) |
+|---|---|---|---|---|
+| 1/4 | -1/2 | -1/2 | 1/4 | 1/16 |
+| 1/2 | 0 | 0 | 0 | 0 |
+| 3/4 | 1/2 | 1/2 | 1/4 | 1/16 |
+| 1 | 1 | 1 | 1 | 1 |
+
+더 일반적인 transfer에서는 diagonalizability도 확인해야 한다. 크기2 Jordan block이 기본적인 주의점을 준다.
+
+$$
+J_\lambda=\lambda I+N,\quad N^2=0,\quad\lambda\ne0:\qquad
+ J_\lambda^r=\lambda^rI+r\lambda^{r-1}N\quad(r\ge1).
+$$
+
+지수 외에 다항 prefactor가 붙는다. 조건부 선형대수 비교이며 앞의 명시적 가족에는 이 prefactor가 필요하지 않다. 또한 관측량이 특정 subleading mode와 겹치지 않을 수 있다. 따라서 decay length를 맞출 때는 한 고유값을 모든 관측량의 감쇠로 읽지 말고 스펙트럼·삽입·경계·점근 영역을 명시해야 한다.
+
+![Bond2 가족에서 연결 ZZ 상관은 부호 교대·감쇠·장거리 값을 보일 수 있다. 할당 bond dimension을 늘리지 않아도 상관 길이는 커진다.](/assets/learning/quantum-representation-research-transfer-correlation-gauge.ko.svg)
+
+표는 정확하다. 해석적인 transfer 가족·조건 예제이며 infinite-MPS solver나 canonicalization/truncation sweep을 구현한 것이 아니다. 기존 유한 reader는 일반 복소 유리수 tensor·환경·scale/shear 비교를 유지한다.
+
+#### 연구 확인 1: 홀수 거리에서 부호가 남는다
+
+p=1/4이면 lambda=−1/2·xi=1/ln2이고 거리1,2,4 상관은 −1/2,1/4,1/16이다. p=3/4에서는 크기가 같지만 홀수 거리의 부호가 반대다. 짝수 거리만 맞추면 이 정보를 잃는다.
+
+#### 연구 확인 2: 작은 bond로 장거리 상관
+
+p=1에서는 전부0·전부1인 문자열만 남는다. N>=2의 국소 Z 평균은0이지만 서로 다른 모든 쌍의 ZZ는1이다. Bond2로 감쇠 없는 상관을 표현한다. Transfer에는 고유값1이 하나 더 있어 고립된 leading mode의 지수 논증을 적용할 수 없다.
+
+#### 연구 확인 3: 큰 좌표 prefactor
+
+G=diag(g,1)·g>0이면 kappa2(G)=max(g,1/g)이며 transfer similarity의 조건수는 그 제곱일 수 있다. 두 경계를 변환하면 물리 상태·정확 ZZ 표는 같다. 가상 행렬 penalty나 중간 노름이 바뀌어도 물리 target이 바뀌지 않을 수 있다.
+
 ## 15. 여덟 문제와 해설
 
 **1. 경로 추적.** 제시한 GHZ 텐서에서000,111,101의 원시 진폭과 전체 노름 제곱을 구하라.

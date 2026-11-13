@@ -250,6 +250,133 @@ For an unbounded observable such as number, this cannot simply be treated as a g
 
 Within the specified coherent family, knowledge of the distribution lets us calculate the mean-number difference as mu p_top. This motivates recording norm loss, number moments, energy, quadratures and operator-projection error separately in AI experiments. Scores from different physical models, state families, observable sets or cutoff rules are not immediately comparable.
 
+## Research extension: boundary history controls a dynamical cutoff error
+
+### Compare two evolutions of the same initial state
+
+A static Poisson tail and an error accumulated during evolution are different quantities. Let H be self-adjoint and let the embedded finite trajectory stay in its operator domain, with an integrable residual. In the driven-oscillator example below every finite Fock vector has this property. Start with a normalized state entirely inside the cutoff:
+
+$$
+P=\Pi_C,\quad H_C=PHP\big|_{\operatorname{Ran}P},\quad
+ \psi_C(t)=e^{-iH_Ct/\hbar}\psi_0,\quad P\psi_0=\psi_0,\quad\|\psi_0\|=1,\qquad
+ r_C(t)=(I-P)HP\psi_C(t),\quad
+ e^{-iHt/\hbar}\psi_0-\psi_C(t)
+ =-\frac i\hbar\int_0^t e^{-iH(t-s)/\hbar}r_C(s)\,ds.
+$$
+
+Differentiate the finite trajectory, subtract its equation from the full one and integrate with the full unitary propagator. This Duhamel identity retains paths that leave the subspace. Unitarity and the triangle inequality bound the error by the time integral of the residual norm. No finite matrix is asserted to satisfy the infinite CCR.
+
+For a linearly driven oscillator, only one omitted creation step crosses this cutoff:
+
+$$
+H=\hbar\omega\hat n+fa^\dagger+f^*a,\quad\omega>0,\qquad
+ r_C(t)=f\sqrt{C+1}\langle C|\psi_C(t)\rangle|C+1\rangle,\quad
+ B_C(t)=\frac{|f|\sqrt{C+1}}\hbar\int_0^t\sqrt{p_C(s)}\,ds,\quad
+ \|e^{-iHt/\hbar}\psi_0-\psi_C(t)\|\le B_C(t),\quad
+ p_C(s)=|\langle C|\psi_C(s)\rangle|^2.
+$$
+
+The top probability here belongs to the normalized finite dynamical state. It is not the original coherent state's tail or the top probability of a separately renormalized static projection. The factor |f| has energy units, so division by hbar and integration over time gives a dimensionless bound. The role of dynamical rather than solely static truncation is also central to [Tong and collaborators' work](https://arxiv.org/pdf/2110.06942); the simple boundary-residual estimate here is derived explicitly for this model.
+
+If the original initial state is also approximated, unitarity keeps that initial vector error unchanged. For two normalized pure trajectories and the same bounded observable:
+
+$$
+d_0=\|\psi_{\rm full}(0)-\psi_C(0)\|,\quad
+ D_{\rm tr}(t)\le\min\{1,d_0+B_C(t)\},\qquad
+ |\langle A\rangle_{\rm full}-\langle A\rangle_C|
+ \le2\|A\|\min\{1,d_0+B_C(t)\}\quad(A\text{ bounded}).
+$$
+
+For a normalized initial projection with retained weight S, d0 is sqrt(2(1−sqrt(S))) as derived earlier. The finite evolution error is an additional term. The trace-distance cap does not make an unbounded observable such as number acquire a finite operator norm. State error and operator truncation remain separate questions.
+
+### A finite return can hide a large physical error
+
+Complete the square in H, or solve the coherent-amplitude equation, to obtain the exact vacuum trajectory:
+
+$$
+\psi_{\rm full}(0)=|0\rangle:\quad
+ \alpha(t)=-\frac f{\hbar\omega}(1-e^{-i\omega t}),\quad
+ \mu(t)=\frac{4|f|^2}{\hbar^2\omega^2}\sin^2(\omega t/2),\quad
+ \psi_{\rm full}(t)=e^{i\phi(t)}|\alpha(t)\rangle,\quad
+ \phi(t)=\frac{|f|^2}{\hbar^2\omega^2}(\omega t-\sin\omega t).
+$$
+
+The global phase matters for the Duhamel vector difference, although trace distance and occupation probabilities ignore it. Set the drive equal to the oscillator energy scale and keep only occupations0,1:
+
+$$
+f=\hbar\omega,\quad\tau=\omega t,\quad C=1:\qquad
+ \frac{H_1}{\hbar\omega}=\begin{pmatrix}0&1\\1&1\end{pmatrix},\quad
+ p_1(\tau)=\frac45\sin^2(\sqrt5\tau/2),\quad
+ B_1(\tau)=\frac{4\sqrt2}{5}[1-\cos(\sqrt5\tau/2)]
+ \quad(0\le\tau\le2\pi/\sqrt5).
+$$
+
+Diagonalizing the two-by-two matrix gives p1. On the displayed time interval its sine has a fixed sign; integrating sqrt(p1) gives B1. At its first exact finite return:
+
+$$
+\tau_*=2\pi/\sqrt5:\quad p_1(\tau_*)=0,\quad
+ \rho_1(\tau_*)=|0\rangle\langle0|,\quad
+ \mu_{\rm full}(\tau_*)=4\sin^2(\pi/\sqrt5)>0,\qquad
+ D_{\rm tr}(\rho_{\rm full},\rho_1)=\sqrt{1-e^{-\mu_{\rm full}}},\quad
+ B_1(\tau_*)=8\sqrt2/5.
+$$
+
+The finite density has returned to vacuum and its top probability is zero. The full state is still a nonvacuum coherent state, with trace distance close to one from that vacuum. The accumulated bound has not vanished; it exceeds one and is uninformative after the trace-distance cap. This is an explicit failure of an endpoint-only boundary diagnostic, not a claim that every integrated bound is tight.
+
+### Numerical samples need an interval argument before they certify an integral
+
+A valid upper envelope on each whole time interval gives a conservative quadrature rule:
+
+$$
+p_C(s)\le u_j\quad\text{for every }s\in[t_j,t_{j+1}]:\qquad
+ B_C(T)\le\frac{|f|\sqrt{C+1}}\hbar\sum_j(t_{j+1}-t_j)\sqrt{u_j}.
+$$
+
+A maximum over a few sampled values is not automatically such an envelope. One needs analytic bounds, a justified derivative enclosure or another verified integration argument. The trivial envelope pC≤1 is always available but can be loose. A smooth plotted curve and a converged-looking trapezoid sum alone do not establish a directed error certificate.
+
+The first-half-cycle values can be checked without floating arithmetic by a rational angle parametrization:
+
+$$
+v=\tan(\sqrt5\tau/4),\quad\tau=\frac4{\sqrt5}\arctan v,\quad0\le v\le1,\qquad
+ \cos(\sqrt5\tau/2)=\frac{1-v^2}{1+v^2},\quad
+ \sin(\sqrt5\tau/2)=\frac{2v}{1+v^2},\quad
+ \frac{B_1}{\sqrt2}=\frac{8v^2}{5(1+v^2)}.
+$$
+
+
+```python
+from fractions import Fraction as Q
+for v in [Q(0), Q(1, 4), Q(1, 2), Q(1)]:
+    cosine, sine = (1-v*v)/(1+v*v), 2*v/(1+v*v)
+    top = Q(4, 5)*sine*sine
+    bound_over_sqrt2 = Q(4, 5)*(1-cosine)
+    assert cosine*cosine+sine*sine == 1
+    print(v, cosine, sine, top, bound_over_sqrt2)
+```
+
+| v | cosine | sine | finite top probability | B1 divided by sqrt(2) |
+|---|---|---|---|---|
+| 0 | 1 | 0 | 0 | 0 |
+| 1/4 | 15/17 | 8/17 | 256/1445 | 8/85 |
+| 1/2 | 3/5 | 4/5 | 64/125 | 8/25 |
+| 1 | 0 | 1 | 4/5 | 4/5 |
+
+![Actual coherent-versus-finite trace distances are compared with cutoff size; the cutoff-one top population returns to zero while its accumulated boundary-error bound stays positive.](/assets/learning/quantum-representation-research-boundary-history-dynamics.en.svg)
+
+The table is exact. Curves compare the analytic oscillator with independently evolved finite matrices, rather than treating a larger finite matrix as the infinite theory. These are standalone dynamics examples. The existing reader remains a static operator/state comparison and has no new time-evolution or validated-integration control.
+
+#### Research check 1: an empty boundary at the wrong return time
+
+At tau*=2pi/sqrt(5), the finite cutoff-one density is vacuum. The original mean occupation is4sin²(pi/sqrt(5)), not zero. Its positive tail and large state distance cannot be inferred from the finite endpoint top probability0. Past excursions matter.
+
+#### Research check 2: no drive and a retained initial state
+
+With f=0, the number Hamiltonian preserves every number subspace and the residual vanishes. The full and finite trajectories of a retained initial vector agree exactly. This does not restore amplitudes discarded from a different initial state; their initial approximation error must still be accounted for.
+
+#### Research check 3: the same observable and a valid envelope
+
+A bounded projector can use the trace-distance estimate. Infinite number cannot use the finite cutoff value C as its global norm. Likewise, a sampled zero of the top population cannot justify a zero upper envelope over its surrounding interval. Name both the observable and the interval evidence before issuing an error bound.
+
 ## 16. Eight problems separating boundaries and states
 
 **1. Ladder and trace.** At C=2, find the diagonals of a_C†a_C, a_Ca_C† and their commutator. Compare traces.
