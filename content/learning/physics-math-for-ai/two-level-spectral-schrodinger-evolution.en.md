@@ -99,13 +99,13 @@ For H=Z, initial +X, ℏ=1 and T=1, one step gives squared norm 2. Two steps giv
 
 Euler growth is a discretization error, not physical gain, dissipation or a new Born distribution. Even a common energy shift can change Euler's numerical error while leaving the exact ray dynamics unchanged. Squared unnormalized components are not a probability distribution when their sum is greater than 1.
 
-## 9. A guided reading of the planned experiment
+## 9. A guided reading of the registered experiment
 
 First choose +X under Z and change the final physical time. Predict which bars stay constant before comparing amplitudes and fidelity. Then choose the first energy eigenstate: the complex representative moves, but the ray and every measurement distribution remain fixed. Finally add a scalar center and check which quantities shift and which remain unchanged.
 
 For the numerical comparison, hold H and final time fixed while changing only the Euler step count. The sampling grid merely selects times to display; it is not an extra sequence of measurements. The Euler count must be divisible by the sampling count so every displayed Euler value belongs to the same integration grid. Comparing different step sizes at different final times would confound two effects.
 
-The future Interactive Book screen should label time, energy, phase, norm and probability separately. Motion is a way to inspect computed samples, not evidence that a state follows a classical path through two spatial dots. Pause and single-step controls should leave the same numerical result available without animation.
+The Interactive Book screen labels time, energy, phase, norm and probability separately. Motion is a way to inspect computed samples, not evidence that a state follows a classical path through two spatial dots. Pause and single-step controls leave the same numerical result available without animation.
 
 ## 10. What the arithmetic can certify
 
@@ -114,6 +114,119 @@ The input uses eighteen bounded integer fields for raw coordinates, rational par
 Trigonometric enclosures use reduced-angle Taylor series with an explicit remainder and repeated doubling. A Number drawing coordinate is not the enclosure itself. A residual interval containing zero supports consistency with an identity; it is not the same as a structurally exact zero. A tiny unresolved interval can retain null as its public value. No post-evolution norm correction or invented epsilon turns that uncertainty into certainty.
 
 Independent symbolic spectral data, high-precision general matrix exponentials and separately integrated ODEs check this controlled family. Numerical ODE agreement is a comparison with a stated tolerance, not a theorem about its global integration error. Large Euler growth remains a magnitude or exact fraction rather than being relabelled a probability.
+
+## Research extension: ray speed, orthogonality and actual repeated measurements
+
+### The energy spread sets a geometric speed
+
+A rotating representative is not enough to measure physical change: an energy shift changes its overall phase. Apply the perpendicular projection used in the ray chapter to the Schrödinger derivative:
+
+$$
+v=(I-|\psi\rangle\langle\psi|)\dot\psi=-\frac i\hbar(H-\langle H\rangle)\psi,
+ \qquad \|v\|^2=\frac{\sigma_H^2}{\hbar^2}.
+$$
+
+Here σ_H is the energy standard deviation, not the mean energy. It has energy units, so σ_H/ℏ has inverse-time units. The neighboring-fidelity expansion is:
+
+$$
+F(t,t+dt)=1-\frac{\sigma_H^2(t)}{\hbar^2}dt^2+o(dt^2),\qquad
+ \sigma_{H+cI}=\sigma_H.
+$$
+
+For differentiable finite evolution the ray angle from the initial preparation cannot exceed the path length:
+
+$$
+d(t)=\arccos|\langle\psi(0)|\psi(t)\rangle|\le
+ \int_0^t\frac{\sigma_H(s)}\hbar\,ds,\qquad 0\le d(t)\le\pi/2.
+$$
+
+One way to derive the inequality is to choose the instantaneous representative so its overlap with the initial state is real and nonnegative. Decompose the initial state into its component along the present state and an orthogonal unit direction. Cauchy–Schwarz bounds the derivative of that overlap by the perpendicular speed times the square root of one minus the squared overlap. Differentiating arccos cancels that square root. Integrate, using continuity at the endpoints where that intermediate expression is singular.
+
+Our angle convention is arccos of the overlap modulus, with orthogonal rays at π/2. The distance and speed in [Anandan and Aharonov's original geometric treatment](https://doi.org/10.1103/PhysRevLett.65.1697) are twice this normalization. A factor-of-two convention must change both together; it cannot change the physical time bound.
+
+### A lower time bound need not be attainable
+
+For a constant Hamiltonian, σ_H is conserved. Because cos² decreases on [0,π/2], the path-length result gives:
+
+$$
+F(0,t)\ge\cos^2(\sigma_Ht/\hbar)\quad
+ (0\le\sigma_Ht/\hbar\le\pi/2),\qquad
+ t_\perp\ge\frac{\pi\hbar}{2\sigma_H}\quad(\sigma_H>0).
+$$
+
+The fidelity bound is restricted to the stated interval; extending cos² periodically would create false later-time lower bounds. If σ_H=0, the ray is stationary and division by σ_H is unavailable. If σ_H>0, the orthogonality inequality is a necessary condition, not a guarantee that an orthogonal state will ever be reached.
+
+The chapter's exact two-level family shows the difference. With w the initial P weight:
+
+$$
+\langle\psi(0)|\psi(t)\rangle=e^{-iat/\hbar}
+ \bigl(we^{-ibt/\hbar}+(1-w)e^{ibt/\hbar}\bigr),\qquad w=\|P\psi(0)\|^2.
+$$
+
+Taking the squared modulus and using the conserved variance gives:
+
+$$
+F(0,t)=1-4w(1-w)\sin^2(bt/\hbar),\quad
+ \sigma_H=2|b|\sqrt{w(1-w)},\quad
+ F_{\min}=(2w-1)^2\quad(b\ne0).
+$$
+
+A balanced preparation follows a shortest arc until its first orthogonal point and saturates the bound. An unbalanced one never becomes orthogonal:
+
+$$
+w=\tfrac12,\ b\ne0:\quad t_\perp=\frac{\pi\hbar}{2|b|},\qquad
+ w\ne\tfrac12:\quad F(0,t)>0\ \text{for all }t\quad(b\ne0).
+$$
+
+For example w=1/4 gives minimum fidelity 1/4 even though its positive energy spread supplies a finite lower bound on a hypothetical orthogonality time. The inequality did not promise a reachable endpoint. Adding aI changes none of these ray statements.
+
+### Display samples do not perform measurements
+
+Now deliberately change the experiment. Start from +X under bZ, fix total time T and perform an ideal yes/no projection onto that same initial ray after each interval T/N. Keep only the history in which every answer is yes. Each successful projection restores the initial ray, so the conditional next-yes probability is the same each time:
+
+$$
+P_N=\left[\cos^2\!\left(\frac{bT}{N\hbar}\right)\right]^N\longrightarrow1,\qquad
+ \log P_N=-\frac{b^2T^2}{N\hbar^2}+O(N^{-3})\quad(N\to\infty).
+$$
+
+The logarithmic expansion holds for fixed finite bT/ℏ and sufficiently large N. It follows from log cos²x=−x²+O(x⁴). This is the ideal projective quantum Zeno limit. It assumes instantaneous, perfectly specified projections; it establishes no finite-bandwidth apparatus design or resource cost.
+
+The probability is for the entire all-yes history. It is not the state conditioned on success, which is already the initial ray, nor the probability distribution after discarding all measurement records. Without these projections the survival is cos²(bT/ℏ), independent of the number of plotted samples. [Preskill §2.1](https://www.preskill.caltech.edu/ph219/chap2_15.pdf) supplies the unitary and conditional-projection rules used in this direct calculation.
+
+For b=ℏ=T=1, run this standalone illustration. Values are rounded double-precision results, not the reader's directed interval certificates. No repeated-measurement control has been added to the existing unitary lab.
+
+```python
+from math import cos
+for n in [1, 2, 4, 16]:
+    step = 1/n  # b = hbar = T = 1
+    single = cos(step)**2
+    all_yes = single**n
+    print(n, f"{step:.6f}", f"{single:.6f}",
+          f"{all_yes:.6f}", f"{cos(1)**2:.6f}")
+```
+
+| N | step | single yes | all yes | unmeasured F |
+|---|---|---|---|---|
+| 1 | 1.000000 | 0.291927 | 0.291927 | 0.291927 |
+| 2 | 0.500000 | 0.770151 | 0.593133 | 0.291927 |
+| 4 | 0.250000 | 0.938791 | 0.776741 | 0.291927 |
+| 16 | 0.062500 | 0.996099 | 0.939375 | 0.291927 |
+
+![The two-level survival curve is compared with its geometric lower bound; a second panel distinguishes unmeasured survival from the all-yes probability of actual repeated projections.](/assets/learning/quantum-unitary-research-ray-speed-zeno.en.svg)
+
+The second panel changes the measurement protocol, rather than the display resolution. The first panel applies its lower bound only before its allowed angle reaches π/2.
+
+#### Research check 1: a large mean with no motion
+
+An energy eigenstate under H=100I+Z can have mean energy101 and zero standard deviation. Its ray speed is zero. The mean energy alone does not set this geometric speed, and subtracting 100I does not change the ray.
+
+#### Research check 2: a finite bound without orthogonality
+
+Take w=1/4 and |b|=ℏ=1. The spread is √3/2, but minimum fidelity is 1/4. The orthogonality bound is a necessary inequality for endpoints that exist, not a certificate of controllability or reachability.
+
+#### Research check 3: increase samples but do not measure
+
+Plot N=1 or N=16 samples of the unmeasured experiment at the same final T=1. The endpoint fidelity stays cos²1. Obtaining the rising all-yes values requires the additional projectors and records; animation frames alone do not insert them.
 
 ## 11. Exercises with explanations
 

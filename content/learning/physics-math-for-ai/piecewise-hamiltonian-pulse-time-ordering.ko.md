@@ -132,6 +132,145 @@ HA가 상수인 구간에서는 HA 기대값이 보존된다. HB로 바뀐 뒤�
 
 독립 SymPy 행렬과 mpmath 일반 행렬 exponential로 복소 입력·비직교 축·상쇄·큰 위상·아주 작은 비영 작용을 대조한다. 별도 ODE 검산은 각 상수 구간을 적분하고 전환점을 넘어 이어간다. 그 허용 오차는 수치 대조 기준이며 ODE 적분기 자체의 인증 구간 정리가 아니다. 경계 연속성·비음 경과 시간·역전파는 별도로 확인한다.
 
+## 연구 확장: 총 노출량을 고정한 반복 분할
+
+### 일정을 정련하기 전에 물리적 예산을 고정하기
+
+앞의 국소 교환자 전개는 유한 단계 오차 인증을 주지 않았다. 이제 원래 적분 작용 G_A·G_B를 각각 n조각으로 나누되 총 노출량은 고정한다.
+
+$$
+X=-iG_A,\quad Y=-iG_B,\quad h=1/n,\quad V=e^{X+Y},\quad
+ L_n=(e^{hY}e^{hX})^n,\quad
+ S_n=(e^{hX/2}e^{hY}e^{hX/2})^n.
+$$
+
+X·Y는 anti-Hermitian 행렬이다. L_n은 작은 A→B 작용을 반복하고 S_n은 대칭 A절반/B/A절반 주기를 사용한다. V는 원래 가중 평균의 끝점이다. 원래 pulse 두 개를 통째로 n번 수행하는 실험이 아니다.
+
+H_A=X_Pauli, H_B=Z, ℏ=1, 원래 지속시간이 각각1인 예제에서 총 물리 시간은 모든 n에서2다. Lie 한 주기는 각 Hamiltonian 아래1/n씩, 대칭 한 주기는1/(2n),1/n,1/(2n)씩 진행한다. 평균 Hamiltonian은 (X_Pauli+Z)/2이고 물리 시간2 동안 작용한다. 그 합을 시간2 동안 작용시키면 의도한 작용을 두 배로 만들게 된다. 유도식의 X는 Hermitian Pauli 행렬이 아니라 −iG_A다.
+
+### Unitarity로 유한 Lie 경계를 유도하기
+
+보간 행렬 f(s)로 한 주기 순서 곱과 한 주기 exponential을 연결한다. 직접 미분하자.
+
+$$
+f(s)=e^{(h-s)(X+Y)}e^{sY}e^{sX},\qquad
+ f'(s)=e^{(h-s)(X+Y)}[e^{sY},X]e^{sX},\quad
+ [e^{sY},X]=\int_0^s e^{(s-u)Y}[Y,X]e^{uY}du.
+$$
+
+여기의 모든 exponential 인자는 unitary다. 적분 안에서 연산자 노름을 취하면 교환자를 s와 생성자 교환자 노름의 곱으로 제한할 수 있다. f′를0부터 h까지 적분하면 다음과 같다.
+
+$$
+\|e^{hY}e^{hX}-e^{h(X+Y)}\|_{\rm op}
+ \le\int_0^h s\|[Y,X]\|_{\rm op}ds
+ =\tfrac12h^2\|[G_A,G_B]\|_{\rm op}.
+$$
+
+모든 유한 anti-Hermitian 쌍과 h≥0에서 성립하며 작은 단계의 O 표기만이 아니다. 여러 주기를 누적할 때는 망원합 항등식을 사용한다.
+
+$$
+C=\|[G_A,G_B]\|_{\rm op},\quad
+ L_n-V=\sum_{k=0}^{n-1}L_h^{n-1-k}(L_h-V_h)V_h^k,\quad
+ L_h=e^{hY}e^{hX},\quad V_h=e^{h(X+Y)},\quad
+ \|L_n-V\|_{\rm op}\le\min(2,C/(2n)).
+$$
+
+주변의 모든 거듭제곱 노름은1이므로 이 Lie 추정에는 지수 성장 인자가 없다. 상한2는 두 unitary 사이 거리에서 나온다. 교환자가 0이면 정확하지만 양의 상한만으로 실제 오차가 양수라고 할 수는 없다.
+
+### 대칭성은 이차 결함을 제거한다
+
+세 exponential 급수를2차까지 곱해 보자.
+
+$$
+e^{hX/2}e^{hY}e^{hX/2}
+ =I+h(X+Y)+\tfrac12h^2(X+Y)^2+O(h^3).
+$$
+
+비대칭 곱과 달리 XY·YX 항이 모두1/2 계수를 받는다. 선도 계수를 추측하지 않고도 보수적인 유한 잔차 경계를 얻을 수 있다. L을 두 작용 노름의 합이라 두자. 세 인자의 노름으로 다항정리를 적용하면 곱 급수의 k차 계수 노름은 L^k/k! 이하이고 목표 exponential도 같은 경계를 갖는다.0·1·2차 항이 상쇄되므로 두 꼬리만 남는다.
+
+$$
+L=\|G_A\|_{\rm op}+\|G_B\|_{\rm op},\quad
+ R_3(z)=\sum_{k=3}^\infty\frac{z^k}{k!}\le\frac{z^3e^z}{6}\quad(z\ge0),\quad
+ \|e^{hX/2}e^{hY}e^{hX/2}-V_h\|_{\rm op}\le2R_3(hL).
+$$
+
+스칼라 꼬리 부등식은 (j+3)!≥6j!에서 나온다. 대칭 n주기에도 같은 unitary 망원합 논증을 적용하자.
+
+$$
+\|S_n-V\|_{\rm op}\le\min\!\left(2,\frac{L^3e^{L/n}}{3n^2}\right).
+$$
+
+특히 작은 n에서 의도적으로 보수적인 경계다. 작용을 고정하면 O(n⁻²) 경계를 증명하며 Lie 인증은 O(n⁻¹)이다. 유한 행렬 노름 논증이므로 임의의 비유계 미분 연산자에 같은 보증을 주지는 않는다.
+
+### 검출기의 오차로 연결하기
+
+정규화 입력과 사영 yes/no 검출기 R에 대해 두 이차형식 차이에 교차항을 더하고 빼서 전개한 뒤 Cauchy–Schwarz를 적용하자.
+
+$$
+\left|\|RU\psi\|^2-\|RV\psi\|^2\right|
+ \le\min(1,2\|U-V\|_{\rm op}),\qquad
+ R=R^\dagger=R^2,\quad \|\psi\|=1.
+$$
+
+이는 충분한 확률 오차 경계이며 대개 느슨하다. 행렬 거리는 전체 위상을 포함하지만 확률은 그렇지 않다. 전파 벡터의 노름만 같다고 최종 상태나 확률이 정확하다고 보증할 수 없다.
+
+다음 독립 코드는 총 물리 시간2의 Pauli 예제를 쓴다. 숫자는 반올림한 부동소수점 예시다. 코드의 연산자 거리 단축식은 이 determinant-one 2×2 unitary에 적용되며 독립 검산은 일반 행렬 exponential과 특이값을 사용한다. 현재 두 pulse reader에 새 반복 횟수 제어를 추가하지 않았다.
+
+```python
+from math import cos, sin, sqrt, exp
+I = ((1+0j, 0j), (0j, 1+0j))
+X = ((0j, 1+0j), (1+0j, 0j))
+Z = ((1+0j, 0j), (0j, -1+0j))
+def product(a, b):
+    return tuple(tuple(sum(a[i][k]*b[k][j] for k in range(2))
+                       for j in range(2)) for i in range(2))
+def rotation(axis, angle):
+    return tuple(tuple(cos(angle)*I[i][j]-1j*sin(angle)*axis[i][j]
+                       for j in range(2)) for i in range(2))
+def power(a, n):
+    result = I
+    for _ in range(n):
+        result = product(a, result)
+    return result
+axis = tuple(tuple((X[i][j]+Z[i][j])/sqrt(2) for j in range(2))
+             for i in range(2))
+target = rotation(axis, sqrt(2))
+def error(u):  # operator distance for these determinant-one 2x2 unitaries
+    overlap = sum(u[i][j].conjugate()*target[i][j]
+                  for i in range(2) for j in range(2))
+    return sqrt(max(0, 2-overlap.real))
+for n in [1, 2, 4, 8]:
+    a, b = rotation(X, 1/n), rotation(Z, 1/n)
+    half = rotation(X, 1/(2*n))
+    lie = power(product(b, a), n)
+    symmetric = power(product(half, product(b, half)), n)
+    print(n, f"{error(lie):.6f}", f"{1/n:.6f}",
+          f"{error(symmetric):.6f}", f"{min(2, 8*exp(2/n)/(3*n*n)):.6f}")
+```
+
+| n | Lie error | Lie bound | symmetric error | symmetric bound |
+|---|---|---|---|---|
+| 1 | 0.799214 | 1.000000 | 0.313666 | 2.000000 |
+| 2 | 0.362410 | 0.500000 | 0.071130 | 1.812188 |
+| 4 | 0.176261 | 0.250000 | 0.017273 | 0.274787 |
+| 8 | 0.087513 | 0.125000 | 0.004286 | 0.053501 |
+
+![총 노출량을 고정하고 분할 횟수를 늘릴 때 Lie·대칭 끝점 오차가 감소하는 모습과 각각의 유한 연산자 노름 상한을 로그 축에서 비교한다.](/assets/learning/quantum-unitary-research-fixed-exposure-splitting.ko.svg)
+
+대칭 인증은 실측 계산 오차보다 훨씬 클 수 있다. 여전히 상한이며 자료에 맞춘 추세선이 아니다. 가로축은 실험의 추가 복제 수가 아니라 분할 횟수다.
+
+#### 연구 확인 1: 시간을 늘리지 않고 n을 두 배로 하기
+
+n=4에서 Lie 일정은 지속시간1/4인 여덟 구간을 써 총 시간2다. 단위시간 A/B 쌍을 통째로 네 번 반복하면 시간8의 다른 질문이 된다. 대칭 주기 역시 네 번 모두 합쳐2다.
+
+#### 연구 확인 2: 가환 작용과 느슨한 경계
+
+G_B=2G_A이면 두 일정은 모든 n에서 V와 같다. Lie 교환자 인증은 정확히0이다. 보수적인 대칭 경계는 급수 꼬리의 상쇄를 버렸기 때문에 0이 아닐 수 있다. 영이 아닌 상한이 영이 아닌 결함의 증거는 아니다.
+
+#### 연구 확인 3: 연산자 오차를 변환하기
+
+인증된 연산자 오차가 δ=0.003이면 위 논증은 모든 정규화 입력과 사영 검출기에서 확률 오차 최대0.006을 준다. 선택한 실제 검출기는 덜 민감할 수 있다. 측정 표본 잡음이나 Hamiltonian 자체의 불확실성과는 별도의 수학적 경계다.
+
 ## 11. 해설과 함께 풀어보기
 
 **1. A를 먼저, B를 나중에 적용하는 행렬 곱은?**
