@@ -57,3 +57,8 @@ Levin–Peres의 저자 공개 [Markov Chains and Mixing Times](https://pages.uo
 ## Ensemble 연구 보강: 관측·구동·매개변수 방향
 
 [Tong의 통계물리 1장](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf) 1.2–1.3절의 고정 총량·정준 준비, 1.3.2절의 에너지 요동, 1.4.1절의 입자 교환 정규화·응답을 대조했다. 유한 껍질의 쌍 관측 역산과 오차 척도는 직접 세기로, 주기 구동은 새로 지정한 양의 전이율로, 응답 행렬의 랭크는 교정한 두 에너지의 네 상태 합으로 유도했다. 교재 배경의 평형 관계만으로 완화율·시계·장치 비용·미지 에너지 기준의 식별을 얻었다고 주장하지 않는다. 세부 유한 검산과 reader 범위는 [ensemble 검증 기록](ensembles-research-status.md)을 따른다.
+
+
+## 분배함수 연구 보강: 추정·주변화·꼬리
+
+[Tong 1장 1.3절](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf)의 정준 합·에너지 요동, [5장 5.2절](https://davidtong.org/pdfs/teaching/statistical-physics/statphys5.pdf)의 Ising Hamiltonian을 배경으로 대조했다. [Owen의 중요도 표집 9장](https://artowen.su.domains/mc/Ch-var-is.pdf) 도입과 9.1절의 출발 분포·우도비 정의 및 무한 분산 주의점을 확인했다. 유한 재가중 이차 모멘트·독립 묶음·로그 편향, 열린 세 스핀 합·조건부 에너지 분산·Fisher 손실, 기하 꼬리의 정확한 이차 모멘트 조건은 본문에서 지정한 모형으로 직접 계산한다. 미시 에너지를 온도 의존 축약 퍼텐셜과 바꾸거나 절단 적분을 원래 전체 분산으로 바꾸지 않는다. 범위와 재현은 [분배함수 검증 기록](partition-research-status.md)을 따른다.

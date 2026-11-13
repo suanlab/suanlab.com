@@ -205,6 +205,123 @@ The supremum ranges over normalized trial laws on the same labeled state space. 
 
 For a new research claim, state which source is varied, which features and support remain fixed, and whether an approximation changes the counting measure. Check gauge invariance, units, limiting cases and independent references. Approximate inference quality, sampling efficiency and physical equilibration are separate questions even if all three algorithms mention a partition function.
 
+## Research extension: estimate a new normalizer from an old preparation
+
+A partition-function ratio can be an exact expectation while its estimate from a short dataset is noisy. Imagine retaining configurations prepared at one temperature and asking what another temperature would have emphasized. Reweighting changes each configuration’s contribution; it does not create observations of states that the dataset never visited.
+
+Use a fixed finite list of labeled energies with counting measure and independent exact draws from its source canonical law. Keep the energies and support fixed between source and target. The reader still evaluates theoretical distributions; this extension defines an additional sampling experiment, not a new sample-count or random-seed control.
+
+Here β has inverse-energy units, so δE is dimensionless. Finite β on a bounded finite spectrum gives strictly positive source probabilities. A value β=0 is the uniform infinite-temperature limit, not temperature zero.
+
+$$
+q_i=\frac{e^{-\beta_sE_i}}{Z_s},\qquad p_i=\frac{e^{-\beta_tE_i}}{Z_t},\qquad\delta=\beta_t-\beta_s,\quad W_i=e^{-\delta E_i}.
+$$
+
+Multiply the two exponentials and sum before normalizing. This identity is exact for the declared support. It is a relation between static preparations and does not assume a physical temperature-change work protocol.
+
+$$
+R=\mathbb E_qW=\sum_i\frac{e^{-\beta_sE_i}}{Z_s}e^{-\delta E_i}=\frac{Z_t}{Z_s}.
+$$
+
+Linearity gives unbiasedness; independence removes cross covariances in the variance. M counts repeated preparations, not energy levels. Correlated Markov-chain draws need an additional dependence analysis and cannot automatically use this variance.
+
+$$
+X_1,\ldots,X_M\overset{\rm iid}{\sim}q:\qquad\widehat R=\frac1M\sum_{j=1}^MW(X_j),\quad\mathbb E\widehat R=R,\quad\operatorname{Var}(\widehat R)=\operatorname{Var}_q(W)/M.
+$$
+
+Compute the second moment by shifting the inverse temperature twice. The extra argument may be negative even if source and target inverse temperatures are nonnegative. It still defines a finite mathematical sum here; this does not require preparing a negative-temperature apparatus.
+
+$$
+\frac{\operatorname{Var}_qW}{R^2}=\frac{Z(\beta_s)Z(2\beta_t-\beta_s)}{Z(\beta_t)^2}-1\equiv V_{\rm rel}.
+$$
+
+Normalize the weights by their exact mean. The relative variance is a directed chi-squared divergence from target to source, so insufficient source probability in target-important regions is costly. Full support gives existence, not necessarily a practical sample budget.
+
+$$
+\frac{W_i}{R}=\frac{p_i}{q_i},\qquad V_{\rm rel}=\sum_i\frac{(p_i-q_i)^2}{q_i}=\chi^2(p\Vert q).
+$$
+
+This is the theoretical relative standard error for the specified iid estimator. It is not a realized error bound, a confidence interval or a guarantee that one empirical batch has representative tail coverage.
+
+$$
+\frac{\sqrt{\operatorname{Var}(\widehat R)}}{R}=\sqrt{\frac{V_{\rm rel}}M}.
+$$
+
+Every weight is positive, so the finite-sample logarithm exists. Concavity makes the log estimate downward biased even though the ratio estimate is unbiased. Passing through a nonlinear function changes the statistical question.
+
+$$
+\mathbb E[\log\widehat R]\le\log\mathbb E[\widehat R]=\log R.
+$$
+
+Expand the logarithm around R. For this fixed finite positive-weight law the leading deficit follows from its variance. The expression is an asymptotic approximation, not the exact bias at M=100 or at a large-overlap mismatch.
+
+$$
+\log R-\mathbb E[\log\widehat R]=\frac{V_{\rm rel}}{2M}+o(M^{-1})\qquad(M\to\infty).
+$$
+
+A common energy reference shift rescales the normalizer ratio, while leaving normalized weights and relative variance unchanged. Do not claim that R itself is reference-invariant when the two inverse temperatures differ.
+
+$$
+E_i\mapsto E_i+c:\quad W_i\mapsto e^{-\delta c}W_i,\quad R\mapsto e^{-\delta c}R,\quad V_{\rm rel}\mapsto V_{\rm rel}.
+$$
+
+This three-level family makes the sampling algebra rational. At m=1 the laws coincide, all weights are one, and both variance and log deficit are exactly zero. The other rows change target emphasis while retaining the same source samples.
+
+$$
+E_i=i\varepsilon\ (i=0,1,2),\quad\beta_s\varepsilon=\log2,\quad\beta_t\varepsilon=m\log2:\qquad q=(4,2,1)/7,\quad W_i=2^{(1-m)i}.
+$$
+
+### Read the comparison
+
+The upper panel compares the source with a uniform target and a colder target. The lower panel plots theoretical relative standard error against independent preparation count. More samples reduce uncertainty without changing the underlying mismatch.
+
+![Finite-spectrum reweighting changes target emphasis; estimator variance depends on target-to-source mismatch and independent sample count.](/assets/learning/partition-research-finite-reweighting.en.svg)
+
+### Reproduce the example
+
+Use M=100 independent draws and the exact family above. Only square roots are approximated in the relative standard error. The log-deficit column is its leading asymptotic formula, not an exact finite-batch expectation. The code computes expectations, rather than generating one lucky random batch.
+
+| m | Ratio R | Relative variance | Relative SE: M=100 | Leading log deficit | Target-source TV |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 1.71428571 | 0.36111111 | 0.06009252 | 0.00180556 | 0.23809524 |
+| 1 | 1.00000000 | 0.00000000 | 0.00000000 | 0.00000000 | 0.00000000 |
+| 2 | 0.75000000 | 0.15873016 | 0.03984095 | 0.00079365 | 0.19047619 |
+| 3 | 0.65178571 | 0.38844061 | 0.06232500 | 0.00194220 | 0.30528376 |
+
+```python
+from fractions import Fraction as F
+from math import sqrt
+q = [F(4,7),F(2,7),F(1,7)]
+for m in [0,1,2,3]:
+    W = [F(2)**((1-m)*i) for i in range(3)]
+    R = sum(a*w for a,w in zip(q,W))
+    p = [a*w/R for a,w in zip(q,W)]
+    relative = sum(a*(w-R)**2 for a,w in zip(q,W))/R**2
+    se = sqrt(float(relative)/100)
+    deficit = float(relative)/200
+    tv = sum(abs(a-b) for a,b in zip(p,q))/2
+    print(f"{m} {float(R):.8f} {float(relative):.8f} "
+          f"{se:.8f} {deficit:.8f} {float(tv):.8f}")
+```
+
+### Three research questions with explanations
+
+#### 1. Why is an unbiased ratio not an unbiased log ratio?
+
+**Explanation.** Expectation commutes with linear averages, not with the concave logarithm. Jensen’s inequality gives the direction of bias. The leading variance correction is only a large-M approximation to its magnitude.
+
+#### 2. Does full support guarantee efficient reweighting?
+
+**Explanation.** No. It prevents an omitted target state here, but a target-important state can have tiny source probability. The chi-squared divergence quantifies the theoretical iid relative variance; empirical weights from a short batch can miss that problem.
+
+#### 3. May a Markov-chain dataset reuse the 1/M variance automatically?
+
+**Explanation.** No. Serial covariances enter the variance of its average. The exact normalizer identity remains valid at the source stationary law, while the iid sampling-error formula needs additional justification.
+
+### Source and research boundary
+
+The canonical background is [Tong, section 1.3](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf); ordinary importance weighting is introduced in [Owen, chapter 9.1](https://artowen.su.domains/mc/Ch-var-is.pdf). The finite-spectrum second moment, exact batch enumeration and log-bias expansion here follow from the declared iid experiment. Self-normalized observable estimates are different estimators.
+
 ## Exercises with explained answers
 
 ### 1. Count degenerate states only once

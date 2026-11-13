@@ -9,13 +9,13 @@ const id = 'coupled-binary-sites-partition-factorization';
 const source = (language: 'en' | 'ko') => readFileSync(`content/learning/physics-math-for-ai/${id}.${language}.md`, 'utf8');
 for (const language of ['en', 'ko'] as const) test(`${language}: detailed coupled-site manuscript renders with strict accessible equations and tables`, async () => {
   const text = source(language), rendered = await getLearningContent(id), html = rendered[language];
-  assert.equal(rendered.outline[language].length, 15);
-  assert.equal(new Set(rendered.outline[language].map(h => h.id)).size, 15);
+  assert.equal(rendered.outline[language].length, 16);
+  assert.equal(new Set(rendered.outline[language].map(h => h.id)).size, 16);
   assert.doesNotMatch(text, /^# |^---/m); assert.doesNotMatch(html, /katex-error|\$\$/);
-  assert.equal((html.match(/class="katex-display"/g) ?? []).length, 14);
-  assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 14);
-  assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 4);
-  assert.equal((text.match(/^### /gm) ?? []).length, 6);
+  assert.equal((html.match(/class="katex-display"/g) ?? []).length, 24);
+  assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 24);
+  assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 5);
+  assert.equal((text.match(/^### /gm) ?? []).length, 10);
   assert.equal((text.match(/^\*\*(?:Answer|풀이)\.\*\*/gm) ?? []).length, 6);
   if (language === 'en') { assert.ok(text.split(/\s+/).length >= 2400); assert.doesNotMatch(html, /[가-힣]/); }
   else assert.ok((text.match(/[가-힣]/g) ?? []).length >= 5300);

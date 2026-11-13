@@ -195,6 +195,120 @@ For many observations, average the observed features. Training then compares emp
 
 This is a useful research diagnostic before applying a larger optimizer. Ask which configurations are available, which features vary on that support, and which parameter combinations change the law. A static normalizer still does not provide a sampling algorithm. In a large model, computing the expectation and obtaining representative samples become additional tasks; the four-state example isolates their algebraic target.
 
+## Research extension: sum out one spin without losing its thermodynamic contribution
+
+Hiding a variable does not remove its possible fluctuations. Think of observing only the two ends of a short chain while the middle spin remains free to move. We can predict the visible joint law exactly, yet an energy variance computed from visible labels alone can miss uncertainty inside each visible state.
+
+Add a separate comparison system to the original two-spin lesson: an open three-spin chain, no field, equal positive fixed coupling J, and positive finite inverse temperature β. This is an eight-state equilibrium calculation, not a new reader control, a time evolution or a thermodynamic-limit phase-transition claim.
+
+J is in joules and b is dimensionless. Both bonds share the middle spin, and there is no direct endpoint bond in the original Hamiltonian. We retain the endpoint observation y and sum over the hidden middle label.
+
+$$
+\sigma_i\in\{-1,+1\},\quad H=-J(\sigma_1\sigma_2+\sigma_2\sigma_3),\quad b=\beta J,\qquad y=(\sigma_1,\sigma_3).
+$$
+
+The visible weight counts both hidden completions. Aligned endpoints have weight 2 cosh(2b); opposite endpoints have weight 2. This exact marginalization already creates an apparent endpoint preference.
+
+$$
+W_y(\beta)=\sum_{\sigma_2=\pm1}e^{\beta J\sigma_2(\sigma_1+\sigma_3)}=2\cosh[b(\sigma_1+\sigma_3)].
+$$
+
+Match the aligned and opposite weights to solve for both the induced coupling k and the additive log-weight a. The common factor cancels in normalized endpoint probabilities, but it must be retained to reproduce the physical partition function and its derivatives.
+
+$$
+W_y=e^{a+k\sigma_1\sigma_3},\qquad k=\tfrac12\log\cosh(2b),\quad a=\log2+k.
+$$
+
+Summing four endpoint weights reproduces all eight original states. Endpoint correlation is nonzero for b>0 even though no direct endpoint interaction was specified. An effective statistical coupling is not a newly discovered microscopic bond.
+
+$$
+Z=\sum_yW_y=4e^a\cosh k=8\cosh^2b,\qquad\langle\sigma_1\sigma_3\rangle=\tanh k=\tanh^2b.
+$$
+
+Fᵧ is a conditional free-energy-like potential, with a temperature dependence caused by the hidden sum. Its value is not generally the conditional mean physical energy. Differentiating βFᵧ, rather than treating Fᵧ as a fixed microscopic energy, restores the correct observable.
+
+$$
+F_y(\beta)=-\beta^{-1}\log W_y,\qquad\mathbb E[H\mid y]=\partial_\beta(\beta F_y)=-\partial_\beta\log W_y.
+$$
+
+Condition on the endpoints and average the two hidden spin values. Opposite endpoints force H=0 because the bond energies cancel. Aligned endpoints still leave two different energies at finite temperature, so their hidden conditional variance is positive.
+
+$$
+\bar H_y=-J(\sigma_1+\sigma_3)\tanh[b(\sigma_1+\sigma_3)],\quad\operatorname{Var}(H\mid y)=\frac{J^2(\sigma_1+\sigma_3)^2}{\cosh^2[b(\sigma_1+\sigma_3)]}.
+$$
+
+This is the law of total variance. The first term describes variation between observed endpoint states; the second describes energy uncertainty remaining inside them. Both refer to the original physical Hamiltonian, not the variance of an arbitrarily chosen effective endpoint energy.
+
+$$
+\operatorname{Var}(H)=\operatorname{Var}_{y}(\bar H_y)+\mathbb E_y[\operatorname{Var}(H\mid y)].
+$$
+
+The aligned class has conditional mean −2J tanh(2b), while the opposite class has mean zero. The variance of this two-valued conditional mean yields the displayed between-class term. At b=0 the conditional mean is zero in both classes.
+
+$$
+P_+=\frac{\cosh(2b)}{1+\cosh(2b)},\quad P_-=1-P_+,\qquad\operatorname{Var}_y(\bar H_y)=4J^2\tanh^2(2b)P_+P_-.
+$$
+
+Add the hidden term to recover the full energy variance and fixed-Hamiltonian heat capacity. An endpoint histogram can be exact while an energy-response calculation that drops the hidden contribution is wrong. At b=0 the entire energy variance is hidden from the conditional mean.
+
+$$
+\mathbb E_y[\operatorname{Var}(H\mid y)]=\frac{4J^2P_+}{\cosh^2(2b)},\qquad\operatorname{Var}(H)=\frac{2J^2}{\cosh^2b},\quad C/k_B=\beta^2\operatorname{Var}(H).
+$$
+
+For estimating β with fixed known J, the full-state score is negative centered energy; the endpoint score is its conditional expectation. Marginalization loses Fisher information in this finite model. This compares one exact independent preparation in each observation model and is not an estimator-efficiency guarantee.
+
+$$
+\mathcal I_{\rm full}(\beta)=\operatorname{Var}(H),\qquad\mathcal I_{\rm ends}(\beta)=\operatorname{Var}_y(\bar H_y),\qquad\mathcal I_{\rm full}-\mathcal I_{\rm ends}=\mathbb E_y[\operatorname{Var}(H\mid y)]>0.
+$$
+
+### Read the comparison
+
+The upper panel compares the induced dimensionless coupling and endpoint correlation. The lower panel divides energy variance into visible conditional-mean variation and hidden conditional variance. Their sum, not either curve alone, gives the original equilibrium response.
+
+![Exact hidden-spin marginalization creates endpoint dependence while the original energy variance retains a positive hidden contribution.](/assets/learning/partition-research-hidden-spin-marginal.en.svg)
+
+### Reproduce the example
+
+Physical energies and variances have joule and squared-joule units. The table divides variances by the squared coupling J to make them dimensionless. The b=0 row is the infinite-temperature limit; Fᵧ itself is not evaluated there. All numerical hyperbolic functions are approximations.
+
+| b | Induced k | Endpoint correlation | Between / J squared | Hidden / J squared | Total / J squared |
+| --- | --- | --- | --- | --- | --- |
+| 0.00000000 | 0.00000000 | 0.00000000 | 0.00000000 | 2.00000000 | 2.00000000 |
+| 0.25000000 | 0.06005725 | 0.05998515 | 0.21278386 | 1.66724584 | 1.88002970 |
+| 0.50000000 | 0.21689042 | 0.21355227 | 0.55357384 | 1.01932163 | 1.57289547 |
+| 1.00000000 | 0.66250137 | 0.58002566 | 0.61668845 | 0.22326023 | 0.83994868 |
+
+```python
+from math import cosh,tanh,log
+for b in [0,0.25,0.5,1]:
+    k = log(cosh(2*b))/2
+    correlation = tanh(b)**2
+    same = cosh(2*b)/(1+cosh(2*b))
+    between = 4*tanh(2*b)**2*same*(1-same)
+    hidden = 4*same/cosh(2*b)**2
+    total = 2/cosh(b)**2
+    print(f"{b:.8f} {k:.8f} {correlation:.8f} "
+          f"{between:.8f} {hidden:.8f} {total:.8f}")
+```
+
+### Three research questions with explanations
+
+#### 1. May the common log-weight a be dropped?
+
+**Explanation.** It cancels in normalized endpoint probabilities, but dropping it changes the physical partition function. Its β derivatives contain energy information from the hidden spin. Preserving a normalized histogram is weaker than preserving thermodynamic derivatives.
+
+#### 2. Is the effective potential a fixed microscopic Hamiltonian?
+
+**Explanation.** No. Summing hidden states makes it temperature dependent. The conditional mean energy is ∂β(βFᵧ), and energy variance additionally includes conditional fluctuations. Applying a fixed-level fluctuation identity directly to Fᵧ omits those terms.
+
+#### 3. Does mediated endpoint dependence prove a direct endpoint bond?
+
+**Explanation.** No. The specified microscopic chain has only two adjacent bonds. The endpoint statistical coupling appears after marginalizing their common neighbor. This is a finite coarse-observation example, not a claim about a microscopic force or a universal critical exponent.
+
+### Source and research boundary
+
+The Ising Hamiltonian background is [Tong, section 5.2](https://davidtong.org/pdfs/teaching/statistical-physics/statphys5.pdf). The open three-spin sum, conditional variance split and Fisher comparison are derived here by enumerating eight states. No renormalization-group limit or physical spin-flip clock is inferred.
+
 ## Practice with explanations
 
 ### 1. Count before normalizing

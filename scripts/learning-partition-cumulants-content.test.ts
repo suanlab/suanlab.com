@@ -10,19 +10,19 @@ const source = (lang: 'ko' | 'en') => readFileSync(`content/learning/physics-mat
 const near = (a: number | null, b: number) => { assert.notEqual(a, null); assert.ok(Math.abs(a! - b) <= 2e-10 * Math.abs(b), `${a} versus ${b}`); };
 for (const lang of ['ko', 'en'] as const) test(`${lang}: detailed finite-partition theory and six explained exercises render with strict accessible mathematics`, async () => {
   const text = source(lang), rendered = await getLearningContent(id), html = rendered[lang];
-  assert.equal((text.match(/^## /gm) ?? []).length, 16); assert.equal((text.match(/^### /gm) ?? []).length, 6);
+  assert.equal((text.match(/^## /gm) ?? []).length, 17); assert.equal((text.match(/^### /gm) ?? []).length, 10);
   assert.equal((text.match(/^\*\*(?:Answer|풀이)\.\*\*/gm) ?? []).length, 6);
-  assert.equal((text.match(/\$\$/g) ?? []).length, 32);
+  assert.equal((text.match(/\$\$/g) ?? []).length, 52);
   if (lang === 'en') { assert.ok(text.split(/\s+/).length >= 2600); assert.doesNotMatch(html, /[가-힣]/); }
   else assert.ok((text.match(/[가-힣]/g) ?? []).length >= 5000);
   assert.doesNotMatch(text, /^# |^---/m); assert.doesNotMatch(html, /katex-error|\$\$/);
-  assert.equal(rendered.outline[lang].length, 16); assert.equal(new Set(rendered.outline[lang].map(h => h.id)).size, 16);
-  assert.equal((html.match(/class="katex-display"/g) ?? []).length, 16);
-  assert.equal((html.match(/<table\b/g) ?? []).length, 4);
-  assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 16);
-  assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 4);
+  assert.equal(rendered.outline[lang].length, 17); assert.equal(new Set(rendered.outline[lang].map(h => h.id)).size, 17);
+  assert.equal((html.match(/class="katex-display"/g) ?? []).length, 26);
+  assert.equal((html.match(/<table\b/g) ?? []).length, 5);
+  assert.equal((html.match(/aria-label="(?:Equation|수식) /g) ?? []).length, 26);
+  assert.equal((html.match(/<table[^>]*tabindex="0"/g) ?? []).length, 5);
 });
-test('sixteen bilingual derivations match, including moving-Hamiltonian and nonlinear-control terms', () => {
+test('paired bilingual derivations match, including moving-Hamiltonian and nonlinear-control terms', () => {
   const equations = (s: string) => [...s.matchAll(/\$\$([\s\S]*?)\$\$/g)].map(m => m[1].replace(/\s+/g, ''));
   assert.deepEqual(equations(source('ko')), equations(source('en')));
   assert.match(source('en'), /E-T\\partial_TE/); assert.match(source('en'), /\\langle\\partial_\\eta\\partial_\\lambda\s*E\\rangle/);

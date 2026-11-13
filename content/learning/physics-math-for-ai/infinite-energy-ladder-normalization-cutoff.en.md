@@ -193,6 +193,122 @@ For the source −x multiplying n, log-normalizer derivatives generate the mean 
 
 The ladder supplies a transparent benchmark: specify the support, compare a known infinite target with finite approximations, choose the observable and error criterion, and inspect how the required cutoff changes with temperature. These are static distribution checks. They do not determine how long a sampler takes to reach equilibrium.
 
+## Research extension: full support can coexist with infinite weight variance
+
+A finite notebook can make a dangerous estimator look tame. If rare high levels carry rapidly growing importance weights, an ordinary sample may never visit them, while a short cutoff still produces a finite second moment. We need a convergence condition for the estimator, in addition to a convergence condition for the equilibrium distribution.
+
+Use the same infinite equally spaced ladder, with ε>0 and positive source and target temperatures. Write s=βs ε and t=βt ε; these symbols are inverse-temperature parameters, not elapsed time. The half-gap energy offset cancels in normalized probabilities. Draw independent source indices; this is a new sampling comparison outside the reader’s deterministic cutoff controls.
+
+Both equilibrium laws are normalized and assign positive mass to every index. A hotter target has smaller t and a heavier tail than the source. Shared support by itself does not compare their tail decay rates.
+
+$$
+q_s(n)=(1-e^{-s})e^{-sn},\qquad p_t(n)=(1-e^{-t})e^{-tn},\quad n\ge0,\quad s,t>0.
+$$
+
+The normalized likelihood ratio grows exponentially when the target is hotter. A typical source draw can have an unremarkable weight while an unvisited high level would have a huge contribution.
+
+$$
+w(n)=\frac{p_t(n)}{q_s(n)}=\frac{1-e^{-t}}{1-e^{-s}}e^{(s-t)n}.
+$$
+
+The mean exists for every allowed source and target. Averaging these normalized weights is a diagnostic version of the same normalizer-ratio experiment: after subtracting the ground energy, the raw weight exp[(s−t)n] has mean (1−exp(−s))/(1−exp(−t)), and normalizing it gives w. Retaining the half-gap ground energy instead multiplies the raw physical partition ratio by exp[(s−t)/2]; the normalized w and its variance condition are unchanged.
+
+$$
+\mathbb E_{q_s}w=\sum_{n=0}^{\infty}p_t(n)=1\qquad(s,t>0).
+$$
+
+Square the weight before averaging under the source. One source decay factor cancels, exposing a different exponent from either equilibrium law. This is why two valid normalizers do not imply a valid second moment.
+
+$$
+q_s(n)w(n)^2=A e^{-(2t-s)n},\qquad A=\frac{(1-e^{-t})^2}{1-e^{-s}}>0.
+$$
+
+This geometric-series criterion is exact. At equality every term equals A, so divergence is linear in the cutoff; below the threshold terms grow exponentially. Infinite variance is an analytic property of the full law, not a floating-point overflow or a failed equilibrium normalization.
+
+$$
+\mathbb E_{q_s}w^2=\begin{cases}A/[1-e^{-(2t-s)}],&2t>s,\\+\infty,&2t\le s.\end{cases}
+$$
+
+Target-to-source KL remains finite even in the infinite-second-moment regime. Its logarithmic likelihood ratio grows only linearly in n, whose target mean is finite. A finite KL therefore cannot replace a second-moment check for this estimator.
+
+$$
+D(p_t\Vert q_s)=\log\frac{1-e^{-t}}{1-e^{-s}}+\frac{s-t}{e^t-1}<\infty\qquad(s,t>0).
+$$
+
+S_L is a truncated integral under the original infinite source. It is not the variance of a newly renormalized cutoff preparation. Keeping this distinction prevents a finite table from silently changing the sampling model.
+
+$$
+S_L=\mathbb E_{q_s}[w^2\mathbf1_{n\le L}]=A\sum_{n=0}^{L}r^n,\qquad r=e^{s-2t}.
+$$
+
+Every finite cutoff gives a finite number, even when the infinite variance is divergent. Compare several cutoffs and the exact ratio condition; a stable-looking short list is not evidence that its omitted second-moment tail is small.
+
+$$
+S_L=\begin{cases}A(1-r^{L+1})/(1-r),&r\ne1,\\A(L+1),&r=1.\end{cases}
+$$
+
+The first moment can look accurate while the second keeps growing. At s=1,t=1/2, target mass approaches one but S_L increases linearly forever. Small omitted probability and controlled estimator variance are different requirements.
+
+$$
+\mathbb E_{q_s}[w\mathbf1_{n\le L}]=1-e^{-t(L+1)}\longrightarrow1,\qquad 1-\mathbb E_{q_s}[w\mathbf1_{n\le L}]=e^{-t(L+1)}.
+$$
+
+The familiar finite-variance standard-error formula needs the displayed condition. When 2t≤s the mean remains finite and the iid average still has a law-of-large-numbers limit, but this variance-based square-root-M error analysis fails. Self-normalized observable estimates and correlated samplers require their own analysis.
+
+$$
+\widehat m_M=M^{-1}\sum_{j=1}^M w(N_j),\quad N_j\overset{\rm iid}{\sim}q_s:\qquad\operatorname{Var}(\widehat m_M)=\frac{\mathbb E_{q_s}w^2-1}{M}\quad(2t>s).
+$$
+
+### Read the comparison
+
+The upper panel plots the growing or converging truncated second moment under the unchanged infinite source. The lower panel shows the omitted first moment tending to zero for all displayed targets. The same cutoff can therefore look reassuring by one criterion and fail the other.
+
+![Valid infinite geometric preparations have finite mean weights, but source-target tail mismatch can make their weight second moment diverge.](/assets/learning/partition-research-infinite-weight-variance.en.svg)
+
+### Reproduce the example
+
+Set s=1 and compare four positive target parameters. The condition 2t−s is computed as an exact fraction; only exponentials and logarithms are numerical. Partial moments use L=5 and L=20, without renormalizing either cutoff. The word infinite states the analytic series result, not an unavailable floating-point display.
+
+| t | 2t minus s | Target-source KL | Partial second: L=5 | Partial second: L=20 | Full second moment |
+| --- | --- | --- | --- | --- | --- |
+| 0.75000000 | 0.50000000 | 0.04313546 | 1.06359126 | 1.11928804 | 1.11931887 |
+| 0.50000000 | 0.00000000 | 0.29667006 | 1.46951197 | 5.14329191 | infinite |
+| 0.40000000 | -0.20000000 | 0.56898908 | 1.80182252 | 51.01256301 | infinite |
+| 0.25000000 | -0.50000000 | 1.59059234 | 2.27726462 | 4333.00527540 | infinite |
+
+```python
+from fractions import Fraction as F
+from math import exp,log,expm1
+s = F(1)
+for t in [F(3,4),F(1,2),F(2,5),F(1,4)]:
+    z = 2*t-s
+    A = (-expm1(-float(t)))**2/(-expm1(-float(s)))
+    ratio = exp(-float(z))
+    partial = [A*sum(ratio**n for n in range(L+1)) for L in [5,20]]
+    kl = log((-expm1(-float(t)))/(-expm1(-float(s))))+float(s-t)/expm1(float(t))
+    full = f"{A/(-expm1(-float(z))):.8f}" if z>0 else "infinite"
+    print(f"{float(t):.8f} {float(z):.8f} {kl:.8f} "
+          f"{partial[0]:.8f} {partial[1]:.8f} {full}")
+```
+
+### Three research questions with explanations
+
+#### 1. Can shared support certify a finite weight variance?
+
+**Explanation.** No. Both geometric laws are positive at every n, but squaring the likelihood ratio changes the exponent to 2t−s. Support coverage and tail integrability are separate requirements.
+
+#### 2. Does a finite cutoff second moment refute divergence?
+
+**Explanation.** No. Any finite sum is finite here. At the threshold it grows as A(L+1), and below the threshold exponentially. The truncated integral must be compared with its infinite-series condition, not mistaken for the full variance.
+
+#### 3. Does infinite variance mean the sample mean cannot converge?
+
+**Explanation.** No. The weights have a finite first moment, so iid averages still converge by the law of large numbers. What fails is this finite-variance standard-error and usual Gaussian square-root-M reasoning. Other estimators or robust error analyses need separate assumptions.
+
+### Source and research boundary
+
+The importance-weighting background and its variance cautions are introduced in [Owen, chapter 9](https://artowen.su.domains/mc/Ch-var-is.pdf). The exact geometric thresholds, finite KL and partial-moment formulas are derived here from the specified ladder. They are not universal variance claims for every importance sampler or observable.
+
 ## Practice with explanations
 
 ### 1. Check existence before calculation
