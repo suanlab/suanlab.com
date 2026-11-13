@@ -1,6 +1,6 @@
 # 양자역학과 양자정보 연구 진행표
 
-2026-11-13. 기존 **11원주제·34등록 단원·68한영 원고**를 출발점으로 삼는다. 새 순차 연구 대조는 **12/34단원**이며 기존 집필을 미완료로 다시 세는 집계가 아니다. 이전 영역은 [비평형 연구 종합 대조](nonequilibrium-research-audit.md)를 마쳤다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**, 교육과정 완료 상태는 false다.
+2026-11-13. 기존 **11원주제·34등록 단원·68한영 원고**를 출발점으로 삼는다. 새 순차 연구 대조는 **14/34단원**이며 기존 집필을 미완료로 다시 세는 집계가 아니다. 이전 영역은 [비평형 연구 종합 대조](nonequilibrium-research-audit.md)를 마쳤다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**, 교육과정 완료 상태는 false다.
 
 ## 진행 원칙
 
@@ -24,8 +24,8 @@
 | `qubit-density-spectrum-entropy-dephasing` | [연구 보강·한영 계산·실제 화면 검증 완료](quantum-density-research-status.md) |
 | `finite-state-covariance-uncertainty` | [연구 보강·한영 계산·실제 화면 검증 완료](quantum-uncertainty-research-status.md) |
 | `qubit-povm-instrument-backaction` | [연구 보강·한영 계산·실제 화면 검증 완료](quantum-uncertainty-research-status.md) |
-| `bipartite-pure-schmidt-partial-trace` | 기존 원고·근거 대조 후 보강 여부 결정 |
-| `two-qubit-ppt-correlations-chsh` | 기존 원고·근거 대조 후 보강 여부 결정 |
+| `bipartite-pure-schmidt-partial-trace` | [연구 보강·한영 계산·실제 화면 검증 완료](quantum-entanglement-research-status.md) |
+| `two-qubit-ppt-correlations-chsh` | [연구 보강·한영 계산·실제 화면 검증 완료](quantum-entanglement-research-status.md) |
 | `finite-state-rayleigh-energy-variance` | 기존 원고·근거 대조 후 보강 여부 결정 |
 | `nonorthogonal-ritz-subspace-certificates` | 기존 원고·근거 대조 후 보강 여부 결정 |
 | `finite-spin-chain-local-hamiltonians` | 기존 원고·근거 대조 후 보강 여부 결정 |
@@ -51,4 +51,4 @@
 
 [양자 상태 자료 대조](quantum-state-source-audit.md)와 [관측 자료 대조](quantum-observables-source-audit.md), [양자정보 아홉 단원 통합](quantum-information-integration-status.md)을 포함한 기존 단계별 근거를 유지한다. 이 링크들은 이번 새 연구 대조의 완료 표시가 아니다.
 
-앞의 열두 단원은 [상태·Hilbert 공간](quantum-state-research-status.md), [관측·축퇴 사영](quantum-observable-research-status.md), [시간 전개·pulse](quantum-unitary-research-status.md), [spin·각운동량](quantum-spin-research-status.md), [density·dephasing](quantum-density-research-status.md), [covariance·공동 POVM](quantum-uncertainty-research-status.md)의 연구 확장 검증을 마쳤다. 다음은 `bipartite-pure-schmidt-partial-trace`와 `two-qubit-ppt-correlations-chsh`의 기존 원고·참조·화면을 대조하는 일이다. 상태·관측·시간 전개·spin·밀도·측정·얽힘·변분·다체·회로/채널·정보의 원래 11주제 순서를 유지한다. 전체 34단원의 대조와 영역 종합 검토 전에는 양자 영역 완료로 집계하지 않는다.
+앞의 열네 단원은 [상태·Hilbert 공간](quantum-state-research-status.md), [관측·축퇴 사영](quantum-observable-research-status.md), [시간 전개·pulse](quantum-unitary-research-status.md), [spin·각운동량](quantum-spin-research-status.md), [density·dephasing](quantum-density-research-status.md), [covariance·공동 POVM](quantum-uncertainty-research-status.md), [Schmidt·유한 witness](quantum-entanglement-research-status.md)의 연구 확장 검증을 마쳤다. 다음은 `finite-state-rayleigh-energy-variance`와 `nonorthogonal-ritz-subspace-certificates`의 기존 원고·참조·화면을 대조하는 일이다. 상태·관측·시간 전개·spin·밀도·측정·얽힘·변분·다체·회로/채널·정보의 원래 11주제 순서를 유지한다. 전체 34단원의 대조와 영역 종합 검토 전에는 양자 영역 완료로 집계하지 않는다.

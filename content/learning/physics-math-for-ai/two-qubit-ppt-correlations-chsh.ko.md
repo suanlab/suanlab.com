@@ -196,6 +196,132 @@ Full-rank 예제로 국소 Bloch 벡터가0이고 T=diag(3/5,−4/5,1/2)인 상�
 
 첫 상관을 ±1/25000만큼 바꾸면 밀도의 양성을 유지하면서 M을1의 양쪽으로 이동시킨다. 이는 full-rank 상태의 물리적으로 유효한 perturbation이다. Rank가 부족한 경계를 양성 검사 없이 흔들면 유효하지 않은 “예제”를 만들 수 있다. Bell 결과를 해석하기 전에 상태부터 유효해야 한다.
 
+## 연구 확장: 측정 가능한 witness와 유한 표본 인증
+
+### NPT 방향을 측정할 선형 함수로 바꾸기
+
+음의 부분전치 고유값은 행렬 공간의 한 방향을 지정한다. 그 방향으로 원래 밀도에 선형인 기대를 갖는 witness도 만들 수 있다.
+
+$$
+\rho^{T_B}v=\nu v,\quad\|v\|=1,\quad\nu<0,\qquad
+ W_v=(|v\rangle\langle v|)^{T_B},\quad
+ \operatorname{Tr}(\rho W_v)=\langle v|\rho^{T_B}|v\rangle=\nu,\quad
+ \operatorname{Tr}(\sigma_{\rm sep}W_v)\ge0.
+$$
+
+부분전치는 trace 쌍대 내적에서 자기 수반이므로 등식이 성립한다. 모든 분리 상태는 PPT이므로 같은 이차형식이 비음수다. 이 방향 의존 witness는 모형 상태를 제안한 뒤 유용하지만, 잡음 데이터에서 v를 추정했다고 같은 데이터의 유의성 주장까지 검증되지는 않는다. 분리 선형 함수 관점은 [Horodecki 등의 원 논문](https://arxiv.org/pdf/quant-ph/9605038)에 제시되어 있다.
+
+특히 간단한 고정 witness는 singlet을 겨냥한다.
+
+$$
+W=\tfrac12I_4-|\Psi^-\rangle\langle\Psi^-|
+ =\tfrac14(I_4+X\otimes X+Y\otimes Y+Z\otimes Z),\qquad
+ \operatorname{Tr}(\rho_W(p)W)=\frac{1-3p}{4}.
+$$
+
+Pauli 전개는 singlet 사영을 펼쳐 얻는다. Werner 가족에서는 정확히 p>1/3을 탐지하며 projective CHSH를 위반하지 못하는 얽힘도 포함한다. 그러나 비음수 결과는 일반 분리 인증이 아니다. 다른 얽힘 상태는 이 witness와 잘 맞지 않을 수 있다.
+
+### 신뢰하는 측정을 무작위 선택하고 모든 시도 남기기
+
+각 독립 사본에서 공통 Pauli 축 J를 균등하게 고르되 원천·이전 결과와 독립으로 선택한다. Alice와 Bob은 그 축을 국소 측정하고 이진 결과를 보고한다. 입력 사본마다 점수를 하나 부여한다.
+
+$$
+J\sim\operatorname{Uniform}\{X,Y,Z\},\quad a,b\in\{-1,+1\},\quad
+ V=\frac{1+3ab}{4}\in\{-\tfrac12,1\},\qquad
+ \mathbb EV=\tfrac14\left(1+\sum_{j=X,Y,Z}\langle j\otimes j\rangle\right)=\operatorname{Tr}(\rho W).
+$$
+
+J까지 평균하면 witness 기대가 나온다. 한 쌍에 X,Y,Z의 동시 결과를 부여하지 않는다. 이 절은 신뢰하고 보정한 Pauli 측정, 고정 밀도의 iid 사본, 검증 전에 정한 witness·시도 수, 명시한 이진 결과 모형에 모든 시도를 포함하는 것을 가정한다. 검출 손실이나 미보고 결과는 시도를 버릴 허가가 아니며 새 모형과 상계가 필요하다.
+
+점수 범위의 폭은3/2다. 단측 [Hoeffding 상계](https://www.cs.rpi.edu/academics/courses/spring06/random/hoefding.pdf)로 다음을 얻는다.
+
+$$
+\overline V=\frac1n\sum_{i=1}^n V_i,\quad
+ r_n(\delta)=\frac32\sqrt{\frac{\ln(1/\delta)}{2n}},\quad
+ \Pr\{\operatorname{Tr}(\rho W)>\overline V+r_n(\delta)\}\le\delta,\qquad
+ \overline V+r_n(\delta)<0\ \Longrightarrow\ \text{entanglement certificate at level }\delta.
+$$
+
+확률 문장은 고정 원천에서 데이터 집합을 반복 생성하는 법칙에 관한 것이며 관측한 밀도에 부여한 사후확률이 아니다. 모든 분리 원천의 평균은 비음수이므로 가정 아래 분리 원천을 잘못 인증할 확률은 δ 이하다. 상한이 정확히0이면 미결정이다. 고정-n 규칙은 계속 들여다보다 처음 음수가 되는 때 멈추는 절차를 정당화하지 않는다.
+
+각 축의 보고 상관과 이상적 상관의 차이가 정당화된 e_j 이내라면 최악의 계통 오차 여유를 더한다.
+
+$$
+|E_j^{\rm reported}-E_j^{\rm ideal}|\le e_j\quad(j=X,Y,Z),\qquad
+ U=\overline V+r_n(\delta)+\tfrac14(e_X+e_Y+e_Z),\quad
+ U<0\ \Longrightarrow\ \text{entanglement certificate under these calibration bounds}.
+$$
+
+더하기 부호는 관측 상관이 실제보다 과도하게 음수가 되는 경우를 보호한다. 여기서는 결정론적 보정 상한을 가정한다. 보정 상한 자체도 확률적으로 추정했다면 별도의 실패확률 예산이 필요하다. 제한 없는 보정 오차 아래서는 이 신뢰 측정 witness 주장을 할 수 없으며 장치 독립 Bell 검정과 같지 않다.
+
+### 신뢰수준과 탐지력은 다른 설계 질문
+
+작은 제1종 오류 수준이 얽힘 원천의 탐지를 보장하지는 않는다. 이상적 보정 모형에서 참 witness 음수 여유를 γ>0이라 하자. 반대쪽 Hoeffding 꼬리로 탐지 실패를 제한한다.
+
+$$
+\gamma=-\operatorname{Tr}(\rho W)>0,\qquad
+ \gamma>r_n(\delta)+r_n(\beta)\ \Longrightarrow\
+ \Pr\{\overline V+r_n(\delta)\ge0\}\le\beta,\qquad
+ n>\frac9{8\gamma^2}\left(\sqrt{\ln(1/\delta)}+\sqrt{\ln(1/\beta)}\right)^2.
+$$
+
+마지막 충분 표본 수는 바로 앞 엄격한 반지름 부등식을 푼 것이다. 보수적일 수 있다. r_n(δ)<γ만 요구하는 것은 반지름을 모집단 평균과 비교한 것이며 탐지력의 명시적 상계가 아니다. Werner p=1/2에서는 γ=1/8이므로 정확 행렬이 분명 NPT여도 유한 계수와 보정 오차가 중요하다.
+
+비교를 위해 CHSH game의 이진 설정 x,y를 독립·균등하게 선택하고 승리를 센다. 설정 독립성과 모든 시도의 이진 결과를 갖는 iid 국소 숨은 변수 모형에서는 다음과 같다.
+
+$$
+C_i=\boldsymbol1\{a_ib_i=(-1)^{x_i y_i}\},\quad
+ w=\tfrac12+\tfrac18S,\quad w_{\rm local}\le\tfrac34,\quad
+ \Pr_{\rm local}\left\{\overline C>\tfrac34+\sqrt{\frac{\ln(1/\delta)}{2n}}\right\}\le\delta,\qquad
+ w_{W,\rm opt}=\tfrac12+\tfrac{\sqrt2}{4}p.
+$$
+
+승률 공식은 이 장 S와 같은 부호로 네 상관을 전개해 얻는다. 제시한 꼬리 상계는 고정-n iid 실험에 대한 것이며 optional stopping이나 일반 기억 내성 프로토콜을 주장하지 않는다. Werner p=1/2의 최적 평균은3/4보다 작지만 신뢰하는 Pauli witness는 음수다. 따라서 이 Bell 검정의 실패와 다른 측정 가정 아래 witness 인증의 성공은 양립한다.
+
+δ=exp(−8)을 택하면 제곱수 시도 수에서 witness 반지름이 유리수다. K는 무작위 축 실험의 서로 반대인 국소 결과 수다.
+
+$$
+\delta=e^{-8},\quad r_n=\frac3{\sqrt n},\quad
+ K=\#\{i:a_ib_i=-1\},\quad\overline V=1-\frac{3K}{2n},\qquad
+ K\sim\operatorname{Binomial}\!\left(n,\frac{1+p}{2}\right)\quad\text{for an iid Werner source}.
+$$
+
+
+```python
+from fractions import Fraction as Q
+from math import isqrt
+for n in [100, 400, 1600, 10000]:
+    root = isqrt(n)
+    assert root*root == n
+    k = 3*n//4  # illustrative counts, not measured data
+    estimate = 1-Q(3*k, 2*n)
+    radius = Q(3, root)  # delta = exp(-8)
+    print(n, k, estimate, radius, estimate+radius)
+```
+
+| 시도 수 n | 반대 결과 K | witness 추정 | 신뢰 반지름 | 상한 |
+|---|---|---|---|---|
+| 100 | 75 | -1/8 | 3/10 | 7/40 |
+| 400 | 300 | -1/8 | 3/20 | 1/40 |
+| 1600 | 1200 | -1/8 | 3/40 | -1/20 |
+| 10000 | 7500 | -1/8 | 3/100 | -19/200 |
+
+![고정 singlet witness는 projective CHSH보다 넓은 Werner 영역을 탐지한다. 유한 표본 신뢰 반지름과 보정 오차 여유가 관측한 음수 추정의 얽힘 인증 여부를 결정한다.](/assets/learning/quantum-entanglement-research-witness-finite-evidence.ko.svg)
+
+표의 행은 같은 점 추정을 갖는 설명용 계수 기록이며 측정 데이터나 보장된 실험 결과가 아니다. 보정 여유를 명시적으로 더하기 전의 상한에는 계통 오차가 없다. 현재 reader는 모집단 법칙과 정확 행렬 인증을 계산하며 표본 생성기·신뢰구간 계산기·검출 손실 모형을 새 조작으로 추가하지 않았다.
+
+#### 연구 확인 1: 음수 추정도 미결정일 수 있다
+
+400시도 행은 −1/8을 추정하지만 상한이 +1/40이므로 δ=exp(−8)에서 얽힘을 인증하지 못한다. 1600시도의 이상적 보정 상한은 −1/20이다. 각 축 오차가1/10 이내라면 계통 여유는3/40이고 이 상한도 +1/40이 되어 다시 미결정이다.
+
+#### 연구 확인 2: witness가 Bell 상태를 놓치기
+
+Φ+와 singlet의 겹침은0이므로 이 W의 기대는 +1/2다. 상태는 여전히 최대 얽힘이다. 비음수 값은 고정 witness의 탐지 실패이지 PPT 판정이 그 밀도를 분리로 분류한다는 뜻이 아니다. 정확 밀도와 유한 측정 기록은 연결되지만 다른 질문을 답한다.
+
+#### 연구 확인 3: witness 학습 후 검증하기
+
+여러 잡음 후보를 본 뒤 가장 음수처럼 보이는 witness를 고르면 통계적 선택 규칙이 바뀐다. 학습 데이터로 후보를 고정한 다음 독립 iid holdout 사본에서 검증하거나 적절한 동시 상계를 유도해야 한다. 선택 뒤 같은 단일 witness δ 상계를 재사용하면 탐색을 반영하지 못한다. 필터 성공 결과만 남길 때도 명확한 heralding 검증 원천과 완전한 표집 모형이 필요하며 Bell 검출 loophole을 몰래 해결하지 못한다.
+
 ## 13. 해설이 있는 연습문제
 
 **1. 같은 국소 상태를 설명한다.** 1절의 세 광원을 Alice 전용 측정으로 구별할 수 없는 이유는 무엇인가? 어떤 하나의 공동 측정은 둘을 여전히 구별하지 못하는가?

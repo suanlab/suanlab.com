@@ -183,6 +183,129 @@ $$
 
 세 부분계 이상에는 추가 구조가 필요하다. 예를 들어 세-qubit GHZ와 W 상태는 한 부분계의 스펙트럼과 한 부분계를 버린 뒤 남는 두 계의 상관이 다르다. 일반적으로 모든 다부분계 구조를 동시에 대각화하는 하나의 Schmidt 전개는 없다. LOCC 변환, 점근적 자원 비율, bound entanglement, 실험적으로 인증한 witness는 별도의 심화 연구다. 두 유한 계산기만으로 이 연구 질문들을 완료 처리하지 않는다.
 
+## 연구 확장: 가장 가까운 곱상태·witness 여유와 성공 표지 필터
+
+### 가장 큰 Schmidt 가중치의 기하학적 의미
+
+Rank 판정은 곱상태 설명이 정확한지를 답한다. 하나의 곱상태가 얼마나 가까울 수 있는지 물으려면 거리부터 정해야 한다. 계수표를 정규화하고 보통 Euclidean 벡터 노름에 대한 연산자 노름을 사용한다.
+
+$$
+D=C/\sqrt N,\quad \lambda_{\max}=\|D\|_{\rm op}^2,\qquad
+ \max_{\|\alpha\|=\|\beta\|=1}|\langle\alpha\otimes\beta|\psi\rangle|^2
+ =\max_{\alpha,\beta}|\alpha^\dagger D\overline\beta|^2=\lambda_{\max}.
+$$
+
+Bob 벡터를 고정하면 Cauchy–Schwarz로 Alice 벡터를 최적화한다. 남는 최댓값은 D의 가장 큰 특잇값이다. Schmidt 벡터 한 쌍이 등호를 달성한다. Bob 쪽 켤레는 A-major 계수 규약에서 나오며, 이를 빼면 최적값은 같더라도 잘못된 물리 벡터를 고를 수 있다.
+
+겹침의 상한은 convexity로 순수 곱상태에서 모든 분리 혼합 상태로 확장된다. 따라서 알려진 기준 상태는 Hermitian 얽힘 witness를 정한다.
+
+$$
+W_\psi=\lambda_{\max}I-|\psi\rangle\langle\psi|,\quad
+ \operatorname{Tr}(\sigma_{\rm sep}W_\psi)\ge0,\qquad
+ \langle\psi|\rho|\psi\rangle>\lambda_{\max}\ \Longrightarrow\ \rho\text{ is entangled}.
+$$
+
+ψ는 고정한 기준이며 검사하는 밀도 ρ는 혼합이어도 된다. Witness 기대가 음수면 얽힘을 인증하지만 비음수 결과는 미결정이다. 기준 상태·부분계 분할·측정 보정을 명시해야 한다. 이 기하 인증이 국소 히스토그램 하나로 전역 fidelity를 측정할 수 있다는 뜻은 아니다.
+
+순수 곱상태 근사에 대해서는 겹침으로부터 두 거리를 얻는다.
+
+$$
+D_{\rm tr}(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1,\qquad
+ \min_{\alpha,\beta}D_{\rm tr}(|\psi\rangle\langle\psi|,|\alpha\beta\rangle\langle\alpha\beta|)
+ =\sqrt{1-\lambda_{\max}},\qquad
+ \min_{\alpha,\beta,\phi}\|\psi-e^{i\phi}\alpha\otimes\beta\|^2=2-2\sqrt{\lambda_{\max}}.
+$$
+
+첫 항등식은 두 순수 사영의 차이가 갖는 비영 고유값 두 개로 얻는다. 두 번째는 전역 위상을 맞춘 뒤 벡터 노름 제곱을 전개한다. 두 최소화 모두 정규화한 순수 곱벡터를 대상으로 한다. 분리 혼합 밀도 전체의 convex 집합까지 가장 가까운 거리라고 주장하지 않는다. 더 큰 집합은 더 가까울 수 있다.
+
+### 성공 가지가 원천보다 더 얽혀 있을 수 있다
+
+이미 Schmidt 기저로 표현한 알려진 두-qubit 상태를 생각하자.
+
+$$
+|\psi_q\rangle=\sqrt{1-q}|00\rangle+\sqrt q|11\rangle,\quad0\le q\le\tfrac12,\quad
+ \rho_B=\operatorname{diag}(1-q,q),\quad\lambda_{\max}=1-q,\quad
+ h(q)=-(1-q)\ln(1-q)-q\ln q.
+$$
+
+0 ln 0은 연속 극한으로0이다. Alice는 Bob을 건드리지 않고 큰 Schmidt 진폭을 약화할 수 있다. 다음 Kraus 두 개는 보존할 성공 s와 실패 표지 f를 모두 포함한다.
+
+$$
+K_s=\sqrt{\frac q{1-q}}|0\rangle\langle0|+|1\rangle\langle1|,\quad
+ K_f=\sqrt{\frac{1-2q}{1-q}}|0\rangle\langle0|,\quad
+ K_s^\dagger K_s+K_f^\dagger K_f=I,\qquad
+ (K_s\otimes I)\psi_q=\sqrt q(|00\rangle+|11\rangle),\quad p_s=2q,\quad
+ (K_f\otimes I)\psi_q=\sqrt{1-2q}|00\rangle,\quad p_f=1-2q.
+$$
+
+대각 원소 제곱으로 completeness를 확인한다. 성공 벡터는 계수가 같으므로 q>0에서 정규화하면 Φ+다. 실패는 q<1/2에서 곱상태다. q=0이면 성공 확률이0이므로 정규화 조건부 상태가 정의되지 않는다. q=1/2에서는 실패 가지가 영확률이다. 어느 끝점도 작은 수를 꾸며 나눌 필요가 없다.
+
+왜 이 약화인가? 대각 성공 연산자 diag(a,b)로 같은 계수를 얻으려면 a√(1−q)=b√q여야 한다. Contraction 조건 |b|≤1은 이 대각 필터 클래스에서 성공 확률≤2q를 주며 위 연산자가 달성한다. 이 계산이 일반 최적 LOCC 변환 정리를 증명하지는 않는다. 알려진 Schmidt 가중치와 기저를 사용해 [Bennett 등의 원 논문](https://arxiv.org/pdf/quant-ph/9511030)의 한 쌍 농축 아이디어를 설명한다.
+
+Bob의 비정규화 조건부 상태는 가지 확률을 보존한다.
+
+$$
+\widetilde\rho_{B|s}=qI_2,\quad
+ \widetilde\rho_{B|f}=(1-2q)|0\rangle\langle0|,\qquad
+ \widetilde\rho_{B|s}+\widetilde\rho_{B|f}=\rho_B.
+$$
+
+둘을 합하면 정확히 원래 축약 상태다. 전달받은 표지는 Bell 부분집단을 지정하지만 Alice가 알리지 않은 동작으로 Bob의 국소 확률 법칙을 바꿀 수는 없다. 이 합 대신 정규화한 성공 가지만 남기면 실험을 몰래 바꾸게 된다.
+
+### 자원 수율은 모든 입력 쌍을 세어 보고하기
+
+성공 쌍의 엔트로피는 ln 2지만 가지 확률로 가중한 남은 얽힘은 다음과 같다.
+
+$$
+\overline E=p_sE(\Phi^+)+p_fE(00)=2q\ln2\le h(q),\qquad
+ h''(q)=-\frac1{q(1-q)}<0\quad(0<q<\tfrac12).
+$$
+
+h의 오목성 때문에 q=0과 q=1/2를 잇는 현 위에 놓인다. 따라서 이 필터의 부등식이 증명되며 내부에서는 엄격하다. 농축은 실패 시도를 소비해 선택한 쌍을 개선한다. 여기 평균은 고전 표지를 보존한 순수 가지 엔트로피의 평균이며 혼합 출력의 엔트로피를 그대로 얽힘 척도로 부르라는 지시가 아니다.
+
+유리수 진폭으로 가지 수지를 정확히 계산할 수 있다.
+
+$$
+\psi_u=\frac{|00\rangle+u|11\rangle}{\sqrt{1+u^2}},\quad
+ q=\frac{u^2}{1+u^2},\quad\lambda_{\max}=\frac1{1+u^2},\quad
+ p_s=\frac{2u^2}{1+u^2},\quad p_f=\frac{1-u^2}{1+u^2},\quad0\le u\le1.
+$$
+
+
+```python
+from fractions import Fraction as Q
+for u in [Q(0), Q(1, 3), Q(1, 2), Q(1)]:
+    q = u*u/(1+u*u)
+    largest = 1/(1+u*u)
+    success, failure = 2*q, 1-2*q
+    assert success + failure == 1
+    assert q + largest == 1
+    print(u, q, largest, success, failure)
+```
+
+| u | q | 최대 Schmidt 가중치 | 성공 확률 | 실패 확률 |
+|---|---|---|---|---|
+| 0 | 0 | 1 | 0 | 1 |
+| 1/3 | 1/10 | 9/10 | 1/5 | 4/5 |
+| 1/2 | 1/5 | 4/5 | 2/5 | 3/5 |
+| 1 | 1/2 | 1/2 | 1 | 0 |
+
+![알려진 순수 쌍은 성공 표지가 붙은 가지에서만 Bell 상태를 제공한다. 가지 확률과 평균 남은 얽힘은 모든 입력 시도를 포함해 계산한다.](/assets/learning/quantum-entanglement-research-product-distance-filter-flags.ko.svg)
+
+표는 정확한 분수이며 엔트로피 곡선은 자연로그와 끝점의 연속 극한을 사용한다. 이는 독립 필터·witness 유도다. 기존 reader는 지정한 계수표·탐침 실험을 계산하며 필터나 유한 표본 제어를 새로 제공하지 않는다.
+
+#### 연구 확인 1: 거의 곱상태인 원천
+
+q=1/1000000이면 성공할 때 남긴 상태는 Bell이지만 성공 확률은1/500000뿐이다. 원래 가장 가까운 곱상태까지 trace distance는1/1000이다. 남긴 Bell 쌍만 그리면 대부분의 실패 시도가 감춰진다. 정확히 q=0에서는 정규화할 성공 쌍이 없다.
+
+#### 연구 확인 2: 순수 곱상태와 분리 혼합의 차이
+
+Bell 쌍의 최대 Schmidt 가중치는1/2이므로 모든 순수 곱상태까지 trace distance는 적어도1/√2다. 그러나 00·11을 섞은 분리 혼합까지는1/2다. Bell 사영에서 이 혼합을 빼면 고유값이 ±1/2인 비대각 블록이 남는다. 따라서 순수 곱상태 거리 공식을 모든 분리 상태까지의 거리로 바꿔 부를 수 없다.
+
+#### 연구 확인 3: 표지가 없으면 원격 상태도 그대로
+
+q=1/10에서 성공·실패 Bob 행렬은 I/10과(4/5)|0⟩⟨0|다. 합은 I/2가 아니라 diag(9/10,1/10)이다. Bob은 Alice 메시지가 지정한 성공 부분집단 안에서만 I/2를 본다. 얽힘 농축과 무신호성은 모순되지 않는다.
+
 ## 13. 해설이 있는 연습문제
 
 **1. 펼치기 전에 좌표를 센다.** A가2차원, B가3차원일 때 C12는 A-major 벡터의 어느 위치에 있는가? 직합이라면 좌표는 몇 개인가?

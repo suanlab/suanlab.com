@@ -196,6 +196,132 @@ For a full-rank example, take zero local Bloch vectors and T=diag(3/5,−4/5,1/2
 
 Changing the first correlation by ±1/25000 keeps the density positive and moves M to opposite sides of one. This is a physical perturbation of a full-rank state. Perturbing a rank-deficient boundary without checking positivity can instead produce an invalid “example.” State validity must precede interpretation of the Bell test.
 
+## Research extension: measurable witnesses and finite-shot certificates
+
+### Turn an NPT direction into a testable linear functional
+
+A negative partial-transpose eigenvalue identifies a direction in matrix space. It also defines a witness whose expectation is a linear function of the original density:
+
+$$
+\rho^{T_B}v=\nu v,\quad\|v\|=1,\quad\nu<0,\qquad
+ W_v=(|v\rangle\langle v|)^{T_B},\quad
+ \operatorname{Tr}(\rho W_v)=\langle v|\rho^{T_B}|v\rangle=\nu,\quad
+ \operatorname{Tr}(\sigma_{\rm sep}W_v)\ge0.
+$$
+
+Partial transpose is self-adjoint under the trace pairing, which proves the equality. Every separable state is PPT, so the same quadratic form is nonnegative there. This direction-dependent witness is useful after a proposed state is modeled, but estimating v from noisy data does not by itself validate a subsequent significance claim on those same data. The separating-functional viewpoint appears in [Horodecki and collaborators' original paper](https://arxiv.org/pdf/quant-ph/9605038).
+
+A particularly simple fixed witness targets the singlet:
+
+$$
+W=\tfrac12I_4-|\Psi^-\rangle\langle\Psi^-|
+ =\tfrac14(I_4+X\otimes X+Y\otimes Y+Z\otimes Z),\qquad
+ \operatorname{Tr}(\rho_W(p)W)=\frac{1-3p}{4}.
+$$
+
+Its Pauli decomposition follows by expanding the singlet projector. It detects the Werner family exactly above p=1/3, including entangled states that cannot violate projective CHSH. Its nonnegative result is not a general separability certificate: another entangled state can be poorly aligned with this witness.
+
+### Randomize the trusted measurement and keep every trial
+
+On each independent copy choose one common Pauli axis J uniformly, independently of the source and previous outcomes. Alice and Bob measure that axis locally and report binary outcomes. Assign one score per input copy:
+
+$$
+J\sim\operatorname{Uniform}\{X,Y,Z\},\quad a,b\in\{-1,+1\},\quad
+ V=\frac{1+3ab}{4}\in\{-\tfrac12,1\},\qquad
+ \mathbb EV=\tfrac14\left(1+\sum_{j=X,Y,Z}\langle j\otimes j\rangle\right)=\operatorname{Tr}(\rho W).
+$$
+
+Averaging over J produces the witness expectation. There is no simultaneous X,Y,Z outcome on one pair. This protocol assumes trusted calibrated Pauli measurements, iid copies of a fixed density, a witness and trial count fixed before validation, and all trials included in the stated binary-outcome model. Detector loss or an unreported outcome is not permission to drop a trial; it requires a new model and bound.
+
+The score range has width3/2. A one-sided [Hoeffding bound](https://www.cs.rpi.edu/academics/courses/spring06/random/hoefding.pdf) gives:
+
+$$
+\overline V=\frac1n\sum_{i=1}^n V_i,\quad
+ r_n(\delta)=\frac32\sqrt{\frac{\ln(1/\delta)}{2n}},\quad
+ \Pr\{\operatorname{Tr}(\rho W)>\overline V+r_n(\delta)\}\le\delta,\qquad
+ \overline V+r_n(\delta)<0\ \Longrightarrow\ \text{entanglement certificate at level }\delta.
+$$
+
+The probability statement concerns repeated data sets for a fixed source, not a posterior probability assigned to one observed density. Because every separable source has nonnegative mean, falsely certifying such a source occurs with probability at most δ under the assumptions. Equality at zero is inconclusive. This fixed-n rule does not justify looking repeatedly and stopping at the first negative bound.
+
+If the reported correlation for each axis differs from its ideal value by at most a justified e_j, add a worst-case systematic allowance:
+
+$$
+|E_j^{\rm reported}-E_j^{\rm ideal}|\le e_j\quad(j=X,Y,Z),\qquad
+ U=\overline V+r_n(\delta)+\tfrac14(e_X+e_Y+e_Z),\quad
+ U<0\ \Longrightarrow\ \text{entanglement certificate under these calibration bounds}.
+$$
+
+The plus sign protects against an observed correlation being spuriously too negative. These are assumed deterministic calibration bounds. If they were themselves estimated with error probability, that uncertainty needs its own probability budget. With arbitrary unbounded calibration error, this trusted-witness claim is unavailable; it is not a device-independent Bell test.
+
+### Confidence and detection power are different design questions
+
+A small type-I error level does not guarantee that an entangled source will be detected. In the ideal calibration model, let its true witness margin be γ>0. The opposite Hoeffding tail bounds failure to detect:
+
+$$
+\gamma=-\operatorname{Tr}(\rho W)>0,\qquad
+ \gamma>r_n(\delta)+r_n(\beta)\ \Longrightarrow\
+ \Pr\{\overline V+r_n(\delta)\ge0\}\le\beta,\qquad
+ n>\frac9{8\gamma^2}\left(\sqrt{\ln(1/\delta)}+\sqrt{\ln(1/\beta)}\right)^2.
+$$
+
+The last sufficient sample-size condition simply solves the preceding strict radius inequality. It can be conservative. Requiring only r_n(δ)<γ compares the radius with the population mean; it is not a stated bound on power. For the Werner state p=1/2, γ=1/8, so finite counts and calibration errors matter even though the exact matrix is clearly NPT.
+
+For comparison, independently choose uniform binary settings x,y for a CHSH game and count wins. For an iid local hidden-variable model with setting independence and binary outcomes on all trials:
+
+$$
+C_i=\boldsymbol1\{a_ib_i=(-1)^{x_i y_i}\},\quad
+ w=\tfrac12+\tfrac18S,\quad w_{\rm local}\le\tfrac34,\quad
+ \Pr_{\rm local}\left\{\overline C>\tfrac34+\sqrt{\frac{\ln(1/\delta)}{2n}}\right\}\le\delta,\qquad
+ w_{W,\rm opt}=\tfrac12+\tfrac{\sqrt2}{4}p.
+$$
+
+The win formula expands the four correlations with the same signs as this chapter's S. The stated tail bound is for the fixed-n iid experiment; no optional-stopping or general memory-robust protocol is being claimed. For Werner p=1/2 the optimized mean is below3/4, even while the trusted Pauli witness is negative. A failure of this Bell test is therefore compatible with successful witness certification under its different measurement assumptions.
+
+Use δ=exp(−8) to make the witness radius rational at square trial counts. K counts opposite local outcomes in the randomized-axis experiment:
+
+$$
+\delta=e^{-8},\quad r_n=\frac3{\sqrt n},\quad
+ K=\#\{i:a_ib_i=-1\},\quad\overline V=1-\frac{3K}{2n},\qquad
+ K\sim\operatorname{Binomial}\!\left(n,\frac{1+p}{2}\right)\quad\text{for an iid Werner source}.
+$$
+
+
+```python
+from fractions import Fraction as Q
+from math import isqrt
+for n in [100, 400, 1600, 10000]:
+    root = isqrt(n)
+    assert root*root == n
+    k = 3*n//4  # illustrative counts, not measured data
+    estimate = 1-Q(3*k, 2*n)
+    radius = Q(3, root)  # delta = exp(-8)
+    print(n, k, estimate, radius, estimate+radius)
+```
+
+| trials n | opposite outcomes K | witness estimate | confidence radius | upper bound |
+|---|---|---|---|---|
+| 100 | 75 | -1/8 | 3/10 | 7/40 |
+| 400 | 300 | -1/8 | 3/20 | 1/40 |
+| 1600 | 1200 | -1/8 | 3/40 | -1/20 |
+| 10000 | 7500 | -1/8 | 3/100 | -19/200 |
+
+![A fixed singlet witness detects a wider Werner region than projective CHSH; finite sample confidence radii and calibration allowances determine whether an observed negative estimate certifies entanglement.](/assets/learning/quantum-entanglement-research-witness-finite-evidence.en.svg)
+
+These rows are illustrative count records with the same point estimate, not measured data or guaranteed experimental outcomes. The upper bound excludes calibration error until an explicit allowance is added. The present reader computes population laws and exact matrix certificates; no shot sampler, confidence calculator or detector-loss model has been added to its controls.
+
+#### Research check 1: negative estimates can be inconclusive
+
+The 400-trial row estimates −1/8, yet its upper bound is +1/40 and it does not certify entanglement at δ=exp(−8). At1600 trials the ideal-calibration bound is −1/20. If each axis error is bounded by1/10, the systematic allowance is3/40 and that latter bound becomes +1/40, again inconclusive.
+
+#### Research check 2: a witness can miss a Bell state
+
+For Φ+, the singlet overlap is zero, so this W has expectation +1/2. The state remains maximally entangled. A nonnegative value means this fixed witness failed, not that the PPT criterion would classify the density as separable. The exact density and finite measurement record answer related but different questions.
+
+#### Research check 3: train a witness, then validate it
+
+Choosing the most negative-looking witness after inspecting many noisy candidates changes the statistical selection rule. Freeze the candidate using training data and validate on independent iid holdout copies, or derive an appropriate simultaneous bound. Reusing the same one-witness δ bound after selection does not account for that search. Likewise, retaining only successful filter outcomes requires a clearly heralded validation source and a complete sampling model; it cannot silently repair a Bell detection loophole.
+
 ## 13. Exercises with explanations
 
 **1. Explain identical local states.** Why can no Alice-only measurement distinguish the three sources in section 1? Which single joint measurement still fails to distinguish two of them?

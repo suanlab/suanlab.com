@@ -183,6 +183,129 @@ Every finite mixed state also has a purification: diagonalize it and attach an o
 
 Three or more parties require additional structure. For example, the three-qubit GHZ state and the W state have different single-party spectra and different two-party correlations after discarding a party. There is generally no single Schmidt expansion that simultaneously diagonalizes all multipartite structure. LOCC conversion, asymptotic resource rates, bound entanglement and experimentally certified witnesses require further study. The two finite calculators do not mark those research questions complete.
 
+## Research extension: closest products, witness margins and heralded filtering
+
+### The largest Schmidt weight has a geometric meaning
+
+The rank test answers whether a product description is exact. To ask how close one product can come, specify a metric. Normalize the coefficient table and use the operator norm from ordinary Euclidean vector norms:
+
+$$
+D=C/\sqrt N,\quad \lambda_{\max}=\|D\|_{\rm op}^2,\qquad
+ \max_{\|\alpha\|=\|\beta\|=1}|\langle\alpha\otimes\beta|\psi\rangle|^2
+ =\max_{\alpha,\beta}|\alpha^\dagger D\overline\beta|^2=\lambda_{\max}.
+$$
+
+For fixed Bob vector, Cauchy–Schwarz optimizes Alice's vector. The remaining maximum is the largest singular value of D. A Schmidt pair attains it. Bob's complex conjugation follows our A-major coefficient convention; dropping it can select the wrong physical vector even when the optimum value is unchanged.
+
+Convexity extends the overlap bound from pure products to every separable mixed state. A known reference state therefore defines a Hermitian entanglement witness:
+
+$$
+W_\psi=\lambda_{\max}I-|\psi\rangle\langle\psi|,\quad
+ \operatorname{Tr}(\sigma_{\rm sep}W_\psi)\ge0,\qquad
+ \langle\psi|\rho|\psi\rangle>\lambda_{\max}\ \Longrightarrow\ \rho\text{ is entangled}.
+$$
+
+Here ψ is the fixed reference, while the tested density ρ may be mixed. A negative witness expectation certifies entanglement; a nonnegative one is inconclusive. The reference, subsystem split and measurement calibration must be specified. This is a geometric certificate, not a claim that a single local histogram measures global fidelity.
+
+For pure product approximants, two useful distances follow from the overlap:
+
+$$
+D_{\rm tr}(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1,\qquad
+ \min_{\alpha,\beta}D_{\rm tr}(|\psi\rangle\langle\psi|,|\alpha\beta\rangle\langle\alpha\beta|)
+ =\sqrt{1-\lambda_{\max}},\qquad
+ \min_{\alpha,\beta,\phi}\|\psi-e^{i\phi}\alpha\otimes\beta\|^2=2-2\sqrt{\lambda_{\max}}.
+$$
+
+The first identity uses the two nonzero eigenvalues of the difference of two pure projectors. The second aligns their global phase before expanding the squared vector norm. Both minima above run over normalized pure product vectors. Neither is asserted to be the closest distance to the entire convex set of separable mixed densities. That larger set can be closer.
+
+### A successful branch can be more entangled than its source
+
+Consider a known two-qubit state already in its Schmidt basis:
+
+$$
+|\psi_q\rangle=\sqrt{1-q}|00\rangle+\sqrt q|11\rangle,\quad0\le q\le\tfrac12,\quad
+ \rho_B=\operatorname{diag}(1-q,q),\quad\lambda_{\max}=1-q,\quad
+ h(q)=-(1-q)\ln(1-q)-q\ln q.
+$$
+
+Use 0 ln 0=0 by continuity. Alice can attenuate the larger Schmidt amplitude without touching Bob. The following two Kraus operators include both the retained branch s and the failure flag f:
+
+$$
+K_s=\sqrt{\frac q{1-q}}|0\rangle\langle0|+|1\rangle\langle1|,\quad
+ K_f=\sqrt{\frac{1-2q}{1-q}}|0\rangle\langle0|,\quad
+ K_s^\dagger K_s+K_f^\dagger K_f=I,\qquad
+ (K_s\otimes I)\psi_q=\sqrt q(|00\rangle+|11\rangle),\quad p_s=2q,\quad
+ (K_f\otimes I)\psi_q=\sqrt{1-2q}|00\rangle,\quad p_f=1-2q.
+$$
+
+Squaring the diagonal entries proves completeness. The success vector has equal coefficients, so it is Φ+ after normalization whenever q>0. Failure gives a product whenever q<1/2. At q=0 the success probability is zero and its normalized conditional state is undefined. At q=1/2 failure is the zero-probability branch. Neither endpoint needs division by a fabricated small number.
+
+Why this attenuation? To obtain equal surviving coefficients with a diagonal success operator diag(a,b), one needs a√(1−q)=b√q. The contraction constraint |b|≤1 implies success probability at most 2q within this diagonal-filter class, and the displayed operator attains it. This calculation does not prove a general optimal LOCC conversion theorem. It illustrates the one-pair concentration idea of [Bennett and collaborators](https://arxiv.org/pdf/quant-ph/9511030), using the known Schmidt weights and basis.
+
+The subnormalized Bob states retain the branch probabilities:
+
+$$
+\widetilde\rho_{B|s}=qI_2,\quad
+ \widetilde\rho_{B|f}=(1-2q)|0\rangle\langle0|,\qquad
+ \widetilde\rho_{B|s}+\widetilde\rho_{B|f}=\rho_B.
+$$
+
+Their sum is exactly his original reduced state. A communicated flag identifies a Bell subensemble; Alice's unannounced action cannot change Bob's local probability law. Replacing the sum by only the normalized success branch would silently change the experiment.
+
+### Count every input pair when reporting a resource yield
+
+The successful pair has entropy ln 2, but the branch-weighted remaining entanglement is:
+
+$$
+\overline E=p_sE(\Phi^+)+p_fE(00)=2q\ln2\le h(q),\qquad
+ h''(q)=-\frac1{q(1-q)}<0\quad(0<q<\tfrac12).
+$$
+
+Concavity places h above the chord joining q=0 and q=1/2. This proves the displayed inequality for this filter, with strict inequality in the interior. Concentration improves selected pairs while consuming unsuccessful attempts. The average here is the average pure-branch entropy with the classical flag retained; it is not an instruction to call the entropy of a mixed output an entanglement measure.
+
+Rational amplitudes make exact branch accounting easy:
+
+$$
+\psi_u=\frac{|00\rangle+u|11\rangle}{\sqrt{1+u^2}},\quad
+ q=\frac{u^2}{1+u^2},\quad\lambda_{\max}=\frac1{1+u^2},\quad
+ p_s=\frac{2u^2}{1+u^2},\quad p_f=\frac{1-u^2}{1+u^2},\quad0\le u\le1.
+$$
+
+
+```python
+from fractions import Fraction as Q
+for u in [Q(0), Q(1, 3), Q(1, 2), Q(1)]:
+    q = u*u/(1+u*u)
+    largest = 1/(1+u*u)
+    success, failure = 2*q, 1-2*q
+    assert success + failure == 1
+    assert q + largest == 1
+    print(u, q, largest, success, failure)
+```
+
+| u | q | largest Schmidt weight | success probability | failure probability |
+|---|---|---|---|---|
+| 0 | 0 | 1 | 0 | 1 |
+| 1/3 | 1/10 | 9/10 | 1/5 | 4/5 |
+| 1/2 | 1/5 | 4/5 | 2/5 | 3/5 |
+| 1 | 1/2 | 1/2 | 1 | 0 |
+
+![A known pure pair can yield a Bell state only in its flagged success branch; the branch probability and average remaining entanglement include every input attempt.](/assets/learning/quantum-entanglement-research-product-distance-filter-flags.en.svg)
+
+The table is exact; entropy curves use natural logarithms and continuous endpoint limits. These are standalone filter and witness derivations. The existing reader still computes the specified coefficient-table and probe experiment; it has no new filtering or finite-shot control.
+
+#### Research check 1: a nearly product source
+
+For q=1/1000000, the retained state is Bell whenever success occurs, but success probability is only1/500000. The original closest-product trace distance is1/1000. A plot showing only retained Bell pairs would hide the dominant failed attempts. At exactly q=0 there are no retained pairs to normalize.
+
+#### Research check 2: pure products versus separable mixtures
+
+A Bell pair has largest Schmidt weight1/2, so every pure product is at trace distance at least1/√2. Yet the separable mixture of 00 and11 is at distance1/2: subtracting it from the Bell projector leaves an off-diagonal block with eigenvalues ±1/2. Thus the pure-product distance formula cannot be relabelled as distance to all separable states.
+
+#### Research check 3: no flag, no remote change
+
+At q=1/10, the success and failure Bob matrices are I/10 and(4/5)|0⟩⟨0|. Their sum is diag(9/10,1/10), not I/2. Bob sees I/2 only within the success subensemble identified by Alice's message. Entanglement concentration and no-signalling are consistent.
+
 ## 13. Exercises with explanations
 
 **1. Count coordinates before flattening.** A has dimension two and B has dimension three. Where does C12 occur in the A-major vector, and how many coordinates would a direct sum have?
