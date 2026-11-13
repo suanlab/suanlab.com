@@ -1,0 +1,1683 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "status": "validated-ensembles-research-supplements",
+  "domain": "thermo-statmech",
+  "unitIds": [
+    "finite-binary-reservoir-canonical-comparison",
+    "canonical-binary-energy-fluctuations",
+    "grand-canonical-finite-occupancy-fluctuations"
+  ],
+  "registry": {
+    "units": 650,
+    "guides": 1969,
+    "domains": 51,
+    "topics": 509
+  },
+  "baselineCommit": "d6a5129423e9a8dbad04b43cff87aa6c4b9d0a89",
+  "otherDomainManuscriptsPreserved": [
+    {
+      "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md",
+      "sha256": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md",
+      "sha256": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md",
+      "sha256": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md",
+      "sha256": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md",
+      "sha256": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md",
+      "sha256": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md",
+      "sha256": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md",
+      "sha256": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md",
+      "sha256": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md",
+      "sha256": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md",
+      "sha256": "2b70f8129051d98f381f586070cbffb578c90e804669fa1d2295f2e5c9c3d9c4"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md",
+      "sha256": "c8884d8be4b5341daeae9e64b8c2b499352822663a867fc80bfc6a2afa2e1af5"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md",
+      "sha256": "cf1068c26a650b9dd65abb3d03e8cce0225d2480af49aafa9e56d4f273381a48"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md",
+      "sha256": "cabbaa81e0c2a28eaa9107910c512168a62e593dc651a818e97475f34299777f"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md",
+      "sha256": "f5faeff2df6647774485ec8feb0c2425912fdeb308bed436515c0eeb966cca82"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md",
+      "sha256": "22994935ed43b1238a2653ad433b9fba4844b21fa949513108e4d8e65121da3f"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md",
+      "sha256": "3e1f7f9508fa6a5a5ad1db33a11b11b0eee91eecf4cbe043136db65d9bc0e4fc"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md",
+      "sha256": "e5f21a6f59fdcf0e17dc8ae593ffcd207e030e04f1fd4abc2757cc45f8cc89a2"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md",
+      "sha256": "0491fbb5cfe9ade34594d3df47fc0467780fce503c922fad221e33b67f360c45"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md",
+      "sha256": "18528a5d21dc41daca84e8c3ba4b74ea96d06bc262bc10ea8192db361e70c54a"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.ko.md",
+      "sha256": "4bb4d08e7209d1e79a3d182a534fffdf3ca91f86af1794b6ab11661640790308"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.en.md",
+      "sha256": "e009fc56a05155ca0af0942b3c31268f51ef0064bcbd6b3e1910aa19ab336770"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.ko.md",
+      "sha256": "4a2ac611c35b21482cff6e862e52de3a2cc65681ebbaf4d27c3777d256dc2fe7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.en.md",
+      "sha256": "db01c9360f23c77e8d4ff7bf214ebfc46b9e376fdc5dad3c21a9d83a43265b13"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.ko.md",
+      "sha256": "fb46a0950c5ba61d2aa4a304ed01b56ab05220e94791562d4c9c8fca8fb764b0"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.en.md",
+      "sha256": "ee3e1c2d3a2d8a927622c41b0d54884310e3b49a790b0860e28961a10b0bfc5e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.ko.md",
+      "sha256": "273597601f2cc18ef81a4c16b19d30fd8824a0ed1fa211af07427d41a8a1a951"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.en.md",
+      "sha256": "b008dc6e7f1a3d555ae9f363465e9c4c81b66ca7acb047c70ed0450b5bcc8e32"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.ko.md",
+      "sha256": "920ba116208c2992905650b4bcbc366659807d018aeedd266d799d8643b73f57"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.en.md",
+      "sha256": "4a4b016de1dd21bdc3e5b9e2721f05a33b75befc3abb715d6a4d6a71da89f7e6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.ko.md",
+      "sha256": "eb446c6bec89621ee3e991ea0ebe897d94229315e41fd60eb4b9bdee8083c402"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.en.md",
+      "sha256": "561530d879493f38e0408eb37ad25be67d44dad388c7a30e12c242d9e22a144e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.ko.md",
+      "sha256": "087a1af9e81504130c9b059eb159f1fe678f7f832590312fb90861b971da1836"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.en.md",
+      "sha256": "d1aa8390bfd0fc56f887b4e2aab07f6373086aa940998b811196f44f3ec6fed7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.ko.md",
+      "sha256": "9bb8db5785e77ae769d89b2c7d537f15de00922f58789cba7e427a8297f6caec"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.en.md",
+      "sha256": "ac4d75c266edc9dbf81c4d5a1bea6a39f1f1953e7b1f222d635e0c82e3c9846f"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.ko.md",
+      "sha256": "e2c5d6cf78cd5470aa3625d334862310432ee7b581fd43450f60d1c34a276044"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.en.md",
+      "sha256": "fad9d696cc1191b8b8aa998f5a3ca11ed667c2ab048d8bfc10a11ce8e321541c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.ko.md",
+      "sha256": "8a418f2a12d092ff4caea78b90a74e677cf9552f7524b65366616010508c9706"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.en.md",
+      "sha256": "ea5bbf70c8056936fd6fc0be8058d93621471312c0bce6752690b7ef09a7aa90"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.ko.md",
+      "sha256": "4b0221ed4cc62924eab793c07b220a3dde609810cebb37e8af79d9491c514b4b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.en.md",
+      "sha256": "844d21fce5c5d31c200bde1fb304046c22cacef8f0a8619d9fc85b7ee564e5bf"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.ko.md",
+      "sha256": "a718b1ef4c9b86e7b7c9c109e909095e772acea8a83e97e655d6aaeab7e3adfd"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.en.md",
+      "sha256": "ed4cd67f693f56ad3229cc64595ccd0edde216f4cd78ea873bd7234723285d85"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.ko.md",
+      "sha256": "5e1879b6bd55ccc27d71a398fa919e03ca96904ae4a3edf210dc7613085a7ef1"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.en.md",
+      "sha256": "d2185361b111b05b9bba4375542642ff8820fa697dc3086d07b80cb8ff10582d"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.ko.md",
+      "sha256": "bf380b04692d01eccc7ade872c40223c0732f12dbd9f0415ad803cf2f3ec0a16"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.en.md",
+      "sha256": "7b63b7f733ab991c2cc4c33b4fa1c06ed818f40b085b64168de9206805d94946"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.ko.md",
+      "sha256": "6a5221c76efa732c71b201289fd024a7b87c7f2aed1c81c6a65f06692e23f02b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.en.md",
+      "sha256": "f82d282b4f9debb0be0cc673315f5bef998a922ba9d52c51eb079cc223c7ad8b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.ko.md",
+      "sha256": "5717437eb357f7d78652ff00fe41d261dc3b00d0777dd2042ea026ac910c4b42"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.en.md",
+      "sha256": "91cee8bb2d352358997a6eaf32691bf3c2f69578dcab5580e1a8aaef28a14305"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.ko.md",
+      "sha256": "87169cbf63ed0c25110b8070f927ecb1068de31846a7ff2c05b470a548213dd6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.en.md",
+      "sha256": "ac24140fd2b4e1a4091037a98d698e1b234f10b61a5ca65d9e3ae815862b93ba"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.ko.md",
+      "sha256": "6bf2e4df0cdb337c2c207f76449e9cf50e6171cb34edf86ad06c4c927043f58c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.en.md",
+      "sha256": "c1b8cd125800b5381367f54ae276aa5b75e8de704000b52f2d21967cdaffdab2"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/thermodynamics.ko.md",
+      "sha256": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/thermodynamics.en.md",
+      "sha256": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf"
+    }
+  ],
+  "previousResearchArtifactsPreserved": {
+    "content/learning/physics-math-for-ai/thermodynamics.en.md": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf",
+    "content/learning/physics-math-for-ai/thermodynamics.ko.md": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3",
+    "public/assets/learning/thermometry-information-scale.en.svg": "46ea259642757e2c948177d410f2a219401bdf12db8bde220c5c94178fa43f31",
+    "public/assets/learning/thermometry-information-scale.ko.svg": "598613ae723c70ea9cac1c8630dca3a936a486497ebb193f4bd9456210e88688",
+    "scripts/check-thermometry-research.cjs": "c781958ca72c404cbedaa82bdfa1550a93b1991e1d2178f2eb9d45dea9783231",
+    "scripts/learning-thermometry-research.test.ts": "60b9e791bc9d0c882863a5db94c6acc83f0c98665838f6e6d0c56aba10481b1f",
+    "scripts/learning/verify-thermometry-research.py": "bc96b222c3e871b4f50338fe0ff4f14c948ea5a3dfa39a1106591ba6eb81203f",
+    "scripts/learning/generate-thermometry-figures.py": "4f1063ab8e5ad72a43e0fd679962cd1091c9a863158f288ac78f4b0524283625",
+    "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca",
+    "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333",
+    "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903",
+    "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463",
+    "public/assets/learning/heat-work-contact-scale.en.svg": "c8b49365c1e0476c1ada8fd5c0289c40b2d71c1fc555063ac6d77657e7d38242",
+    "public/assets/learning/heat-work-contact-scale.ko.svg": "3f71ba83f6c79ee0c787dba8d736535b1efb3dfa795614e01b8ceba0a5328e33",
+    "public/assets/learning/heat-work-path-null-direction.en.svg": "a57b6e570e68b7b6712eb97d973da86b8124edb853548f24172db27e27ad6e02",
+    "public/assets/learning/heat-work-path-null-direction.ko.svg": "e03438687eb37072b64ec2a13361ff858efcc224c520158b1a557e459adae410",
+    "scripts/check-heat-work-research.cjs": "ebd1e2908aca89139c448204374544abd171c89f4abf50cffbec0e6f7c3501d3",
+    "scripts/learning-heat-work-research.test.ts": "4f43a9176d3c8f338bbb61f9b172097aca262435f21ff2ecd646d0defb3fd428",
+    "scripts/learning/verify-heat-work-research.py": "5c2f8d4b96a0ed26e719357e678ef0ba089374a91192f87a4abc5a9014d0f03a",
+    "scripts/learning/generate-heat-work-research-figures.py": "5cb22bf59ae85ea54f49218063f7c078ceac8cf0afd95a590a740663572c9531",
+    "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b",
+    "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8",
+    "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786",
+    "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb",
+    "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8",
+    "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529",
+    "public/assets/learning/laws-finite-source-work.en.svg": "36c3b8633806e7c14da8672e865abee52c0e0faa36ed18e435bd00ff063ac7a0",
+    "public/assets/learning/laws-finite-source-work.ko.svg": "094667fec150010fab665b4dd555d1ab73a53cac688e72180c9b47f760d6d1e2",
+    "public/assets/learning/laws-unrestored-device-reset.en.svg": "f2ea8dbaf637fca43cb4f91f02d8e868fd9829cad14c453a48a7ff142e7722a0",
+    "public/assets/learning/laws-unrestored-device-reset.ko.svg": "cd80277e8d52cb73f5f133b4f8414c792a42c6c75790a8352dfbadf8377f2a77",
+    "public/assets/learning/laws-growing-copy-low-temperature.en.svg": "9409cf6331a162a36f433026628bca7a216e5df205c614642dfa18b9334ea21d",
+    "public/assets/learning/laws-growing-copy-low-temperature.ko.svg": "d3eefa000445b8452f2fe48a04eaaec4af68d57acd473f84d160dd55db339ffe",
+    "scripts/check-thermodynamic-laws-research.cjs": "213fd76e88020ec2efde1f6961ae02f1911f7e4cdb4b7da936a2da13b593dacf",
+    "scripts/learning-thermodynamic-laws-research.test.ts": "396cb175abc3bc743980a3d2230f83684e414c2199a7474a2cec8a93becdd884",
+    "scripts/learning/verify-thermodynamic-laws-research.py": "87d2d3c1b193f455e88ca62557221fc601368628a3a32d17e938e465e9776a5d",
+    "scripts/learning/generate-laws-research-figures.py": "ab248b8f1b005380c8342a3b4204a00fa6ecdc29350a81b5127cad75fd0cc8bb",
+    "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md": "c8884d8be4b5341daeae9e64b8c2b499352822663a867fc80bfc6a2afa2e1af5",
+    "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md": "2b70f8129051d98f381f586070cbffb578c90e804669fa1d2295f2e5c9c3d9c4",
+    "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md": "cabbaa81e0c2a28eaa9107910c512168a62e593dc651a818e97475f34299777f",
+    "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md": "cf1068c26a650b9dd65abb3d03e8cce0225d2480af49aafa9e56d4f273381a48",
+    "public/assets/learning/free-energy-quench-relaxation.en.svg": "66845ac8b9da5a92e8a5f2a8eda0479da85c64ee4eb670cbfa9a0aa18a0aad0a",
+    "public/assets/learning/free-energy-quench-relaxation.ko.svg": "ebd93b0adcd311c9031f993616067dc4b07564dddde14f3243c868d16da8b22d",
+    "public/assets/learning/free-energy-inertial-piston-budget.en.svg": "4a3ef143dfc27000167846dcac3263e92869c78332548b89a7cde79df64360a0",
+    "public/assets/learning/free-energy-inertial-piston-budget.ko.svg": "c24670d8083bba2113075d5d17e73548b323712f954785b1df6843dd348d4cb1",
+    "scripts/check-free-energy-research.cjs": "cd11785dc950300ffe6eecfac0e3eab185c5347c991047a421b5674510581bfd",
+    "scripts/learning-free-energy-research.test.ts": "eb6574774960ae1366d231daee74ed9af9972e34d584570e941819d9c5f51a8f",
+    "scripts/learning/verify-free-energy-research.py": "c555b31157c0e6fd32f5e94850dd38f4698b3738eb367c5b4e5324d3d03ec57a",
+    "scripts/learning/generate-free-energy-research-figures.py": "55454b3132656b06d3308f0acec8655e512a50670e912eaab5e39e260874cfa7",
+    "scripts/learning-gas-free-energy-content.test.ts": "40c85dbb1aa94a7dc07357681b1bea194f1f7869754dc92d4a2c84fdc2f57496",
+    "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md": "22994935ed43b1238a2653ad433b9fba4844b21fa949513108e4d8e65121da3f",
+    "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md": "f5faeff2df6647774485ec8feb0c2425912fdeb308bed436515c0eeb966cca82",
+    "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md": "e5f21a6f59fdcf0e17dc8ae593ffcd207e030e04f1fd4abc2757cc45f8cc89a2",
+    "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md": "3e1f7f9508fa6a5a5ad1db33a11b11b0eee91eecf4cbe043136db65d9bc0e4fc",
+    "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md": "18528a5d21dc41daca84e8c3ba4b74ea96d06bc262bc10ea8192db361e70c54a",
+    "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md": "0491fbb5cfe9ade34594d3df47fc0467780fce503c922fad221e33b67f360c45",
+    "public/assets/learning/micro-macro-shell-exchange.en.svg": "5f02a72e398fbae69e39bddc8e1eaa06cf3635be9bd46120a15cb7d7d1dbbe96",
+    "public/assets/learning/micro-macro-shell-exchange.ko.svg": "ca872b350149998d9fff11fe5bda6be477583de5103c9775870e7dfe37901661",
+    "public/assets/learning/micro-macro-coarse-memory.en.svg": "567958d9c85fae4b3349cb175549a05f7bf7f5fdc4340a93043dd86bc157cd23",
+    "public/assets/learning/micro-macro-coarse-memory.ko.svg": "df7aef062ad6d00746d8ec150e31934b7af8f97bdaaab00301f0b53f5b1186bd",
+    "public/assets/learning/micro-macro-repeated-sensors.en.svg": "8557e2b8dcd16606e3ca5676cd884572e32d6e67a2f811ef6a8572a45effd7b0",
+    "public/assets/learning/micro-macro-repeated-sensors.ko.svg": "0831eb3ff53a87f824c0c363e3109f01ed5703df812829ac02694c726c77a36f",
+    "scripts/check-micro-macro-research.cjs": "ea987ef21b58b777b498599e6ea030dc9d30e6a260abfcec3f1f50de773a8964",
+    "scripts/learning-micro-macro-research.test.ts": "88dd5d4b64b175614f06197db09eb163d8c630661ae36c66d50e70a647ebe1c6",
+    "scripts/learning/verify-micro-macro-research.py": "368b2570bb91453f2b6c66e51d049f7b2df20a60dbd52d3e92b57575d91748e2",
+    "scripts/learning/generate-micro-macro-research-figures.py": "7d0e5f11b844b42a7278d13a14838e058c77a9973fee03437f6d72d2972edfbb",
+    "scripts/learning-binary-macrostates-content.test.ts": "7f97d6ae565237fe63c168fb2cbfedeefb996540c22fa19abcf8cea289c9ed9a",
+    "scripts/learning-macro-partition-content.test.ts": "278a84f6ed1691bf31f22a871a7e5925de23cdb49f10879aa00b4f60b98815fa",
+    "scripts/learning-noisy-macro-observation-content.test.ts": "333964c1332f4933e45362c71c5640b0430819d0f70fc2fb7b32ce15072da71f"
+  },
+  "ledger": {
+    "originalEntries": 823,
+    "currentEntries": 829,
+    "allOriginalEntriesPreserved": true
+  },
+  "scope": {
+    "originalDomainTopics": 11,
+    "registeredDomainUnits": 32,
+    "researchUnitsInThisBatch": 3,
+    "cumulativeSequentialResearchUnits": 14,
+    "remainingDomainUnits": 18,
+    "wholeDomainResearchReviewComplete": false,
+    "curriculumComplete": false
+  },
+  "manuscripts": [
+    {
+      "id": "finite-binary-reservoir-canonical-comparison",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md",
+      "image": "reservoir-identification",
+      "columns": 6,
+      "rows": [
+        [
+          "4",
+          "0.50000000",
+          "0.16666667",
+          "-0.08333333",
+          "0.16666667",
+          "4"
+        ],
+        [
+          "8",
+          "0.50000000",
+          "0.21428571",
+          "-0.03571429",
+          "0.07142857",
+          "8"
+        ],
+        [
+          "20",
+          "0.50000000",
+          "0.23684211",
+          "-0.01315789",
+          "0.02631579",
+          "20"
+        ],
+        [
+          "100",
+          "0.50000000",
+          "0.24747475",
+          "-0.00252525",
+          "0.00505051",
+          "100"
+        ]
+      ],
+      "marker": "## Research extension: identify a finite budget from two readings",
+      "nextHeading": "## Practice with answers and a verification checklist",
+      "originalSha256": "5d0a8f746486d28aebd5b5164617b2594bdefe3ea3af3082238ba0fdf44f0407",
+      "updatedSha256": "659b82f1f3c19966a0b891a609262c5dd825c821d85d96cce09397313ea84a38"
+    },
+    {
+      "id": "finite-binary-reservoir-canonical-comparison",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md",
+      "image": "reservoir-identification",
+      "columns": 6,
+      "rows": [
+        [
+          "4",
+          "0.50000000",
+          "0.16666667",
+          "-0.08333333",
+          "0.16666667",
+          "4"
+        ],
+        [
+          "8",
+          "0.50000000",
+          "0.21428571",
+          "-0.03571429",
+          "0.07142857",
+          "8"
+        ],
+        [
+          "20",
+          "0.50000000",
+          "0.23684211",
+          "-0.01315789",
+          "0.02631579",
+          "20"
+        ],
+        [
+          "100",
+          "0.50000000",
+          "0.24747475",
+          "-0.00252525",
+          "0.00505051",
+          "100"
+        ]
+      ],
+      "marker": "## 연구 확장: 두 자리 관측으로 유한 예산 식별하기",
+      "nextHeading": "## 풀이가 있는 연습과 검증 체크리스트",
+      "originalSha256": "3916532391a89710021232e47249b076af621113990007c5a42547b904fb1ae9",
+      "updatedSha256": "7accc5aded8e3db2843fb4f56153eb84654e08d00835c90585c684ba1d2d09f3"
+    },
+    {
+      "id": "canonical-binary-energy-fluctuations",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md",
+      "image": "driven-canonical-response",
+      "columns": 6,
+      "rows": [
+        [
+          "0.00000000",
+          "0.58983580",
+          "0.00000000",
+          "0.58983580",
+          "0.00000000",
+          "0.00000000"
+        ],
+        [
+          "0.50000000",
+          "0.47186864",
+          "0.23593432",
+          "0.52756518",
+          "26.56505118",
+          "0.05898358"
+        ],
+        [
+          "1.00000000",
+          "0.29491790",
+          "0.29491790",
+          "0.41707689",
+          "45.00000000",
+          "0.14745895"
+        ],
+        [
+          "2.00000000",
+          "0.11796716",
+          "0.23593432",
+          "0.26378259",
+          "63.43494882",
+          "0.23593432"
+        ]
+      ],
+      "marker": "## Research extension: equilibrium spread does not set a response speed",
+      "nextHeading": "## Practice with answers and a verification checklist",
+      "originalSha256": "2a7473a89a0f5288a92b80057cca25f82c120b7ff421d98f130d098342e4b113",
+      "updatedSha256": "c1e84084c383f5306301b11bedca68e57a6efb0ff6bcafbc0823df1c61156e0b"
+    },
+    {
+      "id": "canonical-binary-energy-fluctuations",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md",
+      "image": "driven-canonical-response",
+      "columns": 6,
+      "rows": [
+        [
+          "0.00000000",
+          "0.58983580",
+          "0.00000000",
+          "0.58983580",
+          "0.00000000",
+          "0.00000000"
+        ],
+        [
+          "0.50000000",
+          "0.47186864",
+          "0.23593432",
+          "0.52756518",
+          "26.56505118",
+          "0.05898358"
+        ],
+        [
+          "1.00000000",
+          "0.29491790",
+          "0.29491790",
+          "0.41707689",
+          "45.00000000",
+          "0.14745895"
+        ],
+        [
+          "2.00000000",
+          "0.11796716",
+          "0.23593432",
+          "0.26378259",
+          "63.43494882",
+          "0.23593432"
+        ]
+      ],
+      "marker": "## 연구 확장: 평형 요동만으로 응답 속도는 정해지지 않는다",
+      "nextHeading": "## 풀이가 있는 연습과 검증 체크리스트",
+      "originalSha256": "a20b9e72f85794d578ace76e22118bd1eee6898a00bc2fb84a2b5326a0b9652e",
+      "updatedSha256": "d6297d9b2a0185ceb541329f16970702b03c71c49a824c8ea97e65b9fa18f734"
+    },
+    {
+      "id": "grand-canonical-finite-occupancy-fluctuations",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md",
+      "image": "grand-response-rank",
+      "columns": 6,
+      "rows": [
+        [
+          "1.00000000",
+          "1.00000000",
+          "0.00000000",
+          "0.00000000",
+          "--",
+          "--"
+        ],
+        [
+          "2.00000000",
+          "0.50000000",
+          "0.04620453",
+          "0.01155113",
+          "0.50000000",
+          "-0.00000000"
+        ],
+        [
+          "2.00000000",
+          "1.00000000",
+          "0.02064299",
+          "0.02064299",
+          "1.00000000",
+          "-0.00000000"
+        ],
+        [
+          "2.00000000",
+          "2.00000000",
+          "0.00185447",
+          "0.00741788",
+          "2.00000000",
+          "0.00000000"
+        ]
+      ],
+      "marker": "## Research extension: fluctuations can leave a parameter direction invisible",
+      "nextHeading": "## Practice with answers and a verification checklist",
+      "originalSha256": "1ab612949a826ac3dea1558fa52f7c667648804503f57dbbd47508157d9eef11",
+      "updatedSha256": "8e7bc66f8f361767935d6f2198b3ca9fa099d0b98c73d017f55bc3d8063f026e"
+    },
+    {
+      "id": "grand-canonical-finite-occupancy-fluctuations",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md",
+      "image": "grand-response-rank",
+      "columns": 6,
+      "rows": [
+        [
+          "1.00000000",
+          "1.00000000",
+          "0.00000000",
+          "0.00000000",
+          "--",
+          "--"
+        ],
+        [
+          "2.00000000",
+          "0.50000000",
+          "0.04620453",
+          "0.01155113",
+          "0.50000000",
+          "-0.00000000"
+        ],
+        [
+          "2.00000000",
+          "1.00000000",
+          "0.02064299",
+          "0.02064299",
+          "1.00000000",
+          "-0.00000000"
+        ],
+        [
+          "2.00000000",
+          "2.00000000",
+          "0.00185447",
+          "0.00741788",
+          "2.00000000",
+          "0.00000000"
+        ]
+      ],
+      "marker": "## 연구 확장: 요동이 있어도 보이지 않는 매개변수 방향",
+      "nextHeading": "## 풀이가 있는 연습과 검증 체크리스트",
+      "originalSha256": "79fd2af07f305bd235b4e1d1324dde87a20b8bef4dcd1cc4333176f97af3d85b",
+      "updatedSha256": "bb67de78a58e7781683bce9015b1c67623b2dc720228f4162a74e7b61d6e41bc"
+    }
+  ],
+  "originalExplainedExercisesPreserved": 36,
+  "newExplainedResearchQuestions": 18,
+  "displayedEquationsBothLocales": 60,
+  "executedPythonCells": 6,
+  "independentVerification": {
+    "status": "passed",
+    "preparationOnly": true,
+    "finiteReservoirPairLaws": 66,
+    "drivenCanonicalResponses": [
+      {
+        "omega": 0.5,
+        "amplitude": 0.02,
+        "responseError": 8.039097411953357e-05,
+        "meanEntropyProduction": 2.3608646946784415e-05,
+        "linearOrderPrediction": 2.3593431988977822e-05
+      },
+      {
+        "omega": 0.5,
+        "amplitude": 0.01,
+        "responseError": 2.0097758508603865e-05,
+        "meanEntropyProduction": 5.8993086397770495e-06,
+        "linearOrderPrediction": 5.8983579972444555e-06
+      },
+      {
+        "omega": 1.0,
+        "amplitude": 0.02,
+        "responseError": 6.355464548048256e-05,
+        "meanEntropyProduction": 5.901753277644519e-05,
+        "linearOrderPrediction": 5.8983579972444555e-05
+      },
+      {
+        "omega": 1.0,
+        "amplitude": 0.01,
+        "responseError": 1.5888673273492036e-05,
+        "meanEntropyProduction": 1.4748016435990933e-05,
+        "linearOrderPrediction": 1.4745894993111139e-05
+      },
+      {
+        "omega": 2.0,
+        "amplitude": 0.02,
+        "responseError": 4.019548711808151e-05,
+        "meanEntropyProduction": 9.442497708320467e-05,
+        "linearOrderPrediction": 9.437372795591129e-05
+      },
+      {
+        "omega": 2.0,
+        "amplitude": 0.01,
+        "responseError": 1.0048879500693447e-05,
+        "meanEntropyProduction": 2.3596634175894242e-05,
+        "linearOrderPrediction": 2.3593431988977822e-05
+      }
+    ],
+    "grandCovarianceAndFisherPreparations": 27,
+    "newReadersValidated": 0
+  },
+  "selectedTests": {
+    "files": 17,
+    "tests": 294,
+    "failed": 0,
+    "logSha256": "834ff531966b1c8759e5f1ec902cbb85b5ff36810ecf7e03a31443786f8ac04e",
+    "intentionalExistingTestUpdates": "Each manuscript adds one H2, ten displayed equations and one accessible table. Original text and six solutions per locale restored and hashed separately."
+  },
+  "checks": {
+    "lint": true,
+    "content": true,
+    "build": true,
+    "typecheck": true,
+    "export": true,
+    "generatedRoutes": 1893,
+    "htmlPages": 1888,
+    "contentUrls": 1885,
+    "logs": {
+      "lint.log": "3be436cfc280576162c8988ab0bf2da58c1cb1af605d4cca297edd0b2c7c9997",
+      "content.log": "cae16334d0d816cb4f9981be8422454c5186c14b964768b00780286cd813b72d",
+      "build.log": "ffab249ea04884847bb599f2181e4026d4d3e28e10649f4270311eab07a8a6ca",
+      "typecheck.log": "6d339cc3c6b097244df96011008e228f3bc9a23bcef588e7d89e6265838f6660",
+      "export.log": "7693d86189e4ec43f9df04724c2cbf33caf0d974a41cccb2aa2004d36af557d2"
+    }
+  },
+  "validationFreeze": {
+    "inputs": 5406,
+    "outputs": 313,
+    "description": "Scoped source/script inputs and target HTML/SVG/shared Next.js static outputs unchanged across export/browser validation. Documentation and runtime excluded.",
+    "inputManifestSha256": "be69e58cc9dab3549464388697d8ba101ecf0bea54ec0256b6bf982dca9a293d",
+    "outputManifestSha256": "79a34b0b5728bd520aa47e15641246660d0cf28a2cb130fcaea1b719ce4989dc"
+  },
+  "browser": {
+    "unitIds": [
+      "finite-binary-reservoir-canonical-comparison",
+      "canonical-binary-energy-fluctuations",
+      "grand-canonical-finite-occupancy-fluctuations"
+    ],
+    "rows": [
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      }
+    ],
+    "errors": [],
+    "guides": [
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "example": 0
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "example": 1
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "example": 2
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "example": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "example": 1
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "example": 2
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "example": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "example": 1
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "example": 2
+      }
+    ],
+    "questions": [
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "question": 0
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "question": 1
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "question": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "question": 1
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "question": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "question": 1
+      }
+    ],
+    "concepts": [
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "step": 0
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "step": 1
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "step": 2
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "step": 3
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "step": 0
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "step": 1
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "step": 2
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "step": 3
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "step": 0
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "step": 1
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "step": 2
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "step": 3
+      }
+    ],
+    "interactions": [
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      }
+    ],
+    "assetBounds": [
+      {
+        "path": "public/assets/learning/ensembles-reservoir-identification.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/ensembles-reservoir-identification.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/ensembles-driven-canonical-response.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/ensembles-driven-canonical-response.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/ensembles-grand-response-rank.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/ensembles-grand-response-rank.ko.svg",
+        "outside": []
+      }
+    ]
+  },
+  "renderAndServedFiles": {
+    "status": "passed",
+    "rows": [
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "저장고에도-유한한-예산이-있다",
+            "title": "저장고에도 유한한 예산이 있다"
+          },
+          {
+            "id": "계와-제약-조건부터-명시하기",
+            "title": "계와 제약 조건부터 명시하기"
+          },
+          {
+            "id": "근사하기-전에-주변-분포-유도하기",
+            "title": "근사하기 전에 주변 분포 유도하기"
+          },
+          {
+            "id": "가장-작은-유익한-사례를-직접-나열하기",
+            "title": "가장 작은 유익한 사례를 직접 나열하기"
+          },
+          {
+            "id": "평균을-맞춘-정준-비교-분포-만들기",
+            "title": "평균을 맞춘 정준 비교 분포 만들기"
+          },
+          {
+            "id": "평균과-빠진-상관을-유도하기",
+            "title": "평균과 빠진 상관을 유도하기"
+          },
+          {
+            "id": "평균만-보지-말고-분포-전체-비교하기",
+            "title": "평균만 보지 말고 분포 전체 비교하기"
+          },
+          {
+            "id": "저장고의-기울기를-국소적으로-살펴보기",
+            "title": "저장고의 기울기를 국소적으로 살펴보기"
+          },
+          {
+            "id": "전체변동거리로-사건-확률-오차-측정하기",
+            "title": "전체변동거리로 사건 확률 오차 측정하기"
+          },
+          {
+            "id": "상대엔트로피-비교의-방향-지키기",
+            "title": "상대엔트로피 비교의 방향 지키기"
+          },
+          {
+            "id": "일반적인-저장고-전개의-의미-이해하기",
+            "title": "일반적인 저장고 전개의 의미 이해하기"
+          },
+          {
+            "id": "무엇이-가까워지는지-정확히-말하기",
+            "title": "무엇이 가까워지는지 정확히 말하기"
+          },
+          {
+            "id": "준비-조건을-엔트로피와-ai-문제에-연결하기",
+            "title": "준비 조건을 엔트로피와 AI 문제에 연결하기"
+          },
+          {
+            "id": "수치-근거를-읽을-때-준비를-바꾸지-않기",
+            "title": "수치 근거를 읽을 때 준비를 바꾸지 않기"
+          },
+          {
+            "id": "연구-확장-두-자리-관측으로-유한-예산-식별하기",
+            "title": "연구 확장: 두 자리 관측으로 유한 예산 식별하기"
+          },
+          {
+            "id": "풀이가-있는-연습과-검증-체크리스트",
+            "title": "풀이가 있는 연습과 검증 체크리스트"
+          },
+          {
+            "id": "계산을-실험-화면과-연결하기",
+            "title": "계산을 실험 화면과 연결하기"
+          }
+        ]
+      },
+      {
+        "id": "finite-binary-reservoir-canonical-comparison",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "a-reservoir-has-a-finite-budget",
+            "title": "A reservoir has a finite budget"
+          },
+          {
+            "id": "state-the-system-and-its-constraints",
+            "title": "State the system and its constraints"
+          },
+          {
+            "id": "derive-the-marginal-before-approximating-it",
+            "title": "Derive the marginal before approximating it"
+          },
+          {
+            "id": "enumerate-the-smallest-informative-example",
+            "title": "Enumerate the smallest informative example"
+          },
+          {
+            "id": "build-a-matching-canonical-comparison",
+            "title": "Build a matching canonical comparison"
+          },
+          {
+            "id": "derive-the-mean-and-the-missing-correlations",
+            "title": "Derive the mean and the missing correlations"
+          },
+          {
+            "id": "compare-whole-distributions-not-only-averages",
+            "title": "Compare whole distributions, not only averages"
+          },
+          {
+            "id": "inspect-the-reservoir-slope-locally",
+            "title": "Inspect the reservoir slope locally"
+          },
+          {
+            "id": "measure-event-errors-with-total-variation",
+            "title": "Measure event errors with total variation"
+          },
+          {
+            "id": "keep-the-direction-of-relative-entropy",
+            "title": "Keep the direction of relative entropy"
+          },
+          {
+            "id": "understand-the-usual-reservoir-expansion",
+            "title": "Understand the usual reservoir expansion"
+          },
+          {
+            "id": "state-precisely-what-becomes-close",
+            "title": "State precisely what becomes close"
+          },
+          {
+            "id": "connect-the-preparation-question-to-entropy-and-ai",
+            "title": "Connect the preparation question to entropy and AI"
+          },
+          {
+            "id": "read-numerical-evidence-without-changing-the-preparation",
+            "title": "Read numerical evidence without changing the preparation"
+          },
+          {
+            "id": "research-extension-identify-a-finite-budget-from-two-readings",
+            "title": "Research extension: identify a finite budget from two readings"
+          },
+          {
+            "id": "practice-with-answers-and-a-verification-checklist",
+            "title": "Practice with answers and a verification checklist"
+          },
+          {
+            "id": "connect-the-calculation-to-the-experiment",
+            "title": "Connect the calculation to the experiment"
+          }
+        ]
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "온도를-정해도-매번-같은-에너지가-측정되지는-않는다",
+            "title": "온도를 정해도 매번 같은 에너지가 측정되지는 않는다"
+          },
+          {
+            "id": "hamiltonian과-제어-변수를-정의하기",
+            "title": "Hamiltonian과 제어 변수를 정의하기"
+          },
+          {
+            "id": "한-자리를-정규화한-뒤-복제들을-곱하기",
+            "title": "한 자리를 정규화한 뒤 복제들을 곱하기"
+          },
+          {
+            "id": "배치와-여기-수를-구별하기",
+            "title": "배치와 여기 수를 구별하기"
+          },
+          {
+            "id": "독립-점유를-더해-모멘트-유도하기",
+            "title": "독립 점유를 더해 모멘트 유도하기"
+          },
+          {
+            "id": "요동과-온도-응답-연결하기",
+            "title": "요동과 온도 응답 연결하기"
+          },
+          {
+            "id": "올바른-상태-공간에서-엔트로피-계산하기",
+            "title": "올바른 상태 공간에서 엔트로피 계산하기"
+          },
+          {
+            "id": "곡선을-그리기-전에-두-가지-스케일-검산하기",
+            "title": "곡선을 그리기 전에 두 가지 스케일 검산하기"
+          },
+          {
+            "id": "절대-요동과-상대-요동-비교하기",
+            "title": "절대 요동과 상대 요동 비교하기"
+          },
+          {
+            "id": "앙상블의-퍼짐과-평균-추정의-불확실성-구분하기",
+            "title": "앙상블의 퍼짐과 평균 추정의 불확실성 구분하기"
+          },
+          {
+            "id": "열용량이-중간-온도에서-최대가-되는-이유-설명하기",
+            "title": "열용량이 중간 온도에서 최대가 되는 이유 설명하기"
+          },
+          {
+            "id": "상한이-있는-스펙트럼에서-음의-온도-사용하기",
+            "title": "상한이 있는 스펙트럼에서 음의 온도 사용하기"
+          },
+          {
+            "id": "0을-해석하기-전에-극한의-경로-명시하기",
+            "title": "0을 해석하기 전에 극한의 경로 명시하기"
+          },
+          {
+            "id": "꼬리-진단을-읽고-ai의-확률-모형에-연결하기",
+            "title": "꼬리 진단을 읽고 AI의 확률 모형에 연결하기"
+          },
+          {
+            "id": "연구-확장-평형-요동만으로-응답-속도는-정해지지-않는다",
+            "title": "연구 확장: 평형 요동만으로 응답 속도는 정해지지 않는다"
+          },
+          {
+            "id": "풀이가-있는-연습과-검증-체크리스트",
+            "title": "풀이가 있는 연습과 검증 체크리스트"
+          },
+          {
+            "id": "계산을-실험-화면과-연결하기",
+            "title": "계산을 실험 화면과 연결하기"
+          }
+        ]
+      },
+      {
+        "id": "canonical-binary-energy-fluctuations",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "a-specified-temperature-does-not-fix-every-measured-energy",
+            "title": "A specified temperature does not fix every measured energy"
+          },
+          {
+            "id": "define-the-hamiltonian-and-the-control-variables",
+            "title": "Define the Hamiltonian and the control variables"
+          },
+          {
+            "id": "normalize-one-site-before-multiplying-copies",
+            "title": "Normalize one site before multiplying copies"
+          },
+          {
+            "id": "distinguish-a-pattern-from-an-excitation-count",
+            "title": "Distinguish a pattern from an excitation count"
+          },
+          {
+            "id": "add-independent-occupancies-to-derive-the-moments",
+            "title": "Add independent occupancies to derive the moments"
+          },
+          {
+            "id": "relate-fluctuations-to-a-temperature-response",
+            "title": "Relate fluctuations to a temperature response"
+          },
+          {
+            "id": "compute-entropy-on-the-correct-state-space",
+            "title": "Compute entropy on the correct state space"
+          },
+          {
+            "id": "work-through-two-scales-before-plotting-a-sweep",
+            "title": "Work through two scales before plotting a sweep"
+          },
+          {
+            "id": "compare-absolute-and-relative-fluctuations",
+            "title": "Compare absolute and relative fluctuations"
+          },
+          {
+            "id": "separate-ensemble-spread-from-uncertainty-of-an-average",
+            "title": "Separate ensemble spread from uncertainty of an average"
+          },
+          {
+            "id": "explain-why-heat-capacity-peaks-at-an-intermediate-temperature",
+            "title": "Explain why heat capacity peaks at an intermediate temperature"
+          },
+          {
+            "id": "use-negative-temperature-only-with-a-bounded-spectrum",
+            "title": "Use negative temperature only with a bounded spectrum"
+          },
+          {
+            "id": "state-the-limits-before-interpreting-a-zero",
+            "title": "State the limits before interpreting a zero"
+          },
+          {
+            "id": "read-tail-diagnostics-and-connect-the-model-to-ai",
+            "title": "Read tail diagnostics and connect the model to AI"
+          },
+          {
+            "id": "research-extension-equilibrium-spread-does-not-set-a-response-speed",
+            "title": "Research extension: equilibrium spread does not set a response speed"
+          },
+          {
+            "id": "practice-with-answers-and-a-verification-checklist",
+            "title": "Practice with answers and a verification checklist"
+          },
+          {
+            "id": "connect-the-calculation-to-the-experiment",
+            "title": "Connect the calculation to the experiment"
+          }
+        ]
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "저장고와-무엇을-교환할-수-있는지-바꾸기",
+            "title": "저장고와 무엇을 교환할 수 있는지 바꾸기"
+          },
+          {
+            "id": "자리와-입자-그-에너지-정의하기",
+            "title": "자리와 입자, 그 에너지 정의하기"
+          },
+          {
+            "id": "입자-수-전체를-합해-준비-정규화하기",
+            "title": "입자 수 전체를 합해 준비 정규화하기"
+          },
+          {
+            "id": "입자-수를-조건부-배치로-나누기",
+            "title": "입자 수를 조건부 배치로 나누기"
+          },
+          {
+            "id": "입자와-빈자리-에너지의-요동-유도하기",
+            "title": "입자와 빈자리, 에너지의 요동 유도하기"
+          },
+          {
+            "id": "미분하기-전에-좌표를-지정하기",
+            "title": "미분하기 전에 좌표를 지정하기"
+          },
+          {
+            "id": "올바른-제약-아래-grand-potential-사용하기",
+            "title": "올바른 제약 아래 grand potential 사용하기"
+          },
+          {
+            "id": "편향된-두-자리-준비를-손으로-검산하기",
+            "title": "편향된 두 자리 준비를 손으로 검산하기"
+          },
+          {
+            "id": "에너지와-화학-기준을-함께-이동하기",
+            "title": "에너지와 화학 기준을 함께 이동하기"
+          },
+          {
+            "id": "양의-쪽-온도-0-극한-정의하기",
+            "title": "양의 쪽 온도 0 극한 정의하기"
+          },
+          {
+            "id": "두-제어값이-임계점으로-갈-때-경로-확인하기",
+            "title": "두 제어값이 임계점으로 갈 때 경로 확인하기"
+          },
+          {
+            "id": "고정-입자-수-준비와-독립-점유-구분하기",
+            "title": "고정 입자 수 준비와 독립 점유 구분하기"
+          },
+          {
+            "id": "반전된-유계-준비를-조심스럽게-해석하기",
+            "title": "반전된 유계 준비를 조심스럽게 해석하기"
+          },
+          {
+            "id": "상쇄와-양의-꼬리를-수치적으로-보존하기",
+            "title": "상쇄와 양의 꼬리를 수치적으로 보존하기"
+          },
+          {
+            "id": "연구-확장-요동이-있어도-보이지-않는-매개변수-방향",
+            "title": "연구 확장: 요동이 있어도 보이지 않는 매개변수 방향"
+          },
+          {
+            "id": "풀이가-있는-연습과-검증-체크리스트",
+            "title": "풀이가 있는 연습과 검증 체크리스트"
+          },
+          {
+            "id": "계산을-실험-화면과-연결하기",
+            "title": "계산을 실험 화면과 연결하기"
+          }
+        ]
+      },
+      {
+        "id": "grand-canonical-finite-occupancy-fluctuations",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "change-what-the-reservoir-is-allowed-to-exchange",
+            "title": "Change what the reservoir is allowed to exchange"
+          },
+          {
+            "id": "define-sites-particles-and-their-energy",
+            "title": "Define sites, particles and their energy"
+          },
+          {
+            "id": "sum-over-particle-numbers-to-normalize-the-preparation",
+            "title": "Sum over particle numbers to normalize the preparation"
+          },
+          {
+            "id": "resolve-a-count-into-conditional-patterns",
+            "title": "Resolve a count into conditional patterns"
+          },
+          {
+            "id": "derive-particle-hole-and-energy-fluctuations",
+            "title": "Derive particle, hole and energy fluctuations"
+          },
+          {
+            "id": "specify-coordinates-before-differentiating",
+            "title": "Specify coordinates before differentiating"
+          },
+          {
+            "id": "use-the-grand-potential-with-the-correct-constraints",
+            "title": "Use the grand potential with the correct constraints"
+          },
+          {
+            "id": "check-a-biased-two-site-preparation-by-hand",
+            "title": "Check a biased two-site preparation by hand"
+          },
+          {
+            "id": "shift-energy-and-chemical-reference-together",
+            "title": "Shift energy and chemical reference together"
+          },
+          {
+            "id": "define-the-positive-side-zero-temperature-limits",
+            "title": "Define the positive-side zero-temperature limits"
+          },
+          {
+            "id": "check-the-path-when-two-controls-approach-a-threshold",
+            "title": "Check the path when two controls approach a threshold"
+          },
+          {
+            "id": "separate-fixed-number-preparation-from-independent-occupancy",
+            "title": "Separate fixed-number preparation from independent occupancy"
+          },
+          {
+            "id": "interpret-inverted-bounded-preparations-carefully",
+            "title": "Interpret inverted bounded preparations carefully"
+          },
+          {
+            "id": "preserve-cancellations-and-positive-tails-numerically",
+            "title": "Preserve cancellations and positive tails numerically"
+          },
+          {
+            "id": "research-extension-fluctuations-can-leave-a-parameter-direction-invisible",
+            "title": "Research extension: fluctuations can leave a parameter direction invisible"
+          },
+          {
+            "id": "practice-with-answers-and-a-verification-checklist",
+            "title": "Practice with answers and a verification checklist"
+          },
+          {
+            "id": "connect-the-calculation-to-the-experiment",
+            "title": "Connect the calculation to the experiment"
+          }
+        ]
+      }
+    ],
+    "files": [
+      {
+        "path": "/book/online/physics-math-for-ai/finite-binary-reservoir-canonical-comparison/",
+        "sha256": "24f7b5fc9c02a0bfc36608fad13aa33fb01784e8836167f8504df4fefbda18ca",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/canonical-binary-energy-fluctuations/",
+        "sha256": "0a0b038fa6dd0d80fad99f03963746041b37b4ab79e17316c05f486e5fa7059f",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations/",
+        "sha256": "ed99dd2d8d617a5c84fe8ac81eebdce8f300f310ca283ca955720603636068f3",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/ensembles-reservoir-identification.en.svg",
+        "sha256": "e7574881238de852b90615b101da45032d35b51c0b12473a28295ea2a3169038",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/ensembles-reservoir-identification.ko.svg",
+        "sha256": "d86bfb8368754531a5783618bf80d1d428ae4675b5d3d73f7fd9316158e40a46",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/ensembles-driven-canonical-response.en.svg",
+        "sha256": "fe65fb6bef449133fb29c8c25caf4ed58fb20d975fdf8b686c3f07557d8aa3e9",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/ensembles-driven-canonical-response.ko.svg",
+        "sha256": "b1ffa231ddbca48f0ee17c78f4175289cca1c0926378a4ac34311284112d8870",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/ensembles-grand-response-rank.en.svg",
+        "sha256": "5ab9a0e0b99bbc0d0dce6f55f6f2384beacbf8effbd7795df858da9828141d40",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/ensembles-grand-response-rank.ko.svg",
+        "sha256": "664dfa43d78d60e0fe8ede7f864638fe87b593aab114444a89cb3825f089577f",
+        "sourceOutputAndServedEqual": true
+      }
+    ],
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "domains": 51,
+      "topics": 509
+    },
+    "domainUnits": [
+      "thermodynamics",
+      "finite-body-thermal-contact-heat-entropy",
+      "ideal-gas-two-path-heat-work",
+      "carnot-cycle-engine-refrigerator",
+      "two-reservoir-cycle-entropy-admissibility",
+      "gapped-spectrum-low-temperature-entropy",
+      "finite-spectrum-helmholtz-kl-variational",
+      "ideal-gas-helmholtz-gibbs-volume-availability",
+      "binary-shell-multiplicity-block-counts",
+      "finite-macro-partition-conditional-entropy",
+      "finite-noisy-macro-observation-channel",
+      "finite-binary-reservoir-canonical-comparison",
+      "canonical-binary-energy-fluctuations",
+      "grand-canonical-finite-occupancy-fluctuations",
+      "finite-spectrum-partition-cumulant-generators",
+      "coupled-binary-sites-partition-factorization",
+      "infinite-energy-ladder-normalization-cutoff",
+      "reference-measure-boltzmann-softmax-identifiability",
+      "finite-gibbs-conditionals-scan-support",
+      "quadratic-gaussian-gibbs-normalizability",
+      "finite-curie-weiss-magnetization-symmetry",
+      "curie-weiss-variational-stability-limits",
+      "landau-sixth-order-coexistence-stability",
+      "binary-connected-correlations-field-hessian",
+      "periodic-ising-ring-correlation-length",
+      "finite-correlated-average-ar1-uncertainty",
+      "stationary-flux-three-state-cycle",
+      "metropolis-hastings-proposal-balance",
+      "reversible-two-state-periodicity-mixing",
+      "boundary-growth-extensivity-additivity",
+      "spatial-density-self-averaging-correlations",
+      "two-phase-partition-zeros-rounding"
+    ]
+  },
+  "directVisualReview": [
+    {
+      "path": ".runtime/learning/ensembles-research/reservoir-identification.en.png",
+      "sha256": "2c827c896280cb484075ad139a2ef85fa909394a53820898d50f6ddbcbb9ebf3",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research/reservoir-identification.ko.png",
+      "sha256": "abd177a3524742e93567499c7cd4a28f8afc0a41a6b4f346250d15cb2b776937",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research/driven-canonical-response.en.png",
+      "sha256": "0d52ddc4826b3ba04ef9eba164223ee0e1007bdc4f5622a0bc3878890d3abddd",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research/driven-canonical-response.ko.png",
+      "sha256": "f3f6d4802b5cd0a8b3408099e490bd2f1ac1f240e0992caa5a27cc8a450371a5",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research/grand-response-rank.en.png",
+      "sha256": "6f5c18502cb448b9ec812d948319bcd6d84026256f31b2f1d15173f5db80d9c9",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research/grand-response-rank.ko.png",
+      "sha256": "181fcea2b03441a463a249b6c213f092ddcb4a1c6ab4c735050c6d4ccf0b6fa6",
+      "directlyReviewed": true,
+      "scope": "native research figure"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research-finite-binary-reservoir-canonical-comparison-en-320.png",
+      "sha256": "e0b7170b8a9e917da3f03cdf5812bc6cb903163aeaabbb6ce5e373c1e1db31e9",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research-finite-binary-reservoir-canonical-comparison-ko-320.png",
+      "sha256": "15a12b7fba0b4a4e416e8b26c3fafefd335b2c82c83f139112554eac86f9e66f",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research-canonical-binary-energy-fluctuations-en-320.png",
+      "sha256": "e08acd0d88f5e9a1df33b52fa8fd80062b9710da4d08d21431d0bcb55f1e1533",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research-canonical-binary-energy-fluctuations-ko-320.png",
+      "sha256": "bc28dc3480a410ae750c5677e38fa93c9500766d30dcb79ddb7d15f1c3d656d5",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research-grand-canonical-finite-occupancy-fluctuations-en-320.png",
+      "sha256": "659297b125325fd5b527d62e87d942b8919d7fd2c0a56b662fb6c5d459e0bf56",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    },
+    {
+      "path": ".runtime/learning/ensembles-research-grand-canonical-finite-occupancy-fluctuations-ko-320.png",
+      "sha256": "4bba61fcd8fec8392ff72b947d8641930f35682677dbd2d474fc9589e5de752d",
+      "directlyReviewed": true,
+      "scope": "320px figure context; not entire manuscript"
+    }
+  ],
+  "artifacts": {
+    "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md": "659b82f1f3c19966a0b891a609262c5dd825c821d85d96cce09397313ea84a38",
+    "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md": "7accc5aded8e3db2843fb4f56153eb84654e08d00835c90585c684ba1d2d09f3",
+    "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md": "c1e84084c383f5306301b11bedca68e57a6efb0ff6bcafbc0823df1c61156e0b",
+    "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md": "d6297d9b2a0185ceb541329f16970702b03c71c49a824c8ea97e65b9fa18f734",
+    "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md": "8e7bc66f8f361767935d6f2198b3ca9fa099d0b98c73d017f55bc3d8063f026e",
+    "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md": "bb67de78a58e7781683bce9015b1c67623b2dc720228f4162a74e7b61d6e41bc",
+    "public/assets/learning/ensembles-reservoir-identification.en.svg": "e7574881238de852b90615b101da45032d35b51c0b12473a28295ea2a3169038",
+    "public/assets/learning/ensembles-reservoir-identification.ko.svg": "d86bfb8368754531a5783618bf80d1d428ae4675b5d3d73f7fd9316158e40a46",
+    "public/assets/learning/ensembles-driven-canonical-response.en.svg": "fe65fb6bef449133fb29c8c25caf4ed58fb20d975fdf8b686c3f07557d8aa3e9",
+    "public/assets/learning/ensembles-driven-canonical-response.ko.svg": "b1ffa231ddbca48f0ee17c78f4175289cca1c0926378a4ac34311284112d8870",
+    "public/assets/learning/ensembles-grand-response-rank.en.svg": "5ab9a0e0b99bbc0d0dce6f55f6f2384beacbf8effbd7795df858da9828141d40",
+    "public/assets/learning/ensembles-grand-response-rank.ko.svg": "664dfa43d78d60e0fe8ede7f864638fe87b593aab114444a89cb3825f089577f",
+    "scripts/check-ensembles-research.cjs": "2a3b4a028ca21918401a95c0d65174e0a0ddccf5652deb8f2ac8589fd5cbe5f7",
+    "scripts/learning-ensembles-research.test.ts": "1ebd47924059b2ddbd5037654bf8dca2cb5c448b69ab011fef4a15d9311b5024",
+    "scripts/learning/verify-ensembles-research.py": "4ac9327a6a6a83ba0048a230a991b03761695c58212f146ed7945a7bdc6d4c5f",
+    "scripts/learning/generate-ensembles-research-figures.py": "f9fc640776e3f0551c71232899cdf49331edca164f416e97b6c0d6e2edca9aa8",
+    "scripts/fixtures/reviewed-learning-manuscripts.json": "eb81fbe486ed0c8e6eab2e4dce8f5e1ff049ecebcd7791259e303c2ca1b10ba8",
+    "scripts/learning-finite-reservoir-content.test.ts": "1f23c70d15f7f616f2bc0f3688d9424f9204434aea123b64c62c138fddb9f1cc",
+    "scripts/learning-canonical-binary-content.test.ts": "2701304fcedb982262569544c3066a7126c4b95b07d3e63ee2028d43bb467ed2",
+    "scripts/learning-grand-occupancy-content.test.ts": "49a7b942d2b346036dc7c03b4e14ce572b7af33431e32e3bf5321b23d26de75b"
+  },
+  "overallReview": {
+    "completedDomains": 43,
+    "completedTopics": 426,
+    "remainingDomains": 8,
+    "remainingTopics": 83
+  },
+  "publicDeploymentConfirmed": false
+}

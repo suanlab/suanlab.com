@@ -198,6 +198,123 @@ The linear corrections cancel because both laws normalize. This expression also 
 
 For independent checks, the reference calculations use integer combinatorics, rational probabilities and high-precision logarithms; small cases additionally enumerate complete bit configurations. Compare exact counts and moments as well as rounded chart heights. The largest accepted N is an implementation budget, and the absence of a physical clock remains part of the model even if a UI cycles through examples.
 
+## Research extension: identify a finite budget from two readings
+
+One coin can hide a finite budget. If half of a large collection of switches is on, any one inspected switch is fair, regardless of the collection size. A second simultaneous reading asks a different question: did the first on switch reduce the remaining budget? The answer can identify a finite reservoir within a specified preparation model.
+
+Keep a uniform fixed-K shell of N labeled binary sites, N≥2, and observe two distinct sites from one preparation. Repeat the complete preparation independently when collecting data. These are simultaneous site observations, not two successive times or a reservoir relaxation experiment. The existing reader continues to compare theoretical distributions rather than draw these repeated samples.
+
+A matching independent preparation Q has exactly the same one-site law. Even infinitely many independent one-site observations cannot distinguish two candidate shell sizes having the same density p.
+
+$$
+p=K/N,\qquad P(X_1=1)=P(X_2=1)=p,\qquad Q(X_1=1)=Q(X_2=1)=p.
+$$
+
+Count completions after fixing the first two labeled bits. For example, two ones consume two of the K excitations. These four pattern probabilities sum to one and include genuine forbidden patterns when a budget is too small.
+
+$$
+P_{11}=\frac{K(K-1)}{N(N-1)},\quad P_{10}=P_{01}=\frac{K(N-K)}{N(N-1)},\quad P_{00}=\frac{(N-K)(N-K-1)}{N(N-1)}.
+$$
+
+Subtract the product of the two marginal means. Negative covariance comes from the fixed total rather than an interaction energy. This derivation requires the declared uniform shell; an unrelated anticorrelated sensor model need not have a reservoir of this size.
+
+$$
+c=P_{11}-p^2=-\frac{p(1-p)}{N-1},\qquad 0<p<1.
+$$
+
+Conditional prediction makes depletion intuitive: the first observed one leaves K−1 excitations among N−1 sites. Under Q the corresponding conditional probability remains p.
+
+$$
+P(X_2=1\mid X_1=1)=\frac{K-1}{N-1}=p-\frac{1-p}{N-1},\qquad K>0.
+$$
+
+With the exact joint law and 0<p<1, invert the covariance to recover N, then check the integer K constraint. This is structural identification inside the model, not a claim that a finite dataset determines N exactly.
+
+$$
+N=1+\frac{p(1-p)}{-c},\qquad K=Np\in\mathbb Z,\qquad c<0.
+$$
+
+Rows index X₁=0,1 and columns X₂=0,1. The same amount moves out of both agreeing patterns and into both disagreeing patterns; this preserves the single-site means.
+
+$$
+P-Q=\begin{pmatrix}c&-c\\-c&c\end{pmatrix},\qquad Q=\begin{pmatrix}(1-p)^2&p(1-p)\\p(1-p)&p^2\end{pmatrix}.
+$$
+
+The disagreement event attains the total-variation difference. Counting just A=X₁+X₂ also preserves this TV because 01 and 10 have the same sign of discrepancy. Ordered pattern and count probabilities still use different multiplicities.
+
+$$
+\operatorname{TV}(P,Q)=\tfrac12\sum_{a,b}|P_{ab}-Q_{ab}|=-2c=\frac{2p(1-p)}{N-1}.
+$$
+
+At half filling, every single-site reading is fair but agreeing pairs are depleted. N must be even for an integer K=N/2. For N=4 the pair law is (1,2,2,1)/6 rather than four equal quarters.
+
+$$
+p=\tfrac12,\ d=(N-1)^{-1}:\quad P_{00}=P_{11}=\tfrac14(1-d),\quad P_{01}=P_{10}=\tfrac14(1+d).
+$$
+
+For half filling this forward KL shrinks quadratically while TV shrinks linearly in d. At N=2 use the continuous 0 log 0 limit. Different discrepancy measures therefore express different sensitivities; a small value does not certify exact independence.
+
+$$
+D(P\Vert Q)=\tfrac12[(1-d)\log(1-d)+(1+d)\log(1+d)]=\tfrac12d^2+O(d^4)\quad(d\to0).
+$$
+
+Near independence, inversion is ill-conditioned: a small covariance error can produce a large size error. At p=0 or 1 every shell is deterministic, c=0 and the inverse is undefined. A nonnegative empirical covariance cannot simply be inserted and accepted as a physical size.
+
+$$
+\left.\frac{\partial N}{\partial c}\right|_p=\frac{p(1-p)}{c^2},\qquad p\in(0,1).
+$$
+
+### Read the comparison
+
+Compare ordered pair probabilities at N=4 and N=20 with the same independent limit. The lower panel shows why the signal gets weaker as the total budget grows: TV and the covariance magnitude vanish even though the one-site mean never changes.
+
+![Identical one-site probabilities hide different agreeing and disagreeing pair laws; finite-reservoir dependence weakens with total size.](/assets/learning/ensembles-reservoir-identification.en.svg)
+
+### Reproduce the example
+
+The following exact-fraction calculation counts reservoir completions for four half-filled sizes. N recovered from the exact probabilities is not a finite-sample estimate. The covariance and TV are dimensionless.
+
+| N | p | P11 | Covariance | Pair TV | Recovered N |
+| --- | --- | --- | --- | --- | --- |
+| 4 | 0.50000000 | 0.16666667 | -0.08333333 | 0.16666667 | 4 |
+| 8 | 0.50000000 | 0.21428571 | -0.03571429 | 0.07142857 | 8 |
+| 20 | 0.50000000 | 0.23684211 | -0.01315789 | 0.02631579 | 20 |
+| 100 | 0.50000000 | 0.24747475 | -0.00252525 | 0.00505051 | 100 |
+
+```python
+from fractions import Fraction as F
+from math import comb
+for N in [4,8,20,100]:
+    K = N//2
+    P = {(a,b):F(comb(N-2,K-a-b),comb(N,K))
+         for a in [0,1] for b in [0,1]}
+    p = P[1,0]+P[1,1]
+    c = P[1,1]-p*p
+    Q = {(a,b):(p if a else 1-p)*(p if b else 1-p) for a,b in P}
+    tv = sum(abs(P[key]-Q[key]) for key in P)/2
+    recovered = 1+p*(1-p)/(-c)
+    print(f"{N} {float(p):.8f} {float(P[1,1]):.8f} "
+          f"{float(c):.8f} {float(tv):.8f} {int(recovered)}")
+```
+
+### Three research questions with explanations
+
+#### 1. Why is one site insufficient?
+
+**Explanation.** Its Bernoulli law contains only p. For example, N=4,K=2 and N=20,K=10 both give probability one half. Independent repetitions of that same marginal cannot reveal the within-preparation dependence that was never observed.
+
+#### 2. Does nonzero covariance prove an interaction energy?
+
+**Explanation.** No. The energy remains additive over sites. Conditioning on the fixed total creates dependence. An independence assumption and an additive Hamiltonian are different statements.
+
+#### 3. Does the inverse formula give an exact sample-based size?
+
+**Explanation.** No. It identifies the parameter from an exact law under the shell model. Sampling error is amplified when c is near zero, and other preparation mechanisms can have the same pair covariance. Model checks and uncertainty analysis remain necessary.
+
+### Source and research boundary
+
+The ensemble background is [Tong, sections 1.2–1.3](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf). The pair-law inversion, exact event discrepancy and conditioning argument here are direct calculations for the declared finite shell. They do not identify an arbitrary reservoir from one measured covariance.
+
 ## Practice with answers and a verification checklist
 
 Use exact fractions before decimals. A comparison should state its sample space, constraints, matching rule, error observable and approximation conditions.

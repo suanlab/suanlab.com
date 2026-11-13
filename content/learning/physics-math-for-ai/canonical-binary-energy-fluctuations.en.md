@@ -203,6 +203,122 @@ The numerical model preserves exact binary input products and integer multiplici
 
 For AI, temperature-controlled Bernoulli gates or independent masks offer a mathematical comparison: changing a logit changes both occupancy and variability, and averaging more independent samples changes estimator error rather than the underlying gate distribution. A softmax temperature in an arbitrary model is a dimensionless design parameter unless a physical calibration has been supplied. This analogy does not assign heat capacity or joules of dissipation to a neural-network training step.
 
+## Research extension: equilibrium spread does not set a response speed
+
+Two systems can have the same equilibrium energy histogram and still follow a changing bath at different speeds. Think of thermometers with identical final readings but different response times. To predict a lag we must supply a dynamics, rather than read a clock from the partition function.
+
+Keep n independent two-level sites with fixed positive gap ε. Add positive transition-rate scale γ, in inverse seconds, and a prescribed positive bath temperature T(t). This new illustrative kinetic model is separate from the reader’s static preparation controls and comparison scan. No energy levels are driven, so there is no parameter work on the sites.
+
+Specify the upward and downward rates, not merely their ratio. Their sum γ sets the relaxation speed; many positive γ values share exactly the same equilibrium preparation.
+
+$$
+r_{\rm eq}(T)=\frac1{1+\exp[\varepsilon/(k_BT)]},\qquad u(T)=\gamma r_{\rm eq}(T),\quad d(T)=\gamma[1-r_{\rm eq}(T)].
+$$
+
+The rate ratio satisfies instantaneous detailed balance with the specified bath, but the actual occupancy r need not equal its moving equilibrium target. For a constant bath, a deviation decays exponentially at rate γ.
+
+$$
+\frac{u(T)}{d(T)}=e^{-\varepsilon/(k_BT)},\qquad \dot r=u(1-r)-dr=\gamma(r_{\rm eq}-r).
+$$
+
+Use a small amplitude |a|/T₀ and fixed n,ε. The heat capacity C₀ is the equilibrium derivative at T₀, in J/K. Temperature positivity is required throughout the cycle. We seek the periodic response after the transient has decayed.
+
+$$
+T(t)=T_0+a\cos\omega t,\quad T_0>|a|,\quad T_0>0,\qquad C_0=n\varepsilon r_{\rm eq}^{\prime}(T_0)=\frac{n\varepsilon^2}{k_BT_0^2}r_0(1-r_0).
+$$
+
+Expand the moving target to first order. The linear equation is a driven first-order filter. The O(a²) term can contain a mean shift and a second harmonic; it must not be silently discarded in a finite-amplitude claim.
+
+$$
+\delta\dot r+\gamma\delta r=\gamma r_{\rm eq}^{\prime}(T_0)a\cos\omega t+O(a^2).
+$$
+
+Insert a complex exponential into the linear equation and use E=nεr. The real part is the physical energy change. This susceptibility has units J/K; its imaginary part is negative in this chosen exp(+iωt) convention.
+
+$$
+\delta E(t)=\operatorname{Re}\!\left[\chi_E(\omega)a e^{i\omega t}\right]+O(a^2),\qquad\chi_E(\omega)=\frac{C_0}{1+i\omega/\gamma}.
+$$
+
+Finite speed both suppresses amplitude and delays the response. At ω=γ, amplitude is C₀/√2 and the lag is 45 degrees. The static limit is C₀; high-frequency response tends to zero. An identical static C₀ says nothing about which γ the apparatus has.
+
+$$
+|\chi_E|=\frac{C_0}{\sqrt{1+(\omega/\gamma)^2}},\qquad\phi=\arctan(\omega/\gamma),\qquad\delta E=|\chi_E|a\cos(\omega t-\phi)+O(a^2).
+$$
+
+Because the gap is fixed, energy changes by heat. Independent sites retain a product preparation under this independent transition model. Their Gibbs entropy is therefore n times the one-site entropy. This is a model for heat ports, not for the external cost of controlling the bath.
+
+$$
+\dot Q_{\rm sites}=\dot E=n\varepsilon\dot r,\qquad S_{\rm sites}=nk_B h(r),\qquad h(r)=-r\log r-(1-r)\log(1-r).
+$$
+
+Use the equilibrium log-odds to rewrite the entropy budget. Both factors have the same sign because log-odds is increasing. The expression is valid for interior occupancies; support endpoints require limits. Instantaneous entropy of the sites alone need not be monotone under a changing bath.
+
+$$
+\sigma(t)=\dot S_{\rm sites}-\frac{\dot E}{T(t)}=nk_B\gamma(r_{\rm eq}-r)\log\frac{r_{\rm eq}(1-r)}{r(1-r_{\rm eq})}\ge0.
+$$
+
+In the periodic steady state the entropy returns after each cycle. Expand 1/T(t) and average the linear energy response against the temperature drive. This gives the displayed positive leading term, in J/(K s). It is not an exact finite-amplitude formula or a statement about a complete bath-controller cycle.
+
+$$
+\langle\sigma\rangle_{\rm cycle}=-\left\langle\frac{\dot E}{T(t)}\right\rangle_{\rm cycle}=\frac{C_0a^2\omega^2}{2\gamma T_0^2[1+(\omega/\gamma)^2]}+O(a^3).
+$$
+
+Normalize the curves to separate static scale from kinetic scale. The lag component peaks at x=1, while amplitude continues to fall. The last ratio uses a²; at a=0 it is interpreted as its small-amplitude limit, not division by zero.
+
+$$
+x=\omega/\gamma:\quad\frac{\operatorname{Re}\chi_E}{C_0}=\frac1{1+x^2},\quad\frac{-\operatorname{Im}\chi_E}{C_0}=\frac{x}{1+x^2},\quad\frac{T_0^2\langle\sigma\rangle}{C_0a^2\gamma}=\frac{x^2}{2(1+x^2)}+O(a/T_0).
+$$
+
+### Read the comparison
+
+The upper panel plots the normalized amplitude and in-phase/quadrature components. The lower panel compares the temperature signal with the energy response at ω=γ. Curves describe the linear periodic model; the existing comparison playback still switches static preparations.
+
+![A declared relaxation rate changes amplitude and phase without changing equilibrium heat capacity; the energy response lags a sinusoidal bath.](/assets/learning/ensembles-driven-canonical-response.en.svg)
+
+### Reproduce the example
+
+Use n=3 and ε/(kBT₀)=1. Energy is in kBT₀, temperature in T₀, and entropy in kB. With γ=1/s the final column is the leading cycle-mean entropy production divided by the squared reduced amplitude, in kB/s. The x=0 row is the zero-frequency limit; it does not require a finite zero-frequency cycle. This code evaluates the linear expressions. The independent verifier also integrates the nonlinear master equation for two small nonzero amplitudes.
+
+| x | Re response | Minus Im response | Amplitude | Lag degrees | Production / amplitude squared |
+| --- | --- | --- | --- | --- | --- |
+| 0.00000000 | 0.58983580 | 0.00000000 | 0.58983580 | 0.00000000 | 0.00000000 |
+| 0.50000000 | 0.47186864 | 0.23593432 | 0.52756518 | 26.56505118 | 0.05898358 |
+| 1.00000000 | 0.29491790 | 0.29491790 | 0.41707689 | 45.00000000 | 0.14745895 |
+| 2.00000000 | 0.11796716 | 0.23593432 | 0.26378259 | 63.43494882 | 0.23593432 |
+
+```python
+from math import exp, sqrt, atan, degrees
+n = 3
+r0 = 1/(1+exp(1))
+C = n*r0*(1-r0)
+for x in [0,0.5,1,2]:
+    real = C/(1+x*x)
+    lag_component = C*x/(1+x*x)
+    amplitude = C/sqrt(1+x*x)
+    phase = degrees(atan(x))
+    production = C*x*x/(2*(1+x*x))
+    print(f"{x:.8f} {real:.8f} {lag_component:.8f} "
+          f"{amplitude:.8f} {phase:.8f} {production:.8f}")
+```
+
+### Three research questions with explanations
+
+#### 1. Can energy variance determine the delay?
+
+**Explanation.** No. Equilibrium variance determines C₀ under the stated canonical conditions, but changing γ leaves that equilibrium law unchanged. The new transition rates supply the missing kinetic information.
+
+#### 2. Why is there heat but no level-driving work?
+
+**Explanation.** The Hamiltonian levels stay fixed. Changing their occupation changes energy through the declared bath transitions. Changing ε instead would add a parameter-work term and describe a different experiment. The work needed to operate a bath controller is outside these site equations.
+
+#### 3. Is the leading production expression exact at any amplitude?
+
+**Explanation.** No. The response was linearized and the entropy budget expanded. Nonlinear harmonics and higher orders matter at larger amplitudes. The small-amplitude numerical comparisons test particular finite cases rather than certify every frequency, amplitude or integration step.
+
+### Source and research boundary
+
+The equilibrium fluctuation background is [Tong, section 1.3.2](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf). The positive rates, sinusoidal protocol, filter response and cycle budget are derived here for the declared model. Equilibrium normalization alone does not supply those rates or prove a physical apparatus realizes them.
+
 ## Practice with answers and a verification checklist
 
 Keep population quantities separate from sample estimates, and keep the Hamiltonian fixed during response calculations. Use exact fractions whenever the chosen odds allow them.

@@ -52,3 +52,8 @@ SI 단위에서는 온도K, 에너지J, 열용량J/K, 몰 열용량J/(mol K), �
 Levin–Peres의 저자 공개 [Markov Chains and Mixing Times](https://pages.uoregon.edu/dlevin/MARKOV/markovmixing.pdf)의 1.3절(비주기성과 lazy 전이), 1.5절(정상 분포), 1.6절의 상세평형 명제를 대조했다. 정지 확률을 넣은 유한 껍질 교환은 여기서 직접 정의·열거한 예이며, 상태 수만으로 실제 동역학을 도출하지 않는다.
 
 [MIT 6.441 정보량 정의와 성질](https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/184197ca5d5418da2415d37e929860b9_MIT6_441S16_chapter_2.pdf)을 조건부 정보·KL 자료처리·chain rule의 배경으로 사용한다. 세 상태 투영의 기억·독립/공유 센서 비교는 명시한 유한 결합 법칙에서 직접 계산한다. 정보량을 물리 열비용으로 해석하지 않으며, 기존 reader 계산기에 없는 새 동역학을 조작 가능한 기능으로 소개하지 않는다. [검증 범위](micro-macro-research-status.md)를 따른다.
+
+
+## Ensemble 연구 보강: 관측·구동·매개변수 방향
+
+[Tong의 통계물리 1장](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf) 1.2–1.3절의 고정 총량·정준 준비, 1.3.2절의 에너지 요동, 1.4.1절의 입자 교환 정규화·응답을 대조했다. 유한 껍질의 쌍 관측 역산과 오차 척도는 직접 세기로, 주기 구동은 새로 지정한 양의 전이율로, 응답 행렬의 랭크는 교정한 두 에너지의 네 상태 합으로 유도했다. 교재 배경의 평형 관계만으로 완화율·시계·장치 비용·미지 에너지 기준의 식별을 얻었다고 주장하지 않는다. 세부 유한 검산과 reader 범위는 [ensemble 검증 기록](ensembles-research-status.md)을 따른다.

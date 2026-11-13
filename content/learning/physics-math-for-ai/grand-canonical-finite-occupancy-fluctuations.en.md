@@ -201,6 +201,125 @@ A probability can fall below the linear display range while a large reciprocal t
 
 The implementation distinguishes mathematical support zeros, positive tails, an infinite zero-temperature partition limit, and a finite value outside the display range. Nested logs diagnose tails, not certified tiny departures from unit-valued moments. For AI, compare fixed-count selection with independent stochastic gates, but do not interpret an arbitrary model's chemical-style bias as a calibrated energy or a particle flow without a physical mapping.
 
+## Research extension: fluctuations can leave a parameter direction invisible
+
+Two noisy measurements need not give two independent constraints. In the equal-energy occupancy model, measuring energy and particle number is like using two rulers whose marks are exact rescalings of each other. Both fluctuate, but the second cannot add a new direction of information.
+
+Start with the original identical-site model, then explicitly introduce a comparison system of two independent labeled sites with known energies ε₁ and ε₂. Site occupancy still excludes more than one particle. This heterogeneous system is a separate research example; the existing reader has one common energy parameter and does not expose two new energy controls.
+
+The determinant vanishes even when Var(N)>0. Energy in joules and number without units lie on the line E=εN. Zero determinant means a redundant observable direction, not zero fluctuations or failed thermodynamic normalization.
+
+$$
+E=\varepsilon N:\quad\Sigma=\operatorname{Cov}(E,N)=\operatorname{Var}(N)\begin{pmatrix}\varepsilon^2&\varepsilon\\\varepsilon&1\end{pmatrix},\qquad\det\Sigma=0.
+$$
+
+For the comparison use finite positive temperature, known energy levels and a shared chemical potential μ. Summing all four labeled occupancy states factorizes because their energies add and their preparation is independent. In these derivative coordinates β and α are independent parameters.
+
+$$
+\beta=(k_BT)^{-1}>0,\quad\alpha=\beta\mu,\qquad\log\Xi=\sum_{i=1}^2\log(1+e^{\alpha-\beta\varepsilon_i}).
+$$
+
+Each finite-temperature occupancy is interior, so its variance vᵢ is positive. Different known energies supply two distinct energy-to-number ratios when the sites can fluctuate independently.
+
+$$
+r_i=\frac1{1+e^{\beta\varepsilon_i-\alpha}},\quad v_i=r_i(1-r_i),\qquad\langle E\rangle=\sum_i\varepsilon_i r_i,\quad\langle N\rangle=\sum_i r_i.
+$$
+
+Differentiate the finite exponential sum. One derivative gives a mean and the next subtracts the product of means, giving covariance. The minus sign in the first coordinate matters; directly using (β,α) would change the off-diagonal signs.
+
+$$
+\theta=(-\beta,\alpha):\qquad\nabla_\theta\log\Xi=(\langle E\rangle,\langle N\rangle),\qquad\nabla_\theta^2\log\Xi=\Sigma.
+$$
+
+Add the independent contributions from each site. The energy variance has units J², the mixed covariance J, and the number variance no units. Do not compare their raw numerical sizes without a specified energy scale.
+
+$$
+\Sigma=\begin{pmatrix}\varepsilon_1^2v_1+\varepsilon_2^2v_2&\varepsilon_1v_1+\varepsilon_2v_2\\\varepsilon_1v_1+\varepsilon_2v_2&v_1+v_2\end{pmatrix}.
+$$
+
+Expanding the two-by-two determinant cancels both same-site squared terms. With different energies and positive v₁,v₂ it is positive, so the covariance matrix is positive definite. Equal energies restore the rank-one case; nearly equal energies make the inverse poorly conditioned.
+
+$$
+\det\Sigma=v_1v_2(\varepsilon_1-\varepsilon_2)^2.
+$$
+
+Known unequal energies and exact interior occupancies identify β and μ in this model. These expressions do not guarantee accurate finite-sample estimates. Near saturation the logit is sensitive to errors; empirical zero or one needs statistical treatment rather than substituting an infinite logit as a measured truth.
+
+$$
+\ell_i=\log\frac{r_i}{1-r_i}=\beta(\mu-\varepsilon_i),\qquad\beta=\frac{\ell_1-\ell_2}{\varepsilon_2-\varepsilon_1},\quad\mu=\varepsilon_1+\ell_1/\beta.
+$$
+
+Now change to the physical parameter coordinates (β,μ) with energies fixed. Centered scores have mean zero. Their covariance gives the Fisher information for one independently prepared observation of the full labeled state, equivalently the sufficient pair (E,N).
+
+$$
+\partial_\beta\log p=-(E-\mu N)+\langle E-\mu N\rangle,\qquad\partial_\mu\log p=\beta(N-\langle N\rangle).
+$$
+
+The Jacobian explains both the covariance transformation and its determinant. Positive determinant is local identifiability in the stated regular finite model. It is not a promise that a chosen estimator attains the inverse-Fisher bound or that information in the count alone is identical to full-state information.
+
+$$
+J=\frac{\partial(-\beta,\beta\mu)}{\partial(\beta,\mu)}=\begin{pmatrix}-1&0\\\mu&\beta\end{pmatrix},\qquad\mathcal I_{\beta,\mu}=J^{\mathsf T}\Sigma J,\quad\det\mathcal I=\beta^2v_1v_2(\varepsilon_1-\varepsilon_2)^2.
+$$
+
+A common per-particle energy-reference shift leaves the occupancy law and determinant unchanged. If that reference is unknown, absolute μ cannot be identified from occupancy alone. The calibrated-energy assumption is essential; varying two unknown energies does not remove their common-shift ambiguity.
+
+$$
+\varepsilon_i\mapsto\varepsilon_i+c,\quad\mu\mapsto\mu+c:\qquad r_i\mapsto r_i,\quad E\mapsto E+cN,\quad\det\Sigma\mapsto\det\Sigma.
+$$
+
+### Read the comparison
+
+The upper panel plots the determinant as the second calibrated energy separates from the first, at fixed β and μ. The lower panel shows the energy/number support: equal energies put every point on one line; unequal energies open a second direction. Point coordinates indicate possible states, not a trajectory.
+
+![An unequal calibrated energy gap opens the energy-number covariance determinant and separates states that were collinear in the identical-energy model.](/assets/learning/ensembles-grand-response-rank.en.svg)
+
+### Reproduce the example
+
+Use a known reference energy E₀, ε₁/E₀=1 and μ/E₀=0. Energies, β and μ in the code are scaled by E₀. The covariance determinant is divided by E₀²; the Fisher determinant for the coordinates (βE₀,μ/E₀) is dimensionless. A dash is an undefined inverse for equal energies, not zero information in every direction.
+
+| Second energy | Inverse temperature | Covariance determinant | Fisher determinant | Recovered beta | Recovered mu |
+| --- | --- | --- | --- | --- | --- |
+| 1.00000000 | 1.00000000 | 0.00000000 | 0.00000000 | -- | -- |
+| 2.00000000 | 0.50000000 | 0.04620453 | 0.01155113 | 0.50000000 | -0.00000000 |
+| 2.00000000 | 1.00000000 | 0.02064299 | 0.02064299 | 1.00000000 | -0.00000000 |
+| 2.00000000 | 2.00000000 | 0.00185447 | 0.00741788 | 2.00000000 | 0.00000000 |
+
+```python
+from math import exp, log
+for e2,beta in [(1,1),(2,0.5),(2,1),(2,2)]:
+    e1,mu = 1,0
+    r1 = 1/(1+exp(beta*(e1-mu)))
+    r2 = 1/(1+exp(beta*(e2-mu)))
+    determinant = r1*(1-r1)*r2*(1-r2)*(e2-e1)**2
+    fisher = beta**2*determinant
+    recovered_beta = recovered_mu = "--"
+    if e2 != e1:
+        l1,l2 = log(r1/(1-r1)),log(r2/(1-r2))
+        b = (l1-l2)/(e2-e1)
+        recovered_beta = f"{b:.8f}"
+        recovered_mu = f"{e1+l1/b:.8f}"
+    print(f"{e2:.8f} {beta:.8f} {determinant:.8f} {fisher:.8f} "
+          f"{recovered_beta} {recovered_mu}")
+```
+
+### Three research questions with explanations
+
+#### 1. Does a singular covariance mean no thermal fluctuations?
+
+**Explanation.** No. Identical-energy occupancy can have positive number variance, but E=εN makes the two observables redundant. One observable direction fluctuates; its linearly independent complement has zero variance.
+
+#### 2. Why require known different energies?
+
+**Explanation.** Different energies make the logit difference sensitive to β; the calibrated energy reference then fixes μ. If a common energy offset is unknown, shifting it together with μ leaves all occupancies unchanged. Full rank for the calibrated two-parameter problem does not solve that larger unknown-reference problem.
+
+#### 3. Can the determinant alone certify useful estimation accuracy?
+
+**Explanation.** No. Units, eigenvalue scales, sample size, saturation and estimator bias still matter. Nearly equal levels or nearly deterministic occupancies can give poor conditioning even when the determinant is positive. A Fisher statement needs its observation model and regularity assumptions.
+
+### Source and research boundary
+
+The grand-canonical normalization and response background is [Tong, section 1.4.1](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf). The heterogeneous two-site model, rank formula and score-coordinate transformation are direct finite calculations here. A covariance determinant is not an equation of state for an unspecified gas or a kinetic particle-exchange rate.
+
 ## Practice with answers and a verification checklist
 
 Specify which variables are fixed, which quantities fluctuate and which sample space each probability uses. Keep physical units attached to response and covariance.
