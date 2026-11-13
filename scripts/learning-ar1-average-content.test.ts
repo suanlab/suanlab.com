@@ -8,10 +8,10 @@ const source=(language:'ko'|'en')=>readFileSync(`content/learning/physics-math-f
 const near=(a:number|null,b:number)=>{assert.notEqual(a,null);assert.ok(Math.abs(a!-b)<=2e-12*Math.max(1,Math.abs(b)),`${a} vs ${b}`);};
 for(const language of ['ko','en'] as const)test(`${language}: finite average theory, stationary preparation and endpoint distinctions render accessibly`,async()=>{
  const raw=source(language),rendered=await getLearningContent(id),html=rendered[language];
- assert.equal(rendered.outline[language].length,16);assert.equal(new Set(rendered.outline[language].map(h=>h.id)).size,16);
+ assert.equal(rendered.outline[language].length,17);assert.equal(new Set(rendered.outline[language].map(h=>h.id)).size,17);
  assert.equal((raw.match(/^### [1-6]\. /gm)??[]).length,6);assert.equal((raw.match(/\*\*(?:Explanation\.|해설\.)\*\*/g)??[]).length,6);
- assert.equal((html.match(/class="katex-display"/g)??[]).length,11);assert.equal((html.match(/aria-label="(?:Equation|수식) /g)??[]).length,11);
- assert.equal((html.match(/<table[^>]*tabindex="0"/g)??[]).length,2);assert.equal((html.match(/<pre[^>]*tabindex="0"/g)??[]).length,1);
+ assert.equal((html.match(/class="katex-display"/g)??[]).length,19);assert.equal((html.match(/aria-label="(?:Equation|수식) /g)??[]).length,19);
+ assert.equal((html.match(/<table[^>]*tabindex="0"/g)??[]).length,3);assert.equal((html.match(/<pre[^>]*tabindex="0"/g)??[]).length,2);
  assert.doesNotMatch(raw,/^# |^---|%%/m);assert.doesNotMatch(html,/katex-error|\$\$/);
  if(language==='en'){assert.ok(raw.split(/\s+/).length>2700);assert.doesNotMatch(html,/[가-힣]/);}else assert.ok((raw.match(/[가-힣]/g)??[]).length>5000);
 });
@@ -41,5 +41,5 @@ test('perfect cancellation of a linear mean does not cancel a squared-observable
 });
 test('digit-bearing AR1 IDs render while path traversal, separators and encoded paths are rejected',async()=>{
  for(const unsafe of ['../ar1','/ar1','ar1/../other','ar1\\other','ar1%2fother','ar1%2e%2e','ar1.ko','ar1\0','ar1--mean','-ar1','ar1-','1ar','AR1','ar1 mean'])await assert.rejects(getLearningContent(unsafe),/Invalid learning unit ID/);
- const rendered=await getLearningContent(id);assert.ok(rendered.en.includes('covariance'));assert.equal(rendered.outline.en.length,16);
+ const rendered=await getLearningContent(id);assert.ok(rendered.en.includes('covariance'));assert.equal(rendered.outline.en.length,17);
 });

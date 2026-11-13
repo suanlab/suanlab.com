@@ -186,6 +186,121 @@ The covariance window shows at most the first8×8 entries; the calculation uses 
 
 Commit integer n and rho with Enter or blur. Use Log variance axis to inspect scale differences; exact zero dots sit below that axis and are not connected as positive values. Show asymptotic reference is disabled at nonmixing endpoints because no ordinary summed IAT is provided. The two paginated tables retain all lags and every prefix variance. A variance-equivalent count above n describes this linear mean only. It does not create independent observations or establish stationarity in an arbitrary training stream.
 
+## Research extension: use known correlation to choose the mean's weights
+
+The ordinary sample mean gives every observation the same weight. That is convenient and unbiased under the stationary preparation, but need not minimize variance when the covariance is known. Correlated neighbors partly repeat one another; an endpoint has fewer neighbors within the observed window. Generalized least squares turns that boundary difference into explicit weights.
+
+### Optimize a specified estimator under a specified covariance
+
+Retain X=µ1+Y, unit marginal variance, the stationary initial law and a known |ρ|<1. For n≥2, let Σᵢⱼ=ρ^|i−j| and Q=Σ⁻¹. Minimize the variance of a linear estimator wᵀX subject to weights summing to one. A Lagrange multiplier gives
+
+$$
+\widehat\mu_w=w^{\mathsf T}X,\quad \mathbf1^{\mathsf T}w=1,\qquad w_{\mathrm{GLS}}=\frac{Q\mathbf1}{\mathbf1^{\mathsf T}Q\mathbf1},\qquad V_{\mathrm{GLS}}=\frac1{\mathbf1^{\mathsf T}Q\mathbf1}.
+$$
+
+This is a different estimator from the ordinary mean already calculated above. It does not revise that estimator's exact variance V_n. With n=1 the only unbiased weight is one and the variance remains one; treat that case separately.
+
+To find Q, write the Gaussian joint density as the stationary initial density times the innovation conditionals. Up to a constant independent of µ its negative twice-log density is
+
+$$
+(X-\mu\mathbf1)^{\mathsf T}Q(X-\mu\mathbf1)=Y_1^2+\frac1{1-\rho^2}\sum_{i=1}^{n-1}(Y_{i+1}-\rho Y_i)^2.
+$$
+
+Expanding the squares reveals a tridiagonal precision matrix. The endpoints occur in fewer innovation terms and therefore differ from the interior:
+
+$$
+Q_{ij}=\frac1{1-\rho^2}\begin{cases}1,&i=j\in\{1,n\},\\1+\rho^2,&1<i=j<n,\\-\rho,&|i-j|=1,\\0,&\text{otherwise}.\end{cases}
+$$
+
+Multiplying Q by the all-ones vector now needs only row sums. The endpoint weights and each interior weight are
+
+$$
+D_n=n(1-\rho)+2\rho,\qquad w_1=w_n=\frac1{D_n},\qquad w_i=\frac{1-\rho}{D_n}\quad(1<i<n).
+$$
+
+For positive ρ, endpoints get more weight than interior observations because their within-window redundancy is smaller. For negative ρ, the interior can exploit two-sided cancellation and gets more weight. All these weights remain positive and sum to one for |ρ|<1. For n=2 both weights are one-half, whatever ρ is.
+
+### Prove the gain and distinguish exact from asymptotic claims
+
+Summing the precision row sums gives an exact finite variance for this known-covariance estimator:
+
+$$
+\mathbf1^{\mathsf T}Q\mathbf1=\frac{D_n}{1+\rho},\qquad V_{\mathrm{GLS}}=\frac{1+\rho}{D_n}.
+$$
+
+The variance gain does not rely on a numerical optimizer. For any other unbiased weights, write w=w_GLS+δ with 1ᵀδ=0. Since Σw_GLS=V_GLS 1, the cross term cancels:
+
+$$
+\operatorname{Var}(w^{\mathsf T}X)-V_{\mathrm{GLS}}=(w-w_{\mathrm{GLS}})^{\mathsf T}\Sigma(w-w_{\mathrm{GLS}})\geq0.
+$$
+
+Positive definite Σ makes equality possible only for the same weights. The ordinary equal weights therefore attain equality at ρ=0 and for n=2, but generally lose some efficiency for n>2. At fixed |ρ|<1 both estimators still have the same leading large-n variance τ/n; their boundary corrections differ. A finite gain is compatible with the same leading asymptotic rate.
+
+Under the Gaussian model with known covariance, GLS is also the exact maximum-likelihood estimator of µ. Its score, information and distribution give a stronger finite-sample statement than a generic large-sample argument:
+
+$$
+s_\mu=\mathbf1^{\mathsf T}Q(X-\mu\mathbf1),\qquad \mathcal I_\mu=\mathbf1^{\mathsf T}Q\mathbf1,\qquad \widehat\mu_{\mathrm{GLS}}\sim\mathcal N(\mu,\mathcal I_\mu^{-1}).
+$$
+
+The estimator is unbiased and attains the scalar information bound here. With non-Gaussian errors of the same mean and covariance it remains the best linear unbiased estimator, but this Gaussian distribution and likelihood interpretation need not hold. If ρ is estimated from the same data and plugged into the weights, these exact known-ρ statements no longer follow automatically.
+
+### Keep singular endpoints outside the inverse-covariance proof
+
+For fixed n≥2, the interior formulas have the following continuous limits:
+
+$$
+\lim_{\rho\to1^-}V_{\mathrm{GLS}}=1,\qquad \lim_{\rho\to-1^+}V_{\mathrm{GLS}}=0,\qquad \lim_{\rho\to-1^+}w=\frac{(1,2,\ldots,2,1)^{\mathsf T}}{2(n-1)}.
+$$
+
+At the exact endpoints Q does not exist. Check the paths directly instead: at ρ=1 all Xᵢ equal µ+Y₁, so no unbiased linear weighting removes that common error. At ρ=−1, (X₁+X₂)/2=µ exactly for n≥2; the displayed limiting weights also cancel the alternating fluctuation, including for odd n. This contrasts with the ordinary odd-length mean's variance 1/n². It says nothing about the precision of averages of squares or an arbitrary downstream estimator.
+
+![Boundary-sensitive GLS weights and the finite variance ratio between ordinary and efficient means under a stationary AR(1) preparation.](/assets/learning/correlations-research-ar1-efficient-mean.en.svg)
+
+The upper panel compares the weights at n=9. The lower panel shows the ordinary/GLS variance ratio for two signed coefficients; the odd-even behavior comes from the ordinary mean. The covariance and mean model are unchanged. Only the estimator changes, and the existing reader continues to report the ordinary mean.
+
+The table reports exact-model finite variances rounded to six decimals. The code uses rational arithmetic for both covariance quadratic forms. The final column is one endpoint's weight, not the sum of both endpoints. No observations or coefficient estimates are generated.
+
+| n | ρ | V_mean | V_GLS | Variance ratio | w_end |
+| --- | --- | --- | --- | --- | --- |
+| 3 | -0.8 | 0.120000 | 0.052632 | 2.280000 | 0.263158 |
+| 4 | -0.8 | 0.046000 | 0.035714 | 1.288000 | 0.178571 |
+| 9 | 0.8 | 0.572453 | 0.529412 | 1.081300 | 0.294118 |
+| 16 | 0.8 | 0.410648 | 0.375000 | 1.095061 | 0.208333 |
+
+```python
+from fractions import Fraction
+
+for n, rho in ((3,Fraction(-4,5)), (4,Fraction(-4,5)),
+               (9,Fraction(4,5)), (16,Fraction(4,5))):
+    ordinary = sum(rho**abs(i-j) for i in range(n)
+                   for j in range(n))/n**2
+    den = n*(1-rho)+2*rho
+    endpoint = 1/den
+    weights = [endpoint]+[(1-rho)/den]*(n-2)+[endpoint]
+    efficient = sum(weights[i]*weights[j]*rho**abs(i-j)
+                    for i in range(n) for j in range(n))
+    assert efficient == (1+rho)/den
+    print(n, f'{float(rho):.1f}', f'{float(ordinary):.6f}',
+          f'{float(efficient):.6f}', f'{float(ordinary/efficient):.6f}',
+          f'{float(endpoint):.6f}')
+```
+
+### Research checks and boundaries
+
+#### Why are endpoint weights different without nonstationary noise?
+
+**Research explanation.** The process is stationary, but the observed window has boundaries. Each interior reading has neighbors on both sides inside that window; an endpoint does not. The estimator responds to the finite observation geometry, not a change in marginal variance.
+
+#### Does GLS create more independent observations?
+
+**Research explanation.** No. It changes which linear combination estimates the common mean. The same dependent vector X is observed. Variance comparisons remain estimator- and model-specific, and cannot be transferred to every statistic or training stream.
+
+#### Can the interior precision formula be substituted at ρ=−1?
+
+**Research explanation.** No. Its denominator vanishes and Σ is singular. The exact alternating path provides a separate cancellation proof. A continuous limit of variances does not authorize taking the inverse of a singular covariance.
+
+[Shalizi's GLS notes, sections 6–6.1](https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/24/lecture-24--25.pdf) describe inverse-covariance weighting. The finite AR(1) precision, boundary weights, variance gap and endpoint comparison above are derived here for the stationary unit-variance preparation. They do not infer stationarity or known covariance from a visually smooth path.
+
 ## Check your understanding with explained problems
 
 ### 1. Count lag pairs

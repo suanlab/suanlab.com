@@ -171,6 +171,123 @@ The probability bars count four named configurations. The arrow is the observabl
 
 Enter K,h1,h2,a1,a2 and commit with Enter or by leaving the field. The zero probe is an exactly constant observable; it does not turn the spin covariance into a zero matrix. Compare the smallest nonzero coupling with its 128-bit capped preparation to distinguish a known nonzero sign from an unresolved magnitude. The covariance cells, sign and representation table remain authoritative when shading or a tiny vector cannot be distinguished visually.
 
+## Research extension: estimating an interaction changes the information question
+
+The field covariance C describes a preparation in which K is held fixed. Now imagine receiving independent spin pairs from an unknown member of the same family. If K must also be inferred, a fluctuation that once looked like evidence about a field may partly be explained by a different interaction. We can calculate this loss of field information exactly in the smallest complete example.
+
+### Include the interaction as a third feature
+
+Order the natural parameters as η=(h₁,h₂,K), and include the bond product in the feature vector. The score of one observed pair is its centered feature vector. All fields and K here are dimensionless; the statistical experiment consists of independent equilibrium pairs, not steps along a correlated sampler history. This inference extension allows all finite real natural parameters; the reader's input bounds do not impose an estimation constraint.
+
+$$
+T(\sigma)=(\sigma_1,\sigma_2,\sigma_1\sigma_2)^{\mathsf T},\qquad \nabla_\eta\log p_\eta=T-\mathbb E_\eta T,\qquad \mathcal I_\eta=\operatorname{Cov}_\eta(T).
+$$
+
+Write q=E[σ₁σ₂], µᵢ=E[σᵢ], and retain the chapter's field block C. Since spin squares equal one, the cross block v follows without an additional probability sum:
+
+$$
+\mathcal I_\eta=\begin{pmatrix}C&v\\v^{\mathsf T}&d\end{pmatrix},\qquad v=\begin{pmatrix}\mu_2-\mu_1q\\\mu_1-\mu_2q\end{pmatrix},\qquad d=1-q^2.
+$$
+
+For example, Cov(σ₁,σ₁σ₂)=E[σ₂]−µ₁q. Thus even when the two spins happen to be independent, the interaction score can correlate with the field scores if the spins are biased. Statistical independence of two measured features does not make every additional feature orthogonal to them.
+
+Let p₁,…,p₄ refer to --, -+, +-, ++. The four rows (1,Tᵀ) form a Hadamard matrix with determinant magnitude 16. Taking the determinant of its probability-weighted Gram matrix, then removing the constant coordinate by a Schur complement, proves
+
+$$
+\det\mathcal I_\eta=256p_1p_2p_3p_4>0.
+$$
+
+The full model is locally identifiable at every finite input. Very small cell probabilities can still make inference poorly conditioned. This is a different determinant from det C in the preceding explanation and has different dimension and normalization.
+
+### Recover parameters from a positive population table
+
+The three nonconstant log-probability contrasts invert this four-state family. The common log normalizer cancels because each contrast has two plus and two minus signs.
+
+$$
+K=\frac14\ln\frac{p_1p_4}{p_2p_3},\qquad h_1=\frac14\ln\frac{p_3p_4}{p_1p_2},\qquad h_2=\frac14\ln\frac{p_2p_4}{p_1p_3}.
+$$
+
+These are exact population formulas for strictly positive cells. They also give the finite maximum-likelihood estimate if all four empirical counts are positive, because this is a saturated three-parameter family on four cells. If any empirical cell is zero, the unrestricted multinomial optimum lies on the boundary and no finite parameter triple attains it. Adding pseudocounts changes the estimation procedure; it is not evidence that a finite true model assigns probability zero.
+
+### Project out the score direction of the unknown coupling
+
+To isolate field evidence that cannot be mimicked by a small coupling change, regress the centered field score on the centered interaction score. Its residual is
+
+$$
+s_h^{\mathrm{eff}}=(\sigma-\mu)-\frac vd(\sigma_1\sigma_2-q),\qquad \mathbb E[s_h^{\mathrm{eff}}(\sigma_1\sigma_2-q)]=0.
+$$
+
+The covariance of that residual is the efficient field information when K is a nuisance parameter. A nuisance parameter is simply a parameter needed by the model but not the target of the current inference.
+
+$$
+\mathcal I_{h\mid K}=C-\frac{vv^{\mathsf T}}d\preceq C,\qquad a^{\mathsf T}(C-\mathcal I_{h\mid K})a=\frac{(a^{\mathsf T}v)^2}{d}\geq0.
+$$
+
+The loss is positive semidefinite and has rank at most one. It can vanish for a direction orthogonal to v. At zero fields v=0 by spin reversal, so the first-order information loss vanishes there. Away from that symmetry, a field-only inverse generally understates the uncertainty of joint inference.
+
+For L independent pairs and an interior true parameter, the usual regular large-L likelihood covariance uses the inverse of the full information. Block inversion gives the field part below. Define the estimator to take any fixed finite value if a cell is unobserved; at an interior true law that event has probability tending to zero. The multinomial central limit theorem and the smooth log contrasts give the limit below. The displayed covariance belongs to the limiting normal law, not an exact finite-sample confidence ellipse or a promise that a small dataset has a finite MLE.
+
+$$
+[\mathcal I_\eta^{-1}]_{hh}=\mathcal I_{h\mid K}^{-1}\succeq C^{-1},\qquad \sqrt L(\widehat h-h)\Rightarrow\mathcal N(0,\mathcal I_{h\mid K}^{-1}).
+$$
+
+![Loss of field information when the interaction is also inferred, and covariance coefficient ellipses comparing fixed and unknown coupling.](/assets/learning/correlations-research-interaction-nuisance-information.en.svg)
+
+The upper panel varies equal local biases at fixed true K. The lower panel compares one-standard-deviation contours of the covariance of the limiting normal law for sqrt(L)(ĥ−h), not clouds of spins or finite-sample posterior regions. A larger contour reflects less information after allowing K to vary.
+
+For counts nⱼ summing to L, the finite log likelihood and its score are
+
+$$
+\ell_L(\eta)=\sum_{j=1}^4n_j\log p_\eta(j),\qquad \nabla_\eta\ell_L=L(\overline T-\mathbb E_\eta T).
+$$
+
+The following positive count ratios are illustrative population tables, not a simulated experiment. The last column compares the asymptotic h₁ variance coefficients for unknown versus fixed K, with both fields inferred in each case. Case 2 has K=0 but biased spins, so its ratio still exceeds one.
+
+| Case | K | h₁ | h₂ | det I | h₁ variance ratio |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 0.000000 | 0.000000 | 0.000000 | 1.000000 | 1.000000 |
+| 2 | 0.000000 | 0.549306 | 0.346574 | 0.444444 | 1.125000 |
+| 3 | 0.575646 | 0.229073 | -0.117501 | 0.493827 | 1.056250 |
+| 4 | 0.748933 | -0.402359 | -0.402359 | 0.133278 | 1.024242 |
+
+```python
+from math import log, prod
+
+for case, counts in enumerate(((1,1,1,1), (1,2,3,6),
+                               (4,1,2,5), (10,1,1,2)), 1):
+    p = [x/sum(counts) for x in counts]  # --, -+, +-, ++
+    states = [(-1,-1), (-1,1), (1,-1), (1,1)]
+    h1 = log(counts[2]*counts[3]/(counts[0]*counts[1]))/4
+    h2 = log(counts[1]*counts[3]/(counts[0]*counts[2]))/4
+    k = log(counts[0]*counts[3]/(counts[1]*counts[2]))/4
+    mu1 = sum(w*a for w, (a,b) in zip(p, states))
+    mu2 = sum(w*b for w, (a,b) in zip(p, states))
+    q = sum(w*a*b for w, (a,b) in zip(p, states))
+    c11, c22, c12 = 1-mu1**2, 1-mu2**2, q-mu1*mu2
+    v1, v2, d = mu2-mu1*q, mu1-mu2*q, 1-q*q
+    e11, e22, e12 = c11-v1*v1/d, c22-v2*v2/d, c12-v1*v2/d
+    known = c22/(c11*c22-c12*c12)
+    unknown = e22/(e11*e22-e12*e12)
+    print(case, f'{k:.6f}', f'{h1:.6f}', f'{h2:.6f}',
+          f'{256*prod(p):.6f}', f'{unknown/known:.6f}')
+```
+
+### Research checks and statistical boundaries
+
+#### Does a positive determinant guarantee a well-conditioned inverse?
+
+**Research explanation.** No. A strictly positive but tiny determinant can accompany a very small eigenvalue. Full support ensures rank here; the scale and geometry of all feature fluctuations determine conditioning and how much data a useful estimate needs.
+
+#### Is the efficient field matrix the physical field-response Hessian?
+
+**Research explanation.** The actual response at fixed K remains C. The smaller Schur complement answers a statistical question about inference while K is unknown. Projecting out a nuisance score does not change the physical equilibrium law or its response experiment.
+
+#### Can a zero observed count prove an excluded microscopic state?
+
+**Research explanation.** No. A finite positive probability can produce zero occurrences in a finite dataset. The resulting boundary likelihood problem concerns estimation under this saturated family. It does not remove a state from the specified counting measure.
+
+[Berkeley's exponential-family notes](https://stat210a.berkeley.edu/fall-2024/reader/exponential-families.html) supply the mean/covariance derivative framework. The three-feature determinant, log-table inversion and nuisance-score projection are derived here for the four-state law. The existing reader still computes the original specified-parameter response; it does not fit observations or provide a new inference control.
+
 ## Check your understanding with explained problems
 
 ### 1. Distinguish a raw product from a connected covariance

@@ -183,6 +183,115 @@ Move Selected offset r and follow the blue path of length r and orange path of l
 
 Commit integer N and signed K with Enter or blur. N counts3–128 distinct sites and bonds. Select r=0 to recover self correlation one, and compare r with N−r to verify reflection. Use Next observation rows to inspect the whole table rather than only its first32 offsets. The envelope length is an infinite-chain reference in lattice spacings, not a finite-ring cutoff. A precision ceiling changes available numerical evidence, not the ring or its boundary.
 
+## Research extension: resolve the ring's response into spatial modes
+
+A uniform field asks whether the whole necklace moves together. An alternating field asks a different question. Fourier modes provide a complete set of spatial patterns between these extremes, and reveal how an odd ring frustrates a pattern whose preferred wavelength is two lattice spacings. The finite allowed wavevectors matter as much as the decay envelope.
+
+### Diagonalize a covariance that depends on the offset
+
+Keep the zero-field finite ring and its exact C_N(r). Label sites j=0,…,N−1, and use the discrete periodic wavevectors only:
+
+$$
+q_l=\frac{2\pi l}{N},\qquad z_l=\frac1{\sqrt N}\sum_{j=0}^{N-1}e^{-iq_lj}\sigma_j,\qquad l=0,\ldots,N-1.
+$$
+
+Every spin has mean zero. Translation invariance makes the covariance matrix circulant: shifting both indices together leaves it unchanged. Insert the definition of z, group pairs by their offset, and sum the phase factors. This gives the static structure factor
+
+$$
+S_N(q_l)=\mathbb E[|z_l|^2]=\sum_{r=0}^{N-1}C_N(r)e^{-iq_lr}=\sum_{r=0}^{N-1}C_N(r)\cos(q_lr)\geq0.
+$$
+
+The imaginary terms cancel because C_N(r)=C_N(N−r). S is a variance-like quadratic quantity, so a negative cross correlation cannot make it negative. It is strictly positive at finite K: every spin configuration has positive probability, and no nonzero linear mode is identically zero on all configurations. These are equal-time spatial modes, not temporal frequencies from a simulated trace.
+
+Substitute the two-path formula, sum the two finite geometric series and use exp(iq_l N)=1. With t=tanh K the result is
+
+$$
+S_N(q_l)=\frac{1-t^2}{1-2t\cos q_l+t^2}\frac{1-t^N}{1+t^N},\qquad |t|<1.
+$$
+
+The denominator is |1−t exp(iq)|² and is positive. The loop correction is positive even when N is odd and t<0. This formula is exact on the allowed grid; plugging arbitrary q into it does not give the finite transform of the same ring. A smooth line between grid points is at most a visual guide or a separately labeled reference.
+
+### Match a real source pattern to the fluctuation
+
+For modes other than q=0 or π, use a real normalized cosine probe. Its sine partner has the same variance. At the self-conjugate modes q=0 and, for even N, q=π, use normalization 1/sqrt(N) rather than sqrt(2/N).
+
+$$
+A_l=\sqrt{\frac2N}\sum_j\cos(q_lj)\sigma_j,\qquad \operatorname{Var}(A_l)=S_N(q_l),\qquad \left.\frac{d\mathbb E_b A_l}{db}\right|_{b=0}=S_N(q_l)\quad(p_b\propto p_0e^{bA_l}).
+$$
+
+Here b couples to that normalized probe. The q=0 structure factor equals the chapter's uniform response per spin because z₀=M/sqrt(N). Matching the normalization of the measured observable and source avoids an extra factor N or two.
+
+Discrete Fourier orthogonality also supplies a sum rule. The trace of the covariance is N because each diagonal entry is one. A peak can redistribute this total fluctuation power but cannot create additional diagonal variance.
+
+$$
+\sum_{l=0}^{N-1}S_N(q_l)=N,\qquad S_N(0)=\chi_N.
+$$
+
+### An odd ring cannot place a mode exactly at π
+
+For negative K, the infinite-chain spectrum favors q=π. An even ring admits that exact wavevector; an odd ring's closest pair is π±π/N. At fixed odd N, taking K→−∞ in the finite formula cancels two vanishing factors and yields
+
+$$
+\lim_{K\to-\infty}S_N(q_l)=\frac1{N\cos^2(q_l/2)},\qquad \lim_{K\to-\infty}\max_l S_N(q_l)=\frac1{N\sin^2(\pi/(2N))}\quad(N\text{ odd}).
+$$
+
+This includes S_N(0)→1/N, consistent with the odd-ring ground states' M=±1. Several modes retain power because the frustrated bond can occupy different positions. In contrast an even ring has only two alternating ground configurations and concentrates all the power in the exact π mode:
+
+$$
+\lim_{K\to-\infty}S_N(\pi)=N,\qquad \lim_{K\to-\infty}S_N(q_l)=0\quad(q_l\ne\pi,\ N\text{ even}).
+$$
+
+These are fixed-N cold limits, outside the finite K control interval. They do not assert a finite-temperature singularity. At a fixed finite negative K, every eigenvalue stays positive; the peak is bounded independently of N since the loop factor tends to one and |t|<1. Consequently,
+
+$$
+\lim_{N\to\infty}\frac{\max_l S_N(q_l)}N=0\quad(K\text{ fixed finite}),\qquad \lim_{\substack{N\to\infty\\N\ \mathrm{odd}}}\frac{\lim_{K\to-\infty}\max_l S_N(q_l)}N=\frac4{\pi^2}.
+$$
+
+The order of size and temperature limits is visible in a mode plot, not just in a free-energy derivative. A large correlation length by itself does not specify which finite patterns can fit around the circumference.
+
+![Discrete antiferromagnetic ring spectra and normalized peak power showing finite coupling versus fixed-size cold-limit behavior.](/assets/learning/correlations-research-ring-fourier-modes.en.svg)
+
+The upper panel shows allowed wavevectors only, with the reflected half omitted. The lower panel compares peak/N at K=−1.2 with the separately derived cold limits. The table reports the uniform mode, peak mode, trace check and ξ/N for the same finite preparation. These are theoretical equilibrium sums, not a scattering measurement or a dynamics simulation.
+
+| N | q_peak/π | S(0) | S_peak | ΣS/N | ξ/N |
+| --- | --- | --- | --- | --- | --- |
+| 7 | 0.857143 | 0.161219 | 2.811737 | 1.000000 | 0.785205 |
+| 8 | 1.000000 | 0.056398 | 6.852926 | 1.000000 | 0.687054 |
+| 15 | 0.933333 | 0.103390 | 5.422716 | 1.000000 | 0.366429 |
+| 16 | 1.000000 | 0.081353 | 9.885286 | 1.000000 | 0.343527 |
+
+```python
+from math import tanh, cos, pi, log, fsum
+
+k = -1.2
+t = tanh(k)
+xi = -1/log(abs(t))
+for n in (7, 8, 15, 16):
+    corr = [(t**r+t**(n-r))/(1+t**n) for r in range(n)]
+    spectrum = [fsum(corr[r]*cos(2*pi*l*r/n) for r in range(n))
+                for l in range(n)]
+    lpeak = n//2
+    print(n, f'{2*lpeak/n:.6f}', f'{spectrum[0]:.6f}',
+          f'{spectrum[lpeak]:.6f}', f'{fsum(spectrum)/n:.6f}',
+          f'{xi/n:.6f}')
+```
+
+### Research checks and scope
+
+#### Why is the strongest negative correlation not a negative structure factor?
+
+**Research explanation.** The Fourier coefficients weight the alternating covariances with a matching pattern. The result equals E[|z|²], which is nonnegative. Matrix positivity constrains quadratic forms, not the sign of each spatial covariance entry.
+
+#### May an odd ring use the even-ring staggered eigenvector unchanged?
+
+**Research explanation.** The sequence (−1)^j fails periodic closure on an odd number of sites. It can be defined as a particular finite source, but is not one periodic eigenmode. Its response must be computed as the full source quadratic form or by decomposition into the allowed Fourier modes.
+
+#### Does a narrow large peak establish a finite-K phase transition?
+
+**Research explanation.** No. At every fixed finite K the spectrum is smooth, its normalized peak vanishes as N grows, and the one-dimensional pressure stays analytic. The finite-size cold preparation and its order of limits are additional assumptions, not evidence of a finite-temperature transition.
+
+[Tong's periodic-chain derivation](https://davidtong.org/pdfs/teaching/statistical-physics/statphys5.pdf), section 5.3.1, grounds the transfer law. The discrete transform, normalization, sum rule and odd/even mode limits are derived here from this chapter's exact C_N. The existing reader still selects a spatial offset; this supplement does not claim a new Fourier control or a temporal spectrum.
+
 ## Check your understanding with explained problems
 
 ### 1. Find the missing route

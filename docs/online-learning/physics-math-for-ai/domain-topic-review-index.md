@@ -71,7 +71,7 @@
 
 측정·단위·물리 모델링의 [9개 원주제·20단원](physical-modeling-topic-review.md)에 이어 뉴턴 역학·강체 운동의 [10개 원주제·21단원 종합 대조](classical-mechanics-domain-audit.md)를 연결했다. 해석역학의 [10원주제·20단원 연구 대조](analytical-mechanics-research-audit.md)·파동의 [9원주제·18단원 연구 대조](waves-optics-research-audit.md)·전자기학의 [10원주제·20단원 연구 대조](electromagnetism-research-audit.md)과 [연속체 11원주제·22단원 연구 종합 대조](continuum-research-audit.md)까지 연결해 현재 43영역·426개 원주제의 기록이 있으며 다음은 열역학·평형 통계역학 11개다.
 
-열역학·평형 통계역학의 [32단원 연구 심화 진행표](thermo-statmech-research-progress.md)를 연결했다. 두 수준계·열접촉·법칙·자유 에너지·미시·거시·ensemble·분배함수에 이어 [Boltzmann·Gibbs 보강](boltzmann-research-status.md)과 [상전이·질서변수 보강](phase-transition-research-status.md)까지 **23/32단원**을 검증했으며 영역 종합 대조와 나머지 9단원 후속은 남아 있다. 위 완료 집계에는 추가하지 않는다.
+열역학·평형 통계역학의 [32단원 연구 심화 진행표](thermo-statmech-research-progress.md)를 연결했다. 두 수준계·열접촉·법칙·자유 에너지·미시·거시·ensemble·분배함수에 이어 [Boltzmann·Gibbs 보강](boltzmann-research-status.md)과 [상전이·질서변수 보강](phase-transition-research-status.md), [상관·요동 보강](correlations-research-status.md)까지 **26/32단원**을 검증했으며 영역 종합 대조와 나머지 6단원 후속은 남아 있다. 위 완료 집계에는 추가하지 않는다.
 
 ## 확인 기준과 다음 순서
 

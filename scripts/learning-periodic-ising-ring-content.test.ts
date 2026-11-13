@@ -8,10 +8,10 @@ const source=(language:'ko'|'en')=>readFileSync(`content/learning/physics-math-f
 const near=(a:number|null,b:number,tolerance=2e-12)=>{assert.notEqual(a,null);assert.ok(Math.abs(a!-b)<=tolerance*Math.max(1,Math.abs(b)),`${a} vs ${b}`);};
 for(const language of ['ko','en'] as const)test(`${language}: detailed two-path ring theory, accessible equations, table and code render`,async()=>{
  const raw=source(language),rendered=await getLearningContent(id),html=rendered[language];
- assert.equal(rendered.outline[language].length,15);assert.equal(new Set(rendered.outline[language].map(h=>h.id)).size,15);
+ assert.equal(rendered.outline[language].length,16);assert.equal(new Set(rendered.outline[language].map(h=>h.id)).size,16);
  assert.equal((raw.match(/^### [1-6]\. /gm)??[]).length,6);assert.equal((raw.match(/\*\*(?:Explanation\.|해설\.)\*\*/g)??[]).length,6);
- assert.equal((html.match(/class="katex-display"/g)??[]).length,11);assert.equal((html.match(/aria-label="(?:Equation|수식) /g)??[]).length,11);
- assert.equal((html.match(/<table[^>]*tabindex="0"/g)??[]).length,2);assert.equal((html.match(/<pre[^>]*tabindex="0"/g)??[]).length,1);
+ assert.equal((html.match(/class="katex-display"/g)??[]).length,19);assert.equal((html.match(/aria-label="(?:Equation|수식) /g)??[]).length,19);
+ assert.equal((html.match(/<table[^>]*tabindex="0"/g)??[]).length,3);assert.equal((html.match(/<pre[^>]*tabindex="0"/g)??[]).length,2);
  assert.doesNotMatch(raw,/^# |^---|%%/m);assert.doesNotMatch(html,/katex-error|\$\$/);
  if(language==='en'){assert.ok(raw.split(/\s+/).length>2700);assert.doesNotMatch(html,/[가-힣]/);}else assert.ok((raw.match(/[가-힣]/g)??[]).length>5000);
 });
