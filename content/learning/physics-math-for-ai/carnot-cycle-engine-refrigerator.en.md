@@ -127,6 +127,118 @@ Progress in a figure denotes position along four stages. It does not prescribe e
 
 **Answer:** The degenerate process has zero work input, so the usual refrigeration COP ratio is undefined. It cannot be interpreted as performance for moving heat against a finite temperature difference.
 
+## Research extension: maximum work from finite hot and cold bodies
+
+The original engine uses reservoirs whose temperatures never change. A hot drink and a cool metal block are different: as work is extracted, the source cools and the sink warms. Multiplying all extracted heat by the initial Carnot efficiency overestimates the work. We now change the source model explicitly, while retaining the reversible engine as an infinitesimal intermediary.
+
+Take two internally equilibrated bodies with constant positive heat capacities Cₕ,C꜀ in J/K and initial temperatures Tₕ₀>T꜀₀>0. The outer boundary admits only extracted work, with no matter or heat exchange. An ideal engine completes infinitesimal reversible cycles between the instantaneous temperatures and retains no net energy or entropy. There is no time, conductance or friction law. Aₕ and A꜀ below are positive amounts removed from the hot body and deposited in the cold body; the engine's signed cold heat is −A꜀.
+
+Reversible exchange conserves the entropy of both bodies together. A small amount received at the lower temperature compensates the hot body's entropy loss, not its energy loss.
+
+$$
+C_h\frac{dT_h}{T_h}+C_c\frac{dT_c}{T_c}=0,\qquad dA_h=-C_h\,dT_h>0,\quad dA_c=C_c\,dT_c>0.
+$$
+
+Integrating the entropy balance gives the entire relation between the two temperatures. This path closes at a common temperature, rather than keeping the initial cold temperature fixed.
+
+$$
+T_c=T_{c0}\left(\frac{T_{h0}}{T_h}\right)^{C_h/C_c},\qquad T_h\downarrow T_f,\quad T_c\uparrow T_f.
+$$
+
+The final temperature is the capacity-weighted geometric mean. The ratio form below keeps the logarithms dimensionless. It lies between the initial temperatures.
+
+$$
+T_f=T_{h0}\left(\frac{T_{c0}}{T_{h0}}\right)^{C_c/(C_h+C_c)}.
+$$
+
+The difference between the two cumulative heat magnitudes is extracted work. Both bodies' internal-energy changes must be included; the working engine has no accumulated state change over its completed cycles.
+
+$$
+A_h=C_h(T_{h0}-T_h),\quad A_c=C_c(T_c-T_{c0}),\qquad W=A_h-A_c.
+$$
+
+Evaluate that balance when the two temperatures meet. For equal capacities of 1 J/K and initial temperatures 600 K and 300 K, T_f≈424.264069 K and maximum work is about 51.471863 J, not the work obtained by applying 50% efficiency to all hot-body heat.
+
+$$
+W_{\max}=C_hT_{h0}+C_cT_{c0}-(C_h+C_c)T_f.
+$$
+
+Why is this an upper bound? Consider any process with the same insulated outer boundary, an intermediary restored to its initial state, and a final common positive body temperature T_end. Nonnegative total entropy implies the inequality below. Energy balance then bounds work by the reversible value. Other remaining resources, unequal final temperatures or an unrestored intermediary require their own end-state budget.
+
+$$
+S_{\rm gen}=(C_h+C_c)\log(T_{\rm end}/T_f)\ge0\quad\Longrightarrow\quad T_{\rm end}\ge T_f,\quad W\le W_{\max}.
+$$
+
+Directly contacting the bodies without extracting work instead gives the weighted arithmetic mean T_a. Concavity of log implies the arithmetic mean is at least the geometric mean, explaining the nonnegative maximum work. The two operations have different final temperatures despite identical initial conditions.
+
+$$
+T_a=\frac{C_hT_{h0}+C_cT_{c0}}{C_h+C_c},\qquad W_{\max}=(C_h+C_c)(T_a-T_f)\ge0.
+$$
+
+Direct contact generates the positive entropy difference below. It is not the same thermodynamic process run faster: useful work has been discarded and the final state differs.
+
+$$
+\Delta S_{\rm contact}=C_h\log(T_a/T_{h0})+C_c\log(T_a/T_{c0})=(C_h+C_c)\log(T_a/T_f).
+$$
+
+Divide total work by total hot-body heat only after doing both integrals. For equal capacities in the example, this gives approximately 0.292893, below the initial instantaneous value 0.5.
+
+$$
+\eta_{\rm total}=\frac{W_{\max}}{C_h(T_{h0}-T_f)},\qquad 0<\eta_{\rm total}<1-\frac{T_{c0}}{T_{h0}}\quad(T_{h0}>T_{c0}).
+$$
+
+The overall efficiency is a heat-weighted average of instantaneous efficiencies. The latter decrease strictly toward zero as the bodies approach equality, giving the strict bound for unequal starting temperatures. Equal starting temperatures give zero available work and zero hot input, so the efficiency ratio is undefined. Approaching the reversible endpoint says nothing about a finite operating duration.
+
+$$
+\eta_{\rm total}=\frac{\int(1-T_c/T_h)\,dA_h}{\int dA_h},\qquad \eta_{\rm instantaneous}\longrightarrow0\quad(T_h,T_c\to T_f).
+$$
+
+### Read changing temperatures and cumulative transfers
+
+The upper panel follows the two temperatures along a chosen path coordinate. The lower panel separates heat removed, heat deposited and work; their difference balances exactly. Path position is not seconds or power. These curves describe the new finite-body idealization, not a change to the existing fixed-reservoir lab.
+
+![Finite hot and cold bodies approach a common geometric-mean temperature while extracted work equals removed heat minus deposited heat.](/assets/learning/laws-finite-source-work.en.svg)
+
+### Compare capacities and a degenerate preparation
+
+Capacities are in J/K. The first three rows start at 600 K and 300 K; the last starts with both bodies at 300 K. Heat capacities are not the molar heat capacity of the working gas. The last efficiency is intentionally undefined.
+
+| Cₕ (J/K) | C꜀ (J/K) | T_f (K) | Maximum W (J) | Overall efficiency |
+| --- | --- | --- | --- | --- |
+| 1.00000000 | 1.00000000 | 424.26406871 | 51.47186258 | 0.29289322 |
+| 2.00000000 | 1.00000000 | 476.22031559 | 71.33905323 | 0.28816947 |
+| 1.00000000 | 2.00000000 | 377.97631497 | 66.07105509 | 0.29758562 |
+| 1.00000000 | 1.00000000 | 300.00000000 | 0.00000000 | undefined |
+
+```python
+from math import exp, log
+for Ch, Cc, Th, Tc in [(1,1,600,300), (2,1,600,300),
+                        (1,2,600,300), (1,1,300,300)]:
+    Tf = Th*exp(Cc/(Ch+Cc)*log(Tc/Th))
+    W = Ch*Th+Cc*Tc-(Ch+Cc)*Tf
+    Ah = Ch*(Th-Tf)
+    eta = f"{W/Ah:.8f}" if Ah > 0 else "undefined"
+    print(f"{Ch:.8f} {Cc:.8f} {Tf:.8f} {W:.8f} {eta}")
+```
+
+### Three research questions with explanations
+
+#### 1. Why can the final temperature be lower than the no-work contact temperature?
+
+**Explanation.** The engine exports work through the outer boundary, leaving less total internal energy in the bodies. Reversible extraction preserves their total entropy and selects the geometric mean; direct contact exports no work, preserves body energy and selects the arithmetic mean.
+
+#### 2. Can the initial Carnot efficiency be applied to the total removed heat?
+
+**Explanation.** No. Both source temperatures change, and the instantaneous efficiency decreases as they approach each other. Integrating the work or taking the heat-weighted average gives the stated total. The fixed-reservoir formula remains valid only at each infinitesimal step under this idealization.
+
+#### 3. Does maximum reversible work specify achievable power or completion time?
+
+**Explanation.** No. The derivation supplies an end-state bound and a reversible limiting path. It contains no transport rate, engine speed or dissipation model. Those additions may lower extracted work, and the ideal endpoint must not be advertised as finite-time operation.
+
+### Source and research boundary
+
+[David Tong, Classical Thermodynamics, sections 4.2–4.3](https://davidtong.org/pdfs/teaching/statistical-physics/statphys4.pdf) supplies the energy, entropy and Carnot conventions. The finite-capacity path and optimal-work comparison are derived here under the declared boundary conditions. A data-driven engine model must retain the source states and capacities when comparing these finite bodies with ideal reservoirs.
+
 ## Connection to AI research
 
 Check cycle closure, energy balance, reservoir entropy and operating direction together. Small pressure-curve errors can coexist with incorrect net-work signs or heat ports. Distinguish state coordinates, path progress and physical time in training data. Next, compare energy-conserving ports that nevertheless violate the second law.

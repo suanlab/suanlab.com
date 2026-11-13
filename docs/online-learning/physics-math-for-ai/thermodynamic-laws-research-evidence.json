@@ -1,0 +1,1489 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "status": "validated-thermodynamic-laws-research-supplements",
+  "baselineCommit": "4477e16d3194f60a5ea80bef9bf8127af523db20",
+  "domain": "thermo-statmech",
+  "unitIds": [
+    "carnot-cycle-engine-refrigerator",
+    "two-reservoir-cycle-entropy-admissibility",
+    "gapped-spectrum-low-temperature-entropy"
+  ],
+  "registry": {
+    "units": 650,
+    "guides": 1969,
+    "domains": 51,
+    "topics": 509
+  },
+  "scope": {
+    "originalDomainTopics": 11,
+    "registeredDomainUnits": 32,
+    "researchUnitsInThisBatch": 3,
+    "cumulativeSequentialResearchUnits": 6,
+    "remainingDomainUnits": 26,
+    "wholeDomainResearchReviewComplete": false,
+    "curriculumComplete": false
+  },
+  "manuscripts": [
+    {
+      "id": "carnot-cycle-engine-refrigerator",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md",
+      "originalSha256": "28714dbb65f26093e5c00521e111b8e6d4452bc518be87b244d30d3215e8dc47",
+      "image": "finite-source-work",
+      "columns": 5,
+      "rows": [
+        [
+          "1.00000000",
+          "1.00000000",
+          "424.26406871",
+          "51.47186258",
+          "0.29289322"
+        ],
+        [
+          "2.00000000",
+          "1.00000000",
+          "476.22031559",
+          "71.33905323",
+          "0.28816947"
+        ],
+        [
+          "1.00000000",
+          "2.00000000",
+          "377.97631497",
+          "66.07105509",
+          "0.29758562"
+        ],
+        [
+          "1.00000000",
+          "1.00000000",
+          "300.00000000",
+          "0.00000000",
+          "undefined"
+        ]
+      ],
+      "updatedSha256": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b",
+      "marker": "## Research extension: maximum work from finite hot and cold bodies",
+      "nextHeading": "## Connection to AI research"
+    },
+    {
+      "id": "carnot-cycle-engine-refrigerator",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md",
+      "originalSha256": "65e254a26d33b431e1d79fd6d0b2496c36dc8241c9ef473f0933b95508ef545b",
+      "image": "finite-source-work",
+      "columns": 5,
+      "rows": [
+        [
+          "1.00000000",
+          "1.00000000",
+          "424.26406871",
+          "51.47186258",
+          "0.29289322"
+        ],
+        [
+          "2.00000000",
+          "1.00000000",
+          "476.22031559",
+          "71.33905323",
+          "0.28816947"
+        ],
+        [
+          "1.00000000",
+          "2.00000000",
+          "377.97631497",
+          "66.07105509",
+          "0.29758562"
+        ],
+        [
+          "1.00000000",
+          "1.00000000",
+          "300.00000000",
+          "0.00000000",
+          "undefined"
+        ]
+      ],
+      "updatedSha256": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8",
+      "marker": "## 연구 확장: 유한한 고온·저온 물체에서 얻는 최대 일",
+      "nextHeading": "## AI 연구에 연결하기"
+    },
+    {
+      "id": "two-reservoir-cycle-entropy-admissibility",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md",
+      "originalSha256": "1ba3913e39f372c132f95e7da4a55f17105e66e06236218c6ffaebc2c730e019",
+      "image": "unrestored-device-reset",
+      "columns": 6,
+      "rows": [
+        [
+          "0.00000000",
+          "0.00000000",
+          "500.00000000",
+          "0.00000000",
+          "0.00000000",
+          "500.00000000"
+        ],
+        [
+          "0.50000000",
+          "0.00000000",
+          "650.00000000",
+          "-150.00000000",
+          "150.00000000",
+          "500.00000000"
+        ],
+        [
+          "1.00000000",
+          "0.00000000",
+          "800.00000000",
+          "-300.00000000",
+          "300.00000000",
+          "500.00000000"
+        ],
+        [
+          "1.00000000",
+          "0.20000000",
+          "740.00000000",
+          "-300.00000000",
+          "300.00000000",
+          "440.00000000"
+        ]
+      ],
+      "updatedSha256": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786",
+      "marker": "## Research extension: apparent excess work from an unrestored device",
+      "nextHeading": "## Connection to AI research"
+    },
+    {
+      "id": "two-reservoir-cycle-entropy-admissibility",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md",
+      "originalSha256": "faf477ca33a6fb917cf05568d4118cbb04b5969b3d9e6fff5589bbd321f76791",
+      "image": "unrestored-device-reset",
+      "columns": 6,
+      "rows": [
+        [
+          "0.00000000",
+          "0.00000000",
+          "500.00000000",
+          "0.00000000",
+          "0.00000000",
+          "500.00000000"
+        ],
+        [
+          "0.50000000",
+          "0.00000000",
+          "650.00000000",
+          "-150.00000000",
+          "150.00000000",
+          "500.00000000"
+        ],
+        [
+          "1.00000000",
+          "0.00000000",
+          "800.00000000",
+          "-300.00000000",
+          "300.00000000",
+          "500.00000000"
+        ],
+        [
+          "1.00000000",
+          "0.20000000",
+          "740.00000000",
+          "-300.00000000",
+          "300.00000000",
+          "440.00000000"
+        ]
+      ],
+      "updatedSha256": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb",
+      "marker": "## 연구 확장: 복원되지 않은 장치가 만드는 겉보기 초과 일",
+      "nextHeading": "## AI 연구에 연결하기"
+    },
+    {
+      "id": "gapped-spectrum-low-temperature-entropy",
+      "lang": "en",
+      "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md",
+      "originalSha256": "03951d879a75d0f28cdacb980160361538198dd4a09404d257e3091a5c8672b6",
+      "image": "growing-copy-low-temperature",
+      "columns": 6,
+      "rows": [
+        [
+          "10",
+          "130.28834457",
+          "0.90909091",
+          "0.38554329",
+          "3.04636097",
+          "4.38173398"
+        ],
+        [
+          "100",
+          "65.14417229",
+          "0.99009901",
+          "0.36971121",
+          "5.55460753",
+          "20.78971909"
+        ],
+        [
+          "1000",
+          "43.42944819",
+          "0.99900100",
+          "0.36806330",
+          "7.90035476",
+          "47.62179179"
+        ],
+        [
+          "10000",
+          "32.57208614",
+          "0.99990001",
+          "0.36789783",
+          "10.20936943",
+          "84.81340624"
+        ]
+      ],
+      "updatedSha256": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8",
+      "marker": "## Research extension: cooling a growing number of independent copies",
+      "nextHeading": "## Connection to AI research"
+    },
+    {
+      "id": "gapped-spectrum-low-temperature-entropy",
+      "lang": "ko",
+      "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md",
+      "originalSha256": "07723d8e8729643d6d50079d1c510d2344ab9d9352fdda9522837d058c596add",
+      "image": "growing-copy-low-temperature",
+      "columns": 6,
+      "rows": [
+        [
+          "10",
+          "130.28834457",
+          "0.90909091",
+          "0.38554329",
+          "3.04636097",
+          "4.38173398"
+        ],
+        [
+          "100",
+          "65.14417229",
+          "0.99009901",
+          "0.36971121",
+          "5.55460753",
+          "20.78971909"
+        ],
+        [
+          "1000",
+          "43.42944819",
+          "0.99900100",
+          "0.36806330",
+          "7.90035476",
+          "47.62179179"
+        ],
+        [
+          "10000",
+          "32.57208614",
+          "0.99990001",
+          "0.36789783",
+          "10.20936943",
+          "84.81340624"
+        ]
+      ],
+      "updatedSha256": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529",
+      "marker": "## 연구 확장: 독립 복사본의 수를 늘리며 온도를 낮추기",
+      "nextHeading": "## AI 연구에 연결하기"
+    }
+  ],
+  "originalExplainedExercisesPreserved": 36,
+  "newExplainedResearchQuestions": 18,
+  "displayedEquationsBothLocales": 60,
+  "executedPythonCells": 6,
+  "independentVerification": {
+    "status": "passed",
+    "finiteBodyIntegrations": 12,
+    "endpointWorkBounds": 48,
+    "equalTemperaturePreparations": 3,
+    "exactCompositeRunResetBudgets": 18,
+    "nonzeroStoredEnergyBudgets": 2,
+    "finiteCountEnumerations": 12,
+    "jointLimitChecks": 3,
+    "exactProbabilityThresholds": 12
+  },
+  "otherDomainManuscriptsPreserved": [
+    {
+      "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md",
+      "sha256": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md",
+      "sha256": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md",
+      "sha256": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md",
+      "sha256": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md",
+      "sha256": "1988db280860ef74557a2bcaca959b7ae08a0b232ff1bd2a1b99394b47ac060b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md",
+      "sha256": "ca2682e88d8000119b077d1fcb6d881ae72a6b3fa16337e63f503f81b2875019"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md",
+      "sha256": "623093cfd35890f9b0304cf33bc15e99c744e18418c829ba61d59b5c93c99f44"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md",
+      "sha256": "6e695972c365e36840c19e359f762a8084eac87e97e131743599ef329a69f44e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md",
+      "sha256": "d326602499c3b341b075be8838b03b3cfba783eb8623550b43488e5825da2bf7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md",
+      "sha256": "1f09442cec69f6771740ca5a56abd39faef9deee6fc7003961339c7b168e59a1"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md",
+      "sha256": "3f00318b01c7bd93e770bd745e1e535418629869402ad952d8ea2e0200ab9385"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md",
+      "sha256": "dbde3b93ae3f9720100fcb6c640c6753ab672dff3bb85ad7a12210b396b15dff"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md",
+      "sha256": "7a64dee8bedd8062881d6ce9f2410b4a64e6c76b4f60cded48dfc85671e70efc"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md",
+      "sha256": "a97ed4d29978ba48e8f2703c0dfb18600002367ba2e15942a7658eca5e233e39"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md",
+      "sha256": "3916532391a89710021232e47249b076af621113990007c5a42547b904fb1ae9"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md",
+      "sha256": "5d0a8f746486d28aebd5b5164617b2594bdefe3ea3af3082238ba0fdf44f0407"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md",
+      "sha256": "a20b9e72f85794d578ace76e22118bd1eee6898a00bc2fb84a2b5326a0b9652e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md",
+      "sha256": "2a7473a89a0f5288a92b80057cca25f82c120b7ff421d98f130d098342e4b113"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md",
+      "sha256": "79fd2af07f305bd235b4e1d1324dde87a20b8bef4dcd1cc4333176f97af3d85b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md",
+      "sha256": "1ab612949a826ac3dea1558fa52f7c667648804503f57dbbd47508157d9eef11"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.ko.md",
+      "sha256": "4bb4d08e7209d1e79a3d182a534fffdf3ca91f86af1794b6ab11661640790308"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.en.md",
+      "sha256": "e009fc56a05155ca0af0942b3c31268f51ef0064bcbd6b3e1910aa19ab336770"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.ko.md",
+      "sha256": "4a2ac611c35b21482cff6e862e52de3a2cc65681ebbaf4d27c3777d256dc2fe7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.en.md",
+      "sha256": "db01c9360f23c77e8d4ff7bf214ebfc46b9e376fdc5dad3c21a9d83a43265b13"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.ko.md",
+      "sha256": "fb46a0950c5ba61d2aa4a304ed01b56ab05220e94791562d4c9c8fca8fb764b0"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.en.md",
+      "sha256": "ee3e1c2d3a2d8a927622c41b0d54884310e3b49a790b0860e28961a10b0bfc5e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.ko.md",
+      "sha256": "273597601f2cc18ef81a4c16b19d30fd8824a0ed1fa211af07427d41a8a1a951"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.en.md",
+      "sha256": "b008dc6e7f1a3d555ae9f363465e9c4c81b66ca7acb047c70ed0450b5bcc8e32"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.ko.md",
+      "sha256": "920ba116208c2992905650b4bcbc366659807d018aeedd266d799d8643b73f57"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.en.md",
+      "sha256": "4a4b016de1dd21bdc3e5b9e2721f05a33b75befc3abb715d6a4d6a71da89f7e6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.ko.md",
+      "sha256": "eb446c6bec89621ee3e991ea0ebe897d94229315e41fd60eb4b9bdee8083c402"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.en.md",
+      "sha256": "561530d879493f38e0408eb37ad25be67d44dad388c7a30e12c242d9e22a144e"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.ko.md",
+      "sha256": "087a1af9e81504130c9b059eb159f1fe678f7f832590312fb90861b971da1836"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.en.md",
+      "sha256": "d1aa8390bfd0fc56f887b4e2aab07f6373086aa940998b811196f44f3ec6fed7"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.ko.md",
+      "sha256": "9bb8db5785e77ae769d89b2c7d537f15de00922f58789cba7e427a8297f6caec"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.en.md",
+      "sha256": "ac4d75c266edc9dbf81c4d5a1bea6a39f1f1953e7b1f222d635e0c82e3c9846f"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.ko.md",
+      "sha256": "e2c5d6cf78cd5470aa3625d334862310432ee7b581fd43450f60d1c34a276044"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.en.md",
+      "sha256": "fad9d696cc1191b8b8aa998f5a3ca11ed667c2ab048d8bfc10a11ce8e321541c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.ko.md",
+      "sha256": "8a418f2a12d092ff4caea78b90a74e677cf9552f7524b65366616010508c9706"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.en.md",
+      "sha256": "ea5bbf70c8056936fd6fc0be8058d93621471312c0bce6752690b7ef09a7aa90"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.ko.md",
+      "sha256": "4b0221ed4cc62924eab793c07b220a3dde609810cebb37e8af79d9491c514b4b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.en.md",
+      "sha256": "844d21fce5c5d31c200bde1fb304046c22cacef8f0a8619d9fc85b7ee564e5bf"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.ko.md",
+      "sha256": "a718b1ef4c9b86e7b7c9c109e909095e772acea8a83e97e655d6aaeab7e3adfd"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.en.md",
+      "sha256": "ed4cd67f693f56ad3229cc64595ccd0edde216f4cd78ea873bd7234723285d85"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.ko.md",
+      "sha256": "5e1879b6bd55ccc27d71a398fa919e03ca96904ae4a3edf210dc7613085a7ef1"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.en.md",
+      "sha256": "d2185361b111b05b9bba4375542642ff8820fa697dc3086d07b80cb8ff10582d"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.ko.md",
+      "sha256": "bf380b04692d01eccc7ade872c40223c0732f12dbd9f0415ad803cf2f3ec0a16"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.en.md",
+      "sha256": "7b63b7f733ab991c2cc4c33b4fa1c06ed818f40b085b64168de9206805d94946"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.ko.md",
+      "sha256": "6a5221c76efa732c71b201289fd024a7b87c7f2aed1c81c6a65f06692e23f02b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.en.md",
+      "sha256": "f82d282b4f9debb0be0cc673315f5bef998a922ba9d52c51eb079cc223c7ad8b"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.ko.md",
+      "sha256": "5717437eb357f7d78652ff00fe41d261dc3b00d0777dd2042ea026ac910c4b42"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.en.md",
+      "sha256": "91cee8bb2d352358997a6eaf32691bf3c2f69578dcab5580e1a8aaef28a14305"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.ko.md",
+      "sha256": "87169cbf63ed0c25110b8070f927ecb1068de31846a7ff2c05b470a548213dd6"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.en.md",
+      "sha256": "ac24140fd2b4e1a4091037a98d698e1b234f10b61a5ca65d9e3ae815862b93ba"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.ko.md",
+      "sha256": "6bf2e4df0cdb337c2c207f76449e9cf50e6171cb34edf86ad06c4c927043f58c"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.en.md",
+      "sha256": "c1b8cd125800b5381367f54ae276aa5b75e8de704000b52f2d21967cdaffdab2"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/thermodynamics.ko.md",
+      "sha256": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3"
+    },
+    {
+      "path": "content/learning/physics-math-for-ai/thermodynamics.en.md",
+      "sha256": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf"
+    }
+  ],
+  "previousResearchArtifactsPreserved": {
+    "content/learning/physics-math-for-ai/thermodynamics.en.md": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf",
+    "content/learning/physics-math-for-ai/thermodynamics.ko.md": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3",
+    "public/assets/learning/thermometry-information-scale.en.svg": "46ea259642757e2c948177d410f2a219401bdf12db8bde220c5c94178fa43f31",
+    "public/assets/learning/thermometry-information-scale.ko.svg": "598613ae723c70ea9cac1c8630dca3a936a486497ebb193f4bd9456210e88688",
+    "scripts/check-thermometry-research.cjs": "c781958ca72c404cbedaa82bdfa1550a93b1991e1d2178f2eb9d45dea9783231",
+    "scripts/learning-thermometry-research.test.ts": "60b9e791bc9d0c882863a5db94c6acc83f0c98665838f6e6d0c56aba10481b1f",
+    "scripts/learning/verify-thermometry-research.py": "bc96b222c3e871b4f50338fe0ff4f14c948ea5a3dfa39a1106591ba6eb81203f",
+    "scripts/learning/generate-thermometry-figures.py": "4f1063ab8e5ad72a43e0fd679962cd1091c9a863158f288ac78f4b0524283625",
+    "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca",
+    "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333",
+    "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903",
+    "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463",
+    "public/assets/learning/heat-work-contact-scale.en.svg": "c8b49365c1e0476c1ada8fd5c0289c40b2d71c1fc555063ac6d77657e7d38242",
+    "public/assets/learning/heat-work-contact-scale.ko.svg": "3f71ba83f6c79ee0c787dba8d736535b1efb3dfa795614e01b8ceba0a5328e33",
+    "public/assets/learning/heat-work-path-null-direction.en.svg": "a57b6e570e68b7b6712eb97d973da86b8124edb853548f24172db27e27ad6e02",
+    "public/assets/learning/heat-work-path-null-direction.ko.svg": "e03438687eb37072b64ec2a13361ff858efcc224c520158b1a557e459adae410",
+    "scripts/check-heat-work-research.cjs": "ebd1e2908aca89139c448204374544abd171c89f4abf50cffbec0e6f7c3501d3",
+    "scripts/learning-heat-work-research.test.ts": "4f43a9176d3c8f338bbb61f9b172097aca262435f21ff2ecd646d0defb3fd428",
+    "scripts/learning/verify-heat-work-research.py": "5c2f8d4b96a0ed26e719357e678ef0ba089374a91192f87a4abc5a9014d0f03a",
+    "scripts/learning/generate-heat-work-research-figures.py": "5cb22bf59ae85ea54f49218063f7c078ceac8cf0afd95a590a740663572c9531"
+  },
+  "ledger": {
+    "originalEntries": 807,
+    "currentEntries": 813,
+    "allOriginalEntriesPreserved": true
+  },
+  "selectedTests": {
+    "files": 9,
+    "tests": 221,
+    "failed": 0,
+    "logs": {
+      "tests.log": "db0e678b361a867d255e36e61ade08d49cbd24f5dbec865344a2b93145a3e3bd",
+      "prior-research-tests.log": "99127204f985e78ec3bf2a01920b65a7fd133e0f6b73efe2e86ecd69507dd0de"
+    }
+  },
+  "checks": {
+    "lint": true,
+    "content": true,
+    "build": true,
+    "typecheck": true,
+    "export": true,
+    "generatedRoutes": 1893,
+    "htmlPages": 1888,
+    "contentUrls": 1885,
+    "logs": {
+      "lint.log": "3be436cfc280576162c8988ab0bf2da58c1cb1af605d4cca297edd0b2c7c9997",
+      "content.log": "cae16334d0d816cb4f9981be8422454c5186c14b964768b00780286cd813b72d",
+      "build.log": "ffab249ea04884847bb599f2181e4026d4d3e28e10649f4270311eab07a8a6ca",
+      "types.log": "6d339cc3c6b097244df96011008e228f3bc9a23bcef588e7d89e6265838f6660",
+      "export.log": "7693d86189e4ec43f9df04724c2cbf33caf0d974a41cccb2aa2004d36af557d2"
+    }
+  },
+  "scopedInputFreeze": {
+    "files": 4957,
+    "description": "Scoped source, learning assets, tools, fixtures, tests and configuration; excludes docs and runtime. Snapshot updated only for the recorded reader-checker correction before the final successful reader run.",
+    "manifest": ".runtime/learning/thermodynamic-laws-research/frozen-inputs.json",
+    "sha256": "1eff9db5d7c03e8473a3b1cc80b602ee76b4559eeca01593ac07a870f6944dd2",
+    "unchangedBeforeAndAfter": true
+  },
+  "browserCheckerCorrectionAfterBuild": {
+    "path": "scripts/check-thermodynamic-laws-research.cjs",
+    "beforeSha256": "17f70cfe808c42c64b604a572b8cc7d6d45cb3ffb4826edc0681fc0767574087",
+    "afterSha256": "213fd76e88020ec2efde1f6961ae02f1911f7e4cdb4b7da936a2da13b593dacf",
+    "description": "The first attempted reader check counted inputs only; the existing Carnot direction is a native select. Include input and select in DOM order, assert the select count, and compare all values/persistence. Product sources and build output unchanged.",
+    "runtimeInputsChanged": false,
+    "initialFailureLogSha256": "92e5260ade2386f7c96e8369789aec4e7ce90d04d87a5228d1ae1a826ef82765"
+  },
+  "outputFreeze": {
+    "files": 313,
+    "description": "Target HTML/SVG plus shared exported Next.js static assets.",
+    "manifest": ".runtime/learning/thermodynamic-laws-research/frozen-output.json",
+    "sha256": "93a516dc0dc8d397397ba5eb196ad7bf6ed2b8d3f1165c3aa926eee689ac1beb",
+    "unchangedBeforeAndAfter": true
+  },
+  "browser": {
+    "unitIds": [
+      "carnot-cycle-engine-refrigerator",
+      "two-reservoir-cycle-entropy-admissibility",
+      "gapped-spectrum-low-temperature-entropy"
+    ],
+    "rows": [
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      }
+    ],
+    "errors": [],
+    "guides": [
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "example": 0
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "example": 1
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "example": 2
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "example": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "example": 1
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "example": 2
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "example": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "example": 1
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "example": 2
+      }
+    ],
+    "questions": [
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "question": 0
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "question": 1
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "question": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "question": 1
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "question": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "question": 1
+      }
+    ],
+    "concepts": [
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "step": 0
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "step": 1
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "step": 2
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "step": 3
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "step": 0
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "step": 1
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "step": 2
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "step": 3
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "step": 0
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "step": 1
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "step": 2
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "step": 3
+      }
+    ],
+    "interactions": [
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "concepts": 4,
+        "guides": 3,
+        "quizzes": 2,
+        "persistence": true,
+        "completion": true
+      }
+    ],
+    "assetBounds": [
+      {
+        "path": "public/assets/learning/laws-finite-source-work.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/laws-finite-source-work.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/laws-unrestored-device-reset.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/laws-unrestored-device-reset.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/laws-growing-copy-low-temperature.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/laws-growing-copy-low-temperature.ko.svg",
+        "outside": []
+      }
+    ]
+  },
+  "renderAndServedFiles": {
+    "status": "passed",
+    "rows": [
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "순환하면-에너지는-어디에서-올까",
+            "title": "순환하면 에너지는 어디에서 올까?"
+          },
+          {
+            "id": "영법칙-온도계로-같은-온도를-비교하기",
+            "title": "영법칙: 온도계로 같은 온도를 비교하기"
+          },
+          {
+            "id": "부호단위가역성",
+            "title": "부호·단위·가역성"
+          },
+          {
+            "id": "네-꼭짓점-만들기",
+            "title": "네 꼭짓점 만들기"
+          },
+          {
+            "id": "등온과-단열을-각각-적분하기",
+            "title": "등온과 단열을 각각 적분하기"
+          },
+          {
+            "id": "순일과-효율",
+            "title": "순일과 효율"
+          },
+          {
+            "id": "엔트로피-그림으로-다시-보기",
+            "title": "엔트로피 그림으로 다시 보기"
+          },
+          {
+            "id": "숫자로-확인하기",
+            "title": "숫자로 확인하기"
+          },
+          {
+            "id": "역으로-돌리면-냉동기가-된다",
+            "title": "역으로 돌리면 냉동기가 된다"
+          },
+          {
+            "id": "부분-순환의-일과-전체-운전을-구별하기",
+            "title": "부분 순환의 일과 전체 운전을 구별하기"
+          },
+          {
+            "id": "퇴화-조건과-진행률",
+            "title": "퇴화 조건과 진행률"
+          },
+          {
+            "id": "풀이가-있는-확인-문제",
+            "title": "풀이가 있는 확인 문제"
+          },
+          {
+            "id": "연구-확장-유한한-고온저온-물체에서-얻는-최대-일",
+            "title": "연구 확장: 유한한 고온·저온 물체에서 얻는 최대 일"
+          },
+          {
+            "id": "ai-연구에-연결하기",
+            "title": "AI 연구에 연결하기"
+          }
+        ]
+      },
+      {
+        "id": "carnot-cycle-engine-refrigerator",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "where-does-energy-come-from-in-a-cycle",
+            "title": "Where does energy come from in a cycle?"
+          },
+          {
+            "id": "the-zeroth-law-compare-temperatures-with-a-thermometer",
+            "title": "The zeroth law: compare temperatures with a thermometer"
+          },
+          {
+            "id": "signs-units-and-reversibility",
+            "title": "Signs, units and reversibility"
+          },
+          {
+            "id": "construct-the-four-corners",
+            "title": "Construct the four corners"
+          },
+          {
+            "id": "integrate-the-isotherms-and-adiabats-separately",
+            "title": "Integrate the isotherms and adiabats separately"
+          },
+          {
+            "id": "net-work-and-efficiency",
+            "title": "Net work and efficiency"
+          },
+          {
+            "id": "read-the-entropy-picture",
+            "title": "Read the entropy picture"
+          },
+          {
+            "id": "check-the-numbers",
+            "title": "Check the numbers"
+          },
+          {
+            "id": "reverse-it-to-operate-a-refrigerator",
+            "title": "Reverse it to operate a refrigerator"
+          },
+          {
+            "id": "partial-path-work-differs-from-whole-cycle-operation",
+            "title": "Partial-path work differs from whole-cycle operation"
+          },
+          {
+            "id": "degenerate-cases-and-progress",
+            "title": "Degenerate cases and progress"
+          },
+          {
+            "id": "six-questions-with-worked-answers",
+            "title": "Six questions with worked answers"
+          },
+          {
+            "id": "research-extension-maximum-work-from-finite-hot-and-cold-bodies",
+            "title": "Research extension: maximum work from finite hot and cold bodies"
+          },
+          {
+            "id": "connection-to-ai-research",
+            "title": "Connection to AI research"
+          }
+        ]
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "숫자가-보존-법칙을-만족하면-충분할까",
+            "title": "숫자가 보존 법칙을 만족하면 충분할까?"
+          },
+          {
+            "id": "계포트부호를-먼저-선언하기",
+            "title": "계·포트·부호를 먼저 선언하기"
+          },
+          {
+            "id": "두-법칙은-서로-다른-검사를-한다",
+            "title": "두 법칙은 서로 다른 검사를 한다"
+          },
+          {
+            "id": "생성-계수로-포트를-구성하기",
+            "title": "생성 계수로 포트를 구성하기"
+          },
+          {
+            "id": "네-숫자를-나란히-비교하기",
+            "title": "네 숫자를 나란히 비교하기"
+          },
+          {
+            "id": "잃은-일과-엔트로피",
+            "title": "잃은 일과 엔트로피"
+          },
+          {
+            "id": "그림을-읽는-순서",
+            "title": "그림을 읽는 순서"
+          },
+          {
+            "id": "풀이가-있는-확인-문제",
+            "title": "풀이가 있는 확인 문제"
+          },
+          {
+            "id": "작은-생성량과-표시값의-차이",
+            "title": "작은 생성량과 표시값의 차이"
+          },
+          {
+            "id": "연구-확장-복원되지-않은-장치가-만드는-겉보기-초과-일",
+            "title": "연구 확장: 복원되지 않은 장치가 만드는 겉보기 초과 일"
+          },
+          {
+            "id": "ai-연구에-연결하기",
+            "title": "AI 연구에 연결하기"
+          }
+        ]
+      },
+      {
+        "id": "two-reservoir-cycle-entropy-admissibility",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "is-conservation-enough",
+            "title": "Is conservation enough?"
+          },
+          {
+            "id": "declare-the-system-and-signs",
+            "title": "Declare the system and signs"
+          },
+          {
+            "id": "the-laws-perform-different-checks",
+            "title": "The laws perform different checks"
+          },
+          {
+            "id": "construct-ports-using-an-entropy-generation-coefficient",
+            "title": "Construct ports using an entropy-generation coefficient"
+          },
+          {
+            "id": "compare-four-budgets",
+            "title": "Compare four budgets"
+          },
+          {
+            "id": "lost-work-and-entropy",
+            "title": "Lost work and entropy"
+          },
+          {
+            "id": "read-the-port-diagram",
+            "title": "Read the port diagram"
+          },
+          {
+            "id": "six-questions-with-worked-answers",
+            "title": "Six questions with worked answers"
+          },
+          {
+            "id": "small-generation-versus-rounded-displays",
+            "title": "Small generation versus rounded displays"
+          },
+          {
+            "id": "research-extension-apparent-excess-work-from-an-unrestored-device",
+            "title": "Research extension: apparent excess work from an unrestored device"
+          },
+          {
+            "id": "connection-to-ai-research",
+            "title": "Connection to AI research"
+          }
+        ]
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "같은-온도-변화에-필요한-에너지는-언제나-같을까",
+            "title": "같은 온도 변화에 필요한 에너지는 언제나 같을까?"
+          },
+          {
+            "id": "상태별-확률에서-시작하기",
+            "title": "상태별 확률에서 시작하기"
+          },
+          {
+            "id": "평균엔트로피열용량",
+            "title": "평균·엔트로피·열용량"
+          },
+          {
+            "id": "숫자로-상태-세기",
+            "title": "숫자로 상태 세기"
+          },
+          {
+            "id": "바닥-상태가-하나일-때와-여러-개일-때",
+            "title": "바닥 상태가 하나일 때와 여러 개일 때"
+          },
+          {
+            "id": "간격0과-저온-극한은-순서가-중요하다",
+            "title": "간격0과 저온 극한은 순서가 중요하다"
+          },
+          {
+            "id": "제3법칙과-냉각-속도의-경계",
+            "title": "제3법칙과 냉각 속도의 경계"
+          },
+          {
+            "id": "풀이가-있는-확인-문제",
+            "title": "풀이가 있는 확인 문제"
+          },
+          {
+            "id": "작은-값과-표시-범위를-구분하기",
+            "title": "작은 값과 표시 범위를 구분하기"
+          },
+          {
+            "id": "복제-수와-미분의-단위-읽기",
+            "title": "복제 수와 미분의 단위 읽기"
+          },
+          {
+            "id": "연구-확장-독립-복사본의-수를-늘리며-온도를-낮추기",
+            "title": "연구 확장: 독립 복사본의 수를 늘리며 온도를 낮추기"
+          },
+          {
+            "id": "ai-연구에-연결하기",
+            "title": "AI 연구에 연결하기"
+          }
+        ]
+      },
+      {
+        "id": "gapped-spectrum-low-temperature-entropy",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "does-the-same-temperature-change-always-require-the-same-energy",
+            "title": "Does the same temperature change always require the same energy?"
+          },
+          {
+            "id": "start-from-individual-state-probabilities",
+            "title": "Start from individual state probabilities"
+          },
+          {
+            "id": "mean-entropy-and-heat-capacity",
+            "title": "Mean, entropy and heat capacity"
+          },
+          {
+            "id": "count-a-numerical-example",
+            "title": "Count a numerical example"
+          },
+          {
+            "id": "one-ground-state-versus-several",
+            "title": "One ground state versus several"
+          },
+          {
+            "id": "zero-gap-and-low-temperature-have-different-orders-of-limits",
+            "title": "Zero gap and low temperature have different orders of limits"
+          },
+          {
+            "id": "the-boundary-between-the-third-law-and-cooling-dynamics",
+            "title": "The boundary between the third law and cooling dynamics"
+          },
+          {
+            "id": "six-questions-with-worked-answers",
+            "title": "Six questions with worked answers"
+          },
+          {
+            "id": "distinguish-small-values-from-display-range",
+            "title": "Distinguish small values from display range"
+          },
+          {
+            "id": "read-copy-counts-and-derivative-units",
+            "title": "Read copy counts and derivative units"
+          },
+          {
+            "id": "research-extension-cooling-a-growing-number-of-independent-copies",
+            "title": "Research extension: cooling a growing number of independent copies"
+          },
+          {
+            "id": "connection-to-ai-research",
+            "title": "Connection to AI research"
+          }
+        ]
+      }
+    ],
+    "files": [
+      {
+        "path": "/book/online/physics-math-for-ai/carnot-cycle-engine-refrigerator/",
+        "sha256": "209c3824773b2078c5257f944995d93a86cfa2ef3d593c2c53a0d852da2109ed",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility/",
+        "sha256": "213a836c156c282db1e19979657d08349531379adbd5c0a6df238e2ca7bec3e7",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/gapped-spectrum-low-temperature-entropy/",
+        "sha256": "05993ccd35372eeddb037467dd08f47c8a8cdc50fabcd2b1b14b6661b748d78f",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/laws-finite-source-work.en.svg",
+        "sha256": "36c3b8633806e7c14da8672e865abee52c0e0faa36ed18e435bd00ff063ac7a0",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/laws-finite-source-work.ko.svg",
+        "sha256": "094667fec150010fab665b4dd555d1ab73a53cac688e72180c9b47f760d6d1e2",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/laws-unrestored-device-reset.en.svg",
+        "sha256": "f2ea8dbaf637fca43cb4f91f02d8e868fd9829cad14c453a48a7ff142e7722a0",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/laws-unrestored-device-reset.ko.svg",
+        "sha256": "cd80277e8d52cb73f5f133b4f8414c792a42c6c75790a8352dfbadf8377f2a77",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/laws-growing-copy-low-temperature.en.svg",
+        "sha256": "9409cf6331a162a36f433026628bca7a216e5df205c614642dfa18b9334ea21d",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/laws-growing-copy-low-temperature.ko.svg",
+        "sha256": "d3eefa000445b8452f2fe48a04eaaec4af68d57acd473f84d160dd55db339ffe",
+        "sourceOutputAndServedEqual": true
+      }
+    ],
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "domains": 51,
+      "topics": 509
+    },
+    "domainUnits": [
+      "thermodynamics",
+      "finite-body-thermal-contact-heat-entropy",
+      "ideal-gas-two-path-heat-work",
+      "carnot-cycle-engine-refrigerator",
+      "two-reservoir-cycle-entropy-admissibility",
+      "gapped-spectrum-low-temperature-entropy",
+      "finite-spectrum-helmholtz-kl-variational",
+      "ideal-gas-helmholtz-gibbs-volume-availability",
+      "binary-shell-multiplicity-block-counts",
+      "finite-macro-partition-conditional-entropy",
+      "finite-noisy-macro-observation-channel",
+      "finite-binary-reservoir-canonical-comparison",
+      "canonical-binary-energy-fluctuations",
+      "grand-canonical-finite-occupancy-fluctuations",
+      "finite-spectrum-partition-cumulant-generators",
+      "coupled-binary-sites-partition-factorization",
+      "infinite-energy-ladder-normalization-cutoff",
+      "reference-measure-boltzmann-softmax-identifiability",
+      "finite-gibbs-conditionals-scan-support",
+      "quadratic-gaussian-gibbs-normalizability",
+      "finite-curie-weiss-magnetization-symmetry",
+      "curie-weiss-variational-stability-limits",
+      "landau-sixth-order-coexistence-stability",
+      "binary-connected-correlations-field-hessian",
+      "periodic-ising-ring-correlation-length",
+      "finite-correlated-average-ar1-uncertainty",
+      "stationary-flux-three-state-cycle",
+      "metropolis-hastings-proposal-balance",
+      "reversible-two-state-periodicity-mixing",
+      "boundary-growth-extensivity-additivity",
+      "spatial-density-self-averaging-correlations",
+      "two-phase-partition-zeros-rounding"
+    ]
+  },
+  "directVisualReview": [
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research/finite-source-work-en.png",
+      "sha256": "d1e2aa9f1ee97e43ccdc46eb375a929a65254dfa397d6f23ccdbaf6e19c131d9",
+      "directlyReviewed": true,
+      "scope": "Full original-size padded figure preview"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research/finite-source-work-ko.png",
+      "sha256": "ac424e9277c520431e6930f75d6abb83c0117840d9a56fe40318fe3689c1d756",
+      "directlyReviewed": true,
+      "scope": "Full original-size padded figure preview"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research/unrestored-device-reset-en.png",
+      "sha256": "1f66d3b55313497cb4fd42f7c161b9f05d902755a55427d3baed3702b5fccdeb",
+      "directlyReviewed": true,
+      "scope": "Full original-size padded figure preview"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research/unrestored-device-reset-ko.png",
+      "sha256": "2c370fb2082d90b968b2bca368a9909e7132e5b36f6c7ada2b1433183e0ebc00",
+      "directlyReviewed": true,
+      "scope": "Full original-size padded figure preview"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research/growing-copy-low-temperature-en.png",
+      "sha256": "c5167e0dec202e77aca90285ede9de0241f3a5721c2daf23dc3a7ab2b91e4f71",
+      "directlyReviewed": true,
+      "scope": "Full original-size padded figure preview"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research/growing-copy-low-temperature-ko.png",
+      "sha256": "344fbe644c63b861c58fe4205c58118700eb0b876b86fc819c384c52d44c13f3",
+      "directlyReviewed": true,
+      "scope": "Full original-size padded figure preview"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research-carnot-cycle-engine-refrigerator-en-320.png",
+      "sha256": "eb6d9747bb8bf59e3aa0d4e9d29306f8014d57f8bd4911c801fe81a7dd7e9ce0",
+      "directlyReviewed": true,
+      "scope": "Mobile capture around the research figure; not the whole manuscript"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research-carnot-cycle-engine-refrigerator-ko-320.png",
+      "sha256": "c8fd433743cd29ec89c371d844e3c7f8259924fe6482c6b182059709b114fb04",
+      "directlyReviewed": true,
+      "scope": "Mobile capture around the research figure; not the whole manuscript"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research-two-reservoir-cycle-entropy-admissibility-en-320.png",
+      "sha256": "b43e79d865f39297fa770d9d1ea0c07fa67f93422a28ab703e0fd886401c20ea",
+      "directlyReviewed": true,
+      "scope": "Mobile capture around the research figure; not the whole manuscript"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research-two-reservoir-cycle-entropy-admissibility-ko-320.png",
+      "sha256": "b0638ffa9830bd685276ce22034355098030e69f4e4e953befcd276ae3b5e440",
+      "directlyReviewed": true,
+      "scope": "Mobile capture around the research figure; not the whole manuscript"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research-gapped-spectrum-low-temperature-entropy-en-320.png",
+      "sha256": "ff2887196d25661cdadea68320e689ab00e884c5321c15fcbbaccca1064a6452",
+      "directlyReviewed": true,
+      "scope": "Mobile capture around the research figure; not the whole manuscript"
+    },
+    {
+      "path": ".runtime/learning/thermodynamic-laws-research-gapped-spectrum-low-temperature-entropy-ko-320.png",
+      "sha256": "2372e2f6fd061b9685e485e4a5d00365f59601c60c90836826afb129997e0663",
+      "directlyReviewed": true,
+      "scope": "Mobile capture around the research figure; not the whole manuscript"
+    }
+  ],
+  "artifacts": {
+    "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b",
+    "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8",
+    "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786",
+    "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb",
+    "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8",
+    "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529",
+    "public/assets/learning/laws-finite-source-work.en.svg": "36c3b8633806e7c14da8672e865abee52c0e0faa36ed18e435bd00ff063ac7a0",
+    "public/assets/learning/laws-finite-source-work.ko.svg": "094667fec150010fab665b4dd555d1ab73a53cac688e72180c9b47f760d6d1e2",
+    "public/assets/learning/laws-unrestored-device-reset.en.svg": "f2ea8dbaf637fca43cb4f91f02d8e868fd9829cad14c453a48a7ff142e7722a0",
+    "public/assets/learning/laws-unrestored-device-reset.ko.svg": "cd80277e8d52cb73f5f133b4f8414c792a42c6c75790a8352dfbadf8377f2a77",
+    "public/assets/learning/laws-growing-copy-low-temperature.en.svg": "9409cf6331a162a36f433026628bca7a216e5df205c614642dfa18b9334ea21d",
+    "public/assets/learning/laws-growing-copy-low-temperature.ko.svg": "d3eefa000445b8452f2fe48a04eaaec4af68d57acd473f84d160dd55db339ffe",
+    "scripts/check-thermodynamic-laws-research.cjs": "213fd76e88020ec2efde1f6961ae02f1911f7e4cdb4b7da936a2da13b593dacf",
+    "scripts/learning-thermodynamic-laws-research.test.ts": "396cb175abc3bc743980a3d2230f83684e414c2199a7474a2cec8a93becdd884",
+    "scripts/learning/verify-thermodynamic-laws-research.py": "87d2d3c1b193f455e88ca62557221fc601368628a3a32d17e938e465e9776a5d",
+    "scripts/learning/generate-laws-research-figures.py": "ab248b8f1b005380c8342a3b4204a00fa6ecdc29350a81b5127cad75fd0cc8bb",
+    "scripts/fixtures/reviewed-learning-manuscripts.json": "ef790a9df1baf60f0f03562a1ebc0162d6e8935db8423277042f35b30b9164b9"
+  },
+  "overallReview": {
+    "completedDomains": 43,
+    "completedTopics": 426,
+    "remainingDomains": 8,
+    "remainingTopics": 83
+  },
+  "publicDeploymentConfirmed": false
+}

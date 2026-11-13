@@ -105,6 +105,119 @@ The probabilities describe groups in one copy. They are not probabilities that a
 
 dS/dT has units J/K², unlike a time-dependent entropy production rate in W/K. Comparing equilibrium temperatures differs from solving heat transfer over physical time. T=0 denotes an equilibrium limit; do not substitute it into a positive-temperature derivative formula as 0/0.
 
+## Research extension: cooling a growing number of independent copies
+
+A single copy can be almost certainly in its ground state while an entire collection still has a substantial chance of an excitation somewhere. There are increasingly many places for a rare event to occur. We compare equilibrium systems whose size grows as their temperature falls; this differs from cooling one fixed finite system.
+
+Specialize to one ground and one excited state per copy, a fixed positive gap Δ and N independent copies, with no interactions. Set δ=Δ/kB in K. Choose a fixed real a and sufficiently large integer N that x_N>0. Each N labels a different equilibrium system; this sequence is not a cooling protocol or an interacting thermodynamic phase transition.
+
+Let the temperature decrease only logarithmically with N. The excited probability per copy tends to zero, but its product with the number of copies remains finite.
+
+$$
+\delta=\Delta/k_B>0,\quad x_N=\log N+a,\quad T_N=\delta/x_N,\quad q_N=\frac1{1+N e^a},\qquad \lambda=e^{-a}.
+$$
+
+The number M_N of excited copies has a binomial law. Its mean and variance approach the same positive λ. M_N is a count, not the per-copy occupancy plotted in the original lab.
+
+$$
+M_N\sim\operatorname{Binomial}(N,q_N),\qquad \mathbb E M_N=Nq_N\to\lambda,\quad\operatorname{Var}(M_N)=Nq_N(1-q_N)\to\lambda.
+$$
+
+All copies are in their ground states only if every independent preparation is ground. The limit of this probability is strictly between zero and one for finite fixed a. At a=0 it approaches e⁻¹≈0.367879 even though each individual ground probability approaches one.
+
+$$
+\Pr(M_N=0)=(1+e^{-x_N})^{-N}\longrightarrow e^{-\lambda}.
+$$
+
+For a fixed count m, write the binomial coefficient as a finite product, use Nq_N→λ and the previous zero-count limit. This gives the Poisson probabilities below. Large counts do not hide extra probability: the bounded mean gives a Markov tail bound, while the limiting Poisson probabilities sum to one.
+
+$$
+\Pr(M_N=m)=\binom Nm q_N^m(1-q_N)^{N-m}\longrightarrow e^{-\lambda}\lambda^m/m!\qquad(m\text{ fixed}).
+$$
+
+The total mean energy remains finite in this scaling. It is not the same limit as letting T tend to zero for a fixed number of copies, where mean energy vanishes.
+
+$$
+U_N=\Delta Nq_N\longrightarrow\Delta\lambda.
+$$
+
+Entropy counts the many possible locations of the finite expected number of excitations. Using N log(1+λ/N)→λ and Nq_N=λ+O(1/N) gives the centered limit below. Thus total entropy grows logarithmically even though entropy per copy vanishes.
+
+$$
+\frac{S_N}{k_B}=N\log(1+e^{-x_N})+x_NNq_N,\qquad \frac{S_N}{k_B}-\lambda\log N\longrightarrow\lambda(1+a).
+$$
+
+Compute heat capacity by differentiating at fixed N and fixed spectrum, then evaluate it at T_N. Differentiating along a sequence in which N also changes would give a different quantity. The actual finite-system heat capacity grows as the square of log N on this sequence.
+
+$$
+\frac{C_N}{k_B}=N x_N^2q_N(1-q_N),\qquad \frac{C_N/k_B}{(\log N+a)^2}\longrightarrow\lambda.
+$$
+
+Per-copy entropy and heat capacity both tend to zero, whereas total entropy diverges. This does not contradict the unique-ground-state limit at fixed finite N. The system size, state space and order of limits have changed; no universal statement about interacting matter follows.
+
+$$
+\frac{S_N}{Nk_B}\to0,\qquad \frac{C_N}{Nk_B}\to0,\qquad S_N/k_B\to\infty\quad(a\text{ fixed}).
+$$
+
+For a finite collection at a general positive x, a union bound supplies a simple sufficient temperature requirement for all-ground probability at least 1−ε. For N=1000 and ε=0.05 it requires x≥log(20000), or T≤300/log(20000) K when δ=300 K.
+
+$$
+\Pr(M_N\ge1)\le Nq_N\le Ne^{-x},\qquad x\ge\log(N/\varepsilon)\ \Longrightarrow\ \Pr(M_N=0)\ge1-\varepsilon.
+$$
+
+The exact independent-copy threshold is obtained by solving (1+exp(−x))⁻ᴺ≥1−ε. The expression below uses expm1 to avoid subtracting nearly equal exponentials. It is an equilibrium probability requirement, not a time or resource cost of cooling. The stated ε range makes the threshold positive for every N≥1.
+
+$$
+x\ge-\log\!\left[\operatorname{expm1}\!\left(\frac{-\log(1-\varepsilon)}{N}\right)\right],\qquad 0<\varepsilon<\tfrac12.
+$$
+
+### Read a rare tail across many copies
+
+The upper panel compares the per-copy excitation probability with the probability of at least one excitation in the whole collection. The lower panel shows S_N/(kB log N) and C_N/[kB(log N)²], both approaching one at a=0. Those normalized curves hide growing totals; inspect the table for actual entropy and heat capacity.
+
+![Per-copy excitation vanishes while collection-wide excitation remains probable; normalized entropy and heat capacity show distinct logarithmic growth.](/assets/learning/laws-growing-copy-low-temperature.en.svg)
+
+### Follow the joint size–temperature sequence
+
+Use δ=300 K and a=0. N is a count, T is in K, and S_N/kB and C_N/kB are dimensionless total quantities. No random samples are drawn; the table evaluates the exact finite canonical law.
+
+| N | T_N (K) | Mean excited count | All-ground probability | S_N/kB | C_N/kB |
+| --- | --- | --- | --- | --- | --- |
+| 10 | 130.28834457 | 0.90909091 | 0.38554329 | 3.04636097 | 4.38173398 |
+| 100 | 65.14417229 | 0.99009901 | 0.36971121 | 5.55460753 | 20.78971909 |
+| 1000 | 43.42944819 | 0.99900100 | 0.36806330 | 7.90035476 | 47.62179179 |
+| 10000 | 32.57208614 | 0.99990001 | 0.36789783 | 10.20936943 | 84.81340624 |
+
+```python
+from math import exp, log, log1p
+for N in [10, 100, 1000, 10000]:
+    x = log(N)  # a = 0, gap temperature delta = 300 K
+    z = exp(-x)
+    q = z/(1+z)
+    ground = exp(-N*log1p(z))
+    S = N*log1p(z)+x*N*q
+    C = N*x*x*q*(1-q)
+    print(f"{N} {300/x:.8f} {N*q:.8f} {ground:.8f} {S:.8f} {C:.8f}")
+```
+
+### Three research questions with explanations
+
+#### 1. Does q_N→0 mean the full collection is in its ground state with probability tending to one?
+
+**Explanation.** No. Nq_N tends to λ>0, so the probability of no excitation tends to exp(−λ). There are more opportunities for an excitation as each becomes rarer. At a=0 the collection has a roughly 63.2% chance of at least one excitation in the limit.
+
+#### 2. Does growing total entropy at T_N→0 violate the fixed-system third-law limit?
+
+**Explanation.** No. N grows and the state space changes along this sequence. For each fixed N with unique ground state, entropy tends to zero as temperature goes to zero. Here entropy per copy still tends to zero. Exchanging these different limits would erase the location uncertainty of rare excitations.
+
+#### 3. Can dU_N/dT along the chosen N,T_N sequence replace canonical heat capacity?
+
+**Explanation.** No. Canonical heat capacity differentiates mean energy with the number of copies and energy levels fixed. Changing N changes the system as well as temperature. The sequence has finite limiting mean energy while the fixed-N heat capacity evaluated on it grows; those are compatible statements about different derivatives.
+
+### Source and research boundary
+
+[David Tong, Statistical Physics, sections 1.3.1–1.3.2](https://davidtong.org/pdfs/teaching/statistical-physics/statphys1.pdf) and [Classical Thermodynamics, section 4.5](https://davidtong.org/pdfs/teaching/statistical-physics/statphys4.pdf) provide fixed-spectrum canonical and low-temperature conventions. The joint sequence, finite-count limit and probability thresholds are derived here for independent copies. Numerical smallness, physical zero, large-system limits and achievable cooling remain separate concepts.
+
 ## Connection to AI research
 
 Test normalization, mean energy, entropy and fluctuation relations as separate observations. An unrepresentably small excited probability is not necessarily physical zero. Conversely, residual entropy from exact degeneracy is not a rounding error to erase. Tracking state counts and orders of limits separates numerical behavior from model assumptions in new research.
