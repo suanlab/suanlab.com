@@ -20,9 +20,10 @@ colors=['#2563eb','#c2410c','#047857']
 
 def save(fig,name,lang):
     path=Path(f'public/assets/learning/heat-work-{name}.{lang}.svg')
-    fig.savefig(path)
+    # Keep native SVG titles and rotated labels inside the exported viewport.
+    fig.savefig(path,bbox_inches='tight',pad_inches=.25)
     path.write_text('\n'.join(line.rstrip() for line in path.read_text().splitlines())+'\n')
-    fig.savefig(runtime/f'{name}-{lang}.png',dpi=120)
+    fig.savefig(runtime/f'{name}-{lang}.png',dpi=120,bbox_inches='tight',pad_inches=.25)
     plt.close(fig)
 
 for lang in ['en','ko']:

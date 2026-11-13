@@ -32,6 +32,7 @@ for lang in ['en','ko']:
  ax.text(.04,.83,'N → ∞: '+('척도 모호성 유지' if ko else 'scale ambiguity remains'),transform=ax.transAxes,va='top',color='#047857')
  ax.set(xlabel='T  ('+('선택한 에너지 단위' if ko else 'chosen energy unit')+')',ylabel='Δ  ('+('같은 에너지 단위' if ko else 'same energy unit')+')',title='B. '+('동일한 이진 관측 분포를 주는 서로 다른 물리적 쌍' if ko else 'Different physical pairs, identical binary observation law'),xlim=(0,3.4),ylim=(0,3.4));ax.grid(alpha=.2)
  fig.suptitle('열적 민감도와 절대 척도의 식별' if ko else 'Thermal sensitivity and identification of an absolute scale',fontsize=16)
- path=Path(f'public/assets/learning/thermometry-information-scale.{lang}.svg');fig.savefig(path)
+ # Native SVG font metrics need breathing room beyond constrained layout.
+ path=Path(f'public/assets/learning/thermometry-information-scale.{lang}.svg');fig.savefig(path,bbox_inches='tight',pad_inches=.25)
  path.write_text('\n'.join(line.rstrip() for line in path.read_text().splitlines())+'\n')
- fig.savefig(f'.runtime/learning/thermometry-research/figure-{lang}.png',dpi=120);plt.close(fig)
+ fig.savefig(f'.runtime/learning/thermometry-research/figure-{lang}.png',dpi=120,bbox_inches='tight',pad_inches=.25);plt.close(fig)
