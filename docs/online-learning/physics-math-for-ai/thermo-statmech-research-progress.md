@@ -58,3 +58,5 @@
 본문의 실행 예제와 한영 수식·표·그림 경로·원문 보존은 `node_modules/.bin/tsx --test scripts/learning-thermometry-research.test.ts`로 확인한다. 별도 미시 상태 열거·확률 미분·횟수 우도·경계 계산은 `python3 scripts/learning/verify-thermometry-research.py`로 재현한다. 정적 출력 후 `SUANLAB_TEST_BASE=http://127.0.0.1:43309 node scripts/check-thermometry-research.cjs`를 실행한다. 브라우저 주소에는 실제 preview 포트를 사용한다.
 
 다음은 `finite-binary-reservoir-canonical-comparison`, `canonical-binary-energy-fluctuations`, `grand-canonical-finite-occupancy-fluctuations`의 기존 원고·계산·입문 감사 근거를 대조한 뒤 연구 설명을 보강한다. 나머지 21단원과 영역 전체 종합 검증은 아직 완료하지 않았다. 이번 세 단원의 재현 범위는 [미시·거시 보강 기록](micro-macro-research-status.md)을 따른다.
+
+후속 준비에서는 [ensemble 세 단원의 계산 기반](ensembles-research-preparation.md)을 작성했다. 기존 248검사와 유한 모형 계산을 통과했으나 새 원고·그림·reader의 완료 수는 올리지 않는다.

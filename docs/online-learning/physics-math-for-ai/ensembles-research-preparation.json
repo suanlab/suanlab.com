@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-13",
+  "status": "calculation-preparation-only",
+  "afterPushedCommit": "c193380a0ec59bff88e2ab20d4e3030fa947852e",
+  "unitIds": [
+    "finite-binary-reservoir-canonical-comparison",
+    "canonical-binary-energy-fluctuations",
+    "grand-canonical-finite-occupancy-fluctuations"
+  ],
+  "existingManuscripts": {
+    "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md": "3916532391a89710021232e47249b076af621113990007c5a42547b904fb1ae9",
+    "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md": "5d0a8f746486d28aebd5b5164617b2594bdefe3ea3af3082238ba0fdf44f0407",
+    "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md": "a20b9e72f85794d578ace76e22118bd1eee6898a00bc2fb84a2b5326a0b9652e",
+    "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md": "2a7473a89a0f5288a92b80057cca25f82c120b7ff421d98f130d098342e4b113",
+    "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md": "79fd2af07f305bd235b4e1d1324dde87a20b8bef4dcd1cc4333176f97af3d85b",
+    "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md": "1ab612949a826ac3dea1558fa52f7c667648804503f57dbbd47508157d9eef11"
+  },
+  "existingRegressionTests": {
+    "files": 10,
+    "tests": 248,
+    "failed": 0,
+    "runtimeLogSha256": "1ee2529bd37efa36e1a7617a2cbf12e967ff26218a1fe4d6f308dc06452de8de"
+  },
+  "independentPreparation": {
+    "status": "passed",
+    "preparationOnly": true,
+    "finiteReservoirPairLaws": 66,
+    "drivenCanonicalResponses": [
+      {
+        "omega": 0.5,
+        "amplitude": 0.02,
+        "responseError": 8.039097411953357e-05,
+        "meanEntropyProduction": 2.3608646946784415e-05,
+        "linearOrderPrediction": 2.3593431988977822e-05
+      },
+      {
+        "omega": 0.5,
+        "amplitude": 0.01,
+        "responseError": 2.0097758508603865e-05,
+        "meanEntropyProduction": 5.8993086397770495e-06,
+        "linearOrderPrediction": 5.8983579972444555e-06
+      },
+      {
+        "omega": 1.0,
+        "amplitude": 0.02,
+        "responseError": 6.355464548048256e-05,
+        "meanEntropyProduction": 5.901753277644519e-05,
+        "linearOrderPrediction": 5.8983579972444555e-05
+      },
+      {
+        "omega": 1.0,
+        "amplitude": 0.01,
+        "responseError": 1.5888673273492036e-05,
+        "meanEntropyProduction": 1.4748016435990933e-05,
+        "linearOrderPrediction": 1.4745894993111139e-05
+      },
+      {
+        "omega": 2.0,
+        "amplitude": 0.02,
+        "responseError": 4.019548711808151e-05,
+        "meanEntropyProduction": 9.442497708320467e-05,
+        "linearOrderPrediction": 9.437372795591129e-05
+      },
+      {
+        "omega": 2.0,
+        "amplitude": 0.01,
+        "responseError": 1.0048879500693447e-05,
+        "meanEntropyProduction": 2.3596634175894242e-05,
+        "linearOrderPrediction": 2.3593431988977822e-05
+      }
+    ],
+    "grandCovarianceAndFisherPreparations": 27,
+    "newReadersValidated": 0
+  },
+  "verifier": {
+    "path": "scripts/learning/verify-ensembles-research.py",
+    "sha256": "4ac9327a6a6a83ba0048a230a991b03761695c58212f146ed7945a7bdc6d4c5f"
+  },
+  "newResearchManuscriptsValidated": 0,
+  "newResearchFiguresValidated": 0,
+  "newResearchReadersValidated": 0,
+  "sequentialResearchCompletedUnits": 11,
+  "domainRegisteredUnits": 32,
+  "curriculumComplete": false
+}
