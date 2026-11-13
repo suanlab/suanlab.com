@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-13 최신: [비평형 첫 세 단원의 경로 정보·관측 간격 별칭·재생 분산](physics-math-for-ai/master-equation-research-status.md)을 한영 6원고·6그림에 통합했다. 84검사·새 빌드·24실제 화면을 통과했다. 순차 보강은 **3/17단원**, 다음은 Fokker–Planck 두 단원이다. 전체 **44영역·437주제 대조 / 7영역·72주제 후속**과 교육과정 미완료 상태를 유지한다. 아래는 이전 기록이다.
+
 2026-11-13 최신: [열역학 11원주제·32단원 연구 종합 대조](physics-math-for-ai/thermo-statmech-research-audit.md)를 마쳤다. 한영 64원고·586연구 수식·64연구 Python·2,251검사·256실제 화면을 확인했다. 전체 **44영역·437주제 대조 / 7영역·72주제 후속**, 다음은 [비평형 10원주제·기존 17단원](physics-math-for-ai/nonequilibrium-research-progress.md)이다. 아래는 이전 기록이다.
 
 2026-11-13 후속: [열역학 연구 그림 6개의 제목·축 잘림](physics-math-for-ai/thermo-research-svg-repair.md)을 수정했다. 64 SVG 경계·16검사·새 빌드·수정 단원 24화면을 통과했다. 32단원 전체 화면 종합 검토는 수정 출력에서 계속 진행하며 전체 완료 집계는 유지한다.

@@ -157,6 +157,123 @@ The reader admits rates0..5/s in each direction, dominating clock0..10/s, physic
 
 Read the generator ring, conditional-law table, Poisson weights, retained mass and omitted-tail plots, and certified component brackets. Each horizontal coordinate is named. The physical-time scan updates ensemble laws; it does not sample a particle path.
 
+## Research extension: opposite probability currents can share every regularly sampled observation
+
+A rotating wheel filmed at a fixed frame rate can appear to turn in an unexpected direction. A finite Markov system has a related inverse problem: knowing its transition kernel at one time interval need not identify its continuous-time generator. More observations at that same interval cannot always recover the missing information.
+
+Use the original three-state ring with constant positive clockwise and counterclockwise rates. Observe state labels exactly at fixed times 0, Δ, 2Δ, and so on. The initial law is known and the same for the models being compared. Physical seconds remain calibrated. These observations are a new sampling protocol, distinct from truncating a Poisson representation in the existing reader.
+
+### Separate decay from circulation
+
+Write the rates using their sum r and difference d. Strict positivity gives the admissible range
+
+$$
+r=a+b,\quad d=a-b,\qquad a=(r+d)/2,\quad b=(r-d)/2,\qquad r>0,\quad |d|<r.
+$$
+
+The generator is circulant. The constant vector has eigenvalue zero; the two nonconstant Fourier modes give
+
+$$
+\operatorname{spec}(Q)=\left\{0,-\frac{3r}{2}+i\frac{\sqrt3d}{2},-\frac{3r}{2}-i\frac{\sqrt3d}{2}\right\}.
+$$
+
+For ζ=exp(2πi/3), a cyclic shift has eigenvalue ζ, so its generator mode is aζ+bζ⁻¹−r. Using ζ=−1/2+i√3/2 gives the displayed real and imaginary parts. The real part controls decay of a nonuniform law; the imaginary part rotates its spatial mode. Exponentiating these modes and transforming back gives the entire transition kernel, including return paths:
+
+$$
+K_t(i,j)=\frac{1+2e^{-3rt/2}\cos\!\left(\frac{\sqrt3dt}{2}-\frac{2\pi k}{3}\right)}{3},\qquad k=(j-i)\bmod3.
+$$
+
+For small positive t, the state-1 probability starting at 0 grows at rate a and the state-2 probability at rate b, confirming the orientation. At long times both nonconstant modes decay. The Fourier formula is derived here for this ring; it is not a rule for arbitrary state-dependent generators.
+
+At a single sampling interval Δ, a mode's phase is observed only through a complex exponential. Adding a whole number of turns preserves that exponential. Consequently
+
+$$
+d_m=d+\frac{4\pi m}{\sqrt3\Delta},\quad m\in\mathbb Z,\quad |d_m|<r\quad\Longrightarrow\quad K_\Delta(r,d_m)=K_\Delta(r,d).
+$$
+
+The positivity bound must still be checked for every alternative d. An arbitrary logarithm of a stochastic matrix need not be a real generator with nonnegative off-diagonal rates. This example supplies two explicitly valid generators rather than relying on a numerical matrix logarithm.
+
+### Construct a strictly positive pair
+
+Measure time in seconds and express numerical rates per second. Choose
+
+$$
+r=2,\quad d_\pm=\pm\pi/\sqrt3,\qquad a_\pm=1\pm\frac{\pi}{2\sqrt3},\quad b_\pm=1\mp\frac{\pi}{2\sqrt3}.
+$$
+
+The smaller rate is approximately 0.093100/s and is positive. The two models exchange a and b. At Δ=2 s, their mode phases are +π and −π, whose complex exponentials agree exactly. Substitution yields
+
+$$
+K_2^+=K_2^-=\frac13\begin{pmatrix}1-2q&1+q&1+q\\1+q&1-2q&1+q\\1+q&1+q&1-2q\end{pmatrix},\qquad q=e^{-6}.
+$$
+
+Every entry is positive and each row sums to one. The same matrix therefore propagates either model at every time 2n s. Both are irreducible continuous-time processes; the ambiguity is not caused by absorption or an invalid numerical integrator.
+
+At the intervening time 1 s the phases are +π/2 and −π/2, so the models differ. Their signed total jump-count rates and stationary current through one oriented edge also differ:
+
+$$
+K_1^\pm(0,1)-K_1^\pm(0,2)=\pm\frac{2e^{-3}}{\sqrt3},\qquad\lim_{T\to\infty}\frac{\mathbb E(N_+-N_-)}{T}=d_\pm,\qquad J_{\mathrm{edge}}=d_\pm/3.
+$$
+
+The first count includes all three edges; the stationary edge current includes the stationary weight 1/3. Neither quantity is heat. Energies, reservoir labels and a physical time-reversal convention would be additional model ingredients.
+
+### Equal kernels imply equal complete observation laws on the grid
+
+The ambiguity concerns more than one marginal distribution. By the Markov property, a sampled state sequence has law
+
+$$
+\Pr\{X_0=x_0,X_\Delta=x_1,\ldots,X_{n\Delta}=x_n\}=\mu_0(x_0)\prod_{j=1}^nK_\Delta(x_{j-1},x_j).
+$$
+
+When KΔ and the initial law agree, every finite sequence on that grid has the same probability under both generators. Even infinitely many independent records on the same grid cannot distinguish the specified pair. Adding a calibrated intermediate lag can separate them when the data include known starting states or observed transition pairs.
+
+Uniform stationary initialization deserves care. Its one-time law is uniform under both models at every lag, including 1 s. Looking only at new one-time stationary histograms would still fail. The additional observation must actually reveal a transition conditional on a state, rather than merely another copy of the stationary marginal.
+
+![Two positive-rate ring models have different conditional trajectories and directional contrasts but the same transition kernel at a two-second sampling interval.](/assets/learning/master-equation-research-sampled-generator-alias.en.svg)
+
+The upper panel starts at state 0 and compares the probability of state 1 for the two reference models. They meet at the 2 s sampling time despite different behavior between frames. The lower panel shows the within-model difference Kₜ(0,1)−Kₜ(0,2). The curves and table are a separate real-valued reference calculation; the existing reader's rational inputs cannot encode these irrational rates exactly.
+
+### Reproduce four calibrated lags
+
+The last column is the positive decay factor exp(−3t), not a probability of no actual jump. The difference column is the maximum absolute component difference between the two conditional state laws from 0. Their exact equality at 2 s follows from the displayed phase calculation. A printed zero in floating-point output is not its proof.
+
+| t (s) | K⁺(0,1) | K⁻(0,1) | Maximum difference | exp(−3t) |
+| --- | --- | --- | --- | --- |
+| 0.500000 | 0.371834 | 0.189649 | 0.182185 | 0.223130 |
+| 1.000000 | 0.362078 | 0.304589 | 0.057489 | 0.049787 |
+| 1.500000 | 0.340487 | 0.331417 | 0.009070 | 0.011109 |
+| 2.000000 | 0.334160 | 0.334160 | 0.000000 | 0.002479 |
+
+```python
+from math import exp, cos, pi
+
+# The separate exact reference family has total rate 2 per second.
+def law(t, sign):
+    decay = exp(-3*t)
+    phase = sign*pi*t/2
+    return [(1+2*decay*cos(phase-2*pi*k/3))/3 for k in range(3)]
+
+for t in (0.5,1.0,1.5,2.0):
+    a, b = law(t,1), law(t,-1)
+    difference = max(abs(x-y) for x,y in zip(a,b))
+    print(f'{t:.6f}', f'{a[1]:.6f}', f'{b[1]:.6f}',
+          f'{difference:.6f}', f'{exp(-3*t):.6f}')
+```
+
+### Three research questions with explanations
+
+#### 1. Can raising the uniformization clock reveal the hidden direction?
+
+**Research explanation.** At ν=3/s the potential-event kernel has self probability 1/3 in either reference model. In 2 s there are six expected potential events but only four expected actual jumps. Raising ν adds more virtual events while preserving each physical generator and its K₂. It changes a representation and cutoff cost, not the observations available to identify the generator.
+
+#### 2. Does one more stationary histogram at 1 s resolve the pair?
+
+**Research explanation.** No. Uniform initial mass stays uniform for both generators, so the new one-time histogram carries no directional signal. Starting from known state 0, the two state-1 probabilities at 1 s differ by 2exp(−3)/√3, approximately 0.057489. Observed transition pairs from stationary data also reveal the conditional kernel. The observation rule matters as much as the lag.
+
+#### 3. Does selecting one matrix logarithm establish a unique physical generator?
+
+**Research explanation.** A chosen logarithm does not establish uniqueness. Candidate logarithms must satisfy real generator constraints, and the two strictly positive-rate examples already share K₂. A justified restriction on the rate range or additional temporal observations can change identification. Unknown noisy state labels require a new likelihood; this exact-state counterexample does not automatically solve that problem.
+
 ## Worked self-checks
 
 ### 1. Construct an admissible potential-event kernel

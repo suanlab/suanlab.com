@@ -8,6 +8,8 @@
 
 열역학은 [32/32단원 순차 연구 보강](thermo-statmech-research-progress.md), 그림 잘림 수정, 원고·예제·선수 관계·같은 출력의 **256화면 종합 검토**까지 통과했다. 다음 영역에는 이미 **17단원·34한영 원고**가 있다. [비평형 연구 진행표](nonequilibrium-research-progress.md)를 따르며 기존 입문을 미집필로 다시 세지 않는다.
 
+비평형의 첫 세 master equation 단원은 [한영 연구 보강 검증](master-equation-research-status.md)을 마쳐 **3/17단원**이다. 다음은 OU 밀도·Euler 모멘트와 Fokker–Planck 셀 질량·경계이며 후속 14단원과 영역 종합 검토는 남아 있다.
+
 이하 분야별 설명은 이전 집필·검증 이력이며 현재 집계와 다음 순서는 위 문단을 따른다.
 
 [외부 강성 조절의 일과 중점법의 위상 오차](conservation-laws-research-foundation.md)는 한영 본문·네 그림·독립 검산·최종 reader 검증을 마쳐 위 보강 집계에 포함했다. [마찰 식별과 움직이는 구속](friction-guide-research-foundation.md)도 한영 본문·네 그림·분수 오차 상계·실제 입력/reader 검증을 마쳐 위 집계에 포함했다. [포물선 경계의 궤도 불확실성과 통과 시간](central-force-research-foundation.md)도 한영 본문·네 공개 그림·Python 검산과 최종 reader 검증을 마쳐 위 집계에 포함했다. 선택 테스트 120개와 최종 정적 출력 검증을 통과했다. 전체 CI와 공개 배포 완료 여부는 별도 확인한다.

@@ -187,6 +187,130 @@ The lab keeps physical time, Euler resolution and initialization separate. Use t
 
 The calculation range is rates0..5s^−1, T=0..10s and N=1..128. Rational input numerators and positive denominators are at most one million. These are finite computation limits, not limits of the analytical theory. No sampled particles, heat measurements or entropy-production claims are part of this first lab.
 
+## Research extension: how much can an observed path reveal about departure rates?
+
+A flat occupation curve can hide a busy system. An event log adds two kinds of evidence: how often a state was left, and how long there was an opportunity to leave it. Ten departures in ten seconds and ten departures in one hundred seconds suggest different rates. A record ending without another jump is evidence too: the particle survived in its final state until recording stopped.
+
+Add a specific observation model to the existing two-state dynamics. Observe every state and jump time on a calibrated interval [0,T], without missed events or measurement noise. The finite rates α and β are strictly positive. The initial law μ₀ is known and independent of the rates. This is a new inference question; the existing reader computes an ensemble law and does not generate these records.
+
+### Retain the final unfinished holding interval
+
+For each state, measure its total exposure time and count actual departures. A virtual self event is not a departure. The final interval contributes to exposure even though no jump closes it.
+
+$$
+T_i=\int_0^T\mathbf1\{X_t=i\}\,dt,\qquad T_0+T_1=T,\qquad N_{ij}=\#\{i\to j\text{ jumps in }(0,T]\}.
+$$
+
+Multiply a holding-time survival factor by the appropriate rate at each actual jump. The final holding interval contributes only its survival factor. With counting measure for the state labels and Lebesgue measure on ordered jump times, the path density is
+
+$$
+L(\alpha,\beta\mid X_{[0,T]})=\mu_0(X_0)\alpha^{N_{01}}\beta^{N_{10}}e^{-\alpha T_0-\beta T_1}.
+$$
+
+The known initial factor can be dropped when optimizing the rates; it cannot be dropped when the initialization itself depends on the unknown parameters. There is no extra factorial for an already ordered time vector. This construction follows the path-density convention in [Rao and Teh, Section 2, equation (2)](https://jmlr.org/papers/volume14/rao13a/rao13a.pdf); their column generator is the transpose of this chapter's row generator.
+
+Differentiating the log density gives
+
+$$
+\partial_\alpha\log L=N_{01}/\alpha-T_0,\qquad\partial_\beta\log L=N_{10}/\beta-T_1.
+$$
+
+When a state's exposure is positive, maximizing its count-versus-exposure term gives
+
+$$
+\widehat\alpha=N_{01}/T_0\ (T_0>0),\qquad\widehat\beta=N_{10}/T_1\ (T_1>0).
+$$
+
+Zero departures with positive exposure put the maximum at zero in a nonnegative-rate closure; within a strictly positive parameter space there is only a boundary supremum. Zero exposure gives no information about that state's departure rate, rather than a zero estimate from 0/0. The likelihood's factorization does not make the two counts independent Poisson variables conditional on their random exposures. The same path determines both counts and exposures.
+
+### Derive expected information before choosing a recording window
+
+Subtract integrated hazard from each counting process. The resulting compensated counts are martingales: conditional expected departures over a short interval equal the current hazard times its duration. Different directed jumps cannot occur simultaneously, so their compensated martingales have zero expected cross product.
+
+$$
+M_{01}(t)=N_{01}(t)-\alpha T_0(t),\quad M_{10}(t)=N_{10}(t)-\beta T_1(t),\quad\mathbb E[M_{01}(T)M_{10}(T)]=0.
+$$
+
+Their second moments are αE[T₀] and βE[T₁]. Equivalently, take the expected negative Hessian of the log density and use E[N₀₁]=αE[T₀] and E[N₁₀]=βE[T₁]. This gives Fisher information for the rates and for their logarithms:
+
+$$
+I_{(\alpha,\beta)}=\operatorname{diag}\!\left(\frac{\mathbb E T_0}{\alpha},\frac{\mathbb E T_1}{\beta}\right),\qquad I_\theta=\operatorname{diag}(\alpha\mathbb E T_0,\beta\mathbb E T_1),\quad\theta=(\ln\alpha,\ln\beta).
+$$
+
+A zero off-diagonal information entry is a statement about scores, not independence of the observed counts. All logarithms use fixed reference units: ln α abbreviates the logarithm of its numerical value relative to 1/s, and the clock logarithm likewise uses a fixed conversion reference. The counts obey N₀₁−N₁₀=X(T)−X(0), whose value is only −1, 0 or 1. Integrating the exact occupation law from the original chapter supplies the expected exposures:
+
+$$
+\mathbb E T_0=\pi_0T+(\mu_0(0)-\pi_0)\frac{1-e^{-\lambda T}}{\lambda},\quad \mathbb E T_1=T-\mathbb E T_0,\quad\lambda=\alpha+\beta,\quad\pi_0=\beta/\lambda.
+$$
+
+Starting at 0 makes the short-window asymmetry especially clear. Learning α requires waiting in the initial state; learning β first requires reaching state 1 and then spending time there. Expanding the exponential gives
+
+$$
+X_0=0:\qquad I_{\theta_0\theta_0}=\alpha T+O(T^2),\qquad I_{\theta_1\theta_1}=\frac{\alpha\beta T^2}{2}+O(T^3).
+$$
+
+Thus both rates are identifiable in the ideal population experiment at any positive window, but the second rate has much less information in short records. This does not promise a usable estimate on every realized path. Independent repetitions of the specified preparation add their information matrices; unmodeled dependence between records changes that statement.
+
+### A clock calibration is part of the inference model
+
+The original chapter assumes seconds are calibrated. To see why that matters, instead suppose a recorded clock τ has an unknown positive conversion κ to physical time. Only the products κα and κβ govern the recorded path:
+
+$$
+t=\kappa\tau,\quad Q_{\mathrm{record}}=\kappa Q,\qquad (\alpha,\beta,\kappa)\mapsto(c\alpha,c\beta,\kappa/c)\quad(c>0).
+$$
+
+In the recorded-time density, replace α and β by κα and κβ and use recorded exposures τ₀,τ₁. Each jump contributes a κ factor as well as the κ in the integrated hazard. Substituting physical durations only into the survival term would miss the time-coordinate density factor.
+
+Use η for the three log parameters. The Jacobian B maps their changes to changes in the two recorded log rates. At the true parameter, the two-rate information above equals the recorded-rate information after the same conversion of exposures. Therefore
+
+$$
+I_\eta=B^\top I_\theta B,\quad B=\begin{pmatrix}1&0&1\\0&1&1\end{pmatrix},\quad\eta=(\ln\alpha,\ln\beta,\ln\kappa),\qquad I_\eta(1,1,-1)^\top=0.
+$$
+
+The null direction changes both physical rates and reverses the clock conversion, leaving every recorded path law unchanged. More data from that same uncalibrated setup cannot repair the missing scale. This is structural nonidentifiability, distinct from the finite-window shortage of information. No new clock-calibration control has been added to the reader.
+
+![Schematic two-state path with its final censored hold retained, and expected log-rate information versus recording duration.](/assets/learning/master-equation-research-path-rate-information.en.svg)
+
+The upper panel is a schematic record 0→1 at 0.4 s and 1→0 at 1.2 s, ending at 2 s. The final 0.8 s is censored by the recording horizon but remains part of the state-0 exposure. The lower panel uses α=2/s, β=1/s and X₀=0, showing information from complete path observations, not the reader's probability curve or simulated measurement errors.
+
+### Reproduce four window lengths
+
+Exposure columns are in seconds; the two log-rate information entries and their ratio are dimensionless. The code integrates the exact mean law analytically. It does not generate jump records or estimate an empirical covariance.
+
+| T (s) | E[T₀] (s) | E[T₁] (s) | I(log α) | I(log β) | Iβ/Iα |
+| --- | --- | --- | --- | --- | --- |
+| 0.050000 | 0.047620 | 0.002380 | 0.095241 | 0.002380 | 0.024985 |
+| 0.200000 | 0.166931 | 0.033069 | 0.333861 | 0.033069 | 0.099051 |
+| 1.000000 | 0.544492 | 0.455508 | 1.088984 | 0.455508 | 0.418288 |
+| 4.000000 | 1.555554 | 2.444446 | 3.111108 | 2.444446 | 0.785715 |
+
+```python
+from math import expm1
+
+alpha, beta = 2.0, 1.0  # Per second; every record starts in state 0.
+rate = alpha+beta
+for t in (0.05,0.2,1.0,4.0):
+    exposure0 = beta/rate*t + alpha/rate*(-expm1(-rate*t))/rate
+    exposure1 = t-exposure0
+    info0, info1 = alpha*exposure0, beta*exposure1
+    print(f'{t:.6f}', f'{exposure0:.6f}', f'{exposure1:.6f}',
+          f'{info0:.6f}', f'{info1:.6f}', f'{info1/info0:.6f}')
+```
+
+### Three research questions with explanations
+
+#### 1. What do the two jumps in the schematic record estimate?
+
+**Research explanation.** State 0 is occupied for 0.4+0.8=1.2 s and state 1 for 0.8 s. Each directed count is one. The interior maxima are α̂=1/1.2=5/6 per second and β̂=1/0.8=5/4 per second. Dropping the final unfinished interval would change the first estimate to 2.5/s. One possible record need not reproduce the parameters used to draw an information curve.
+
+#### 2. Does no observed jump imply that both rates are zero?
+
+**Research explanation.** Starting at 0 and observing no jump for T seconds gives T₀=T, T₁=0 and likelihood exp(−αT). It depends on α but contains no β term. A zero-boundary maximum for α is not proof that its true value is zero; β is unidentified by this particular record. Expected Fisher information averages over all possible records, including those that reach state 1.
+
+#### 3. Can many perfectly observed paths identify an unknown clock conversion?
+
+**Research explanation.** They can improve estimates of κα and κβ. The common transformation in the displayed null direction preserves every recorded path, however, so it cannot separate the three physical quantities. Calibrating κ or one independent rate scale changes the experiment. Adding physical energies or a heat interpretation would require further assumptions; a statistical departure-rate likelihood alone supplies neither.
+
 ## Six exercises with explanations
 
 ### 1. Derive the law from a flow ledger
