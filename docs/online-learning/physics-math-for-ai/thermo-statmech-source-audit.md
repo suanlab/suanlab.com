@@ -77,3 +77,8 @@ Levin–Peres의 저자 공개 [Markov Chains and Mixing Times](https://pages.uo
 ## 상관·요동 연구 보강: 모수·공간 모드·추정량을 명시하기
 
 [Berkeley 지수족 자료](https://stat210a.berkeley.edu/fall-2024/reader/exponential-families.html)의 평균·공분산 미분, [Tong 5.3.1절](https://davidtong.org/pdfs/teaching/statistical-physics/statphys5.pdf)의 주기 Ising 전달 법칙, [Shalizi 6–6.1절](https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/24/lecture-24--25.pdf)의 역공분산 GLS를 대조했다. 네 상태 세 특징의 행렬식·로그 대비·방해 점수 사영, 유한 고리의 허용 Fourier 파수·합 규칙·홀짝 저온 극한, 정상 AR(1)의 정밀도·경계 가중치·분산 차이는 지정한 모형에서 직접 유도한다. 독립 평형 표본의 추론과 물리적 고정 K 응답, 공간 파수와 시간 주파수, 보통 평균과 알려진 공분산의 GLS를 구분한다. 극한 정규분포의 공분산을 유한 MLE 공분산으로 오인하지 않고, 특이 끝점은 별도 경로로 검산한다. [검증 기록](correlations-research-status.md)의 유한 범위와 전체 교육과정 미완료 표시를 유지한다.
+
+
+## 상세평형 연구 보강: 경로 정보와 추정 분산의 가정
+
+[Yang·Qian II–III절](https://arxiv.org/html/1904.01064v3)의 확률 측도 반전·요동 관계, [Peskun 2.1–2.2절](https://www2.stat.duke.edu/~scs/Courses/Stat376/Papers/ConvergeRates/Peskun1973.pdf)의 유한 상태 점근 분산 순서, [Levin·Peres 1·12·17장](https://pages.uoregon.edu/dlevin/MARKOV/markovmixing.pdf)의 Markov·스펙트럼·추정을 대조했다. Peskun 원문은 스캔 PDF의 인쇄 608·610쪽을 직접 확인했다. 균일 정상 삼각형의 경로 로그 비·단방향 지지 예외, 평균 0 부분공간의 Dirichlet/Poisson 유도와 세 상태 Barker 비교, 초기화별 이진 표본 평균 공분산·MSE·머무름 재설정은 지정 모형에서 직접 계산한다. 물리적 국소 상세평형을 가정하지 않은 통계적 비가역성에 열 단위를 부여하지 않는다. 같은 시도 수의 점근 분산 순서를 모든 유한 오차·분포 혼합·실행 시간 순서로 확대하지 않는다. [검증 기록](detailed-balance-research-status.md)의 재현 범위와 전체 미완료 표시를 유지한다.

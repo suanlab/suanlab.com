@@ -231,6 +231,119 @@ Keep the default forward, backward and holding weights 2,1,1 and initial weights
 
 The flow toggle changes only the displayed reference preparation; it does not change the requested N or initial law. Turning a record-table page does not advance time either. On narrow screens, scroll inside the plot and compare exact rational entries in the flow table rather than arrow thickness. Automatic transitions increment N at fixed transition and initialization. The screen-refresh interval has no physical time unit.
 
+## Research extension: measure the arrow of time in a stationary path
+
+The single-time histogram of the biased triangle is uniform, but a movie of its transitions can reveal a preferred orientation. We can quantify that distinction by comparing each path with the same sequence played backward. This is a statistical comparison of probability laws, in nats. Calling it heat or physical entropy production would require an additional energy-and-reservoir model.
+
+### Specify the path preparation and its reversed sequence
+
+For this experiment initialize at π=(1/3,1/3,1/3), rather than the reader's default point mass. Assume p,q>0 and r≥0. Let n count transitions, so the path has n+1 recorded states. If Θ reverses their order, then
+
+$$
+\mathcal P_n(x_{0:n})=\frac13\prod_{t=0}^{n-1}P_{x_t x_{t+1}},\qquad S_n(x_{0:n})=\ln\frac{\mathcal P_n(x_{0:n})}{\mathcal P_n(\Theta x_{0:n})}=(N_+-N_-)\ell,\qquad \ell=\ln(p/q).
+$$
+
+Here N₊ and N₋ count clockwise and counterclockwise transitions. Their difference counts signed local moves, not the number of completed three-step circuits. A holding event contributes zero. Under uniform stationarity the endpoint factors cancel. With a positive nonuniform initial law, the same forward-law/reversed-sequence comparison also has an initial-probability boundary term; with zero initial probabilities some reversed paths may be impossible. Do not silently apply this uniform-preparation formula to either case.
+
+The step choices are independent in this translation-invariant chain: each conditional distribution of the next oriented move is the same (p,q,r), whatever the current state and previous moves. Thus D_n=N₊−N₋ is a sum of independent signed moves, even though the named states along the path are not independent.
+
+$$
+D_n=\sum_{t=1}^n Z_t,\qquad \Pr(Z_t=1)=p,\quad\Pr(Z_t=-1)=q,\quad\Pr(Z_t=0)=r,\qquad S_n=\ell D_n.
+$$
+
+### Derive a finite-time fluctuation relation
+
+The exact cumulant-generating function of the path log ratio is
+
+$$
+\Psi_n(k)=\ln\mathbb E[e^{kS_n}]=n\ln\left(r+pe^{k\ell}+qe^{-k\ell}\right).
+$$
+
+Exchanging the two directed terms gives a symmetry about k=−1/2. Differentiation at zero gives a nonnegative mean and the finite variance. These are exact expectations over repeated paths, not estimates from a single displayed trajectory.
+
+$$
+\Psi_n(k)=\Psi_n(-1-k),\qquad \mathbb E[S_n]=n(p-q)\ell,\qquad \operatorname{Var}(S_n)=n\left[p+q-(p-q)^2\right]\ell^2.
+$$
+
+To see the stronger probability relation, pair every admissible path with Θ of that path. This is a one-to-one map, changes S to −S, and multiplies its probability by exp(−S). Grouping all paths with the same value s yields
+
+$$
+\Pr(S_n=s)=e^s\Pr(S_n=-s).
+$$
+
+Negative S remains possible at finite n. It describes a path whose reversed sequence is more probable; it does not contradict a nonnegative mean. Setting k=−1 in the generating function, or summing the paired probabilities, gives
+
+$$
+\mathbb E[e^{-S_n}]=1,\qquad \mathbb E[S_n]=D_{\mathrm{KL}}(\mathcal P_n\Vert\mathcal P_n\circ\Theta)\geq0.
+$$
+
+The second measure assigns each sequence the forward probability of its reverse. In this stationary homogeneous setting it is also the path law of the statistically reversed kernel. Neither operation is a reversal of an unmodeled physical velocity.
+
+### Connect the path result to the original flow ledger
+
+The clockwise stationary current on each edge is J=(p−q)/3, while the log ratio around a complete clockwise circuit is the cycle affinity A. Their product matches the path-information rate:
+
+$$
+\mathcal A=\ln\frac{P_{01}P_{12}P_{20}}{P_{02}P_{21}P_{10}}=3\ell,\qquad J\mathcal A=(p-q)\ell=\frac{\mathbb E[S_n]}n\quad(n>0).
+$$
+
+Reversing p and q reverses J and A together, leaving the nonnegative product unchanged. At p=q every path log ratio is exactly zero, though transitions can be frequent. This comparison adds temporal information that is absent from the uniform marginal histogram.
+
+![Exact distribution of a stationary triangle path log ratio and the paired log-probability ratio verifying the finite-time fluctuation relation.](/assets/learning/detailed-balance-research-path-irreversibility.en.svg)
+
+The upper panel enumerates signed move counts for n=12, p=1/2,q=1/4,r=1/4. The lower panel compares log[P(S=s)/P(S=−s)] with s. These are discrete path probabilities, not a sampled path or a heat-flow measurement.
+
+For the table, r=1−p−q and n=12 throughout. The columns show the mean and variance of S, the probability of negative S, and the exponential expectation. The code propagates an exact rational count law; only the logarithmic projections are ordinary floating calculations. The exponential expectation is checked using the exact ratio (q/p)^D.
+
+| p | q | E[S] | Var(S) | P(S<0) | E[exp(−S)] |
+| --- | --- | --- | --- | --- | --- |
+| 0.50 | 0.25 | 2.079442 | 3.963737 | 0.114449 | 1.000000 |
+| 0.25 | 0.50 | 2.079442 | 3.963737 | 0.114449 | 1.000000 |
+| 0.40 | 0.40 | 0.000000 | 0.000000 | 0.000000 | 1.000000 |
+| 0.60 | 0.10 | 10.750557 | 17.336171 | 0.004788 | 1.000000 |
+
+```python
+from fractions import Fraction as F
+from math import log
+
+steps = 12
+for p, q in ((F(1,2),F(1,4)), (F(1,4),F(1,2)),
+             (F(2,5),F(2,5)), (F(3,5),F(1,10))):
+    r = 1-p-q
+    law = {0:F(1)}
+    for _ in range(steps):
+        next_law = {}
+        for d, mass in law.items():
+            for jump, prob in ((1,p),(-1,q),(0,r)):
+                next_law[d+jump] = next_law.get(d+jump,F(0))+mass*prob
+        law = next_law
+    ell = log(float(p/q))
+    mean_d = sum(m*d for d,m in law.items())
+    var_d = sum(m*(d-mean_d)**2 for d,m in law.items())
+    negative = sum(m for d,m in law.items() if d*ell < 0)
+    integral = sum(m*(q/p)**d for d,m in law.items())
+    assert integral == 1
+    print(f'{float(p):.2f}', f'{float(q):.2f}',
+          f'{float(mean_d)*ell:.6f}', f'{float(var_d)*ell*ell:.6f}',
+          f'{float(negative):.6f}', f'{float(integral):.6f}')
+```
+
+### Research checks and support boundaries
+
+#### Can uniform bars distinguish clockwise from counterclockwise preference?
+
+**Research explanation.** No. Both have the same stationary marginal. Path frequencies, oriented currents or their log ratio use temporal ordering that the single-time histogram discards. Swapping the orientation leaves the mean irreversibility unchanged while reversing the current.
+
+#### Why may the exponential identity fail at a one-way boundary?
+
+**Research explanation.** If q=0<p and n>0, any path with a clockwise move has zero reverse probability, so S=+infinity on those paths. Only the all-holding paths contribute to E[exp(−S)], giving r^n, not one. The mutual-support assumption has failed; adding an artificial epsilon reverse probability would change the model.
+
+#### What extra assumption would make this a thermodynamic statement?
+
+**Research explanation.** An energy model, identified reservoirs and an appropriate local detailed-balance relation are needed to connect log probability ratios to heat and physical entropy. The dimensionless statistical KL comparison derived here supplies none of those physical inputs by itself.
+
+[Yang and Qian's discrete-time reversal framework](https://arxiv.org/html/1904.01064v3), sections II–III, explains why the choice of reversal and support matters. The independent-increment law, exact count probabilities and cycle identity above are derived for this stationary triangle. They do not add a path simulator or a physical clock to the existing distribution reader.
+
 ## Predict, calculate and explain
 
 ### 1. Read a departure row

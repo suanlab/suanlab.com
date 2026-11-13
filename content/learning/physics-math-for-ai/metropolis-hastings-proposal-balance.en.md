@@ -246,6 +246,142 @@ The default uses target weights 1,2,4 and forward, backward and self-proposal we
 
 Automatic scanning compares distinct fixed-kernel examples; it does not evolve time or an initial distribution. Matrix buttons reveal different ledgers of the same preparation, and switching correction does not overwrite the specified target. When comparing target, actual stationary and jump-stationary bars, explain how removing holding changes the clock and the jump law. An unavailable law is neither a uniform distribution nor a zero vector.
 
+## Research extension: compare acceptance rules through estimator variance
+
+Correct target preservation does not settle which fixed-kernel sampler is useful for a particular average. We can compare two reversible rules using the same target and proposal, and prove an ordering of their long-run variances. The clock counts proposal attempts, including every holding step. This is a statistical comparison at equal step count, not a wall-clock speed benchmark.
+
+### Add Barker's rule as a separate mathematical comparison
+
+For a present off-diagonal proposal with a positive reverse probability, define the usual ratio R. Metropolis–Hastings and Barker acceptance are
+
+$$
+R_{ij}=\frac{\pi_jQ_{ji}}{\pi_iQ_{ij}},\qquad \alpha^{\mathrm M}_{ij}=\min(1,R_{ij}),\qquad \alpha^{\mathrm B}_{ij}=\frac{R_{ij}}{1+R_{ij}}\leq\alpha^{\mathrm M}_{ij}.
+$$
+
+This new comparison is not the incorrect target-only rule from the introductory text. Both rules use the reverse proposal probability and both preserve π. Form each off-diagonal transition as Qᵢⱼαᵢⱼ, then put all remaining probability on the departure diagonal. Absent proposals contribute zero; a present proposal without a reverse is rejected by either rule. Self proposals only affect holding and do not need an off-diagonal ratio.
+
+Barker's accepted pair flow is symmetric, which verifies detailed balance directly:
+
+$$
+\pi_iP^{\mathrm B}_{ij}=\frac{(\pi_iQ_{ij})(\pi_jQ_{ji})}{\pi_iQ_{ij}+\pi_jQ_{ji}}=\pi_jP^{\mathrm B}_{ji}\qquad(i\ne j,\ \pi_iQ_{ij}+\pi_jQ_{ji}>0).
+$$
+
+For the variance argument assume a finite state space, positive target, and both resulting chains irreducible and aperiodic. Our three-state examples have both directional proposal weights positive, so all off-diagonal transitions are positive and return lengths two and three ensure aperiodicity. These assumptions are checked after acceptance, not inferred from the target alone.
+
+### Convert more off-diagonal traffic into a quadratic-form order
+
+Use the weighted inner product ⟨u,v⟩_π=Σᵢπᵢuᵢvᵢ. Reversibility makes P self-adjoint in this inner product. The Dirichlet form measures squared differences across its edges:
+
+$$
+\mathcal E_P(g)=\langle g,(I-P)g\rangle_\pi=\frac12\sum_{i,j}\pi_iP_{ij}(g_i-g_j)^2,\qquad \mathcal E_{\mathrm M}(g)\geq\mathcal E_{\mathrm B}(g).
+$$
+
+The diagonal contributes zero. Every remaining term increases when its transition increases, so the acceptance inequality proves the form inequality. Constants have zero form for either chain. On the mean-zero subspace irreducibility removes that null direction, making L=I−P positive definite. Inverting a positive-definite order reverses it:
+
+$$
+L_{\mathrm M}\succeq L_{\mathrm B}>0\quad\Longrightarrow\quad L_{\mathrm M}^{-1}\preceq L_{\mathrm B}^{-1}\qquad\text{on }\{g:\pi g=0\}.
+$$
+
+An ordinary inverse on the full space would be invalid because L kills constants. Keeping the subspace explicit is part of the proof, not a numerical regularization.
+
+### Solve a Poisson equation for the chosen observable
+
+Let φ be a centered state observable, πφ=0, and start in stationarity. Aperiodicity and finiteness make its covariance series summable. For n consecutive recorded states,
+
+$$
+\sigma_P^2(\varphi)=\lim_{n\to\infty}n\operatorname{Var}_\pi\!\left(\frac1n\sum_{t=0}^{n-1}\varphi(X_t)\right)=\langle\varphi,\varphi\rangle_\pi+2\sum_{k=1}^{\infty}\langle\varphi,P^k\varphi\rangle_\pi.
+$$
+
+The mean-zero Poisson solution satisfies (I−P)g=φ. It is the sum of the future conditional-mean responses, so the geometric operator series gives
+
+$$
+(I-P)g=\varphi,\quad\pi g=0,\qquad \sigma_P^2(\varphi)=2\langle\varphi,g\rangle_\pi-\langle\varphi,\varphi\rangle_\pi.
+$$
+
+Combining this expression with the inverse order proves the comparison often called Peskun ordering:
+
+$$
+\sigma_{\mathrm M}^2(\varphi)\leq\sigma_{\mathrm B}^2(\varphi).
+$$
+
+This concerns the same observable, target, proposal and attempt clock. It is not an ordering of finite-n variances, initialization bias, every distribution-mixing time or computational cost. Nor does it rank two arbitrary different proposals by their acceptance percentages.
+
+For computation, add the stationary projection Π, whose rows equal π. The full-space linear solve then imposes the mean-zero convention without inverting a singular matrix. A normalized variance factor is optional when φ has positive variance:
+
+$$
+g=(I-P+\Pi)^{-1}\varphi,\qquad \Pi_{ij}=\pi_j,\qquad \tau_\varphi=\frac{\sigma_P^2(\varphi)}{\operatorname{Var}_\pi(\varphi)}.
+$$
+
+![Metropolis and Barker acceptance curves and their asymptotic variance coefficients for a fixed three-state target and proposal family.](/assets/learning/detailed-balance-research-acceptance-variance-order.en.svg)
+
+The lower panel uses π=(1,2,4)/7 and φ(i)=1{i=2}−4/7. Proposal weights are forward 2, backward 1, and the indicated self weight s. More self weight changes the attempt clock's movement frequency. The table reports target-averaged movement, each asymptotic variance coefficient, and Barker/Metropolis variance ratio. The code solves rational Poisson equations; it neither estimates variance from a short trace nor deletes holding.
+
+| s | Movement M | Movement B | σ²_M | σ²_B | B/M ratio |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 0.666667 | 0.370370 | 0.274885 | 0.628072 | 2.284848 |
+| 1 | 0.500000 | 0.277778 | 0.448147 | 0.919062 | 2.050805 |
+| 4 | 0.285714 | 0.158730 | 0.967930 | 1.792031 | 1.851406 |
+| 20 | 0.086957 | 0.048309 | 3.740108 | 6.447869 | 1.723979 |
+
+```python
+from fractions import Fraction as F
+
+def solve(a, b):
+    rows = [list(row)+[v] for row,v in zip(a,b)]
+    for j in range(len(b)):
+        pivot = next(i for i in range(j,len(b)) if rows[i][j])
+        rows[j], rows[pivot] = rows[pivot], rows[j]
+        d = rows[j][j]
+        rows[j] = [x/d for x in rows[j]]
+        for i in range(len(b)):
+            if i != j:
+                d = rows[i][j]
+                rows[i] = [x-d*y for x,y in zip(rows[i],rows[j])]
+    return [row[-1] for row in rows]
+
+pi = [F(1,7),F(2,7),F(4,7)]
+probe = [F(i==2)-pi[2] for i in range(3)]
+for stay in (0,1,4,20):
+    q = [[F(stay if i==j else 2 if (j-i)%3==1 else 1,3+stay)
+          for j in range(3)] for i in range(3)]
+    results = []
+    for rule in ('mh','barker'):
+        p = [[F(0) for _ in range(3)] for _ in range(3)]
+        for i in range(3):
+            for j in range(3):
+                if i != j:
+                    ratio = pi[j]*q[j][i]/(pi[i]*q[i][j])
+                    accept = min(F(1),ratio) if rule=='mh' else ratio/(1+ratio)
+                    p[i][j] = q[i][j]*accept
+            p[i][i] = 1-sum(p[i])
+        g = solve([[F(i==j)-p[i][j]+pi[j] for j in range(3)]
+                   for i in range(3)],probe)
+        variance = 2*sum(pi[i]*probe[i]*g[i] for i in range(3))-sum(pi[i]*probe[i]**2 for i in range(3))
+        movement = sum(pi[i]*(1-p[i][i]) for i in range(3))
+        results.append((movement,variance))
+    mh, bk = results
+    assert mh[1] <= bk[1]
+    print(stay, f'{float(mh[0]):.6f}', f'{float(bk[0]):.6f}',
+          f'{float(mh[1]):.6f}', f'{float(bk[1]):.6f}',
+          f'{float(bk[1]/mh[1]):.6f}')
+```
+
+### Research checks and limits of the ordering
+
+#### Does increasing acceptance always improve distribution mixing?
+
+**Research explanation.** No. With a uniform two-state target and proposals that always switch, Metropolis switches deterministically and never mixes from a point mass. Barker resets to uniform in one step. The periodic Metropolis boundary is outside the summable-series assumptions above, but its stationary even-length average cancels exactly. Distribution mixing and variance of an observable are different objectives.
+
+#### Why cannot the raw diagonal holding probability rank two samplers?
+
+**Research explanation.** The proof requires a pairwise off-diagonal order under the same target and reversibility. A single average movement or acceptance number does not establish that order, and different proposals can redistribute traffic across important directions differently.
+
+#### Does the rational solve give a finite-sample standard error?
+
+**Research explanation.** It gives the specified model's asymptotic variance coefficient. Approximating a long mean's variance by σ²/n requires an appropriate regime; a finite run can also have initialization bias. Kernel estimation and wall-clock cost require separate evidence.
+
+[Peskun (1973), sections 2.1–2.2](https://www2.stat.duke.edu/~scs/Courses/Stat376/Papers/ConvergeRates/Peskun1973.pdf) provides the finite-state variance-ordering framework. The form/subspace derivation and three-state Poisson examples above make the assumptions explicit. Barker remains a separate executable example; the existing reader's corrected/uncorrected controls are unchanged.
+
 ## Predict, calculate and explain
 
 ### 1. Separate three probabilities

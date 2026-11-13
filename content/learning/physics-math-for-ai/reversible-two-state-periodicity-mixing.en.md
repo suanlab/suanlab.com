@@ -223,6 +223,123 @@ Imagine transferring probability mass between two rooms. A,B,D specify the trans
 
 Changing N recomputes N transitions from the same initial law. One transition step increments that N; it does not draw one random sample. In logarithmic distance display, exact zeros appear as separate dots below the axis, while the signed-deviation plot retains its linear axis. The Cesaro bars average N+1 laws from t=0 through N. Turning a history-table page changes neither that averaging range nor N.
 
+## Research extension: calculate a random time average's error
+
+The Cesaro bars above average marginal distributions. They give the expected occupancy of a random path, but not its sampling variance. To complete that distinction, let X_t be the random indicator of state 1 and calculate the joint covariances. We can then compare initialization bias with random error, and see why improving distribution mixing can sacrifice useful negative correlation.
+
+### Recover two-time covariance from conditional expectation
+
+Keep a+b>0, π₁=a/(a+b), λ=1−a−b and initial probability u. Write x_t=E[X_t]. The Markov property and the original recurrence imply, for j≥i,
+
+$$
+\mathbb E[X_j\mid X_i]=\pi_1+(X_i-\pi_1)\lambda^{j-i},\qquad \operatorname{Cov}(X_i,X_j)=x_i(1-x_i)\lambda^{j-i}.
+$$
+
+Indeed the later innovations in the conditional mean contribute no covariance with X_i, leaving its own variance times the propagation factor. With a nonstationary start, that variance depends on i. Replacing it everywhere by π₀π₁ would silently change the initial preparation.
+
+Record n states X₀,…,X_(n−1), so n=N+1 in the original reader. Their average estimates π₁ and has bias
+
+$$
+\widehat\pi_{1,n}=\frac1n\sum_{t=0}^{n-1}X_t,\qquad B_n=\mathbb E[\widehat\pi_{1,n}]-\pi_1=(u-\pi_1)\frac{1-\lambda^n}{n(1-\lambda)}.
+$$
+
+This is the expectation already represented by the averaged bars, now interpreted as estimator bias. The variance requires all pairs, not just those bars:
+
+$$
+V_n^{\mathrm{path}}=\frac1{n^2}\left[\sum_{i=0}^{n-1}v_i+2\sum_{0\leq i<j<n}v_i\lambda^{j-i}\right],\qquad v_i=x_i(1-x_i).
+$$
+
+The mean-squared error about the target adds the squared bias. An initially deterministic path can have zero variance at the first observation while still have a large error relative to π₁.
+
+$$
+\operatorname{MSE}(\widehat\pi_{1,n};\pi_1)=V_n^{\mathrm{path}}+B_n^2.
+$$
+
+At n=1, these formulas give V=u(1−u) and B=u−π₁. At exact alternation a=b=1, an even n average equals 1/2 exactly. For odd n its variance is u(1−u)/n² and its squared bias is (u−1/2)²/n², so MSE is 1/(4n²) for every u. A deterministic start's odd-length error is bias; a stationary start's is variance. Equal MSE need not mean equal decomposition.
+
+### Relate stationary path variance to the earlier AR(1) formula
+
+Now restrict to a,b>0 and |λ|<1 and initialize at π. The marginal variance is v=π₀π₁>0 and every normalized covariance is λ^k. Therefore the exact finite variance uses the same covariance sum as the earlier AR(1) calculation, multiplied by v. The random mean is generally discrete rather than exactly Gaussian. Its large-n variance coefficient is
+
+$$
+\sigma^2=v\frac{1+\lambda}{1-\lambda},\qquad \tau=\frac{\sigma^2}{v}=\frac{1+\lambda}{1-\lambda},\qquad nV_n^{\mathrm{path}}\longrightarrow\sigma^2.
+$$
+
+This connection uses the stationary binary observable, not an assertion that the two processes share a Gaussian marginal law. For an absorbing stationary law v=0, normalized correlation and τ are not defined by division; the earlier transient covariance formula still applies directly.
+
+### Add holding and distinguish two optimization objectives
+
+Define a new kernel by independently choosing to hold with probability δ, otherwise applying P. It preserves the same π, and its nonconstant eigenvalue becomes
+
+$$
+P_\delta=\delta I+(1-\delta)P,\qquad \lambda_\delta=\delta+(1-\delta)\lambda,\qquad 0\leq\delta<1.
+$$
+
+Its stationary variance coefficient increases with δ. Differentiate explicitly at fixed original P and fixed observable:
+
+$$
+\sigma_\delta^2=v\frac{1+\lambda_\delta}{1-\lambda_\delta},\qquad \frac{d\sigma_\delta^2}{d\delta}=\frac{2v(1-\lambda)}{(1-\lambda_\delta)^2}>0.
+$$
+
+For negative λ, however, distribution error contracts fastest when holding moves that eigenvalue exactly to zero. The resulting rows are π, so one transition resets any initial distribution:
+
+$$
+\delta_{\mathrm{reset}}=-\frac{\lambda}{1-\lambda}\quad(\lambda<0),\qquad \lambda_{\delta_{\mathrm{reset}}}=0,\qquad P_{\delta_{\mathrm{reset}}}=\Pi,\qquad \sigma_{\delta_{\mathrm{reset}}}^2=v.
+$$
+
+For a=b=0.9, λ=−0.8 and δ_reset=4/9. Resetting makes distribution mixing immediate but raises the stationary asymptotic variance from v/9 to v per recorded state. It removes the cancellation that helped the time average. This compares two specified attempt clocks; charging only actual movements or measuring computation time is another comparison.
+
+![Finite mean-squared errors of a two-state occupancy average and the differing effects of added holding on contraction and variance inflation.](/assets/learning/detailed-balance-research-initialization-laziness-error.en.svg)
+
+The upper panel compares exact finite MSE from the deterministic start u=0, including the initial observation. The lower panel compares |λ_δ| with τ_δ for the original a=b=0.9. Both are dimensionless but answer different questions; their minima need not coincide.
+
+The table fixes n=9 and uses symmetric a=b. The first two rows use the original kernel, the last two the reset kernel a=b=0.5. Compare u=0 with the stationary u=0.5 in each case. Symmetry makes MSE agree between these starts while its bias/variance split differs. The code computes exact rational covariances, not the uncertainty of an empirically estimated transition matrix.
+
+| a=b | u | n | Bias | Variance | MSE |
+| --- | --- | --- | --- | --- | --- |
+| 0.9 | 0.0 | 9 | -0.035007 | 0.003590 | 0.004815 |
+| 0.9 | 0.5 | 9 | 0.000000 | 0.004815 | 0.004815 |
+| 0.5 | 0.0 | 9 | -0.055556 | 0.024691 | 0.027778 |
+| 0.5 | 0.5 | 9 | 0.000000 | 0.027778 | 0.027778 |
+
+```python
+from fractions import Fraction as F
+
+n = 9  # Nine observations include the initial state: eight transitions.
+for a, u in ((F(9,10),F(0)), (F(9,10),F(1,2)),
+             (F(1,2),F(0)), (F(1,2),F(1,2))):
+    b = a
+    stationary = a/(a+b)
+    lam = 1-a-b
+    means = [u]
+    for _ in range(n-1):
+        means.append(a+lam*means[-1])
+    variances = [x*(1-x) for x in means]
+    variance = (sum(variances)+2*sum(variances[i]*lam**(j-i)
+                 for i in range(n) for j in range(i+1,n)))/n**2
+    bias = sum(means)/n-stationary
+    mse = variance+bias*bias
+    print(f'{float(a):.1f}', f'{float(u):.1f}', n,
+          f'{float(bias):.6f}', f'{float(variance):.6f}',
+          f'{float(mse):.6f}')
+```
+
+### Research checks and boundaries
+
+#### Can averaged marginal bars determine the variance of a sampled mean?
+
+**Research explanation.** They determine its expectation. The variance also needs the joint covariance of states at different times. Two processes can share single-time marginals while having different time-average uncertainty.
+
+#### Does the reset kernel always give a smaller finite MSE?
+
+**Research explanation.** No. It removes initialization error after one transition, but also removes negative serial covariance. The table gives a specified finite counterexample. For a general initialization, target, observable or recording length, compute bias and covariance rather than transfer a universal ranking.
+
+#### Can the stationary variance coefficient be used at a nonmixing endpoint?
+
+**Research explanation.** Not by an ordinary summable-covariance argument. Exact alternation has a separate finite cancellation calculation; the identity lacks a unique selected stationary target. Keep those boundary preparations distinct from the interior asymptotic formula.
+
+[Levin–Peres, chapters 1, 12 and 17](https://pages.uoregon.edu/dlevin/MARKOV/markovmixing.pdf) supplies the Markov/spectral and estimation context. The two-time covariance, initialization MSE and holding comparison here are derived explicitly for this binary family. They supplement the existing averaged-distribution display without turning it into a path-variance control or a Monte Carlo simulation.
+
 ## Predict, calculate and explain
 
 ### 1. Solve the asymmetric recurrence

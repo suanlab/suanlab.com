@@ -246,6 +246,142 @@ $$
 
 이 단원의 자동 순회는 서로 다른 고정 커널 예제를 비교합니다. 시간이나 초기 분포를 진화시키지 않습니다. 행렬 선택 버튼은 같은 준비의 다른 장부를 보여주며, 보정 전환도 입력 목표를 덮어쓰지 않습니다. 목표·실제 정상·점프 정상 막대를 비교할 때는 총체류를 삭제한 시계가 점프 법칙을 바꾼다는 점을 함께 설명하세요. 미제공 법칙을 균일분포나 영벡터로 해석하지 마세요.
 
+## 연구 확장: 추정량의 분산으로 수락 규칙을 비교하자
+
+목표를 올바르게 보존해도 어떤 고정 커널이 특정 평균에 유용한지는 남는다. 같은 목표와 제안에서 두 가역 규칙을 비교해 장기 분산의 순서를 증명할 수 있다. 시계는 머무름까지 포함한 제안 시도 수를 센다. 같은 단계 수의 통계적 비교이며 실제 실행 시간의 속도 측정이 아니다.
+
+### Barker 규칙을 별도의 수학적 비교로 추가하자
+
+역제안 확률이 양수인 실제 비대각 제안에서 통상적인 비 R을 정의한다. Metropolis–Hastings와 Barker 수락은
+
+$$
+R_{ij}=\frac{\pi_jQ_{ji}}{\pi_iQ_{ij}},\qquad \alpha^{\mathrm M}_{ij}=\min(1,R_{ij}),\qquad \alpha^{\mathrm B}_{ij}=\frac{R_{ij}}{1+R_{ij}}\leq\alpha^{\mathrm M}_{ij}.
+$$
+
+새 비교는 입문 본문의 잘못된 목표 비 전용 규칙과 다르다. 둘 다 역제안 확률을 쓰고 π를 보존한다. 비대각 전이를 Qᵢⱼαᵢⱼ로 만든 뒤 나머지를 출발 대각에 둔다. 없는 제안은 0을 더하고 역방향 없는 실제 제안은 둘 다 거절한다. 자기 제안은 머무름에만 영향을 주므로 비대각 비가 필요하지 않다.
+
+Barker의 수락 쌍 흐름은 대칭이어서 상세평형을 직접 확인할 수 있다.
+
+$$
+\pi_iP^{\mathrm B}_{ij}=\frac{(\pi_iQ_{ij})(\pi_jQ_{ji})}{\pi_iQ_{ij}+\pi_jQ_{ji}}=\pi_jP^{\mathrm B}_{ji}\qquad(i\ne j,\ \pi_iQ_{ij}+\pi_jQ_{ji}>0).
+$$
+
+분산 논증에는 유한 상태 공간, 양의 목표와 두 결과 체인의 기약성·비주기성을 가정한다. 여기의 세 상태 예제는 양방향 제안 가중치가 양수여서 모든 비대각 전이가 양수이고 길이 2,3의 복귀로 비주기성이 성립한다. 이 가정은 수락 뒤 확인하며 목표만으로 추론하지 않는다.
+
+### 더 많은 비대각 흐름을 이차형식 순서로 바꾸자
+
+가중 내적 ⟨u,v⟩_π=Σᵢπᵢuᵢvᵢ를 사용한다. 가역성으로 P는 이 내적에서 자기수반이다. Dirichlet 형식은 간선 양끝 차이의 제곱을 잰다.
+
+$$
+\mathcal E_P(g)=\langle g,(I-P)g\rangle_\pi=\frac12\sum_{i,j}\pi_iP_{ij}(g_i-g_j)^2,\qquad \mathcal E_{\mathrm M}(g)\geq\mathcal E_{\mathrm B}(g).
+$$
+
+대각 기여는 0이다. 나머지 항은 전이가 커지면 커지므로 수락 부등식이 형식 부등식을 증명한다. 상수는 두 체인 모두에서 형식 0이다. 평균 0 부분공간에서는 기약성이 그 영방향을 없애 L=I−P가 양의 정부호가 된다. 양의 정부호 순서는 역을 취하면 반전된다.
+
+$$
+L_{\mathrm M}\succeq L_{\mathrm B}>0\quad\Longrightarrow\quad L_{\mathrm M}^{-1}\preceq L_{\mathrm B}^{-1}\qquad\text{on }\{g:\pi g=0\}.
+$$
+
+전체 공간의 보통 역행렬은 L이 상수를 0으로 보내므로 유효하지 않다. 부분공간을 명시하는 것은 수치 정규화가 아니라 증명의 일부다.
+
+### 선택한 관측량의 Poisson 방정식을 풀자
+
+πφ=0인 중심화 상태 관측량 φ를 고르고 정상 상태에서 시작한다. 유한성과 비주기성으로 공분산 급수가 합 가능하다. 연속 기록 상태 n개에 대해
+
+$$
+\sigma_P^2(\varphi)=\lim_{n\to\infty}n\operatorname{Var}_\pi\!\left(\frac1n\sum_{t=0}^{n-1}\varphi(X_t)\right)=\langle\varphi,\varphi\rangle_\pi+2\sum_{k=1}^{\infty}\langle\varphi,P^k\varphi\rangle_\pi.
+$$
+
+평균 0인 Poisson 해는 (I−P)g=φ를 만족한다. 미래 조건부 평균 응답들의 합이므로 기하 연산자 급수로
+
+$$
+(I-P)g=\varphi,\quad\pi g=0,\qquad \sigma_P^2(\varphi)=2\langle\varphi,g\rangle_\pi-\langle\varphi,\varphi\rangle_\pi.
+$$
+
+이 식과 역행렬 순서를 결합하면 흔히 Peskun 순서라고 부르는 비교를 증명한다.
+
+$$
+\sigma_{\mathrm M}^2(\varphi)\leq\sigma_{\mathrm B}^2(\varphi).
+$$
+
+같은 관측량·목표·제안·시도 시계에 대한 진술이다. 유한 n 분산, 초기화 편향, 모든 분포 혼합 시간이나 계산 비용의 순서가 아니다. 임의의 서로 다른 두 제안을 수락률만으로 순위 매기지도 않는다.
+
+계산할 때는 행이 π인 정상 사영 Π를 더한다. 전체 공간 선형계가 특이 행렬을 직접 역으로 취하지 않고 평균 0 관례를 강제한다. φ의 분산이 양수이면 정규화 분산 인자를 정의할 수 있다.
+
+$$
+g=(I-P+\Pi)^{-1}\varphi,\qquad \Pi_{ij}=\pi_j,\qquad \tau_\varphi=\frac{\sigma_P^2(\varphi)}{\operatorname{Var}_\pi(\varphi)}.
+$$
+
+![같은 세 상태 목표·제안족에서 Metropolis와 Barker의 수락 곡선과 점근 분산 계수 비교.](/assets/learning/detailed-balance-research-acceptance-variance-order.ko.svg)
+
+아래쪽은 π=(1,2,4)/7, φ(i)=1{i=2}−4/7을 사용한다. 제안 가중치는 정방향 2, 역방향 1과 표시한 자기 가중치 s다. 자기 가중치가 커지면 시도 시계에서 이동 빈도가 달라진다. 표에는 목표 평균 이동률, 두 점근 분산 계수와 Barker/Metropolis 분산 비를 적었다. 코드는 유리수 Poisson 방정식을 풀며 짧은 궤적에서 분산을 추정하거나 머무름을 삭제하지 않는다.
+
+| s | 이동률 M | 이동률 B | σ²_M | σ²_B | B/M 비 |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 0.666667 | 0.370370 | 0.274885 | 0.628072 | 2.284848 |
+| 1 | 0.500000 | 0.277778 | 0.448147 | 0.919062 | 2.050805 |
+| 4 | 0.285714 | 0.158730 | 0.967930 | 1.792031 | 1.851406 |
+| 20 | 0.086957 | 0.048309 | 3.740108 | 6.447869 | 1.723979 |
+
+```python
+from fractions import Fraction as F
+
+def solve(a, b):
+    rows = [list(row)+[v] for row,v in zip(a,b)]
+    for j in range(len(b)):
+        pivot = next(i for i in range(j,len(b)) if rows[i][j])
+        rows[j], rows[pivot] = rows[pivot], rows[j]
+        d = rows[j][j]
+        rows[j] = [x/d for x in rows[j]]
+        for i in range(len(b)):
+            if i != j:
+                d = rows[i][j]
+                rows[i] = [x-d*y for x,y in zip(rows[i],rows[j])]
+    return [row[-1] for row in rows]
+
+pi = [F(1,7),F(2,7),F(4,7)]
+probe = [F(i==2)-pi[2] for i in range(3)]
+for stay in (0,1,4,20):
+    q = [[F(stay if i==j else 2 if (j-i)%3==1 else 1,3+stay)
+          for j in range(3)] for i in range(3)]
+    results = []
+    for rule in ('mh','barker'):
+        p = [[F(0) for _ in range(3)] for _ in range(3)]
+        for i in range(3):
+            for j in range(3):
+                if i != j:
+                    ratio = pi[j]*q[j][i]/(pi[i]*q[i][j])
+                    accept = min(F(1),ratio) if rule=='mh' else ratio/(1+ratio)
+                    p[i][j] = q[i][j]*accept
+            p[i][i] = 1-sum(p[i])
+        g = solve([[F(i==j)-p[i][j]+pi[j] for j in range(3)]
+                   for i in range(3)],probe)
+        variance = 2*sum(pi[i]*probe[i]*g[i] for i in range(3))-sum(pi[i]*probe[i]**2 for i in range(3))
+        movement = sum(pi[i]*(1-p[i][i]) for i in range(3))
+        results.append((movement,variance))
+    mh, bk = results
+    assert mh[1] <= bk[1]
+    print(stay, f'{float(mh[0]):.6f}', f'{float(bk[0]):.6f}',
+          f'{float(mh[1]):.6f}', f'{float(bk[1]):.6f}',
+          f'{float(bk[1]/mh[1]):.6f}')
+```
+
+### 연구 점검과 순서의 한계
+
+#### 수락을 늘리면 분포 혼합도 항상 개선되는가?
+
+**연구 풀이.** 아니다. 균일 두 상태 목표와 항상 전환하는 제안에서 Metropolis는 결정적으로 번갈아 가므로 점질량에서 혼합되지 않는다. Barker는 한 단계에 균일로 재설정한다. 주기적인 Metropolis 경계는 위 합 가능 급수 가정 밖이지만 정상 짝수 길이 평균은 정확히 상쇄된다. 분포 혼합과 관측량의 분산은 다른 목적이다.
+
+#### 대각 머무름 확률만으로 두 표집기를 순위 매길 수 없는 이유는?
+
+**연구 풀이.** 증명은 같은 목표와 가역성 아래 쌍별 비대각 순서를 요구한다. 하나의 평균 이동률·수락률로는 그 순서를 확립할 수 없다. 다른 제안은 중요한 방향들에 흐름을 다르게 재분배할 수도 있다.
+
+#### 유리수 선형계가 유한 표본 표준오차를 주는가?
+
+**연구 풀이.** 지정 모형의 점근 분산 계수를 준다. 긴 평균의 분산을 σ²/n으로 근사하려면 적절한 구간이 필요하며 유한 실행에는 초기화 편향도 있을 수 있다. 커널 추정과 실제 계산 비용에는 별도 근거가 필요하다.
+
+[Peskun 1973, 2.1–2.2절](https://www2.stat.duke.edu/~scs/Courses/Stat376/Papers/ConvergeRates/Peskun1973.pdf)은 유한 상태 분산 순서의 틀을 제공한다. 위 형식·부분공간 유도와 세 상태 Poisson 예제는 가정을 명시한다. Barker는 별도 실행 예제이며 기존 reader의 보정·비보정 조작은 그대로다.
+
 ## 먼저 예측하고 계산한 뒤 설명하자
 
 ### 1. 세 확률 나누기

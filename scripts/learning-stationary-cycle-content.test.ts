@@ -7,8 +7,8 @@ import {stationaryThreeStateCycleModel as model} from '../src/lib/learning-stati
 const id='stationary-flux-three-state-cycle';
 const raw=(language:'ko'|'en')=>readFileSync(`content/learning/physics-math-for-ai/${id}.${language}.md`,'utf8');
 for(const language of ['ko','en'] as const)test(`${language}: full cycle explanation, accessible math and six explained exercises render`,async()=>{
- const source=raw(language),content=await getLearningContent(id),html=content[language];assert.equal(content.outline[language].length,17);assert.equal(new Set(content.outline[language].map(h=>h.id)).size,17);assert.equal((source.match(/^### [1-6]\. /gm)??[]).length,6);assert.equal((source.match(/\*\*(?:Explanation\.|해설\.)\*\*/g)??[]).length,6);
- assert.equal((html.match(/class="katex-display"/g)??[]).length,18);assert.equal((html.match(/aria-label="(?:Equation|수식) /g)??[]).length,18);assert.equal((html.match(/<table[^>]*tabindex="0"/g)??[]).length,3);assert.doesNotMatch(html,/katex-error|\$\$|@@E\d/);assert.doesNotMatch(source,/^# |^---/m);
+ const source=raw(language),content=await getLearningContent(id),html=content[language];assert.equal(content.outline[language].length,18);assert.equal(new Set(content.outline[language].map(h=>h.id)).size,18);assert.equal((source.match(/^### [1-6]\. /gm)??[]).length,6);assert.equal((source.match(/\*\*(?:Explanation\.|해설\.)\*\*/g)??[]).length,6);
+ assert.equal((html.match(/class="katex-display"/g)??[]).length,25);assert.equal((html.match(/aria-label="(?:Equation|수식) /g)??[]).length,25);assert.equal((html.match(/<table[^>]*tabindex="0"/g)??[]).length,4);assert.doesNotMatch(html,/katex-error|\$\$|@@E\d/);assert.doesNotMatch(source,/^# |^---/m);
  if(language==='en'){assert.ok(source.split(/\s+/).length>2500);assert.doesNotMatch(html,/[가-힣]/);}else assert.ok((source.match(/[가-힣]/g)??[]).length>5500);
 });
 test('both translations share equations and retain the distinctions needed for detailed balance',()=>{

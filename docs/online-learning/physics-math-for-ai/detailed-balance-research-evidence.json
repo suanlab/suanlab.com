@@ -1,0 +1,1642 @@
+{
+  "date": "2026-11-13",
+  "scope": "Three existing detailed-balance research supplements; full 51-domain/509-topic scope retained",
+  "baselineCommit": "05b98d281c54989eaa8e4ff27ee0472ca940deeb",
+  "registeredDomainUnits": 32,
+  "originalDomainTopics": 11,
+  "introductoryAuditComplete": true,
+  "wholeDomainResearchReviewComplete": false,
+  "curriculumComplete": false,
+  "sequentialResearchUnitsComplete": 29,
+  "remainingSequentialDomainUnits": 3,
+  "manuscripts": [
+    {
+      "id": "stationary-flux-three-state-cycle",
+      "language": "en",
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.en.md",
+      "originalSha256": "d2185361b111b05b9bba4375542642ff8820fa697dc3086d07b80cb8ff10582d",
+      "updatedSha256": "3f15f18ea1a3fe34edd6c5af679b37e8bc4a78ff14998e1d9f81e49d989fb135",
+      "addedDisplayEquations": 7
+    },
+    {
+      "id": "stationary-flux-three-state-cycle",
+      "language": "ko",
+      "path": "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.ko.md",
+      "originalSha256": "5e1879b6bd55ccc27d71a398fa919e03ca96904ae4a3edf210dc7613085a7ef1",
+      "updatedSha256": "aea2b8f5dfd816225d664cc5e0dca273886f8e2d708fd7af1b626df2b14b357e",
+      "addedDisplayEquations": 7
+    },
+    {
+      "id": "metropolis-hastings-proposal-balance",
+      "language": "en",
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.en.md",
+      "originalSha256": "7b63b7f733ab991c2cc4c33b4fa1c06ed818f40b085b64168de9206805d94946",
+      "updatedSha256": "95fcbe917a13de4e171c410140c00c7c4457549e47775233b8e685ff21d5c62b",
+      "addedDisplayEquations": 8
+    },
+    {
+      "id": "metropolis-hastings-proposal-balance",
+      "language": "ko",
+      "path": "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.ko.md",
+      "originalSha256": "bf380b04692d01eccc7ade872c40223c0732f12dbd9f0415ad803cf2f3ec0a16",
+      "updatedSha256": "94b7727ec85bcecb4fecfa5ed29617dc5b95a2908e9f1bdd13ec50d5f5293b5c",
+      "addedDisplayEquations": 8
+    },
+    {
+      "id": "reversible-two-state-periodicity-mixing",
+      "language": "en",
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.en.md",
+      "originalSha256": "f82d282b4f9debb0be0cc673315f5bef998a922ba9d52c51eb079cc223c7ad8b",
+      "updatedSha256": "0f718670bb7ffbbfad1e6fd007b455eab1e31047987347c862904dde72126aca",
+      "addedDisplayEquations": 8
+    },
+    {
+      "id": "reversible-two-state-periodicity-mixing",
+      "language": "ko",
+      "path": "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.ko.md",
+      "originalSha256": "6a5221c76efa732c71b201289fd024a7b87c7f2aed1c81c6a65f06692e23f02b",
+      "updatedSha256": "ee20bf9d49603935156a911901e0969c946774eade57453940112c577fc68f51",
+      "addedDisplayEquations": 8
+    }
+  ],
+  "independentVerification": {
+    "status": "passed",
+    "cyclePathPreparations": 25,
+    "oneWaySupportPreparations": 15,
+    "poissonObservableComparisons": 96,
+    "enumeratedMeanPreparations": 144,
+    "lazyKernelPreparations": 12,
+    "exactResetKernels": 2
+  },
+  "tests": {
+    "files": [
+      "scripts/learning-stationary-cycle-content.test.ts",
+      "scripts/learning-stationary-cycle.test.ts",
+      "scripts/learning-hastings-proposal-content.test.ts",
+      "scripts/learning-hastings-proposal.test.ts",
+      "scripts/learning-two-state-mixing.test.ts",
+      "scripts/learning-two-state-mixing-content.test.ts",
+      "scripts/learning-detailed-balance-lab.test.ts",
+      "scripts/learning-detailed-balance-research.test.ts",
+      "scripts/learning-detailed-balance-integration.test.ts",
+      "scripts/learning-detailed-balance-views.test.ts",
+      "scripts/learning-detailed-balance-teaching.test.ts",
+      "scripts/learning-detailed-balance-worker.test.ts",
+      "scripts/learning-manuscript-preservation.test.ts",
+      "scripts/learning-correlations-research.test.ts"
+    ],
+    "passed": 222,
+    "failed": 0,
+    "finalSupportAndPreservationRecheckPassed": 21
+  },
+  "build": {
+    "routes": 1893,
+    "exportedHtml": 1888,
+    "validatedUrls": 1885,
+    "typecheckBeforeAndAfter": true,
+    "lint": true
+  },
+  "preservation": {
+    "baselineCommit": "05b98d281c54989eaa8e4ff27ee0472ca940deeb",
+    "otherManuscripts": [
+      {
+        "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md",
+        "sha256": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md",
+        "sha256": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md",
+        "sha256": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md",
+        "sha256": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md",
+        "sha256": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md",
+        "sha256": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md",
+        "sha256": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md",
+        "sha256": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md",
+        "sha256": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md",
+        "sha256": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md",
+        "sha256": "2b70f8129051d98f381f586070cbffb578c90e804669fa1d2295f2e5c9c3d9c4"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md",
+        "sha256": "c8884d8be4b5341daeae9e64b8c2b499352822663a867fc80bfc6a2afa2e1af5"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md",
+        "sha256": "cf1068c26a650b9dd65abb3d03e8cce0225d2480af49aafa9e56d4f273381a48"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md",
+        "sha256": "cabbaa81e0c2a28eaa9107910c512168a62e593dc651a818e97475f34299777f"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md",
+        "sha256": "f5faeff2df6647774485ec8feb0c2425912fdeb308bed436515c0eeb966cca82"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md",
+        "sha256": "22994935ed43b1238a2653ad433b9fba4844b21fa949513108e4d8e65121da3f"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md",
+        "sha256": "3e1f7f9508fa6a5a5ad1db33a11b11b0eee91eecf4cbe043136db65d9bc0e4fc"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md",
+        "sha256": "e5f21a6f59fdcf0e17dc8ae593ffcd207e030e04f1fd4abc2757cc45f8cc89a2"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md",
+        "sha256": "0491fbb5cfe9ade34594d3df47fc0467780fce503c922fad221e33b67f360c45"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md",
+        "sha256": "18528a5d21dc41daca84e8c3ba4b74ea96d06bc262bc10ea8192db361e70c54a"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md",
+        "sha256": "7accc5aded8e3db2843fb4f56153eb84654e08d00835c90585c684ba1d2d09f3"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md",
+        "sha256": "659b82f1f3c19966a0b891a609262c5dd825c821d85d96cce09397313ea84a38"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md",
+        "sha256": "d6297d9b2a0185ceb541329f16970702b03c71c49a824c8ea97e65b9fa18f734"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md",
+        "sha256": "c1e84084c383f5306301b11bedca68e57a6efb0ff6bcafbc0823df1c61156e0b"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md",
+        "sha256": "bb67de78a58e7781683bce9015b1c67623b2dc720228f4162a74e7b61d6e41bc"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md",
+        "sha256": "8e7bc66f8f361767935d6f2198b3ca9fa099d0b98c73d017f55bc3d8063f026e"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.ko.md",
+        "sha256": "458d333457c2c79c8e5bd32a41a67d2396eb814c90db75eaf524ef3385fc80fe"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.en.md",
+        "sha256": "2a07370a5b7e9e02433a519feca4770e5dc92d4abde2c51abcfbb5cbd2fc79d1"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.ko.md",
+        "sha256": "e479e0d4b0409b0659e6d799fea3eccbfb5db4fbb4c2d17cc9e1001161d1d491"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.en.md",
+        "sha256": "3672271d8e236d12d8ba388125c7286e4bce189b1bff501f6128f99c358c4d78"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.ko.md",
+        "sha256": "cebf2452e4e59605cbfc36b426e0d08fa39b36b0494e59873b69c1449d91dafd"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.en.md",
+        "sha256": "93a17d5d1556bd352300119e2b10377b6a42f93ef8e85bef040c597a4b02c90a"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.ko.md",
+        "sha256": "3cdf160f7587cff201280543aa92952f612938f666fc63a344eca0bc86c64870"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.en.md",
+        "sha256": "9414d5a81984054eb5e3b511347c4dc826a1cec2cdedb1b6c737fe7b3406acf0"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.ko.md",
+        "sha256": "fe68a6897a639c3c2dc9bb3f79ffe4fb40bc7670e74ae13f1f24a8b636f5bb36"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.en.md",
+        "sha256": "92afb4f000b560600faf627e2b554284e81d87352023b10264fff73f19e1902f"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.ko.md",
+        "sha256": "ed752023c3ab8542ad47f5308719a5471a85ec90921811d96158581b5398aa60"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.en.md",
+        "sha256": "744ee865407ff297b29443cf73e0dadb4120db7977b636c606fcc60703b6e5d8"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.ko.md",
+        "sha256": "9e97975bd2648070bc135c5bfad9d65b30eb5d3beaf9f12938ad5607c0ea1943"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.en.md",
+        "sha256": "b150e3bc81a4abe6b70e85c698240da55d48badd890e728a5eec9c7ab8c18e3d"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.ko.md",
+        "sha256": "520ad2aff4c301946aaab527114a4392f98692cbb0c9e488513b463e33428b84"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.en.md",
+        "sha256": "22c88397570919a6aa677ebd9cc4da49ab72af7fd3f3e04b236839722a59df0b"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.ko.md",
+        "sha256": "f65bea07913365af004773010b34a6e022d86ca2d8756ef774b9083cbddf25d9"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.en.md",
+        "sha256": "af9c929b0df3200d77f66f0e3bf38d912e1f160e614b0ec08d7275183f1b0d77"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.ko.md",
+        "sha256": "e171447041a557f917b4864b358f122a3970f2b1c9390110d9a95df510aa0e9f"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.en.md",
+        "sha256": "03baec7d35784db42139c73a7345c890a0ec9c37640c76a840626373b0adeec5"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.ko.md",
+        "sha256": "effb8c078408995c6bda9b79d5a840781f0b398b197396ad6df20968241a7b9c"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.en.md",
+        "sha256": "1aef513b803cad426841e8d0655634de42d67877ec36f2488876fd3ba6f0e549"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.ko.md",
+        "sha256": "ce29b6ccceb6b5c7c5161b86af6fc90068954f532b5888fdd2d46d265477427a"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.en.md",
+        "sha256": "294b98196495e7460ee353001d699bcc5347a3677691f8b22322f3be796e2153"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.ko.md",
+        "sha256": "5717437eb357f7d78652ff00fe41d261dc3b00d0777dd2042ea026ac910c4b42"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/boundary-growth-extensivity-additivity.en.md",
+        "sha256": "91cee8bb2d352358997a6eaf32691bf3c2f69578dcab5580e1a8aaef28a14305"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.ko.md",
+        "sha256": "87169cbf63ed0c25110b8070f927ecb1068de31846a7ff2c05b470a548213dd6"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/spatial-density-self-averaging-correlations.en.md",
+        "sha256": "ac24140fd2b4e1a4091037a98d698e1b234f10b61a5ca65d9e3ae815862b93ba"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.ko.md",
+        "sha256": "6bf2e4df0cdb337c2c207f76449e9cf50e6171cb34edf86ad06c4c927043f58c"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/two-phase-partition-zeros-rounding.en.md",
+        "sha256": "c1b8cd125800b5381367f54ae276aa5b75e8de704000b52f2d21967cdaffdab2"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/thermodynamics.ko.md",
+        "sha256": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3"
+      },
+      {
+        "path": "content/learning/physics-math-for-ai/thermodynamics.en.md",
+        "sha256": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf"
+      }
+    ],
+    "priorResearchArtifacts": {
+      "content/learning/physics-math-for-ai/thermodynamics.en.md": "953c56e1cea448557339f611599539d2627d3bd8a94acd1b8627c57ec2908faf",
+      "content/learning/physics-math-for-ai/thermodynamics.ko.md": "8aeacc7958fcde6c5a3d52fd4961851db987accde43b0e8c15668e1b48cacfe3",
+      "public/assets/learning/thermometry-information-scale.en.svg": "46ea259642757e2c948177d410f2a219401bdf12db8bde220c5c94178fa43f31",
+      "public/assets/learning/thermometry-information-scale.ko.svg": "598613ae723c70ea9cac1c8630dca3a936a486497ebb193f4bd9456210e88688",
+      "scripts/check-thermometry-research.cjs": "c781958ca72c404cbedaa82bdfa1550a93b1991e1d2178f2eb9d45dea9783231",
+      "scripts/learning-thermometry-research.test.ts": "60b9e791bc9d0c882863a5db94c6acc83f0c98665838f6e6d0c56aba10481b1f",
+      "scripts/learning/verify-thermometry-research.py": "bc96b222c3e871b4f50338fe0ff4f14c948ea5a3dfa39a1106591ba6eb81203f",
+      "scripts/learning/generate-thermometry-figures.py": "4f1063ab8e5ad72a43e0fd679962cd1091c9a863158f288ac78f4b0524283625",
+      "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.en.md": "260b3c32d2fd96a963808843b89075e0b5a02474fd9c847b33166ecb077241ca",
+      "content/learning/physics-math-for-ai/finite-body-thermal-contact-heat-entropy.ko.md": "3d8b71b1f2390aa172a2b2c39b264096547630eff635fba8dbfbef66e983c333",
+      "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.en.md": "10080a3edc2005d9c1a574f4f836b52f87602d450f278bfc53e1644a9b010903",
+      "content/learning/physics-math-for-ai/ideal-gas-two-path-heat-work.ko.md": "30b315b8f79e9abe19da960ea3112ff03bcd67272d4178504c5120df0e76d463",
+      "public/assets/learning/heat-work-contact-scale.en.svg": "c8b49365c1e0476c1ada8fd5c0289c40b2d71c1fc555063ac6d77657e7d38242",
+      "public/assets/learning/heat-work-contact-scale.ko.svg": "3f71ba83f6c79ee0c787dba8d736535b1efb3dfa795614e01b8ceba0a5328e33",
+      "public/assets/learning/heat-work-path-null-direction.en.svg": "a57b6e570e68b7b6712eb97d973da86b8124edb853548f24172db27e27ad6e02",
+      "public/assets/learning/heat-work-path-null-direction.ko.svg": "e03438687eb37072b64ec2a13361ff858efcc224c520158b1a557e459adae410",
+      "scripts/check-heat-work-research.cjs": "ebd1e2908aca89139c448204374544abd171c89f4abf50cffbec0e6f7c3501d3",
+      "scripts/learning-heat-work-research.test.ts": "4f43a9176d3c8f338bbb61f9b172097aca262435f21ff2ecd646d0defb3fd428",
+      "scripts/learning/verify-heat-work-research.py": "5c2f8d4b96a0ed26e719357e678ef0ba089374a91192f87a4abc5a9014d0f03a",
+      "scripts/learning/generate-heat-work-research-figures.py": "5cb22bf59ae85ea54f49218063f7c078ceac8cf0afd95a590a740663572c9531",
+      "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.en.md": "6e80d98bfbbc2c81668ef2bd949f17edb2bfa77dfce9b5698b6feca9e198149b",
+      "content/learning/physics-math-for-ai/carnot-cycle-engine-refrigerator.ko.md": "e915a6128d88e241ecb43f1ba4a3469a0a1602734c757d41b0bfd78fe17a9cb8",
+      "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.en.md": "e1e06ba218ea4c146ae6b153c48cc6cd42042872ea71e87acd936be873069786",
+      "content/learning/physics-math-for-ai/two-reservoir-cycle-entropy-admissibility.ko.md": "558dffbcbccfd4428f7fbba70087d6ad3e9499e52e2f506eab3509eea7851fcb",
+      "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.en.md": "bcb8e9f4e17e2da8d76ba3e4b9b17d4161233a714150b62cbf07d83a9a5a97e8",
+      "content/learning/physics-math-for-ai/gapped-spectrum-low-temperature-entropy.ko.md": "b434a9f57993119056df60f434c3697a49648c8d66d7c7afe40e0d7055405529",
+      "public/assets/learning/laws-finite-source-work.en.svg": "36c3b8633806e7c14da8672e865abee52c0e0faa36ed18e435bd00ff063ac7a0",
+      "public/assets/learning/laws-finite-source-work.ko.svg": "094667fec150010fab665b4dd555d1ab73a53cac688e72180c9b47f760d6d1e2",
+      "public/assets/learning/laws-unrestored-device-reset.en.svg": "f2ea8dbaf637fca43cb4f91f02d8e868fd9829cad14c453a48a7ff142e7722a0",
+      "public/assets/learning/laws-unrestored-device-reset.ko.svg": "cd80277e8d52cb73f5f133b4f8414c792a42c6c75790a8352dfbadf8377f2a77",
+      "public/assets/learning/laws-growing-copy-low-temperature.en.svg": "9409cf6331a162a36f433026628bca7a216e5df205c614642dfa18b9334ea21d",
+      "public/assets/learning/laws-growing-copy-low-temperature.ko.svg": "d3eefa000445b8452f2fe48a04eaaec4af68d57acd473f84d160dd55db339ffe",
+      "scripts/check-thermodynamic-laws-research.cjs": "213fd76e88020ec2efde1f6961ae02f1911f7e4cdb4b7da936a2da13b593dacf",
+      "scripts/learning-thermodynamic-laws-research.test.ts": "396cb175abc3bc743980a3d2230f83684e414c2199a7474a2cec8a93becdd884",
+      "scripts/learning/verify-thermodynamic-laws-research.py": "87d2d3c1b193f455e88ca62557221fc601368628a3a32d17e938e465e9776a5d",
+      "scripts/learning/generate-laws-research-figures.py": "ab248b8f1b005380c8342a3b4204a00fa6ecdc29350a81b5127cad75fd0cc8bb",
+      "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.en.md": "c8884d8be4b5341daeae9e64b8c2b499352822663a867fc80bfc6a2afa2e1af5",
+      "content/learning/physics-math-for-ai/finite-spectrum-helmholtz-kl-variational.ko.md": "2b70f8129051d98f381f586070cbffb578c90e804669fa1d2295f2e5c9c3d9c4",
+      "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.en.md": "cabbaa81e0c2a28eaa9107910c512168a62e593dc651a818e97475f34299777f",
+      "content/learning/physics-math-for-ai/ideal-gas-helmholtz-gibbs-volume-availability.ko.md": "cf1068c26a650b9dd65abb3d03e8cce0225d2480af49aafa9e56d4f273381a48",
+      "public/assets/learning/free-energy-quench-relaxation.en.svg": "66845ac8b9da5a92e8a5f2a8eda0479da85c64ee4eb670cbfa9a0aa18a0aad0a",
+      "public/assets/learning/free-energy-quench-relaxation.ko.svg": "ebd93b0adcd311c9031f993616067dc4b07564dddde14f3243c868d16da8b22d",
+      "public/assets/learning/free-energy-inertial-piston-budget.en.svg": "4a3ef143dfc27000167846dcac3263e92869c78332548b89a7cde79df64360a0",
+      "public/assets/learning/free-energy-inertial-piston-budget.ko.svg": "c24670d8083bba2113075d5d17e73548b323712f954785b1df6843dd348d4cb1",
+      "scripts/check-free-energy-research.cjs": "cd11785dc950300ffe6eecfac0e3eab185c5347c991047a421b5674510581bfd",
+      "scripts/learning-free-energy-research.test.ts": "eb6574774960ae1366d231daee74ed9af9972e34d584570e941819d9c5f51a8f",
+      "scripts/learning/verify-free-energy-research.py": "c555b31157c0e6fd32f5e94850dd38f4698b3738eb367c5b4e5324d3d03ec57a",
+      "scripts/learning/generate-free-energy-research-figures.py": "55454b3132656b06d3308f0acec8655e512a50670e912eaab5e39e260874cfa7",
+      "scripts/learning-gas-free-energy-content.test.ts": "40c85dbb1aa94a7dc07357681b1bea194f1f7869754dc92d4a2c84fdc2f57496",
+      "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.en.md": "22994935ed43b1238a2653ad433b9fba4844b21fa949513108e4d8e65121da3f",
+      "content/learning/physics-math-for-ai/binary-shell-multiplicity-block-counts.ko.md": "f5faeff2df6647774485ec8feb0c2425912fdeb308bed436515c0eeb966cca82",
+      "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.en.md": "e5f21a6f59fdcf0e17dc8ae593ffcd207e030e04f1fd4abc2757cc45f8cc89a2",
+      "content/learning/physics-math-for-ai/finite-macro-partition-conditional-entropy.ko.md": "3e1f7f9508fa6a5a5ad1db33a11b11b0eee91eecf4cbe043136db65d9bc0e4fc",
+      "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.en.md": "18528a5d21dc41daca84e8c3ba4b74ea96d06bc262bc10ea8192db361e70c54a",
+      "content/learning/physics-math-for-ai/finite-noisy-macro-observation-channel.ko.md": "0491fbb5cfe9ade34594d3df47fc0467780fce503c922fad221e33b67f360c45",
+      "public/assets/learning/micro-macro-shell-exchange.en.svg": "5f02a72e398fbae69e39bddc8e1eaa06cf3635be9bd46120a15cb7d7d1dbbe96",
+      "public/assets/learning/micro-macro-shell-exchange.ko.svg": "ca872b350149998d9fff11fe5bda6be477583de5103c9775870e7dfe37901661",
+      "public/assets/learning/micro-macro-coarse-memory.en.svg": "567958d9c85fae4b3349cb175549a05f7bf7f5fdc4340a93043dd86bc157cd23",
+      "public/assets/learning/micro-macro-coarse-memory.ko.svg": "df7aef062ad6d00746d8ec150e31934b7af8f97bdaaab00301f0b53f5b1186bd",
+      "public/assets/learning/micro-macro-repeated-sensors.en.svg": "8557e2b8dcd16606e3ca5676cd884572e32d6e67a2f811ef6a8572a45effd7b0",
+      "public/assets/learning/micro-macro-repeated-sensors.ko.svg": "0831eb3ff53a87f824c0c363e3109f01ed5703df812829ac02694c726c77a36f",
+      "scripts/check-micro-macro-research.cjs": "ea987ef21b58b777b498599e6ea030dc9d30e6a260abfcec3f1f50de773a8964",
+      "scripts/learning-micro-macro-research.test.ts": "88dd5d4b64b175614f06197db09eb163d8c630661ae36c66d50e70a647ebe1c6",
+      "scripts/learning/verify-micro-macro-research.py": "368b2570bb91453f2b6c66e51d049f7b2df20a60dbd52d3e92b57575d91748e2",
+      "scripts/learning/generate-micro-macro-research-figures.py": "7d0e5f11b844b42a7278d13a14838e058c77a9973fee03437f6d72d2972edfbb",
+      "scripts/learning-binary-macrostates-content.test.ts": "7f97d6ae565237fe63c168fb2cbfedeefb996540c22fa19abcf8cea289c9ed9a",
+      "scripts/learning-macro-partition-content.test.ts": "278a84f6ed1691bf31f22a871a7e5925de23cdb49f10879aa00b4f60b98815fa",
+      "scripts/learning-noisy-macro-observation-content.test.ts": "333964c1332f4933e45362c71c5640b0430819d0f70fc2fb7b32ce15072da71f",
+      "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.en.md": "659b82f1f3c19966a0b891a609262c5dd825c821d85d96cce09397313ea84a38",
+      "content/learning/physics-math-for-ai/finite-binary-reservoir-canonical-comparison.ko.md": "7accc5aded8e3db2843fb4f56153eb84654e08d00835c90585c684ba1d2d09f3",
+      "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.en.md": "c1e84084c383f5306301b11bedca68e57a6efb0ff6bcafbc0823df1c61156e0b",
+      "content/learning/physics-math-for-ai/canonical-binary-energy-fluctuations.ko.md": "d6297d9b2a0185ceb541329f16970702b03c71c49a824c8ea97e65b9fa18f734",
+      "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.en.md": "8e7bc66f8f361767935d6f2198b3ca9fa099d0b98c73d017f55bc3d8063f026e",
+      "content/learning/physics-math-for-ai/grand-canonical-finite-occupancy-fluctuations.ko.md": "bb67de78a58e7781683bce9015b1c67623b2dc720228f4162a74e7b61d6e41bc",
+      "public/assets/learning/ensembles-reservoir-identification.en.svg": "e7574881238de852b90615b101da45032d35b51c0b12473a28295ea2a3169038",
+      "public/assets/learning/ensembles-reservoir-identification.ko.svg": "d86bfb8368754531a5783618bf80d1d428ae4675b5d3d73f7fd9316158e40a46",
+      "public/assets/learning/ensembles-driven-canonical-response.en.svg": "fe65fb6bef449133fb29c8c25caf4ed58fb20d975fdf8b686c3f07557d8aa3e9",
+      "public/assets/learning/ensembles-driven-canonical-response.ko.svg": "b1ffa231ddbca48f0ee17c78f4175289cca1c0926378a4ac34311284112d8870",
+      "public/assets/learning/ensembles-grand-response-rank.en.svg": "5ab9a0e0b99bbc0d0dce6f55f6f2384beacbf8effbd7795df858da9828141d40",
+      "public/assets/learning/ensembles-grand-response-rank.ko.svg": "664dfa43d78d60e0fe8ede7f864638fe87b593aab114444a89cb3825f089577f",
+      "scripts/check-ensembles-research.cjs": "2a3b4a028ca21918401a95c0d65174e0a0ddccf5652deb8f2ac8589fd5cbe5f7",
+      "scripts/learning-ensembles-research.test.ts": "1ebd47924059b2ddbd5037654bf8dca2cb5c448b69ab011fef4a15d9311b5024",
+      "scripts/learning/verify-ensembles-research.py": "4ac9327a6a6a83ba0048a230a991b03761695c58212f146ed7945a7bdc6d4c5f",
+      "scripts/learning/generate-ensembles-research-figures.py": "f9fc640776e3f0551c71232899cdf49331edca164f416e97b6c0d6e2edca9aa8",
+      "scripts/learning-finite-reservoir-content.test.ts": "1f23c70d15f7f616f2bc0f3688d9424f9204434aea123b64c62c138fddb9f1cc",
+      "scripts/learning-canonical-binary-content.test.ts": "2701304fcedb982262569544c3066a7126c4b95b07d3e63ee2028d43bb467ed2",
+      "scripts/learning-grand-occupancy-content.test.ts": "49a7b942d2b346036dc7c03b4e14ce572b7af33431e32e3bf5321b23d26de75b",
+      "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.en.md": "2a07370a5b7e9e02433a519feca4770e5dc92d4abde2c51abcfbb5cbd2fc79d1",
+      "content/learning/physics-math-for-ai/finite-spectrum-partition-cumulant-generators.ko.md": "458d333457c2c79c8e5bd32a41a67d2396eb814c90db75eaf524ef3385fc80fe",
+      "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.en.md": "3672271d8e236d12d8ba388125c7286e4bce189b1bff501f6128f99c358c4d78",
+      "content/learning/physics-math-for-ai/coupled-binary-sites-partition-factorization.ko.md": "e479e0d4b0409b0659e6d799fea3eccbfb5db4fbb4c2d17cc9e1001161d1d491",
+      "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.en.md": "93a17d5d1556bd352300119e2b10377b6a42f93ef8e85bef040c597a4b02c90a",
+      "content/learning/physics-math-for-ai/infinite-energy-ladder-normalization-cutoff.ko.md": "cebf2452e4e59605cbfc36b426e0d08fa39b36b0494e59873b69c1449d91dafd",
+      "public/assets/learning/partition-research-finite-reweighting.en.svg": "1e547c8427aafe00ab57ff431f744456a9dae80e63d4575e3cef296aeba09f88",
+      "public/assets/learning/partition-research-finite-reweighting.ko.svg": "f35973331397444d70826cfa4178d69078edc2ccbfd119ec68e0f896ea971ac1",
+      "public/assets/learning/partition-research-hidden-spin-marginal.en.svg": "37dd446df42a91099bf97e827e20081ed78443234dff9ffca2682f075f9efc7f",
+      "public/assets/learning/partition-research-hidden-spin-marginal.ko.svg": "5bc94686bb98e02f098ab8abc441812f3f708a2ab53304730e93d202218c2988",
+      "public/assets/learning/partition-research-infinite-weight-variance.en.svg": "c2bc114f03d6e876020959ceca0c930278912860f966b2af1e393c21fafeb9d0",
+      "public/assets/learning/partition-research-infinite-weight-variance.ko.svg": "ec6ae98f4f2b126dc10bda09ddecefee7e80c9068a147fb4db78deaa60c633f7",
+      "scripts/check-partition-research.cjs": "9a42473bf5976192079a793907bfe1749d2cd71175a35cf39449511dbde1fd51",
+      "scripts/learning-partition-research.test.ts": "93cd698253094bc57e00cfdc6ff9d9be034b78ea8bbb5bbaa6d4eb51926007d4",
+      "scripts/learning/verify-partition-research.py": "dbbf7c4fd2b74be9f5c3bc9e6ab7b6b1ce4eeb36e084dfc4a7f952f2b0e2fc97",
+      "scripts/learning/generate-partition-research-figures.py": "e17d176295e11e2966c8432f50e1ff5ef4a5baf44af234587621432d2d7f82ee",
+      "scripts/learning-partition-cumulants-content.test.ts": "dfed3f54bec8a713a83200820e3ea5225fb173f85a051fd0053dba3c214f875f",
+      "scripts/learning-coupled-partition-content.test.ts": "704aa6011d2ecc0c860676d48a65a0d69caccde05a495102e8123c018ee01b9b",
+      "scripts/learning-energy-ladder-content.test.ts": "26d8f60ea87d7a02dee2c0d82e43f036b03974ff059292e0e0958a6f0077d9a2",
+      "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.en.md": "9414d5a81984054eb5e3b511347c4dc826a1cec2cdedb1b6c737fe7b3406acf0",
+      "content/learning/physics-math-for-ai/reference-measure-boltzmann-softmax-identifiability.ko.md": "3cdf160f7587cff201280543aa92952f612938f666fc63a344eca0bc86c64870",
+      "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.en.md": "92afb4f000b560600faf627e2b554284e81d87352023b10264fff73f19e1902f",
+      "content/learning/physics-math-for-ai/finite-gibbs-conditionals-scan-support.ko.md": "fe68a6897a639c3c2dc9bb3f79ffe4fb40bc7670e74ae13f1f24a8b636f5bb36",
+      "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.en.md": "744ee865407ff297b29443cf73e0dadb4120db7977b636c606fcc60703b6e5d8",
+      "content/learning/physics-math-for-ai/quadratic-gaussian-gibbs-normalizability.ko.md": "ed752023c3ab8542ad47f5308719a5471a85ec90921811d96158581b5398aa60",
+      "public/assets/learning/boltzmann-research-two-temperature-identification.en.svg": "96a19227c5d3e868cd8e6ae4b3668ed97ef7a246b6d82531f2a08e67426084ee",
+      "public/assets/learning/boltzmann-research-two-temperature-identification.ko.svg": "c6f5ff08393554f2048998b1f03f5a66bc757700cb8357b815cab7664c5e2ae7",
+      "public/assets/learning/boltzmann-research-state-dependent-scan.en.svg": "513ff5a18cf2046bfbe85095b4b3ce4cc50c26bb2da305546d67882ebcd1b036",
+      "public/assets/learning/boltzmann-research-state-dependent-scan.ko.svg": "141123252d0e5abca1b6abb1d814b21e16d6c83351e5270cc82450b50eb98813",
+      "public/assets/learning/boltzmann-research-gaussian-sampler-bias.en.svg": "fad6cc405f685616ce831c023fb98a5718de1c674e6fd31acfcd51f3d71ae4b2",
+      "public/assets/learning/boltzmann-research-gaussian-sampler-bias.ko.svg": "05d2093ac9e3b3a63c3e49d4f09f1f623406f4bbbb7a4e4c0c1861a6f101149c",
+      "scripts/check-boltzmann-research.cjs": "30ac5fd2d3c7b54017b4beb438b6fdaab3dc2d0b069288762e8cb99ea9d2e5d7",
+      "scripts/learning-boltzmann-research.test.ts": "b14a8ad6bc525f03883d75d9573a30fd2b87b86b41b19f2c5573cfda7a50c7ae",
+      "scripts/learning/verify-boltzmann-research.py": "24e08b04a2a606688a6cdd7a30f9fa417ade0300e46dc1dc0479895626ad3200",
+      "scripts/learning/generate-boltzmann-research-figures.py": "8a0c297d7655869f23e4e04ea446dd5249d07ac0d1f66fcf52a29f7f180c15b9",
+      "scripts/learning-weighted-boltzmann-content.test.ts": "71f93eab60226dbb8b3b7a329bd072cc71b49470c385a72516781991956e7dfd",
+      "scripts/learning-finite-gibbs-content.test.ts": "9814379a69d18502a1dff3d7f2adfeff53a3fc534ed6c57c42ea0e99eedc9768",
+      "scripts/learning-quadratic-gibbs-content.test.ts": "3a361346c9b8e82b19a649c6a162894815232d54ea34f0e76c799ef5cbccdab0",
+      "scripts/learning-boltzmann-gibbs-integration.test.ts": "e8f680959b8a032da1a6e4d6127249c9ed64568f5f9c4da1972f73b8375fcc83",
+      "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.en.md": "b150e3bc81a4abe6b70e85c698240da55d48badd890e728a5eec9c7ab8c18e3d",
+      "content/learning/physics-math-for-ai/finite-curie-weiss-magnetization-symmetry.ko.md": "9e97975bd2648070bc135c5bfad9d65b30eb5d3beaf9f12938ad5607c0ea1943",
+      "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.en.md": "22c88397570919a6aa677ebd9cc4da49ab72af7fd3f3e04b236839722a59df0b",
+      "content/learning/physics-math-for-ai/curie-weiss-variational-stability-limits.ko.md": "520ad2aff4c301946aaab527114a4392f98692cbb0c9e488513b463e33428b84",
+      "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.en.md": "af9c929b0df3200d77f66f0e3bf38d912e1f160e614b0ec08d7275183f1b0d77",
+      "content/learning/physics-math-for-ai/landau-sixth-order-coexistence-stability.ko.md": "f65bea07913365af004773010b34a6e022d86ca2d8756ef774b9083cbddf25d9",
+      "public/assets/learning/phase-transition-research-critical-fluctuations.en.svg": "cf4a4946f93d1019e7adc9726a8243c91ed9e3de33b71966d5611b71678286ce",
+      "public/assets/learning/phase-transition-research-critical-fluctuations.ko.svg": "c5bce67909998ba3caaeef7d58c8a1ba85e4c5ff413923132eb0eb962bcd810c",
+      "public/assets/learning/phase-transition-research-laplace-branch-weights.en.svg": "e270df2cef26516f8b3f156189708df3138143faafbb610e36b9f6b11db303a2",
+      "public/assets/learning/phase-transition-research-laplace-branch-weights.ko.svg": "08efc2ac61eb0b5aff8bf333590a45349f2ef98b2ccd74112fbab741cab878b0",
+      "public/assets/learning/phase-transition-research-interface-droplet.en.svg": "1830db3ab42386ed6659418930301cd1f1fc269aa1f80a1ee68b9ac05e3ed566",
+      "public/assets/learning/phase-transition-research-interface-droplet.ko.svg": "c13edea79f572074fdbaffc7bc1576c36204852628bf09c24e202d329ab50a36",
+      "scripts/learning/verify-phase-transition-research.py": "9efa89f7457567f1c6d822c703abf8e7a857c6617551b6d006cf79c807554853",
+      "scripts/learning/generate-phase-transition-research-figures.py": "022f1f46fe8fde6970ad1caee1dde5b699488cb4b03e0325d69f9ab261b8739f",
+      "scripts/learning-phase-transition-research.test.ts": "71948998591b1d0dfe9c0ed81e1dd7d5c7d2b1a5caceea3a1056cc9975b6c7ea",
+      "scripts/check-phase-transition-research.cjs": "e7fd87c8a74373ecd3352ee3ddbd559749f7dacb5be6d90787ae16d0faadff79",
+      "scripts/learning-curie-weiss-content.test.ts": "cba1e1d57df60dfaf0e5797ffc03f8648c1983a482d11dbe11906c773e7d9266",
+      "scripts/learning-curie-weiss-variational-content.test.ts": "c7297911b279309b8828c1b99ad4eccc05065716dc52704acaae09f18f4ca2f3",
+      "scripts/learning-landau-sixth-order-content.test.ts": "f28744b6068ee2a970e4f5f0c1b7e5411d15603ba2a7cd831224a1e2e114c74f",
+      "scripts/learning-phase-transitions-integration.test.ts": "8460a15001ac1b2f13f59b177b73fce464ea5caae89f2feaa6676cf53237ea90",
+      "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.en.md": "03baec7d35784db42139c73a7345c890a0ec9c37640c76a840626373b0adeec5",
+      "content/learning/physics-math-for-ai/binary-connected-correlations-field-hessian.ko.md": "e171447041a557f917b4864b358f122a3970f2b1c9390110d9a95df510aa0e9f",
+      "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.en.md": "1aef513b803cad426841e8d0655634de42d67877ec36f2488876fd3ba6f0e549",
+      "content/learning/physics-math-for-ai/periodic-ising-ring-correlation-length.ko.md": "effb8c078408995c6bda9b79d5a840781f0b398b197396ad6df20968241a7b9c",
+      "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.en.md": "294b98196495e7460ee353001d699bcc5347a3677691f8b22322f3be796e2153",
+      "content/learning/physics-math-for-ai/finite-correlated-average-ar1-uncertainty.ko.md": "ce29b6ccceb6b5c7c5161b86af6fc90068954f532b5888fdd2d46d265477427a",
+      "public/assets/learning/correlations-research-interaction-nuisance-information.en.svg": "451f4d991b215b9453430fd9c94cc7111e23b64a9907e9d50125ca4d6c9f2734",
+      "public/assets/learning/correlations-research-interaction-nuisance-information.ko.svg": "943bdf302fda0ffa2f1c5e3725b61e697113e997debefd6a92d607b090197a0f",
+      "public/assets/learning/correlations-research-ring-fourier-modes.en.svg": "98ede22c33df0c58dc3c6a6e7862f415f620d0d00cc765e06e2282b48b067541",
+      "public/assets/learning/correlations-research-ring-fourier-modes.ko.svg": "945daa48827de329cc1e46f831b1ad74da44853df7a7daed26ce1b1894d63075",
+      "public/assets/learning/correlations-research-ar1-efficient-mean.en.svg": "dd0be6e63094a478078cf87f20084a0105e4b85349ea5a9df6b853ba14427ce8",
+      "public/assets/learning/correlations-research-ar1-efficient-mean.ko.svg": "c6c753827fc54a85cfeea6a050eff8122bd9ce8ea8dfa59e1233d3dc27708f4c",
+      "scripts/learning/verify-correlations-research.py": "4264de0fe2a82e70a197190956992c36bbc07cb2eee9ae54db83793a769db500",
+      "scripts/learning/generate-correlations-research-figures.py": "1b232af27879699e520ee74b8f41cb810fe5c3994d0280571c5ced86adede063",
+      "scripts/learning-correlations-research.test.ts": "6211a8e5edad5fce2b9a2bc2b3df405712271ae28411b8a57f85262ebd35f280",
+      "scripts/check-correlations-research.cjs": "74ac25073b584b186017de931a3ea46350eaf7903b73bad551becb30bced203f",
+      "scripts/learning-binary-correlations-content.test.ts": "708871bad6be72081125f7fb0f2aec0826778c1b1b134ceff883e300ffceaff0",
+      "scripts/learning-periodic-ising-ring-content.test.ts": "5d36df8c5a20dcb031a03a02d2e1b66305fc0fb2d61adf8c282f23e98d8209e8",
+      "scripts/learning-ar1-average-content.test.ts": "0a13ba8b53a23a52a3c3a0e60ebff29e174d05f82e0ae1149dda6fc82ee2b2e2",
+      "scripts/learning-correlations-integration.test.ts": "76abb6794b9472f8e781f3de54efd59a72b6cd29098397d4120f71a1c6ec068e"
+    },
+    "previousLedgerEntriesPreserved": 853,
+    "currentLedgerEntries": 859
+  },
+  "freeze": {
+    "inputFiles": 5457,
+    "outputFiles": 313,
+    "inputManifestSha256": "4e2d82c253ed4c94ae6856f778a13111fd9bc2782827ab3845b2531a52f8071c",
+    "outputManifestSha256": "4c92dbcfae58214657df337fc4179fd365f7bd92ced712d15338965655ef246a"
+  },
+  "browserProcessExitCode": 0,
+  "capturePaintCorrection": {
+    "firstProcessExitCode": 0,
+    "reason": "Initial 320px captures sometimes painted the first caption line incompletely just after a large programmatic scroll. The same keyboard-scroll sequence had no out-of-bounds caption characters; waiting two animation frames produced a complete caption.",
+    "file": "scripts/check-detailed-balance-research.cjs",
+    "previousSha256": "54e99d479028864a55ef0e043a2b894b2f3d98596b31c39ab78fdd7901629f7e",
+    "correctedSha256": "b31fd902f75b54fdba05cf779d7832c763fc4cb88d0df4250d5460cc3ad08882",
+    "productAndOutputChanged": false,
+    "diagnostic": [
+      {
+        "text": "The upper panel compares exact finite MSE from the deterministic start u=0, including the initial observation. The lower panel compares |λ_δ| with τ_δ for the original a=b=0.9. Both are dimensionless but answer different questions; their minima need not coincide.",
+        "outside": []
+      }
+    ]
+  },
+  "settledMobileCaptures": {
+    "scope": "Six additional normal-reading mobile captures after scroll paint settles; product and static output unchanged",
+    "rows": [
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "ko",
+        "path": ".runtime/learning/detailed-balance-research/settled-stationary-flux-three-state-cycle.ko.png",
+        "caption": {
+          "text": "위쪽은 n=12,p=1/2,q=1/4,r=1/4에서 부호 이동 수를 합산한다. 아래쪽은 log[P(S=s)/P(S=−s)]를 s와 비교한다. 이산 경로 확률이며 표집 궤적이나 열 흐름 측정이 아니다.",
+          "outside": []
+        },
+        "sha256": "0333e0395ad5dbb05e714498bc160b1fde1a9ad2eca801cba1a36eb20cdcea66"
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "ko",
+        "path": ".runtime/learning/detailed-balance-research/settled-metropolis-hastings-proposal-balance.ko.png",
+        "caption": {
+          "text": "아래쪽은 π=(1,2,4)/7, φ(i)=1{i=2}−4/7을 사용한다. 제안 가중치는 정방향 2, 역방향 1과 표시한 자기 가중치 s다. 자기 가중치가 커지면 시도 시계에서 이동 빈도가 달라진다. 표에는 목표 평균 이동률, 두 점근 분산 계수와 Barker/Metropolis 분산 비를 적었다. 코드는 유리수 Poisson 방정식을 풀며 짧은 궤적에서 분산을 추정하거나 머무름을 삭제하지 않는다.",
+          "outside": []
+        },
+        "sha256": "5037fd081c673da528732a674b149064615f4efe52be28324bca92869519a05b"
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "ko",
+        "path": ".runtime/learning/detailed-balance-research/settled-reversible-two-state-periodicity-mixing.ko.png",
+        "caption": {
+          "text": "위쪽은 초기 관측을 포함해 결정적 시작 u=0에서 정확한 유한 MSE를 비교한다. 아래쪽은 원래 a=b=0.9에서 |λ_δ|와 τ_δ를 비교한다. 모두 무차원이지만 다른 질문에 답하므로 최솟값이 같을 필요는 없다.",
+          "outside": []
+        },
+        "sha256": "620802e3b29c3c4b4c7a560175bfbcba78e9dfc9bc616f5f7c75be78409af660"
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "en",
+        "path": ".runtime/learning/detailed-balance-research/settled-stationary-flux-three-state-cycle.en.png",
+        "caption": {
+          "text": "The upper panel enumerates signed move counts for n=12, p=1/2,q=1/4,r=1/4. The lower panel compares log[P(S=s)/P(S=−s)] with s. These are discrete path probabilities, not a sampled path or a heat-flow measurement.",
+          "outside": []
+        },
+        "sha256": "cc59e47ff01f291128dba24e7c1edd1b275330e37ef034cb92d05cd718d2237c"
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "en",
+        "path": ".runtime/learning/detailed-balance-research/settled-metropolis-hastings-proposal-balance.en.png",
+        "caption": {
+          "text": "The lower panel uses π=(1,2,4)/7 and φ(i)=1{i=2}−4/7. Proposal weights are forward 2, backward 1, and the indicated self weight s. More self weight changes the attempt clock's movement frequency. The table reports target-averaged movement, each asymptotic variance coefficient, and Barker/Metropolis variance ratio. The code solves rational Poisson equations; it neither estimates variance from a short trace nor deletes holding.",
+          "outside": []
+        },
+        "sha256": "c2efde6ccdae0234edb064c08f09c672addf2014866a9886f888a954f040b239"
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "en",
+        "path": ".runtime/learning/detailed-balance-research/settled-reversible-two-state-periodicity-mixing.en.png",
+        "caption": {
+          "text": "The upper panel compares exact finite MSE from the deterministic start u=0, including the initial observation. The lower panel compares |λ_δ| with τ_δ for the original a=b=0.9. Both are dimensionless but answer different questions; their minima need not coincide.",
+          "outside": []
+        },
+        "sha256": "9d2bd3d23fb15f5a2b657e896bdd0eb29ba6f88cbf4b15f62961bec057307a52"
+      }
+    ]
+  },
+  "browser": {
+    "unitIds": [
+      "stationary-flux-three-state-cycle",
+      "metropolis-hastings-proposal-balance",
+      "reversible-two-state-periodicity-mixing"
+    ],
+    "rows": [
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "ko",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "ko",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "en",
+        "width": 320,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "en",
+        "width": 768,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "en",
+        "width": 1440,
+        "theme": "light",
+        "violations": 0
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "ko",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "en",
+        "width": 1440,
+        "theme": "dark",
+        "violations": 0
+      }
+    ],
+    "errors": [],
+    "guides": [
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "example": 0
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "example": 1
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "example": 2
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "example": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "example": 1
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "example": 2
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "example": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "example": 1
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "example": 2
+      }
+    ],
+    "questions": [
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "question": 0
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "question": 1
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "question": 2
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "question": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "question": 1
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "question": 2
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "question": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "question": 1
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "question": 2
+      }
+    ],
+    "concepts": [
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "step": 0
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "step": 1
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "step": 2
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "step": 3
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "step": 4
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "step": 5
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "step": 0
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "step": 1
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "step": 2
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "step": 3
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "step": 4
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "step": 5
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "step": 0
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "step": 1
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "step": 2
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "step": 3
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "step": 4
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "step": 5
+      }
+    ],
+    "interactions": [
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "concepts": 6,
+        "guides": 3,
+        "quizzes": 3,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "concepts": 6,
+        "guides": 3,
+        "quizzes": 3,
+        "persistence": true,
+        "completion": true
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "concepts": 6,
+        "guides": 3,
+        "quizzes": 3,
+        "persistence": true,
+        "completion": true
+      }
+    ],
+    "assetBounds": [
+      {
+        "path": "public/assets/learning/detailed-balance-research-path-irreversibility.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/detailed-balance-research-path-irreversibility.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/detailed-balance-research-acceptance-variance-order.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/detailed-balance-research-acceptance-variance-order.ko.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/detailed-balance-research-initialization-laziness-error.en.svg",
+        "outside": []
+      },
+      {
+        "path": "public/assets/learning/detailed-balance-research-initialization-laziness-error.ko.svg",
+        "outside": []
+      }
+    ]
+  },
+  "renderAndServedFiles": {
+    "status": "passed",
+    "rows": [
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "수위가-일정해도-물은-순환할-수-있다",
+            "title": "수위가 일정해도 물은 순환할 수 있다"
+          },
+          {
+            "id": "화살표를-그리기-전에-준비를-정하자",
+            "title": "화살표를 그리기 전에 준비를 정하자"
+          },
+          {
+            "id": "행은-출발-열은-도착으로-고정하자",
+            "title": "행은 출발, 열은 도착으로 고정하자"
+          },
+          {
+            "id": "분포의-변화와-표본-경로를-구별하자",
+            "title": "분포의 변화와 표본 경로를 구별하자"
+          },
+          {
+            "id": "균일한-정상-참조를-직접-유도하자",
+            "title": "균일한 정상 참조를 직접 유도하자"
+          },
+          {
+            "id": "한-방향-흐름과-순전류를-따로-계산하자",
+            "title": "한 방향 흐름과 순전류를 따로 계산하자"
+          },
+          {
+            "id": "정상성은-정점의-조건이고-상세평형은-쌍의-조건이다",
+            "title": "정상성은 정점의 조건이고 상세평형은 쌍의 조건이다"
+          },
+          {
+            "id": "정상-체인의-시간-반전을-조심스럽게-정의하자",
+            "title": "정상 체인의 시간 반전을 조심스럽게 정의하자"
+          },
+          {
+            "id": "정상-참조의-흐름과-현재-준비의-흐름을-구별하자",
+            "title": "정상 참조의 흐름과 현재 준비의 흐름을 구별하자"
+          },
+          {
+            "id": "유일한-정상분포가-모든-초기화를-끌어당기지는-않는다",
+            "title": "유일한 정상분포가 모든 초기화를 끌어당기지는 않는다"
+          },
+          {
+            "id": "부호를-지우지-않으면서-분포-거리를-측정하자",
+            "title": "부호를 지우지 않으면서 분포 거리를 측정하자"
+          },
+          {
+            "id": "혼합률을-추측하지-말고-상계를-유도하자",
+            "title": "혼합률을 추측하지 말고 상계를 유도하자"
+          },
+          {
+            "id": "표시된-확률이-같아도-정확한-차이는-보존하자",
+            "title": "표시된 확률이 같아도 정확한 차이는 보존하자"
+          },
+          {
+            "id": "가정을-유지한-채-ai-표본추출과-연결하자",
+            "title": "가정을 유지한 채 AI 표본추출과 연결하자"
+          },
+          {
+            "id": "분포와-흐름을-실제-실험에서-비교하자",
+            "title": "분포와 흐름을 실제 실험에서 비교하자"
+          },
+          {
+            "id": "연구-확장-정상-경로에서-시간의-화살을-측정하자",
+            "title": "연구 확장: 정상 경로에서 시간의 화살을 측정하자"
+          },
+          {
+            "id": "먼저-예측하고-계산한-뒤-설명하자",
+            "title": "먼저 예측하고 계산한 뒤 설명하자"
+          },
+          {
+            "id": "일반-체인과-연구-문제로-이어가기",
+            "title": "일반 체인과 연구 문제로 이어가기"
+          }
+        ]
+      },
+      {
+        "id": "stationary-flux-three-state-cycle",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "a-constant-level-can-hide-a-circulating-flow",
+            "title": "A constant level can hide a circulating flow"
+          },
+          {
+            "id": "specify-the-preparation-before-drawing-arrows",
+            "title": "Specify the preparation before drawing arrows"
+          },
+          {
+            "id": "fix-the-row-and-column-convention",
+            "title": "Fix the row and column convention"
+          },
+          {
+            "id": "evolve-a-distribution-not-a-sampled-trajectory",
+            "title": "Evolve a distribution, not a sampled trajectory"
+          },
+          {
+            "id": "derive-the-uniform-stationary-reference",
+            "title": "Derive the uniform stationary reference"
+          },
+          {
+            "id": "keep-one-way-flux-and-net-current-separate",
+            "title": "Keep one-way flux and net current separate"
+          },
+          {
+            "id": "stationarity-is-a-vertex-condition-detailed-balance-is-a-pair-condition",
+            "title": "Stationarity is a vertex condition; detailed balance is a pair condition"
+          },
+          {
+            "id": "reverse-a-stationary-chain-carefully",
+            "title": "Reverse a stationary chain carefully"
+          },
+          {
+            "id": "separate-reference-flows-from-current-preparation-flows",
+            "title": "Separate reference flows from current preparation flows"
+          },
+          {
+            "id": "a-unique-stationary-distribution-need-not-attract-every-initialization",
+            "title": "A unique stationary distribution need not attract every initialization"
+          },
+          {
+            "id": "measure-distance-without-erasing-signs",
+            "title": "Measure distance without erasing signs"
+          },
+          {
+            "id": "derive-an-upper-bound-rather-than-guessing-a-mixing-rate",
+            "title": "Derive an upper bound rather than guessing a mixing rate"
+          },
+          {
+            "id": "preserve-exact-differences-when-displayed-probabilities-coincide",
+            "title": "Preserve exact differences when displayed probabilities coincide"
+          },
+          {
+            "id": "connect-the-example-to-ai-sampling-with-its-assumptions-intact",
+            "title": "Connect the example to AI sampling with its assumptions intact"
+          },
+          {
+            "id": "connect-distributions-and-flows-to-the-experiment",
+            "title": "Connect distributions and flows to the experiment"
+          },
+          {
+            "id": "research-extension-measure-the-arrow-of-time-in-a-stationary-path",
+            "title": "Research extension: measure the arrow of time in a stationary path"
+          },
+          {
+            "id": "predict-calculate-and-explain",
+            "title": "Predict, calculate and explain"
+          },
+          {
+            "id": "continue-toward-general-chains-and-research-questions",
+            "title": "Continue toward general chains and research questions"
+          }
+        ]
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "제안이-곧-목표를-보존하는-전이는-아니다",
+            "title": "제안이 곧 목표를 보존하는 전이는 아니다"
+          },
+          {
+            "id": "목표-분포와-제안-분포를-독립적으로-정하자",
+            "title": "목표 분포와 제안 분포를 독립적으로 정하자"
+          },
+          {
+            "id": "대칭적인-왕복-흐름-예산에서-시작하자",
+            "title": "대칭적인 왕복 흐름 예산에서 시작하자"
+          },
+          {
+            "id": "조건부-수락률을-유도하고-없는-제안은-구별하자",
+            "title": "조건부 수락률을 유도하고 없는 제안은 구별하자"
+          },
+          {
+            "id": "거부한-질량은-출발-상태의-대각으로-돌려놓자",
+            "title": "거부한 질량은 출발 상태의 대각으로 돌려놓자"
+          },
+          {
+            "id": "비균일-세-상태-예를-끝까지-계산하자",
+            "title": "비균일 세 상태 예를 끝까지 계산하자"
+          },
+          {
+            "id": "목표-비율만-쓰는-비교-규칙의-오류를-계산하자",
+            "title": "목표 비율만 쓰는 비교 규칙의 오류를 계산하자"
+          },
+          {
+            "id": "목표-준비-장부와-정상-장부의-이름을-구별하자",
+            "title": "목표 준비 장부와 정상 장부의 이름을 구별하자"
+          },
+          {
+            "id": "보정을-생략해도-우연히-목표를-보존하는-경우를-이해하자",
+            "title": "보정을 생략해도 우연히 목표를 보존하는 경우를 이해하자"
+          },
+          {
+            "id": "보정한-뒤의-통신-가능성을-확인하자",
+            "title": "보정한 뒤의 통신 가능성을 확인하자"
+          },
+          {
+            "id": "수락률-이동률과-평균을-취한-준비를-구별하자",
+            "title": "수락률, 이동률과 평균을 취한 준비를 구별하자"
+          },
+          {
+            "id": "모든-머무름을-삭제해서-시계를-몰래-바꾸지-말자",
+            "title": "모든 머무름을 삭제해서 시계를 몰래 바꾸지 말자"
+          },
+          {
+            "id": "정확한-비율-영-확률과-표시된-잔차를-구별하자",
+            "title": "정확한 비율, 영 확률과 표시된 잔차를 구별하자"
+          },
+          {
+            "id": "목표와-제안을-명시한-채-ai에-연결하자",
+            "title": "목표와 제안을 명시한 채 AI에 연결하자"
+          },
+          {
+            "id": "제안수락이동을-실제-실험에서-구별하자",
+            "title": "제안·수락·이동을 실제 실험에서 구별하자"
+          },
+          {
+            "id": "연구-확장-추정량의-분산으로-수락-규칙을-비교하자",
+            "title": "연구 확장: 추정량의 분산으로 수락 규칙을 비교하자"
+          },
+          {
+            "id": "먼저-예측하고-계산한-뒤-설명하자",
+            "title": "먼저 예측하고 계산한 뒤 설명하자"
+          },
+          {
+            "id": "주기성-지지집합과-더-넓은-이론으로-이어가기",
+            "title": "주기성, 지지집합과 더 넓은 이론으로 이어가기"
+          }
+        ]
+      },
+      {
+        "id": "metropolis-hastings-proposal-balance",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "a-proposal-is-not-yet-a-target-preserving-transition",
+            "title": "A proposal is not yet a target-preserving transition"
+          },
+          {
+            "id": "define-the-target-and-the-proposal-independently",
+            "title": "Define the target and the proposal independently"
+          },
+          {
+            "id": "start-with-a-symmetric-pair-flow-budget",
+            "title": "Start with a symmetric pair-flow budget"
+          },
+          {
+            "id": "derive-conditional-acceptance-and-treat-absent-proposals-explicitly",
+            "title": "Derive conditional acceptance and treat absent proposals explicitly"
+          },
+          {
+            "id": "put-rejected-mass-back-on-the-departure-diagonal",
+            "title": "Put rejected mass back on the departure diagonal"
+          },
+          {
+            "id": "work-through-a-nonuniform-three-state-example",
+            "title": "Work through a nonuniform three-state example"
+          },
+          {
+            "id": "calculate-what-the-target-only-comparison-gets-wrong",
+            "title": "Calculate what the target-only comparison gets wrong"
+          },
+          {
+            "id": "label-target-prepared-and-stationary-ledgers-differently",
+            "title": "Label target-prepared and stationary ledgers differently"
+          },
+          {
+            "id": "understand-the-cases-where-omission-happens-to-preserve-the-target",
+            "title": "Understand the cases where omission happens to preserve the target"
+          },
+          {
+            "id": "check-communication-after-applying-the-correction",
+            "title": "Check communication after applying the correction"
+          },
+          {
+            "id": "distinguish-acceptance-movement-and-the-preparation-used-for-averaging",
+            "title": "Distinguish acceptance, movement and the preparation used for averaging"
+          },
+          {
+            "id": "do-not-silently-change-the-clock-by-deleting-all-holding",
+            "title": "Do not silently change the clock by deleting all holding"
+          },
+          {
+            "id": "keep-exact-ratios-zeros-and-displayed-residuals-distinct",
+            "title": "Keep exact ratios, zeros and displayed residuals distinct"
+          },
+          {
+            "id": "connect-the-construction-to-ai-with-the-target-and-proposal-still-explicit",
+            "title": "Connect the construction to AI with the target and proposal still explicit"
+          },
+          {
+            "id": "connect-proposals-acceptance-and-movement-to-the-experiment",
+            "title": "Connect proposals, acceptance and movement to the experiment"
+          },
+          {
+            "id": "research-extension-compare-acceptance-rules-through-estimator-variance",
+            "title": "Research extension: compare acceptance rules through estimator variance"
+          },
+          {
+            "id": "predict-calculate-and-explain",
+            "title": "Predict, calculate and explain"
+          },
+          {
+            "id": "continue-to-periodicity-support-and-broader-theory",
+            "title": "Continue to periodicity, support and broader theory"
+          }
+        ]
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "ko",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "왕복-흐름이-맞아도-영원히-교대할-수-있다",
+            "title": "왕복 흐름이 맞아도 영원히 교대할 수 있다"
+          },
+          {
+            "id": "두-전이-확률과-별도의-초기화를-정하자",
+            "title": "두 전이 확률과 별도의 초기화를 정하자"
+          },
+          {
+            "id": "정상성을-풀되-항등-전이의-가족은-유지하자",
+            "title": "정상성을 풀되 항등 전이의 가족은 유지하자"
+          },
+          {
+            "id": "상세평형을-쓰고-정상-지지집합에서만-반전하자",
+            "title": "상세평형을 쓰고 정상 지지집합에서만 반전하자"
+          },
+          {
+            "id": "분포-갱신을-아핀-재귀로-줄이자",
+            "title": "분포 갱신을 아핀 재귀로 줄이자"
+          },
+          {
+            "id": "닫힌식을-유도하고-고유값의-부호를-유지하자",
+            "title": "닫힌식을 유도하고 고유값의 부호를 유지하자"
+          },
+          {
+            "id": "통신류와-귀환-주기를-확인하자",
+            "title": "통신류와 귀환 주기를 확인하자"
+          },
+          {
+            "id": "세-가지-극한-진술을-나누자",
+            "title": "세 가지 극한 진술을 나누자"
+          },
+          {
+            "id": "실제-총변동-거리를-유도하자",
+            "title": "실제 총변동 거리를 유도하자"
+          },
+          {
+            "id": "혼합-기준에는-최악의-초기-거리를-사용하자",
+            "title": "혼합 기준에는 최악의 초기 거리를 사용하자"
+          },
+          {
+            "id": "부호를-포함한-spectral-gap과-절댓값-gap을-구별하자",
+            "title": "부호를 포함한 spectral gap과 절댓값 gap을 구별하자"
+          },
+          {
+            "id": "분포를-평균하되-표본-오차-결과로-바꾸지-말자",
+            "title": "분포를 평균하되 표본 오차 결과로 바꾸지 말자"
+          },
+          {
+            "id": "고유값과-정규화한-관측-상관을-나누자",
+            "title": "고유값과 정규화한 관측 상관을 나누자"
+          },
+          {
+            "id": "선형-표시-범위-아래의-정확한-편차를-유지하자",
+            "title": "선형 표시 범위 아래의 정확한 편차를 유지하자"
+          },
+          {
+            "id": "교대와-혼합을-실제-실험에서-구별하자",
+            "title": "교대와 혼합을 실제 실험에서 구별하자"
+          },
+          {
+            "id": "연구-확장-확률적-시간-평균의-오차를-계산하자",
+            "title": "연구 확장: 확률적 시간 평균의 오차를 계산하자"
+          },
+          {
+            "id": "먼저-예측하고-계산한-뒤-설명하자",
+            "title": "먼저 예측하고 계산한 뒤 설명하자"
+          },
+          {
+            "id": "유한-혼합을-ai와-후속-연구에-연결하자",
+            "title": "유한 혼합을 AI와 후속 연구에 연결하자"
+          }
+        ]
+      },
+      {
+        "id": "reversible-two-state-periodicity-mixing",
+        "lang": "en",
+        "exactCurrentRenderedManuscriptInExport": true,
+        "outline": [
+          {
+            "id": "balanced-traffic-can-still-alternate-forever",
+            "title": "Balanced traffic can still alternate forever"
+          },
+          {
+            "id": "specify-two-transition-probabilities-and-a-separate-initialization",
+            "title": "Specify two transition probabilities and a separate initialization"
+          },
+          {
+            "id": "solve-stationarity-and-retain-the-identity-family",
+            "title": "Solve stationarity and retain the identity family"
+          },
+          {
+            "id": "state-detailed-balance-and-reverse-only-on-stationary-support",
+            "title": "State detailed balance and reverse only on stationary support"
+          },
+          {
+            "id": "reduce-the-distribution-update-to-an-affine-recurrence",
+            "title": "Reduce the distribution update to an affine recurrence"
+          },
+          {
+            "id": "derive-the-closed-form-and-keep-the-eigenvalue-sign",
+            "title": "Derive the closed form and keep the eigenvalue sign"
+          },
+          {
+            "id": "identify-communicating-classes-and-return-periods",
+            "title": "Identify communicating classes and return periods"
+          },
+          {
+            "id": "separate-three-kinds-of-limiting-statement",
+            "title": "Separate three kinds of limiting statement"
+          },
+          {
+            "id": "derive-the-actual-total-variation-distance",
+            "title": "Derive the actual total-variation distance"
+          },
+          {
+            "id": "use-worst-initial-distance-for-a-mixing-criterion",
+            "title": "Use worst-initial distance for a mixing criterion"
+          },
+          {
+            "id": "distinguish-signed-and-absolute-spectral-gaps",
+            "title": "Distinguish signed and absolute spectral gaps"
+          },
+          {
+            "id": "average-distributions-without-claiming-a-sampling-error-result",
+            "title": "Average distributions without claiming a sampling-error result"
+          },
+          {
+            "id": "keep-an-eigenvalue-separate-from-a-normalized-observed-correlation",
+            "title": "Keep an eigenvalue separate from a normalized observed correlation"
+          },
+          {
+            "id": "preserve-exact-deviations-below-the-linear-display-range",
+            "title": "Preserve exact deviations below the linear display range"
+          },
+          {
+            "id": "connect-alternation-and-mixing-to-the-experiment",
+            "title": "Connect alternation and mixing to the experiment"
+          },
+          {
+            "id": "research-extension-calculate-a-random-time-averages-error",
+            "title": "Research extension: calculate a random time average's error"
+          },
+          {
+            "id": "predict-calculate-and-explain",
+            "title": "Predict, calculate and explain"
+          },
+          {
+            "id": "connect-finite-mixing-to-ai-and-further-research",
+            "title": "Connect finite mixing to AI and further research"
+          }
+        ]
+      }
+    ],
+    "files": [
+      {
+        "path": "/book/online/physics-math-for-ai/stationary-flux-three-state-cycle/",
+        "sha256": "3abaee52015d7f9504cd1b4168083957362b488df476b8bab5d06831ae4aae92",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/metropolis-hastings-proposal-balance/",
+        "sha256": "ad78ec6431a90e7d70835f5908dbf1776f20dce6c8033667d7df49f5a15dbcb7",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/book/online/physics-math-for-ai/reversible-two-state-periodicity-mixing/",
+        "sha256": "7529f35781690c3b22835c6cf2d572e1d0e4f1e15253c7de1e639425db330d36",
+        "outputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/detailed-balance-research-path-irreversibility.en.svg",
+        "sha256": "f9d82b3c11a79457811ff4fe9d441af62d471c420a4b250a752413d6eee13a04",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/detailed-balance-research-path-irreversibility.ko.svg",
+        "sha256": "6141c4b69d752bad4f0af4e02f3c878f9abe64937aee565bc1543a885bd54fe7",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/detailed-balance-research-acceptance-variance-order.en.svg",
+        "sha256": "0792d27e88e095fb062b9024eb94291661d940d73dbeedf3bde43ec89d275116",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/detailed-balance-research-acceptance-variance-order.ko.svg",
+        "sha256": "bb63132a8a0a35c0197c1693d8777a70cc9c91ba5a362443f7ac566f09c2dd8a",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/detailed-balance-research-initialization-laziness-error.en.svg",
+        "sha256": "02beff4b1d48d9cd3c7ce5b44a949e4094ffd1ded28f9c0cf863427d19081bf2",
+        "sourceOutputAndServedEqual": true
+      },
+      {
+        "path": "/assets/learning/detailed-balance-research-initialization-laziness-error.ko.svg",
+        "sha256": "41b66e6238c5fc0695718b29ca4efb5606946078793f96d1da173ab691203c3f",
+        "sourceOutputAndServedEqual": true
+      }
+    ],
+    "registry": {
+      "units": 650,
+      "guides": 1969,
+      "domains": 51,
+      "topics": 509
+    },
+    "domainUnits": [
+      "thermodynamics",
+      "finite-body-thermal-contact-heat-entropy",
+      "ideal-gas-two-path-heat-work",
+      "carnot-cycle-engine-refrigerator",
+      "two-reservoir-cycle-entropy-admissibility",
+      "gapped-spectrum-low-temperature-entropy",
+      "finite-spectrum-helmholtz-kl-variational",
+      "ideal-gas-helmholtz-gibbs-volume-availability",
+      "binary-shell-multiplicity-block-counts",
+      "finite-macro-partition-conditional-entropy",
+      "finite-noisy-macro-observation-channel",
+      "finite-binary-reservoir-canonical-comparison",
+      "canonical-binary-energy-fluctuations",
+      "grand-canonical-finite-occupancy-fluctuations",
+      "finite-spectrum-partition-cumulant-generators",
+      "coupled-binary-sites-partition-factorization",
+      "infinite-energy-ladder-normalization-cutoff",
+      "reference-measure-boltzmann-softmax-identifiability",
+      "finite-gibbs-conditionals-scan-support",
+      "quadratic-gaussian-gibbs-normalizability",
+      "finite-curie-weiss-magnetization-symmetry",
+      "curie-weiss-variational-stability-limits",
+      "landau-sixth-order-coexistence-stability",
+      "binary-connected-correlations-field-hessian",
+      "periodic-ising-ring-correlation-length",
+      "finite-correlated-average-ar1-uncertainty",
+      "stationary-flux-three-state-cycle",
+      "metropolis-hastings-proposal-balance",
+      "reversible-two-state-periodicity-mixing",
+      "boundary-growth-extensivity-additivity",
+      "spatial-density-self-averaging-correlations",
+      "two-phase-partition-zeros-rounding"
+    ]
+  },
+  "directVisualReview": [
+    {
+      "path": ".runtime/learning/detailed-balance-research/path-irreversibility.en.png",
+      "sha256": "e1bc1df60ed28d8e69a9d4430379e692cc6e0715e1fc13f97cd15872623939c3",
+      "directlyReviewed": true,
+      "review": "원본 크기에서 두 패널·축·단위·범례와 경로/분산/혼합 비교를 확인. 곡선·표기 겹침 없음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/path-irreversibility.ko.png",
+      "sha256": "958b0d6fc18f50e0c6b9a3363de73a22da5ccb25c7601dc57870d9199c76d27b",
+      "directlyReviewed": true,
+      "review": "원본 크기에서 두 패널·축·단위·범례와 경로/분산/혼합 비교를 확인. 곡선·표기 겹침 없음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/acceptance-variance-order.en.png",
+      "sha256": "bbcd1e24ffb7a5da0ad0bf933860bfcec8441eccf55453ef6e0939dca96d63f8",
+      "directlyReviewed": true,
+      "review": "원본 크기에서 두 패널·축·단위·범례와 경로/분산/혼합 비교를 확인. 곡선·표기 겹침 없음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/acceptance-variance-order.ko.png",
+      "sha256": "724096600522c699726fbd66826073f82b5bcf61c847691dba7d7eb454098543",
+      "directlyReviewed": true,
+      "review": "원본 크기에서 두 패널·축·단위·범례와 경로/분산/혼합 비교를 확인. 곡선·표기 겹침 없음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/initialization-laziness-error.en.png",
+      "sha256": "68ae02a09122eb828a9cc37b1435a62106c5bbe51c8890ecfbd17f84d523bf41",
+      "directlyReviewed": true,
+      "review": "원본 크기에서 두 패널·축·단위·범례와 경로/분산/혼합 비교를 확인. 곡선·표기 겹침 없음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/initialization-laziness-error.ko.png",
+      "sha256": "7ba70f1a94239f615adde5408817190c38a781911e34bccc76a9424056b278d7",
+      "directlyReviewed": true,
+      "review": "원본 크기에서 두 패널·축·단위·범례와 경로/분산/혼합 비교를 확인. 곡선·표기 겹침 없음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/settled-stationary-flux-three-state-cycle.ko.png",
+      "sha256": "0333e0395ad5dbb05e714498bc160b1fde1a9ad2eca801cba1a36eb20cdcea66",
+      "directlyReviewed": true,
+      "review": "최종 일반 읽기 320px 캡처를 직접 검토. 스크롤 후 그리기 안정화를 기다렸고 캡션 전체 글자의 경계도 확인. 본문·캡션·그림이 화면 폭 안에 있음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/settled-metropolis-hastings-proposal-balance.ko.png",
+      "sha256": "5037fd081c673da528732a674b149064615f4efe52be28324bca92869519a05b",
+      "directlyReviewed": true,
+      "review": "최종 일반 읽기 320px 캡처를 직접 검토. 스크롤 후 그리기 안정화를 기다렸고 캡션 전체 글자의 경계도 확인. 본문·캡션·그림이 화면 폭 안에 있음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/settled-reversible-two-state-periodicity-mixing.ko.png",
+      "sha256": "620802e3b29c3c4b4c7a560175bfbcba78e9dfc9bc616f5f7c75be78409af660",
+      "directlyReviewed": true,
+      "review": "최종 일반 읽기 320px 캡처를 직접 검토. 스크롤 후 그리기 안정화를 기다렸고 캡션 전체 글자의 경계도 확인. 본문·캡션·그림이 화면 폭 안에 있음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/settled-stationary-flux-three-state-cycle.en.png",
+      "sha256": "cc59e47ff01f291128dba24e7c1edd1b275330e37ef034cb92d05cd718d2237c",
+      "directlyReviewed": true,
+      "review": "최종 일반 읽기 320px 캡처를 직접 검토. 스크롤 후 그리기 안정화를 기다렸고 캡션 전체 글자의 경계도 확인. 본문·캡션·그림이 화면 폭 안에 있음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/settled-metropolis-hastings-proposal-balance.en.png",
+      "sha256": "c2efde6ccdae0234edb064c08f09c672addf2014866a9886f888a954f040b239",
+      "directlyReviewed": true,
+      "review": "최종 일반 읽기 320px 캡처를 직접 검토. 스크롤 후 그리기 안정화를 기다렸고 캡션 전체 글자의 경계도 확인. 본문·캡션·그림이 화면 폭 안에 있음."
+    },
+    {
+      "path": ".runtime/learning/detailed-balance-research/settled-reversible-two-state-periodicity-mixing.en.png",
+      "sha256": "9d2bd3d23fb15f5a2b657e896bdd0eb29ba6f88cbf4b15f62961bec057307a52",
+      "directlyReviewed": true,
+      "review": "최종 일반 읽기 320px 캡처를 직접 검토. 스크롤 후 그리기 안정화를 기다렸고 캡션 전체 글자의 경계도 확인. 본문·캡션·그림이 화면 폭 안에 있음."
+    }
+  ],
+  "artifacts": {
+    "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.en.md": "3f15f18ea1a3fe34edd6c5af679b37e8bc4a78ff14998e1d9f81e49d989fb135",
+    "content/learning/physics-math-for-ai/stationary-flux-three-state-cycle.ko.md": "aea2b8f5dfd816225d664cc5e0dca273886f8e2d708fd7af1b626df2b14b357e",
+    "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.en.md": "95fcbe917a13de4e171c410140c00c7c4457549e47775233b8e685ff21d5c62b",
+    "content/learning/physics-math-for-ai/metropolis-hastings-proposal-balance.ko.md": "94b7727ec85bcecb4fecfa5ed29617dc5b95a2908e9f1bdd13ec50d5f5293b5c",
+    "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.en.md": "0f718670bb7ffbbfad1e6fd007b455eab1e31047987347c862904dde72126aca",
+    "content/learning/physics-math-for-ai/reversible-two-state-periodicity-mixing.ko.md": "ee20bf9d49603935156a911901e0969c946774eade57453940112c577fc68f51",
+    "public/assets/learning/detailed-balance-research-path-irreversibility.en.svg": "f9d82b3c11a79457811ff4fe9d441af62d471c420a4b250a752413d6eee13a04",
+    "public/assets/learning/detailed-balance-research-path-irreversibility.ko.svg": "6141c4b69d752bad4f0af4e02f3c878f9abe64937aee565bc1543a885bd54fe7",
+    "public/assets/learning/detailed-balance-research-acceptance-variance-order.en.svg": "0792d27e88e095fb062b9024eb94291661d940d73dbeedf3bde43ec89d275116",
+    "public/assets/learning/detailed-balance-research-acceptance-variance-order.ko.svg": "bb63132a8a0a35c0197c1693d8777a70cc9c91ba5a362443f7ac566f09c2dd8a",
+    "public/assets/learning/detailed-balance-research-initialization-laziness-error.en.svg": "02beff4b1d48d9cd3c7ce5b44a949e4094ffd1ded28f9c0cf863427d19081bf2",
+    "public/assets/learning/detailed-balance-research-initialization-laziness-error.ko.svg": "41b66e6238c5fc0695718b29ca4efb5606946078793f96d1da173ab691203c3f",
+    "scripts/learning/verify-detailed-balance-research.py": "6987652d0a447748398b60c473ff1abde54461d110396d16f42a0641e102d672",
+    "scripts/learning/generate-detailed-balance-research-figures.py": "5bb572f688af8b6b8e16ba1674d51fb3fd7dc763253c6b3c9e510e3d28882c2b",
+    "scripts/learning-detailed-balance-research.test.ts": "6301a848545b175203ed247deefca1acd1bbc56af9666f2d2cb9ba3756022673",
+    "scripts/check-detailed-balance-research.cjs": "b31fd902f75b54fdba05cf779d7832c763fc4cb88d0df4250d5460cc3ad08882",
+    "scripts/learning-stationary-cycle-content.test.ts": "d632cf21651268b54041558f071458185245f9e0f759f24110eeaf33d27ebe12",
+    "scripts/learning-hastings-proposal-content.test.ts": "2313f4b67e9ca289b9e0e788d8671e184fb0cf771899e65bdfa138701e517681",
+    "scripts/learning-two-state-mixing-content.test.ts": "225dacf31ebce523fc7a3afd582f886af17624def36a82a5bd9de5ef37e79808",
+    "scripts/learning-detailed-balance-integration.test.ts": "8761bdf0c0eaa578810e1510034659b6ba31727909bddf0f69f1b77285b01916",
+    "scripts/fixtures/reviewed-learning-manuscripts.json": "bbc992b4995346bab5cf0e7825d1ead74457532f7b551d3d12e43812dec11e42"
+  },
+  "overallReview": {
+    "completedDomains": 43,
+    "completedTopics": 426,
+    "remainingDomains": 8,
+    "remainingTopics": 83
+  },
+  "publicDeploymentConfirmed": false
+}
