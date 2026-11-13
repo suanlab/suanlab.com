@@ -9,9 +9,9 @@ import {spinKinds as kinds} from '../src/lib/learning-spin';
 for(const [family,kind] of kinds.entries())test(`registered spin reader has full bilingual theory and connected teaching: ${kind}`,async()=>{
  const unit=learningUnits.find(u=>u.id===kind)!;assert(unit);assert.equal(unit.questions.length,3);assert(unit.prerequisiteIds.every(id=>learningUnits.some(u=>u.id===id)));assert.equal(learningGuides[kind].experiments.length,3);assert.equal(learningGuides[kind].steps.length,3);assert(curriculumDomains.find(d=>d.id==='quantum-physics')!.unitIds.includes(kind));
  for(const lang of ['ko','en']){
-  const source=readFileSync(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8'),draft=readFileSync(`docs/online-learning/physics-math-for-ai/${kind}-chapter.${lang}.md`,'utf8');assert.equal(source,draft.slice(draft.indexOf('## 1.')));assert.equal((source.match(/^## /gm)||[]).length,12);assert.equal((source.match(/^\*\*\d\./gm)||[]).length,6);assert(!source.startsWith('# '));
+  const source=readFileSync(`content/learning/physics-math-for-ai/${kind}.${lang}.md`,'utf8'),draft=readFileSync(`docs/online-learning/physics-math-for-ai/${kind}-chapter.${lang}.md`,'utf8');const start=source.search(/^## (Research extension:|연구 확장:)/m),end=source.indexOf('\n## ',start+4)+1;assert(start>=0&&end>start);assert.equal(source.slice(0,start)+source.slice(end),draft.slice(draft.indexOf('## 1.')));assert.equal((source.match(/^## /gm)||[]).length,13);assert.equal((source.match(/^\*\*\d\./gm)||[]).length,6);assert(!source.startsWith('# '));
  }
- const html=await getLearningContent(kind);assert.equal(html.outline.ko.length,12);assert.equal(html.outline.en.length,12);assert(!/[가-힣]/.test(html.en));assert(!html.ko.includes('katex-error'));assert(!html.en.includes('katex-error'));assert.equal((html.en.match(/katex-display/g)||[]).length,8+family);
+ const html=await getLearningContent(kind);assert.equal(html.outline.ko.length,13);assert.equal(html.outline.en.length,13);assert(!/[가-힣]/.test(html.en));assert(!html.ko.includes('katex-error'));assert(!html.en.includes('katex-error'));assert.equal((html.en.match(/katex-display/g)||[]).length,16+family);
 });
 test('registered lab and fixed comparisons render on the server without creating a Worker',async()=>{
  createRequire(`${process.cwd()}/package.json`).extensions['.css']=()=>{};

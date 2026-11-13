@@ -151,6 +151,129 @@ $$
 
 ℏ가 매우 작으면 반복한 원시 image가 작아진다. 정규화 좌표를 표시할 때는 모든 성분을 같은 양의 정확 유리수 척도로 나누고 제곱근을 계산한다. 수학적으로 같은 대표이며 복소 위상도 보존한다. a/√M=(a/L)/√(M/L²)가 식을 바꿔도 image가 같다는 이유다. L을 최대 실수·허수 성분 절댓값으로 택하면 선택 차원에서 척도 조정한 가중 질량은1/70부터18 사이다. 원시 chain·차원을 가진 norm 계정·정밀도 기준은 유지하며 매 단계 norm을 보정하지 않는다. 독립 참조는 정규직교 제곱근 ladder를 먼저 만들고 역변환하며 생산 다항식 미분 행렬을 재사용하지 않는다.
 
+## 연구 확장: 높은 spin의 민감도와 반복되는 각도 alias
+
+### 평균 화살표는 민감도의 인증이 아니다
+
+능동 z 회전에서는 3차원 평균 화살표만이 아니라 전체 상태와 Jz 확률을 유지하자. 앞의 순수 상태 quantum 정보는 다음과 같다.
+
+$$
+\psi_\varphi=e^{-i\varphi J_z/\hbar}\psi_0,\qquad
+ \mathcal F_Q=\frac{4\operatorname{Var}(J_z)}{\hbar^2}
+ =4\left[\sum_m m^2p_m-\left(\sum_m mp_m\right)^2\right].
+$$
+
+무차원 생성자가 Jz/ℏ이므로 선언한 ℏ 척도는 소거된다. 회전 중 Jz 확률 자체는 고정된다. 생성자 분산을 정하지만 Jz 검출기만으로 누적 상대 위상을 볼 수는 없다. 정보는 적절한 판독이 국소적으로 접근할 수 있는 양이며 현재 검출기의 보증이 아니다.
+
+### 이항분포를 갖는 coherent 준비
+
++x를 향하는 spin-coherent 상태의 정규직교 진폭은 다음과 같다. polynomial 좌표에는 본문의 metric을 사용한다.
+
+$$
+|{+x};j\rangle=2^{-j}\sum_{k=0}^{2j}\sqrt{\binom{2j}{k}}\,|j,j-k\rangle,
+ \qquad p_k=2^{-2j}\binom{2j}{k},\qquad (z_b)_k=\binom{2j}{k}.
+$$
+
+마지막 벡터는 정규화 전 raw 계수다. z_k를 √C_k로 나누면 √C_k이고 제곱 노름은 이항합 2^(2j)다. raw 계수를 모두 같게 두면 다른 상태를 준비한다. 익숙한 이항분포를 reader에 구현된 가중 좌표계와 연결하는 예제다.
+
+k는 Binomial(2j,1/2), m=j−k이므로 평균·분산은 다음을 준다.
+
+$$
+\mathbb E(m)=0,\quad \operatorname{Var}(m)=j/2,\quad
+ \operatorname{Var}(J_z)=\hbar^2j/2,\quad \mathcal F_Q^{\rm coh}=2j.
+$$
+
+coherent 내적도 tensor product를 구성하지 않고 유도할 수 있다. p_k exp[−i(j−k)φ]를 더하고 exp(−ijφ)를 묶은 뒤 이항정리를 적용하자.
+
+$$
+\langle{+x};j|e^{-i\varphi J_z/\hbar}|{+x};j\rangle
+ =\cos^{2j}(\varphi/2),\qquad F_{\rm coh}(\varphi)=\cos^{4j}(\varphi/2).
+$$
+
+fidelity의 국소 곡률은 j에 선형으로 증가한다. 단일 irreducible 표현들의 가족에 관한 설명이며 다입자 자원 모델이나 상태 준비 알고리즘을 제공한 것은 아니다.
+
+### 두 끝점 중첩은 곡률과 모호성을 함께 바꾼다
+
+j>0이면 최고·최저 자기 상태는 서로 다르고 직교한다. 같은 무게로 중첩하자.
+
+$$
+|{\rm cat};j\rangle=\frac{|j,j\rangle+|j,-j\rangle}{\sqrt2}\quad(j>0),\quad
+ \operatorname{Var}(J_z)=\hbar^2j^2,\quad \mathcal F_Q^{\rm cat}=4j^2.
+$$
+
+초기 중첩으로 사영하는 검출기에서는 간섭 fringe가 보인다.
+
+$$
+F_{\rm cat}(\varphi)=\cos^2(j\varphi),\quad
+ p_B(\varphi)=F_{\rm cat}(\varphi),\quad B=|{\rm cat};j\rangle\langle{\rm cat};j|,\quad
+ \mathcal I_B=4j^2\quad(0<p_B<1).
+$$
+
+p_B를 미분해 Bernoulli 정보 식에 넣으면 확률이0 또는1이 아닌 점에서 마지막 식을 얻는다. 반대로 Jz만 측정하면 두 확률이 항상1/2여서 각도 정보가 없다. 큰 생성자 분산이 coherent 판독을 대신 구현하지는 않는다.
+
+coherent·cat 가족에서 작은 각도 전개는 짝함수다.
+
+$$
+F(\varphi)=1-\tfrac14\mathcal F_Q\varphi^2+O(\varphi^4)
+ \quad(\varphi\to0,\ j\ \text{fixed}),\qquad
+ \frac{\mathcal F_Q^{\rm cat}}{\mathcal F_Q^{\rm coh}}=2j\quad(j>0).
+$$
+
+나머지는 j를 고정한 식이며 j도 함께 커지면 계수가 균일하게 제한된다는 보장은 없다. 같은 j에서 cat의 국소 quantum 정보가 더 크지만 j=1/2에서는 coherent 준비와 같은 +x 상태다. j≥1이면 cat의 spin 평균 벡터는0이지만 각도 민감도는 양수다. 평균 화살표나 순수성만으로 이 정보를 식별할 수 없다.
+
+이제 전체 각도 범위를 보자.
+
+$$
+\psi_{\rm cat}(\varphi+\pi/j)=-\psi_{\rm cat}(\varphi),\qquad
+ U_j(2\pi)=(-1)^{2j}I,\qquad
+ \text{cat-ray return interval}=\pi/j\quad(j>0).
+$$
+
+cat 준비는 매 π/j마다 같은 ray를 만들고 전체 spin-j 표현은 정수/반정수에 따른 통상적인 2π 부호를 갖는다. 서로 다른 대상을 말하는 식이다. fringe가 좁아지면 고정 각도 구간에서 반복 alias도 늘어난다. 정확히 같은 ray를 만드는 두 각도는 이 준비에서 최적 측정으로도 구별할 수 없다. 전역 추론을 주장하려면 정당화된 사전 범위나 다른 준비가 필요하다.
+
+### 정보와 alias 간격을 재현하기
+
+정확한 코드는 이항 모멘트와 양 끝점 무게를 사용한다. 주기 열은 π로 나눈 값이므로 π 근사를 사용하지 않는다.
+
+```python
+from fractions import Fraction as Q
+from math import comb
+for j in [Q(1, 2), Q(1), Q(2), Q(4)]:
+    n = int(2*j)
+    probabilities = [Q(comb(n, k), 2**n) for k in range(n+1)]
+    mean = sum((j-k)*p for k, p in enumerate(probabilities))
+    variance = sum((j-k)**2*p for k, p in enumerate(probabilities))-mean**2
+    coherent = 4*variance
+    cat = 4*(Q(1, 2)*j*j + Q(1, 2)*(-j)**2)
+    assert mean == 0 and coherent == 2*j
+    print(j, coherent, cat, 1/j, cat/coherent)
+```
+
+| j | coherent FI | cat FI | cat period / pi | FI ratio |
+|---|---|---|---|---|
+| 1/2 | 1 | 1 | 2 | 1 |
+| 1 | 2 | 4 | 1 | 2 |
+| 2 | 4 | 16 | 1/2 | 4 |
+| 4 | 8 | 64 | 1/4 | 8 |
+
+![Coherent·두 끝점 spin-j 준비의 국소 정보와 생존 fringe를 비교하며, 더 촘촘한 cat fringe가 같은 ray를 더 자주 반복함을 보여 준다.](/assets/learning/quantum-spin-research-coherent-cat-aliases.ko.svg)
+
+j=2에서는 π/2만 회전해도 cat ray가 돌아오지만 +x coherent 상태는 일반적으로 달라진다. 더 큰 국소 정보가 같은 총 실험 비용에서 무조건 유리하다는 뜻은 아니다. 준비 노력·검출기 가용성·시행 횟수·사전 범위를 같게 두지 않았다. 순수 상태 정보의 규약은 [Paris §4.1](https://arxiv.org/pdf/0804.2981)을 따른다. 이항·끝점 계산은 본문의 유한 표현을 이용해 직접 유도했다.
+
+지원하는 j≤4에서는 두 준비 모두 기존 polynomial 입력으로 표현할 수 있다. 회전각 추정과 coherent 중첩 판독은 독립 확장이다. 현재 ladder 실습에 임의 사영이나 각도 추정 제어를 추가하지 않았다. [MIT 각운동량 강의노트](https://ocw.mit.edu/courses/8-321-quantum-theory-i-fall-2017/c491464fb065aa4cc8a99cc562475183_MIT8_321F17_lec19.pdf)는 생성자와 자기 라벨 규약의 배경이다.
+
+#### 연구 확인 1: singlet은 따로 처리하기
+
+j=0에서는 Jz=0인 상태 하나뿐이며 quantum 정보도0이고 회전에 의한 ray 변화가 없다. 두 끝점 cat 공식은 서로 다른 끝점을 가정하므로 적용하면 안 된다. 같은 벡터를 두 번 더해 √2로 나누어도 정규화되지 않는다.
+
+#### 연구 확인 2: 같은 영 평균과 다른 정보
+
+spin one의 |1,0⟩와 (|1,1⟩+|1,−1⟩)/√2는 평균 벡터가 모두0이다. Jz 분산은 각각0과 ℏ²이므로 z각 quantum 정보는0과4다. 평균 벡터는 상태도 국소 민감도도 정하지 못했다.
+
+#### 연구 확인 3: 큰 미분으로 정확한 alias를 지울 수 없다
+
+j=4의 cat은 F_Q=64지만 매 π/4마다 같은 ray를 만든다. 어떤 검출기든 이 준비의 φ와 φ+π/4에서 같은 법칙을 얻는다. 작은 국소 분산 경계를 보고하면서 사전 각도 모호성을 밝히지 않으면 실제 추론보다 과장하게 된다.
+
 ## 11. 해설과 함께 풀어보기
 
 **1. j=3/2 기저의 상태 수는?**

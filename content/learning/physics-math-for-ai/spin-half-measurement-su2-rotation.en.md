@@ -134,6 +134,119 @@ For rotation, rational turns are reduced modulo 2 exactly. Half-turn landmarks a
 
 A rounded fidelity of 1 near a return does not prove an exact return. A zero-containing residual interval is also different from a structurally exact zero. An unresolved observation can retain null rather than acquiring an invented drawing coordinate. The independent reference uses general high-precision matrix exponentials and symbolic eigenspaces; it does not reuse the production turn reduction or π routine.
 
+## Research extension: a rotating state and an informative readout are different
+
+### Ask how well the rotation angle can be inferred
+
+A visible Bloch rotation need not produce a useful signal in a chosen detector. Treat the active angle φ as an unknown parameter, with the same known initial state on every trial. The state family and its Bloch derivative follow from the chapter's sign convention:
+
+$$
+\psi_\varphi=e^{-i\varphi S_{\mathbf a}/\hbar}\psi_0,\qquad
+ \partial_\varphi\psi_\varphi=-\frac i2(\mathbf a\cdot\boldsymbol\sigma)\psi_\varphi,
+ \qquad \partial_\varphi\mathbf r_\varphi=\mathbf a\times\mathbf r_\varphi.
+$$
+
+Remove the derivative component that only changes global phase. For this pure-state family the quantum Fisher information is four times the resulting ray metric:
+
+$$
+g_\varphi=\langle\partial_\varphi\psi|\partial_\varphi\psi\rangle
+ -|\langle\psi|\partial_\varphi\psi\rangle|^2
+ =\frac{\operatorname{Var}(S_{\mathbf a})}{\hbar^2},\qquad
+ \mathcal F_Q=4g_\varphi=1-(\mathbf a\cdot\mathbf r_0)^2.
+$$
+
+The generator's variance, rather than the spin mean or the Casimir, controls local angle sensitivity. Rotation about an axis parallel to the initial Bloch vector gives F_Q=0: it changes only the representative phase. A perpendicular axis gives F_Q=1. These are single-parameter, pure-state statements, not formulas for arbitrary mixed models.
+
+The definition agrees with [Paris, §4.1, equations26–27](https://arxiv.org/pdf/0804.2981). Here we derive a concrete detector bound using the same finite Bloch geometry, without assuming an optimal measurement has already been implemented.
+
+### The detector can discard available information
+
+Measure spin along a fixed unit direction n. Define its signed mean m, so the Bernoulli probabilities and their derivatives are:
+
+$$
+m=\mathbf n\cdot\mathbf r_\varphi,\quad p_\pm=\tfrac12(1\pm m),\quad
+ \partial_\varphi p_\pm=\pm\tfrac12m',\quad m'=\mathbf n\cdot(\mathbf a\times\mathbf r_\varphi).
+$$
+
+For positive probabilities, the classical Fisher information is the expected squared score, where the score is the derivative of log probability:
+
+$$
+\mathcal I_{\mathbf n}(\varphi)=\sum_{s=\pm}\frac{(\partial_\varphi p_s)^2}{p_s}
+ =\frac{(m')^2}{1-m^2}\qquad(|m|<1).
+$$
+
+Decompose n into its component parallel to r and its perpendicular component. Only the latter contributes to its dot product with a×r. Its length is √(1−m²), while |a×r|=√(1−(a·r)²). Cauchy–Schwarz therefore gives:
+
+$$
+(m')^2\le(1-m^2)\bigl[1-(\mathbf a\cdot\mathbf r_\varphi)^2\bigr],
+ \qquad 0\le\mathcal I_{\mathbf n}\le\mathcal F_Q\le1.
+$$
+
+At a known operating angle φ₀ with nonzero ray speed, choosing n along the tangent a×r_φ₀ makes m=0 and attains I_n=F_Q locally. This choice depends on an operating point; it is not a globally parameter-independent optimal strategy supplied by this lab.
+
+For N independent repetitions with the same calibrated preparation and detector, information adds. Under the usual differentiability and positive-support assumptions, a locally unbiased estimator has mean φ₀ and derivative of its mean equal to1 there:
+
+$$
+\mathcal I_N=N\mathcal I_{\mathbf n},\qquad
+ \operatorname{Var}_{\varphi_0}(\widehat\varphi)\ge\frac1{N\mathcal I_{\mathbf n}(\varphi_0)}
+ \ge\frac1{N\mathcal F_Q}\quad(\mathcal I_{\mathbf n}(\varphi_0)>0).
+$$
+
+To derive the first variance bound, differentiate the estimator mean. Its covariance with the N-trial score is1, while the score variance is N I_n; apply Cauchy–Schwarz. This is a lower bound, not a promise that a finite-sample estimator attains it. Periodicity, nuisance parameters, calibration errors and global bias require their own analysis.
+
+### A detector with no zero-probability branches can still be blind
+
+Prepare +x, rotate about +z and use a detector tilted toward +z:
+
+$$
+\mathbf a=(0,0,1),\quad \mathbf r_\varphi=(\cos\varphi,\sin\varphi,0),\quad
+ \mathbf n=(0,3/5,4/5),\quad
+ p_+=\tfrac12(1+\tfrac35\sin\varphi),\quad
+ \mathcal I_{\mathbf n}=\frac{9\cos^2\varphi}{25-9\sin^2\varphi},\quad\mathcal F_Q=1.
+$$
+
+Its probabilities stay between1/5 and4/5, so no boundary regularization is needed. At φ=π/2 the detector's first derivative vanishes and its Fisher information is zero, even though the state still has F_Q=1. The detector can still respond at second order; zero first-order information does not mean the entire nearby probability model is constant.
+
+Use a rational half-angle to reproduce the example exactly:
+
+$$
+t=\tan(\varphi/2),\quad c=\frac{1-t^2}{1+t^2},\quad s=\frac{2t}{1+t^2},\quad
+ p_+=\tfrac12(1+3s/5),\quad \mathcal I_{\mathbf n}=\frac{9c^2}{25-9s^2}\quad(-\pi<\varphi<\pi).
+$$
+
+```python
+from fractions import Fraction as Q
+for t in [Q(0), Q(1, 2), Q(1), Q(2)]:
+    cosine, sine = (1-t*t)/(1+t*t), 2*t/(1+t*t)
+    probability = (1+Q(3, 5)*sine)/2
+    information = 9*cosine*cosine/(25-9*sine*sine)
+    assert Q(1, 5) <= probability <= Q(4, 5)
+    print(t, probability, information, Q(1), 1-information)
+```
+
+| t | p_plus | classical FI | quantum FI | FI loss |
+|---|---|---|---|---|
+| 0 | 1/2 | 9/25 | 1 | 16/25 |
+| 1/2 | 37/50 | 81/481 | 1 | 400/481 |
+| 1 | 4/5 | 0 | 1 | 1 |
+| 2 | 37/50 | 81/481 | 1 | 400/481 |
+
+![The tilted detector probability and its classical information are plotted against rotation angle, showing a blind operating point despite constant quantum information equal to one.](/assets/learning/quantum-spin-research-readout-information.en.svg)
+
+The two rows t=1/2 and t=2 give the same detector law but different Bloch vectors. Positive local information at both points therefore does not establish global identifiability. Measuring another suitable axis or restricting a justified prior range is an additional experimental choice. The current rotation reader has no estimator, shot sampler or Fisher-information control; these are standalone analytic and Python examples.
+
+#### Research check 1: choose an insensitive axis
+
+Rotate +x about +z but measure z. Both probabilities stay1/2 and their derivatives vanish, so I_z=0 at every angle. The quantum information remains1. A moving state and an informative readout are separate requirements.
+
+#### Research check 2: do not replace a boundary by a pseudocount
+
+If n=r at the operating point, one branch has probability0 and the regular expression becomes0/0. Do not declare information0 or divide by an invented epsilon. A limiting value requires a specified nearby model and a separate regularity analysis; the regular Cramér–Rao argument above cannot simply be substituted at that boundary.
+
+#### Research check 3: distinguish a local derivative from a global inverse
+
+For the tilted detector, φ and π−φ have the same sinφ and hence identical probabilities. Repeating that one measurement arbitrarily many times cannot distinguish this pair. A nonzero Fisher information describes sensitivity near a chosen point, not a globally unique inverse map.
+
 ## 11. Exercises with explanations
 
 **1. What are the x and z laws for the +z preparation?**

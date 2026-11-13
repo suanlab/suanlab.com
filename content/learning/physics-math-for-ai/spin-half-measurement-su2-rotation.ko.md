@@ -134,6 +134,119 @@ $$
 
 돌아오는 시점 근처에서 fidelity가 화면에1로 보여도 정확한 재귀를 증명한 것은 아니다. 잔차 구간이0을 포함하는 사실과 구조적으로 정확히0인 사실도 다르다. 미해결 관측은 임의의 그림 좌표 대신 null을 유지할 수 있다. 독립 참조는 고정밀 일반 행렬 exponential과 기호 고유공간을 사용하며 생산 turn 축소나 π 함수를 재사용하지 않는다.
 
+## 연구 확장: 회전하는 상태와 정보를 주는 판독은 다르다
+
+### 회전각을 얼마나 잘 추론할 수 있는가?
+
+Bloch 회전이 보여도 선택한 검출기에 유용한 신호가 생긴다는 보장은 없다. 매 시행에서 같은 알려진 초기 상태를 준비하고 능동 회전각 φ를 미지 매개변수로 보자. 본문의 부호 규약으로 상태 가족과 Bloch 미분을 얻는다.
+
+$$
+\psi_\varphi=e^{-i\varphi S_{\mathbf a}/\hbar}\psi_0,\qquad
+ \partial_\varphi\psi_\varphi=-\frac i2(\mathbf a\cdot\boldsymbol\sigma)\psi_\varphi,
+ \qquad \partial_\varphi\mathbf r_\varphi=\mathbf a\times\mathbf r_\varphi.
+$$
+
+전체 위상만 바꾸는 미분 성분을 제거하자. 이 순수 상태 가족의 quantum Fisher information은 그렇게 얻은 ray metric의 네 배다.
+
+$$
+g_\varphi=\langle\partial_\varphi\psi|\partial_\varphi\psi\rangle
+ -|\langle\psi|\partial_\varphi\psi\rangle|^2
+ =\frac{\operatorname{Var}(S_{\mathbf a})}{\hbar^2},\qquad
+ \mathcal F_Q=4g_\varphi=1-(\mathbf a\cdot\mathbf r_0)^2.
+$$
+
+국소 각도 민감도를 정하는 것은 spin 평균이나 Casimir가 아니라 생성자의 분산이다. 초기 Bloch 벡터와 나란한 축의 회전은 대표 위상만 바꾸므로 F_Q=0이고, 수직 축에서는 F_Q=1이다. 단일 매개변수·순수 상태의 설명이며 임의의 혼합 모델 공식이 아니다.
+
+정의는 [Paris §4.1의 식26–27](https://arxiv.org/pdf/0804.2981)과 일치한다. 여기서는 최적 측정을 이미 구현했다고 가정하지 않고 같은 유한 Bloch 기하로 구체적인 검출기 경계를 유도한다.
+
+### 검출기는 사용 가능한 정보를 잃을 수 있다
+
+고정 단위 방향 n의 spin을 측정하자. 부호 있는 평균을 m이라 쓰면 Bernoulli 확률과 미분은 다음과 같다.
+
+$$
+m=\mathbf n\cdot\mathbf r_\varphi,\quad p_\pm=\tfrac12(1\pm m),\quad
+ \partial_\varphi p_\pm=\pm\tfrac12m',\quad m'=\mathbf n\cdot(\mathbf a\times\mathbf r_\varphi).
+$$
+
+두 확률이 양수일 때 classical Fisher information은 score의 제곱 기댓값이다. score는 로그 확률의 미분이다.
+
+$$
+\mathcal I_{\mathbf n}(\varphi)=\sum_{s=\pm}\frac{(\partial_\varphi p_s)^2}{p_s}
+ =\frac{(m')^2}{1-m^2}\qquad(|m|<1).
+$$
+
+n을 r에 나란한 성분과 수직인 성분으로 나누자. a×r과의 내적에는 수직 성분만 기여한다. 그 길이는 √(1−m²)이고 |a×r|=√(1−(a·r)²)이므로 Cauchy–Schwarz로 다음을 얻는다.
+
+$$
+(m')^2\le(1-m^2)\bigl[1-(\mathbf a\cdot\mathbf r_\varphi)^2\bigr],
+ \qquad 0\le\mathcal I_{\mathbf n}\le\mathcal F_Q\le1.
+$$
+
+ray 속도가 0이 아닌 알려진 동작각 φ₀에서 n을 접선 a×r_φ₀ 방향으로 택하면 m=0이며 국소적으로 I_n=F_Q를 달성한다. 동작점을 이용하는 선택이지 이 실습이 전역적으로 매개변수와 무관한 최적 전략을 제공했다는 뜻은 아니다.
+
+보정된 같은 준비와 검출기로 N번 독립 반복하면 정보는 더해진다. 미분 가능성과 양의 support 가정 아래 국소 불편 추정량은 φ₀에서 평균이 φ₀이며 평균의 미분이1이다.
+
+$$
+\mathcal I_N=N\mathcal I_{\mathbf n},\qquad
+ \operatorname{Var}_{\varphi_0}(\widehat\varphi)\ge\frac1{N\mathcal I_{\mathbf n}(\varphi_0)}
+ \ge\frac1{N\mathcal F_Q}\quad(\mathcal I_{\mathbf n}(\varphi_0)>0).
+$$
+
+첫 분산 경계는 추정량 평균을 미분해 얻는다. N시행 score와의 공분산은1이고 score 분산은 N I_n이므로 Cauchy–Schwarz를 적용한다. 하한이지 유한 표본 추정량이 달성한다는 약속은 아니다. 주기성·nuisance 매개변수·보정 오차·전역 bias는 별도 분석이 필요하다.
+
+### 영 확률 분기가 없어도 검출기는 보지 못할 수 있다
+
++x를 준비해 +z로 회전시키고 +z 쪽으로 기울어진 검출기를 사용하자.
+
+$$
+\mathbf a=(0,0,1),\quad \mathbf r_\varphi=(\cos\varphi,\sin\varphi,0),\quad
+ \mathbf n=(0,3/5,4/5),\quad
+ p_+=\tfrac12(1+\tfrac35\sin\varphi),\quad
+ \mathcal I_{\mathbf n}=\frac{9\cos^2\varphi}{25-9\sin^2\varphi},\quad\mathcal F_Q=1.
+$$
+
+확률은1/5부터4/5 사이여서 경계 정규화가 필요 없다. φ=π/2에서는 검출기 일차 미분과 Fisher 정보가0이지만 상태의 F_Q는 여전히1이다. 검출기는 이차 변화에는 반응할 수 있다. 일차 정보가0이라는 말이 주변 확률 모델 전체가 상수라는 뜻은 아니다.
+
+유리수 반각으로 정확하게 재현하자.
+
+$$
+t=\tan(\varphi/2),\quad c=\frac{1-t^2}{1+t^2},\quad s=\frac{2t}{1+t^2},\quad
+ p_+=\tfrac12(1+3s/5),\quad \mathcal I_{\mathbf n}=\frac{9c^2}{25-9s^2}\quad(-\pi<\varphi<\pi).
+$$
+
+```python
+from fractions import Fraction as Q
+for t in [Q(0), Q(1, 2), Q(1), Q(2)]:
+    cosine, sine = (1-t*t)/(1+t*t), 2*t/(1+t*t)
+    probability = (1+Q(3, 5)*sine)/2
+    information = 9*cosine*cosine/(25-9*sine*sine)
+    assert Q(1, 5) <= probability <= Q(4, 5)
+    print(t, probability, information, Q(1), 1-information)
+```
+
+| t | p_plus | classical FI | quantum FI | FI loss |
+|---|---|---|---|---|
+| 0 | 1/2 | 9/25 | 1 | 16/25 |
+| 1/2 | 37/50 | 81/481 | 1 | 400/481 |
+| 1 | 4/5 | 0 | 1 | 1 |
+| 2 | 37/50 | 81/481 | 1 | 400/481 |
+
+![회전각에 따른 기울어진 검출기의 확률과 classical 정보를 비교하며, quantum 정보는 1인데 검출기가 일차 변화를 보지 못하는 동작점을 표시한다.](/assets/learning/quantum-spin-research-readout-information.ko.svg)
+
+t=1/2와 t=2의 두 행은 검출기 법칙은 같지만 Bloch 벡터는 다르다. 두 점에서 국소 정보가 양수여도 전역 식별이 보장되지 않는다. 다른 적절한 축을 측정하거나 정당화된 사전 범위로 제한하는 것은 추가 실험 선택이다. 현재 회전 reader에는 추정기·시행 표본기·Fisher 정보 제어가 없으며 독립 해석·Python 예제다.
+
+#### 연구 확인 1: 둔감한 축 선택하기
+
++x를 +z로 회전시키면서 z를 측정하면 두 확률은 항상1/2이고 미분은0이다. 모든 각도에서 I_z=0이며 quantum 정보는1이다. 상태의 움직임과 정보를 주는 판독은 별개의 요건이다.
+
+#### 연구 확인 2: 경계를 pseudocount로 대체하지 않기
+
+동작점에서 n=r이면 한 분기 확률이0이고 정규 식은0/0이 된다. 정보를0이라고 선언하거나 임의의 epsilon으로 나누면 안 된다. 극한값에는 주변 모델 지정과 별도 정칙성 분석이 필요하며 앞의 정규 Cramér–Rao 논증을 그대로 경계에 대입할 수 없다.
+
+#### 연구 확인 3: 국소 미분과 전역 역함수 구별하기
+
+기울어진 검출기에서 φ와 π−φ는 sinφ가 같아 확률도 같다. 그 측정만 아무리 반복해도 두 각도를 구별할 수 없다. 양의 Fisher 정보는 선택한 점 주변의 민감도이지 전역적으로 유일한 역함수가 아니다.
+
 ## 11. 해설과 함께 풀어보기
 
 **1. +z 준비의 x·z 측정 법칙은?**

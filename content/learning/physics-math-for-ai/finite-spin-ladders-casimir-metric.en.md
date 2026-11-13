@@ -151,6 +151,129 @@ Weighted matrices, probabilities, moments and raw ladder chains use exact comple
 
 A very small ℏ can make a repeated raw image tiny. For its normalized display, divide all coordinates by the same positive exact rational scale before taking a square root. This algebraically preserves the representative, including phase, and keeps the root denominator well-conditioned. The equality a/√M=(a/L)/√(M/L²) explains why this changes the arithmetic expression without changing the normalized image. With L chosen from the largest absolute real or imaginary component, the scaled weighted mass lies between 1/70 and 18 for the selected dimensions. Raw chain values, dimensionful norm accounts and the precision criterion stay unchanged. No per-step norm correction is applied. Independent references construct orthonormal square-root ladders first and transform them back; they do not reuse the production polynomial differentiation matrices.
 
+## Research extension: higher-spin sensitivity and repeated angle aliases
+
+### A mean arrow is not a sensitivity certificate
+
+For an active z rotation, retain the full state and its Jz probabilities rather than only a three-dimensional mean arrow. The pure-state quantum information from the preceding extension becomes:
+
+$$
+\psi_\varphi=e^{-i\varphi J_z/\hbar}\psi_0,\qquad
+ \mathcal F_Q=\frac{4\operatorname{Var}(J_z)}{\hbar^2}
+ =4\left[\sum_m m^2p_m-\left(\sum_m mp_m\right)^2\right].
+$$
+
+The dimensionless generator is Jz/ℏ, so the declared ℏ scale cancels. The Jz probabilities themselves remain fixed during this rotation; they determine generator variance but a Jz detector alone cannot observe the accumulating relative phases. The information describes what a suitable readout could access locally, not a guarantee for the currently chosen detector.
+
+### The binomial coherent preparation
+
+A spin-coherent state pointing along +x has the following orthonormal amplitudes. Its polynomial coordinates use the chapter's metric:
+
+$$
+|{+x};j\rangle=2^{-j}\sum_{k=0}^{2j}\sqrt{\binom{2j}{k}}\,|j,j-k\rangle,
+ \qquad p_k=2^{-2j}\binom{2j}{k},\qquad (z_b)_k=\binom{2j}{k}.
+$$
+
+The last vector is a raw coefficient vector, before normalization. Indeed, dividing z_k by √C_k gives √C_k, and its squared norm is the binomial sum 2^(2j). Equal raw coefficients would prepare another state. This links a familiar binomial distribution to the weighted coordinate system already implemented in the reader.
+
+Since k has a Binomial(2j,1/2) law and m=j−k, its mean and variance give:
+
+$$
+\mathbb E(m)=0,\quad \operatorname{Var}(m)=j/2,\quad
+ \operatorname{Var}(J_z)=\hbar^2j/2,\quad \mathcal F_Q^{\rm coh}=2j.
+$$
+
+The coherent overlap can also be derived without constructing a tensor product. Sum p_k exp[−i(j−k)φ], factor out exp(−ijφ) and apply the binomial theorem:
+
+$$
+\langle{+x};j|e^{-i\varphi J_z/\hbar}|{+x};j\rangle
+ =\cos^{2j}(\varphi/2),\qquad F_{\rm coh}(\varphi)=\cos^{4j}(\varphi/2).
+$$
+
+Thus the fidelity's local curvature grows linearly with j. This is a statement about a family of single irreducible representations; we have not supplied a many-particle resource model or a state-preparation algorithm.
+
+### A two-endpoint superposition changes both curvature and ambiguity
+
+For j>0, the highest and lowest magnetic states are distinct and orthogonal. Prepare their equal superposition:
+
+$$
+|{\rm cat};j\rangle=\frac{|j,j\rangle+|j,-j\rangle}{\sqrt2}\quad(j>0),\quad
+ \operatorname{Var}(J_z)=\hbar^2j^2,\quad \mathcal F_Q^{\rm cat}=4j^2.
+$$
+
+A detector projecting onto that initial superposition sees an interference fringe:
+
+$$
+F_{\rm cat}(\varphi)=\cos^2(j\varphi),\quad
+ p_B(\varphi)=F_{\rm cat}(\varphi),\quad B=|{\rm cat};j\rangle\langle{\rm cat};j|,\quad
+ \mathcal I_B=4j^2\quad(0<p_B<1).
+$$
+
+Differentiate p_B and insert it into the Bernoulli information formula to obtain the last equality away from zero/one-probability points. Measuring Jz instead gives two fixed probabilities1/2 and no angle information. A large generator variance does not implement the coherent readout for us.
+
+For the coherent and cat families the small-angle expansion is even:
+
+$$
+F(\varphi)=1-\tfrac14\mathcal F_Q\varphi^2+O(\varphi^4)
+ \quad(\varphi\to0,\ j\ \text{fixed}),\qquad
+ \frac{\mathcal F_Q^{\rm cat}}{\mathcal F_Q^{\rm coh}}=2j\quad(j>0).
+$$
+
+The remainder is for fixed j; its coefficients need not stay bounded when j also grows. At a fixed j the cat has larger local quantum information, except j=1/2 where it is the same +x state as the coherent preparation. For j≥1 its spin-mean vector is zero, despite nonzero angle sensitivity. Neither a mean arrow nor purity alone identifies this information.
+
+Now inspect the full angle range:
+
+$$
+\psi_{\rm cat}(\varphi+\pi/j)=-\psi_{\rm cat}(\varphi),\qquad
+ U_j(2\pi)=(-1)^{2j}I,\qquad
+ \text{cat-ray return interval}=\pi/j\quad(j>0).
+$$
+
+The cat preparation has identical rays every π/j, while the complete spin-j representation has its usual integer/half-integer 2π sign. These statements concern different objects. Narrower fringes come with more repeated aliases in a fixed angle interval. Even the best measurement on this preparation cannot distinguish angles that produce exactly the same ray. A justified prior interval or a different preparation is needed for a global inference claim.
+
+### Reproduce the information and alias interval
+
+The exact code uses binomial moments and the two endpoint weights. The period column is divided by π; no approximation to π enters the arithmetic.
+
+```python
+from fractions import Fraction as Q
+from math import comb
+for j in [Q(1, 2), Q(1), Q(2), Q(4)]:
+    n = int(2*j)
+    probabilities = [Q(comb(n, k), 2**n) for k in range(n+1)]
+    mean = sum((j-k)*p for k, p in enumerate(probabilities))
+    variance = sum((j-k)**2*p for k, p in enumerate(probabilities))-mean**2
+    coherent = 4*variance
+    cat = 4*(Q(1, 2)*j*j + Q(1, 2)*(-j)**2)
+    assert mean == 0 and coherent == 2*j
+    print(j, coherent, cat, 1/j, cat/coherent)
+```
+
+| j | coherent FI | cat FI | cat period / pi | FI ratio |
+|---|---|---|---|---|
+| 1/2 | 1 | 1 | 2 | 1 |
+| 1 | 2 | 4 | 1 | 2 |
+| 2 | 4 | 16 | 1/2 | 4 |
+| 4 | 8 | 64 | 1/4 | 8 |
+
+![Coherent and two-endpoint spin-j preparations have different local information and survival fringes; the finer cat fringes repeat the same ray more often.](/assets/learning/quantum-spin-research-coherent-cat-aliases.en.svg)
+
+For j=2, a π/2 rotation already returns the cat ray, while the +x coherent state generally differs. The displayed higher local information is not an unconditional advantage at fixed total experimental cost. Preparation effort, detector availability, trial number and prior range have not been equated. The pure-state information convention follows [Paris §4.1](https://arxiv.org/pdf/0804.2981); the binomial and endpoint calculations here are direct derivations using the chapter's finite representation.
+
+Both kinds of preparation fit the existing polynomial input for the supported j≤4. Rotation-estimation and coherent-superposition readouts are standalone extensions: the present ladder lab has not gained an arbitrary projector or angle-estimator control. The [MIT angular-momentum notes](https://ocw.mit.edu/courses/8-321-quantum-theory-i-fall-2017/c491464fb065aa4cc8a99cc562475183_MIT8_321F17_lec19.pdf) support the generator and magnetic-label convention.
+
+#### Research check 1: handle the singlet separately
+
+For j=0 there is one state with Jz=0, zero quantum information and no rotation-induced ray change. The two-endpoint cat formula assumes distinct endpoints and must not be applied: dividing twice the same vector by √2 does not normalize it.
+
+#### Research check 2: same zero mean, different information
+
+In spin one, |1,0⟩ and (|1,1⟩+|1,−1⟩)/√2 both have zero mean vector. Their Jz variances are0 and ℏ², so their z-angle quantum information is0 and4. The mean vector did not specify the state or its local sensitivity.
+
+#### Research check 3: a large derivative cannot remove an exact alias
+
+For j=4 the cat has F_Q=64 but repeats its ray every π/4. Any detector has the same law at φ and φ+π/4 on this preparation. Reporting a small local variance bound without stating the prior-angle ambiguity would overstate what was inferred.
+
 ## 11. Exercises with explanations
 
 **1. How many states are in the j=3/2 basis?**
