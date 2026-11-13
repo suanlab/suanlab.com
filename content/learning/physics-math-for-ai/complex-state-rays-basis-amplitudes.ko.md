@@ -125,6 +125,112 @@ $$
 
 같은 식을 정보 손실의 관점에서도 읽을 수 있다. 이 유사도는 전역 위상을 의도적으로 지운다. 한 고정 기저에서의 진폭 제곱만 남기면 상대 위상도 더 잃을 수 있다. feature map이나 손실을 고르기 전에 필요한 불변성을 정하자. 이 유한 상태 벡터 계산만으로 양자 장치의 계산 우위, 데이터 적재 비용, 학습 이론의 보장을 얻지는 않는다.
 
+## 연구 확장: ray의 국소 거리와 세 상태를 도는 위상
+
+### 대표 벡터만 바꾸는 움직임을 제거하기
+
+정규화된 상태가 실수 매개변수 s에 대해 두 번 미분 가능하다고 하자. 좌표의 미분이 커도 실제로는 같은 상태에 빠르게 변하는 전체 위상만 곱했을 수 있다. 미분 벡터에서 상태와 나란한 성분을 제거한 뒤 크기를 재자.
+
+$$
+v=(I-|\psi\rangle\langle\psi|)\partial_s\psi,\qquad
+ g_s=\langle\partial_s\psi|\partial_s\psi\rangle-|\langle\psi|\partial_s\psi\rangle|^2=\|v\|^2.
+$$
+
+ψ(s)→exp(iχ(s))ψ(s)로 바꾸면 추가되는 미분은 ψ와 나란하므로 사영 후 사라진다. 따라서 g_s는 ray 자체의 변화를 잰다. 이웃 내적을 전개하고 정규화 조건을 두 번 미분하면 다음 첫 식을 얻는다. ψ=(cos(θ/2),exp(iφ)sin(θ/2))를 대입하면 두 번째 식이 나온다.
+
+$$
+F(\psi(s),\psi(s+ds))=1-g_s\,ds^2+o(ds^2),\qquad
+ d\ell^2=\tfrac14(d\theta^2+\sin^2\theta\,d\varphi^2).
+$$
+
+dℓ²는 선택한 매개변수 곡선에서 g_s ds²를 뜻한다. 극점에서는 φ를 바꾸어도 ray가 같지만 적도에서는 달라진다. 최적화 연구에서는 이 계량으로 예측 확률을 바꾸는 갱신과 대표 벡터만 바꾸는 갱신을 구별할 수 있다. 이 식만으로 최적화 알고리즘이나 계산 속도 향상이 정해지는 것은 아니다.
+
+### 대표 벡터를 각각 바꾸어도 남는 위상
+
+두 상태의 fidelity는 내적의 위상을 제거한다. 세 정규화 상태에서는 순환 곱을 취해 각 상태의 임의적인 전체 위상을 없애면서도 정보를 일부 남길 수 있다.
+
+$$
+B=\langle a|b\rangle\langle b|c\rangle\langle c|a\rangle,\qquad \Phi=\operatorname{Arg}B,\quad B\ne0.
+$$
+
+내적의 첫 번째 자리가 켤레 선형이라는 본문의 규약을 유지한다. 이웃 내적 중 하나가 0이면 B=0이고 위상은 정의되지 않는다. a,b,c에 각각 다른 위상을 곱해도 세 인자는 상쇄된다. 공통 unitary 역시 내적을 보존한다. 반면 복소 켤레를 취하면 다음처럼 달라진다.
+
+$$
+B\mapsto e^{i(\chi_b-\chi_a+\chi_c-\chi_b+\chi_a-\chi_c)}B=B,
+ \qquad B(a^*,b^*,c^*)=B(a,b,c)^*.
+$$
+
+별표는 동일한 고정 기저에서 모든 좌표의 켤레를 뜻한다. qubit에서는 본문에서 정의한 단위 Bloch 벡터를 r_a,r_b,r_c로 쓰자. rank-one 사영을 곱하고 (r·σ)(s·σ)=(r·s)I+i(r×s)·σ를 적용한 뒤 trace를 취하면 다음을 얻는다.
+
+$$
+B=\frac{1+\mathbf r_a\cdot\mathbf r_b+\mathbf r_b\cdot\mathbf r_c+\mathbf r_c\cdot\mathbf r_a
+ +i\mathbf r_a\cdot(\mathbf r_b\times\mathbf r_c)}4.
+$$
+
+허수부는 방향이 있는 부피를 기록한다. C²의 세 벡터로 만든 Gram 행렬은 특이 행렬이다. 그 행렬식을 전개하면 다음 검산식을 얻는다. F_ab=|⟨a|b⟩|²이며 나머지는 순환적으로 정의한다.
+
+$$
+1-F_{ab}-F_{bc}-F_{ca}+2\operatorname{Re}B=0,\qquad
+ |B|^2=F_{ab}F_{bc}F_{ca}.
+$$
+
+따라서 이 qubit 삼각형에서는 쌍별 fidelity가 Re B와 Im B의 절댓값까지 정하지만 방향의 부호를 잃을 수 있다. 모든 기하 정보가 사라진다고 해석하면 안 된다. 더 큰 Hilbert 공간에서는 세 벡터의 Gram 행렬식이 반드시 0인 것은 아니다.
+
+이웃 내적이 매번 양의 실수가 되도록 대표 벡터를 순서대로 정렬할 수도 있다.
+
+$$
+b'=e^{-i\operatorname{Arg}\langle a|b\rangle}b,\quad
+ c'=e^{-i\operatorname{Arg}\langle b'|c\rangle}c,\quad
+ a'=e^{-i\operatorname{Arg}\langle c'|a\rangle}a=e^{-i\Phi}a.
+$$
+
+마지막 대표는 처음에 비해 exp(−iΦ)만큼 달라진다. 이 부호는 위 정렬 규칙에서 나온다. Φ라는 기호 자체는 순환 내적의 위상을 가리킨다. Hamiltonian·소요 시간·단열 시간 전개는 지정하지 않았다. [Rabei·Arvind·Mukunda·Simon의 논문](https://arxiv.org/pdf/quant-ph/9907080)은 순환 불변량과 기하 위상의 운동학적 연결을 다룬다. 여기의 항등식과 예제는 직접 계산해 확인할 수 있다.
+
+### 정확한 예제: 같은 fidelity와 반대 방향
+
+북극 상태 하나와 적도 상태 둘을 선택하자.
+
+$$
+a=(1,0),\quad b=\tfrac1{\sqrt2}(1,1),\quad c_\varphi=\tfrac1{\sqrt2}(1,e^{i\varphi}),\quad
+ B=\tfrac14(1+e^{i\varphi}),\quad F_{bc}=\tfrac12(1+\cos\varphi),\quad
+ \Phi=\varphi/2\quad(-\pi<\varphi<\pi).
+$$
+
+φ=±π에서는 두 번째 내적이 0이므로 위상은 정의되지 않는다. 관례적으로 0을 넣는 경우와 다르다. 이 끝점을 제외하고 t=tan(φ/2)로 두면 cosφ=(1−t²)/(1+t²), sinφ=2t/(1+t²)다. 아래 실수부와 허수부는 정확한 유리수다. 독립 Python 예제를 실행해 보자. 기존 두 상태 reader에 세 상태 순환 제어를 추가한 것은 아니다.
+
+```python
+from fractions import Fraction as Q
+from math import atan
+for t in [Q(-1), Q(-1, 2), Q(1, 2), Q(1)]:
+    fidelity = 1 / (1 + t*t)
+    real, imag = fidelity / 2, t*fidelity / 2
+    assert real*real + imag*imag == fidelity / 4
+    print(t, fidelity, real, imag, f"{atan(float(t)):.6f}")
+```
+
+| t | F_bc | Re B | Im B | Phi (rad) |
+|---|---|---|---|---|
+| -1 | 1/2 | 1/4 | -1/4 | -0.785398 |
+| -1/2 | 4/5 | 2/5 | -1/5 | -0.463648 |
+| 1/2 | 4/5 | 2/5 | 1/5 | 0.463648 |
+| 1 | 1/2 | 1/4 | 1/4 | 0.785398 |
+
+![복소평면의 원 위에 실수부가 같고 허수부가 반대인 순환 내적을 표시하고, 짝함수인 fidelity와 부호가 바뀌는 위상 곡선을 비교한다.](/assets/learning/quantum-state-research-cyclic-ray-phase.ko.svg)
+
+파란색과 주황색 표시점의 쌍별 fidelity는 같지만 허수부는 반대다. 위상 곡선에서 내적이 0인 끝점은 제외했다. 그림의 위상은 B의 각도이며 확률이 아니다.
+
+#### 연구 확인 1: 같은 ray의 움직이는 대표
+
+고정된 정규화 a에 대해 ψ(s)=exp(7is)a라 두면 좌표 미분의 제곱 노름은49다. 그러나 ψ에 수직인 성분은 없으므로 g_s=0이고 이웃 fidelity는1이다. 좌표 속도만 보면 잘못 판단한다.
+
+#### 연구 확인 2: 방향 부호를 직접 정하기
+
+a=(1,0), b=(1,1)/√2, c=(1,i)/√2이면 세 내적은 1/√2, (1+i)/2, 1/√2다. 따라서 B=(1+i)/4, Φ=π/4다. 세 상태를 모두 켤레로 바꾸면 fidelity는 각각 같고 위상은 −π/4가 된다. 순환 방향을 뒤집어도 B의 켤레가 나온다.
+
+#### 연구 확인 3: 직교하는 변
+
+c=(1,−1)/√2로 두면 ⟨b|c⟩=0이고 B=0이다. B의 각도도, 이 변을 지나는 양의 내적 위상 정렬도 정의되지 않는다. 수치 구현은 이 경계를 표시해야 하며 조용히 각도 0으로 바꾸면 안 된다.
+
 ## 13. 여섯 가지 풀이로 확인하기
 
 **1. (3+4i,0)을 정규화하라.** norm은5다. 대표는((3+4i)/5,0)이고 계산 기저 확률은(1,0)이다. 첫 좌표가 복소수여도 e₀와 같은 ray다.

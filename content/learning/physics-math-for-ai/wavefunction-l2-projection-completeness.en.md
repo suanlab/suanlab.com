@@ -127,6 +127,118 @@ For example, a constant normalized function on a finite interval is an L² state
 
 No Hamiltonian or wall condition is imposed in this experiment. Delta-normalized position labels and plane waves on the whole real line are also not ordinary normalized L² vectors; their generalized-state formalism belongs to a later treatment of spectra and domains.
 
+## Research extension: a probability certificate is not an energy certificate
+
+### Turn captured norm into a position-measurement bound
+
+The captured norm C is useful because it controls more than a coefficient plot. Let ψ be normalized and Π_N the orthogonal projection already defined. Normalize the projected vector only when C>0:
+
+$$
+\phi=\Pi_N\psi/\sqrt C,\quad C=\|\Pi_N\psi\|^2>0,\quad
+ \langle\psi|\phi\rangle=\sqrt C,\quad \|\psi\pm\phi\|_2^2=2\pm2\sqrt C.
+$$
+
+The overlap is positive real because ⟨ψ|Π_Nψ⟩=C. For the position densities p=|ψ|² and q=|φ|², factor the difference and apply the integral Cauchy–Schwarz inequality:
+
+$$
+\big||\psi|^2-|\phi|^2\big|
+ =|\operatorname{Re}[(\psi-\phi)\overline{(\psi+\phi)}]|
+ \le |\psi-\phi|\,|\psi+\phi|,\qquad
+ \mathrm{TV}_X=\tfrac12\int_0^L\big||\psi|^2-|\phi|^2\big|dx\le\sqrt{1-C}.
+$$
+
+The product of the two norms is 2√(1−C), giving the bound after division by2. This is a certificate for total variation of the position distribution, not a claim that the inequality is always saturated. For any measurable region A, any full disjoint bin partition {A_j}, and a real bounded multiplication observable v(x) with v_min≤v≤v_max, it implies:
+
+$$
+|p(A)-q(A)|\le\mathrm{TV}_X,\quad
+ \tfrac12\sum_j|p(A_j)-q(A_j)|\le\mathrm{TV}_X,\quad
+ |\mathbb E_p v-\mathbb E_q v|\le(v_{\max}-v_{\min})\mathrm{TV}_X.
+$$
+
+For the last inequality, subtract the constant v_min, then use the positive and negative parts of p−q, each of mass TV_X. Thus bounded detector responses have controlled errors. The proof concerns position and multiplication measurements; it has not derived a bound for every general quantum instrument.
+
+Keep two different errors separate:
+
+$$
+\|\psi-\Pi_N\psi\|_2^2=1-C,\qquad
+ \|\psi-\phi\|_2^2=2-2\sqrt C.
+$$
+
+The first uses an unnormalized projection, while the second compares two physical normalized states. If C=0, the normalized approximation does not exist and these statements involving φ cannot be used. A small coefficient residual is not permission to divide by zero.
+
+### A smooth counterexample with a fixed projection
+
+Can high fidelity alone guarantee accurate kinetic energy? Use the chapter's physical orthonormal modes e_n(x)=√((2n+1)/L) P_n(2x/L−1), with e_0=1/√L. Keep the projection Π_0 fixed and change the prepared target state:
+
+$$
+\psi_n=\sqrt{1-n^{-2}}\,e_0+n^{-1}e_n,\quad n\ge2,\quad
+ \Pi_0\psi_n=\sqrt{1-n^{-2}}\,e_0,\quad C_n=1-n^{-2},\quad \phi_n=e_0,\quad \mathrm{TV}_X\le n^{-1}.
+$$
+
+Here n labels different smooth target states. It is not a growing cutoff approximating one fixed target. The high-degree component has a shrinking amplitude, so all position-event errors obey a shrinking bound.
+
+Now explicitly choose the gradient quadratic form associated with the Neumann Laplacian:
+
+$$
+\mathcal E_{\nabla}[\psi]=\frac{\hbar^2}{2m}\int_0^L|\psi'(x)|^2dx,
+ \quad D(\mathcal E_{\nabla})=H^1([0,L]),\quad E_L=\frac{\hbar^2}{2mL^2}.
+$$
+
+The [LMU functional-analysis notes, chapter 6](https://www.math.lmu.de/~nam/LectureNotesFA2021.pdf) distinguish its H¹ form domain from the operator domain. Polynomials belong to H¹ but generally fail the Neumann derivative boundary conditions required by the strong operator. We evaluate the form integral, not an unjustified strong −ψ″ expectation. A Dirichlet form would instead use H₀¹ and exclude the constant state, so it would require another example.
+
+For ordinary Legendre polynomials on [−1,1], integration by parts gives ∫(P_n′)²=[P_n P_n′]−∫P_n P_n″. The last integral vanishes by orthogonality, since P_n″ has lower degree. Endpoint values P_n(±1)=(±1)^n and P_n′(1)=n(n+1)/2 give the integral n(n+1). The shift u=(x/L) and the physical normalization therefore give:
+
+$$
+\int_0^1|\widetilde P_n'(u)|^2du=2n(n+1),\qquad
+ \int_0^L|e_n'(x)|^2dx=\frac{2n(n+1)(2n+1)}{L^2}.
+$$
+
+[NIST's polynomial recurrence and derivative formulas](https://dlmf.nist.gov/18.9) support the convention; the factor of L follows from differentiating with respect to physical x. The constant mode has derivative zero, so no cross term remains:
+
+$$
+\frac{\mathcal E_{\nabla}[\psi_n]}{E_L}=\frac{2(n+1)(2n+1)}n\longrightarrow\infty,\qquad
+ \mathcal E_{\nabla}[e_0]=0,\qquad \mathrm{TV}_X\le1/n\longrightarrow0.
+$$
+
+This sequence converges to e_0 in L², yet its gradient energy diverges. The conclusion is absence of a uniform energy guarantee from L² fidelity alone. To certify an unbounded observable one needs additional control, such as convergence in the corresponding form norm, not only normalization and a small probability error.
+
+### Reproduce the competing scales
+
+The next code computes exact fractions. The fourth column is an upper bound on position TV, not a numerical integral of the actual TV. The energy is dimensionless in units E_L. These polynomial preparations and the energy calculation are standalone; the existing piecewise-affine reader has no new Hamiltonian control.
+
+```python
+from fractions import Fraction as Q
+for n in [2, 4, 8, 16]:
+    epsilon = Q(1, n)
+    captured = 1 - epsilon*epsilon
+    energy = Q(2*(n+1)*(2*n+1), n)
+    assert 1 - captured == epsilon*epsilon
+    print(n, epsilon, captured, epsilon, energy)
+```
+
+| n | epsilon | C | TV bound | E/E_L |
+|---|---|---|---|---|
+| 2 | 1/2 | 3/4 | 1/2 | 15 |
+| 4 | 1/4 | 15/16 | 1/4 | 45/2 |
+| 8 | 1/8 | 63/64 | 1/8 | 153/4 |
+| 16 | 1/16 | 255/256 | 1/16 | 561/8 |
+
+![For a fixed projection onto the constant mode, the probability-error upper bound decreases with target mode number while dimensionless gradient energy increases.](/assets/learning/quantum-state-research-probability-energy-error.en.svg)
+
+Read both panels together. A small high-frequency component contributes little probability mass but can contribute a large spatial derivative. That is why an apparently accurate probability histogram can hide a poor energy estimate. Changing L also changes the physical energy scale through L⁻².
+
+#### Research check 1: what does C=0.99 certify?
+
+It certifies position TV≤0.1 and therefore at most0.1 error in the probability of any region. The unnormalized squared residual is0.01, while the normalized squared state distance is 2−2√0.99, approximately0.010025. These numbers measure different objects.
+
+#### Research check 2: compare n=2 and n=16
+
+The probability bound falls from1/2 to1/16, but energy rises from15 to561/8 in units E_L. This is consistent: the derivative norm of e_n grows faster than its amplitude shrinks. No pointwise convergence or energy convergence follows from the TV bound.
+
+#### Research check 3: why does completeness not contradict this example?
+
+Completeness ensures L² approximation of a fixed state as its projection cutoff increases. Here Π_0 stays fixed and ψ_n changes with n. Even L² convergence of this sequence to e_0 does not impose convergence of derivatives. The choice of topology and observable domain is essential to a research error claim.
+
 ## 13. Six worked checks
 
 **1. Normalize a step.** With g=1 on[0,1/2), Z=1/2. Therefore ψ=√(2/L) on[0,L/2), and integrating its density gives1. The value at the single split point does not alter this result.

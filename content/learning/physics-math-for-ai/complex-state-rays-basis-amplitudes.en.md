@@ -125,6 +125,112 @@ $$
 
 The same expression also illustrates an information loss: it deliberately removes global phase, while amplitudes in one fixed basis can discard additional relative-phase information. Decide which invariances an application needs before choosing a feature map or loss. This finite state-vector calculation alone establishes no computational advantage for a quantum device, no data-loading cost model and no learning-theoretic guarantee.
 
+## Research extension: local ray distance and a phase around three states
+
+### Remove the motion that only changes a representative
+
+Suppose a twice differentiable normalized state depends on a real parameter s. A large coordinate derivative can come entirely from multiplying the same state by a rapidly changing global phase. Project the derivative perpendicular to the state before measuring its size:
+
+$$
+v=(I-|\psi\rangle\langle\psi|)\partial_s\psi,\qquad
+ g_s=\langle\partial_s\psi|\partial_s\psi\rangle-|\langle\psi|\partial_s\psi\rangle|^2=\|v\|^2.
+$$
+
+Under ψ(s)→exp(iχ(s))ψ(s), the extra derivative is parallel to ψ and disappears under this projection. Thus g_s measures change of the ray. Expanding the neighboring overlap and differentiating the normalization twice gives the first formula below. For ψ=(cos(θ/2),exp(iφ)sin(θ/2)), substitution gives the second:
+
+$$
+F(\psi(s),\psi(s+ds))=1-g_s\,ds^2+o(ds^2),\qquad
+ d\ell^2=\tfrac14(d\theta^2+\sin^2\theta\,d\varphi^2).
+$$
+
+Here dℓ² is g_s ds² along the chosen parameter curve. At a pole, changing φ has no effect on the ray; at the equator it does. In an optimization problem this metric distinguishes a parameter update that changes predicted quantum probabilities from one that only changes the representative. It does not specify an optimizer or a computational speedup.
+
+### A phase that survives independent choices of representatives
+
+Pairwise fidelity removes overlap phase. With three normalized states, a cyclic product can retain information while still removing each state's arbitrary global phase:
+
+$$
+B=\langle a|b\rangle\langle b|c\rangle\langle c|a\rangle,\qquad \Phi=\operatorname{Arg}B,\quad B\ne0.
+$$
+
+Use the chapter's convention that the first inner-product slot is conjugate-linear. If any adjacent overlap vanishes, B=0 and its phase is undefined. Rephase a,b,c independently; the three factors cancel. A common unitary also preserves each overlap. Complex conjugation behaves differently:
+
+$$
+B\mapsto e^{i(\chi_b-\chi_a+\chi_c-\chi_b+\chi_a-\chi_c)}B=B,
+ \qquad B(a^*,b^*,c^*)=B(a,b,c)^*.
+$$
+
+The star here conjugates every coordinate in the same fixed basis. For a qubit, let r_a,r_b,r_c be the unit Bloch vectors already defined in this chapter. Multiplying the rank-one projectors, using (r·σ)(s·σ)=(r·s)I+i(r×s)·σ and taking the trace, gives:
+
+$$
+B=\frac{1+\mathbf r_a\cdot\mathbf r_b+\mathbf r_b\cdot\mathbf r_c+\mathbf r_c\cdot\mathbf r_a
+ +i\mathbf r_a\cdot(\mathbf r_b\times\mathbf r_c)}4.
+$$
+
+The imaginary part records an oriented volume. Three vectors in C² have a singular Gram matrix. Expanding its determinant gives a useful check, with F_ab=|⟨a|b⟩|² and cyclic definitions:
+
+$$
+1-F_{ab}-F_{bc}-F_{ca}+2\operatorname{Re}B=0,\qquad
+ |B|^2=F_{ab}F_{bc}F_{ca}.
+$$
+
+Consequently pair fidelities determine Re B and the magnitude of Im B for this qubit triangle, but can lose its orientation sign. Do not claim they lose every geometric feature. In larger Hilbert spaces the three-vector Gram determinant need not vanish.
+
+One can also align representatives successively so each next overlap is positive real:
+
+$$
+b'=e^{-i\operatorname{Arg}\langle a|b\rangle}b,\quad
+ c'=e^{-i\operatorname{Arg}\langle b'|c\rangle}c,\quad
+ a'=e^{-i\operatorname{Arg}\langle c'|a\rangle}a=e^{-i\Phi}a.
+$$
+
+The final representative differs from the initial one by exp(−iΦ). This sign follows from the stated alignment rule; Φ itself names the cyclic overlap phase. No Hamiltonian, elapsed time or adiabatic evolution has been chosen. [Rabei, Arvind, Mukunda and Simon](https://arxiv.org/pdf/quant-ph/9907080) develop the kinematic connection between cyclic invariants and geometric phase; the elementary identities and example here can be checked directly.
+
+### Exact example: same fidelities, opposite orientation
+
+Take a north-pole state and two equatorial states:
+
+$$
+a=(1,0),\quad b=\tfrac1{\sqrt2}(1,1),\quad c_\varphi=\tfrac1{\sqrt2}(1,e^{i\varphi}),\quad
+ B=\tfrac14(1+e^{i\varphi}),\quad F_{bc}=\tfrac12(1+\cos\varphi),\quad
+ \Phi=\varphi/2\quad(-\pi<\varphi<\pi).
+$$
+
+At φ=±π the second overlap vanishes: the phase is undefined, rather than zero by convention. Away from that endpoint use t=tan(φ/2), so cosφ=(1−t²)/(1+t²) and sinφ=2t/(1+t²). The real and imaginary parts below are exact rational numbers. Run this standalone Python example; it adds no three-state-loop control to the existing two-state reader.
+
+```python
+from fractions import Fraction as Q
+from math import atan
+for t in [Q(-1), Q(-1, 2), Q(1, 2), Q(1)]:
+    fidelity = 1 / (1 + t*t)
+    real, imag = fidelity / 2, t*fidelity / 2
+    assert real*real + imag*imag == fidelity / 4
+    print(t, fidelity, real, imag, f"{atan(float(t)):.6f}")
+```
+
+| t | F_bc | Re B | Im B | Phi (rad) |
+|---|---|---|---|---|
+| -1 | 1/2 | 1/4 | -1/4 | -0.785398 |
+| -1/2 | 4/5 | 2/5 | -1/5 | -0.463648 |
+| 1/2 | 4/5 | 2/5 | 1/5 | 0.463648 |
+| 1 | 1/2 | 1/4 | 1/4 | 0.785398 |
+
+![A complex-plane circle shows conjugate cyclic overlaps with the same real part; paired curves compare even fidelity and the sign-changing phase.](/assets/learning/quantum-state-research-cyclic-ray-phase.en.svg)
+
+The blue and orange marked points have identical pair fidelities but opposite imaginary parts. The phase curve excludes the zero-overlap endpoints. The plotted phase is an angle of B, not a probability.
+
+#### Research check 1: a moving representative of one ray
+
+For ψ(s)=exp(7is)a with fixed normalized a, the raw derivative norm squared is49. Its component perpendicular to ψ vanishes, so g_s=0 and neighboring fidelity stays1. Coordinate speed alone is misleading.
+
+#### Research check 2: fix the orientation sign
+
+For a=(1,0), b=(1,1)/√2, c=(1,i)/√2, the three overlaps are 1/√2, (1+i)/2 and 1/√2. Hence B=(1+i)/4 and Φ=π/4. Conjugating all three states gives −π/4 while preserving each fidelity. Reversing the loop also conjugates B.
+
+#### Research check 3: an orthogonal edge
+
+Set c=(1,−1)/√2. Then ⟨b|c⟩=0 and B=0. Neither an argument of B nor positive-overlap phase alignment on this edge is defined. A numerical routine should report this boundary explicitly, rather than silently substitute a zero angle.
+
 ## 13. Six worked checks
 
 **1. Normalize (3+4i,0).** Its norm is5. The normalized representative is((3+4i)/5,0), with computational probabilities(1,0). It is the same ray as e₀ despite its complex first coordinate.
