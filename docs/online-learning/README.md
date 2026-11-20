@@ -1,5 +1,7 @@
 # Colab 강의와 AI를 위한 물리와 수학 제작 계획
 
+2026-11-21 학습 경험 개편: 650개 단원 나열을 7개 과정·51개 영역의 트리로 바꾸고, 검색·펼침 저장·현재 위치·학습 표시·이어 읽기를 연결했다. 내적·투영, 경사하강, Bayes 갱신, 양자 간섭 네 단원에 한영 쉬운 도입·단계별 조작 그림·LaTeX·풀이 예제 8개를 추가했다. [전체 개편 계획](physics-math-for-ai/pedagogy-redesign-plan.json), [650단원·1,300원고 현황](physics-math-for-ai/pedagogy-redesign-inventory.json), [검증 근거](physics-math-for-ai/pedagogy-tree-evidence.json)를 따른다. 관련 863검사·추가 12검사·린트·빌드·타입·출력과 화면 40조건·수식/그림 80상태·모션 4흐름·저장 실패 대안을 검증했다. 기존 원고는 보존했다. 이번 네 도입은 시범이며 전체 원고 재구성과 본문·기존 UI의 LaTeX 통일은 진행 중이다. 새 기준으로 전체 개편 완료를 확인한 단원은 아직 0개이며, 기존 연구 대조 45영역·447주제 및 양자 22/34 집계와 구별한다.
+
 2026-11-21 최신: [순차 Schmidt 압축·회로 미분 연구 보강](physics-math-for-ai/quantum-compression-gradient-research-status.md)을 마쳤다. 한영 4원고에 중첩 projector·누적 절단 오차·준최적 보증과 parameter-shift·제어 주파수·shot 분산, 32수식·4 Python·4그림·12해설 문제를 추가했다. 격리 환경 820검사·빌드·타입·출력과 실제 reader 16상태를 검증했다. 양자 순차 대조는 **22/34단원**, 다음은 Kraus/Choi 채널과 Stinespring 환경이다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**과 650단원·1,969안내·입문 362/362 완료를 유지한다. 아래는 이전 기록이다.
 
 2026-11-13 최신: [Boson 동적 절단·MPS transfer 연구 보강](physics-math-for-ai/quantum-representation-research-status.md)을 마쳤다. 한영 4원고에 경계 잔차·누적 오차·유한 귀환 반례와 transfer·상관 길이·복소 gauge, 32수식·4 Python·4그림·12해설 문제를 추가했다. 격리 환경 327검사·빌드·타입·출력과 실제 reader 16상태를 검증했다. 양자 순차 대조는 **20/34단원**, 다음은 Schmidt 절단과 유한 회로 순서다. 전체 **45영역·447주제 대조 / 6영역·62주제 후속**과 기존 650단원·1,969안내·입문 362/362 완료를 유지한다. 아래는 이전 기록이다.

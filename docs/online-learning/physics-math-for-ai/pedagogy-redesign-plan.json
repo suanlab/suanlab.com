@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-11-21",
+  "objective": "Complete remaining curriculum content and redesign all existing lessons for intuitive learning, authored LaTeX, explained examples, visualization and meaningful motion.",
+  "scope": {
+    "domains": 51,
+    "originalTopics": 509,
+    "registeredLessons": 650,
+    "manuscripts": 1300,
+    "priorResearchFollowup": {
+      "domains": 6,
+      "originalTopics": 62,
+      "quantumUnitsReviewed": 22,
+      "quantumUnitsTotal": 34
+    }
+  },
+  "presentation": {
+    "home": "Book / Interactive Book",
+    "navigation": "Path -> domain -> lesson; domain topics remain available. Preserve lesson URLs and prerequisite links.",
+    "paths": 7,
+    "explanationOrder": [
+      "A concrete problem",
+      "A picture and prerequisite support",
+      "A small hand calculation",
+      "Symbols and a LaTeX equation",
+      "Predict, manipulate, compare",
+      "At least two explained examples",
+      "Connection to AI",
+      "Proofs, assumptions and research extensions"
+    ],
+    "mathematics": "Authored LaTeX across prose, tables, cards, quizzes, figures and results; code keeps its programming syntax. No blind conversion of mathematical semantics.",
+    "motion": "Step, play, pause, restart; honor reduced motion and stop offscreen. Match graphics to the actual mathematical preparation.",
+    "style": "Existing homepage HSL tokens, typography and light/dark themes.",
+    "numericDisplay": "Use readable summaries for initial explanations. Mark rounded values with LaTeX approximation signs; preserve unrounded computation and plots, with exact fractional calculations available on demand."
+  },
+  "phases": [
+    {
+      "id": "inventory",
+      "status": "generated",
+      "artifact": "pedagogy-redesign-inventory.json",
+      "note": "Signals are heuristic and do not prove comprehension or complete LaTeX coverage."
+    },
+    {
+      "id": "course-tree",
+      "status": "validated",
+      "scope": "All 650 lessons with a unique home across seven paths and 51 domains."
+    },
+    {
+      "id": "shared-math",
+      "status": "validated-in-first-readings",
+      "scope": "Reusable strict KaTeX component with MathML and scrollable display equations."
+    },
+    {
+      "id": "four-first-readings",
+      "status": "validated-prototypes",
+      "lessonIds": [
+        "inner-products",
+        "gradients",
+        "bayesian-inference",
+        "finite-qubit-circuit-order-interference"
+      ],
+      "scope": "Easy first reading, staged manipulation and two worked examples; existing full chapter and labs retained."
+    },
+    {
+      "id": "whole-chapter-redesign",
+      "status": "pending",
+      "scope": "Review and revise all 650 complete lessons, including older UI strings and original body equations."
+    },
+    {
+      "id": "remaining-research-content",
+      "status": "pending",
+      "scope": "Integrate the six remaining research areas using the new pedagogy standard."
+    },
+    {
+      "id": "curriculum-integration",
+      "status": "pending",
+      "scope": "Full bilingual mathematical, pedagogical, accessibility, motion and deployment verification."
+    }
+  ],
+  "curriculumComplete": false,
+  "lastVerification": {
+    "tests": 863,
+    "targetedRetest": 12,
+    "pageStates": 40,
+    "exactMathAndGeometryStates": 80,
+    "motionFlows": 4,
+    "fullChapterRedesignsVerified": 0
+  }
+}

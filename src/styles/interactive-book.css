@@ -326,3 +326,93 @@
 /* Keep names legible in the four-construction comparison without widening the page. */
 .ai-prose table.ai-path-integral-comparison th:first-child,
 .ai-prose table.ai-path-integral-comparison td:first-child { min-width: 8rem; }
+
+/* Course navigation: seven entry paths, with domains and lessons beneath them. */
+.ai-course-tree { border-top:1px solid hsl(var(--border)); padding-top:2rem; }
+.ai-course-tree p { max-width:70ch; }
+.ai-tree-toolbar { display:flex; gap:.75rem; align-items:end; margin:1.25rem 0; }
+.ai-tree-toolbar>div { flex:1; min-width:0; }
+.ai-tree-toolbar label { display:block; font-weight:600; margin-bottom:.4rem; }
+.ai-tree-toolbar input { width:100%; padding:.7rem .85rem; border:1px solid hsl(var(--border)); border-radius:var(--radius); background:hsl(var(--background)); color:inherit; font:inherit; }
+.ai-tree-toolbar button { border:1px solid hsl(var(--border)); border-radius:var(--radius); padding:.7rem .9rem; font:inherit; }
+.ai-tree-toolbar button:disabled { opacity:.55; }
+.ai-tree-roots,.ai-tree-roots ul { list-style:none; padding:0; margin:0; }
+.ai-tree-roots>li { border:1px solid hsl(var(--border)); border-radius:var(--radius); margin:.75rem 0; overflow:hidden; }
+.ai-tree-branch { display:flex; width:100%; gap:.75rem; text-align:start; align-items:center; padding:.9rem 1rem; color:inherit; font:inherit; background:transparent; border:0; min-height:48px; cursor:pointer; }
+.ai-tree-branch:disabled { cursor:default; }
+.ai-tree-path { background:hsl(var(--primary)/.035); }
+.ai-tree-branch:hover { background:hsl(var(--primary)/.07); }
+.ai-tree-branch>span:nth-child(2),.ai-tree-branch>strong { flex:1; min-width:0; overflow-wrap:anywhere; }
+.ai-tree-purpose { display:block; color:hsl(var(--muted-foreground)); font-size:.9rem; margin-top:.25rem; }
+.ai-tree-count { font-size:.875rem; white-space:nowrap; color:hsl(var(--muted-foreground)); font-variant-numeric:tabular-nums; }
+.ai-tree-chevron { width:.5rem; height:.5rem; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(-45deg); flex:none; transition:transform .18s ease; }
+.ai-tree-branch[aria-expanded="true"]>.ai-tree-chevron { transform:rotate(45deg); }
+.ai-tree-roots>li>ul { padding:.25rem .75rem .75rem 1.25rem; }
+.ai-tree-roots>li>ul>li { border-left:1px solid hsl(var(--border)); }
+.ai-tree-domain-content { padding:0 .75rem .75rem 1.75rem; }
+.ai-tree-prerequisites,.ai-tree-status { font-size:.875rem; color:hsl(var(--muted-foreground)); }
+.ai-tree-topics { margin:.5rem 0 .75rem; }
+.ai-tree-topics summary { cursor:pointer; font-size:.9rem; }
+.ai-tree-topics ul { padding:.75rem 0 .75rem 1rem; font-size:.9rem; }
+.ai-tree-lessons a { display:flex; gap:.6rem; align-items:start; padding:.75rem; border-radius:var(--radius); text-decoration:none; color:inherit; }
+.ai-tree-lessons a:hover,.ai-tree-lessons a[aria-current="page"] { background:hsl(var(--primary)/.09); }
+.ai-tree-lessons a[aria-current="page"] { box-shadow:inset 3px 0 hsl(var(--primary)); }
+.ai-tree-lessons a>span:nth-child(2) { flex:1; min-width:0; overflow-wrap:anywhere; }
+.ai-tree-lessons small { display:block; color:hsl(var(--muted-foreground)); font-size:.875rem; margin-top:.15rem; }
+.ai-tree-marker { width:.6rem; height:.6rem; border:1px solid hsl(var(--muted-foreground)); border-radius:50%; flex:none; margin-top:.5rem; }
+.ai-tree-marker.is-complete { background:var(--learning-green); border-color:var(--learning-green); }
+.ai-tree-completed-label { font-size:.875rem; color:var(--learning-green); }
+.ai-tree-resume { color:hsl(var(--primary)); text-decoration:underline; text-underline-offset:3px; }
+.ai-tree-location { padding:1rem; border-left:3px solid hsl(var(--primary)); background:hsl(var(--primary)/.04); overflow-wrap:anywhere; }
+.ai-course-tree-compact { margin:0; padding:1rem; border-top:1px solid hsl(var(--border)); }
+.ai-course-tree-compact .ai-section-heading { display:block; }
+.ai-course-tree-compact .ai-section-heading h2 { font-size:1.125rem; }
+.ai-course-tree button:focus-visible,.ai-course-tree summary:focus-visible,.ai-course-tree input:focus-visible { outline:2px solid hsl(var(--ring)); outline-offset:3px; }
+@media(max-width:640px) {
+ .ai-tree-toolbar { align-items:stretch; flex-direction:column; }
+ .ai-tree-purpose { font-size:.875rem; }
+ .ai-tree-branch { padding:.75rem .65rem; gap:.55rem; }
+ .ai-tree-roots>li>ul { padding-left:.65rem; padding-right:.2rem; }
+ .ai-tree-domain-content { padding-left:.65rem; padding-right:.2rem; }
+ .ai-tree-lessons a { padding:.65rem .4rem; }
+ .ai-tree-completed-label { display:none; }
+}
+@media(prefers-reduced-motion:reduce) { .ai-tree-chevron { transition:none; } }
+
+/* A first reading: prediction, a real preparation, LaTeX and worked examples. */
+.ai-learning-studio { margin:2.5rem 0; padding:clamp(1rem,3vw,2rem); border:1px solid hsl(var(--border)); border-radius:var(--radius); background:hsl(var(--card)); }
+.ai-learning-studio h2 { margin:.6rem 0 1rem; max-width:36ch; }
+.ai-learning-studio>p { max-width:75ch; margin:.9rem 0; }
+.ai-learning-studio h3 { font-size:1.125rem; font-weight:600; margin:.25rem 0 .75rem; }
+.ai-studio-analogy { padding-left:1rem; border-left:3px solid var(--learning-green); }
+.ai-studio-prediction { background:hsl(var(--primary)/.05); padding:1rem; border-radius:var(--radius); margin:1.25rem 0; }
+.ai-studio-prediction p { margin:.4rem 0 0; }
+.ai-studio-example-label { display:block; font-weight:600; margin-bottom:.4rem; }
+.ai-learning-studio select { width:100%; max-width:32rem; border:1px solid hsl(var(--border)); border-radius:var(--radius); padding:.75rem; background:hsl(var(--background)); color:inherit; font:inherit; }
+.ai-studio-stages,.ai-studio-playback { display:flex; flex-wrap:wrap; gap:.5rem; margin:1.25rem 0; }
+.ai-learning-studio button { min-height:44px; padding:.55rem .8rem; border:1px solid hsl(var(--border)); border-radius:var(--radius); background:hsl(var(--background)); color:inherit; font:inherit; text-align:start; }
+.ai-learning-studio button[aria-pressed="true"] { background:hsl(var(--primary)/.1); color:hsl(var(--foreground)); border-color:hsl(var(--primary)); }
+.ai-learning-studio button:disabled { opacity:.5; }
+.ai-learning-studio button:focus-visible,.ai-learning-studio select:focus-visible { outline:2px solid hsl(var(--ring)); outline-offset:3px; }
+.ai-studio-comparison { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1.5rem; align-items:center; }
+.ai-studio-scene { min-width:0; margin:0; }
+.ai-studio-scene svg { width:100%; height:auto; display:block; border:1px solid hsl(var(--border)); border-radius:var(--radius); background:hsl(var(--background)); }
+.ai-studio-scene figcaption { font-size:.875rem; color:hsl(var(--muted-foreground)); margin-top:.6rem; }
+.ai-studio-grid { stroke:hsl(var(--border)); stroke-width:1; opacity:.6; }
+.ai-studio-axis { stroke:hsl(var(--muted-foreground)); opacity:.5; stroke-width:1.5; }
+.ai-studio-stage-text { min-width:0; }
+.ai-studio-stage-text p { margin:.75rem 0; }
+.ai-learning-math-block { overflow:auto; padding:.4rem .1rem; max-width:100%; margin:.75rem 0; }
+.ai-learning-math-block .katex-display { margin:.5rem 0; }
+.ai-learning-math-block:focus-visible { outline:2px solid hsl(var(--ring)); outline-offset:3px; }
+.ai-learning-math .katex { font-size:1.05em; }
+.ai-studio-worked { display:grid; gap:1rem; margin-top:1.5rem; }
+.ai-studio-worked article { min-width:0; padding:1.25rem; border:1px solid hsl(var(--border)); border-radius:var(--radius); }
+.ai-studio-worked p { max-width:75ch; }
+.ai-studio-bridge { padding-top:1rem; border-top:1px solid hsl(var(--border)); }
+.ai-learning-studio>a { color:hsl(var(--primary)); text-decoration:underline; text-underline-offset:3px; }
+@media(max-width:768px) { .ai-studio-comparison { grid-template-columns:minmax(0,1fr); gap:1rem; } .ai-studio-worked article { padding:.85rem; } }
+
+@media(max-width:640px) { .ai-studio-stages,.ai-studio-playback { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); } .ai-studio-stages button,.ai-studio-playback button { min-width:0; overflow-wrap:anywhere; } }
+
+.ai-learning-studio { word-break:keep-all; overflow-wrap:break-word; }

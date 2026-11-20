@@ -1,0 +1,1435 @@
+{
+  "date": "2026-11-21",
+  "baselineCommit": "dff8d2018c47e3f8626d6f3bed47217e4e1471f8",
+  "scope": {
+    "treePaths": 7,
+    "domains": 51,
+    "topics": 509,
+    "uniqueLessonHomes": 650,
+    "firstReadingPrototypes": [
+      "inner-products",
+      "gradients",
+      "bayesian-inference",
+      "finite-qubit-circuit-order-interference"
+    ],
+    "fullChapterRedesignsVerified": 0,
+    "previousResearchReviewUnchanged": {
+      "domains": 45,
+      "topics": 447,
+      "followupDomains": 6,
+      "followupTopics": 62,
+      "quantumReviewedUnits": 22,
+      "quantumTotalUnits": 34
+    }
+  },
+  "tests": {
+    "files": 8,
+    "passed": 863,
+    "targetedRetestPassed": 12
+  },
+  "processes": {
+    "tests": {
+      "exitCode": 0,
+      "elapsedSeconds": 64.44746417785063
+    },
+    "lint": {
+      "exitCode": 0,
+      "elapsedSeconds": 3.012525667902082
+    },
+    "build": {
+      "exitCode": 0,
+      "elapsedSeconds": 215.88489950308576
+    },
+    "typecheck": {
+      "exitCode": 0,
+      "elapsedSeconds": 20.353174473159015
+    },
+    "validate-content": {
+      "exitCode": 0,
+      "elapsedSeconds": 2.129567326977849
+    },
+    "check-export": {
+      "exitCode": 0,
+      "elapsedSeconds": 71.9704673551023
+    },
+    "browser": {
+      "exitCode": 0,
+      "elapsedSeconds": 244.6634854967706
+    }
+  },
+  "browser": {
+    "rows": [
+      {
+        "id": "overview",
+        "lang": "ko",
+        "width": 320,
+        "dark": false
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "width": 320,
+        "dark": false
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "width": 320,
+        "dark": false
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "width": 320,
+        "dark": false
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "width": 320,
+        "dark": false
+      },
+      {
+        "id": "overview",
+        "lang": "ko",
+        "width": 768,
+        "dark": false
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "width": 768,
+        "dark": false
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "width": 768,
+        "dark": false
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "width": 768,
+        "dark": false
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "width": 768,
+        "dark": false
+      },
+      {
+        "id": "overview",
+        "lang": "ko",
+        "width": 1440,
+        "dark": false
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "width": 1440,
+        "dark": false
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "width": 1440,
+        "dark": false
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "width": 1440,
+        "dark": false
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "width": 1440,
+        "dark": false
+      },
+      {
+        "id": "overview",
+        "lang": "ko",
+        "width": 1440,
+        "dark": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "width": 1440,
+        "dark": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "width": 1440,
+        "dark": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "width": 1440,
+        "dark": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "width": 1440,
+        "dark": true
+      },
+      {
+        "id": "overview",
+        "lang": "en",
+        "width": 320,
+        "dark": false
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "width": 320,
+        "dark": false
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "width": 320,
+        "dark": false
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "width": 320,
+        "dark": false
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "width": 320,
+        "dark": false
+      },
+      {
+        "id": "overview",
+        "lang": "en",
+        "width": 768,
+        "dark": false
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "width": 768,
+        "dark": false
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "width": 768,
+        "dark": false
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "width": 768,
+        "dark": false
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "width": 768,
+        "dark": false
+      },
+      {
+        "id": "overview",
+        "lang": "en",
+        "width": 1440,
+        "dark": false
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "width": 1440,
+        "dark": false
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "width": 1440,
+        "dark": false
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "width": 1440,
+        "dark": false
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "width": 1440,
+        "dark": false
+      },
+      {
+        "id": "overview",
+        "lang": "en",
+        "width": 1440,
+        "dark": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "width": 1440,
+        "dark": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "width": 1440,
+        "dark": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "width": 1440,
+        "dark": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "width": 1440,
+        "dark": true
+      }
+    ],
+    "flows": [
+      {
+        "type": "lesson",
+        "id": "inner-products",
+        "lang": "ko",
+        "variants": 3,
+        "stages": 4,
+        "prediction": true,
+        "workedExamples": 2,
+        "reducedMotion": true,
+        "mathKeyboardScroll": false,
+        "overflowRegionsChecked": 0,
+        "exactCalculationDisclosure": false,
+        "treeCurrentLocation": true,
+        "liveCompletion": true
+      },
+      {
+        "type": "lesson",
+        "id": "gradients",
+        "lang": "ko",
+        "variants": 3,
+        "stages": 4,
+        "prediction": true,
+        "workedExamples": 2,
+        "reducedMotion": true,
+        "mathKeyboardScroll": true,
+        "overflowRegionsChecked": 1,
+        "exactCalculationDisclosure": true,
+        "treeCurrentLocation": true,
+        "liveCompletion": true
+      },
+      {
+        "type": "lesson",
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "variants": 2,
+        "stages": 4,
+        "prediction": true,
+        "workedExamples": 2,
+        "reducedMotion": true,
+        "mathKeyboardScroll": true,
+        "overflowRegionsChecked": 1,
+        "exactCalculationDisclosure": false,
+        "treeCurrentLocation": true,
+        "liveCompletion": true
+      },
+      {
+        "type": "lesson",
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "variants": 2,
+        "stages": 4,
+        "prediction": true,
+        "workedExamples": 2,
+        "reducedMotion": true,
+        "mathKeyboardScroll": false,
+        "overflowRegionsChecked": 0,
+        "exactCalculationDisclosure": false,
+        "treeCurrentLocation": true,
+        "liveCompletion": true
+      },
+      {
+        "type": "tree",
+        "keyboard": true,
+        "savedExpansion": true,
+        "normalizedSearch": true,
+        "noResults": true,
+        "reset": true
+      },
+      {
+        "type": "lesson",
+        "id": "inner-products",
+        "lang": "en",
+        "variants": 3,
+        "stages": 4,
+        "prediction": true,
+        "workedExamples": 2,
+        "reducedMotion": true,
+        "mathKeyboardScroll": false,
+        "overflowRegionsChecked": 0,
+        "exactCalculationDisclosure": false,
+        "treeCurrentLocation": true,
+        "liveCompletion": true
+      },
+      {
+        "type": "lesson",
+        "id": "gradients",
+        "lang": "en",
+        "variants": 3,
+        "stages": 4,
+        "prediction": true,
+        "workedExamples": 2,
+        "reducedMotion": true,
+        "mathKeyboardScroll": true,
+        "overflowRegionsChecked": 1,
+        "exactCalculationDisclosure": true,
+        "treeCurrentLocation": true,
+        "liveCompletion": true
+      },
+      {
+        "type": "lesson",
+        "id": "bayesian-inference",
+        "lang": "en",
+        "variants": 2,
+        "stages": 4,
+        "prediction": true,
+        "workedExamples": 2,
+        "reducedMotion": true,
+        "mathKeyboardScroll": true,
+        "overflowRegionsChecked": 1,
+        "exactCalculationDisclosure": false,
+        "treeCurrentLocation": true,
+        "liveCompletion": true
+      },
+      {
+        "type": "lesson",
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "variants": 2,
+        "stages": 4,
+        "prediction": true,
+        "workedExamples": 2,
+        "reducedMotion": true,
+        "mathKeyboardScroll": false,
+        "overflowRegionsChecked": 0,
+        "exactCalculationDisclosure": false,
+        "treeCurrentLocation": true,
+        "liveCompletion": true
+      },
+      {
+        "type": "resume",
+        "lastVisited": true
+      },
+      {
+        "type": "storage",
+        "storage": "corrupt",
+        "navigable": true
+      },
+      {
+        "type": "storage",
+        "storage": "blocked",
+        "navigable": true
+      }
+    ],
+    "stages": [
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 0,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 0,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 0,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 0,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 1,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 1,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 1,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 1,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 2,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 2,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 2,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "ko",
+        "example": 2,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 0,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 0,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 0,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 0,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 1,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 1,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 1,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 1,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 2,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 2,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 2,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "ko",
+        "example": 2,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "example": 0,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "example": 0,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "example": 0,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "example": 0,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "example": 1,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "example": 1,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "example": 1,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "ko",
+        "example": 1,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "example": 0,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "example": 0,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "example": 0,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "example": 0,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "example": 1,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "example": 1,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "example": 1,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "ko",
+        "example": 1,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 0,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 0,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 0,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 0,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 1,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 1,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 1,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 1,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 2,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 2,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 2,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "inner-products",
+        "lang": "en",
+        "example": 2,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 0,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 0,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 0,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 0,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 1,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 1,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 1,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 1,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 2,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 2,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 2,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "gradients",
+        "lang": "en",
+        "example": 2,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "example": 0,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "example": 0,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "example": 0,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "example": 0,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "example": 1,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "example": 1,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "example": 1,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "bayesian-inference",
+        "lang": "en",
+        "example": 1,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "example": 0,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "example": 0,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "example": 0,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "example": 0,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "example": 1,
+        "stage": 0,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "example": 1,
+        "stage": 1,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "example": 1,
+        "stage": 2,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "lang": "en",
+        "example": 1,
+        "stage": 3,
+        "exactMath": true,
+        "geometry": true,
+        "primaryEquationFitsViewport": true
+      }
+    ],
+    "motions": [
+      {
+        "id": "inner-products",
+        "play": true,
+        "pause": true,
+        "offscreenPause": true
+      },
+      {
+        "id": "gradients",
+        "play": true,
+        "pause": true,
+        "offscreenPause": true
+      },
+      {
+        "id": "bayesian-inference",
+        "play": true,
+        "pause": true,
+        "offscreenPause": true
+      },
+      {
+        "id": "finite-qubit-circuit-order-interference",
+        "play": true,
+        "pause": true,
+        "offscreenPause": true
+      }
+    ],
+    "errors": [],
+    "svgCoordinateTolerance": 0.0001
+  },
+  "servedCurrentOutput": [
+    {
+      "path": "/book/online/physics-math-for-ai/",
+      "sha256": "eb1b47ffac932535397b2d5a8572f93ed84b87be7ce426e9d9c107d93762944a"
+    },
+    {
+      "path": "/book/online/physics-math-for-ai/inner-products/",
+      "sha256": "52b06fb2971b96a8a4b66b677e61127a290c312a97eba510bdf7c20c1e085d8d"
+    },
+    {
+      "path": "/book/online/physics-math-for-ai/gradients/",
+      "sha256": "8f1c699102bc5e27bf6dcfc7f302b91d2f0ad5d591405d3839baf3e51c8dd5ee"
+    },
+    {
+      "path": "/book/online/physics-math-for-ai/bayesian-inference/",
+      "sha256": "103c331aec32b86ba2e70a7afb7fd463bc56a16ee51d7a8e923ca2f9d75064ac"
+    },
+    {
+      "path": "/book/online/physics-math-for-ai/finite-qubit-circuit-order-interference/",
+      "sha256": "63ce209277512d0dfb670e42c3406b04bd3af852d454e82c8aff7797d6f25e45"
+    },
+    {
+      "path": "/_next/static/chunks/1157-58974f0d3b73f88c.js",
+      "sha256": "f2d97f5b1a926b633468ec2b7fa6dde709350c3d72cc7836c6307cc91b8094d2"
+    },
+    {
+      "path": "/_next/static/chunks/2117-757bfa9576d664de.js",
+      "sha256": "9c84ed42375f6e8262db11cf41b94f8c922ea83fe6e148c7cef93c04b40ea8db"
+    },
+    {
+      "path": "/_next/static/chunks/2514-75a34b49e3f3fc7f.js",
+      "sha256": "f004d62a6a1083d096f4b5df6c3f807b949b09c33aef6b43de1a1d2f1962c31a"
+    },
+    {
+      "path": "/_next/static/chunks/276-fa56067cda26a48b.js",
+      "sha256": "08f71b1cf933300aa3d0351063e3bb7039e1e69705fb9ffb5cbfd74c5677059a"
+    },
+    {
+      "path": "/_next/static/chunks/2972-7de47aff8c3502d0.js",
+      "sha256": "6e502a26091acaa438e2968708f1c772eb06b83feb401adcaec76ef0cc1d0fd4"
+    },
+    {
+      "path": "/_next/static/chunks/3029-1cfea0d0b88edeeb.js",
+      "sha256": "9ad155700ce9c3a4c92619a04dd697e9b0d8a9853cdd80c41812c11ce070844a"
+    },
+    {
+      "path": "/_next/static/chunks/3178-e2f9953c50385e7d.js",
+      "sha256": "7428516fe371c35b3f7a254e3d9f52ae4fb1ab149f5a9b0e32cac87c544bda79"
+    },
+    {
+      "path": "/_next/static/chunks/4170-718245c44380f286.js",
+      "sha256": "a28dc00f2f350dd0b656c77cb1df90c0ed4d97d960a866e216de1df298688549"
+    },
+    {
+      "path": "/_next/static/chunks/4195-3bc492288dfac528.js",
+      "sha256": "9babedd6d099c8237a8c1c0c94e278e192b51b1944b54de1ff9066236a3aae54"
+    },
+    {
+      "path": "/_next/static/chunks/4231-badd5ec63d347c6f.js",
+      "sha256": "8a4380c6f9ef31afc174558d7b006aff486a1f040168d9acc6b1f7bd39215fb2"
+    },
+    {
+      "path": "/_next/static/chunks/4471-2fddbcbb0e441657.js",
+      "sha256": "4cb457805142d34f0208f6fed494cb43c3e40ebac424ad7d632cbd7eb1704170"
+    },
+    {
+      "path": "/_next/static/chunks/681-5131d6853e81f649.js",
+      "sha256": "83af98e635cdf55044c822d6c22845ccbcf56218acf6ee8054de99e7b484c145"
+    },
+    {
+      "path": "/_next/static/chunks/8003-ea9cd72841f072a8.js",
+      "sha256": "ddca4cee3a96c3a293536a1f19953f5c35064ef2241b12dfa0557b30e37b40a9"
+    },
+    {
+      "path": "/_next/static/chunks/app/book/online/page-e5d162381d5ae6e6.js",
+      "sha256": "e73fc033b460afd15dc7312f0eaaa8c152a0ab9823116984f21c78262edb1d81"
+    },
+    {
+      "path": "/_next/static/chunks/app/book/online/physics-math-for-ai/%5Bunit%5D/page-d6b16eb9cc145187.js",
+      "sha256": "5bd627f53adefb10f6861732fad6337e84f15306069e0df06cb09f082a808abc"
+    },
+    {
+      "path": "/_next/static/chunks/app/book/online/physics-math-for-ai/page-765e4d5f5927e0cd.js",
+      "sha256": "d361238bea62610e0d82ccf674bfa4f6df467f7a32f50e71773df08a20f62ad9"
+    },
+    {
+      "path": "/_next/static/chunks/app/error-d5c14a1f544a69cb.js",
+      "sha256": "bef886d5540a5d4b69bee80734ad9fad8430b0bf788a55d551d70604515847bb"
+    },
+    {
+      "path": "/_next/static/chunks/app/layout-6ac0e21a95c4e0f0.js",
+      "sha256": "5af2330c052f8f9f8434f1de313423cb1f854446a4566fb6d4b58c8e610a8915"
+    },
+    {
+      "path": "/_next/static/chunks/fd9d1056-efbb5f4a710e7b0a.js",
+      "sha256": "865cad64a44a0c49b5bdadd6c3e9a9a363f6943fb9a70efc1b6292ebab67276f"
+    },
+    {
+      "path": "/_next/static/chunks/main-app-ce18c28f1b79871c.js",
+      "sha256": "22c00b2d5394e970f1551350667e9dcce02f4ccf097b5bb7ca5e3a3a0e09899d"
+    },
+    {
+      "path": "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "path": "/_next/static/chunks/webpack-63b9faf28677f6b5.js",
+      "sha256": "be66306b680e393952c88a1a21151181443be4f9d15b19ff37e8104c2ed12c19"
+    },
+    {
+      "path": "/_next/static/css/296d629aaee7bb1b.css",
+      "sha256": "3e4ad296f417d94abe61f3e15c3ddf3a5b253742ae4ea29e28b795c360f2cf62"
+    },
+    {
+      "path": "/_next/static/css/5b7055a6f8f66a21.css",
+      "sha256": "3e4f9975643f528a3aabf1bda5930be0620b6c142018d4743931b4ba7b44ce5b"
+    },
+    {
+      "path": "/_next/static/css/7f93dcdda861e837.css",
+      "sha256": "6583b6b38c2df13c14792d9779f086c7f3478fe732588d064e6979a41a617577"
+    },
+    {
+      "path": "/_next/static/css/8bb84db899dbb32f.css",
+      "sha256": "7e3410da320038cbe5054f9613627014fc5f7174eee30cb20fe80a28e398ecc7"
+    },
+    {
+      "path": "/_next/static/css/c82811febaf641e7.css",
+      "sha256": "5df3108116e0d368236472462edcada735daa568f0200fd152ba269c2fd22d0a"
+    },
+    {
+      "path": "/_next/static/css/f6d1d68e7c5009be.css",
+      "sha256": "7a0e4cdca28dd79423e61d08922877f5cc517c54d23871de1b039516f47b8976"
+    },
+    {
+      "path": "/_next/static/css/f8f0c741cb9018f4.css",
+      "sha256": "1afbb815389b0050d735cf6bb6cf893e9b8d9aaa88b2c688a4cfa9c753506025"
+    }
+  ],
+  "manualReview": [
+    {
+      "path": ".runtime/learning/pedagogy-tree/inner-products.scene.ko.png",
+      "sha256": "1e77dbbbac55928efe4a43f0dd2fca28626e644c2148a8329b8d44ca2a94835a",
+      "reviewed": true
+    },
+    {
+      "path": ".runtime/learning/pedagogy-tree/gradients.scene.ko.png",
+      "sha256": "194934bb820960ae039fd59d545f15ef43f5f388ee31558425942e96f6fad6d2",
+      "reviewed": true
+    },
+    {
+      "path": ".runtime/learning/pedagogy-tree/bayesian-inference.scene.ko.png",
+      "sha256": "54fc9fc339117fd80959cb63b9609ed9c10690a552d8f103cb93eba8436712ab",
+      "reviewed": true
+    },
+    {
+      "path": ".runtime/learning/pedagogy-tree/finite-qubit-circuit-order-interference.scene.ko.png",
+      "sha256": "ced181ff42e42c133474ad3ba82246c80d2c9ececfaba79daed0107b4eb80ffc",
+      "reviewed": true
+    },
+    {
+      "path": ".runtime/learning/pedagogy-tree/inner-products.scene.en.png",
+      "sha256": "2ae23e7959d9eebe5de3b335976640af5335771e902dc8b168723bd6f9717c73",
+      "reviewed": true
+    },
+    {
+      "path": ".runtime/learning/pedagogy-tree/gradients.scene.en.png",
+      "sha256": "02e963e1a5fad31227a732865b201a7bd1ffaf3841e76d436a2f55d62256b804",
+      "reviewed": true
+    },
+    {
+      "path": ".runtime/learning/pedagogy-tree/bayesian-inference.scene.en.png",
+      "sha256": "ec962df136e426f5e3e9e1a071ab03bb8459cf941ee0f94bd1c9361808f5c74f",
+      "reviewed": true
+    },
+    {
+      "path": ".runtime/learning/pedagogy-tree/finite-qubit-circuit-order-interference.scene.en.png",
+      "sha256": "1d965bc5297ce28c58e9a06aac4aab47908be3ebd3ec6298e4a553029ef55b45",
+      "reviewed": true
+    },
+    {
+      "path": ".runtime/learning/pedagogy-tree/tree-en-320.png",
+      "sha256": "e8d230f7a046cc16206165ccfbff8381677c936a81cd474de970bf33253eb225",
+      "reviewed": true
+    },
+    {
+      "path": ".runtime/learning/pedagogy-tree/tree-desktop-dark.png",
+      "sha256": "35f4760e9f6ac59d7dde6aabf7a1ca3fa67e06582f285e05f396e3d0b07a020e",
+      "reviewed": true
+    },
+    {
+      "path": ".runtime/learning/pedagogy-tree/gradients-desktop-dark.png",
+      "sha256": "fe1ab5d90abc7e9ca0d9e2a12351e818d43ae498ad4157e26896e1f03fbd4ac3",
+      "reviewed": true
+    }
+  ],
+  "implementationHashes": {
+    "package.json": "7d634b80ccb8be02e0fcfc54e04f7352690951d50c187e60653462ae658797c5",
+    "package-lock.json": "1450c13201e3a33e615957654af7e2a10db62a4eb26c1e8739e1f341446196f1",
+    "src/data/learning-paths.ts": "68cd9fbabfe3fa405ff3052916ca56d1308a3e5c288f304f664a5a1f5fe92f73",
+    "src/data/learning-first-steps.ts": "0c6150f0b2a7fefbec9f62f6c375d99bb1eb4fde55a93ba93b022671638435fb",
+    "src/lib/learning-first-steps.ts": "9dacd40870070cd0d92bfa0078cce02fe77701108b3b0de0446d4ef19f96043b",
+    "src/components/learning/curriculum-map.tsx": "39eac60ced58e003f86267cf22deb6936f2a207f6bbb3ba0c892300d77a98fe1",
+    "src/components/learning/interactive-book.tsx": "b4c63fb7c59344a6c37b0eb9732e1063346a5b6b11d4d884a99da33a213cc248",
+    "src/components/learning/learning-quiz.tsx": "1b7fe00573307af050919b0b6d9092ef77919c58d26ecb5ff356434850f40360",
+    "src/components/learning/learning-math.tsx": "db5c4d982f099818bcd43af671f26ead55203a080431c213cc16e62e72946713",
+    "src/components/learning/learning-first-steps.tsx": "29d5b3f57a49523f2eb679980afd2e016e1f26461e62349361751580bb40f6a6",
+    "src/styles/interactive-book.css": "7ea1c399f424b2bb578709e77d70a2959871cb48e335879020f68b43d033e4f3",
+    "scripts/check-learning-pedagogy-tree.cjs": "c6c69cfa6a743d807cb4b34ea6b8ab738ced533c9cab81bc3471250dc0a10c77",
+    "scripts/learning-pedagogy-tree.test.ts": "f360d58d7f12a3e6fd4b66710ba3d7e47975c28a1c3cb545e1240c079fb80301",
+    "scripts/learning/audit-pedagogy.ts": "aa7e9a0af8b78299427c70b5858d0105ababe53d04b7ae816365174dfccf354a"
+  },
+  "sourceFreeze": {
+    "directories": [
+      "src",
+      "content/learning",
+      "public/assets/learning"
+    ],
+    "extraFiles": [
+      "package.json",
+      "package-lock.json",
+      "next.config.mjs"
+    ],
+    "count": 3644,
+    "manifestSha256": "77af218e292199bc23f0adaac447da8229227a49a4ed9a50c374b6a92d8b8cb4",
+    "serialization": "Sorted path to SHA256 map, JSON indent=2 plus newline, UTF-8"
+  },
+  "preservedManuscripts": {
+    "count": 1300,
+    "inventory": "pedagogy-redesign-inventory.json",
+    "verification": "All source manuscript hashes match the inventory; none edited in this change."
+  },
+  "limitations": [
+    "The four new first readings are prototypes, not a completed rewrite of their full chapters.",
+    "Full LaTeX migration of original body prose, legacy concepts, quizzes, labs and diagram labels remains under review.",
+    "Inventory expression signals are heuristic, not a count of proven notation errors."
+  ],
+  "publicDeploymentConfirmed": false
+}

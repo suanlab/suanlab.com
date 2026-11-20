@@ -1,6 +1,6 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/components/language-provider';
 import type { LearningUnit } from '@/data/interactive-book';
 import { useSavedState } from './use-saved-state';
@@ -15,6 +15,7 @@ function validStudy(value: unknown): value is StudyState {
 export default function LearningQuiz({ unit }: { unit: { id: string; questions: LearningUnit['questions'] } }) {
   const { language } = useLanguage(); const ko = language === 'ko';
   const [study, set, ready, storage] = useSavedState(`suanlab-learning:${unit.id}:study`, initial, validStudy);
+  useEffect(() => { if (ready) window.dispatchEvent(new Event('suanlab-learning-progress')); }, [ready, study.complete]);
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   return <section className="ai-quiz" id="check" aria-labelledby="ai-quiz-title"><span className="ai-eyebrow">CHECK YOUR UNDERSTANDING</span><h2 id="ai-quiz-title">{ko ? '설명할 수 있나요?' : 'Can you explain it?'}</h2>
     <p>{ko ? '실험 설정과 무관한 기준 예제를 묻습니다. 답을 고르고 설명을 확인해보세요.' : 'These questions use fixed reference examples, independent of your experiment settings. Choose an answer and check the explanation.'}</p>
