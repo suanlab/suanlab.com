@@ -98,6 +98,130 @@ $$
 
 전체 위상만 다른 상태에서는1이고 |0〉과 |+〉 사이에서는1/2이다. 어떤 교재는 이 값의 제곱근을 fidelity라고 부른다. 수치를 비교하기 전에 정의식을 확인하자. 축약 상태와 제곱근 fidelity 관례의 배경은 [IBM density matrices](https://learning.quantum.ibm.com/course/general-formulation-of-quantum-information/density-matrices), [IBM purifications and fidelity](https://learning.quantum.ibm.com/course/general-formulation-of-quantum-information/purifications-and-fidelity)를 참고한다.
 
+## 연구 확장: 게이트와 매개변수를 구별하며 회로를 미분한다
+
+학습 가능한 양자 모형에는 올바른 전방 상태뿐 아니라 기댓값의 미분이 필요하다. 입력·관측량·다른 모든 매개변수를 고정하자. 미분할 게이트 하나를 고정된 두 unitary 사이에 놓고 두 지수함수를 미분하면 교환자가 나온다. G와 O가 Hermitian일 때 i 인자가 그 기댓값을 실수로 만든다. 각도는 무차원 radian이다.
+
+$$
+U(\theta)=W e^{-i\theta G}V,\quad G=G^\dagger,\quad |\phi\rangle=V|\psi\rangle,\quad A=W^\dagger O W,\quad
+ f(\theta)=\langle\phi|e^{i\theta G}Ae^{-i\theta G}|\phi\rangle,\quad
+ f'(\theta)=i\langle\phi|e^{i\theta G}[G,A]e^{-i\theta G}|\phi\rangle.
+$$
+
+### 서로 다른 생성자 고유값 두 개는 주파수 하나를 준다
+
+생성자에서 cI를 빼면 이 통상적인 비제어 기댓값에서는 전체 위상만 바뀐다. 남은 생성자는 rP이고 P의 제곱은 항등연산자다. 지수함수를 cosine과 sine으로 전개하면 상수와 주파수 2r 하나만 남는다. 이동시킨 두 삼각식을 빼면 정확한 미분을 얻는다. Ry에서는 생성자가 Y/2이므로 r=1/2, 이동량 pi/2, 계수 1/2이다. 작은 간격의 유한 차분이 아니다.
+
+$$
+G=cI+rP,\quad P^2=I,\quad r>0:\qquad
+ f(\theta)=a+b\cos(2r\theta)+d\sin(2r\theta),\quad
+ f'(\theta)=r\left[f\left(\theta+\frac\pi{4r}\right)-f\left(\theta-\frac\pi{4r}\right)\right].
+$$
+
+### 순서를 명시한 얽힘 회로를 미분한다
+
+00에서 선0을 theta만큼 회전하고 제어0인 CX를 적용한 뒤 선1을 phi만큼 회전한다. 선1의 Z를 측정하자. 처음 두 게이트가 cos(theta/2)|00>+sin(theta/2)|11>을 만들고 마지막 국소 회전이 Z 기댓값을 아래처럼 바꾼다. 독립 행렬 계산도 같은 시간 순서와 텐서 번호를 사용한다.
+
+$$
+|\psi(\theta,\varphi)\rangle=(I\otimes R_y(\varphi))\,\mathrm{CX}_{0\to1}\,(R_y(\theta)\otimes I)|00\rangle,\quad
+ R_y(t)=e^{-itY/2},\quad O=I\otimes Z,\quad
+ f=\cos\theta\cos\varphi,\quad
+ \partial_\theta f=-\sin\theta\cos\varphi,\quad\partial_\varphi f=-\cos\theta\sin\varphi.
+$$
+
+### 매개변수 공유와 손실 처리는 문제를 바꾼다
+
+Theta와 phi를 같은 변수 t에 묶으면 두 등장 위치의 편미분을 더해야 한다. 두 위치를 동시에 pi/2씩 옮기면 차이가 0이 되어 실제 도함수를 놓친다. 비선형 고전 손실도 연쇄법칙이 필요하다. f=cos(theta), L=f 제곱만 생각해도 pi/4에서 손실 미분은 −1인데 손실값 둘을 직접 이동시켜 빼면 0이다. 기댓값의 정확한 규칙이 기댓값의 임의 함수로 자동 확장되지는 않는다.
+
+$$
+g(t)=f(t,t)=\cos^2t,\quad g'(t)=\partial_\theta f(t,t)+\partial_\varphi f(t,t)=-\sin(2t),\quad
+ \frac{g(t+\pi/2)-g(t-\pi/2)}2=0;\qquad
+ L=(f-y)^2:\quad\partial_\theta L=2(f-y)\partial_\theta f.
+$$
+
+### 정확한 공식에도 많은 측정이 필요할 수 있다
+
+독립 shot으로 Pauli 관측량을 측정하면 결과는 +1 또는 −1이다. 표본 평균의 분산은 (1−f 제곱)/m이다. 두 이동 회로를 독립적으로 추정하면 아래 gradient 분산을 얻는다. 배분 공식은 두 분산이 양수이며 알려져 있을 때 양의 실수 shot 수에 대해 최소화한 결과다. 장비의 횟수는 정수이고 알려지지 않은 분산에는 예비 추정이 필요하다. 영분산 끝점과 반올림은 따로 다룬다. 매개변수와 무관한 잡음은 고정 준비·읽기 map에 흡수할 수 있지만 매개변수 의존 잡음은 이 이상적 규칙을 따르지 않을 수 있다.
+
+$$
+\widehat{\partial_\theta f}=(\bar O_+-\bar O_-)/2,\quad O^2=I,\quad
+ \operatorname{Var}(\widehat{\partial_\theta f})=\frac{1-f_+^2}{4m_+}+\frac{1-f_-^2}{4m_-},\quad
+ m_++m_-=M,\quad \sigma_\pm=\sqrt{1-f_\pm^2},\quad
+ m_\pm=\frac{M\sigma_\pm}{\sigma_++\sigma_-},\quad
+ \operatorname{Var}_{\min}=\frac{(\sigma_++\sigma_-)^2}{4M}.
+$$
+
+### 제어 회전은 생성자 spectrum이 다르다
+
+Controlled Ry는 서로 다른 생성자 고유값이 세 개다. 따라서 가능한 비영 주파수 크기도 1/2과 1 두 가지다. 제어를 plus, 대상을 zero로 준비하고 제어의 X를 읽으면 대상 갈래의 중첩에서 cos(theta/2)가 나온다. 통상 Ry 규칙을 쓰면 필요한 1/2 대신 1/sqrt(2)가 붙는다. 제어된 구현은 미분할 게이트 자체가 다르다.
+
+$$
+C R_y(\theta)=e^{-i\theta G_c},\quad G_c=|1\rangle\langle1|\otimes Y/2,\quad
+ \operatorname{spec}G_c=\{0,-1/2,1/2\},\quad
+ |\psi_0\rangle=|+0\rangle,\quad O=X\otimes I:\qquad
+ f_c(\theta)=\cos(\theta/2),\quad f_c'=-\tfrac12\sin(\theta/2),\quad
+ \tfrac12[f_c(\theta+\pi/2)-f_c(\theta-\pi/2)]=-\tfrac1{\sqrt2}\sin(\theta/2).
+$$
+
+### 실제 주파수에서 규칙을 복원한다
+
+이 제어 게이트가 고정 연산 사이에 한 번 등장하면 기댓값 주파수는 생성자 고유값 차이들이다. 차이 공식이 주파수 1/2과 1 모두를 정확히 미분하도록 두 선형 방정식을 풀자. 부호 있는 가중치로 회로 네 번을 평가하는 규칙이 나온다. 이 주파수 집합에 대한 것이며 모든 제어 게이트나 재사용 매개변수에 대한 보편 공식은 아니다.
+
+$$
+D_s f=f(\theta+s)-f(\theta-s),\quad
+ f\in\operatorname{span}_{\mathbb R}\{1,\cos(\theta/2),\sin(\theta/2),\cos\theta,\sin\theta\}:\qquad
+ f'(\theta)=\tfrac12D_{\pi/2}f+\frac{1-\sqrt2}{4}D_\pi f.
+$$
+
+### 유리수 각도로 표를 정확히 확인한다
+
+Tan(phi/2)=1/2를 고정하고 t=tan(theta/2)로 놓자. Sine·cosine·두 편미분과 독립적인 100+100 shot 추정기의 분산이 모두 유리수다. Gradient가 0이라는 사실은 추정기 분산도 0이라는 뜻이 아니다. t=0에서 미분은 사라지지만 분산은 1/200이다. Shot을 늘리면 이상적 미분이 바뀌는 대신 추정 불확실성이 줄어든다.
+
+$$
+t=\tan(\theta/2),\quad\tan(\varphi/2)=1/2,\quad
+ \cos\theta=\frac{1-t^2}{1+t^2},\quad\sin\theta=\frac{2t}{1+t^2},\quad
+ \cos\varphi=3/5,\quad\sin\varphi=4/5,\quad
+ f_\pm=\pm\partial_\theta f,\quad m_+=m_-=100,\quad
+ \operatorname{Var}(\widehat{\partial_\theta f})=\frac{1-(\partial_\theta f)^2}{200}.
+$$
+
+```python
+from fractions import Fraction as F
+for t in [F(0),F(1,3),F(1,2),F(1)]:
+    cos=(1-t*t)/(1+t*t)
+    sin=2*t/(1+t*t)
+    f=F(3,5)*cos
+    dtheta=-F(3,5)*sin
+    dphi=-F(4,5)*cos
+    variance=(1-dtheta*dtheta)/200
+    print(t,f,dtheta,dphi,variance)
+```
+
+| t | f | theta 편미분 | phi 편미분 | 분산, M=200 |
+| --- | --- | --- | --- | --- |
+| 0 | 3/5 | 0 | -4/5 | 1/200 |
+| 1/3 | 12/25 | -9/25 | -16/25 | 68/15625 |
+| 1/2 | 9/25 | -12/25 | -12/25 | 481/125000 |
+| 1 | 0 | -3/5 | 0 | 2/625 |
+
+![Controlled Ry에서 통상 두 이동 미분이 실패하고 네 번 평가 주파수 규칙이 해석적 도함수와 일치하는 모습 및 측정 횟수에 따른 분산 감소.](/assets/learning/quantum-compression-gradient-research-parameter-shift-frequency.ko.svg)
+
+위 패널은 보통 회전이 아니라 controlled Ry 뒤 제어 X를 읽은 것이다. 아래는 고정 phi에서 독립적으로 똑같이 배분한 Pauli shot 추정기의 정확 분산이다. 해석적 기준 예제이며 reader의 기존 정확 H/S/T 회로 제어를 유지한다. 연속 optimizer나 장비 sampler를 추가한 것은 아니다.
+
+#### 연구 확인 1: 공유 변수에는 편미분 둘이 필요하다
+
+Theta=phi=pi/4에서 각 편미분은 −1/2이므로 묶인 변수의 도함수는 −1이다. 두 각도를 동시에 ±pi/2 옮기면 두 회로의 값이 모두 1/2여서 잘못된 영미분을 얻는다.
+
+#### 연구 확인 2: 제어 회전과 보통 회전은 다르다
+
+Theta=pi에서 controlled Ry의 제어 X 기댓값 미분은 −1/2이다. 통상 규칙은 −1/sqrt(2)를 반환한다. 네 번 평가 공식은 가능한 두 비영 주파수에 맞췄기 때문에 −1/2를 반환한다.
+
+#### 연구 확인 3: 영 gradient에도 shot 잡음이 있다
+
+Theta=0, cos(phi)=3/5이면 두 이동 Z 기댓값은 0이다. 각 100 shot의 독립 평균은 각각 분산 1/100을 가지며 그 차이를 2로 나누면 분산 1/200이다. 기댓값이 정확히 0이라고 개별 Pauli 결과가 확정적이지는 않다.
+
+배경은 [Schuld 외, Evaluating analytic gradients on quantum hardware, §II](https://arxiv.org/pdf/1811.11184)의 두 고유값 parameter-shift 규칙이다. 공유 변수 반례·제어 주파수 공식·shot 계산은 직접 전개한 유한 예제이며 학습 확장성이나 barren plateau 진단을 주장하지 않는다.
+
 ## 7. 해설이 있는 연습
 
 **예측:** Z가 |+〉의 계산 기저 확률을 바꾸는가? 아니다. 상대 부호를 바꾸며, X기저 측정은 그 차이를 구별한다. 계산 기저 측정 전에 H를 넣으면 이 정보를 읽을 수 있다.

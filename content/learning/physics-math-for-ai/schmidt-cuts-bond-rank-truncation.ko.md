@@ -206,6 +206,134 @@ $$
 
 Unbounded 연산자에는 추가 모멘트 제어 없이 이 bound를 그대로 적용하지 않는다. 각 cut의 독립 최적 절단이 동시에 최적인 MPS를 만든다는 결론도 아니다. 순차 절단은 다음 cut이 보는 상태를 바꾼다. 전역 오차·conditioning·variational refinement는 실제 절차를 대상으로 따로 분석해야 한다. 한 cut의 최적성 증명을 다른 알고리즘의 성능 보장으로 확대하지 않는다.
 
+## 연구 확장: 실제 순차 압축에서 오차를 누적한다
+
+한 cut의 최적 절단만으로는 압축 알고리즘이 완성되지 않는다. 이제 유한 정규화 순수 tensor에 왼쪽부터 tensor-train SVD(TT-SVD)를 적용하자. 진폭 서류철을 차례로 넘기면서 앞부분을 직교정규 요약으로 바꾸고 남은 계수를 다음 위치로 보내는 과정이라고 생각하면 된다. Budget은 양의 정수이며 사용 가능한 차원보다 크면 있는 차원을 모두 유지한다. 중간 residual은 정규화하지 않는다.
+
+### 각 단계는 현재 residual을 사용한다
+
+k단계에서 들어오는 virtual 색인과 물리 site k를 합쳐 SVD하고 U의 선두 열을 유지한다. Sigma와 V의 수반을 곱한 계수를 다음 단계로 보낸다. 여기의 singular value는 현재 residual의 것이며 원래 상태의 같은 cut spectrum과 반드시 같지 않다. Q0는 scalar 항등연산자이고 k는 1부터 n−1까지다. 열이 더 적으면 실제 유지 차원은 요청 budget과 가능한 열 수의 최솟값이다. 다음 unfolding에는 Q의 실제 열 수를 사용하므로 큰 요청 budget이 존재하지 않는 virtual 좌표를 만들지 않는다.
+
+$$
+Q_0=1,\quad R_0=\psi,\quad\|\psi\|=1,\quad
+ M_k=\operatorname{reshape}(R_{k-1})\in\mathbb C^{(\operatorname{cols}Q_{k-1})d_k\times(d_{k+1}\cdots d_n)},\quad
+ M_k=U_k\Sigma_kV_k^\dagger,\quad
+ R_k=\Sigma_{k,\le r_k}V_{k,\le r_k}^\dagger,\quad
+ \delta_k^2=\sum_{a>r_k}\sigma_a(M_k)^2.
+$$
+
+### 유지하는 물리 공간을 만든다
+
+Qk는 유지한 prefix 좌표를 첫 k개 site의 전체 Hilbert 공간에 삽입한다. 매 단계 U의 열이 직교정규이므로 Qk의 열도 그렇다. 나머지 site의 항등연산자를 붙여 projector를 만들면 새 물리 공간은 이전 유지 공간 안에 포함된다. 이 때문에 projector들이 중첩된다. SVD 선택은 입력에 의존하지만 일단 선택한 뒤에는 통상적인 직교 projector다.
+
+$$
+Q_k=(Q_{k-1}\otimes I_{d_k})U_{k,\le r_k},\quad Q_k^\dagger Q_k=I,\quad
+ P_k=Q_kQ_k^\dagger\otimes I_{k+1:n},\quad
+ P_kP_{k-1}=P_k,\quad X_k=P_k\psi,\quad X_0=\psi.
+$$
+
+### 이 절차에서 오차 제곱이 더해지는 이유
+
+j단계에서 버린 조각은 그 뒤 유지 공간 전체에 수직이다. 따라서 나중에 버릴 조각과 최종 tensor에도 수직이다. 피타고라스 정리로 현재 버린 singular value 제곱들의 합과 최종 오차 제곱이 정확히 같다. 원래 상태와 비정규화 결과의 내적도 결과의 노름 제곱과 같다. 이 증명은 명시한 중첩·등거리·중간 비정규화 sweep에 대한 것이며 임의 절단 절차에 적용하는 공식이 아니다.
+
+$$
+e_k=X_{k-1}-X_k,\quad\|e_k\|^2=\delta_k^2,\quad
+ \langle e_j,e_k\rangle=0\ (j\ne k),\quad B=X_{n-1},\quad
+ E=\|\psi-B\|^2=\sum_{k=1}^{n-1}\delta_k^2,\quad
+ \|B\|^2=\langle\psi,B\rangle=1-E.
+$$
+
+### 끝난 뒤 한 번 정규화한다
+
+모든 budget이 양수이면 비영 입력에서 비영 성분을 유지하므로 정확 연산에서 E<1이다. 최종 tensor만 한 번 정규화하자. 중첩 제곱·trace distance·Hilbert 거리는 서로 다른 공식이다. 관측량 상계는 두 상태에서 같은 유계 Hermitian 연산자를 비교하며 비유계 관측량이나 특정 에너지의 최적화를 인증하지 않는다.
+
+$$
+\widehat B=B/\sqrt{1-E},\quad F_2(\psi,\widehat B)=1-E,\quad
+ D_{\rm tr}(\psi,\widehat B)=\sqrt E,\quad
+ \|\psi-\widehat B\|^2=2(1-\sqrt{1-E}),\quad
+ |\langle O\rangle_\psi-\langle O\rangle_{\widehat B}|\le2\|O\|\sqrt E
+ \quad(O=O^\dagger\text{ bounded},\ E<1).
+$$
+
+### 현재 손실을 원래 cut 꼬리와 연결한다
+
+Ck를 원래 정규화 상태의 unfolding, epsilon-k를 그 행렬의 최적 rank-rk 오차 제곱이라 하자. 현재 unfolding은 Ck를 왼쪽에서 contraction한 것이다. 원래 최적 rank-rk 근사에도 같은 contraction을 적용하면 rank와 Frobenius 오차 모두 증가하지 않는다. 현재 SVD는 자기 unfolding에 최적이므로 현재 손실은 epsilon-k 이하이다. 이것은 원래 spectrum을 이용한 상계이며 합이 정확히 같다는 뜻은 아니다.
+
+$$
+\varepsilon_k=\sum_{a>r_k}\lambda_a^{(k)}(\psi),\quad
+ M_k=(Q_{k-1}^\dagger\otimes I_{d_k})C_k(\psi),\quad
+ \delta_k^2\le\varepsilon_k,\quad E\le\sum_{k=1}^{n-1}\varepsilon_k.
+$$
+
+### 준최적이라는 말의 의미
+
+모든 bond budget을 만족하는 tensor는 각 개별 cut에서도 rank-rk 근사의 후보이다. 따라서 원래 각 꼬리는 전체 최적 비정규화 오차 제곱의 하한이다. 이를 더하면 cut 개수의 제곱근 인자를 갖는 보증이 나온다. Sweep이 전체 최소해를 찾았다는 증명이 아니다. 별도로 정규화 조건까지 건 최적화 문제와 곧바로 비교하지도 않는다.
+
+$$
+e_*^2=\inf_{\operatorname{rank}C_k(Y)\le r_k\ \forall k}\|\psi-Y\|^2,\quad
+ \varepsilon_k\le e_*^2,\quad
+ \|\psi-B\|\le\sqrt{\sum_k\varepsilon_k}\le\sqrt{n-1}\,e_* .
+$$
+
+### 따라 계산할 수 있는 세 qubit 예제
+
+짝수 parity의 네 문자열에 음이 아닌 실수 진폭을 넣자. 첫 cut의 두 행은 오른쪽 support가 겹치지 않는다. 명시한 엄격한 부등식 아래 첫 단계는 site0=0을 유지하고 둘째는 a와 b 중 큰 것을 유지한다. 최종 곱 tensor와 두 손실을 따로 구할 수 있다. 이 예제의 조건은 절단 경계의 축퇴를 피한다.
+
+$$
+\psi=\frac{a|000\rangle+b|011\rangle+c|101\rangle+d|110\rangle}{\sqrt N},\quad
+ N=a^2+b^2+c^2+d^2,\quad a>b\ge0,\quad a^2+b^2>c^2+d^2,\quad(r_1,r_2)=(1,1):\qquad
+ B=\frac a{\sqrt N}|000\rangle,\quad
+ (\delta_1^2,\delta_2^2)=\frac1N(c^2+d^2,b^2),\quad
+ E=\frac{b^2+c^2+d^2}{N}.
+$$
+
+### 원래 꼬리는 다른 수를 준다
+
+둘째 원래 cut에서도 두 열의 support가 겹치지 않는다. 원래 꼬리에는 현재 살아 있는 진폭과 앞서 버린 진폭이 함께 관여하므로 실제 sweep의 둘째 손실과 다를 수 있다. 3,2,1,1에서 실제 합은 2/5이고 원래 꼬리 합 상계는 7/15다. Singular value가 같으면 여러 SVD 선택이 가능하다. 어떤 직교정규 선두 공간을 선택해도 상계는 성립하지만 최종 상태가 유일할 필요는 없다.
+
+$$
+\varepsilon_1=\frac{c^2+d^2}{N},\quad
+ \varepsilon_2=\frac{\min(a^2+d^2,b^2+c^2)}N,\qquad
+ (a,b,c,d)=(3,2,1,1):\quad
+ E=\frac25<\varepsilon_1+\varepsilon_2=\frac7{15},\quad
+ F_2=\frac35,\quad D_{\rm tr}=\sqrt{\frac25}.
+$$
+
+```python
+from fractions import Fraction as F
+for a,b,c,d in [(3,2,1,1),(4,2,1,1),(3,2,2,1),(2,1,1,0)]:
+    N=a*a+b*b+c*c+d*d
+    first=F(c*c+d*d,N)
+    second=F(b*b,N)
+    original_second=F(min(a*a+d*d,b*b+c*c),N)
+    print(f'{a},{b},{c},{d}',first,second,first+second,first+original_second)
+```
+
+| a,b,c,d | 현재 delta1² | 현재 delta2² | 실제 E | 원래 꼬리 합 |
+| --- | --- | --- | --- | --- |
+| 3,2,1,1 | 2/15 | 4/15 | 2/5 | 7/15 |
+| 4,2,1,1 | 1/11 | 2/11 | 3/11 | 7/22 |
+| 3,2,2,1 | 5/18 | 2/9 | 1/2 | 13/18 |
+| 2,1,1,0 | 1/6 | 1/6 | 1/3 | 1/2 |
+
+![현재 단계의 버린 가중치와 원래 cut 꼬리를 비교하고 실제 순차 오차 제곱과 원래 꼬리 합 상계를 구별한 두 그래프.](/assets/learning/quantum-compression-gradient-research-sequential-discarded-weight.ko.svg)
+
+막대는 3,2,1,1 예제다. 곡선은 a=3,b=2,d=1에서 c를 0부터 2까지 바꾼 해석적 공식이다. 독립 압축 유도와 별도 sweep 검산이며 기존 한 cut reader에 새 다중 cut 압축 제어를 넣은 것이 아니다.
+
+#### 연구 확인 1: 중간 정규화를 섞지 않는다
+
+첫 단계 뒤 residual을 자기 노름으로 나누면 다음 버린 가중치는 조건부 가중치다. 원래 입력 scale의 손실에 더하기 전에 그 단계로 들어오는 노름 제곱을 곱해야 한다. 3,2,1,1에서 조건부 둘째 손실은 4/13이지만 올바른 원래 scale 손실은 (13/15)(4/13)=4/15다.
+
+#### 연구 확인 2: 상계는 전체 최적해가 아니다
+
+3,2,2,1에서 sweep의 E=1/2이다. 정규화 곱 상태 [(2|0>+|1>)/sqrt(5)]의 세제곱은 원래 상태와 중첩 제곱 578/1125를 갖는다. 그 방향의 최적 비정규화 배수는 오차 제곱 547/1125로 1/2보다 엄밀히 작다. 이 명시적 후보는 이 경우 sweep이 전체 최적이 아님을 증명한다. 후보 자체가 전체 최적이라는 뜻은 아니다. 준최적 상계는 그대로 성립한다.
+
+#### 연구 확인 3: 축퇴가 인증을 무효로 만들지는 않는다
+
+동일 가중치의 경계에서 직교정규 선두 공간을 하나 고르고 그 선택을 기록하면 된다. 실제 sweep의 중첩 projector와 피타고라스 관계는 여전히 성립한다. 기존 한 cut 계산기는 축퇴를 가를 때 임의 상태를 고르지 않으며 이번 유도가 그 정책을 바꾸지 않는다.
+
+배경 자료는 [Schollwöck, §§4.1.3·4.5.1](https://arxiv.org/pdf/1008.3477)의 순차 SVD와 압축 설명이다. 위 중첩 projector 증명은 정확한 유한 절차를 명시하고 비정규화·정규화 보증을 분리한다.
+
 ## 15. 여덟 문제와 해설
 
 **1. 행렬의 크기.** 네 qubit의 cut3에서 C의 차원과 작은 물리 density를 정하라. Rank2이면 큰 쪽의 추가 영 고유값은 몇 개인가?

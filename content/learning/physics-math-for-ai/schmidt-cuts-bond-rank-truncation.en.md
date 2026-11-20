@@ -206,6 +206,134 @@ $$
 
 The bound does not guarantee a small error for an unbounded operator without further moment control. It also does not turn independent best truncations at different cuts into a jointly optimal MPS. A sequential truncation changes the state seen by later cuts. Global error bounds, conditioning and variational refinement require a separate analysis of that actual procedure.
 
+## Research extension: accumulate errors in an actual sequential compression
+
+A best truncation at one cut is not yet a compression algorithm. We now specify a left-to-right tensor-train SVD (TT-SVD) on a finite normalized pure tensor. Imagine passing a folder of amplitudes down a line: each step keeps an orthonormal summary of the prefix and passes its coefficients onwards. Budgets are positive integers; a budget above the available dimension simply keeps that dimension. No intermediate residual is renormalized.
+
+### Each step uses the current residual
+
+At step k, combine the incoming virtual index with physical site k, take its SVD, retain the leading columns of U, and pass Sigma times V-adjoint to the next step. The singular values here belong to the current residual, not necessarily to the original state at that cut. Q0 is the scalar identity, and k runs from 1 to n−1. When fewer columns exist, the retained dimension is their minimum with the requested budget. The next unfolding uses the actual column count of Q, so a large requested budget does not create nonexistent virtual coordinates.
+
+$$
+Q_0=1,\quad R_0=\psi,\quad\|\psi\|=1,\quad
+ M_k=\operatorname{reshape}(R_{k-1})\in\mathbb C^{(\operatorname{cols}Q_{k-1})d_k\times(d_{k+1}\cdots d_n)},\quad
+ M_k=U_k\Sigma_kV_k^\dagger,\quad
+ R_k=\Sigma_{k,\le r_k}V_{k,\le r_k}^\dagger,\quad
+ \delta_k^2=\sum_{a>r_k}\sigma_a(M_k)^2.
+$$
+
+### Build the retained physical spaces
+
+Qk embeds the retained prefix coordinates into the full first-k-site Hilbert space. Its columns stay orthonormal because each retained U has orthonormal columns. Extend its projector by the identity on later sites. Each new retained physical space lies inside the previous one, so the projectors are nested. Their realized values depend on the input; once the SVD choices are fixed these are ordinary orthogonal projectors.
+
+$$
+Q_k=(Q_{k-1}\otimes I_{d_k})U_{k,\le r_k},\quad Q_k^\dagger Q_k=I,\quad
+ P_k=Q_kQ_k^\dagger\otimes I_{k+1:n},\quad
+ P_kP_{k-1}=P_k,\quad X_k=P_k\psi,\quad X_0=\psi.
+$$
+
+### Why squared errors add in this procedure
+
+The discarded piece at step j is orthogonal to the whole retained space after that step, including every later discarded piece and the final tensor. Pythagoras therefore gives an equality for the sum of the current discarded squared singular values. The overlap with the final unnormalized tensor is its squared norm. This argument uses the stated nested, isometric, unnormalized sweep; it is not a rule for arbitrary truncation routines.
+
+$$
+e_k=X_{k-1}-X_k,\quad\|e_k\|^2=\delta_k^2,\quad
+ \langle e_j,e_k\rangle=0\ (j\ne k),\quad B=X_{n-1},\quad
+ E=\|\psi-B\|^2=\sum_{k=1}^{n-1}\delta_k^2,\quad
+ \|B\|^2=\langle\psi,B\rangle=1-E.
+$$
+
+### Normalize only after finishing
+
+All positive budgets retain a nonzero component of a nonzero input, so E<1 in exact arithmetic. Renormalize the final tensor once. Squared overlap, trace distance and Hilbert distance have distinct formulas. The observable bound compares the same bounded Hermitian operator on both states; it does not certify an unbounded observable or a particular energy optimum.
+
+$$
+\widehat B=B/\sqrt{1-E},\quad F_2(\psi,\widehat B)=1-E,\quad
+ D_{\rm tr}(\psi,\widehat B)=\sqrt E,\quad
+ \|\psi-\widehat B\|^2=2(1-\sqrt{1-E}),\quad
+ |\langle O\rangle_\psi-\langle O\rangle_{\widehat B}|\le2\|O\|\sqrt E
+ \quad(O=O^\dagger\text{ bounded},\ E<1).
+$$
+
+### Relate current losses to the original cut tails
+
+Let Ck be the original normalized unfolding, and epsilon-k its best rank-rk squared error. The current unfolding is a left contraction of Ck. Apply that contraction to an original best rank-rk approximation: rank cannot increase and Frobenius error cannot increase. Since the current SVD is optimal for its own unfolding, its loss is at most epsilon-k. This proves an upper bound using original spectra, not equality with their sum.
+
+$$
+\varepsilon_k=\sum_{a>r_k}\lambda_a^{(k)}(\psi),\quad
+ M_k=(Q_{k-1}^\dagger\otimes I_{d_k})C_k(\psi),\quad
+ \delta_k^2\le\varepsilon_k,\quad E\le\sum_{k=1}^{n-1}\varepsilon_k.
+$$
+
+### What quasi-optimal means
+
+Any tensor satisfying every bond budget is also a feasible rank-rk approximation at each individual cut. Thus each original tail is a lower bound on the best global unnormalized error squared. Combining them yields the familiar square-root-of-the-number-of-cuts factor. This is an approximation guarantee, not a proof that the sweep found the global minimizer. It does not compare directly with a separately normalized optimization problem.
+
+$$
+e_*^2=\inf_{\operatorname{rank}C_k(Y)\le r_k\ \forall k}\|\psi-Y\|^2,\quad
+ \varepsilon_k\le e_*^2,\quad
+ \|\psi-B\|\le\sqrt{\sum_k\varepsilon_k}\le\sqrt{n-1}\,e_* .
+$$
+
+### A three-qubit calculation you can follow
+
+Take nonnegative real amplitudes at four even-parity strings. The two rows at the first cut have disjoint right support. Under the stated strict inequalities, the first step keeps site0=0; the second keeps the larger of a and b. One obtains a product tensor and two separately identifiable losses. These inequalities avoid a split degeneracy in this example.
+
+$$
+\psi=\frac{a|000\rangle+b|011\rangle+c|101\rangle+d|110\rangle}{\sqrt N},\quad
+ N=a^2+b^2+c^2+d^2,\quad a>b\ge0,\quad a^2+b^2>c^2+d^2,\quad(r_1,r_2)=(1,1):\qquad
+ B=\frac a{\sqrt N}|000\rangle,\quad
+ (\delta_1^2,\delta_2^2)=\frac1N(c^2+d^2,b^2),\quad
+ E=\frac{b^2+c^2+d^2}{N}.
+$$
+
+### Original tails give a different number
+
+At the second original cut the two columns also have disjoint support. The original tail includes both surviving and previously discarded amplitudes; it need not equal the second loss in the actual sweep. For 3,2,1,1 the true total is 2/5 while the original-tail upper bound is 7/15. A repeated singular value allows multiple valid SVD choices; any chosen orthonormal leading subspace obeys the bound, but the final state need not be unique.
+
+$$
+\varepsilon_1=\frac{c^2+d^2}{N},\quad
+ \varepsilon_2=\frac{\min(a^2+d^2,b^2+c^2)}N,\qquad
+ (a,b,c,d)=(3,2,1,1):\quad
+ E=\frac25<\varepsilon_1+\varepsilon_2=\frac7{15},\quad
+ F_2=\frac35,\quad D_{\rm tr}=\sqrt{\frac25}.
+$$
+
+```python
+from fractions import Fraction as F
+for a,b,c,d in [(3,2,1,1),(4,2,1,1),(3,2,2,1),(2,1,1,0)]:
+    N=a*a+b*b+c*c+d*d
+    first=F(c*c+d*d,N)
+    second=F(b*b,N)
+    original_second=F(min(a*a+d*d,b*b+c*c),N)
+    print(f'{a},{b},{c},{d}',first,second,first+second,first+original_second)
+```
+
+| a,b,c,d | current delta1² | current delta2² | actual E | original-tail sum |
+| --- | --- | --- | --- | --- |
+| 3,2,1,1 | 2/15 | 4/15 | 2/5 | 7/15 |
+| 4,2,1,1 | 1/11 | 2/11 | 3/11 | 7/22 |
+| 3,2,2,1 | 5/18 | 2/9 | 1/2 | 13/18 |
+| 2,1,1,0 | 1/6 | 1/6 | 1/3 | 1/2 |
+
+![Current discarded weights versus original-cut tails, and the actual sequential squared error below its original-tail sum bound.](/assets/learning/quantum-compression-gradient-research-sequential-discarded-weight.en.svg)
+
+The bars refer to 3,2,1,1. Curves vary c from 0 to 2 with a=3,b=2,d=1; all formulas are analytic. This is a standalone compression derivation and independent sweep, not a new multi-cut compression control in the existing one-cut reader.
+
+#### Research check 1: Do not normalize in the middle
+
+If the residual after step1 is divided by its norm, its next discarded weights are conditional weights. Multiply them by the squared norm entering that stage before adding to the original-scale loss. In the 3,2,1,1 example that conditional second loss is 4/13, whereas the correct original-scale loss is (13/15)(4/13)=4/15.
+
+#### Research check 2: A bound is not the global optimum
+
+For 3,2,2,1 the sweep has E=1/2. The normalized product [(2|0>+|1>)/sqrt(5)] cubed has squared overlap 578/1125 with the original state. Its best unnormalized multiple therefore has squared error 547/1125, strictly smaller than 1/2. This explicit competitor proves the sweep is not globally optimal in this case; it does not establish the competitor as the global optimum. The quasi-optimal bound still holds.
+
+#### Research check 3: Degeneracy does not invalidate the certificate
+
+At an equal-weight boundary, choose any orthonormal leading subspace and record that choice. Nested projection and Pythagoras still hold for the realized sweep. The existing one-cut calculator deliberately does not select an arbitrary state at a split degeneracy; this new derivation does not change that policy.
+
+Background: [Schollwöck, §§4.1.3 and 4.5.1](https://arxiv.org/pdf/1008.3477), sequential SVD and compression. The nested-projector proof above states the exact finite procedure and keeps unnormalized and normalized guarantees separate.
+
 ## 15. Eight exercises with worked explanations
 
 **1. Name the matrix.** For four qubits at cut3, what are C's dimensions, which physical density is smaller and how many extra zero eigenvalues does the larger side have when the rank is2?

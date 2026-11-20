@@ -98,6 +98,130 @@ $$
 
 It equals1 for states differing only by a global phase, and1/2 between |0〉 and |+〉. Some texts call the square root of this quantity fidelity. Compare formulas before comparing reported numbers. Background on reduced states and the root-fidelity convention: [IBM density matrices](https://learning.quantum.ibm.com/course/general-formulation-of-quantum-information/density-matrices), [IBM purifications and fidelity](https://learning.quantum.ibm.com/course/general-formulation-of-quantum-information/purifications-and-fidelity).
 
+## Research extension: differentiate a circuit without confusing gates and parameters
+
+A trainable quantum model needs a derivative of an expectation, not just a valid forward state. Fix the input, observable and every other parameter. Write a single differentiated gate between two fixed unitaries. Differentiating the two exponentials gives a commutator; its factor i makes the expectation real for Hermitian G and O. Angles are dimensionless radians.
+
+$$
+U(\theta)=W e^{-i\theta G}V,\quad G=G^\dagger,\quad |\phi\rangle=V|\psi\rangle,\quad A=W^\dagger O W,\quad
+ f(\theta)=\langle\phi|e^{i\theta G}Ae^{-i\theta G}|\phi\rangle,\quad
+ f'(\theta)=i\langle\phi|e^{i\theta G}[G,A]e^{-i\theta G}|\phi\rangle.
+$$
+
+### Two distinct generator eigenvalues give one frequency
+
+Subtracting cI from the generator changes only a global phase in this ordinary, uncontrolled expectation. The remaining generator is rP with P squared equal to the identity. Expanding exp(−i theta rP) into cosine and sine gives a constant plus a single frequency 2r. Subtract the two shifted trigonometric expressions to obtain an exact derivative. For Ry the generator is Y/2, r=1/2, the shift is pi/2 and the coefficient is 1/2. It is not a small-step finite difference.
+
+$$
+G=cI+rP,\quad P^2=I,\quad r>0:\qquad
+ f(\theta)=a+b\cos(2r\theta)+d\sin(2r\theta),\quad
+ f'(\theta)=r\left[f\left(\theta+\frac\pi{4r}\right)-f\left(\theta-\frac\pi{4r}\right)\right].
+$$
+
+### Differentiate an explicitly ordered entangling circuit
+
+Starting from 00, rotate wire0 by theta, apply CX with control0, then rotate wire1 by phi. Measure Z on wire1. The first two gates give cos(theta/2)|00>+sin(theta/2)|11>; the final local rotation converts its Z expectation as below. The same gate order and tensor labels are used in the independent matrix calculation.
+
+$$
+|\psi(\theta,\varphi)\rangle=(I\otimes R_y(\varphi))\,\mathrm{CX}_{0\to1}\,(R_y(\theta)\otimes I)|00\rangle,\quad
+ R_y(t)=e^{-itY/2},\quad O=I\otimes Z,\quad
+ f=\cos\theta\cos\varphi,\quad
+ \partial_\theta f=-\sin\theta\cos\varphi,\quad\partial_\varphi f=-\cos\theta\sin\varphi.
+$$
+
+### Sharing a parameter and processing a loss change the problem
+
+If theta and phi are tied to the same variable t, the derivative is the sum of occurrence-wise partial derivatives. Shifting both occurrences together by pi/2 gives zero and misses the derivative. A nonlinear classical loss also needs its chain rule: even f=cos(theta) with L=f squared has L derivative −1 at pi/4, while directly shifting the two loss values gives zero. Exact rules for expectations do not automatically transfer to arbitrary functions of expectations.
+
+$$
+g(t)=f(t,t)=\cos^2t,\quad g'(t)=\partial_\theta f(t,t)+\partial_\varphi f(t,t)=-\sin(2t),\quad
+ \frac{g(t+\pi/2)-g(t-\pi/2)}2=0;\qquad
+ L=(f-y)^2:\quad\partial_\theta L=2(f-y)\partial_\theta f.
+$$
+
+### An exact formula can still require many measurements
+
+For independent shots measuring a Pauli observable, each outcome is plus or minus one. Its sample mean has variance (1−f squared)/m. Independent estimates at the two shifted circuits therefore give the stated gradient variance. The allocation formula minimizes it over positive real shot counts when both variances are positive and known. Hardware counts are integers; unknown variances require pilot estimation. Zero-variance endpoints and rounding need separate treatment. Parameter-independent noise can be absorbed into fixed preparation/readout maps; parameter-dependent noise need not obey this ideal rule.
+
+$$
+\widehat{\partial_\theta f}=(\bar O_+-\bar O_-)/2,\quad O^2=I,\quad
+ \operatorname{Var}(\widehat{\partial_\theta f})=\frac{1-f_+^2}{4m_+}+\frac{1-f_-^2}{4m_-},\quad
+ m_++m_-=M,\quad \sigma_\pm=\sqrt{1-f_\pm^2},\quad
+ m_\pm=\frac{M\sigma_\pm}{\sigma_++\sigma_-},\quad
+ \operatorname{Var}_{\min}=\frac{(\sigma_++\sigma_-)^2}{4M}.
+$$
+
+### A controlled rotation has another generator spectrum
+
+The controlled Ry gate has three distinct generator eigenvalues, hence two possible nonzero frequency magnitudes, 1/2 and 1. Prepare control plus and target zero, then read X on the control. The target-branch overlap gives cos(theta/2). Applying the ordinary Ry rule produces a factor 1/sqrt(2) where 1/2 is required. A controlled implementation is a different differentiated gate.
+
+$$
+C R_y(\theta)=e^{-i\theta G_c},\quad G_c=|1\rangle\langle1|\otimes Y/2,\quad
+ \operatorname{spec}G_c=\{0,-1/2,1/2\},\quad
+ |\psi_0\rangle=|+0\rangle,\quad O=X\otimes I:\qquad
+ f_c(\theta)=\cos(\theta/2),\quad f_c'=-\tfrac12\sin(\theta/2),\quad
+ \tfrac12[f_c(\theta+\pi/2)-f_c(\theta-\pi/2)]=-\tfrac1{\sqrt2}\sin(\theta/2).
+$$
+
+### Recover a rule from the actual frequency support
+
+For a single occurrence of this controlled gate between fixed operations, all expectation frequencies are generator eigenvalue differences. Solve two linear equations so the difference formula differentiates both frequency 1/2 and frequency 1 exactly. This gives four circuit evaluations with signed weights. It is specific to this frequency set, not a universal prescription for every controlled gate or reused parameter.
+
+$$
+D_s f=f(\theta+s)-f(\theta-s),\quad
+ f\in\operatorname{span}_{\mathbb R}\{1,\cos(\theta/2),\sin(\theta/2),\cos\theta,\sin\theta\}:\qquad
+ f'(\theta)=\tfrac12D_{\pi/2}f+\frac{1-\sqrt2}{4}D_\pi f.
+$$
+
+### Use rational angles to check exact tables
+
+Fix tan(phi/2)=1/2 and parameterize theta by t=tan(theta/2). Sines, cosines, both partial derivatives and the variance of the independent 100-plus-100-shot estimator are rational. A zero gradient is not a statement that its estimator has zero variance. At t=0 the derivative vanishes but the variance is 1/200; more shots reduce uncertainty rather than changing the ideal derivative.
+
+$$
+t=\tan(\theta/2),\quad\tan(\varphi/2)=1/2,\quad
+ \cos\theta=\frac{1-t^2}{1+t^2},\quad\sin\theta=\frac{2t}{1+t^2},\quad
+ \cos\varphi=3/5,\quad\sin\varphi=4/5,\quad
+ f_\pm=\pm\partial_\theta f,\quad m_+=m_-=100,\quad
+ \operatorname{Var}(\widehat{\partial_\theta f})=\frac{1-(\partial_\theta f)^2}{200}.
+$$
+
+```python
+from fractions import Fraction as F
+for t in [F(0),F(1,3),F(1,2),F(1)]:
+    cos=(1-t*t)/(1+t*t)
+    sin=2*t/(1+t*t)
+    f=F(3,5)*cos
+    dtheta=-F(3,5)*sin
+    dphi=-F(4,5)*cos
+    variance=(1-dtheta*dtheta)/200
+    print(t,f,dtheta,dphi,variance)
+```
+
+| t | f | partial theta | partial phi | variance, M=200 |
+| --- | --- | --- | --- | --- |
+| 0 | 3/5 | 0 | -4/5 | 1/200 |
+| 1/3 | 12/25 | -9/25 | -16/25 | 68/15625 |
+| 1/2 | 9/25 | -12/25 | -12/25 | 481/125000 |
+| 1 | 0 | -3/5 | 0 | 2/625 |
+
+![Ordinary two-shift differentiation fails for controlled Ry, while a four-evaluation frequency rule agrees with the analytic derivative; shot variance decreases with measurement count.](/assets/learning/quantum-compression-gradient-research-parameter-shift-frequency.en.svg)
+
+The upper panel concerns control-X after controlled Ry, not the ordinary rotation. The lower panel shows exact estimator variances for the stated independent, equally allocated Pauli shots at fixed phi. These are analytic benchmarks; the reader keeps its existing exact H/S/T circuit controls and does not add a continuous optimizer or hardware sampler.
+
+#### Research check 1: The shared parameter needs two partials
+
+At theta=phi=pi/4, each partial is −1/2, hence the tied derivative is −1. Moving both angles simultaneously by plus/minus pi/2 gives the same value 1/2 in both circuits and a false zero derivative.
+
+#### Research check 2: Controlled is not ordinary
+
+At theta=pi, the control-X expectation of controlled Ry has derivative −1/2. The ordinary rule returns −1/sqrt(2). The four-evaluation formula returns −1/2 because it was fitted to both allowed nonzero frequencies.
+
+#### Research check 3: Zero gradient still has shot noise
+
+At theta=0 with cos(phi)=3/5, the two shifted Z expectations vanish. With 100 shots each their independent means each have variance 1/100; dividing their difference by two yields variance 1/200. Exact zero expectation does not make individual Pauli outcomes deterministic.
+
+Background: [Schuld et al., Evaluating analytic gradients on quantum hardware, §II](https://arxiv.org/pdf/1811.11184), the two-eigenvalue parameter-shift rule. The shared-variable counterexample, controlled-frequency formula and shot calculations above are explicitly derived finite examples, not a claim about training scalability or a barren-plateau diagnosis.
+
 ## 7. Exercises with explanations
 
 **Predict:** Does Z change the computational probabilities of |+〉? No. It changes the relative sign, which an X-basis measurement can detect. An H before a computational measurement implements that readout.
